@@ -1,6 +1,7 @@
 'use client'
 
 import { useAuthStore } from '@/store/auth'
+import { useLoadingStore } from '@/store/loading'
 
 const BASE_URL = ''
 
@@ -37,6 +38,19 @@ async function refreshToken(): Promise<string | null> {
 }
 
 export async function apiFetch(
+  url: string,
+  options: RequestInit = {}
+): Promise<Response> {
+  const { inc, dec } = useLoadingStore.getState()
+  inc()
+  try {
+    return await _apiFetch(url, options)
+  } finally {
+    dec()
+  }
+}
+
+async function _apiFetch(
   url: string,
   options: RequestInit = {}
 ): Promise<Response> {

@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
 import { apiFetch } from '@/lib/api'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { LoadingBar } from '@/components/ui/loading-bar'
 
 const navItems = [
   { href: '/dashboard', label: 'DASHBOARD', dot: '·' },
@@ -24,6 +26,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const setUser = useAuthStore((s) => s.setUser)
   const logout = useAuthStore((s) => s.logout)
   const [initializing, setInitializing] = useState(true)
+  const [logoutConfirm, setLogoutConfirm] = useState(false)
 
   // On every page load, Zustand is empty. Use the httpOnly refresh cookie
   // to silently get a new access token, then fetch /me to populate the user.
@@ -69,6 +72,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const [logoutConfirm, setLogoutConfirm] = useState(false)
 
   async function handleLogout() {
     await apiFetch('/api/auth/logout', { method: 'POST' })
@@ -134,7 +139,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </p>
           <p className="text-[10px] font-mono text-[#555] mb-3">@{user?.username}</p>
           <button
-            onClick={handleLogout}
+            onClick={() => setLogoutConfirm(true)}
             className="w-full text-left text-[10px] font-mono tracking-widest text-[#777] hover:text-[#f5f5f5] transition-colors uppercase"
           >
             — LOGOUT
@@ -166,6 +171,17 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <main className="flex-1 overflow-y-auto pt-14 md:pt-0 min-h-screen">
         {children}
       </main>
+
+      <LoadingBar />
+
+      <ConfirmDialog
+        open={logoutConfirm}
+        title="Log Out"
+        message="Are you sure you want to log out of your session?"
+        confirmLabel="Log Out"
+        onConfirm={handleLogout}
+        onCancel={() => setLogoutConfirm(false)}
+      />
     </div>
   )
 }

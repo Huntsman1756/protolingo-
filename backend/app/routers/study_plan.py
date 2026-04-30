@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_user
-from app.models.lesson import Lesson
+from app.models.lesson import Exercise, Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.study_plan import (
@@ -16,6 +16,7 @@ from app.schemas.study_plan import (
     TodayLesson,
     TodayResponse,
 )
+from app.services.lesson_generator import generate_lesson
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -146,21 +147,66 @@ async def get_today_lessons(
     today_lessons = []
     for d in days:
         d_day = d["day"] if isinstance(d, dict) else d.day
-        if d_day == current_day:
-            d_title = d["title"] if isinstance(d, dict) else d.title
-            d_type = d["lesson_type"] if isinstance(d, dict) else d.lesson_type
-            d_obj = d["objectives"] if isinstance(d, dict) else d.objectives
-            d_min = d["estimated_minutes"] if isinstance(d, dict) else d.estimated_minutes
-            today_lessons.append(
-                TodayLesson(
-                    id=lesson_by_title.get(d_title),
-                    title=d_title,
+        if d_day != current_day:
+            continue
+        d_title = d["title"] if isinstance(d, dict) else d.title
+        d_type = d["lesson_type"] if isinstance(d, dict) else d.lesson_type
+        d_obj = d["objectives"] if isinstance(d, dict) else d.objectives
+        d_min = d["estimated_minutes"] if isinstance(d, dict) else d.estimated_minutes
+
+        lesson_id = lesson_by_title.get(d_title)
+
+        # Auto-generate the lesson if it doesn't exist yet
+        if lesson_id is None:
+            try:
+                content = await generate_lesson(
+                    cefr_level=plan.cefr_level,
                     lesson_type=d_type,
+                    topic=d_title,
                     week=current_week,
                     day=current_day,
-                    objectives=d_obj,
-                    estimated_minutes=d_min,
                 )
+                content_dict = content.model_dump() if hasattr(content, "model_dump") else content
+
+                lesson = Lesson(
+                    study_plan_id=plan.id,
+                    title=d_title,
+                    lesson_type=d_type,
+                    cefr_level=plan.cefr_level,
+                    week_number=current_week,
+                    day_number=current_day,
+                    content=content_dict,
+                )
+                db.add(lesson)
+                await db.flush()
+
+                for ex in (content_dict.get("exercises") or []):
+                    exercise = Exercise(
+                        lesson_id=lesson.id,
+                        exercise_type=ex.get("type", "multiple_choice"),
+                        question=ex.get("question", ""),
+                        options=ex.get("options"),
+                        correct_answer=ex.get("correct", ""),
+                    )
+                    db.add(exercise)
+
+                await db.commit()
+                await db.refresh(lesson)
+                lesson_id = lesson.id
+            except Exception:
+                # LLM failure is non-blocking; lesson will appear without ID
+                pass
+
+        today_lessons.append(
+            TodayLesson(
+                id=lesson_id,
+                title=d_title,
+                lesson_type=d_type,
+                week=current_week,
+                day=current_day,
+                objectives=d_obj,
+                estimated_minutes=d_min,
             )
+        )
 
     return TodayResponse(plan_id=plan.id, cefr_level=plan.cefr_level, lessons=today_lessons)

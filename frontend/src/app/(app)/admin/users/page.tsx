@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import { apiFetch } from '@/lib/api'
+import { useAuthStore } from '@/store/auth'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 interface AdminUserItem {
   id: number
@@ -35,6 +37,8 @@ export default function AdminUsersPage() {
     role: 'user',
   })
   const [error, setError] = useState('')
+  const [deletePending, setDeletePending] = useState<AdminUserItem | null>(null)
+  const currentUserId = useAuthStore((s) => s.user?.id)
 
   const loadUsers = useCallback(async () => {
     setLoading(true)
@@ -82,8 +86,8 @@ export default function AdminUsersPage() {
   }
 
   async function deleteUser(user: AdminUserItem) {
-    if (!confirm(`Delete user "${user.username}"? This cannot be undone.`)) return
     const res = await apiFetch(`/api/admin/users/${user.id}`, { method: 'DELETE' })
+    setDeletePending(null)
     if (!res.ok) {
       const data = await res.json().catch(() => ({}))
       setError(data.detail || 'Failed to delete user')
@@ -235,8 +239,10 @@ export default function AdminUsersPage() {
                     {u.is_active ? 'Deactivate' : 'Activate'}
                   </button>
                   <button
-                    onClick={() => deleteUser(u)}
-                    className="border border-[#ff3b3b]/30 px-4 py-2 font-mono text-[10px] tracking-widest uppercase text-[#ff6b6b] hover:border-[#ff3b3b] hover:text-[#ff4444] transition-colors"
+                    onClick={() => setDeletePending(u)}
+                    disabled={u.id === currentUserId}
+                    className="border border-[#ff3b3b]/30 px-4 py-2 font-mono text-[10px] tracking-widest uppercase text-[#ff6b6b] hover:border-[#ff3b3b] hover:text-[#ff4444] transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+                    title={u.id === currentUserId ? 'Cannot delete your own account' : 'Delete user'}
                   >
                     Delete
                   </button>
@@ -246,6 +252,16 @@ export default function AdminUsersPage() {
           </div>
         )}
       </div>
+
+      <ConfirmDialog
+        open={deletePending !== null}
+        title="Delete User"
+        message={`Delete "${deletePending?.display_name ?? deletePending?.username}"? This action cannot be undone and will erase all their data.`}
+        confirmLabel="Delete"
+        danger
+        onConfirm={() => deletePending && deleteUser(deletePending)}
+        onCancel={() => setDeletePending(null)}
+      />
     </div>
   )
 }

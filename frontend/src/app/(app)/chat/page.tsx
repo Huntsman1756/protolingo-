@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { apiFetch } from '@/lib/api'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -25,6 +26,7 @@ export default function ChatPage() {
   const [loadingConvs, setLoadingConvs] = useState(true)
   const [loadingMsgs, setLoadingMsgs] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [deletePending, setDeletePending] = useState<number | null>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -83,9 +85,9 @@ export default function ChatPage() {
     inputRef.current?.focus()
   }
 
-  async function deleteConversation(id: number, e: React.MouseEvent) {
-    e.stopPropagation()
+  async function deleteConversation(id: number) {
     await apiFetch(`/api/chat/conversations/${id}`, { method: 'DELETE' })
+    setDeletePending(null)
     const updated = await loadConversations()
     if (activeId === id) {
       if (updated.length > 0) {
@@ -192,7 +194,7 @@ export default function ChatPage() {
                     {c.title}
                   </span>
                   <button
-                    onClick={(e) => deleteConversation(c.id, e)}
+                    onClick={(e) => { e.stopPropagation(); setDeletePending(c.id) }}
                     className="opacity-0 group-hover:opacity-100 font-mono text-[10px] text-[#ff6b6b] hover:text-[#ff4444] transition-all shrink-0"
                     title="Delete"
                   >
@@ -292,6 +294,16 @@ export default function ChatPage() {
           <p className="font-mono text-[9px] text-[#444] mt-2 tracking-wide">Enter to send</p>
         </div>
       </div>
+
+      <ConfirmDialog
+        open={deletePending !== null}
+        title="Delete Chat"
+        message="This conversation will be permanently deleted and cannot be recovered."
+        confirmLabel="Delete"
+        danger
+        onConfirm={() => deletePending !== null && deleteConversation(deletePending)}
+        onCancel={() => setDeletePending(null)}
+      />
     </div>
   )
 }

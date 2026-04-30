@@ -60,14 +60,49 @@ freelingo/
 | 2     | Local TTS + STT        | ⏳ Planned     |
 | 3     | Real-time conversation | ⏳ Planned     |
 
-## Quick start (Phase 1)
+## Quick start
+
+### Option A — Git clone + Docker Compose
+
+**Requirements:** Docker, Docker Compose, Git, and [Ollama](https://ollama.com) running on the host.
+
 ```bash
+# 1. Clone the repository
+git clone https://github.com/artcc/freelingo.git
+cd freelingo
+
+# 2. Configure environment
 cp .env.example .env
-# Edit .env with your Ollama configuration
+# Edit .env: set OLLAMA_BASE_URL, choose your model, and review other settings
+
+# 3. Pull the recommended model (run on the host, not inside Docker)
+ollama pull gemma3:12b
+
+# 4. Start all services
 docker compose up -d
+
+# 5. Run database migrations (first run only)
+docker compose exec backend alembic upgrade head
 ```
 
-Access at `http://localhost:3000`. The first registered user will be admin automatically.
+Access at `http://localhost:3000` (or `http://<server-ip>:3000`).  
+The first registered user becomes admin automatically.
+
+---
+
+### Option B — Portainer (Stack)
+
+1. Open Portainer → **Stacks** → **Add stack**.
+2. Choose **Repository** and enter the repo URL, or paste the contents of `docker-compose.yml` directly into the Web editor.
+3. Scroll down to **Environment variables** and add the variables from `.env.example` (at minimum: `SECRET_KEY`, `OLLAMA_BASE_URL`, `POSTGRES_PASSWORD`).
+4. Click **Deploy the stack**.
+5. Once running, open a console into the `backend` container and run the migrations:
+   ```bash
+   alembic upgrade head
+   ```
+6. Access the app at `http://<server-ip>:3000`.
+
+> **Tip:** If Ollama runs on the same host as Portainer, set `OLLAMA_BASE_URL=http://host.docker.internal:11434`. On Linux you may need to add the `extra_hosts` entry in the compose file (already included by default).
 
 ## Internal documentation
 
