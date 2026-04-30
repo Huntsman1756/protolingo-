@@ -59,12 +59,11 @@ async def register(
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="Username already taken")
 
-    if data.email:
-        email_check = await db.execute(
-            select(User).where(User.email == data.email)
-        )
-        if email_check.scalar_one_or_none():
-            raise HTTPException(status_code=409, detail="Email already taken")
+    email_check = await db.execute(
+        select(User).where(User.email == data.email)
+    )
+    if email_check.scalar_one_or_none():
+        raise HTTPException(status_code=409, detail="Email already taken")
 
     user_count = await db.scalar(select(func.count(User.id)))
     role = "admin" if (user_count == 0 and settings.FIRST_USER_IS_ADMIN) else "user"
@@ -95,7 +94,7 @@ async def login(
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
 ):
-    result = await db.execute(select(User).where(User.username == data.username))
+    result = await db.execute(select(User).where(User.email == data.email))
     user = result.scalar_one_or_none()
 
     if not user or not user.is_active or not verify_password(data.password, user.hashed_password):

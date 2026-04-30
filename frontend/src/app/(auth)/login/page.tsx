@@ -2,6 +2,7 @@
 
 import { Suspense, useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Image from 'next/image'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 
@@ -11,7 +12,7 @@ function LoginForm() {
   const registered = searchParams.get('registered') === 'true'
   const setTokens = useAuthStore((s) => s.setTokens)
   const setUser = useAuthStore((s) => s.setUser)
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -25,7 +26,7 @@ function LoginForm() {
         const res = await apiFetch('/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password }),
+          body: JSON.stringify({ email, password }),
         })
         if (!res.ok) {
           const data = await res.json()
@@ -42,7 +43,7 @@ function LoginForm() {
         setLoading(false)
       }
     },
-    [username, password, router, setTokens, setUser]
+    [email, password, router, setTokens, setUser]
   )
 
   return (
@@ -53,6 +54,7 @@ function LoginForm() {
         <div className="flex flex-col items-center mb-10">
           <h1 className="font-mono text-xl font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</h1>
           <p className="font-mono text-[11px] text-[#777] tracking-widest uppercase mt-1">self-hosted language learning</p>
+          <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mt-4" />
         </div>
 
         <div className="border border-[#2a2a2a] bg-[#111] p-8">
@@ -75,11 +77,11 @@ function LoginForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Username</label>
+              <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Email</label>
               <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#444] transition-colors"
               />

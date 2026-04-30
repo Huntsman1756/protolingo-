@@ -8,14 +8,14 @@ from pydantic import BaseModel, EmailStr, field_serializer
 
 class RegisterRequest(BaseModel):
     username: str
-    email: Optional[EmailStr] = None
+    email: EmailStr
     password: str
     display_name: Optional[str] = None
     native_language: str
 
 
 class LoginRequest(BaseModel):
-    username: str
+    email: EmailStr
     password: str
 
 
