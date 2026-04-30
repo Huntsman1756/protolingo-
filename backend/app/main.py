@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+import asyncio
 
 from alembic import command
 from alembic.config import Config
@@ -12,10 +13,14 @@ from app.core.config import settings
 from app.routers import admin, assessment, auth, chat, flashcards, lessons, progress, study_plan
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):  # noqa: ANN201
+def _run_migrations() -> None:
     alembic_cfg = Config("/app/alembic.ini")
     command.upgrade(alembic_cfg, "head")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):  # noqa: ANN201
+    await asyncio.to_thread(_run_migrations)
     yield
 
 
