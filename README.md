@@ -1,14 +1,14 @@
 # FreeLingo
 
-<p align="center">
-  <img src="assets/logo.png" alt="FreeLingo logo" width="180" />
-</p>
-
 ![License](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.12-blue?style=flat-square)
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
 ![Status](https://img.shields.io/badge/status-phase--1-brightgreen?style=flat-square)
+
+<p align="left">
+  <img src="assets/logo.png" alt="FreeLingo logo" width="180" />
+</p>
 
 Open source, self-hosted, Dockerized web application for learning languages with AI.
 A local language model (Ollama) evaluates your CEFR level, generates a personalized
@@ -26,6 +26,7 @@ the frontend never calls them directly.
 
 ```
 freelingo/
+├── assets/             # Logos and static assets
 ├── backend/            # FastAPI (Python)
 ├── frontend/           # Next.js (React)
 ├── specs/              # Specification files
