@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 const PUBLIC_ROUTES = ['/login', '/register']
 
-export function proxy(req: NextRequest) {
+export function middleware(req: NextRequest) {
   const hasRefreshToken = req.cookies.has('refresh_token')
   const isPublic = PUBLIC_ROUTES.some((r) =>
     req.nextUrl.pathname.startsWith(r)

@@ -11,7 +11,7 @@ Student profile:
 - Available time per day: {minutes_per_day} minutes
 - Plan duration: {weeks} weeks
 
-Create a structured {{weeks}}-week study plan with daily lessons.
+Create a structured {weeks}-week study plan with daily lessons.
 Each lesson should take 20–30 minutes.
 
 Return a JSON object:
@@ -37,7 +37,7 @@ Return a JSON object:
 
 
 async def generate_study_plan(request: GenerateStudyPlanRequest) -> GeneratedPlan:
-    weaknesses_str = ", ".join(request.goals)
+    weaknesses_str = ", ".join(request.weaknesses) if hasattr(request, 'weaknesses') and request.weaknesses else ", ".join(request.goals)
     goals_str = ", ".join(request.goals)
 
     prompt = STUDY_PLAN_PROMPT.format(

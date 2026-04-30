@@ -97,7 +97,11 @@ async def chat(
         except LLMError:
             yield f"data: {json.dumps({'error': 'Something went wrong. Please try again.'})}\n\n"
 
-    return StreamingResponse(event_stream(), media_type="text/event-stream")
+    return StreamingResponse(
+        event_stream(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
 
 
 @router.get("/history", response_model=ChatHistoryResponse)

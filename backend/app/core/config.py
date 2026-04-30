@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     ALLOW_REGISTRATION: bool = True
     FIRST_USER_IS_ADMIN: bool = True
     LLM_PROVIDER: str = "ollama"
-    OLLAMA_BASE_URL: str = "http://ollama:11434"
+    OLLAMA_BASE_URL: str = "http://host.docker.internal:11434"
     OLLAMA_MODEL: str = "gemma3:12b"
     OPENAI_API_KEY: str = ""
     OPENAI_MODEL: str = "gpt-4o-mini"
@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     STT_BASE_URL: str = "http://whisper:9000"
     RATE_LIMIT_ENABLED: bool = True
     RATE_LIMIT_STORAGE: str = "memory"
+    CORS_ORIGINS: list[str] = ["http://localhost:3000"]
 
     model_config = {"env_file": ".env"}
 

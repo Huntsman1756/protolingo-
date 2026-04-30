@@ -26,8 +26,12 @@ from app.schemas.auth import (
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 
-async def get_redis() -> Redis:
-    return Redis.from_url(settings.REDIS_URL, decode_responses=True)
+async def get_redis():
+    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        yield redis
+    finally:
+        await redis.aclose()
 
 
 @router.post("/register", response_model=dict)

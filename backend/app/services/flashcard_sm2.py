@@ -27,8 +27,8 @@ def sm2_update(card: Flashcard, quality: int) -> Flashcard:
 
 
 FLASHCARD_GEN_PROMPT = """
-Generate {{count}} English vocabulary flashcards for a {{cefr_level}} student
-about the topic: "{{topic}}".
+Generate {count} English vocabulary flashcards for a {cefr_level} student
+about the topic: "{topic}".
 
 Return JSON:
 {{

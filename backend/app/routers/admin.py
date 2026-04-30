@@ -20,8 +20,12 @@ from app.schemas.admin import (
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 
 
-async def get_redis() -> Redis:
-    return Redis.from_url(settings.REDIS_URL, decode_responses=True)
+async def get_redis():
+    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        yield redis
+    finally:
+        await redis.aclose()
 
 
 @router.get("/users", response_model=list[AdminUserResponse])
