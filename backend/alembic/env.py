@@ -1,6 +1,8 @@
-from sqlalchemy import engine_from_config
+import asyncio
 
 from alembic import context
+from sqlalchemy.ext.asyncio import create_async_engine
+
 from app.core.config import settings
 from app.core.database import Base
 
@@ -26,26 +28,20 @@ def run_migrations_offline():
         context.run_migrations()
 
 
-async def run_migrations_online():
-    connectable = engine_from_config(
-        {"url": settings.DATABASE_URL},
-        prefix="",
-    )
-    async with connectable.connect() as connection:
-        await connection.run_sync(do_run_migrations)
-
-    await connectable.dispose()
-
-
 def do_run_migrations(connection):
     context.configure(connection=connection, target_metadata=target_metadata)
     with context.begin_transaction():
         context.run_migrations()
 
 
+async def run_migrations_online():
+    connectable = create_async_engine(settings.DATABASE_URL)
+    async with connectable.connect() as connection:
+        await connection.run_sync(do_run_migrations)
+    await connectable.dispose()
+
+
 if context.is_offline_mode():
     run_migrations_offline()
 else:
-    import asyncio
-
     asyncio.run(run_migrations_online())
