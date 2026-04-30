@@ -65,7 +65,7 @@ async def complete_lesson(
         raise HTTPException(status_code=404, detail="Lesson not found")
 
     lesson.is_completed = True
-    lesson.completed_at = datetime.now(timezone.utc)
+    lesson.completed_at = datetime.now(timezone.utc).replace(tzinfo=None)
     await db.commit()
     await db.refresh(lesson)
     return lesson
@@ -112,7 +112,7 @@ async def answer_exercise(
         exercise.feedback = "Correct!" if is_correct else f"The correct answer is: {exercise.correct_answer}"
 
     exercise.user_answer = data.answer
-    exercise.answered_at = datetime.now(timezone.utc)
+    exercise.answered_at = datetime.now(timezone.utc).replace(tzinfo=None)
     await db.commit()
     await db.refresh(exercise)
 

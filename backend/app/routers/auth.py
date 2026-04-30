@@ -101,7 +101,7 @@ async def login(
     if not user or not user.is_active or not verify_password(data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    user.last_login = datetime.now(timezone.utc)
+    user.last_login = datetime.now(timezone.utc).replace(tzinfo=None)
     await db.commit()
 
     access_token = create_access_token(user.id, user.role)
