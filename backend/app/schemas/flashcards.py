@@ -1,0 +1,64 @@
+from __future__ import annotations
+
+from datetime import date, datetime
+from typing import Optional
+
+from pydantic import BaseModel, field_serializer
+
+
+class FlashcardCreate(BaseModel):
+    word: str
+    definition: str
+    example_sentence: str
+    translation: str
+
+
+class FlashcardReview(BaseModel):
+    quality: int
+
+
+class FlashcardGenerateRequest(BaseModel):
+    topic: str
+    count: int = 5
+    cefr_level: str = "B1"
+    native_language: str = "es"
+
+
+class FlashcardResponse(BaseModel):
+    id: int
+    user_id: int
+    word: str
+    definition: str
+    example_sentence: str
+    translation: str
+    ease_factor: float
+    interval: int
+    repetitions: int
+    next_review: date
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+    @field_serializer("next_review")
+    def serialize_next_review(self, v: date, _info):
+        return v.isoformat()
+
+    @field_serializer("created_at")
+    def serialize_created_at(self, v: datetime, _info):
+        return v.isoformat()
+
+
+class FlashcardListResponse(BaseModel):
+    due: list[FlashcardResponse]
+    total: int
+
+
+class GeneratedFlashcard(BaseModel):
+    word: str
+    definition: str
+    example_sentence: str
+    translation: str
+
+
+class FlashcardGenerateResponse(BaseModel):
+    flashcards: list[GeneratedFlashcard]

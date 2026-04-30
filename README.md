@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)
 ![Docker](https://img.shields.io/badge/docker-required-blue?style=flat-square)
-![Status](https://img.shields.io/badge/status-planning-lightgrey?style=flat-square)
+![Status](https://img.shields.io/badge/status-phase--1-brightgreen?style=flat-square)
 
 Open source, self-hosted, Dockerized web application for learning languages with AI.
 A local language model (Ollama) evaluates your CEFR level, generates a personalized
@@ -25,30 +25,33 @@ freelingo/
 ├── specs/              # Specification files
 ├── docker-compose.yml
 ├── .env.example
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+├── LICENSE
 └── README.md
 ```
 
 ## Stack
 
-| Layer      | Technology                                      |
-|------------|-------------------------------------------------|
-| Frontend   | Next.js 14+, shadcn/ui, Tailwind CSS, Zustand   |
-| Backend    | FastAPI, SQLAlchemy async, Alembic, Pydantic v2 |
-| Database   | PostgreSQL 16                                   |
-| Cache      | Redis 7                                         |
-| LLM        | Ollama (local) · OpenAI · Anthropic · DeepSeek  |
-| TTS (P2)   | Kokoro-FastAPI                                  |
-| STT (P2)   | faster-whisper                                  |
+| Layer      | Technology                                             |
+|------------|--------------------------------------------------------|
+| Frontend   | Next.js 14+, shadcn/ui, Tailwind CSS, Zustand          |
+| Backend    | FastAPI, SQLAlchemy async, Alembic, Pydantic v2        |
+| Database   | PostgreSQL 16                                          |
+| Cache      | Redis 7                                                |
+| LLM        | Ollama (local) · OpenAI · Anthropic · DeepSeek         |
+| TTS (P2)   | Kokoro-FastAPI                                         |
+| STT (P2)   | faster-whisper                                         |
 | Auth       | JWT (access + refresh), multi-user, roles (admin/user) |
-| Deploy     | Docker Compose                                  |
+| Deploy     | Docker Compose                                         |
 
 ## Phases
 
-| Phase | Name                   | Status  |
-|-------|------------------------|---------|
-| 1     | Learning platform      | Planned |
-| 2     | Local TTS + STT        | Planned |
-| 3     | Real-time conversation | Planned |
+| Phase | Name                   | Status      |
+|-------|------------------------|-------------|
+| 1     | Learning platform      | Complete    |
+| 2     | Local TTS + STT        | Planned     |
+| 3     | Real-time conversation | Planned     |
 
 ## Quick start (Phase 1)
 
@@ -69,6 +72,7 @@ Access at `http://localhost:3000`. The first registered user will be admin autom
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
 - [changelog.instructions.md](specs/changelog.instructions.md) — Changelog format, entry style, and update rules
+- [CHANGELOG.md](CHANGELOG.md) — Project changelog
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [testing.instructions.md](specs/testing.instructions.md) — Testing strategy: pytest, Vitest, Playwright, mocks, CI
 - [llm-error-handling.instructions.md](specs/llm-error-handling.instructions.md) — LLM failures: malformed JSON, timeouts, retries, context overflow
@@ -80,3 +84,15 @@ Access at `http://localhost:3000`. The first registered user will be admin autom
 - The backend acts as a proxy for Ollama/TTS/STT calls so the frontend never talks directly to those services.
 - The `LLM_PROVIDER` field controls the LLM provider: `ollama` (local, recommended), `openai`, `anthropic`, or `deepseek`.
 - The target language is always **English**. During registration, the user's native language is asked for flashcard translations and tutor feedback.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, and submitting pull requests.
+
+## License
+
+Distributed under the [Apache 2.0 License](LICENSE).
+
+## Author
+
+**Arturo Carretero Calvo** — [@artcc](https://github.com/artcc)

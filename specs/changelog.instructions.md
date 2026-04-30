@@ -12,11 +12,10 @@ The changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) a
 ### Version header
 
 ```
-## [MAJOR.MINOR.PATCH-buildN] - YYYY-MM-DD
+## [MAJOR.MINOR.PATCH] - YYYY-MM-DD
 ```
 
 - `MAJOR.MINOR.PATCH` follows SemVer
-- `-buildN` suffix is included (e.g. `0.0.1-build-1`)
 - Date is ISO 8601 (e.g. `2026-04-21`)
 - Unreleased work goes under `## [Unreleased]` at the top
 
