@@ -68,16 +68,14 @@ function RegisterForm() {
       style={{ backgroundImage: 'radial-gradient(circle, #2a2a2a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center mb-10">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="FreeLingo" width={64} height={64} className="mb-4 opacity-95" />
           <h1 className="font-mono text-xl font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</h1>
-          <p className="font-mono text-[11px] text-[#555] tracking-widest uppercase mt-1">create account</p>
+          <p className="font-mono text-[11px] text-[#777] tracking-widest uppercase mt-1">create account</p>
         </div>
 
         <div className="border border-[#2a2a2a] bg-[#111] p-8">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#2a2a2a]">
-            <span className="text-[10px] text-[#555]">●</span>
-            <span className="font-mono text-xs tracking-widest text-[#555] uppercase">Register</span>
+            <span className="text-[10px] text-[#777]">●</span>
+            <span className="font-mono text-xs tracking-widest text-[#777] uppercase">Register</span>
             {invite && <span className="ml-auto font-mono text-[9px] text-[#888] uppercase tracking-widest">Invite active</span>}
           </div>
 
@@ -95,24 +93,24 @@ function RegisterForm() {
               { label: 'Password', value: password, onChange: setPassword, type: 'password', required: true },
             ].map((field) => (
               <div key={field.label}>
-                <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">{field.label}</label>
+                <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">{field.label}</label>
                 <input
                   type={field.type}
                   value={field.value}
                   onChange={(e) => field.onChange(e.target.value)}
                   required={field.required}
                   placeholder={'placeholder' in field ? field.placeholder : undefined}
-                  className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] placeholder:text-[#333] focus:outline-none focus:border-[#555] transition-colors"
+                  className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] placeholder:text-[#555] focus:outline-none focus:border-[#444] transition-colors"
                 />
               </div>
             ))}
 
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">Native Language</label>
+              <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Native Language</label>
               <select
                 value={nativeLanguage}
                 onChange={(e) => setNativeLanguage(e.target.value)}
-                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#555] transition-colors appearance-none"
+                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#444] transition-colors appearance-none"
               >
                 {LANGUAGES.map((l) => (
                   <option key={l.code} value={l.code}>{l.name}</option>
@@ -129,7 +127,7 @@ function RegisterForm() {
             </button>
           </form>
 
-          <p className="mt-6 font-mono text-[10px] text-[#555] tracking-wide text-center">
+          <p className="mt-6 font-mono text-[10px] text-[#777] tracking-wide text-center">
             Have an account?{' '}
             <a href="/login" className="text-[#888] hover:text-[#f5f5f5] transition-colors">Sign in</a>
           </p>

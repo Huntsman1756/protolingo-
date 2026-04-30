@@ -91,12 +91,12 @@ export default function AdminUsersPage() {
     setInviteUrl(`${window.location.origin}${data.invite_url}`)
   }
 
-  const inputCls = 'w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-xs text-[#f5f5f5] placeholder:text-[#333] focus:outline-none focus:border-[#555] transition-colors'
+  const inputCls = 'w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-xs text-[#f5f5f5] placeholder:text-[#555] focus:outline-none focus:border-[#444] transition-colors'
 
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-[#555] tracking-widest uppercase animate-pulse">Loading users…</span>
+        <span className="font-mono text-xs text-[#777] tracking-widest uppercase animate-pulse">Loading users…</span>
       </div>
     )
   }
@@ -106,13 +106,13 @@ export default function AdminUsersPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-[#555]">●</span>
+          <span className="text-[10px] text-[#777]">●</span>
           <span className="font-mono text-xs tracking-widest text-[#888] uppercase">Admin / Users</span>
         </div>
         <div className="flex gap-2">
           <button
             onClick={generateInvite}
-            className="border border-[#2a2a2a] px-4 py-2 font-mono text-[10px] tracking-widest text-[#888] uppercase hover:text-[#f5f5f5] hover:border-[#555] transition-colors"
+            className="border border-[#2a2a2a] px-4 py-2 font-mono text-[10px] tracking-widest text-[#888] uppercase hover:text-[#f5f5f5] hover:border-[#444] transition-colors"
           >
             + Invite Link
           </button>
@@ -120,8 +120,8 @@ export default function AdminUsersPage() {
             onClick={() => setShowCreate(!showCreate)}
             className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${
               showCreate
-                ? 'border-[#555] text-[#f5f5f5]'
-                : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#555]'
+                ? 'border-[#444] text-[#f5f5f5]'
+                : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
             }`}
           >
             + Create User
@@ -132,7 +132,7 @@ export default function AdminUsersPage() {
       {/* Invite URL banner */}
       {inviteUrl && (
         <div className="border border-[#2a2a2a] bg-[#111] px-5 py-4">
-          <p className="font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">Invite Link (valid 48h)</p>
+          <p className="font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Invite Link (valid 48h)</p>
           <p className="font-mono text-xs text-[#888] break-all">{inviteUrl}</p>
         </div>
       )}
@@ -141,8 +141,8 @@ export default function AdminUsersPage() {
       {showCreate && (
         <div className="border border-[#2a2a2a] bg-[#111]">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-[#2a2a2a]">
-            <span className="text-[10px] text-[#555]">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-[#555] uppercase">Create User</span>
+            <span className="text-[10px] text-[#777]">●</span>
+            <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Create User</span>
           </div>
           {error && (
             <div className="mx-6 mt-4 border border-[#ff3b3b]/40 px-4 py-3 font-mono text-xs text-[#ff3b3b]">✕ {error}</div>
@@ -192,12 +192,12 @@ export default function AdminUsersPage() {
       {/* User list */}
       <div className="border border-[#2a2a2a] bg-[#111]">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-[#2a2a2a]">
-          <span className="text-[10px] text-[#555]">●</span>
-          <span className="font-mono text-[10px] tracking-widest text-[#555] uppercase">Users</span>
-          <span className="ml-auto font-mono text-[9px] text-[#333] uppercase tracking-widest">{users.length} total</span>
+          <span className="text-[10px] text-[#777]">●</span>
+          <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Users</span>
+          <span className="ml-auto font-mono text-[9px] text-[#555] uppercase tracking-widest">{users.length} total</span>
         </div>
         {users.length === 0 ? (
-          <p className="px-6 py-8 font-mono text-xs text-[#555] text-center">No users found</p>
+          <p className="px-6 py-8 font-mono text-xs text-[#777] text-center">No users found</p>
         ) : (
           <div>
             {users.map((u, i) => (
@@ -209,13 +209,13 @@ export default function AdminUsersPage() {
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-sm text-[#f5f5f5]">{u.display_name}</span>
                     <span className={`font-mono text-[9px] tracking-widest uppercase border px-2 py-0.5 ${
-                      u.role === 'admin' ? 'border-[#f5f5f5]/40 text-[#f5f5f5]' : 'border-[#2a2a2a] text-[#555]'
+                      u.role === 'admin' ? 'border-[#f5f5f5]/40 text-[#f5f5f5]' : 'border-[#2a2a2a] text-[#777]'
                     }`}>{u.role}</span>
                     {!u.is_active && (
                       <span className="font-mono text-[9px] tracking-widest uppercase border border-[#ff3b3b]/30 text-[#ff6b6b] px-2 py-0.5">inactive</span>
                     )}
                   </div>
-                  <p className="font-mono text-[10px] text-[#555]">
+                  <p className="font-mono text-[10px] text-[#777]">
                     {u.username} {u.email ? `· ${u.email}` : ''} · {u.native_language}
                   </p>
                 </div>
@@ -224,7 +224,7 @@ export default function AdminUsersPage() {
                   className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${
                     u.is_active
                       ? 'border-[#ff3b3b]/30 text-[#ff6b6b] hover:border-[#ff3b3b]'
-                      : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#555]'
+                      : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
                   }`}
                 >
                   {u.is_active ? 'Deactivate' : 'Activate'}

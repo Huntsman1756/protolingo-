@@ -74,14 +74,14 @@ export default function SettingsPage() {
     <div className="p-6 max-w-lg">
       {/* Header */}
       <div className="mb-8 pb-4 border-b border-[#2a2a2a]">
-        <p className="font-mono text-[10px] tracking-widest text-[#555] uppercase mb-1">Account</p>
+        <p className="font-mono text-[10px] tracking-widest text-[#777] uppercase mb-1">Account</p>
         <h1 className="font-mono text-2xl font-bold tracking-tight text-[#f5f5f5]">Settings</h1>
       </div>
 
       <div className="border border-[#2a2a2a] bg-[#111] p-6 space-y-5 mb-4">
         <div className="flex items-center gap-2 pb-4 border-b border-[#2a2a2a]">
-          <span className="text-[10px] text-[#555]">●</span>
-          <span className="font-mono text-[10px] tracking-widest text-[#555] uppercase">Profile</span>
+          <span className="text-[10px] text-[#777]">●</span>
+          <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Profile</span>
         </div>
 
         {[
@@ -89,22 +89,22 @@ export default function SettingsPage() {
           { label: 'Email', value: email, onChange: setEmail, type: 'email' },
         ].map((field) => (
           <div key={field.label}>
-            <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">{field.label}</label>
+            <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">{field.label}</label>
             <input
               type={field.type}
               value={field.value}
               onChange={(e) => field.onChange(e.target.value)}
-              className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#555] transition-colors"
+              className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#444] transition-colors"
             />
           </div>
         ))}
 
         <div>
-          <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">Native Language</label>
+          <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Native Language</label>
           <select
             value={nativeLanguage}
             onChange={(e) => setNativeLanguage(e.target.value)}
-            className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#555] transition-colors appearance-none"
+            className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#444] transition-colors appearance-none"
           >
             {LANGUAGES.map((l) => (
               <option key={l.code} value={l.code}>{l.name}</option>
@@ -113,13 +113,13 @@ export default function SettingsPage() {
         </div>
 
         <div>
-          <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">New Password</label>
+          <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">New Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Leave empty to keep"
-            className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] placeholder:text-[#333] focus:outline-none focus:border-[#555] transition-colors"
+            className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] placeholder:text-[#555] focus:outline-none focus:border-[#444] transition-colors"
           />
         </div>
 
@@ -140,7 +140,7 @@ export default function SettingsPage() {
 
       <button
         onClick={handleLogout}
-        className="w-full font-mono text-[10px] tracking-widest text-[#555] border border-[#2a2a2a] py-3 uppercase hover:text-[#ff3b3b] hover:border-[#ff3b3b]/40 transition-colors"
+        className="w-full font-mono text-[10px] tracking-widest text-[#777] border border-[#2a2a2a] py-3 uppercase hover:text-[#ff3b3b] hover:border-[#ff3b3b]/40 transition-colors"
       >
         — LOGOUT
       </button>
