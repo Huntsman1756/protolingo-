@@ -85,6 +85,17 @@ export default function AdminUsersPage() {
     await loadUsers()
   }
 
+  async function deleteUser(user: AdminUserItem) {
+    if (!confirm(`Delete user "${user.username}"? This cannot be undone.`)) return
+    const res = await apiFetch(`/api/admin/users/${user.id}`, { method: 'DELETE' })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      setError(data.detail || 'Failed to delete user')
+    } else {
+      await loadUsers()
+    }
+  }
+
   async function generateInvite() {
     const res = await apiFetch('/api/admin/invite', { method: 'POST' })
     const data = await res.json()
@@ -118,11 +129,10 @@ export default function AdminUsersPage() {
           </button>
           <button
             onClick={() => setShowCreate(!showCreate)}
-            className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${
-              showCreate
+            className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${showCreate
                 ? 'border-[#444] text-[#f5f5f5]'
                 : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
-            }`}
+              }`}
           >
             + Create User
           </button>
@@ -208,9 +218,8 @@ export default function AdminUsersPage() {
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-sm text-[#f5f5f5]">{u.display_name}</span>
-                    <span className={`font-mono text-[9px] tracking-widest uppercase border px-2 py-0.5 ${
-                      u.role === 'admin' ? 'border-[#f5f5f5]/40 text-[#f5f5f5]' : 'border-[#2a2a2a] text-[#777]'
-                    }`}>{u.role}</span>
+                    <span className={`font-mono text-[9px] tracking-widest uppercase border px-2 py-0.5 ${u.role === 'admin' ? 'border-[#f5f5f5]/40 text-[#f5f5f5]' : 'border-[#2a2a2a] text-[#777]'
+                      }`}>{u.role}</span>
                     {!u.is_active && (
                       <span className="font-mono text-[9px] tracking-widest uppercase border border-[#ff3b3b]/30 text-[#ff6b6b] px-2 py-0.5">inactive</span>
                     )}
@@ -219,16 +228,23 @@ export default function AdminUsersPage() {
                     {u.username} {u.email ? `· ${u.email}` : ''} · {u.native_language}
                   </p>
                 </div>
-                <button
-                  onClick={() => toggleActive(u)}
-                  className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${
-                    u.is_active
-                      ? 'border-[#ff3b3b]/30 text-[#ff6b6b] hover:border-[#ff3b3b]'
-                      : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
-                  }`}
-                >
-                  {u.is_active ? 'Deactivate' : 'Activate'}
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => toggleActive(u)}
+                    className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${u.is_active
+                        ? 'border-[#ff3b3b]/30 text-[#ff6b6b] hover:border-[#ff3b3b]'
+                        : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
+                      }`}
+                  >
+                    {u.is_active ? 'Deactivate' : 'Activate'}
+                  </button>
+                  <button
+                    onClick={() => deleteUser(u)}
+                    className="border border-[#ff3b3b]/30 px-4 py-2 font-mono text-[10px] tracking-widest uppercase text-[#ff6b6b] hover:border-[#ff3b3b] hover:text-[#ff4444] transition-colors"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>

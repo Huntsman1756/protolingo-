@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
 
+from alembic import command
+from alembic.config import Config
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -12,6 +14,8 @@ from app.routers import admin, assessment, auth, chat, flashcards, lessons, prog
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):  # noqa: ANN201
+    alembic_cfg = Config("/app/alembic.ini")
+    command.upgrade(alembic_cfg, "head")
     yield
 
 

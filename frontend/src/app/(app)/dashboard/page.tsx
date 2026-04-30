@@ -29,7 +29,10 @@ export default function DashboardPage() {
         apiFetch('/api/progress/summary'),
         apiFetch('/api/study-plan/today'),
       ])
-      if (progRes.ok) setProgress(await progRes.json())
+      if (progRes.ok) {
+        const prog = await progRes.json()
+        setProgress({ streak: prog.current_streak ?? prog.streak ?? 0, xp: prog.xp ?? 0, skills: prog.skills ?? {} })
+      }
       if (planRes.ok) {
         const plan = await planRes.json()
         setTodayLessons(plan.lessons.map((l: TodayLessonItem) => ({

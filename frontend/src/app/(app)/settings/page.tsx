@@ -11,10 +11,6 @@ const LANGUAGES = [
   { code: 'pt', name: 'Portuguese' },
   { code: 'de', name: 'German' },
   { code: 'it', name: 'Italian' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'ko', name: 'Korean' },
-  { code: 'zh', name: 'Chinese' },
-  { code: 'ar', name: 'Arabic' },
 ]
 
 export default function SettingsPage() {
@@ -27,6 +23,7 @@ export default function SettingsPage() {
   const [email, setEmail] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
   const [saving, setSaving] = useState(false)
 
@@ -41,6 +38,11 @@ export default function SettingsPage() {
   async function handleSave() {
     setSaving(true)
     setMessage(null)
+    if (password && password !== confirmPassword) {
+      setMessage({ type: 'err', text: 'Passwords do not match' })
+      setSaving(false)
+      return
+    }
     try {
       const res = await apiFetch('/api/auth/me', {
         method: 'PATCH',
@@ -57,6 +59,7 @@ export default function SettingsPage() {
       setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, role: updated.role, native_language: updated.native_language })
       setMessage({ type: 'ok', text: 'Profile updated.' })
       setPassword('')
+      setConfirmPassword('')
     } catch (err: unknown) {
       setMessage({ type: 'err', text: err instanceof Error ? err.message : 'Failed to save' })
     } finally {
@@ -120,6 +123,18 @@ export default function SettingsPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Leave empty to keep"
             className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] placeholder:text-[#555] focus:outline-none focus:border-[#444] transition-colors"
+          />
+        </div>
+
+        <div>
+          <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Confirm Password</label>
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Repeat new password"
+            disabled={!password}
+            className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] placeholder:text-[#555] focus:outline-none focus:border-[#444] disabled:opacity-30 transition-colors"
           />
         </div>
 

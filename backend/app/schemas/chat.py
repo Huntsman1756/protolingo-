@@ -1,8 +1,12 @@
+from datetime import datetime
+from typing import Optional
+
 from pydantic import BaseModel
 
 
 class ChatRequest(BaseModel):
     message: str
+    conversation_id: Optional[int] = None
 
 
 class ChatHistoryItem(BaseModel):
@@ -12,3 +16,16 @@ class ChatHistoryItem(BaseModel):
 
 class ChatHistoryResponse(BaseModel):
     messages: list[ChatHistoryItem]
+
+
+class ConversationCreate(BaseModel):
+    title: Optional[str] = None
+
+
+class ConversationResponse(BaseModel):
+    id: int
+    title: str
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = {"from_attributes": True}

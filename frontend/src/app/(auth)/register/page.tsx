@@ -10,10 +10,6 @@ const LANGUAGES = [
   { code: 'pt', name: 'Portuguese' },
   { code: 'de', name: 'German' },
   { code: 'it', name: 'Italian' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'ko', name: 'Korean' },
-  { code: 'zh', name: 'Chinese' },
-  { code: 'ar', name: 'Arabic' },
 ]
 
 function RegisterForm() {
@@ -24,6 +20,7 @@ function RegisterForm() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
   const [error, setError] = useState('')
@@ -33,11 +30,15 @@ function RegisterForm() {
     async (e: React.FormEvent) => {
       e.preventDefault()
       setError('')
+      if (password !== confirmPassword) {
+        setError('Passwords do not match')
+        return
+      }
       setLoading(true)
       try {
         const body: Record<string, string | null> = {
           username,
-          email: email || null,
+          email,
           password,
           display_name: displayName || username,
           native_language: nativeLanguage,
@@ -60,7 +61,7 @@ function RegisterForm() {
         setLoading(false)
       }
     },
-    [username, email, password, displayName, nativeLanguage, invite, router]
+    [username, email, password, confirmPassword, displayName, nativeLanguage, invite, router]
   )
 
   return (
@@ -89,8 +90,9 @@ function RegisterForm() {
             {[
               { label: 'Username', value: username, onChange: setUsername, type: 'text', required: true },
               { label: 'Display Name', value: displayName, onChange: setDisplayName, type: 'text', required: false, placeholder: 'Same as username if empty' },
-              { label: 'Email (optional)', value: email, onChange: setEmail, type: 'email', required: false },
+              { label: 'Email', value: email, onChange: setEmail, type: 'email', required: true },
               { label: 'Password', value: password, onChange: setPassword, type: 'password', required: true },
+              { label: 'Confirm Password', value: confirmPassword, onChange: setConfirmPassword, type: 'password', required: true },
             ].map((field) => (
               <div key={field.label}>
                 <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">{field.label}</label>

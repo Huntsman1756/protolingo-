@@ -12,6 +12,7 @@ const navItems = [
   { href: '/flashcards', label: 'FLASHCARDS', dot: '·' },
   { href: '/chat', label: 'AI TUTOR', dot: '·' },
   { href: '/settings', label: 'SETTINGS', dot: '·' },
+  { href: '/faq', label: 'FAQ', dot: '·' },
 ]
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {

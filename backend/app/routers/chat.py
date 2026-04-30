@@ -1,6 +1,7 @@
 import json
+from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -8,9 +9,15 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.models.chat_history import ChatHistory
+from app.models.conversation import Conversation
 from app.models.study_plan import StudyPlan
 from app.models.user import User
-from app.schemas.chat import ChatHistoryResponse, ChatRequest
+from app.schemas.chat import (
+    ChatHistoryResponse,
+    ChatRequest,
+    ConversationCreate,
+    ConversationResponse,
+)
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -36,12 +43,97 @@ Guidelines:
 MAX_HISTORY = 30
 
 
+# ── Conversations ────────────────────────────────────────────────────────────
+
+@router.get("/conversations", response_model=list[ConversationResponse])
+async def list_conversations(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    result = await db.execute(
+        select(Conversation)
+        .where(Conversation.user_id == current_user.id)
+        .order_by(Conversation.updated_at.desc())
+    )
+    return result.scalars().all()
+
+
+@router.post("/conversations", response_model=ConversationResponse)
+async def create_conversation(
+    data: ConversationCreate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    conv = Conversation(
+        user_id=current_user.id,
+        title=data.title or "New conversation",
+    )
+    db.add(conv)
+    await db.commit()
+    await db.refresh(conv)
+    return conv
+
+
+@router.delete("/conversations/{conversation_id}", status_code=204)
+async def delete_conversation(
+    conversation_id: int,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    conv = await db.get(Conversation, conversation_id)
+    if not conv or conv.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    await db.delete(conv)
+    await db.commit()
+
+
+@router.get("/conversations/{conversation_id}/messages", response_model=ChatHistoryResponse)
+async def get_conversation_messages(
+    conversation_id: int,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    conv = await db.get(Conversation, conversation_id)
+    if not conv or conv.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    result = await db.execute(
+        select(ChatHistory)
+        .where(
+            ChatHistory.conversation_id == conversation_id,
+            ChatHistory.user_id == current_user.id,
+        )
+        .order_by(ChatHistory.created_at.asc())
+        .limit(MAX_HISTORY)
+    )
+    messages = [{"role": m.role, "content": m.content} for m in result.scalars().all()]
+    return ChatHistoryResponse(messages=messages)
+
+
+# ── Chat (streaming) ─────────────────────────────────────────────────────────
+
 @router.post("")
 async def chat(
     request: ChatRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    # Resolve or create conversation
+    if request.conversation_id:
+        conv = await db.get(Conversation, request.conversation_id)
+        if not conv or conv.user_id != current_user.id:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+    else:
+        # Auto-create a conversation titled with the first 60 chars of the message
+        title = request.message[:60].strip()
+        if len(request.message) > 60:
+            title += "…"
+        conv = Conversation(user_id=current_user.id, title=title)
+        db.add(conv)
+        await db.commit()
+        await db.refresh(conv)
+
+    conversation_id = conv.id
+
     cefr_level = "B1"
     result = await db.execute(
         select(StudyPlan)
@@ -58,12 +150,22 @@ async def chat(
         native_language=current_user.native_language,
     )
 
-    db.add(ChatHistory(user_id=current_user.id, role="user", content=request.message))
+    db.add(
+        ChatHistory(
+            user_id=current_user.id,
+            conversation_id=conversation_id,
+            role="user",
+            content=request.message,
+        )
+    )
     await db.commit()
 
     result = await db.execute(
         select(ChatHistory)
-        .where(ChatHistory.user_id == current_user.id)
+        .where(
+            ChatHistory.user_id == current_user.id,
+            ChatHistory.conversation_id == conversation_id,
+        )
         .order_by(ChatHistory.created_at.desc())
         .limit(MAX_HISTORY)
     )
@@ -77,6 +179,8 @@ async def chat(
     async def event_stream():
         full_response = ""
         try:
+            # Send conversation_id first so frontend can associate the new conv
+            yield f"data: {json.dumps({'conversation_id': conversation_id})}\n\n"
             stream = await llm_adapter.chat(messages, stream=True)
             async for chunk in stream:
                 if chunk.choices[0].delta.content:
@@ -85,9 +189,14 @@ async def chat(
                     yield f"data: {json.dumps({'token': token})}\n\n"
             db.add(
                 ChatHistory(
-                    user_id=current_user.id, role="assistant", content=full_response
+                    user_id=current_user.id,
+                    conversation_id=conversation_id,
+                    role="assistant",
+                    content=full_response,
                 )
             )
+            # Update conversation updated_at
+            conv.updated_at = datetime.now(timezone.utc).replace(tzinfo=None)
             await db.commit()
             yield f"data: {json.dumps({'done': True})}\n\n"
         except LLMTimeoutError:
@@ -104,6 +213,8 @@ async def chat(
     )
 
 
+# ── Legacy history endpoint (kept for backwards compat) ──────────────────────
+
 @router.get("/history", response_model=ChatHistoryResponse)
 async def get_history(
     current_user: User = Depends(get_current_user),
@@ -119,3 +230,4 @@ async def get_history(
         {"role": m.role, "content": m.content} for m in result.scalars().all()
     ]
     return ChatHistoryResponse(messages=messages)
+
