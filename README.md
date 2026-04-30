@@ -61,7 +61,6 @@ freelingo/
 | 3     | Real-time conversation | Planned     |
 
 ## Quick start (Phase 1)
-
 ```bash
 cp .env.example .env
 # Edit .env with your Ollama configuration

@@ -3,9 +3,18 @@
 import { Suspense, useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { apiFetch } from '@/lib/api'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+const LANGUAGES = [
+  { code: 'es', name: 'Spanish' },
+  { code: 'fr', name: 'French' },
+  { code: 'pt', name: 'Portuguese' },
+  { code: 'de', name: 'German' },
+  { code: 'it', name: 'Italian' },
+  { code: 'ja', name: 'Japanese' },
+  { code: 'ko', name: 'Korean' },
+  { code: 'zh', name: 'Chinese' },
+  { code: 'ar', name: 'Arabic' },
+]
 
 function RegisterForm() {
   const router = useRouter()
@@ -55,74 +64,77 @@ function RegisterForm() {
   )
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">Create Account</CardTitle>
-          {invite && (
-            <p className="text-center text-sm text-green-600">Invite accepted</p>
-          )}
-        </CardHeader>
-        <CardContent>
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4"
+      style={{ backgroundImage: 'radial-gradient(circle, #2a2a2a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+      <div className="w-full max-w-sm">
+        <div className="flex flex-col items-center mb-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="FreeLingo" width={64} height={64} className="mb-4 opacity-95" />
+          <h1 className="font-mono text-xl font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</h1>
+          <p className="font-mono text-[11px] text-[#555] tracking-widest uppercase mt-1">create account</p>
+        </div>
+
+        <div className="border border-[#2a2a2a] bg-[#111] p-8">
+          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#2a2a2a]">
+            <span className="text-[10px] text-[#555]">●</span>
+            <span className="font-mono text-xs tracking-widest text-[#555] uppercase">Register</span>
+            {invite && <span className="ml-auto font-mono text-[9px] text-[#888] uppercase tracking-widest">Invite active</span>}
+          </div>
+
           {error && (
-            <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-950 dark:text-red-400">
-              {error}
+            <div className="mb-5 border border-[#ff3b3b]/40 px-4 py-3 font-mono text-xs text-[#ff3b3b] tracking-wide">
+              ✕ {error}
             </div>
           )}
+
           <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <Input
-              type="email"
-              placeholder="Email (optional)"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              type="text"
-              placeholder="Display name"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <select
-              value={nativeLanguage}
-              onChange={(e) => setNativeLanguage(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+            {[
+              { label: 'Username', value: username, onChange: setUsername, type: 'text', required: true },
+              { label: 'Display Name', value: displayName, onChange: setDisplayName, type: 'text', required: false, placeholder: 'Same as username if empty' },
+              { label: 'Email (optional)', value: email, onChange: setEmail, type: 'email', required: false },
+              { label: 'Password', value: password, onChange: setPassword, type: 'password', required: true },
+            ].map((field) => (
+              <div key={field.label}>
+                <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">{field.label}</label>
+                <input
+                  type={field.type}
+                  value={field.value}
+                  onChange={(e) => field.onChange(e.target.value)}
+                  required={field.required}
+                  placeholder={'placeholder' in field ? field.placeholder : undefined}
+                  className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] placeholder:text-[#333] focus:outline-none focus:border-[#555] transition-colors"
+                />
+              </div>
+            ))}
+
+            <div>
+              <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">Native Language</label>
+              <select
+                value={nativeLanguage}
+                onChange={(e) => setNativeLanguage(e.target.value)}
+                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#555] transition-colors appearance-none"
+              >
+                {LANGUAGES.map((l) => (
+                  <option key={l.code} value={l.code}>{l.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full mt-2 bg-[#f5f5f5] text-[#0a0a0a] font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-white disabled:opacity-40 transition-colors"
             >
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="pt">Portuguese</option>
-              <option value="de">German</option>
-              <option value="it">Italian</option>
-              <option value="ja">Japanese</option>
-              <option value="ko">Korean</option>
-              <option value="zh">Chinese</option>
-              <option value="ar">Arabic</option>
-            </select>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Creating account...' : 'Create account'}
-            </Button>
+              {loading ? '— CREATING...' : '— CREATE ACCOUNT'}
+            </button>
           </form>
-          <p className="mt-4 text-center text-sm text-zinc-500">
-            Already have an account?{' '}
-            <a href="/login" className="text-blue-600 hover:underline">
-              Sign in
-            </a>
+
+          <p className="mt-6 font-mono text-[10px] text-[#555] tracking-wide text-center">
+            Have an account?{' '}
+            <a href="/login" className="text-[#888] hover:text-[#f5f5f5] transition-colors">Sign in</a>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

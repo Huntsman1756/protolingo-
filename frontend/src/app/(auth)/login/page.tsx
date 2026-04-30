@@ -2,12 +2,8 @@
 
 import { Suspense, useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Image from 'next/image'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 function LoginForm() {
   const router = useRouter()
@@ -37,13 +33,8 @@ function LoginForm() {
         }
         const { access_token } = await res.json()
         setTokens(access_token)
-
         const meRes = await apiFetch('/api/auth/me')
-        if (meRes.ok) {
-          const user = await meRes.json()
-          setUser(user)
-        }
-
+        if (meRes.ok) setUser(await meRes.json())
         router.push('/dashboard')
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : 'Login failed')
@@ -55,53 +46,73 @@ function LoginForm() {
   )
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <div className="flex justify-center mb-2">
-            <Image src="/logo.png" alt="FreeLingo logo" width={80} height={80} priority />
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4"
+      style={{ backgroundImage: 'radial-gradient(circle, #2a2a2a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+      <div className="w-full max-w-sm">
+        {/* Logo + brand */}
+        <div className="flex flex-col items-center mb-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="FreeLingo" width={64} height={64} className="mb-4 opacity-95" />
+          <h1 className="font-mono text-xl font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</h1>
+          <p className="font-mono text-[11px] text-[#555] tracking-widest uppercase mt-1">self-hosted language learning</p>
+        </div>
+
+        <div className="border border-[#2a2a2a] bg-[#111] p-8">
+          {/* Header */}
+          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#2a2a2a]">
+            <span className="text-[10px] text-[#555]">●</span>
+            <span className="font-mono text-xs tracking-widest text-[#555] uppercase">Sign In</span>
           </div>
-          <CardTitle className="text-center text-2xl">FreeLingo</CardTitle>
-          <p className="text-center text-sm text-zinc-500">Sign in to your account</p>
-        </CardHeader>
-        <CardContent>
+
           {registered && (
-            <div className="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700 dark:bg-green-950 dark:text-green-400">
-              Account created successfully! You can now sign in.
+            <div className="mb-5 border border-[#2a2a2a] px-4 py-3 font-mono text-xs text-[#888] tracking-wide">
+              ✓ Account created — you can now sign in
             </div>
           )}
           {error && (
-            <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-950 dark:text-red-400">
-              {error}
+            <div className="mb-5 border border-[#ff3b3b]/40 px-4 py-3 font-mono text-xs text-[#ff3b3b] tracking-wide">
+              ✕ {error}
             </div>
           )}
+
           <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Signing in...' : 'Sign in'}
-            </Button>
+            <div>
+              <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#555] transition-colors"
+              />
+            </div>
+            <div>
+              <label className="block font-mono text-[10px] tracking-widest text-[#555] uppercase mb-2">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#555] transition-colors"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full mt-2 bg-[#f5f5f5] text-[#0a0a0a] font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-white disabled:opacity-40 transition-colors"
+            >
+              {loading ? '— SIGNING IN...' : '— SIGN IN'}
+            </button>
           </form>
-          <p className="mt-4 text-center text-sm text-zinc-500">
-            Don&apos;t have an account?{' '}
-            <a href="/register" className="text-blue-600 hover:underline">
+
+          <p className="mt-6 font-mono text-[10px] text-[#555] tracking-wide text-center">
+            No account?{' '}
+            <a href="/register" className="text-[#888] hover:text-[#f5f5f5] transition-colors">
               Register
             </a>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }
