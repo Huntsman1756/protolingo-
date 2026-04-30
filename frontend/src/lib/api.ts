@@ -2,7 +2,7 @@
 
 import { useAuthStore } from '@/store/auth'
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+const BASE_URL = ''
 
 let isRefreshing = false
 let refreshPromise: Promise<string | null> | null = null
