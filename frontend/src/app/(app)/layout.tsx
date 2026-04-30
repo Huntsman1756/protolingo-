@@ -73,8 +73,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const [logoutConfirm, setLogoutConfirm] = useState(false)
-
   async function handleLogout() {
     await apiFetch('/api/auth/logout', { method: 'POST' })
     logout()
