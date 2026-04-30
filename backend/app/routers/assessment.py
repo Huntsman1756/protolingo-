@@ -42,6 +42,11 @@ async def start_assessment(
             status_code=502,
             detail=f"Failed to generate quiz: {str(e)}",
         )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Unexpected error: {str(e)}",
+        )
 
 
 @router.post("/submit", response_model=AssessmentResult)
@@ -82,4 +87,9 @@ async def submit_assessment(
         raise HTTPException(
             status_code=502,
             detail=f"Failed to evaluate answers: {str(e)}",
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Unexpected error: {str(e)}",
         )

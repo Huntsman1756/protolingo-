@@ -118,10 +118,10 @@ class LLMAdapter:
     async def structured_output(
         self, messages: list[dict], schema: type[BaseModel]
     ) -> BaseModel:
-        if self.provider in ("ollama", "deepseek"):
-            return await self._structured_via_json(messages, schema)
-        else:
+        # Use JSON mode for all providers — more reliable across versions
+        if self.provider == "anthropic":
             return await self._call_with_retry(self._do_structured_output, messages, schema)
+        return await self._structured_via_json(messages, schema)
 
     async def _do_structured_output(self, messages: list[dict], schema: type[BaseModel]):
         response = await self.client.beta.chat.completions.parse(

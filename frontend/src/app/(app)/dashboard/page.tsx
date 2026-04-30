@@ -55,7 +55,7 @@ export default function DashboardPage() {
   const skillEntries = Object.entries(skills)
 
   return (
-    <div className="p-6 max-w-4xl">
+    <div className="p-6 max-w-4xl mx-auto">
       {/* Header */}
       <div className="mb-8 pb-4 border-b border-[#2a2a2a]">
         <p className="font-mono text-[10px] tracking-widest text-[#777] uppercase mb-1">Welcome back</p>

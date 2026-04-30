@@ -106,7 +106,7 @@ export default function AssessmentPage() {
               <p className="font-mono text-xs text-[#cc6666] leading-relaxed">{error || 'Could not generate quiz'}</p>
             </div>
             <p className="font-mono text-[10px] text-[#666] leading-relaxed">
-              Make sure Ollama is running and a model is loaded. Check that <span className="text-[#888]">OLLAMA_BASE_URL</span> points to the correct host.
+              Check that the AI provider is configured correctly in your <span className="text-[#888]">.env</span> and the backend can reach it.
             </p>
             <button
               onClick={startAssessment}
@@ -215,11 +215,10 @@ export default function AssessmentPage() {
                 <button
                   key={letter}
                   onClick={() => selectAnswer(letter)}
-                  className={`w-full text-left px-4 py-3 border font-mono text-xs tracking-wide transition-all ${
-                    isSelected
+                  className={`w-full text-left px-4 py-3 border font-mono text-xs tracking-wide transition-all ${isSelected
                       ? 'border-[#f5f5f5] bg-[#f5f5f5] text-[#0a0a0a]'
                       : 'border-[#2a2a2a] text-[#999] hover:border-[#444] hover:text-[#f5f5f5]'
-                  }`}
+                    }`}
                 >
                   {opt}
                 </button>
