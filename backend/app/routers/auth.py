@@ -114,7 +114,7 @@ async def login(
         "refresh_token",
         refresh_token,
         httponly=True,
-        secure=True,
+        secure=settings.COOKIE_SECURE,
         samesite="lax",
         max_age=ttl,
     )
@@ -146,7 +146,7 @@ async def refresh(
         "refresh_token",
         new_refresh,
         httponly=True,
-        secure=True,
+        secure=settings.COOKIE_SECURE,
         samesite="lax",
         max_age=ttl,
     )
