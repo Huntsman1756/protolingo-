@@ -12,6 +12,7 @@ class RegisterRequest(BaseModel):
     password: str
     display_name: Optional[str] = None
     native_language: str
+    invite_token: Optional[str] = None
 
 
 class LoginRequest(BaseModel):

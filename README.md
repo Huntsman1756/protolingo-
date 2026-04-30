@@ -54,11 +54,11 @@ freelingo/
 
 ## Phases
 
-| Phase | Name                   | Status       |
-|-------|------------------------|--------------|
-| 1     | Learning platform      | ✅ Complete  |
-| 2     | Local TTS + STT        | ⏳ Planned   |
-| 3     | Real-time conversation | ⏳ Planned   |
+| Phase | Name                   | Status         |
+|-------|------------------------|----------------|
+| 1     | Learning platform      | 🚧 In progress |
+| 2     | Local TTS + STT        | ⏳ Planned     |
+| 3     | Real-time conversation | ⏳ Planned     |
 
 ## Quick start (Phase 1)
 ```bash

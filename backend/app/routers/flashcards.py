@@ -20,6 +20,7 @@ from app.services.llm_adapter import (
     LLMTimeoutError,
     LLMUnavailableError,
 )
+from app.services.progress_service import update_daily_progress
 
 router = APIRouter(prefix="/api/flashcards", tags=["flashcards"])
 
@@ -97,6 +98,13 @@ async def review_flashcard(
     card = sm2_update(card, data.quality)
     await db.commit()
     await db.refresh(card)
+
+    await update_daily_progress(
+        db, current_user.id,
+        flashcard_reviewed=True,
+        skill="vocabulary",
+        skill_score=min(data.quality / 5.0, 1.0),
+    )
     return card
 
 

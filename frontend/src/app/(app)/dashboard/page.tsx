@@ -22,6 +22,7 @@ export default function DashboardPage() {
     useProgressStore()
   const [loading, setLoading] = useState(true)
   const [hasPlan, setHasPlan] = useState(false)
+  const [cefrLevel, setCefrLevel] = useState<string | null>(null)
 
   const loadData = useCallback(async () => {
     try {
@@ -31,10 +32,11 @@ export default function DashboardPage() {
       ])
       if (progRes.ok) {
         const prog = await progRes.json()
-        setProgress({ streak: prog.current_streak ?? prog.streak ?? 0, xp: prog.xp ?? 0, skills: prog.skills ?? {} })
+        setProgress({ streak: prog.current_streak ?? 0, xp: prog.total_xp ?? 0, skills: prog.skills ?? {} })
       }
       if (planRes.ok) {
         const plan = await planRes.json()
+        setCefrLevel(plan.cefr_level ?? null)
         setTodayLessons(plan.lessons.map((l: TodayLessonItem) => ({
           id: l.id, title: l.title, lessonType: l.lesson_type,
           week: l.week, day: l.day, objectives: l.objectives || [],
@@ -72,7 +74,7 @@ export default function DashboardPage() {
         {[
           { label: 'STREAK', value: `${streak}d` },
           { label: 'XP', value: xp },
-          { label: 'LEVEL', value: xp > 500 ? 'B1' : xp > 200 ? 'A2' : 'A1' },
+          { label: 'LEVEL', value: cefrLevel ?? '—' },
           { label: 'SKILLS', value: skillEntries.length },
         ].map((stat) => (
           <div key={stat.label} className="bg-[#111] px-5 py-5">

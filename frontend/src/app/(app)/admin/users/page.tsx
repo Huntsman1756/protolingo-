@@ -19,10 +19,6 @@ const LANGUAGES = [
   { code: 'pt', name: 'Portuguese' },
   { code: 'de', name: 'German' },
   { code: 'it', name: 'Italian' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'ko', name: 'Korean' },
-  { code: 'zh', name: 'Chinese' },
-  { code: 'ar', name: 'Arabic' },
 ]
 
 export default function AdminUsersPage() {
@@ -130,8 +126,8 @@ export default function AdminUsersPage() {
           <button
             onClick={() => setShowCreate(!showCreate)}
             className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${showCreate
-                ? 'border-[#444] text-[#f5f5f5]'
-                : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
+              ? 'border-[#444] text-[#f5f5f5]'
+              : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
               }`}
           >
             + Create User
@@ -232,8 +228,8 @@ export default function AdminUsersPage() {
                   <button
                     onClick={() => toggleActive(u)}
                     className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${u.is_active
-                        ? 'border-[#ff3b3b]/30 text-[#ff6b6b] hover:border-[#ff3b3b]'
-                        : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
+                      ? 'border-[#ff3b3b]/30 text-[#ff6b6b] hover:border-[#ff3b3b]'
+                      : 'border-[#2a2a2a] text-[#888] hover:text-[#f5f5f5] hover:border-[#444]'
                       }`}
                   >
                     {u.is_active ? 'Deactivate' : 'Activate'}

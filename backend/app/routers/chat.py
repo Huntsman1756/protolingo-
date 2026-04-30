@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
@@ -10,6 +10,7 @@ from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
+from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.chat import (
@@ -31,6 +32,12 @@ TUTOR_SYSTEM_PROMPT = """
 You are an encouraging and patient English language tutor named FreeLingo.
 Your student is at {cefr_level} level.
 Their native language is {native_language}.
+
+Student progress:
+- Total XP earned: {total_xp}
+- Current streak: {streak} days
+- Lessons completed today: {lessons_today}
+- Skills: {skills}
 
 Guidelines:
 - Adapt your vocabulary and complexity to the student's level
@@ -145,9 +152,28 @@ async def chat(
     if plan:
         cefr_level = plan.cefr_level
 
+    prog_result = await db.execute(
+        select(Progress).where(
+            Progress.user_id == current_user.id,
+            Progress.date == date.today(),
+        )
+    )
+    prog = prog_result.scalar_one_or_none()
+    total_xp_result = await db.execute(
+        select(Progress).where(Progress.user_id == current_user.id)
+    )
+    total_xp = sum(p.xp_earned for p in total_xp_result.scalars().all())
+    skills_str = ", ".join(
+        f"{k}: {round(v * 100)}%" for k, v in (prog.skills or {}).items()
+    ) if prog and prog.skills else "none yet"
+
     system_prompt = TUTOR_SYSTEM_PROMPT.format(
         cefr_level=cefr_level,
         native_language=current_user.native_language,
+        total_xp=total_xp,
+        streak=prog.streak_day if prog else 0,
+        lessons_today=prog.lessons_completed if prog else 0,
+        skills=skills_str,
     )
 
     db.add(

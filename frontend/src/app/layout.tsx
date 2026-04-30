@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'FreeLingo',
   description: 'Self-hosted AI language learning platform',
+  icons: { icon: '/favicon.png' },
 }
 
 export default function RootLayout({

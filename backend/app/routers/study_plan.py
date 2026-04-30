@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_user
+from app.models.lesson import Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.study_plan import (
@@ -129,6 +130,19 @@ async def get_today_lessons(
         week = weekly_plan[0]
 
     days = week["days"] if isinstance(week, dict) else week.days
+
+    # Resolve lesson IDs from the DB (matched by week + day + title)
+    lesson_rows_result = await db.execute(
+        select(Lesson).where(
+            Lesson.study_plan_id == plan.id,
+            Lesson.week_number == current_week,
+            Lesson.day_number == current_day,
+        )
+    )
+    lesson_by_title: dict[str, int] = {
+        row.title: row.id for row in lesson_rows_result.scalars().all()
+    }
+
     today_lessons = []
     for d in days:
         d_day = d["day"] if isinstance(d, dict) else d.day
@@ -139,6 +153,7 @@ async def get_today_lessons(
             d_min = d["estimated_minutes"] if isinstance(d, dict) else d.estimated_minutes
             today_lessons.append(
                 TodayLesson(
+                    id=lesson_by_title.get(d_title),
                     title=d_title,
                     lesson_type=d_type,
                     week=current_week,
@@ -148,4 +163,4 @@ async def get_today_lessons(
                 )
             )
 
-    return TodayResponse(plan_id=plan.id, lessons=today_lessons)
+    return TodayResponse(plan_id=plan.id, cefr_level=plan.cefr_level, lessons=today_lessons)

@@ -20,6 +20,7 @@ from app.services.llm_adapter import (
     LLMTimeoutError,
     LLMUnavailableError,
 )
+from app.services.progress_service import update_daily_progress
 
 router = APIRouter(prefix="/api/lessons", tags=["lessons"])
 
@@ -68,6 +69,12 @@ async def complete_lesson(
     lesson.completed_at = datetime.now(timezone.utc).replace(tzinfo=None)
     await db.commit()
     await db.refresh(lesson)
+
+    await update_daily_progress(
+        db, current_user.id,
+        lesson_completed=True,
+        skill=lesson.lesson_type,
+    )
     return lesson
 
 
@@ -115,6 +122,13 @@ async def answer_exercise(
     exercise.answered_at = datetime.now(timezone.utc).replace(tzinfo=None)
     await db.commit()
     await db.refresh(exercise)
+
+    await update_daily_progress(
+        db, current_user.id,
+        exercise_correct=exercise.score >= 0.5,
+        skill=lesson.lesson_type,
+        skill_score=exercise.score,
+    )
 
     return ExerciseAnswerResponse(
         id=exercise.id,

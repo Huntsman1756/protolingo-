@@ -14,7 +14,11 @@ class GenerateStudyPlanRequest(BaseModel):
     cefr_level: str
     goals: list[str] = ["grammar", "vocabulary", "reading", "writing"]
     weeks: int = 4
+    days_per_week: int = 5
     minutes_per_day: int = 30
+    weaknesses: list[str] = []
+    strengths: list[str] = []
+    analysis: str = ""
 
 
 class DayPlan(BaseModel):
@@ -65,4 +69,5 @@ class TodayLesson(BaseModel):
 
 class TodayResponse(BaseModel):
     plan_id: int
+    cefr_level: str
     lessons: list[TodayLesson]

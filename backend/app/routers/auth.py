@@ -41,15 +41,15 @@ async def register(
     redis: Redis = Depends(get_redis),
 ):
     if not settings.ALLOW_REGISTRATION:
-        invite_token = getattr(data, "invite_token", None)
-        if invite_token:
-            valid = await redis.get(f"invite:{invite_token}")
+        if data.invite_token:
+            valid = await redis.get(f"invite:{data.invite_token}")
             if not valid:
                 raise HTTPException(status_code=403, detail="Invalid or expired invite")
+            await redis.delete(f"invite:{data.invite_token}")
         else:
             raise HTTPException(status_code=403, detail="Registration is closed")
     else:
-        invite_token = None
+        pass
 
     existing = await db.execute(
         select(User).where(
