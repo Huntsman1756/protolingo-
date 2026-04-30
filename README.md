@@ -7,7 +7,7 @@
 ![Status](https://img.shields.io/badge/status-phase--1-brightgreen?style=flat-square)
 
 <p align="left">
-  <img src="assets/logo.png" alt="FreeLingo logo" width="180" />
+  <img src="assets/logo.png" alt="FreeLingo logo" width="200" />
 </p>
 
 Open source, self-hosted, Dockerized web application for learning languages with AI.
