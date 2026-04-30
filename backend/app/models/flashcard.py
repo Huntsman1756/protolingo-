@@ -24,5 +24,5 @@ class Flashcard(Base):
     repetitions: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     next_review: Mapped[date] = mapped_column(Date, nullable=False, default=date.today)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=lambda: datetime.now(timezone.utc)
+        DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
     )
