@@ -41,17 +41,17 @@ freelingo/
 
 ## Stack
 
-| Layer      | Technology                                             |
-|------------|--------------------------------------------------------|
+| Layer      | Technology                                               |
+|------------|----------------------------------------------------------|
 | Frontend   | Next.js 16+, shadcn/ui, Tailwind CSS, Zustand, next-intl |
-| Backend    | FastAPI, SQLAlchemy async, Alembic, Pydantic v2        |
-| Database   | PostgreSQL 16                                          |
-| Cache      | Redis 7                                                |
-| LLM        | Ollama (local) · OpenAI · Anthropic · DeepSeek         |
-| TTS (P2)   | Kokoro-FastAPI                                         |
-| STT (P2)   | faster-whisper                                         |
-| Auth       | JWT (access + refresh), multi-user, roles (admin/user) |
-| Deploy     | Docker Compose                                         |
+| Backend    | FastAPI, SQLAlchemy async, Alembic, Pydantic v2          |
+| Database   | PostgreSQL 16                                            |
+| Cache      | Redis 7                                                  |
+| LLM        | Ollama (local) · OpenAI · Anthropic · DeepSeek           |
+| TTS (P2)   | Kokoro-FastAPI                                           |
+| STT (P2)   | faster-whisper                                           |
+| Auth       | JWT (access + refresh), multi-user, roles (admin/user).  |
+| Deploy     | Docker Compose                                           |
 
 ## Phases
 
