@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-05-01
+
+### Added
+- Grammar Reference hub: searchable index page with CEFR-level grouping and category filters
+- Grammar topic detail pages with structure formula, key rules, examples, common mistakes, and related topics
+- Vocabulary Hub: level-filtered word set index with word count per set
+- Vocabulary set detail pages with IPA, POS, definitions, examples, and "Add All to Flashcards" bulk action
+- Phrasebook with level and register (formal / neutral / informal) filters and one-click clipboard copy
+- Skills Tracker page showing XP, streak, accuracy stats, per-unit competency checklist, and skill accuracy bars
+- Level Completion Test: LLM-generated adaptive quiz per study-plan unit, with skill breakdown and level recommendation on completion
+- `grammar_refs` field on lesson content, populated by LLM and validated against 24 known CEFR grammar slugs
+- Related Grammar section on lesson pages linking to Grammar Reference topic detail pages
+- `GET /api/progress/competencies` endpoint returning per-unit competency scores for the active study plan
+- Unit competency upsert endpoint and `unit_competencies` table migration
+- Sidebar navigation reorganised into MAIN and collapsible RESOURCES groups (desktop and mobile)
+
 ## [0.1.0] - 2026-04-30
 
 ### Added

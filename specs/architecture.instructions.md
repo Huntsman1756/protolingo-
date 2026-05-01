@@ -110,11 +110,25 @@ class StudyPlan(Base):
     user_id: int            # FK User
     cefr_level: str         # A1, A2, B1, B2, C1, C2
     goals: list[str]        # JSON: ["grammar", "vocabulary", "speaking"]
-    weeks_planned: int
-    generated_plan: dict    # JSON with the week-by-week plan
+    duration_weeks: int     # 4 | 8 | 12 (default) | 16
+    days_per_week: int      # derived from intensity: 5 | 5 | 4 | 3
+    generated_plan: dict    # JSON with the week-by-week plan (curriculum-driven)
+    current_unit: str       # curriculum unit id, e.g. "a1-unit-3"
     is_active: bool
     created_at: datetime
+    # Level completion test
+    completion_test_taken: bool         # False until end-of-level test done
+    completion_test_score: float | None  # 0.0 – 1.0
+    completion_test_recommendation: str | None  # "advance" | "extend" | "repeat"
 ```
+
+> **Intensity / duration mapping**:
+> | Label | Weeks | Days/week | Total lessons |
+> |-------|-------|-----------|---------------|
+> | Intensive | 4 | 5 | ~20 |
+> | Standard | 8 | 5 | ~40 |
+> | Relaxed (default) | 12 | 4 | ~48 |
+> | Very relaxed | 16 | 3 | ~48 |
 
 ### Lesson
 ```python

@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { apiFetch } from '@/lib/api'
 import { useProgressStore } from '@/store/progress'
+import { grammarTopics } from '@/data/grammar'
 
 interface ExerciseItem {
   id: number
@@ -246,6 +248,34 @@ export default function LessonPage() {
           </div>
         </div>
       )}
+
+      {/* Related Grammar */}
+      {(() => {
+        const grammarRefs = (lesson?.content?.grammar_refs ?? []) as string[]
+        if (!grammarRefs.length) return null
+        return (
+          <div className="border border-fl-border bg-fl-surface p-5">
+            <p className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase mb-3">
+              Related Grammar
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {grammarRefs.map((slug) => {
+                const topic = grammarTopics.find((t) => t.slug === slug)
+                if (!topic) return null
+                return (
+                  <Link
+                    key={slug}
+                    href={`/grammar/${slug}`}
+                    className="border border-fl-border px-3 py-1.5 font-mono text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors uppercase tracking-widest"
+                  >
+                    ● {topic.title}
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }

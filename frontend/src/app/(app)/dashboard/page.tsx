@@ -155,6 +155,13 @@ export default function DashboardPage() {
 
       {/* Quick actions */}
       <div className="flex gap-2 flex-wrap">
+        {hasPlan && (
+          <Link href="/plan">
+            <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-fg-bright transition-colors">
+              My Plan →
+            </button>
+          </Link>
+        )}
         <Link href="/flashcards">
           <button className="font-mono text-fl-label tracking-widest text-fl-fg border border-fl-border px-4 py-2 uppercase hover:border-fl-border-2 transition-colors">
             Flashcards

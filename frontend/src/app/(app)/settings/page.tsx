@@ -25,6 +25,7 @@ export default function SettingsPage() {
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
+  const [englishVariant, setEnglishVariant] = useState<'american' | 'british'>('american')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
@@ -35,6 +36,7 @@ export default function SettingsPage() {
       setDisplayName(user.displayName || '')
       setEmail(user.email || '')
       setNativeLanguage(user.native_language || 'es')
+      setEnglishVariant((user.english_variant as 'american' | 'british') || 'american')
     }
   }, [user])
 
@@ -54,12 +56,13 @@ export default function SettingsPage() {
           display_name: displayName,
           email: email || null,
           native_language: nativeLanguage,
+          english_variant: englishVariant,
           ...(password ? { password } : {}),
         }),
       })
       if (!res.ok) throw new Error('Failed to save')
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, english_variant: updated.english_variant })
       setMessage({ type: 'ok', text: 'Profile updated.' })
       setPassword('')
       setConfirmPassword('')
@@ -116,6 +119,30 @@ export default function SettingsPage() {
               <option key={l.code} value={l.code}>{l.name}</option>
             ))}
           </select>
+        </div>
+
+        <div>
+          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">English Variant</label>
+          <div className="flex gap-2">
+            {(['american', 'british'] as const).map((v) => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setEnglishVariant(v)}
+                className={`flex-1 flex items-center justify-center gap-2 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${englishVariant === v
+                    ? 'border-fl-fg bg-fl-fg text-fl-bg'
+                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
+              >
+                <img
+                  src={v === 'american' ? '/flags/eeuu.jpg' : '/flags/uk.jpg'}
+                  alt={v === 'american' ? 'US flag' : 'UK flag'}
+                  className="w-5 h-4 object-cover"
+                />
+                {v === 'american' ? 'American' : 'British'}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div>

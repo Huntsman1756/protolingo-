@@ -22,6 +22,7 @@ class Lesson(Base):
     cefr_level: Mapped[str] = mapped_column(String(10), nullable=False)
     week_number: Mapped[int] = mapped_column(Integer, nullable=False)
     day_number: Mapped[int] = mapped_column(Integer, nullable=False)
+    unit_id: Mapped[Optional[str]] = mapped_column(String(50), nullable=True, index=True)
     content: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
     is_completed: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)

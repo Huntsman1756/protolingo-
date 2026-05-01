@@ -1,65 +1,54 @@
-from app.schemas.study_plan import GeneratedPlan, GenerateStudyPlanRequest
-from app.services.llm_adapter import llm_adapter
+from __future__ import annotations
 
-STUDY_PLAN_PROMPT = """
-You are an expert English teacher creating a personalized study plan.
-
-Student profile:
-- CEFR level: {cefr_level}
-- Goals: {goals}
-- Weaknesses to address: {weaknesses}
-- Strengths to build on: {strengths}
-- Assessment analysis: {analysis}
-- Available time per day: {minutes_per_day} minutes
-- Study days per week: {days_per_week}
-- Plan duration: {weeks} weeks
-
-Use the weaknesses and assessment analysis to prioritize lesson content.
-Only include {days_per_week} lesson days per week (not 7).
-Create a structured {weeks}-week study plan with daily lessons.
-Each lesson should take 20–30 minutes.
-
-Return a JSON object:
-{{
-  "title": "...",
-  "weekly_plan": [
-    {{
-      "week": 1,
-      "theme": "Present Tenses & Basic Conversation",
-      "days": [
-        {{
-          "day": 1,
-          "lesson_type": "grammar",
-          "title": "Simple Present vs Present Continuous",
-          "objectives": ["..."],
-          "estimated_minutes": 25
-        }}
-      ]
-    }}
-  ]
-}}
-"""
+from app.data.curriculum import distribute_units, get_curriculum_units
+from app.schemas.study_plan import DayPlan, GeneratedPlan, GenerateStudyPlanRequest, WeekPlan
 
 
 async def generate_study_plan(request: GenerateStudyPlanRequest) -> GeneratedPlan:
-    weaknesses_str = ", ".join(request.weaknesses) if request.weaknesses else ", ".join(request.goals)
-    strengths_str = ", ".join(request.strengths) if request.strengths else "none identified"
-    goals_str = ", ".join(request.goals)
-    analysis_str = request.analysis or "No additional analysis provided."
-
-    prompt = STUDY_PLAN_PROMPT.format(
-        cefr_level=request.cefr_level,
-        weaknesses=weaknesses_str,
-        strengths=strengths_str,
-        goals=goals_str,
-        analysis=analysis_str,
+    """
+    Build a curriculum-driven study plan skeleton.
+    No LLM call — purely deterministic from the static curriculum.
+    LLM is called separately per-lesson when the user opens one for the first time.
+    """
+    units = get_curriculum_units(request.cefr_level)
+    lesson_slots = distribute_units(
+        units=units,
+        total_weeks=request.duration_weeks,
         days_per_week=request.days_per_week,
-        minutes_per_day=request.minutes_per_day,
-        weeks=request.weeks,
     )
 
-    plan = await llm_adapter.structured_output(
-        [{"role": "system", "content": prompt}],
-        GeneratedPlan,
+    # Group slots into weekly buckets
+    weeks_map: dict[int, list[dict]] = {}
+    for slot in lesson_slots:
+        w = slot["week"]
+        weeks_map.setdefault(w, []).append(slot)
+
+    weekly_plan: list[WeekPlan] = []
+    for week_num in sorted(weeks_map):
+        slots_in_week = weeks_map[week_num]
+        # Use the first unit title of the week as theme
+        theme = slots_in_week[0]["unit_title"] if slots_in_week else ""
+        days = [
+            DayPlan(
+                day=s["day"],
+                lesson_type=s["lesson_type"],
+                title=s["title"],
+                objectives=s["objectives"],
+                estimated_minutes=s["estimated_minutes"],
+                unit_id=s["unit_id"],
+                grammar_points=s.get("grammar_points", []),
+                vocabulary_set_ids=s.get("vocabulary_set_ids", []),
+            )
+            for s in slots_in_week
+        ]
+        weekly_plan.append(WeekPlan(week=week_num, theme=theme, days=days))
+
+    return GeneratedPlan(
+        title=f"English {request.cefr_level} — {request.duration_weeks}-week programme",
+        cefr_level=request.cefr_level,
+        duration_weeks=request.duration_weeks,
+        days_per_week=request.days_per_week,
+        ends_with_test=True,
+        weekly_plan=weekly_plan,
     )
-    return plan
+

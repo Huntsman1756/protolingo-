@@ -6,6 +6,7 @@ interface User {
   displayName: string
   email?: string
   native_language?: string
+  english_variant?: string
   role: 'admin' | 'user'
 }
 

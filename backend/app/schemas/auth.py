@@ -12,6 +12,7 @@ class RegisterRequest(BaseModel):
     password: str
     display_name: Optional[str] = None
     native_language: str
+    english_variant: str = "american"
     invite_token: Optional[str] = None
 
 
@@ -32,6 +33,7 @@ class UserResponse(BaseModel):
     display_name: str
     role: str
     native_language: str
+    english_variant: str
     is_active: bool
     created_at: datetime
 
@@ -47,3 +49,4 @@ class UserUpdateRequest(BaseModel):
     email: Optional[EmailStr] = None
     password: Optional[str] = None
     native_language: Optional[str] = None
+    english_variant: Optional[str] = None

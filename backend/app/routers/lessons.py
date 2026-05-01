@@ -20,7 +20,7 @@ from app.services.llm_adapter import (
     LLMTimeoutError,
     LLMUnavailableError,
 )
-from app.services.progress_service import update_daily_progress
+from app.services.progress_service import update_daily_progress, upsert_unit_competency
 
 router = APIRouter(prefix="/api/lessons", tags=["lessons"])
 
@@ -75,6 +75,39 @@ async def complete_lesson(
         lesson_completed=True,
         skill=lesson.lesson_type,
     )
+
+    # Update per-unit competency if lesson belongs to a curriculum unit
+    if lesson.unit_id:
+        from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
+        from app.models.study_plan import StudyPlan  # noqa: PLC0415
+
+        plan = await db.get(StudyPlan, lesson.study_plan_id)
+        if plan:
+            for u in get_curriculum_units(plan.cefr_level):
+                if u.id == lesson.unit_id:
+                    # Score this lesson: average of answered exercises
+                    result_ex = await db.execute(
+                        select(Exercise).where(
+                            Exercise.lesson_id == lesson.id,
+                            Exercise.score.is_not(None),
+                        )
+                    )
+                    exercises = result_ex.scalars().all()
+                    lesson_score = (
+                        sum(e.score for e in exercises if e.score is not None) / len(exercises)
+                        if exercises
+                        else 0.5
+                    )
+                    await upsert_unit_competency(
+                        db,
+                        current_user.id,
+                        unit_id=lesson.unit_id,
+                        competency_texts=u.competency_checklist,
+                        lesson_score=lesson_score,
+                    )
+                    await db.commit()
+                    break
+
     return lesson
 
 

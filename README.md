@@ -4,7 +4,7 @@
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.12-blue?style=flat-square)
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
-![Status](https://img.shields.io/badge/status-phase--1-brightgreen?style=flat-square)
+![Status](https://img.shields.io/badge/status-phase--1%2B-brightgreen?style=flat-square)
 
 <p align="left">
   <img src="assets/logo.png" alt="FreeLingo logo" width="200" />
@@ -56,10 +56,10 @@ freelingo/
 
 | Phase | Name                   | Status         |
 |-------|------------------------|----------------|
-| 1     | Learning platform      | 🚧 In progress |
+| 1     | Learning platform      | ✅ Complete    |
+| 1+    | Learning Resources Hub | ✅ Complete    |
 | 2     | Local TTS + STT        | ⏳ Planned     |
 | 3     | Real-time conversation | ⏳ Planned     |
-| 4     | Grammar reference      | ⏳ Planned     |
 
 ## Quick start
 
@@ -113,9 +113,9 @@ The first registered user becomes admin automatically.
 - [docker.instructions.md](specs/docker.instructions.md) — Docker Compose by phase, `.env.example`, DB migrations, operational notes
 - [llm-error-handling.instructions.md](specs/llm-error-handling.instructions.md) — LLM failures: malformed JSON, timeouts, retries, context overflow
 - [phase-1-platform.instructions.md](specs/phase-1-platform.instructions.md) — Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat
+- [phase-1-plus.instructions.md](specs/phase-1-plus.instructions.md) — Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test
 - [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
-- [phase-4-grammar-reference.instructions.md](specs/phase-4-grammar-reference.instructions.md) — Phase 4: static grammar reference A1–C2, lesson integration
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria

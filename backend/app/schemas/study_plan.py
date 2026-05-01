@@ -13,12 +13,10 @@ class StudyPlanGoal(BaseModel):
 class GenerateStudyPlanRequest(BaseModel):
     cefr_level: str
     goals: list[str] = ["grammar", "vocabulary", "reading", "writing"]
-    weeks: int = 4
-    days_per_week: int = 5
-    minutes_per_day: int = 30
+    duration_weeks: int = 12
+    days_per_week: int = 4
     weaknesses: list[str] = []
     strengths: list[str] = []
-    analysis: str = ""
 
 
 class DayPlan(BaseModel):
@@ -27,6 +25,9 @@ class DayPlan(BaseModel):
     title: str
     objectives: list[str]
     estimated_minutes: int
+    unit_id: str = ""
+    grammar_points: list[str] = []
+    vocabulary_set_ids: list[str] = []
 
 
 class WeekPlan(BaseModel):
@@ -37,6 +38,10 @@ class WeekPlan(BaseModel):
 
 class GeneratedPlan(BaseModel):
     title: str
+    cefr_level: str = ""
+    duration_weeks: int = 12
+    days_per_week: int = 4
+    ends_with_test: bool = True
     weekly_plan: list[WeekPlan]
 
 
@@ -45,9 +50,14 @@ class StudyPlanResponse(BaseModel):
     user_id: int
     cefr_level: str
     goals: list[str]
-    weeks_planned: int
+    duration_weeks: int
+    days_per_week: int
+    current_unit: str
     generated_plan: dict
     is_active: bool
+    completion_test_taken: bool
+    completion_test_score: Optional[float]
+    completion_test_recommendation: Optional[str]
     created_at: datetime
 
     model_config = {"from_attributes": True}
@@ -65,9 +75,11 @@ class TodayLesson(BaseModel):
     day: int
     objectives: list[str]
     estimated_minutes: int
+    unit_id: str = ""
 
 
 class TodayResponse(BaseModel):
     plan_id: int
     cefr_level: str
     lessons: list[TodayLesson]
+

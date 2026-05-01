@@ -1,10 +1,12 @@
 from __future__ import annotations
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
+from typing import Optional
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.models.competency import UserCompetency
 from app.models.progress import Progress
 
 XP_LESSON_COMPLETE = 20
@@ -75,3 +77,78 @@ async def update_daily_progress(
     await db.commit()
     await db.refresh(entry)
     return entry
+
+
+async def upsert_unit_competency(
+    db: AsyncSession,
+    user_id: int,
+    unit_id: str,
+    competency_texts: list[str],
+    lesson_score: float,
+) -> None:
+    """
+    Update (or create) UserCompetency rows for all competencies in a unit.
+
+    Uses an exponential moving average:  new = 0.7 * old + 0.3 * lesson_score
+    Marks a competency as mastered when score >= 0.80.
+    """
+    if not unit_id or not competency_texts:
+        return
+
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+
+    for text in competency_texts:
+        result = await db.execute(
+            select(UserCompetency).where(
+                UserCompetency.user_id == user_id,
+                UserCompetency.unit_id == unit_id,
+                UserCompetency.competency_text == text,
+            )
+        )
+        row: Optional[UserCompetency] = result.scalar_one_or_none()
+
+        if row is None:
+            row = UserCompetency(
+                user_id=user_id,
+                unit_id=unit_id,
+                competency_text=text,
+                score=lesson_score,
+                mastered=lesson_score >= 0.80,
+                updated_at=now,
+            )
+            db.add(row)
+        else:
+            row.score = round(row.score * 0.7 + lesson_score * 0.3, 3)
+            row.mastered = row.score >= 0.80
+            row.updated_at = now
+
+    await db.flush()
+
+
+async def get_unit_competencies(
+    db: AsyncSession,
+    user_id: int,
+) -> list[dict]:
+    """Return aggregated competency scores per unit for the given user."""
+    result = await db.execute(
+        select(UserCompetency).where(UserCompetency.user_id == user_id)
+    )
+    rows = result.scalars().all()
+
+    # Aggregate per unit: average score across all competency rows
+    unit_scores: dict[str, list[float]] = {}
+    for row in rows:
+        unit_scores.setdefault(row.unit_id, []).append(row.score)
+
+    return [
+        {
+            "unit_id": uid,
+            "score": round(sum(scores) / len(scores), 3),
+            "mastered_count": sum(
+                1 for r in rows if r.unit_id == uid and r.mastered
+            ),
+            "total_count": len(scores),
+        }
+        for uid, scores in unit_scores.items()
+    ]
+

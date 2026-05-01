@@ -91,24 +91,34 @@ Development phases. Update this file as the project progresses.
 
 ---
 
-## Phase 4 — Grammar Reference
+## Phase 1+ — Learning Resources Hub
 
 ⬜ Status: Planned
 
+> Delivered alongside Phase 1. These features are core to the learning experience
+> and should ship before Phase 2 (TTS/STT). No new infrastructure required —
+> all data is static TypeScript, all computation is frontend-only or reuses
+> the existing backend.
+
 | # | Milestone | Status |
 |---|-----------|--------|
-| 1 | Data layer — `frontend/src/data/grammar.ts` with all topics A1–C2 | ⬜ |
-| 2 | Index page `/grammar` grouped by level, with search and category filter | ⬜ |
-| 3 | Detail page `/grammar/[slug]` with explanations, examples, mistakes | ⬜ |
-| 4 | Lesson integration — related grammar links on lesson pages | ⬜ |
-| 5 | Nav + routing — GRAMMAR entry in sidebar and mobile menu | ⬜ |
+| 1 | Grammar Reference — data layer + `/grammar` index + `/grammar/[slug]` | ⬜ |
+| 2 | Vocabulary Hub — `vocabulary.ts` + `/vocabulary` + set detail pages | ⬜ |
+| 3 | Phrasebook — `phrasebook.ts` + `/phrasebook` with register filter | ⬜ |
+| 4 | Skills Tracker — `/progress` competency checklist + vocabulary stats | ⬜ |
+| 5 | Level Completion Test — `/lesson/level-test` + result + recommendation | ⬜ |
+| 6 | Nav + routing — RESOURCES nav group, update middleware | ⬜ |
 
 **Completion criteria:**
 - [ ] `/grammar` renders all topics with no API calls
-- [ ] Search and category filter work client-side
-- [ ] `/grammar/[slug]` renders full detail for every slug
-- [ ] Non-existent slugs return 404
-- [ ] Lesson page shows related grammar links when `grammar_refs` is populated
-- [ ] Backend validates grammar slugs against `VALID_GRAMMAR_SLUGS`
-- [ ] GRAMMAR in sidebar nav and mobile dropdown
-- [ ] No regressions in Phase 1–3
+- [ ] `/grammar/[slug]` renders full detail; unknown slugs return 404
+- [ ] `/vocabulary` lists all sets grouped by level with flashcard-progress badges
+- [ ] `/vocabulary/[setId]` shows words + "Add to flashcards" button
+- [ ] `/phrasebook` lists situations with level and register filters
+- [ ] `/progress` shows per-unit competency checklist with scores
+- [ ] `/progress` shows vocabulary progress bars per set
+- [ ] Level test available only after all units in a level are completed
+- [ ] Level test recommendation: advance ≥ 75% / extend 55–74% / repeat < 55%
+- [ ] RESOURCES nav group works on desktop and mobile
+- [ ] `/plan` visual roadmap linked from dashboard
+- [ ] No regressions in Phase 1

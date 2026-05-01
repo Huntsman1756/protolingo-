@@ -17,11 +17,7 @@ from app.schemas.study_plan import (
     TodayResponse,
 )
 from app.services.lesson_generator import generate_lesson
-from app.services.llm_adapter import (
-    LLMError,
-    LLMTimeoutError,
-    LLMUnavailableError,
-)
+from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError  # noqa: F401
 from app.services.study_plan_generator import generate_study_plan
 
 router = APIRouter(prefix="/api/study-plan", tags=["study-plan"])
@@ -59,30 +55,20 @@ async def create_study_plan(
     for old in old_plans.scalars().all():
         old.is_active = False
 
-    try:
-        generated = await generate_study_plan(data)
-    except LLMTimeoutError:
-        raise HTTPException(
-            status_code=504,
-            detail="The AI model took too long. Try again or check your Ollama instance.",
-        )
-    except LLMUnavailableError as e:
-        raise HTTPException(
-            status_code=503,
-            detail=f"AI service unavailable: {str(e)}",
-        )
-    except LLMError as e:
-        raise HTTPException(
-            status_code=502,
-            detail=f"Failed to generate study plan: {str(e)}",
-        )
+    generated = await generate_study_plan(data)
+
+    from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
+    units = get_curriculum_units(data.cefr_level)
+    first_unit_id = units[0].id if units else ""
 
     plan_dict = generated.model_dump() if hasattr(generated, "model_dump") else generated
     plan = StudyPlan(
         user_id=current_user.id,
         cefr_level=data.cefr_level,
         goals=data.goals,
-        weeks_planned=data.weeks,
+        duration_weeks=data.duration_weeks,
+        days_per_week=data.days_per_week,
+        current_unit=first_unit_id,
         generated_plan=plan_dict,
         is_active=True,
     )
@@ -111,8 +97,8 @@ async def get_today_lessons(
 
     start_date = plan.created_at.date() if hasattr(plan.created_at, "date") else plan.created_at
     days_elapsed = (date.today() - start_date).days
-    current_week = min((days_elapsed // 7) + 1, plan.weeks_planned)
-    current_day = (days_elapsed % 7) + 1
+    current_week = min((days_elapsed // plan.days_per_week) + 1, plan.duration_weeks)
+    current_day = (days_elapsed % plan.days_per_week) + 1
 
     weekly_plan = (
         plan.generated_plan["weekly_plan"]
@@ -153,8 +139,20 @@ async def get_today_lessons(
         d_type = d["lesson_type"] if isinstance(d, dict) else d.lesson_type
         d_obj = d["objectives"] if isinstance(d, dict) else d.objectives
         d_min = d["estimated_minutes"] if isinstance(d, dict) else d.estimated_minutes
+        d_unit_id = d.get("unit_id", "") if isinstance(d, dict) else getattr(d, "unit_id", "")
 
         lesson_id = lesson_by_title.get(d_title)
+
+        # Resolve curriculum grammar/vocabulary context for this unit
+        grammar_points: list[str] = []
+        vocabulary_set_ids: list[str] = []
+        if d_unit_id:
+            from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
+            for cu in get_curriculum_units(plan.cefr_level):
+                if cu.id == d_unit_id:
+                    grammar_points = cu.grammar_points
+                    vocabulary_set_ids = cu.vocabulary_set_ids
+                    break
 
         # Auto-generate the lesson if it doesn't exist yet
         if lesson_id is None:
@@ -165,6 +163,10 @@ async def get_today_lessons(
                     topic=d_title,
                     week=current_week,
                     day=current_day,
+                    unit_id=d_unit_id,
+                    grammar_points=grammar_points,
+                    vocabulary_set_ids=vocabulary_set_ids,
+                    english_variant=current_user.english_variant,
                 )
                 content_dict = content.model_dump() if hasattr(content, "model_dump") else content
 
@@ -175,6 +177,7 @@ async def get_today_lessons(
                     cefr_level=plan.cefr_level,
                     week_number=current_week,
                     day_number=current_day,
+                    unit_id=d_unit_id,
                     content=content_dict,
                 )
                 db.add(lesson)
@@ -206,6 +209,7 @@ async def get_today_lessons(
                 day=current_day,
                 objectives=d_obj,
                 estimated_minutes=d_min,
+                unit_id=d_unit_id,
             )
         )
 

@@ -8,13 +8,24 @@ import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { LoadingBar } from '@/components/ui/loading-bar'
 
-const navItems = [
-  { href: '/dashboard', label: 'DASHBOARD', dot: '·' },
-  { href: '/assessment', label: 'ASSESSMENT', dot: '·' },
-  { href: '/flashcards', label: 'FLASHCARDS', dot: '·' },
-  { href: '/chat', label: 'AI TUTOR', dot: '·' },
-  { href: '/settings', label: 'SETTINGS', dot: '·' },
-  { href: '/faq', label: 'FAQ', dot: '·' },
+const mainNavItems = [
+  { href: '/dashboard', label: 'HOME' },
+  { href: '/plan', label: 'MY PLAN' },
+  { href: '/progress', label: 'PROGRESS' },
+  { href: '/flashcards', label: 'FLASHCARDS' },
+  { href: '/chat', label: 'TUTOR' },
+  { href: '/assessment', label: 'ASSESSMENT' },
+]
+
+const resourceNavItems = [
+  { href: '/grammar', label: 'GRAMMAR' },
+  { href: '/vocabulary', label: 'VOCABULARY' },
+  { href: '/phrasebook', label: 'PHRASEBOOK' },
+]
+
+const bottomNavItems = [
+  { href: '/settings', label: 'SETTINGS' },
+  { href: '/faq', label: 'FAQ' },
 ]
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -28,6 +39,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [initializing, setInitializing] = useState(true)
   const [logoutConfirm, setLogoutConfirm] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [resourcesOpen, setResourcesOpen] = useState(false)
 
   // On every page load, Zustand is empty. Use the httpOnly refresh cookie
   // to silently get a new access token, then fetch /me to populate the user.
@@ -100,8 +112,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 py-4">
-          {navItems.map((item) => {
+        <nav className="flex-1 py-4 overflow-y-auto">
+          {/* Main items */}
+          {mainNavItems.map((item) => {
             const active = pathname === item.href || pathname.startsWith(item.href + '/')
             return (
               <Link
@@ -117,6 +130,54 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               </Link>
             )
           })}
+
+          {/* Resources group */}
+          <div className="mt-2">
+            <button
+              onClick={() => setResourcesOpen((o) => !o)}
+              className="w-full flex items-center justify-between px-5 py-2 text-xs font-mono tracking-widest text-fl-muted-4 hover:text-fl-muted-2 transition-colors uppercase border-l-2 border-transparent"
+            >
+              <span>RESOURCES</span>
+              <span className="text-fl-label">{resourcesOpen ? '▴' : '▾'}</span>
+            </button>
+            {resourcesOpen && resourceNavItems.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(item.href + '/')
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center gap-3 pl-8 pr-5 py-2.5 text-xs font-mono tracking-widest transition-colors ${active
+                    ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
+                    }`}
+                >
+                  <span className={`text-fl-label ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>·</span>
+                  {item.label}
+                </Link>
+              )
+            })}
+          </div>
+
+          {/* Bottom items */}
+          <div className="mt-2 border-t border-fl-border pt-2">
+            {bottomNavItems.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(item.href + '/')
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center gap-3 px-5 py-3 text-xs font-mono tracking-widest transition-colors ${active
+                    ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
+                    }`}
+                >
+                  <span className={`text-fl-label ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>●</span>
+                  {item.label}
+                </Link>
+              )
+            })}
+          </div>
+
           {user?.role === 'admin' && (
             <Link
               href="/admin/users"
@@ -162,7 +223,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {/* Dropdown */}
         {mobileMenuOpen && (
           <nav className="border-t border-fl-border bg-fl-bg pb-2">
-            {navItems.map((item) => {
+            {mainNavItems.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + '/')
               return (
                 <Link
@@ -170,8 +231,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center gap-3 px-5 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${active
-                      ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
-                      : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
+                    ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
                     }`}
                 >
                   <span className={`text-fl-label ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>●</span>
@@ -179,13 +240,61 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </Link>
               )
             })}
+
+            {/* Resources group (mobile) */}
+            <div>
+              <button
+                onClick={() => setResourcesOpen((o) => !o)}
+                className="w-full flex items-center justify-between px-5 py-2 font-mono text-xs tracking-widest text-fl-muted-4 hover:text-fl-muted-2 transition-colors uppercase border-l-2 border-transparent"
+              >
+                <span>RESOURCES</span>
+                <span className="text-fl-label">{resourcesOpen ? '▴' : '▾'}</span>
+              </button>
+              {resourcesOpen && resourceNavItems.map((item) => {
+                const active = pathname === item.href || pathname.startsWith(item.href + '/')
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 pl-8 pr-5 py-2.5 font-mono text-xs tracking-widest uppercase transition-colors ${active
+                      ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                      : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
+                      }`}
+                  >
+                    <span className={`text-fl-label ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>·</span>
+                    {item.label}
+                  </Link>
+                )
+              })}
+            </div>
+
+            {/* Bottom items (mobile) */}
+            {bottomNavItems.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(item.href + '/')
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-5 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${active
+                    ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
+                    }`}
+                >
+                  <span className={`text-fl-label ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>●</span>
+                  {item.label}
+                </Link>
+              )
+            })}
+
             {user?.role === 'admin' && (
               <Link
                 href="/admin/users"
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-5 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${pathname.startsWith('/admin')
-                    ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
-                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
+                  ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                  : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
                   }`}
               >
                 <span className="text-fl-label text-fl-muted-4">●</span>

@@ -25,6 +25,7 @@ Read these before implementing — they are the source of truth:
 | `specs/docker.instructions.md` | docker-compose.yml (all phases), `.env.example`, DB migrations, operational notes |
 | `specs/phase-1-platform.instructions.md` | Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat, frontend components |
 | `specs/phase-2-tts-stt.instructions.md` | Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises |
+| `specs/phase-1-plus.instructions.md` | Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test |
 | `specs/phase-3-conversation.instructions.md` | Phase 3: WebSocket voice pipeline, VAD, barge-in, gapless audio |
 | `specs/roadmap.instructions.md` | Development roadmap with milestones and completion criteria per phase |
 | `specs/changelog.instructions.md` | Changelog format, entry style, and update rules |
@@ -39,12 +40,13 @@ Read these before implementing — they are the source of truth:
 2. **Backend core** — `core/config.py`, `core/database.py` (async SQLAlchemy + asyncpg), `core/security.py` (JWT + bcrypt), `core/deps.py`, LLM adapter singleton
 3. **Auth** — `routers/auth.py` (register, login, refresh, logout, me), `routers/admin.py`
 4. **Models** — User, StudyPlan, Lesson, Exercise, Flashcard, Progress (SQLAlchemy async ORM)
-5. **Assessment** — Quiz generation + CEFR evaluation (LLM structured output)
-6. **Study plan** — Plan generation from CEFR level + goals
-7. **Lessons** — Lesson generation with exercises, free-write evaluation
+5. **Assessment** — Adaptive quiz (static bank) + deterministic CEFR evaluation + duration selector
+6. **Study plan** — Curriculum-driven plan from `data/curriculum.py` + `data/curriculum.ts`
+7. **Lessons** — LLM lesson content generation within curriculum constraints, free-write evaluation
 8. **Flashcards** — SM-2 implementation, LLM generation with native-language translations
 9. **Chat** — SSE streaming tutor with progress-aware system prompt
-10. **Frontend** — All screens, Zustand stores, auto-refresh interceptor, Next.js middleware
+10. **Frontend Phase 1** — Auth, assessment, `/plan` roadmap, lesson, flashcards, chat screens
+11. **Frontend Phase 1+** — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Test
 
 Run migrations after first backend startup: `docker compose exec backend alembic upgrade head`
 

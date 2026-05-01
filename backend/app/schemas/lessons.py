@@ -21,6 +21,8 @@ class LessonContent(BaseModel):
     explanation: dict
     exercises: list[dict]
     vocabulary: Optional[list[dict]] = None
+    grammar_refs: list[str] = []
+    unit_id: Optional[str] = None
 
 
 class LessonResponse(BaseModel):

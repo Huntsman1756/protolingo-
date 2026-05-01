@@ -74,6 +74,7 @@ async def register(
         display_name=data.display_name or data.username,
         hashed_password=hash_password(data.password),
         native_language=data.native_language,
+        english_variant=data.english_variant,
         role=role,
         is_active=True,
     )
@@ -189,6 +190,8 @@ async def update_me(
         current_user.hashed_password = hash_password(data.password)
     if data.native_language is not None:
         current_user.native_language = data.native_language
+    if data.english_variant is not None:
+        current_user.english_variant = data.english_variant
 
     await db.commit()
     await db.refresh(current_user)

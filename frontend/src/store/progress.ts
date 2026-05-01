@@ -8,6 +8,22 @@ interface TodayLesson {
   day: number
   objectives: string[]
   estimatedMinutes: number
+  unitId?: string
+}
+
+interface UnitProgress {
+  unitId: string
+  completedLessons: number
+  totalLessons: number
+  competencies: Record<string, number> // competency text → score 0–1
+}
+
+export type LevelTestRecommendation = 'advance' | 'extend' | 'repeat'
+
+interface LevelTestResult {
+  score: number
+  recommendation: LevelTestRecommendation
+  nextLevel: string | null
 }
 
 interface ProgressStore {
@@ -16,6 +32,13 @@ interface ProgressStore {
   skills: Record<string, number>
   todayLessons: TodayLesson[]
   completedToday: number[]
+  // Curriculum-aware fields
+  currentUnitId: string
+  currentPlanDurationWeeks: number
+  unitProgress: Record<string, UnitProgress>
+  levelTestUnlocked: boolean
+  levelTestResult: LevelTestResult | null
+  // Actions
   setProgress: (data: {
     streak: number
     xp: number
@@ -23,6 +46,11 @@ interface ProgressStore {
   }) => void
   setTodayLessons: (lessons: TodayLesson[]) => void
   completeLesson: (id: number) => void
+  setCurrentUnit: (unitId: string) => void
+  setPlanDuration: (weeks: number) => void
+  updateUnitProgress: (unitId: string, progress: Partial<UnitProgress>) => void
+  unlockLevelTest: () => void
+  setLevelTestResult: (result: LevelTestResult) => void
 }
 
 export const useProgressStore = create<ProgressStore>((set) => ({
@@ -31,11 +59,26 @@ export const useProgressStore = create<ProgressStore>((set) => ({
   skills: {},
   todayLessons: [],
   completedToday: [],
+  currentUnitId: '',
+  currentPlanDurationWeeks: 12,
+  unitProgress: {},
+  levelTestUnlocked: false,
+  levelTestResult: null,
   setProgress: (data) =>
     set({ streak: data.streak, xp: data.xp, skills: data.skills }),
   setTodayLessons: (lessons) => set({ todayLessons: lessons }),
   completeLesson: (id) =>
+    set((state) => ({ completedToday: [...state.completedToday, id] })),
+  setCurrentUnit: (unitId) => set({ currentUnitId: unitId }),
+  setPlanDuration: (weeks) => set({ currentPlanDurationWeeks: weeks }),
+  updateUnitProgress: (unitId, progress) =>
     set((state) => ({
-      completedToday: [...state.completedToday, id],
+      unitProgress: {
+        ...state.unitProgress,
+        [unitId]: { ...state.unitProgress[unitId], ...progress, unitId },
+      },
     })),
+  unlockLevelTest: () => set({ levelTestUnlocked: true }),
+  setLevelTestResult: (result) => set({ levelTestResult: result }),
 }))
+

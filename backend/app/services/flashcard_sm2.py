@@ -28,7 +28,7 @@ def sm2_update(card: Flashcard, quality: int) -> Flashcard:
 
 FLASHCARD_GEN_PROMPT = """
 Generate {count} English vocabulary flashcards for a {cefr_level} student
-about the topic: "{topic}".
+about the topic: "{topic}". Use {english_variant} English spelling and vocabulary.
 
 Return JSON:
 {{
@@ -45,13 +45,14 @@ Return JSON:
 
 
 async def generate_flashcards(
-    topic: str, count: int, cefr_level: str, native_language: str
+    topic: str, count: int, cefr_level: str, native_language: str, english_variant: str = "american"
 ) -> FlashcardGenerateResponse:
     prompt = FLASHCARD_GEN_PROMPT.format(
         topic=topic,
         count=count,
         cefr_level=cefr_level,
         native_language=native_language,
+        english_variant=english_variant,
     )
 
     result = await llm_adapter.structured_output(

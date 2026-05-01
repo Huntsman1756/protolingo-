@@ -7,6 +7,7 @@ from app.core.deps import get_current_user
 from app.models.progress import Progress
 from app.models.user import User
 from app.schemas.progress import ProgressHistoryResponse, ProgressSummary
+from app.services.progress_service import get_unit_competencies
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -66,3 +67,15 @@ async def get_history(
     )
     entries = result.scalars().all()
     return ProgressHistoryResponse(entries=entries)
+
+
+@router.get("/competencies", response_model=list)
+async def get_competencies(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Return per-unit competency scores for the current user.
+    Each item: {unit_id, score (0-1), mastered_count, total_count}
+    """
+    return await get_unit_competencies(db, current_user.id)

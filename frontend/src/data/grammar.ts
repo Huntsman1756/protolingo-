@@ -1,37 +1,3 @@
----
-description: "Phase 4 of FreeLingo: Grammar Reference. Static, structured grammar content organized by CEFR level (A1–C2). New /grammar section with topic index and detail pages. Data stored as TypeScript constants (no DB, no AI at runtime). Integration with lessons (related grammar links), flashcard generation hints, and the AI tutor system prompt."
-applyTo: "frontend/src/**"
----
-
-# Phase 4 — Grammar Reference
-
-## Objective
-
-A browsable, offline-capable grammar reference organized by CEFR level.
-Users can read clear explanations, study examples, and understand common
-mistakes for any English grammar topic — without needing the AI online.
-The reference integrates passively with lessons and the AI tutor.
-
----
-
-## Milestones
-
-1. **Data layer** — `frontend/src/data/grammar.ts` with all topics A1–C2
-2. **Index page** — `/grammar` grouped by level, filterable
-3. **Detail page** — `/grammar/[slug]` with full explanation, examples, mistakes
-4. **Lesson integration** — related grammar links on lesson completion
-5. **Nav + routing** — add GRAMMAR to navItems, update middleware
-
----
-
-## Milestone 1 — Data Layer
-
-All grammar content lives in a single TypeScript file. No backend endpoint
-is needed. No database. Content is tree-shakeable and ships with the JS bundle.
-
-### `frontend/src/data/grammar.ts`
-
-```ts
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 
 export type GrammarCategory =
@@ -52,7 +18,7 @@ export type GrammarCategory =
 
 export interface GrammarExample {
   english: string
-  translation?: string   // in user's native language — interpolated at render time
+  translation?: string // in user's native language — interpolated at render time
   note?: string
 }
 
@@ -67,13 +33,13 @@ export interface GrammarTopic {
   title: string
   level: CEFRLevel
   category: GrammarCategory
-  summary: string          // one-liner for the index card
-  explanation: string      // full explanation in Markdown
-  structure?: string       // formula/pattern, e.g. "Subject + verb + object"
-  rules: string[]          // bullet-point key rules
+  summary: string       // one-liner for the index card
+  explanation: string   // full explanation in Markdown
+  structure?: string    // formula/pattern, e.g. "Subject + verb + object"
+  rules: string[]       // bullet-point key rules
   examples: GrammarExample[]
   common_mistakes: GrammarMistake[]
-  related: string[]        // slugs of related topics
+  related: string[]     // slugs of related topics
 }
 
 export const grammarTopics: GrammarTopic[] = [
@@ -93,12 +59,12 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       { english: 'I work from home every day.', note: 'routine' },
-      { english: 'She doesn\'t like coffee.', note: 'negative with does + not' },
+      { english: "She doesn't like coffee.", note: 'negative with does + not' },
       { english: 'Does he speak French?', note: 'question with does' },
     ],
     common_mistakes: [
       { wrong: 'She work here.', correct: 'She works here.', note: 'Missing -s for third person.' },
-      { wrong: 'He don\'t know.', correct: 'He doesn\'t know.', note: 'Use doesn\'t, not don\'t, for he/she/it.' },
+      { wrong: "He don't know.", correct: "He doesn't know.", note: "Use doesn't, not don't, for he/she/it." },
     ],
     related: ['present-continuous', 'past-simple', 'questions-yes-no'],
   },
@@ -121,7 +87,7 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'They are not ready yet.', note: 'negative' },
     ],
     common_mistakes: [
-      { wrong: 'She is very nice person.', correct: 'She is a very nice person.', note: 'Don\'t forget the article before a singular noun.' },
+      { wrong: 'She is very nice person.', correct: 'She is a very nice person.', note: "Don't forget the article before a singular noun." },
       { wrong: 'I am agree.', correct: 'I agree.', note: '"Agree" is a verb, not an adjective. Don\'t use "be" with it.' },
     ],
     related: ['articles', 'present-simple'],
@@ -215,8 +181,8 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'The dog wagged its tail.' },
     ],
     common_mistakes: [
-      { wrong: 'The cat lost it\'s collar.', correct: 'The cat lost its collar.', note: '"its" without apostrophe is possessive.' },
-      { wrong: 'Their going to the park.', correct: 'They\'re going to the park.', note: '"Their" is possessive; "they\'re" = they are.' },
+      { wrong: "The cat lost it's collar.", correct: 'The cat lost its collar.', note: '"its" without apostrophe is possessive.' },
+      { wrong: 'Their going to the park.', correct: "They're going to the park.", note: '"Their" is possessive; "they\'re" = they are.' },
     ],
     related: ['subject-pronouns', 'object-pronouns'],
   },
@@ -233,16 +199,16 @@ export const grammarTopics: GrammarTopic[] = [
     rules: [
       'Add -ed to regular verbs (work → worked, play → played).',
       'Irregular verbs must be memorised (go → went, buy → bought).',
-      'Negative: did not (didn\'t) + base verb.',
+      "Negative: did not (didn't) + base verb.",
       'Question: Did + subject + base verb?',
     ],
     examples: [
       { english: 'She worked late yesterday.' },
-      { english: 'They didn\'t come to the party.' },
+      { english: "They didn't come to the party." },
       { english: 'Did you see that film?' },
     ],
     common_mistakes: [
-      { wrong: 'He didn\'t went home.', correct: 'He didn\'t go home.', note: 'After did/didn\'t use the base form, not past tense.' },
+      { wrong: "He didn't went home.", correct: "He didn't go home.", note: "After did/didn't use the base form, not past tense." },
       { wrong: 'I have went to school yesterday.', correct: 'I went to school yesterday.', note: 'With specific past time markers (yesterday, last week), use simple past, not present perfect.' },
     ],
     related: ['present-simple', 'present-perfect', 'past-continuous'],
@@ -288,7 +254,7 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       { english: 'This road is longer than I expected.' },
       { english: 'She is more patient than her brother.' },
-      { english: 'This is the best coffee I\'ve ever had.' },
+      { english: "This is the best coffee I've ever had." },
     ],
     common_mistakes: [
       { wrong: 'She is more tall than me.', correct: 'She is taller than me.', note: 'Short adjectives take -er, not "more".' },
@@ -298,11 +264,11 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'can-cant',
-    title: 'Can / Can\'t',
+    title: "Can / Can't",
     level: 'A2',
     category: 'Modals',
     summary: 'Express ability and permission.',
-    structure: 'Subject + can/can\'t + base verb',
+    structure: "Subject + can/can't + base verb",
     explanation: `**Can** expresses:\n- Ability: *I can swim.*\n- Permission: *Can I leave early?*\n- Possibility: *It can be very cold here in winter.*\n\n**Cannot / can't** is the negative form.`,
     rules: [
       'Can never changes form — no -s for he/she/it.',
@@ -312,7 +278,7 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       { english: 'She can speak three languages.' },
       { english: 'Can you help me, please?' },
-      { english: 'I can\'t find my keys.' },
+      { english: "I can't find my keys." },
     ],
     common_mistakes: [
       { wrong: 'She cans drive.', correct: 'She can drive.', note: 'Modal verbs never take -s.' },
@@ -339,7 +305,7 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       { english: 'Have you ever eaten sushi?', note: 'life experience' },
       { english: 'She has just left the office.', note: 'recent, relevant now' },
-      { english: 'I haven\'t seen him since Monday.' },
+      { english: "I haven't seen him since Monday." },
     ],
     common_mistakes: [
       { wrong: 'I have seen her yesterday.', correct: 'I saw her yesterday.', note: '"Yesterday" is specific → past simple.' },
@@ -357,14 +323,14 @@ export const grammarTopics: GrammarTopic[] = [
     explanation: `The **first conditional** expresses real, possible situations in the future.\n\n*If it rains, we will cancel the match.*\n\nThe if-clause uses **present simple** (not will); the result clause uses **will**.`,
     rules: [
       'If-clause: present simple (never will in the if-clause).',
-      'Main clause: will/won\'t + base verb.',
+      "Main clause: will/won't + base verb.",
       'The clauses can be reversed: "We will cancel if it rains."',
       'Can also use other modals in main clause: might, could, should.',
     ],
     examples: [
       { english: 'If you study hard, you will pass the exam.' },
-      { english: 'I won\'t go if it\'s too cold.' },
-      { english: 'If she calls, tell her I\'m busy.' },
+      { english: "I won't go if it's too cold." },
+      { english: "If she calls, tell her I'm busy." },
     ],
     common_mistakes: [
       { wrong: 'If it will rain, we will stay.', correct: 'If it rains, we will stay.', note: 'Do not use "will" in the if-clause.' },
@@ -457,7 +423,7 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       { english: 'If she had more time, she would study abroad.' },
-      { english: 'I wouldn\'t do that if I were you.' },
+      { english: "I wouldn't do that if I were you." },
       { english: 'What would you do if you lost your phone?' },
     ],
     common_mistakes: [
@@ -479,7 +445,7 @@ export const grammarTopics: GrammarTopic[] = [
       'Can use could have / might have instead of would have.',
     ],
     examples: [
-      { english: 'If she had left earlier, she wouldn\'t have missed the train.' },
+      { english: "If she had left earlier, she wouldn't have missed the train." },
       { english: 'He might have got the job if he had prepared better.' },
     ],
     common_mistakes: [
@@ -547,7 +513,7 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       { english: 'If I had taken that job, I would be living in Tokyo now.' },
-      { english: 'If you weren\'t so afraid of flying, you would have come with us.' },
+      { english: "If you weren't so afraid of flying, you would have come with us." },
     ],
     common_mistakes: [
       { wrong: 'Confusing with 2nd or 3rd conditional', correct: 'Identify the time frame of each clause separately', note: 'Ask: is the condition past or present? Is the result past or present?' },
@@ -591,11 +557,10 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       { english: 'It was the noise that woke me up.' },
       { english: 'What bothers me is his attitude.' },
-      { english: 'It\'s honesty that I admire most in people.' },
+      { english: "It's honesty that I admire most in people." },
     ],
     common_mistakes: [
-      { wrong: 'It was the noise which woke me up.' },
-      { correct: 'It was the noise that woke me up.', note: '"That" is preferred (not "which") in it-cleft sentences.' },
+      { wrong: 'It was the noise which woke me up.', correct: 'It was the noise that woke me up.', note: '"That" is preferred (not "which") in it-cleft sentences.' },
     ],
     related: ['inversion', 'relative-clauses'],
   },
@@ -646,146 +611,3 @@ export const grammarTopics: GrammarTopic[] = [
     related: ['discourse-markers', 'advanced-passive'],
   },
 ]
-```
-
----
-
-## Milestone 2 — Index Page `/grammar`
-
-### Route: `frontend/src/app/(app)/grammar/page.tsx`
-
-- `'use client'`
-- Groups topics by CEFR level using `grammarTopics` from `@/data/grammar`
-- Each level rendered as a labelled section with a grid of topic cards
-- Highlight current user level (from `useAuthStore` → `user` → needs CEFR from progress store or study plan)
-- Filter bar: search by title/keyword, filter by category
-- Each card shows: level badge, title, summary, category tag, link to `/grammar/[slug]`
-- No API calls — fully static render
-
-### Component structure
-
-```
-GrammarIndexPage
-├── SearchInput (text filter)
-├── CategoryFilter (dropdown or pill buttons)
-└── {CEFR_LEVELS.map(level => (
-     <GrammarLevelSection level={level} topics={filtered} />
-       └── {topics.map(t => <GrammarTopicCard topic={t} />)}
-   ))}
-```
-
----
-
-## Milestone 3 — Detail Page `/grammar/[slug]`
-
-### Route: `frontend/src/app/(app)/grammar/[slug]/page.tsx`
-
-- `'use client'` (or server component — no auth needed, data is local)
-- Finds topic from `grammarTopics.find(t => t.slug === params.slug)`
-- 404 if not found (`notFound()`)
-- Renders:
-  1. Breadcrumb: Grammar → Level → Title
-  2. Level + category badges
-  3. Summary line
-  4. Structure formula (if present) in a monospaced block
-  5. Explanation (render as Markdown — use a lightweight parser or just split on `\n\n`)
-  6. Key Rules list
-  7. Examples section (english + optional note)
-  8. Common Mistakes section (wrong → correct + explanation)
-  9. Related Topics links (slugs → titles via grammarTopics lookup)
-
----
-
-## Milestone 4 — Lesson Integration
-
-### Lesson page changes (`app/(app)/lesson/[id]/page.tsx`)
-
-After a lesson is completed (or in the lesson header), surface related grammar
-topics based on `lesson.lesson_type` and `lesson.cefr_level`.
-
-**Backend change** (`app/services/lesson_generator.py`):
-
-Add an optional field to `LessonContent`:
-```python
-class LessonContent(BaseModel):
-    explanation: dict
-    grammar_refs: list[str] = []   # list of grammar slugs
-```
-
-When generating lesson content, instruct the LLM to return 1–3 relevant
-grammar slugs from the known list. The backend validates slugs against a
-hardcoded set before storing.
-
-**Frontend change** (`app/(app)/lesson/[id]/page.tsx`):
-
-After the exercise section, show:
-```tsx
-{lesson.content.grammar_refs?.length > 0 && (
-  <div className="border border-fl-border bg-fl-surface p-5">
-    <p className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase mb-3">Related Grammar</p>
-    <div className="flex flex-wrap gap-2">
-      {lesson.content.grammar_refs.map((slug) => {
-        const topic = grammarTopics.find(t => t.slug === slug)
-        if (!topic) return null
-        return (
-          <Link key={slug} href={`/grammar/${slug}`}
-            className="border border-fl-border px-3 py-1.5 font-mono text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors uppercase tracking-widest">
-            ● {topic.title}
-          </Link>
-        )
-      })}
-    </div>
-  </div>
-)}
-```
-
----
-
-## Milestone 5 — Nav + Routing
-
-### `app/(app)/layout.tsx`
-
-Add to `navItems`:
-```ts
-{ href: '/grammar', label: 'GRAMMAR', dot: '·' },
-```
-
-### `middleware.ts`
-
-Add `/grammar` to the list of protected routes (already covered by the
-`(app)` route group, but verify the matcher pattern includes `/grammar/:path*`).
-
----
-
-## Known grammar slugs (for validation)
-
-```python
-# backend/app/services/lesson_generator.py
-
-VALID_GRAMMAR_SLUGS: set[str] = {
-    "present-simple", "to-be", "articles", "questions-yes-no",
-    "subject-pronouns", "possessive-adjectives",
-    "past-simple", "present-continuous", "comparatives-superlatives",
-    "can-cant",
-    "present-perfect", "first-conditional", "passive-voice-simple",
-    "relative-clauses", "modal-verbs",
-    "second-conditional", "third-conditional", "reported-speech", "past-perfect",
-    "mixed-conditionals", "inversion", "cleft-sentences",
-    "discourse-markers", "nominalisation",
-}
-```
-
----
-
-## Completion criteria
-
-- [ ] `/grammar` renders all topics grouped by level with no API calls
-- [ ] Search filter works client-side (title + summary matching)
-- [ ] Category filter works client-side
-- [ ] `/grammar/[slug]` renders full topic detail for every slug in `grammarTopics`
-- [ ] Non-existent slugs return a 404 page
-- [ ] Lesson page shows "Related Grammar" links when `grammar_refs` is populated
-- [ ] Grammar slugs in lesson content are validated against `VALID_GRAMMAR_SLUGS` on the backend
-- [ ] GRAMMAR appears in the sidebar nav (desktop) and mobile dropdown
-- [ ] No regressions in Phase 1–3 features
-- [ ] TypeScript compiles without errors
