@@ -1,7 +1,7 @@
 """Add unit_id to lessons table.
 
-Revision ID: 0004
-Revises: 0003
+Revision ID: 0004_lesson_unit_id
+Revises: 0003_curriculum_studyplan
 Create Date: 2026-05-01
 """
 from __future__ import annotations
@@ -9,8 +9,8 @@ from __future__ import annotations
 from alembic import op
 import sqlalchemy as sa
 
-revision = "0004"
-down_revision = "0003"
+revision = "0004_lesson_unit_id"
+down_revision = "0003_curriculum_studyplan"
 branch_labels = None
 depends_on = None
 

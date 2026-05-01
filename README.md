@@ -79,11 +79,8 @@ cp .env.example .env
 # 3. Pull the recommended model (run on the host, not inside Docker)
 ollama pull gemma3:12b
 
-# 4. Start all services
+# 4. Start all services (migrations run automatically on first start)
 docker compose up -d
-
-# 5. Run database migrations (first run only)
-docker compose exec backend alembic upgrade head
 ```
 
 Access at `http://localhost:3000` (or `http://<server-ip>:3000`).  
@@ -97,11 +94,7 @@ The first registered user becomes admin automatically.
 2. Choose **Repository** and enter the repo URL, or paste the contents of `docker-compose.yml` directly into the Web editor.
 3. Scroll down to **Environment variables** and add the variables from `.env.example` (at minimum: `SECRET_KEY`, `OLLAMA_BASE_URL`, `POSTGRES_PASSWORD`).
 4. Click **Deploy the stack**.
-5. Once running, open a console into the `backend` container and run the migrations:
-   ```bash
-   alembic upgrade head
-   ```
-6. Access the app at `http://<server-ip>:3000`.
+5. Access the app at `http://<server-ip>:3000`. Database migrations run automatically when the backend starts.
 
 > **Tip:** If Ollama runs on the same host as Portainer, set `OLLAMA_BASE_URL=http://host.docker.internal:11434`. On Linux you may need to add the `extra_hosts` entry in the compose file (already included by default).
 
