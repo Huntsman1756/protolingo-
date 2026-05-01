@@ -230,7 +230,11 @@
     "label": "Leçon",
     "submitAnswer": "Soumettre la réponse",
     "lessonDone": "Leçon terminée",
-    "score": "Score"
+    "score": "Score",
+    "examples": "Exemples",
+    "pronunciationExercise": "Prononciation",
+    "tapToListen": "Appuyer pour écouter",
+    "recordNow": "Enregistrez votre réponse"
   },
   "flashcards": {
     "title": "Fiches",
@@ -252,7 +256,10 @@
     "front": "Mot",
     "back": "Définition",
     "loading": "Chargement des fiches...",
-    "sectionGenerate": "Générer de nouvelles fiches"
+    "sectionGenerate": "Générer de nouvelles fiches",
+    "speakingMode": "Expression orale",
+    "standardMode": "Standard",
+    "sayWord": "Dites le mot à voix haute"
   },
   "chat": {
     "title": "Tuteur IA",

@@ -96,6 +96,17 @@ docker compose exec backend alembic upgrade head
 - **TypeScript**: no semicolons, single quotes, 2-space tabs, trailing commas es5. `prettier-plugin-tailwindcss` required.
 - **shadcn/ui** components must be installed: `button card input progress badge separator sheet tabs`.
 
-## Phase 2+ services (commented out until needed)
+## Phase 2 services (TTS & STT)
 
-`kokoro` (TTS) and `whisper` (STT) services are commented out in `docker-compose.yml`. Uncomment and set `TTS_ENABLED=true` / `STT_ENABLED=true` in `.env` when reaching Phase 2. Both require `deploy.resources.reservations.devices` with `driver: nvidia` for GPU.
+`kokoro` (TTS) and `whisper` (STT) are **active in `docker-compose.yml`** but disabled at the application level by default (`TTS_ENABLED=false`, `STT_ENABLED=false`). To enable them, set those flags to `true` in `.env`.
+
+### GPU vs CPU
+
+Both services ship with GPU images by default. For CPU-only hosts, adjust `docker-compose.yml` as follows:
+
+| Service | GPU image (default) | CPU image | Extra change |
+|---------|--------------------|-----------|----|
+| `kokoro` | `ghcr.io/remsky/kokoro-fastapi-gpu:latest` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Remove the `deploy` block |
+| `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | `onerahmet/openai-whisper-asr-webservice:latest` | Remove the `deploy` block; set `ASR_MODEL=base` or `small` |
+
+The `deploy.resources.reservations.devices` block must be removed entirely on CPU hosts — Docker will error if it is present without the NVIDIA runtime.

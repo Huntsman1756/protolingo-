@@ -14,6 +14,18 @@ A local language model (Ollama) evaluates your CEFR level, generates a personali
 study plan, and guides you through grammar, vocabulary, reading comprehension,
 and writing lessons.
 
+The study plan follows a CEFR-aligned curriculum (A1-C2) organized into units with
+clear competencies and prerequisites. After a deterministic placement assessment,
+FreeLingo creates a weekly roadmap based on your selected intensity (4, 8, 12, or
+16 weeks), then unlocks lessons in sequence: grammar, vocabulary, reading, writing,
+and review.
+
+The platform combines structure and adaptation: lessons are generated within
+curriculum boundaries, flashcards use SM-2 spaced repetition, and the AI tutor
+provides contextual streaming feedback in English (with optional brief support in
+the learner's native language). Progress tracking includes XP, streaks, skill
+scores, unit competencies, and an end-of-level completion test.
+
 ## Architecture
 
 Monorepo: `backend/` (Python FastAPI) + `frontend/` (Next.js 16 App Router)
@@ -121,6 +133,60 @@ The first registered user becomes admin automatically.
 - The backend acts as a proxy for Ollama/TTS/STT calls so the frontend never talks directly to those services.
 - The `LLM_PROVIDER` field controls the LLM provider: `ollama` (local, recommended), `openai`, `anthropic`, or `deepseek`.
 - The target language is always **English**. During registration, the user's native language is asked for flashcard translations and tutor feedback.
+
+## Enabling TTS & STT
+
+TTS (Kokoro) and STT (faster-whisper) are disabled by default. Both services are already defined in `docker-compose.yml` (commented out) and can be activated on either a GPU or a CPU host.
+
+### GPU host (NVIDIA)
+
+1. Uncomment the `kokoro` and `whisper` services in `docker-compose.yml` (they are already configured with `deploy.resources.reservations.devices` for NVIDIA).
+2. Add to `.env`:
+   ```env
+   TTS_ENABLED=true
+   STT_ENABLED=true
+   ```
+3. Restart the stack: `docker compose up -d`.
+
+### CPU-only host
+
+1. Uncomment the `kokoro` and `whisper` services in `docker-compose.yml`.
+2. Replace the image tags and remove the `deploy` block for each service:
+
+   **Kokoro (TTS):**
+   ```yaml
+   kokoro:
+     image: ghcr.io/remsky/kokoro-fastapi-cpu:latest
+     restart: unless-stopped
+     ports:
+       - "8880:8880"
+   ```
+
+   **Whisper (STT):**
+   ```yaml
+   whisper:
+     image: onerahmet/openai-whisper-asr-webservice:latest
+     restart: unless-stopped
+     ports:
+       - "9000:9000"
+     environment:
+       - ASR_MODEL=base
+       - ASR_ENGINE=faster_whisper
+   ```
+   > Use `ASR_MODEL=base` or `small` on CPU. Larger models (`medium`, `large`) are very slow without a GPU.
+
+3. Add to `.env`:
+   ```env
+   TTS_ENABLED=true
+   STT_ENABLED=true
+   ```
+4. Restart the stack: `docker compose up -d`.
+
+### Notes
+
+- If TTS or STT is disabled, the backend returns `503` on those endpoints. The frontend gracefully degrades: the listen/record buttons are not rendered.
+- The TTS voice can be changed via `TTS_VOICE` in `.env` (default: `af_heart`). Available voices: `af_heart`, `af_sky` (American), `bf_emma`, `bm_george` (British).
+- The STT model is controlled by `ASR_MODEL` inside the whisper container environment variable, not from `.env`.
 
 ## Contributing
 

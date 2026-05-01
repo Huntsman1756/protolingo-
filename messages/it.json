@@ -230,7 +230,11 @@
     "label": "Lezione",
     "submitAnswer": "Invia risposta",
     "lessonDone": "Lezione completata",
-    "score": "Punteggio"
+    "score": "Punteggio",
+    "examples": "Esempi",
+    "pronunciationExercise": "Pronuncia",
+    "tapToListen": "Tocca per ascoltare",
+    "recordNow": "Registra la tua risposta"
   },
   "flashcards": {
     "title": "Schede",
@@ -252,7 +256,10 @@
     "front": "Parola",
     "back": "Definizione",
     "loading": "Caricamento schede...",
-    "sectionGenerate": "Genera nuove schede"
+    "sectionGenerate": "Genera nuove schede",
+    "speakingMode": "Parlato",
+    "standardMode": "Standard",
+    "sayWord": "Di' la parola ad alta voce"
   },
   "chat": {
     "title": "Tutor IA",

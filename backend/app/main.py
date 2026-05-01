@@ -11,7 +11,9 @@ from slowapi.errors import RateLimitExceeded
 
 from app.core.config import settings
 from app.core.limiter import limiter
-from app.routers import admin, assessment, auth, chat, flashcards, lessons, progress, study_plan
+from app.routers import admin, assessment, auth, chat, flashcards, lessons, progress, study_plan, stt, tts
+from app.services.stt_service import STTService
+from app.services.tts_service import TTSService
 
 
 def _run_migrations() -> None:
@@ -22,6 +24,14 @@ def _run_migrations() -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):  # noqa: ANN201
     await asyncio.to_thread(_run_migrations)
+
+    app.state.tts_service = (
+        TTSService(settings.TTS_BASE_URL, settings.TTS_VOICE) if settings.TTS_ENABLED else None
+    )
+    app.state.stt_service = (
+        STTService(settings.STT_BASE_URL) if settings.STT_ENABLED else None
+    )
+
     yield
 
 
@@ -57,6 +67,8 @@ app.include_router(lessons.router)
 app.include_router(flashcards.router)
 app.include_router(chat.router)
 app.include_router(progress.router)
+app.include_router(tts.router)
+app.include_router(stt.router)
 
 
 @app.get("/health")
