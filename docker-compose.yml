@@ -74,17 +74,14 @@ services:
       - backend
 
   # TTS (Kokoro-FastAPI) ──────────────────────────────────────────
-  # Builds a custom image that upgrades PyTorch to 2.7+ (cu128), adding support
-  # for Blackwell GPUs (RTX 5000 series, sm_120) while remaining compatible with
-  # all previous NVIDIA architectures (sm_50+).
-  # CPU-only host: replace 'build' with image: ghcr.io/remsky/kokoro-fastapi-cpu:latest
+  # Custom fork with PyTorch 2.7+ (cu128) for Blackwell GPU support (sm_120).
+  # Compatible with all previous NVIDIA architectures (sm_50+).
+  # CPU-only host: replace image with ghcr.io/remsky/kokoro-fastapi-cpu:latest
   #                and remove the entire 'deploy' block.
-  # See: https://github.com/remsky/Kokoro-FastAPI/issues/443
+  # See: https://github.com/ArtCC/Kokoro-FastAPI
   # Enable: set TTS_ENABLED=true in .env
   kokoro:
-    build:
-      context: .
-      dockerfile: docker/kokoro.Dockerfile
+    image: ghcr.io/artcc/kokoro-fastapi-gpu:latest
     restart: unless-stopped
     ports:
       - "8880:8880"
