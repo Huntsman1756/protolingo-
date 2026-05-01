@@ -5,23 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - 2026-05-01
-
-### Added
-- Grammar Reference hub: searchable index page with CEFR-level grouping and category filters
-- Grammar topic detail pages with structure formula, key rules, examples, common mistakes, and related topics
-- Vocabulary Hub: level-filtered word set index with word count per set
-- Vocabulary set detail pages with IPA, POS, definitions, examples, and "Add All to Flashcards" bulk action
-- Phrasebook with level and register (formal / neutral / informal) filters and one-click clipboard copy
-- Skills Tracker page showing XP, streak, accuracy stats, per-unit competency checklist, and skill accuracy bars
-- Level Completion Test: LLM-generated adaptive quiz per study-plan unit, with skill breakdown and level recommendation on completion
-- `grammar_refs` field on lesson content, populated by LLM and validated against 24 known CEFR grammar slugs
-- Related Grammar section on lesson pages linking to Grammar Reference topic detail pages
-- `GET /api/progress/competencies` endpoint returning per-unit competency scores for the active study plan
-- Unit competency upsert endpoint and `unit_competencies` table migration
-- Sidebar navigation reorganised into MAIN and collapsible RESOURCES groups (desktop and mobile)
-
-## [0.1.0] - 2026-04-30
+## [Unreleased]
 
 ### Added
 - Docker Compose setup with PostgreSQL 16, Redis 7, backend, and frontend services
@@ -50,3 +34,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `apiFetch` utility with silent 401 → refresh → retry interceptor and redirect on failure
 - Next.js middleware protecting all routes via `refresh_token` cookie check
 - `CONTRIBUTING.md` with contribution workflow, coding standards, and test requirements
+- Grammar Reference hub: searchable index page with CEFR-level grouping and category filters
+- Grammar topic detail pages with structure formula, key rules, examples, common mistakes, and related topics
+- Vocabulary Hub: level-filtered word set index with word count per set
+- Vocabulary set detail pages with IPA, POS, definitions, examples, and "Add All to Flashcards" bulk action
+- Phrasebook with level and register (formal / neutral / informal) filters and one-click clipboard copy
+- Skills Tracker page showing XP, streak, accuracy stats, per-unit competency checklist, and skill accuracy bars
+- Level Completion Test: LLM-generated adaptive quiz per study-plan unit, with skill breakdown and level recommendation on completion
+- `grammar_refs` field on lesson content, populated by LLM and validated against 24 known CEFR grammar slugs
+- Related Grammar section on lesson pages linking to Grammar Reference topic detail pages
+- `GET /api/progress/competencies` endpoint returning per-unit competency scores for the active study plan
+- Unit competency upsert endpoint and `unit_competencies` table migration
+- Sidebar navigation reorganised into MAIN and collapsible RESOURCES groups (desktop and mobile)
+- i18n infrastructure via `next-intl` v4: cookie-based locale (`NEXT_LOCALE`) derived from `native_language`, no URL routing changes
+- Translation files for 6 locales: `en`, `es`, `fr`, `pt`, `de`, `it` under `messages/` with 16 namespaces (common, nav, auth, settings, dashboard, assessment, plan, lesson, flashcards, chat, progress, grammar, vocabulary, phrasebook, admin, errors)
+- `src/i18n/request.ts` server-side locale resolver reading `NEXT_LOCALE` cookie
+- `NextIntlClientProvider` wrapping the root layout to hydrate all client components
+- `english_variant` preference (`american` / `british`) on the User model, surfaced in Settings with flag selector
+- `english_variant` propagated to lesson generator, flashcard generator, and chat tutor system prompt
+- Alembic migration `0005_english_variant` adding `english_variant VARCHAR(10) NOT NULL DEFAULT 'american'`
+- Amber accent colour design token (`--fl-accent: #C9943A` dark / `#B07E28` light) applied to all CTA buttons, selected states, nav active indicators, and progress bars
+
+### Fixed
+- Alembic migration chain broken by mismatched revision IDs in `0004_lesson_unit_id` (`"0003"` → `"0003_curriculum_studyplan"`)
+- Backend container no longer requires a manual `alembic upgrade head` step — migrations run automatically in the container `command`

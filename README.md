@@ -17,7 +17,7 @@ and writing lessons.
 
 ## Architecture
 
-Monorepo: `backend/` (Python FastAPI) + `frontend/` (Next.js 14 App Router)
+Monorepo: `backend/` (Python FastAPI) + `frontend/` (Next.js 16 App Router)
 deployed via Docker Compose with PostgreSQL 16 and Redis 7.
 The backend proxies all external services (Ollama, Kokoro, Whisper) —
 the frontend never calls them directly.
@@ -29,6 +29,7 @@ freelingo/
 ├── assets/             # Logos and static assets
 ├── backend/            # FastAPI (Python)
 ├── frontend/           # Next.js (React)
+├── messages/           # i18n translation files (en, es, fr, pt, de, it)
 ├── specs/              # Specification files
 ├── AGENTS.md
 ├── CHANGELOG.md
@@ -42,7 +43,7 @@ freelingo/
 
 | Layer      | Technology                                             |
 |------------|--------------------------------------------------------|
-| Frontend   | Next.js 14+, shadcn/ui, Tailwind CSS, Zustand          |
+| Frontend   | Next.js 16+, shadcn/ui, Tailwind CSS, Zustand, next-intl |
 | Backend    | FastAPI, SQLAlchemy async, Alembic, Pydantic v2        |
 | Database   | PostgreSQL 16                                          |
 | Cache      | Redis 7                                                |
@@ -109,6 +110,7 @@ The first registered user becomes admin automatically.
 - [phase-1-plus.instructions.md](specs/phase-1-plus.instructions.md) — Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test
 - [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
+- [phase-4-grammar-reference.instructions.md](specs/phase-4-grammar-reference.instructions.md) — Phase 4: extended grammar reference and content pipeline
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
