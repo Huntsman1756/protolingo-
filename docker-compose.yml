@@ -81,10 +81,9 @@ services:
   # See: https://github.com/ArtCC/Kokoro-FastAPI
   # Enable: set TTS_ENABLED=true in .env
   kokoro:
-    image: ghcr.io/artcc/kokoro-fastapi-gpu:latest
+    image: ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master
+    container_name: kokoro
     restart: unless-stopped
-    ports:
-      - "8880:8880"
     environment:
       - PYTHONUNBUFFERED=1
     deploy:
@@ -102,9 +101,8 @@ services:
   # Enable: set STT_ENABLED=true in .env
   whisper:
     image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    container_name: whisper
     restart: unless-stopped
-    ports:
-      - "9000:9000"
     environment:
       - ASR_MODEL=medium
       - ASR_ENGINE=faster_whisper

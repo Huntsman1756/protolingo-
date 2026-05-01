@@ -39,6 +39,8 @@ the frontend never calls them directly.
 freelingo/
 ├── assets/             # Logos and static assets
 ├── backend/            # FastAPI (Python)
+├── docker/             # Custom Dockerfiles (e.g. Kokoro with Blackwell GPU support)
+├── docs/               # GitHub Pages landing site
 ├── frontend/           # Next.js (React)
 ├── messages/           # i18n translation files (en, es, fr, pt, de, it)
 ├── specs/              # Specification files
@@ -70,7 +72,7 @@ freelingo/
 |-------|------------------------|----------------|
 | 1     | Learning platform      | ✅ Complete    |
 | 1+    | Learning Resources Hub | ✅ Complete    |
-| 2     | Local TTS + STT        | 🚧 In Progress |
+| 2     | Local TTS + STT        | ✅ Complete    |
 | 3     | Real-time conversation | ⏳ Planned     |
 
 ## Quick start
@@ -140,13 +142,14 @@ TTS (Kokoro) and STT (faster-whisper) are disabled by default. Both services are
 
 ### GPU host (NVIDIA)
 
-1. Uncomment the `kokoro` and `whisper` services in `docker-compose.yml` (they are already configured with `deploy.resources.reservations.devices` for NVIDIA).
-2. Add to `.env`:
+1. The `kokoro` and `whisper` services are already configured in `docker-compose.yml` with the NVIDIA `deploy` block.
+2. The Kokoro image (`ghcr.io/artcc/kokoro-fastapi-gpu`) ships with PyTorch 2.7+ (cu128), supporting all NVIDIA architectures including **Blackwell (RTX 5000 series, sm_120)**.
+3. Add to `.env`:
    ```env
    TTS_ENABLED=true
    STT_ENABLED=true
    ```
-3. Restart the stack: `docker compose up -d`.
+4. Restart the stack: `docker compose up -d`.
 
 ### CPU-only host
 
