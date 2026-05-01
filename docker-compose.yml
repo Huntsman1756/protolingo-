@@ -72,3 +72,44 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+
+  # TTS (Kokoro-FastAPI) ──────────────────────────────────────────
+  # GPU host (NVIDIA): uses the image below as-is.
+  # CPU-only host:     replace image tag with ghcr.io/remsky/kokoro-fastapi-cpu:latest
+  #                    and remove the entire 'deploy' block.
+  # Enable: set TTS_ENABLED=true in .env
+  kokoro:
+    image: ghcr.io/remsky/kokoro-fastapi-gpu:latest
+    restart: unless-stopped
+    ports:
+      - "8880:8880"
+    environment:
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # STT (faster-whisper) ──────────────────────────────────────────
+  # GPU host (NVIDIA): uses the image below as-is.
+  # CPU-only host:     replace image tag with onerahmet/openai-whisper-asr-webservice:latest
+  #                    set ASR_MODEL=base or small, and remove the entire 'deploy' block.
+  # Enable: set STT_ENABLED=true in .env
+  whisper:
+    image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    environment:
+      - ASR_MODEL=medium
+      - ASR_ENGINE=faster_whisper
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

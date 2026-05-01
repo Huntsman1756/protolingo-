@@ -83,3 +83,9 @@ class FreeWriteEvaluation(BaseModel):
     score: float
     feedback: str
     corrections: list[dict]
+
+
+class PronunciationEvaluation(BaseModel):
+    score: float
+    feedback: str
+    is_correct: bool

@@ -230,7 +230,11 @@
     "label": "Lektion",
     "submitAnswer": "Antwort einreichen",
     "lessonDone": "Lektion abgeschlossen",
-    "score": "Punktzahl"
+    "score": "Punktzahl",
+    "examples": "Beispiele",
+    "pronunciationExercise": "Aussprache",
+    "tapToListen": "Zum Anhören tippen",
+    "recordNow": "Antwort aufnehmen"
   },
   "flashcards": {
     "title": "Karteikarten",
@@ -252,7 +256,10 @@
     "front": "Wort",
     "back": "Definition",
     "loading": "Karteikarten werden geladen...",
-    "sectionGenerate": "Neue Karten erstellen"
+    "sectionGenerate": "Neue Karten erstellen",
+    "speakingMode": "Sprechen",
+    "standardMode": "Standard",
+    "sayWord": "Sag das Wort laut"
   },
   "chat": {
     "title": "KI-Tutor",
