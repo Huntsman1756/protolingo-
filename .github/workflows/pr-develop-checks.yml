@@ -35,6 +35,9 @@ jobs:
       - name: Install backend dependencies
         run: pip install -r requirements.txt
 
+      - name: Install backend test plugins
+        run: pip install pytest-cov
+
       - name: Run backend tests
         env:
           DATABASE_URL: 'sqlite+aiosqlite:///:memory:'
@@ -55,12 +58,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Upgrade npm to v11
-        run: npm install -g npm@11
+      - name: Show npm version
+        run: npm --version
 
       - name: Install frontend dependencies
         run: npm ci
