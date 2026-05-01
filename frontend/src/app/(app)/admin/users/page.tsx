@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
@@ -24,6 +25,8 @@ const LANGUAGES = [
 ]
 
 export default function AdminUsersPage() {
+  const t = useTranslations('admin')
+  const tCommon = useTranslations('common')
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
@@ -107,7 +110,7 @@ export default function AdminUsersPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">Loading users…</span>
+        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">{t('loading')}</span>
       </div>
     )
   }
@@ -118,14 +121,14 @@ export default function AdminUsersPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-xs tracking-widest text-fl-muted-1 uppercase">Admin / Users</span>
+          <span className="font-mono text-xs tracking-widest text-fl-muted-1 uppercase">{t('title')} / {t('users')}</span>
         </div>
         <div className="flex gap-2">
           <button
             onClick={generateInvite}
             className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest text-fl-muted-1 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
           >
-            + Invite Link
+            {t('inviteBtn')}
           </button>
           <button
             onClick={() => setShowCreate(!showCreate)}
@@ -134,7 +137,7 @@ export default function AdminUsersPage() {
               : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
               }`}
           >
-            + Create User
+            {showCreate ? `- ${t('createUser')}` : t('createUserBtn')}
           </button>
         </div>
       </div>
@@ -142,7 +145,7 @@ export default function AdminUsersPage() {
       {/* Invite URL banner */}
       {inviteUrl && (
         <div className="border border-fl-border bg-fl-surface px-5 py-4">
-          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Invite Link (valid 48h)</p>
+          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('inviteLink')}</p>
           <p className="font-mono text-xs text-fl-muted-1 break-all">{inviteUrl}</p>
         </div>
       )}
@@ -152,7 +155,7 @@ export default function AdminUsersPage() {
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Create User</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('createUser')}</span>
           </div>
           {error && (
             <div className="mx-6 mt-4 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">✕ {error}</div>
@@ -203,11 +206,11 @@ export default function AdminUsersPage() {
       <div className="border border-fl-border bg-fl-surface">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Users</span>
-          <span className="ml-auto font-mono text-fl-hint text-fl-muted-4 uppercase tracking-widest">{users.length} total</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('users')}</span>
+          <span className="ml-auto font-mono text-fl-hint text-fl-muted-4 uppercase tracking-widest">{users.length} {t('total')}</span>
         </div>
         {users.length === 0 ? (
-          <p className="px-6 py-8 font-mono text-xs text-fl-muted-2 text-center">No users found</p>
+          <p className="px-6 py-8 font-mono text-xs text-fl-muted-2 text-center">{t('noUsers')}</p>
         ) : (
           <div>
             {users.map((u, i) => (
@@ -236,7 +239,7 @@ export default function AdminUsersPage() {
                       : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
                       }`}
                   >
-                    {u.is_active ? 'Deactivate' : 'Activate'}
+                    {u.is_active ? t('deactivate') : t('activate')}
                   </button>
                   <button
                     onClick={() => setDeletePending(u)}
@@ -244,7 +247,7 @@ export default function AdminUsersPage() {
                     className="border border-fl-error/30 px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-error-fg hover:border-fl-error hover:text-fl-error transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
                     title={u.id === currentUserId ? 'Cannot delete your own account' : 'Delete user'}
                   >
-                    Delete
+                    {t('delete')}
                   </button>
                 </div>
               </div>
@@ -255,9 +258,9 @@ export default function AdminUsersPage() {
 
       <ConfirmDialog
         open={deletePending !== null}
-        title="Delete User"
-        message={`Delete "${deletePending?.display_name ?? deletePending?.username}"? This action cannot be undone and will erase all their data.`}
-        confirmLabel="Delete"
+        title={t('deleteUser')}
+        message={t('deleteUserMessage')}
+        confirmLabel={t('deleteConfirm')}
         danger
         onConfirm={() => deletePending && deleteUser(deletePending)}
         onCancel={() => setDeletePending(null)}

@@ -13,7 +13,17 @@
     "retry": "Tentar novamente",
     "or": "ou",
     "appName": "FreeLingo",
-    "days": "dias"
+    "days": "dias",
+    "logout": "Sair",
+    "logoutConfirmTitle": "Sair",
+    "logoutConfirmMessage": "Tem certeza que deseja sair?",
+    "initializing": "Inicializando...",
+    "clearFilters": "Limpar filtros",
+    "all": "Todos",
+    "score": "Pontuação",
+    "complete": "Completo",
+    "checking": "Verificando...",
+    "backToDashboard": "Voltar ao painel"
   },
   "nav": {
     "home": "Início",
@@ -39,7 +49,14 @@
       "submit": "Entrar",
       "noAccount": "Não tem uma conta?",
       "register": "Cadastrar-se",
-      "error": "E-mail ou senha incorretos"
+      "error": "E-mail ou senha incorretos",
+      "emailRequired": "Por favor, insira seu e-mail",
+      "passwordRequired": "Por favor, insira sua senha",
+      "loginFailed": "Falha no login",
+      "signingIn": "Entrando...",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha",
+      "accountCreated": "Conta criada — você já pode entrar"
     },
     "register": {
       "title": "Criar conta",
@@ -58,7 +75,12 @@
       "hasAccount": "Já tem uma conta?",
       "login": "Entrar",
       "registrationClosed": "O cadastro está fechado. Você precisa de um código de convite.",
-      "error": "Falha no cadastro"
+      "error": "Falha no cadastro",
+      "passwordMismatch": "As senhas não coincidem",
+      "confirmPassword": "Confirmar senha",
+      "displayNamePlaceholder": "Mesmo que o nome de usuário se vazio",
+      "inviteActive": "Convite ativo",
+      "creatingAccount": "Criando..."
     }
   },
   "settings": {
@@ -101,7 +123,12 @@
     "startLesson": "Começar",
     "loadingProgress": "Carregando progresso...",
     "noLevel": "Nenhum nível definido ainda.",
-    "completeAssessment": "Fazer avaliação"
+    "completeAssessment": "Fazer avaliação",
+    "allCaughtUp": "Em dia.",
+    "startWithAssessment": "Comece com uma avaliação.",
+    "takeAssessmentArrow": "Fazer avaliação →",
+    "goToMyPlan": "Meu plano →",
+    "quickActions": "Ações rápidas"
   },
   "assessment": {
     "title": "Avaliação",
@@ -129,6 +156,19 @@
       "goToPlan": "Ver meu plano",
       "generatePlan": "Gerar plano de estudos"
     },
+    "currentLevel": "Nível atual",
+    "assessedOn": "Avaliado em",
+    "alreadyHasPlan": "Você já tem um plano de estudos ativo. Refazer criará um novo.",
+    "retake": "Refazer avaliação",
+    "evaluating": "Avaliando...",
+    "resultStep": "Resultado",
+    "cefrLevel": "Nível CEFR",
+    "overrideLevel": "Ajustar nível inicial",
+    "strengths": "Pontos fortes",
+    "needsWork": "Precisa melhorar",
+    "createPlan": "Criar plano →",
+    "creating": "Criando...",
+    "loading": "Carregando...",
     "levelTest": {
       "title": "Teste de conclusão de nível",
       "loading": "Carregando perguntas...",
@@ -145,7 +185,8 @@
         "repeat": "Revisão do nível atual recomendada",
         "back": "Voltar ao plano"
       }
-    }
+    },
+    "suggestedLevel": "Sugerido {aiLevel} — o plano usará {selectedLevel}"
   },
   "plan": {
     "title": "Meu Plano",
@@ -158,7 +199,13 @@
     "completed": "Concluído",
     "generating": "Gerando aula...",
     "generatingError": "Falha ao gerar aula",
-    "loading": "Carregando plano..."
+    "loading": "Carregando plano...",
+    "learningRoadmap": "Roteiro de aprendizado",
+    "level": "Nível",
+    "duration": "Duração",
+    "unitsLabel": "Unidades",
+    "noUnitsForLevel": "Nenhuma unidade disponível para o nível {level}",
+    "takeAssessmentArrow": "Fazer avaliação →"
   },
   "lesson": {
     "loading": "Carregando aula...",
@@ -179,7 +226,11 @@
     "relatedGrammar": "Gramática relacionada",
     "explanation": "Explicação",
     "exercises": "Exercícios",
-    "vocabulary": "Vocabulário"
+    "vocabulary": "Vocabulário",
+    "label": "Lição",
+    "submitAnswer": "Enviar resposta",
+    "lessonDone": "Lição concluída",
+    "score": "Pontuação"
   },
   "flashcards": {
     "title": "Cartões",
@@ -214,7 +265,11 @@
     "conversations": "Conversas",
     "loading": "Carregando...",
     "thinking": "Pensando...",
-    "errorMessage": "Algo deu errado. Por favor, tente novamente."
+    "errorMessage": "Algo deu errado. Por favor, tente novamente.",
+    "deleteTitle": "Eliminar conversa",
+    "deleteMessage": "Esta conversa será eliminada permanentemente.",
+    "deleteConfirm": "Eliminar",
+    "enterToSend": "Enter para enviar"
   },
   "progress": {
     "title": "Progresso",
@@ -234,7 +289,13 @@
     "loading": "Carregando progresso...",
     "days": "dias",
     "noData": "Conclua algumas aulas para ver seu progresso aqui.",
-    "exploreVocab": "Explorar vocabulário"
+    "exploreVocab": "Explorar vocabulário",
+    "competenciesSection": "Competências gramaticais {level}",
+    "noCompetencies": "Conclua aulas para começar a rastrear suas competências.",
+    "goToMyPlan": "→ Ir ao meu plano",
+    "addToFlashcards": "Adicione palavras de um conjunto ao seu deck para rastrear o progresso individual.",
+    "noActivePlanDesc": "Faça a avaliação para começar a rastrear suas habilidades.",
+    "vocabularyHeader": "Vocabulário {level}"
   },
   "grammar": {
     "title": "Gramática",
@@ -263,7 +324,12 @@
     "addError": "Falha ao adicionar cartões",
     "frequency": "freq",
     "backToVocabulary": "Vocabulário",
-    "notFound": "Conjunto não encontrado."
+    "notFound": "Conjunto não encontrado.",
+    "vocabularySet": "Conjunto de vocabulário",
+    "cardsAdded": "{count} cartões adicionados ao seu deck.",
+    "goToFlashcards": "Ir para cartões →",
+    "addFailed": "Falha ao adicionar cartões.",
+    "noResults": "Nenhum conjunto de vocabulário corresponde à sua pesquisa"
   },
   "phrasebook": {
     "title": "Frases",
@@ -275,7 +341,9 @@
     "informal": "Informal",
     "copied": "Copiado!",
     "copy": "Copiar",
-    "noResults": "Nenhuma frase encontrada."
+    "noResults": "Nenhuma frase corresponde aos filtros",
+    "level": "Nível",
+    "register": "Registo"
   },
   "admin": {
     "title": "Administração",
@@ -291,11 +359,49 @@
     "active": "Ativo",
     "inactive": "Inativo",
     "inviteCreated": "Link de convite criado",
-    "copyLink": "Copiar link"
+    "copyLink": "Copiar link",
+    "deleteUser": "Eliminar utilizador",
+    "deleteUserMessage": "Eliminar este utilizador? Esta ação não pode ser desfeita.",
+    "deleteConfirm": "Eliminar",
+    "noUsers": "Nenhum utilizador encontrado",
+    "inviteLink": "Link de convite (válido 48h)",
+    "total": "total",
+    "delete": "Eliminar",
+    "inviteBtn": "+ Link de convite",
+    "createUserBtn": "+ Criar utilizador"
   },
   "faq": {
     "title": "FAQ",
-    "subtitle": "Perguntas frequentes"
+    "subtitle": "Perguntas frequentes",
+    "q_start": "Por onde começo?",
+    "a_start": "Comece pela <strong>Avaliação</strong>. Ela deteta o seu nível de inglês (A1–C2) e os seus pontos fortes e fracos. Com esse resultado pode gerar um <strong>Plano de Estudo</strong> personalizado que preenche o seu Painel com lições diárias. Sem a Avaliação, o Painel estará vazio.",
+    "q_workflow": "Qual é o fluxo de trabalho completo?",
+    "workflowStep1": "Registe-se e selecione o seu idioma nativo",
+    "workflowStep2": "Faça a Avaliação → o seu nível QECR é detetado",
+    "workflowStep3": "Gere o seu Plano de Estudo a partir do Painel",
+    "workflowStep4": "Complete as suas lições diárias (botão INICIAR no Painel)",
+    "workflowStep5": "Use os Cartões para treinar vocabulário em paralelo",
+    "workflowStep6": "Pratique a conversación libre com o Tutor IA",
+    "q_language": "Que idioma vou aprender?",
+    "a_language": "Apenas inglês, por agora. O idioma nativo escolhido no registo é usado exclusivamente para traduções de cartões e feedback do tutor — não altera o idioma alvo.",
+    "q_assessment": "O que é a Avaliação?",
+    "a_assessment": "Um teste de 20 perguntas gerado por IA que abrange gramática, vocabulário, compreensão de leitura e transformação de frases, com dificuldade de A1 a C1. No final, obtém o seu nível QECR, uma pontuação e uma análise dos seus pontos fortes e fracos. Este resultado alimenta o Plano de Estudo e os Cartões gerados.",
+    "q_studyPlan": "O que é o Plano de Estudo e como o gero?",
+    "a_studyPlan": "Após a Avaliação, vá ao Painel e clique em <strong>Fazer Avaliação →</strong> para obter o seu nível primeiro. Com um nível, pode gerar um plano semana a semana com lições diárias adaptadas ao seu nível QECR e objetivos. Cada lição inclui exercícios de escolha múltipla e escrita livre avaliados por IA.",
+    "q_flashcards": "Para que servem os Cartões?",
+    "a_flashcards": "Um sistema de treino de vocabulário usando o algoritmo de repetição espaçada <strong>SM-2</strong>. Gere cartões sobre qualquer tema (ex. \"negócios\", \"phrasal verbs\", \"comida\") com definição, frase de exemplo e tradução para o seu idioma nativo. O sistema calcula quando voltar a mostrar cada cartão antes que o esqueça. Completamente independente do Plano de Estudo.",
+    "q_tutor": "Como funciona o Tutor IA?",
+    "a_tutor": "Um chat livre com streaming. O tutor conhece o seu nível QECR e pontos fracos para adaptar as respostas. Faça perguntas de gramática, peça explicações, pratique escrita em inglês ou simplesmente converse. O histórico do chat é preservado para a sessão atual.",
+    "q_providers": "Que fornecedores de IA o FreeLingo suporta?",
+    "a_providers_intro": "Configurável em <code>.env</code> via <code>LLM_PROVIDER</code>:",
+    "provider_ollama": "Local, gratuito. Requer Ollama em execução no host. Modelo recomendado: gemma3:12b. Pode ser lento sem GPU.",
+    "provider_openai": "API OpenAI (GPT-4o, etc.). Rápido e fiável. Requer OPENAI_API_KEY.",
+    "provider_anthropic": "Anthropic Claude. Requer ANTHROPIC_API_KEY.",
+    "provider_deepseek": "API DeepSeek. Requer DEEPSEEK_API_KEY.",
+    "q_invite": "Posso convidar outras pessoas?",
+    "a_invite": "Sim. Em <adminLink>Admin → Utilizadores</adminLink> o administrador pode criar utilizadores diretamente ou gerar links de convite de uso único que expiram em 48 horas. O registo público está desativado por padrão (<code>ALLOW_REGISTRATION=false</code>).",
+    "q_password": "Como altero a minha senha ou idioma nativo?",
+    "a_password": "Vá a <settingsLink>Definições</settingsLink>. Pode atualizar o seu nome de exibição, idioma nativo e senha a partir daí."
   },
   "errors": {
     "notFound": "Página não encontrada",

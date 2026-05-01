@@ -3,6 +3,7 @@
 import { useState, use } from 'react'
 import { notFound, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { vocabularySets } from '@/data/vocabulary'
 import { apiFetch } from '@/lib/api'
 
@@ -25,6 +26,7 @@ export default function VocabularySetPage({
 }) {
   const { setId } = use(params)
   const router = useRouter()
+  const t = useTranslations('vocabulary')
   const vocabSet = vocabularySets.find((s) => s.id === setId)
   if (!vocabSet) notFound()
 
@@ -79,7 +81,7 @@ export default function VocabularySetPage({
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Vocabulary Set
+            {t('vocabularySet')}
           </span>
         </div>
         <div className="px-6 py-5 space-y-3">
@@ -102,12 +104,12 @@ export default function VocabularySetPage({
           {addedCount !== null ? (
             <div className="border border-green-500 px-4 py-2">
               <p className="font-mono text-xs text-green-600 dark:text-green-400">
-                ✓ {addedCount} card{addedCount !== 1 ? 's' : ''} added to your flashcard deck.{' '}
+                ✓ {t('cardsAdded', { count: addedCount })}{' '}
                 <button
                   onClick={() => router.push('/flashcards')}
                   className="underline hover:no-underline"
                 >
-                  Go to Flashcards →
+                  {t('goToFlashcards')}
                 </button>
               </p>
             </div>
@@ -118,7 +120,7 @@ export default function VocabularySetPage({
                 disabled={adding}
                 className="bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-5 py-2.5 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
               >
-                {adding ? '— Adding…' : `— Add All ${vocabSet.words.length} to Flashcards`}
+                {adding ? '— Adding…' : `— ${t('addAll', { count: vocabSet.words.length })}`}
               </button>
             </div>
           )}
@@ -160,7 +162,7 @@ export default function VocabularySetPage({
         href="/vocabulary"
         className="inline-block font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase hover:text-fl-fg transition-colors"
       >
-        ← Back to Vocabulary
+        ← {t('backToVocabulary')}
       </Link>
     </div>
   )

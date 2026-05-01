@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useProgressStore } from '@/store/progress'
 import { grammarTopics } from '@/data/grammar'
@@ -27,6 +28,8 @@ interface LessonData {
 }
 
 export default function LessonPage() {
+  const t = useTranslations('lesson')
+  const tCommon = useTranslations('common')
   const params = useParams()
   const router = useRouter()
   const id = params.id as string
@@ -89,7 +92,7 @@ export default function LessonPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">Loading lesson…</span>
+        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">{t('loading')}</span>
       </div>
     )
   }
@@ -98,13 +101,13 @@ export default function LessonPage() {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 p-6">
         <div className="border border-fl-border bg-fl-surface px-10 py-10 text-center">
-          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-4">● Complete</p>
-          <p className="font-mono text-xl font-bold text-fl-fg tracking-widest">LESSON DONE</p>
+          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-4">● {tCommon('complete')}</p>
+          <p className="font-mono text-xl font-bold text-fl-fg tracking-widest">{t('lessonDone')}</p>
           <button
             onClick={() => router.push('/dashboard')}
             className="mt-8 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-8 py-3 hover:bg-fl-accent/90 transition-colors"
           >
-            — Back to Dashboard
+            — {tCommon('backToDashboard')}
           </button>
         </div>
       </div>
@@ -122,7 +125,7 @@ export default function LessonPage() {
         <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
           <div className="flex items-center gap-2">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Lesson</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('label')}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.cefr_level}</span>
@@ -157,7 +160,7 @@ export default function LessonPage() {
             <div className="flex items-center gap-2">
               <span className="text-fl-label text-fl-muted-2">●</span>
               <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-                Exercise {currentExercise + 1} / {exercises.length}
+                {t('exercise')} {currentExercise + 1} / {exercises.length}
               </span>
             </div>
             <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{exercise.exercise_type}</span>
@@ -197,7 +200,7 @@ export default function LessonPage() {
             ) : (
               <textarea
                 className="min-h-[90px] w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
-                placeholder="Type your answer…"
+                placeholder={t('yourAnswer')}
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 disabled={isEvaluated}
@@ -210,19 +213,19 @@ export default function LessonPage() {
                 disabled={evaluating || !answer.trim()}
                 className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
               >
-                {evaluating ? '— Checking…' : '— Submit Answer'}
+                {evaluating ? `— ${tCommon('checking')}` : `— ${t('submitAnswer')}`}
               </button>
             ) : (
               <div className="space-y-4">
                 {exercise.feedback && (
                   <div className="border border-fl-border px-4 py-4">
-                    <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Feedback</p>
+                    <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('feedback')}</p>
                     <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{exercise.feedback}</p>
                   </div>
                 )}
                 <div className="flex items-center gap-4">
                   <div className="border border-fl-border px-4 py-2">
-                    <span className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase">Score </span>
+                    <span className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase">{tCommon('score')} </span>
                     <span className="font-mono text-sm font-bold text-fl-fg">
                       {exercise.score !== null ? Math.round((exercise.score ?? 0) * 100) + '%' : 'N/A'}
                     </span>
@@ -232,14 +235,14 @@ export default function LessonPage() {
                       onClick={nextExercise}
                       className="border border-fl-border px-6 py-2 font-mono text-xs tracking-widest text-fl-muted-1 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
                     >
-                      Next →
+                      {tCommon('next')} →
                     </button>
                   ) : (
                     <button
                       onClick={completeLessonHandler}
                       className="bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-6 py-2 hover:bg-fl-accent/90 transition-colors"
                     >
-                      — Complete Lesson
+                      — {t('completeLesson')}
                     </button>
                   )}
                 </div>
@@ -256,7 +259,7 @@ export default function LessonPage() {
         return (
           <div className="border border-fl-border bg-fl-surface p-5">
             <p className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase mb-3">
-              Related Grammar
+              {t('relatedGrammar')}
             </p>
             <div className="flex flex-wrap gap-2">
               {grammarRefs.map((slug) => {

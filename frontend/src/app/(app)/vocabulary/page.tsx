@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { vocabularySets } from '@/data/vocabulary'
 import type { CEFRLevel } from '@/data/grammar'
 
@@ -11,7 +12,7 @@ const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 
 // ── Set card ──────────────────────────────────────────────────────────────────
 
-function SetCard({ s }: { s: typeof vocabularySets[0] }) {
+function SetCard({ s, wordsLabel }: { s: typeof vocabularySets[0]; wordsLabel: string }) {
   return (
     <Link
       href={`/vocabulary/${s.id}`}
@@ -28,7 +29,7 @@ function SetCard({ s }: { s: typeof vocabularySets[0] }) {
         </div>
         <div className="flex items-center justify-between">
           <span className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
-            {s.words.length} words
+            {s.words.length} {wordsLabel}
           </span>
           <span className="font-mono text-fl-label text-fl-muted-4 uppercase tracking-widest">
             {s.unit_ref}
@@ -42,6 +43,8 @@ function SetCard({ s }: { s: typeof vocabularySets[0] }) {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function VocabularyIndexPage() {
+  const t = useTranslations('vocabulary')
+  const tCommon = useTranslations('common')
   const [activeLevel, setActiveLevel] = useState<CEFRLevel | 'All'>('All')
   const [search, setSearch] = useState('')
 
@@ -64,7 +67,7 @@ export default function VocabularyIndexPage() {
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Vocabulary Hub
+            {t('title')}
           </span>
         </div>
         <div className="px-6 py-5 space-y-4">
@@ -76,7 +79,7 @@ export default function VocabularyIndexPage() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search topics…"
+            placeholder={t('searchPlaceholder')}
             className="w-full max-w-sm bg-fl-bg border border-fl-border px-4 py-2.5 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
           />
           {/* Level filter */}
@@ -88,7 +91,7 @@ export default function VocabularyIndexPage() {
                 : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                 }`}
             >
-              All
+              {t('all')}
             </button>
             {usedLevels.map((level) => (
               <button
@@ -117,12 +120,12 @@ export default function VocabularyIndexPage() {
               <div className="flex-1 h-px bg-fl-border" />
               <span className="font-mono text-fl-label text-fl-muted-3">
                 {sets.length} set{sets.length !== 1 ? 's' : ''} ·{' '}
-                {sets.reduce((a, s) => a + s.words.length, 0)} words
+                {sets.reduce((a, s) => a + s.words.length, 0)} {t('words')}
               </span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {sets.map((s) => (
-                <SetCard key={s.id} s={s} />
+                <SetCard key={s.id} s={s} wordsLabel={t('words')} />
               ))}
             </div>
           </section>
@@ -132,14 +135,14 @@ export default function VocabularyIndexPage() {
       {filtered.length === 0 && (
         <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
           <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
-            No vocabulary sets match your search
+            {t('noResults')}
           </p>
           {(search || activeLevel !== 'All') && (
             <button
               onClick={() => { setSearch(''); setActiveLevel('All') }}
               className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
             >
-              Clear filters
+              {tCommon('clearFilters')}
             </button>
           )}
         </div>

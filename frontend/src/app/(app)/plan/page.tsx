@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { getCurriculumUnits, type CurriculumUnit } from '@/data/curriculum'
 import UnitCard from '@/components/plan/UnitCard'
@@ -72,6 +73,8 @@ function lessonsByUnit(lessons: Lesson[]): Record<string, Lesson[]> {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function PlanPage() {
+  const t = useTranslations('plan')
+  const tCommon = useTranslations('common')
   const router = useRouter()
 
   const [plan, setPlan] = useState<StudyPlan | null>(null)
@@ -128,7 +131,7 @@ export default function PlanPage() {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
-          Loading plan…
+          {tCommon('loading')}
         </span>
       </div>
     )
@@ -139,13 +142,13 @@ export default function PlanPage() {
       <div className="flex min-h-[60vh] items-center justify-center p-6">
         <div className="w-full max-w-md border border-fl-border bg-fl-surface p-8 space-y-4">
           <p className="font-mono text-fl-label text-fl-error-fg">
-            {error || 'No active plan found.'}
+            {error || t('noPlan')}
           </p>
           <button
             onClick={() => router.push('/assessment')}
             className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
           >
-            — Take Assessment →
+            — {t('startAssessment')}
           </button>
         </div>
       </div>
@@ -169,24 +172,24 @@ export default function PlanPage() {
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Learning Roadmap
+            {t('learningRoadmap')}
           </span>
         </div>
         <div className="px-6 py-4 flex flex-wrap items-center gap-4">
           <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">Level</p>
+            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">{t('level')}</p>
             <p className="font-mono text-2xl font-bold text-fl-fg tracking-widest">{level}</p>
           </div>
           <div className="h-8 w-px bg-fl-border" />
           <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">Duration</p>
+            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">{t('duration')}</p>
             <p className="font-mono text-fl-body text-fl-muted-1">
               {plan.duration_weeks} weeks · {plan.days_per_week} days/week
             </p>
           </div>
           <div className="h-8 w-px bg-fl-border" />
           <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">Units</p>
+            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">{t('unitsLabel')}</p>
             <p className="font-mono text-fl-body text-fl-muted-1">{units.length}</p>
           </div>
         </div>
@@ -197,7 +200,7 @@ export default function PlanPage() {
         {units.length === 0 && (
           <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-3">
             <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
-              No units available for level {level}
+              {t('noUnitsForLevel', { level })}
             </p>
             <p className="font-mono text-fl-label text-fl-muted-4">
               Content for this level is being prepared. Check back soon.

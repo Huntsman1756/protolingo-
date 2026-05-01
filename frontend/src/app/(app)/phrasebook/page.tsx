@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { useTranslations } from 'next-intl'
 import { phrasebookCategories, type Register } from '@/data/phrasebook'
 import type { CEFRLevel } from '@/data/grammar'
 
@@ -99,6 +100,8 @@ function CopyButton({ text }: { text: string }) {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function PhrasebookPage() {
+  const t = useTranslations('phrasebook')
+  const tCommon = useTranslations('common')
   const [activeLevel, setActiveLevel] = useState<CEFRLevel | 'All'>('All')
   const [activeRegister, setActiveRegister] = useState<Register | 'All'>('All')
 
@@ -120,7 +123,7 @@ export default function PhrasebookPage() {
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Phrasebook
+            {t('title')}
           </span>
         </div>
         <div className="px-6 py-5 space-y-4">
@@ -130,7 +133,7 @@ export default function PhrasebookPage() {
 
           {/* Level filter */}
           <div className="space-y-2">
-            <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">Level</p>
+            <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('level')}</p>
             <div className="flex flex-wrap gap-2">
               {(['All', ...CEFR_LEVELS] as const).map((lvl) => (
                 <button
@@ -141,7 +144,7 @@ export default function PhrasebookPage() {
                     : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                 >
-                  {lvl}
+                  {lvl === 'All' ? tCommon('all') : lvl}
                 </button>
               ))}
             </div>
@@ -149,7 +152,7 @@ export default function PhrasebookPage() {
 
           {/* Register filter */}
           <div className="space-y-2">
-            <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">Register</p>
+            <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('register')}</p>
             <div className="flex flex-wrap gap-2">
               {(['All', ...REGISTERS] as const).map((reg) => (
                 <button
@@ -160,7 +163,7 @@ export default function PhrasebookPage() {
                     : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                 >
-                  {reg}
+                  {reg === 'All' ? tCommon('all') : t(reg)}
                 </button>
               ))}
             </div>
@@ -201,14 +204,14 @@ export default function PhrasebookPage() {
       {filteredCategories.length === 0 && (
         <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
           <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
-            No phrases match your filters
+            {t('noResults')}
           </p>
           {(activeLevel !== 'All' || activeRegister !== 'All') && (
             <button
               onClick={() => { setActiveLevel('All'); setActiveRegister('All') }}
               className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
             >
-              Clear filters
+              {tCommon('clearFilters')}
             </button>
           )}
         </div>

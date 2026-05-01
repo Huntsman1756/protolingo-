@@ -3,10 +3,12 @@
 import { Suspense, useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 
 function LoginForm() {
+  const t = useTranslations('auth.login')
   const router = useRouter()
   const searchParams = useSearchParams()
   const registered = searchParams.get('registered') === 'true'
@@ -23,11 +25,11 @@ function LoginForm() {
       e.preventDefault()
       setError('')
       if (!email.trim()) {
-        setError('Please enter your email')
+        setError(t('emailRequired'))
         return
       }
       if (!password) {
-        setError('Please enter your password')
+        setError(t('passwordRequired'))
         return
       }
       setLoading(true)
@@ -47,12 +49,12 @@ function LoginForm() {
         if (meRes.ok) setUser(await meRes.json())
         router.push('/dashboard')
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Login failed')
+        setError(err instanceof Error ? err.message : t('loginFailed'))
       } finally {
         setLoading(false)
       }
     },
-    [email, password, router, setTokens, setUser]
+    [email, password, router, setTokens, setUser, t]
   )
 
   return (
@@ -70,12 +72,12 @@ function LoginForm() {
           {/* Header */}
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-fl-border">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">Sign In</span>
+            <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">{t('title')}</span>
           </div>
 
           {registered && (
             <div className="mb-5 border border-fl-border px-4 py-3 font-mono text-xs text-fl-muted-1 tracking-wide">
-              ✓ Account created — you can now sign in
+              ✓ {t('accountCreated')}
             </div>
           )}
           {error && (
@@ -86,7 +88,7 @@ function LoginForm() {
 
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <div>
-              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Email</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('email')}</label>
               <input
                 type="text"
                 value={email}
@@ -96,7 +98,7 @@ function LoginForm() {
               />
             </div>
             <div>
-              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Password</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('password')}</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -109,7 +111,7 @@ function LoginForm() {
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
                   className="absolute inset-y-0 right-0 flex items-center px-3 text-fl-muted-4 hover:text-fl-muted-0 transition-colors"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={showPassword ? t('hidePassword') : t('showPassword')}
                 >
                   {showPassword ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -131,14 +133,14 @@ function LoginForm() {
               disabled={loading}
               className="w-full mt-2 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
             >
-              {loading ? '— SIGNING IN...' : '— SIGN IN'}
+              {loading ? `— ${t('signingIn')}` : `— ${t('submit')}`}
             </button>
           </form>
 
           <p className="mt-6 font-mono text-fl-label text-fl-muted-2 tracking-wide text-center">
-            No account?{' '}
+            {t('noAccount')}{' '}
             <a href="/register" className="text-fl-muted-1 hover:text-fl-fg transition-colors">
-              Register
+              {t('register')}
             </a>
           </p>
         </div>

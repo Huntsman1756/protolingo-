@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 
@@ -24,6 +25,8 @@ const QUALITY_BUTTONS = [
 ]
 
 export default function FlashcardsPage() {
+  const t = useTranslations('flashcards')
+  const tCommon = useTranslations('common')
   const user = useAuthStore((s) => s.user)
   const [cards, setCards] = useState<CardData[]>([])
   const [current, setCurrent] = useState(0)
@@ -103,7 +106,7 @@ export default function FlashcardsPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">Loading…</span>
+        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">{tCommon('loading')}</span>
       </div>
     )
   }
@@ -114,8 +117,8 @@ export default function FlashcardsPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Flashcards</span>
-          <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest">— {total} total · {cards.length} due</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('title')}</span>
+          <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest">— {total} {t('total')} · {cards.length} {t('due')}</span>
         </div>
         <button
           onClick={() => setShowGenerate(!showGenerate)}
@@ -133,26 +136,26 @@ export default function FlashcardsPage() {
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-5 py-4 border-b border-fl-border">
             <span className="text-fl-label text-fl-muted-3">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Generate with AI</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('generate')}</span>
           </div>
           {genError && (
             <div className="mx-5 mt-4 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error-fg">✕ {genError}</div>
           )}
           <form onSubmit={generateCards} className="p-5 space-y-3">
             <div>
-              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">Topic</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">{t('topic')}</label>
               <input
                 type="text"
                 value={genTopic}
                 onChange={(e) => setGenTopic(e.target.value)}
                 required
-                placeholder="e.g. travel, food, business..."
+                placeholder={t('topicPlaceholder')}
                 className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-border-2 focus:outline-none focus:border-fl-border-2 transition-colors"
               />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">Count</label>
+                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">{t('count')}</label>
                 <select
                   value={genCount}
                   onChange={(e) => setGenCount(Number(e.target.value))}
@@ -162,7 +165,7 @@ export default function FlashcardsPage() {
                 </select>
               </div>
               <div>
-                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">Level</label>
+                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">{t('level')}</label>
                 <select
                   value={genCefr}
                   onChange={(e) => setGenCefr(e.target.value)}
@@ -177,7 +180,7 @@ export default function FlashcardsPage() {
               disabled={generating || !genTopic.trim()}
               className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
             >
-              {generating ? '— Generating…' : '— Generate Cards'}
+              {generating ? `— ${t('generating')}` : `— ${t('submit')}`}
             </button>
           </form>
         </div>

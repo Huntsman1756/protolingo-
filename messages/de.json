@@ -13,7 +13,17 @@
     "retry": "Erneut versuchen",
     "or": "oder",
     "appName": "FreeLingo",
-    "days": "Tage"
+    "days": "Tage",
+    "logout": "Abmelden",
+    "logoutConfirmTitle": "Abmelden",
+    "logoutConfirmMessage": "Möchtest du dich wirklich abmelden?",
+    "initializing": "Initialisierung...",
+    "clearFilters": "Filter löschen",
+    "all": "Alle",
+    "score": "Punktzahl",
+    "complete": "Abgeschlossen",
+    "checking": "Wird geprüft...",
+    "backToDashboard": "Zurück zum Dashboard"
   },
   "nav": {
     "home": "Startseite",
@@ -39,7 +49,14 @@
       "submit": "Anmelden",
       "noAccount": "Noch kein Konto?",
       "register": "Registrieren",
-      "error": "E-Mail oder Passwort falsch"
+      "error": "E-Mail oder Passwort falsch",
+      "emailRequired": "Bitte gib deine E-Mail ein",
+      "passwordRequired": "Bitte gib dein Passwort ein",
+      "loginFailed": "Anmeldung fehlgeschlagen",
+      "signingIn": "Wird angemeldet...",
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verbergen",
+      "accountCreated": "Konto erstellt — du kannst dich jetzt anmelden"
     },
     "register": {
       "title": "Konto erstellen",
@@ -58,7 +75,12 @@
       "hasAccount": "Bereits ein Konto?",
       "login": "Anmelden",
       "registrationClosed": "Die Registrierung ist geschlossen. Sie benötigen einen Einladungscode.",
-      "error": "Registrierung fehlgeschlagen"
+      "error": "Registrierung fehlgeschlagen",
+      "passwordMismatch": "Passwörter stimmen nicht überein",
+      "confirmPassword": "Passwort bestätigen",
+      "displayNamePlaceholder": "Gleich wie Benutzername wenn leer",
+      "inviteActive": "Einladung aktiv",
+      "creatingAccount": "Wird erstellt..."
     }
   },
   "settings": {
@@ -101,7 +123,12 @@
     "startLesson": "Starten",
     "loadingProgress": "Fortschritt wird geladen...",
     "noLevel": "Noch kein Level festgelegt.",
-    "completeAssessment": "Test machen"
+    "completeAssessment": "Test machen",
+    "allCaughtUp": "Alles erledigt.",
+    "startWithAssessment": "Starte mit einer Bewertung.",
+    "takeAssessmentArrow": "Bewertung starten →",
+    "goToMyPlan": "Mein Plan →",
+    "quickActions": "Schnellaktionen"
   },
   "assessment": {
     "title": "Einstufungstest",
@@ -129,6 +156,19 @@
       "goToPlan": "Meinen Plan ansehen",
       "generatePlan": "Lernplan erstellen"
     },
+    "currentLevel": "Aktuelles Niveau",
+    "assessedOn": "Bewertet am",
+    "alreadyHasPlan": "Du hast bereits einen aktiven Lernplan. Ein neuer Test erstellt einen neuen Plan.",
+    "retake": "Test wiederholen",
+    "evaluating": "Wird ausgewertet...",
+    "resultStep": "Ergebnis",
+    "cefrLevel": "GER-Niveau",
+    "overrideLevel": "Startniveau anpassen",
+    "strengths": "Stärken",
+    "needsWork": "Verbesserungsbedarf",
+    "createPlan": "Plan erstellen →",
+    "creating": "Wird erstellt...",
+    "loading": "Wird geladen...",
     "levelTest": {
       "title": "Level-Abschlusstest",
       "loading": "Fragen werden geladen...",
@@ -145,7 +185,8 @@
         "repeat": "Wiederholung des aktuellen Levels empfohlen",
         "back": "Zurück zum Plan"
       }
-    }
+    },
+    "suggestedLevel": "Vorgeschlagen {aiLevel} — Plan verwendet {selectedLevel}"
   },
   "plan": {
     "title": "Mein Plan",
@@ -158,7 +199,13 @@
     "completed": "Abgeschlossen",
     "generating": "Lektion wird generiert...",
     "generatingError": "Lektion konnte nicht generiert werden",
-    "loading": "Plan wird geladen..."
+    "loading": "Plan wird geladen...",
+    "learningRoadmap": "Lernfahrplan",
+    "level": "Niveau",
+    "duration": "Dauer",
+    "unitsLabel": "Einheiten",
+    "noUnitsForLevel": "Keine Einheiten für Niveau {level} verfügbar",
+    "takeAssessmentArrow": "Bewertung starten →"
   },
   "lesson": {
     "loading": "Lektion wird geladen...",
@@ -179,7 +226,11 @@
     "relatedGrammar": "Verwandte Grammatik",
     "explanation": "Erklärung",
     "exercises": "Übungen",
-    "vocabulary": "Vokabular"
+    "vocabulary": "Vokabular",
+    "label": "Lektion",
+    "submitAnswer": "Antwort einreichen",
+    "lessonDone": "Lektion abgeschlossen",
+    "score": "Punktzahl"
   },
   "flashcards": {
     "title": "Karteikarten",
@@ -214,7 +265,11 @@
     "conversations": "Gespräche",
     "loading": "Laden...",
     "thinking": "Denke nach...",
-    "errorMessage": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    "errorMessage": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "deleteTitle": "Chat löschen",
+    "deleteMessage": "Dieses Gespräch wird dauerhaft gelöscht.",
+    "deleteConfirm": "Löschen",
+    "enterToSend": "Enter zum Senden"
   },
   "progress": {
     "title": "Fortschritt",
@@ -234,7 +289,13 @@
     "loading": "Fortschritt wird geladen...",
     "days": "Tage",
     "noData": "Schließen Sie einige Lektionen ab, um Ihren Fortschritt zu sehen.",
-    "exploreVocab": "Vokabular erkunden"
+    "exploreVocab": "Vokabular erkunden",
+    "competenciesSection": "Grammatikkompetenzen {level}",
+    "noCompetencies": "Schließe Lektionen ab, um deine Kompetenzen zu verfolgen.",
+    "goToMyPlan": "→ Zum Lernplan",
+    "addToFlashcards": "Füge Wörter aus einem Set zu deinem Kartendeck hinzu, um individuelle Fortschritte zu verfolgen.",
+    "noActivePlanDesc": "Mache die Bewertung, um deine Fähigkeiten zu verfolgen.",
+    "vocabularyHeader": "Vokabular {level}"
   },
   "grammar": {
     "title": "Grammatik",
@@ -263,7 +324,12 @@
     "addError": "Hinzufügen fehlgeschlagen",
     "frequency": "Häuf",
     "backToVocabulary": "Vokabular",
-    "notFound": "Sammlung nicht gefunden."
+    "notFound": "Sammlung nicht gefunden.",
+    "vocabularySet": "Vokabularset",
+    "cardsAdded": "{count} Karten zu deinem Deck hinzugefügt.",
+    "goToFlashcards": "Zu Karteikarten →",
+    "addFailed": "Hinzufügen fehlgeschlagen.",
+    "noResults": "Keine Vokabelsätze gefunden"
   },
   "phrasebook": {
     "title": "Phrasen",
@@ -275,7 +341,9 @@
     "informal": "Informell",
     "copied": "Kopiert!",
     "copy": "Kopieren",
-    "noResults": "Keine Phrasen gefunden."
+    "noResults": "Keine Phrasen gefunden",
+    "level": "Niveau",
+    "register": "Register"
   },
   "admin": {
     "title": "Verwaltung",
@@ -291,11 +359,49 @@
     "active": "Aktiv",
     "inactive": "Inaktiv",
     "inviteCreated": "Einladungslink erstellt",
-    "copyLink": "Link kopieren"
+    "copyLink": "Link kopieren",
+    "deleteUser": "Benutzer löschen",
+    "deleteUserMessage": "Diesen Benutzer löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteConfirm": "Löschen",
+    "noUsers": "Keine Benutzer gefunden",
+    "inviteLink": "Einladungslink (48h gültig)",
+    "total": "gesamt",
+    "delete": "Löschen",
+    "inviteBtn": "+ Einladungslink",
+    "createUserBtn": "+ Benutzer erstellen"
   },
   "faq": {
     "title": "FAQ",
-    "subtitle": "Häufig gestellte Fragen"
+    "subtitle": "Häufig gestellte Fragen",
+    "q_start": "Wo fange ich an?",
+    "a_start": "Beginnen Sie mit der <strong>Einstufung</strong>. Sie erkennt Ihr Englischniveau (A1–C2) sowie Ihre Stärken und Schwächen. Mit diesem Ergebnis können Sie einen personalisierten <strong>Lernplan</strong> erstellen, der Ihr Dashboard mit täglichen Lektionen füllt. Ohne die Einstufung ist das Dashboard leer.",
+    "q_workflow": "Wie sieht der vollständige Ablauf aus?",
+    "workflowStep1": "Registrieren Sie sich und wählen Sie Ihre Muttersprache",
+    "workflowStep2": "Absolvieren Sie die Einstufung → Ihr GER-Niveau wird erkannt",
+    "workflowStep3": "Erstellen Sie Ihren Lernplan über das Dashboard",
+    "workflowStep4": "Schließen Sie Ihre täglichen Lektionen ab (START-Schaltfläche im Dashboard)",
+    "workflowStep5": "Nutzen Sie Karteikarten, um parallel Vokabular zu üben",
+    "workflowStep6": "Üben Sie freies Gespräch mit dem KI-Tutor",
+    "q_language": "Welche Sprache werde ich lernen?",
+    "a_language": "Vorerst nur Englisch. Die Muttersprache, die Sie bei der Registrierung wählen, wird ausschließlich für Karteikarten-Übersetzungen und Tutor-Feedback verwendet — sie ändert nicht die Zielsprache.",
+    "q_assessment": "Was ist die Einstufung?",
+    "a_assessment": "Ein von KI generierter Test mit 20 Fragen, der Grammatik, Vokabular, Leseverständnis und Satztransformation abdeckt, mit Schwierigkeiten von A1 bis C1. Am Ende erhalten Sie Ihr GER-Niveau, eine Punktzahl und eine Analyse Ihrer Stärken und Schwächen. Dieses Ergebnis fließt in den Lernplan und die generierten Karteikarten ein.",
+    "q_studyPlan": "Was ist der Lernplan und wie erstelle ich einen?",
+    "a_studyPlan": "Gehen Sie nach der Einstufung zum Dashboard und klicken Sie auf <strong>Einstufung starten →</strong>, um zunächst Ihr Niveau zu erhalten. Sobald Sie ein Niveau haben, können Sie einen wöchentlichen Plan mit täglichen Lektionen erstellen, die auf Ihr GER-Niveau und Ihre Ziele zugeschnitten sind. Jede Lektion umfasst Multiple-Choice- und Freischreib-Übungen, die von KI bewertet werden.",
+    "q_flashcards": "Wofür sind die Karteikarten?",
+    "a_flashcards": "Ein Vokabeltrainingssystem, das den Spaced-Repetition-Algorithmus <strong>SM-2</strong> verwendet. Generieren Sie Karten zu jedem Thema (z. B. „Business“, „Phrasal Verbs“, „Essen“) mit Definition, Beispielsatz und Übersetzung in Ihre Muttersprache. Das System berechnet, wann jede Karte kurz vor dem Vergessen wieder angezeigt werden soll. Vollständig unabhängig vom Lernplan.",
+    "q_tutor": "Wie funktioniert der KI-Tutor?",
+    "a_tutor": "Ein freier Streaming-Chat. Der Tutor kennt Ihr GER-Niveau und Ihre Schwachstellen, um seine Antworten anzupassen. Stellen Sie Grammatikfragen, bitten Sie um Erklärungen, üben Sie das Schreiben auf Englisch oder führen Sie einfach ein Gespräch. Der Chat-Verlauf wird für die aktuelle Sitzung gespeichert.",
+    "q_providers": "Welche KI-Anbieter unterstützt FreeLingo?",
+    "a_providers_intro": "Konfigurierbar in <code>.env</code> über <code>LLM_PROVIDER</code>:",
+    "provider_ollama": "Lokal, kostenlos. Erfordert Ollama auf dem Host. Empfohlenes Modell: gemma3:12b. Kann ohne GPU langsam sein.",
+    "provider_openai": "OpenAI API (GPT-4o usw.). Schnell und zuverlässig. Erfordert OPENAI_API_KEY.",
+    "provider_anthropic": "Anthropic Claude. Erfordert ANTHROPIC_API_KEY.",
+    "provider_deepseek": "DeepSeek API. Erfordert DEEPSEEK_API_KEY.",
+    "q_invite": "Kann ich andere Personen einladen?",
+    "a_invite": "Ja. Über <adminLink>Admin → Benutzer</adminLink> kann der Administrator Benutzer direkt erstellen oder Einladungslinks zur einmaligen Verwendung generieren, die nach 48 Stunden ablaufen. Die öffentliche Registrierung ist standardmäßig deaktiviert (<code>ALLOW_REGISTRATION=false</code>).",
+    "q_password": "Wie ändere ich mein Passwort oder meine Muttersprache?",
+    "a_password": "Gehen Sie zu <settingsLink>Einstellungen</settingsLink>. Dort können Sie Ihren Anzeigenamen, Ihre Muttersprache und Ihr Passwort aktualisieren."
   },
   "errors": {
     "notFound": "Seite nicht gefunden",

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { getCurriculumUnits, type CurriculumUnit } from '@/data/curriculum'
 import { vocabularySets } from '@/data/vocabulary'
@@ -128,6 +129,7 @@ function UnitCompetencyBlock({
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function ProgressPage() {
+  const t = useTranslations('progress')
   const [summary, setSummary] = useState<ProgressSummary | null>(null)
   const [competencies, setCompetencies] = useState<CompetencyRecord[]>([])
   const [plan, setPlan] = useState<StudyPlan | null>(null)
@@ -167,7 +169,7 @@ export default function ProgressPage() {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
-          Loading progress…
+          {t('loading')}
         </span>
       </div>
     )
@@ -180,7 +182,7 @@ export default function ProgressPage() {
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Skills Tracker
+            {t('subtitle')}
           </span>
           {cefrLevel && (
             <span className="ml-auto border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
@@ -193,10 +195,10 @@ export default function ProgressPage() {
         {summary && (
           <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-fl-border border-b border-fl-border">
             {[
-              { label: 'XP', value: summary.total_xp.toLocaleString() },
-              { label: 'Streak', value: `${summary.current_streak}d 🔥` },
-              { label: 'Lessons', value: summary.total_lessons },
-              { label: 'Accuracy', value: `${Math.round(summary.accuracy * 100)}%` },
+              { label: t('xp'), value: summary.total_xp.toLocaleString() },
+              { label: t('streak'), value: `${summary.current_streak}d 🔥` },
+              { label: t('lessons'), value: summary.total_lessons },
+              { label: t('accuracy'), value: `${Math.round(summary.accuracy * 100)}%` },
             ].map(({ label, value }) => (
               <div key={label} className="px-5 py-4 text-center">
                 <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-1">
@@ -211,11 +213,7 @@ export default function ProgressPage() {
         {!plan && (
           <div className="px-6 py-6 text-center">
             <p className="font-mono text-xs text-fl-muted-3 leading-relaxed">
-              No active study plan. Complete the{' '}
-              <Link href="/assessment" className="text-fl-fg hover:underline">
-                assessment
-              </Link>{' '}
-              to start tracking your skills.
+              {t('noActivePlanDesc')}
             </p>
           </div>
         )}
@@ -226,7 +224,7 @@ export default function ProgressPage() {
         <section className="space-y-4">
           <div className="flex items-center gap-3">
             <span className="font-mono text-base font-bold text-fl-fg tracking-widest">
-              {cefrLevel} Grammar Competencies
+              {cefrLevel ? t('competenciesSection', { level: cefrLevel }) : t('competencies')}
             </span>
             <div className="flex-1 h-px bg-fl-border" />
           </div>
@@ -242,13 +240,13 @@ export default function ProgressPage() {
           {competencies.length === 0 && (
             <div className="border border-fl-border bg-fl-surface px-6 py-8 text-center">
               <p className="font-mono text-xs text-fl-muted-3 leading-relaxed">
-                Complete lessons to start tracking your competencies.
+                {t('noCompetencies')}
               </p>
               <Link
                 href="/plan"
                 className="inline-block mt-4 font-mono text-fl-label tracking-widest uppercase text-fl-muted-2 hover:text-fl-fg transition-colors"
               >
-                → Go to My Plan
+                {t('goToMyPlan')}
               </Link>
             </div>
           )}
@@ -260,7 +258,7 @@ export default function ProgressPage() {
         <section className="space-y-4">
           <div className="flex items-center gap-3">
             <span className="font-mono text-base font-bold text-fl-fg tracking-widest">
-              {cefrLevel} Vocabulary
+              {cefrLevel ? t('vocabularyHeader', { level: cefrLevel }) : t('vocabularySection')}
             </span>
             <div className="flex-1 h-px bg-fl-border" />
             <span className="font-mono text-fl-label text-fl-muted-3">
@@ -290,7 +288,7 @@ export default function ProgressPage() {
           </div>
 
           <p className="font-mono text-fl-label text-fl-muted-4">
-            Add words from a set to your flashcard deck to track individual word progress.
+            {t('addToFlashcards')}
           </p>
         </section>
       )}
@@ -300,7 +298,7 @@ export default function ProgressPage() {
         <section className="space-y-4">
           <div className="flex items-center gap-3">
             <span className="font-mono text-base font-bold text-fl-fg tracking-widest">
-              Skill Accuracy
+              {t('skills')}
             </span>
             <div className="flex-1 h-px bg-fl-border" />
           </div>

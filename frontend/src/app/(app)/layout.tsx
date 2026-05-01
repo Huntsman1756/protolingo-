@@ -3,33 +3,37 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { LoadingBar } from '@/components/ui/loading-bar'
 
-const mainNavItems = [
-  { href: '/dashboard', label: 'HOME' },
-  { href: '/plan', label: 'MY PLAN' },
-  { href: '/progress', label: 'PROGRESS' },
-  { href: '/flashcards', label: 'FLASHCARDS' },
-  { href: '/chat', label: 'TUTOR' },
-  { href: '/assessment', label: 'ASSESSMENT' },
-]
-
-const resourceNavItems = [
-  { href: '/grammar', label: 'GRAMMAR' },
-  { href: '/vocabulary', label: 'VOCABULARY' },
-  { href: '/phrasebook', label: 'PHRASEBOOK' },
-]
-
-const bottomNavItems = [
-  { href: '/settings', label: 'SETTINGS' },
-  { href: '/faq', label: 'FAQ' },
-]
-
 export default function AppLayout({ children }: { children: React.ReactNode }) {
+  const tNav = useTranslations('nav')
+  const tCommon = useTranslations('common')
   const pathname = usePathname()
+
+  const mainNavItems = [
+    { href: '/dashboard', label: tNav('home') },
+    { href: '/plan', label: tNav('myPlan') },
+    { href: '/progress', label: tNav('progress') },
+    { href: '/flashcards', label: tNav('flashcards') },
+    { href: '/chat', label: tNav('tutor') },
+    { href: '/assessment', label: tNav('assessment') },
+  ]
+
+  const resourceNavItems = [
+    { href: '/grammar', label: tNav('grammar') },
+    { href: '/vocabulary', label: tNav('vocabulary') },
+    { href: '/phrasebook', label: tNav('phrasebook') },
+  ]
+
+  const bottomNavItems = [
+    { href: '/settings', label: tNav('settings') },
+    { href: '/faq', label: tNav('faq') },
+  ]
+
   const router = useRouter()
   const user = useAuthStore((s) => s.user)
   const accessToken = useAuthStore((s) => s.accessToken)
@@ -96,7 +100,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-fl-bg"
         style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">● Initializing…</span>
+        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">● {tCommon('initializing')}</span>
       </div>
     )
   }
@@ -137,7 +141,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               onClick={() => setResourcesOpen((o) => !o)}
               className="w-full flex items-center justify-between px-5 py-2 text-xs font-mono tracking-widest text-fl-muted-4 hover:text-fl-muted-2 transition-colors uppercase border-l-2 border-transparent"
             >
-              <span>RESOURCES</span>
+              <span>{tNav('resources')}</span>
               <span className="text-fl-label">{resourcesOpen ? '▴' : '▾'}</span>
             </button>
             {resourcesOpen && resourceNavItems.map((item) => {
@@ -202,7 +206,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             onClick={() => setLogoutConfirm(true)}
             className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
           >
-            — LOGOUT
+            — {tCommon('logout')}
           </button>
         </div>
       </aside>
@@ -247,7 +251,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 onClick={() => setResourcesOpen((o) => !o)}
                 className="w-full flex items-center justify-between px-5 py-2 font-mono text-xs tracking-widest text-fl-muted-4 hover:text-fl-muted-2 transition-colors uppercase border-l-2 border-transparent"
               >
-                <span>RESOURCES</span>
+                <span>{tNav('resources')}</span>
                 <span className="text-fl-label">{resourcesOpen ? '▴' : '▾'}</span>
               </button>
               {resourcesOpen && resourceNavItems.map((item) => {
@@ -298,7 +302,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   }`}
               >
                 <span className="text-fl-label text-fl-muted-4">●</span>
-                ADMIN
+                {tNav('admin')}
               </Link>
             )}
             <div className="border-t border-fl-border mx-5 mt-2 pt-3">
@@ -307,7 +311,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 onClick={() => { setMobileMenuOpen(false); setLogoutConfirm(true) }}
                 className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
               >
-                — LOGOUT
+                — {tCommon('logout')}
               </button>
             </div>
           </nav>
@@ -323,9 +327,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
       <ConfirmDialog
         open={logoutConfirm}
-        title="Log Out"
-        message="Are you sure you want to log out of your session?"
-        confirmLabel="Log Out"
+        title={tCommon('logoutConfirmTitle')}
+        message={tCommon('logoutConfirmMessage')}
+        confirmLabel={tCommon('logout')}
         onConfirm={handleLogout}
         onCancel={() => setLogoutConfirm(false)}
       />

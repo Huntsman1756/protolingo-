@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import BeginnerGate from '@/components/assessment/BeginnerGate'
 import AdaptiveQuizCard from '@/components/assessment/AdaptiveQuizCard'
@@ -57,6 +58,8 @@ const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function AssessmentPage() {
+  const t = useTranslations('assessment')
+  const tCommon = useTranslations('common')
   const router = useRouter()
 
   const [step, setStep] = useState<FlowStep>('checking')
@@ -226,7 +229,7 @@ export default function AssessmentPage() {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
-          {evaluating ? 'Evaluating…' : 'Loading…'}
+          {evaluating ? t('evaluating') : tCommon('loading')}
         </span>
       </div>
     )
@@ -245,13 +248,13 @@ export default function AssessmentPage() {
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
             <span className="text-fl-label text-fl-muted-3">●</span>
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              Assessment
+              {t('title')}
             </span>
           </div>
           <div className="p-8 text-center space-y-6">
             <div>
               <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">
-                Current Level
+                {t('currentLevel')}
               </p>
               <p className="font-mono text-6xl font-bold text-fl-fg tracking-widest">
                 {existingPlan.cefr_level}
@@ -259,25 +262,25 @@ export default function AssessmentPage() {
             </div>
             <div className="border border-fl-border py-3">
               <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
-                Assessed on
+                {t('assessedOn')}
               </p>
               <p className="font-mono text-xs text-fl-muted-1 mt-1">{assessedDate}</p>
             </div>
             <p className="font-mono text-fl-label text-fl-muted-3 leading-relaxed">
-              You already have an active study plan. Retaking will create a new one.
+              {t('alreadyHasPlan')}
             </p>
             <div className="flex gap-2">
               <button
                 onClick={() => router.push('/dashboard')}
                 className="flex-1 border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
               >
-                ← Dashboard
+                ← {tCommon('backToDashboard')}
               </button>
               <button
                 onClick={() => setStep('beginner-gate')}
                 className="flex-[2] bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
               >
-                — Retake Assessment
+                — {t('retake')}
               </button>
             </div>
           </div>
@@ -330,34 +333,33 @@ export default function AssessmentPage() {
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
             <span className="text-fl-label text-fl-muted-3">●</span>
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              Step 2 / 3 — Result
+              {t('resultStep')}
             </span>
           </div>
           <div className="p-8 text-center space-y-6">
             <div>
               <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">
-                CEFR Level
+                {t('cefrLevel')}
               </p>
               <p className="font-mono text-6xl font-bold text-fl-fg tracking-widest">{aiLevel}</p>
             </div>
             <div className="border border-fl-border py-3">
-              <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">Score</p>
+              <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">{tCommon('score')}</p>
               <p className="font-mono text-2xl text-fl-fg-2 mt-1">{score}%</p>
             </div>
             <div>
               <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
-                Override starting level
+                {t('overrideLevel')}
               </p>
               <div className="flex gap-1 justify-center flex-wrap">
                 {CEFR_LEVELS.map((lvl) => (
                   <button
                     key={lvl}
                     onClick={() => setSelectedLevel(lvl)}
-                    className={`px-3 py-1.5 font-mono text-xs font-bold tracking-widest border transition-colors ${
-                      selectedLevel === lvl
+                    className={`px-3 py-1.5 font-mono text-xs font-bold tracking-widest border transition-colors ${selectedLevel === lvl
                         ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                         : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                      }`}
                   >
                     {lvl}
                   </button>
@@ -365,14 +367,14 @@ export default function AssessmentPage() {
               </div>
               {levelChanged && (
                 <p className="font-mono text-fl-hint text-fl-muted-1 mt-2">
-                  Suggested {aiLevel} — plan will use {selectedLevel}
+                  {t('suggestedLevel', { aiLevel, selectedLevel })}
                 </p>
               )}
             </div>
             {result.strengths.length > 0 && (
               <div>
                 <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
-                  Strengths
+                  {t('strengths')}
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
                   {result.strengths.map((s) => (
@@ -389,7 +391,7 @@ export default function AssessmentPage() {
             {result.weaknesses.length > 0 && (
               <div>
                 <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
-                  Needs work
+                  {t('needsWork')}
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
                   {result.weaknesses.map((w) => (
@@ -412,7 +414,7 @@ export default function AssessmentPage() {
               onClick={() => setStep('duration')}
               className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
             >
-              — Set Up My Programme →
+              — {t('createPlan')} →
             </button>
           </div>
         </div>

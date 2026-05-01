@@ -13,7 +13,17 @@
     "retry": "Réessayer",
     "or": "ou",
     "appName": "FreeLingo",
-    "days": "jours"
+    "days": "jours",
+    "logout": "Déconnexion",
+    "logoutConfirmTitle": "Déconnexion",
+    "logoutConfirmMessage": "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "initializing": "Initialisation...",
+    "clearFilters": "Effacer les filtres",
+    "all": "Tous",
+    "score": "Score",
+    "complete": "Terminé",
+    "checking": "Vérification...",
+    "backToDashboard": "Retour au tableau de bord"
   },
   "nav": {
     "home": "Accueil",
@@ -39,7 +49,14 @@
       "submit": "Se connecter",
       "noAccount": "Vous n'avez pas de compte ?",
       "register": "S'inscrire",
-      "error": "E-mail ou mot de passe incorrect"
+      "error": "E-mail ou mot de passe incorrect",
+      "emailRequired": "Veuillez saisir votre e-mail",
+      "passwordRequired": "Veuillez saisir votre mot de passe",
+      "loginFailed": "Échec de la connexion",
+      "signingIn": "Connexion en cours...",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "accountCreated": "Compte créé — vous pouvez maintenant vous connecter"
     },
     "register": {
       "title": "Créer un compte",
@@ -58,7 +75,12 @@
       "hasAccount": "Vous avez déjà un compte ?",
       "login": "Se connecter",
       "registrationClosed": "Les inscriptions sont fermées. Vous avez besoin d'un code d'invitation.",
-      "error": "Échec de l'inscription"
+      "error": "Échec de l'inscription",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "confirmPassword": "Confirmer le mot de passe",
+      "displayNamePlaceholder": "Même que le nom d'utilisateur si vide",
+      "inviteActive": "Invitation active",
+      "creatingAccount": "Création en cours..."
     }
   },
   "settings": {
@@ -101,7 +123,12 @@
     "startLesson": "Commencer",
     "loadingProgress": "Chargement des progrès...",
     "noLevel": "Aucun niveau défini pour l'instant.",
-    "completeAssessment": "Faire l'évaluation"
+    "completeAssessment": "Faire l'évaluation",
+    "allCaughtUp": "Tout à jour.",
+    "startWithAssessment": "Commencez par une évaluation.",
+    "takeAssessmentArrow": "Passer l'évaluation →",
+    "goToMyPlan": "Mon plan →",
+    "quickActions": "Actions rapides"
   },
   "assessment": {
     "title": "Évaluation",
@@ -129,6 +156,19 @@
       "goToPlan": "Voir mon plan",
       "generatePlan": "Générer un plan d'étude"
     },
+    "currentLevel": "Niveau actuel",
+    "assessedOn": "Évalué le",
+    "alreadyHasPlan": "Vous avez déjà un plan d'étude actif. Repasser le test en créera un nouveau.",
+    "retake": "Repasser l'évaluation",
+    "evaluating": "Évaluation en cours...",
+    "resultStep": "Résultat",
+    "cefrLevel": "Niveau CECR",
+    "overrideLevel": "Remplacer le niveau initial",
+    "strengths": "Points forts",
+    "needsWork": "À améliorer",
+    "createPlan": "Créer le plan →",
+    "creating": "Création en cours...",
+    "loading": "Chargement...",
     "levelTest": {
       "title": "Test de fin de niveau",
       "loading": "Chargement des questions...",
@@ -145,7 +185,8 @@
         "repeat": "Révision du niveau actuel recommandée",
         "back": "Retour au plan"
       }
-    }
+    },
+    "suggestedLevel": "Suggéré {aiLevel} — le plan utilisera {selectedLevel}"
   },
   "plan": {
     "title": "Mon Plan",
@@ -158,7 +199,13 @@
     "completed": "Terminé",
     "generating": "Génération de la leçon...",
     "generatingError": "Échec de la génération de la leçon",
-    "loading": "Chargement du plan..."
+    "loading": "Chargement du plan...",
+    "learningRoadmap": "Feuille de route",
+    "level": "Niveau",
+    "duration": "Durée",
+    "unitsLabel": "Unités",
+    "noUnitsForLevel": "Aucune unité disponible pour le niveau {level}",
+    "takeAssessmentArrow": "Passer l'évaluation →"
   },
   "lesson": {
     "loading": "Chargement de la leçon...",
@@ -179,7 +226,11 @@
     "relatedGrammar": "Grammaire associée",
     "explanation": "Explication",
     "exercises": "Exercices",
-    "vocabulary": "Vocabulaire"
+    "vocabulary": "Vocabulaire",
+    "label": "Leçon",
+    "submitAnswer": "Soumettre la réponse",
+    "lessonDone": "Leçon terminée",
+    "score": "Score"
   },
   "flashcards": {
     "title": "Fiches",
@@ -214,7 +265,11 @@
     "conversations": "Conversations",
     "loading": "Chargement...",
     "thinking": "Réflexion...",
-    "errorMessage": "Une erreur s'est produite. Veuillez réessayer."
+    "errorMessage": "Une erreur s'est produite. Veuillez réessayer.",
+    "deleteTitle": "Supprimer le chat",
+    "deleteMessage": "Cette conversation sera définitivement supprimée.",
+    "deleteConfirm": "Supprimer",
+    "enterToSend": "Entrée pour envoyer"
   },
   "progress": {
     "title": "Progrès",
@@ -234,7 +289,13 @@
     "loading": "Chargement des progrès...",
     "days": "jours",
     "noData": "Terminez quelques leçons pour voir vos progrès ici.",
-    "exploreVocab": "Explorer le vocabulaire"
+    "exploreVocab": "Explorer le vocabulaire",
+    "competenciesSection": "Compétences grammaticales {level}",
+    "noCompetencies": "Terminez des leçons pour commencer à suivre vos compétences.",
+    "goToMyPlan": "→ Mon plan",
+    "addToFlashcards": "Ajoutez des mots d'un ensemble à votre deck pour suivre les progrès individuels.",
+    "noActivePlanDesc": "Faites l'évaluation pour commencer à suivre vos compétences.",
+    "vocabularyHeader": "Vocabulaire {level}"
   },
   "grammar": {
     "title": "Grammaire",
@@ -263,7 +324,12 @@
     "addError": "Échec de l'ajout des fiches",
     "frequency": "fréq",
     "backToVocabulary": "Vocabulaire",
-    "notFound": "Ensemble introuvable."
+    "notFound": "Ensemble introuvable.",
+    "vocabularySet": "Ensemble de vocabulaire",
+    "cardsAdded": "{count} fiches ajoutées à votre deck.",
+    "goToFlashcards": "Aller aux fiches →",
+    "addFailed": "Échec de l'ajout des fiches.",
+    "noResults": "Aucun ensemble de vocabulaire ne correspond à votre recherche"
   },
   "phrasebook": {
     "title": "Phrases",
@@ -275,7 +341,9 @@
     "informal": "Informel",
     "copied": "Copié !",
     "copy": "Copier",
-    "noResults": "Aucune phrase trouvée."
+    "noResults": "Aucune phrase ne correspond aux filtres",
+    "level": "Niveau",
+    "register": "Registre"
   },
   "admin": {
     "title": "Administration",
@@ -291,11 +359,49 @@
     "active": "Actif",
     "inactive": "Inactif",
     "inviteCreated": "Lien d'invitation créé",
-    "copyLink": "Copier le lien"
+    "copyLink": "Copier le lien",
+    "deleteUser": "Supprimer l'utilisateur",
+    "deleteUserMessage": "Supprimer cet utilisateur ? Cette action est irréversible.",
+    "deleteConfirm": "Supprimer",
+    "noUsers": "Aucun utilisateur trouvé",
+    "inviteLink": "Lien d'invitation (valide 48h)",
+    "total": "total",
+    "delete": "Supprimer",
+    "inviteBtn": "+ Lien d'invitation",
+    "createUserBtn": "+ Créer un utilisateur"
   },
   "faq": {
     "title": "FAQ",
-    "subtitle": "Questions fréquentes"
+    "subtitle": "Questions fréquentes",
+    "q_start": "Par où commencer ?",
+    "a_start": "Commencez par l’<strong>Évaluation</strong>. Elle détecte votre niveau d’anglais (A1–C2) ainsi que vos points forts et faibles. Avec ce résultat, vous pouvez générer un <strong>Plan d’Étude</strong> personnalisé qui remplit votre tableau de bord de leçons quotidiennes. Sans l’Évaluation, le tableau de bord est vide.",
+    "q_workflow": "Quel est le flux de travail complet ?",
+    "workflowStep1": "Inscrivez-vous et sélectionnez votre langue maternelle",
+    "workflowStep2": "Passez l’Évaluation → votre niveau CECR est détecté",
+    "workflowStep3": "Générez votre Plan d’Étude depuis le tableau de bord",
+    "workflowStep4": "Complétez vos leçons quotidiennes (bouton DÉMARRER dans le tableau de bord)",
+    "workflowStep5": "Utilisez les Fiches pour entraîner le vocabulaire en parallèle",
+    "workflowStep6": "Pratiquez la conversation libre avec le Tuteur IA",
+    "q_language": "Quelle langue vais-je apprendre ?",
+    "a_language": "L’anglais uniquement, pour l’instant. La langue maternelle choisie à l’inscription est utilisée exclusivement pour les traductions de fiches et les retours du tuteur — elle ne change pas la langue cible.",
+    "q_assessment": "Qu’est-ce que l’Évaluation ?",
+    "a_assessment": "Un test de 20 questions généré par IA couvrant la grammaire, le vocabulaire, la compréhension écrite et la transformation de phrases, avec une difficulté allant de A1 à C1. À la fin, vous obtenez votre niveau CECR, un score et une analyse de vos forces et faiblesses. Ce résultat alimente le Plan d’Étude et les Fiches générées.",
+    "q_studyPlan": "Qu’est-ce que le Plan d’Étude et comment en générer un ?",
+    "a_studyPlan": "Après l’Évaluation, allez au tableau de bord et cliquez sur <strong>Passer l’Évaluation →</strong> pour obtenir votre niveau. Une fois le niveau obtenu, vous pouvez générer un plan semaine par semaine avec des leçons quotidiennes adaptées à votre niveau CECR et vos objectifs. Chaque leçon comprend des exercices à choix multiples et d’écriture libre évalués par IA.",
+    "q_flashcards": "À quoi servent les Fiches ?",
+    "a_flashcards": "Un système d’entraînement au vocabulaire utilisant l’algorithme de répétition espacée <strong>SM-2</strong>. Générez des fiches sur n’importe quel sujet (ex. « business », « phrasal verbs », « nourriture ») avec une définition, une phrase d’exemple et une traduction dans votre langue maternelle. Le système calcule quand réafficher chaque fiche juste avant que vous l’oubliiez. Complètement indépendant du Plan d’Étude.",
+    "q_tutor": "Comment fonctionne le Tuteur IA ?",
+    "a_tutor": "Un chat libre avec streaming. Le tuteur connaît votre niveau CECR et vos points faibles pour adapter ses réponses. Posez des questions de grammaire, demandez des explications, entraînez-vous à écrire en anglais ou discutez simplement. L’historique du chat est conservé pour la session en cours.",
+    "q_providers": "Quels fournisseurs d’IA FreeLingo prend-il en charge ?",
+    "a_providers_intro": "Configurable dans <code>.env</code> via <code>LLM_PROVIDER</code> :",
+    "provider_ollama": "Local, gratuit. Nécessite Ollama en cours d’exécution sur l’hôte. Modèle recommandé : gemma3:12b. Peut être lent sans GPU.",
+    "provider_openai": "API OpenAI (GPT-4o, etc.). Rapide et fiable. Nécessite OPENAI_API_KEY.",
+    "provider_anthropic": "Anthropic Claude. Nécessite ANTHROPIC_API_KEY.",
+    "provider_deepseek": "API DeepSeek. Nécessite DEEPSEEK_API_KEY.",
+    "q_invite": "Puis-je inviter d’autres personnes ?",
+    "a_invite": "Oui. Depuis <adminLink>Admin → Utilisateurs</adminLink>, l’administrateur peut créer des utilisateurs directement ou générer des liens d’invitation à usage unique qui expirent dans 48 heures. L’inscription publique est désactivée par défaut (<code>ALLOW_REGISTRATION=false</code>).",
+    "q_password": "Comment modifier mon mot de passe ou ma langue maternelle ?",
+    "a_password": "Allez dans <settingsLink>Paramètres</settingsLink>. Vous pouvez y mettre à jour votre nom d’affichage, votre langue maternelle et votre mot de passe."
   },
   "errors": {
     "notFound": "Page introuvable",

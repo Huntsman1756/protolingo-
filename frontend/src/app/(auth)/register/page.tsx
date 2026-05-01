@@ -3,6 +3,7 @@
 import { Suspense, useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 
 const LANGUAGES = [
@@ -14,6 +15,7 @@ const LANGUAGES = [
 ]
 
 function RegisterForm() {
+  const t = useTranslations('auth.register')
   const router = useRouter()
   const searchParams = useSearchParams()
   const invite = searchParams.get('invite')
@@ -32,7 +34,7 @@ function RegisterForm() {
       e.preventDefault()
       setError('')
       if (password !== confirmPassword) {
-        setError('Passwords do not match')
+        setError(t('passwordMismatch'))
         return
       }
       setLoading(true)
@@ -53,16 +55,16 @@ function RegisterForm() {
         })
         if (!res.ok) {
           const data = await res.json()
-          throw new Error(data.detail || 'Registration failed')
+          throw new Error(data.detail || t('error'))
         }
         router.push('/login?registered=true')
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Registration failed')
+        setError(err instanceof Error ? err.message : t('error'))
       } finally {
         setLoading(false)
       }
     },
-    [username, email, password, confirmPassword, displayName, nativeLanguage, invite, router]
+    [username, email, password, confirmPassword, displayName, nativeLanguage, invite, router, t]
   )
 
   return (
@@ -78,8 +80,8 @@ function RegisterForm() {
         <div className="border border-fl-border bg-fl-surface p-8">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-fl-border">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">Register</span>
-            {invite && <span className="ml-auto font-mono text-fl-hint text-fl-muted-1 uppercase tracking-widest">Invite active</span>}
+            <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">{t('title')}</span>
+            {invite && <span className="ml-auto font-mono text-fl-hint text-fl-muted-1 uppercase tracking-widest">{t('inviteActive')}</span>}
           </div>
 
           {error && (
@@ -90,11 +92,11 @@ function RegisterForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {[
-              { label: 'Username', value: username, onChange: setUsername, type: 'text', required: true },
-              { label: 'Display Name', value: displayName, onChange: setDisplayName, type: 'text', required: false, placeholder: 'Same as username if empty' },
-              { label: 'Email', value: email, onChange: setEmail, type: 'email', required: true },
-              { label: 'Password', value: password, onChange: setPassword, type: 'password', required: true },
-              { label: 'Confirm Password', value: confirmPassword, onChange: setConfirmPassword, type: 'password', required: true },
+              { label: t('username'), value: username, onChange: setUsername, type: 'text', required: true },
+              { label: t('displayName'), value: displayName, onChange: setDisplayName, type: 'text', required: false, placeholder: t('displayNamePlaceholder') },
+              { label: t('email'), value: email, onChange: setEmail, type: 'email', required: true },
+              { label: t('password'), value: password, onChange: setPassword, type: 'password', required: true },
+              { label: t('confirmPassword'), value: confirmPassword, onChange: setConfirmPassword, type: 'password', required: true },
             ].map((field) => (
               <div key={field.label}>
                 <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{field.label}</label>
@@ -110,7 +112,7 @@ function RegisterForm() {
             ))}
 
             <div>
-              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Native Language</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('nativeLanguage')}</label>
               <select
                 value={nativeLanguage}
                 onChange={(e) => setNativeLanguage(e.target.value)}
@@ -127,13 +129,13 @@ function RegisterForm() {
               disabled={loading}
               className="w-full mt-2 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
             >
-              {loading ? '— CREATING...' : '— CREATE ACCOUNT'}
+              {loading ? `— ${t('creatingAccount')}` : `— ${t('submit')}`}
             </button>
           </form>
 
           <p className="mt-6 font-mono text-fl-label text-fl-muted-2 tracking-wide text-center">
-            Have an account?{' '}
-            <a href="/login" className="text-fl-muted-1 hover:text-fl-fg transition-colors">Sign in</a>
+            {t('hasAccount')}{' '}
+            <a href="/login" className="text-fl-muted-1 hover:text-fl-fg transition-colors">{t('login')}</a>
           </p>
         </div>
       </div>

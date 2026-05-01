@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
@@ -17,6 +18,8 @@ interface Conversation {
 }
 
 export default function ChatPage() {
+  const t = useTranslations('chat')
+  const tCommon = useTranslations('common')
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeId, setActiveId] = useState<number | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
@@ -168,20 +171,20 @@ export default function ChatPage() {
       {sidebarOpen && (
         <aside className="w-56 shrink-0 flex flex-col border-r border-fl-border bg-fl-bg overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-fl-border">
-            <span className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase">Chats</span>
+            <span className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase">{t('conversations')}</span>
             <button
               onClick={newChat}
               className="font-mono text-fl-label tracking-widest text-fl-muted-1 hover:text-fl-fg transition-colors uppercase"
-              title="New chat"
+              title={t('newConversation')}
             >
               + New
             </button>
           </div>
           <div className="flex-1 overflow-y-auto">
             {loadingConvs ? (
-              <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4 animate-pulse">Loading…</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4 animate-pulse">{tCommon('loading')}</p>
             ) : conversations.length === 0 ? (
-              <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4">No conversations yet</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4">{t('noConversation')}</p>
             ) : (
               conversations.map((c) => (
                 <div
@@ -221,11 +224,11 @@ export default function ChatPage() {
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
             {activeId
-              ? (conversations.find((c) => c.id === activeId)?.title ?? 'AI Tutor')
-              : 'New Chat'}
+              ? (conversations.find((c) => c.id === activeId)?.title ?? t('title'))
+              : t('newConversation')}
           </span>
           {sending && (
-            <span className="ml-auto font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase animate-pulse">thinking…</span>
+            <span className="ml-auto font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase animate-pulse">{t('thinking')}</span>
           )}
         </div>
 
@@ -233,13 +236,13 @@ export default function ChatPage() {
         <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
           {loadingMsgs ? (
             <div className="flex items-center justify-center h-full">
-              <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">Loading…</span>
+              <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">{tCommon('loading')}</span>
             </div>
           ) : messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center gap-3">
-              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">AI Tutor — ready</p>
+              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('title')}</p>
               <p className="font-mono text-xs text-fl-muted-2 max-w-xs leading-relaxed">
-                Ask anything about English — grammar, vocabulary, pronunciation, or just practice conversation.
+                {t('subtitle')}
               </p>
             </div>
           ) : (
@@ -280,7 +283,7 @@ export default function ChatPage() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
               disabled={sending || loadingMsgs}
-              placeholder="Type a message…"
+              placeholder={t('placeholder')}
               className="flex-1 bg-fl-surface border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-border-2 focus:outline-none focus:border-fl-border-2 disabled:opacity-40 transition-colors"
             />
             <button
@@ -288,18 +291,18 @@ export default function ChatPage() {
               disabled={sending || !input.trim() || loadingMsgs}
               className="bg-fl-accent text-fl-accent-fg font-mono text-fl-label font-bold tracking-widest uppercase px-5 hover:bg-fl-accent/90 disabled:opacity-30 transition-colors"
             >
-              {sending ? '…' : 'SEND'}
+              {sending ? '…' : t('send')}
             </button>
           </div>
-          <p className="font-mono text-fl-hint text-fl-border-2 mt-2 tracking-wide">Enter to send</p>
+          <p className="font-mono text-fl-hint text-fl-border-2 mt-2 tracking-wide">{t('enterToSend')}</p>
         </div>
       </div>
 
       <ConfirmDialog
         open={deletePending !== null}
-        title="Delete Chat"
-        message="This conversation will be permanently deleted and cannot be recovered."
-        confirmLabel="Delete"
+        title={t('deleteTitle')}
+        message={t('deleteMessage')}
+        confirmLabel={t('deleteConfirm')}
         danger
         onConfirm={() => deletePending !== null && deleteConversation(deletePending)}
         onCancel={() => setDeletePending(null)}

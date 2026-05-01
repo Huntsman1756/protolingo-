@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { useProgressStore } from '@/store/progress'
@@ -17,6 +18,8 @@ interface TodayLessonItem {
 }
 
 export default function DashboardPage() {
+  const t = useTranslations('dashboard')
+  const tNav = useTranslations('nav')
   const user = useAuthStore((s) => s.user)
   const { streak, xp, skills, todayLessons, completedToday, setProgress, setTodayLessons } =
     useProgressStore()
@@ -52,7 +55,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase animate-pulse">loading...</span>
+        <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase animate-pulse">{t('loadingProgress')}</span>
       </div>
     )
   }
@@ -63,7 +66,7 @@ export default function DashboardPage() {
     <div className="p-6 max-w-4xl mx-auto">
       {/* Header */}
       <div className="mb-8 pb-4 border-b border-fl-border">
-        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">Welcome back</p>
+        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">{t('welcomeBack')}</p>
         <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">
           {user?.displayName || user?.username}
         </h1>
@@ -72,10 +75,10 @@ export default function DashboardPage() {
       {/* Stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-fl-border mb-8">
         {[
-          { label: 'STREAK', value: `${streak}d`, accent: streak > 0 },
-          { label: 'XP', value: xp, accent: false },
-          { label: 'LEVEL', value: cefrLevel ?? '—', accent: false },
-          { label: 'SKILLS', value: skillEntries.length, accent: false },
+          { label: t('streak'), value: `${streak}d`, accent: streak > 0 },
+          { label: t('xp'), value: xp, accent: false },
+          { label: t('level'), value: cefrLevel ?? '—', accent: false },
+          { label: t('skills'), value: skillEntries.length, accent: false },
         ].map((stat) => (
           <div key={stat.label} className="bg-fl-surface px-5 py-5">
             <p className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase mb-2">{stat.label}</p>
@@ -89,7 +92,7 @@ export default function DashboardPage() {
         <div className="bg-fl-surface p-5">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Skills</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('skills')}</span>
           </div>
           {skillEntries.length > 0 ? (
             <div className="space-y-3">
@@ -106,7 +109,7 @@ export default function DashboardPage() {
               ))}
             </div>
           ) : (
-            <p className="font-mono text-xs text-fl-muted-2">Complete the assessment to track skills.</p>
+            <p className="font-mono text-xs text-fl-muted-2">{t('noSkills')}</p>
           )}
         </div>
 
@@ -114,7 +117,7 @@ export default function DashboardPage() {
         <div className="bg-fl-surface p-5">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Today</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('today')}</span>
           </div>
           {todayLessons.length > 0 ? (
             <div className="space-y-2">
@@ -127,11 +130,11 @@ export default function DashboardPage() {
                     </p>
                   </div>
                   {lesson.id && completedToday.includes(lesson.id) ? (
-                    <span className="font-mono text-fl-label text-fl-muted-2 uppercase tracking-widest">✓ done</span>
+                    <span className="font-mono text-fl-label text-fl-muted-2 uppercase tracking-widest">✓ {t('lessonDone')}</span>
                   ) : lesson.id ? (
                     <Link href={`/lesson/${lesson.id}`}>
                       <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-3 py-1 uppercase hover:bg-fl-accent/90 transition-colors">
-                        START
+                        {t('startLesson')}
                       </button>
                     </Link>
                   ) : null}
@@ -141,11 +144,11 @@ export default function DashboardPage() {
           ) : (
             <div className="space-y-3">
               <p className="font-mono text-xs text-fl-muted-2">
-                {hasPlan ? 'All caught up.' : 'Start with an assessment.'}
+                {hasPlan ? t('allCaughtUp') : t('startWithAssessment')}
               </p>
               <Link href="/assessment">
                 <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-accent/90 transition-colors">
-                  Take Assessment →
+                  {t('takeAssessmentArrow')}
                 </button>
               </Link>
             </div>
@@ -158,23 +161,23 @@ export default function DashboardPage() {
         {hasPlan && (
           <Link href="/plan">
             <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-accent/90 transition-colors">
-              My Plan →
+              {t('goToMyPlan')}
             </button>
           </Link>
         )}
         <Link href="/flashcards">
           <button className="font-mono text-fl-label tracking-widest text-fl-fg border border-fl-border px-4 py-2 uppercase hover:border-fl-border-2 transition-colors">
-            Flashcards
+            {tNav('flashcards')}
           </button>
         </Link>
         <Link href="/chat">
           <button className="font-mono text-fl-label tracking-widest text-fl-fg border border-fl-border px-4 py-2 uppercase hover:border-fl-border-2 transition-colors">
-            AI Tutor
+            {tNav('tutor')}
           </button>
         </Link>
         <Link href="/assessment">
           <button className="font-mono text-fl-label tracking-widest text-fl-fg border border-fl-border px-4 py-2 uppercase hover:border-fl-border-2 transition-colors">
-            Assessment
+            {tNav('assessment')}
           </button>
         </Link>
       </div>
