@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-05-02
+
+### Added
+- TTS (Kokoro-FastAPI) integration: `AudioPlayer` component reads flashcard words, lesson exercise sentences, correct answers, and tutor chat responses aloud
+- STT (faster-whisper) integration: `VoiceRecorder` component allows dictating answers in flashcards and lesson exercises
+- `POST /api/tts` backend proxy to Kokoro-FastAPI service (returns `audio/mpeg`)
+- `POST /api/stt` backend proxy to faster-whisper service (returns transcription text)
+- `TTS_ENABLED` and `STT_ENABLED` feature flags in `.env` — both services are disabled by default
+- Kokoro and Whisper services defined in `docker-compose.yml` with NVIDIA GPU `deploy` block
+- Custom `docker/kokoro.Dockerfile` upgrading PyTorch to 2.7+ (cu128) for Blackwell GPU support (RTX 5000 series, sm_120), compatible with all previous NVIDIA architectures (sm_50+)
+- `docker-compose.yml` updated to use fork image `ghcr.io/artcc/kokoro-fastapi-gpu` with full Blackwell support
+- `AudioPlayer` added to tutor chat messages — button appears after streaming completes
+
+### Fixed
+- Kokoro container crash on NVIDIA Blackwell GPUs (`CUDA error: no kernel image is available`) caused by PyTorch ≤ 2.5 lacking sm_120 support
+
 ## [1.0.0] - 2026-05-01
 
 ### Added
