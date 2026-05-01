@@ -33,7 +33,7 @@ const faqs: FAQItem[] = [
           'Practice free conversation with the AI Tutor',
         ].map((step, i) => (
           <li key={i} className="flex items-start gap-3">
-            <span className="font-mono text-[10px] text-fl-muted-4 mt-0.5 shrink-0">{i + 1}.</span>
+            <span className="font-mono text-fl-label text-fl-muted-4 mt-0.5 shrink-0">{i + 1}.</span>
             <span>{step}</span>
           </li>
         ))}
@@ -124,7 +124,7 @@ export default function FAQPage() {
     <div className="p-6 max-w-2xl mx-auto">
       {/* Header */}
       <div className="mb-8 pb-4 border-b border-fl-border">
-        <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-1">Help</p>
+        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">Help</p>
         <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">Frequently Asked Questions</h1>
       </div>
 

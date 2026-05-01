@@ -132,19 +132,19 @@ export default function AssessmentPage() {
       <div className="flex min-h-[60vh] items-center justify-center p-6">
         <div className="w-full max-w-md border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="text-[10px] text-fl-muted-3">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Assessment</span>
+            <span className="text-fl-label text-fl-muted-3">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Assessment</span>
           </div>
           <div className="p-8 text-center space-y-6">
             <div>
-              <p className="font-mono text-[10px] tracking-widest text-fl-muted-3 uppercase mb-2">Current Level</p>
+              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">Current Level</p>
               <p className="font-mono text-6xl font-bold text-fl-fg tracking-widest">{existingPlan.cefr_level}</p>
             </div>
             <div className="border border-fl-border py-3">
-              <p className="font-mono text-[10px] text-fl-muted-3 tracking-widest uppercase">Assessed on</p>
+              <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">Assessed on</p>
               <p className="font-mono text-xs text-fl-muted-1 mt-1">{assessedDate}</p>
             </div>
-            <p className="font-mono text-[10px] text-fl-muted-3 leading-relaxed">
+            <p className="font-mono text-fl-label text-fl-muted-3 leading-relaxed">
               You already have an active study plan. Retaking the assessment will let you create a new plan.
             </p>
             <div className="flex gap-2">
@@ -173,15 +173,15 @@ export default function AssessmentPage() {
       <div className="flex min-h-[60vh] items-center justify-center p-6">
         <div className="w-full max-w-md border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="text-[10px] text-fl-muted-3">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Assessment</span>
+            <span className="text-fl-label text-fl-muted-3">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Assessment</span>
           </div>
           <div className="p-6 space-y-4">
-            <div className="border border-[#ff3b3b]/40 px-4 py-4">
-              <p className="font-mono text-[10px] tracking-widest text-[#ff6b6b] uppercase mb-2">Error</p>
-              <p className="font-mono text-xs text-[#cc6666] leading-relaxed">{error || 'Could not generate quiz'}</p>
+            <div className="border border-fl-error/40 px-4 py-4">
+              <p className="font-mono text-fl-label tracking-widest text-fl-error-fg uppercase mb-2">Error</p>
+              <p className="font-mono text-xs text-fl-error-dim leading-relaxed">{error || 'Could not generate quiz'}</p>
             </div>
-            <p className="font-mono text-[10px] text-fl-muted-3 leading-relaxed">
+            <p className="font-mono text-fl-label text-fl-muted-3 leading-relaxed">
               Check that the AI provider is configured correctly in your <span className="text-fl-muted-1">.env</span> and the backend can reach it.
             </p>
             <button
@@ -206,21 +206,21 @@ export default function AssessmentPage() {
       <div className="flex min-h-[60vh] items-center justify-center p-6">
         <div className="w-full max-w-md border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="text-[10px] text-fl-muted-3">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Result</span>
+            <span className="text-fl-label text-fl-muted-3">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Result</span>
           </div>
           <div className="p-8 text-center space-y-6">
             <div>
-              <p className="font-mono text-[10px] tracking-widest text-fl-muted-3 uppercase mb-2">CEFR Level</p>
+              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">CEFR Level</p>
               <p className="font-mono text-6xl font-bold text-fl-fg tracking-widest">{aiLevel}</p>
             </div>
             <div className="border border-fl-border py-3">
-              <p className="font-mono text-[10px] text-fl-muted-3 tracking-widest uppercase">Score</p>
+              <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">Score</p>
               <p className="font-mono text-2xl text-fl-fg-2 mt-1">{score}%</p>
             </div>
             {/* Level override picker */}
             <div>
-              <p className="font-mono text-[9px] tracking-widest text-fl-muted-3 uppercase mb-2">
+              <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
                 Start plan at level
               </p>
               <div className="flex gap-1 justify-center flex-wrap">
@@ -238,7 +238,7 @@ export default function AssessmentPage() {
                 ))}
               </div>
               {levelChanged && (
-                <p className="font-mono text-[9px] text-fl-muted-1 mt-2">
+                <p className="font-mono text-fl-hint text-fl-muted-1 mt-2">
                   AI suggested {aiLevel} — plan will use {selectedLevel}
                 </p>
               )}
@@ -248,20 +248,20 @@ export default function AssessmentPage() {
             )}
             {(result.strengths as string[])?.length > 0 && (
               <div>
-                <p className="font-mono text-[9px] tracking-widest text-fl-muted-3 uppercase mb-2">Strengths</p>
+                <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">Strengths</p>
                 <div className="flex flex-wrap gap-1 justify-center">
                   {(result.strengths as string[]).map((s) => (
-                    <span key={s} className="border border-fl-border px-3 py-1 font-mono text-[10px] text-fl-muted-1 uppercase tracking-widest">{s}</span>
+                    <span key={s} className="border border-fl-border px-3 py-1 font-mono text-fl-label text-fl-muted-1 uppercase tracking-widest">{s}</span>
                   ))}
                 </div>
               </div>
             )}
             {(result.weaknesses as string[])?.length > 0 && (
               <div>
-                <p className="font-mono text-[9px] tracking-widest text-fl-muted-3 uppercase mb-2">Needs Work</p>
+                <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">Needs Work</p>
                 <div className="flex flex-wrap gap-1 justify-center">
                   {(result.weaknesses as string[]).map((w) => (
-                    <span key={w} className="border border-[#ff3b3b]/30 px-3 py-1 font-mono text-[10px] text-[#cc6666] uppercase tracking-widest">{w}</span>
+                    <span key={w} className="border border-fl-error/30 px-3 py-1 font-mono text-fl-label text-fl-error-dim uppercase tracking-widest">{w}</span>
                   ))}
                 </div>
               </div>
@@ -286,13 +286,13 @@ export default function AssessmentPage() {
       <div className="flex min-h-[60vh] items-center justify-center p-6">
         <div className="w-full max-w-md border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="text-[10px] text-fl-muted-3">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Schedule</span>
+            <span className="text-fl-label text-fl-muted-3">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Schedule</span>
           </div>
           <div className="p-8 space-y-8">
             {/* Days per week */}
             <div>
-              <p className="font-mono text-[9px] tracking-widest text-fl-muted-3 uppercase mb-3">Days per week</p>
+              <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-3">Days per week</p>
               <div className="flex gap-1 flex-wrap">
                 {DAYS_OPTIONS.map((d) => (
                   <button
@@ -310,7 +310,7 @@ export default function AssessmentPage() {
             </div>
             {/* Minutes per day */}
             <div>
-              <p className="font-mono text-[9px] tracking-widest text-fl-muted-3 uppercase mb-3">Minutes per day</p>
+              <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-3">Minutes per day</p>
               <div className="flex gap-1 flex-wrap">
                 {MINUTES_OPTIONS.map((m) => (
                   <button
@@ -327,7 +327,7 @@ export default function AssessmentPage() {
               </div>
             </div>
             {/* Summary */}
-            <div className="border border-fl-border px-4 py-3 font-mono text-[10px] text-fl-muted-1 tracking-wide">
+            <div className="border border-fl-border px-4 py-3 font-mono text-fl-label text-fl-muted-1 tracking-wide">
               {selectedLevel} · {daysPerWeek}d/week · {minutesPerDay}min/day · 4 weeks
             </div>
             <div className="flex gap-2">
@@ -383,12 +383,12 @@ export default function AssessmentPage() {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-fl-muted-3">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">
+            <span className="text-fl-label text-fl-muted-3">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
               Question {currentIndex + 1} / {quiz.length}
             </span>
           </div>
-          <span className="font-mono text-[9px] tracking-widest text-fl-muted-3 uppercase border border-fl-border px-2 py-1">
+          <span className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase border border-fl-border px-2 py-1">
             {question?.difficulty}
           </span>
         </div>
@@ -400,7 +400,7 @@ export default function AssessmentPage() {
 
         <div className="p-6 space-y-5">
           {error && (
-            <div className="border border-[#ff3b3b]/40 px-4 py-3 font-mono text-xs text-[#ff6b6b]">✕ {error}</div>
+            <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error-fg">✕ {error}</div>
           )}
 
           <p className="font-mono text-sm text-fl-fg-2 leading-relaxed">{question?.question}</p>

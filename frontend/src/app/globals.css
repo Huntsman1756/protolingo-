@@ -10,6 +10,10 @@
   --font-sans: var(--font-geist-mono);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-geist-mono);
+  /* FreeLingo semantic font-size tokens */
+  --text-fl-hint: 9px;
+  --text-fl-label: 10px;
+  --text-fl-caption: 11px;
   /* FreeLingo semantic color tokens */
   --color-fl-bg: var(--fl-bg);
   --color-fl-bg-alt: var(--fl-bg-alt);
@@ -25,6 +29,11 @@
   --color-fl-fg-2: var(--fl-fg-2);
   --color-fl-fg: var(--fl-fg);
   --color-fl-fg-bright: var(--fl-fg-bright);
+  /* FreeLingo error/danger tokens */
+  --color-fl-error: var(--fl-error);
+  --color-fl-error-fg: var(--fl-error-fg);
+  --color-fl-error-dim: var(--fl-error-dim);
+  --color-fl-error-hover: var(--fl-error-hover);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -72,6 +81,10 @@
   --fl-fg: #f5f5f5;
   --fl-fg-bright: #ffffff;
   --fl-dot: #2a2a2a;
+  --fl-error: #ff3b3b;
+  --fl-error-fg: #ff6b6b;
+  --fl-error-dim: #cc6666;
+  --fl-error-hover: #ff5555;
   /* shadcn tokens */
   --background: #0a0a0a;
   --foreground: #f5f5f5;
@@ -160,6 +173,10 @@ html[data-theme="light"] {
   --fl-fg: #0a0a0a;
   --fl-fg-bright: #000000;
   --fl-dot: #cccccc;
+  --fl-error: #e03030;
+  --fl-error-fg: #cc3333;
+  --fl-error-dim: #994444;
+  --fl-error-hover: #c02020;
   /* shadcn token overrides */
   --background: #f5f5f5;
   --foreground: #0a0a0a;

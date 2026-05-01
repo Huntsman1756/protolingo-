@@ -113,15 +113,15 @@ export default function FlashcardsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-fl-muted-3">●</span>
-          <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Flashcards</span>
-          <span className="font-mono text-[9px] text-fl-muted-2 tracking-widest">— {total} total · {cards.length} due</span>
+          <span className="text-fl-label text-fl-muted-3">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Flashcards</span>
+          <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest">— {total} total · {cards.length} due</span>
         </div>
         <button
           onClick={() => setShowGenerate(!showGenerate)}
-          className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${showGenerate
-              ? 'border-fl-border-2 text-fl-fg'
-              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
+          className={`border px-4 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${showGenerate
+            ? 'border-fl-border-2 text-fl-fg'
+            : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
             }`}
         >
           + Generate
@@ -132,15 +132,15 @@ export default function FlashcardsPage() {
       {showGenerate && (
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-5 py-4 border-b border-fl-border">
-            <span className="text-[10px] text-fl-muted-3">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Generate with AI</span>
+            <span className="text-fl-label text-fl-muted-3">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Generate with AI</span>
           </div>
           {genError && (
-            <div className="mx-5 mt-4 border border-[#ff3b3b]/40 px-4 py-3 font-mono text-xs text-[#ff6b6b]">✕ {genError}</div>
+            <div className="mx-5 mt-4 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error-fg">✕ {genError}</div>
           )}
           <form onSubmit={generateCards} className="p-5 space-y-3">
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-fl-muted-3 uppercase mb-2">Topic</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">Topic</label>
               <input
                 type="text"
                 value={genTopic}
@@ -152,7 +152,7 @@ export default function FlashcardsPage() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-mono text-[10px] tracking-widest text-fl-muted-3 uppercase mb-2">Count</label>
+                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">Count</label>
                 <select
                   value={genCount}
                   onChange={(e) => setGenCount(Number(e.target.value))}
@@ -162,7 +162,7 @@ export default function FlashcardsPage() {
                 </select>
               </div>
               <div>
-                <label className="block font-mono text-[10px] tracking-widest text-fl-muted-3 uppercase mb-2">Level</label>
+                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">Level</label>
                 <select
                   value={genCefr}
                   onChange={(e) => setGenCefr(e.target.value)}
@@ -192,7 +192,7 @@ export default function FlashcardsPage() {
           )}
           <button
             onClick={loadDue}
-            className="mt-6 border border-fl-border px-6 py-2 font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
+            className="mt-6 border border-fl-border px-6 py-2 font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
           >
             — Refresh
           </button>
@@ -202,23 +202,22 @@ export default function FlashcardsPage() {
       {/* Card review */}
       {cards.length > 0 && (
         <>
-          <div className="flex items-center gap-4 font-mono text-[10px] text-fl-muted-3 tracking-widest uppercase">
+          <div className="flex items-center gap-4 font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
             <span>{current + 1} / {cards.length} due</span>
           </div>
 
           <div
-            className="border border-fl-border bg-fl-surface cursor-pointer select-none transition-colors hover:border-fl-border-2"
-            style={{ minHeight: 220 }}
+            className="min-h-[220px] border border-fl-border bg-fl-surface cursor-pointer select-none transition-colors hover:border-fl-border-2"
             onClick={() => setFlipped(!flipped)}
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] text-fl-muted-3">●</span>
-                <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">
+                <span className="text-fl-label text-fl-muted-3">●</span>
+                <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
                   {flipped ? 'Definition' : 'Word'}
                 </span>
               </div>
-              <span className="font-mono text-[9px] text-fl-border-2 uppercase tracking-widest">
+              <span className="font-mono text-fl-hint text-fl-border-2 uppercase tracking-widest">
                 tap to {flipped ? 'hide' : 'reveal'}
               </span>
             </div>
@@ -233,7 +232,7 @@ export default function FlashcardsPage() {
                     <p className="font-mono text-xs text-fl-muted-1 italic">{cards[current].example_sentence}</p>
                   )}
                   {cards[current].translation && (
-                    <p className="font-mono text-[10px] text-fl-muted-3 tracking-widest border-t border-fl-border pt-3 mt-1 uppercase">{cards[current].translation}</p>
+                    <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest border-t border-fl-border pt-3 mt-1 uppercase">{cards[current].translation}</p>
                   )}
                 </>
               )}
@@ -246,7 +245,7 @@ export default function FlashcardsPage() {
                 <button
                   key={q}
                   onClick={() => reviewCard(q)}
-                  className="flex-1 min-w-[80px] border border-fl-border py-3 font-mono text-[10px] tracking-widest uppercase transition-all hover:border-fl-border-2"
+                  className="flex-1 min-w-[80px] border border-fl-border py-3 font-mono text-fl-label tracking-widest uppercase transition-all hover:border-fl-border-2"
                   style={{ color }}
                 >
                   {label}
@@ -255,7 +254,7 @@ export default function FlashcardsPage() {
             </div>
           )}
 
-          <p className="font-mono text-[9px] text-fl-border-2 tracking-widest uppercase text-center">
+          <p className="font-mono text-fl-hint text-fl-border-2 tracking-widest uppercase text-center">
             EF {cards[current].ease_factor.toFixed(2)} · Interval {cards[current].interval}d · Rep {cards[current].repetitions}
           </p>
         </>

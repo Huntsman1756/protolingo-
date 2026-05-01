@@ -63,13 +63,13 @@ function LoginForm() {
         <div className="flex flex-col items-center mb-10">
           <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
           <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
-          <p className="font-mono text-[11px] text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
+          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
         </div>
 
         <div className="border border-fl-border bg-fl-surface p-8">
           {/* Header */}
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-fl-border">
-            <span className="text-[10px] text-fl-muted-2">●</span>
+            <span className="text-fl-label text-fl-muted-2">●</span>
             <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">Sign In</span>
           </div>
 
@@ -79,14 +79,14 @@ function LoginForm() {
             </div>
           )}
           {error && (
-            <div className="mb-5 border border-[#ff3b3b]/40 px-4 py-3 font-mono text-xs text-[#ff3b3b] tracking-wide">
+            <div className="mb-5 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error tracking-wide">
               ✕ {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Email</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Email</label>
               <input
                 type="text"
                 value={email}
@@ -96,7 +96,7 @@ function LoginForm() {
               />
             </div>
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Password</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -135,7 +135,7 @@ function LoginForm() {
             </button>
           </form>
 
-          <p className="mt-6 font-mono text-[10px] text-fl-muted-2 tracking-wide text-center">
+          <p className="mt-6 font-mono text-fl-label text-fl-muted-2 tracking-wide text-center">
             No account?{' '}
             <a href="/register" className="text-fl-muted-1 hover:text-fl-fg transition-colors">
               Register

@@ -96,7 +96,7 @@ export default function LessonPage() {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 p-6">
         <div className="border border-fl-border bg-fl-surface px-10 py-10 text-center">
-          <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-4">● Complete</p>
+          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-4">● Complete</p>
           <p className="font-mono text-xl font-bold text-fl-fg tracking-widest">LESSON DONE</p>
           <button
             onClick={() => router.push('/dashboard')}
@@ -119,12 +119,12 @@ export default function LessonPage() {
       <div className="border border-fl-border bg-fl-surface">
         <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-fl-muted-2">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Lesson</span>
+            <span className="text-fl-label text-fl-muted-2">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Lesson</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[9px] text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.cefr_level}</span>
-            <span className="font-mono text-[9px] text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.lesson_type}</span>
+            <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.cefr_level}</span>
+            <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.lesson_type}</span>
           </div>
         </div>
         <div className="px-6 py-5">
@@ -153,12 +153,12 @@ export default function LessonPage() {
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] text-fl-muted-2">●</span>
-              <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">
+              <span className="text-fl-label text-fl-muted-2">●</span>
+              <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
                 Exercise {currentExercise + 1} / {exercises.length}
               </span>
             </div>
-            <span className="font-mono text-[9px] text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{exercise.exercise_type}</span>
+            <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{exercise.exercise_type}</span>
           </div>
 
           {/* Progress bar */}
@@ -183,8 +183,8 @@ export default function LessonPage() {
                       disabled={isEvaluated}
                       onClick={() => setAnswer(letter)}
                       className={`w-full text-left px-4 py-3 border font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${isSelected
-                          ? 'border-fl-fg bg-fl-fg text-fl-bg'
-                          : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
+                        ? 'border-fl-fg bg-fl-fg text-fl-bg'
+                        : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
                         }`}
                     >
                       {opt}
@@ -194,8 +194,7 @@ export default function LessonPage() {
               </div>
             ) : (
               <textarea
-                className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
-                style={{ minHeight: 90 }}
+                className="min-h-[90px] w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
                 placeholder="Type your answer…"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
@@ -215,13 +214,13 @@ export default function LessonPage() {
               <div className="space-y-4">
                 {exercise.feedback && (
                   <div className="border border-fl-border px-4 py-4">
-                    <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Feedback</p>
+                    <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Feedback</p>
                     <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{exercise.feedback}</p>
                   </div>
                 )}
                 <div className="flex items-center gap-4">
                   <div className="border border-fl-border px-4 py-2">
-                    <span className="font-mono text-[10px] text-fl-muted-2 tracking-widest uppercase">Score </span>
+                    <span className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase">Score </span>
                     <span className="font-mono text-sm font-bold text-fl-fg">
                       {exercise.score !== null ? Math.round((exercise.score ?? 0) * 100) + '%' : 'N/A'}
                     </span>

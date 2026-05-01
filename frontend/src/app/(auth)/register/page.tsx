@@ -72,18 +72,18 @@ function RegisterForm() {
         <div className="flex flex-col items-center mb-10">
           <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
           <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
-          <p className="font-mono text-[11px] text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
+          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
         </div>
 
         <div className="border border-fl-border bg-fl-surface p-8">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-fl-border">
-            <span className="text-[10px] text-fl-muted-2">●</span>
+            <span className="text-fl-label text-fl-muted-2">●</span>
             <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">Register</span>
-            {invite && <span className="ml-auto font-mono text-[9px] text-fl-muted-1 uppercase tracking-widest">Invite active</span>}
+            {invite && <span className="ml-auto font-mono text-fl-hint text-fl-muted-1 uppercase tracking-widest">Invite active</span>}
           </div>
 
           {error && (
-            <div className="mb-5 border border-[#ff3b3b]/40 px-4 py-3 font-mono text-xs text-[#ff3b3b] tracking-wide">
+            <div className="mb-5 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error tracking-wide">
               ✕ {error}
             </div>
           )}
@@ -97,7 +97,7 @@ function RegisterForm() {
               { label: 'Confirm Password', value: confirmPassword, onChange: setConfirmPassword, type: 'password', required: true },
             ].map((field) => (
               <div key={field.label}>
-                <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">{field.label}</label>
+                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{field.label}</label>
                 <input
                   type={field.type}
                   value={field.value}
@@ -110,7 +110,7 @@ function RegisterForm() {
             ))}
 
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Native Language</label>
+              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Native Language</label>
               <select
                 value={nativeLanguage}
                 onChange={(e) => setNativeLanguage(e.target.value)}
@@ -131,7 +131,7 @@ function RegisterForm() {
             </button>
           </form>
 
-          <p className="mt-6 font-mono text-[10px] text-fl-muted-2 tracking-wide text-center">
+          <p className="mt-6 font-mono text-fl-label text-fl-muted-2 tracking-wide text-center">
             Have an account?{' '}
             <a href="/login" className="text-fl-muted-1 hover:text-fl-fg transition-colors">Sign in</a>
           </p>

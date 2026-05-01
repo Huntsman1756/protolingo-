@@ -80,14 +80,14 @@ export default function SettingsPage() {
     <div className="p-6 max-w-lg mx-auto">
       {/* Header */}
       <div className="mb-8 pb-4 border-b border-fl-border">
-        <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-1">Account</p>
+        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">Account</p>
         <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">Settings</h1>
       </div>
 
       <div className="border border-fl-border bg-fl-surface p-6 space-y-5 mb-4">
         <div className="flex items-center gap-2 pb-4 border-b border-fl-border">
-          <span className="text-[10px] text-fl-muted-2">●</span>
-          <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Profile</span>
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Profile</span>
         </div>
 
         {[
@@ -95,7 +95,7 @@ export default function SettingsPage() {
           { label: 'Email', value: email, onChange: setEmail, type: 'email' },
         ].map((field) => (
           <div key={field.label}>
-            <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">{field.label}</label>
+            <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{field.label}</label>
             <input
               type={field.type}
               value={field.value}
@@ -106,7 +106,7 @@ export default function SettingsPage() {
         ))}
 
         <div>
-          <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Native Language</label>
+          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Native Language</label>
           <select
             value={nativeLanguage}
             onChange={(e) => setNativeLanguage(e.target.value)}
@@ -119,7 +119,7 @@ export default function SettingsPage() {
         </div>
 
         <div>
-          <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">New Password</label>
+          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">New Password</label>
           <input
             type="password"
             value={password}
@@ -130,7 +130,7 @@ export default function SettingsPage() {
         </div>
 
         <div>
-          <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Confirm Password</label>
+          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">Confirm Password</label>
           <input
             type="password"
             value={confirmPassword}
@@ -142,7 +142,7 @@ export default function SettingsPage() {
         </div>
 
         {message && (
-          <div className={`font-mono text-xs px-4 py-3 border ${message.type === 'ok' ? 'border-fl-border text-fl-muted-1' : 'border-[#ff3b3b]/40 text-[#ff3b3b]'}`}>
+          <div className={`font-mono text-xs px-4 py-3 border ${message.type === 'ok' ? 'border-fl-border text-fl-muted-1' : 'border-fl-error/40 text-fl-error'}`}>
             {message.type === 'ok' ? '✓ ' : '✕ '}{message.text}
           </div>
         )}
@@ -158,7 +158,7 @@ export default function SettingsPage() {
 
       <button
         onClick={handleLogout}
-        className="w-full font-mono text-[10px] tracking-widest text-fl-muted-2 border border-fl-border py-3 uppercase hover:text-[#ff3b3b] hover:border-[#ff3b3b]/40 transition-colors"
+        className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
       >
         — LOGOUT
       </button>
@@ -166,17 +166,17 @@ export default function SettingsPage() {
       {/* Theme toggle */}
       <div className="border border-fl-border bg-fl-surface p-6">
         <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
-          <span className="text-[10px] text-fl-muted-2">●</span>
-          <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Appearance</span>
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Appearance</span>
         </div>
         <div className="flex items-center justify-between">
           <div>
             <p className="font-mono text-xs text-fl-fg tracking-wide">Theme</p>
-            <p className="font-mono text-[10px] text-fl-muted-2 mt-0.5">{theme === 'dark' ? 'Dark mode active' : 'Light mode active'}</p>
+            <p className="font-mono text-fl-label text-fl-muted-2 mt-0.5">{theme === 'dark' ? 'Dark mode active' : 'Light mode active'}</p>
           </div>
           <button
             onClick={toggleTheme}
-            className="flex items-center gap-3 border border-fl-border px-4 py-2 font-mono text-[10px] tracking-widest uppercase text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+            className="flex items-center gap-3 border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
           >
             <span>{theme === 'dark' ? '○' : '●'}</span>
             {theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}

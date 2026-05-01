@@ -27,6 +27,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const logout = useAuthStore((s) => s.logout)
   const [initializing, setInitializing] = useState(true)
   const [logoutConfirm, setLogoutConfirm] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // On every page load, Zustand is empty. Use the httpOnly refresh cookie
   // to silently get a new access token, then fetch /me to populate the user.
@@ -82,7 +83,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   if (initializing) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-fl-bg"
-        style={{ backgroundImage: 'radial-gradient(circle, #2a2a2a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+        style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
         <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">● Initializing…</span>
       </div>
     )
@@ -94,7 +95,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <aside className="hidden md:flex w-52 flex-col border-r border-fl-border bg-fl-bg px-0 py-0 shrink-0">
         {/* Logo area */}
         <div className="flex items-center gap-2 px-5 py-5 border-b border-fl-border">
-          <span className="text-[10px] text-fl-muted-2">●</span>
+          <span className="text-fl-label text-fl-muted-2">●</span>
           <span className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">FreeLingo</span>
         </div>
 
@@ -111,7 +112,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
                   }`}
               >
-                <span className={`text-[10px] ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>●</span>
+                <span className={`text-fl-label ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>●</span>
                 {item.label}
               </Link>
             )
@@ -124,7 +125,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
                 }`}
             >
-              <span className="text-[10px] text-fl-muted-4">●</span>
+              <span className="text-fl-label text-fl-muted-4">●</span>
               ADMIN
             </Link>
           )}
@@ -132,13 +133,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
         {/* User + logout */}
         <div className="border-t border-fl-border px-5 py-4">
-          <p className="text-[11px] font-mono text-fl-muted-2 tracking-widest uppercase mb-1">
+          <p className="text-fl-caption font-mono text-fl-muted-2 tracking-widest uppercase mb-1">
             {user?.displayName || user?.username}
           </p>
-          <p className="text-[10px] font-mono text-fl-muted-4 mb-3">@{user?.username}</p>
+          <p className="text-fl-label font-mono text-fl-muted-4 mb-3">@{user?.username}</p>
           <button
             onClick={() => setLogoutConfirm(true)}
-            className="w-full text-left text-[10px] font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
+            className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
           >
             — LOGOUT
           </button>
@@ -146,23 +147,62 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Mobile top bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-fl-border bg-fl-bg px-4 py-3">
-        <span className="font-mono text-xs font-bold tracking-widest text-fl-fg uppercase">FreeLingo</span>
-        <nav className="flex items-center gap-0">
-          {navItems.map((item) => {
-            const active = pathname === item.href
-            return (
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 border-b border-fl-border bg-fl-bg">
+        <div className="flex items-center justify-between px-4 py-3">
+          <span className="font-mono text-xs font-bold tracking-widest text-fl-fg uppercase">FreeLingo</span>
+          <button
+            onClick={() => setMobileMenuOpen((o) => !o)}
+            className="font-mono text-fl-muted-2 hover:text-fl-fg transition-colors p-1"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            <span className="text-base leading-none">{mobileMenuOpen ? '✕' : '☰'}</span>
+          </button>
+        </div>
+
+        {/* Dropdown */}
+        {mobileMenuOpen && (
+          <nav className="border-t border-fl-border bg-fl-bg pb-2">
+            {navItems.map((item) => {
+              const active = pathname === item.href || pathname.startsWith(item.href + '/')
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center gap-3 px-5 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${active
+                      ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                      : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
+                    }`}
+                >
+                  <span className={`text-fl-label ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>●</span>
+                  {item.label}
+                </Link>
+              )
+            })}
+            {user?.role === 'admin' && (
               <Link
-                key={item.href}
-                href={item.href}
-                className={`px-3 py-1 text-[10px] font-mono tracking-widest uppercase transition-colors ${active ? 'text-fl-fg border-b border-fl-fg' : 'text-fl-muted-2 hover:text-fl-fg'
+                href="/admin/users"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center gap-3 px-5 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${pathname.startsWith('/admin')
+                    ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
                   }`}
               >
-                {item.label.slice(0, 4)}
+                <span className="text-fl-label text-fl-muted-4">●</span>
+                ADMIN
               </Link>
-            )
-          })}
-        </nav>
+            )}
+            <div className="border-t border-fl-border mx-5 mt-2 pt-3">
+              <p className="font-mono text-fl-label text-fl-muted-4 mb-1">@{user?.username}</p>
+              <button
+                onClick={() => { setMobileMenuOpen(false); setLogoutConfirm(true) }}
+                className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
+              >
+                — LOGOUT
+              </button>
+            </div>
+          </nav>
+        )}
       </div>
 
       {/* Main */}

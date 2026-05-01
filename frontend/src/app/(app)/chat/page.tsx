@@ -168,10 +168,10 @@ export default function ChatPage() {
       {sidebarOpen && (
         <aside className="w-56 shrink-0 flex flex-col border-r border-fl-border bg-fl-bg overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-fl-border">
-            <span className="font-mono text-[9px] tracking-widest text-fl-muted-2 uppercase">Chats</span>
+            <span className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase">Chats</span>
             <button
               onClick={newChat}
-              className="font-mono text-[10px] tracking-widest text-fl-muted-1 hover:text-fl-fg transition-colors uppercase"
+              className="font-mono text-fl-label tracking-widest text-fl-muted-1 hover:text-fl-fg transition-colors uppercase"
               title="New chat"
             >
               + New
@@ -179,9 +179,9 @@ export default function ChatPage() {
           </div>
           <div className="flex-1 overflow-y-auto">
             {loadingConvs ? (
-              <p className="font-mono text-[10px] text-fl-muted-4 px-4 py-4 animate-pulse">Loading…</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4 animate-pulse">Loading…</p>
             ) : conversations.length === 0 ? (
-              <p className="font-mono text-[10px] text-fl-muted-4 px-4 py-4">No conversations yet</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4">No conversations yet</p>
             ) : (
               conversations.map((c) => (
                 <div
@@ -190,12 +190,12 @@ export default function ChatPage() {
                   className={`group flex items-center justify-between px-4 py-3 cursor-pointer border-b border-fl-surface-2 transition-colors ${activeId === c.id ? 'bg-fl-surface-2 border-l-2 border-l-fl-fg' : 'hover:bg-fl-surface border-l-2 border-l-transparent'
                     }`}
                 >
-                  <span className={`font-mono text-[10px] leading-tight truncate pr-1 ${activeId === c.id ? 'text-fl-fg' : 'text-fl-muted-1'}`}>
+                  <span className={`font-mono text-fl-label leading-tight truncate pr-1 ${activeId === c.id ? 'text-fl-fg' : 'text-fl-muted-1'}`}>
                     {c.title}
                   </span>
                   <button
                     onClick={(e) => { e.stopPropagation(); setDeletePending(c.id) }}
-                    className="opacity-0 group-hover:opacity-100 font-mono text-[10px] text-[#ff6b6b] hover:text-[#ff4444] transition-all shrink-0"
+                    className="opacity-0 group-hover:opacity-100 font-mono text-fl-label text-fl-error-fg hover:text-fl-error transition-all shrink-0"
                     title="Delete"
                   >
                     ✕
@@ -213,19 +213,19 @@ export default function ChatPage() {
         <div className="flex items-center gap-2 px-5 py-4 border-b border-fl-border bg-fl-bg shrink-0">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="font-mono text-[10px] text-fl-muted-2 hover:text-fl-fg transition-colors mr-1 tracking-widest"
+            className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg transition-colors mr-1 tracking-widest"
             title={sidebarOpen ? 'Hide sidebar' : 'Show sidebar'}
           >
             {sidebarOpen ? '◂' : '▸'}
           </button>
-          <span className="text-[10px] text-fl-muted-3">●</span>
-          <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-3">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
             {activeId
               ? (conversations.find((c) => c.id === activeId)?.title ?? 'AI Tutor')
               : 'New Chat'}
           </span>
           {sending && (
-            <span className="ml-auto font-mono text-[9px] tracking-widest text-fl-muted-3 uppercase animate-pulse">thinking…</span>
+            <span className="ml-auto font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase animate-pulse">thinking…</span>
           )}
         </div>
 
@@ -237,7 +237,7 @@ export default function ChatPage() {
             </div>
           ) : messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center gap-3">
-              <p className="font-mono text-[10px] tracking-widest text-fl-muted-3 uppercase">AI Tutor — ready</p>
+              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">AI Tutor — ready</p>
               <p className="font-mono text-xs text-fl-muted-2 max-w-xs leading-relaxed">
                 Ask anything about English — grammar, vocabulary, pronunciation, or just practice conversation.
               </p>
@@ -246,7 +246,7 @@ export default function ChatPage() {
             messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[78%] ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
-                  <p className={`font-mono text-[9px] tracking-widest uppercase mb-1 ${msg.role === 'user' ? 'text-fl-muted-2' : 'text-fl-muted-3'}`}>
+                  <p className={`font-mono text-fl-hint tracking-widest uppercase mb-1 ${msg.role === 'user' ? 'text-fl-muted-2' : 'text-fl-muted-3'}`}>
                     {msg.role === 'user' ? 'you' : 'tutor'}
                   </p>
                   <div className={`font-mono text-sm leading-relaxed px-4 py-3 border ${msg.role === 'user'
@@ -263,7 +263,7 @@ export default function ChatPage() {
             ))
           )}
           {error && (
-            <div className="font-mono text-[10px] text-[#ff6b6b] border border-[#ff3b3b]/30 px-4 py-2">
+            <div className="font-mono text-fl-label text-fl-error-fg border border-fl-error/30 px-4 py-2">
               ✕ {error}
             </div>
           )}
@@ -286,12 +286,12 @@ export default function ChatPage() {
             <button
               onClick={sendMessage}
               disabled={sending || !input.trim() || loadingMsgs}
-              className="bg-fl-fg text-fl-bg font-mono text-[10px] font-bold tracking-widest uppercase px-5 hover:bg-fl-fg-bright disabled:opacity-30 transition-colors"
+              className="bg-fl-fg text-fl-bg font-mono text-fl-label font-bold tracking-widest uppercase px-5 hover:bg-fl-fg-bright disabled:opacity-30 transition-colors"
             >
               {sending ? '…' : 'SEND'}
             </button>
           </div>
-          <p className="font-mono text-[9px] text-fl-border-2 mt-2 tracking-wide">Enter to send</p>
+          <p className="font-mono text-fl-hint text-fl-border-2 mt-2 tracking-wide">Enter to send</p>
         </div>
       </div>
 
