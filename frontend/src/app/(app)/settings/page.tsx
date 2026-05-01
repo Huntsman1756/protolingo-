@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
+import { useThemeStore } from '@/store/theme'
 import { useRouter } from 'next/navigation'
 
 const LANGUAGES = [
@@ -18,6 +19,8 @@ export default function SettingsPage() {
   const setUser = useAuthStore((s) => s.setUser)
   const logout = useAuthStore((s) => s.logout)
   const router = useRouter()
+  const theme = useThemeStore((s) => s.theme)
+  const toggleTheme = useThemeStore((s) => s.toggle)
 
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
@@ -56,7 +59,7 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error('Failed to save')
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, role: updated.role, native_language: updated.native_language })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language })
       setMessage({ type: 'ok', text: 'Profile updated.' })
       setPassword('')
       setConfirmPassword('')
@@ -159,6 +162,27 @@ export default function SettingsPage() {
       >
         — LOGOUT
       </button>
+
+      {/* Theme toggle */}
+      <div className="border border-[#2a2a2a] bg-[#111] p-6">
+        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-[#2a2a2a]">
+          <span className="text-[10px] text-[#777]">●</span>
+          <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Appearance</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="font-mono text-xs text-[#f5f5f5] tracking-wide">Theme</p>
+            <p className="font-mono text-[10px] text-[#777] mt-0.5">{theme === 'dark' ? 'Dark mode active' : 'Light mode active'}</p>
+          </div>
+          <button
+            onClick={toggleTheme}
+            className="flex items-center gap-3 border border-[#2a2a2a] px-4 py-2 font-mono text-[10px] tracking-widest uppercase text-[#777] hover:border-[#444] hover:text-[#f5f5f5] transition-colors"
+          >
+            <span>{theme === 'dark' ? '○' : '●'}</span>
+            {theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

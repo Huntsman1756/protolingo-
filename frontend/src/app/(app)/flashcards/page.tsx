@@ -18,9 +18,9 @@ interface CardData {
 const QUALITY_BUTTONS = [
   { label: 'BLACKOUT', q: 0, color: '#ff5555' },
   { label: 'WRONG', q: 1, color: '#ff8855' },
-  { label: 'HARD', q: 3, color: '#888' },
-  { label: 'GOOD', q: 4, color: '#aaa' },
-  { label: 'PERFECT', q: 5, color: '#f5f5f5' },
+  { label: 'HARD', q: 3, color: 'var(--fl-muted-1)' },
+  { label: 'GOOD', q: 4, color: 'var(--fl-muted-0)' },
+  { label: 'PERFECT', q: 5, color: 'var(--fl-fg)' },
 ]
 
 export default function FlashcardsPage() {
@@ -119,11 +119,10 @@ export default function FlashcardsPage() {
         </div>
         <button
           onClick={() => setShowGenerate(!showGenerate)}
-          className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${
-            showGenerate
+          className={`border px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${showGenerate
               ? 'border-[#444] text-[#f5f5f5]'
               : 'border-[#2a2a2a] text-[#777] hover:text-[#f5f5f5] hover:border-[#444]'
-          }`}
+            }`}
         >
           + Generate
         </button>
@@ -169,7 +168,7 @@ export default function FlashcardsPage() {
                   onChange={(e) => setGenCefr(e.target.value)}
                   className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#444] appearance-none"
                 >
-                  {['A1','A2','B1','B2','C1','C2'].map(l => <option key={l} value={l}>{l}</option>)}
+                  {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
               </div>
             </div>

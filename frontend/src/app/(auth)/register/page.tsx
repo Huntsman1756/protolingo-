@@ -2,6 +2,7 @@
 
 import { Suspense, useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Image from 'next/image'
 import { apiFetch } from '@/lib/api'
 
 const LANGUAGES = [
@@ -66,11 +67,12 @@ function RegisterForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4"
-      style={{ backgroundImage: 'radial-gradient(circle, #2a2a2a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+      style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center mb-10">
+          <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
           <h1 className="font-mono text-xl font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</h1>
-          <p className="font-mono text-[11px] text-[#777] tracking-widest uppercase mt-1">create account</p>
+          <p className="font-mono text-[11px] text-[#777] tracking-widest uppercase mt-1">self-hosted language learning</p>
         </div>
 
         <div className="border border-[#2a2a2a] bg-[#111] p-8">

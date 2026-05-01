@@ -30,12 +30,12 @@ freelingo/
 ├── backend/            # FastAPI (Python)
 ├── frontend/           # Next.js (React)
 ├── specs/              # Specification files
-├── docker-compose.yml
-├── .env.example
-├── CONTRIBUTING.md
+├── AGENTS.md
 ├── CHANGELOG.md
+├── CONTRIBUTING.md
 ├── LICENSE
-└── README.md
+├── README.md
+└── docker-compose.yml
 ```
 
 ## Stack
@@ -107,17 +107,17 @@ The first registered user becomes admin automatically.
 ## Internal documentation
 
 - [architecture.instructions.md](specs/architecture.instructions.md) — DB models, API endpoints, LLM adapter, auth design, code standards, test config
+- [CHANGELOG.md](CHANGELOG.md) — Project changelog
+- [changelog.instructions.md](specs/changelog.instructions.md) — Changelog format, entry style, and update rules
 - [docker.instructions.md](specs/docker.instructions.md) — Docker Compose by phase, `.env.example`, DB migrations, operational notes
+- [llm-error-handling.instructions.md](specs/llm-error-handling.instructions.md) — LLM failures: malformed JSON, timeouts, retries, context overflow
 - [phase-1-platform.instructions.md](specs/phase-1-platform.instructions.md) — Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat
 - [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
-- [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
-- [changelog.instructions.md](specs/changelog.instructions.md) — Changelog format, entry style, and update rules
-- [CHANGELOG.md](CHANGELOG.md) — Project changelog
-- [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
-- [testing.instructions.md](specs/testing.instructions.md) — Testing strategy: pytest, Vitest, Playwright, mocks, CI
-- [llm-error-handling.instructions.md](specs/llm-error-handling.instructions.md) — LLM failures: malformed JSON, timeouts, retries, context overflow
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
+- [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
+- [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
+- [testing.instructions.md](specs/testing.instructions.md) — Testing strategy: pytest, Vitest, Playwright, mocks, CI
 
 ## Operational notes
 

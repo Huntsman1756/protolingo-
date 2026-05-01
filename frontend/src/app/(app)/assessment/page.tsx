@@ -12,6 +12,11 @@ interface Question {
   options: string[]
 }
 
+interface ExistingPlan {
+  cefr_level: string
+  created_at: string
+}
+
 export default function AssessmentPage() {
   const router = useRouter()
   const [quiz, setQuiz] = useState<Question[]>([])
@@ -26,8 +31,10 @@ export default function AssessmentPage() {
   const [submitting, setSubmitting] = useState(false)
   const [generatingPlan, setGeneratingPlan] = useState(false)
   const [error, setError] = useState('')
+  const [existingPlan, setExistingPlan] = useState<ExistingPlan | null | undefined>(undefined)
 
   const startAssessment = useCallback(async () => {
+    setExistingPlan(null)
     setLoading(true)
     setError('')
     setQuiz([])
@@ -49,7 +56,23 @@ export default function AssessmentPage() {
     }
   }, [])
 
-  useEffect(() => { startAssessment() }, [startAssessment])
+  useEffect(() => {
+    async function checkExistingPlan() {
+      try {
+        const res = await apiFetch('/api/study-plan/current')
+        if (res.ok) {
+          const plan = await res.json()
+          if (plan && plan.cefr_level) {
+            setExistingPlan(plan)
+            setLoading(false)
+            return
+          }
+        }
+      } catch { /* ignore, fallback to new assessment */ }
+      startAssessment()
+    }
+    checkExistingPlan()
+  }, [startAssessment])
 
   function selectAnswer(answer: string) {
     const question = quiz[currentIndex]
@@ -89,11 +112,57 @@ export default function AssessmentPage() {
     }
   }, [answers])
 
-  // ── Loading ──
-  if (loading) {
+  // ── Loading (initial check or quiz generation) ──
+  if (loading || existingPlan === undefined) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-[#666] tracking-widest uppercase animate-pulse">Generating quiz…</span>
+        <span className="font-mono text-xs text-[#666] tracking-widest uppercase animate-pulse">
+          {existingPlan === undefined ? 'Loading…' : 'Generating quiz…'}
+        </span>
+      </div>
+    )
+  }
+
+  // ── Previous result ──
+  if (existingPlan) {
+    const assessedDate = new Date(existingPlan.created_at).toLocaleDateString(undefined, {
+      year: 'numeric', month: 'long', day: 'numeric',
+    })
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center p-6">
+        <div className="w-full max-w-md border border-[#2a2a2a] bg-[#111]">
+          <div className="flex items-center gap-2 px-6 py-4 border-b border-[#2a2a2a]">
+            <span className="text-[10px] text-[#666]">●</span>
+            <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Assessment</span>
+          </div>
+          <div className="p-8 text-center space-y-6">
+            <div>
+              <p className="font-mono text-[10px] tracking-widest text-[#666] uppercase mb-2">Current Level</p>
+              <p className="font-mono text-6xl font-bold text-[#f5f5f5] tracking-widest">{existingPlan.cefr_level}</p>
+            </div>
+            <div className="border border-[#2a2a2a] py-3">
+              <p className="font-mono text-[10px] text-[#666] tracking-widest uppercase">Assessed on</p>
+              <p className="font-mono text-xs text-[#888] mt-1">{assessedDate}</p>
+            </div>
+            <p className="font-mono text-[10px] text-[#666] leading-relaxed">
+              You already have an active study plan. Retaking the assessment will let you create a new plan.
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={() => router.push('/dashboard')}
+                className="flex-1 border border-[#2a2a2a] text-[#777] font-mono text-xs tracking-widest uppercase py-3 hover:border-[#444] hover:text-[#f5f5f5] transition-colors"
+              >
+                ← Dashboard
+              </button>
+              <button
+                onClick={startAssessment}
+                className="flex-[2] bg-[#f5f5f5] text-[#0a0a0a] font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-white transition-colors"
+              >
+                — Retake Assessment
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -230,8 +299,8 @@ export default function AssessmentPage() {
                     key={d}
                     onClick={() => setDaysPerWeek(d)}
                     className={`w-10 h-10 font-mono text-xs font-bold border transition-colors ${daysPerWeek === d
-                        ? 'bg-[#f5f5f5] text-[#0a0a0a] border-[#f5f5f5]'
-                        : 'border-[#2a2a2a] text-[#777] hover:border-[#444] hover:text-[#f5f5f5]'
+                      ? 'bg-[#f5f5f5] text-[#0a0a0a] border-[#f5f5f5]'
+                      : 'border-[#2a2a2a] text-[#777] hover:border-[#444] hover:text-[#f5f5f5]'
                       }`}
                   >
                     {d}
@@ -248,8 +317,8 @@ export default function AssessmentPage() {
                     key={m}
                     onClick={() => setMinutesPerDay(m)}
                     className={`px-3 h-10 font-mono text-xs font-bold border transition-colors ${minutesPerDay === m
-                        ? 'bg-[#f5f5f5] text-[#0a0a0a] border-[#f5f5f5]'
-                        : 'border-[#2a2a2a] text-[#777] hover:border-[#444] hover:text-[#f5f5f5]'
+                      ? 'bg-[#f5f5f5] text-[#0a0a0a] border-[#f5f5f5]'
+                      : 'border-[#2a2a2a] text-[#777] hover:border-[#444] hover:text-[#f5f5f5]'
                       }`}
                   >
                     {m}
