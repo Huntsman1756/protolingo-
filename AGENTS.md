@@ -50,6 +50,13 @@ Read these before implementing — they are the source of truth:
 
 Run migrations after first backend startup: `docker compose exec backend alembic upgrade head`
 
+## Development environment constraints
+
+- **No Docker locally.** The development machine does not have Docker installed. Never suggest `docker` or `docker compose` commands to run locally.
+- **Not deployed locally.** The application runs in a remote server; the dev machine is used only for editing and pushing code. CI/CD (GitHub Actions) builds and publishes the Docker images.
+- **Cannot test the running app locally.** Validation is limited to static checks: `npx tsc --noEmit` (frontend) and `python3 -m compileall app/ alembic/ -q` (backend).
+- **package-lock.json must be generated with npm 11** (the version installed locally). The Dockerfile upgrades npm to v11 before `npm ci` to stay in sync.
+
 ## Commands
 
 ```bash
@@ -65,7 +72,7 @@ cd backend && pytest
 # Run single test file
 pytest tests/test_auth.py -v
 
-# DB migrations
+# DB migrations (run on the remote server, not locally)
 docker compose exec backend alembic revision --autogenerate -m "description"
 docker compose exec backend alembic upgrade head
 ```
