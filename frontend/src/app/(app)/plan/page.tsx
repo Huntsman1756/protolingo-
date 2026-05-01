@@ -224,7 +224,6 @@ export default function PlanPage() {
           return (
             <UnitCard
               key={unit.id}
-              unitId={unit.id}
               title={unit.title}
               index={i}
               lessonCount={unitLessons.length || unit.lesson_types.length}
@@ -244,7 +243,6 @@ export default function PlanPage() {
         {/* Level test pseudo-unit */}
         {units.length > 0 && (
           <UnitCard
-            unitId="level-test"
             title={`Level ${level} Completion Test`}
             index={units.length}
             lessonCount={1}

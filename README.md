@@ -58,7 +58,7 @@ freelingo/
 |-------|------------------------|----------------|
 | 1     | Learning platform      | ✅ Complete    |
 | 1+    | Learning Resources Hub | ✅ Complete    |
-| 2     | Local TTS + STT        | ⏳ Planned     |
+| 2     | Local TTS + STT        | 🚧 In Progress |
 | 3     | Real-time conversation | ⏳ Planned     |
 
 ## Quick start

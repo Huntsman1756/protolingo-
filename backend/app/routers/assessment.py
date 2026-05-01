@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from uuid import uuid4
+
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -27,11 +30,124 @@ from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
     LLMUnavailableError,
+    llm_adapter,
 )
 from app.services.study_plan_generator import generate_study_plan
 from app.schemas.study_plan import GenerateStudyPlanRequest
 
 router = APIRouter(prefix="/api/assessment", tags=["assessment"])
+
+
+class LegacyAnswerItem(BaseModel):
+    question_id: str | int
+    answer: str
+
+
+class LegacyAssessmentSubmitRequest(BaseModel):
+    answers: list[LegacyAnswerItem]
+
+
+class LegacyQuizQuestion(BaseModel):
+    id: str | int
+    type: str = "multiple_choice"
+    difficulty: str
+    question: str
+    options: list[str]
+    correct_answer: str | None = None
+    correct: str | None = None
+
+
+class LegacyQuizResponse(BaseModel):
+    questions: list[LegacyQuizQuestion]
+
+
+class LegacyEvalResponse(BaseModel):
+    cefr_level: str
+    score: float
+    analysis: str = ""
+    strengths: list[str] = []
+    weaknesses: list[str] = []
+
+
+# Backward-compatible in-memory session store used by legacy tests.
+_sessions: dict[str, dict] = {}
+
+
+@router.get("/start", response_model=dict)
+async def start_assessment(
+    current_user: User = Depends(get_current_user),
+):
+    try:
+        quiz_payload = await llm_adapter.structured_output(
+            [
+                {
+                    "role": "system",
+                    "content": "Generate an adaptive CEFR quiz with 20 questions.",
+                }
+            ],
+            LegacyQuizResponse,
+        )
+    except LLMTimeoutError:
+        raise HTTPException(status_code=504, detail="LLM timed out generating assessment quiz.")
+    except LLMUnavailableError as e:
+        raise HTTPException(status_code=503, detail=f"AI service unavailable: {e}")
+    except LLMError as e:
+        raise HTTPException(status_code=502, detail=f"Assessment generation failed: {e}")
+
+    quiz = quiz_payload.model_dump() if isinstance(quiz_payload, BaseModel) else quiz_payload
+    session_id = str(uuid4())
+    _sessions[str(current_user.id)] = {
+        "session_id": session_id,
+        "quiz": quiz,
+    }
+    return {"quiz": quiz, "session_id": session_id}
+
+
+@router.post("/submit", response_model=AssessmentResult)
+async def submit_assessment(
+    data: LegacyAssessmentSubmitRequest,
+    current_user: User = Depends(get_current_user),
+):
+    session = _sessions.get(str(current_user.id))
+    if not session:
+        raise HTTPException(status_code=404, detail="No active assessment session.")
+
+    try:
+        eval_payload = await llm_adapter.structured_output(
+            [
+                {
+                    "role": "system",
+                    "content": "Evaluate assessment answers and return CEFR placement result as JSON.",
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        f"Session: {session['session_id']}\n"
+                        f"Quiz: {session['quiz']}\n"
+                        f"Answers: {data.model_dump()}"
+                    ),
+                },
+            ],
+            LegacyEvalResponse,
+        )
+    except LLMTimeoutError:
+        raise HTTPException(status_code=504, detail="LLM timed out evaluating assessment.")
+    except LLMUnavailableError as e:
+        raise HTTPException(status_code=503, detail=f"AI service unavailable: {e}")
+    except LLMError as e:
+        raise HTTPException(status_code=502, detail=f"Assessment evaluation failed: {e}")
+    finally:
+        _sessions.pop(str(current_user.id), None)
+
+    result = eval_payload.model_dump() if isinstance(eval_payload, BaseModel) else eval_payload
+    return AssessmentResult(
+        cefr_level=result.get("cefr_level", "A1"),
+        score=float(result.get("score", 0.0)),
+        skill_profile={},
+        strengths=result.get("strengths", []),
+        weaknesses=result.get("weaknesses", []),
+        analysis=result.get("analysis", ""),
+    )
 
 
 @router.post("/evaluate", response_model=AssessmentResult)

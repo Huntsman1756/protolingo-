@@ -25,7 +25,8 @@ async def test_register_duplicate_username(client):
         "/api/auth/register",
         json={
             "username": "dup",
-            "password": "pass123",
+            "email": "dup@test.com",
+            "password": "pass1234",
             "display_name": "Dup",
             "native_language": "es",
         },
@@ -34,7 +35,8 @@ async def test_register_duplicate_username(client):
         "/api/auth/register",
         json={
             "username": "dup",
-            "password": "pass456",
+            "email": "dup2@test.com",
+            "password": "pass5678",
             "display_name": "Dup2",
             "native_language": "fr",
         },
@@ -53,7 +55,8 @@ async def test_register_when_closed_without_invite(client):
             "/api/auth/register",
             json={
                 "username": "locked",
-                "password": "pass123",
+                "email": "locked@test.com",
+                "password": "pass1234",
                 "display_name": "Locked",
                 "native_language": "es",
             },
@@ -69,7 +72,8 @@ async def test_first_user_is_admin(client):
         "/api/auth/register",
         json={
             "username": "first",
-            "password": "pass123",
+            "email": "first@test.com",
+            "password": "pass1234",
             "display_name": "First",
             "native_language": "en",
         },
@@ -85,7 +89,8 @@ async def test_second_user_is_not_admin(client):
         "/api/auth/register",
         json={
             "username": "admin_first",
-            "password": "pass123",
+            "email": "adminfirst@test.com",
+            "password": "pass1234",
             "display_name": "Admin",
             "native_language": "en",
         },
@@ -94,7 +99,8 @@ async def test_second_user_is_not_admin(client):
         "/api/auth/register",
         json={
             "username": "regular",
-            "password": "pass123",
+            "email": "regular@test.com",
+            "password": "pass1234",
             "display_name": "Regular",
             "native_language": "es",
         },
@@ -110,6 +116,7 @@ async def test_login_success_and_sets_cookie(client):
         "/api/auth/register",
         json={
             "username": "loginuser",
+            "email": "loginuser@test.com",
             "password": "testpass",
             "display_name": "Login",
             "native_language": "es",
@@ -117,7 +124,7 @@ async def test_login_success_and_sets_cookie(client):
     )
     response = await client.post(
         "/api/auth/login",
-        json={"username": "loginuser", "password": "testpass"},
+        json={"email": "loginuser@test.com", "password": "testpass"},
     )
     assert response.status_code == 200
     data = response.json()
@@ -130,7 +137,7 @@ async def test_login_success_and_sets_cookie(client):
 async def test_login_invalid_credentials(client):
     response = await client.post(
         "/api/auth/login",
-        json={"username": "nobody", "password": "wrong"},
+        json={"email": "nobody@test.com", "password": "wrong"},
     )
     assert response.status_code == 401
 
@@ -142,6 +149,7 @@ async def test_login_inactive_user(client, db_session):
 
     user = User(
         username="inactive",
+        email="inactive@test.com",
         display_name="Inactive",
         hashed_password=hash_password("testpass"),
         role="user",
@@ -153,7 +161,7 @@ async def test_login_inactive_user(client, db_session):
 
     response = await client.post(
         "/api/auth/login",
-        json={"username": "inactive", "password": "testpass"},
+        json={"email": "inactive@test.com", "password": "testpass"},
     )
     assert response.status_code == 401
 
@@ -164,6 +172,7 @@ async def test_refresh_rotates_token(client):
         "/api/auth/register",
         json={
             "username": "refreshuser",
+            "email": "refreshuser@test.com",
             "password": "testpass",
             "display_name": "Refresh",
             "native_language": "en",
@@ -171,7 +180,7 @@ async def test_refresh_rotates_token(client):
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"username": "refreshuser", "password": "testpass"},
+        json={"email": "refreshuser@test.com", "password": "testpass"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
@@ -194,14 +203,15 @@ async def test_refresh_replayed_token(client):
         "/api/auth/register",
         json={
             "username": "replayuser",
-            "password": "testpass",
+            "email": "replayuser@test.com",
+            "password": "testpass1",
             "display_name": "Replay",
             "native_language": "en",
         },
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"username": "replayuser", "password": "testpass"},
+        json={"email": "replayuser@test.com", "password": "testpass1"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
@@ -219,14 +229,15 @@ async def test_logout(client):
         "/api/auth/register",
         json={
             "username": "logoutuser",
-            "password": "testpass",
+            "email": "logoutuser@test.com",
+            "password": "testpass1",
             "display_name": "Logout",
             "native_language": "en",
         },
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"username": "logoutuser", "password": "testpass"},
+        json={"email": "logoutuser@test.com", "password": "testpass1"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
