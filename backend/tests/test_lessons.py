@@ -51,9 +51,23 @@ async def test_get_lesson_with_exercises(client, test_user, db_session):
     user, headers = test_user
 
     from app.models.lesson import Exercise, Lesson
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A2",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.flush()
 
     lesson = Lesson(
-        study_plan_id=1,
+        study_plan_id=plan.id,
         title="Test Lesson",
         lesson_type="grammar",
         cefr_level="A2",
@@ -86,9 +100,23 @@ async def test_complete_lesson(client, test_user, db_session):
     user, headers = test_user
 
     from app.models.lesson import Lesson
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A2",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.flush()
 
     lesson = Lesson(
-        study_plan_id=1,
+        study_plan_id=plan.id,
         title="Test Lesson",
         lesson_type="grammar",
         cefr_level="A2",
@@ -109,9 +137,23 @@ async def test_answer_exercise_multiple_choice_correct(client, test_user, db_ses
     user, headers = test_user
 
     from app.models.lesson import Exercise, Lesson
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A2",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.flush()
 
     lesson = Lesson(
-        study_plan_id=1,
+        study_plan_id=plan.id,
         title="Test",
         lesson_type="grammar",
         cefr_level="A2",
@@ -147,9 +189,23 @@ async def test_answer_exercise_multiple_choice_wrong(client, test_user, db_sessi
     user, headers = test_user
 
     from app.models.lesson import Exercise, Lesson
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A2",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.flush()
 
     lesson = Lesson(
-        study_plan_id=1,
+        study_plan_id=plan.id,
         title="Test",
         lesson_type="grammar",
         cefr_level="A2",
