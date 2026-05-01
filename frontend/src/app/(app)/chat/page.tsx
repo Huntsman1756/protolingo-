@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { AudioPlayer } from '@/components/ui/AudioPlayer'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -261,6 +262,11 @@ export default function ChatPage() {
                       : null
                     )}
                   </div>
+                  {msg.role === 'assistant' && msg.content && !(sending && i === messages.length - 1) && (
+                    <div className="mt-1">
+                      <AudioPlayer text={msg.content} size="sm" />
+                    </div>
+                  )}
                 </div>
               </div>
             ))
