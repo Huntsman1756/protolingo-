@@ -30,7 +30,7 @@ async def test_start_assessment_returns_quiz(client, test_user):
     }
 
     with patch(
-        "app.services.assessment.llm_adapter.structured_output",
+        "app.routers.assessment.llm_adapter.structured_output",
         return_value=mock_quiz,
     ):
         response = await client.get("/api/assessment/start", headers=headers)
@@ -75,7 +75,7 @@ async def test_submit_assessment_returns_cefr_level(client, test_user):
     }
 
     with patch(
-        "app.services.assessment.llm_adapter.structured_output",
+        "app.routers.assessment.llm_adapter.structured_output",
         side_effect=[mock_quiz, mock_eval],
     ):
         start_resp = await client.get("/api/assessment/start", headers=headers)
@@ -113,7 +113,7 @@ async def test_start_assessment_handles_llm_timeout(client, test_user):
     user, headers = test_user
 
     with patch(
-        "app.services.assessment.llm_adapter.structured_output",
+        "app.routers.assessment.llm_adapter.structured_output",
         side_effect=LLMTimeoutError("timeout"),
     ):
         response = await client.get("/api/assessment/start", headers=headers)
@@ -125,7 +125,7 @@ async def test_start_assessment_handles_llm_unavailable(client, test_user):
     user, headers = test_user
 
     with patch(
-        "app.services.assessment.llm_adapter.structured_output",
+        "app.routers.assessment.llm_adapter.structured_output",
         side_effect=LLMUnavailableError("unreachable"),
     ):
         response = await client.get("/api/assessment/start", headers=headers)
