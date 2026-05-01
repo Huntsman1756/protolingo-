@@ -88,3 +88,27 @@ Development phases. Update this file as the project progresses.
 - [ ] Automatic VAD operational with < 2% false positives
 - [ ] Conversation history maintained correctly during session
 - [ ] No regressions in Phase 1 and 2
+
+---
+
+## Phase 4 — Grammar Reference
+
+⬜ Status: Planned
+
+| # | Milestone | Status |
+|---|-----------|--------|
+| 1 | Data layer — `frontend/src/data/grammar.ts` with all topics A1–C2 | ⬜ |
+| 2 | Index page `/grammar` grouped by level, with search and category filter | ⬜ |
+| 3 | Detail page `/grammar/[slug]` with explanations, examples, mistakes | ⬜ |
+| 4 | Lesson integration — related grammar links on lesson pages | ⬜ |
+| 5 | Nav + routing — GRAMMAR entry in sidebar and mobile menu | ⬜ |
+
+**Completion criteria:**
+- [ ] `/grammar` renders all topics with no API calls
+- [ ] Search and category filter work client-side
+- [ ] `/grammar/[slug]` renders full detail for every slug
+- [ ] Non-existent slugs return 404
+- [ ] Lesson page shows related grammar links when `grammar_refs` is populated
+- [ ] Backend validates grammar slugs against `VALID_GRAMMAR_SLUGS`
+- [ ] GRAMMAR in sidebar nav and mobile dropdown
+- [ ] No regressions in Phase 1–3

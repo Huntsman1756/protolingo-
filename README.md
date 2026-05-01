@@ -59,6 +59,7 @@ freelingo/
 | 1     | Learning platform      | 🚧 In progress |
 | 2     | Local TTS + STT        | ⏳ Planned     |
 | 3     | Real-time conversation | ⏳ Planned     |
+| 4     | Grammar reference      | ⏳ Planned     |
 
 ## Quick start
 
@@ -114,6 +115,7 @@ The first registered user becomes admin automatically.
 - [phase-1-platform.instructions.md](specs/phase-1-platform.instructions.md) — Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat
 - [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
+- [phase-4-grammar-reference.instructions.md](specs/phase-4-grammar-reference.instructions.md) — Phase 4: static grammar reference A1–C2, lesson integration
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
