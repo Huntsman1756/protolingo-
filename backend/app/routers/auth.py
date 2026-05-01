@@ -13,6 +13,7 @@ from app.core.limiter import limiter
 from app.core.security import (
     create_access_token,
     create_refresh_token,
+    dummy_verify,
     hash_password,
     verify_password,
 )
@@ -105,8 +106,13 @@ async def login(
     user = result.scalar_one_or_none()
 
     # Always run bcrypt to prevent timing-based user enumeration
-    password_ok = verify_password(data.password, user.hashed_password if user else hash_password("dummy"))
-    if not user or not user.is_active or not password_ok:
+    if user:
+        password_ok = verify_password(data.password, user.hashed_password)
+    else:
+        dummy_verify()
+        password_ok = False
+
+    if not password_ok or not user or not user.is_active:
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     user.last_login = datetime.now(timezone.utc).replace(tzinfo=None)
