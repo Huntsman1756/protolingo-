@@ -34,6 +34,9 @@
   --color-fl-error-fg: var(--fl-error-fg);
   --color-fl-error-dim: var(--fl-error-dim);
   --color-fl-error-hover: var(--fl-error-hover);
+  /* FreeLingo accent tokens */
+  --color-fl-accent: var(--fl-accent);
+  --color-fl-accent-fg: var(--fl-accent-fg);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -85,6 +88,8 @@
   --fl-error-fg: #ff6b6b;
   --fl-error-dim: #cc6666;
   --fl-error-hover: #ff5555;
+  --fl-accent: #C9943A;
+  --fl-accent-fg: #0a0a0a;
   /* shadcn tokens */
   --background: #0a0a0a;
   --foreground: #f5f5f5;
@@ -177,6 +182,8 @@ html[data-theme="light"] {
   --fl-error-fg: #cc3333;
   --fl-error-dim: #994444;
   --fl-error-hover: #c02020;
+  --fl-accent: #B07E28;
+  --fl-accent-fg: #0a0a0a;
   /* shadcn token overrides */
   --background: #f5f5f5;
   --foreground: #0a0a0a;

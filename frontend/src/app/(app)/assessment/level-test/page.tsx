@@ -309,7 +309,7 @@ export default function LevelTestPage() {
             <div className="flex flex-col gap-2">
               <button
                 onClick={() => router.push(rec.nextAction)}
-                className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-fg-bright transition-colors"
+                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-accent/90 transition-colors"
               >
                 {rec.nextLabel}
               </button>
@@ -415,7 +415,7 @@ export default function LevelTestPage() {
             <button
               onClick={handleConfirmAnswer}
               disabled={!selectedOption}
-              className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-fg-bright transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-accent/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               Confirm Answer
             </button>
@@ -431,7 +431,7 @@ export default function LevelTestPage() {
               </div>
               <button
                 onClick={handleNext}
-                className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-fg-bright transition-colors"
+                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-accent/90 transition-colors"
               >
                 {currentIndex + 1 >= questions.length ? 'Submit Test →' : 'Next Question →'}
               </button>

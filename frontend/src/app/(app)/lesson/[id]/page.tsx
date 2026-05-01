@@ -102,7 +102,7 @@ export default function LessonPage() {
           <p className="font-mono text-xl font-bold text-fl-fg tracking-widest">LESSON DONE</p>
           <button
             onClick={() => router.push('/dashboard')}
-            className="mt-8 bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase px-8 py-3 hover:bg-fl-fg-bright transition-colors"
+            className="mt-8 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-8 py-3 hover:bg-fl-accent/90 transition-colors"
           >
             — Back to Dashboard
           </button>
@@ -166,7 +166,7 @@ export default function LessonPage() {
           {/* Progress bar */}
           <div className="h-px bg-fl-border">
             <div
-              className="h-px bg-fl-fg transition-all duration-300"
+              className="h-px bg-fl-accent transition-all duration-300"
               style={{ width: `${Math.round(((currentExercise + 1) / exercises.length) * 100)}%` }}
             />
           </div>
@@ -185,7 +185,7 @@ export default function LessonPage() {
                       disabled={isEvaluated}
                       onClick={() => setAnswer(letter)}
                       className={`w-full text-left px-4 py-3 border font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${isSelected
-                        ? 'border-fl-fg bg-fl-fg text-fl-bg'
+                        ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                         : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
                         }`}
                     >
@@ -208,7 +208,7 @@ export default function LessonPage() {
               <button
                 onClick={submitAnswer}
                 disabled={evaluating || !answer.trim()}
-                className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright disabled:opacity-40 transition-colors"
+                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
               >
                 {evaluating ? '— Checking…' : '— Submit Answer'}
               </button>
@@ -237,7 +237,7 @@ export default function LessonPage() {
                   ) : (
                     <button
                       onClick={completeLessonHandler}
-                      className="bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase px-6 py-2 hover:bg-fl-fg-bright transition-colors"
+                      className="bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-6 py-2 hover:bg-fl-accent/90 transition-colors"
                     >
                       — Complete Lesson
                     </button>

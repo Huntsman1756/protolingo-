@@ -72,14 +72,14 @@ export default function DashboardPage() {
       {/* Stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-fl-border mb-8">
         {[
-          { label: 'STREAK', value: `${streak}d` },
-          { label: 'XP', value: xp },
-          { label: 'LEVEL', value: cefrLevel ?? '—' },
-          { label: 'SKILLS', value: skillEntries.length },
+          { label: 'STREAK', value: `${streak}d`, accent: streak > 0 },
+          { label: 'XP', value: xp, accent: false },
+          { label: 'LEVEL', value: cefrLevel ?? '—', accent: false },
+          { label: 'SKILLS', value: skillEntries.length, accent: false },
         ].map((stat) => (
           <div key={stat.label} className="bg-fl-surface px-5 py-5">
             <p className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase mb-2">{stat.label}</p>
-            <p className="font-mono text-3xl font-bold text-fl-fg tracking-tight">{stat.value}</p>
+            <p className={`font-mono text-3xl font-bold tracking-tight ${stat.accent ? 'text-fl-accent' : 'text-fl-fg'}`}>{stat.value}</p>
           </div>
         ))}
       </div>
@@ -100,7 +100,7 @@ export default function DashboardPage() {
                     <span className="font-mono text-fl-label text-fl-muted-2">{Math.round((value as number) * 100)}%</span>
                   </div>
                   <div className="h-px bg-fl-border w-full">
-                    <div className="h-px bg-fl-fg" style={{ width: `${(value as number) * 100}%` }} />
+                    <div className="h-px bg-fl-accent" style={{ width: `${(value as number) * 100}%` }} />
                   </div>
                 </div>
               ))}
@@ -130,7 +130,7 @@ export default function DashboardPage() {
                     <span className="font-mono text-fl-label text-fl-muted-2 uppercase tracking-widest">✓ done</span>
                   ) : lesson.id ? (
                     <Link href={`/lesson/${lesson.id}`}>
-                      <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-3 py-1 uppercase hover:bg-fl-fg-bright transition-colors">
+                      <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-3 py-1 uppercase hover:bg-fl-accent/90 transition-colors">
                         START
                       </button>
                     </Link>
@@ -144,7 +144,7 @@ export default function DashboardPage() {
                 {hasPlan ? 'All caught up.' : 'Start with an assessment.'}
               </p>
               <Link href="/assessment">
-                <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-fg-bright transition-colors">
+                <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-accent/90 transition-colors">
                   Take Assessment →
                 </button>
               </Link>
@@ -157,7 +157,7 @@ export default function DashboardPage() {
       <div className="flex gap-2 flex-wrap">
         {hasPlan && (
           <Link href="/plan">
-            <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-fg-bright transition-colors">
+            <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-accent/90 transition-colors">
               My Plan →
             </button>
           </Link>

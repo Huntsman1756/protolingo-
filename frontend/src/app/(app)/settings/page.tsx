@@ -130,7 +130,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={() => setEnglishVariant(v)}
                 className={`flex-1 flex items-center justify-center gap-2 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${englishVariant === v
-                    ? 'border-fl-fg bg-fl-fg text-fl-bg'
+                    ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                     : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
                   }`}
               >
@@ -177,7 +177,7 @@ export default function SettingsPage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright disabled:opacity-40 transition-colors"
+          className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
         >
           {saving ? '— SAVING...' : '— SAVE CHANGES'}
         </button>

@@ -97,7 +97,7 @@ function UnitCompetencyBlock({
       {/* Progress bar */}
       <div className="h-0.5 bg-fl-border">
         <div
-          className="h-full bg-fl-fg transition-all"
+          className="h-full bg-fl-accent transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -279,7 +279,7 @@ export default function ProgressPage() {
                 </Link>
                 <div className="flex items-center gap-3">
                   <div className="w-24 h-1.5 bg-fl-border">
-                    <div className="h-full bg-fl-fg" style={{ width: '0%' }} />
+                    <div className="h-full bg-fl-accent" style={{ width: '0%' }} />
                   </div>
                   <span className="font-mono text-fl-label text-fl-muted-3 w-12 text-right">
                     {s.words.length}w
@@ -312,7 +312,7 @@ export default function ProgressPage() {
                 </span>
                 <div className="flex-1 h-1.5 bg-fl-border">
                   <div
-                    className="h-full bg-fl-fg"
+                    className="h-full bg-fl-accent"
                     style={{ width: `${Math.round(value * 100)}%` }}
                   />
                 </div>

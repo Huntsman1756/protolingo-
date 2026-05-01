@@ -116,7 +116,7 @@ export default function VocabularySetPage({
               <button
                 onClick={handleAddAll}
                 disabled={adding}
-                className="bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase px-5 py-2.5 hover:bg-fl-fg-bright disabled:opacity-40 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-5 py-2.5 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
               >
                 {adding ? '— Adding…' : `— Add All ${vocabSet.words.length} to Flashcards`}
               </button>

@@ -191,7 +191,7 @@ export default function AdminUsersPage() {
             </select>
             <button
               type="submit"
-              className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright transition-colors mt-1"
+              className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors mt-1"
             >
               — Create
             </button>

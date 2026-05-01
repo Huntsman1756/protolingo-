@@ -275,7 +275,7 @@ export default function AssessmentPage() {
               </button>
               <button
                 onClick={() => setStep('beginner-gate')}
-                className="flex-[2] bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright transition-colors"
+                className="flex-[2] bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
               >
                 — Retake Assessment
               </button>
@@ -355,7 +355,7 @@ export default function AssessmentPage() {
                     onClick={() => setSelectedLevel(lvl)}
                     className={`px-3 py-1.5 font-mono text-xs font-bold tracking-widest border transition-colors ${
                       selectedLevel === lvl
-                        ? 'bg-fl-fg text-fl-bg border-fl-fg'
+                        ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                         : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                   >
@@ -410,7 +410,7 @@ export default function AssessmentPage() {
             )}
             <button
               onClick={() => setStep('duration')}
-              className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright transition-colors"
+              className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
             >
               — Set Up My Programme →
             </button>

@@ -250,7 +250,7 @@ export default function ChatPage() {
                     {msg.role === 'user' ? 'you' : 'tutor'}
                   </p>
                   <div className={`font-mono text-sm leading-relaxed px-4 py-3 border ${msg.role === 'user'
-                    ? 'bg-fl-fg text-fl-bg border-fl-fg'
+                    ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                     : 'bg-fl-surface text-fl-fg-2 border-fl-border'
                     }`}>
                     {msg.content || (sending && i === messages.length - 1
@@ -286,7 +286,7 @@ export default function ChatPage() {
             <button
               onClick={sendMessage}
               disabled={sending || !input.trim() || loadingMsgs}
-              className="bg-fl-fg text-fl-bg font-mono text-fl-label font-bold tracking-widest uppercase px-5 hover:bg-fl-fg-bright disabled:opacity-30 transition-colors"
+              className="bg-fl-accent text-fl-accent-fg font-mono text-fl-label font-bold tracking-widest uppercase px-5 hover:bg-fl-accent/90 disabled:opacity-30 transition-colors"
             >
               {sending ? '…' : 'SEND'}
             </button>
