@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreeLingo — AI-powered language learning, self-hosted</title>
+  <meta name="description"
+    content="Open source, self-hosted language learning platform powered by local AI. CEFR-aligned study plans, spaced repetition flashcards, and a streaming AI tutor." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <img src="assets/logo.png" alt="FreeLingo" />
+      FreeLingo
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#quickstart">Quick Start</a></li>
+      <li><a href="https://github.com/ArtCC/freelingo" target="_blank" rel="noopener"><svg class="gh-icon"
+            viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+          </svg> GitHub</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero-logo" src="assets/logo.png" alt="FreeLingo logo" />
+      <h1>FreeLingo</h1>
+      <p class="hero-subtitle">
+        Open source, self-hosted language learning with AI.<br />
+        A local LLM evaluates your CEFR level, builds a personalized study plan,
+        and guides you through lessons, flashcards, and live tutor chat.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#quickstart">Get Started</a>
+        <a class="btn btn-secondary" href="https://github.com/ArtCC/freelingo" target="_blank" rel="noopener"><svg
+            class="gh-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+          </svg> View on GitHub</a>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">Everything you need to learn English</h2>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>CEFR Placement Test</h3>
+          <p>Adaptive quiz determines your A1–C2 level automatically before building your plan.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Personalized Study Plan</h3>
+          <p>Curriculum-driven weekly roadmap based on your level and schedule intensity (4–16 weeks).</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✍️</div>
+          <h3>AI-Generated Lessons</h3>
+          <p>Grammar, vocabulary, reading, and writing lessons generated within strict CEFR boundaries.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🃏</div>
+          <h3>Spaced Repetition Flashcards</h3>
+          <p>SM-2 algorithm schedules reviews at exactly the right time. Cards include native-language translations.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>AI Tutor Chat</h3>
+          <p>Streaming SSE tutor with real-time feedback, fully aware of your current unit and progress.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎙️</div>
+          <h3>Voice Support</h3>
+          <p>TTS playback (Kokoro) and STT dictation (faster-whisper) for pronunciation practice.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <h3>Learning Resources Hub</h3>
+          <p>Grammar reference, vocabulary hub, phrasebook, and skills tracker — all in one place.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>Any LLM Provider</h3>
+          <p>Ollama (local), OpenAI, Anthropic, or DeepSeek. Switch providers with a single setting.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>100% self-hosted. Your data, your server, your rules. Multi-user with invite-only registration.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QUICK START -->
+    <section id="quickstart">
+      <p class="section-label">Quick Start</p>
+      <h2 class="section-title">Up and running in four steps</h2>
+      <div class="quickstart-steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Install Docker and Ollama</h3>
+            <p>Run Docker and Docker Compose on your server. Install <a href="https://ollama.com" target="_blank"
+                rel="noopener">Ollama</a> on the host for GPU access.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Clone the repository and configure</h3>
+            <div class="code-block">
+              <pre>git clone https://github.com/ArtCC/freelingo.git
+cd freelingo
+cp .env.example .env
+# Edit .env — set OLLAMA_BASE_URL and review other settings</pre>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Pull the recommended model</h3>
+            <div class="code-block">
+              <pre>ollama pull gemma3:12b</pre>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Start all services</h3>
+            <div class="code-block">
+              <pre>docker compose up -d</pre>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <p>Open <strong>http://&lt;server-ip&gt;:3000</strong>. The first registered user becomes admin
+              automatically.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OPEN SOURCE -->
+    <section class="opensource">
+      <p class="section-label">Open Source</p>
+      <h2>Built in the open, auditable by anyone</h2>
+      <p>
+        FreeLingo is free and open source under the Apache 2.0 license.<br />
+        Browse the code, report issues, or contribute on GitHub.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/ArtCC/freelingo" target="_blank" rel="noopener"><svg
+            class="gh-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+          </svg> View on GitHub</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com/ArtCC/freelingo" target="_blank" rel="noopener"><svg class="gh-icon"
+          viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg> GitHub</a>
+      <a href="https://github.com/ArtCC/freelingo/blob/main/LICENSE" target="_blank" rel="noopener">Apache 2.0</a>
+    </div>
+    <p>Made by <a href="https://github.com/ArtCC" target="_blank" rel="noopener">Arturo Carretero Calvo</a> · Apache 2.0
+    </p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

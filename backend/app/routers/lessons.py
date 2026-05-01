@@ -15,7 +15,7 @@ from app.schemas.lessons import (
     LessonDetailResponse,
     LessonResponse,
 )
-from app.services.lesson_generator import evaluate_free_write, generate_lesson
+from app.services.lesson_generator import evaluate_free_write, evaluate_pronunciation, generate_lesson
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -152,6 +152,31 @@ async def answer_exercise(
         except (LLMTimeoutError, LLMUnavailableError, LLMError):
             exercise.score = 0.5
             exercise.feedback = "Could not evaluate free-write answer at this time."
+    elif exercise.exercise_type == "pronunciation":
+        transcription = data.answer
+        try:
+            eval_result = await evaluate_pronunciation(
+                cefr_level=lesson.cefr_level,
+                target=exercise.correct_answer,
+                transcription=transcription,
+            )
+            exercise.score = eval_result.score
+            exercise.feedback = eval_result.feedback
+        except (LLMTimeoutError, LLMUnavailableError, LLMError):
+            # Fallback: simple normalised comparison
+            norm_target = exercise.correct_answer.strip().lower()
+            norm_answer = transcription.strip().lower()
+            is_close = (
+                norm_target == norm_answer
+                or norm_target in norm_answer
+                or norm_answer in norm_target
+            )
+            exercise.score = 1.0 if is_close else 0.3
+            exercise.feedback = (
+                "Good pronunciation!"
+                if is_close
+                else f"The target phrase was: {exercise.correct_answer}"
+            )
     else:
         is_correct = user_answer == correct
         exercise.score = 1.0 if is_correct else 0.0

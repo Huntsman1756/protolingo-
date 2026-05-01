@@ -7,6 +7,8 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useProgressStore } from '@/store/progress'
 import { grammarTopics } from '@/data/grammar'
+import { AudioPlayer } from '@/components/ui/AudioPlayer'
+import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 
 interface ExerciseItem {
   id: number
@@ -56,22 +58,24 @@ export default function LessonPage() {
 
   useEffect(() => { loadLesson() }, [loadLesson])
 
-  async function submitAnswer() {
-    if (!answer.trim()) return
+  async function submitAnswer(overrideAnswer?: string) {
+    const finalAnswer = overrideAnswer ?? answer
+    if (!finalAnswer.trim()) return
     const exercise = exercises[currentExercise]
     setEvaluating(true)
     try {
       const res = await apiFetch(`/api/lessons/exercises/${exercise.id}/answer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answer }),
+        body: JSON.stringify({ answer: finalAnswer }),
       })
       const result = await res.json()
       setExercises((prev) => {
         const copy = [...prev]
-        copy[currentExercise] = { ...copy[currentExercise], score: result.score, feedback: result.feedback, user_answer: answer }
+        copy[currentExercise] = { ...copy[currentExercise], score: result.score, feedback: result.feedback, user_answer: finalAnswer }
         return copy
       })
+      if (overrideAnswer !== undefined) setAnswer(overrideAnswer)
     } catch { /* ignore */ }
     finally { setEvaluating(false) }
   }
@@ -148,6 +152,25 @@ export default function LessonPage() {
                   ))}
                 </ul>
               )}
+              {(explanation.examples as { sentence: string; note: string }[])?.length > 0 && (
+                <div className="border-t border-fl-border pt-3 space-y-2">
+                  <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('examples')}</p>
+                  {(explanation.examples as { sentence: string; note: string }[]).map((ex, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="text-fl-muted-3 mt-0.5">·</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-mono text-xs text-fl-muted-1 italic">{ex.sentence}</span>
+                          <AudioPlayer text={ex.sentence} size="sm" />
+                        </div>
+                        {ex.note && (
+                          <p className="font-mono text-fl-hint text-fl-muted-3 mt-0.5">{ex.note}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -197,6 +220,27 @@ export default function LessonPage() {
                   )
                 })}
               </div>
+            ) : exercise.exercise_type === 'pronunciation' ? (
+              <div className="space-y-4">
+                {/* Target phrase + listen button */}
+                <div className="border border-fl-border bg-fl-bg px-4 py-4 flex items-center gap-3 flex-wrap">
+                  <span className="font-mono text-sm font-bold text-fl-fg flex-1">{exercise.correct_answer}</span>
+                  <AudioPlayer text={exercise.correct_answer} size="md" />
+                </div>
+                {exercise.options?.[0] && (
+                  <p className="font-mono text-fl-hint text-fl-muted-3">{exercise.options[0]}</p>
+                )}
+                {!isEvaluated && (
+                  <VoiceRecorder
+                    onTranscription={(text) => submitAnswer(text)}
+                    maxSeconds={8}
+                    disabled={evaluating}
+                  />
+                )}
+                {evaluating && (
+                  <p className="font-mono text-fl-hint text-fl-muted-3 tracking-widest uppercase animate-pulse">{tCommon('checking')}</p>
+                )}
+              </div>
             ) : (
               <textarea
                 className="min-h-[90px] w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
@@ -207,9 +251,9 @@ export default function LessonPage() {
               />
             )}
 
-            {!isEvaluated ? (
+            {!isEvaluated && exercise.exercise_type !== 'pronunciation' ? (
               <button
-                onClick={submitAnswer}
+                onClick={() => submitAnswer()}
                 disabled={evaluating || !answer.trim()}
                 className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
               >

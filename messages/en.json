@@ -230,7 +230,11 @@
     "label": "Lesson",
     "submitAnswer": "Submit Answer",
     "lessonDone": "Lesson Done",
-    "score": "Score"
+    "score": "Score",
+    "examples": "Examples",
+    "pronunciationExercise": "Pronunciation",
+    "tapToListen": "Tap to listen",
+    "recordNow": "Record your answer"
   },
   "flashcards": {
     "title": "Flashcards",
@@ -252,7 +256,10 @@
     "front": "Word",
     "back": "Definition",
     "loading": "Loading flashcards...",
-    "sectionGenerate": "Generate New Cards"
+    "sectionGenerate": "Generate New Cards",
+    "speakingMode": "Speaking",
+    "standardMode": "Standard",
+    "sayWord": "Say the word aloud"
   },
   "chat": {
     "title": "AI Tutor",

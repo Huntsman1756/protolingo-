@@ -4,6 +4,8 @@ import { useEffect, useState, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
+import { AudioPlayer } from '@/components/ui/AudioPlayer'
+import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 
 interface CardData {
   id: number
@@ -39,6 +41,7 @@ export default function FlashcardsPage() {
   const [genCefr, setGenCefr] = useState('B1')
   const [generating, setGenerating] = useState(false)
   const [genError, setGenError] = useState('')
+  const [speakingMode, setSpeakingMode] = useState(false)
 
   const loadDue = useCallback(async () => {
     setLoading(true)
@@ -71,6 +74,14 @@ export default function FlashcardsPage() {
     } else {
       await loadDue()
     }
+  }
+
+  async function handleSpeakingTranscription(transcription: string) {
+    if (cards.length === 0) return
+    const card = cards[current]
+    const norm = (s: string) => s.trim().toLowerCase().replace(/[^a-z0-9 ]/g, '')
+    const isCorrect = norm(transcription) === norm(card.word)
+    await reviewCard(isCorrect ? 5 : 2)
   }
 
   async function generateCards(e: React.FormEvent) {
@@ -205,55 +216,108 @@ export default function FlashcardsPage() {
       {/* Card review */}
       {cards.length > 0 && (
         <>
-          <div className="flex items-center gap-4 font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
+          <div className="flex items-center justify-between font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
             <span>{current + 1} / {cards.length} due</span>
+            {/* Mode toggle */}
+            <div className="flex gap-1">
+              <button
+                onClick={() => { setSpeakingMode(false); setFlipped(false) }}
+                className={`border px-3 py-1 text-fl-hint tracking-widest transition-colors ${!speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
+              >
+                {t('standardMode')}
+              </button>
+              <button
+                onClick={() => { setSpeakingMode(true); setFlipped(false) }}
+                className={`border px-3 py-1 text-fl-hint tracking-widest transition-colors ${speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
+              >
+                {t('speakingMode')}
+              </button>
+            </div>
           </div>
 
-          <div
-            className="min-h-[220px] border border-fl-border bg-fl-surface cursor-pointer select-none transition-colors hover:border-fl-border-2"
-            onClick={() => setFlipped(!flipped)}
-          >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
-              <div className="flex items-center gap-2">
-                <span className="text-fl-label text-fl-muted-3">●</span>
-                <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-                  {flipped ? 'Definition' : 'Word'}
-                </span>
+          {/* ── Standard mode ── */}
+          {!speakingMode && (
+            <>
+              <div
+                className="min-h-[220px] border border-fl-border bg-fl-surface cursor-pointer select-none transition-colors hover:border-fl-border-2"
+                onClick={() => setFlipped(!flipped)}
+              >
+                <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+                  <div className="flex items-center gap-2">
+                    <span className="text-fl-label text-fl-muted-3">●</span>
+                    <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+                      {flipped ? 'Definition' : 'Word'}
+                    </span>
+                  </div>
+                  <span className="font-mono text-fl-hint text-fl-border-2 uppercase tracking-widest">
+                    tap to {flipped ? 'hide' : 'reveal'}
+                  </span>
+                </div>
+
+                <div className="flex flex-col items-center justify-center p-10 gap-4 text-center">
+                  {!flipped ? (
+                    <div className="flex items-center gap-3">
+                      <p className="font-mono text-3xl font-bold text-fl-fg tracking-wide">{cards[current].word}</p>
+                      <span onClick={(e) => e.stopPropagation()}>
+                        <AudioPlayer text={cards[current].word} size="md" />
+                      </span>
+                    </div>
+                  ) : (
+                    <>
+                      <p className="font-mono text-base text-fl-fg-2 leading-relaxed">{cards[current].definition}</p>
+                      {cards[current].example_sentence && (
+                        <p className="font-mono text-xs text-fl-muted-1 italic">{cards[current].example_sentence}</p>
+                      )}
+                      {cards[current].translation && (
+                        <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest border-t border-fl-border pt-3 mt-1 uppercase">{cards[current].translation}</p>
+                      )}
+                    </>
+                  )}
+                </div>
               </div>
-              <span className="font-mono text-fl-hint text-fl-border-2 uppercase tracking-widest">
-                tap to {flipped ? 'hide' : 'reveal'}
-              </span>
-            </div>
 
-            <div className="flex flex-col items-center justify-center p-10 gap-4 text-center">
-              {!flipped ? (
-                <p className="font-mono text-3xl font-bold text-fl-fg tracking-wide">{cards[current].word}</p>
-              ) : (
-                <>
-                  <p className="font-mono text-base text-fl-fg-2 leading-relaxed">{cards[current].definition}</p>
-                  {cards[current].example_sentence && (
-                    <p className="font-mono text-xs text-fl-muted-1 italic">{cards[current].example_sentence}</p>
-                  )}
-                  {cards[current].translation && (
-                    <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest border-t border-fl-border pt-3 mt-1 uppercase">{cards[current].translation}</p>
-                  )}
-                </>
+              {flipped && (
+                <div className="flex gap-2 flex-wrap">
+                  {QUALITY_BUTTONS.map(({ label, q, color }) => (
+                    <button
+                      key={q}
+                      onClick={() => reviewCard(q)}
+                      className="flex-1 min-w-[80px] border border-fl-border py-3 font-mono text-fl-label tracking-widest uppercase transition-all hover:border-fl-border-2"
+                      style={{ color }}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
               )}
-            </div>
-          </div>
+            </>
+          )}
 
-          {flipped && (
-            <div className="flex gap-2 flex-wrap">
-              {QUALITY_BUTTONS.map(({ label, q, color }) => (
-                <button
-                  key={q}
-                  onClick={() => reviewCard(q)}
-                  className="flex-1 min-w-[80px] border border-fl-border py-3 font-mono text-fl-label tracking-widest uppercase transition-all hover:border-fl-border-2"
-                  style={{ color }}
-                >
-                  {label}
-                </button>
-              ))}
+          {/* ── Speaking mode ── */}
+          {speakingMode && (
+            <div className="border border-fl-border bg-fl-surface">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+                <div className="flex items-center gap-2">
+                  <span className="text-fl-label text-fl-muted-3">●</span>
+                  <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Speaking</span>
+                </div>
+                <span className="font-mono text-fl-hint text-fl-border-2 uppercase tracking-widest">{t('sayWord')}</span>
+              </div>
+
+              <div className="flex flex-col items-center justify-center p-10 gap-5 text-center">
+                <p className="font-mono text-base text-fl-fg-2 leading-relaxed">{cards[current].definition}</p>
+                {cards[current].example_sentence && (
+                  <p className="font-mono text-xs text-fl-muted-1 italic">{cards[current].example_sentence}</p>
+                )}
+                {cards[current].translation && (
+                  <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest border-t border-fl-border pt-3 mt-1 uppercase">{cards[current].translation}</p>
+                )}
+                <VoiceRecorder
+                  onTranscription={handleSpeakingTranscription}
+                  maxSeconds={5}
+                  className="mt-2"
+                />
+              </div>
             </div>
           )}
 

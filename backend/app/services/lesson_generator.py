@@ -1,4 +1,4 @@
-from app.schemas.lessons import FreeWriteEvaluation, LessonContent
+from app.schemas.lessons import FreeWriteEvaluation, LessonContent, PronunciationEvaluation
 from app.services.llm_adapter import llm_adapter
 
 VALID_GRAMMAR_SLUGS: set[str] = {
@@ -40,7 +40,16 @@ STRICT CONSTRAINTS:
    inversion, cleft-sentences, discourse-markers, nominalisation.
 
 The lesson should take about 20-30 minutes. Include 3-5 exercises of mixed types
-(multiple_choice, fill_blank, free_write).
+(multiple_choice, fill_blank, free_write, pronunciation).
+
+For pronunciation exercises use this exact structure:
+{{
+  "type": "pronunciation",
+  "question": "Listen and repeat:",
+  "options": ["Hint: focus on the specific sound or pattern"],
+  "correct": "The exact English phrase the student must pronounce.",
+  "explanation": "What phonetic aspect this practices (e.g. -ing endings, linking sounds)"
+}}
 
 Return a JSON object:
 {{
@@ -85,6 +94,29 @@ Evaluate the answer and return JSON:
     {{"original": "I am go", "corrected": "I am going", "explanation": "Use gerund after 'to be'"}}
   ]
 }}
+"""
+
+PRONUNCIATION_EVAL_PROMPT = """
+Student level: {cefr_level}
+Target phrase: {target}
+Transcribed speech: {transcription}
+
+The student was asked to repeat the target phrase aloud. The speech was transcribed by STT.
+Evaluate how accurately they pronounced the phrase and return JSON:
+{{
+  "score": 0.85,
+  "feedback": "Good pronunciation. The word 'working' was slightly unclear.",
+  "is_correct": true
+}}
+
+Scoring guidelines:
+- 1.0 = perfect match
+- 0.7–0.9 = minor transcription artifacts, main content correct
+- 0.4–0.6 = partial match, key words present but several missing
+- 0.0–0.3 = mostly wrong or completely different
+
+If the transcription captures the main content of the target phrase, score >= 0.7.
+Consider minor STT artifacts (e.g. missing punctuation, extra filler words) as correct.
 """
 
 
@@ -138,5 +170,22 @@ async def evaluate_free_write(
     result = await llm_adapter.structured_output(
         [{"role": "system", "content": eval_prompt}],
         FreeWriteEvaluation,
+    )
+    return result
+
+
+async def evaluate_pronunciation(
+    cefr_level: str,
+    target: str,
+    transcription: str,
+) -> PronunciationEvaluation:
+    eval_prompt = PRONUNCIATION_EVAL_PROMPT.format(
+        cefr_level=cefr_level,
+        target=target,
+        transcription=transcription,
+    )
+    result = await llm_adapter.structured_output(
+        [{"role": "system", "content": eval_prompt}],
+        PronunciationEvaluation,
     )
     return result
