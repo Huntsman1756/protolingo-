@@ -87,7 +87,7 @@ export default function LessonPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-[#777] tracking-widest uppercase animate-pulse">Loading lesson…</span>
+        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">Loading lesson…</span>
       </div>
     )
   }
@@ -95,12 +95,12 @@ export default function LessonPage() {
   if (completed) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 p-6">
-        <div className="border border-[#2a2a2a] bg-[#111] px-10 py-10 text-center">
-          <p className="font-mono text-[10px] tracking-widest text-[#777] uppercase mb-4">● Complete</p>
-          <p className="font-mono text-xl font-bold text-[#f5f5f5] tracking-widest">LESSON DONE</p>
+        <div className="border border-fl-border bg-fl-surface px-10 py-10 text-center">
+          <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-4">● Complete</p>
+          <p className="font-mono text-xl font-bold text-fl-fg tracking-widest">LESSON DONE</p>
           <button
             onClick={() => router.push('/dashboard')}
-            className="mt-8 bg-[#f5f5f5] text-[#0a0a0a] font-mono text-xs font-bold tracking-widest uppercase px-8 py-3 hover:bg-white transition-colors"
+            className="mt-8 bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase px-8 py-3 hover:bg-fl-fg-bright transition-colors"
           >
             — Back to Dashboard
           </button>
@@ -116,29 +116,29 @@ export default function LessonPage() {
   return (
     <div className="mx-auto max-w-2xl p-6 space-y-4">
       {/* Lesson header */}
-      <div className="border border-[#2a2a2a] bg-[#111]">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#2a2a2a]">
+      <div className="border border-fl-border bg-fl-surface">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-[#777]">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Lesson</span>
+            <span className="text-[10px] text-fl-muted-2">●</span>
+            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Lesson</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[9px] text-[#777] tracking-widest uppercase border border-[#2a2a2a] px-2 py-1">{lesson?.cefr_level}</span>
-            <span className="font-mono text-[9px] text-[#777] tracking-widest uppercase border border-[#2a2a2a] px-2 py-1">{lesson?.lesson_type}</span>
+            <span className="font-mono text-[9px] text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.cefr_level}</span>
+            <span className="font-mono text-[9px] text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.lesson_type}</span>
           </div>
         </div>
         <div className="px-6 py-5">
-          <p className="font-mono text-base font-bold text-[#f5f5f5] tracking-wide">{lesson?.title}</p>
+          <p className="font-mono text-base font-bold text-fl-fg tracking-wide">{lesson?.title}</p>
           {explanation && (
             <div className="mt-4 space-y-3">
               {explanation.text != null && (
-                <p className="font-mono text-xs text-[#888] leading-relaxed">{String(explanation.text)}</p>
+                <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{String(explanation.text)}</p>
               )}
               {(explanation.key_points as string[])?.length > 0 && (
-                <ul className="space-y-1 border-t border-[#2a2a2a] pt-3">
+                <ul className="space-y-1 border-t border-fl-border pt-3">
                   {(explanation.key_points as string[]).map((kp, i) => (
-                    <li key={i} className="font-mono text-xs text-[#666]">
-                      <span className="text-[#777] mr-2">·</span>{kp}
+                    <li key={i} className="font-mono text-xs text-fl-muted-3">
+                      <span className="text-fl-muted-2 mr-2">·</span>{kp}
                     </li>
                   ))}
                 </ul>
@@ -150,27 +150,27 @@ export default function LessonPage() {
 
       {/* Exercise */}
       {exercise && (
-        <div className="border border-[#2a2a2a] bg-[#111]">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-[#2a2a2a]">
+        <div className="border border-fl-border bg-fl-surface">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] text-[#777]">●</span>
-              <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">
+              <span className="text-[10px] text-fl-muted-2">●</span>
+              <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">
                 Exercise {currentExercise + 1} / {exercises.length}
               </span>
             </div>
-            <span className="font-mono text-[9px] text-[#777] tracking-widest uppercase border border-[#2a2a2a] px-2 py-1">{exercise.exercise_type}</span>
+            <span className="font-mono text-[9px] text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{exercise.exercise_type}</span>
           </div>
 
           {/* Progress bar */}
-          <div className="h-px bg-[#2a2a2a]">
+          <div className="h-px bg-fl-border">
             <div
-              className="h-px bg-[#f5f5f5] transition-all duration-300"
+              className="h-px bg-fl-fg transition-all duration-300"
               style={{ width: `${Math.round(((currentExercise + 1) / exercises.length) * 100)}%` }}
             />
           </div>
 
           <div className="px-6 py-6 space-y-5">
-            <p className="font-mono text-sm text-[#f5f5f5] leading-relaxed">{exercise.question}</p>
+            <p className="font-mono text-sm text-fl-fg leading-relaxed">{exercise.question}</p>
 
             {exercise.exercise_type === 'multiple_choice' && exercise.options ? (
               <div className="space-y-2">
@@ -183,8 +183,8 @@ export default function LessonPage() {
                       disabled={isEvaluated}
                       onClick={() => setAnswer(letter)}
                       className={`w-full text-left px-4 py-3 border font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${isSelected
-                          ? 'border-[#f5f5f5] bg-[#f5f5f5] text-[#0a0a0a]'
-                          : 'border-[#2a2a2a] text-[#888] hover:border-[#444] hover:text-[#f5f5f5]'
+                          ? 'border-fl-fg bg-fl-fg text-fl-bg'
+                          : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
                         }`}
                     >
                       {opt}
@@ -194,7 +194,7 @@ export default function LessonPage() {
               </div>
             ) : (
               <textarea
-                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-xs text-[#f5f5f5] placeholder:text-[#555] focus:outline-none focus:border-[#444] transition-colors resize-none"
+                className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
                 style={{ minHeight: 90 }}
                 placeholder="Type your answer…"
                 value={answer}
@@ -207,36 +207,36 @@ export default function LessonPage() {
               <button
                 onClick={submitAnswer}
                 disabled={evaluating || !answer.trim()}
-                className="w-full bg-[#f5f5f5] text-[#0a0a0a] font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-white disabled:opacity-40 transition-colors"
+                className="w-full bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright disabled:opacity-40 transition-colors"
               >
                 {evaluating ? '— Checking…' : '— Submit Answer'}
               </button>
             ) : (
               <div className="space-y-4">
                 {exercise.feedback && (
-                  <div className="border border-[#2a2a2a] px-4 py-4">
-                    <p className="font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Feedback</p>
-                    <p className="font-mono text-xs text-[#888] leading-relaxed">{exercise.feedback}</p>
+                  <div className="border border-fl-border px-4 py-4">
+                    <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Feedback</p>
+                    <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{exercise.feedback}</p>
                   </div>
                 )}
                 <div className="flex items-center gap-4">
-                  <div className="border border-[#2a2a2a] px-4 py-2">
-                    <span className="font-mono text-[10px] text-[#777] tracking-widest uppercase">Score </span>
-                    <span className="font-mono text-sm font-bold text-[#f5f5f5]">
+                  <div className="border border-fl-border px-4 py-2">
+                    <span className="font-mono text-[10px] text-fl-muted-2 tracking-widest uppercase">Score </span>
+                    <span className="font-mono text-sm font-bold text-fl-fg">
                       {exercise.score !== null ? Math.round((exercise.score ?? 0) * 100) + '%' : 'N/A'}
                     </span>
                   </div>
                   {currentExercise < exercises.length - 1 ? (
                     <button
                       onClick={nextExercise}
-                      className="border border-[#2a2a2a] px-6 py-2 font-mono text-xs tracking-widest text-[#888] uppercase hover:text-[#f5f5f5] hover:border-[#444] transition-colors"
+                      className="border border-fl-border px-6 py-2 font-mono text-xs tracking-widest text-fl-muted-1 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
                     >
                       Next →
                     </button>
                   ) : (
                     <button
                       onClick={completeLessonHandler}
-                      className="bg-[#f5f5f5] text-[#0a0a0a] font-mono text-xs font-bold tracking-widest uppercase px-6 py-2 hover:bg-white transition-colors"
+                      className="bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase px-6 py-2 hover:bg-fl-fg-bright transition-colors"
                     >
                       — Complete Lesson
                     </button>

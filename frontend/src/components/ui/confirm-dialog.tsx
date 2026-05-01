@@ -40,13 +40,13 @@ export function ConfirmDialog({
       onClick={onCancel}
     >
       <div
-        className="w-full max-w-sm border border-[#2a2a2a] bg-[#111] shadow-2xl"
+        className="w-full max-w-sm border border-fl-border bg-fl-surface shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-[#2a2a2a]">
-          <span className={`text-[10px] ${danger ? 'text-[#ff6b6b]' : 'text-[#777]'}`}>●</span>
-          <span className="font-mono text-[10px] tracking-widest uppercase text-[#777]">{title}</span>
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+          <span className={`text-[10px] ${danger ? 'text-[#ff6b6b]' : 'text-fl-muted-2'}`}>●</span>
+          <span className="font-mono text-[10px] tracking-widest uppercase text-fl-muted-2">{title}</span>
         </div>
 
         {/* Body */}
@@ -58,7 +58,7 @@ export function ConfirmDialog({
         <div className="flex gap-2 px-6 pb-6">
           <button
             onClick={onCancel}
-            className="flex-1 border border-[#2a2a2a] py-3 font-mono text-[10px] font-bold tracking-widest uppercase text-[#777] hover:border-[#444] hover:text-[#f5f5f5] transition-colors"
+            className="flex-1 border border-fl-border py-3 font-mono text-[10px] font-bold tracking-widest uppercase text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
           >
             — Cancel
           </button>
@@ -66,7 +66,7 @@ export function ConfirmDialog({
             onClick={onConfirm}
             className={`flex-1 py-3 font-mono text-[10px] font-bold tracking-widest uppercase transition-colors ${danger
                 ? 'bg-[#ff3b3b] text-white hover:bg-[#ff5555]'
-                : 'bg-[#f5f5f5] text-[#0a0a0a] hover:bg-white'
+                : 'bg-fl-fg text-fl-bg hover:bg-fl-fg-bright'
               }`}
           >
             — {confirmLabel}

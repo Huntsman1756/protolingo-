@@ -13,9 +13,9 @@ const faqs: FAQItem[] = [
     q: 'Where do I start?',
     a: (
       <>
-        Start with the <strong className="text-[#f5f5f5]">Assessment</strong>. It detects your English level (A1–C2)
+        Start with the <strong className="text-fl-fg">Assessment</strong>. It detects your English level (A1–C2)
         and your strengths and weaknesses. With that result you can generate a personalized{' '}
-        <strong className="text-[#f5f5f5]">Study Plan</strong> that fills your Dashboard with daily lessons. Without
+        <strong className="text-fl-fg">Study Plan</strong> that fills your Dashboard with daily lessons. Without
         the Assessment, the Dashboard is empty.
       </>
     ),
@@ -33,7 +33,7 @@ const faqs: FAQItem[] = [
           'Practice free conversation with the AI Tutor',
         ].map((step, i) => (
           <li key={i} className="flex items-start gap-3">
-            <span className="font-mono text-[10px] text-[#555] mt-0.5 shrink-0">{i + 1}.</span>
+            <span className="font-mono text-[10px] text-fl-muted-4 mt-0.5 shrink-0">{i + 1}.</span>
             <span>{step}</span>
           </li>
         ))}
@@ -53,7 +53,7 @@ const faqs: FAQItem[] = [
     a: (
       <>
         After the Assessment, go to the Dashboard and click{' '}
-        <strong className="text-[#f5f5f5]">Take Assessment →</strong> to get your level first. Once you have a level,
+        <strong className="text-fl-fg">Take Assessment →</strong> to get your level first. Once you have a level,
         you can generate a week-by-week plan with daily lessons tailored to your CEFR level and goals. Each lesson
         includes multiple-choice and free-writing exercises evaluated by AI.
       </>
@@ -63,7 +63,7 @@ const faqs: FAQItem[] = [
     q: 'What are Flashcards for?',
     a: (
       <>
-        A vocabulary training system using the <strong className="text-[#f5f5f5]">SM-2</strong> spaced repetition
+        A vocabulary training system using the <strong className="text-fl-fg">SM-2</strong> spaced repetition
         algorithm. Generate cards on any topic (e.g. &quot;business&quot;, &quot;phrasal verbs&quot;, &quot;food&quot;)
         with a definition, example sentence, and translation into your native language. The system calculates when to
         show each card again just before you forget it. Completely independent from the Study Plan.
@@ -78,8 +78,8 @@ const faqs: FAQItem[] = [
     q: 'Which AI providers does FreeLingo support?',
     a: (
       <>
-        Configurable in <code className="text-[#f5f5f5] bg-[#1a1a1a] px-1">.env</code> via{' '}
-        <code className="text-[#f5f5f5] bg-[#1a1a1a] px-1">LLM_PROVIDER</code>:
+        Configurable in <code className="text-fl-fg bg-fl-surface-2 px-1">.env</code> via{' '}
+        <code className="text-fl-fg bg-fl-surface-2 px-1">LLM_PROVIDER</code>:
         <ul className="mt-2 space-y-1 list-none">
           {[
             ['ollama', 'Local, free. Requires Ollama running on the host. Recommended model: gemma3:12b. May be slow without a GPU.'],
@@ -88,8 +88,8 @@ const faqs: FAQItem[] = [
             ['deepseek', 'DeepSeek API. Requires DEEPSEEK_API_KEY.'],
           ].map(([name, desc]) => (
             <li key={name} className="flex items-start gap-2">
-              <code className="text-[#888] shrink-0">{name}</code>
-              <span className="text-[#777]">— {desc}</span>
+              <code className="text-fl-muted-1 shrink-0">{name}</code>
+              <span className="text-fl-muted-2">— {desc}</span>
             </li>
           ))}
         </ul>
@@ -100,9 +100,9 @@ const faqs: FAQItem[] = [
     q: 'Can I invite other people?',
     a: (
       <>
-        Yes. From <Link href="/admin/users" className="text-[#f5f5f5] underline underline-offset-2">Admin → Users</Link>{' '}
+        Yes. From <Link href="/admin/users" className="text-fl-fg underline underline-offset-2">Admin → Users</Link>{' '}
         the admin can create users directly or generate single-use invite links that expire in 48 hours. Public
-        registration is disabled by default (<code className="text-[#f5f5f5] bg-[#1a1a1a] px-1">ALLOW_REGISTRATION=false</code>).
+        registration is disabled by default (<code className="text-fl-fg bg-fl-surface-2 px-1">ALLOW_REGISTRATION=false</code>).
       </>
     ),
   },
@@ -110,7 +110,7 @@ const faqs: FAQItem[] = [
     q: 'How do I change my password or native language?',
     a: (
       <>
-        Go to <Link href="/settings" className="text-[#f5f5f5] underline underline-offset-2">Settings</Link>. You can
+        Go to <Link href="/settings" className="text-fl-fg underline underline-offset-2">Settings</Link>. You can
         update your display name, native language, and password from there.
       </>
     ),
@@ -123,24 +123,24 @@ export default function FAQPage() {
   return (
     <div className="p-6 max-w-2xl mx-auto">
       {/* Header */}
-      <div className="mb-8 pb-4 border-b border-[#2a2a2a]">
-        <p className="font-mono text-[10px] tracking-widest text-[#777] uppercase mb-1">Help</p>
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-[#f5f5f5]">Frequently Asked Questions</h1>
+      <div className="mb-8 pb-4 border-b border-fl-border">
+        <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-1">Help</p>
+        <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">Frequently Asked Questions</h1>
       </div>
 
       {/* Accordion */}
-      <div className="border border-[#2a2a2a]">
+      <div className="border border-fl-border">
         {faqs.map((item, i) => (
-          <div key={i} className={i < faqs.length - 1 ? 'border-b border-[#2a2a2a]' : ''}>
+          <div key={i} className={i < faqs.length - 1 ? 'border-b border-fl-border' : ''}>
             <button
               onClick={() => setOpen(open === i ? null : i)}
-              className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#111] transition-colors"
+              className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-fl-surface transition-colors"
             >
-              <span className="font-mono text-xs text-[#f5f5f5] tracking-wide pr-4">{item.q}</span>
-              <span className="font-mono text-[#777] text-sm shrink-0">{open === i ? '−' : '+'}</span>
+              <span className="font-mono text-xs text-fl-fg tracking-wide pr-4">{item.q}</span>
+              <span className="font-mono text-fl-muted-2 text-sm shrink-0">{open === i ? '−' : '+'}</span>
             </button>
             {open === i && (
-              <div className="px-5 pb-5 font-mono text-xs text-[#888] leading-relaxed border-t border-[#2a2a2a] pt-4 bg-[#0d0d0d]">
+              <div className="px-5 pb-5 font-mono text-xs text-fl-muted-1 leading-relaxed border-t border-fl-border pt-4 bg-fl-bg-alt">
                 {item.a}
               </div>
             )}

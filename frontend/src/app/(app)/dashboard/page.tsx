@@ -52,7 +52,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <span className="font-mono text-xs tracking-widest text-[#777] uppercase animate-pulse">loading...</span>
+        <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase animate-pulse">loading...</span>
       </div>
     )
   }
@@ -62,75 +62,75 @@ export default function DashboardPage() {
   return (
     <div className="p-6 max-w-4xl mx-auto">
       {/* Header */}
-      <div className="mb-8 pb-4 border-b border-[#2a2a2a]">
-        <p className="font-mono text-[10px] tracking-widest text-[#777] uppercase mb-1">Welcome back</p>
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-[#f5f5f5]">
+      <div className="mb-8 pb-4 border-b border-fl-border">
+        <p className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-1">Welcome back</p>
+        <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">
           {user?.displayName || user?.username}
         </h1>
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#2a2a2a] mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-fl-border mb-8">
         {[
           { label: 'STREAK', value: `${streak}d` },
           { label: 'XP', value: xp },
           { label: 'LEVEL', value: cefrLevel ?? '—' },
           { label: 'SKILLS', value: skillEntries.length },
         ].map((stat) => (
-          <div key={stat.label} className="bg-[#111] px-5 py-5">
-            <p className="font-mono text-[9px] tracking-widest text-[#777] uppercase mb-2">{stat.label}</p>
-            <p className="font-mono text-3xl font-bold text-[#f5f5f5] tracking-tight">{stat.value}</p>
+          <div key={stat.label} className="bg-fl-surface px-5 py-5">
+            <p className="font-mono text-[9px] tracking-widest text-fl-muted-2 uppercase mb-2">{stat.label}</p>
+            <p className="font-mono text-3xl font-bold text-fl-fg tracking-tight">{stat.value}</p>
           </div>
         ))}
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-px bg-[#2a2a2a] mb-8">
+      <div className="grid sm:grid-cols-2 gap-px bg-fl-border mb-8">
         {/* Skills */}
-        <div className="bg-[#111] p-5">
+        <div className="bg-fl-surface p-5">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-[10px] text-[#777]">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Skills</span>
+            <span className="text-[10px] text-fl-muted-2">●</span>
+            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Skills</span>
           </div>
           {skillEntries.length > 0 ? (
             <div className="space-y-3">
               {skillEntries.map(([skill, value]) => (
                 <div key={skill}>
                   <div className="flex justify-between mb-1">
-                    <span className="font-mono text-[10px] tracking-widest text-[#888] uppercase">{skill}</span>
-                    <span className="font-mono text-[10px] text-[#777]">{Math.round((value as number) * 100)}%</span>
+                    <span className="font-mono text-[10px] tracking-widest text-fl-muted-1 uppercase">{skill}</span>
+                    <span className="font-mono text-[10px] text-fl-muted-2">{Math.round((value as number) * 100)}%</span>
                   </div>
-                  <div className="h-px bg-[#2a2a2a] w-full">
-                    <div className="h-px bg-[#f5f5f5]" style={{ width: `${(value as number) * 100}%` }} />
+                  <div className="h-px bg-fl-border w-full">
+                    <div className="h-px bg-fl-fg" style={{ width: `${(value as number) * 100}%` }} />
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="font-mono text-xs text-[#777]">Complete the assessment to track skills.</p>
+            <p className="font-mono text-xs text-fl-muted-2">Complete the assessment to track skills.</p>
           )}
         </div>
 
         {/* Today's lessons */}
-        <div className="bg-[#111] p-5">
+        <div className="bg-fl-surface p-5">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-[10px] text-[#777]">●</span>
-            <span className="font-mono text-[10px] tracking-widest text-[#777] uppercase">Today</span>
+            <span className="text-[10px] text-fl-muted-2">●</span>
+            <span className="font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase">Today</span>
           </div>
           {todayLessons.length > 0 ? (
             <div className="space-y-2">
               {todayLessons.map((lesson, i) => (
-                <div key={i} className="flex items-center justify-between border border-[#2a2a2a] px-4 py-3">
+                <div key={i} className="flex items-center justify-between border border-fl-border px-4 py-3">
                   <div>
-                    <p className="font-mono text-xs text-[#f5f5f5]">{lesson.title}</p>
-                    <p className="font-mono text-[10px] text-[#777] uppercase tracking-wider mt-0.5">
+                    <p className="font-mono text-xs text-fl-fg">{lesson.title}</p>
+                    <p className="font-mono text-[10px] text-fl-muted-2 uppercase tracking-wider mt-0.5">
                       {lesson.lessonType} · {lesson.estimatedMinutes}min
                     </p>
                   </div>
                   {lesson.id && completedToday.includes(lesson.id) ? (
-                    <span className="font-mono text-[10px] text-[#777] uppercase tracking-widest">✓ done</span>
+                    <span className="font-mono text-[10px] text-fl-muted-2 uppercase tracking-widest">✓ done</span>
                   ) : lesson.id ? (
                     <Link href={`/lesson/${lesson.id}`}>
-                      <button className="font-mono text-[10px] tracking-widest text-[#0a0a0a] bg-[#f5f5f5] px-3 py-1 uppercase hover:bg-white transition-colors">
+                      <button className="font-mono text-[10px] tracking-widest text-fl-bg bg-fl-fg px-3 py-1 uppercase hover:bg-fl-fg-bright transition-colors">
                         START
                       </button>
                     </Link>
@@ -140,11 +140,11 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-3">
-              <p className="font-mono text-xs text-[#777]">
+              <p className="font-mono text-xs text-fl-muted-2">
                 {hasPlan ? 'All caught up.' : 'Start with an assessment.'}
               </p>
               <Link href="/assessment">
-                <button className="font-mono text-[10px] tracking-widest text-[#0a0a0a] bg-[#f5f5f5] px-4 py-2 uppercase hover:bg-white transition-colors">
+                <button className="font-mono text-[10px] tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-fg-bright transition-colors">
                   Take Assessment →
                 </button>
               </Link>
@@ -156,17 +156,17 @@ export default function DashboardPage() {
       {/* Quick actions */}
       <div className="flex gap-2 flex-wrap">
         <Link href="/flashcards">
-          <button className="font-mono text-[10px] tracking-widest text-[#f5f5f5] border border-[#2a2a2a] px-4 py-2 uppercase hover:border-[#444] transition-colors">
+          <button className="font-mono text-[10px] tracking-widest text-fl-fg border border-fl-border px-4 py-2 uppercase hover:border-fl-border-2 transition-colors">
             Flashcards
           </button>
         </Link>
         <Link href="/chat">
-          <button className="font-mono text-[10px] tracking-widest text-[#f5f5f5] border border-[#2a2a2a] px-4 py-2 uppercase hover:border-[#444] transition-colors">
+          <button className="font-mono text-[10px] tracking-widest text-fl-fg border border-fl-border px-4 py-2 uppercase hover:border-fl-border-2 transition-colors">
             AI Tutor
           </button>
         </Link>
         <Link href="/assessment">
-          <button className="font-mono text-[10px] tracking-widest text-[#f5f5f5] border border-[#2a2a2a] px-4 py-2 uppercase hover:border-[#444] transition-colors">
+          <button className="font-mono text-[10px] tracking-widest text-fl-fg border border-fl-border px-4 py-2 uppercase hover:border-fl-border-2 transition-colors">
             Assessment
           </button>
         </Link>

@@ -56,25 +56,25 @@ function LoginForm() {
   )
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] px-4"
+    <div className="min-h-screen flex items-center justify-center bg-fl-bg px-4"
       style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
       <div className="w-full max-w-sm">
         {/* Brand */}
         <div className="flex flex-col items-center mb-10">
           <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
-          <h1 className="font-mono text-xl font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</h1>
-          <p className="font-mono text-[11px] text-[#777] tracking-widest uppercase mt-1">self-hosted language learning</p>
+          <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
+          <p className="font-mono text-[11px] text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
         </div>
 
-        <div className="border border-[#2a2a2a] bg-[#111] p-8">
+        <div className="border border-fl-border bg-fl-surface p-8">
           {/* Header */}
-          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#2a2a2a]">
-            <span className="text-[10px] text-[#777]">●</span>
-            <span className="font-mono text-xs tracking-widest text-[#777] uppercase">Sign In</span>
+          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-fl-border">
+            <span className="text-[10px] text-fl-muted-2">●</span>
+            <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">Sign In</span>
           </div>
 
           {registered && (
-            <div className="mb-5 border border-[#2a2a2a] px-4 py-3 font-mono text-xs text-[#888] tracking-wide">
+            <div className="mb-5 border border-fl-border px-4 py-3 font-mono text-xs text-fl-muted-1 tracking-wide">
               ✓ Account created — you can now sign in
             </div>
           )}
@@ -86,29 +86,29 @@ function LoginForm() {
 
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Email</label>
+              <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Email</label>
               <input
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="username"
-                className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#444] transition-colors"
+                className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
               />
             </div>
             <div>
-              <label className="block font-mono text-[10px] tracking-widest text-[#777] uppercase mb-2">Password</label>
+              <label className="block font-mono text-[10px] tracking-widest text-fl-muted-2 uppercase mb-2">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
-                  className="w-full bg-[#0a0a0a] border border-[#2a2a2a] px-4 py-3 pr-11 font-mono text-sm text-[#f5f5f5] focus:outline-none focus:border-[#444] transition-colors"
+                  className="w-full bg-fl-bg border border-fl-border px-4 py-3 pr-11 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute inset-y-0 right-0 flex items-center px-3 text-[#555] hover:text-[#999] transition-colors"
+                  className="absolute inset-y-0 right-0 flex items-center px-3 text-fl-muted-4 hover:text-fl-muted-0 transition-colors"
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? (
@@ -129,15 +129,15 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 bg-[#f5f5f5] text-[#0a0a0a] font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-white disabled:opacity-40 transition-colors"
+              className="w-full mt-2 bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright disabled:opacity-40 transition-colors"
             >
               {loading ? '— SIGNING IN...' : '— SIGN IN'}
             </button>
           </form>
 
-          <p className="mt-6 font-mono text-[10px] text-[#777] tracking-wide text-center">
+          <p className="mt-6 font-mono text-[10px] text-fl-muted-2 tracking-wide text-center">
             No account?{' '}
-            <a href="/register" className="text-[#888] hover:text-[#f5f5f5] transition-colors">
+            <a href="/register" className="text-fl-muted-1 hover:text-fl-fg transition-colors">
               Register
             </a>
           </p>

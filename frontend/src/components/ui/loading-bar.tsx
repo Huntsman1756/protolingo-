@@ -10,7 +10,7 @@ export function LoadingBar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[300] h-px overflow-hidden">
       <div
-        className="h-full bg-[#f5f5f5] animate-loading-bar"
+        className="h-full bg-fl-fg animate-loading-bar"
         style={{ width: '100%' }}
       />
       <style>{`

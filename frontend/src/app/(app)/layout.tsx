@@ -81,21 +81,21 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   if (initializing) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0a0a0a]"
+      <div className="flex min-h-screen items-center justify-center bg-fl-bg"
         style={{ backgroundImage: 'radial-gradient(circle, #2a2a2a 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
-        <span className="font-mono text-xs text-[#777] tracking-widest uppercase animate-pulse">● Initializing…</span>
+        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">● Initializing…</span>
       </div>
     )
   }
 
   return (
-    <div className="flex min-h-screen bg-[#0a0a0a]">
+    <div className="flex min-h-screen bg-fl-bg">
       {/* Sidebar */}
-      <aside className="hidden md:flex w-52 flex-col border-r border-[#2a2a2a] bg-[#0a0a0a] px-0 py-0 shrink-0">
+      <aside className="hidden md:flex w-52 flex-col border-r border-fl-border bg-fl-bg px-0 py-0 shrink-0">
         {/* Logo area */}
-        <div className="flex items-center gap-2 px-5 py-5 border-b border-[#2a2a2a]">
-          <span className="text-[10px] text-[#777]">●</span>
-          <span className="font-mono text-sm font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</span>
+        <div className="flex items-center gap-2 px-5 py-5 border-b border-fl-border">
+          <span className="text-[10px] text-fl-muted-2">●</span>
+          <span className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">FreeLingo</span>
         </div>
 
         {/* Nav */}
@@ -107,11 +107,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 key={item.href}
                 href={item.href}
                 className={`flex items-center gap-3 px-5 py-3 text-xs font-mono tracking-widest transition-colors ${active
-                  ? 'text-[#f5f5f5] bg-[#1a1a1a] border-l-2 border-[#f5f5f5]'
-                  : 'text-[#777] hover:text-[#f5f5f5] hover:bg-[#111] border-l-2 border-transparent'
+                  ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                  : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
                   }`}
               >
-                <span className={`text-[10px] ${active ? 'text-[#f5f5f5]' : 'text-[#555]'}`}>●</span>
+                <span className={`text-[10px] ${active ? 'text-fl-fg' : 'text-fl-muted-4'}`}>●</span>
                 {item.label}
               </Link>
             )
@@ -120,25 +120,25 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <Link
               href="/admin/users"
               className={`flex items-center gap-3 px-5 py-3 text-xs font-mono tracking-widest transition-colors ${pathname.startsWith('/admin')
-                ? 'text-[#f5f5f5] bg-[#1a1a1a] border-l-2 border-[#f5f5f5]'
-                : 'text-[#777] hover:text-[#f5f5f5] hover:bg-[#111] border-l-2 border-transparent'
+                ? 'text-fl-fg bg-fl-surface-2 border-l-2 border-fl-fg'
+                : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface border-l-2 border-transparent'
                 }`}
             >
-              <span className="text-[10px] text-[#555]">●</span>
+              <span className="text-[10px] text-fl-muted-4">●</span>
               ADMIN
             </Link>
           )}
         </nav>
 
         {/* User + logout */}
-        <div className="border-t border-[#2a2a2a] px-5 py-4">
-          <p className="text-[11px] font-mono text-[#777] tracking-widest uppercase mb-1">
+        <div className="border-t border-fl-border px-5 py-4">
+          <p className="text-[11px] font-mono text-fl-muted-2 tracking-widest uppercase mb-1">
             {user?.displayName || user?.username}
           </p>
-          <p className="text-[10px] font-mono text-[#555] mb-3">@{user?.username}</p>
+          <p className="text-[10px] font-mono text-fl-muted-4 mb-3">@{user?.username}</p>
           <button
             onClick={() => setLogoutConfirm(true)}
-            className="w-full text-left text-[10px] font-mono tracking-widest text-[#777] hover:text-[#f5f5f5] transition-colors uppercase"
+            className="w-full text-left text-[10px] font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
           >
             — LOGOUT
           </button>
@@ -146,8 +146,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Mobile top bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-[#2a2a2a] bg-[#0a0a0a] px-4 py-3">
-        <span className="font-mono text-xs font-bold tracking-widest text-[#f5f5f5] uppercase">FreeLingo</span>
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-fl-border bg-fl-bg px-4 py-3">
+        <span className="font-mono text-xs font-bold tracking-widest text-fl-fg uppercase">FreeLingo</span>
         <nav className="flex items-center gap-0">
           {navItems.map((item) => {
             const active = pathname === item.href
@@ -155,7 +155,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-1 text-[10px] font-mono tracking-widest uppercase transition-colors ${active ? 'text-[#f5f5f5] border-b border-[#f5f5f5]' : 'text-[#777] hover:text-[#f5f5f5]'
+                className={`px-3 py-1 text-[10px] font-mono tracking-widest uppercase transition-colors ${active ? 'text-fl-fg border-b border-fl-fg' : 'text-fl-muted-2 hover:text-fl-fg'
                   }`}
               >
                 {item.label.slice(0, 4)}
