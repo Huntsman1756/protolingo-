@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -137,10 +138,12 @@ export default function SettingsPage() {
                   : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
                   }`}
               >
-                <img
+                <Image
                   src={v === 'american' ? '/flags/eeuu.jpg' : '/flags/uk.jpg'}
                   alt={v === 'american' ? 'US flag' : 'UK flag'}
-                  className="w-5 h-4 object-cover"
+                  width={20}
+                  height={16}
+                  className="object-cover"
                 />
                 {v === 'american' ? t('american') : t('british')}
               </button>

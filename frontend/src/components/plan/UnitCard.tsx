@@ -10,7 +10,6 @@ interface UnitStatus {
 }
 
 interface Props {
-  unitId: string
   title: string
   index: number
   lessonCount: number
@@ -29,7 +28,6 @@ function StatusIcon({ status }: { status: UnitStatus }): ReactNode {
 }
 
 export default function UnitCard({
-  unitId,
   title,
   index,
   lessonCount,
@@ -45,10 +43,10 @@ export default function UnitCard({
       onClick={onClick}
       disabled={status.locked}
       className={`w-full text-left border transition-colors group ${status.locked
-          ? 'border-fl-border opacity-40 cursor-default'
-          : status.active
-            ? 'border-fl-fg bg-fl-surface hover:bg-fl-surface-2'
-            : 'border-fl-border bg-fl-surface hover:border-fl-border-2'
+        ? 'border-fl-border opacity-40 cursor-default'
+        : status.active
+          ? 'border-fl-fg bg-fl-surface hover:bg-fl-surface-2'
+          : 'border-fl-border bg-fl-surface hover:border-fl-border-2'
         }`}
       aria-label={`Unit ${index + 1}: ${title}`}
     >

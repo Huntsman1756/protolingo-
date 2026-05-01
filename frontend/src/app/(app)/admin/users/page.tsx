@@ -26,7 +26,6 @@ const LANGUAGES = [
 
 export default function AdminUsersPage() {
   const t = useTranslations('admin')
-  const tCommon = useTranslations('common')
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)

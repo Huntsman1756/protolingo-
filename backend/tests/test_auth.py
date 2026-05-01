@@ -26,7 +26,7 @@ async def test_register_duplicate_username(client):
         json={
             "username": "dup",
             "email": "dup@test.com",
-            "password": "pass123",
+            "password": "pass1234",
             "display_name": "Dup",
             "native_language": "es",
         },
@@ -36,7 +36,7 @@ async def test_register_duplicate_username(client):
         json={
             "username": "dup",
             "email": "dup2@test.com",
-            "password": "pass456",
+            "password": "pass5678",
             "display_name": "Dup2",
             "native_language": "fr",
         },
@@ -56,7 +56,7 @@ async def test_register_when_closed_without_invite(client):
             json={
                 "username": "locked",
                 "email": "locked@test.com",
-                "password": "pass123",
+                "password": "pass1234",
                 "display_name": "Locked",
                 "native_language": "es",
             },
@@ -73,7 +73,7 @@ async def test_first_user_is_admin(client):
         json={
             "username": "first",
             "email": "first@test.com",
-            "password": "pass123",
+            "password": "pass1234",
             "display_name": "First",
             "native_language": "en",
         },
@@ -90,7 +90,7 @@ async def test_second_user_is_not_admin(client):
         json={
             "username": "admin_first",
             "email": "adminfirst@test.com",
-            "password": "pass123",
+            "password": "pass1234",
             "display_name": "Admin",
             "native_language": "en",
         },
@@ -100,7 +100,7 @@ async def test_second_user_is_not_admin(client):
         json={
             "username": "regular",
             "email": "regular@test.com",
-            "password": "pass123",
+            "password": "pass1234",
             "display_name": "Regular",
             "native_language": "es",
         },
@@ -203,14 +203,15 @@ async def test_refresh_replayed_token(client):
         "/api/auth/register",
         json={
             "username": "replayuser",
-            "password": "testpass",
+            "email": "replayuser@test.com",
+            "password": "testpass1",
             "display_name": "Replay",
             "native_language": "en",
         },
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"username": "replayuser", "password": "testpass"},
+        json={"email": "replayuser@test.com", "password": "testpass1"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
@@ -228,14 +229,15 @@ async def test_logout(client):
         "/api/auth/register",
         json={
             "username": "logoutuser",
-            "password": "testpass",
+            "email": "logoutuser@test.com",
+            "password": "testpass1",
             "display_name": "Logout",
             "native_language": "en",
         },
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"username": "logoutuser", "password": "testpass"},
+        json={"email": "logoutuser@test.com", "password": "testpass1"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
