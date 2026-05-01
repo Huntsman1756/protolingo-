@@ -1,3 +1,4 @@
+import logging
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -19,6 +20,8 @@ from app.schemas.study_plan import (
 from app.services.lesson_generator import generate_lesson
 from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError  # noqa: F401
 from app.services.study_plan_generator import generate_study_plan
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/study-plan", tags=["study-plan"])
 
@@ -101,10 +104,12 @@ async def get_today_lessons(
     current_day = (days_elapsed % plan.days_per_week) + 1
 
     weekly_plan = (
-        plan.generated_plan["weekly_plan"]
+        plan.generated_plan.get("weekly_plan")
         if isinstance(plan.generated_plan, dict)
-        else plan.generated_plan.weekly_plan
+        else getattr(plan.generated_plan, "weekly_plan", None)
     )
+    if not weekly_plan:
+        raise HTTPException(status_code=500, detail="Study plan data is malformed")
 
     week = None
     for w in weekly_plan:
@@ -197,8 +202,7 @@ async def get_today_lessons(
                 await db.refresh(lesson)
                 lesson_id = lesson.id
             except Exception:
-                # LLM failure is non-blocking; lesson will appear without ID
-                pass
+                logger.exception("Failed to generate or persist lesson for plan %s", plan.id)
 
         today_lessons.append(
             TodayLesson(

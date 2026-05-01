@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
@@ -8,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.config import settings
 from app.core.database import get_db
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.core.security import (
     create_access_token,
     create_refresh_token,
@@ -22,6 +24,8 @@ from app.schemas.auth import (
     UserResponse,
     UserUpdateRequest,
 )
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
@@ -82,14 +86,16 @@ async def register(
     await db.commit()
     await db.refresh(user)
 
-    if invite_token:
-        await redis.delete(f"invite:{invite_token}")
+    if data.invite_token:
+        await redis.delete(f"invite:{data.invite_token}")
 
     return {"id": user.id, "username": user.username, "role": user.role}
 
 
 @router.post("/login", response_model=TokenResponse)
+@limiter.limit("10/minute")
 async def login(
+    request: Request,
     data: LoginRequest,
     response: Response,
     db: AsyncSession = Depends(get_db),
@@ -98,7 +104,9 @@ async def login(
     result = await db.execute(select(User).where(User.email == data.email))
     user = result.scalar_one_or_none()
 
-    if not user or not user.is_active or not verify_password(data.password, user.hashed_password):
+    # Always run bcrypt to prevent timing-based user enumeration
+    password_ok = verify_password(data.password, user.hashed_password if user else hash_password("dummy"))
+    if not user or not user.is_active or not password_ok:
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     user.last_login = datetime.now(timezone.utc).replace(tzinfo=None)

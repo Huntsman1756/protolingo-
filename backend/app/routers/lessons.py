@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.models.lesson import Exercise, Lesson
+from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.lessons import (
     ExerciseAnswerRequest,
@@ -25,15 +26,26 @@ from app.services.progress_service import update_daily_progress, upsert_unit_com
 router = APIRouter(prefix="/api/lessons", tags=["lessons"])
 
 
+async def _get_lesson_for_user(lesson_id: int, user_id: int, db: AsyncSession) -> Lesson:
+    """Fetch a lesson and verify it belongs to the requesting user via its study plan."""
+    result = await db.execute(
+        select(Lesson)
+        .join(StudyPlan, Lesson.study_plan_id == StudyPlan.id)
+        .where(Lesson.id == lesson_id, StudyPlan.user_id == user_id)
+    )
+    lesson = result.scalar_one_or_none()
+    if not lesson:
+        raise HTTPException(status_code=404, detail="Lesson not found")
+    return lesson
+
+
 @router.get("/{lesson_id}", response_model=LessonDetailResponse)
 async def get_lesson(
     lesson_id: int,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    lesson = await db.get(Lesson, lesson_id)
-    if not lesson:
-        raise HTTPException(status_code=404, detail="Lesson not found")
+    lesson = await _get_lesson_for_user(lesson_id, current_user.id, db)
 
     result = await db.execute(
         select(Exercise).where(Exercise.lesson_id == lesson_id).order_by(Exercise.id)
@@ -49,9 +61,7 @@ async def start_lesson(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    lesson = await db.get(Lesson, lesson_id)
-    if not lesson:
-        raise HTTPException(status_code=404, detail="Lesson not found")
+    lesson = await _get_lesson_for_user(lesson_id, current_user.id, db)
     return lesson
 
 
@@ -61,9 +71,7 @@ async def complete_lesson(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    lesson = await db.get(Lesson, lesson_id)
-    if not lesson:
-        raise HTTPException(status_code=404, detail="Lesson not found")
+    lesson = await _get_lesson_for_user(lesson_id, current_user.id, db)
 
     lesson.is_completed = True
     lesson.completed_at = datetime.now(timezone.utc).replace(tzinfo=None)
@@ -122,9 +130,7 @@ async def answer_exercise(
     if not exercise:
         raise HTTPException(status_code=404, detail="Exercise not found")
 
-    lesson = await db.get(Lesson, exercise.lesson_id)
-    if not lesson:
-        raise HTTPException(status_code=404, detail="Lesson not found")
+    lesson = await _get_lesson_for_user(exercise.lesson_id, current_user.id, db)
 
     user_answer = data.answer.strip().lower() if data.answer else ""
     correct = exercise.correct_answer.strip().lower()

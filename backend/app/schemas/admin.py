@@ -1,23 +1,23 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Optional
+from typing import Literal, Optional
 
-from pydantic import BaseModel, field_serializer
+from pydantic import BaseModel, Field, field_serializer
 
 
 class AdminUserCreate(BaseModel):
-    username: str
+    username: str = Field(min_length=3, max_length=50, pattern=r"^[\w.-]+$")
     email: Optional[str] = None
-    password: str
-    display_name: str
-    native_language: str
-    role: str = "user"
+    password: str = Field(min_length=8, max_length=128)
+    display_name: str = Field(max_length=100)
+    native_language: str = Field(min_length=2, max_length=5)
+    role: Literal["user", "admin"] = "user"
 
 
 class AdminUserUpdate(BaseModel):
-    display_name: Optional[str] = None
-    role: Optional[str] = None
+    display_name: Optional[str] = Field(default=None, max_length=100)
+    role: Optional[Literal["user", "admin"]] = None
     is_active: Optional[bool] = None
 
 

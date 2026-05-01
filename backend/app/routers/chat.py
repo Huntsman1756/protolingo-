@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import date, datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -27,6 +28,8 @@ from app.services.llm_adapter import (
 )
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
+
+logger = logging.getLogger(__name__)
 
 TUTOR_SYSTEM_PROMPT = """
 You are an encouraging and patient English language tutor named FreeLingo.
@@ -228,10 +231,13 @@ async def chat(
             await db.commit()
             yield f"data: {json.dumps({'done': True})}\n\n"
         except LLMTimeoutError:
+            logger.warning("LLM timeout for user %s conversation %s", current_user.id, conversation_id)
             yield f"data: {json.dumps({'error': 'The AI model took too long. Please try again.'})}\n\n"
         except LLMUnavailableError:
+            logger.error("LLM unavailable for user %s", current_user.id)
             yield f"data: {json.dumps({'error': 'The AI service is currently unavailable.'})}\n\n"
         except LLMError:
+            logger.exception("LLM error for user %s conversation %s", current_user.id, conversation_id)
             yield f"data: {json.dumps({'error': 'Something went wrong. Please try again.'})}\n\n"
 
     return StreamingResponse(

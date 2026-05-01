@@ -1,13 +1,14 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 RUN npm install -g npm@11
-COPY package.json package-lock.json ./
+COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY frontend/ .
+COPY messages/ ./messages/
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
