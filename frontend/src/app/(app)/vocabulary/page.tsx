@@ -69,7 +69,7 @@ export default function VocabularyIndexPage() {
         </div>
         <div className="px-6 py-5 space-y-4">
           <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
-            {vocabularySets.length} sets · {totalWords} words · A1 – B1
+            {vocabularySets.length} sets · {totalWords} words · {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
           </p>
           {/* Search */}
           <input
@@ -84,8 +84,8 @@ export default function VocabularyIndexPage() {
             <button
               onClick={() => setActiveLevel('All')}
               className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeLevel === 'All'
-                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                 }`}
             >
               All
@@ -95,8 +95,8 @@ export default function VocabularyIndexPage() {
                 key={level}
                 onClick={() => setActiveLevel(activeLevel === level ? 'All' : level)}
                 className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeLevel === level
-                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                   }`}
               >
                 {level}
@@ -130,10 +130,18 @@ export default function VocabularyIndexPage() {
       })}
 
       {filtered.length === 0 && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center">
+        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
           <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
             No vocabulary sets match your search
           </p>
+          {(search || activeLevel !== 'All') && (
+            <button
+              onClick={() => { setSearch(''); setActiveLevel('All') }}
+              className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+            >
+              Clear filters
+            </button>
+          )}
         </div>
       )}
     </div>

@@ -137,8 +137,8 @@ export default function PhrasebookPage() {
                   key={lvl}
                   onClick={() => setActiveLevel(lvl)}
                   className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeLevel === lvl
-                      ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                      : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                 >
                   {lvl}
@@ -156,8 +156,8 @@ export default function PhrasebookPage() {
                   key={reg}
                   onClick={() => setActiveRegister(reg)}
                   className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeRegister === reg
-                      ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                      : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                 >
                   {reg}
@@ -199,10 +199,18 @@ export default function PhrasebookPage() {
       })}
 
       {filteredCategories.length === 0 && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center">
+        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
           <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
             No phrases match your filters
           </p>
+          {(activeLevel !== 'All' || activeRegister !== 'All') && (
+            <button
+              onClick={() => { setActiveLevel('All'); setActiveRegister('All') }}
+              className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+            >
+              Clear filters
+            </button>
+          )}
         </div>
       )}
     </div>

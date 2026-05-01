@@ -194,6 +194,16 @@ export default function PlanPage() {
 
       {/* ── Unit list ── */}
       <div className="space-y-2">
+        {units.length === 0 && (
+          <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-3">
+            <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
+              No units available for level {level}
+            </p>
+            <p className="font-mono text-fl-label text-fl-muted-4">
+              Content for this level is being prepared. Check back soon.
+            </p>
+          </div>
+        )}
         {units.map((unit, i) => {
           const unitLessons = byUnit[unit.id] ?? []
           const completedLessons = unitLessons.filter((l) => l.completed).length

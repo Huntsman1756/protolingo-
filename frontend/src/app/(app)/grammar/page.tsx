@@ -105,8 +105,8 @@ export default function GrammarIndexPage() {
             <button
               onClick={() => setActiveCategory('All')}
               className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeCategory === 'All'
-                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                 }`}
             >
               All
@@ -116,8 +116,8 @@ export default function GrammarIndexPage() {
                 key={cat}
                 onClick={() => setActiveCategory(activeCategory === cat ? 'All' : cat)}
                 className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeCategory === cat
-                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
                   }`}
               >
                 {cat}
@@ -159,10 +159,18 @@ export default function GrammarIndexPage() {
       })}
 
       {filtered.length === 0 && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center">
+        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
           <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
             No topics match your search
           </p>
+          {(search || activeCategory !== 'All') && (
+            <button
+              onClick={() => { setSearch(''); setActiveCategory('All') }}
+              className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+            >
+              Clear filters
+            </button>
+          )}
         </div>
       )}
     </div>

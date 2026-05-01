@@ -695,6 +695,153 @@ const body_health_a2: VocabularySet = {
   ],
 }
 
+const cities_countries_a2: VocabularySet = {
+  id: 'cities_countries_a2',
+  level: 'A2',
+  topic: 'Cities & Countries',
+  unit_ref: 'a2-unit-3',
+  words: [
+    { word: 'capital', pos: 'noun', definition: 'The city that is the seat of government.', example: 'London is the capital of England.', ipa: '/ˈkæpɪtəl/', frequency_rank: 220 },
+    { word: 'population', pos: 'noun', definition: 'The number of people living in a place.', example: 'The population of Tokyo is huge.', ipa: '/ˌpɒpjəˈleɪʃən/', frequency_rank: 250 },
+    { word: 'continent', pos: 'noun', definition: 'One of the seven large land masses of the earth.', example: 'Europe is a continent.', ipa: '/ˈkɒntɪnənt/', frequency_rank: 380 },
+    { word: 'border', pos: 'noun', definition: 'The line between two countries.', example: 'We crossed the border into France.', ipa: '/ˈbɔːrdər/', frequency_rank: 295 },
+    { word: 'north', pos: 'noun', definition: 'The direction to the left when facing the rising sun.', example: 'Edinburgh is in the north of Scotland.', ipa: '/nɔːrθ/', frequency_rank: 185 },
+    { word: 'south', pos: 'noun', definition: 'The direction opposite to north.', example: 'Spain is in the south of Europe.', ipa: '/saʊθ/', frequency_rank: 190 },
+    { word: 'east', pos: 'noun', definition: 'The direction where the sun rises.', example: 'Japan is in East Asia.', ipa: '/iːst/', frequency_rank: 185 },
+    { word: 'west', pos: 'noun', definition: 'The direction where the sun sets.', example: 'California is on the west coast of the USA.', ipa: '/west/', frequency_rank: 180 },
+    { word: 'tourist', pos: 'noun', definition: 'A person who visits a place for pleasure.', example: 'Many tourists visit Paris every year.', ipa: '/ˈtʊərɪst/', frequency_rank: 410 },
+    { word: 'attraction', pos: 'noun', definition: 'A place or thing that people want to visit.', example: 'The Eiffel Tower is a famous attraction.', ipa: '/əˈtrækʃən/', frequency_rank: 350 },
+    { word: 'culture', pos: 'noun', definition: 'The customs, beliefs, and arts of a society.', example: 'I enjoy learning about different cultures.', ipa: '/ˈkʌltʃər/', frequency_rank: 195 },
+    { word: 'climate', pos: 'noun', definition: 'The typical weather conditions in a region.', example: 'The climate in the UK is mild.', ipa: '/ˈklaɪmɪt/', frequency_rank: 290 },
+  ],
+}
+
+const abilities_sports_a2: VocabularySet = {
+  id: 'abilities_sports_a2',
+  level: 'A2',
+  topic: 'Abilities & Sports',
+  unit_ref: 'a2-unit-4',
+  words: [
+    { word: 'talented', pos: 'adjective', definition: 'Having a natural ability to do something well.', example: 'She is a talented musician.', ipa: '/ˈtæləntɪd/', frequency_rank: 430 },
+    { word: 'practise', pos: 'verb', definition: 'To do something repeatedly to improve.', example: 'I practise the piano every evening.', ipa: '/ˈpræktɪs/', frequency_rank: 320 },
+    { word: 'compete', pos: 'verb', definition: 'To try to be more successful than others.', example: 'She competed in the national championships.', ipa: '/kəmˈpiːt/', frequency_rank: 310 },
+    { word: 'train', pos: 'verb', definition: 'To prepare for a sport or activity.', example: 'He trains three times a week.', ipa: '/treɪn/', frequency_rank: 180 },
+    { word: 'coach', pos: 'noun', definition: 'A person who trains sportspeople.', example: 'The coach was very strict.', ipa: '/koʊtʃ/', frequency_rank: 350 },
+    { word: 'championship', pos: 'noun', definition: 'A competition to decide who is best.', example: 'Our team won the national championship.', ipa: '/ˈtʃæmpiənʃɪp/', frequency_rank: 390 },
+    { word: 'score', pos: 'verb', definition: 'To get points in a game.', example: 'She scored three goals.', ipa: '/skɔːr/', frequency_rank: 265 },
+    { word: 'athletic', pos: 'adjective', definition: 'Good at sports; strong and fit.', example: 'He is very athletic.', ipa: '/æθˈletɪk/', frequency_rank: 450 },
+    { word: 'improve', pos: 'verb', definition: 'To get better at something.', example: 'I want to improve my swimming.', ipa: '/ɪmˈpruːv/', frequency_rank: 195 },
+    { word: 'result', pos: 'noun', definition: 'The final score or outcome.', example: 'What was the result of the match?', ipa: '/rɪˈzʌlt/', frequency_rank: 110 },
+    { word: 'athlete', pos: 'noun', definition: 'A person who is skilled in sports.', example: 'She is a professional athlete.', ipa: '/ˈæθliːt/', frequency_rank: 420 },
+    { word: 'fitness', pos: 'noun', definition: 'Being in good physical health.', example: 'Exercise is important for fitness.', ipa: '/ˈfɪtnəs/', frequency_rank: 430 },
+  ],
+}
+
+const school_work_a2: VocabularySet = {
+  id: 'school_work_a2',
+  level: 'A2',
+  topic: 'School & Work',
+  unit_ref: 'a2-unit-4',
+  words: [
+    { word: 'subject', pos: 'noun', definition: 'An area of study at school.', example: 'Maths is my favourite subject.', ipa: '/ˈsʌbdʒɪkt/', frequency_rank: 130 },
+    { word: 'exam', pos: 'noun', definition: 'A formal test of knowledge.', example: 'I have an exam on Monday.', ipa: '/ɪɡˈzæm/', frequency_rank: 320 },
+    { word: 'grade', pos: 'noun', definition: 'A mark or score given for work.', example: 'She got a good grade on her essay.', ipa: '/ɡreɪd/', frequency_rank: 280 },
+    { word: 'homework', pos: 'noun', definition: 'School work done at home.', example: 'I did my homework after dinner.', ipa: '/ˈhoʊmwɜːrk/', frequency_rank: 430 },
+    { word: 'degree', pos: 'noun', definition: 'A qualification from a university.', example: 'She has a degree in economics.', ipa: '/dɪˈɡriː/', frequency_rank: 245 },
+    { word: 'colleague', pos: 'noun', definition: 'A person you work with.', example: 'My colleagues are very friendly.', ipa: '/ˈkɒliːɡ/', frequency_rank: 350 },
+    { word: 'office', pos: 'noun', definition: 'A room or building where people work.', example: 'I work in an office in the city centre.', ipa: '/ˈɒfɪs/', frequency_rank: 145 },
+    { word: 'salary', pos: 'noun', definition: 'Money paid regularly for work.', example: 'The salary is very competitive.', ipa: '/ˈsæləri/', frequency_rank: 350 },
+    { word: 'meeting', pos: 'noun', definition: 'An occasion when people come together to discuss something.', example: 'I have a meeting at 10 am.', ipa: '/ˈmiːtɪŋ/', frequency_rank: 175 },
+    { word: 'project', pos: 'noun', definition: 'A planned piece of work with a specific goal.', example: 'We finished the project on time.', ipa: '/ˈprɒdʒekt/', frequency_rank: 190 },
+    { word: 'permission', pos: 'noun', definition: 'Consent from someone in authority to do something.', example: 'Do I need permission to leave early?', ipa: '/pərˈmɪʃən/', frequency_rank: 310 },
+    { word: 'rule', pos: 'noun', definition: 'An instruction about what you must or must not do.', example: 'Follow the school rules.', ipa: '/ruːl/', frequency_rank: 130 },
+  ],
+}
+
+const money_prices_a2: VocabularySet = {
+  id: 'money_prices_a2',
+  level: 'A2',
+  topic: 'Money & Prices',
+  unit_ref: 'a2-unit-5',
+  words: [
+    { word: 'coin', pos: 'noun', definition: 'A flat metal piece used as money.', example: 'I found a coin on the street.', ipa: '/kɔɪn/', frequency_rank: 400 },
+    { word: 'note', pos: 'noun', definition: 'A piece of paper used as money.', example: 'Do you have a £10 note?', ipa: '/noʊt/', frequency_rank: 110 },
+    { word: 'cost', pos: 'verb', definition: 'To have a particular price.', example: 'How much does it cost?', ipa: '/kɒst/', frequency_rank: 115 },
+    { word: 'spend', pos: 'verb', definition: 'To use money to buy something.', example: 'I spend too much on food.', ipa: '/spend/', frequency_rank: 185 },
+    { word: 'save', pos: 'verb', definition: 'To keep money for future use.', example: 'I save 20% of my salary.', ipa: '/seɪv/', frequency_rank: 160 },
+    { word: 'free', pos: 'adjective', definition: 'Costing nothing.', example: 'Entry to the museum is free.', ipa: '/friː/', frequency_rank: 65 },
+    { word: 'worth', pos: 'adjective', definition: 'Having a particular value.', example: 'This old watch is worth a lot.', ipa: '/wɜːrθ/', frequency_rank: 135 },
+    { word: 'budget', pos: 'noun', definition: 'The amount of money available to spend.', example: 'I have a small budget this month.', ipa: '/ˈbʌdʒɪt/', frequency_rank: 275 },
+    { word: 'bill', pos: 'noun', definition: 'A request to pay for something.', example: 'Can we have the bill, please?', ipa: '/bɪl/', frequency_rank: 190 },
+    { word: 'wallet', pos: 'noun', definition: 'A small flat container for carrying money.', example: 'I left my wallet at home.', ipa: '/ˈwɒlɪt/', frequency_rank: 450 },
+    { word: 'exchange rate', pos: 'noun', definition: 'The rate at which one currency is exchanged for another.', example: 'What is the exchange rate today?', ipa: '/ɪksˈtʃeɪndʒ reɪt/' },
+    { word: 'ATM', pos: 'noun', definition: 'A machine for withdrawing cash.', example: 'Is there an ATM nearby?', ipa: '/ˌeɪtiːˈem/' },
+  ],
+}
+
+const symptoms_a2: VocabularySet = {
+  id: 'symptoms_a2',
+  level: 'A2',
+  topic: 'Symptoms & Illness',
+  unit_ref: 'a2-unit-6',
+  words: [
+    { word: 'headache', pos: 'noun', definition: 'A pain in the head.', example: 'I have a terrible headache.', ipa: '/ˈhedeɪk/', frequency_rank: 480 },
+    { word: 'fever', pos: 'noun', definition: 'A high body temperature caused by illness.', example: 'She has a fever of 39°C.', ipa: '/ˈfiːvər/', frequency_rank: 400 },
+    { word: 'cough', pos: 'noun', definition: 'A sudden sound made when air bursts from the lungs.', example: 'I have had a cough for a week.', ipa: '/kɒf/', frequency_rank: 440 },
+    { word: 'cold', pos: 'noun', definition: 'A common illness with a runny nose and sore throat.', example: "I've got a cold.", ipa: '/koʊld/', frequency_rank: 215 },
+    { word: 'sneeze', pos: 'verb', definition: 'To suddenly expel air from the nose.', example: 'She keeps sneezing — she might have a cold.', ipa: '/sniːz/', frequency_rank: 560 },
+    { word: 'tired', pos: 'adjective', definition: 'Feeling the need to sleep or rest.', example: 'I feel very tired today.', ipa: '/ˈtaɪərd/', frequency_rank: 270 },
+    { word: 'dizzy', pos: 'adjective', definition: 'Feeling as if everything is spinning.', example: 'I feel dizzy — I need to sit down.', ipa: '/ˈdɪzi/', frequency_rank: 530 },
+    { word: 'nausea', pos: 'noun', definition: 'A feeling of wanting to vomit.', example: 'The medicine can cause nausea.', ipa: '/ˈnɔːziə/', frequency_rank: 510 },
+    { word: 'prescription', pos: 'noun', definition: 'A written order from a doctor for medicine.', example: 'The doctor gave me a prescription.', ipa: '/prɪˈskrɪpʃən/', frequency_rank: 440 },
+    { word: 'allergy', pos: 'noun', definition: 'A reaction by the body to certain substances.', example: 'I have an allergy to peanuts.', ipa: '/ˈælərʒi/', frequency_rank: 480 },
+    { word: 'recover', pos: 'verb', definition: 'To become healthy again after an illness.', example: 'I hope you recover soon.', ipa: '/rɪˈkʌvər/', frequency_rank: 260 },
+    { word: 'symptom', pos: 'noun', definition: 'A sign that suggests a person has an illness.', example: 'What are your symptoms?', ipa: '/ˈsɪmptəm/', frequency_rank: 380 },
+  ],
+}
+
+const travel_a2: VocabularySet = {
+  id: 'travel_a2',
+  level: 'A2',
+  topic: 'Travel & Accommodation',
+  unit_ref: 'a2-unit-7',
+  words: [
+    { word: 'passport', pos: 'noun', definition: 'An official document for international travel.', example: "Don't forget your passport.", ipa: '/ˈpɑːspɔːrt/', frequency_rank: 420 },
+    { word: 'luggage', pos: 'noun', definition: 'Bags and suitcases used when travelling.', example: 'My luggage is too heavy.', ipa: '/ˈlʌɡɪdʒ/', frequency_rank: 480 },
+    { word: 'check in', pos: 'phrase', definition: 'To register at a hotel or airport.', example: 'We need to check in before 3 pm.', ipa: '/tʃek ɪn/' },
+    { word: 'reservation', pos: 'noun', definition: 'An arrangement to have something kept for you.', example: 'I made a hotel reservation online.', ipa: '/ˌrezərˈveɪʃən/', frequency_rank: 440 },
+    { word: 'destination', pos: 'noun', definition: 'The place you are travelling to.', example: 'What is your final destination?', ipa: '/ˌdestɪˈneɪʃən/', frequency_rank: 370 },
+    { word: 'sightseeing', pos: 'noun', definition: 'Visiting tourist attractions.', example: 'We went sightseeing in Rome.', ipa: '/ˈsaɪtˌsiːɪŋ/' },
+    { word: 'souvenir', pos: 'noun', definition: 'A small item bought as a reminder of a place.', example: 'I bought a souvenir for my friend.', ipa: '/ˌsuːvəˈnɪər/', frequency_rank: 530 },
+    { word: 'currency', pos: 'noun', definition: 'The money used in a particular country.', example: 'What currency do they use in Japan?', ipa: '/ˈkɜːrənsi/', frequency_rank: 340 },
+    { word: 'customs', pos: 'noun', definition: 'The place at a border where bags are checked.', example: 'We had to go through customs.', ipa: '/ˈkʌstəmz/', frequency_rank: 280 },
+    { word: 'accommodation', pos: 'noun', definition: 'A place to stay, especially when travelling.', example: 'The accommodation was excellent.', ipa: '/əˌkɒməˈdeɪʃən/', frequency_rank: 390 },
+    { word: 'itinerary', pos: 'noun', definition: 'A planned route or journey.', example: 'Our itinerary includes three cities.', ipa: '/aɪˈtɪnərəri/', frequency_rank: 520 },
+    { word: 'tour', pos: 'noun', definition: 'A journey visiting several places.', example: 'We took a guided tour of the city.', ipa: '/tʊər/', frequency_rank: 295 },
+  ],
+}
+
+const directions_a2: VocabularySet = {
+  id: 'directions_a2',
+  level: 'A2',
+  topic: 'Giving Directions',
+  unit_ref: 'a2-unit-7',
+  words: [
+    { word: 'turn left', pos: 'phrase', definition: 'To change direction to the left.', example: 'Turn left at the traffic lights.', ipa: '/tɜːrn left/' },
+    { word: 'turn right', pos: 'phrase', definition: 'To change direction to the right.', example: 'Turn right at the corner.', ipa: '/tɜːrn raɪt/' },
+    { word: 'straight on', pos: 'phrase', definition: 'Continue in the same direction.', example: 'Go straight on for 200 metres.', ipa: '/streɪt ɒn/' },
+    { word: 'crossroads', pos: 'noun', definition: 'A place where two roads cross.', example: 'Turn right at the crossroads.', ipa: '/ˈkrɒsroʊdz/', frequency_rank: 510 },
+    { word: 'roundabout', pos: 'noun', definition: 'A circular junction where roads meet.', example: 'Take the second exit at the roundabout.', ipa: '/ˈraʊndəbaʊt/', frequency_rank: 540 },
+    { word: 'traffic lights', pos: 'noun', definition: 'Coloured lights that control road traffic.', example: 'Stop at the traffic lights.', ipa: '/ˈtræfɪk laɪts/' },
+    { word: 'corner', pos: 'noun', definition: 'The point where two streets or roads meet.', example: 'The café is on the corner.', ipa: '/ˈkɔːrnər/', frequency_rank: 270 },
+    { word: 'block', pos: 'noun', definition: 'A section of a street between two junctions.', example: 'Walk two blocks north.', ipa: '/blɒk/', frequency_rank: 195 },
+    { word: 'opposite', pos: 'adjective', definition: 'Directly across from.', example: 'The station is opposite the park.', ipa: '/ˈɒpəzɪt/', frequency_rank: 350 },
+    { word: 'far', pos: 'adjective', definition: 'At a great distance.', example: 'Is the station far from here?', ipa: '/fɑːr/', frequency_rank: 95 },
+    { word: 'distance', pos: 'noun', definition: 'The length of space between two places.', example: 'The distance is about 5 km.', ipa: '/ˈdɪstəns/', frequency_rank: 230 },
+    { word: 'map', pos: 'noun', definition: 'A diagram of an area showing roads and places.', example: 'I used a map to find the hotel.', ipa: '/mæp/', frequency_rank: 260 },
+  ],
+}
+
 // ─── B1 Vocabulary Sets (key sets) ────────────────────────────────────────────
 
 const experiences_b1: VocabularySet = {
@@ -751,6 +898,196 @@ const opinion_phrases_b1: VocabularySet = {
     { word: 'tend to', pos: 'phrase', definition: 'To usually do or be a certain way.', example: 'I tend to agree with you.', ipa: '/tend tə/' },
     { word: 'point out', pos: 'phrase', definition: 'To draw attention to something.', example: 'I\'d like to point out that this is wrong.', ipa: '/pɔɪnt aʊt/' },
     { word: 'argue', pos: 'verb', definition: 'To give reasons for or against something.', example: 'She argued that the plan was too risky.', ipa: '/ˈɑːrɡjuː/', frequency_rank: 265 },
+  ],
+}
+
+const environment_b1: VocabularySet = {
+  id: 'environment_b1',
+  level: 'B1',
+  topic: 'Environment & Nature',
+  unit_ref: 'b1-unit-2',
+  words: [
+    { word: 'pollution', pos: 'noun', definition: 'The presence of harmful substances in the environment.', example: 'Air pollution is a major problem in many cities.', ipa: '/pəˈluːʃən/', frequency_rank: 360 },
+    { word: 'climate change', pos: 'noun', definition: 'Long-term changes in global temperature and weather patterns.', example: 'Climate change is causing more extreme weather.', ipa: '/ˈklaɪmɪt tʃeɪndʒ/' },
+    { word: 'renewable', pos: 'adjective', definition: 'Able to be replenished naturally.', example: 'Solar energy is a renewable resource.', ipa: '/rɪˈnjuːəbəl/', frequency_rank: 440 },
+    { word: 'sustainable', pos: 'adjective', definition: 'Able to continue without damaging the environment.', example: 'We need sustainable solutions.', ipa: '/səˈsteɪnəbəl/', frequency_rank: 370 },
+    { word: 'recycle', pos: 'verb', definition: 'To process waste so it can be used again.', example: 'We recycle paper, plastic and glass.', ipa: '/ˌriːˈsaɪkəl/', frequency_rank: 440 },
+    { word: 'carbon footprint', pos: 'noun', definition: 'The total greenhouse gas emissions caused by an individual.', example: 'I want to reduce my carbon footprint.', ipa: '/ˈkɑːrbən ˈfʊtprɪnt/' },
+    { word: 'deforestation', pos: 'noun', definition: 'The clearing of forests on a large scale.', example: 'Deforestation destroys natural habitats.', ipa: '/dɪˌfɒrɪˈsteɪʃən/', frequency_rank: 490 },
+    { word: 'habitat', pos: 'noun', definition: 'The natural environment of an animal or plant.', example: 'Many animals are losing their habitat.', ipa: '/ˈhæbɪtæt/', frequency_rank: 390 },
+    { word: 'species', pos: 'noun', definition: 'A group of animals or plants of the same kind.', example: 'Several species are endangered.', ipa: '/ˈspiːʃiːz/', frequency_rank: 270 },
+    { word: 'global warming', pos: 'noun', definition: "The gradual rise in the earth's temperature.", example: 'Global warming is melting the ice caps.', ipa: '/ˌɡloʊbəl ˈwɔːrmɪŋ/' },
+  ],
+}
+
+const decisions_b1: VocabularySet = {
+  id: 'decisions_b1',
+  level: 'B1',
+  topic: 'Decisions & Consequences',
+  unit_ref: 'b1-unit-2',
+  words: [
+    { word: 'consequence', pos: 'noun', definition: 'A result or effect of an action.', example: 'Think about the consequences of your decision.', ipa: '/ˈkɒnsɪkwəns/', frequency_rank: 265 },
+    { word: 'outcome', pos: 'noun', definition: 'The result of an action or process.', example: 'What was the outcome of the meeting?', ipa: '/ˈaʊtkʌm/', frequency_rank: 235 },
+    { word: 'risk', pos: 'noun', definition: 'The possibility of something bad happening.', example: 'There is a risk of flooding.', ipa: '/rɪsk/', frequency_rank: 195 },
+    { word: 'option', pos: 'noun', definition: 'Something that can be chosen.', example: 'We have several options.', ipa: '/ˈɒpʃən/', frequency_rank: 195 },
+    { word: 'consider', pos: 'verb', definition: 'To think carefully about something.', example: 'Consider all the options before deciding.', ipa: '/kənˈsɪdər/', frequency_rank: 115 },
+    { word: 'weigh up', pos: 'phrase', definition: "To consider the pros and cons of something.", example: "I'm still weighing up my options.", ipa: '/weɪ ʌp/' },
+    { word: 'regret', pos: 'verb', definition: "To feel sorry about something you did or didn't do.", example: 'I regret not studying harder.', ipa: '/rɪˈɡret/', frequency_rank: 310 },
+    { word: 'take a chance', pos: 'phrase', definition: 'To do something risky.', example: 'I decided to take a chance and apply.', ipa: '/teɪk ə tʃɑːns/' },
+    { word: 'deal with', pos: 'phrase', definition: 'To handle a situation or problem.', example: 'How do you deal with stress?', ipa: '/diːl wɪð/' },
+    { word: 'affect', pos: 'verb', definition: 'To have an influence on something.', example: 'The weather affects my mood.', ipa: '/əˈfekt/', frequency_rank: 165 },
+  ],
+}
+
+const processes_b1: VocabularySet = {
+  id: 'processes_b1',
+  level: 'B1',
+  topic: 'Processes & Procedures',
+  unit_ref: 'b1-unit-3',
+  words: [
+    { word: 'process', pos: 'noun', definition: 'A series of actions to achieve a result.', example: 'The application process takes two weeks.', ipa: '/ˈprɒses/', frequency_rank: 130 },
+    { word: 'stage', pos: 'noun', definition: 'A step in a process.', example: 'At this stage, the work is almost done.', ipa: '/steɪdʒ/', frequency_rank: 175 },
+    { word: 'manufacture', pos: 'verb', definition: 'To make goods, especially by machine.', example: 'Cars are manufactured in this factory.', ipa: '/ˌmænjəˈfæktʃər/', frequency_rank: 295 },
+    { word: 'produce', pos: 'verb', definition: 'To make or create something.', example: 'This plant produces 500 units a day.', ipa: '/prəˈdjuːs/', frequency_rank: 95 },
+    { word: 'distribute', pos: 'verb', definition: 'To deliver goods to people or places.', example: 'The goods are distributed worldwide.', ipa: '/dɪˈstrɪbjuːt/', frequency_rank: 295 },
+    { word: 'install', pos: 'verb', definition: 'To put something in place so it is ready to use.', example: 'The engineer installed the new software.', ipa: '/ɪnˈstɔːl/', frequency_rank: 360 },
+    { word: 'operate', pos: 'verb', definition: 'To control or use a machine.', example: 'Do you know how to operate this machine?', ipa: '/ˈɒpəreɪt/', frequency_rank: 250 },
+    { word: 'system', pos: 'noun', definition: 'A set of parts working together.', example: 'The new system works well.', ipa: '/ˈsɪstəm/', frequency_rank: 55 },
+    { word: 'efficient', pos: 'adjective', definition: 'Achieving results without wasting resources.', example: 'The process is now more efficient.', ipa: '/ɪˈfɪʃənt/', frequency_rank: 330 },
+    { word: 'automatic', pos: 'adjective', definition: 'Working by itself without human control.', example: 'The door is automatic.', ipa: '/ˌɔːtəˈmætɪk/', frequency_rank: 390 },
+  ],
+}
+
+const media_b1: VocabularySet = {
+  id: 'media_b1',
+  level: 'B1',
+  topic: 'Media & News',
+  unit_ref: 'b1-unit-3',
+  words: [
+    { word: 'headline', pos: 'noun', definition: 'The title of a newspaper article.', example: 'The headline said there was an election.', ipa: '/ˈhedlaɪn/', frequency_rank: 390 },
+    { word: 'article', pos: 'noun', definition: 'A piece of writing in a newspaper or magazine.', example: 'I read an interesting article online.', ipa: '/ˈɑːrtɪkəl/', frequency_rank: 165 },
+    { word: 'broadcast', pos: 'verb', definition: 'To transmit a programme on radio or TV.', example: 'The news is broadcast at 6 pm.', ipa: '/ˈbrɔːdkɑːst/', frequency_rank: 350 },
+    { word: 'audience', pos: 'noun', definition: 'The people who watch or listen to something.', example: 'The programme has a large audience.', ipa: '/ˈɔːdiəns/', frequency_rank: 245 },
+    { word: 'press', pos: 'noun', definition: 'Newspapers and journalists in general.', example: 'The press reported on the story.', ipa: '/pres/', frequency_rank: 165 },
+    { word: 'report', pos: 'verb', definition: 'To give information about something.', example: 'The journalist reported from the scene.', ipa: '/rɪˈpɔːrt/', frequency_rank: 95 },
+    { word: 'source', pos: 'noun', definition: 'Where information comes from.', example: 'Check your sources before sharing news.', ipa: '/sɔːrs/', frequency_rank: 170 },
+    { word: 'issue', pos: 'noun', definition: 'An important topic being discussed.', example: 'Climate change is a major issue.', ipa: '/ˈɪʃuː/', frequency_rank: 100 },
+    { word: 'feature', pos: 'noun', definition: 'A special article or programme about a topic.', example: 'The magazine has a feature about technology.', ipa: '/ˈfiːtʃər/', frequency_rank: 160 },
+    { word: 'opinion', pos: 'noun', definition: 'A personal view or belief.', example: 'What is your opinion on this?', ipa: '/əˈpɪnjən/', frequency_rank: 180 },
+  ],
+}
+
+const descriptions_b1: VocabularySet = {
+  id: 'descriptions_b1',
+  level: 'B1',
+  topic: 'Descriptions & Detail',
+  unit_ref: 'b1-unit-4',
+  words: [
+    { word: 'characteristics', pos: 'noun', definition: 'Features that distinguish something.', example: 'What are the characteristics of a good leader?', ipa: '/ˌkærɪktəˈrɪstɪks/', frequency_rank: 255 },
+    { word: 'feature', pos: 'noun', definition: 'A distinctive aspect of something.', example: 'The main feature of this phone is the camera.', ipa: '/ˈfiːtʃər/', frequency_rank: 160 },
+    { word: 'resemble', pos: 'verb', definition: 'To look or seem like.', example: 'She resembles her mother.', ipa: '/rɪˈzembəl/', frequency_rank: 350 },
+    { word: 'distinguish', pos: 'verb', definition: 'To recognise the difference between things.', example: 'Can you distinguish between the two sounds?', ipa: '/dɪˈstɪŋɡwɪʃ/', frequency_rank: 310 },
+    { word: 'specific', pos: 'adjective', definition: 'Clearly defined; precise.', example: 'Can you be more specific?', ipa: '/spəˈsɪfɪk/', frequency_rank: 165 },
+    { word: 'typical', pos: 'adjective', definition: 'Showing the usual qualities of something.', example: "That's typical British weather.", ipa: '/ˈtɪpɪkəl/', frequency_rank: 245 },
+    { word: 'particular', pos: 'adjective', definition: 'Specific; referring to one thing especially.', example: 'I am looking for a particular kind of book.', ipa: '/pəˈtɪkjələr/', frequency_rank: 100 },
+    { word: 'purpose', pos: 'noun', definition: 'The reason something is done or used.', example: 'What is the purpose of this machine?', ipa: '/ˈpɜːrpəs/', frequency_rank: 145 },
+    { word: 'function', pos: 'noun', definition: 'The purpose or role of something.', example: 'The function of this button is to reset.', ipa: '/ˈfʌŋkʃən/', frequency_rank: 160 },
+    { word: 'define', pos: 'verb', definition: 'To explain the exact meaning of something.', example: 'Can you define the word "resilience"?', ipa: '/dɪˈfaɪn/', frequency_rank: 200 },
+  ],
+}
+
+const work_obligations_b1: VocabularySet = {
+  id: 'work_obligations_b1',
+  level: 'B1',
+  topic: 'Work & Obligations',
+  unit_ref: 'b1-unit-5',
+  words: [
+    { word: 'responsibility', pos: 'noun', definition: 'A duty to deal with something.', example: 'It is your responsibility to submit the report.', ipa: '/rɪˌspɒnsəˈbɪlɪti/', frequency_rank: 210 },
+    { word: 'obligation', pos: 'noun', definition: 'Something you must do because of a rule or duty.', example: 'We have an obligation to help.', ipa: '/ˌɒblɪˈɡeɪʃən/', frequency_rank: 310 },
+    { word: 'requirement', pos: 'noun', definition: 'Something that is necessary.', example: 'What are the requirements for the job?', ipa: '/rɪˈkwaɪərmənt/', frequency_rank: 230 },
+    { word: 'deadline', pos: 'noun', definition: 'The latest time by which something must be done.', example: 'The deadline is Friday at noon.', ipa: '/ˈdedlaɪn/', frequency_rank: 410 },
+    { word: 'policy', pos: 'noun', definition: 'A set of rules or principles.', example: 'The company has a strict policy on lateness.', ipa: '/ˈpɒlɪsi/', frequency_rank: 150 },
+    { word: 'compulsory', pos: 'adjective', definition: 'Required by law or rules.', example: 'Education is compulsory until age 16.', ipa: '/kəmˈpʌlsəri/', frequency_rank: 450 },
+    { word: 'voluntary', pos: 'adjective', definition: 'Done by choice, not obligation.', example: 'The work was voluntary.', ipa: '/ˈvɒləntəri/', frequency_rank: 380 },
+    { word: 'permit', pos: 'verb', definition: 'To allow something.', example: 'Smoking is not permitted inside.', ipa: '/pərˈmɪt/', frequency_rank: 270 },
+    { word: 'forbid', pos: 'verb', definition: 'To say that something must not be done.', example: 'Mobile phones are forbidden in class.', ipa: '/fərˈbɪd/', frequency_rank: 370 },
+    { word: 'regulation', pos: 'noun', definition: 'An official rule or instruction.', example: 'All staff must follow health regulations.', ipa: '/ˌreɡjəˈleɪʃən/', frequency_rank: 260 },
+  ],
+}
+
+const advice_phrases_b1: VocabularySet = {
+  id: 'advice_phrases_b1',
+  level: 'B1',
+  topic: 'Advice & Suggestions',
+  unit_ref: 'b1-unit-5',
+  words: [
+    { word: 'suggest', pos: 'verb', definition: 'To mention an idea for consideration.', example: 'I suggest we leave early.', ipa: '/səˈdʒest/', frequency_rank: 195 },
+    { word: 'recommend', pos: 'verb', definition: 'To advise a course of action.', example: 'I recommend you see a doctor.', ipa: '/ˌrekəˈmend/', frequency_rank: 260 },
+    { word: 'warn', pos: 'verb', definition: 'To tell someone about a possible danger.', example: 'I warned him not to be late.', ipa: '/wɔːrn/', frequency_rank: 265 },
+    { word: 'encourage', pos: 'verb', definition: 'To give support or confidence.', example: 'She encourages her students to speak up.', ipa: '/ɪnˈkɜːrɪdʒ/', frequency_rank: 240 },
+    { word: 'advice', pos: 'noun', definition: 'Guidance or recommendations about what to do.', example: 'My advice is to start early.', ipa: '/ədˈvaɪs/', frequency_rank: 195 },
+    { word: 'tip', pos: 'noun', definition: 'A useful piece of practical advice.', example: 'Do you have any tips for the exam?', ipa: '/tɪp/', frequency_rank: 280 },
+    { word: 'avoid', pos: 'verb', definition: 'To stay away from; to prevent happening.', example: 'Avoid eating too much sugar.', ipa: '/əˈvɔɪd/', frequency_rank: 195 },
+    { word: 'consider', pos: 'verb', definition: 'To think carefully about something.', example: 'Consider seeing a specialist.', ipa: '/kənˈsɪdər/', frequency_rank: 115 },
+    { word: 'in case', pos: 'phrase', definition: 'As a precaution against something.', example: 'Take an umbrella in case it rains.', ipa: '/ɪn keɪs/' },
+    { word: 'worth', pos: 'adjective', definition: 'Useful enough to justify the effort.', example: "It's worth checking twice.", ipa: '/wɜːrθ/', frequency_rank: 135 },
+  ],
+}
+
+const news_media_b1: VocabularySet = {
+  id: 'news_media_b1',
+  level: 'B1',
+  topic: 'News & Reporting',
+  unit_ref: 'b1-unit-6',
+  words: [
+    { word: 'according to', pos: 'phrase', definition: 'As stated by someone.', example: 'According to the BBC, temperatures will rise.', ipa: '/əˈkɔːrdɪŋ tuː/' },
+    { word: 'report', pos: 'noun', definition: 'An account of an event.', example: 'The news report lasted 30 minutes.', ipa: '/ˈrɪpɔːrt/', frequency_rank: 95 },
+    { word: 'claim', pos: 'verb', definition: 'To say that something is true.', example: 'He claims he was there.', ipa: '/kleɪm/', frequency_rank: 165 },
+    { word: 'announce', pos: 'verb', definition: 'To make something publicly known.', example: 'The company announced a new product.', ipa: '/əˈnaʊns/', frequency_rank: 230 },
+    { word: 'deny', pos: 'verb', definition: 'To say something is not true.', example: 'The minister denied the accusations.', ipa: '/dɪˈnaɪ/', frequency_rank: 290 },
+    { word: 'confirm', pos: 'verb', definition: 'To say that something is definitely true.', example: 'She confirmed the meeting is at 10.', ipa: '/kənˈfɜːrm/', frequency_rank: 250 },
+    { word: 'reveal', pos: 'verb', definition: 'To make something known that was hidden.', example: 'The report revealed serious problems.', ipa: '/rɪˈviːl/', frequency_rank: 215 },
+    { word: 'warn', pos: 'verb', definition: 'To tell people about a possible danger.', example: 'Scientists warn of rising sea levels.', ipa: '/wɔːrn/', frequency_rank: 265 },
+    { word: 'estimate', pos: 'verb', definition: 'To form an approximate idea of a number or amount.', example: 'Experts estimate the cost at £2 billion.', ipa: '/ˈestɪmeɪt/', frequency_rank: 240 },
+    { word: 'evidence', pos: 'noun', definition: 'Facts that prove or disprove a claim.', example: 'There is no evidence for that.', ipa: '/ˈevɪdəns/', frequency_rank: 195 },
+  ],
+}
+
+const communication_b1: VocabularySet = {
+  id: 'communication_b1',
+  level: 'B1',
+  topic: 'Communication & Language',
+  unit_ref: 'b1-unit-6',
+  words: [
+    { word: 'misunderstand', pos: 'verb', definition: 'To fail to understand correctly.', example: 'I misunderstood what she said.', ipa: '/ˌmɪsʌndəˈstænd/', frequency_rank: 420 },
+    { word: 'clarify', pos: 'verb', definition: 'To make something easier to understand.', example: 'Can you clarify what you mean?', ipa: '/ˈklærɪfaɪ/', frequency_rank: 360 },
+    { word: 'paraphrase', pos: 'verb', definition: 'To express something in different words.', example: 'She paraphrased what the doctor said.', ipa: '/ˈpærəfreɪz/', frequency_rank: 480 },
+    { word: 'summarise', pos: 'verb', definition: 'To give a brief statement of the main points.', example: 'Can you summarise the article?', ipa: '/ˈsʌməraɪz/', frequency_rank: 390 },
+    { word: 'formal', pos: 'adjective', definition: 'Following official rules; serious in style.', example: 'Use formal language in the letter.', ipa: '/ˈfɔːrməl/', frequency_rank: 240 },
+    { word: 'informal', pos: 'adjective', definition: 'Relaxed; not following strict rules.', example: 'Texts are usually informal.', ipa: '/ɪnˈfɔːrməl/', frequency_rank: 350 },
+    { word: 'tone', pos: 'noun', definition: 'The general feeling of a piece of communication.', example: 'The tone of the email was unfriendly.', ipa: '/toʊn/', frequency_rank: 250 },
+    { word: 'translate', pos: 'verb', definition: 'To express words in another language.', example: 'She translated the document.', ipa: '/trænsˈleɪt/', frequency_rank: 310 },
+    { word: 'fluent', pos: 'adjective', definition: 'Able to speak a language well and easily.', example: 'She is fluent in three languages.', ipa: '/ˈfluːənt/', frequency_rank: 440 },
+    { word: 'misquote', pos: 'verb', definition: "To report someone's words incorrectly.", example: 'The journalist misquoted the politician.', ipa: '/ˌmɪsˈkwoʊt/', frequency_rank: 540 },
+  ],
+}
+
+const society_b1: VocabularySet = {
+  id: 'society_b1',
+  level: 'B1',
+  topic: 'Society & Issues',
+  unit_ref: 'b1-unit-7',
+  words: [
+    { word: 'society', pos: 'noun', definition: 'People living together in an organised community.', example: 'Education benefits society as a whole.', ipa: '/səˈsaɪəti/', frequency_rank: 175 },
+    { word: 'community', pos: 'noun', definition: 'A group of people living in the same area.', example: 'The local community supports the school.', ipa: '/kəˈmjuːnɪti/', frequency_rank: 185 },
+    { word: 'government', pos: 'noun', definition: 'The group of people who run a country.', example: 'The government announced new measures.', ipa: '/ˈɡʌvərnmənt/', frequency_rank: 100 },
+    { word: 'poverty', pos: 'noun', definition: 'The state of being very poor.', example: 'Many children grow up in poverty.', ipa: '/ˈpɒvərti/', frequency_rank: 285 },
+    { word: 'equality', pos: 'noun', definition: 'The state of being treated the same.', example: 'We believe in equality for all.', ipa: '/ɪˈkwɒlɪti/', frequency_rank: 300 },
+    { word: 'freedom', pos: 'noun', definition: 'The right to act without restriction.', example: 'Freedom of speech is very important.', ipa: '/ˈfriːdəm/', frequency_rank: 225 },
+    { word: 'right', pos: 'noun', definition: 'Something you are legally or morally allowed to do.', example: 'Everyone has the right to education.', ipa: '/raɪt/', frequency_rank: 35 },
+    { word: 'responsibility', pos: 'noun', definition: 'A duty you have towards others.', example: 'We have a responsibility to protect the environment.', ipa: '/rɪˌspɒnsəˈbɪlɪti/', frequency_rank: 210 },
+    { word: 'tradition', pos: 'noun', definition: 'A custom passed down through generations.', example: 'This is a very old tradition.', ipa: '/trəˈdɪʃən/', frequency_rank: 280 },
+    { word: 'generation', pos: 'noun', definition: 'All the people of about the same age.', example: 'This generation is very tech-savvy.', ipa: '/ˌdʒenəˈreɪʃən/', frequency_rank: 215 },
   ],
 }
 
@@ -825,6 +1162,111 @@ const media_society_b2: VocabularySet = {
   ],
 }
 
+const narrative_time_b2: VocabularySet = {
+  id: 'narrative_time_b2',
+  level: 'B2',
+  topic: 'Narrative & Sequencing Language',
+  unit_ref: 'b2-unit-1',
+  words: [
+    { word: 'subsequently', pos: 'adverb', definition: 'After something else; at a later time.', example: 'She was hired and subsequently promoted.', ipa: '/ˈsʌbsɪkwəntli/', frequency_rank: 380 },
+    { word: 'meanwhile', pos: 'adverb', definition: 'In the time between two events; at the same time.', example: 'Meanwhile, the situation was changing rapidly.', ipa: '/ˈmiːnwaɪl/', frequency_rank: 310 },
+    { word: 'prior to', pos: 'phrase', definition: 'Before.', example: 'Prior to the meeting, she reviewed the notes.', ipa: '/ˈpraɪər tuː/', frequency_rank: 340 },
+    { word: 'consequently', pos: 'adverb', definition: 'As a result; therefore.', example: 'The deadline was missed; consequently, the contract was cancelled.', ipa: '/ˈkɒnsɪkwəntli/', frequency_rank: 330 },
+    { word: 'in retrospect', pos: 'phrase', definition: 'When thinking about a past situation.', example: 'In retrospect, it was the right decision.', ipa: '/ɪn ˈretrəspekt/', frequency_rank: 420 },
+    { word: 'predecessor', pos: 'noun', definition: 'A person or thing that came before.', example: 'This model is an improvement on its predecessor.', ipa: '/ˈpredɪsesər/', frequency_rank: 390 },
+    { word: 'simultaneously', pos: 'adverb', definition: 'At the same time.', example: 'Two events happened simultaneously.', ipa: '/ˌsɪməlˈteɪnɪəsli/', frequency_rank: 370 },
+    { word: 'preceding', pos: 'adjective', definition: 'Coming immediately before.', example: 'The preceding chapter covers this in detail.', ipa: '/prɪˈsiːdɪŋ/', frequency_rank: 400 },
+    { word: 'ensuing', pos: 'adjective', definition: 'Happening afterward as a result.', example: 'In the ensuing chaos, three people were injured.', ipa: '/ɪnˈsjuːɪŋ/', frequency_rank: 440 },
+    { word: 'chronicle', pos: 'verb', definition: 'To record a series of events in order.', example: 'The book chronicles her rise to power.', ipa: '/ˈkrɒnɪkəl/', frequency_rank: 450 },
+    { word: 'culminate', pos: 'verb', definition: 'To reach the highest point or final stage.', example: 'Years of work culminated in the award.', ipa: '/ˈkʌlmɪneɪt/', frequency_rank: 410 },
+    { word: 'foreseeable', pos: 'adjective', definition: 'Able to be predicted or expected.', example: 'There are no changes in the foreseeable future.', ipa: '/fɔːrˈsiːəbəl/', frequency_rank: 430 },
+  ],
+}
+
+const emotions_b2: VocabularySet = {
+  id: 'emotions_b2',
+  level: 'B2',
+  topic: 'Emotions & Feelings (B2)',
+  unit_ref: 'b2-unit-2',
+  words: [
+    { word: 'regret', pos: 'noun', definition: 'A feeling of sadness about something done or not done.', example: 'She regrets not studying harder.', ipa: '/rɪˈɡret/', frequency_rank: 295 },
+    { word: 'remorse', pos: 'noun', definition: 'Deep regret for wrongdoing.', example: 'He showed no remorse for what he did.', ipa: '/rɪˈmɔːrs/', frequency_rank: 430 },
+    { word: 'apprehensive', pos: 'adjective', definition: 'Anxious or worried about a future event.', example: 'She felt apprehensive before the interview.', ipa: '/ˌæprɪˈhensɪv/', frequency_rank: 430 },
+    { word: 'overwhelmed', pos: 'adjective', definition: 'Feeling too much to cope with.', example: 'He was overwhelmed by the workload.', ipa: '/ˌoʊvərˈwelmd/', frequency_rank: 390 },
+    { word: 'melancholy', pos: 'noun', definition: 'A deep, long-lasting sadness.', example: 'There was a certain melancholy to the empty streets.', ipa: '/ˈmelənkɒli/', frequency_rank: 450 },
+    { word: 'contentment', pos: 'noun', definition: 'A state of happiness and satisfaction.', example: 'She felt a deep sense of contentment.', ipa: '/kənˈtentmənt/', frequency_rank: 410 },
+    { word: 'yearning', pos: 'noun', definition: 'A strong desire or longing.', example: 'He had a yearning to return home.', ipa: '/ˈjɜːrnɪŋ/', frequency_rank: 440 },
+    { word: 'resentment', pos: 'noun', definition: 'Bitterness from feeling treated unfairly.', example: 'She felt deep resentment at being overlooked.', ipa: '/rɪˈzentmənt/', frequency_rank: 380 },
+    { word: 'nostalgia', pos: 'noun', definition: 'A sentimental longing for the past.', example: 'The old photos filled her with nostalgia.', ipa: '/nɒˈstælɪdʒə/', frequency_rank: 390 },
+    { word: 'anticipation', pos: 'noun', definition: 'Excitement and expectation about a future event.', example: 'The children were full of anticipation.', ipa: '/ænˌtɪsɪˈpeɪʃən/', frequency_rank: 360 },
+    { word: 'frustration', pos: 'noun', definition: 'The feeling of being upset when unable to achieve something.', example: 'He expressed his frustration at the slow progress.', ipa: '/frʌˈstreɪʃən/', frequency_rank: 310 },
+    { word: 'indifference', pos: 'noun', definition: 'Lack of interest, concern, or sympathy.', example: 'His indifference to the problem was surprising.', ipa: '/ɪnˈdɪfrəns/', frequency_rank: 400 },
+  ],
+}
+
+const hypothetical_b2: VocabularySet = {
+  id: 'hypothetical_b2',
+  level: 'B2',
+  topic: 'Hypothetical & Speculative Language',
+  unit_ref: 'b2-unit-3',
+  words: [
+    { word: 'hypothetically', pos: 'adverb', definition: 'In a way that involves an imagined or assumed situation.', example: 'Hypothetically, what would you do with a million pounds?', ipa: '/haɪˈpɒθetɪkli/', frequency_rank: 470 },
+    { word: 'supposedly', pos: 'adverb', definition: 'According to what is generally believed or claimed.', example: 'The meeting was supposedly cancelled.', ipa: '/səˈpoʊzɪdli/', frequency_rank: 410 },
+    { word: 'presumably', pos: 'adverb', definition: 'Used to convey what is expected to be true.', example: 'You are presumably aware of the risks.', ipa: '/prɪˈzjuːməbli/', frequency_rank: 380 },
+    { word: 'speculate', pos: 'verb', definition: 'To form opinions without firm evidence.', example: 'Experts speculate that prices will rise.', ipa: '/ˈspekjuleɪt/', frequency_rank: 350 },
+    { word: 'scenario', pos: 'noun', definition: 'A possible situation or sequence of events.', example: 'In the worst-case scenario, we lose the client.', ipa: '/sɪˈnɑːrɪoʊ/', frequency_rank: 320 },
+    { word: 'contingency', pos: 'noun', definition: 'A possible event that may or may not occur.', example: 'We need a contingency plan.', ipa: '/kənˈtɪndʒənsi/', frequency_rank: 430 },
+    { word: 'likelihood', pos: 'noun', definition: 'The probability of something happening.', example: 'What is the likelihood of success?', ipa: '/ˈlaɪklɪhʊd/', frequency_rank: 370 },
+    { word: 'alternative', pos: 'noun', definition: 'One of two or more available possibilities.', example: 'We have no viable alternative.', ipa: '/ɔːlˈtɜːrnətɪv/', frequency_rank: 255 },
+    { word: 'outcome', pos: 'noun', definition: 'The result or effect of an action.', example: 'The outcome of the negotiations was positive.', ipa: '/ˈaʊtkʌm/', frequency_rank: 260 },
+    { word: 'potential', pos: 'adjective', definition: 'Having the capacity to develop into something.', example: 'There are potential risks in this approach.', ipa: '/pəˈtenʃəl/', frequency_rank: 210 },
+    { word: 'hypothetical', pos: 'adjective', definition: 'Based on a supposed situation rather than fact.', example: 'This is a purely hypothetical question.', ipa: '/ˌhaɪpəˈθetɪkəl/', frequency_rank: 430 },
+    { word: 'implication', pos: 'noun', definition: 'A likely consequence; something suggested but not stated directly.', example: 'Consider the implications of this decision.', ipa: '/ˌɪmplɪˈkeɪʃən/', frequency_rank: 295 },
+  ],
+}
+
+const industries_b2: VocabularySet = {
+  id: 'industries_b2',
+  level: 'B2',
+  topic: 'Industries & Processes',
+  unit_ref: 'b2-unit-4',
+  words: [
+    { word: 'manufacture', pos: 'verb', definition: 'To make goods in large quantities using machinery.', example: 'Cars are manufactured in this plant.', ipa: '/ˌmænjuˈfæktʃər/', frequency_rank: 310 },
+    { word: 'automation', pos: 'noun', definition: 'The use of machines to perform tasks previously done by people.', example: 'Automation has transformed the factory floor.', ipa: '/ˌɔːtəˈmeɪʃən/', frequency_rank: 390 },
+    { word: 'infrastructure', pos: 'noun', definition: 'The basic systems and services of a country or organisation.', example: 'The country needs to invest in infrastructure.', ipa: '/ˈɪnfrəstrʌktʃər/', frequency_rank: 295 },
+    { word: 'procurement', pos: 'noun', definition: 'The process of obtaining goods and services for an organisation.', example: 'The procurement department handles all suppliers.', ipa: '/prəˈkjʊərmənt/', frequency_rank: 430 },
+    { word: 'outsource', pos: 'verb', definition: 'To obtain goods or services from an outside supplier.', example: 'Many companies outsource their IT support.', ipa: '/ˈaʊtsɔːrs/', frequency_rank: 410 },
+    { word: 'renewable', pos: 'adjective', definition: 'Relating to energy from sources that are not depleted.', example: 'Renewable energy is vital for the future.', ipa: '/rɪˈnjuːəbəl/', frequency_rank: 350 },
+    { word: 'emission', pos: 'noun', definition: 'The production and discharge of something, especially gas.', example: 'Carbon emissions must be reduced.', ipa: '/ɪˈmɪʃən/', frequency_rank: 340 },
+    { word: 'logistics', pos: 'noun', definition: 'The detailed coordination of a complex operation.', example: 'The logistics of the event were complex.', ipa: '/ləˈdʒɪstɪks/', frequency_rank: 380 },
+    { word: 'sustainable', pos: 'adjective', definition: 'Able to be maintained without harming the environment.', example: 'We need more sustainable production methods.', ipa: '/səˈsteɪnəbəl/', frequency_rank: 310 },
+    { word: 'subsidy', pos: 'noun', definition: 'A sum of money given by a government to help an industry.', example: 'Farmers receive agricultural subsidies.', ipa: '/ˈsʌbsɪdi/', frequency_rank: 360 },
+    { word: 'prototype', pos: 'noun', definition: 'An early model of a product used for testing.', example: 'They built a prototype before mass production.', ipa: '/ˈproʊtətaɪp/', frequency_rank: 410 },
+    { word: 'supply chain', pos: 'noun', definition: 'The network of suppliers involved in producing and distributing goods.', example: 'The pandemic disrupted global supply chains.', ipa: '/ˈsʌplaɪ tʃeɪn/', frequency_rank: 370 },
+  ],
+}
+
+const news_events_b2: VocabularySet = {
+  id: 'news_events_b2',
+  level: 'B2',
+  topic: 'News & Current Events',
+  unit_ref: 'b2-unit-6',
+  words: [
+    { word: 'allegation', pos: 'noun', definition: 'A claim that someone has done something wrong.', example: 'The minister denied all allegations.', ipa: '/ˌæləˈɡeɪʃən/', frequency_rank: 380 },
+    { word: 'dispute', pos: 'noun', definition: 'A disagreement or argument.', example: 'The dispute was resolved in court.', ipa: '/dɪˈspjuːt/', frequency_rank: 310 },
+    { word: 'summit', pos: 'noun', definition: 'A meeting between heads of government.', example: 'The G7 summit will address climate change.', ipa: '/ˈsʌmɪt/', frequency_rank: 350 },
+    { word: 'sanction', pos: 'noun', definition: 'An official order restricting trade with a country.', example: 'Economic sanctions were imposed on the regime.', ipa: '/ˈsæŋkʃən/', frequency_rank: 340 },
+    { word: 'treaty', pos: 'noun', definition: 'A formal agreement between countries.', example: 'The two nations signed a peace treaty.', ipa: '/ˈtriːti/', frequency_rank: 330 },
+    { word: 'referendum', pos: 'noun', definition: 'A public vote on a specific issue.', example: 'The country held a referendum on independence.', ipa: '/ˌrefəˈrendəm/', frequency_rank: 390 },
+    { word: 'coalition', pos: 'noun', definition: 'A temporary alliance of groups for a common purpose.', example: 'A coalition government was formed.', ipa: '/ˌkoʊəˈlɪʃən/', frequency_rank: 360 },
+    { word: 'correspondent', pos: 'noun', definition: 'A journalist reporting from a specific area.', example: 'Our foreign correspondent reports from Berlin.', ipa: '/ˌkɒrɪˈspɒndənt/', frequency_rank: 390 },
+    { word: 'eyewitness', pos: 'noun', definition: 'A person who saw something happen.', example: 'An eyewitness described what they had seen.', ipa: '/ˈaɪwɪtnɪs/', frequency_rank: 430 },
+    { word: 'speculation', pos: 'noun', definition: 'Forming opinions without definite evidence.', example: 'There is much speculation about the decision.', ipa: '/ˌspekjuˈleɪʃən/', frequency_rank: 360 },
+    { word: 'breakthrough', pos: 'noun', definition: 'A significant discovery or achievement.', example: 'Scientists announced a major breakthrough.', ipa: '/ˈbreɪkθruː/', frequency_rank: 350 },
+    { word: 'coverage', pos: 'noun', definition: 'The reporting of a news story by a media outlet.', example: 'The event received extensive media coverage.', ipa: '/ˈkʌvərɪdʒ/', frequency_rank: 310 },
+  ],
+}
+
 // ─── C1 Vocabulary Sets ────────────────────────────────────────────────────────
 
 const abstract_concepts_c1: VocabularySet = {
@@ -887,6 +1329,90 @@ const idioms_c1: VocabularySet = {
     { word: 'the tip of the iceberg', pos: 'phrase', definition: 'A small visible part of a larger problem.', example: 'This delay is just the tip of the iceberg.', ipa: '/ðə tɪp əv ðə ˈaɪsbɜːrɡ/' },
     { word: 'go back to square one', pos: 'phrase', definition: 'To start something again from the beginning.', example: 'The prototype failed; we went back to square one.', ipa: '/ɡoʊ ˌbæk tə skweər wʌn/' },
     { word: 'the ball is in your court', pos: 'phrase', definition: 'It is now your responsibility to act.', example: 'I\'ve made my offer — the ball is in your court.', ipa: '/ðə bɔːl ɪz ɪn jɔːr kɔːrt/' },
+  ],
+}
+
+const formal_writing_c1: VocabularySet = {
+  id: 'formal_writing_c1',
+  level: 'C1',
+  topic: 'Formal Writing Phrases',
+  unit_ref: 'c1-unit-3',
+  words: [
+    { word: 'with regard to', pos: 'phrase', definition: 'Concerning; in relation to.', example: 'With regard to your request, we are pleased to assist.', ipa: '/wɪð rɪˈɡɑːrd tuː/' },
+    { word: 'in light of', pos: 'phrase', definition: 'Taking into account; considering.', example: 'In light of the evidence, we must revise our position.', ipa: '/ɪn laɪt əv/', frequency_rank: 370 },
+    { word: 'on the grounds that', pos: 'phrase', definition: 'For the reason that.', example: 'The proposal was rejected on the grounds that it was too costly.', ipa: '/ɒn ðə ɡraʊndz ðæt/' },
+    { word: 'in accordance with', pos: 'phrase', definition: 'In a way that follows or agrees with.', example: 'Please act in accordance with the guidelines.', ipa: '/ɪn əˈkɔːrdəns wɪð/', frequency_rank: 390 },
+    { word: 'notwithstanding', pos: 'preposition', definition: 'Despite; in spite of.', example: 'Notwithstanding the delays, the project was completed on time.', ipa: '/ˌnɒtwɪθˈstændɪŋ/', frequency_rank: 460 },
+    { word: 'whereas', pos: 'conjunction', definition: 'While on the contrary; given that.', example: 'Whereas urban areas thrived, rural regions struggled.', ipa: '/weərˈæz/', frequency_rank: 310 },
+    { word: 'hitherto', pos: 'adverb', definition: 'Until now; before this point.', example: 'Hitherto, no solution had been found.', ipa: '/ˌhɪðəˈtuː/', frequency_rank: 480 },
+    { word: 'inasmuch as', pos: 'phrase', definition: 'To the extent that; because.', example: 'The policy failed inasmuch as it ignored economic factors.', ipa: '/ɪnəzˈmʌtʃ æz/' },
+    { word: 'thereof', pos: 'adverb', definition: 'Of the thing just mentioned.', example: 'The contract and all obligations thereof remain in force.', ipa: '/ðeərˈɒv/', frequency_rank: 490 },
+    { word: 'nonetheless', pos: 'adverb', definition: 'In spite of that; nevertheless.', example: 'The results were inconclusive; nonetheless, they were promising.', ipa: '/ˌnʌnðəˈles/', frequency_rank: 340 },
+    { word: 'pursuant to', pos: 'phrase', definition: 'In accordance with; following.', example: 'Pursuant to your request, I attach the document.', ipa: '/pərˈsuːənt tuː/' },
+    { word: 'aforesaid', pos: 'adjective', definition: 'Mentioned previously.', example: 'The aforesaid conditions must be met in full.', ipa: '/əˈfɔːrsed/' },
+  ],
+}
+
+const academic_discourse_c1: VocabularySet = {
+  id: 'academic_discourse_c1',
+  level: 'C1',
+  topic: 'Academic Discourse & Cohesion',
+  unit_ref: 'c1-unit-5',
+  words: [
+    { word: 'contention', pos: 'noun', definition: 'A point asserted as part of an argument.', example: 'My central contention is that this policy is ineffective.', ipa: '/kənˈtenʃən/', frequency_rank: 410 },
+    { word: 'premise', pos: 'noun', definition: 'A statement taken as a basis for reasoning.', example: 'The argument rests on a false premise.', ipa: '/ˈpremɪs/', frequency_rank: 380 },
+    { word: 'substantiate', pos: 'verb', definition: 'To provide evidence to support a claim.', example: 'Can you substantiate this claim with data?', ipa: '/səbˈstænʃieɪt/', frequency_rank: 480 },
+    { word: 'corroborate', pos: 'verb', definition: 'To confirm or give support to a statement.', example: 'The witness corroborated the account.', ipa: '/kəˈrɒbəreɪt/', frequency_rank: 460 },
+    { word: 'refute', pos: 'verb', definition: 'To prove a statement or theory to be wrong.', example: 'The study sought to refute the earlier findings.', ipa: '/rɪˈfjuːt/', frequency_rank: 430 },
+    { word: 'extrapolate', pos: 'verb', definition: 'To extend conclusions beyond the data available.', example: 'We should not extrapolate these findings to the whole population.', ipa: '/ɪkˈstræpəleɪt/', frequency_rank: 490 },
+    { word: 'caveat', pos: 'noun', definition: 'A warning or qualification about a statement.', example: 'With the caveat that more research is needed, we can conclude…', ipa: '/ˈkæviæt/', frequency_rank: 450 },
+    { word: 'dichotomy', pos: 'noun', definition: 'A division into two contrasting groups or ideas.', example: 'There is a false dichotomy between growth and sustainability.', ipa: '/daɪˈkɒtəmi/', frequency_rank: 460 },
+    { word: 'synthesis', pos: 'noun', definition: 'The combination of ideas to form a coherent whole.', example: 'The paper provides a synthesis of recent research.', ipa: '/ˈsɪnθɪsɪs/', frequency_rank: 380 },
+    { word: 'cite', pos: 'verb', definition: 'To quote as evidence or justification.', example: 'The author cites three studies to support this claim.', ipa: '/saɪt/', frequency_rank: 295 },
+    { word: 'coherent', pos: 'adjective', definition: 'Logical and consistent; easy to understand.', example: 'The argument was remarkably coherent.', ipa: '/koʊˈhɪərənt/', frequency_rank: 360 },
+    { word: 'inference', pos: 'noun', definition: 'A conclusion reached by reasoning from evidence.', example: 'What inference can we draw from this data?', ipa: '/ˈɪnfərəns/', frequency_rank: 390 },
+  ],
+}
+
+const critical_thinking_c1: VocabularySet = {
+  id: 'critical_thinking_c1',
+  level: 'C1',
+  topic: 'Critical Thinking & Analysis',
+  unit_ref: 'c1-unit-6',
+  words: [
+    { word: 'bias', pos: 'noun', definition: 'An unfair prejudice in favour of or against something.', example: 'The report showed clear confirmation bias.', ipa: '/ˈbaɪəs/', frequency_rank: 360 },
+    { word: 'fallacy', pos: 'noun', definition: 'A mistaken belief based on unsound reasoning.', example: 'This is a common logical fallacy.', ipa: '/ˈfæləsi/', frequency_rank: 420 },
+    { word: 'perception', pos: 'noun', definition: 'The way something is understood or interpreted.', example: 'Public perception of the issue has shifted.', ipa: '/pərˈsepʃən/', frequency_rank: 295 },
+    { word: 'validity', pos: 'noun', definition: 'The quality of being logically sound or well-founded.', example: 'We need to question the validity of this assumption.', ipa: '/vəˈlɪdɪti/', frequency_rank: 380 },
+    { word: 'subjectivity', pos: 'noun', definition: 'The quality of being based on personal feelings rather than facts.', example: 'Artistic judgements are prone to subjectivity.', ipa: '/ˌsʌbdʒekˈtɪvɪti/', frequency_rank: 450 },
+    { word: 'objective', pos: 'adjective', definition: 'Not influenced by personal feelings; impartial.', example: 'We need an objective assessment of the risks.', ipa: '/əbˈdʒektɪv/', frequency_rank: 240 },
+    { word: 'sceptical', pos: 'adjective', definition: 'Not easily convinced; having doubts.', example: 'I am sceptical of these results.', ipa: '/ˈskeptɪkəl/', frequency_rank: 390 },
+    { word: 'counterargument', pos: 'noun', definition: 'An argument made to oppose another.', example: 'She raised a strong counterargument.', ipa: '/ˌkaʊntərˈɑːɡjumənt/', frequency_rank: 430 },
+    { word: 'implication', pos: 'noun', definition: 'A conclusion that can be drawn even if not stated directly.', example: 'The implications of this finding are significant.', ipa: '/ˌɪmplɪˈkeɪʃən/', frequency_rank: 295 },
+    { word: 'overarching', pos: 'adjective', definition: 'Including or influencing everything; most important.', example: 'The overarching theme is sustainability.', ipa: '/ˌoʊvərˈɑːrtʃɪŋ/', frequency_rank: 420 },
+    { word: 'underpin', pos: 'verb', definition: 'To support or form the basis of something.', example: 'Evidence must underpin any strong argument.', ipa: '/ˌʌndəˈpɪn/', frequency_rank: 410 },
+    { word: 'nuanced', pos: 'adjective', definition: 'Marked by subtle distinctions; not absolute.', example: 'A nuanced understanding is required here.', ipa: '/ˈnjuːɑːnst/', frequency_rank: 430 },
+  ],
+}
+
+const debate_rhetoric_c1: VocabularySet = {
+  id: 'debate_rhetoric_c1',
+  level: 'C1',
+  topic: 'Debate & Rhetorical Language',
+  unit_ref: 'c1-unit-7',
+  words: [
+    { word: 'advocate', pos: 'verb', definition: 'To publicly support or recommend a cause.', example: 'She advocates for stricter environmental laws.', ipa: '/ˈædvəkeɪt/', frequency_rank: 340 },
+    { word: 'rebut', pos: 'verb', definition: 'To claim or prove that evidence or an accusation is false.', example: 'He rebutted every point raised by the opposition.', ipa: '/rɪˈbʌt/', frequency_rank: 470 },
+    { word: 'concede', pos: 'verb', definition: 'To admit that something is true, often reluctantly.', example: 'I concede that the study has some merit.', ipa: '/kənˈsiːd/', frequency_rank: 390 },
+    { word: 'assertion', pos: 'noun', definition: 'A confident and forceful statement.', example: 'The assertion lacked supporting evidence.', ipa: '/əˈsɜːrʃən/', frequency_rank: 380 },
+    { word: 'rhetoric', pos: 'noun', definition: 'The art of persuasive speaking or writing.', example: 'The speech was full of powerful rhetoric.', ipa: '/ˈretərɪk/', frequency_rank: 350 },
+    { word: 'compelling', pos: 'adjective', definition: 'Convincing; evoking interest, attention, or admiration.', example: 'She made a compelling case for reform.', ipa: '/kəmˈpelɪŋ/', frequency_rank: 320 },
+    { word: 'rebuke', pos: 'verb', definition: 'To express sharp criticism or disapproval.', example: 'The committee rebuked the minister for his remarks.', ipa: '/rɪˈbjuːk/', frequency_rank: 440 },
+    { word: 'credibility', pos: 'noun', definition: 'The quality of being trusted and believed in.', example: 'These inconsistencies undermine the report\'s credibility.', ipa: '/ˌkredɪˈbɪlɪti/', frequency_rank: 360 },
+    { word: 'objectivity', pos: 'noun', definition: 'Judgement based on observable facts rather than feelings.', example: 'Journalistic objectivity is essential.', ipa: '/ˌɒbdʒekˈtɪvɪti/', frequency_rank: 420 },
+    { word: 'prerogative', pos: 'noun', definition: 'An exclusive right or privilege.', example: 'It is the committee\'s prerogative to decide.', ipa: '/prɪˈrɒɡətɪv/', frequency_rank: 450 },
+    { word: 'pragmatic', pos: 'adjective', definition: 'Dealing with things sensibly and realistically.', example: 'We need a pragmatic approach to this issue.', ipa: '/præɡˈmætɪk/', frequency_rank: 360 },
+    { word: 'stipulate', pos: 'verb', definition: 'To demand or specify as a condition.', example: 'The contract stipulates a 30-day notice period.', ipa: '/ˈstɪpjuleɪt/', frequency_rank: 430 },
   ],
 }
 
@@ -955,6 +1481,48 @@ const idiomatic_expressions_c2: VocabularySet = {
   ],
 }
 
+const literary_devices_c2: VocabularySet = {
+  id: 'literary_devices_c2',
+  level: 'C2',
+  topic: 'Literary & Stylistic Devices',
+  unit_ref: 'c2-unit-4',
+  words: [
+    { word: 'allusion', pos: 'noun', definition: 'An indirect reference to a person, event, or work.', example: 'The title is an allusion to a Shakespeare play.', ipa: '/əˈluːʒən/', frequency_rank: 460 },
+    { word: 'metaphor', pos: 'noun', definition: 'A figure of speech describing one thing as another.', example: 'Life is a journey is a classic metaphor.', ipa: '/ˈmetəfɔːr/', frequency_rank: 340 },
+    { word: 'irony', pos: 'noun', definition: 'Expression of meaning through words that say the opposite.', example: 'The irony of his situation was not lost on him.', ipa: '/ˈaɪrəni/', frequency_rank: 330 },
+    { word: 'satire', pos: 'noun', definition: 'The use of humour or irony to expose folly or vice.', example: 'Swift\'s A Modest Proposal is biting satire.', ipa: '/ˈsætaɪər/', frequency_rank: 400 },
+    { word: 'ambiguity', pos: 'noun', definition: 'The quality of being open to more than one interpretation.', example: 'Deliberate ambiguity adds depth to the poem.', ipa: '/ˌæmbɪˈɡjuːɪti/', frequency_rank: 390 },
+    { word: 'tone', pos: 'noun', definition: 'The general character or attitude of a piece of writing.', example: 'The author\'s tone shifts from hopeful to mournful.', ipa: '/toʊn/', frequency_rank: 220 },
+    { word: 'motif', pos: 'noun', definition: 'A recurring subject, theme, or idea.', example: 'Water is a dominant motif throughout the novel.', ipa: '/moʊˈtiːf/', frequency_rank: 420 },
+    { word: 'juxtaposition', pos: 'noun', definition: 'Placing two elements side by side for contrasting effect.', example: 'The juxtaposition of wealth and poverty is striking.', ipa: '/ˌdʒʌktəpəˈzɪʃən/', frequency_rank: 450 },
+    { word: 'paradox', pos: 'noun', definition: 'A seemingly contradictory statement that reveals a truth.', example: '"Less is more" is a well-known paradox.', ipa: '/ˈpærədɒks/', frequency_rank: 380 },
+    { word: 'foreshadowing', pos: 'noun', definition: 'A warning or sign of a future event.', example: 'The dark clouds were foreshadowing the disaster to come.', ipa: '/fɔːrˈʃædoʊɪŋ/', frequency_rank: 470 },
+    { word: 'euphemism', pos: 'noun', definition: 'A mild word substituted for a blunt or harsh one.', example: '"Passed away" is a euphemism for dying.', ipa: '/ˈjuːfəmɪzəm/', frequency_rank: 440 },
+    { word: 'prose', pos: 'noun', definition: 'Written or spoken language that is not poetry.', example: 'The essay is written in elegant, precise prose.', ipa: '/proʊz/', frequency_rank: 350 },
+  ],
+}
+
+const critical_analysis_c2: VocabularySet = {
+  id: 'critical_analysis_c2',
+  level: 'C2',
+  topic: 'Critical Academic Analysis',
+  unit_ref: 'c2-unit-5',
+  words: [
+    { word: 'paradigm', pos: 'noun', definition: 'A typical example or pattern; a model or framework.', example: 'This study challenges the dominant paradigm.', ipa: '/ˈpærədaɪm/', frequency_rank: 390 },
+    { word: 'epistemology', pos: 'noun', definition: 'The branch of philosophy concerned with the nature of knowledge.', example: 'This raises questions of epistemology.', ipa: '/ɪˌpɪstɪˈmɒlədʒi/', frequency_rank: 490 },
+    { word: 'ontology', pos: 'noun', definition: 'The branch of metaphysics dealing with the nature of being.', example: 'The ontological assumptions are made explicit.', ipa: '/ɒnˈtɒlədʒi/', frequency_rank: 490 },
+    { word: 'hegemony', pos: 'noun', definition: 'Leadership or dominance, especially of one state over others.', example: 'The text critiques cultural hegemony.', ipa: '/hɪˈdʒeməni/', frequency_rank: 460 },
+    { word: 'deconstruct', pos: 'verb', definition: 'To analyse by taking apart; to expose hidden assumptions.', example: 'The essay deconstructs the narrative of progress.', ipa: '/ˌdiːkənˈstrʌkt/', frequency_rank: 450 },
+    { word: 'interrogate', pos: 'verb', definition: 'To examine a text or idea rigorously and critically.', example: 'We must interrogate the assumptions behind this policy.', ipa: '/ɪnˈterəɡeɪt/', frequency_rank: 380 },
+    { word: 'posit', pos: 'verb', definition: 'To assume as a fact; to put forward as a theory.', example: 'The author posits that inequality is systemic.', ipa: '/ˈpɒzɪt/', frequency_rank: 440 },
+    { word: 'taxonomy', pos: 'noun', definition: 'A system of classification.', example: 'Bloom\'s taxonomy categorises educational objectives.', ipa: '/tækˈsɒnəmi/', frequency_rank: 460 },
+    { word: 'empirical', pos: 'adjective', definition: 'Based on observation or experiment rather than theory.', example: 'The claim requires empirical support.', ipa: '/ɪmˈpɪrɪkəl/', frequency_rank: 350 },
+    { word: 'discourse', pos: 'noun', definition: 'Written or spoken communication; a formal discussion of a topic.', example: 'Academic discourse demands precision and objectivity.', ipa: '/ˈdɪskɔːrs/', frequency_rank: 320 },
+    { word: 'juxtapose', pos: 'verb', definition: 'To place two things side by side for contrast.', example: 'The author juxtaposes optimism with grim reality.', ipa: '/ˌdʒʌkstəˈpoʊz/', frequency_rank: 450 },
+    { word: 'axiom', pos: 'noun', definition: 'A universally accepted principle; a self-evident truth.', example: 'The axiom that all humans are equal underpins the argument.', ipa: '/ˈæksiəm/', frequency_rank: 450 },
+  ],
+}
+
 // ─── Vocabulary index ─────────────────────────────────────────────────────────
 
 export const vocabularySets: VocabularySet[] = [
@@ -989,22 +1557,50 @@ export const vocabularySets: VocabularySet[] = [
   food_shopping_a2,
   transport_a2,
   body_health_a2,
+  cities_countries_a2,
+  abilities_sports_a2,
+  school_work_a2,
+  money_prices_a2,
+  symptoms_a2,
+  travel_a2,
+  directions_a2,
   // B1
   experiences_b1,
   technology_b1,
   opinion_phrases_b1,
+  environment_b1,
+  decisions_b1,
+  processes_b1,
+  media_b1,
+  descriptions_b1,
+  work_obligations_b1,
+  advice_phrases_b1,
+  news_media_b1,
+  communication_b1,
+  society_b1,
   // B2
   academic_vocabulary_b2,
   workplace_b2,
   media_society_b2,
+  narrative_time_b2,
+  emotions_b2,
+  hypothetical_b2,
+  industries_b2,
+  news_events_b2,
   // C1
   abstract_concepts_c1,
   advanced_verbs_c1,
   idioms_c1,
+  formal_writing_c1,
+  academic_discourse_c1,
+  critical_thinking_c1,
+  debate_rhetoric_c1,
   // C2
   nuanced_adjectives_c2,
   formal_register_c2,
   idiomatic_expressions_c2,
+  literary_devices_c2,
+  critical_analysis_c2,
 ]
 
 /** Look up a VocabularySet by id */

@@ -1,10 +1,9 @@
 # FreeLingo
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)
-![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
-![Python](https://img.shields.io/badge/python-3.12-blue?style=flat-square)
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
-![Status](https://img.shields.io/badge/status-phase--1%2B-brightgreen?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.12-blue?style=flat-square)
+![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
 
 <p align="left">
   <img src="assets/logo.png" alt="FreeLingo logo" width="200" />
