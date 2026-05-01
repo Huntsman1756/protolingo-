@@ -37,7 +37,7 @@ jobs:
 
       - name: Run backend tests
         env:
-          DATABASE_URL: sqlite+aiosqlite:///:memory:
+          DATABASE_URL: 'sqlite+aiosqlite:///:memory:'
           SECRET_KEY: ci-secret-key
         run: pytest -v
 
