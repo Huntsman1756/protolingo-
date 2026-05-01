@@ -373,6 +373,95 @@ const academic_discussion_b2: PhrasebookCategory = {
   ],
 }
 
+// ─── C1 Categories ────────────────────────────────────────────────────────────
+
+const presentations_c1: PhrasebookCategory = {
+  id: 'presentations_c1',
+  level: 'C1',
+  situation: 'Presentations & Public Speaking',
+  icon: '🎤',
+  phrases: [
+    { english: 'Today I\'d like to talk to you about…', context: 'Opening a presentation', register: 'formal' },
+    { english: 'I\'ll begin by outlining the key issues, then move on to…', context: 'Signposting the structure', register: 'formal' },
+    { english: 'As you can see from this slide, …', context: 'Referring to a visual aid', register: 'formal' },
+    { english: 'I\'d like to draw your attention to…', context: 'Highlighting an important point', register: 'formal' },
+    { english: 'Building on this point, …', context: 'Developing an argument', register: 'formal' },
+    { english: 'This brings me to my next point, which is…', context: 'Transitioning between sections', register: 'formal' },
+    { english: 'What this essentially means is that…', context: 'Clarifying a complex idea', register: 'formal' },
+    { english: 'I\'d like to take a step back and consider…', context: 'Broadening the perspective', register: 'formal' },
+    { english: 'The data clearly indicates that…', context: 'Interpreting data', register: 'formal' },
+    { english: 'To put it another way, …', context: 'Rephrasing for clarity', register: 'neutral' },
+    { english: 'I\'m happy to take questions at the end.', context: 'Managing Q&A', register: 'formal' },
+    { english: 'That\'s a very pertinent question.', context: 'Acknowledging a good question', register: 'formal' },
+    { english: 'To summarise the key takeaways, …', context: 'Closing the presentation', register: 'formal' },
+  ],
+}
+
+const complex_arguments_c1: PhrasebookCategory = {
+  id: 'complex_arguments_c1',
+  level: 'C1',
+  situation: 'Complex Arguments & Critical Thinking',
+  icon: '🧠',
+  phrases: [
+    { english: 'One might argue that…, however the evidence suggests…', context: 'Presenting a counterargument then rebutting', register: 'formal' },
+    { english: 'The distinction between X and Y is crucial here.', context: 'Drawing an important distinction', register: 'formal' },
+    { english: 'While I take your point, I would contend that…', context: 'Polite disagreement', register: 'formal' },
+    { english: 'The issue is more nuanced than it first appears.', context: 'Suggesting complexity', register: 'formal' },
+    { english: 'This argument fails to account for…', context: 'Identifying a flaw in reasoning', register: 'formal' },
+    { english: 'Correlation does not necessarily imply causation.', context: 'Questioning a causal claim', register: 'formal' },
+    { english: 'We should be cautious about generalising from a single case.', context: 'Raising methodological concern', register: 'formal' },
+    { english: 'That notwithstanding, the broader trend is clear.', context: 'Acknowledging an exception while maintaining position', register: 'formal' },
+    { english: 'The weight of evidence points convincingly to…', context: 'Summarising evidence', register: 'formal' },
+    { english: 'I concede that…, but this does not undermine my overall point.', context: 'Partial concession', register: 'formal' },
+    { english: 'What is often overlooked in this debate is…', context: 'Introducing a neglected angle', register: 'formal' },
+    { english: 'The implications of this are far-reaching.', context: 'Stressing significance', register: 'formal' },
+  ],
+}
+
+// ─── C2 Categories ────────────────────────────────────────────────────────────
+
+const rhetoric_c2: PhrasebookCategory = {
+  id: 'rhetoric_c2',
+  level: 'C2',
+  situation: 'Rhetoric & Persuasion',
+  icon: '⚖️',
+  phrases: [
+    { english: 'It would be remiss of us not to acknowledge that…', context: 'Formally recognising a point', register: 'formal' },
+    { english: 'The crux of the matter is…', context: 'Getting to the heart of the issue', register: 'formal' },
+    { english: 'Far from being a setback, this represents an opportunity.', context: 'Reframing a negative as a positive', register: 'formal' },
+    { english: 'It stands to reason that…', context: 'Presenting something as logical', register: 'formal' },
+    { english: 'One cannot overstate the importance of…', context: 'Emphasising significance', register: 'formal' },
+    { english: 'The time has come to reconsider our approach.', context: 'Calling for change', register: 'formal' },
+    { english: 'Not only does this fail to address the root cause, but it also…', context: 'Compounding criticism', register: 'formal' },
+    { english: 'This begs the question: why has nothing been done?', context: 'Rhetorical challenge', register: 'formal' },
+    { english: 'In the final analysis, …', context: 'Drawing a definitive conclusion', register: 'formal' },
+    { english: 'We would do well to remember that…', context: 'Offering wise counsel', register: 'formal' },
+    { english: 'There is an inescapable irony in the fact that…', context: 'Pointing out contradiction or irony', register: 'formal' },
+    { english: 'The evidence speaks for itself.', context: 'Allowing evidence to make the argument', register: 'neutral' },
+  ],
+}
+
+const nuanced_discourse_c2: PhrasebookCategory = {
+  id: 'nuanced_discourse_c2',
+  level: 'C2',
+  situation: 'Nuanced Discourse & Hedging',
+  icon: '🔬',
+  phrases: [
+    { english: 'It is worth noting, albeit with some caution, that…', context: 'Careful, hedged observation', register: 'formal' },
+    { english: 'The picture is, of course, considerably more complex.', context: 'Signalling complexity', register: 'formal' },
+    { english: 'Suffice it to say that…', context: 'Indicating something is enough without elaborating', register: 'formal' },
+    { english: 'This is not to suggest that…, but rather…', context: 'Clarifying a potential misinterpretation', register: 'formal' },
+    { english: 'The extent to which this holds true varies considerably.', context: 'Qualifying a generalisation', register: 'formal' },
+    { english: 'I would be the first to admit that…', context: 'Honest concession', register: 'formal' },
+    { english: 'Taken in isolation, this fact is misleading.', context: 'Warning about context', register: 'formal' },
+    { english: 'There is a fine line between X and Y.', context: 'Drawing a subtle distinction', register: 'formal' },
+    { english: 'The jury is still out on whether…', context: 'Saying something is not yet resolved', register: 'neutral' },
+    { english: 'One is hard-pressed to find a compelling counter-argument.', context: 'Strong (but hedged) assertion', register: 'formal' },
+    { english: 'This warrants further investigation.', context: 'Flagging something needs more research', register: 'formal' },
+    { english: 'At the risk of oversimplifying, …', context: 'Pre-empting a reductionism critique', register: 'formal' },
+  ],
+}
+
 // ─── Full phrasebook ──────────────────────────────────────────────────────────
 
 export const phrasebookCategories: PhrasebookCategory[] = [
@@ -397,6 +486,12 @@ export const phrasebookCategories: PhrasebookCategory[] = [
   formal_emails_b2,
   negotiations_b2,
   academic_discussion_b2,
+  // C1
+  presentations_c1,
+  complex_arguments_c1,
+  // C2
+  rhetoric_c2,
+  nuanced_discourse_c2,
 ]
 
 /** Return all categories for a given CEFR level */

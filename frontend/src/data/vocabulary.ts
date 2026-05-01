@@ -754,6 +754,207 @@ const opinion_phrases_b1: VocabularySet = {
   ],
 }
 
+// ─── B2 Vocabulary Sets ────────────────────────────────────────────────────────
+
+const academic_vocabulary_b2: VocabularySet = {
+  id: 'academic_vocabulary_b2',
+  level: 'B2',
+  topic: 'Academic & Formal Vocabulary',
+  unit_ref: 'b2-unit-1',
+  words: [
+    { word: 'analyse', pos: 'verb', definition: 'To examine something in detail.', example: 'The report analyses current market trends.', ipa: '/ˈænəlaɪz/', frequency_rank: 295 },
+    { word: 'conclude', pos: 'verb', definition: 'To reach a decision or opinion by reasoning.', example: 'We concluded that the project was feasible.', ipa: '/kənˈkluːd/', frequency_rank: 310 },
+    { word: 'demonstrate', pos: 'verb', definition: 'To show clearly; to prove.', example: 'The data demonstrates a clear trend.', ipa: '/ˈdemənstreɪt/', frequency_rank: 275 },
+    { word: 'evaluate', pos: 'verb', definition: 'To judge or assess the quality of something.', example: 'We need to evaluate the results carefully.', ipa: '/ɪˈvæljueɪt/', frequency_rank: 330 },
+    { word: 'justify', pos: 'verb', definition: 'To give a good reason for something.', example: 'Can you justify this decision?', ipa: '/ˈdʒʌstɪfaɪ/', frequency_rank: 350 },
+    { word: 'significant', pos: 'adjective', definition: 'Important or noticeable.', example: 'There has been a significant improvement.', ipa: '/sɪɡˈnɪfɪkənt/', frequency_rank: 185 },
+    { word: 'assumption', pos: 'noun', definition: 'Something accepted as true without proof.', example: 'That is a false assumption.', ipa: '/əˈsʌmpʃən/', frequency_rank: 310 },
+    { word: 'implication', pos: 'noun', definition: 'A likely consequence; something suggested but not stated.', example: 'The implications of this policy are serious.', ipa: '/ˌɪmplɪˈkeɪʃən/', frequency_rank: 295 },
+    { word: 'criterion', pos: 'noun', definition: 'A standard used to judge something.', example: 'What are the criteria for selection?', ipa: '/kraɪˈtɪərɪən/', frequency_rank: 340 },
+    { word: 'hypothesis', pos: 'noun', definition: 'A proposed explanation to be tested.', example: 'The hypothesis was proved correct.', ipa: '/haɪˈpɒθɪsɪs/', frequency_rank: 380 },
+    { word: 'perspective', pos: 'noun', definition: 'A particular way of thinking about something.', example: 'From a different perspective, this looks positive.', ipa: '/pərˈspektɪv/', frequency_rank: 255 },
+    { word: 'relevant', pos: 'adjective', definition: 'Closely connected to the matter in hand.', example: 'Please include only relevant information.', ipa: '/ˈreləvənt/', frequency_rank: 270 },
+    { word: 'consistent', pos: 'adjective', definition: 'Always behaving in the same way; coherent.', example: 'The results were consistent across all tests.', ipa: '/kənˈsɪstənt/', frequency_rank: 290 },
+    { word: 'variable', pos: 'noun', definition: 'A factor that can change in an experiment.', example: 'Temperature is an important variable.', ipa: '/ˈveərɪəbəl/', frequency_rank: 310 },
+    { word: 'evidence', pos: 'noun', definition: 'Facts or information supporting a conclusion.', example: 'There is strong evidence for this theory.', ipa: '/ˈevɪdəns/', frequency_rank: 195 },
+  ],
+}
+
+const workplace_b2: VocabularySet = {
+  id: 'workplace_b2',
+  level: 'B2',
+  topic: 'Workplace & Professional Life',
+  unit_ref: 'b2-unit-3',
+  words: [
+    { word: 'deadline', pos: 'noun', definition: 'The latest time by which something must be done.', example: 'The deadline for the report is Friday.', ipa: '/ˈdedlaɪn/', frequency_rank: 410 },
+    { word: 'colleague', pos: 'noun', definition: 'A person you work with.', example: 'My colleague helped me with the presentation.', ipa: '/ˈkɒliːɡ/', frequency_rank: 350 },
+    { word: 'negotiate', pos: 'verb', definition: 'To discuss in order to reach an agreement.', example: 'We negotiated a better contract.', ipa: '/nɪˈɡoʊʃieɪt/', frequency_rank: 365 },
+    { word: 'collaborate', pos: 'verb', definition: 'To work jointly with others.', example: 'We collaborated on the project.', ipa: '/kəˈlæbəreɪt/', frequency_rank: 380 },
+    { word: 'implement', pos: 'verb', definition: 'To put a plan into action.', example: 'We will implement the new strategy next month.', ipa: '/ˈɪmplɪment/', frequency_rank: 295 },
+    { word: 'priorities', pos: 'noun', definition: 'Things considered more important than others.', example: 'We need to set our priorities for Q3.', ipa: '/praɪˈɒrɪtɪz/', frequency_rank: 310 },
+    { word: 'feedback', pos: 'noun', definition: 'Information about performance given for improvement.', example: 'The feedback from the client was positive.', ipa: '/ˈfiːdbæk/', frequency_rank: 390 },
+    { word: 'budget', pos: 'noun', definition: 'A plan for spending money.', example: 'We need to stay within the budget.', ipa: '/ˈbʌdʒɪt/', frequency_rank: 275 },
+    { word: 'efficient', pos: 'adjective', definition: 'Achieving results with minimum wasted effort.', example: 'The new process is much more efficient.', ipa: '/ɪˈfɪʃənt/', frequency_rank: 330 },
+    { word: 'transparent', pos: 'adjective', definition: 'Open and honest; easy to understand.', example: 'We try to be transparent with our clients.', ipa: '/trænsˈpærənt/', frequency_rank: 395 },
+    { word: 'strategy', pos: 'noun', definition: 'A plan for achieving a long-term goal.', example: 'The company needs a new marketing strategy.', ipa: '/ˈstrætɪdʒi/', frequency_rank: 220 },
+    { word: 'objective', pos: 'noun', definition: 'A specific goal or target.', example: 'Our main objective is to increase sales.', ipa: '/əbˈdʒektɪv/', frequency_rank: 240 },
+    { word: 'delegate', pos: 'verb', definition: 'To give a task to someone else.', example: 'A good manager knows how to delegate.', ipa: '/ˈdelɪɡeɪt/', frequency_rank: 420 },
+    { word: 'stakeholder', pos: 'noun', definition: 'A person with an interest in a project or company.', example: 'We need to consult all stakeholders.', ipa: '/ˈsteɪkhoʊldər/' },
+    { word: 'initiative', pos: 'noun', definition: 'The ability to take action without being asked.', example: 'She showed great initiative.', ipa: '/ɪˈnɪʃətɪv/', frequency_rank: 295 },
+  ],
+}
+
+const media_society_b2: VocabularySet = {
+  id: 'media_society_b2',
+  level: 'B2',
+  topic: 'Media & Society',
+  unit_ref: 'b2-unit-5',
+  words: [
+    { word: 'influence', pos: 'verb', definition: 'To have an effect on the way someone thinks or acts.', example: 'Social media influences public opinion.', ipa: '/ˈɪnfluəns/', frequency_rank: 195 },
+    { word: 'bias', pos: 'noun', definition: 'An unfair preference for or against something.', example: 'The article showed clear political bias.', ipa: '/ˈbaɪəs/', frequency_rank: 360 },
+    { word: 'censorship', pos: 'noun', definition: 'The suppression of information or speech.', example: 'Critics accused the government of censorship.', ipa: '/ˈsensərʃɪp/', frequency_rank: 490 },
+    { word: 'controversy', pos: 'noun', definition: 'Prolonged public disagreement or debate.', example: 'The policy caused great controversy.', ipa: '/ˈkɒntrəvɜːrsi/', frequency_rank: 380 },
+    { word: 'campaign', pos: 'noun', definition: 'An organised effort to achieve a goal.', example: 'They ran a successful awareness campaign.', ipa: '/kæmˈpeɪn/', frequency_rank: 265 },
+    { word: 'stereotype', pos: 'noun', definition: 'A fixed, often oversimplified image of a group.', example: 'We should avoid reinforcing stereotypes.', ipa: '/ˈsteriəˌtaɪp/', frequency_rank: 420 },
+    { word: 'diversity', pos: 'noun', definition: 'Variety; the inclusion of different kinds of people.', example: 'The company values diversity and inclusion.', ipa: '/daɪˈvɜːrsɪti/', frequency_rank: 310 },
+    { word: 'inequality', pos: 'noun', definition: 'Difference in opportunities or treatment.', example: 'The report highlighted income inequality.', ipa: '/ˌɪnɪˈkwɒlɪti/', frequency_rank: 370 },
+    { word: 'journalism', pos: 'noun', definition: 'The activity of collecting and reporting news.', example: 'Investigative journalism is vital in democracy.', ipa: '/ˈdʒɜːrnəlɪzəm/', frequency_rank: 410 },
+    { word: 'circulation', pos: 'noun', definition: 'The number of copies of a publication distributed.', example: 'The newspaper has a large circulation.', ipa: '/ˌsɜːrkjəˈleɪʃən/', frequency_rank: 390 },
+    { word: 'propaganda', pos: 'noun', definition: 'Information spread to promote a cause or viewpoint.', example: 'The government used propaganda to control opinion.', ipa: '/ˌprɒpəˈɡændə/', frequency_rank: 440 },
+    { word: 'globalisation', pos: 'noun', definition: 'The process of worldwide economic and cultural integration.', example: 'Globalisation has changed many industries.', ipa: '/ˌɡloʊbələˈzeɪʃən/', frequency_rank: 430 },
+  ],
+}
+
+// ─── C1 Vocabulary Sets ────────────────────────────────────────────────────────
+
+const abstract_concepts_c1: VocabularySet = {
+  id: 'abstract_concepts_c1',
+  level: 'C1',
+  topic: 'Abstract Concepts & Nuanced Nouns',
+  unit_ref: 'c1-unit-1',
+  words: [
+    { word: 'ambiguity', pos: 'noun', definition: 'Uncertainty of meaning; open to more than one interpretation.', example: 'The ambiguity of the law caused confusion.', ipa: '/ˌæmbɪˈɡjuːɪti/', frequency_rank: 480 },
+    { word: 'paradigm', pos: 'noun', definition: 'A typical example or model; a framework of thought.', example: 'This discovery shifted the scientific paradigm.', ipa: '/ˈpærədaɪm/', frequency_rank: 460 },
+    { word: 'nuance', pos: 'noun', definition: 'A subtle difference in meaning or expression.', example: 'You need to appreciate the nuances of the language.', ipa: '/ˈnjuːɑːns/', frequency_rank: 470 },
+    { word: 'integrity', pos: 'noun', definition: 'The quality of being honest and having strong principles.', example: 'Her integrity is beyond question.', ipa: '/ɪnˈteɡrɪti/', frequency_rank: 320 },
+    { word: 'resilience', pos: 'noun', definition: 'The ability to recover from difficulties.', example: 'The team showed remarkable resilience.', ipa: '/rɪˈzɪlɪəns/', frequency_rank: 390 },
+    { word: 'empathy', pos: 'noun', definition: 'The ability to understand another person\'s feelings.', example: 'A good leader must show empathy.', ipa: '/ˈempəθi/', frequency_rank: 430 },
+    { word: 'scrutiny', pos: 'noun', definition: 'Close and detailed examination.', example: 'The policy came under public scrutiny.', ipa: '/ˈskruːtɪni/', frequency_rank: 410 },
+    { word: 'autonomy', pos: 'noun', definition: 'The right or condition of self-government.', example: 'The region was granted greater autonomy.', ipa: '/ɔːˈtɒnəmi/', frequency_rank: 400 },
+    { word: 'consensus', pos: 'noun', definition: 'General agreement among a group.', example: 'We reached a consensus after lengthy discussions.', ipa: '/kənˈsensəs/', frequency_rank: 360 },
+    { word: 'legacy', pos: 'noun', definition: 'Something handed down from an earlier time.', example: 'The project left a lasting legacy.', ipa: '/ˈleɡəsi/', frequency_rank: 310 },
+    { word: 'magnitude', pos: 'noun', definition: 'The great size or importance of something.', example: 'We underestimated the magnitude of the problem.', ipa: '/ˈmæɡnɪtjuːd/', frequency_rank: 395 },
+    { word: 'precedent', pos: 'noun', definition: 'An earlier event used as a guide for future situations.', example: 'The ruling set an important precedent.', ipa: '/ˈpresɪdənt/', frequency_rank: 380 },
+  ],
+}
+
+const advanced_verbs_c1: VocabularySet = {
+  id: 'advanced_verbs_c1',
+  level: 'C1',
+  topic: 'Advanced Verbs & Collocations',
+  unit_ref: 'c1-unit-2',
+  words: [
+    { word: 'alleviate', pos: 'verb', definition: 'To make something less severe.', example: 'The medicine alleviates pain quickly.', ipa: '/əˈliːvieɪt/', frequency_rank: 460 },
+    { word: 'exacerbate', pos: 'verb', definition: 'To make a bad situation worse.', example: 'Stress can exacerbate the symptoms.', ipa: '/ɪɡˈzæsərbeɪt/', frequency_rank: 490 },
+    { word: 'encompass', pos: 'verb', definition: 'To include a wide range of things.', example: 'The course encompasses grammar and vocabulary.', ipa: '/ɪnˈkʌmpəs/', frequency_rank: 420 },
+    { word: 'undermine', pos: 'verb', definition: 'To weaken or damage something gradually.', example: 'This decision undermines public trust.', ipa: '/ˌʌndəˈmaɪn/', frequency_rank: 380 },
+    { word: 'advocate', pos: 'verb', definition: 'To publicly support or recommend.', example: 'She advocates for better education.', ipa: '/ˈædvəkeɪt/', frequency_rank: 340 },
+    { word: 'mitigate', pos: 'verb', definition: 'To make something less harmful or serious.', example: 'Steps were taken to mitigate the risks.', ipa: '/ˈmɪtɪɡeɪt/', frequency_rank: 410 },
+    { word: 'substantiate', pos: 'verb', definition: 'To provide evidence to support a claim.', example: 'Can you substantiate that claim?', ipa: '/səbˈstænʃieɪt/', frequency_rank: 480 },
+    { word: 'perpetuate', pos: 'verb', definition: 'To make something continue indefinitely.', example: 'Stereotypes can perpetuate discrimination.', ipa: '/pərˈpetʃueɪt/', frequency_rank: 450 },
+    { word: 'articulate', pos: 'verb', definition: 'To express thoughts clearly and effectively.', example: 'She articulated her ideas very well.', ipa: '/ɑːrˈtɪkjuleɪt/', frequency_rank: 360 },
+    { word: 'reconcile', pos: 'verb', definition: 'To make two conflicting things compatible.', example: 'It is hard to reconcile these two views.', ipa: '/ˈrekənsaɪl/', frequency_rank: 430 },
+    { word: 'transcend', pos: 'verb', definition: 'To go beyond the limits of something.', example: 'Great art transcends cultural boundaries.', ipa: '/trænˈsend/', frequency_rank: 460 },
+    { word: 'epitomise', pos: 'verb', definition: 'To be a perfect example of.', example: 'This building epitomises modern design.', ipa: '/ɪˈpɪtəmaɪz/', frequency_rank: 490 },
+  ],
+}
+
+const idioms_c1: VocabularySet = {
+  id: 'idioms_c1',
+  level: 'C1',
+  topic: 'Idiomatic Expressions',
+  unit_ref: 'c1-unit-4',
+  words: [
+    { word: 'bite the bullet', pos: 'phrase', definition: 'To endure a painful situation bravely.', example: 'I bit the bullet and had the tooth extracted.', ipa: '/baɪt ðə ˈbʊlɪt/' },
+    { word: 'beat around the bush', pos: 'phrase', definition: 'To avoid getting to the main point.', example: 'Stop beating around the bush and tell me.', ipa: '/biːt əˌraʊnd ðə ˈbʊʃ/' },
+    { word: 'the last straw', pos: 'phrase', definition: 'The final problem that makes a situation unbearable.', example: 'That was the last straw — I quit.', ipa: '/ðə lɑːst strɔː/' },
+    { word: 'give the benefit of the doubt', pos: 'phrase', definition: 'To trust someone despite uncertainty.', example: 'I gave her the benefit of the doubt.', ipa: '/ɡɪv ðə ˈbenɪfɪt əv ðə daʊt/' },
+    { word: 'take something with a pinch of salt', pos: 'phrase', definition: 'To be sceptical about a claim.', example: 'Take his advice with a pinch of salt.', ipa: '/teɪk ˈsʌmθɪŋ wɪð ə pɪntʃ əv sɔːlt/' },
+    { word: 'a blessing in disguise', pos: 'phrase', definition: 'Something that seems bad but proves good.', example: 'Losing that job was a blessing in disguise.', ipa: '/ə ˈblesɪŋ ɪn dɪsˈɡaɪz/' },
+    { word: 'on the fence', pos: 'phrase', definition: 'Undecided between two options.', example: 'I\'m still on the fence about moving abroad.', ipa: '/ɒn ðə fens/' },
+    { word: 'read between the lines', pos: 'phrase', definition: 'To find a hidden meaning in something.', example: 'You have to read between the lines in his emails.', ipa: '/riːd bɪˌtwiːn ðə ˈlaɪnz/' },
+    { word: 'at the drop of a hat', pos: 'phrase', definition: 'Without hesitation; immediately.', example: 'She would help at the drop of a hat.', ipa: '/æt ðə drɒp əv ə hæt/' },
+    { word: 'the tip of the iceberg', pos: 'phrase', definition: 'A small visible part of a larger problem.', example: 'This delay is just the tip of the iceberg.', ipa: '/ðə tɪp əv ðə ˈaɪsbɜːrɡ/' },
+    { word: 'go back to square one', pos: 'phrase', definition: 'To start something again from the beginning.', example: 'The prototype failed; we went back to square one.', ipa: '/ɡoʊ ˌbæk tə skweər wʌn/' },
+    { word: 'the ball is in your court', pos: 'phrase', definition: 'It is now your responsibility to act.', example: 'I\'ve made my offer — the ball is in your court.', ipa: '/ðə bɔːl ɪz ɪn jɔːr kɔːrt/' },
+  ],
+}
+
+// ─── C2 Vocabulary Sets ────────────────────────────────────────────────────────
+
+const nuanced_adjectives_c2: VocabularySet = {
+  id: 'nuanced_adjectives_c2',
+  level: 'C2',
+  topic: 'Nuanced & Precise Adjectives',
+  unit_ref: 'c2-unit-1',
+  words: [
+    { word: 'seminal', pos: 'adjective', definition: 'Strongly influencing later developments.', example: 'This is a seminal work in the field.', ipa: '/ˈsemɪnəl/', frequency_rank: 490 },
+    { word: 'elusive', pos: 'adjective', definition: 'Difficult to find, define, or achieve.', example: 'The solution proved elusive.', ipa: '/ɪˈluːsɪv/', frequency_rank: 470 },
+    { word: 'convoluted', pos: 'adjective', definition: 'Extremely complex and difficult to follow.', example: 'The explanation was unnecessarily convoluted.', ipa: '/ˈkɒnvəluːtɪd/', frequency_rank: 510 },
+    { word: 'astute', pos: 'adjective', definition: 'Having keen insight; shrewd.', example: 'Her astute observation changed our approach.', ipa: '/əˈstjuːt/', frequency_rank: 480 },
+    { word: 'tenuous', pos: 'adjective', definition: 'Weak; having little substance.', example: 'The connection between the two events is tenuous.', ipa: '/ˈtenjuəs/', frequency_rank: 500 },
+    { word: 'nascent', pos: 'adjective', definition: 'Just coming into existence.', example: 'The nascent technology shows promise.', ipa: '/ˈneɪsənt/', frequency_rank: 490 },
+    { word: 'inextricable', pos: 'adjective', definition: 'Impossible to disentangle or separate.', example: 'Language and culture are inextricably linked.', ipa: '/ɪnˈekstrɪkəbəl/', frequency_rank: 520 },
+    { word: 'judicious', pos: 'adjective', definition: 'Having or showing good judgement.', example: 'A judicious use of resources is essential.', ipa: '/dʒuːˈdɪʃəs/', frequency_rank: 510 },
+    { word: 'ephemeral', pos: 'adjective', definition: 'Lasting for a very short time.', example: 'Fame can be ephemeral.', ipa: '/ɪˈfemərəl/', frequency_rank: 530 },
+    { word: 'poignant', pos: 'adjective', definition: 'Evoking a keen sense of sadness or regret.', example: 'The film had a poignant ending.', ipa: '/ˈpɔɪnjənt/', frequency_rank: 490 },
+    { word: 'contentious', pos: 'adjective', definition: 'Causing or likely to cause disagreement.', example: 'This remains a contentious issue.', ipa: '/kənˈtenʃəs/', frequency_rank: 430 },
+    { word: 'lucid', pos: 'adjective', definition: 'Clearly expressed and easy to understand.', example: 'Her argument was remarkably lucid.', ipa: '/ˈluːsɪd/', frequency_rank: 480 },
+  ],
+}
+
+const formal_register_c2: VocabularySet = {
+  id: 'formal_register_c2',
+  level: 'C2',
+  topic: 'Formal & Literary Register',
+  unit_ref: 'c2-unit-2',
+  words: [
+    { word: 'albeit', pos: 'conjunction', definition: 'Although; even though.', example: 'The plan worked, albeit with some difficulty.', ipa: '/ɔːlˈbiːɪt/', frequency_rank: 420 },
+    { word: 'henceforth', pos: 'adverb', definition: 'From this time forward.', example: 'Henceforth, all requests must be submitted in writing.', ipa: '/ˌhensˈfɔːrθ/', frequency_rank: 500 },
+    { word: 'inasmuch as', pos: 'phrase', definition: 'To the extent that; because.', example: 'The policy failed inasmuch as it ignored economic factors.', ipa: '/ɪnəzˈmʌtʃ æz/' },
+    { word: 'notwithstanding', pos: 'preposition', definition: 'In spite of; despite.', example: 'Notwithstanding the difficulties, we succeeded.', ipa: '/ˌnɒtwɪθˈstændɪŋ/', frequency_rank: 460 },
+    { word: 'predicated on', pos: 'phrase', definition: 'Based on or dependent on.', example: 'The argument is predicated on false assumptions.', ipa: '/ˈpredɪkeɪtɪd ɒn/' },
+    { word: 'elucidate', pos: 'verb', definition: 'To make something clear; to explain.', example: 'Could you elucidate your reasoning?', ipa: '/ɪˈluːsɪdeɪt/', frequency_rank: 510 },
+    { word: 'promulgate', pos: 'verb', definition: 'To make known by official proclamation.', example: 'The new rules were promulgated last week.', ipa: '/ˈprɒməlɡeɪt/', frequency_rank: 530 },
+    { word: 'commensurate', pos: 'adjective', definition: 'Proportionate; corresponding in size or degree.', example: 'The salary is commensurate with experience.', ipa: '/kəˈmenʃərət/', frequency_rank: 490 },
+    { word: 'unequivocal', pos: 'adjective', definition: 'Leaving no doubt; absolutely clear.', example: 'The evidence is unequivocal.', ipa: '/ˌʌnɪˈkwɪvəkəl/', frequency_rank: 470 },
+    { word: 'pertinent', pos: 'adjective', definition: 'Relevant to the matter in hand.', example: 'Thank you for that pertinent question.', ipa: '/ˈpɜːrtɪnənt/', frequency_rank: 450 },
+    { word: 'ramification', pos: 'noun', definition: 'A complex result or consequence.', example: 'Consider the ramifications of this decision.', ipa: '/ˌræmɪfɪˈkeɪʃən/', frequency_rank: 480 },
+    { word: 'ostensibly', pos: 'adverb', definition: 'Apparently or supposedly, though not necessarily.', example: 'The meeting was ostensibly about budget, but really about politics.', ipa: '/ɒˈstensɪbli/', frequency_rank: 490 },
+  ],
+}
+
+const idiomatic_expressions_c2: VocabularySet = {
+  id: 'idiomatic_expressions_c2',
+  level: 'C2',
+  topic: 'Advanced Idiomatic Expressions',
+  unit_ref: 'c2-unit-3',
+  words: [
+    { word: 'cut to the chase', pos: 'phrase', definition: 'To get to the important point without delay.', example: 'Let\'s cut to the chase — will you accept?', ipa: '/kʌt tə ðə tʃeɪs/' },
+    { word: 'burn bridges', pos: 'phrase', definition: 'To permanently damage a relationship.', example: 'Don\'t burn your bridges with your former employer.', ipa: '/bɜːrn ˈbrɪdʒɪz/' },
+    { word: 'a double-edged sword', pos: 'phrase', definition: 'Something with both advantages and disadvantages.', example: 'Globalisation is a double-edged sword.', ipa: '/ə ˌdʌbəl edʒd ˈsɔːrd/' },
+    { word: 'a grey area', pos: 'phrase', definition: 'A situation where rules or judgements are unclear.', example: 'Intellectual property can be a legal grey area.', ipa: '/ə ɡreɪ ˈeərɪə/' },
+    { word: 'throw caution to the wind', pos: 'phrase', definition: 'To take a risk without worrying about the consequences.', example: 'She threw caution to the wind and quit her job.', ipa: '/θroʊ ˈkɔːʃən tə ðə wɪnd/' },
+    { word: 'reinvent the wheel', pos: 'phrase', definition: 'To waste time doing something already done.', example: 'We don\'t need to reinvent the wheel here.', ipa: '/ˌriːɪnˈvent ðə wiːl/' },
+    { word: 'push the envelope', pos: 'phrase', definition: 'To go beyond conventional limits.', example: 'This design really pushes the envelope.', ipa: '/pʊʃ ðə ˈenvələʊp/' },
+    { word: 'a catch-22', pos: 'phrase', definition: 'A dilemma with no escape due to contradictory conditions.', example: 'You need experience to get a job, but you need a job to get experience — it\'s a catch-22.', ipa: '/ə ˌkætʃ twentiˈtuː/' },
+    { word: 'paper over the cracks', pos: 'phrase', definition: 'To deal with a problem superficially, hiding it temporarily.', example: 'The reforms merely paper over the cracks.', ipa: '/ˌpeɪpər ˌoʊvər ðə ˈkræks/' },
+    { word: 'move the goalposts', pos: 'phrase', definition: 'To change the rules or criteria unfairly.', example: 'They keep moving the goalposts — it\'s impossible to satisfy them.', ipa: '/muːv ðə ˈɡoʊlpoʊsts/' },
+    { word: 'a token gesture', pos: 'phrase', definition: 'A symbolic act with little real effect.', example: 'The apology was a token gesture with no real change.', ipa: '/ə ˈtoʊkən ˈdʒestʃər/' },
+    { word: 'shed light on', pos: 'phrase', definition: 'To make something clearer or easier to understand.', example: 'The report sheds light on the root causes.', ipa: '/ʃed laɪt ɒn/' },
+  ],
+}
+
 // ─── Vocabulary index ─────────────────────────────────────────────────────────
 
 export const vocabularySets: VocabularySet[] = [
@@ -792,6 +993,18 @@ export const vocabularySets: VocabularySet[] = [
   experiences_b1,
   technology_b1,
   opinion_phrases_b1,
+  // B2
+  academic_vocabulary_b2,
+  workplace_b2,
+  media_society_b2,
+  // C1
+  abstract_concepts_c1,
+  advanced_verbs_c1,
+  idioms_c1,
+  // C2
+  nuanced_adjectives_c2,
+  formal_register_c2,
+  idiomatic_expressions_c2,
 ]
 
 /** Look up a VocabularySet by id */
