@@ -75,11 +75,10 @@ export default function ConversationMode() {
   useEffect(() => {
     if (vad.loading) return
     if (vad.errored) {
-      const err = vad.errored as { name?: string; message?: string }
+      const errMsg = typeof vad.errored === 'string' ? vad.errored : ''
       const isPermission =
-        err?.name === 'NotAllowedError' || err?.name === 'PermissionDeniedError'
-      const detail = err?.message ? ` — ${err.message}` : err?.name ? ` — ${err.name}` : ''
-      setErrorMsg(isPermission ? t('errorMic') : `${t('errorVadInit')}${detail}`)
+        errMsg.includes('NotAllowedError') || errMsg.includes('PermissionDeniedError')
+      setErrorMsg(isPermission ? t('errorMic') : `${t('errorVadInit')}${errMsg ? ` — ${errMsg}` : ''}`)
       setStatus('error')
       return
     }
