@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 
 from fastapi import APIRouter, Query, WebSocket, WebSocketDisconnect
+
+logger = logging.getLogger(__name__)
 from jwt.exceptions import PyJWTError
 from sqlalchemy import select
 
@@ -26,12 +29,14 @@ async def conversation_ws(
         payload = decode_access_token(token)
         user_id = int(payload["sub"])
     except (PyJWTError, KeyError, ValueError):
+        logger.warning("[conversation] Invalid token — closing WS 1008")
         await websocket.close(code=1008)   # Policy violation
         return
 
     async with AsyncSessionLocal() as db:
         user = await db.get(User, user_id)
         if not user or not user.is_active:
+            logger.warning("[conversation] User %s not found or inactive — closing WS 1008", user_id)
             await websocket.close(code=1008)
             return
 
@@ -39,6 +44,7 @@ async def conversation_ws(
         tts_service = getattr(websocket.app.state, "tts_service", None)
         stt_service = getattr(websocket.app.state, "stt_service", None)
         if tts_service is None or stt_service is None:
+            logger.warning("[conversation] TTS or STT disabled — rejecting WS for user %s", user_id)
             await websocket.accept()
             await websocket.send_json({
                 "type": "error",
@@ -62,6 +68,8 @@ async def conversation_ws(
         max_duration = user.conversation_max_duration
         inactivity_timeout = user.conversation_inactivity_timeout
 
+    logger.info("[conversation] Session started — user=%s cefr=%s max_duration=%ss inactivity=%ss",
+                user_id, cefr_level, max_duration, inactivity_timeout)
     await websocket.accept()
 
     pipeline = ConversationPipeline(
@@ -76,6 +84,10 @@ async def conversation_ws(
     try:
         await pipeline.run(websocket)
     except WebSocketDisconnect:
+        logger.info("[conversation] WebSocketDisconnect — user=%s", user_id)
         await pipeline.cleanup()
     except asyncio.CancelledError:
+        logger.info("[conversation] CancelledError — user=%s", user_id)
         await pipeline.cleanup()
+    finally:
+        logger.info("[conversation] Session ended — user=%s", user_id)

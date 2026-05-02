@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-05-02
+
+### Added
+- Phase 3 voice conversation mode: WebSocket pipeline orchestrating VAD → STT → LLM → TTS with barge-in support and gapless audio streaming
+- `ConversationMode` frontend component (dynamic, SSR disabled) using `@ricky0123/vad-react` for in-browser voice activity detection
+- COOP + COEP headers globally in Next.js config (`same-origin` / `credentialless`) to enable `SharedArrayBuffer` required by onnxruntime-web 1.25.1 threaded WASM
+- `copy-vad-models.js` postinstall script copies ORT WASM + VAD model files (`.wasm` and `.mjs`) to `public/vad/`; re-run in Docker builder stage after `COPY frontend/` to preserve generated files
+- `NEXT_PUBLIC_API_URL` passed as Docker build ARG and baked at `next build` so WebSocket connections resolve correctly on separate-subdomain deployments
+- `NEXT_PUBLIC_API_URL` CI secret wired into GitHub Actions `docker-publish.yml` frontend build step
+- Session timeout watchers: configurable `CONVERSATION_MAX_DURATION` and `CONVERSATION_INACTIVITY_TIMEOUT` per user, with 60 s warning messages before disconnect
+- Structured logging across the voice conversation pipeline (`[conversation]`, `[pipeline]`, `[stt]` prefixes) at INFO / DEBUG / ERROR levels
+- `LOG_LEVEL` configuration variable (default `INFO`) in `config.py`, `.env.example`, and `docker-compose.yml`; applied via `logging.basicConfig` at startup
+
+### Changed
+- `STTService` endpoint corrected from `/v1/audio/transcriptions` (OpenAI API, unsupported) to `POST /asr?output=json&language=en&task=transcribe` with `audio_file` form field, matching the actual `onerahmet/openai-whisper-asr-webservice` API
+- Conversation system prompt: added explicit prohibition on emojis and emoticons (same rule as chat tutor — TTS reads them aloud)
+- `ConversationPipeline.run()` loop now catches `RuntimeError` from `ws.receive()` on client disconnect (triggered when the frontend auto-closes the WS after receiving an error message)
+- Settings page section order: Perfil → Conversación → Apariencia → Cerrar sesión
+
 ## [1.1.1] - 2026-05-02
 
 ### Added
