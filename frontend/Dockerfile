@@ -10,6 +10,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY frontend/ .
 COPY messages/ ./messages/
+# Re-run postinstall to ensure all ORT WASM + .mjs loaders are present in public/vad/
+# (deps stage generates them but COPY frontend/ . above overwrites public/vad from source)
+RUN node scripts/copy-vad-models.js
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
