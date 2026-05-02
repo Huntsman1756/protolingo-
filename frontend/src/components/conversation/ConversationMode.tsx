@@ -240,7 +240,6 @@ export default function ConversationMode() {
       wsRef.current?.close()
       audioCtxRef.current?.close()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // ─── Render ───────────────────────────────────────────────────────────────

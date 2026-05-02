@@ -3,12 +3,12 @@ import type { ConvStatus } from './StatusIndicator'
 
 interface Props {
   status: ConvStatus
-  sessionActive: boolean
+  sessionActive?: boolean
   onStart: () => void
   onStop: () => void
 }
 
-export default function MicButton({ status, sessionActive, onStart, onStop }: Props) {
+export default function MicButton({ status, onStart, onStop }: Props) {
   const t = useTranslations('conversation')
 
   if (status === 'loading') {
