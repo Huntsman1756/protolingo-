@@ -188,8 +188,45 @@ TTS (Kokoro) and STT (faster-whisper) are disabled by default. Both services are
 ### Notes
 
 - If TTS or STT is disabled, the backend returns `503` on those endpoints. The frontend gracefully degrades: the listen/record buttons are not rendered.
-- The TTS voice can be changed via `TTS_VOICE` in `.env` (default: `af_heart`). Available voices: `af_heart`, `af_sky` (American), `bf_emma`, `bm_george` (British).
-- The STT model is controlled by `ASR_MODEL` inside the whisper container environment variable, not from `.env`.
+- The TTS voice can be changed via `TTS_VOICE` in `.env` (default: `af_heart`).
+- The STT model and engine are controlled via `.env` (`STT_MODEL` and `STT_ENGINE`).
+
+### TTS voice options (Kokoro-82M)
+
+All voices are for English. Grades reflect training data quality and quantity.
+
+| Voice | Gender | Accent | Grade |
+|-------|--------|--------|-------|
+| `af_heart` | F | American | A ⭐ |
+| `af_bella` | F | American | A- |
+| `af_nicole` | F | American | B- |
+| `am_fenrir` | M | American | C+ |
+| `am_michael` | M | American | C+ |
+| `am_puck` | M | American | C+ |
+| `bf_emma` | F | British | B- |
+| `bm_george` | M | British | C |
+
+Set with `TTS_VOICE=<voice>` in `.env`. Default: `af_heart`.
+
+### STT model options (Whisper)
+
+| Model | VRAM | Speed vs large | Notes |
+|-------|------|----------------|-------|
+| `tiny.en` | ~1 GB | ~10x | Very low accuracy |
+| `small.en` | ~2 GB | ~4x | OK for CPU |
+| `medium` | ~5 GB | ~2x | Good balance |
+| `large-v3-turbo` | ~6 GB | ~8x | **Recommended** — best speed/accuracy ratio |
+| `large-v3` | ~10 GB | 1x | Maximum accuracy |
+
+Set with `STT_MODEL=<model>` in `.env`. Default: `large-v3-turbo`.
+
+| Engine | Notes |
+|--------|-------|
+| `faster_whisper` | **Recommended** — 4× faster than openai_whisper, lower VRAM via CTranslate2 |
+| `openai_whisper` | Original PyTorch implementation |
+| `whisperx` | Adds speaker diarization; requires HuggingFace token |
+
+Set with `STT_ENGINE=<engine>` in `.env`. Default: `faster_whisper`.
 
 ## Contributing
 
