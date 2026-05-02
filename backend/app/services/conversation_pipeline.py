@@ -66,7 +66,13 @@ class ConversationPipeline:
         ]
         try:
             while True:
-                data = await ws.receive()
+                try:
+                    data = await ws.receive()
+                except RuntimeError:
+                    # Client disconnected — ws.receive() raises RuntimeError after disconnect
+                    break
+                if data.get("type") == "websocket.disconnect":
+                    break
                 if "bytes" in data:
                     await self.handle_audio(data["bytes"], ws)
                 elif "text" in data:
