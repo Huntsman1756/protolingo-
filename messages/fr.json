@@ -107,6 +107,10 @@
     "theme": "Thème",
     "darkActive": "Mode sombre actif",
     "lightActive": "Mode clair actif",
+    "systemActive": "Automatique (système)",
+    "themeSystem": "Auto",
+    "themeDark": "Sombre",
+    "themeLight": "Clair",
     "switchToLight": "Passer au clair",
     "switchToDark": "Passer au sombre"
   },

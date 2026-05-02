@@ -107,6 +107,10 @@
     "theme": "Tema",
     "darkActive": "Modalità scura attiva",
     "lightActive": "Modalità chiara attiva",
+    "systemActive": "Automatico (sistema)",
+    "themeSystem": "Auto",
+    "themeDark": "Scuro",
+    "themeLight": "Chiaro",
     "switchToLight": "Passa al chiaro",
     "switchToDark": "Passa allo scuro"
   },

@@ -107,6 +107,10 @@
     "theme": "Thema",
     "darkActive": "Dunkelmodus aktiv",
     "lightActive": "Hellmodus aktiv",
+    "systemActive": "Automatisch (System)",
+    "themeSystem": "Auto",
+    "themeDark": "Dunkel",
+    "themeLight": "Hell",
     "switchToLight": "Zu Hell wechseln",
     "switchToDark": "Zu Dunkel wechseln"
   },

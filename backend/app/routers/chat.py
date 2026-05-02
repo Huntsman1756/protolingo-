@@ -49,6 +49,7 @@ Guidelines:
 - You may briefly explain corrections in {native_language} if it helps clarity,
   but always keep the main conversation in English
 - Keep responses concise (2–4 sentences unless explaining grammar)
+- Do not use emojis or emoticons in your responses
 """
 
 MAX_HISTORY = 30

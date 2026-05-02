@@ -107,6 +107,10 @@
     "theme": "Theme",
     "darkActive": "Dark mode active",
     "lightActive": "Light mode active",
+    "systemActive": "Automatic (system)",
+    "themeSystem": "Auto",
+    "themeDark": "Dark",
+    "themeLight": "Light",
     "switchToLight": "Switch to Light",
     "switchToDark": "Switch to Dark"
   },
