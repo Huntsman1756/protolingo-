@@ -105,8 +105,8 @@ services:
     container_name: whisper
     restart: unless-stopped
     environment:
-      - ASR_MODEL=medium
-      - ASR_ENGINE=faster_whisper
+      - ASR_MODEL=${STT_MODEL:-large-v3-turbo}
+      - ASR_ENGINE=${STT_ENGINE:-faster_whisper}
     deploy:
       resources:
         reservations:

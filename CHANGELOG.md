@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-05-02
+
+### Added
+- Structured logging across the voice conversation pipeline (`[conversation]`, `[pipeline]`, `[stt]` prefixes) at INFO / DEBUG / ERROR levels
+- `LOG_LEVEL` configuration variable (default `INFO`) in `config.py`, `docker-compose.yml`, and `.env.example`; applied via `logging.basicConfig` at startup
+- `STT_ENGINE` variable in `.env.example` and `docker-compose.yml` (`${STT_ENGINE:-faster_whisper}`) so the Whisper inference engine is configurable without editing the compose file
+- TTS voice reference table and STT model/engine reference table added to README
+
+### Changed
+- `STT_MODEL` in `docker-compose.yml` now reads from `.env` via `${STT_MODEL:-large-v3-turbo}` instead of being hardcoded
+- Default STT model upgraded from `tiny.en` / `medium` to `large-v3-turbo` — best speed/accuracy ratio on GPU (≥6 GB VRAM), ~8× faster than `large-v3` with near-identical accuracy
+- Conversation system prompt: added explicit prohibition on emojis and emoticons (same rule as chat tutor — TTS reads them aloud)
+- README "Enabling TTS & STT" notes updated to reflect that `STT_MODEL` and `STT_ENGINE` are now controlled from `.env`
+
 ## [1.2.0] - 2026-05-02
 
 ### Added
