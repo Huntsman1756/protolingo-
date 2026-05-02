@@ -56,6 +56,7 @@ class ConversationPipeline:
         self._session_start = time.monotonic()
         self._last_activity = time.monotonic()
         self._timer_tasks: list[asyncio.Task] = []
+        self._inactivity_warning_sent = False
 
     async def run(self, ws: "WebSocket") -> None:
         """Main loop: starts timeout watchers then handles incoming messages."""
@@ -79,6 +80,7 @@ class ConversationPipeline:
 
     async def handle_audio(self, audio_bytes: bytes, ws: "WebSocket") -> None:
         self._last_activity = time.monotonic()
+        self._inactivity_warning_sent = False  # reset on new activity
         # Barge-in: cancel ongoing response if a new audio chunk arrives
         if self.current_task and not self.current_task.done():
             self.current_task.cancel()
@@ -90,7 +92,7 @@ class ConversationPipeline:
         try:
             await ws.send_json({"type": "status", "value": "transcribing"})
             user_text = await self.stt.transcribe(audio_bytes, "audio.wav", "audio/wav")
-            await ws.send_json({"type": "transcript", "text": user_text})
+            await ws.send_json({"type": "transcript", "role": "user", "text": user_text, "final": True})
         except Exception as exc:
             await ws.send_json({"type": "error", "code": "stt_failed", "message": str(exc)})
             return
@@ -126,6 +128,7 @@ class ConversationPipeline:
             return
 
         self.history.append({"role": "assistant", "content": full_response})
+        await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response, "final": True})
         await ws.send_json({"type": "turn_complete"})
 
     async def _synthesize_and_send(self, text: str, ws: "WebSocket") -> None:
@@ -161,7 +164,7 @@ class ConversationPipeline:
             await ws.send_json({
                 "type": "session_warning",
                 "reason": "max_duration",
-                "seconds_remaining": WARNING_ADVANCE_SECONDS,
+                "remaining_seconds": WARNING_ADVANCE_SECONDS,
             })
             await asyncio.sleep(WARNING_ADVANCE_SECONDS)
         else:
@@ -176,11 +179,12 @@ class ConversationPipeline:
             elapsed = time.monotonic() - self._last_activity
             remaining = self.inactivity_timeout - elapsed
 
-            if 0 < remaining <= WARNING_ADVANCE_SECONDS:
+            if 0 < remaining <= WARNING_ADVANCE_SECONDS and not self._inactivity_warning_sent:
+                self._inactivity_warning_sent = True
                 await ws.send_json({
                     "type": "session_warning",
                     "reason": "inactivity",
-                    "seconds_remaining": int(remaining),
+                    "remaining_seconds": int(remaining),
                 })
 
             if elapsed >= self.inactivity_timeout:

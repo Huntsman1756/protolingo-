@@ -58,6 +58,10 @@ async def conversation_ws(
         plan = result.scalar_one_or_none()
         cefr_level = plan.cefr_level if plan else "B1"
 
+        # Read user settings before session closes to avoid DetachedInstanceError
+        max_duration = user.conversation_max_duration
+        inactivity_timeout = user.conversation_inactivity_timeout
+
     await websocket.accept()
 
     pipeline = ConversationPipeline(
@@ -65,8 +69,8 @@ async def conversation_ws(
         tts=tts_service,
         stt=stt_service,
         cefr_level=cefr_level,
-        max_duration=user.conversation_max_duration,
-        inactivity_timeout=user.conversation_inactivity_timeout,
+        max_duration=max_duration,
+        inactivity_timeout=inactivity_timeout,
     )
 
     try:
