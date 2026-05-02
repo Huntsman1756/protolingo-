@@ -78,7 +78,8 @@ export default function ConversationMode() {
       const err = vad.errored as { name?: string; message?: string }
       const isPermission =
         err?.name === 'NotAllowedError' || err?.name === 'PermissionDeniedError'
-      setErrorMsg(isPermission ? t('errorMic') : t('errorVadInit'))
+      const detail = err?.message ? ` — ${err.message}` : err?.name ? ` — ${err.name}` : ''
+      setErrorMsg(isPermission ? t('errorMic') : `${t('errorVadInit')}${detail}`)
       setStatus('error')
       return
     }
