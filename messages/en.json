@@ -38,7 +38,8 @@
     "phrasebook": "Phrasebook",
     "settings": "Settings",
     "faq": "FAQ",
-    "admin": "Admin"
+    "admin": "Admin",
+    "conversation": "Conversation"
   },
   "auth": {
     "login": {
@@ -112,7 +113,17 @@
     "themeDark": "Dark",
     "themeLight": "Light",
     "switchToLight": "Switch to Light",
-    "switchToDark": "Switch to Dark"
+    "switchToDark": "Switch to Dark",
+    "sectionConversation": "Conversation",
+    "conversationMaxDuration": "Max Session Duration",
+    "conversationInactivityTimeout": "Inactivity Timeout",
+    "min15": "15 minutes",
+    "min30": "30 minutes",
+    "min1": "1 minute",
+    "min3": "3 minutes",
+    "min5": "5 minutes",
+    "saveConversation": "Save",
+    "conversationSaved": "Conversation settings saved."
   },
   "dashboard": {
     "welcomeBack": "Welcome back",
@@ -419,5 +430,28 @@
     "serverError": "Something went wrong",
     "unauthorized": "Please log in",
     "backHome": "Back to home"
+  },
+  "conversation": {
+    "title": "Conversation",
+    "subtitle": "Voice Practice",
+    "start": "Start Session",
+    "stop": "Stop",
+    "startNew": "Start New Session",
+    "statusLoading": "Loading voice model...",
+    "statusReady": "Ready",
+    "statusConnecting": "Connecting...",
+    "statusListening": "Listening...",
+    "statusDetecting": "Detecting speech...",
+    "statusSpeaking": "Speaking...",
+    "statusError": "Error",
+    "errorServicesDisabled": "Voice services are not enabled on this server.",
+    "errorConnection": "Connection error. Please try again.",
+    "errorUnauthorized": "Session expired. Please refresh.",
+    "errorMic": "Microphone access denied.",
+    "warningTimeout": "Session ending in {seconds}s",
+    "sessionEnded": "Session ended",
+    "tapToStart": "Speak when ready",
+    "you": "You",
+    "assistant": "FreeLingo"
   }
 }

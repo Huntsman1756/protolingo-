@@ -20,6 +20,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     { href: '/progress', label: tNav('progress') },
     { href: '/flashcards', label: tNav('flashcards') },
     { href: '/chat', label: tNav('tutor') },
+    { href: '/conversation', label: tNav('conversation') },
     { href: '/assessment', label: tNav('assessment') },
   ]
 
@@ -77,7 +78,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           displayName: me.display_name,
           email: me.email,
           native_language: me.native_language,
+          english_variant: me.english_variant,
           role: me.role,
+          conversation_max_duration: me.conversation_max_duration,
+          conversation_inactivity_timeout: me.conversation_inactivity_timeout,
         })
       } catch {
         logout()
