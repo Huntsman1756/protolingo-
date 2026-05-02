@@ -37,6 +37,17 @@ const nextConfig: NextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(self), geolocation=()' },
         ],
       },
+      {
+        // SharedArrayBuffer is required by onnxruntime-web threaded WASM.
+        // Firefox blocks it without cross-origin isolation (COOP + COEP).
+        // 'credentialless' COEP allows cross-origin resources without CORP headers
+        // while still enabling SharedArrayBuffer (Firefox 119+, Chrome 96+).
+        source: '/conversation',
+        headers: [
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+          { key: 'Cross-Origin-Embedder-Policy', value: 'credentialless' },
+        ],
+      },
     ]
   },
   async rewrites() {
