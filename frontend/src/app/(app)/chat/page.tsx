@@ -29,7 +29,7 @@ export default function ChatPage() {
   const [error, setError] = useState('')
   const [loadingConvs, setLoadingConvs] = useState(true)
   const [loadingMsgs, setLoadingMsgs] = useState(false)
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [deletePending, setDeletePending] = useState<number | null>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -39,6 +39,11 @@ export default function ChatPage() {
   }, [])
 
   useEffect(() => { scrollBottom() }, [messages, scrollBottom])
+
+  // Open sidebar by default only on desktop
+  useEffect(() => {
+    setSidebarOpen(window.innerWidth >= 768)
+  }, [])
 
   const loadConversations = useCallback(async () => {
     try {
@@ -168,9 +173,17 @@ export default function ChatPage() {
   return (
     <div className="flex w-full h-[calc(100dvh-56px)] md:h-screen overflow-hidden">
 
+      {/* Sidebar backdrop — mobile only */}
+      {sidebarOpen && (
+        <div
+          className="md:hidden fixed top-14 inset-x-0 bottom-0 z-10 bg-black/40"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       {sidebarOpen && (
-        <aside className="w-56 shrink-0 flex flex-col border-r border-fl-border bg-fl-bg overflow-hidden">
+        <aside className="fixed top-14 bottom-0 left-0 z-20 w-56 md:relative md:top-auto md:bottom-auto md:left-auto md:z-auto shrink-0 flex flex-col border-r border-fl-border bg-fl-bg overflow-hidden">
           <div className="flex items-center justify-between px-4 py-3 border-b border-fl-border">
             <span className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase">{t('conversations')}</span>
             <button

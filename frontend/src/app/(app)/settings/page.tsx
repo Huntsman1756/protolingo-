@@ -24,7 +24,7 @@ export default function SettingsPage() {
   const logout = useAuthStore((s) => s.logout)
   const router = useRouter()
   const theme = useThemeStore((s) => s.theme)
-  const toggleTheme = useThemeStore((s) => s.toggle)
+  const setTheme = useThemeStore((s) => s.setTheme)
 
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
@@ -196,24 +196,33 @@ export default function SettingsPage() {
         — {tCommon('logout')}
       </button>
 
-      {/* Theme toggle */}
+      {/* Theme */}
       <div className="border border-fl-border bg-fl-surface p-6">
         <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-2">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionAppearance')}</span>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           <div>
             <p className="font-mono text-xs text-fl-fg tracking-wide">{t('theme')}</p>
-            <p className="font-mono text-fl-label text-fl-muted-2 mt-0.5">{theme === 'dark' ? t('darkActive') : t('lightActive')}</p>
+            <p className="font-mono text-fl-label text-fl-muted-2 mt-0.5">
+              {theme === 'dark' ? t('darkActive') : theme === 'light' ? t('lightActive') : t('systemActive')}
+            </p>
           </div>
-          <button
-            onClick={toggleTheme}
-            className="flex items-center gap-3 border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
-          >
-            <span>{theme === 'dark' ? '○' : '●'}</span>
-            {theme === 'dark' ? t('switchToLight') : t('switchToDark')}
-          </button>
+          <div className="flex gap-1">
+            {(['system', 'dark', 'light'] as const).map((opt) => (
+              <button
+                key={opt}
+                onClick={() => setTheme(opt)}
+                className={`border px-3 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${theme === opt
+                    ? 'border-fl-border-2 text-fl-fg bg-fl-surface-2'
+                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
+              >
+                {opt === 'system' ? t('themeSystem') : opt === 'dark' ? t('themeDark') : t('themeLight')}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
