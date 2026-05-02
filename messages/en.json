@@ -448,6 +448,7 @@
     "errorConnection": "Connection error. Please try again.",
     "errorUnauthorized": "Session expired. Please refresh.",
     "errorMic": "Microphone access denied.",
+    "errorVadInit": "Failed to initialize voice recognition. Make sure your browser supports WebAssembly.",
     "warningTimeout": "Session ending in {seconds}s",
     "sessionEnded": "Session ended",
     "tapToStart": "Speak when ready",

@@ -448,6 +448,7 @@
     "errorConnection": "Erreur de connexion. Veuillez réessayer.",
     "errorUnauthorized": "Session expirée. Veuillez actualiser.",
     "errorMic": "Accès au microphone refusé.",
+    "errorVadInit": "Échec de l'initialisation de la reconnaissance vocale. Vérifiez que votre navigateur prend en charge WebAssembly.",
     "warningTimeout": "La session se termine dans {seconds}s",
     "sessionEnded": "Session terminée",
     "tapToStart": "Parlez quand vous êtes prêt",
