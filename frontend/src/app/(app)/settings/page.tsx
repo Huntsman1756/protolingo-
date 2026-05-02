@@ -219,43 +219,6 @@ export default function SettingsPage() {
         </button>
       </div>
 
-      <button
-        onClick={handleLogout}
-        className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
-      >
-        — {tCommon('logout')}
-      </button>
-
-      {/* Theme */}
-      <div className="border border-fl-border bg-fl-surface p-6">
-        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
-          <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionAppearance')}</span>
-        </div>
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <p className="font-mono text-xs text-fl-fg tracking-wide">{t('theme')}</p>
-            <p className="font-mono text-fl-label text-fl-muted-2 mt-0.5">
-              {theme === 'dark' ? t('darkActive') : theme === 'light' ? t('lightActive') : t('systemActive')}
-            </p>
-          </div>
-          <div className="flex gap-1">
-            {(['system', 'dark', 'light'] as const).map((opt) => (
-              <button
-                key={opt}
-                onClick={() => setTheme(opt)}
-                className={`border px-3 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${theme === opt
-                    ? 'border-fl-border-2 text-fl-fg bg-fl-surface-2'
-                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
-              >
-                {opt === 'system' ? t('themeSystem') : opt === 'dark' ? t('themeDark') : t('themeLight')}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Conversation */}
       <div className="border border-fl-border bg-fl-surface p-6 mt-4">
         <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
@@ -277,7 +240,7 @@ export default function SettingsPage() {
                   className={`flex-1 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${convMaxDuration === val
                     ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                     : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
+                    }`}
                 >
                   {val === 900 ? t('min15') : t('min30')}
                 </button>
@@ -298,7 +261,7 @@ export default function SettingsPage() {
                   className={`flex-1 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${convInactivityTimeout === val
                     ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                     : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
+                    }`}
                 >
                   {val === 60 ? t('min1') : val === 180 ? t('min3') : t('min5')}
                 </button>
@@ -321,6 +284,43 @@ export default function SettingsPage() {
           </button>
         </div>
       </div>
+
+      {/* Theme */}
+      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionAppearance')}</span>
+        </div>
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="font-mono text-xs text-fl-fg tracking-wide">{t('theme')}</p>
+            <p className="font-mono text-fl-label text-fl-muted-2 mt-0.5">
+              {theme === 'dark' ? t('darkActive') : theme === 'light' ? t('lightActive') : t('systemActive')}
+            </p>
+          </div>
+          <div className="flex gap-1">
+            {(['system', 'dark', 'light'] as const).map((opt) => (
+              <button
+                key={opt}
+                onClick={() => setTheme(opt)}
+                className={`border px-3 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${theme === opt
+                  ? 'border-fl-border-2 text-fl-fg bg-fl-surface-2'
+                  : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
+              >
+                {opt === 'system' ? t('themeSystem') : opt === 'dark' ? t('themeDark') : t('themeLight')}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <button
+        onClick={handleLogout}
+        className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 mt-4 uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
+      >
+        — {tCommon('logout')}
+      </button>
     </div>
   )
 }

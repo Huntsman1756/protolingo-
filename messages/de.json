@@ -448,6 +448,7 @@
     "errorConnection": "Verbindungsfehler. Bitte versuche es erneut.",
     "errorUnauthorized": "Sitzung abgelaufen. Bitte neu laden.",
     "errorMic": "Mikrofonzugriff verweigert.",
+    "errorVadInit": "Fehler beim Initialisieren der Spracherkennung. Überprüfe, ob dein Browser WebAssembly unterstützt.",
     "warningTimeout": "Sitzung endet in {seconds}s",
     "sessionEnded": "Sitzung beendet",
     "tapToStart": "Sprich wenn du bereit bist",

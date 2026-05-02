@@ -49,7 +49,10 @@ Guidelines:
 - You may briefly explain corrections in {native_language} if it helps clarity,
   but always keep the main conversation in English
 - Keep responses concise (2–4 sentences unless explaining grammar)
-- Do not use emojis or emoticons in your responses
+- NEVER use emojis, emoticons, or any Unicode pictographic symbols in your responses.
+  They are strictly forbidden because responses may be read aloud by a text-to-speech
+  engine and emoticons produce unnatural noise (e.g. "face with tears of joy").
+  Plain text only.
 """
 
 MAX_HISTORY = 30

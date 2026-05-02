@@ -448,6 +448,7 @@
     "errorConnection": "Error de conexión. Por favor, inténtalo de nuevo.",
     "errorUnauthorized": "Sesión expirada. Por favor, actualiza la página.",
     "errorMic": "Acceso al micrófono denegado.",
+    "errorVadInit": "Error al inicializar el reconocimiento de voz. Comprueba que el navegador es compatible con WebAssembly.",
     "warningTimeout": "La sesión termina en {seconds}s",
     "sessionEnded": "Sesión finalizada",
     "tapToStart": "Habla cuando estés listo",
