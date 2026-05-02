@@ -21,7 +21,7 @@ if (fs.existsSync(vadSrc)) {
 const ortSrc = path.join(__dirname, '../node_modules/onnxruntime-web/dist')
 if (fs.existsSync(ortSrc)) {
   fs.readdirSync(ortSrc)
-    .filter((f) => f.endsWith('.wasm'))
+    .filter((f) => f.endsWith('.wasm') || f.endsWith('.mjs'))
     .forEach((f) => {
       fs.copyFileSync(path.join(ortSrc, f), path.join(dst, f))
       console.log(`[copy-vad-models] copied ${f}`)
