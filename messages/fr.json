@@ -38,7 +38,8 @@
     "phrasebook": "Phrases",
     "settings": "Paramètres",
     "faq": "FAQ",
-    "admin": "Admin"
+    "admin": "Admin",
+    "conversation": "Conversation"
   },
   "auth": {
     "login": {
@@ -112,7 +113,17 @@
     "themeDark": "Sombre",
     "themeLight": "Clair",
     "switchToLight": "Passer au clair",
-    "switchToDark": "Passer au sombre"
+    "switchToDark": "Passer au sombre",
+    "sectionConversation": "Conversation",
+    "conversationMaxDuration": "Durée max. de session",
+    "conversationInactivityTimeout": "Délai d'inactivité",
+    "min15": "15 minutes",
+    "min30": "30 minutes",
+    "min1": "1 minute",
+    "min3": "3 minutes",
+    "min5": "5 minutes",
+    "saveConversation": "Enregistrer",
+    "conversationSaved": "Paramètres de conversation enregistrés."
   },
   "dashboard": {
     "welcomeBack": "Bon retour",
@@ -419,5 +430,28 @@
     "serverError": "Une erreur s'est produite",
     "unauthorized": "Veuillez vous connecter",
     "backHome": "Retour à l'accueil"
+  },
+  "conversation": {
+    "title": "Conversation",
+    "subtitle": "Pratique orale",
+    "start": "Démarrer la session",
+    "stop": "Arrêter",
+    "startNew": "Nouvelle session",
+    "statusLoading": "Chargement du modèle vocal...",
+    "statusReady": "Prêt",
+    "statusConnecting": "Connexion...",
+    "statusListening": "En écoute...",
+    "statusDetecting": "Détection de la parole...",
+    "statusSpeaking": "Parole en cours...",
+    "statusError": "Erreur",
+    "errorServicesDisabled": "Les services vocaux ne sont pas activés sur ce serveur.",
+    "errorConnection": "Erreur de connexion. Veuillez réessayer.",
+    "errorUnauthorized": "Session expirée. Veuillez actualiser.",
+    "errorMic": "Accès au microphone refusé.",
+    "warningTimeout": "La session se termine dans {seconds}s",
+    "sessionEnded": "Session terminée",
+    "tapToStart": "Parlez quand vous êtes prêt",
+    "you": "Vous",
+    "assistant": "FreeLingo"
   }
 }

@@ -46,6 +46,8 @@ class UserResponse(BaseModel):
     native_language: str
     english_variant: str
     is_active: bool
+    conversation_max_duration: int
+    conversation_inactivity_timeout: int
     created_at: datetime
 
     model_config = {"from_attributes": True}
@@ -61,3 +63,5 @@ class UserUpdateRequest(BaseModel):
     password: Optional[str] = Field(default=None, min_length=8, max_length=128)
     native_language: Optional[str] = Field(default=None, min_length=2, max_length=5)
     english_variant: Optional[Literal["american", "british"]] = None
+    conversation_max_duration: Optional[Literal[900, 1800]] = None
+    conversation_inactivity_timeout: Optional[Literal[60, 180, 300]] = None

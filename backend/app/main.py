@@ -11,7 +11,7 @@ from slowapi.errors import RateLimitExceeded
 
 from app.core.config import settings
 from app.core.limiter import limiter
-from app.routers import admin, assessment, auth, chat, flashcards, lessons, progress, study_plan, stt, tts
+from app.routers import admin, assessment, auth, chat, conversation, flashcards, lessons, progress, study_plan, stt, tts
 from app.services.stt_service import STTService
 from app.services.tts_service import TTSService
 
@@ -69,6 +69,7 @@ app.include_router(chat.router)
 app.include_router(progress.router)
 app.include_router(tts.router)
 app.include_router(stt.router)
+app.include_router(conversation.router)
 
 
 @app.get("/health")

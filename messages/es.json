@@ -38,7 +38,8 @@
     "phrasebook": "Frases",
     "settings": "Ajustes",
     "faq": "FAQ",
-    "admin": "Admin"
+    "admin": "Admin",
+    "conversation": "Conversación"
   },
   "auth": {
     "login": {
@@ -112,7 +113,17 @@
     "themeDark": "Oscuro",
     "themeLight": "Claro",
     "switchToLight": "Cambiar a claro",
-    "switchToDark": "Cambiar a oscuro"
+    "switchToDark": "Cambiar a oscuro",
+    "sectionConversation": "Conversación",
+    "conversationMaxDuration": "Duración máxima de sesión",
+    "conversationInactivityTimeout": "Tiempo de inactividad",
+    "min15": "15 minutos",
+    "min30": "30 minutos",
+    "min1": "1 minuto",
+    "min3": "3 minutos",
+    "min5": "5 minutos",
+    "saveConversation": "Guardar",
+    "conversationSaved": "Configuración de conversación guardada."
   },
   "dashboard": {
     "welcomeBack": "Bienvenido de vuelta",
@@ -419,5 +430,28 @@
     "serverError": "Algo salió mal",
     "unauthorized": "Por favor inicia sesión",
     "backHome": "Volver al inicio"
+  },
+  "conversation": {
+    "title": "Conversación",
+    "subtitle": "Práctica oral",
+    "start": "Iniciar sesión",
+    "stop": "Detener",
+    "startNew": "Nueva sesión",
+    "statusLoading": "Cargando modelo de voz...",
+    "statusReady": "Listo",
+    "statusConnecting": "Conectando...",
+    "statusListening": "Escuchando...",
+    "statusDetecting": "Detectando voz...",
+    "statusSpeaking": "Hablando...",
+    "statusError": "Error",
+    "errorServicesDisabled": "Los servicios de voz no están habilitados en este servidor.",
+    "errorConnection": "Error de conexión. Por favor, inténtalo de nuevo.",
+    "errorUnauthorized": "Sesión expirada. Por favor, actualiza la página.",
+    "errorMic": "Acceso al micrófono denegado.",
+    "warningTimeout": "La sesión termina en {seconds}s",
+    "sessionEnded": "Sesión finalizada",
+    "tapToStart": "Habla cuando estés listo",
+    "you": "Tú",
+    "assistant": "FreeLingo"
   }
 }

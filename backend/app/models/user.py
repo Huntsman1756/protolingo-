@@ -21,6 +21,12 @@ class User(Base):
     native_language: Mapped[str] = mapped_column(String(10), nullable=False)
     english_variant: Mapped[str] = mapped_column(String(10), nullable=False, default="american")
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    conversation_max_duration: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=1800   # 1800=30min, options: 900|1800
+    )
+    conversation_inactivity_timeout: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=180    # 180=3min, options: 60|180|300
+    )
     created_at: Mapped[datetime] = mapped_column(
         DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
     )
