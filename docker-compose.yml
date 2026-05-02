@@ -54,6 +54,7 @@ services:
       STT_BASE_URL: ${STT_BASE_URL:-http://whisper:9000}
       CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:3000"]}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
       - "8000:8000"
     depends_on:

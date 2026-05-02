@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     RATE_LIMIT_STORAGE: str = "memory"
     CORS_ORIGINS: list[str] = ["http://localhost:3000"]
     COOKIE_SECURE: bool = False
+    LOG_LEVEL: str = "INFO"
 
     model_config = {"env_file": ".env"}
 

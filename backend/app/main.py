@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 import asyncio
+import logging
 
 from alembic import command
 from alembic.config import Config
@@ -11,6 +12,12 @@ from slowapi.errors import RateLimitExceeded
 
 from app.core.config import settings
 from app.core.limiter import limiter
+
+logging.basicConfig(
+    level=settings.LOG_LEVEL.upper(),
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 from app.routers import admin, assessment, auth, chat, conversation, flashcards, lessons, progress, study_plan, stt, tts
 from app.services.stt_service import STTService
 from app.services.tts_service import TTSService

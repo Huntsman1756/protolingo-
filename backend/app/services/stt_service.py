@@ -1,4 +1,8 @@
+import logging
+
 import httpx
+
+logger = logging.getLogger(__name__)
 
 
 class STTService:
@@ -17,13 +21,17 @@ class STTService:
         POST /asr?output=json&language=en (not the OpenAI /v1/audio/transcriptions path).
         """
         async with httpx.AsyncClient() as client:
+            logger.debug("[stt] POST /asr — %d bytes, filename=%s", len(audio_bytes), filename)
             response = await client.post(
                 f"{self.base_url}/asr",
                 params={"output": "json", "language": "en", "task": "transcribe"},
                 files={"audio_file": (filename, audio_bytes, mime_type)},
                 timeout=60.0,
             )
+            logger.debug("[stt] Response status: %s", response.status_code)
             response.raise_for_status()
             data = response.json()
             # Response: {"text": "...", ...}
-            return data.get("text", "").strip()
+            text = data.get("text", "").strip()
+            logger.info("[stt] Transcribed: %r", text)
+            return text

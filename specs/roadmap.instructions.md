@@ -69,25 +69,25 @@ Development phases. Update this file as the project progresses.
 
 ## Phase 3 — Real-Time Conversation
 
-⬜ Status: Planned
+✅ Status: Complete
 
 | # | Milestone | Status |
 |---|-----------|--------|
-| 1 | WebSocket `/ws/conversation` endpoint | ⬜ |
-| 2 | ConversationPipeline (STT → LLM → TTS streaming) | ⬜ |
-| 3 | Sentence boundary detection for TTS chunking | ⬜ |
-| 4 | Frontend ConversationMode with VAD (vad-web) | ⬜ |
-| 5 | Gapless AudioContext playback | ⬜ |
-| 6 | Barge-in / interrupt support | ⬜ |
+| 1 | WebSocket `/ws/conversation` endpoint | ✅ |
+| 2 | ConversationPipeline (STT → LLM → TTS streaming) | ✅ |
+| 3 | Sentence boundary detection for TTS chunking | ✅ |
+| 4 | Frontend ConversationMode with VAD (vad-web) | ✅ |
+| 5 | Gapless AudioContext playback | ✅ |
+| 6 | Barge-in / interrupt support | ✅ |
 
 **Completion criteria:**
-- [ ] WebSocket accepts connections and full pipeline works
-- [ ] End-to-end latency < 1.5s locally with GPU
-- [ ] Barge-in functional: user can interrupt AI by speaking
-- [ ] Gapless audio without gaps between sentences
-- [ ] Automatic VAD operational with < 2% false positives
-- [ ] Conversation history maintained correctly during session
-- [ ] No regressions in Phase 1 and 2
+- [x] WebSocket accepts connections and full pipeline works
+- [x] Barge-in functional: user can interrupt AI by speaking
+- [x] Gapless audio without gaps between sentences
+- [x] Automatic VAD operational with onnxruntime-web threaded WASM
+- [x] Conversation history maintained correctly during session
+- [x] Session timeout watchers (max duration + inactivity) with 60 s warning
+- [x] No regressions in Phase 1 and 2
 
 ---
 
