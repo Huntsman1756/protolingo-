@@ -171,7 +171,7 @@ export default function ConversationMode() {
 
       ws.onerror = () => {
         if (!cleanEndRef.current) {
-          setErrorMsg(t('errorConnection'))
+          setErrorMsg(`${t('errorConnection')} [onerror → ${url}]`)
           setStatus('error')
           setSessionActive(false)
         }
@@ -182,7 +182,7 @@ export default function ConversationMode() {
           if (ev.code === 1008) {
             setErrorMsg(t('errorUnauthorized'))
           } else if (ev.code !== 1000) {
-            setErrorMsg(t('errorConnection'))
+            setErrorMsg(`${t('errorConnection')} [code ${ev.code}: ${ev.reason || 'no reason'} → ${url}]`)
           }
           setStatus('error')
           setSessionActive(false)
