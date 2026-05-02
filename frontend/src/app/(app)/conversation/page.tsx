@@ -5,6 +5,8 @@
  * API, neither of which are compatible with SSR. It is loaded client-side only
  * via `dynamic({ ssr: false })`.
  */
+'use client'
+
 import dynamic from 'next/dynamic'
 
 const ConversationMode = dynamic(
