@@ -38,7 +38,8 @@
     "phrasebook": "Phrasen",
     "settings": "Einstellungen",
     "faq": "FAQ",
-    "admin": "Admin"
+    "admin": "Admin",
+    "conversation": "Gespräch"
   },
   "auth": {
     "login": {
@@ -112,7 +113,17 @@
     "themeDark": "Dunkel",
     "themeLight": "Hell",
     "switchToLight": "Zu Hell wechseln",
-    "switchToDark": "Zu Dunkel wechseln"
+    "switchToDark": "Zu Dunkel wechseln",
+    "sectionConversation": "Gespräch",
+    "conversationMaxDuration": "Max. Sitzungsdauer",
+    "conversationInactivityTimeout": "Inaktivitäts-Timeout",
+    "min15": "15 Minuten",
+    "min30": "30 Minuten",
+    "min1": "1 Minute",
+    "min3": "3 Minuten",
+    "min5": "5 Minuten",
+    "saveConversation": "Speichern",
+    "conversationSaved": "Gesprächseinstellungen gespeichert."
   },
   "dashboard": {
     "welcomeBack": "Willkommen zurück",
@@ -419,5 +430,28 @@
     "serverError": "Etwas ist schiefgelaufen",
     "unauthorized": "Bitte anmelden",
     "backHome": "Zur Startseite"
+  },
+  "conversation": {
+    "title": "Gespräch",
+    "subtitle": "Sprachpraxis",
+    "start": "Sitzung starten",
+    "stop": "Stoppen",
+    "startNew": "Neue Sitzung",
+    "statusLoading": "Sprachmodell wird geladen...",
+    "statusReady": "Bereit",
+    "statusConnecting": "Verbinde...",
+    "statusListening": "Höre zu...",
+    "statusDetecting": "Sprache wird erkannt...",
+    "statusSpeaking": "Spricht...",
+    "statusError": "Fehler",
+    "errorServicesDisabled": "Sprachdienste sind auf diesem Server nicht aktiviert.",
+    "errorConnection": "Verbindungsfehler. Bitte versuche es erneut.",
+    "errorUnauthorized": "Sitzung abgelaufen. Bitte neu laden.",
+    "errorMic": "Mikrofonzugriff verweigert.",
+    "warningTimeout": "Sitzung endet in {seconds}s",
+    "sessionEnded": "Sitzung beendet",
+    "tapToStart": "Sprich wenn du bereit bist",
+    "you": "Du",
+    "assistant": "FreeLingo"
   }
 }

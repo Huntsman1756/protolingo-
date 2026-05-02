@@ -8,6 +8,8 @@ interface User {
   native_language?: string
   english_variant?: string
   role: 'admin' | 'user'
+  conversation_max_duration: number
+  conversation_inactivity_timeout: number
 }
 
 interface AuthStore {

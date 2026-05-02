@@ -206,6 +206,10 @@ async def update_me(
         current_user.native_language = data.native_language
     if data.english_variant is not None:
         current_user.english_variant = data.english_variant
+    if data.conversation_max_duration is not None:
+        current_user.conversation_max_duration = data.conversation_max_duration
+    if data.conversation_inactivity_timeout is not None:
+        current_user.conversation_inactivity_timeout = data.conversation_inactivity_timeout
 
     await db.commit()
     await db.refresh(current_user)

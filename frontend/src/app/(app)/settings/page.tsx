@@ -35,12 +35,19 @@ export default function SettingsPage() {
   const [message, setMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
   const [saving, setSaving] = useState(false)
 
+  const [convMaxDuration, setConvMaxDuration] = useState<900 | 1800>(1800)
+  const [convInactivityTimeout, setConvInactivityTimeout] = useState<60 | 180 | 300>(180)
+  const [convMessage, setConvMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
+  const [savingConv, setSavingConv] = useState(false)
+
   useEffect(() => {
     if (user) {
       setDisplayName(user.displayName || '')
       setEmail(user.email || '')
       setNativeLanguage(user.native_language || 'es')
       setEnglishVariant((user.english_variant as 'american' | 'british') || 'american')
+      setConvMaxDuration((user.conversation_max_duration as 900 | 1800) || 1800)
+      setConvInactivityTimeout((user.conversation_inactivity_timeout as 60 | 180 | 300) || 180)
     }
   }, [user])
 
@@ -66,7 +73,7 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, english_variant: updated.english_variant })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, english_variant: updated.english_variant, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
       setMessage({ type: 'ok', text: t('saved') })
       setPassword('')
       setConfirmPassword('')
@@ -74,6 +81,29 @@ export default function SettingsPage() {
       setMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
     } finally {
       setSaving(false)
+    }
+  }
+
+  async function handleSaveConversation() {
+    setSavingConv(true)
+    setConvMessage(null)
+    try {
+      const res = await apiFetch('/api/auth/me', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          conversation_max_duration: convMaxDuration,
+          conversation_inactivity_timeout: convInactivityTimeout,
+        }),
+      })
+      if (!res.ok) throw new Error(t('saveFailed'))
+      const updated = await res.json()
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, english_variant: updated.english_variant, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
+      setConvMessage({ type: 'ok', text: t('conversationSaved') })
+    } catch (err: unknown) {
+      setConvMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
+    } finally {
+      setSavingConv(false)
     }
   }
 
@@ -223,6 +253,72 @@ export default function SettingsPage() {
               </button>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Conversation */}
+      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionConversation')}</span>
+        </div>
+
+        <div className="space-y-5">
+          <div>
+            <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">
+              {t('conversationMaxDuration')}
+            </label>
+            <div className="flex gap-2">
+              {([900, 1800] as const).map((val) => (
+                <button
+                  key={val}
+                  type="button"
+                  onClick={() => setConvMaxDuration(val)}
+                  className={`flex-1 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${convMaxDuration === val
+                    ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
+                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
+                >
+                  {val === 900 ? t('min15') : t('min30')}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">
+              {t('conversationInactivityTimeout')}
+            </label>
+            <div className="flex gap-2">
+              {([60, 180, 300] as const).map((val) => (
+                <button
+                  key={val}
+                  type="button"
+                  onClick={() => setConvInactivityTimeout(val)}
+                  className={`flex-1 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${convInactivityTimeout === val
+                    ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
+                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
+                >
+                  {val === 60 ? t('min1') : val === 180 ? t('min3') : t('min5')}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {convMessage && (
+            <div className={`font-mono text-xs px-4 py-3 border ${convMessage.type === 'ok' ? 'border-fl-border text-fl-muted-1' : 'border-fl-error/40 text-fl-error'}`}>
+              {convMessage.type === 'ok' ? '✓ ' : '✕ '}{convMessage.text}
+            </div>
+          )}
+
+          <button
+            onClick={handleSaveConversation}
+            disabled={savingConv}
+            className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+          >
+            {savingConv ? `— ${t('saving')}` : `— ${t('saveConversation')}`}
+          </button>
         </div>
       </div>
     </div>

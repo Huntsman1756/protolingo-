@@ -73,7 +73,7 @@ freelingo/
 | 1     | Learning platform      | ✅ Complete    |
 | 1+    | Learning Resources Hub | ✅ Complete    |
 | 2     | Local TTS + STT        | ✅ Complete    |
-| 3     | Real-time conversation | ⏳ Planned     |
+| 3     | Real-time conversation | 🚧 In progress |
 
 ## Quick start
 
