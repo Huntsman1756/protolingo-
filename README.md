@@ -136,6 +136,14 @@ The first registered user becomes admin automatically.
 - The `LLM_PROVIDER` field controls the LLM provider: `ollama` (local, recommended), `openai`, `anthropic`, or `deepseek`.
 - The target language is always **English**. During registration, the user's native language is asked for flashcard translations and tutor feedback.
 
+## Reverse proxy requirement (real-time conversation)
+
+The real-time voice conversation feature uses a WebSocket connection (`/ws/conversation`). Next.js does not proxy WebSocket upgrades natively, so **a reverse proxy is required in any production deployment** to route `/ws/*` traffic to the backend container.
+
+This is also a hard browser requirement: `getUserMedia` (microphone access) only works in a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) — HTTPS or localhost. A reverse proxy terminating TLS is therefore mandatory for the conversation feature to work at all in production.
+
+The WebSocket URL is derived automatically from `window.location`, so no extra configuration is needed on the frontend side — just ensure your reverse proxy forwards `/ws/*` to `backend:8000`.
+
 ## Enabling TTS & STT
 
 TTS (Kokoro) and STT (faster-whisper) are disabled by default at the application level, even though the services are running in Docker Compose. Enable them in `.env` to activate voice features.
@@ -161,8 +169,6 @@ TTS (Kokoro) and STT (faster-whisper) are disabled by default at the application
    kokoro:
      image: ghcr.io/remsky/kokoro-fastapi-cpu:latest
      restart: unless-stopped
-     ports:
-       - "8880:8880"
    ```
 
    **Whisper (STT):**
@@ -170,8 +176,6 @@ TTS (Kokoro) and STT (faster-whisper) are disabled by default at the application
    whisper:
      image: onerahmet/openai-whisper-asr-webservice:latest
      restart: unless-stopped
-     ports:
-       - "9000:9000"
      environment:
        - ASR_MODEL=base
        - ASR_ENGINE=faster_whisper
