@@ -2,11 +2,11 @@
 
 ## Project state
 
-**Planning stage — zero source code.** The repo contains detailed specs in `specs/` but no `backend/`, `frontend/`, `docker-compose.yml`, or `.env.example` have been created yet. All work starts from scaffolding.
+**v1.2.1 — All phases implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), and Phase 3 (voice conversation) are complete. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Architecture at a glance
 
-Monorepo: `backend/` (Python FastAPI) + `frontend/` (Next.js 14 App Router) deployed via Docker Compose with PostgreSQL 16 and Redis 7. The backend proxies all external services (Ollama, Kokoro, Whisper) — the frontend never calls them directly.
+Monorepo: `backend/` (Python 3.12 FastAPI) + `frontend/` (Next.js 16 App Router) deployed via Docker Compose with PostgreSQL 16 and Redis 7. The backend proxies all external services (Ollama, Kokoro, Whisper) — the frontend never calls them directly.
 
 ## Key constraints
 
@@ -17,7 +17,7 @@ Monorepo: `backend/` (Python FastAPI) + `frontend/` (Next.js 14 App Router) depl
 
 ## Spec files (authoritative)
 
-Read these before implementing — they are the source of truth:
+These describe what was built — they are the reference documentation:
 
 | File | Covers |
 |------|--------|
@@ -33,22 +33,12 @@ Read these before implementing — they are the source of truth:
 | `specs/testing.instructions.md` | Testing strategy: pytest, Vitest, Playwright, fixtures, mocks, CI (pending) |
 | `specs/llm-error-handling.instructions.md` | LLM failure modes: malformed JSON, timeouts, retries, context overflow |
 | `specs/rate-limiting.instructions.md` | slowapi-based rate limits per-endpoint, self-hosted defaults |
+| `specs/version.md` | Canonical project version — keep in sync with CHANGELOG and sidebar |
 
-## Phase 1 development order
+## Run order (first deployment)
 
-1. **Scaffolding** — Create `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`
-2. **Backend core** — `core/config.py`, `core/database.py` (async SQLAlchemy + asyncpg), `core/security.py` (JWT + bcrypt), `core/deps.py`, LLM adapter singleton
-3. **Auth** — `routers/auth.py` (register, login, refresh, logout, me), `routers/admin.py`
-4. **Models** — User, StudyPlan, Lesson, Exercise, Flashcard, Progress (SQLAlchemy async ORM)
-5. **Assessment** — Adaptive quiz (static bank) + deterministic CEFR evaluation + duration selector
-6. **Study plan** — Curriculum-driven plan from `data/curriculum.py` + `data/curriculum.ts`
-7. **Lessons** — LLM lesson content generation within curriculum constraints, free-write evaluation
-8. **Flashcards** — SM-2 implementation, LLM generation with native-language translations
-9. **Chat** — SSE streaming tutor with progress-aware system prompt
-10. **Frontend Phase 1** — Auth, assessment, `/plan` roadmap, lesson, flashcards, chat screens
-11. **Frontend Phase 1+** — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Test
-
-Run migrations after first backend startup: `docker compose exec backend alembic upgrade head`
+1. `docker compose up -d` — start all services
+2. `docker compose exec backend alembic upgrade head` — run DB migrations
 
 ## Development environment constraints
 
@@ -96,17 +86,12 @@ docker compose exec backend alembic upgrade head
 - **TypeScript**: no semicolons, single quotes, 2-space tabs, trailing commas es5. `prettier-plugin-tailwindcss` required.
 - **shadcn/ui** components must be installed: `button card input progress badge separator sheet tabs`.
 
-## Phase 2 services (TTS & STT)
+## TTS & STT services
 
-`kokoro` (TTS) and `whisper` (STT) are **active in `docker-compose.yml`** but disabled at the application level by default (`TTS_ENABLED=false`, `STT_ENABLED=false`). To enable them, set those flags to `true` in `.env`.
+`kokoro` (TTS) and `whisper` (STT) are **active in `docker-compose.yml`** but disabled at the application level by default (`TTS_ENABLED=false`, `STT_ENABLED=false`). To enable them, set those flags to `true` in `.env`. The voice conversation (Phase 3) requires both to be `true` — the WebSocket endpoint rejects connections otherwise.
+
+Default STT model is `large-v3-turbo`, controlled via `STT_MODEL` in `.env`. STT engine (faster-whisper or ctranslate2) is controlled via `STT_ENGINE`.
 
 ### GPU vs CPU
 
-Both services ship with GPU images by default. For CPU-only hosts, adjust `docker-compose.yml` as follows:
-
-| Service | GPU image (default) | CPU image | Extra change |
-|---------|--------------------|-----------|----|
-| `kokoro` | `ghcr.io/remsky/kokoro-fastapi-gpu:latest` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Remove the `deploy` block |
-| `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | `onerahmet/openai-whisper-asr-webservice:latest` | Remove the `deploy` block; set `ASR_MODEL=base` or `small` |
-
-The `deploy.resources.reservations.devices` block must be removed entirely on CPU hosts — Docker will error if it is present without the NVIDIA runtime.
+Both services ship with GPU images by default. For CPU-only hosts, see `specs/docker.instructions.md` for the required image and compose changes.

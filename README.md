@@ -123,11 +123,11 @@ The first registered user becomes admin automatically.
 - [phase-1-plus.instructions.md](specs/phase-1-plus.instructions.md) — Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test
 - [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
-- [phase-4-grammar-reference.instructions.md](specs/phase-4-grammar-reference.instructions.md) — Phase 4: extended grammar reference and content pipeline
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
 - [testing.instructions.md](specs/testing.instructions.md) — Testing strategy: pytest, Vitest, Playwright, mocks, CI
+- [version.md](specs/version.md) — Canonical project version and sync rules
 
 ## Operational notes
 
@@ -138,7 +138,7 @@ The first registered user becomes admin automatically.
 
 ## Enabling TTS & STT
 
-TTS (Kokoro) and STT (faster-whisper) are disabled by default. Both services are already defined in `docker-compose.yml` (commented out) and can be activated on either a GPU or a CPU host.
+TTS (Kokoro) and STT (faster-whisper) are disabled by default at the application level, even though the services are running in Docker Compose. Enable them in `.env` to activate voice features.
 
 ### GPU host (NVIDIA)
 

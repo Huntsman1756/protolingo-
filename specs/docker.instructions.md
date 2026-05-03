@@ -1,139 +1,77 @@
 ---
-description: "Complete FreeLingo Docker Compose by phases, .env.example environment variables, operational notes: Ollama on host vs Docker with GPU, Alembic migrations, logs, image updates."
-applyTo: "docker-compose.yml, .env*,**/Dockerfile"
+description: "Docker Compose specification for FreeLingo — all services (PostgreSQL, Redis, backend, frontend, Ollama, Kokoro TTS, Whisper STT), environment variables, operational notes, and deployment guidance."
+applyTo: "docker-compose.yml, .env*, **/Dockerfile"
 ---
 
 # Docker Compose — FreeLingo
 
-## Reference
+## Service inventory
 
-Complete Compose with all three phases. Phase 2 and 3 services are included
-but commented out; they are activated when reaching that phase.
+| Service | Image | Ports | Phase | Notes |
+|---------|-------|-------|-------|-------|
+| `postgres` | `postgres:16-alpine` | 5432 (internal) | 1 | Health check via `pg_isready` |
+| `redis` | `redis:7-alpine` | 6379 (internal) | 1 | Password-protected, health check via `redis-cli ping` |
+| `backend` | Built from `backend/Dockerfile` | 8000 | 1 | Python 3.12, Uvicorn, depends on postgres+redis |
+| `frontend` | Built from `frontend/Dockerfile` | 3000 | 1 | Next.js 16, built with `NEXT_PUBLIC_API_URL` as build arg |
+| `kokoro` | `ghcr.io/remsky/kokoro-fastapi-gpu:latest` | 8880 | 2 | TTS, GPU via NVIDIA deploy block |
+| `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | 9000 | 2 | STT, GPU via NVIDIA deploy block |
 
-## docker-compose.yml
+Ollama is assumed to run on the host machine for GPU access, accessed via `host.docker.internal:11434`. It can alternatively run as a Docker service with its own GPU deploy block.
 
-```yaml
-services:
+---
 
-  # ─── CORE ────────────────────────────────────────────────
+## Docker Compose structure
 
-  postgres:
-    image: postgres:16-alpine
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+The compose file defines 6 services (plus optional Ollama) and 2 named volumes (`postgres_data`, `redis_data`).
 
-  redis:
-    image: redis:7-alpine
-    restart: unless-stopped
-    command: redis-server --requirepass ${REDIS_PASSWORD}
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "--pass", "${REDIS_PASSWORD}", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+### PostgreSQL
 
-  # ─── BACKEND ─────────────────────────────────────────────
+- Alpine-based image for minimal footprint
+- Database name, user, and password from environment variables
+- Health check ensures backend waits for database readiness (`depends_on: condition: service_healthy`)
+- Data persisted in named volume
 
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    environment:
-      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
-      SECRET_KEY: ${SECRET_KEY}
-      LLM_PROVIDER: ${LLM_PROVIDER}
-      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
-      OLLAMA_MODEL: ${OLLAMA_MODEL}
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENAI_MODEL: ${OPENAI_MODEL}
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
-      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL}
-      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
-      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL}
-      # Phase 2
-      TTS_ENABLED: ${TTS_ENABLED:-false}
-      TTS_BASE_URL: ${TTS_BASE_URL:-http://kokoro:8880}
-      TTS_VOICE: ${TTS_VOICE:-af_heart}
-      STT_ENABLED: ${STT_ENABLED:-false}
-      STT_BASE_URL: ${STT_BASE_URL:-http://whisper:9000}
-    ports:
-      - "8000:8000"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    volumes:
-      - ./backend:/app
+### Redis
 
-  # ─── FRONTEND ────────────────────────────────────────────
+- Alpine-based image
+- Password from `REDIS_PASSWORD` environment variable
+- Health check via authenticated ping
+- Data persisted in named volume
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    environment:
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
-      NEXT_PUBLIC_WS_URL: ${NEXT_PUBLIC_WS_URL:-ws://localhost:8000}
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+### Backend
 
-  # ─── PHASE 2: TTS + STT (uncomment when implementing) ────
+- Built from `backend/Dockerfile` (Python 3.12 slim)
+- Receives all configuration via environment variables (passed from `.env`)
+- Binds `./backend:/app` volume for live development
+- Startup command: `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+- Depends on healthy PostgreSQL and Redis
 
-  # kokoro:
-  #   image: ghcr.io/remsky/kokoro-fastapi:latest
-  #   restart: unless-stopped
-  #   ports:
-  #     - "8880:8880"
-  #   deploy:
-  #     resources:
-  #       reservations:
-  #         devices:
-  #           - driver: nvidia
-  #             count: 1
-  #             capabilities: [gpu]
+### Frontend
 
-  # whisper:
-  #   image: onerahmet/openai-whisper-asr-webservice:latest-gpu
-  #   restart: unless-stopped
-  #   ports:
-  #     - "9000:9000"
-  #   environment:
-  #     ASR_MODEL: ${STT_MODEL:-medium}
-  #     ASR_ENGINE: faster_whisper
-  #   deploy:
-  #     resources:
-  #       reservations:
-  #         devices:
-  #           - driver: nvidia
-  #             count: 1
-  #             capabilities: [gpu]
+- Built from `frontend/Dockerfile` (multi-stage: npm 11 → next build)
+- `NEXT_PUBLIC_API_URL` passed as Docker build ARG and baked at build time (required for WebSocket URL resolution on separate-subdomain deployments)
+- Serves built output on port 3000
+- Depends on backend
 
-volumes:
-  postgres_data:
-  redis_data:
-```
+### Kokoro TTS (Phase 2)
 
-## `.env.example`
+- GPU image by default (`kokoro-fastapi-gpu`)
+- Exposes port 8880
+- NVIDIA GPU via `deploy.resources.reservations.devices` block
+- No environment variables needed (uses defaults)
 
-> Copy to `.env` and fill in the values marked with `CHANGE_ME_*` before starting up.
+### Whisper STT (Phase 2)
+
+- GPU image by default (`latest-gpu`)
+- Exposes port 9000
+- Environment: `ASR_MODEL` (from `${STT_MODEL:-large-v3-turbo}`), `ASR_ENGINE` (from `${STT_ENGINE:-faster_whisper}`)
+- NVIDIA GPU via `deploy.resources.reservations.devices` block
+
+---
+
+## Environment variables (`.env`)
+
+All required variables with their defaults:
 
 ```env
 # ─── Database ────────────────────────────────────────────
@@ -147,91 +85,81 @@ REDIS_PASSWORD=CHANGE_ME_REDIS_PASSWORD
 # ─── Auth ────────────────────────────────────────────────
 # Generate with: openssl rand -hex 32
 SECRET_KEY=CHANGE_ME_SECRET_KEY
-
-# true  = anyone can register
-# false = only admin can create accounts or generate invites
+ACCESS_TOKEN_EXPIRE_MINUTES=15
+REFRESH_TOKEN_EXPIRE_DAYS=30
 ALLOW_REGISTRATION=true
-# First registered user automatically becomes admin
 FIRST_USER_IS_ADMIN=true
 
 # ─── LLM ─────────────────────────────────────────────────
 # Options: ollama | openai | anthropic | deepseek
 LLM_PROVIDER=ollama
-
-# Ollama (if LLM_PROVIDER=ollama)
 OLLAMA_BASE_URL=http://host.docker.internal:11434
 OLLAMA_MODEL=gemma3:12b
-
-# OpenAI (if LLM_PROVIDER=openai)
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
-
-# Anthropic (if LLM_PROVIDER=anthropic)
 ANTHROPIC_API_KEY=
 ANTHROPIC_MODEL=claude-3-5-haiku-latest
-
-# DeepSeek (if LLM_PROVIDER=deepseek)
 DEEPSEEK_API_KEY=
 DEEPSEEK_MODEL=deepseek-chat
 
 # ─── Frontend ────────────────────────────────────────────
 NEXT_PUBLIC_API_URL=http://localhost:8000
-NEXT_PUBLIC_WS_URL=ws://localhost:8000
 
-# ─── Phase 2: TTS + STT ─────────────────────────────────
+# ─── TTS ─────────────────────────────────────────────────
 TTS_ENABLED=false
 TTS_BASE_URL=http://kokoro:8880
 TTS_VOICE=af_heart
 
+# ─── STT ─────────────────────────────────────────────────
 STT_ENABLED=false
 STT_BASE_URL=http://whisper:9000
-STT_MODEL=medium
+STT_MODEL=large-v3-turbo
+STT_ENGINE=faster_whisper
+
+# ─── Rate Limiting ───────────────────────────────────────
+RATE_LIMIT_ENABLED=true
+RATE_LIMIT_STORAGE=memory
+
+# ─── CORS ────────────────────────────────────────────────
+CORS_ORIGINS=*
+
+# ─── Logging ─────────────────────────────────────────────
+LOG_LEVEL=INFO
+
+# ─── Cookie ──────────────────────────────────────────────
+COOKIE_SECURE=true
 ```
+
+---
 
 ## Operational notes
 
-### Ollama on host (recommended)
+### Run order (first deployment)
 
-If Ollama runs outside Docker (directly on the host with GPU):
+1. Copy `.env.example` to `.env` and fill in `CHANGE_ME_*` values
+2. `docker compose up -d` — start all services
+3. `docker compose exec backend alembic upgrade head` — run DB migrations
 
-```env
-OLLAMA_BASE_URL=http://host.docker.internal:11434
-```
+### Ollama on host (recommended for GPU)
 
-On Linux, `host.docker.internal` requires adding to the `backend` service:
+If Ollama runs directly on the host with GPU access, the backend accesses it via `host.docker.internal:11434`.
 
+On **Linux**, `host.docker.internal` requires adding to the backend service:
 ```yaml
 extra_hosts:
   - "host.docker.internal:host-gateway"
 ```
 
+On macOS and Windows, `host.docker.internal` resolves automatically.
+
 ### Ollama in Docker with GPU
 
-```yaml
-  ollama:
-    image: ollama/ollama:latest
-    restart: unless-stopped
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
-```
-
-```env
-OLLAMA_BASE_URL=http://ollama:11434
-```
+Alternative: run Ollama as a Docker service with its own GPU deploy block. In that case, set `OLLAMA_BASE_URL=http://ollama:11434` in `.env`.
 
 ### Database migrations
 
 ```bash
-# First time
+# Run all pending migrations
 docker compose exec backend alembic upgrade head
 
 # Create a new migration after model changes
@@ -245,16 +173,56 @@ docker compose exec backend alembic upgrade head
 # All services
 docker compose logs -f
 
-# Backend only
+# Specific service
 docker compose logs -f backend
 
-# Check GPU in Whisper/Kokoro
+# Check GPU utilization
 docker compose exec whisper nvidia-smi
+docker compose exec kokoro nvidia-smi
 ```
 
-### Image updates (Phase 2)
+### Updating images
 
 ```bash
 docker compose pull kokoro whisper
 docker compose up -d kokoro whisper
 ```
+
+---
+
+## GPU vs CPU
+
+Both TTS and STT services default to GPU images with CUDA support (`*-gpu:latest`). For CPU-only hosts:
+
+| Service | GPU image | CPU image | Additional changes |
+|---------|-----------|-----------|-------------------|
+| Kokoro TTS | `ghcr.io/remsky/kokoro-fastapi-gpu:latest` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Remove the entire `deploy` block |
+| Whisper STT | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | `onerahmet/openai-whisper-asr-webservice:latest` | Remove the `deploy` block; set `STT_MODEL=tiny.en` or `small` for acceptable performance |
+
+The `deploy.resources.reservations.devices` block references NVIDIA GPUs via the Docker NVIDIA runtime. If this runtime is not installed on the host, Docker will error on startup. Remove these blocks entirely for CPU-only deployments.
+
+---
+
+## Application-level TTS/STT toggling
+
+Even when Kokoro and Whisper services are running in Docker Compose, the application-level TTS and STT features are disabled by default:
+
+- `TTS_ENABLED=false`: the `/api/tts` endpoint returns 503, audio buttons are hidden
+- `STT_ENABLED=false`: the `/api/stt` endpoint returns 503, voice recording is hidden
+- Both must be `true` for the Phase 3 WebSocket voice conversation endpoint to accept connections
+
+This allows deploying the full stack while enabling features gradually or for specific users.
+
+---
+
+## STT service API
+
+**Important**: The Whisper service (`onerahmet/openai-whisper-asr-webservice`) does **not** implement the OpenAI API format. The actual endpoint is:
+
+```
+POST /asr?output=json&language=en&task=transcribe
+Content-Type: multipart/form-data
+Field: audio_file (the audio binary)
+```
+
+The backend's `STTService` correctly calls this endpoint. Earlier versions of this spec incorrectly documented the OpenAI-compatible `/v1/audio/transcriptions` endpoint, which does not exist in this service.

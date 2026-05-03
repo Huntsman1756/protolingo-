@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2026-05-03
+
+### Added
+- Author section in Settings page (between Appearance and Logout) showing "Arturo Carretero Calvo" with GitHub link to `github.com/artcc`
+- Version display (`v1.2.2`) in sidebar (desktop + mobile) above the logout button
+- `specs/version.md` — canonical version file with sync rules (must match CHANGELOG and sidebar)
+- `specs/version.md` listed in AGENTS.md spec files table
+
+### Changed
+- All spec files in `specs/` rewritten as proper specifications — removed embedded implementation code (~60-70% reduction), corrected outdated information, and aligned with the actual v1.2.1 codebase
+- `AGENTS.md`: removed "Planning stage — zero source code", updated to reflect v1.2.1 with all phases complete, Next.js 16, Python 3.12, simplified TTS/STT section
+- `architecture.instructions.md`: complete rewrite — lists all 9 models (was 6), all 11 routers (was 9), all 9 services, all endpoints, correct STT API (`/asr` not OpenAI), environment variables
+- `roadmap.instructions.md`: all phases marked as ✅ Complete (Phase 1, 1+, 2, 3 were all frozen as ⬜ Planned), updated Phase 3 milestones to include structured logging
+- `phase-1-platform.instructions.md`: rewritten from 880 to ~280 lines — removed all Python/TypeScript implementation code, kept architectural description and design decisions
+- `phase-1-plus.instructions.md`: rewritten from 1082 to ~300 lines — removed ~600 lines of embedded grammar/vocabulary data code, kept data model descriptions
+- `phase-2-tts-stt.instructions.md`: corrected STT endpoint to `POST /asr?output=json&language=en&task=transcribe` (was wrong OpenAI API), default model to `large-v3-turbo`, added `STT_ENGINE` variable, removed all implementation code
+- `phase-3-conversation.instructions.md`: corrected VAD library to `@ricky0123/vad-react` (was `vad-web`), corrected COOP/COEP headers (were documented as "not needed" but are actually required), added structured logging and `LOG_LEVEL`, removed all implementation code
+- `docker.instructions.md`: uncommented kokoro/whisper services, corrected STT endpoint, added `LOG_LEVEL`, `STT_ENGINE`, `COOKIE_SECURE` to .env example, removed "no Docker locally" contradiction
+- `testing.instructions.md`: removed Docker commands (no Docker locally), documented SQLite in-memory DB for tests (not PostgreSQL), updated test file list to match actual 10 test files, marked frontend/E2E tests as "pending"
+- `llm-error-handling.instructions.md` and `rate-limiting.instructions.md`: removed all implementation code blocks, kept strategy descriptions, error taxonomies, and HTTP status mappings
+
 ## [1.2.1] - 2026-05-02
 
 ### Added
