@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.4] - 2026-05-03
+
+### Security
+- Rate limit 5/min added to `POST /api/auth/register` to prevent account enumeration and resource abuse (A-01)
+- WebSocket authentication token now sent as first JSON message after `accept()` instead of as URL query parameter, preventing token exposure in server logs and browser history (A-02)
+- Audio uploads to STT endpoint capped at 50 MB; requests exceeding the limit return HTTP 413 (A-03)
+- `max_length=5000` enforced on TTS text and chat message fields via Pydantic (A-04)
+- `RATE_LIMIT_STORAGE=redis` set as default in `docker-compose.yml` and `.env.example` so rate limit counters are shared across workers in production (M-01)
+- `Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'` header added to backend middleware and Next.js config (M-02)
+- `PATCH /api/auth/me` now returns HTTP 409 instead of 500 when the requested email is already used by another account (M-03)
+- `AdminUserCreate` schema validates email with `EmailStr` and restricts `native_language` to the `SUPPORTED_LANGUAGES` whitelist (M-04)
+- Assessment quiz sessions migrated from in-process dict (`_sessions`) to Redis with 30-minute TTL, fixing multi-worker inconsistency and memory leak (M-05)
+- Rate limit 20/min added to `POST /api/auth/refresh` (M-06)
+- `GET /api/admin/users` supports `skip`/`limit` pagination (default 20/page) with `total` count; frontend renders Previous/Next controls (M-07)
+- Rate limiter `key_func` updated to read `X-Real-IP` header set by nginx before falling back to socket address, ensuring per-client limits work correctly behind a reverse proxy (B-01)
+- `correct_answer` and `correct` fields stripped from assessment quiz responses before sending to the client (B-03)
+- `bcrypt` version constraint relaxed to `>=4.0.0` (removed `<4.0.0` upper bound) to allow security patches in future major versions (B-04)
+- CORS `allow_methods` restricted to explicit list (`GET POST PUT PATCH DELETE OPTIONS`) instead of `"*"` (I-04)
+
+### Added
+- Pagination controls (Previous / Next) on the admin users page
+- `prevPage` and `nextPage` i18n keys added to all six translation files (en, es, fr, pt, de, it)
+- `PaginatedAdminUsersResponse` schema with `items`, `total`, `skip`, `limit` fields
+
+### Fixed
+- `RATE_LIMIT_ENABLED=false` set in test conftest so rate limits do not interfere with integration tests running under the same IP
+- `test_list_users_as_admin` updated to assert on paginated response shape (`items`, `total`) instead of a flat list
+
 ## [1.2.3] - 2026-05-03
 
 ### Fixed

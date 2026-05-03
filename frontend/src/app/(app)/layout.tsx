@@ -206,7 +206,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             {user?.displayName || user?.username}
           </p>
           <p className="text-fl-label font-mono text-fl-muted-4 mb-3">@{user?.username}</p>
-          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.2.3</p>
+          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.2.4</p>
           <button
             onClick={() => setLogoutConfirm(true)}
             className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
@@ -312,7 +312,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             )}
             <div className="border-t border-fl-border mx-5 mt-2 pt-3">
               <p className="font-mono text-fl-label text-fl-muted-4 mb-1">@{user?.username}</p>
-              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.2.3</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.2.4</p>
               <button
                 onClick={() => { setMobileMenuOpen(false); setLogoutConfirm(true) }}
                 className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"

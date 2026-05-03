@@ -42,6 +42,21 @@ router = APIRouter(prefix="/api/assessment", tags=["assessment"])
 
 _ASSESSMENT_TTL = 1800  # 30 minutes
 
+_ANSWER_FIELDS = frozenset({"correct_answer", "correct"})
+
+
+def _strip_answers(quiz: dict) -> dict:
+    """Remove correct-answer fields from quiz questions before sending to the client.
+
+    B-03: prevents exposing correct answers in the API response, which would
+    allow users to cheat by inspecting network traffic.
+    """
+    questions = [
+        {k: v for k, v in q.items() if k not in _ANSWER_FIELDS}
+        for q in quiz.get("questions", [])
+    ]
+    return {**quiz, "questions": questions}
+
 
 async def get_redis():
     redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
@@ -115,7 +130,7 @@ async def start_assessment(
         _ASSESSMENT_TTL,
         json.dumps({"session_id": session_id, "quiz": quiz}),
     )
-    return {"quiz": quiz, "session_id": session_id}
+    return {"quiz": _strip_answers(quiz), "session_id": session_id}
 
 
 @router.post("/submit", response_model=AssessmentResult)
