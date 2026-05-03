@@ -38,15 +38,15 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'",
-              "style-src 'self' 'unsafe-inline'",
-              "connect-src 'self' ws: wss:",
-              "img-src 'self' data: blob:",
-              "media-src 'self' blob:",
-              "worker-src 'self' blob:",
-              "font-src 'self'",
-              "object-src 'none'",
-              "base-uri 'self'",
+\"script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'\",
+"style-src 'self' 'unsafe-inline'",
+  "connect-src 'self' ws: wss:",
+  "img-src 'self' data: blob:",
+  "media-src 'self' blob:",
+  "worker-src 'self' blob:",
+  "font-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
             ].join('; '),
           },
         ],
@@ -54,13 +54,13 @@ const nextConfig: NextConfig = {
     ]
   },
   async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${process.env.BACKEND_URL || 'http://backend:8000'}/api/:path*`,
-      },
-    ]
-  },
+  return [
+    {
+      source: '/api/:path*',
+      destination: `${process.env.BACKEND_URL || 'http://backend:8000'}/api/:path*`,
+    },
+  ]
+},
 }
 
 export default withNextIntl(nextConfig)

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.5] - 2026-05-03
+
+### Fixed
+- `Content-Security-Policy` corrected to add `'wasm-unsafe-eval'` to `script-src`, allowing onnxruntime-web WASM modules (VAD / Silero model) to instantiate without breaking other CSP restrictions
+- `script-src` extended with `'unsafe-inline'` required for Next.js hydration; `style-src 'unsafe-inline'` added for Tailwind inline styles; `connect-src 'self' ws: wss:` for API and WebSocket calls; `media-src blob:` and `worker-src blob:` for TTS audio playback and VAD workers; `img-src data: blob:` for flag images
+- Login regression introduced by the restrictive CSP is resolved
+
 ## [1.2.4] - 2026-05-03
 
 ### Security
