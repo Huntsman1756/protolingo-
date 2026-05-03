@@ -7,9 +7,6 @@ RUN npm ci
 
 FROM node:20-alpine AS builder
 WORKDIR /app
-# NEXT_PUBLIC_* vars are inlined at build time — must be ARGs, not runtime envs
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 COPY --from=deps /app/node_modules ./node_modules
 COPY frontend/ .
 COPY messages/ ./messages/
