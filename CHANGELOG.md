@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.6] - 2026-05-03
+
+### Changed
+- Conversation mode: LLM now always responds in English regardless of the language the student uses; if the student speaks in another language the tutor replies in English and gently encourages them to try in English
+- License changed from Apache 2.0 to GNU Affero General Public License v3 (AGPL v3)
+
+### Fixed
+- Email, password, and confirm-password inputs across login, register, settings, and admin pages now set `autoCorrect="off"`, `autoCapitalize="none"`, and `spellCheck={false}` to prevent mobile keyboards from corrupting typed values
+
 ## [1.2.5] - 2026-05-03
 
 ### Fixed
