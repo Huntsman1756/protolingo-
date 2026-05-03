@@ -7,16 +7,16 @@ applyTo: "backend/app/main.py, backend/app/core/config.py, backend/app/core/limi
 
 ## Approach
 
-Uses [**slowapi**](https://github.com/laurentS/slowapi) (built on `limits`, Rust backend). Default storage is in-memory — adequate for self-hosted single-node deployments. No Redis dependency is required for rate limiting.
+Uses [**slowapi**](https://github.com/laurentS/slowapi) (built on `limits`, Rust backend). Default storage is **Redis** — consistent across restarts and multi-node deployments. Redis is already a required dependency (refresh tokens), so there is no additional infrastructure cost.
 
-For multi-node setups, switch to Redis backend via `RATE_LIMIT_STORAGE=redis` in `.env`.
+For development or trusted environments without Redis, switch to in-memory via `RATE_LIMIT_STORAGE=memory` in `.env`.
 
 ### Configuration
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `RATE_LIMIT_ENABLED` | `true` | Enable/disable rate limiting entirely |
-| `RATE_LIMIT_STORAGE` | `"memory"` | Storage backend: `"memory"` or `"redis"` |
+| `RATE_LIMIT_STORAGE` | `"redis"` | Storage backend: `"redis"` (default) or `"memory"` |
 
 The global default limit is 200 requests/minute for all unclassified endpoints.
 
@@ -34,8 +34,8 @@ The global default limit is 200 requests/minute for all unclassified endpoints.
 | Endpoint group | Limit | Key type | Rationale |
 |---------------|-------|----------|-----------|
 | Auth login | 10 requests / minute | IP | Prevent brute-force on credentials |
-| Auth register | Invite-gated (no separate limit) | IP | Controlled by invite token expiry |
-| Auth refresh | 10 requests / minute | IP | Token rotation, lightweight but guard abuse |
+| Auth register | 5 requests / minute | IP | Prevent account-creation abuse; invite token provides additional gating |
+| Auth refresh | 20 requests / minute | IP | Token rotation — higher limit to avoid disrupting normal SPA refresh cycles |
 | LLM-heavy (`/api/assessment/start`, `/api/assessment/submit`, `/api/study-plan/generate`, `/api/flashcards/generate`) | 10 requests / minute | User | These call Ollama; prevent queue saturation |
 | LLM-light (`/api/lessons/*`, `/api/exercises/*`, `/api/chat`) | 30 requests / minute | User | Interactive, should feel responsive |
 | Flashcards review (`/api/flashcards/*/review`) | 60 requests / minute | User | Rapid swipes during review sessions |
@@ -49,10 +49,10 @@ The global default limit is 200 requests/minute for all unclassified endpoints.
 
 ## Rate limit key selection
 
-- **IP-based** (`get_remote_address`): used for public endpoints where no user is authenticated. Applied to: login, register, refresh, logout.
+- **IP-based** (`_get_real_ip`): used for public endpoints where no user is authenticated. Applied to: login, register, refresh, logout. The key function reads `X-Real-IP` first (set by a trusted reverse proxy), then `X-Forwarded-For`, then the socket address as a fallback. This ensures correct IP identification behind Traefik/nginx.
 - **User-based** (`get_user_key` → `str(current_user.id)`): used for all authenticated endpoints. More granular than IP and survives IP changes.
 
-The rate limiter is configured globally with `key_func=get_remote_address` as the default; user-based endpoints override this with `key_func=get_user_key` on each decorator.
+The rate limiter is configured globally with `key_func=_get_real_ip` as the default; user-based endpoints override this with `key_func=get_user_key` on each decorator.
 
 ---
 
@@ -94,7 +94,7 @@ The WebSocket conversation endpoint (`/ws/conversation`) is **not** rate-limited
 Since FreeLingo is self-hosted (typically single admin + few users):
 
 - **Defaults are generous** — limits prevent abuse, not normal usage. A single user doing flashcards review generates approximately 1-2 requests/second, well within limits.
-- **In-memory storage** — no extra infrastructure needed. Process restart loses counters (acceptable for self-hosted — the application restarts infrequently).
-- **Redis backend optional** — set `RATE_LIMIT_STORAGE=redis` if running multiple backend instances behind a load balancer.
+- **Redis storage** — counters persist across restarts and are shared across backend instances. Redis is already required for auth (refresh tokens), so no extra infrastructure is needed.
+- **In-memory backend optional** — set `RATE_LIMIT_STORAGE=memory` for local development without Redis.
 - **Disable fully** — set `RATE_LIMIT_ENABLED=false` if rate limiting causes issues in a trusted environment.
 - Limits are environment-configurable, not hardcoded — adjust in `.env` if the defaults don't match the deployment scale.
