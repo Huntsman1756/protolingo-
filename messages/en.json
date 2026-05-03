@@ -23,7 +23,9 @@
     "score": "Score",
     "complete": "Complete",
     "checking": "Checking...",
-    "backToDashboard": "Back to Dashboard"
+    "backToDashboard": "Back to Dashboard",
+    "tagline": "self-hosted language learning",
+    "close": "Close"
   },
   "nav": {
     "home": "Home",
@@ -204,7 +206,45 @@
         "back": "Back to Plan"
       }
     },
-    "suggestedLevel": "Suggested {aiLevel} — plan will use {selectedLevel}"
+    "suggestedLevel": "Suggested {aiLevel} — plan will use {selectedLevel}",
+    "step1": "Step 1 / 3 — Your level",
+    "step2": "Step 2 / 3 — Question {questionNumber} / {totalQuestions}",
+    "step3": "Step 3 / 3 — Your programme",
+    "studiedBefore": "Have you studied English before?",
+    "studiedBeforeHint": "This helps us start the quiz at the right level.",
+    "beginnerOption": "I am a complete beginner",
+    "beginnerOptionHint": "I will start at A1 — no quiz needed.",
+    "hasExperienceOption": "Yes, I have some experience",
+    "hasExperienceOptionHint": "I will take a short adaptive quiz (≈12 questions).",
+    "skills": {
+      "grammar": "Grammar",
+      "vocabulary": "Vocabulary",
+      "reading": "Reading"
+    },
+    "howManyWeeks": "How many weeks for level {cefr_level}?",
+    "nWeeks": "{count} weeks",
+    "intensity": {
+      "intensive": "Intensive",
+      "standard": "Standard",
+      "relaxed": "Relaxed",
+      "veryRelaxed": "Very relaxed"
+    },
+    "approxLessons": "~{count} lessons",
+    "daysPerWeek": "{count} days/week",
+    "mainGoals": "Main goals (select all that apply)",
+    "goals": {
+      "grammar": "Grammar",
+      "vocabulary": "Vocabulary",
+      "reading": "Reading",
+      "writing": "Writing",
+      "conversation": "Conversation"
+    },
+    "summaryLevel": "Level",
+    "summaryDuration": "Duration",
+    "summaryGoals": "Goals",
+    "noneSelected": "none selected",
+    "buildingPlan": "Building plan…",
+    "startMyPlan": "Start my plan"
   },
   "plan": {
     "title": "My Plan",
@@ -223,7 +263,28 @@
     "duration": "Duration",
     "unitsLabel": "Units",
     "noUnitsForLevel": "No units available for level {level}",
-    "takeAssessmentArrow": "Take Assessment →"
+    "takeAssessmentArrow": "Take Assessment →",
+    "unitLabel": "Unit",
+    "grammarCovered": "Grammar covered",
+    "noLessons": "No lessons scheduled yet for this unit.",
+    "weekDay": "Week {week}, Day {day}",
+    "lessonTypes": {
+      "grammar": "Grammar",
+      "vocabulary": "Vocabulary",
+      "reading": "Reading",
+      "writing": "Writing",
+      "conversation": "Conversation",
+      "review": "Review",
+      "level_test": "Level Test"
+    },
+    "levelComplete": "Level {level} Complete — Take the Level Test",
+    "levelCompleteDesc": "You have finished all units for level {level}. Take the level completion test to confirm your progress and unlock the next level.",
+    "levelCompleteHint": "The test takes approximately 20 minutes and covers grammar, vocabulary, and reading.",
+    "beginLevelTest": "Begin Level Test",
+    "nLessons": "{count} lessons",
+    "nGrammar": "{count} grammar",
+    "levelTestLabel": "Level Test",
+    "unitAriaLabel": "Unit {index}: {title}"
   },
   "lesson": {
     "loading": "Loading lesson...",
@@ -335,6 +396,8 @@
     "commonMistakes": "Common Mistakes",
     "relatedTopics": "Related Topics",
     "backToGrammar": "Grammar Reference",
+    "explanation": "Explanation",
+    "backLink": "Back to Grammar",
     "notFound": "Topic not found."
   },
   "vocabulary": {
@@ -459,5 +522,26 @@
     "tapToStart": "Speak when ready",
     "you": "You",
     "assistant": "FreeLingo"
+  },
+  "voiceRecorder": {
+    "record": "Record",
+    "stop": "Stop",
+    "processing": "Processing",
+    "error": "Error",
+    "ariaRecord": "Start recording",
+    "ariaStop": "Stop recording"
+  },
+  "audioPlayer": {
+    "listen": "Listen",
+    "stop": "Stop",
+    "ariaListen": "Listen to pronunciation",
+    "ariaStop": "Stop audio"
+  },
+  "languages": {
+    "es": "Spanish",
+    "fr": "French",
+    "pt": "Portuguese",
+    "de": "German",
+    "it": "Italian"
   }
 }

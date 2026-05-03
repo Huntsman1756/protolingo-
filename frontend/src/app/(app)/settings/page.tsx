@@ -9,17 +9,12 @@ import { useThemeStore } from '@/store/theme'
 import { useRouter } from 'next/navigation'
 import { ExternalLink } from 'lucide-react'
 
-const LANGUAGES = [
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'pt', name: 'Portuguese' },
-  { code: 'de', name: 'German' },
-  { code: 'it', name: 'Italian' },
-]
+const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it'] as const
 
 export default function SettingsPage() {
   const t = useTranslations('settings')
   const tCommon = useTranslations('common')
+  const tLang = useTranslations('languages')
   const user = useAuthStore((s) => s.user)
   const setUser = useAuthStore((s) => s.setUser)
   const logout = useAuthStore((s) => s.logout)
@@ -138,6 +133,9 @@ export default function SettingsPage() {
               type={field.type}
               value={field.value}
               onChange={(e) => field.onChange(e.target.value)}
+              autoCorrect={field.type === 'email' ? 'off' : undefined}
+              autoCapitalize={field.type === 'email' ? 'none' : undefined}
+              spellCheck={field.type === 'email' ? false : undefined}
               className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
             />
           </div>
@@ -150,8 +148,8 @@ export default function SettingsPage() {
             onChange={(e) => setNativeLanguage(e.target.value)}
             className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
           >
-            {LANGUAGES.map((l) => (
-              <option key={l.code} value={l.code}>{l.name}</option>
+            {LANGUAGES.map((code) => (
+              <option key={code} value={code}>{tLang(code)}</option>
             ))}
           </select>
         </div>
@@ -189,6 +187,9 @@ export default function SettingsPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder={t('newPasswordPlaceholder')}
+            autoCorrect="off"
+            autoCapitalize="none"
+            spellCheck={false}
             className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
           />
         </div>
@@ -201,6 +202,9 @@ export default function SettingsPage() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder={t('confirmPasswordPlaceholder')}
             disabled={!password}
+            autoCorrect="off"
+            autoCapitalize="none"
+            spellCheck={false}
             className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 disabled:opacity-30 transition-colors"
           />
         </div>

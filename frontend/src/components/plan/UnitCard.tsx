@@ -1,6 +1,7 @@
 'use client'
 
 import { type ReactNode } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface UnitStatus {
   completed: boolean
@@ -36,6 +37,7 @@ export default function UnitCard({
   status,
   onClick,
 }: Props) {
+  const t = useTranslations('plan')
   const barWidth = Math.round(competency * 100)
 
   return (
@@ -48,7 +50,7 @@ export default function UnitCard({
           ? 'border-fl-fg bg-fl-surface hover:bg-fl-surface-2'
           : 'border-fl-border bg-fl-surface hover:border-fl-border-2'
         }`}
-      aria-label={`Unit ${index + 1}: ${title}`}
+      aria-label={t('unitAriaLabel', { index: index + 1, title })}
     >
       {/* Top bar: status + index + title */}
       <div className="flex items-center gap-3 px-4 py-3">
@@ -69,16 +71,16 @@ export default function UnitCard({
           </div>
           <div className="flex items-center gap-3 mt-1">
             <span className="font-mono text-fl-hint text-fl-muted-3">
-              {lessonCount} lessons
+              {t('nLessons', { count: lessonCount })}
             </span>
             {grammarCount > 0 && (
               <span className="font-mono text-fl-hint text-fl-muted-3">
-                {grammarCount} grammar
+                {t('nGrammar', { count: grammarCount })}
               </span>
             )}
             {status.isLevelTest && (
               <span className="font-mono text-fl-hint text-fl-muted-2 uppercase tracking-widest border border-fl-border px-1.5 py-0.5">
-                Level Test
+                {t('levelTestLabel')}
               </span>
             )}
           </div>

@@ -23,7 +23,9 @@
     "score": "Puntuación",
     "complete": "Completado",
     "checking": "Comprobando...",
-    "backToDashboard": "Volver al inicio"
+    "backToDashboard": "Volver al inicio",
+    "tagline": "aprendizaje de idiomas autoalojado",
+    "close": "Cerrar"
   },
   "nav": {
     "home": "Inicio",
@@ -204,7 +206,45 @@
         "back": "Volver al plan"
       }
     },
-    "suggestedLevel": "Sugerido {aiLevel} — el plan usará {selectedLevel}"
+    "suggestedLevel": "Sugerido {aiLevel} — el plan usará {selectedLevel}",
+    "step1": "Paso 1 / 3 — Tu nivel",
+    "step2": "Paso 2 / 3 — Pregunta {questionNumber} / {totalQuestions}",
+    "step3": "Paso 3 / 3 — Tu programa",
+    "studiedBefore": "¿Has estudiado inglés antes?",
+    "studiedBeforeHint": "Esto nos ayuda a empezar el cuestionario en el nivel adecuado.",
+    "beginnerOption": "Soy principiante absoluto",
+    "beginnerOptionHint": "Empezaré en A1 — sin cuestionario.",
+    "hasExperienceOption": "Sí, tengo algo de experiencia",
+    "hasExperienceOptionHint": "Haré un breve cuestionario adaptativo (≈12 preguntas).",
+    "skills": {
+      "grammar": "Gramática",
+      "vocabulary": "Vocabulario",
+      "reading": "Lectura"
+    },
+    "howManyWeeks": "¿Cuántas semanas para el nivel {cefr_level}?",
+    "nWeeks": "{count} semanas",
+    "intensity": {
+      "intensive": "Intensivo",
+      "standard": "Estándar",
+      "relaxed": "Relajado",
+      "veryRelaxed": "Muy relajado"
+    },
+    "approxLessons": "~{count} lecciones",
+    "daysPerWeek": "{count} días/semana",
+    "mainGoals": "Objetivos principales (selecciona todos los que apliquen)",
+    "goals": {
+      "grammar": "Gramática",
+      "vocabulary": "Vocabulario",
+      "reading": "Lectura",
+      "writing": "Escritura",
+      "conversation": "Conversación"
+    },
+    "summaryLevel": "Nivel",
+    "summaryDuration": "Duración",
+    "summaryGoals": "Objetivos",
+    "noneSelected": "ninguno seleccionado",
+    "buildingPlan": "Creando plan…",
+    "startMyPlan": "Empezar mi plan"
   },
   "plan": {
     "title": "Mi Plan",
@@ -223,7 +263,28 @@
     "duration": "Duración",
     "unitsLabel": "Unidades",
     "noUnitsForLevel": "No hay unidades disponibles para el nivel {level}",
-    "takeAssessmentArrow": "Hacer evaluación →"
+    "takeAssessmentArrow": "Hacer evaluación →",
+    "unitLabel": "Unidad",
+    "grammarCovered": "Gramática cubierta",
+    "noLessons": "No hay lecciones programadas para esta unidad.",
+    "weekDay": "Semana {week}, Día {day}",
+    "lessonTypes": {
+      "grammar": "Gramática",
+      "vocabulary": "Vocabulario",
+      "reading": "Lectura",
+      "writing": "Escritura",
+      "conversation": "Conversación",
+      "review": "Repaso",
+      "level_test": "Test de nivel"
+    },
+    "levelComplete": "Nivel {level} completado — Haz el test de nivel",
+    "levelCompleteDesc": "Has completado todas las unidades del nivel {level}. Haz el test de finalización de nivel para confirmar tu progreso y desbloquear el siguiente.",
+    "levelCompleteHint": "El test dura aproximadamente 20 minutos y cubre gramática, vocabulario y lectura.",
+    "beginLevelTest": "Empezar el test de nivel",
+    "nLessons": "{count} lecciones",
+    "nGrammar": "{count} gramática",
+    "levelTestLabel": "Test de nivel",
+    "unitAriaLabel": "Unidad {index}: {title}"
   },
   "lesson": {
     "loading": "Cargando lección…",
@@ -335,6 +396,8 @@
     "commonMistakes": "Errores comunes",
     "relatedTopics": "Temas relacionados",
     "backToGrammar": "Gramática",
+    "explanation": "Explicación",
+    "backLink": "Volver a gramática",
     "notFound": "Tema no encontrado."
   },
   "vocabulary": {
@@ -459,5 +522,26 @@
     "tapToStart": "Habla cuando estés listo",
     "you": "Tú",
     "assistant": "FreeLingo"
+  },
+  "voiceRecorder": {
+    "record": "Grabar",
+    "stop": "Detener",
+    "processing": "Procesando",
+    "error": "Error",
+    "ariaRecord": "Iniciar grabación",
+    "ariaStop": "Detener grabación"
+  },
+  "audioPlayer": {
+    "listen": "Escuchar",
+    "stop": "Detener",
+    "ariaListen": "Escuchar pronunciación",
+    "ariaStop": "Detener audio"
+  },
+  "languages": {
+    "es": "Español",
+    "fr": "Francés",
+    "pt": "Portugués",
+    "de": "Alemán",
+    "it": "Italiano"
   }
 }

@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.6] - 2026-05-03
+
+### Changed
+- Conversation mode: LLM now always responds in English regardless of the language the student uses; if the student speaks in another language the tutor replies in English and gently encourages them to try in English
+- License changed from Apache 2.0 to GNU Affero General Public License v3 (AGPL v3)
+- `DurationOption` interface cleaned up: `label`, `sublabel`, and `approxLessons` string fields removed; `intensity` typed as `'intensive' | 'standard' | 'relaxed' | 'very_relaxed'`; `GOAL_OPTIONS` entries no longer carry a `label` field — all display strings are now derived from translations at render time
+
+### Added
+- Full i18n coverage for all previously hardcoded UI strings across 6 locale files (en, es, fr, pt, de, it):
+  - `common.close`
+  - `grammar.explanation`, `grammar.backLink`
+  - `plan.unitLabel`, `plan.grammarCovered`, `plan.noLessons`, `plan.weekDay`, `plan.lessonTypes.*` (grammar / vocabulary / reading / writing / conversation / review / level_test), `plan.levelComplete`, `plan.levelCompleteDesc`, `plan.levelCompleteHint`, `plan.beginLevelTest`, `plan.nLessons`, `plan.nGrammar`, `plan.levelTestLabel`, `plan.unitAriaLabel`
+  - `assessment.step1/2/3`, `assessment.studiedBefore`, `assessment.studiedBeforeHint`, `assessment.beginnerOption/Hint`, `assessment.hasExperienceOption/Hint`, `assessment.skills.*`, `assessment.howManyWeeks`, `assessment.nWeeks`, `assessment.intensity.*` (intensive / standard / relaxed / veryRelaxed), `assessment.approxLessons`, `assessment.daysPerWeek`, `assessment.mainGoals`, `assessment.goals.*`, `assessment.summaryLevel/Duration/Goals`, `assessment.noneSelected`, `assessment.buildingPlan`, `assessment.startMyPlan`
+  - `common.tagline`, `voiceRecorder.*` (6 keys), `audioPlayer.*` (4 keys), `languages.*` (5 language names per locale)
+- `grammar/[slug]/page.tsx`, `UnitDrawer.tsx`, `LevelTestBanner.tsx`, `UnitCard.tsx`, `BeginnerGate.tsx`, `AdaptiveQuizCard.tsx`, `DurationSelector.tsx` now use `useTranslations` — no hardcoded English strings remain in these components
+- `VoiceRecorder.tsx` and `AudioPlayer.tsx` use `useTranslations('voiceRecorder')` / `useTranslations('audioPlayer')`
+- Login and register pages render the app tagline via `tCommon('tagline')`
+- ADMIN nav badge rendered via `tNav('admin')`
+- Phrasebook register badge rendered via `t(phrase.register)` using existing `phrasebook.formal/neutral/informal` keys
+- `LANGUAGES` constant simplified to `['es','fr','pt','de','it'] as const`; display names resolved at render time via `useTranslations('languages')` in register, settings, and admin pages
+
+### Fixed
+- Email, password, and confirm-password inputs across login, register, settings, and admin pages now set `autoCorrect="off"`, `autoCapitalize="none"`, and `spellCheck={false}` to prevent mobile keyboards from corrupting typed values
+
 ## [1.2.5] - 2026-05-03
 
 ### Fixed

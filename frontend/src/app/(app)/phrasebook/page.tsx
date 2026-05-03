@@ -25,6 +25,7 @@ function CategoryCard({
   cat: typeof phrasebookCategories[0]
   registerFilter: Register | 'All'
 }) {
+  const t = useTranslations('phrasebook')
   const phrases =
     registerFilter === 'All'
       ? cat.phrases
@@ -57,7 +58,7 @@ function CategoryCard({
               </p>
               <div className="flex items-center gap-1 shrink-0">
                 <span className={`font-mono text-fl-label tracking-widest uppercase ${REGISTER_COLORS[phrase.register]}`}>
-                  {phrase.register}
+                  {t(phrase.register)}
                 </span>
                 <CopyButton text={phrase.english} />
               </div>
