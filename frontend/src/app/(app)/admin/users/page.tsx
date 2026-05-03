@@ -16,16 +16,11 @@ interface AdminUserItem {
   is_active: boolean
 }
 
-const LANGUAGES = [
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'pt', name: 'Portuguese' },
-  { code: 'de', name: 'German' },
-  { code: 'it', name: 'Italian' },
-]
+const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it'] as const
 
 export default function AdminUsersPage() {
   const t = useTranslations('admin')
+  const tLang = useTranslations('languages')
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(0)
@@ -197,7 +192,7 @@ export default function AdminUsersPage() {
               onChange={(e) => setForm({ ...form, native_language: e.target.value })}
               className={inputCls + ' appearance-none'}
             >
-              {LANGUAGES.map((l) => <option key={l.code} value={l.code}>{l.name}</option>)}
+              {LANGUAGES.map((code) => <option key={code} value={code}>{tLang(code)}</option>)}
             </select>
             <select
               value={form.role}

@@ -195,7 +195,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 }`}
             >
               <span className="text-fl-label text-fl-muted-4">●</span>
-              ADMIN
+              {tNav('admin')}
             </Link>
           )}
         </nav>

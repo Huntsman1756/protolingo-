@@ -9,6 +9,7 @@ import { useAuthStore } from '@/store/auth'
 
 function LoginForm() {
   const t = useTranslations('auth.login')
+  const tCommon = useTranslations('common')
   const router = useRouter()
   const searchParams = useSearchParams()
   const registered = searchParams.get('registered') === 'true'
@@ -65,7 +66,7 @@ function LoginForm() {
         <div className="flex flex-col items-center mb-10">
           <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
           <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
-          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
+          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">{tCommon('tagline')}</p>
         </div>
 
         <div className="border border-fl-border bg-fl-surface p-8">

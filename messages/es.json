@@ -23,7 +23,8 @@
     "score": "Puntuación",
     "complete": "Completado",
     "checking": "Comprobando...",
-    "backToDashboard": "Volver al inicio"
+    "backToDashboard": "Volver al inicio",
+    "tagline": "aprendizaje de idiomas autoalojado"
   },
   "nav": {
     "home": "Inicio",
@@ -459,5 +460,26 @@
     "tapToStart": "Habla cuando estés listo",
     "you": "Tú",
     "assistant": "FreeLingo"
+  },
+  "voiceRecorder": {
+    "record": "Grabar",
+    "stop": "Detener",
+    "processing": "Procesando",
+    "error": "Error",
+    "ariaRecord": "Iniciar grabación",
+    "ariaStop": "Detener grabación"
+  },
+  "audioPlayer": {
+    "listen": "Escuchar",
+    "stop": "Detener",
+    "ariaListen": "Escuchar pronunciación",
+    "ariaStop": "Detener audio"
+  },
+  "languages": {
+    "es": "Español",
+    "fr": "Francés",
+    "pt": "Portugués",
+    "de": "Alemán",
+    "it": "Italiano"
   }
 }

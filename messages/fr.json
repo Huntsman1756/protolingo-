@@ -23,7 +23,8 @@
     "score": "Score",
     "complete": "Terminé",
     "checking": "Vérification...",
-    "backToDashboard": "Retour au tableau de bord"
+    "backToDashboard": "Retour au tableau de bord",
+    "tagline": "apprentissage des langues auto-hébergé"
   },
   "nav": {
     "home": "Accueil",
@@ -459,5 +460,26 @@
     "tapToStart": "Parlez quand vous êtes prêt",
     "you": "Vous",
     "assistant": "FreeLingo"
+  },
+  "voiceRecorder": {
+    "record": "Enregistrer",
+    "stop": "Arrêter",
+    "processing": "Traitement",
+    "error": "Erreur",
+    "ariaRecord": "Commencer l'enregistrement",
+    "ariaStop": "Arrêter l'enregistrement"
+  },
+  "audioPlayer": {
+    "listen": "Écouter",
+    "stop": "Arrêter",
+    "ariaListen": "Écouter la prononciation",
+    "ariaStop": "Arrêter l'audio"
+  },
+  "languages": {
+    "es": "Espagnol",
+    "fr": "Français",
+    "pt": "Portugais",
+    "de": "Allemand",
+    "it": "Italien"
   }
 }

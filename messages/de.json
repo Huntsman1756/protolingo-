@@ -23,7 +23,8 @@
     "score": "Punktzahl",
     "complete": "Abgeschlossen",
     "checking": "Wird geprüft...",
-    "backToDashboard": "Zurück zum Dashboard"
+    "backToDashboard": "Zurück zum Dashboard",
+    "tagline": "selbst gehostetes Sprachenlernen"
   },
   "nav": {
     "home": "Startseite",
@@ -459,5 +460,26 @@
     "tapToStart": "Sprich wenn du bereit bist",
     "you": "Du",
     "assistant": "FreeLingo"
+  },
+  "voiceRecorder": {
+    "record": "Aufnehmen",
+    "stop": "Stopp",
+    "processing": "Verarbeitung",
+    "error": "Fehler",
+    "ariaRecord": "Aufnahme starten",
+    "ariaStop": "Aufnahme stoppen"
+  },
+  "audioPlayer": {
+    "listen": "Anhören",
+    "stop": "Stopp",
+    "ariaListen": "Aussprache anhören",
+    "ariaStop": "Audio stoppen"
+  },
+  "languages": {
+    "es": "Spanisch",
+    "fr": "Französisch",
+    "pt": "Portugiesisch",
+    "de": "Deutsch",
+    "it": "Italienisch"
   }
 }

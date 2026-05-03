@@ -23,7 +23,8 @@
     "score": "Punteggio",
     "complete": "Completato",
     "checking": "Controllo in corso...",
-    "backToDashboard": "Torna alla dashboard"
+    "backToDashboard": "Torna alla dashboard",
+    "tagline": "apprendimento linguistico self-hosted"
   },
   "nav": {
     "home": "Home",
@@ -459,5 +460,26 @@
     "tapToStart": "Parla quando sei pronto",
     "you": "Tu",
     "assistant": "FreeLingo"
+  },
+  "voiceRecorder": {
+    "record": "Registra",
+    "stop": "Ferma",
+    "processing": "Elaborazione",
+    "error": "Errore",
+    "ariaRecord": "Avvia registrazione",
+    "ariaStop": "Ferma registrazione"
+  },
+  "audioPlayer": {
+    "listen": "Ascolta",
+    "stop": "Ferma",
+    "ariaListen": "Ascolta la pronuncia",
+    "ariaStop": "Ferma audio"
+  },
+  "languages": {
+    "es": "Spagnolo",
+    "fr": "Francese",
+    "pt": "Portoghese",
+    "de": "Tedesco",
+    "it": "Italiano"
   }
 }
