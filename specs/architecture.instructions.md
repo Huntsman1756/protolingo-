@@ -276,9 +276,9 @@ Per-unit competency tracking (Phase 1+).
 
 | Method | Path | Rate limit | Description |
 |--------|------|------------|-------------|
-| POST | `/register` | Invite-gated | Creates account (respects `ALLOW_REGISTRATION` and invite token) |
+| POST | `/register` | 5/min (+ invite-gated) | Creates account (respects `ALLOW_REGISTRATION` and invite token) |
 | POST | `/login` | 10/min | Returns access_token (JWT, 15 min) + refresh_token in httpOnly cookie (30 days) |
-| POST | `/refresh` | 10/min | Rotates refresh token, returns new access_token |
+| POST | `/refresh` | 20/min | Rotates refresh token, returns new access_token |
 | POST | `/logout` | None | Deletes refresh token from Redis, clears cookie |
 | GET | `/me` | None | Returns authenticated user profile |
 | PATCH | `/me` | None | Updates display_name, email, password, english_variant, conversation settings |
@@ -287,7 +287,7 @@ Per-unit competency tracking (Phase 1+).
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/users` | Lists all users |
+| GET | `/users` | Lists users (paginated). Query params: `skip` (default 0) and `limit` (default 20, max 100). Returns `{items, total, skip, limit}`. |
 | POST | `/users` | Creates user directly (bypasses `ALLOW_REGISTRATION`) |
 | GET | `/users/{id}` | User detail |
 | PATCH | `/users/{id}` | Edit role, is_active, display_name |
@@ -370,6 +370,8 @@ Per-unit competency tracking (Phase 1+).
 ### WebSocket — `/ws/conversation` (Phase 3)
 
 Full-duplex voice conversation pipeline. Requires `TTS_ENABLED=true` and `STT_ENABLED=true` — rejects connections otherwise.
+
+**Authentication**: After the WebSocket handshake is accepted, the client must send a JSON message `{"type": "auth", "token": "<access_token>"}` within 10 seconds. If the message is missing, malformed, or the token is invalid, the server closes the connection with code 1008.
 
 **Message flow**: Client sends audio chunks → STT transcription → LLM generates response (streamed) → sentence-level TTS → MP3 audio chunks returned.
 

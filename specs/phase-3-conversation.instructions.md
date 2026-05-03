@@ -96,8 +96,8 @@ At T-60 seconds, a `SessionTimeoutBanner` appears with a countdown. When the tim
 ### Connection (`/ws/conversation`)
 
 - **Protocol**: WebSocket
-- **Auth**: JWT access token passed as query parameter (`?token=<jwt>`)
-- **Guard**: rejects connection with 4001 close code if `TTS_ENABLED=false` or `STT_ENABLED=false`
+- **Auth**: After the WebSocket handshake is accepted, the client sends a JSON message `{"type": "auth", "token": "<access_token>"}` within 10 seconds. Sending the token in the URL is intentionally avoided to prevent it from appearing in server access logs.
+- **Guard**: rejects connection with code 1008 if the auth message is missing/invalid, or with code 1011 if `TTS_ENABLED=false` or `STT_ENABLED=false`
 - **Database**: uses an async session context manager for the user lookup (reads `conversation_max_duration` and `conversation_inactivity_timeout` from User model)
 
 ### Message types
