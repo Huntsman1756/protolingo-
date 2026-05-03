@@ -1,8 +1,8 @@
 import secrets
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from redis.asyncio import Redis
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
@@ -15,6 +15,7 @@ from app.schemas.admin import (
     AdminUserResponse,
     AdminUserUpdate,
     InviteResponse,
+    PaginatedAdminUsersResponse,
 )
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
@@ -28,13 +29,23 @@ async def get_redis():
         await redis.aclose()
 
 
-@router.get("/users", response_model=list[AdminUserResponse])
+@router.get("/users", response_model=PaginatedAdminUsersResponse)
 async def list_users(
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
+    skip: int = Query(default=0, ge=0),
+    limit: int = Query(default=20, ge=1, le=100),
 ):
-    result = await db.execute(select(User).order_by(User.created_at.desc()))
-    return result.scalars().all()
+    total = await db.scalar(select(func.count(User.id)))
+    result = await db.execute(
+        select(User).order_by(User.created_at.desc()).offset(skip).limit(limit)
+    )
+    return PaginatedAdminUsersResponse(
+        items=result.scalars().all(),
+        total=total or 0,
+        skip=skip,
+        limit=limit,
+    )
 
 
 @router.post("/users", response_model=AdminUserResponse)

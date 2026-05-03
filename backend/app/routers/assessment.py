@@ -1,12 +1,15 @@
 from __future__ import annotations
 
+import json
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from redis.asyncio import Redis
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.config import settings
 from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.models.study_plan import StudyPlan
@@ -36,6 +39,16 @@ from app.services.study_plan_generator import generate_study_plan
 from app.schemas.study_plan import GenerateStudyPlanRequest
 
 router = APIRouter(prefix="/api/assessment", tags=["assessment"])
+
+_ASSESSMENT_TTL = 1800  # 30 minutes
+
+
+async def get_redis():
+    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        yield redis
+    finally:
+        await redis.aclose()
 
 
 class LegacyAnswerItem(BaseModel):
@@ -69,13 +82,14 @@ class LegacyEvalResponse(BaseModel):
     weaknesses: list[str] = []
 
 
-# Backward-compatible in-memory session store used by legacy tests.
-_sessions: dict[str, dict] = {}
+# Backward-compatible session store backed by Redis.
+_sessions = None  # kept as sentinel so conftest import doesn't break
 
 
 @router.get("/start", response_model=dict)
 async def start_assessment(
     current_user: User = Depends(get_current_user),
+    redis: Redis = Depends(get_redis),
 ):
     try:
         quiz_payload = await llm_adapter.structured_output(
@@ -96,10 +110,11 @@ async def start_assessment(
 
     quiz = quiz_payload.model_dump() if isinstance(quiz_payload, BaseModel) else quiz_payload
     session_id = str(uuid4())
-    _sessions[str(current_user.id)] = {
-        "session_id": session_id,
-        "quiz": quiz,
-    }
+    await redis.setex(
+        f"assessment:{current_user.id}",
+        _ASSESSMENT_TTL,
+        json.dumps({"session_id": session_id, "quiz": quiz}),
+    )
     return {"quiz": quiz, "session_id": session_id}
 
 
@@ -107,10 +122,12 @@ async def start_assessment(
 async def submit_assessment(
     data: LegacyAssessmentSubmitRequest,
     current_user: User = Depends(get_current_user),
+    redis: Redis = Depends(get_redis),
 ):
-    session = _sessions.get(str(current_user.id))
-    if not session:
+    session_raw = await redis.get(f"assessment:{current_user.id}")
+    if not session_raw:
         raise HTTPException(status_code=404, detail="No active assessment session.")
+    session = json.loads(session_raw)
 
     try:
         eval_payload = await llm_adapter.structured_output(
@@ -137,7 +154,7 @@ async def submit_assessment(
     except LLMError as e:
         raise HTTPException(status_code=502, detail=f"Assessment evaluation failed: {e}")
     finally:
-        _sessions.pop(str(current_user.id), None)
+        await redis.delete(f"assessment:{current_user.id}")
 
     result = eval_payload.model_dump() if isinstance(eval_payload, BaseModel) else eval_payload
     return AssessmentResult(

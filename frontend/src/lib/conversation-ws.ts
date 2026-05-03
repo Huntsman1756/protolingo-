@@ -11,7 +11,7 @@
  *  - If NEXT_PUBLIC_API_URL is empty (same-origin / Traefik fronting both),
  *    derive the WS base from window.location.
  */
-export function buildConversationWsUrl(token: string): string {
+export function buildConversationWsUrl(): string {
   const base = (process.env.NEXT_PUBLIC_API_URL ?? '').trim()
 
   let wsBase: string
@@ -24,7 +24,7 @@ export function buildConversationWsUrl(token: string): string {
     wsBase = `${proto}//${window.location.host}`
   }
 
-  return `${wsBase}/ws/conversation?token=${encodeURIComponent(token)}`
+  return `${wsBase}/ws/conversation`
 }
 
 // ─── Incoming WS message types ───────────────────────────────────────────────

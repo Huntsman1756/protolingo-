@@ -27,6 +27,9 @@ const LANGUAGES = [
 export default function AdminUsersPage() {
   const t = useTranslations('admin')
   const [users, setUsers] = useState<AdminUserItem[]>([])
+  const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(0)
+  const PAGE_SIZE = 20
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
   const [inviteUrl, setInviteUrl] = useState('')
@@ -42,12 +45,14 @@ export default function AdminUsersPage() {
   const [deletePending, setDeletePending] = useState<AdminUserItem | null>(null)
   const currentUserId = useAuthStore((s) => s.user?.id)
 
-  const loadUsers = useCallback(async () => {
+  const loadUsers = useCallback(async (pageIndex = 0) => {
     setLoading(true)
     try {
-      const res = await apiFetch('/api/admin/users')
+      const res = await apiFetch(`/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}`)
       if (res.ok) {
-        setUsers(await res.json())
+        const data = await res.json()
+        setUsers(data.items)
+        setTotal(data.total)
       } else if (res.status === 403) {
         setError('Admin access required')
       }
@@ -58,7 +63,7 @@ export default function AdminUsersPage() {
     }
   }, [])
 
-  useEffect(() => { loadUsers() }, [loadUsers])
+  useEffect(() => { loadUsers(page) }, [loadUsers, page])
 
   async function createUser(e: React.FormEvent) {
     e.preventDefault()
@@ -72,7 +77,7 @@ export default function AdminUsersPage() {
       if (!res.ok) throw new Error((await res.json()).detail)
       setShowCreate(false)
       setForm({ username: '', email: '', password: '', display_name: '', native_language: 'es', role: 'user' })
-      await loadUsers()
+      await loadUsers(page)
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to create user')
     }
@@ -84,7 +89,7 @@ export default function AdminUsersPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ is_active: !user.is_active }),
     })
-    await loadUsers()
+    await loadUsers(page)
   }
 
   async function deleteUser(user: AdminUserItem) {
@@ -94,7 +99,15 @@ export default function AdminUsersPage() {
       const data = await res.json().catch(() => ({}))
       setError(data.detail || 'Failed to delete user')
     } else {
-      await loadUsers()
+      // Si era el último de la página, retroceder una
+      const newTotal = total - 1
+      const maxPage = Math.max(0, Math.ceil(newTotal / PAGE_SIZE) - 1)
+      const targetPage = Math.min(page, maxPage)
+      if (targetPage !== page) {
+        setPage(targetPage)
+      } else {
+        await loadUsers(targetPage)
+      }
     }
   }
 
@@ -206,7 +219,7 @@ export default function AdminUsersPage() {
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-2">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('users')}</span>
-          <span className="ml-auto font-mono text-fl-hint text-fl-muted-4 uppercase tracking-widest">{users.length} {t('total')}</span>
+          <span className="ml-auto font-mono text-fl-hint text-fl-muted-4 uppercase tracking-widest">{total} {t('total')}</span>
         </div>
         {users.length === 0 ? (
           <p className="px-6 py-8 font-mono text-xs text-fl-muted-2 text-center">{t('noUsers')}</p>
@@ -254,6 +267,29 @@ export default function AdminUsersPage() {
           </div>
         )}
       </div>
+
+      {/* Pagination controls */}
+      {total > PAGE_SIZE && (
+        <div className="flex items-center justify-between border border-fl-border bg-fl-surface px-6 py-3">
+          <button
+            onClick={() => setPage((p) => Math.max(0, p - 1))}
+            disabled={page === 0}
+            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+          >
+            {t('prevPage')}
+          </button>
+          <span className="font-mono text-fl-label text-fl-muted-2 tracking-widest">
+            {page + 1} / {Math.ceil(total / PAGE_SIZE)}
+          </span>
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            disabled={(page + 1) * PAGE_SIZE >= total}
+            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+          >
+            {t('nextPage')}
+          </button>
+        </div>
+      )}
 
       <ConfirmDialog
         open={deletePending !== null}
