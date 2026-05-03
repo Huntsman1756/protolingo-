@@ -83,7 +83,7 @@ services:
   # Enable: set TTS_ENABLED=true in .env
   kokoro:
     image: ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master
-    container_name: kokoro
+    container_name: freelingo-kokoro
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1
@@ -102,7 +102,7 @@ services:
   # Enable: set STT_ENABLED=true in .env
   whisper:
     image: onerahmet/openai-whisper-asr-webservice:latest-gpu
-    container_name: whisper
+    container_name: freelingo-whisper
     restart: unless-stopped
     environment:
       - ASR_MODEL=${STT_MODEL:-large-v3-turbo}

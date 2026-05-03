@@ -5,12 +5,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  // NEXT_PUBLIC_API_URL: public backend URL used by the browser for WebSocket
-  // connections (bypasses Next.js rewrites which don't support WS).
-  // Leave empty to derive WS URL from window.location (same-origin setup).
-  env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL ?? '',
-  },
   webpack(config, { isServer }) {
     if (isServer) {
       // Prevent SSR bundling of WASM-heavy packages; ConversationMode is

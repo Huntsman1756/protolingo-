@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2026-05-03
+
+### Fixed
+- WebSocket URL now always derived from `window.location` (same-origin) — `NEXT_PUBLIC_API_URL` removed from CI build args, Dockerfile, and `next.config.ts`; the variable was being baked into the public Docker image with a private domain, breaking WebSocket connections for all external users
+- `NEXT_PUBLIC_API_URL` removed from `.env.example` — it is no longer a configurable variable
+
 ## [1.2.2] - 2026-05-03
 
 ### Added
