@@ -106,6 +106,9 @@ function RegisterForm() {
                   onChange={(e) => field.onChange(e.target.value)}
                   required={field.required}
                   placeholder={'placeholder' in field ? field.placeholder : undefined}
+                  autoCorrect={field.type === 'email' || field.type === 'password' ? 'off' : undefined}
+                  autoCapitalize={field.type === 'email' || field.type === 'password' ? 'none' : undefined}
+                  spellCheck={field.type === 'email' || field.type === 'password' ? false : undefined}
                   className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
                 />
               </div>

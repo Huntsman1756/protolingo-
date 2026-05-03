@@ -1,6 +1,6 @@
 # FreeLingo
 
-![License](https://img.shields.io/badge/license-Apache%202.0-green?style=flat-square)
+![License](https://img.shields.io/badge/license-AGPL%20v3-blue?style=flat-square)
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.12-blue?style=flat-square)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
@@ -238,7 +238,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggest
 
 ## License
 
-Distributed under the [Apache 2.0 License](LICENSE).
+Distributed under the [GNU Affero General Public License v3](LICENSE).
 
 ## Author
 

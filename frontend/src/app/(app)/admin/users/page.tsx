@@ -186,6 +186,9 @@ export default function AdminUsersPage() {
                 required={required}
                 value={form[key as keyof typeof form]}
                 onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+                autoCorrect={type === 'email' || type === 'password' ? 'off' : undefined}
+                autoCapitalize={type === 'email' || type === 'password' ? 'none' : undefined}
+                spellCheck={type === 'email' || type === 'password' ? false : undefined}
                 className={inputCls}
               />
             ))}

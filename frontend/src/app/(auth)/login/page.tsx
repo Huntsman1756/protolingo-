@@ -94,6 +94,9 @@ function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="username"
+                autoCorrect="off"
+                autoCapitalize="none"
+                spellCheck={false}
                 className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
               />
             </div>
@@ -105,6 +108,9 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
+                  autoCorrect="off"
+                  autoCapitalize="none"
+                  spellCheck={false}
                   className="w-full bg-fl-bg border border-fl-border px-4 py-3 pr-11 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
                 />
                 <button
