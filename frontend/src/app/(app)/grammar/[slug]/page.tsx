@@ -3,6 +3,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { use } from 'react'
+import { useTranslations } from 'next-intl'
 import { grammarTopics } from '@/data/grammar'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -65,6 +66,8 @@ export default function GrammarDetailPage({
 }: {
   params: Promise<{ slug: string }>
 }) {
+  const t = useTranslations('grammar')
+  const tNav = useTranslations('nav')
   const { slug } = use(params)
   const topic = grammarTopics.find((t) => t.slug === slug)
   if (!topic) notFound()
@@ -82,7 +85,7 @@ export default function GrammarDetailPage({
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 font-mono text-fl-label text-fl-muted-3">
         <Link href="/grammar" className="hover:text-fl-fg transition-colors uppercase tracking-widest">
-          Grammar
+          {tNav('grammar')}
         </Link>
         <span>›</span>
         <span className="text-fl-muted-2 tracking-widest uppercase">{topic.level}</span>
@@ -95,7 +98,7 @@ export default function GrammarDetailPage({
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Grammar Reference
+            {t('backToGrammar')}
           </span>
         </div>
         <div className="px-6 py-5 space-y-3">
@@ -116,7 +119,7 @@ export default function GrammarDetailPage({
           {topic.structure && (
             <div className="border border-fl-border bg-fl-bg px-4 py-3">
               <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-1">
-                Structure
+                {t('structure')}
               </p>
               <p className="font-mono text-xs text-fl-fg">{topic.structure}</p>
             </div>
@@ -128,7 +131,7 @@ export default function GrammarDetailPage({
       <div className="border border-fl-border bg-fl-surface">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Explanation
+            {t('explanation')}
           </span>
         </div>
         <div className="px-6 py-5 space-y-2">
@@ -157,7 +160,7 @@ export default function GrammarDetailPage({
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              Key Rules
+              {t('keyRules')}
             </span>
           </div>
           <ul className="px-6 py-5 space-y-2">
@@ -176,7 +179,7 @@ export default function GrammarDetailPage({
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              Examples
+              {t('examples')}
             </span>
           </div>
           <div className="px-6 py-5 space-y-3">
@@ -197,7 +200,7 @@ export default function GrammarDetailPage({
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              Common Mistakes
+              {t('commonMistakes')}
             </span>
           </div>
           <div className="px-6 py-5 space-y-4">
@@ -229,7 +232,7 @@ export default function GrammarDetailPage({
         <div className="border border-fl-border bg-fl-surface">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              Related Topics
+              {t('relatedTopics')}
             </span>
           </div>
           <div className="px-6 py-5 flex flex-wrap gap-2">
@@ -252,7 +255,7 @@ export default function GrammarDetailPage({
         href="/grammar"
         className="inline-block font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase hover:text-fl-fg transition-colors"
       >
-        ← Back to Grammar
+        ← {t('backLink')}
       </Link>
     </div>
   )

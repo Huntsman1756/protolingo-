@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 
 interface AudioPlayerProps {
@@ -16,6 +17,7 @@ export function AudioPlayer({ text, voice, size = 'sm', className = '' }: AudioP
   const [state, setState] = useState<PlayerState>('idle')
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const accessToken = useAuthStore((s) => s.accessToken)
+  const t = useTranslations('audioPlayer')
 
   async function handleClick() {
     if (state === 'loading') return
@@ -80,8 +82,8 @@ export function AudioPlayer({ text, voice, size = 'sm', className = '' }: AudioP
   return (
     <button
       onClick={handleClick}
-      title={state === 'playing' ? 'Stop' : 'Listen'}
-      aria-label={state === 'playing' ? 'Stop audio' : 'Listen to pronunciation'}
+      title={state === 'playing' ? t('stop') : t('listen')}
+      aria-label={state === 'playing' ? t('ariaStop') : t('ariaListen')}
       className={`border font-mono tracking-widest uppercase transition-colors ${colorClass} ${sizeClass} ${className}`}
     >
       {label}

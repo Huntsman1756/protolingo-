@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 
 interface VoiceRecorderProps {
@@ -21,6 +22,7 @@ export function VoiceRecorder({
   const [state, setState] = useState<RecorderState>('idle')
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const accessToken = useAuthStore((s) => s.accessToken)
+  const t = useTranslations('voiceRecorder')
 
   async function handleClick() {
     if (disabled) return
@@ -79,10 +81,10 @@ export function VoiceRecorder({
   }
 
   const label =
-    state === 'recording'    ? '■ Stop' :
-    state === 'transcribing' ? '… Processing' :
-    state === 'error'        ? '✕ Error' :
-    '● Record'
+    state === 'recording'    ? `■ ${t('stop')}` :
+    state === 'transcribing' ? `… ${t('processing')}` :
+    state === 'error'        ? `✕ ${t('error')}` :
+    `● ${t('record')}`
 
   const colorClass =
     state === 'recording'    ? 'border-fl-error/60 text-fl-error-fg animate-pulse' :
@@ -95,7 +97,7 @@ export function VoiceRecorder({
     <button
       onClick={handleClick}
       disabled={disabled && state === 'idle'}
-      aria-label={state === 'recording' ? 'Stop recording' : 'Start recording'}
+      aria-label={state === 'recording' ? t('ariaStop') : t('ariaRecord')}
       className={`border px-3 py-2 font-mono text-xs tracking-widest uppercase transition-colors ${colorClass} ${className}`}
     >
       {label}

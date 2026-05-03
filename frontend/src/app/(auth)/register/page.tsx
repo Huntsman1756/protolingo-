@@ -6,16 +6,12 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 
-const LANGUAGES = [
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'pt', name: 'Portuguese' },
-  { code: 'de', name: 'German' },
-  { code: 'it', name: 'Italian' },
-]
+const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it'] as const
 
 function RegisterForm() {
   const t = useTranslations('auth.register')
+  const tLang = useTranslations('languages')
+  const tCommon = useTranslations('common')
   const router = useRouter()
   const searchParams = useSearchParams()
   const invite = searchParams.get('invite')
@@ -74,7 +70,7 @@ function RegisterForm() {
         <div className="flex flex-col items-center mb-10">
           <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
           <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
-          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
+          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">{tCommon('tagline')}</p>
         </div>
 
         <div className="border border-fl-border bg-fl-surface p-8">
@@ -106,6 +102,9 @@ function RegisterForm() {
                   onChange={(e) => field.onChange(e.target.value)}
                   required={field.required}
                   placeholder={'placeholder' in field ? field.placeholder : undefined}
+                  autoCorrect={field.type === 'email' || field.type === 'password' ? 'off' : undefined}
+                  autoCapitalize={field.type === 'email' || field.type === 'password' ? 'none' : undefined}
+                  spellCheck={field.type === 'email' || field.type === 'password' ? false : undefined}
                   className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
                 />
               </div>
@@ -118,8 +117,8 @@ function RegisterForm() {
                 onChange={(e) => setNativeLanguage(e.target.value)}
                 className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
               >
-                {LANGUAGES.map((l) => (
-                  <option key={l.code} value={l.code}>{l.name}</option>
+                {LANGUAGES.map((code) => (
+                  <option key={code} value={code}>{tLang(code)}</option>
                 ))}
               </select>
             </div>

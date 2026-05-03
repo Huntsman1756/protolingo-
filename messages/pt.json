@@ -23,7 +23,9 @@
     "score": "Pontuação",
     "complete": "Completo",
     "checking": "Verificando...",
-    "backToDashboard": "Voltar ao painel"
+    "backToDashboard": "Voltar ao painel",
+    "tagline": "aprendizado de idiomas auto-hospedado",
+    "close": "Fechar"
   },
   "nav": {
     "home": "Início",
@@ -223,7 +225,28 @@
     "duration": "Duração",
     "unitsLabel": "Unidades",
     "noUnitsForLevel": "Nenhuma unidade disponível para o nível {level}",
-    "takeAssessmentArrow": "Fazer avaliação →"
+    "takeAssessmentArrow": "Fazer avaliação →",
+    "unitLabel": "Unidade",
+    "grammarCovered": "Gramática abordada",
+    "noLessons": "Nenhuma aula agendada para esta unidade.",
+    "weekDay": "Semana {week}, Dia {day}",
+    "lessonTypes": {
+      "grammar": "Gramática",
+      "vocabulary": "Vocabulário",
+      "reading": "Leitura",
+      "writing": "Escrita",
+      "conversation": "Conversa",
+      "review": "Revisão",
+      "level_test": "Teste de nível"
+    },
+    "levelComplete": "Nível {level} completo — Faça o teste de nível",
+    "levelCompleteDesc": "Concluiu todas as unidades do nível {level}. Faça o teste de conclusão de nível para confirmar o seu progresso e desbloquear o próximo nível.",
+    "levelCompleteHint": "O teste demora cerca de 20 minutos e abrange gramática, vocabulário e leitura.",
+    "beginLevelTest": "Começar o teste de nível",
+    "nLessons": "{count} aulas",
+    "nGrammar": "{count} gramática",
+    "levelTestLabel": "Teste de nível",
+    "unitAriaLabel": "Unidade {index}: {title}"
   },
   "lesson": {
     "loading": "Carregando aula...",
@@ -335,6 +358,8 @@
     "commonMistakes": "Erros comuns",
     "relatedTopics": "Tópicos relacionados",
     "backToGrammar": "Gramática",
+    "explanation": "Explicação",
+    "backLink": "Voltar à gramática",
     "notFound": "Tópico não encontrado."
   },
   "vocabulary": {
@@ -459,5 +484,26 @@
     "tapToStart": "Fale quando estiver pronto",
     "you": "Você",
     "assistant": "FreeLingo"
+  },
+  "voiceRecorder": {
+    "record": "Gravar",
+    "stop": "Parar",
+    "processing": "Processando",
+    "error": "Erro",
+    "ariaRecord": "Iniciar gravação",
+    "ariaStop": "Parar gravação"
+  },
+  "audioPlayer": {
+    "listen": "Ouvir",
+    "stop": "Parar",
+    "ariaListen": "Ouvir pronúncia",
+    "ariaStop": "Parar áudio"
+  },
+  "languages": {
+    "es": "Espanhol",
+    "fr": "Francês",
+    "pt": "Português",
+    "de": "Alemão",
+    "it": "Italiano"
   }
 }

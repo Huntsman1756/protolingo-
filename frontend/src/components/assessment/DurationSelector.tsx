@@ -1,55 +1,26 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 export interface DurationOption {
   weeks: number
   daysPerWeek: number
-  label: string
-  sublabel: string
-  approxLessons: string
-  intensity: string
+  intensity: 'intensive' | 'standard' | 'relaxed' | 'very_relaxed'
 }
 
 export const DURATION_OPTIONS: DurationOption[] = [
-  {
-    weeks: 4,
-    daysPerWeek: 5,
-    label: '4 weeks',
-    sublabel: 'Intensive',
-    approxLessons: '~20 lessons',
-    intensity: 'intensive',
-  },
-  {
-    weeks: 8,
-    daysPerWeek: 5,
-    label: '8 weeks',
-    sublabel: 'Standard',
-    approxLessons: '~40 lessons',
-    intensity: 'standard',
-  },
-  {
-    weeks: 12,
-    daysPerWeek: 4,
-    label: '12 weeks',
-    sublabel: 'Relaxed',
-    approxLessons: '~48 lessons',
-    intensity: 'relaxed',
-  },
-  {
-    weeks: 16,
-    daysPerWeek: 3,
-    label: '16 weeks',
-    sublabel: 'Very relaxed',
-    approxLessons: '~48 lessons',
-    intensity: 'very_relaxed',
-  },
+  { weeks: 4, daysPerWeek: 5, intensity: 'intensive' },
+  { weeks: 8, daysPerWeek: 5, intensity: 'standard' },
+  { weeks: 12, daysPerWeek: 4, intensity: 'relaxed' },
+  { weeks: 16, daysPerWeek: 3, intensity: 'very_relaxed' },
 ]
 
 export const GOAL_OPTIONS = [
-  { id: 'grammar', label: 'Grammar' },
-  { id: 'vocabulary', label: 'Vocabulary' },
-  { id: 'reading', label: 'Reading' },
-  { id: 'writing', label: 'Writing' },
-  { id: 'conversation', label: 'Conversation' },
+  { id: 'grammar' },
+  { id: 'vocabulary' },
+  { id: 'reading' },
+  { id: 'writing' },
+  { id: 'conversation' },
 ]
 
 interface Props {
@@ -73,7 +44,16 @@ export default function DurationSelector({
   cefr_level,
   loading,
 }: Props) {
+  const t = useTranslations('assessment')
+  const tCommon = useTranslations('common')
   const selected = DURATION_OPTIONS.find((o) => o.weeks === selectedWeeks) ?? DURATION_OPTIONS[2]
+
+  const intensityMap: Record<string, string> = {
+    intensive: t('intensity.intensive'),
+    standard: t('intensity.standard'),
+    relaxed: t('intensity.relaxed'),
+    very_relaxed: t('intensity.veryRelaxed'),
+  }
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center p-6">
@@ -81,7 +61,7 @@ export default function DurationSelector({
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-            Step 3 / 3 — Your programme
+            {t('step3')}
           </span>
         </div>
 
@@ -89,7 +69,7 @@ export default function DurationSelector({
           {/* Duration */}
           <div>
             <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-3">
-              How many weeks for level {cefr_level}?
+              {t('howManyWeeks', { cefr_level })}
             </p>
             <div className="grid grid-cols-2 gap-2">
               {DURATION_OPTIONS.map((opt) => (
@@ -102,19 +82,19 @@ export default function DurationSelector({
                     }`}
                 >
                   <p className="font-mono text-xs font-bold tracking-widest uppercase">
-                    {opt.label}
+                    {t('nWeeks', { count: opt.weeks })}
                   </p>
                   <p
                     className={`font-mono text-fl-hint mt-0.5 ${selectedWeeks === opt.weeks ? 'opacity-70' : 'text-fl-muted-3'
                       }`}
                   >
-                    {opt.sublabel} · {opt.approxLessons}
+                    {intensityMap[opt.intensity]} · {t('approxLessons', { count: opt.weeks * opt.daysPerWeek })}
                   </p>
                   <p
                     className={`font-mono text-fl-hint mt-0.5 ${selectedWeeks === opt.weeks ? 'opacity-60' : 'text-fl-muted-3'
                       }`}
                   >
-                    {opt.daysPerWeek} days/week
+                    {t('daysPerWeek', { count: opt.daysPerWeek })}
                   </p>
                 </button>
               ))}
@@ -124,7 +104,7 @@ export default function DurationSelector({
           {/* Goals */}
           <div>
             <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-3">
-              Main goals (select all that apply)
+              {t('mainGoals')}
             </p>
             <div className="flex flex-wrap gap-2">
               {GOAL_OPTIONS.map((g) => (
@@ -136,7 +116,7 @@ export default function DurationSelector({
                       : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                 >
-                  {selectedGoals.includes(g.id) ? '✓ ' : ''}{g.label}
+                  {selectedGoals.includes(g.id) ? '✓ ' : ''}{t(`goals.${g.id as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation'}`)}
                 </button>
               ))}
             </div>
@@ -144,15 +124,17 @@ export default function DurationSelector({
 
           {/* Summary */}
           <div className="border border-fl-border px-4 py-3 font-mono text-fl-label text-fl-muted-1 tracking-wide space-y-1">
-            <p>Level: <span className="text-fl-fg font-bold">{cefr_level}</span></p>
+            <p>{t('summaryLevel')}: <span className="text-fl-fg font-bold">{cefr_level}</span></p>
             <p>
-              Duration: <span className="text-fl-fg">{selected.weeks} weeks</span>
+              {t('summaryDuration')}: <span className="text-fl-fg">{t('nWeeks', { count: selected.weeks })}</span>
               {' · '}
-              <span className="text-fl-fg">{selected.daysPerWeek} days/week</span>
+              <span className="text-fl-fg">{t('daysPerWeek', { count: selected.daysPerWeek })}</span>
             </p>
             <p>
-              Goals: <span className="text-fl-fg">
-                {selectedGoals.length > 0 ? selectedGoals.join(', ') : 'none selected'}
+              {t('summaryGoals')}: <span className="text-fl-fg">
+                {selectedGoals.length > 0
+                  ? selectedGoals.map((g) => t(`goals.${g as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation'}`)).join(', ')
+                  : t('noneSelected')}
               </span>
             </p>
           </div>
@@ -162,14 +144,14 @@ export default function DurationSelector({
               onClick={onBack}
               className="flex-1 border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
             >
-              ← Back
+              ← {tCommon('back')}
             </button>
             <button
               onClick={onConfirm}
               disabled={loading || selectedGoals.length === 0}
               className="flex-[2] bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright disabled:opacity-40 transition-colors"
             >
-              {loading ? '— Building plan…' : '— Start my plan →'}
+              {loading ? `— ${t('buildingPlan')}` : `— ${t('startMyPlan')} →`}
             </button>
           </div>
         </div>

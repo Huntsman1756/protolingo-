@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import type { AssessmentQuestion } from '@/data/assessment-bank'
 
 interface Props {
@@ -15,12 +16,13 @@ export default function AdaptiveQuizCard({
   totalQuestions,
   onAnswer,
 }: Props) {
+  const t = useTranslations('assessment')
   const progress = Math.round((questionNumber / totalQuestions) * 100)
 
-  const skillLabel: Record<string, string> = {
-    grammar: 'Grammar',
-    vocabulary: 'Vocabulary',
-    reading: 'Reading',
+  const skillLabelMap: Record<string, string> = {
+    grammar: t('skills.grammar'),
+    vocabulary: t('skills.vocabulary'),
+    reading: t('skills.reading'),
   }
 
   return (
@@ -31,7 +33,7 @@ export default function AdaptiveQuizCard({
           <div className="flex items-center gap-2">
             <span className="text-fl-label text-fl-muted-3">●</span>
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              Step 2 / 3 — Question {questionNumber} / {totalQuestions}
+              {t('step2', { questionNumber, totalQuestions })}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -39,7 +41,7 @@ export default function AdaptiveQuizCard({
               {question.difficulty}
             </span>
             <span className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase border border-fl-border px-2 py-1">
-              {skillLabel[question.skill] ?? question.skill}
+              {skillLabelMap[question.skill] ?? question.skill}
             </span>
           </div>
         </div>
