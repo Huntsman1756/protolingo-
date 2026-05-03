@@ -123,7 +123,10 @@
     "min3": "3 minutes",
     "min5": "5 minutes",
     "saveConversation": "Save",
-    "conversationSaved": "Conversation settings saved."
+    "conversationSaved": "Conversation settings saved.",
+    "sectionAuthor": "Author",
+    "authorDescription": "Built by Arturo Carretero Calvo",
+    "githubProfile": "GitHub profile"
   },
   "dashboard": {
     "welcomeBack": "Welcome back",

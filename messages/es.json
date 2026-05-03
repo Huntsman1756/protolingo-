@@ -123,7 +123,10 @@
     "min3": "3 minutos",
     "min5": "5 minutos",
     "saveConversation": "Guardar",
-    "conversationSaved": "Configuración de conversación guardada."
+    "conversationSaved": "Configuración de conversación guardada.",
+    "sectionAuthor": "Autor",
+    "authorDescription": "Creado por Arturo Carretero Calvo",
+    "githubProfile": "Perfil de GitHub"
   },
   "dashboard": {
     "welcomeBack": "Bienvenido de vuelta",

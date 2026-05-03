@@ -7,6 +7,7 @@ import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { useThemeStore } from '@/store/theme'
 import { useRouter } from 'next/navigation'
+import { ExternalLink } from 'lucide-react'
 
 const LANGUAGES = [
   { code: 'es', name: 'Spanish' },
@@ -313,6 +314,24 @@ export default function SettingsPage() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Author */}
+      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionAuthor')}</span>
+        </div>
+        <p className="font-mono text-sm text-fl-fg">{t('authorDescription')}</p>
+        <a
+          href="https://github.com/artcc"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 mt-3 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
+        >
+          <ExternalLink className="w-3.5 h-3.5" />
+          {t('githubProfile')}
+        </a>
       </div>
 
       <button

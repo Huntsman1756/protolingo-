@@ -1,723 +1,230 @@
 ---
-description: "FreeLingo Phase 3: real-time voice conversation. Complete WebSocket pipeline: VAD (vad-web/ONNX single-threaded) in the browser → STT (Whisper WAV) → LLM streaming (configured provider via LLMAdapter) → sentence splitter → TTS (Kokoro) → gapless AudioContext playback. Barge-in support. Session timeout (max duration + inactivity) configurable per-user from /settings. ConversationPipeline backend, ConversationMode frontend (dynamic SSR=false), ~800ms–1.3s latency with GPU."
+description: "Phase 3 specification for FreeLingo: real-time voice conversation via WebSocket pipeline — VAD in browser (vad-react/ONNX threaded WASM), STT transcription, LLM streaming response, sentence-level TTS synthesis, gapless AudioContext playback, barge-in support, and configurable session timeouts."
 ---
 
-# Phase 3 — Real-Time Conversation
+# Phase 3 — Real-Time Voice Conversation
 
 ## Objective
 
-Fully local voice conversation mode: the user speaks, the AI responds
-in audio with conversational latency (~800ms–1.3s end to end). No send
-buttons: VAD automatically detects when the user has finished speaking.
-
-Sessions have configurable timeout (max duration + inactivity), set by
-each user from `/settings`.
+A real-time voice conversation mode where the user speaks naturally and the AI responds in audio with conversational latency (~800 ms–1.3 s end-to-end on GPU). No push-to-talk buttons — Voice Activity Detection (VAD) automatically detects when the user has finished speaking. The entire pipeline (STT → LLM → TTS) runs through a single WebSocket connection orchestrated by the backend.
 
 ---
 
-## Complete Pipeline
+## Pipeline overview
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│ BROWSER                                                     │
-│                                                             │
-│  Mic → VAD (vad-web, ONNX single-threaded)                  │
-│    onSpeechEnd → float32ToWav() → WS.send(wav bytes)        │
-│                                                             │
-│  AudioContext ←── WS.send(mp3 bytes) ←── TTS per sentence   │
-└─────────────────────────────────────────────────────────────┘
-                              │  ↑
-                    audio     │  │ audio
-                    WAV       │  │ MP3 chunks
-                              ↓  │
-┌─────────────────────────────────────────────────────────────┐
-│ BACKEND  WS /ws/conversation?token=<access_token>           │
-│                                                             │
-│  Auth: JWT decoded from query param on connect              │
-│  Guard: TTS_ENABLED and STT_ENABLED must both be true       │
-│                                                             │
-│  1. Receives WAV audio bytes from browser                   │
-│  2. STT (Whisper) → text                                    │
-│  3. LLM (LLMAdapter, any configured provider) → streaming   │
-│  4. Sentence splitter → complete sentences                  │
-│  5. TTS (Kokoro) → MP3 chunk per sentence                   │
-│  6. Sends MP3 chunk to browser                              │
-│                                                             │
-│  Timers (per connection):                                   │
-│  - Inactivity: reset on each audio chunk; fires after N min │
-│  - Max duration: fires after M min from connection open     │
-│  Both send warning at T-60s then session_end                │
-│                                                             │
-│  Barge-in:                                                  │
-│  Browser sends {type:"interrupt"} → cancels LLM+TTS task   │
-└─────────────────────────────────────────────────────────────┘
-```
-
-**Estimated latency with GPU (any fast LLM + Kokoro + Whisper medium):**
-- STT transcription: ~300–400ms
-- LLM TTFT (Time To First Token): ~200–400ms
-- TTS first sentence: ~150–250ms
-- **Total until first audio**: ~650ms–1050ms
-
----
-
-## User Model — New Columns
-
-Two columns added to `app/models/user.py` and a new Alembic migration:
-
-```python
-conversation_max_duration: Mapped[int] = mapped_column(
-    Integer, nullable=False, default=1800   # 1800=30min, options: 900|1800
-)
-conversation_inactivity_timeout: Mapped[int] = mapped_column(
-    Integer, nullable=False, default=180    # 180=3min, options: 60|180|300
-)
-```
-
-These are exposed in `UserResponse` and accepted in `UserUpdateRequest`:
-
-```python
-# schemas/auth.py additions
-class UserResponse(BaseModel):
-    # ... existing fields ...
-    conversation_max_duration: int
-    conversation_inactivity_timeout: int
-
-class UserUpdateRequest(BaseModel):
-    # ... existing fields ...
-    conversation_max_duration: Optional[Literal[900, 1800]] = None
-    conversation_inactivity_timeout: Optional[Literal[60, 180, 300]] = None
-```
-
-`PATCH /api/auth/me` already handles optional field updates — just add the
-two fields to the update block in `routers/auth.py`.
-
----
-
-## STTService — WAV support
-
-`app/services/stt_service.py` receives WAV audio from the pipeline.
-Add `mime_type` parameter (backward-compatible — existing `/api/stt` router
-passes `"audio/webm"` as before):
-
-```python
-async def transcribe(
-    self,
-    audio_bytes: bytes,
-    filename: str = "audio.webm",
-    mime_type: str = "audio/webm",
-) -> str:
-    async with httpx.AsyncClient() as client:
-        response = await client.post(
-            f"{self.base_url}/v1/audio/transcriptions",
-            files={"file": (filename, audio_bytes, mime_type)},
-            data={"model": "whisper-1", "language": "en"},
-            timeout=60.0,
-        )
-        response.raise_for_status()
-        return response.json()["text"]
-```
-
-The pipeline calls:
-```python
-user_text = await self.stt.transcribe(audio_bytes, "audio.wav", "audio/wav")
+BROWSER                                        BACKEND
+┌─────────────────────┐       WebSocket       ┌───────────────────────────┐
+│ Mic → VAD           │ ←──────────────────→  │ /ws/conversation          │
+│  onSpeechEnd        │     audio chunks       │                           │
+│  float32ToWav()     │ ────────────────────→  │ 1. STT (Whisper /asr)    │
+│  WS.send(wav bytes) │                        │    WAV → text             │
+│                     │     mp3 chunks          │                           │
+│ AudioContext Queue  │ ←────────────────────  │ 2. LLM streaming          │
+│  gapless playback   │                        │    text → response chunks │
+│  barge-in cancel    │                        │                           │
+└─────────────────────┘                        │ 3. Sentence splitter      │
+                                               │    chunk → sentences      │
+                                               │                           │
+                                               │ 4. TTS (Kokoro)           │
+                                               │    sentence → MP3         │
+                                               │                           │
+                                               │ 5. Send MP3 to browser    │
+                                               │                           │
+                                               │ Timeout watchers:         │
+                                               │  - max duration           │
+                                               │  - inactivity             │
+                                               └───────────────────────────┘
 ```
 
 ---
 
-## Backend Implementation
+## Frontend — ConversationMode
 
-### `app/routers/conversation.py` (WebSocket)
+### Architecture
 
-```python
-from fastapi import WebSocket, WebSocketDisconnect, Query
-from jwt.exceptions import PyJWTError
-from sqlalchemy import select
-import asyncio, json
+The `ConversationMode` component is dynamically imported with `ssr: false` (no server-side rendering) because it depends on browser-only APIs: `WebSocket`, `AudioContext`, `MediaRecorder`, and WebAssembly (for VAD).
 
-from app.core.security import decode_access_token
-from app.core.database import get_db
-from app.models.user import User
-from app.models.study_plan import StudyPlan
-from app.services.conversation_pipeline import ConversationPipeline
+### VAD (Voice Activity Detection)
 
-router = APIRouter(tags=["conversation"])
+- **Library**: `@ricky0123/vad-react` (React hooks for `@ricky0123/vad-web`)
+- **Model**: Silero VAD v5 (ONNX)
+- **Runtime**: onnxruntime-web **1.25.1 threaded WASM** (requires `SharedArrayBuffer`)
+- **Detection**: `useMicVAD` hook with `onSpeechEnd` callback — fires automatically when the user stops speaking
 
+**COOP/COEP headers**: Threaded WASM requires `SharedArrayBuffer`, which browsers only expose when the page has specific cross-origin isolation headers. The Next.js config adds:
+- `Cross-Origin-Opener-Policy: same-origin`
+- `Cross-Origin-Embedder-Policy: credentialless`
 
-@router.websocket("/ws/conversation")
-async def conversation_ws(
-    websocket: WebSocket,
-    token: str = Query(...),
-):
-    # --- Auth ---
-    try:
-        payload = decode_access_token(token)
-        user_id = int(payload["sub"])
-    except (PyJWTError, KeyError, ValueError):
-        await websocket.close(code=1008)   # Policy violation
-        return
+These are set globally in `next.config.ts` via the `headers()` function.
 
-    async with get_db_context() as db:
-        user = await db.get(User, user_id)
-        if not user or not user.is_active:
-            await websocket.close(code=1008)
-            return
+**VAD model files**: ONNX WASM binaries (`.wasm`) and model files are copied from `node_modules` to `public/vad/` by the `copy-vad-models.js` postinstall script. The script runs automatically after `npm install` and is re-executed in the Docker builder stage to ensure files are present at build time.
 
-        # --- Guard: TTS and STT must be enabled ---
-        tts_service = getattr(websocket.app.state, "tts_service", None)
-        stt_service = getattr(websocket.app.state, "stt_service", None)
-        if tts_service is None or stt_service is None:
-            await websocket.accept()
-            await websocket.send_json({
-                "type": "error",
-                "code": "services_disabled",
-                "message": "TTS and STT must be enabled for conversation mode.",
-            })
-            await websocket.close(code=1011)
-            return
+### Audio processing
 
-        # --- CEFR level from active StudyPlan, fallback B1 ---
-        result = await db.execute(
-            select(StudyPlan)
-            .where(StudyPlan.user_id == user_id, StudyPlan.is_active == True)
-            .order_by(StudyPlan.created_at.desc())
-            .limit(1)
-        )
-        plan = result.scalar_one_or_none()
-        cefr_level = plan.cefr_level if plan else "B1"
+- `float32ToWav(samples, sampleRate)`: encodes Float32Array PCM audio (16kHz mono from VAD) to WAV ArrayBuffer format for STT ingestion
+- `createAudioQueue(ctx)`: manages gapless audio playback using Web Audio API. Schedules consecutive `AudioBufferSourceNode`s using `ctx.currentTime` offsetting — each new chunk is scheduled to start exactly when the previous one ends, eliminating gaps between TTS sentences
 
-        llm_adapter = websocket.app.state.llm_adapter
+### Barge-in support
 
-        await websocket.accept()
+If the user starts speaking while the AI is still generating/playing a response:
+1. VAD detects new speech → fires `onSpeechEnd`
+2. Frontend sends new audio chunks to WebSocket
+3. Backend detects new audio input → cancels current LLM streaming → cancels pending TTS sentences → sends `barge_in` message to frontend
+4. Frontend `AudioQueue.cancel()` stops all pending audio playback
+5. Pipeline restarts with new user input
 
-        pipeline = ConversationPipeline(
-            llm=llm_adapter,
-            tts=tts_service,
-            stt=stt_service,
-            cefr_level=cefr_level,
-            max_duration=user.conversation_max_duration,
-            inactivity_timeout=user.conversation_inactivity_timeout,
-        )
+### Transcript bubbles
 
-        try:
-            await pipeline.run(websocket)
-        except WebSocketDisconnect:
-            await pipeline.cleanup()
-```
+Each turn (user speech and AI response) is rendered as a `TranscriptBubble` in a scrollable list. Shows:
+- Role label ("You" / "AI Tutor")
+- Spoken/preview text (streaming indicator while AI is generating)
+- Bubbles are color-coded: user (accent) / AI (muted background)
 
-### `app/services/conversation_pipeline.py`
+### Session timeout UI
 
-```python
-import asyncio
-import re
-import time
-from typing import TYPE_CHECKING
+Two timeout mechanisms with visual warnings:
+- **Max duration**: total session length (default 30 min), configurable per user
+- **Inactivity**: silent period before disconnect (default 3 min), configurable per user
 
-from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError
-
-if TYPE_CHECKING:
-    from fastapi import WebSocket
-
-SENTENCE_END = re.compile(r'[.!?]["\'\)\]]?\s*$')
-MAX_BUFFER_CHARS = 150
-
-CONVERSATION_SYSTEM_PROMPT = """\
-You are an English conversation partner for language learning.
-Student level: {cefr_level}.
-
-Rules:
-- Speak naturally, as in a real conversation
-- Keep responses short (1–3 sentences) unless the student asks for explanation
-- If the student makes a grammar mistake, correct it gently at the end of your reply
-- Use vocabulary appropriate for their level
-- Ask follow-up questions to keep the conversation going
-- Never break character or mention you are an AI unless directly asked
-"""
-
-WARNING_ADVANCE_SECONDS = 60   # How many seconds before timeout to send the warning
-
-
-class ConversationPipeline:
-    """
-    Orchestrates STT → LLM → TTS streaming with barge-in and session timeout.
-    """
-
-    def __init__(
-        self,
-        llm,
-        tts,
-        stt,
-        cefr_level: str = "B1",
-        max_duration: int = 1800,
-        inactivity_timeout: int = 180,
-    ) -> None:
-        self.llm = llm
-        self.tts = tts
-        self.stt = stt
-        self.system_prompt = CONVERSATION_SYSTEM_PROMPT.format(cefr_level=cefr_level)
-        self.max_duration = max_duration
-        self.inactivity_timeout = inactivity_timeout
-
-        self.current_task: asyncio.Task | None = None
-        self.history: list[dict] = []
-        self._session_start = time.monotonic()
-        self._last_activity = time.monotonic()
-        self._timer_tasks: list[asyncio.Task] = []
-
-    async def run(self, ws: "WebSocket") -> None:
-        """Main loop: starts timeout watchers then handles incoming messages."""
-        self._timer_tasks = [
-            asyncio.create_task(self._max_duration_watcher(ws)),
-            asyncio.create_task(self._inactivity_watcher(ws)),
-        ]
-        try:
-            while True:
-                data = await ws.receive()
-                if "bytes" in data:
-                    await self.handle_audio(data["bytes"], ws)
-                elif "text" in data:
-                    msg = json.loads(data["text"])
-                    if msg.get("type") == "interrupt":
-                        await self.cancel_current()
-                        await ws.send_json({"type": "interrupted"})
-        finally:
-            for t in self._timer_tasks:
-                t.cancel()
-
-    async def handle_audio(self, audio_bytes: bytes, ws: "WebSocket") -> None:
-        self._last_activity = time.monotonic()
-        # Barge-in: cancel ongoing response if a new audio chunk arrives
-        if self.current_task and not self.current_task.done():
-            self.current_task.cancel()
-            await ws.send_json({"type": "interrupted"})
-        self.current_task = asyncio.create_task(self._process(audio_bytes, ws))
-
-    async def _process(self, audio_bytes: bytes, ws: "WebSocket") -> None:
-        # 1. STT
-        try:
-            await ws.send_json({"type": "status", "value": "transcribing"})
-            user_text = await self.stt.transcribe(audio_bytes, "audio.wav", "audio/wav")
-            await ws.send_json({"type": "transcript", "text": user_text})
-        except Exception as exc:
-            await ws.send_json({"type": "error", "code": "stt_failed", "message": str(exc)})
-            return
-
-        # 2. Streaming LLM
-        self.history.append({"role": "user", "content": user_text})
-        messages = [{"role": "system", "content": self.system_prompt}] + self.history[-20:]
-
-        try:
-            await ws.send_json({"type": "status", "value": "thinking"})
-            full_response = ""
-            sentence_buffer = ""
-
-            async for chunk in await self.llm.chat(messages, stream=True):
-                token = chunk.choices[0].delta.content or ""
-                full_response += token
-                sentence_buffer += token
-
-                # 3. Flush complete sentence to TTS immediately
-                if SENTENCE_END.search(sentence_buffer.strip()) or len(sentence_buffer) > MAX_BUFFER_CHARS:
-                    sentence = sentence_buffer.strip()
-                    sentence_buffer = ""
-                    await self._synthesize_and_send(sentence, ws)
-
-            # Flush remaining buffer
-            if sentence_buffer.strip():
-                await self._synthesize_and_send(sentence_buffer.strip(), ws)
-
-        except (LLMTimeoutError, LLMUnavailableError, LLMError) as exc:
-            await ws.send_json({"type": "error", "code": "llm_failed", "message": str(exc)})
-            if self.history and self.history[-1]["role"] == "user":
-                self.history.pop()
-            return
-
-        self.history.append({"role": "assistant", "content": full_response})
-        await ws.send_json({"type": "turn_complete"})
-
-    async def _synthesize_and_send(self, text: str, ws: "WebSocket") -> None:
-        try:
-            await ws.send_json({"type": "status", "value": "speaking"})
-            audio_bytes = await self.tts.synthesize(text)
-            await ws.send_bytes(audio_bytes)
-        except Exception as exc:
-            await ws.send_json({"type": "error", "code": "tts_failed", "message": str(exc)})
-
-    async def cancel_current(self) -> None:
-        if self.current_task and not self.current_task.done():
-            self.current_task.cancel()
-            try:
-                await self.current_task
-            except asyncio.CancelledError:
-                pass
-        if self.history and self.history[-1]["role"] == "user":
-            self.history.pop()
-
-    async def cleanup(self) -> None:
-        await self.cancel_current()
-        for t in self._timer_tasks:
-            t.cancel()
-
-    # --- Timeout watchers ---
-
-    async def _max_duration_watcher(self, ws: "WebSocket") -> None:
-        """Closes session after max_duration seconds, with a 60s warning."""
-        warn_at = self.max_duration - WARNING_ADVANCE_SECONDS
-        if warn_at > 0:
-            await asyncio.sleep(warn_at)
-            await ws.send_json({
-                "type": "session_warning",
-                "reason": "max_duration",
-                "seconds_remaining": WARNING_ADVANCE_SECONDS,
-            })
-            await asyncio.sleep(WARNING_ADVANCE_SECONDS)
-        else:
-            await asyncio.sleep(self.max_duration)
-        await ws.send_json({"type": "session_end", "reason": "max_duration"})
-        await ws.close(code=1000)
-
-    async def _inactivity_watcher(self, ws: "WebSocket") -> None:
-        """Closes session if user is silent for inactivity_timeout seconds."""
-        while True:
-            await asyncio.sleep(5)   # check every 5 seconds
-            elapsed = time.monotonic() - self._last_activity
-            remaining = self.inactivity_timeout - elapsed
-
-            if remaining <= WARNING_ADVANCE_SECONDS and remaining > 0:
-                await ws.send_json({
-                    "type": "session_warning",
-                    "reason": "inactivity",
-                    "seconds_remaining": int(remaining),
-                })
-
-            if elapsed >= self.inactivity_timeout:
-                await ws.send_json({"type": "session_end", "reason": "inactivity"})
-                await ws.close(code=1000)
-                return
-```
+At T-60 seconds, a `SessionTimeoutBanner` appears with a countdown. When the timeout fires, the WebSocket sends a `session_end` message and disconnects.
 
 ---
 
-## Frontend Implementation
+## Backend — WebSocket endpoint
 
-### Dependencies
+### Connection (`/ws/conversation`)
 
-```bash
-npm install @ricky0123/vad-web
-```
+- **Protocol**: WebSocket
+- **Auth**: JWT access token passed as query parameter (`?token=<jwt>`)
+- **Guard**: rejects connection with 4001 close code if `TTS_ENABLED=false` or `STT_ENABLED=false`
+- **Database**: uses an async session context manager for the user lookup (reads `conversation_max_duration` and `conversation_inactivity_timeout` from User model)
 
-After install, copy ONNX model files to `public/` so they are served
-without external CDN dependencies:
+### Message types
 
-```json
-// package.json — add to scripts
-"postinstall": "node scripts/copy-vad-models.js"
-```
-
-```js
-// scripts/copy-vad-models.js
-const fs = require('fs')
-const path = require('path')
-const src = path.join(__dirname, '../node_modules/@ricky0123/vad-web/dist')
-const dst = path.join(__dirname, '../public/vad')
-if (!fs.existsSync(dst)) fs.mkdirSync(dst, { recursive: true })
-fs.readdirSync(src)
-  .filter(f => f.endsWith('.onnx') || f.endsWith('.wasm') || f.endsWith('.js'))
-  .forEach(f => fs.copyFileSync(path.join(src, f), path.join(dst, f)))
-```
-
-### `next.config.ts` — NEXT_PUBLIC_API_URL
-
-Add the public env var (used only for the WebSocket URL — HTTP rewrites
-continue using the server-side `BACKEND_URL`):
-
-```typescript
-// No COOP/COEP headers needed: vad-web runs in single-threaded ONNX mode
-// (ortConfig below), which does not require SharedArrayBuffer.
-const nextConfig: NextConfig = {
-  // ... existing config ...
-  env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
-  },
-}
-```
-
-`.env.example` addition:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
-```
-
-### `src/lib/audio.ts` (new)
-
-```typescript
-export function float32ToWav(pcm: Float32Array, sampleRate = 16000): ArrayBuffer {
-  const buffer = new ArrayBuffer(44 + pcm.length * 2)
-  const view = new DataView(buffer)
-  const writeString = (v: DataView, o: number, s: string) =>
-    s.split('').forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)))
-
-  writeString(view, 0, 'RIFF')
-  view.setUint32(4, 36 + pcm.length * 2, true)
-  writeString(view, 8, 'WAVE')
-  writeString(view, 12, 'fmt ')
-  view.setUint32(16, 16, true)
-  view.setUint16(20, 1, true)   // PCM
-  view.setUint16(22, 1, true)   // mono
-  view.setUint32(24, sampleRate, true)
-  view.setUint32(28, sampleRate * 2, true)
-  view.setUint16(32, 2, true)
-  view.setUint16(34, 16, true)
-  writeString(view, 36, 'data')
-  view.setUint32(40, pcm.length * 2, true)
-  const pcmOut = new Int16Array(buffer, 44)
-  for (let i = 0; i < pcm.length; i++) {
-    pcmOut[i] = Math.max(-32768, Math.min(32767, pcm[i] * 32768))
-  }
-  return buffer
-}
-
-export interface AudioQueue {
-  enqueue: (buffer: ArrayBuffer) => Promise<void>
-  stop: () => void
-}
-
-export function createAudioQueue(ctx: AudioContext): AudioQueue {
-  // nextStartTime lives inside the closure — not a module variable,
-  // not a React state. Safe across re-renders.
-  let nextStartTime = 0
-
-  return {
-    async enqueue(buffer: ArrayBuffer) {
-      const decoded = await ctx.decodeAudioData(buffer.slice(0))
-      const source = ctx.createBufferSource()
-      source.buffer = decoded
-      source.connect(ctx.destination)
-      const startAt = Math.max(nextStartTime, ctx.currentTime + 0.05)
-      source.start(startAt)
-      nextStartTime = startAt + decoded.duration
-    },
-    stop() {
-      ctx.suspend().then(() => ctx.resume())
-      nextStartTime = 0
-    },
-  }
-}
-```
-
-### `src/lib/conversation-ws.ts` (new)
-
-```typescript
-export function buildConversationWsUrl(token: string): string {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-  // http → ws, https → wss
-  const wsBase = apiUrl.replace(/^http/, 'ws')
-  return `${wsBase}/ws/conversation?token=${encodeURIComponent(token)}`
-}
-```
-
-### `components/conversation/ConversationMode.tsx`
-
-```typescript
-'use client'
-
-import { useRef, useState, useEffect, useCallback } from 'react'
-import { useMicVAD } from '@ricky0123/vad-web'
-import { useAuthStore } from '@/store/auth'
-import { float32ToWav, createAudioQueue, type AudioQueue } from '@/lib/audio'
-import { buildConversationWsUrl } from '@/lib/conversation-ws'
-import { StatusIndicator } from './StatusIndicator'
-import { TranscriptBubble } from './TranscriptBubble'
-import { MicButton } from './MicButton'
-import { SessionTimeoutBanner } from './SessionTimeoutBanner'
-
-export type ConvStatus = 'idle' | 'listening' | 'transcribing' | 'thinking' | 'speaking' | 'error'
-
-export function ConversationMode() {
-  const accessToken = useAuthStore((s) => s.accessToken)
-  const wsRef = useRef<WebSocket | null>(null)
-  const audioCtxRef = useRef<AudioContext | null>(null)
-  const queueRef = useRef<AudioQueue | null>(null)
-  const [status, setStatus] = useState<ConvStatus>('idle')
-  const [transcript, setTranscript] = useState('')
-  const [aiText, setAiText] = useState('')
-  const [warning, setWarning] = useState<{ reason: string; secondsRemaining: number } | null>(null)
-  const [sessionEnded, setSessionEnded] = useState<string | null>(null)
-
-  // AudioContext is created on the first mic button click (user gesture required)
-  const ensureAudioContext = useCallback(() => {
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new AudioContext()
-      queueRef.current = createAudioQueue(audioCtxRef.current)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!accessToken) return
-    const ws = new WebSocket(buildConversationWsUrl(accessToken))
-    wsRef.current = ws
-
-    ws.onmessage = async (event) => {
-      if (event.data instanceof Blob) {
-        const buffer = await event.data.arrayBuffer()
-        queueRef.current?.enqueue(buffer)
-        setStatus('speaking')
-      } else {
-        const msg = JSON.parse(event.data as string)
-        switch (msg.type) {
-          case 'status':      setStatus(msg.value); break
-          case 'transcript':  setTranscript(msg.text); break
-          case 'turn_complete': setStatus('idle'); break
-          case 'interrupted': setStatus('idle'); break
-          case 'session_warning':
-            setWarning({ reason: msg.reason, secondsRemaining: msg.seconds_remaining })
-            break
-          case 'session_end':
-            setSessionEnded(msg.reason)
-            setStatus('idle')
-            break
-          case 'error':
-            setStatus('error')
-            break
-        }
-      }
-    }
-
-    ws.onerror = () => setStatus('error')
-    ws.onclose = () => { if (status !== 'idle') setStatus('idle') }
-
-    return () => ws.close()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken])
-
-  const vad = useMicVAD({
-    // Single-threaded ONNX — no COOP/COEP headers required
-    ortConfig: (ort) => { ort.env.wasm.numThreads = 1 },
-    workletURL: '/vad/vad.worklet.bundle.min.js',
-    modelURL: '/vad/silero_vad.onnx',
-    positiveSpeechThreshold: 0.8,
-    negativeSpeechThreshold: 0.6,
-    redemptionFrames: 8,
-    minSpeechFrames: 3,
-    preSpeechPadFrames: 1,
-    onSpeechStart: () => {
-      setStatus('listening')
-      if (status === 'speaking') {
-        wsRef.current?.send(JSON.stringify({ type: 'interrupt' }))
-        queueRef.current?.stop()
-      }
-      setWarning(null)
-    },
-    onSpeechEnd: (audio: Float32Array) => {
-      if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return
-      wsRef.current.send(float32ToWav(audio))
-    },
-  })
-
-  function handleMicClick() {
-    ensureAudioContext()   // creates AudioContext on user gesture
-    vad.toggle()
-  }
-
-  if (sessionEnded) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full gap-4 p-8">
-        <p className="font-mono text-sm text-fl-muted-2 tracking-widest uppercase">
-          — session ended ({sessionEnded === 'inactivity' ? 'inactivity' : 'time limit'})
-        </p>
-        <button
-          onClick={() => { setSessionEnded(null); window.location.reload() }}
-          className="font-mono text-xs tracking-widest uppercase border border-fl-border px-6 py-3 text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 transition-colors"
-        >
-          — start new session
-        </button>
-      </div>
-    )
-  }
-
-  return (
-    <div className="flex flex-col items-center gap-6 p-8">
-      {warning && <SessionTimeoutBanner warning={warning} />}
-      <StatusIndicator status={status} />
-      <TranscriptBubble userText={transcript} aiText={aiText} />
-      <MicButton active={vad.listening} onClick={handleMicClick} />
-    </div>
-  )
-}
-```
-
-> **Dynamic import required** — in `app/(app)/conversation/page.tsx`:
-> ```typescript
-> import dynamic from 'next/dynamic'
-> const ConversationMode = dynamic(
->   () => import('@/components/conversation/ConversationMode').then(m => m.ConversationMode),
->   { ssr: false }
-> )
-> ```
+| Direction | Type | Description |
+|-----------|------|-------------|
+| Client → Server | binary | WAV audio frame (float32 PCM, 16kHz mono) |
+| Server → Client | `transcript` | User's speech transcribed to text |
+| Server → Client | `assistant_text` | Streaming AI response text (for display) |
+| Server → Client | binary | MP3 audio chunk (one sentence of TTS) |
+| Server → Client | `barge_in` | Current response cancelled, new input being processed |
+| Server → Client | `session_warning` | Timeout warning (60 s remaining) |
+| Server → Client | `session_end` | Session terminated by timeout |
+| Server → Client | `error` | Pipeline error with message |
 
 ---
 
-## Settings Page — Conversation Section
+## Pipeline implementation (`app/services/conversation_pipeline.py`)
 
-New section in `/settings` (below appearance), rendered as part of the
-existing save form. Two new controlled fields:
+### Initialization
 
-```typescript
-const SESSION_DURATION_OPTIONS = [
-  { value: 900,  label: '15 min' },
-  { value: 1800, label: '30 min' },
-]
-const INACTIVITY_OPTIONS = [
-  { value: 60,  label: '1 min' },
-  { value: 180, label: '3 min' },
-  { value: 300, label: '5 min' },
-]
-```
+On WebSocket connect:
+1. Decode JWT, fetch user from DB
+2. Read user's `conversation_max_duration` and `conversation_inactivity_timeout` from the User model
+3. Build system prompt with conversation partner persona (same CEFR-aware, no-emoji rule as chat tutor)
+4. Start timeout watchers
 
-Stored as `conversation_max_duration` and `conversation_inactivity_timeout`
-in the User model, sent via `PATCH /api/auth/me` alongside other settings.
+### Main loop
+
+1. **Receive audio**: read binary frame from WebSocket, reset inactivity timer
+2. **STT**: send WAV bytes to STT service → get transcribed text
+3. **Barge-in check**: if there's an active LLM/TTS generation, cancel it
+4. **Context building**: prepend system prompt + last 20 messages (in-memory, not persisted)
+5. **LLM streaming**: stream response from LLM adapter
+6. **Sentence splitting**: accumulate characters into a buffer (max 150 chars). On sentence end detection (period, question mark, exclamation mark followed by space/end), flush the completed sentence to TTS
+7. **TTS per sentence**: send each sentence to Kokoro → send MP3 binary to client
+8. **Loop**: continue streaming until LLM response ends or barge-in occurs
+9. **Send transcript**: send the complete AI text as `assistant_text` for the transcript display
+10. **Append to history**: store the user+assistant exchange in the in-memory buffer (limited to 20 messages)
+
+### Sentence boundary detection
+
+A regex pattern (`SENTENCE_END`) identifies sentence boundaries in the streaming LLM output. Sentences are accumulated character-by-character and flushed when a boundary marker is encountered:
+- Period (`.`), question mark (`?`), exclamation mark (`!`)
+- Followed by whitespace or end-of-string
+- Buffer limit: 150 characters (prevents excessively long sentences from delaying audio)
+
+### Timeout watchers
+
+Two asyncio tasks run concurrently with the main pipeline loop:
+
+| Timer | Default | User-configurable | Warning |
+|-------|---------|-------------------|---------|
+| Max duration | 1800 s (30 min) | `conversation_max_duration` (from user table) | 60 s warning via `session_warning` message |
+| Inactivity | 180 s (3 min) | `conversation_inactivity_timeout` (from user table) | 60 s warning via `session_warning` message |
+
+The inactivity timer resets on each received audio chunk. When either timeout fires, a `session_end` message is sent and the WebSocket connection is closed cleanly.
+
+### Structured logging
+
+Pipeline events are logged with structured prefixes:
+- `[conversation]` — connection lifecycle (connect, disconnect, auth errors)
+- `[pipeline]` — flow events (STT completed, sentence flush, barge-in, timeout)
+- `[stt]` — STT request/response details
+
+Log level is controlled by the `LOG_LEVEL` environment variable (default `INFO`). Set to `DEBUG` for detailed pipeline tracing.
+
+### Error handling
+
+- `RuntimeError` from `ws.receive()` on client disconnect: caught and handled gracefully (no crash)
+- STT failures: send error message to client, do not disconnect
+- LLM failures: send error message, continue loop
+- TTS failures: send error message, skip the sentence
+- Total STT → response latency target: < 2 s on GPU, < 4 s on CPU
+
+### Conversation history
+
+History is **in-memory only** during the session (last 20 messages). Unlike the text chat in Phase 1, voice conversations are not persisted to PostgreSQL — they are ephemeral. This is intentional: voice conversations are practice sessions, not reference material.
 
 ---
 
-## WebSocket Message Protocol
+## Configuration per user
 
-| Direction | Type | Payload | Meaning |
-|-----------|------|---------|---------|
-| Browser → Backend | binary | WAV bytes | User speech |
-| Browser → Backend | `{type:"interrupt"}` | — | Barge-in |
-| Backend → Browser | binary | MP3 bytes | AI speech chunk |
-| Backend → Browser | `{type:"status", value}` | transcribing\|thinking\|speaking | Pipeline state |
-| Backend → Browser | `{type:"transcript", text}` | string | User's words |
-| Backend → Browser | `{type:"turn_complete"}` | — | AI finished |
-| Backend → Browser | `{type:"interrupted"}` | — | Barge-in confirmed |
-| Backend → Browser | `{type:"session_warning", reason, seconds_remaining}` | — | ~60s before close |
-| Backend → Browser | `{type:"session_end", reason}` | inactivity\|max_duration | Session closed |
-| Backend → Browser | `{type:"error", code, message}` | stt_failed\|llm_failed\|tts_failed\|services_disabled | Non-fatal error |
+Users configure their voice conversation preferences from `/settings`:
+
+| Setting | Default | Range | Purpose |
+|---------|---------|-------|---------|
+| Conversation max duration | 30 min | 1–60 min | Total session length |
+| Conversation inactivity timeout | 3 min | 1–10 min | Silence before auto-disconnect |
+
+Settings are stored in the User model (`conversation_max_duration`, `conversation_inactivity_timeout` columns) and updatable via `PATCH /api/auth/me`. The WebSocket reads them on each new connection.
 
 ---
 
-## Optional Optimizations (post-launch)
+## Frontend dependencies
 
-- **Warm-up**: Preload the Whisper model into memory on service startup
-- **TTS Cache**: Cache very common short phrases in Redis (greetings, farewells)
-- **Context window**: History already trimmed to last 20 messages in pipeline
-- **Parallel TTS**: Generate audio for sentence N+1 while sentence N is playing
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `@ricky0123/vad-react` | ^0.0.36 | React hooks for VAD (wraps vad-web) |
+| `@ricky0123/vad-web` | ^0.0.30 | VAD WebAssembly engine (Silero VAD v5 ONNX) |
+| `onnxruntime-web` | 1.25.1 (threaded WASM) | ONNX model runtime for VAD |
+| Web Audio API | Browser built-in | Gapless audio playback via AudioContext |
+| MediaRecorder API | Browser built-in | Microphone stream capture |
 
 ---
 
-## Phase 3 Completion Criteria
+## Deployment notes
 
-- [ ] WebSocket accepts connections and the full pipeline works without errors
-- [ ] Auth: invalid/expired JWT → close with code 1008, no panic
-- [ ] Guard: `TTS_ENABLED=false` or `STT_ENABLED=false` → error frame + close
-- [ ] CEFR level injected from active StudyPlan; fallback to "B1"
-- [ ] End-to-end latency < 1.5s locally with GPU
-- [ ] Barge-in functional: user can interrupt AI by speaking
-- [ ] Gapless audio without gaps between sentences
-- [ ] Automatic VAD operational with < 2% false positives
-- [ ] Inactivity timeout closes session after configured time
-- [ ] Max duration timeout closes session after configured time
-- [ ] Warning sent 60s before any session close
-- [ ] Session timeout options visible and saveable in /settings
-- [ ] Conversation history maintained correctly during the session (in-memory only)
-- [ ] No DB persistence of conversation history
-- [ ] No regressions in Phases 1 and 2
+- **`NEXT_PUBLIC_API_URL`**: passed as Docker build ARG and baked at `next build` so the WebSocket URL resolves correctly, even on separate-subdomain deployments
+- **CI/CD**: the `NEXT_PUBLIC_API_URL` secret is wired into the GitHub Actions `docker-publish.yml` frontend build step
+- **VAD models in Docker**: the `copy-vad-models.js` postinstall script is re-executed in the Docker builder stage after `COPY frontend/` to ensure `.wasm` and `.mjs` files are present in the build output
+
+---
+
+## Phase 3 completion criteria (all met by v1.2.1)
+
+- [x] WebSocket `/ws/conversation` accepts connections with JWT auth
+- [x] WebSocket rejects connections if TTS or STT is disabled
+- [x] Full STT → LLM → TTS pipeline works end-to-end
+- [x] VAD automatically detects speech start/end (no push-to-talk)
+- [x] Barge-in functional: user can interrupt AI by speaking
+- [x] Sentence boundary detection flushes TTS sentences without long pauses
+- [x] Gapless audio playback via `AudioQueue` — no gaps between sentences
+- [x] COOP + COEP headers enable `SharedArrayBuffer` for threaded ONNX WASM
+- [x] Session timeout watchers (max duration + inactivity) with 60 s warnings
+- [x] Timeout settings configurable per user from `/settings`
+- [x] Structured logging across the pipeline (`LOG_LEVEL` controlled)
+- [x] `NEXT_PUBLIC_API_URL` baked at build time for correct WebSocket URL resolution
+- [x] VAD model files copied to `public/vad/` via postinstall script
+- [x] No regressions in Phase 1 and Phase 2 features
