@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import type { CurriculumUnit } from '@/data/curriculum'
 
 interface Lesson {
@@ -20,6 +21,8 @@ interface Props {
 }
 
 export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Props) {
+  const t = useTranslations('plan')
+  const tCommon = useTranslations('common')
   const ref = useRef<HTMLDivElement>(null)
 
   // Close on outside click
@@ -41,13 +44,13 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
   }, [onClose])
 
   const lessonTypeLabel: Record<string, string> = {
-    grammar: 'Grammar',
-    vocabulary: 'Vocabulary',
-    reading: 'Reading',
-    writing: 'Writing',
-    conversation: 'Conversation',
-    review: 'Review',
-    level_test: 'Level Test',
+    grammar: t('lessonTypes.grammar'),
+    vocabulary: t('lessonTypes.vocabulary'),
+    reading: t('lessonTypes.reading'),
+    writing: t('lessonTypes.writing'),
+    conversation: t('lessonTypes.conversation'),
+    review: t('lessonTypes.review'),
+    level_test: t('lessonTypes.level_test'),
   }
 
   return (
@@ -60,14 +63,14 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
         <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border sticky top-0 bg-fl-surface z-10">
           <div>
             <span className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">
-              {unit.level} · Unit
+              {unit.level} · {t('unitLabel')}
             </span>
             <p className="font-mono text-fl-body text-fl-fg mt-0.5">{unit.title}</p>
           </div>
           <button
             onClick={onClose}
             className="font-mono text-fl-muted-3 hover:text-fl-fg transition-colors text-lg leading-none"
-            aria-label="Close drawer"
+            aria-label={tCommon('close')}
           >
             ✕
           </button>
@@ -77,7 +80,7 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
         {unit.grammar_points.length > 0 && (
           <div className="px-6 py-4 border-b border-fl-border">
             <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
-              Grammar covered
+              {t('grammarCovered')}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {unit.grammar_points.map((gp) => (
@@ -97,7 +100,7 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
           {lessons.length === 0 ? (
             <div className="px-6 py-6">
               <p className="font-mono text-fl-label text-fl-muted-3">
-                No lessons scheduled yet for this unit.
+                {t('noLessons')}
               </p>
             </div>
           ) : (
@@ -114,7 +117,7 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
                     {lesson.title}
                   </p>
                   <p className="font-mono text-fl-hint text-fl-muted-3">
-                    Week {lesson.week}, Day {lesson.day} ·{' '}
+                    {t('weekDay', { week: lesson.week, day: lesson.day })} ·{' '}
                     {lessonTypeLabel[lesson.lesson_type] ?? lesson.lesson_type}
                   </p>
                 </div>
@@ -123,7 +126,7 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
                     onClick={() => onStartLesson(lesson.id!)}
                     className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase border border-fl-border px-3 py-1.5 hover:border-fl-border-2 hover:text-fl-fg transition-colors shrink-0"
                   >
-                    Start
+                    {tCommon('start')}
                   </button>
                 )}
               </div>
@@ -137,7 +140,7 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
             onClick={onClose}
             className="w-full border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
           >
-            Close
+            {tCommon('close')}
           </button>
         </div>
       </div>

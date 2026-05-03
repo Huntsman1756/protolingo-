@@ -24,7 +24,8 @@
     "complete": "Abgeschlossen",
     "checking": "Wird geprüft...",
     "backToDashboard": "Zurück zum Dashboard",
-    "tagline": "selbst gehostetes Sprachenlernen"
+    "tagline": "selbst gehostetes Sprachenlernen",
+    "close": "Schließen"
   },
   "nav": {
     "home": "Startseite",
@@ -205,7 +206,45 @@
         "back": "Zurück zum Plan"
       }
     },
-    "suggestedLevel": "Vorgeschlagen {aiLevel} — Plan verwendet {selectedLevel}"
+    "suggestedLevel": "Vorgeschlagen {aiLevel} — Plan verwendet {selectedLevel}",
+    "step1": "Schritt 1 / 3 — Dein Niveau",
+    "step2": "Schritt 2 / 3 — Frage {questionNumber} / {totalQuestions}",
+    "step3": "Schritt 3 / 3 — Dein Programm",
+    "studiedBefore": "Hast du schon Englisch gelernt?",
+    "studiedBeforeHint": "Das hilft uns, das Quiz auf dem richtigen Niveau zu beginnen.",
+    "beginnerOption": "Ich bin ein kompletter Anfänger",
+    "beginnerOptionHint": "Ich beginne bei A1 — kein Quiz nötig.",
+    "hasExperienceOption": "Ja, ich habe etwas Erfahrung",
+    "hasExperienceOptionHint": "Ich mache ein kurzes adaptives Quiz (≈12 Fragen).",
+    "skills": {
+      "grammar": "Grammatik",
+      "vocabulary": "Vokabular",
+      "reading": "Lesen"
+    },
+    "howManyWeeks": "Wie viele Wochen für Niveau {cefr_level}?",
+    "nWeeks": "{count} Wochen",
+    "intensity": {
+      "intensive": "Intensiv",
+      "standard": "Standard",
+      "relaxed": "Entspannt",
+      "veryRelaxed": "Sehr entspannt"
+    },
+    "approxLessons": "~{count} Lektionen",
+    "daysPerWeek": "{count} Tage/Woche",
+    "mainGoals": "Hauptziele (alle zutreffenden auswählen)",
+    "goals": {
+      "grammar": "Grammatik",
+      "vocabulary": "Vokabular",
+      "reading": "Lesen",
+      "writing": "Schreiben",
+      "conversation": "Gespräch"
+    },
+    "summaryLevel": "Niveau",
+    "summaryDuration": "Dauer",
+    "summaryGoals": "Ziele",
+    "noneSelected": "keine ausgewählt",
+    "buildingPlan": "Plan wird erstellt…",
+    "startMyPlan": "Meinen Plan starten"
   },
   "plan": {
     "title": "Mein Plan",
@@ -224,7 +263,28 @@
     "duration": "Dauer",
     "unitsLabel": "Einheiten",
     "noUnitsForLevel": "Keine Einheiten für Niveau {level} verfügbar",
-    "takeAssessmentArrow": "Bewertung starten →"
+    "takeAssessmentArrow": "Bewertung starten →",
+    "unitLabel": "Einheit",
+    "grammarCovered": "Behandelte Grammatik",
+    "noLessons": "Noch keine Lektionen für diese Einheit geplant.",
+    "weekDay": "Woche {week}, Tag {day}",
+    "lessonTypes": {
+      "grammar": "Grammatik",
+      "vocabulary": "Vokabular",
+      "reading": "Lesen",
+      "writing": "Schreiben",
+      "conversation": "Gespräch",
+      "review": "Wiederholung",
+      "level_test": "Stufentest"
+    },
+    "levelComplete": "Niveau {level} abgeschlossen — Mache den Stufentest",
+    "levelCompleteDesc": "Du hast alle Einheiten für Niveau {level} abgeschlossen. Mache den Stufentest, um deinen Fortschritt zu bestätigen und das nächste Niveau freizuschalten.",
+    "levelCompleteHint": "Der Test dauert etwa 20 Minuten und umfasst Grammatik, Vokabular und Lesen.",
+    "beginLevelTest": "Stufentest starten",
+    "nLessons": "{count} Lektionen",
+    "nGrammar": "{count} Grammatik",
+    "levelTestLabel": "Stufentest",
+    "unitAriaLabel": "Einheit {index}: {title}"
   },
   "lesson": {
     "loading": "Lektion wird geladen...",
@@ -336,6 +396,8 @@
     "commonMistakes": "Häufige Fehler",
     "relatedTopics": "Verwandte Themen",
     "backToGrammar": "Grammatik",
+    "explanation": "Erklärung",
+    "backLink": "Zurück zur Grammatik",
     "notFound": "Thema nicht gefunden."
   },
   "vocabulary": {
