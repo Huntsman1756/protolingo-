@@ -6,7 +6,6 @@ alembic
 pydantic-settings
 pydantic[email]
 PyJWT>=2.8
-passlib[bcrypt]
 bcrypt>=4.0.0
 redis>=5.0
 openai>=1.30
