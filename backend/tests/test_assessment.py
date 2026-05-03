@@ -130,3 +130,35 @@ async def test_start_assessment_handles_llm_unavailable(client, test_user):
     ):
         response = await client.get("/api/assessment/start", headers=headers)
         assert response.status_code == 503
+
+
+@pytest.mark.asyncio
+async def test_start_assessment_strips_correct_answers(client, test_user):
+    """B-03: correct_answer and correct fields must not be returned to the client."""
+    user, headers = test_user
+
+    mock_quiz = {
+        "questions": [
+            {
+                "id": 1,
+                "type": "multiple_choice",
+                "difficulty": "A1",
+                "question": "What is the capital of France?",
+                "options": ["A. London", "B. Paris", "C. Berlin", "D. Madrid"],
+                "correct_answer": "B",
+                "correct": "B",
+            },
+        ]
+    }
+
+    with patch(
+        "app.routers.assessment.llm_adapter.structured_output",
+        return_value=mock_quiz,
+    ):
+        response = await client.get("/api/assessment/start", headers=headers)
+        assert response.status_code == 200
+        questions = response.json()["quiz"]["questions"]
+        assert len(questions) == 1
+        assert "correct_answer" not in questions[0], "correct_answer must not be exposed"
+        assert "correct" not in questions[0], "correct must not be exposed"
+        assert "question" in questions[0]  # non-sensitive fields still present

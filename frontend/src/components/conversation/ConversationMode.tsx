@@ -94,12 +94,15 @@ export default function ConversationMode() {
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
     (token: string) => {
-      const url = buildConversationWsUrl(token)
+      const url = buildConversationWsUrl()
       const ws = new WebSocket(url)
       ws.binaryType = 'arraybuffer'
       wsRef.current = ws
 
-      ws.onopen = () => setStatus('live')
+      ws.onopen = () => {
+        ws.send(JSON.stringify({ type: 'auth', token }))
+        setStatus('live')
+      }
 
       ws.onmessage = async (event) => {
         // Binary → TTS audio chunk

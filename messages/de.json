@@ -393,7 +393,9 @@
     "total": "gesamt",
     "delete": "Löschen",
     "inviteBtn": "+ Einladungslink",
-    "createUserBtn": "+ Benutzer erstellen"
+    "createUserBtn": "+ Benutzer erstellen",
+    "prevPage": "← Zurück",
+    "nextPage": "Weiter →"
   },
   "faq": {
     "title": "FAQ",

@@ -1,29 +1,27 @@
 import secrets
 from datetime import datetime, timedelta, timezone
 
+import bcrypt
 import jwt
-from passlib.context import CryptContext
 
 from app.core.config import settings
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 # Pre-computed dummy hash used in login to prevent user-enumeration via timing.
-# Computed once at startup so bcrypt backend is initialized before any request.
-_DUMMY_HASH: str = pwd_context.hash("freelingo_dummy_placeholder")
+# Computed once at startup so bcrypt is initialized before any request.
+_DUMMY_HASH: bytes = bcrypt.hashpw(b"freelingo_dummy_placeholder", bcrypt.gensalt())
 
 
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
+    return bcrypt.checkpw(plain.encode(), hashed.encode())
 
 
 def dummy_verify() -> None:
     """Run a no-op bcrypt verify to keep constant timing when user is not found."""
-    pwd_context.verify("freelingo_dummy_placeholder", _DUMMY_HASH)
+    bcrypt.checkpw(b"freelingo_dummy_placeholder", _DUMMY_HASH)
 
 
 def create_access_token(user_id: int, role: str) -> str:

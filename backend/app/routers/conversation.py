@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from fastapi import APIRouter, Query, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
 logger = logging.getLogger(__name__)
 from jwt.exceptions import PyJWTError
@@ -22,15 +22,19 @@ router = APIRouter(tags=["conversation"])
 @router.websocket("/ws/conversation")
 async def conversation_ws(
     websocket: WebSocket,
-    token: str = Query(...),
 ) -> None:
-    # --- Auth ---
+    # --- Accept first, then authenticate via first JSON message ---
+    await websocket.accept()
+
     try:
+        auth_msg = await asyncio.wait_for(websocket.receive_json(), timeout=10.0)
+        token = auth_msg.get("token", "")
         payload = decode_access_token(token)
         user_id = int(payload["sub"])
-    except (PyJWTError, KeyError, ValueError):
-        logger.warning("[conversation] Invalid token — closing WS 1008")
-        await websocket.close(code=1008)   # Policy violation
+    except (asyncio.TimeoutError, PyJWTError, KeyError, ValueError, Exception):
+        logger.warning("[conversation] Auth failed — closing WS 1008")
+        await websocket.send_json({"type": "error", "code": "auth_failed", "message": "Authentication failed"})
+        await websocket.close(code=1008)
         return
 
     async with AsyncSessionLocal() as db:
@@ -45,7 +49,6 @@ async def conversation_ws(
         stt_service = getattr(websocket.app.state, "stt_service", None)
         if tts_service is None or stt_service is None:
             logger.warning("[conversation] TTS or STT disabled — rejecting WS for user %s", user_id)
-            await websocket.accept()
             await websocket.send_json({
                 "type": "error",
                 "code": "services_disabled",
@@ -70,7 +73,7 @@ async def conversation_ws(
 
     logger.info("[conversation] Session started — user=%s cefr=%s max_duration=%ss inactivity=%ss",
                 user_id, cefr_level, max_duration, inactivity_timeout)
-    await websocket.accept()
+    # (already accepted at the top)
 
     pipeline = ConversationPipeline(
         llm=llm_adapter,

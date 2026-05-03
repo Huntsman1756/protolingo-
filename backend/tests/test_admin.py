@@ -8,8 +8,10 @@ async def test_list_users_as_admin(client, admin_user):
     response = await client.get("/api/admin/users", headers=headers)
     assert response.status_code == 200
     data = response.json()
-    assert isinstance(data, list)
-    assert any(u["username"] == "admin" for u in data)
+    assert "items" in data
+    assert "total" in data
+    assert data["total"] >= 1
+    assert any(u["username"] == "admin" for u in data["items"])
 
 
 @pytest.mark.asyncio
@@ -162,3 +164,80 @@ async def test_create_invite_as_non_admin(client, test_user):
 
     response = await client.post("/api/admin/invite", headers=headers)
     assert response.status_code == 403
+
+
+@pytest.mark.asyncio
+async def test_create_user_invalid_language(client, admin_user):
+    """M-04: AdminUserCreate should reject unsupported native_language codes."""
+    admin, headers = admin_user
+
+    response = await client.post(
+        "/api/admin/users",
+        headers=headers,
+        json={
+            "username": "langtest",
+            "password": "pass1234",
+            "display_name": "Lang Test",
+            "native_language": "xx",  # unsupported
+            "role": "user",
+        },
+    )
+    assert response.status_code == 422
+
+
+@pytest.mark.asyncio
+async def test_create_user_invalid_email(client, admin_user):
+    """M-04: AdminUserCreate should reject malformed email addresses."""
+    admin, headers = admin_user
+
+    response = await client.post(
+        "/api/admin/users",
+        headers=headers,
+        json={
+            "username": "emailtest",
+            "password": "pass1234",
+            "display_name": "Email Test",
+            "native_language": "es",
+            "email": "not-an-email",
+            "role": "user",
+        },
+    )
+    assert response.status_code == 422
+
+
+@pytest.mark.asyncio
+async def test_list_users_pagination(client, admin_user, db_session):
+    """M-07: GET /api/admin/users should support skip/limit pagination."""
+    from app.models.user import User
+    from app.core.security import hash_password
+
+    admin, headers = admin_user
+
+    for i in range(5):
+        db_session.add(User(
+            username=f"paguser{i}",
+            email=f"paguser{i}@test.com",
+            display_name=f"Pag {i}",
+            hashed_password=hash_password("pass1234"),
+            role="user",
+            native_language="es",
+            is_active=True,
+        ))
+    await db_session.commit()
+
+    resp_page1 = await client.get("/api/admin/users?skip=0&limit=3", headers=headers)
+    assert resp_page1.status_code == 200
+    data1 = resp_page1.json()
+    assert len(data1["items"]) == 3
+    assert data1["total"] >= 6  # 1 admin + 5 extra
+    assert data1["limit"] == 3
+
+    resp_page2 = await client.get("/api/admin/users?skip=3&limit=3", headers=headers)
+    assert resp_page2.status_code == 200
+    data2 = resp_page2.json()
+    assert len(data2["items"]) >= 1
+
+    # Usernames across pages must be disjoint
+    names1 = {u["username"] for u in data1["items"]}
+    names2 = {u["username"] for u in data2["items"]}
+    assert names1.isdisjoint(names2)

@@ -3,16 +3,27 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, field_serializer
+from pydantic import BaseModel, EmailStr, Field, field_serializer, field_validator
+
+SUPPORTED_LANGUAGES = {
+    "en", "es", "fr", "pt", "de", "it", "zh", "ja", "ko", "ar", "ru", "nl", "pl",
+}
 
 
 class AdminUserCreate(BaseModel):
     username: str = Field(min_length=3, max_length=50, pattern=r"^[\w.-]+$")
-    email: Optional[str] = None
+    email: Optional[EmailStr] = None
     password: str = Field(min_length=8, max_length=128)
     display_name: str = Field(max_length=100)
     native_language: str = Field(min_length=2, max_length=5)
     role: Literal["user", "admin"] = "user"
+
+    @field_validator("native_language")
+    @classmethod
+    def validate_language(cls, v: str) -> str:
+        if v not in SUPPORTED_LANGUAGES:
+            raise ValueError(f"Unsupported language code: {v}")
+        return v
 
 
 class AdminUserUpdate(BaseModel):
@@ -41,3 +52,10 @@ class AdminUserResponse(BaseModel):
 
 class InviteResponse(BaseModel):
     invite_url: str
+
+
+class PaginatedAdminUsersResponse(BaseModel):
+    items: list[AdminUserResponse]
+    total: int
+    skip: int
+    limit: int

@@ -276,3 +276,56 @@ async def test_patch_me(client, test_user):
     assert response.status_code == 200
     data = response.json()
     assert data["display_name"] == "Updated Name"
+
+
+@pytest.mark.asyncio
+async def test_patch_me_duplicate_email(client, db_session):
+    """M-03: PATCH /me should reject an email already used by another user."""
+    from app.models.user import User
+    from app.core.security import hash_password, create_access_token
+
+    user_a = User(
+        username="user_a",
+        email="user_a@test.com",
+        display_name="A",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=True,
+    )
+    user_b = User(
+        username="user_b",
+        email="user_b@test.com",
+        display_name="B",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="en",
+        is_active=True,
+    )
+    db_session.add(user_a)
+    db_session.add(user_b)
+    await db_session.commit()
+    await db_session.refresh(user_b)
+
+    token = create_access_token(user_b.id, user_b.role)
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = await client.patch(
+        "/api/auth/me",
+        headers=headers,
+        json={"email": "user_a@test.com"},
+    )
+    assert response.status_code == 409
+
+
+@pytest.mark.asyncio
+async def test_patch_me_same_email_allowed(client, test_user):
+    """M-03: PATCH /me with the user's own current email should succeed."""
+    user, headers = test_user
+
+    response = await client.patch(
+        "/api/auth/me",
+        headers=headers,
+        json={"email": "test@example.com"},
+    )
+    assert response.status_code == 200
