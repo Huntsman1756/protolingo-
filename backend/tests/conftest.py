@@ -3,6 +3,7 @@ from unittest.mock import AsyncMock
 
 os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///:memory:"
 os.environ["SECRET_KEY"] = "test-secret-key-for-pytest"
+os.environ["RATE_LIMIT_ENABLED"] = "false"
 
 import pytest
 import pytest_asyncio
@@ -31,9 +32,7 @@ async def setup_db(test_engine):
 
 @pytest_asyncio.fixture(autouse=True)
 async def clear_sessions():
-    from app.routers.assessment import _sessions
-
-    _sessions.clear()
+    # Sessions are now stored in Redis (per-test mock_redis starts empty).
     yield
 
 
@@ -71,12 +70,14 @@ async def client(db_session, mock_redis):
 
     app.dependency_overrides[get_db] = override_get_db
 
-    # Override Redis in auth and admin routers
+    # Override Redis in auth, admin and assessment routers
     from app.routers.auth import get_redis as auth_get_redis
     from app.routers.admin import get_redis as admin_get_redis
+    from app.routers.assessment import get_redis as assessment_get_redis
 
     app.dependency_overrides[auth_get_redis] = lambda: mock_redis
     app.dependency_overrides[admin_get_redis] = lambda: mock_redis
+    app.dependency_overrides[assessment_get_redis] = lambda: mock_redis
 
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:

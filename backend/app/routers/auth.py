@@ -40,7 +40,9 @@ async def get_redis():
 
 
 @router.post("/register", response_model=dict)
+@limiter.limit("5/minute")
 async def register(
+    request: Request,
     data: RegisterRequest,
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
@@ -136,6 +138,7 @@ async def login(
 
 
 @router.post("/refresh", response_model=TokenResponse)
+@limiter.limit("20/minute")
 async def refresh(
     request: Request,
     response: Response,
@@ -198,7 +201,10 @@ async def update_me(
 ):
     if data.display_name is not None:
         current_user.display_name = data.display_name
-    if data.email is not None:
+    if data.email is not None and data.email != current_user.email:
+        dup = await db.execute(select(User).where(User.email == data.email))
+        if dup.scalar_one_or_none():
+            raise HTTPException(status_code=409, detail="Email already taken")
         current_user.email = data.email
     if data.password is not None:
         current_user.hashed_password = hash_password(data.password)

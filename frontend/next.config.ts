@@ -34,6 +34,7 @@ const nextConfig: NextConfig = {
           // with client-side navigation in Next.js (headers must be global).
           { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
           { key: 'Cross-Origin-Embedder-Policy', value: 'credentialless' },
+          { key: 'Content-Security-Policy', value: "default-src 'self'; object-src 'none'; base-uri 'self'" },
         ],
       },
     ]
