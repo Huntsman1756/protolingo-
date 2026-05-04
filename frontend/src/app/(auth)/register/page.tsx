@@ -52,20 +52,19 @@ function RegisterForm() {
           body: JSON.stringify(body),
         })
         if (!res.ok) {
-          const data = await res.json()
-          let msg: string
+          const data = await res.json().catch(() => ({}))
+          let msg = t('error')
           if (typeof data.detail === 'string') {
-            msg = data.detail
+            if (data.detail === 'Username already taken') msg = t('usernameTaken')
+            else if (data.detail === 'Email already taken') msg = t('emailTaken')
+            else if (data.detail === 'Registration is closed') msg = t('registrationClosed')
+            else if (data.detail === 'Invalid or expired invite') msg = t('invalidInvite')
           } else if (Array.isArray(data.detail) && data.detail.length > 0) {
-            const first = data.detail[0] as { type?: string; loc?: string[]; msg?: string }
+            const first = data.detail[0] as { loc?: string[]; msg?: string }
             const loc = (first.loc ?? []).join('.')
             if (loc.includes('email') || first.msg?.toLowerCase().includes('email')) {
               msg = t('invalidEmail')
-            } else {
-              msg = t('error')
             }
-          } else {
-            msg = t('error')
           }
           throw new Error(msg)
         }

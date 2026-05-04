@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useAuthStore } from '@/store/auth'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 
@@ -21,6 +23,7 @@ interface Conversation {
 export default function ChatPage() {
   const t = useTranslations('chat')
   const tCommon = useTranslations('common')
+  const user = useAuthStore((s) => s.user)
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeId, setActiveId] = useState<number | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
@@ -261,11 +264,22 @@ export default function ChatPage() {
             </div>
           ) : (
             messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[78%] ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
-                  <p className={`font-mono text-fl-hint tracking-widest uppercase mb-1 ${msg.role === 'user' ? 'text-fl-muted-2' : 'text-fl-muted-3'}`}>
-                    {msg.role === 'user' ? 'you' : 'tutor'}
-                  </p>
+              <div key={i} className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                {/* Avatar */}
+                <div className="flex-shrink-0 w-7 h-7 rounded-full overflow-hidden border border-fl-border mb-0.5">
+                  {msg.role === 'assistant' ? (
+                    <Image src="/logo.png" alt="Tutor" width={28} height={28} className="w-full h-full object-cover" />
+                  ) : user?.avatar ? (
+                    <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
+                      <span className="font-mono text-fl-hint text-fl-muted-1 select-none">
+                        {(user?.displayName || user?.username || '?')[0].toUpperCase()}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className={`max-w-[75%] ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
                   <div className={`font-mono text-sm leading-relaxed px-4 py-3 border ${msg.role === 'user'
                     ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                     : 'bg-fl-surface text-fl-fg-2 border-fl-border'

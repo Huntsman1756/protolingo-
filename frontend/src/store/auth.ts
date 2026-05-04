@@ -10,6 +10,7 @@ interface User {
   role: 'admin' | 'user'
   conversation_max_duration: number
   conversation_inactivity_timeout: number
+  avatar?: string | null
 }
 
 interface AuthStore {
