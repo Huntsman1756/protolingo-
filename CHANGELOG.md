@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-05-04
+
+### Added
+- Phase 4 — Target language selection: `english_variant` field replaced by generic `target_language` (BCP-47) across the entire stack
+- Alembic migration `0007_target_language.py`: adds `target_language` column to `users` and `study_plans`, back-fills existing rows (`american` → `en-US`, `british` → `en-GB`), drops `english_variant`
+- `SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}` constant in `app/schemas/auth.py`; new `target_language` field with validator on `RegisterRequest` and `UserUpdateRequest`; `UserResponse` exposes `target_language`
+- `app/services/language_helpers.py`: `get_english_variant(target_language)` and `get_iso639(target_language)` helpers used across the service layer
+- `target_language` column added to `StudyPlan` model and recorded from the authenticated user at `POST /api/assessment/complete`
+- Auto-login on register: `POST /api/auth/register` now issues a JWT access token and sets the refresh token cookie in the same response, returning `{ id, username, role, access_token }`
+- `/onboarding` page (`src/app/(auth)/onboarding/page.tsx`): post-registration screen where new users choose their English variant; placed in the `(auth)` route group (no sidebar)
+- `TargetLanguageSelector` component (`src/components/onboarding/TargetLanguageSelector.tsx`): flag cards for `en-US` and `en-GB` with i18n display names and descriptions
+- `src/lib/target-languages.ts`: `SUPPORTED_TARGET_LANGUAGES` constant on the frontend — single place to add a new target language
+- i18n namespaces `onboarding` (`headline`, `subtitle`, `cta`) and `targetLanguages` (`en-US`, `en-US-description`, `en-GB`, `en-GB-description`) added to all six locale files (en, es, fr, pt, de, it)
+
+### Changed
+- Register flow: after successful registration the frontend stores the returned `access_token` and redirects to `/onboarding` instead of `/login?registered=true`
+- `FlashcardGenerateRequest`: `native_language` field removed — the backend now always reads `native_language` from the authenticated user's profile, ignoring any client-supplied value
+- `ConversationPipeline`: `native_language` and `english_variant` (derived from `target_language`) are now injected into `CONVERSATION_SYSTEM_PROMPT`; previously both were absent from the voice tutor context
+- All services (`lesson_generator`, `flashcard_sm2`, `chat`, `conversation_pipeline`, `stt_service`) updated to consume `target_language` instead of `english_variant`; STT `language` parameter derived dynamically via `get_iso639`
+- Settings page: English variant selector removed — the choice is made during onboarding and is not surfaced in the UI afterwards
+
+### Removed
+- i18n keys `settings.englishVariant`, `settings.american`, `settings.british`, `auth.register.englishVariant`, `auth.register.american`, `auth.register.british` removed from all locale files
+
 ## [1.2.6] - 2026-05-03
 
 ### Changed

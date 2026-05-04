@@ -122,7 +122,11 @@
     "conversationSaved": "Conversation settings saved.",
     "sectionAuthor": "Author",
     "authorDescription": "Built by Arturo Carretero Calvo",
-    "githubProfile": "GitHub profile"
+    "githubProfile": "GitHub profile",
+    "deleteAccount": "Delete Account",
+    "deleteAccountTitle": "Delete Account",
+    "deleteAccountMessage": "This will permanently delete your account and all your data. This action cannot be undone.",
+    "deleteAccountConfirm": "Delete Account"
   },
   "dashboard": {
     "welcomeBack": "Welcome back",
@@ -392,13 +396,15 @@
     "backToGrammar": "Grammar Reference",
     "explanation": "Explanation",
     "backLink": "Back to Grammar",
-    "notFound": "Topic not found."
+    "notFound": "Topic not found.",
+    "topicsFound": "{count, plural, one {# topic found} other {# topics found}}"
   },
   "vocabulary": {
     "title": "Vocabulary Hub",
     "subtitle": "Vocabulary",
     "all": "All",
     "searchPlaceholder": "Search sets…",
+    "sets": "sets",
     "words": "words",
     "addAll": "Add All {count} to Flashcards",
     "adding": "Adding...",
@@ -425,7 +431,9 @@
     "copy": "Copy",
     "noResults": "No phrases match your filters",
     "level": "Level",
-    "register": "Register"
+    "register": "Register",
+    "statsLine": "{situationCount} situations · {phraseCount} phrases · {range}",
+    "situationsShown": "{count, plural, one {# situation shown} other {# situations shown}}"
   },
   "admin": {
     "title": "Admin",

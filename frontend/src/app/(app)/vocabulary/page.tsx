@@ -70,7 +70,7 @@ export default function VocabularyIndexPage() {
         </div>
         <div className="px-6 py-5 space-y-4">
           <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
-            {vocabularySets.length} sets · {totalWords} words · {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
+            {vocabularySets.length} {t('sets')} · {totalWords} {t('words')} · {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
           </p>
           {/* Search */}
           <input

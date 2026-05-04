@@ -7,6 +7,7 @@ import { useAuthStore } from '@/store/auth'
 import { useThemeStore } from '@/store/theme'
 import { useRouter } from 'next/navigation'
 import { ExternalLink } from 'lucide-react'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it'] as const
 
@@ -33,6 +34,9 @@ export default function SettingsPage() {
   const [convInactivityTimeout, setConvInactivityTimeout] = useState<60 | 180 | 300>(180)
   const [convMessage, setConvMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
   const [savingConv, setSavingConv] = useState(false)
+
+  const [deleteConfirm, setDeleteConfirm] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -96,6 +100,17 @@ export default function SettingsPage() {
       setConvMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
     } finally {
       setSavingConv(false)
+    }
+  }
+
+  async function handleDeleteAccount() {
+    setDeleting(true)
+    try {
+      await apiFetch('/api/auth/me', { method: 'DELETE' })
+      logout()
+      router.push('/login')
+    } catch {
+      setDeleting(false)
     }
   }
 
@@ -314,6 +329,26 @@ export default function SettingsPage() {
       >
         — {tCommon('logout')}
       </button>
+
+      {user?.role !== 'admin' && (
+        <button
+          onClick={() => setDeleteConfirm(true)}
+          disabled={deleting}
+          className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 mt-2 uppercase hover:text-fl-error hover:border-fl-error/40 disabled:opacity-40 transition-colors"
+        >
+          — {t('deleteAccount')}
+        </button>
+      )}
+
+      <ConfirmDialog
+        open={deleteConfirm}
+        title={t('deleteAccountTitle')}
+        message={t('deleteAccountMessage')}
+        confirmLabel={t('deleteAccountConfirm')}
+        danger
+        onConfirm={handleDeleteAccount}
+        onCancel={() => setDeleteConfirm(false)}
+      />
     </div>
   )
 }

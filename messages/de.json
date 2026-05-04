@@ -122,7 +122,11 @@
     "conversationSaved": "Gesprächseinstellungen gespeichert.",
     "sectionAuthor": "Autor",
     "authorDescription": "Erstellt von Arturo Carretero Calvo",
-    "githubProfile": "GitHub-Profil"
+    "githubProfile": "GitHub-Profil",
+    "deleteAccount": "Konto löschen",
+    "deleteAccountTitle": "Konto löschen",
+    "deleteAccountMessage": "Diese Aktion löscht dein Konto und alle deine Daten dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteAccountConfirm": "Konto löschen"
   },
   "dashboard": {
     "welcomeBack": "Willkommen zurück",
@@ -392,13 +396,15 @@
     "backToGrammar": "Grammatik",
     "explanation": "Erklärung",
     "backLink": "Zurück zur Grammatik",
-    "notFound": "Thema nicht gefunden."
+    "notFound": "Thema nicht gefunden.",
+    "topicsFound": "{count, plural, one {# Thema gefunden} other {# Themen gefunden}}"
   },
   "vocabulary": {
     "title": "Vokabular",
     "subtitle": "Vokabular",
     "all": "Alle",
     "searchPlaceholder": "Sammlungen suchen...",
+    "sets": "Sammlungen",
     "words": "Wörter",
     "addAll": "Alle {count} als Karteikarten hinzufügen",
     "adding": "Wird hinzugefügt...",
@@ -425,7 +431,9 @@
     "copy": "Kopieren",
     "noResults": "Keine Phrasen gefunden",
     "level": "Niveau",
-    "register": "Register"
+    "register": "Register",
+    "statsLine": "{situationCount} Situationen · {phraseCount} Phrasen · {range}",
+    "situationsShown": "{count, plural, one {# Situation angezeigt} other {# Situationen angezeigt}}"
   },
   "admin": {
     "title": "Verwaltung",
