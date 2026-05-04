@@ -39,7 +39,6 @@ the frontend never calls them directly.
 freelingo/
 ├── assets/             # Logos and static assets
 ├── backend/            # FastAPI (Python)
-├── docker/             # Custom Dockerfiles (e.g. Kokoro with Blackwell GPU support)
 ├── docs/               # GitHub Pages landing site
 ├── frontend/           # Next.js (React)
 ├── messages/           # i18n translation files (en, es, fr, pt, de, it)
