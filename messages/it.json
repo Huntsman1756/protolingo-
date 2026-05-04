@@ -331,7 +331,7 @@
     "title": "Schede",
     "due": "Da rivedere",
     "total": "Totale",
-    "noDue": "Nessuna scheda da rivedere oggi.",
+    "noDue": "Nessuna carta da ripassare",
     "allCaughtUp": "Tutto in regola!",
     "generate": "Genera schede",
     "generating": "Generazione...",
@@ -350,7 +350,10 @@
     "sectionGenerate": "Genera nuove schede",
     "speakingMode": "Parlato",
     "standardMode": "Standard",
-    "sayWord": "Di' la parola ad alta voce"
+    "sayWord": "Di' la parola ad alta voce",
+    "refresh": "Aggiorna",
+    "generateBtn": "Genera",
+    "cards": "carte"
   },
   "chat": {
     "title": "Tutor IA",
@@ -474,7 +477,9 @@
     "inviteBtn": "+ Link di invito",
     "createUserBtn": "+ Crea utente",
     "prevPage": "← Prec.",
-    "nextPage": "Succ. →"
+    "nextPage": "Succ. →",
+    "roleUser": "Utente",
+    "roleAdmin": "Admin"
   },
   "faq": {
     "title": "FAQ",
