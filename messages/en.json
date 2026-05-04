@@ -80,7 +80,8 @@
       "confirmPassword": "Confirm Password",
       "displayNamePlaceholder": "Same as username if empty",
       "inviteActive": "Invite active",
-      "creatingAccount": "Creating..."
+      "creatingAccount": "Creating...",
+      "invalidEmail": "Please enter a valid email address"
     }
   },
   "settings": {
@@ -282,7 +283,11 @@
     "nLessons": "{count} lessons",
     "nGrammar": "{count} grammar",
     "levelTestLabel": "Level Test",
-    "unitAriaLabel": "Unit {index}: {title}"
+    "unitAriaLabel": "Unit {index}: {title}",
+    "noUnitsDesc": "Content for this level is being prepared. Check back soon.",
+    "completionTestTitle": "Level {level} Completion Test",
+    "levelTestResult": "Level Test Result",
+    "testScore": "Score:"
   },
   "lesson": {
     "loading": "Loading lesson...",

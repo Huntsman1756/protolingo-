@@ -31,12 +31,14 @@ interface StudyPlan {
   completion_test_taken: boolean
   completion_test_score: number | null
   completion_test_recommendation: string | null
-  plan: {
-    weeks: {
-      week_number: number
+  generated_plan: {
+    weekly_plan: {
+      week: number
       days: {
-        day_number: number
-        lessons: Lesson[]
+        day: number
+        title: string
+        lesson_type: string
+        unit_id: string
       }[]
     }[]
   }
@@ -50,11 +52,17 @@ interface CompetencyMap {
 
 function flattenLessons(plan: StudyPlan): Lesson[] {
   const result: Lesson[] = []
-  for (const week of plan.plan.weeks) {
+  for (const week of plan.generated_plan.weekly_plan) {
     for (const day of week.days) {
-      for (const lesson of day.lessons) {
-        result.push({ ...lesson, week: week.week_number, day: day.day_number })
-      }
+      result.push({
+        id: null,
+        title: day.title,
+        lesson_type: day.lesson_type,
+        week: week.week,
+        day: day.day,
+        unit_id: day.unit_id,
+        completed: false,
+      })
     }
   }
   return result
@@ -203,7 +211,7 @@ export default function PlanPage() {
               {t('noUnitsForLevel', { level })}
             </p>
             <p className="font-mono text-fl-label text-fl-muted-4">
-              Content for this level is being prepared. Check back soon.
+              {t('noUnitsDesc')}
             </p>
           </div>
         )}
@@ -243,7 +251,7 @@ export default function PlanPage() {
         {/* Level test pseudo-unit */}
         {units.length > 0 && (
           <UnitCard
-            title={`Level ${level} Completion Test`}
+            title={t('completionTestTitle', { level })}
             index={units.length}
             lessonCount={1}
             grammarCount={0}
@@ -272,10 +280,10 @@ export default function PlanPage() {
       {plan.completion_test_taken && (
         <div className="border border-fl-border bg-fl-surface px-6 py-4 space-y-2">
           <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">
-            Level Test Result
+            {t('levelTestResult')}
           </p>
           <p className="font-mono text-fl-body text-fl-fg">
-            Score:{' '}
+            {t('testScore')}{' '}
             <span className="font-bold">
               {plan.completion_test_score != null
                 ? `${Math.round(plan.completion_test_score * 100)}%`

@@ -57,7 +57,13 @@ function RegisterForm() {
           if (typeof data.detail === 'string') {
             msg = data.detail
           } else if (Array.isArray(data.detail) && data.detail.length > 0) {
-            msg = (data.detail[0] as { msg?: string }).msg ?? t('error')
+            const first = data.detail[0] as { type?: string; loc?: string[]; msg?: string }
+            const loc = (first.loc ?? []).join('.')
+            if (loc.includes('email') || first.msg?.toLowerCase().includes('email')) {
+              msg = t('invalidEmail')
+            } else {
+              msg = t('error')
+            }
           } else {
             msg = t('error')
           }

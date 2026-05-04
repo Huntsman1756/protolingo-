@@ -1,12 +1,14 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface ConfirmDialogProps {
   open: boolean
   title: string
   message: string
   confirmLabel?: string
+  cancelLabel?: string
   danger?: boolean
   onConfirm: () => void
   onCancel: () => void
@@ -17,10 +19,12 @@ export function ConfirmDialog({
   title,
   message,
   confirmLabel = 'Confirm',
+  cancelLabel,
   danger = false,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
+  const tCommon = useTranslations('common')
   // Close on Escape
   useEffect(() => {
     if (!open) return
@@ -60,13 +64,13 @@ export function ConfirmDialog({
             onClick={onCancel}
             className="flex-1 border border-fl-border py-3 font-mono text-fl-label font-bold tracking-widest uppercase text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
           >
-            — Cancel
+            — {cancelLabel ?? tCommon('cancel')}
           </button>
           <button
             onClick={onConfirm}
             className={`flex-1 py-3 font-mono text-fl-label font-bold tracking-widest uppercase transition-colors ${danger
-                ? 'bg-fl-error text-fl-fg-bright hover:bg-fl-error-hover'
-                : 'bg-fl-fg text-fl-bg hover:bg-fl-fg-bright'
+              ? 'bg-fl-error text-fl-fg-bright hover:bg-fl-error-hover'
+              : 'bg-fl-fg text-fl-bg hover:bg-fl-fg-bright'
               }`}
           >
             — {confirmLabel}

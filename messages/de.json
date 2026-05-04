@@ -80,7 +80,8 @@
       "confirmPassword": "Passwort bestätigen",
       "displayNamePlaceholder": "Gleich wie Benutzername wenn leer",
       "inviteActive": "Einladung aktiv",
-      "creatingAccount": "Wird erstellt..."
+      "creatingAccount": "Wird erstellt...",
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
     }
   },
   "settings": {
@@ -282,7 +283,11 @@
     "nLessons": "{count} Lektionen",
     "nGrammar": "{count} Grammatik",
     "levelTestLabel": "Stufentest",
-    "unitAriaLabel": "Einheit {index}: {title}"
+    "unitAriaLabel": "Einheit {index}: {title}",
+    "noUnitsDesc": "Die Inhalte für diese Stufe werden gerade vorbereitet. Schau bald wieder vorbei.",
+    "completionTestTitle": "Stufenabschlusstest {level}",
+    "levelTestResult": "Stufentestergebnis",
+    "testScore": "Punktzahl:"
   },
   "lesson": {
     "loading": "Lektion wird geladen...",

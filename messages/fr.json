@@ -80,7 +80,8 @@
       "confirmPassword": "Confirmer le mot de passe",
       "displayNamePlaceholder": "Même que le nom d'utilisateur si vide",
       "inviteActive": "Invitation active",
-      "creatingAccount": "Création en cours..."
+      "creatingAccount": "Création en cours...",
+      "invalidEmail": "Veuillez entrer une adresse e-mail valide"
     }
   },
   "settings": {
@@ -282,7 +283,11 @@
     "nLessons": "{count} leçons",
     "nGrammar": "{count} grammaire",
     "levelTestLabel": "Test de niveau",
-    "unitAriaLabel": "Unité {index} : {title}"
+    "unitAriaLabel": "Unité {index} : {title}",
+    "noUnitsDesc": "Le contenu pour ce niveau est en cours de préparation. Revenez bientôt.",
+    "completionTestTitle": "Test de fin de niveau {level}",
+    "levelTestResult": "Résultat du test de niveau",
+    "testScore": "Score :"
   },
   "lesson": {
     "loading": "Chargement de la leçon...",
