@@ -27,6 +27,7 @@ These describe what was built — they are the reference documentation:
 | `specs/phase-2-tts-stt.instructions.md` | Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises |
 | `specs/phase-1-plus.instructions.md` | Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test |
 | `specs/phase-3-conversation.instructions.md` | Phase 3: WebSocket voice pipeline, VAD, barge-in, gapless audio |
+| `specs/phase-4-target-language.instructions.md` | Phase 4: multi-language support, `target_language` (BCP-47), onboarding flow, auto-login on register |
 | `specs/roadmap.instructions.md` | Development roadmap with milestones and completion criteria per phase |
 | `specs/changelog.instructions.md` | Changelog format, entry style, and update rules |
 | `specs/readme.instructions.md` | README structure, badges, and update guidelines |

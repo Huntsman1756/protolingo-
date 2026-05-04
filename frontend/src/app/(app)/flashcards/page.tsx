@@ -6,6 +6,7 @@ import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
+import { CEFR_LEVELS } from '@/data/curriculum'
 
 interface CardData {
   id: number
@@ -182,7 +183,7 @@ export default function FlashcardsPage() {
                   onChange={(e) => setGenCefr(e.target.value)}
                   className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 appearance-none"
                 >
-                  {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(l => <option key={l} value={l}>{l}</option>)}
+                  {CEFR_LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
               </div>
             </div>

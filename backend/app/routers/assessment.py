@@ -249,6 +249,7 @@ async def complete_assessment(
     plan = StudyPlan(
         user_id=current_user.id,
         cefr_level=data.cefr_level,
+        target_language=current_user.target_language,
         goals=data.goals,
         duration_weeks=data.duration_weeks,
         days_per_week=data.days_per_week,

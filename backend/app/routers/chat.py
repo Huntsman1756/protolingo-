@@ -20,6 +20,7 @@ from app.schemas.chat import (
     ConversationCreate,
     ConversationResponse,
 )
+from app.services.language_helpers import get_english_variant
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -178,7 +179,7 @@ async def chat(
     system_prompt = TUTOR_SYSTEM_PROMPT.format(
         cefr_level=cefr_level,
         native_language=current_user.native_language,
-        english_variant=current_user.english_variant,
+        english_variant=get_english_variant(current_user.target_language),
         total_xp=total_xp,
         streak=prog.streak_day if prog else 0,
         lessons_today=prog.lessons_completed if prog else 0,

@@ -7,6 +7,7 @@ import re
 import time
 from typing import TYPE_CHECKING
 
+from app.services.language_helpers import get_english_variant, get_iso639
 from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError
 
 if TYPE_CHECKING:
@@ -20,6 +21,8 @@ MAX_BUFFER_CHARS = 150
 CONVERSATION_SYSTEM_PROMPT = """\
 You are an English conversation partner for language learning.
 Student level: {cefr_level}.
+Student's native language: {native_language}.
+Use {english_variant} English spelling and vocabulary consistently.
 
 Rules:
 - Speak naturally, as in a real conversation
@@ -46,13 +49,20 @@ class ConversationPipeline:
         tts: object,
         stt: object,
         cefr_level: str = "B1",
+        native_language: str = "es",
+        target_language: str = "en-US",
         max_duration: int = 1800,
         inactivity_timeout: int = 180,
     ) -> None:
         self.llm = llm
         self.tts = tts
         self.stt = stt
-        self.system_prompt = CONVERSATION_SYSTEM_PROMPT.format(cefr_level=cefr_level)
+        self._stt_language = get_iso639(target_language)
+        self.system_prompt = CONVERSATION_SYSTEM_PROMPT.format(
+            cefr_level=cefr_level,
+            native_language=native_language,
+            english_variant=get_english_variant(target_language),
+        )
         self.max_duration = max_duration
         self.inactivity_timeout = inactivity_timeout
 
@@ -104,7 +114,7 @@ class ConversationPipeline:
         # 1. STT
         try:
             await ws.send_json({"type": "status", "value": "transcribing"})
-            user_text = await self.stt.transcribe(audio_bytes, "audio.wav", "audio/wav")
+            user_text = await self.stt.transcribe(audio_bytes, "audio.wav", "audio/wav", self._stt_language)
             logger.info("[pipeline] STT result: %r", user_text)
             await ws.send_json({"type": "transcript", "role": "user", "text": user_text, "final": True})
         except Exception as exc:
