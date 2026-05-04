@@ -42,7 +42,7 @@ function LoginForm() {
         })
         if (!res.ok) {
           const data = await res.json()
-          throw new Error(data.detail || 'Invalid credentials')
+          throw new Error(data.detail || t('error'))
         }
         const { access_token } = await res.json()
         setTokens(access_token)
