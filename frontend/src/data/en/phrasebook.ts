@@ -418,6 +418,44 @@ const complex_arguments_c1: PhrasebookCategory = {
   ],
 }
 
+const professional_networking_c1: PhrasebookCategory = {
+  id: 'professional_networking_c1',
+  level: 'C1',
+  situation: 'Professional Networking',
+  icon: '🤝',
+  phrases: [
+    { english: 'I believe we have some mutual connections.', context: 'Breaking the ice at a professional event', register: 'formal' },
+    { english: 'I\'ve been following your work on [topic] — it\'s really compelling.', context: 'Opening a conversation with a professional you admire', register: 'formal' },
+    { english: 'I\'d love to pick your brain about [subject] sometime.', context: 'Proposing an informal knowledge exchange', register: 'neutral' },
+    { english: 'Would you be open to a brief call to explore potential synergies?', context: 'Suggesting a follow-up meeting', register: 'formal' },
+    { english: 'I\'m currently working on [project] — it might align with what you\'re doing.', context: 'Finding common ground', register: 'neutral' },
+    { english: 'Could I connect you with [Name]? I think you\'d have a lot to discuss.', context: 'Making an introduction', register: 'formal' },
+    { english: 'I\'d be happy to share some resources on that if it would be useful.', context: 'Offering to help', register: 'neutral' },
+    { english: 'It was a pleasure speaking with you — let\'s stay in touch.', context: 'Closing a networking conversation', register: 'formal' },
+    { english: 'I\'ll send you a LinkedIn request so we can keep the conversation going.', context: 'Following up after meeting', register: 'neutral' },
+    { english: 'Do you have a card, or shall I find you on LinkedIn?', context: 'Exchanging contact details', register: 'neutral' },
+  ],
+}
+
+const conflict_resolution_c1: PhrasebookCategory = {
+  id: 'conflict_resolution_c1',
+  level: 'C1',
+  situation: 'Conflict Resolution',
+  icon: '🕊️',
+  phrases: [
+    { english: 'I sense there may be some tension around this issue — shall we address it openly?', context: 'Naming a conflict and inviting dialogue', register: 'formal' },
+    { english: 'I understand this is a difficult situation for all parties involved.', context: 'Showing empathy before discussing solutions', register: 'formal' },
+    { english: 'I\'d like to hear your perspective before I share mine.', context: 'Demonstrating willingness to listen', register: 'neutral' },
+    { english: 'I think there may have been a misunderstanding — let me clarify my position.', context: 'Addressing a miscommunication', register: 'neutral' },
+    { english: 'Our goal should be to find a solution that works for everyone.', context: 'Refocusing on shared interests', register: 'neutral' },
+    { english: 'I\'m willing to reconsider my stance if you can walk me through your reasoning.', context: 'Showing openness to compromise', register: 'formal' },
+    { english: 'Could we agree to set this point aside for now and return to it later?', context: 'De-escalating a heated point', register: 'formal' },
+    { english: 'I want to be direct without being dismissive of your concerns.', context: 'Balancing honesty with respect', register: 'neutral' },
+    { english: 'What would a satisfactory outcome look like from your perspective?', context: 'Inviting the other party to define success', register: 'formal' },
+    { english: 'I think we\'re closer to agreement than it might appear.', context: 'Building bridges at a tense moment', register: 'neutral' },
+  ],
+}
+
 // ─── C2 Categories ────────────────────────────────────────────────────────────
 
 const rhetoric_c2: PhrasebookCategory = {
@@ -462,6 +500,46 @@ const nuanced_discourse_c2: PhrasebookCategory = {
   ],
 }
 
+const legal_contractual_c2: PhrasebookCategory = {
+  id: 'legal_contractual_c2',
+  level: 'C2',
+  situation: 'Legal & Contractual Language',
+  icon: '📜',
+  phrases: [
+    { english: 'The terms set out herein are binding upon both parties.', context: 'Formal contract phrasing', register: 'formal' },
+    { english: 'Notwithstanding the foregoing, …', context: 'Introducing a qualification to a prior statement', register: 'formal' },
+    { english: 'The party of the first part hereby agrees to…', context: 'Initiating a formal obligation', register: 'formal' },
+    { english: 'This agreement shall be governed by and construed in accordance with the laws of [jurisdiction].', context: 'Specifying governing law', register: 'formal' },
+    { english: 'Any dispute arising out of or in connection with this contract shall be referred to arbitration.', context: 'Dispute resolution clause', register: 'formal' },
+    { english: 'Time is of the essence with respect to delivery.', context: 'Stressing deadline importance', register: 'formal' },
+    { english: 'The licensor grants a non-exclusive, non-transferable licence to use…', context: 'Licensing language', register: 'formal' },
+    { english: 'Either party may terminate this agreement upon [n] days\' written notice.', context: 'Termination clause', register: 'formal' },
+    { english: 'This clause shall survive the termination of the agreement.', context: 'Survival clause', register: 'formal' },
+    { english: 'Without prejudice to any other rights or remedies available, …', context: 'Reserving additional rights', register: 'formal' },
+    { english: 'Force majeure events shall excuse performance obligations.', context: 'Addressing unforeseeable circumstances', register: 'formal' },
+  ],
+}
+
+const social_commentary_c2: PhrasebookCategory = {
+  id: 'social_commentary_c2',
+  level: 'C2',
+  situation: 'Social Commentary & Debate',
+  icon: '🗞️',
+  phrases: [
+    { english: 'The systemic nature of this problem demands a structural response, not a piecemeal one.', context: 'Arguing for root-cause solutions', register: 'formal' },
+    { english: 'We risk conflating two very different phenomena if we treat them as equivalent.', context: 'Warning against false equivalence', register: 'formal' },
+    { english: 'The dominant narrative obscures more than it reveals.', context: 'Challenging mainstream framing', register: 'formal' },
+    { english: 'There is a troubling tendency to mistake complexity for ambiguity.', context: 'Distinguishing nuance from vagueness', register: 'formal' },
+    { english: 'The discourse around this issue has been, at best, superficial.', context: 'Critiquing the quality of public debate', register: 'formal' },
+    { english: 'What we are witnessing is the logical consequence of decades of policy neglect.', context: 'Tracing cause and effect', register: 'formal' },
+    { english: 'Moral outrage, however justified, is not a substitute for analysis.', context: 'Calling for reason over emotion', register: 'formal' },
+    { english: 'The question is not whether change is needed, but who bears the cost of that change.', context: 'Reframing a debate around equity', register: 'formal' },
+    { english: 'History offers no shortage of cautionary tales on this front.', context: 'Invoking historical precedent', register: 'formal' },
+    { english: 'We should resist the temptation to reduce a multifaceted issue to a single cause.', context: 'Opposing oversimplification', register: 'formal' },
+    { english: 'The stakes could hardly be higher.', context: 'Emphasising urgency', register: 'formal' },
+  ],
+}
+
 // ─── Full phrasebook ──────────────────────────────────────────────────────────
 
 export const phrasebookCategories: PhrasebookCategory[] = [
@@ -489,9 +567,13 @@ export const phrasebookCategories: PhrasebookCategory[] = [
   // C1
   presentations_c1,
   complex_arguments_c1,
+  professional_networking_c1,
+  conflict_resolution_c1,
   // C2
   rhetoric_c2,
   nuanced_discourse_c2,
+  legal_contractual_c2,
+  social_commentary_c2,
 ]
 
 /** Return all categories for a given CEFR level */

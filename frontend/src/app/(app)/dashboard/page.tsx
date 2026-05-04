@@ -20,6 +20,7 @@ interface TodayLessonItem {
 export default function DashboardPage() {
   const t = useTranslations('dashboard')
   const tNav = useTranslations('nav')
+  const tPlan = useTranslations('plan')
   const user = useAuthStore((s) => s.user)
   const { streak, xp, skills, todayLessons, completedToday, setProgress, setTodayLessons } =
     useProgressStore()
@@ -99,7 +100,7 @@ export default function DashboardPage() {
               {skillEntries.map(([skill, value]) => (
                 <div key={skill}>
                   <div className="flex justify-between mb-1">
-                    <span className="font-mono text-fl-label tracking-widest text-fl-muted-1 uppercase">{skill}</span>
+                    <span className="font-mono text-fl-label tracking-widest text-fl-muted-1 uppercase">{tPlan(`lessonTypes.${skill}`)}</span>
                     <span className="font-mono text-fl-label text-fl-muted-2">{Math.round((value as number) * 100)}%</span>
                   </div>
                   <div className="h-px bg-fl-border w-full">
@@ -126,7 +127,7 @@ export default function DashboardPage() {
                   <div>
                     <p className="font-mono text-xs text-fl-fg">{lesson.title}</p>
                     <p className="font-mono text-fl-label text-fl-muted-2 uppercase tracking-wider mt-0.5">
-                      {lesson.lessonType} · {lesson.estimatedMinutes}min
+                      {tPlan(`lessonTypes.${lesson.lessonType}`)} · {lesson.estimatedMinutes}min
                     </p>
                   </div>
                   {lesson.id && completedToday.includes(lesson.id) ? (

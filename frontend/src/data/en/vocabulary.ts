@@ -1523,6 +1523,27 @@ const critical_analysis_c2: VocabularySet = {
   ],
 }
 
+const advanced_verbs_thought_c2: VocabularySet = {
+  id: 'advanced_verbs_thought_c2',
+  level: 'C2',
+  topic: 'Advanced Verbs of Thought & Communication',
+  unit_ref: 'c2-unit-6',
+  words: [
+    { word: 'elucidate', pos: 'verb', definition: 'To make something clear; to explain in detail.', example: 'The professor elucidated the theorem with several examples.', ipa: '/ɪˈluːsɪdeɪt/', frequency_rank: 460 },
+    { word: 'extrapolate', pos: 'verb', definition: 'To extend a conclusion beyond the available data; to infer from known facts.', example: 'We cannot extrapolate global trends from a single study.', ipa: '/ɪkˈstræpəleɪt/', frequency_rank: 440 },
+    { word: 'surmise', pos: 'verb', definition: 'To suppose without sufficient evidence; to conjecture.', example: 'She surmised that the delay was intentional.', ipa: '/səˈmaɪz/', frequency_rank: 450 },
+    { word: 'promulgate', pos: 'verb', definition: 'To make a law or policy widely known; to disseminate officially.', example: 'The new regulations were promulgated by the ministry.', ipa: '/ˈprɒməlɡeɪt/', frequency_rank: 470 },
+    { word: 'expound', pos: 'verb', definition: 'To present and explain a theory or idea in detail.', example: 'The scientist expounded her findings at the conference.', ipa: '/ɪkˈspaʊnd/', frequency_rank: 450 },
+    { word: 'impute', pos: 'verb', definition: 'To attribute a quality or characteristic to someone; to assign blame.', example: 'The failure was imputed to a lack of oversight.', ipa: '/ɪmˈpjuːt/', frequency_rank: 460 },
+    { word: 'misconstrue', pos: 'verb', definition: 'To interpret something incorrectly.', example: 'His silence was misconstrued as agreement.', ipa: '/ˌmɪskənˈstruː/', frequency_rank: 450 },
+    { word: 'corroborate', pos: 'verb', definition: 'To confirm or give support to a statement, theory, or finding.', example: 'The witness corroborated the defendant\'s alibi.', ipa: '/kəˈrɒbəreɪt/', frequency_rank: 420 },
+    { word: 'articulate', pos: 'verb', definition: 'To express an idea clearly and coherently.', example: 'She articulated her concerns in a formal letter.', ipa: '/ɑːˈtɪkjʊleɪt/', frequency_rank: 300 },
+    { word: 'conjecture', pos: 'verb', definition: 'To form an opinion or theory without firm evidence.', example: 'Historians can only conjecture about his true motives.', ipa: '/kənˈdʒektʃər/', frequency_rank: 450 },
+    { word: 'expatiate', pos: 'verb', definition: 'To speak or write at length about a subject.', example: 'The essay expatiated on the consequences of colonialism.', ipa: '/ɪkˈspeɪʃieɪt/', frequency_rank: 490 },
+    { word: 'infer', pos: 'verb', definition: 'To deduce or conclude from evidence and reasoning.', example: 'From the data, we can infer a strong correlation.', ipa: '/ɪnˈfɜːr/', frequency_rank: 280 },
+  ],
+}
+
 // ─── Vocabulary index ─────────────────────────────────────────────────────────
 
 export const vocabularySets: VocabularySet[] = [
@@ -1601,6 +1622,7 @@ export const vocabularySets: VocabularySet[] = [
   idiomatic_expressions_c2,
   literary_devices_c2,
   critical_analysis_c2,
+  advanced_verbs_thought_c2,
 ]
 
 /** Look up a VocabularySet by id */

@@ -708,6 +708,32 @@ export const grammarTopics: GrammarTopic[] = [
     related: ['past-simple', 'modal-verbs'],
   },
   {
+    slug: 'used-to-would',
+    title: 'Used To & Would (Past Habits)',
+    level: 'B1',
+    category: 'Tenses',
+    summary: 'Describe past habits, repeated actions, and states that no longer exist using *used to* and *would*.',
+    explanation: `**Used to** describes past habits, repeated actions, or states that are no longer true.\n\n**Structure:** *subject + used to + base verb*\n- *I used to play football every weekend.* (past habit)\n- *She used to live in Madrid.* (past state)\n\n**Would** describes past repeated actions or habits (NOT states).\n\n**Structure:** *subject + would + base verb*\n- *Every summer, we would visit my grandparents.* (past habit)\n- ❌ *She would live in Madrid.* (wrong — states need "used to", not "would")\n\n**Key differences:**\n| | used to | would |\n|---|---|---|\n| Habits | ✓ | ✓ |\n| States | ✓ | ✗ |\n| Single past events | ✗ | ✗ |\n\n**Negatives and questions use "used to":**\n- *I didn't use to like coffee.* (note: "use to", not "used to", after "did")\n- *Did you use to play chess?*`,
+    rules: [
+      'Use "used to" for past habits AND past states that are no longer true.',
+      'Use "would" only for past repeated actions — never for past states (know, believe, live, be, etc.).',
+      'After "did/didn\'t", write "use to" (no -d): "Did you use to…?" / "I didn\'t use to…"',
+      'Neither "used to" nor "would" can describe a single, one-off past event — use the past simple.',
+      'Both imply contrast with the present: the situation has changed.',
+    ],
+    examples: [
+      { english: 'I used to hate vegetables, but now I love them.', note: 'past state — use "used to", not "would"' },
+      { english: 'Every Friday, we would go to the cinema together.', note: 'past repeated action — "would" is fine' },
+      { english: "She didn't use to speak English very well.", note: 'negative form — "use to" after "didn\'t"' },
+      { english: 'Did you use to have long hair?', note: 'question form — "use to" after "did"' },
+    ],
+    common_mistakes: [
+      { wrong: 'He would live in Paris when he was young.', correct: 'He used to live in Paris when he was young.', note: '"Would" cannot describe past states — use "used to".' },
+      { wrong: 'I didn\'t used to like jazz.', correct: 'I didn\'t use to like jazz.', note: 'The -d is carried by "did" — "use to" has no -d after auxiliaries.' },
+    ],
+    related: ['past-simple', 'past-perfect', 'reported-speech-basics'],
+  },
+  {
     slug: 'expressing-opinions',
     title: 'Expressing & Defending Opinions',
     level: 'B1',

@@ -243,3 +243,21 @@ async def update_me(
     await db.commit()
     await db.refresh(current_user)
     return current_user
+
+
+@router.delete("/me", status_code=204)
+async def delete_me(
+    request: Request,
+    response: Response,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
+):
+    if current_user.role == "admin":
+        raise HTTPException(status_code=403, detail="Admin accounts cannot be self-deleted")
+    token = request.cookies.get("refresh_token")
+    if token:
+        await redis.delete(f"refresh:{token}")
+    response.delete_cookie("refresh_token")
+    await db.delete(current_user)
+    await db.commit()
