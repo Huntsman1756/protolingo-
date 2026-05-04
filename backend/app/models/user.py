@@ -19,7 +19,7 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
     role: Mapped[str] = mapped_column(String(10), nullable=False, default="user")
     native_language: Mapped[str] = mapped_column(String(10), nullable=False)
-    english_variant: Mapped[str] = mapped_column(String(10), nullable=False, default="american")
+    target_language: Mapped[str] = mapped_column(String(10), nullable=False, default="en-US")
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     conversation_max_duration: Mapped[int] = mapped_column(
         Integer, nullable=False, default=1800   # 1800=30min, options: 900|1800

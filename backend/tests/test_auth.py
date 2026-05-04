@@ -17,6 +17,8 @@ async def test_register_success(client):
     data = response.json()
     assert data["username"] == "newuser"
     assert data["role"] == "admin"
+    assert "access_token" in data
+    assert "refresh_token" in response.cookies
 
 
 @pytest.mark.asyncio

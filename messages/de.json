@@ -69,9 +69,6 @@
       "password": "Passwort",
       "displayName": "Anzeigename",
       "nativeLanguage": "Muttersprache",
-      "englishVariant": "Englisch-Variante",
-      "american": "Amerikanisch",
-      "british": "Britisch",
       "inviteToken": "Einladungscode",
       "inviteTokenPlaceholder": "Einladungscode eingeben",
       "submit": "Konto erstellen",
@@ -93,9 +90,6 @@
     "displayName": "Anzeigename",
     "email": "E-Mail",
     "nativeLanguage": "Muttersprache",
-    "englishVariant": "Englisch-Variante",
-    "american": "Amerikanisch",
-    "british": "Britisch",
     "newPassword": "Neues Passwort",
     "newPasswordPlaceholder": "Leer lassen zum Beibehalten",
     "confirmPassword": "Passwort bestätigen",
@@ -543,5 +537,16 @@
     "pt": "Portugiesisch",
     "de": "Deutsch",
     "it": "Italienisch"
+  },
+  "targetLanguages": {
+    "en-US": "Amerikanisches Englisch",
+    "en-GB": "Britisches Englisch"
+  },
+  "onboarding": {
+    "title": "Wähle dein Englisch",
+    "subtitle": "Welches Englisch möchtest du lernen?",
+    "chooseVariant": "Variante auswählen",
+    "continue": "Weiter",
+    "saveFailed": "Einstellungen konnten nicht gespeichert werden"
   }
 }

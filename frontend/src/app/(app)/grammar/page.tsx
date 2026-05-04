@@ -4,10 +4,9 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { grammarTopics, type CEFRLevel, type GrammarCategory, type GrammarTopic } from '@/data/grammar'
+import { CEFR_LEVELS } from '@/data/curriculum'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-
-const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 
 const ALL_CATEGORIES: GrammarCategory[] = [
   'Tenses',

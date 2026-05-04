@@ -1,17 +1,18 @@
+from app.data.curriculum import CURRICULUM
 from app.schemas.lessons import FreeWriteEvaluation, LessonContent, PronunciationEvaluation
+from app.services.language_helpers import get_english_variant
 from app.services.llm_adapter import llm_adapter
 
+# Derived from the canonical curriculum — never edit this manually.
+# Any slug added to curriculum.py is automatically recognised here.
 VALID_GRAMMAR_SLUGS: set[str] = {
-    "present-simple", "to-be", "articles", "questions-yes-no",
-    "subject-pronouns", "possessive-adjectives",
-    "past-simple", "present-continuous", "comparatives-superlatives",
-    "can-cant",
-    "present-perfect", "first-conditional", "passive-voice-simple",
-    "relative-clauses", "modal-verbs",
-    "second-conditional", "third-conditional", "reported-speech", "past-perfect",
-    "mixed-conditionals", "inversion", "cleft-sentences",
-    "discourse-markers", "nominalisation",
+    slug
+    for units in CURRICULUM.values()
+    for unit in units
+    for slug in unit.grammar_points
 }
+
+_VALID_SLUGS_STR: str = ", ".join(sorted(VALID_GRAMMAR_SLUGS))
 
 LESSON_GENERATION_PROMPT = """
 You are an expert English teacher creating a structured lesson.
@@ -32,12 +33,7 @@ STRICT CONSTRAINTS:
 3. Vocabulary must come from the vocabulary_set_ids listed or be common {cefr_level} words.
 4. Do NOT introduce structures from higher levels.
 5. In "grammar_refs", return 1–3 grammar topic slugs that are most relevant to this lesson.
-   Only use slugs from this list: present-simple, to-be, articles, questions-yes-no,
-   subject-pronouns, possessive-adjectives, past-simple, present-continuous,
-   comparatives-superlatives, can-cant, present-perfect, first-conditional,
-   passive-voice-simple, relative-clauses, modal-verbs, second-conditional,
-   third-conditional, reported-speech, past-perfect, mixed-conditionals,
-   inversion, cleft-sentences, discourse-markers, nominalisation.
+   Only use slugs from this list: {valid_slugs}.
 
 The lesson should take about 20-30 minutes. Include 3-5 exercises of mixed types
 (multiple_choice, fill_blank, free_write, pronunciation).
@@ -129,10 +125,11 @@ async def generate_lesson(
     unit_id: str = "",
     grammar_points: list[str] | None = None,
     vocabulary_set_ids: list[str] | None = None,
-    english_variant: str = "american",
+    target_language: str = "en-US",
 ) -> LessonContent:
     gp_str = ", ".join(grammar_points) if grammar_points else "none specified"
     vs_str = ", ".join(vocabulary_set_ids) if vocabulary_set_ids else "general"
+    english_variant = get_english_variant(target_language)
     prompt = LESSON_GENERATION_PROMPT.format(
         cefr_level=cefr_level,
         english_variant=english_variant,
@@ -143,6 +140,7 @@ async def generate_lesson(
         vocabulary_set_ids=vs_str,
         week=week,
         day=day,
+        valid_slugs=_VALID_SLUGS_STR,
     )
 
     lesson = await llm_adapter.structured_output(

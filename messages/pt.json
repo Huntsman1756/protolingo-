@@ -69,9 +69,6 @@
       "password": "Senha",
       "displayName": "Nome de exibição",
       "nativeLanguage": "Idioma nativo",
-      "englishVariant": "Variante do inglês",
-      "american": "Americano",
-      "british": "Britânico",
       "inviteToken": "Código de convite",
       "inviteTokenPlaceholder": "Digite o código de convite",
       "submit": "Criar conta",
@@ -93,9 +90,6 @@
     "displayName": "Nome de exibição",
     "email": "E-mail",
     "nativeLanguage": "Idioma nativo",
-    "englishVariant": "Variante do inglês",
-    "american": "Americano",
-    "british": "Britânico",
     "newPassword": "Nova senha",
     "newPasswordPlaceholder": "Deixe em branco para manter",
     "confirmPassword": "Confirmar senha",
@@ -505,5 +499,16 @@
     "pt": "Português",
     "de": "Alemão",
     "it": "Italiano"
+  },
+  "targetLanguages": {
+    "en-US": "Inglês americano",
+    "en-GB": "Inglês britânico"
+  },
+  "onboarding": {
+    "title": "Escolha o seu inglês",
+    "subtitle": "Que inglês você quer aprender?",
+    "chooseVariant": "Selecionar variante",
+    "continue": "Continuar",
+    "saveFailed": "Falha ao salvar as preferências"
   }
 }

@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from redis.asyncio import Redis
-from sqlalchemy import func, or_, select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
@@ -21,6 +21,7 @@ from app.models.user import User
 from app.schemas.auth import (
     LoginRequest,
     RegisterRequest,
+    RegisterResponse,
     TokenResponse,
     UserResponse,
     UserUpdateRequest,
@@ -39,11 +40,12 @@ async def get_redis():
         await redis.aclose()
 
 
-@router.post("/register", response_model=dict)
+@router.post("/register", response_model=RegisterResponse)
 @limiter.limit("5/minute")
 async def register(
     request: Request,
     data: RegisterRequest,
+    response: Response,
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
 ):
@@ -81,7 +83,7 @@ async def register(
         display_name=data.display_name or data.username,
         hashed_password=hash_password(data.password),
         native_language=data.native_language,
-        english_variant=data.english_variant,
+        target_language=data.target_language,
         role=role,
         is_active=True,
     )
@@ -92,7 +94,28 @@ async def register(
     if data.invite_token:
         await redis.delete(f"invite:{data.invite_token}")
 
-    return {"id": user.id, "username": user.username, "role": user.role}
+    # Auto-login: issue tokens so the frontend can redirect to /onboarding
+    access_token = create_access_token(user.id, user.role)
+    refresh_token = create_refresh_token()
+
+    ttl = settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400
+    await redis.setex(f"refresh:{refresh_token}", ttl, str(user.id))
+
+    response.set_cookie(
+        "refresh_token",
+        refresh_token,
+        httponly=True,
+        secure=settings.COOKIE_SECURE,
+        samesite="lax",
+        max_age=ttl,
+    )
+
+    return RegisterResponse(
+        id=user.id,
+        username=user.username,
+        role=user.role,
+        access_token=access_token,
+    )
 
 
 @router.post("/login", response_model=TokenResponse)
@@ -210,8 +233,8 @@ async def update_me(
         current_user.hashed_password = hash_password(data.password)
     if data.native_language is not None:
         current_user.native_language = data.native_language
-    if data.english_variant is not None:
-        current_user.english_variant = data.english_variant
+    if data.target_language is not None:
+        current_user.target_language = data.target_language
     if data.conversation_max_duration is not None:
         current_user.conversation_max_duration = data.conversation_max_duration
     if data.conversation_inactivity_timeout is not None:

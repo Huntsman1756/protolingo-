@@ -171,7 +171,7 @@ async def get_today_lessons(
                     unit_id=d_unit_id,
                     grammar_points=grammar_points,
                     vocabulary_set_ids=vocabulary_set_ids,
-                    english_variant=current_user.english_variant,
+                    target_language=current_user.target_language,
                 )
                 content_dict = content.model_dump() if hasattr(content, "model_dump") else content
 

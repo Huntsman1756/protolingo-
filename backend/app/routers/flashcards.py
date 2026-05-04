@@ -120,7 +120,7 @@ async def generate_flashcards_endpoint(
             count=data.count,
             cefr_level=data.cefr_level,
             native_language=data.native_language,
-            english_variant=current_user.english_variant,
+            target_language=current_user.target_language,
         )
         # Persist generated cards
         for card_data in result.flashcards:

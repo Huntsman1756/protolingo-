@@ -5,7 +5,7 @@ applyTo: "backend/**, frontend/**, docker-compose.yml"
 
 # Roadmap — FreeLingo
 
-All phases are complete as of **v1.2.1** (2026-05-02). This document records what was built and the completion criteria met.
+This document records what was built and the completion criteria met.
 
 **Legend**: ⬜ Pending · 🔄 In progress · ✅ Done
 
@@ -126,3 +126,35 @@ All phases are complete as of **v1.2.1** (2026-05-02). This document records wha
 - [x] `TTS_ENABLED=true` and `STT_ENABLED=true` required for WebSocket endpoint
 - [x] `LOG_LEVEL` controls pipeline logging verbosity
 - [x] No regressions in Phase 1 and 2
+
+---
+
+## Phase 4 — Multi-Language Support
+
+🔄 Status: In progress
+
+> Expands the platform from English-only to a multi-target-language architecture.
+> Initial launch supports American English (`en-US`) and British English (`en-GB`),
+> with the data model and service layer ready for additional languages.
+
+| # | Milestone | Status |
+|---|-----------|--------|
+| 1 | DB migration — `english_variant` → `target_language` (BCP-47); backfill existing rows to `en-US` | ✅ |
+| 2 | Backend model + schema — `User.target_language`, `StudyPlan.target_language`, `SUPPORTED_TARGET_LANGUAGES`, `RegisterResponse` | ✅ |
+| 3 | Auto-login on register — `POST /register` returns `access_token` + sets refresh cookie; frontend redirects to `/onboarding` | ✅ |
+| 4 | Service layer — `language_helpers.py`; `target_language` propagated to lesson generator, flashcards, chat, conversation pipeline, STT, assessment | ✅ |
+| 5 | Frontend — `TargetLanguageSelector` component, `/onboarding` page, auth store updated, settings cleaned up | ✅ |
+| 6 | i18n — `targetLanguages` + `onboarding` namespaces added to all 6 locales; old `englishVariant` keys removed | ✅ |
+| 7 | Additional target languages beyond English variants | ⬜ |
+
+**Completion criteria:**
+- [x] Migration runs cleanly; `downgrade` restores previous schema
+- [x] `POST /register` returns `access_token` and sets `refresh_token` cookie
+- [x] New user is redirected to `/onboarding` and selects a target language before accessing the app
+- [x] All services (LLM prompts, flashcard generation, STT) receive and respect `target_language`
+- [x] `target_language` stored on `study_plans` rows
+- [x] `PATCH /me` with an unsupported `target_language` returns 422
+- [x] `TargetLanguageSelector` renders flags and correct translated labels
+- [x] All 6 locales contain `targetLanguages` and `onboarding` namespaces
+- [x] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [ ] No regressions in Phases 1–3

@@ -15,6 +15,7 @@ import {
   adjustLevel,
   type AssessmentQuestion,
 } from '@/data/assessment-bank'
+import { CEFR_LEVELS } from '@/data/curriculum'
 import type { CEFRLevel } from '@/data/grammar'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -53,7 +54,6 @@ const MAX_QUESTIONS = 12
 const CORRECT_STREAK_TO_UP = 2
 const WRONG_STREAK_TO_DOWN = 2
 const START_LEVEL: CEFRLevel = 'A2'
-const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
