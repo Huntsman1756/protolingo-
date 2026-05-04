@@ -11,94 +11,41 @@ applyTo: "backend/**, frontend/**"
 freelingo/
 ├── backend/                     # Python 3.12 FastAPI
 │   ├── app/
-│   │   ├── main.py              # FastAPI app, lifespan, middleware, router mounting
-│   │   ├── core/
-│   │   │   ├── config.py        # Settings via pydantic-settings (.env)
-│   │   │   ├── database.py      # Async SQLAlchemy engine, session factory
-│   │   │   ├── security.py      # JWT encode/decode (HS256), bcrypt password hashing
-│   │   │   ├── deps.py          # Dependency injection: get_current_user, require_admin
-│   │   │   └── limiter.py       # slowapi rate limiter (200/min default)
-│   │   ├── models/              # 9 SQLAlchemy 2.0 async ORM models
-│   │   │   ├── user.py          # User
-│   │   │   ├── study_plan.py    # StudyPlan
-│   │   │   ├── lesson.py        # Lesson + Exercise
-│   │   │   ├── flashcard.py     # Flashcard (SM-2 fields)
-│   │   │   ├── progress.py      # Progress (daily XP/streak/skills)
-│   │   │   ├── conversation.py  # Conversation
-│   │   │   ├── chat_history.py  # ChatHistory
-│   │   │   └── competency.py    # UserCompetency (unit-level)
-│   │   ├── schemas/             # Pydantic v2 request/response models
+│   │   ├── core/                # Config, DB engine, security, deps, rate limiter
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (9 models)
+│   │   ├── schemas/             # Pydantic v2 request/response schemas
 │   │   ├── routers/             # 11 routers (10 REST + 1 WebSocket)
-│   │   │   ├── auth.py          # /api/auth/*
-│   │   │   ├── admin.py         # /api/admin/* (admin-only)
-│   │   │   ├── assessment.py    # /api/assessment/*
-│   │   │   ├── study_plan.py    # /api/study-plan/*
-│   │   │   ├── lessons.py       # /api/lessons/*
-│   │   │   ├── flashcards.py    # /api/flashcards/*
-│   │   │   ├── chat.py          # /api/chat/* (SSE streaming)
-│   │   │   ├── progress.py      # /api/progress/*
-│   │   │   ├── tts.py           # /api/tts (proxied to Kokoro)
-│   │   │   ├── stt.py           # /api/stt (proxied to Whisper)
-│   │   │   └── conversation.py  # /ws/conversation (WebSocket)
-│   │   ├── services/            # 9 service modules
-│   │   │   ├── llm_adapter.py           # Multi-provider LLM client
-│   │   │   ├── assessment.py            # Deterministic CEFR evaluation + LLM helpers
-│   │   │   ├── study_plan_generator.py  # Curriculum-driven plan (no LLM)
-│   │   │   ├── lesson_generator.py      # LLM lesson content generation
-│   │   │   ├── flashcard_sm2.py         # SM-2 algorithm + LLM flashcard gen
-│   │   │   ├── progress_service.py      # XP, streaks, skills, unit competency
-│   │   │   ├── tts_service.py           # Kokoro HTTP client
-│   │   │   ├── stt_service.py           # Whisper HTTP client
-│   │   │   └── conversation_pipeline.py # WebSocket STT→LLM→TTS pipeline
+│   │   ├── services/            # Business logic + external service clients (10 modules)
 │   │   └── data/
-│   │       └── curriculum.py    # CEFR curriculum A1-C2 (24 units), intensity config
-│   ├── alembic/                 # Async DB migrations (6 migrations)
-│   ├── tests/                   # 10 test files (pytest + pytest-asyncio)
-│   ├── pyproject.toml           # ruff, black, pytest config
-│   └── requirements.txt         # 20+ dependencies
+│   │       └── en/              # Static curriculum and content data
+│   ├── alembic/
+│   │   └── versions/            # DB migrations (7)
+│   └── tests/                   # pytest suite (10 test files)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
-│   │   ├── app/                 # Routes (page.tsx files)
-│   │   │   ├── (auth)/          # Public routes (login, register) — no sidebar
+│   │   ├── app/
+│   │   │   ├── (auth)/          # Public routes (login, register, onboarding) — no sidebar
 │   │   │   ├── (app)/           # Authenticated routes — sidebar layout
-│   │   │   │   ├── dashboard/      # Main dashboard
-│   │   │   │   ├── assessment/     # 3-step onboarding (beginner gate → quiz → plan)
-│   │   │   │   ├── assessment/level-test/  # End-of-level test
-│   │   │   │   ├── plan/           # Curriculum roadmap
-│   │   │   │   ├── lesson/[id]/    # Lesson content + exercises
-│   │   │   │   ├── flashcards/     # SM-2 review, generate, speaking mode
-│   │   │   │   ├── chat/           # AI tutor (SSE streaming)
-│   │   │   │   ├── conversation/   # Voice conversation (WebSocket + VAD)
-│   │   │   │   ├── grammar/        # Grammar reference index
-│   │   │   │   ├── grammar/[slug]/ # Grammar topic detail
-│   │   │   │   ├── vocabulary/     # Vocabulary hub index
-│   │   │   │   ├── vocabulary/[setId]/  # Vocabulary set detail
-│   │   │   │   ├── phrasebook/     # Phrasebook with filters
-│   │   │   │   ├── progress/       # Skills tracker
-│   │   │   │   ├── settings/       # User profile + admin
-│   │   │   │   ├── faq/            # FAQ page
-│   │   │   │   └── admin/users/    # Admin user management
-│   │   │   └── api/            # Next.js Route Handlers (SSE/binary proxies)
-│   │   ├── components/         # React components (shadcn/ui + custom)
-│   │   ├── data/               # Static data (5 files: curriculum, grammar, vocab, phrasebook, assessment-bank)
-│   │   ├── store/              # Zustand stores (auth, theme, progress, loading)
-│   │   ├── lib/                # Utilities (api fetch, WS builder, audio queue)
-│   │   ├── i18n/               # next-intl locale resolver
-│   │   └── middleware.ts       # Auth guard + locale detection
-│   ├── public/                 # Static assets (flags, VAD WASM models)
-│   └── scripts/
-│       └── copy-vad-models.js  # Postinstall: VAD models → public/
+│   │   │   └── api/             # Next.js Route Handlers (SSE / binary proxies)
+│   │   ├── components/          # React components (shadcn/ui + custom)
+│   │   ├── data/                # Static data (curriculum, grammar, vocab, phrasebook, assessment-bank)
+│   │   ├── store/               # Zustand stores (auth, theme, progress, loading)
+│   │   ├── lib/                 # Utilities (apiFetch, WS builder, audio queue, target-languages)
+│   │   ├── i18n/                # next-intl locale resolver
+│   │   └── middleware.ts        # Auth guard + locale detection
+│   ├── public/                  # Static assets (flags, VAD WASM models)
+│   └── scripts/                 # Postinstall helpers (copy-vad-models.js)
 │
-├── messages/                   # i18n message bundles (en, es, fr, pt, de, it)
+├── messages/                    # i18n bundles (en, es, fr, pt, de, it)
+├── specs/                       # Architecture and phase specification files
+├── docs/                        # Documentation site
+├── assets/                      # Logo and branding
+├── .github/                     # CI/CD workflows (GitHub Actions)
 ├── docker-compose.yml
 ├── .env.example
-├── docker/                     # Custom Dockerfiles (optional overrides)
-├── docs/                       # Documentation
-├── assets/                     # Logo, branding
-├── .github/                    # CI/CD workflows (GitHub Actions)
-├── AGENTS.md                   # Agent instructions for AI assistants
-├── CHANGELOG.md                # Version history
+├── AGENTS.md                    # Agent instructions for AI assistants
+├── CHANGELOG.md
 └── README.md
 ```
 
@@ -119,7 +66,7 @@ Registration, authentication, and user preferences.
 | hashed_password | string | bcrypt hash |
 | role | string | `"admin"` or `"user"` |
 | native_language | string | e.g. `"es"`, `"fr"` — used for flashcard translations and tutor feedback |
-| english_variant | string | `"american"` (default) or `"british"` — controls grammar/spelling |
+| target_language | string | BCP-47 tag, e.g. `"en-US"` (default) or `"en-GB"` — the language the user is learning |
 | is_active | boolean | False = account disabled by admin |
 | conversation_max_duration | integer | Max voice session duration in seconds (default 1800) |
 | conversation_inactivity_timeout | integer | Seconds of silence before disconnect (default 180) |
@@ -129,7 +76,8 @@ Registration, authentication, and user preferences.
 **Registration rules:**
 - First registered user becomes admin automatically when `FIRST_USER_IS_ADMIN=true` (default).
 - `ALLOW_REGISTRATION=false` blocks public signups; admin creates users or generates single-use invite links (48h expiry in Redis).
-- Target language is always English. User's native language is used only for flashcard translations and tutor feedback.
+- `POST /register` returns an `access_token` + sets the refresh token cookie so the frontend can redirect directly to `/onboarding` without an intermediate login.
+- On `/onboarding` the user chooses their `target_language`; the choice is saved via `PATCH /me` before accessing the app.
 
 ### StudyPlan (`study_plans`)
 
@@ -149,6 +97,7 @@ One active plan per user. Generated after CEFR assessment.
 | completion_test_taken | boolean | Whether end-of-level test was completed |
 | completion_test_score | float (nullable) | 0.0 – 1.0 |
 | completion_test_recommendation | string (nullable) | `"advance"`, `"extend"`, or `"repeat"` |
+| target_language | string | BCP-47 tag copied from user at plan creation (e.g. `"en-US"`) |
 | created_at | datetime | Auto-set |
 
 **Intensity / duration mapping:**
@@ -281,7 +230,7 @@ Per-unit competency tracking (Phase 1+).
 | POST | `/refresh` | 20/min | Rotates refresh token, returns new access_token |
 | POST | `/logout` | None | Deletes refresh token from Redis, clears cookie |
 | GET | `/me` | None | Returns authenticated user profile |
-| PATCH | `/me` | None | Updates display_name, email, password, english_variant, conversation settings |
+| PATCH | `/me` | None | Updates display_name, email, password, target_language, conversation settings |
 
 ### Admin — `/api/admin` (requires `role="admin"`)
 
@@ -418,7 +367,7 @@ Fully deterministic — no LLM. Uses static curriculum data from `curriculum.py`
 
 LLM-powered lesson content generation with strict constraints:
 - Grammar constrained to a validated set of 24 grammar slugs
-- CEFR level and English variant (american/british) adherence
+- CEFR level and target language adherence (`en-US` / `en-GB`; BCP-47 tag converted to english variant via `language_helpers.get_english_variant`)
 - Generates 3-5 exercises per lesson (multiple_choice, fill_blank, free_write)
 - Separately evaluates free_write answers and pronunciation (scored 0.0–1.0 with feedback)
 
@@ -426,7 +375,13 @@ LLM-powered lesson content generation with strict constraints:
 
 Full SM-2 spaced repetition algorithm:
 - `sm2_update(card, quality)`: modifies ease_factor, interval, repetitions, and next_review based on 0–5 quality rating
-- LLM-powered `generate_flashcards`: creates flashcards with native-language translations
+- LLM-powered `generate_flashcards`: creates flashcards with native-language translations; `native_language` is always sourced from the authenticated user's profile (not from the request body)
+
+### Language Helpers (`language_helpers.py`)
+
+Shared BCP-47 conversion utilities used across the service layer:
+- `get_english_variant(target_language)` — converts `"en-US"` → `"american"`, `"en-GB"` → `"british"` for LLM prompts
+- `get_iso639(target_language)` — strips region subtag: `"en-US"` → `"en"` for Whisper
 
 ### Progress Service (`progress_service.py`)
 
@@ -441,7 +396,7 @@ HTTP client to Kokoro-FastAPI: `POST /v1/audio/speech` with text, voice, and for
 
 ### STT Service (`stt_service.py`)
 
-HTTP client to Whisper ASR: `POST /asr?output=json&language=en&task=transcribe` with multipart audio upload. Returns transcribed text.
+HTTP client to Whisper ASR: `POST /asr?output=json&language=<lang>&task=transcribe` with multipart audio upload. Returns transcribed text. The `language` parameter is derived dynamically from `target_language` via `language_helpers.get_iso639` (e.g. `"en-US"` → `"en"`).
 
 **Note**: The STT endpoint is `/asr` (not OpenAI-compatible `/v1/audio/transcriptions`). This is the actual API of the `onerahmet/openai-whisper-asr-webservice` Docker image.
 

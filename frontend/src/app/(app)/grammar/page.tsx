@@ -92,7 +92,7 @@ export default function GrammarIndexPage() {
         </div>
         <div className="px-6 py-5 space-y-4">
           <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
-            {grammarTopics.length} topics · A1 – C2 · No login required for browsing
+            {grammarTopics.length} topics · A1 – C2
           </p>
           {/* Search */}
           <input
@@ -132,7 +132,7 @@ export default function GrammarIndexPage() {
       {/* Results count when filtering */}
       {(search || activeCategory !== 'All') && (
         <p className="font-mono text-fl-label text-fl-muted-3">
-          {filtered.length} topic{filtered.length !== 1 ? 's' : ''} found
+          {t('topicsFound', { count: filtered.length })}
         </p>
       )}
 

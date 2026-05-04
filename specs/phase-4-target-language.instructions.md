@@ -494,18 +494,18 @@ Returning users (second login) and admin-created users are unaffected — their 
 
 ## Phase 4 completion criteria
 
-- [ ] Migration `0007_target_language` runs without error on a database with pre-existing rows — `english_variant` values are correctly back-filled to BCP-47 codes
-- [ ] `POST /api/auth/register` returns `access_token` in the response body and sets the refresh_token httpOnly cookie
-- [ ] Registering with `target_language="en-GB"` stores `"en-GB"` in the database (not the old `"british"`)
-- [ ] Registering with an unsupported `target_language` value returns HTTP 422
-- [ ] After registration, the frontend is automatically authenticated (access_token stored) and redirected to `/onboarding`
-- [ ] `/onboarding` shows the `TargetLanguageSelector` with both `en-US` and `en-GB` options
-- [ ] Selecting a language and clicking "Start learning" calls `PATCH /api/auth/me` and redirects to `/dashboard`
-- [ ] Navigating to `/onboarding` directly without a valid access_token redirects to `/register`
-- [ ] `/settings` no longer shows the English variant selector
-- [ ] LLM-generated lessons and flashcards use the correct English variant derived from `target_language`
-- [ ] Voice conversation pipeline builds the system prompt with the correct `native_language` and `english_variant` (previously missing)
-- [ ] STT transcription uses the language code derived from `target_language` (`en` for both English variants)
-- [ ] `FlashcardGenerateRequest` no longer accepts a `native_language` field — translation language is always sourced from the user profile
-- [ ] All backend tests pass with `target_language` replacing `english_variant`
-- [ ] No regressions in Phases 1, 2, and 3
+- [x] Migration `0007_target_language` runs without error on a database with pre-existing rows — `english_variant` values are correctly back-filled to BCP-47 codes
+- [x] `POST /api/auth/register` returns `access_token` in the response body and sets the refresh_token httpOnly cookie
+- [x] Registering with `target_language="en-GB"` stores `"en-GB"` in the database (not the old `"british"`)
+- [x] Registering with an unsupported `target_language` value returns HTTP 422
+- [x] After registration, the frontend is automatically authenticated (access_token stored) and redirected to `/onboarding`
+- [x] `/onboarding` shows the `TargetLanguageSelector` with both `en-US` and `en-GB` options
+- [x] Selecting a language and clicking "Start learning" calls `PATCH /api/auth/me` and redirects to `/dashboard`
+- [x] Navigating to `/onboarding` directly without a valid access_token redirects to `/register`
+- [x] `/settings` no longer shows the English variant selector
+- [x] LLM-generated lessons and flashcards use the correct English variant derived from `target_language`
+- [x] Voice conversation pipeline builds the system prompt with the correct `native_language` and `english_variant` (previously missing)
+- [x] STT transcription uses the language code derived from `target_language` (`en` for both English variants)
+- [x] `FlashcardGenerateRequest` no longer accepts a `native_language` field — translation language is always sourced from the user profile
+- [x] All backend tests pass with `target_language` replacing `english_variant`
+- [x] No regressions in Phases 1, 2, and 3

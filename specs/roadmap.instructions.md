@@ -131,7 +131,7 @@ This document records what was built and the completion criteria met.
 
 ## Phase 4 — Multi-Language Support
 
-🔄 Status: In progress
+✅ Status: Complete (v1.3.0)
 
 > Expands the platform from English-only to a multi-target-language architecture.
 > Initial launch supports American English (`en-US`) and British English (`en-GB`),
@@ -157,4 +157,4 @@ This document records what was built and the completion criteria met.
 - [x] `TargetLanguageSelector` renders flags and correct translated labels
 - [x] All 6 locales contain `targetLanguages` and `onboarding` namespaces
 - [x] `tsc --noEmit` and `python3 -m compileall` pass clean
-- [ ] No regressions in Phases 1–3
+- [x] No regressions in Phases 1–3

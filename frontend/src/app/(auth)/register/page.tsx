@@ -53,7 +53,15 @@ function RegisterForm() {
         })
         if (!res.ok) {
           const data = await res.json()
-          throw new Error(data.detail || t('error'))
+          let msg: string
+          if (typeof data.detail === 'string') {
+            msg = data.detail
+          } else if (Array.isArray(data.detail) && data.detail.length > 0) {
+            msg = (data.detail[0] as { msg?: string }).msg ?? t('error')
+          } else {
+            msg = t('error')
+          }
+          throw new Error(msg)
         }
         const data = await res.json()
         setTokens(data.access_token)

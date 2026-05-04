@@ -39,7 +39,6 @@ the frontend never calls them directly.
 freelingo/
 ├── assets/             # Logos and static assets
 ├── backend/            # FastAPI (Python)
-├── docker/             # Custom Dockerfiles (e.g. Kokoro with Blackwell GPU support)
 ├── docs/               # GitHub Pages landing site
 ├── frontend/           # Next.js (React)
 ├── messages/           # i18n translation files (en, es, fr, pt, de, it)
@@ -74,7 +73,7 @@ freelingo/
 | 1+    | Learning Resources Hub | ✅ Complete         |
 | 2     | Local TTS + STT        | ✅ Complete         |
 | 3     | Real-time conversation | ✅ Complete         |
-| 4     | Multi-language support | 🚧 In development   |
+| 4     | Multi-language support | ✅ Complete         |
 
 ## Quick start
 
@@ -124,6 +123,7 @@ The first registered user becomes admin automatically.
 - [phase-1-plus.instructions.md](specs/phase-1-plus.instructions.md) — Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test
 - [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
+- [phase-4-target-language.instructions.md](specs/phase-4-target-language.instructions.md) — Phase 4: target_language (BCP-47), onboarding flow, auto-login on register
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
@@ -135,7 +135,7 @@ The first registered user becomes admin automatically.
 - The recommended model for Ollama is `gemma3:12b`. It can be changed in `.env`.
 - The backend acts as a proxy for Ollama/TTS/STT calls so the frontend never talks directly to those services.
 - The `LLM_PROVIDER` field controls the LLM provider: `ollama` (local, recommended), `openai`, `anthropic`, or `deepseek`.
-- The target language is always **English**. During registration, the user's native language is asked for flashcard translations and tutor feedback.
+- The target language is always **English** (`en-US` American English or `en-GB` British English). The variant is chosen on the `/onboarding` screen immediately after registration. The user's native language is asked during registration and is used only for flashcard translations and tutor feedback.
 
 ## Reverse proxy requirement (real-time conversation)
 

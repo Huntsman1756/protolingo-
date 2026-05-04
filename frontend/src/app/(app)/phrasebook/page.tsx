@@ -7,7 +7,7 @@ import type { CEFRLevel } from '@/data/grammar'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
-const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2']
+const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 const REGISTERS: Register[] = ['formal', 'neutral', 'informal']
 
 const REGISTER_COLORS: Record<Register, string> = {
@@ -129,7 +129,11 @@ export default function PhrasebookPage() {
         </div>
         <div className="px-6 py-5 space-y-4">
           <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
-            {phrasebookCategories.length} situations · {totalPhrases} phrases · A1 – B2
+            {t('statsLine', {
+              situationCount: phrasebookCategories.length,
+              phraseCount: totalPhrases,
+              range: `${CEFR_LEVELS[0]} – ${CEFR_LEVELS[CEFR_LEVELS.length - 1]}`,
+            })}
           </p>
 
           {/* Level filter */}
@@ -175,7 +179,7 @@ export default function PhrasebookPage() {
       {/* Results */}
       {(activeLevel !== 'All' || activeRegister !== 'All') && (
         <p className="font-mono text-fl-label text-fl-muted-3">
-          {filteredCategories.length} situation{filteredCategories.length !== 1 ? 's' : ''} shown
+          {t('situationsShown', { count: filteredCategories.length })}
         </p>
       )}
 

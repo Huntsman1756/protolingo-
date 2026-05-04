@@ -97,7 +97,7 @@ export default function VocabularySetPage({
             {vocabSet.topic}
           </h1>
           <p className="font-mono text-fl-label text-fl-muted-3">
-            {vocabSet.words.length} words
+            {vocabSet.words.length} {t('words')}
           </p>
 
           {/* Add to flashcards */}
