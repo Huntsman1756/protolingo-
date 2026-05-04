@@ -14,7 +14,7 @@ class ChatHistory(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(
-        Integer, ForeignKey("users.id"), nullable=False, index=True
+        Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
     )
     conversation_id: Mapped[Optional[int]] = mapped_column(
         Integer, ForeignKey("conversations.id", ondelete="CASCADE"), nullable=True, index=True

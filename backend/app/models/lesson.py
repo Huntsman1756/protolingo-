@@ -15,7 +15,7 @@ class Lesson(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     study_plan_id: Mapped[int] = mapped_column(
-        Integer, ForeignKey("study_plans.id"), nullable=False, index=True
+        Integer, ForeignKey("study_plans.id", ondelete="CASCADE"), nullable=False, index=True
     )
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     lesson_type: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -33,7 +33,7 @@ class Exercise(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     lesson_id: Mapped[int] = mapped_column(
-        Integer, ForeignKey("lessons.id"), nullable=False, index=True
+        Integer, ForeignKey("lessons.id", ondelete="CASCADE"), nullable=False, index=True
     )
     exercise_type: Mapped[str] = mapped_column(String(50), nullable=False)
     question: Mapped[str] = mapped_column(Text, nullable=False)

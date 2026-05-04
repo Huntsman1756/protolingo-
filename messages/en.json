@@ -59,7 +59,8 @@
       "signingIn": "Signing in...",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
-      "accountCreated": "Account created — you can now sign in"
+      "accountCreated": "Account created — you can now sign in",
+      "invalidEmail": "Please enter a valid email address"
     },
     "register": {
       "title": "Create account",
@@ -81,13 +82,21 @@
       "displayNamePlaceholder": "Same as username if empty",
       "inviteActive": "Invite active",
       "creatingAccount": "Creating...",
-      "invalidEmail": "Please enter a valid email address"
+      "invalidEmail": "Please enter a valid email address",
+      "usernameTaken": "Username already taken",
+      "emailTaken": "Email address already registered",
+      "invalidInvite": "Invalid or expired invite code"
     }
   },
   "settings": {
     "title": "Settings",
     "sectionAccount": "Account",
     "sectionProfile": "Profile",
+    "avatarChange": "Change photo",
+    "avatarRemove": "Remove",
+    "avatarUploading": "Uploading...",
+    "avatarTypeError": "Only JPEG and PNG images are allowed",
+    "avatarSizeError": "Image too large (max 2 MB)",
     "displayName": "Display Name",
     "email": "Email",
     "nativeLanguage": "Native Language",

@@ -1,7 +1,8 @@
 import logging
+import base64
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi import APIRouter, Depends, File, HTTPException, Request, Response, UploadFile
 from redis.asyncio import Redis
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -240,6 +241,39 @@ async def update_me(
     if data.conversation_inactivity_timeout is not None:
         current_user.conversation_inactivity_timeout = data.conversation_inactivity_timeout
 
+    await db.commit()
+    await db.refresh(current_user)
+    return current_user
+
+
+_MAX_AVATAR_BYTES = 2 * 1024 * 1024  # 2 MB
+_ALLOWED_AVATAR_TYPES = {"image/jpeg", "image/png"}
+
+
+@router.post("/me/avatar", response_model=UserResponse)
+async def upload_avatar(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    if file.content_type not in _ALLOWED_AVATAR_TYPES:
+        raise HTTPException(status_code=400, detail="Only JPEG and PNG images are allowed")
+    data = await file.read(_MAX_AVATAR_BYTES + 1)
+    if len(data) > _MAX_AVATAR_BYTES:
+        raise HTTPException(status_code=400, detail="Image too large (max 2 MB)")
+    b64 = base64.b64encode(data).decode()
+    current_user.avatar = f"data:{file.content_type};base64,{b64}"
+    await db.commit()
+    await db.refresh(current_user)
+    return current_user
+
+
+@router.delete("/me/avatar", response_model=UserResponse)
+async def delete_avatar(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    current_user.avatar = None
     await db.commit()
     await db.refresh(current_user)
     return current_user

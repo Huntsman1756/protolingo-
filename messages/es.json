@@ -59,7 +59,8 @@
       "signingIn": "Iniciando sesión...",
       "showPassword": "Mostrar contraseña",
       "hidePassword": "Ocultar contraseña",
-      "accountCreated": "Cuenta creada — ya puedes iniciar sesión"
+      "accountCreated": "Cuenta creada — ya puedes iniciar sesión",
+      "invalidEmail": "Por favor, introduce una dirección de correo válida"
     },
     "register": {
       "title": "Crear cuenta",
@@ -81,13 +82,21 @@
       "displayNamePlaceholder": "Igual que el nombre de usuario si está vacío",
       "inviteActive": "Invitación activa",
       "creatingAccount": "Creando...",
-      "invalidEmail": "Por favor, introduce una dirección de correo válida"
+      "invalidEmail": "Por favor, introduce una dirección de correo válida",
+      "usernameTaken": "El nombre de usuario ya está en uso",
+      "emailTaken": "El correo electrónico ya está registrado",
+      "invalidInvite": "El código de invitación no es válido o ha caducado"
     }
   },
   "settings": {
     "title": "Ajustes",
     "sectionAccount": "Cuenta",
     "sectionProfile": "Perfil",
+    "avatarChange": "Cambiar foto",
+    "avatarRemove": "Eliminar",
+    "avatarUploading": "Subiendo...",
+    "avatarTypeError": "Solo se permiten imágenes JPEG y PNG",
+    "avatarSizeError": "Imagen demasiado grande (máx. 2 MB)",
     "displayName": "Nombre para mostrar",
     "email": "Correo electrónico",
     "nativeLanguage": "Idioma nativo",
