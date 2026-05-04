@@ -78,7 +78,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           displayName: me.display_name,
           email: me.email,
           native_language: me.native_language,
-          english_variant: me.english_variant,
+          target_language: me.target_language,
           role: me.role,
           conversation_max_duration: me.conversation_max_duration,
           conversation_inactivity_timeout: me.conversation_inactivity_timeout,

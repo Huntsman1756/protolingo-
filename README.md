@@ -68,12 +68,13 @@ freelingo/
 
 ## Phases
 
-| Phase | Name                   | Status         |
-|-------|------------------------|----------------|
-| 1     | Learning platform      | ✅ Complete    |
-| 1+    | Learning Resources Hub | ✅ Complete    |
-| 2     | Local TTS + STT        | ✅ Complete    |
-| 3     | Real-time conversation | ✅ Complete    |
+| Phase | Name                   | Status              |
+|-------|------------------------|---------------------|
+| 1     | Learning platform      | ✅ Complete         |
+| 1+    | Learning Resources Hub | ✅ Complete         |
+| 2     | Local TTS + STT        | ✅ Complete         |
+| 3     | Real-time conversation | ✅ Complete         |
+| 4     | Multi-language support | 🚧 In development   |
 
 ## Quick start
 

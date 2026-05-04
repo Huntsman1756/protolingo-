@@ -2,6 +2,7 @@ from datetime import date, timedelta
 
 from app.models.flashcard import Flashcard
 from app.schemas.flashcards import FlashcardGenerateResponse
+from app.services.language_helpers import get_english_variant
 from app.services.llm_adapter import llm_adapter
 
 
@@ -45,8 +46,9 @@ Return JSON:
 
 
 async def generate_flashcards(
-    topic: str, count: int, cefr_level: str, native_language: str, english_variant: str = "american"
+    topic: str, count: int, cefr_level: str, native_language: str, target_language: str = "en-US"
 ) -> FlashcardGenerateResponse:
+    english_variant = get_english_variant(target_language)
     prompt = FLASHCARD_GEN_PROMPT.format(
         topic=topic,
         count=count,

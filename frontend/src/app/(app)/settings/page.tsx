@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -25,7 +24,6 @@ export default function SettingsPage() {
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
-  const [englishVariant, setEnglishVariant] = useState<'american' | 'british'>('american')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
@@ -41,7 +39,6 @@ export default function SettingsPage() {
       setDisplayName(user.displayName || '')
       setEmail(user.email || '')
       setNativeLanguage(user.native_language || 'es')
-      setEnglishVariant((user.english_variant as 'american' | 'british') || 'american')
       setConvMaxDuration((user.conversation_max_duration as 900 | 1800) || 1800)
       setConvInactivityTimeout((user.conversation_inactivity_timeout as 60 | 180 | 300) || 180)
     }
@@ -63,13 +60,12 @@ export default function SettingsPage() {
           display_name: displayName,
           email: email || null,
           native_language: nativeLanguage,
-          english_variant: englishVariant,
           ...(password ? { password } : {}),
         }),
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, english_variant: updated.english_variant, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
       setMessage({ type: 'ok', text: t('saved') })
       setPassword('')
       setConfirmPassword('')
@@ -94,7 +90,7 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, english_variant: updated.english_variant, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
       setConvMessage({ type: 'ok', text: t('conversationSaved') })
     } catch (err: unknown) {
       setConvMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
@@ -152,32 +148,6 @@ export default function SettingsPage() {
               <option key={code} value={code}>{tLang(code)}</option>
             ))}
           </select>
-        </div>
-
-        <div>
-          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('englishVariant')}</label>
-          <div className="flex gap-2">
-            {(['american', 'british'] as const).map((v) => (
-              <button
-                key={v}
-                type="button"
-                onClick={() => setEnglishVariant(v)}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${englishVariant === v
-                  ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
-                  : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
-              >
-                <Image
-                  src={v === 'american' ? '/flags/eeuu.jpg' : '/flags/uk.jpg'}
-                  alt={v === 'american' ? 'US flag' : 'UK flag'}
-                  width={20}
-                  height={16}
-                  className="object-cover"
-                />
-                {v === 'american' ? t('american') : t('british')}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div>

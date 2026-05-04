@@ -70,6 +70,8 @@ async def conversation_ws(
         # Read user settings before session closes to avoid DetachedInstanceError
         max_duration = user.conversation_max_duration
         inactivity_timeout = user.conversation_inactivity_timeout
+        native_language = user.native_language
+        target_language = user.target_language
 
     logger.info("[conversation] Session started — user=%s cefr=%s max_duration=%ss inactivity=%ss",
                 user_id, cefr_level, max_duration, inactivity_timeout)
@@ -80,6 +82,8 @@ async def conversation_ws(
         tts=tts_service,
         stt=stt_service,
         cefr_level=cefr_level,
+        native_language=native_language,
+        target_language=target_language,
         max_duration=max_duration,
         inactivity_timeout=inactivity_timeout,
     )

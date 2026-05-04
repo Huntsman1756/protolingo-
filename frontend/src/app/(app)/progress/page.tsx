@@ -4,9 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
-import { getCurriculumUnits, type CurriculumUnit } from '@/data/curriculum'
+import { getCurriculumUnits, CEFR_LEVELS, type CurriculumUnit, type CEFRLevel } from '@/data/curriculum'
 import { vocabularySets } from '@/data/vocabulary'
-import type { CEFRLevel } from '@/data/grammar'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -152,7 +151,6 @@ export default function ProgressPage() {
     void load()
   }, [])
 
-  const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
   const cefrLevel = plan?.cefr_level as CEFRLevel | undefined
   const levelUnits = cefrLevel
     ? getCurriculumUnits(cefrLevel)

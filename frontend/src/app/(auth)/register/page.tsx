@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useAuthStore } from '@/store/auth'
 
 const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it'] as const
 
@@ -15,6 +16,7 @@ function RegisterForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const invite = searchParams.get('invite')
+  const setTokens = useAuthStore((s) => s.setTokens)
 
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -53,14 +55,16 @@ function RegisterForm() {
           const data = await res.json()
           throw new Error(data.detail || t('error'))
         }
-        router.push('/login?registered=true')
+        const data = await res.json()
+        setTokens(data.access_token)
+        router.push('/onboarding')
       } catch (err: unknown) {
         setError(err instanceof Error ? err.message : t('error'))
       } finally {
         setLoading(false)
       }
     },
-    [username, email, password, confirmPassword, displayName, nativeLanguage, invite, router, t]
+    [username, email, password, confirmPassword, displayName, nativeLanguage, invite, router, t, setTokens]
   )
 
   return (

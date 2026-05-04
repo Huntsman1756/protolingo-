@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from app.data.curriculum import CEFR_LEVELS
 from app.schemas.assessment import (
     AnswerRecord,
     AssessmentResult,
@@ -10,8 +11,6 @@ from app.services.llm_adapter import (
     LLMResponseError,
     llm_adapter,
 )
-
-CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"]
 
 FREE_WRITE_ASSESSMENT_PROMPT = """
 You are evaluating a short English writing sample for CEFR placement.

@@ -14,17 +14,18 @@ class STTService:
         audio_bytes: bytes,
         filename: str = "audio.wav",
         mime_type: str = "audio/wav",
+        language: str = "en",
     ) -> str:
         """Send audio to Whisper ASR and return the transcribed text.
 
         Compatible with onerahmet/openai-whisper-asr-webservice which exposes
-        POST /asr?output=json&language=en (not the OpenAI /v1/audio/transcriptions path).
+        POST /asr?output=json&language=<code> (not the OpenAI /v1/audio/transcriptions path).
         """
         async with httpx.AsyncClient() as client:
-            logger.debug("[stt] POST /asr — %d bytes, filename=%s", len(audio_bytes), filename)
+            logger.debug("[stt] POST /asr — %d bytes, filename=%s lang=%s", len(audio_bytes), filename, language)
             response = await client.post(
                 f"{self.base_url}/asr",
-                params={"output": "json", "language": "en", "task": "transcribe"},
+                params={"output": "json", "language": language, "task": "transcribe"},
                 files={"audio_file": (filename, audio_bytes, mime_type)},
                 timeout=60.0,
             )

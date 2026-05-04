@@ -6,7 +6,7 @@ interface User {
   displayName: string
   email?: string
   native_language?: string
-  english_variant?: string
+  target_language?: string
   role: 'admin' | 'user'
   conversation_max_duration: number
   conversation_inactivity_timeout: number
