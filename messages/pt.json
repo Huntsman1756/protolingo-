@@ -293,7 +293,7 @@
     "title": "Cartões",
     "due": "Para hoje",
     "total": "Total",
-    "noDue": "Nenhum cartão para hoje.",
+    "noDue": "Nenhum cartão para revisão",
     "allCaughtUp": "Tudo em dia!",
     "generate": "Gerar cartões",
     "generating": "Gerando...",
@@ -312,7 +312,10 @@
     "sectionGenerate": "Gerar novos cartões",
     "speakingMode": "Fala",
     "standardMode": "Padrão",
-    "sayWord": "Diga a palavra em voz alta"
+    "sayWord": "Diga a palavra em voz alta",
+    "refresh": "Atualizar",
+    "generateBtn": "Gerar",
+    "cards": "cartas"
   },
   "chat": {
     "title": "Tutor IA",
@@ -436,7 +439,9 @@
     "inviteBtn": "+ Link de convite",
     "createUserBtn": "+ Criar utilizador",
     "prevPage": "← Anterior",
-    "nextPage": "Seguinte →"
+    "nextPage": "Seguinte →",
+    "roleUser": "Usuário",
+    "roleAdmin": "Admin"
   },
   "faq": {
     "title": "FAQ",

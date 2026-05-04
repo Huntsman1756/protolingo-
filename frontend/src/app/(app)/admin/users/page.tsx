@@ -237,9 +237,9 @@ export default function AdminUsersPage() {
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-sm text-fl-fg">{u.display_name}</span>
                     <span className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${u.role === 'admin' ? 'border-fl-fg/40 text-fl-fg' : 'border-fl-border text-fl-muted-2'
-                      }`}>{u.role}</span>
+                      }`}>{u.role === 'admin' ? t('roleAdmin') : t('roleUser')}</span>
                     {!u.is_active && (
-                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-2 py-0.5">inactive</span>
+                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-2 py-0.5">{t('inactive')}</span>
                     )}
                   </div>
                   <p className="font-mono text-fl-label text-fl-muted-2">

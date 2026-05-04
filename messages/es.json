@@ -331,7 +331,7 @@
     "title": "Tarjetas",
     "due": "Para hoy",
     "total": "Total",
-    "noDue": "No hay tarjetas para hoy.",
+    "noDue": "No hay tarjetas pendientes de revisión",
     "allCaughtUp": "¡Al día!",
     "generate": "Generar tarjetas",
     "generating": "Generando…",
@@ -350,7 +350,10 @@
     "sectionGenerate": "Generar nuevas tarjetas",
     "speakingMode": "Hablar",
     "standardMode": "Estándar",
-    "sayWord": "Di la palabra en voz alta"
+    "sayWord": "Di la palabra en voz alta",
+    "refresh": "Actualizar",
+    "generateBtn": "Generar",
+    "cards": "tarjetas"
   },
   "chat": {
     "title": "Tutor IA",
@@ -474,7 +477,9 @@
     "inviteBtn": "+ Enlace de invitación",
     "createUserBtn": "+ Crear usuario",
     "prevPage": "← Anterior",
-    "nextPage": "Siguiente →"
+    "nextPage": "Siguiente →",
+    "roleUser": "Usuario",
+    "roleAdmin": "Admin"
   },
   "faq": {
     "title": "FAQ",

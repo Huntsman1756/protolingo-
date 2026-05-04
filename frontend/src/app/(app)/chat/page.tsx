@@ -194,7 +194,7 @@ export default function ChatPage() {
               className="font-mono text-fl-label tracking-widest text-fl-muted-1 hover:text-fl-fg transition-colors uppercase"
               title={t('newConversation')}
             >
-              + New
+              + {t('newConversation')}
             </button>
           </div>
           <div className="flex-1 overflow-y-auto">

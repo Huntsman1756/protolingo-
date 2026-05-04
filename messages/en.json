@@ -331,7 +331,7 @@
     "title": "Flashcards",
     "due": "Due",
     "total": "Total",
-    "noDue": "No flashcards due today.",
+    "noDue": "No cards due for review",
     "allCaughtUp": "All caught up!",
     "generate": "Generate Flashcards",
     "generating": "Generating...",
@@ -350,7 +350,10 @@
     "sectionGenerate": "Generate New Cards",
     "speakingMode": "Speaking",
     "standardMode": "Standard",
-    "sayWord": "Say the word aloud"
+    "sayWord": "Say the word aloud",
+    "refresh": "Refresh",
+    "generateBtn": "Generate",
+    "cards": "cards"
   },
   "chat": {
     "title": "AI Tutor",
@@ -474,7 +477,9 @@
     "inviteBtn": "+ Invite Link",
     "createUserBtn": "+ Create User",
     "prevPage": "← Prev",
-    "nextPage": "Next →"
+    "nextPage": "Next →",
+    "roleUser": "User",
+    "roleAdmin": "Admin"
   },
   "faq": {
     "title": "FAQ",
