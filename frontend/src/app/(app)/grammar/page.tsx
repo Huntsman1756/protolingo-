@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { grammarTopics, type CEFRLevel, type GrammarCategory, type GrammarTopic } from '@/data/grammar'
+import { grammarTopics, type GrammarCategory, type GrammarTopic } from '@/data/grammar'
 import { CEFR_LEVELS } from '@/data/curriculum'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
