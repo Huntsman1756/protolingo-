@@ -331,7 +331,7 @@
     "title": "Karteikarten",
     "due": "Fällig",
     "total": "Gesamt",
-    "noDue": "Heute keine Karteikarten fällig.",
+    "noDue": "Keine Karten zur Wiederholung fällig",
     "allCaughtUp": "Alles erledigt!",
     "generate": "Karteikarten erstellen",
     "generating": "Wird erstellt...",
@@ -350,7 +350,10 @@
     "sectionGenerate": "Neue Karten erstellen",
     "speakingMode": "Sprechen",
     "standardMode": "Standard",
-    "sayWord": "Sag das Wort laut"
+    "sayWord": "Sag das Wort laut",
+    "refresh": "Aktualisieren",
+    "generateBtn": "Generieren",
+    "cards": "Karten"
   },
   "chat": {
     "title": "KI-Tutor",
@@ -474,7 +477,9 @@
     "inviteBtn": "+ Einladungslink",
     "createUserBtn": "+ Benutzer erstellen",
     "prevPage": "← Zurück",
-    "nextPage": "Weiter →"
+    "nextPage": "Weiter →",
+    "roleUser": "Benutzer",
+    "roleAdmin": "Admin"
   },
   "faq": {
     "title": "FAQ",

@@ -139,7 +139,7 @@ export default function FlashcardsPage() {
             : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
             }`}
         >
-          + Generate
+          + {t('generateBtn')}
         </button>
       </div>
 
@@ -173,7 +173,7 @@ export default function FlashcardsPage() {
                   onChange={(e) => setGenCount(Number(e.target.value))}
                   className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 appearance-none"
                 >
-                  {[5, 10, 15, 20].map(n => <option key={n} value={n}>{n} cards</option>)}
+                  {[5, 10, 15, 20].map(n => <option key={n} value={n}>{n} {t('cards')}</option>)}
                 </select>
               </div>
               <div>
@@ -201,7 +201,7 @@ export default function FlashcardsPage() {
       {/* No cards */}
       {cards.length === 0 && (
         <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center">
-          <p className="font-mono text-sm text-fl-muted-1">No cards due for review</p>
+          <p className="font-mono text-sm text-fl-muted-1">{t('noDue')}</p>
           {total === 0 && (
             <p className="font-mono text-xs text-fl-muted-2 mt-2">Use <span className="text-fl-muted-1">+ Generate</span> to create your first cards with AI</p>
           )}
@@ -209,7 +209,7 @@ export default function FlashcardsPage() {
             onClick={loadDue}
             className="mt-6 border border-fl-border px-6 py-2 font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
           >
-            — Refresh
+            — {t('refresh')}
           </button>
         </div>
       )}

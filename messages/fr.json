@@ -331,7 +331,7 @@
     "title": "Fiches",
     "due": "À revoir",
     "total": "Total",
-    "noDue": "Aucune fiche à revoir aujourd'hui.",
+    "noDue": "Aucune carte à réviser",
     "allCaughtUp": "Tout est à jour !",
     "generate": "Générer des fiches",
     "generating": "Génération...",
@@ -350,7 +350,10 @@
     "sectionGenerate": "Générer de nouvelles fiches",
     "speakingMode": "Expression orale",
     "standardMode": "Standard",
-    "sayWord": "Dites le mot à voix haute"
+    "sayWord": "Dites le mot à voix haute",
+    "refresh": "Actualiser",
+    "generateBtn": "Générer",
+    "cards": "cartes"
   },
   "chat": {
     "title": "Tuteur IA",
@@ -474,7 +477,9 @@
     "inviteBtn": "+ Lien d'invitation",
     "createUserBtn": "+ Créer un utilisateur",
     "prevPage": "← Préc.",
-    "nextPage": "Suiv. →"
+    "nextPage": "Suiv. →",
+    "roleUser": "Utilisateur",
+    "roleAdmin": "Admin"
   },
   "faq": {
     "title": "FAQ",

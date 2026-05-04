@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-05-04
+
+### Added
+- User avatar: upload (JPEG/PNG, max 2 MB), client-side resize to 1024×1024 via Canvas API, stored as base64 data URI in DB; circular avatar shown in settings, sidebar (desktop 32×32 and mobile 28×28) and chat bubbles (28×28)
+- Avatar placeholder with user initial shown when no avatar is set
+- Tutor logo (`/logo.png`) shown as avatar in chat message bubbles
+- `POST /api/auth/me/avatar` and `DELETE /api/auth/me/avatar` endpoints (FastAPI `UploadFile`, type+size validation, base64 encoding)
+- Alembic migration `0009_user_avatar.py`: adds `avatar TEXT NULL` column to `users`
+- Alembic migration `0008_cascade_delete_user.py`: adds `ON DELETE CASCADE` to all user-owned FK constraints (`flashcards`, `study_plans`, `progress`, `chat_history`, `lessons`, `exercises`), fixing silent failures when deleting a user from admin
+- Logout confirmation dialog in settings page (reuses existing `logoutConfirmTitle/Message` keys)
+- i18n keys in all 6 locales: `settings.avatarChange`, `settings.avatarRemove`, `settings.avatarUploading`, `settings.avatarTypeError`, `settings.avatarSizeError`
+- i18n keys in all 6 locales: `flashcards.refresh`, `flashcards.generateBtn`, `flashcards.cards` (for card count options: "5 cards", "10 cards", etc.)
+- i18n keys in all 6 locales: `admin.roleUser`, `admin.roleAdmin`
+- `avatar?: string | null` field added to `User` interface (frontend Zustand store) and `UserResponse` schema (backend)
+
+### Changed
+- `flashcards.noDue` translation updated to "No cards due for review" (and equivalents in all locales)
+- Flashcards page: `+ Generate` button, `{n} cards` option labels, "No cards due for review" text and "Refresh" button now use i18n keys
+- Chat sidebar: `+ New` button now uses `t('newConversation')` i18n key
+- Admin users list: role badge (`user`/`admin`) and `inactive` badge now use i18n keys instead of hardcoded English strings
+
+### Fixed
+- Admin: deleting a user now correctly removes all associated data thanks to `ON DELETE CASCADE`; delete error was previously only visible inside the create-user form panel — now shown globally
+- Login/register: raw backend validation errors (e.g. Pydantic email format messages) no longer shown to the user; all errors mapped to translated strings (`invalidEmail`, `usernameTaken`, `emailTaken`, `registrationClosed`, `invalidInvite`, generic fallback)
+- i18n keys `auth.register.usernameTaken`, `auth.register.emailTaken`, `auth.register.invalidInvite`, `auth.login.invalidEmail` added to all 6 locale files
+
 ## [1.3.0] - 2026-05-04
 
 ### Added
