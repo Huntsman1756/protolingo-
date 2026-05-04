@@ -59,7 +59,8 @@
       "signingIn": "Wird angemeldet...",
       "showPassword": "Passwort anzeigen",
       "hidePassword": "Passwort verbergen",
-      "accountCreated": "Konto erstellt — du kannst dich jetzt anmelden"
+      "accountCreated": "Konto erstellt — du kannst dich jetzt anmelden",
+      "invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein"
     },
     "register": {
       "title": "Konto erstellen",
@@ -81,13 +82,21 @@
       "displayNamePlaceholder": "Gleich wie Benutzername wenn leer",
       "inviteActive": "Einladung aktiv",
       "creatingAccount": "Wird erstellt...",
-      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "usernameTaken": "Benutzername ist bereits vergeben",
+      "emailTaken": "Diese E-Mail-Adresse ist bereits registriert",
+      "invalidInvite": "Ungültiger oder abgelaufener Einladungscode"
     }
   },
   "settings": {
     "title": "Einstellungen",
     "sectionAccount": "Konto",
     "sectionProfile": "Profil",
+    "avatarChange": "Foto ändern",
+    "avatarRemove": "Entfernen",
+    "avatarUploading": "Wird hochgeladen...",
+    "avatarTypeError": "Nur JPEG- und PNG-Bilder sind erlaubt",
+    "avatarSizeError": "Bild zu groß (max. 2 MB)",
     "displayName": "Anzeigename",
     "email": "E-Mail",
     "nativeLanguage": "Muttersprache",

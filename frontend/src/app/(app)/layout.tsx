@@ -82,6 +82,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           role: me.role,
           conversation_max_duration: me.conversation_max_duration,
           conversation_inactivity_timeout: me.conversation_inactivity_timeout,
+          avatar: me.avatar ?? null,
         })
       } catch {
         logout()
@@ -202,10 +203,25 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
         {/* User + logout */}
         <div className="border-t border-fl-border px-5 py-4">
-          <p className="text-fl-caption font-mono text-fl-muted-2 tracking-widest uppercase mb-1">
-            {user?.displayName || user?.username}
-          </p>
-          <p className="text-fl-label font-mono text-fl-muted-4 mb-3">@{user?.username}</p>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-fl-border flex-shrink-0">
+              {user?.avatar ? (
+                <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
+                  <span className="font-mono text-xs text-fl-muted-1 select-none">
+                    {(user?.displayName || user?.username || '?')[0].toUpperCase()}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="min-w-0">
+              <p className="text-fl-caption font-mono text-fl-muted-2 tracking-widest uppercase truncate">
+                {user?.displayName || user?.username}
+              </p>
+              <p className="text-fl-label font-mono text-fl-muted-4 truncate">@{user?.username}</p>
+            </div>
+          </div>
           <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.0</p>
           <button
             onClick={() => setLogoutConfirm(true)}
@@ -311,7 +327,20 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               </Link>
             )}
             <div className="border-t border-fl-border mx-5 mt-2 pt-3">
-              <p className="font-mono text-fl-label text-fl-muted-4 mb-1">@{user?.username}</p>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-7 h-7 rounded-full overflow-hidden border border-fl-border flex-shrink-0">
+                  {user?.avatar ? (
+                    <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
+                      <span className="font-mono text-fl-hint text-fl-muted-1 select-none">
+                        {(user?.displayName || user?.username || '?')[0].toUpperCase()}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <p className="font-mono text-fl-label text-fl-muted-4 truncate">@{user?.username}</p>
+              </div>
               <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.0</p>
               <button
                 onClick={() => { setMobileMenuOpen(false); setLogoutConfirm(true) }}

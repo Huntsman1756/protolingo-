@@ -157,6 +157,11 @@ export default function AdminUsersPage() {
         </div>
       )}
 
+      {/* Global error banner (delete failures, etc.) */}
+      {error && !showCreate && (
+        <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">✕ {error}</div>
+      )}
+
       {/* Create user form */}
       {showCreate && (
         <div className="border border-fl-border bg-fl-surface">

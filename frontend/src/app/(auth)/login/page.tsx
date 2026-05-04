@@ -41,8 +41,15 @@ function LoginForm() {
           body: JSON.stringify({ email, password }),
         })
         if (!res.ok) {
-          const data = await res.json()
-          throw new Error(data.detail || t('error'))
+          const data = await res.json().catch(() => ({}))
+          if (Array.isArray(data.detail) && data.detail.length > 0) {
+            const first = data.detail[0] as { loc?: string[]; msg?: string }
+            const loc = (first.loc ?? []).join('.')
+            if (loc.includes('email') || first.msg?.toLowerCase().includes('email')) {
+              throw new Error(t('invalidEmail'))
+            }
+          }
+          throw new Error(t('error'))
         }
         const { access_token } = await res.json()
         setTokens(access_token)

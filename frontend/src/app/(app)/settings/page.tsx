@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -35,8 +35,77 @@ export default function SettingsPage() {
   const [convMessage, setConvMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
   const [savingConv, setSavingConv] = useState(false)
 
+  const [logoutConfirm, setLogoutConfirm] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState(false)
   const [deleting, setDeleting] = useState(false)
+
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [avatarUploading, setAvatarUploading] = useState(false)
+  const [avatarError, setAvatarError] = useState<string | null>(null)
+
+  function resizeImage(file: File, maxPx: number): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      const url = URL.createObjectURL(file)
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        let { width, height } = img
+        if (width > maxPx || height > maxPx) {
+          if (width > height) { height = Math.round((height * maxPx) / width); width = maxPx }
+          else { width = Math.round((width * maxPx) / height); height = maxPx }
+        }
+        const canvas = document.createElement('canvas')
+        canvas.width = width; canvas.height = height
+        canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
+        canvas.toBlob((b) => b ? resolve(b) : reject(new Error()), file.type, 0.9)
+      }
+      img.onerror = reject
+      img.src = url
+    })
+  }
+
+  async function handleAvatarUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+      setAvatarError(t('avatarTypeError'))
+      return
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      setAvatarError(t('avatarSizeError'))
+      return
+    }
+    setAvatarUploading(true)
+    setAvatarError(null)
+    try {
+      const blob = await resizeImage(file, 1024)
+      const form = new FormData()
+      form.append('file', blob, file.name)
+      const res = await apiFetch('/api/auth/me/avatar', { method: 'POST', body: form })
+      if (!res.ok) throw new Error()
+      const updated = await res.json()
+      setUser({ ...user!, avatar: updated.avatar })
+    } catch {
+      setAvatarError(t('avatarTypeError'))
+    } finally {
+      setAvatarUploading(false)
+    }
+  }
+
+  async function handleAvatarRemove() {
+    setAvatarUploading(true)
+    setAvatarError(null)
+    try {
+      const res = await apiFetch('/api/auth/me/avatar', { method: 'DELETE' })
+      if (!res.ok) throw new Error()
+      setUser({ ...user!, avatar: null })
+    } catch {
+      setAvatarError(t('avatarTypeError'))
+    } finally {
+      setAvatarUploading(false)
+    }
+  }
 
   useEffect(() => {
     if (user) {
@@ -69,7 +138,7 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null })
       setMessage({ type: 'ok', text: t('saved') })
       setPassword('')
       setConfirmPassword('')
@@ -94,7 +163,7 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null })
       setConvMessage({ type: 'ok', text: t('conversationSaved') })
     } catch (err: unknown) {
       setConvMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
@@ -133,6 +202,60 @@ export default function SettingsPage() {
           <span className="text-fl-label text-fl-muted-2">●</span>
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionProfile')}</span>
         </div>
+
+        {/* Avatar */}
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={avatarUploading}
+            className="relative flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border border-fl-border hover:border-fl-border-2 transition-colors focus:outline-none disabled:opacity-60"
+          >
+            {user?.avatar ? (
+              <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
+                <span className="font-mono text-xl text-fl-muted-1 select-none">
+                  {(user?.displayName || user?.username || '?')[0].toUpperCase()}
+                </span>
+              </div>
+            )}
+            {avatarUploading && (
+              <div className="absolute inset-0 bg-fl-bg/70 flex items-center justify-center">
+                <span className="font-mono text-fl-hint text-fl-muted-2 animate-pulse">…</span>
+              </div>
+            )}
+          </button>
+          <div className="space-y-1">
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={avatarUploading}
+              className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg transition-colors disabled:opacity-40"
+            >
+              — {avatarUploading ? t('avatarUploading') : t('avatarChange')}
+            </button>
+            {user?.avatar && !avatarUploading && (
+              <button
+                type="button"
+                onClick={handleAvatarRemove}
+                className="block font-mono text-fl-label tracking-widest text-fl-muted-4 uppercase hover:text-fl-error transition-colors"
+              >
+                — {t('avatarRemove')}
+              </button>
+            )}
+          </div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/jpeg,image/png"
+            className="hidden"
+            onChange={handleAvatarUpload}
+          />
+        </div>
+        {avatarError && (
+          <div className="font-mono text-xs px-4 py-3 border border-fl-error/40 text-fl-error">✕ {avatarError}</div>
+        )}
 
         {[
           { label: t('displayName'), value: displayName, onChange: setDisplayName, type: 'text' },
@@ -324,7 +447,7 @@ export default function SettingsPage() {
       </div>
 
       <button
-        onClick={handleLogout}
+        onClick={() => setLogoutConfirm(true)}
         className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 mt-4 uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
       >
         — {tCommon('logout')}
@@ -339,6 +462,15 @@ export default function SettingsPage() {
           — {t('deleteAccount')}
         </button>
       )}
+
+      <ConfirmDialog
+        open={logoutConfirm}
+        title={tCommon('logoutConfirmTitle')}
+        message={tCommon('logoutConfirmMessage')}
+        confirmLabel={tCommon('logout')}
+        onConfirm={handleLogout}
+        onCancel={() => setLogoutConfirm(false)}
+      />
 
       <ConfirmDialog
         open={deleteConfirm}

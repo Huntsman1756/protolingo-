@@ -64,6 +64,7 @@ class UserResponse(BaseModel):
     is_active: bool
     conversation_max_duration: int
     conversation_inactivity_timeout: int
+    avatar: Optional[str] = None
     created_at: datetime
 
     model_config = {"from_attributes": True}
