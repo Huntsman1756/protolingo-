@@ -3,9 +3,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
 
 export default function PrivacyPage() {
   const t = useTranslations('legal.privacy')
+  const searchParams = useSearchParams()
+  const from = searchParams.get('from')
+  const isFromSettings = from === 'settings'
+  const backHref = isFromSettings ? '/settings' : '/register'
+  const backLabel = isFromSettings ? t('linkBackSettings') : t('linkBack')
+  const termsHref = isFromSettings ? '/terms?from=settings' : '/terms'
   const s2Items = [t('s2i1'), t('s2i2'), t('s2i3'), t('s2i4'), t('s2i5'), t('s2i6'), t('s2i7')]
   const s3Items = [t('s3i1'), t('s3i2'), t('s3i3'), t('s3i4')]
 
@@ -72,11 +79,11 @@ export default function PrivacyPage() {
         ))}
 
         <div className="pt-4 border-t border-fl-border flex gap-6">
-          <Link href="/terms" className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors">
+          <Link href={termsHref} className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors">
             — {t('linkTerms')}
           </Link>
-          <Link href="/register" className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors">
-            — {t('linkBack')}
+          <Link href={backHref} className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors">
+            — {backLabel}
           </Link>
         </div>
       </div>

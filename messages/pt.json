@@ -171,7 +171,8 @@
       "s8Title": "8. Alterações nestes Termos",
       "s8Body": "Estes termos podem ser atualizados a qualquer momento. O uso continuado do serviço após as alterações constitui aceitação dos termos revisados.",
       "linkPrivacy": "Política de Privacidade",
-      "linkBack": "Voltar ao cadastro"
+      "linkBack": "Voltar ao cadastro",
+    "linkBackSettings": "Voltar às configurações"
     },
     "privacy": {
       "pageTitle": "Política de Privacidade",
@@ -203,7 +204,8 @@
       "s7Title": "7. Contato",
       "s7Body": "Para qualquer preocupação relacionada à privacidade desta instância específica, entre em contato com o administrador do servidor que você está usando. Para perguntas sobre o projeto FreeLingo em si, visite o repositório do projeto no GitHub.",
       "linkTerms": "Termos de Serviço",
-      "linkBack": "Voltar ao cadastro"
+      "linkBack": "Voltar ao cadastro",
+    "linkBackSettings": "Voltar às configurações"
     }
   },
   "dashboard": {

@@ -143,9 +143,9 @@ function RegisterForm() {
               />
               <label htmlFor="terms-accept" className="font-mono text-xs text-fl-muted-2 leading-relaxed cursor-pointer select-none">
                 {t('termsAccept')}{' '}
-                <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-fl-muted-1 hover:text-fl-fg underline underline-offset-2 transition-colors">{t('termsLink')}</a>
+                <a href="/terms?from=register" className="text-fl-muted-1 hover:text-fl-fg underline underline-offset-2 transition-colors">{t('termsLink')}</a>
                 {' '}{t('andWord')}{' '}
-                <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-fl-muted-1 hover:text-fl-fg underline underline-offset-2 transition-colors">{t('privacyLink')}</a>
+                <a href="/privacy?from=register" className="text-fl-muted-1 hover:text-fl-fg underline underline-offset-2 transition-colors">{t('privacyLink')}</a>
               </label>
             </div>
 

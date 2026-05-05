@@ -454,21 +454,15 @@ export default function SettingsPage() {
         </div>
         <div className="flex flex-col gap-2">
           <a
-            href="/terms"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
+            href="/terms?from=settings"
+            className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
           >
-            <ExternalLink className="w-3.5 h-3.5" />
             {t('termsOfService')}
           </a>
           <a
-            href="/privacy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
+            href="/privacy?from=settings"
+            className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
           >
-            <ExternalLink className="w-3.5 h-3.5" />
             {t('privacyPolicy')}
           </a>
         </div>
