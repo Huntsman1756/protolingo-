@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
@@ -23,6 +24,7 @@ interface Conversation {
 export default function ChatPage() {
   const t = useTranslations('chat')
   const tCommon = useTranslations('common')
+  const router = useRouter()
   const user = useAuthStore((s) => s.user)
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeId, setActiveId] = useState<number | null>(null)
@@ -95,6 +97,14 @@ export default function ChatPage() {
     setMessages([])
     setError('')
     inputRef.current?.focus()
+  }
+
+  function continueInVoice() {
+    const context = messages
+      .filter((m) => m.content.trim().length > 0)
+      .slice(-20)
+    sessionStorage.setItem('voice_context', JSON.stringify(context))
+    router.push('/conversation')
   }
 
   async function deleteConversation(id: number) {
@@ -244,9 +254,16 @@ export default function ChatPage() {
               ? (conversations.find((c) => c.id === activeId)?.title ?? t('title'))
               : t('newConversation')}
           </span>
-          {sending && (
+          {sending ? (
             <span className="ml-auto font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase animate-pulse">{t('thinking')}</span>
-          )}
+          ) : messages.length > 0 ? (
+            <button
+              onClick={continueInVoice}
+              className="ml-auto font-mono text-fl-hint tracking-widest text-fl-muted-2 hover:text-fl-fg uppercase transition-colors"
+            >
+              {t('continueInVoice')}
+            </button>
+          ) : null}
         </div>
 
         {/* Messages */}

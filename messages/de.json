@@ -172,7 +172,7 @@
       "s8Body": "Diese Bedingungen können jederzeit aktualisiert werden. Die fortgesetzte Nutzung des Dienstes nach Änderungen gilt als Zustimmung zu den überarbeiteten Bedingungen.",
       "linkPrivacy": "Datenschutzerklärung",
       "linkBack": "Zurück zur Registrierung",
-    "linkBackSettings": "Zurück zu Einstellungen"
+      "linkBackSettings": "Zurück zu Einstellungen"
     },
     "privacy": {
       "pageTitle": "Datenschutzerklärung",
@@ -205,7 +205,7 @@
       "s7Body": "Bei Datenschutzfragen zu dieser spezifischen Instanz wenden Sie sich bitte an den Administrator des von Ihnen genutzten Servers. Bei Fragen zum FreeLingo-Projekt selbst besuchen Sie das Projekt-Repository auf GitHub.",
       "linkTerms": "Nutzungsbedingungen",
       "linkBack": "Zurück zur Registrierung",
-    "linkBackSettings": "Zurück zu Einstellungen"
+      "linkBackSettings": "Zurück zu Einstellungen"
     }
   },
   "dashboard": {
@@ -440,7 +440,8 @@
     "deleteTitle": "Chat löschen",
     "deleteMessage": "Dieses Gespräch wird dauerhaft gelöscht.",
     "deleteConfirm": "Löschen",
-    "enterToSend": "Enter zum Senden"
+    "enterToSend": "Enter zum Senden",
+    "continueInVoice": "Mit Sprache fortfahren"
   },
   "progress": {
     "title": "Fortschritt",

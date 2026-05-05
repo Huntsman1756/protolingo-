@@ -172,7 +172,7 @@
       "s8Body": "These terms may be updated at any time. Continued use of the service after changes constitutes acceptance of the revised terms.",
       "linkPrivacy": "Privacy Policy",
       "linkBack": "Back to Register",
-    "linkBackSettings": "Back to Settings"
+      "linkBackSettings": "Back to Settings"
     },
     "privacy": {
       "pageTitle": "Privacy Policy",
@@ -205,7 +205,7 @@
       "s7Body": "For any privacy-related concerns about this specific instance, please contact the administrator of the server you are using. For questions about the FreeLingo project itself, visit the project repository on GitHub.",
       "linkTerms": "Terms of Service",
       "linkBack": "Back to Register",
-    "linkBackSettings": "Back to Settings"
+      "linkBackSettings": "Back to Settings"
     }
   },
   "dashboard": {
@@ -440,7 +440,8 @@
     "deleteTitle": "Delete Chat",
     "deleteMessage": "This conversation will be permanently deleted.",
     "deleteConfirm": "Delete",
-    "enterToSend": "Enter to send"
+    "enterToSend": "Enter to send",
+    "continueInVoice": "Continue in voice"
   },
   "progress": {
     "title": "Progress",

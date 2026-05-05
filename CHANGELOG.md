@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.3] - 2026-05-05
+
+### Added
+- Button "Continue in voice" in the AI tutor chat header: appears when a conversation has messages and is idle (not sending). Clicking it serialises up to the last 20 non-empty messages into `sessionStorage` and navigates to the real-time voice conversation page
+- Voice conversation page reads and clears the `voice_context` key from `sessionStorage` on mount and passes it to `ConversationMode` as `initialContext`
+- `ConversationMode` accepts optional `initialContext` prop and includes it in the WebSocket auth handshake payload when present
+- Backend WebSocket endpoint extracts and sanitises the optional `context` field from the auth message (max 20 entries, valid roles, non-empty content) and passes it to `ConversationPipeline`
+- `ConversationPipeline` accepts `initial_context` parameter and pre-populates `self.history` with up to the last 10 valid turns, so the AI continues the text-based tutoring session seamlessly in voice
+- `ChatContextItem` TypeScript interface exported from `lib/conversation-ws.ts`
+- i18n key `chat.continueInVoice` added to all 6 locale files (EN, ES, FR, DE, IT, PT)
+- 8 new unit tests for `ConversationPipeline.initial_context`: covers empty/None input, valid population, truncation to 10, invalid-role filtering, empty-content filtering, non-dict entry filtering, and extra-key stripping
+
 ## [1.3.2] - 2026-05-05
 
 ### Added

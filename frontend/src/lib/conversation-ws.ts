@@ -62,3 +62,10 @@ export type WsMessage =
   | SessionWarningMessage
   | SessionEndMessage
   | ErrorMessage
+
+// ─── Chat context passed from tutor chat to voice session ────────────────────
+
+export interface ChatContextItem {
+  role: 'user' | 'assistant'
+  content: string
+}
