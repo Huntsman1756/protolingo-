@@ -6,6 +6,7 @@ import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { useThemeStore } from '@/store/theme'
 import { useRouter } from 'next/navigation'
+import NextImage from 'next/image'
 import { ExternalLink } from 'lucide-react'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
@@ -212,7 +213,7 @@ export default function SettingsPage() {
             className="relative flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border border-fl-border hover:border-fl-border-2 transition-colors focus:outline-none disabled:opacity-60"
           >
             {user?.avatar ? (
-              <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+              <NextImage src={user.avatar} alt="" width={64} height={64} className="w-full h-full object-cover" unoptimized />
             ) : (
               <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
                 <span className="font-mono text-xl text-fl-muted-1 select-none">

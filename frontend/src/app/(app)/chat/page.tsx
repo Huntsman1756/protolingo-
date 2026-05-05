@@ -287,7 +287,7 @@ export default function ChatPage() {
                   {msg.role === 'assistant' ? (
                     <Image src="/logo.png" alt="Tutor" width={28} height={28} className="w-full h-full object-cover" />
                   ) : user?.avatar ? (
-                    <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+                    <Image src={user.avatar} alt="" width={28} height={28} className="w-full h-full object-cover" unoptimized />
                   ) : (
                     <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
                       <span className="font-mono text-fl-hint text-fl-muted-1 select-none">
