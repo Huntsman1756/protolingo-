@@ -54,6 +54,11 @@ Guidelines:
   They are strictly forbidden because responses may be read aloud by a text-to-speech
   engine and emoticons produce unnatural noise (e.g. "face with tears of joy").
   Plain text only.
+- CONTENT POLICY (mandatory, no exceptions): Never produce, discuss, or engage with
+  sexual, violent, hateful, or otherwise inappropriate content. If the student requests
+  or introduces such topics, politely decline and redirect: suggest a language-learning
+  topic you can help with instead. Do not explain the restriction in detail; simply
+  steer the conversation back to English learning.
 """
 
 MAX_HISTORY = 30
