@@ -11,7 +11,7 @@ applyTo: "docker-compose.yml, .env*, **/Dockerfile"
 |---------|-------|-------|-------|-------|
 | `postgres` | `postgres:16-alpine` | 5432 (internal) | 1 | Health check via `pg_isready` |
 | `redis` | `redis:7-alpine` | 6379 (internal) | 1 | Password-protected, health check via `redis-cli ping` |
-| `backend` | Built from `backend/Dockerfile` | 8000 | 1 | Python 3.12, Uvicorn, depends on postgres+redis |
+| `backend` | Built from `backend/Dockerfile` | 8000 | 1 | Python 3.14, Uvicorn, depends on postgres+redis |
 | `frontend` | Built from `frontend/Dockerfile` | 3000 | 1 | Next.js 16, built with `NEXT_PUBLIC_API_URL` as build arg |
 | `kokoro` | `ghcr.io/remsky/kokoro-fastapi-gpu:latest` | 8880 | 2 | TTS, GPU via NVIDIA deploy block |
 | `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | 9000 | 2 | STT, GPU via NVIDIA deploy block |
@@ -40,7 +40,7 @@ The compose file defines 6 services (plus optional Ollama) and 2 named volumes (
 
 ### Backend
 
-- Built from `backend/Dockerfile` (Python 3.12 slim)
+- Built from `backend/Dockerfile` (Python 3.14 slim)
 - Receives all configuration via environment variables (passed from `.env`)
 - Binds `./backend:/app` volume for live development
 - Startup command: `uvicorn app.main:app --host 0.0.0.0 --port 8000`

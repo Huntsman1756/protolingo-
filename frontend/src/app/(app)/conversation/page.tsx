@@ -7,7 +7,9 @@
  */
 'use client'
 
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import type { ChatContextItem } from '@/lib/conversation-ws'
 
 const ConversationMode = dynamic(
   () => import('@/components/conversation/ConversationMode'),
@@ -24,5 +26,22 @@ const ConversationMode = dynamic(
 )
 
 export default function ConversationPage() {
-  return <ConversationMode />
+  const [initialContext, setInitialContext] = useState<ChatContextItem[] | undefined>(undefined)
+
+  useEffect(() => {
+    const raw = sessionStorage.getItem('voice_context')
+    if (raw) {
+      sessionStorage.removeItem('voice_context')
+      try {
+        const parsed = JSON.parse(raw) as unknown
+        if (Array.isArray(parsed)) {
+          setInitialContext(parsed as ChatContextItem[])
+        }
+      } catch {
+        // malformed — ignore
+      }
+    }
+  }, [])
+
+  return <ConversationMode initialContext={initialContext} />
 }

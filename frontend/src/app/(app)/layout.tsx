@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { apiFetch } from '@/lib/api'
+import Image from 'next/image'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { LoadingBar } from '@/components/ui/loading-bar'
 
@@ -206,7 +207,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-8 rounded-full overflow-hidden border border-fl-border flex-shrink-0">
               {user?.avatar ? (
-                <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+                <Image src={user.avatar} alt="" width={32} height={32} className="w-full h-full object-cover" unoptimized />
               ) : (
                 <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
                   <span className="font-mono text-xs text-fl-muted-1 select-none">
@@ -222,7 +223,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <p className="text-fl-label font-mono text-fl-muted-4 truncate">@{user?.username}</p>
             </div>
           </div>
-          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.2</p>
+          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.3</p>
           <button
             onClick={() => setLogoutConfirm(true)}
             className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
@@ -330,7 +331,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-7 h-7 rounded-full overflow-hidden border border-fl-border flex-shrink-0">
                   {user?.avatar ? (
-                    <img src={user.avatar} alt="" className="w-full h-full object-cover" />
+                    <Image src={user.avatar} alt="" width={28} height={28} className="w-full h-full object-cover" unoptimized />
                   ) : (
                     <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
                       <span className="font-mono text-fl-hint text-fl-muted-1 select-none">
@@ -341,7 +342,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </div>
                 <p className="font-mono text-fl-label text-fl-muted-4 truncate">@{user?.username}</p>
               </div>
-              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.2</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.3</p>
               <button
                 onClick={() => { setMobileMenuOpen(false); setLogoutConfirm(true) }}
                 className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"

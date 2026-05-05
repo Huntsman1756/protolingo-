@@ -5,7 +5,7 @@ import { useMicVAD } from '@ricky0123/vad-react'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { float32ToWav, createAudioQueue, type AudioQueue } from '@/lib/audio'
-import { buildConversationWsUrl, type WsMessage } from '@/lib/conversation-ws'
+import { buildConversationWsUrl, type WsMessage, type ChatContextItem } from '@/lib/conversation-ws'
 import StatusIndicator, { type ConvStatus } from './StatusIndicator'
 import TranscriptBubble from './TranscriptBubble'
 import SessionTimeoutBanner from './SessionTimeoutBanner'
@@ -17,7 +17,7 @@ interface TranscriptEntry {
   text: string
 }
 
-export default function ConversationMode() {
+export default function ConversationMode({ initialContext }: { initialContext?: ChatContextItem[] }) {
   const t = useTranslations('conversation')
   const accessToken = useAuthStore((s) => s.accessToken)
 
@@ -93,14 +93,16 @@ export default function ConversationMode() {
 
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
-    (token: string) => {
+    (token: string, context?: ChatContextItem[]) => {
       const url = buildConversationWsUrl()
       const ws = new WebSocket(url)
       ws.binaryType = 'arraybuffer'
       wsRef.current = ws
 
       ws.onopen = () => {
-        ws.send(JSON.stringify({ type: 'auth', token }))
+        const authPayload: Record<string, unknown> = { type: 'auth', token }
+        if (context?.length) authPayload.context = context
+        ws.send(JSON.stringify(authPayload))
         setStatus('live')
       }
 
@@ -223,7 +225,7 @@ export default function ConversationMode() {
       setSessionActive(false)
     })
 
-    connectWs(accessToken)
+    connectWs(accessToken, initialContext)
   }
 
   function handleStop() {

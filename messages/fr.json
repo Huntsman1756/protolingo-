@@ -171,7 +171,8 @@
       "s8Title": "8. Modifications des Conditions",
       "s8Body": "Ces conditions peuvent être mises à jour à tout moment. L'utilisation continue du service après les modifications constitue une acceptation des conditions révisées.",
       "linkPrivacy": "Politique de confidentialité",
-      "linkBack": "Retour à l'inscription"
+      "linkBack": "Retour à l'inscription",
+      "linkBackSettings": "Retour aux paramètres"
     },
     "privacy": {
       "pageTitle": "Politique de confidentialité",
@@ -203,7 +204,8 @@
       "s7Title": "7. Contact",
       "s7Body": "Pour toute question relative à la confidentialité de cette instance spécifique, veuillez contacter l'administrateur du serveur que vous utilisez. Pour des questions sur le projet FreeLingo lui-même, visitez le dépôt du projet sur GitHub.",
       "linkTerms": "Conditions d'utilisation",
-      "linkBack": "Retour à l'inscription"
+      "linkBack": "Retour à l'inscription",
+      "linkBackSettings": "Retour aux paramètres"
     }
   },
   "dashboard": {
@@ -438,7 +440,8 @@
     "deleteTitle": "Supprimer le chat",
     "deleteMessage": "Cette conversation sera définitivement supprimée.",
     "deleteConfirm": "Supprimer",
-    "enterToSend": "Entrée pour envoyer"
+    "enterToSend": "Entrée pour envoyer",
+    "continueInVoice": "Continuer en vocal"
   },
   "progress": {
     "title": "Progrès",

@@ -245,3 +245,124 @@ async def test_pipeline_stt_failure_sends_error_frame() -> None:
 
     codes = [m.get("code") for m in sent if m.get("type") == "error"]
     assert "stt_failed" in codes
+
+
+# ---------------------------------------------------------------------------
+# ConversationPipeline — initial_context tests
+# ---------------------------------------------------------------------------
+
+
+def _make_pipeline(**kwargs) -> "ConversationPipeline":
+    from app.services.conversation_pipeline import ConversationPipeline
+
+    return ConversationPipeline(
+        llm=AsyncMock(),
+        tts=AsyncMock(),
+        stt=AsyncMock(),
+        cefr_level="B1",
+        max_duration=1800,
+        inactivity_timeout=180,
+        **kwargs,
+    )
+
+
+def test_pipeline_initial_context_none_gives_empty_history() -> None:
+    """No initial_context → empty history list."""
+    pipeline = _make_pipeline()
+    assert pipeline.history == []
+
+
+def test_pipeline_initial_context_empty_list_gives_empty_history() -> None:
+    """Empty list initial_context → empty history list."""
+    pipeline = _make_pipeline(initial_context=[])
+    assert pipeline.history == []
+
+
+def test_pipeline_initial_context_valid_entries_populate_history() -> None:
+    """Valid initial_context entries are copied verbatim into history."""
+    context = [
+        {"role": "user", "content": "Hello, can you help me?"},
+        {"role": "assistant", "content": "Of course! What would you like to practice?"},
+        {"role": "user", "content": "I want to work on past tense."},
+    ]
+    pipeline = _make_pipeline(initial_context=context)
+    assert len(pipeline.history) == 3
+    assert pipeline.history[0] == {"role": "user", "content": "Hello, can you help me?"}
+    assert pipeline.history[2] == {"role": "user", "content": "I want to work on past tense."}
+
+
+def test_pipeline_initial_context_truncates_to_last_10() -> None:
+    """When initial_context has more than 10 valid entries, only the last 10 are kept."""
+    context = [
+        {"role": "user" if i % 2 == 0 else "assistant", "content": f"Message {i}"}
+        for i in range(14)
+    ]
+    pipeline = _make_pipeline(initial_context=context)
+    assert len(pipeline.history) == 10
+    # The last 10 items of the original list (indices 4-13) must be preserved in order
+    expected_contents = [f"Message {i}" for i in range(4, 14)]
+    actual_contents = [m["content"] for m in pipeline.history]
+    assert actual_contents == expected_contents
+
+
+def test_pipeline_initial_context_filters_invalid_role() -> None:
+    """Entries with unrecognised roles are silently dropped."""
+    context = [
+        {"role": "system", "content": "You are a bot."},  # invalid role
+        {"role": "user", "content": "Hello there!"},
+        {"role": "moderator", "content": "Be nice."},  # invalid role
+        {"role": "assistant", "content": "Hi!"},
+    ]
+    pipeline = _make_pipeline(initial_context=context)
+    assert len(pipeline.history) == 2
+    assert pipeline.history[0]["role"] == "user"
+    assert pipeline.history[1]["role"] == "assistant"
+
+
+def test_pipeline_initial_context_filters_empty_content() -> None:
+    """Entries with empty or whitespace-only content are silently dropped."""
+    context = [
+        {"role": "user", "content": ""},
+        {"role": "user", "content": "   "},
+        {"role": "assistant", "content": "Hello!"},
+        {"role": "user", "content": "\n\t"},
+    ]
+    pipeline = _make_pipeline(initial_context=context)
+    assert len(pipeline.history) == 1
+    assert pipeline.history[0]["content"] == "Hello!"
+
+
+def test_pipeline_initial_context_filters_non_dict_entries() -> None:
+    """Non-dict entries (strings, ints, None) in initial_context are ignored."""
+    context = [
+        "not a dict",
+        42,
+        None,
+        {"role": "user", "content": "This is valid."},
+    ]
+    pipeline = _make_pipeline(initial_context=context)  # type: ignore[arg-type]
+    assert len(pipeline.history) == 1
+    assert pipeline.history[0]["content"] == "This is valid."
+
+
+def test_pipeline_initial_context_does_not_leak_extra_keys() -> None:
+    """Extra keys in initial_context entries are stripped — only role/content survive."""
+    context = [
+        {"role": "user", "content": "Hi!", "id": 99, "timestamp": "2026-01-01"},
+        {"role": "assistant", "content": "Hey there!", "metadata": {"foo": "bar"}},
+    ]
+    pipeline = _make_pipeline(initial_context=context)
+    assert len(pipeline.history) == 2
+    for entry in pipeline.history:
+        assert set(entry.keys()) == {"role", "content"}
+
+
+def test_pipeline_initial_context_history_is_used_in_subsequent_turns() -> None:
+    """After pre-populating, normal _add_to_history appends to existing entries."""
+    context = [{"role": "user", "content": "Tell me about cats."}]
+    pipeline = _make_pipeline(initial_context=context)
+    # Simulate what the pipeline does after a user turn: append to history
+    pipeline.history.append({"role": "assistant", "content": "Cats are fascinating!"})
+    assert len(pipeline.history) == 2
+    assert pipeline.history[0]["role"] == "user"
+    assert pipeline.history[1]["role"] == "assistant"

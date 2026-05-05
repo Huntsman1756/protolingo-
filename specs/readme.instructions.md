@@ -43,7 +43,7 @@ Current badges shown in README:
 ```markdown
 ![License](https://img.shields.io/badge/license-AGPL%20v3-blue?style=flat-square)
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
-![Python](https://img.shields.io/badge/python-3.12-blue?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.14-blue?style=flat-square)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
 ```
 
@@ -58,7 +58,7 @@ Keep it short. One paragraph max. Delegate detail to the architecture spec:
 ```markdown
 ## Architecture
 
-Monorepo: `backend/` (Python 3.12 FastAPI) + `frontend/` (Next.js 16 App Router)
+Monorepo: `backend/` (Python 3.14 FastAPI) + `frontend/` (Next.js 16 App Router)
 deployed via Docker Compose with PostgreSQL 16 and Redis 7.
 The backend proxies all external services (Ollama, Kokoro, Whisper) —
 the frontend never calls them directly.
@@ -72,7 +72,7 @@ Top-level layout only — directories only, no individual files:
 
 ```
 freelingo/
-├── backend/            # FastAPI (Python 3.12)
+├── backend/            # FastAPI (Python 3.14)
 ├── frontend/           # Next.js 16 (React 19)
 ├── specs/              # Architecture and feature specifications
 ├── messages/            # i18n message bundles (en, es, fr, pt, de, it)
@@ -92,7 +92,7 @@ freelingo/
 ```markdown
 | Layer | Technology |
 |-------|------------|
-| Backend | Python 3.12, FastAPI, SQLAlchemy 2.0 (async), Alembic |
+| Backend | Python 3.14, FastAPI, SQLAlchemy 2.0 (async), Alembic |
 | Database | PostgreSQL 16 |
 | Cache | Redis 7 |
 | LLM | Ollama (local), OpenAI, Anthropic, DeepSeek |

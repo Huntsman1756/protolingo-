@@ -171,7 +171,8 @@
       "s8Title": "8. Modifiche ai Termini",
       "s8Body": "Questi termini possono essere aggiornati in qualsiasi momento. L'uso continuato del servizio dopo le modifiche costituisce l'accettazione dei termini rivisti.",
       "linkPrivacy": "Informativa sulla Privacy",
-      "linkBack": "Torna alla registrazione"
+      "linkBack": "Torna alla registrazione",
+      "linkBackSettings": "Torna alle impostazioni"
     },
     "privacy": {
       "pageTitle": "Informativa sulla Privacy",
@@ -203,7 +204,8 @@
       "s7Title": "7. Contatto",
       "s7Body": "Per qualsiasi preoccupazione relativa alla privacy di questa istanza specifica, contatta l'amministratore del server che stai utilizzando. Per domande sul progetto FreeLingo, visita il repository del progetto su GitHub.",
       "linkTerms": "Termini di Servizio",
-      "linkBack": "Torna alla registrazione"
+      "linkBack": "Torna alla registrazione",
+      "linkBackSettings": "Torna alle impostazioni"
     }
   },
   "dashboard": {
@@ -438,7 +440,8 @@
     "deleteTitle": "Elimina chat",
     "deleteMessage": "Questa conversazione verrà eliminata definitivamente.",
     "deleteConfirm": "Elimina",
-    "enterToSend": "Invio per inviare"
+    "enterToSend": "Invio per inviare",
+    "continueInVoice": "Continua in voce"
   },
   "progress": {
     "title": "Progressi",

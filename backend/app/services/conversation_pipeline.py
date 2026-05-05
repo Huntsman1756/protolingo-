@@ -54,6 +54,7 @@ class ConversationPipeline:
         target_language: str = "en-US",
         max_duration: int = 1800,
         inactivity_timeout: int = 180,
+        initial_context: list[dict] | None = None,
     ) -> None:
         self.llm = llm
         self.tts = tts
@@ -68,7 +69,18 @@ class ConversationPipeline:
         self.inactivity_timeout = inactivity_timeout
 
         self.current_task: asyncio.Task | None = None
-        self.history: list[dict] = []
+        # Pre-populate history from optional chat context
+        if initial_context:
+            self.history: list[dict] = [
+                {"role": m["role"], "content": m["content"]}
+                for m in initial_context
+                if isinstance(m, dict)
+                and m.get("role") in ("user", "assistant")
+                and isinstance(m.get("content"), str)
+                and m["content"].strip()
+            ][-10:]
+        else:
+            self.history = []
         self._session_start = time.monotonic()
         self._last_activity = time.monotonic()
         self._timer_tasks: list[asyncio.Task] = []
