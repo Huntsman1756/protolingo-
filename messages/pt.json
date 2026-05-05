@@ -85,7 +85,12 @@
       "invalidEmail": "Por favor, insira um endereço de e-mail válido",
       "usernameTaken": "Nome de usuário já está em uso",
       "emailTaken": "Endereço de e-mail já cadastrado",
-      "invalidInvite": "Código de convite inválido ou expirado"
+      "invalidInvite": "Código de convite inválido ou expirado",
+      "termsAccept": "Li e aceito os",
+      "termsLink": "Termos de Serviço",
+      "andWord": "e a",
+      "privacyLink": "Política de Privacidade",
+      "termsRequired": "Você deve aceitar os termos para continuar"
     }
   },
   "settings": {
@@ -130,6 +135,9 @@
     "min5": "5 minutos",
     "saveConversation": "Guardar",
     "conversationSaved": "Configurações de conversa guardadas.",
+    "sectionLegal": "Legal",
+    "termsOfService": "Termos de Serviço",
+    "privacyPolicy": "Política de Privacidade",
     "sectionAuthor": "Autor",
     "authorDescription": "Criado por Arturo Carretero Calvo",
     "githubProfile": "Perfil do GitHub",
@@ -137,6 +145,66 @@
     "deleteAccountTitle": "Excluir conta",
     "deleteAccountMessage": "Esta ação excluirá permanentemente sua conta e todos os seus dados. Esta ação não pode ser desfeita.",
     "deleteAccountConfirm": "Excluir conta"
+  },
+  "legal": {
+    "terms": {
+      "pageTitle": "Termos de Serviço",
+      "updated": "Última atualização: maio de 2026",
+      "s1Title": "1. Sobre o FreeLingo",
+      "s1Body": "FreeLingo é uma plataforma de aprendizado de idiomas gratuita, de código aberto e auto-hospedada. É fornecida como está, sem garantias de qualquer tipo. Ao usar esta instância, você concorda com estes termos.",
+      "s2Title": "2. Uso do Serviço",
+      "s2Intro": "Você pode usar o FreeLingo exclusivamente para fins pessoais e não comerciais de aprendizado de idiomas. Você concorda em não:",
+      "s2i1": "Tentar obter acesso não autorizado a qualquer parte do sistema.",
+      "s2i2": "Carregar conteúdo malicioso ou tentar interromper o serviço.",
+      "s2i3": "Compartilhar suas credenciais de conta com terceiros.",
+      "s2i4": "Usar scripts automatizados ou bots para abusar dos recursos de tutoria com IA.",
+      "s3Title": "3. Contas de Usuário",
+      "s3Body": "Você é responsável por manter a confidencialidade de suas credenciais e por todas as atividades que ocorrem em sua conta. O administrador desta instância pode suspender ou encerrar contas que violem estes termos.",
+      "s4Title": "4. Conteúdo e Interações com IA",
+      "s4Body": "As conversas com o tutor de IA são armazenadas no banco de dados desta instância para continuidade do aprendizado. A IA pode produzir respostas imprecisas ou inesperadas — aplique sempre seu próprio julgamento. O FreeLingo não é responsável pelo conteúdo gerado pelos modelos de linguagem subjacentes.",
+      "s5Title": "5. Natureza Auto-Hospedada",
+      "s5Body": "O FreeLingo é projetado para funcionar em infraestrutura que você ou o operador da instância controla. Todos os dados permanecem no servidor que hospeda esta instância. Os autores do projeto não têm acesso a dados em deployments de terceiros.",
+      "s6Title": "6. Disponibilidade",
+      "s6Body": "Este serviço é fornecido sem garantias de disponibilidade. O operador pode colocar a instância offline para manutenção, atualizações ou qualquer outro motivo a qualquer momento.",
+      "s7Title": "7. Limitação de Responsabilidade",
+      "s7Body": "O FreeLingo e seus colaboradores não são responsáveis por quaisquer danos diretos, indiretos, incidentais ou consequenciais decorrentes do uso ou da incapacidade de usar este serviço.",
+      "s8Title": "8. Alterações nestes Termos",
+      "s8Body": "Estes termos podem ser atualizados a qualquer momento. O uso continuado do serviço após as alterações constitui aceitação dos termos revisados.",
+      "linkPrivacy": "Política de Privacidade",
+      "linkBack": "Voltar ao cadastro"
+    },
+    "privacy": {
+      "pageTitle": "Política de Privacidade",
+      "updated": "Última atualização: maio de 2026",
+      "s1Title": "1. Visão Geral",
+      "s1Body": "O FreeLingo é uma aplicação auto-hospedada. Todos os dados descritos nesta política são armazenados exclusivamente na infraestrutura de servidor operada pela pessoa ou organização que hospeda esta instância. Os autores do projeto FreeLingo não têm acesso a dados pessoais em deployments que não operam.",
+      "s2Title": "2. Dados que Coletamos",
+      "s2Intro": "Quando você cria uma conta e usa o FreeLingo, os seguintes dados são armazenados no banco de dados PostgreSQL da instância:",
+      "s2i1": "Nome de usuário, nome de exibição e endereço de e-mail.",
+      "s2i2": "Senha com hash (bcrypt — sua senha em texto simples nunca é armazenada).",
+      "s2i3": "Preferência de idioma nativo e configurações de aprendizado.",
+      "s2i4": "Imagem de avatar de perfil (opcional).",
+      "s2i5": "Histórico de chats e conversas com o tutor de IA.",
+      "s2i6": "Baralhos de flashcards, progresso de estudo e dados de repetição espaçada.",
+      "s2i7": "Resultados de avaliação e progresso do currículo.",
+      "s3Title": "3. Como Usamos seus Dados",
+      "s3Intro": "Seus dados são usados exclusivamente para fornecer a experiência de aprendizado do FreeLingo:",
+      "s3i1": "Autenticá-lo e manter sua sessão.",
+      "s3i2": "Personalizar seu plano de estudo e interações com o tutor.",
+      "s3i3": "Acompanhar seu progresso de aprendizado ao longo do tempo.",
+      "s3i4": "Gerar respostas contextuais do tutor de IA.",
+      "s3Footer": "Seus dados nunca são vendidos, alugados ou compartilhados com serviços de marketing de terceiros.",
+      "s4Title": "4. Serviços de IA Externos",
+      "s4Body": "Se esta instância estiver configurada para usar um provedor de IA remoto (como OpenAI ou Anthropic), as mensagens de suas conversas com o tutor poderão ser enviadas à API desse provedor. Isso está sujeito à própria política de privacidade desse provedor. Por padrão, o FreeLingo é projetado para funcionar com uma instância local do Ollama e nenhum dado sai do servidor.",
+      "s5Title": "5. Tokens de Sessão",
+      "s5Body": "O FreeLingo usa tokens de acesso JWT de curta duração (armazenados em memória) e um token de atualização de longa duração armazenado como cookie httpOnly. O token de atualização é armazenado no Redis com expiração de 30 dias e é rotacionado a cada uso. O logout invalida o token imediatamente.",
+      "s6Title": "6. Retenção e Exclusão de Dados",
+      "s6Body": "Seus dados são mantidos enquanto sua conta existir. Você pode excluir permanentemente sua conta e todos os dados associados a qualquer momento na página de Configurações. A exclusão da conta é imediata e irreversível.",
+      "s7Title": "7. Contato",
+      "s7Body": "Para qualquer preocupação relacionada à privacidade desta instância específica, entre em contato com o administrador do servidor que você está usando. Para perguntas sobre o projeto FreeLingo em si, visite o repositório do projeto no GitHub.",
+      "linkTerms": "Termos de Serviço",
+      "linkBack": "Voltar ao cadastro"
+    }
   },
   "dashboard": {
     "welcomeBack": "Bem-vindo de volta",
@@ -214,7 +282,45 @@
         "back": "Voltar ao plano"
       }
     },
-    "suggestedLevel": "Sugerido {aiLevel} — o plano usará {selectedLevel}"
+    "suggestedLevel": "Sugerido {aiLevel} — o plano usará {selectedLevel}",
+    "step1": "Passo 1 / 3 — Seu nível",
+    "step2": "Passo 2 / 3 — Pergunta {questionNumber} / {totalQuestions}",
+    "step3": "Passo 3 / 3 — Seu programa",
+    "studiedBefore": "Você já estudou inglês antes?",
+    "studiedBeforeHint": "Isso nos ajuda a iniciar o questionário no nível adequado.",
+    "beginnerOption": "Sou um iniciante completo",
+    "beginnerOptionHint": "Começarei no A1 — sem questionário.",
+    "hasExperienceOption": "Sim, tenho alguma experiência",
+    "hasExperienceOptionHint": "Farei um breve questionário adaptativo (≈12 perguntas).",
+    "skills": {
+      "grammar": "Gramática",
+      "vocabulary": "Vocabulário",
+      "reading": "Leitura"
+    },
+    "howManyWeeks": "Quantas semanas para o nível {cefr_level}?",
+    "nWeeks": "{count} semanas",
+    "intensity": {
+      "intensive": "Intensivo",
+      "standard": "Padrão",
+      "relaxed": "Relaxado",
+      "veryRelaxed": "Muito relaxado"
+    },
+    "approxLessons": "~{count} lições",
+    "daysPerWeek": "{count} dias/semana",
+    "mainGoals": "Objetivos principais (selecione todos que se aplicam)",
+    "goals": {
+      "grammar": "Gramática",
+      "vocabulary": "Vocabulário",
+      "reading": "Leitura",
+      "writing": "Escrita",
+      "conversation": "Conversação"
+    },
+    "summaryLevel": "Nível",
+    "summaryDuration": "Duração",
+    "summaryGoals": "Objetivos",
+    "noneSelected": "nenhum selecionado",
+    "buildingPlan": "Criando plano…",
+    "startMyPlan": "Iniciar meu plano"
   },
   "plan": {
     "title": "Meu Plano",
