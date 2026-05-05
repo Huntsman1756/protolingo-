@@ -26,9 +26,11 @@ async def conversation_ws(
     # --- Accept first, then authenticate via first JSON message ---
     await websocket.accept()
 
+    initial_context_raw: list | None = None
     try:
         auth_msg = await asyncio.wait_for(websocket.receive_json(), timeout=10.0)
         token = auth_msg.get("token", "")
+        initial_context_raw = auth_msg.get("context")  # optional chat history
         payload = decode_access_token(token)
         user_id = int(payload["sub"])
     except (asyncio.TimeoutError, PyJWTError, KeyError, ValueError, Exception):
@@ -73,8 +75,22 @@ async def conversation_ws(
         native_language = user.native_language
         target_language = user.target_language
 
-    logger.info("[conversation] Session started — user=%s cefr=%s max_duration=%ss inactivity=%ss",
-                user_id, cefr_level, max_duration, inactivity_timeout)
+    # Validate and sanitize optional chat context passed from the tutor chat
+    valid_context: list[dict] | None = None
+    if isinstance(initial_context_raw, list):
+        sanitized = [
+            {"role": m["role"], "content": m["content"]}
+            for m in initial_context_raw[:20]
+            if isinstance(m, dict)
+            and m.get("role") in ("user", "assistant")
+            and isinstance(m.get("content"), str)
+            and m["content"].strip()
+        ]
+        if sanitized:
+            valid_context = sanitized
+
+    logger.info("[conversation] Session started — user=%s cefr=%s max_duration=%ss inactivity=%ss context_turns=%s",
+                user_id, cefr_level, max_duration, inactivity_timeout, len(valid_context) if valid_context else 0)
     # (already accepted at the top)
 
     pipeline = ConversationPipeline(
@@ -86,6 +102,7 @@ async def conversation_ws(
         target_language=target_language,
         max_duration=max_duration,
         inactivity_timeout=inactivity_timeout,
+        initial_context=valid_context,
     )
 
     try:

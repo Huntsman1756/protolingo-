@@ -9,32 +9,53 @@ applyTo: "backend/**, frontend/**"
 
 ```
 freelingo/
-├── backend/                     # Python 3.12 FastAPI
+├── backend/                     # Python 3.14 FastAPI
 │   ├── app/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter
-│   │   ├── models/              # SQLAlchemy 2.0 ORM models (9 models)
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (8 models)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas
 │   │   ├── routers/             # 11 routers (10 REST + 1 WebSocket)
 │   │   ├── services/            # Business logic + external service clients (10 modules)
 │   │   └── data/
 │   │       └── en/              # Static curriculum and content data
 │   ├── alembic/
-│   │   └── versions/            # DB migrations (7)
+│   │   └── versions/            # DB migrations (9)
 │   └── tests/                   # pytest suite (10 test files)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── (auth)/          # Public routes (login, register, onboarding) — no sidebar
-│   │   │   ├── (app)/           # Authenticated routes — sidebar layout
-│   │   │   └── api/             # Next.js Route Handlers (SSE / binary proxies)
-│   │   ├── components/          # React components (shadcn/ui + custom)
-│   │   ├── data/                # Static data (curriculum, grammar, vocab, phrasebook, assessment-bank)
-│   │   ├── store/               # Zustand stores (auth, theme, progress, loading)
-│   │   ├── lib/                 # Utilities (apiFetch, WS builder, audio queue, target-languages)
+│   │   │   ├── (auth)/          # Public routes: login, register, onboarding — no sidebar
+│   │   │   ├── (app)/           # Authenticated routes (14 pages) — sidebar layout
+│   │   │   │   ├── admin/users/ # User management (admin only)
+│   │   │   │   ├── assessment/  # Level test entry + adaptive quiz
+│   │   │   │   ├── chat/        # AI tutor chat (SSE streaming, conversation history)
+│   │   │   │   ├── conversation/ # Real-time voice conversation (WebSocket + VAD)
+│   │   │   │   ├── dashboard/   # Home with XP, streak, plan summary
+│   │   │   │   ├── faq/
+│   │   │   │   ├── flashcards/
+│   │   │   │   ├── grammar/     # Grammar reference (index + [slug] detail)
+│   │   │   │   ├── lesson/[id]/ # Lesson player
+│   │   │   │   ├── phrasebook/
+│   │   │   │   ├── plan/        # Study plan + unit drawer
+│   │   │   │   ├── progress/    # Skills tracker
+│   │   │   │   ├── settings/    # Profile, avatar, conversation settings
+│   │   │   │   └── vocabulary/  # Vocabulary hub (index + [setId] detail)
+│   │   │   ├── (legal)/         # Terms and Privacy pages — minimal layout
+│   │   │   └── api/             # Next.js Route Handlers: chat (SSE), tts, stt proxies
+│   │   ├── components/
+│   │   │   ├── assessment/      # AdaptiveQuizCard, BeginnerGate, DurationSelector
+│   │   │   ├── conversation/    # ConversationMode, MicButton, StatusIndicator, TranscriptBubble, SessionTimeoutBanner
+│   │   │   ├── plan/            # LevelTestBanner, UnitCard, UnitDrawer
+│   │   │   ├── ui/              # shadcn/ui + custom: AudioPlayer, VoiceRecorder, confirm-dialog, loading-bar, …
+│   │   │   ├── TargetLanguageSelector.tsx
+│   │   │   └── ThemeProvider.tsx
+│   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook, assessment-bank (+ en/ subfolder)
+│   │   ├── store/               # Zustand stores: auth, theme, progress, loading
+│   │   ├── lib/                 # Utilities: apiFetch, conversation-ws, audio, target-languages, utils
 │   │   ├── i18n/                # next-intl locale resolver
 │   │   └── middleware.ts        # Auth guard + locale detection
-│   ├── public/                  # Static assets (flags, VAD WASM models)
+│   ├── public/                  # Static assets (flags/, vad/ WASM models)
 │   └── scripts/                 # Postinstall helpers (copy-vad-models.js)
 │
 ├── messages/                    # i18n bundles (en, es, fr, pt, de, it)
@@ -488,7 +509,7 @@ Barge-in: user speaks again → cancel current generation
 
 ## Code standards
 
-### Backend (Python 3.12)
+### Backend (Python 3.14)
 
 | Tool | Purpose |
 |------|---------|
