@@ -24,6 +24,7 @@ function RegisterForm() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
+  const [termsAccepted, setTermsAccepted] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -33,6 +34,10 @@ function RegisterForm() {
       setError('')
       if (password !== confirmPassword) {
         setError(t('passwordMismatch'))
+        return
+      }
+      if (!termsAccepted) {
+        setError(t('termsRequired'))
         return
       }
       setLoading(true)
@@ -77,7 +82,7 @@ function RegisterForm() {
         setLoading(false)
       }
     },
-    [username, email, password, confirmPassword, displayName, nativeLanguage, invite, router, t, setTokens]
+    [username, email, password, confirmPassword, displayName, nativeLanguage, termsAccepted, invite, router, t, setTokens]
   )
 
   return (
@@ -126,6 +131,23 @@ function RegisterForm() {
                 />
               </div>
             ))}
+
+            {/* Legal acceptance */}
+            <div className="flex items-start gap-3 py-1">
+              <input
+                id="terms-accept"
+                type="checkbox"
+                checked={termsAccepted}
+                onChange={(e) => setTermsAccepted(e.target.checked)}
+                className="mt-0.5 flex-shrink-0 w-4 h-4 accent-fl-accent cursor-pointer"
+              />
+              <label htmlFor="terms-accept" className="font-mono text-xs text-fl-muted-2 leading-relaxed cursor-pointer select-none">
+                {t('termsAccept')}{' '}
+                <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-fl-muted-1 hover:text-fl-fg underline underline-offset-2 transition-colors">{t('termsLink')}</a>
+                {' '}{t('andWord')}{' '}
+                <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-fl-muted-1 hover:text-fl-fg underline underline-offset-2 transition-colors">{t('privacyLink')}</a>
+              </label>
+            </div>
 
             <div>
               <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('nativeLanguage')}</label>

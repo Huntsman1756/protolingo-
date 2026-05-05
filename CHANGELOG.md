@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.2] - 2026-05-05
+
+### Added
+- Content policy rule added to tutor chat and real-time conversation system prompts: the AI must decline and redirect any sexual, violent, hateful, or otherwise inappropriate content
+- Terms of Use and Privacy Policy pages added to the platform
+- i18n keys `admin.fieldUsername`, `admin.fieldEmail`, `admin.fieldPassword`, `admin.fieldDisplayName`, `admin.submitCreate` added to all 6 locale files
+
+### Changed
+- Admin create-user form: placeholder labels (Username, Email, Password, Display Name) and submit button (Create) now use i18n keys instead of hardcoded English strings
+
 ## [1.3.1] - 2026-05-04
 
 ### Added

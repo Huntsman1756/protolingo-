@@ -446,6 +446,34 @@ export default function SettingsPage() {
         </a>
       </div>
 
+      {/* Legal */}
+      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+        <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionLegal')}</span>
+        </div>
+        <div className="flex flex-col gap-2">
+          <a
+            href="/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            {t('termsOfService')}
+          </a>
+          <a
+            href="/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            {t('privacyPolicy')}
+          </a>
+        </div>
+      </div>
+
       <button
         onClick={() => setLogoutConfirm(true)}
         className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 mt-4 uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
