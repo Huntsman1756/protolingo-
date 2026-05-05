@@ -6,7 +6,7 @@
 
 ## Architecture at a glance
 
-Monorepo: `backend/` (Python 3.12 FastAPI) + `frontend/` (Next.js 16 App Router) deployed via Docker Compose with PostgreSQL 16 and Redis 7. The backend proxies all external services (Ollama, Kokoro, Whisper) — the frontend never calls them directly.
+Monorepo: `backend/` (Python 3.14 FastAPI) + `frontend/` (Next.js 16 App Router) deployed via Docker Compose with PostgreSQL 16 and Redis 7. The backend proxies all external services (Ollama, Kokoro, Whisper) — the frontend never calls them directly.
 
 ## Key constraints
 

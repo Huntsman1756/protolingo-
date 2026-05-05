@@ -29,7 +29,7 @@ A complete platform that evaluates the user's English CEFR level through a 3-ste
 
 ### Backend stack
 
-- **Python 3.12** with FastAPI, Uvicorn
+- **Python 3.14** with FastAPI, Uvicorn
 - **asyncpg** driver for async PostgreSQL access
 - **SQLAlchemy 2.0** async ORM with `Mapped[T]` declarative style
 - **Alembic** for async DB migrations (autogenerate from models)
