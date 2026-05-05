@@ -174,10 +174,10 @@ export default function AdminUsersPage() {
           )}
           <form onSubmit={createUser} className="p-6 space-y-3">
             {[
-              { key: 'username', placeholder: 'Username', required: true, type: 'text' },
-              { key: 'email', placeholder: 'Email (optional)', required: false, type: 'email' },
-              { key: 'password', placeholder: 'Password', required: true, type: 'password' },
-              { key: 'display_name', placeholder: 'Display Name', required: true, type: 'text' },
+              { key: 'username', placeholder: t('fieldUsername'), required: true, type: 'text' },
+              { key: 'email', placeholder: t('fieldEmail'), required: false, type: 'email' },
+              { key: 'password', placeholder: t('fieldPassword'), required: true, type: 'password' },
+              { key: 'display_name', placeholder: t('fieldDisplayName'), required: true, type: 'text' },
             ].map(({ key, placeholder, required, type }) => (
               <input
                 key={key}
@@ -204,14 +204,14 @@ export default function AdminUsersPage() {
               onChange={(e) => setForm({ ...form, role: e.target.value })}
               className={inputCls + ' appearance-none'}
             >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
+              <option value="user">{t('roleUser')}</option>
+              <option value="admin">{t('roleAdmin')}</option>
             </select>
             <button
               type="submit"
               className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors mt-1"
             >
-              — Create
+              — {t('submitCreate')}
             </button>
           </form>
         </div>

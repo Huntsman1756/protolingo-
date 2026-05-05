@@ -547,7 +547,12 @@
     "prevPage": "← Préc.",
     "nextPage": "Suiv. →",
     "roleUser": "Utilisateur",
-    "roleAdmin": "Admin"
+    "roleAdmin": "Admin",
+    "fieldUsername": "Nom d'utilisateur",
+    "fieldEmail": "Email (optionnel)",
+    "fieldPassword": "Mot de passe",
+    "fieldDisplayName": "Nom d'affichage",
+    "submitCreate": "Créer"
   },
   "faq": {
     "title": "FAQ",
