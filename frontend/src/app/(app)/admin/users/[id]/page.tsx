@@ -9,7 +9,7 @@ import { apiFetch } from '@/lib/api'
 interface UserStats {
   user_id: number
   current_cefr: string | null
-  current_unit: number | null
+  current_unit: string | null
   plan_duration_weeks: number | null
   completion_test_score: number | null
   xp_total: number
@@ -57,6 +57,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function AdminUserStatsPage() {
   const t = useTranslations('admin')
+  const tLang = useTranslations('languages')
   const params = useParams()
   const userId = params?.id as string
 
@@ -74,14 +75,14 @@ export default function AdminUserStatsPage() {
     ])
       .then(async ([uRes, sRes]) => {
         if (!uRes.ok || !sRes.ok) {
-          setError('Failed to load user data')
+          setError('loadError')
           return
         }
         const [uData, sData] = await Promise.all([uRes.json(), sRes.json()])
         setUser(uData)
         setStats(sData)
       })
-      .catch(() => setError('Failed to load user data'))
+      .catch(() => setError('loadError'))
       .finally(() => setLoading(false))
   }, [userId])
 
@@ -99,7 +100,7 @@ export default function AdminUserStatsPage() {
     return (
       <div className="mx-auto max-w-2xl p-6">
         <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">
-          ✕ {error || 'User not found'}
+          ✕ {error ? t(error as 'loadError') : t('userNotFound')}
         </div>
       </div>
     )
@@ -148,7 +149,7 @@ export default function AdminUserStatsPage() {
         <StatRow label="ID" value={`#${user.id}`} />
         <StatRow label={t('fieldUsername')} value={user.username} />
         {user.email && <StatRow label={t('fieldEmail')} value={user.email} />}
-        <StatRow label="Lang" value={user.native_language} />
+        <StatRow label={t('fieldNativeLanguage')} value={tLang(user.native_language as 'es' | 'fr' | 'pt' | 'de' | 'it')} />
       </Section>
 
       {/* Study plan */}
@@ -179,7 +180,7 @@ export default function AdminUserStatsPage() {
       </Section>
 
       {/* Progress */}
-      <Section title="XP &amp; Progreso">
+      <Section title={t('sectionXpProgress')}>
         <StatRow label={t('statsXp')} value={stats.xp_total.toLocaleString()} />
         <StatRow
           label={t('statsStreak')}

@@ -68,7 +68,7 @@ class AdminUserStatsResponse(BaseModel):
 
     # Active study plan
     current_cefr: Optional[str] = None
-    current_unit: Optional[int] = None
+    current_unit: Optional[str] = None
     plan_duration_weeks: Optional[int] = None
     completion_test_score: Optional[float] = None
 
