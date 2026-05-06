@@ -1,0 +1,227 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { apiFetch } from '@/lib/api'
+
+interface UserStats {
+  user_id: number
+  current_cefr: string | null
+  current_unit: number | null
+  plan_duration_weeks: number | null
+  completion_test_score: number | null
+  xp_total: number
+  streak_current: number
+  active_days: number
+  lessons_completed: number
+  exercises_correct: number
+  exercises_total: number
+  chat_messages_sent: number
+  tokens_total: number
+  tokens_chat: number
+  tokens_conversation: number
+}
+
+interface AdminUser {
+  id: number
+  username: string
+  display_name: string
+  email: string | null
+  role: string
+  native_language: string
+  is_active: boolean
+}
+
+function StatRow({ label, value }: { label: string; value: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between py-3 border-b border-fl-border last:border-0">
+      <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{label}</span>
+      <span className="font-mono text-sm text-fl-fg">{value}</span>
+    </div>
+  )
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="border border-fl-border bg-fl-surface">
+      <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+        <span className="text-fl-label text-fl-muted-2">●</span>
+        <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{title}</span>
+      </div>
+      <div className="px-6">{children}</div>
+    </div>
+  )
+}
+
+export default function AdminUserStatsPage() {
+  const t = useTranslations('admin')
+  const params = useParams()
+  const userId = params?.id as string
+
+  const [user, setUser] = useState<AdminUser | null>(null)
+  const [stats, setStats] = useState<UserStats | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (!userId) return
+    setLoading(true)
+    Promise.all([
+      apiFetch(`/api/admin/users/${userId}`),
+      apiFetch(`/api/admin/users/${userId}/stats`),
+    ])
+      .then(async ([uRes, sRes]) => {
+        if (!uRes.ok || !sRes.ok) {
+          setError('Failed to load user data')
+          return
+        }
+        const [uData, sData] = await Promise.all([uRes.json(), sRes.json()])
+        setUser(uData)
+        setStats(sData)
+      })
+      .catch(() => setError('Failed to load user data'))
+      .finally(() => setLoading(false))
+  }, [userId])
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+          {t('loading')}
+        </span>
+      </div>
+    )
+  }
+
+  if (error || !user || !stats) {
+    return (
+      <div className="mx-auto max-w-2xl p-6">
+        <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">
+          ✕ {error || 'User not found'}
+        </div>
+      </div>
+    )
+  }
+
+  const exercisePct =
+    stats.exercises_total > 0
+      ? Math.round((stats.exercises_correct / stats.exercises_total) * 100)
+      : null
+
+  return (
+    <div className="mx-auto max-w-2xl p-6 space-y-4">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Link
+            href="/admin/users"
+            className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg transition-colors"
+          >
+            {t('users')}
+          </Link>
+          <span className="text-fl-muted-4 font-mono text-fl-label">/</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-fg uppercase">
+            {user.display_name}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          {!user.is_active && (
+            <span className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-2 py-0.5">
+              {t('inactive')}
+            </span>
+          )}
+          <span
+            className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${user.role === 'admin'
+              ? 'border-fl-fg/40 text-fl-fg'
+              : 'border-fl-border text-fl-muted-2'
+              }`}
+          >
+            {user.role === 'admin' ? t('roleAdmin') : t('roleUser')}
+          </span>
+        </div>
+      </div>
+
+      {/* Identity */}
+      <Section title={t('statsTitle')}>
+        <StatRow label="ID" value={`#${user.id}`} />
+        <StatRow label={t('fieldUsername')} value={user.username} />
+        {user.email && <StatRow label={t('fieldEmail')} value={user.email} />}
+        <StatRow label="Lang" value={user.native_language} />
+      </Section>
+
+      {/* Study plan */}
+      <Section title={t('statsCefr')}>
+        <StatRow
+          label={t('statsCefr')}
+          value={stats.current_cefr ?? '—'}
+        />
+        <StatRow
+          label={t('statsUnit')}
+          value={stats.current_unit != null ? `${stats.current_unit}` : '—'}
+        />
+        <StatRow
+          label={t('statsPlanWeeks')}
+          value={
+            stats.plan_duration_weeks != null
+              ? `${stats.plan_duration_weeks} ${t('weeks')}`
+              : '—'
+          }
+        />
+        {stats.completion_test_score != null && (
+          <StatRow
+            label={t('statsTestScore')}
+            value={`${Math.round(stats.completion_test_score * 100)}%`}
+          />
+        )}
+        <StatRow label={t('statsLessons')} value={stats.lessons_completed} />
+      </Section>
+
+      {/* Progress */}
+      <Section title="XP &amp; Progreso">
+        <StatRow label={t('statsXp')} value={stats.xp_total.toLocaleString()} />
+        <StatRow
+          label={t('statsStreak')}
+          value={`${stats.streak_current} ${t('statsDays')}`}
+        />
+        <StatRow label={t('statsActiveDays')} value={stats.active_days} />
+        <StatRow
+          label={t('statsExercises')}
+          value={
+            exercisePct != null
+              ? `${stats.exercises_correct} / ${stats.exercises_total} (${exercisePct}%)`
+              : '—'
+          }
+        />
+      </Section>
+
+      {/* Chat */}
+      <Section title="Chat">
+        <StatRow label={t('statsMessages')} value={stats.chat_messages_sent} />
+      </Section>
+
+      {/* Token usage */}
+      <Section title="Tokens">
+        {stats.tokens_total === 0 ? (
+          <p className="py-4 font-mono text-xs text-fl-muted-2">{t('statsTokensNote')}</p>
+        ) : (
+          <>
+            <StatRow
+              label={t('statsTokensTotal')}
+              value={stats.tokens_total.toLocaleString()}
+            />
+            <StatRow
+              label={t('statsTokensChat')}
+              value={stats.tokens_chat.toLocaleString()}
+            />
+            <StatRow
+              label={t('statsTokensConversation')}
+              value={stats.tokens_conversation.toLocaleString()}
+            />
+          </>
+        )}
+      </Section>
+    </div>
+  )
+}

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.4] - 2026-05-06
+
+### Added
+- Token consumption tracking: new `llm_usage` table (Alembic migration `0010_llm_usage`) stores `prompt_tokens`, `completion_tokens`, `total_tokens` per user per call with `source` (`chat`/`conversation`). Capture is fully optional — if the provider does not return usage data the row is simply not created and nothing fails
+- `LLMStream` wrapper in `llm_adapter.py` captures token usage from the final stream chunk for Ollama, OpenAI and DeepSeek (`stream_options={"include_usage": True}`); Anthropic usage is wired but remains `None` until its SDK path is refactored
+- `GET /api/admin/users/{user_id}/stats` endpoint returns aggregated stats per user: current CEFR level and unit, plan duration, completion test score, total XP, streak, active days, lessons completed, exercises correct/total, tutor chat messages sent, and token consumption by source
+- `AdminUserStatsResponse` Pydantic schema
+- Admin user detail page (`/admin/users/[id]`) showing all stats in labelled sections
+- User ID (`#id`) shown in each row of the admin users list
+- "View stats" button per row linking to the detail page
+- Search/filter input in the admin users list (filters by username or email, debounced 300 ms, resets pagination)
+- i18n keys in all 6 locales: `admin.statsTitle`, `admin.statsCefr`, `admin.statsUnit`, `admin.statsPlanWeeks`, `admin.statsXp`, `admin.statsStreak`, `admin.statsActiveDays`, `admin.statsLessons`, `admin.statsExercises`, `admin.statsMessages`, `admin.statsTokensTotal`, `admin.statsTokensChat`, `admin.statsTokensConversation`, `admin.statsTokensNote`, `admin.statsNoData`, `admin.viewStats`, `admin.weeks`, `admin.statsDays`, `admin.statsTestScore`, `admin.searchPlaceholder`
+
+### Changed
+- Admin users list ordered alphabetically by `username` (was `created_at DESC`)
+
 ## [1.3.3] - 2026-05-05
 
 ### Added

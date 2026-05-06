@@ -11,6 +11,7 @@ from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
+from app.models.llm_usage import LLMUsage
 from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -23,6 +24,7 @@ from app.schemas.chat import (
 from app.services.language_helpers import get_english_variant
 from app.services.llm_adapter import (
     LLMError,
+    LLMStream,
     LLMTimeoutError,
     LLMUnavailableError,
     llm_adapter,
@@ -236,10 +238,31 @@ async def chat(
                     content=full_response,
                 )
             )
-            # Update conversation updated_at
+            # Update conversation updated_at and commit chat history first.
+            # This is intentionally done before the token usage save so that
+            # a failure in LLMUsage never prevents the chat message being stored.
             conv.updated_at = datetime.now(timezone.utc).replace(tzinfo=None)
             await db.commit()
             yield f"data: {json.dumps({'done': True})}\n\n"
+            # Persist token usage best-effort in a separate transaction so that
+            # any failure (table missing, FK issue, etc.) is fully isolated.
+            if isinstance(stream, LLMStream) and (
+                stream.prompt_tokens is not None or stream.completion_tokens is not None
+            ):
+                try:
+                    db.add(
+                        LLMUsage(
+                            user_id=current_user.id,
+                            source="chat",
+                            prompt_tokens=stream.prompt_tokens,
+                            completion_tokens=stream.completion_tokens,
+                            total_tokens=stream.total_tokens,
+                        )
+                    )
+                    await db.commit()
+                except Exception:
+                    await db.rollback()
+                    logger.debug("Failed to save LLM usage — ignored")
         except LLMTimeoutError:
             logger.warning("LLM timeout for user %s conversation %s", current_user.id, conversation_id)
             yield f"data: {json.dumps({'error': 'The AI model took too long. Please try again.'})}\n\n"

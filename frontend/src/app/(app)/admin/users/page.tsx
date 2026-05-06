@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -24,6 +25,7 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(0)
+  const [search, setSearch] = useState('')
   const PAGE_SIZE = 20
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
@@ -40,10 +42,11 @@ export default function AdminUsersPage() {
   const [deletePending, setDeletePending] = useState<AdminUserItem | null>(null)
   const currentUserId = useAuthStore((s) => s.user?.id)
 
-  const loadUsers = useCallback(async (pageIndex = 0) => {
+  const loadUsers = useCallback(async (pageIndex: number, query: string) => {
     setLoading(true)
     try {
-      const res = await apiFetch(`/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}`)
+      const qs = query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''
+      const res = await apiFetch(`/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}${qs}`)
       if (res.ok) {
         const data = await res.json()
         setUsers(data.items)
@@ -58,7 +61,20 @@ export default function AdminUsersPage() {
     }
   }, [])
 
-  useEffect(() => { loadUsers(page) }, [loadUsers, page])
+  // Page changes (e.g. pagination buttons) fire immediately.
+  useEffect(() => { loadUsers(page, search) }, [loadUsers, page]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Search changes: debounce 300 ms then reset to page 0 (or reload if already on 0).
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (page !== 0) {
+        setPage(0) // triggers the page effect above
+      } else {
+        loadUsers(0, search) // already on page 0 — call directly
+      }
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [search]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function createUser(e: React.FormEvent) {
     e.preventDefault()
@@ -72,7 +88,7 @@ export default function AdminUsersPage() {
       if (!res.ok) throw new Error((await res.json()).detail)
       setShowCreate(false)
       setForm({ username: '', email: '', password: '', display_name: '', native_language: 'es', role: 'user' })
-      await loadUsers(page)
+      await loadUsers(page, search)
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to create user')
     }
@@ -84,7 +100,7 @@ export default function AdminUsersPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ is_active: !user.is_active }),
     })
-    await loadUsers(page)
+    await loadUsers(page, search)
   }
 
   async function deleteUser(user: AdminUserItem) {
@@ -101,7 +117,7 @@ export default function AdminUsersPage() {
       if (targetPage !== page) {
         setPage(targetPage)
       } else {
-        await loadUsers(targetPage)
+        await loadUsers(targetPage, search)
       }
     }
   }
@@ -224,6 +240,19 @@ export default function AdminUsersPage() {
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('users')}</span>
           <span className="ml-auto font-mono text-fl-hint text-fl-muted-4 uppercase tracking-widest">{total} {t('total')}</span>
         </div>
+        {/* Search */}
+        <div className="px-6 py-3 border-b border-fl-border">
+          <input
+            type="search"
+            placeholder={t('searchPlaceholder')}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            autoCorrect="off"
+            autoCapitalize="none"
+            spellCheck={false}
+            className="w-full bg-fl-bg border border-fl-border px-4 py-2 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
+          />
+        </div>
         {users.length === 0 ? (
           <p className="px-6 py-8 font-mono text-xs text-fl-muted-2 text-center">{t('noUsers')}</p>
         ) : (
@@ -243,10 +272,16 @@ export default function AdminUsersPage() {
                     )}
                   </div>
                   <p className="font-mono text-fl-label text-fl-muted-2">
-                    {u.username} {u.email ? `· ${u.email}` : ''} · {u.native_language}
+                    <span className="text-fl-muted-4">#{u.id}</span> · {u.username} {u.email ? `· ${u.email}` : ''} · {u.native_language}
                   </p>
                 </div>
                 <div className="flex gap-2">
+                  <Link
+                    href={`/admin/users/${u.id}`}
+                    className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors"
+                  >
+                    {t('viewStats')}
+                  </Link>
                   <button
                     onClick={() => toggleActive(u)}
                     className={`border px-4 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${u.is_active

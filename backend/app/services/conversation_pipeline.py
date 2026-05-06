@@ -8,7 +8,7 @@ import time
 from typing import TYPE_CHECKING
 
 from app.services.language_helpers import get_english_variant, get_iso639
-from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError
+from app.services.llm_adapter import LLMError, LLMStream, LLMTimeoutError, LLMUnavailableError
 
 if TYPE_CHECKING:
     from fastapi import WebSocket
@@ -55,11 +55,13 @@ class ConversationPipeline:
         max_duration: int = 1800,
         inactivity_timeout: int = 180,
         initial_context: list[dict] | None = None,
+        user_id: int | None = None,
     ) -> None:
         self.llm = llm
         self.tts = tts
         self.stt = stt
         self._stt_language = get_iso639(target_language)
+        self._user_id = user_id
         self.system_prompt = CONVERSATION_SYSTEM_PROMPT.format(
             cefr_level=cefr_level,
             native_language=native_language,
@@ -144,7 +146,8 @@ class ConversationPipeline:
             full_response = ""
             sentence_buffer = ""
 
-            async for chunk in await self.llm.chat(messages, stream=True):
+            llm_stream = await self.llm.chat(messages, stream=True)
+            async for chunk in llm_stream:
                 token = chunk.choices[0].delta.content or ""
                 full_response += token
                 sentence_buffer += token
@@ -158,6 +161,9 @@ class ConversationPipeline:
             # Flush remaining buffer
             if sentence_buffer.strip():
                 await self._synthesize_and_send(sentence_buffer.strip(), ws)
+
+            # Persist token usage best-effort (never blocks the response)
+            asyncio.create_task(self._save_usage(llm_stream))
 
         except (LLMTimeoutError, LLMUnavailableError, LLMError) as exc:
             logger.error("[pipeline] LLM failed: %s", exc)
@@ -181,6 +187,39 @@ class ConversationPipeline:
         except Exception as exc:
             logger.error("[pipeline] TTS failed: %s", exc)
             await ws.send_json({"type": "error", "code": "tts_failed", "message": str(exc)})
+
+    async def _save_usage(self, stream: object) -> None:
+        """Persists token usage from an LLMStream to the DB.
+
+        Completely defensive — silently ignores any error, including:
+        - stream not being an LLMStream instance
+        - provider not returning usage (all fields None)
+        - DB connectivity issues
+        """
+        if self._user_id is None:
+            return
+        try:
+            if not isinstance(stream, LLMStream):
+                return
+            if stream.prompt_tokens is None and stream.completion_tokens is None:
+                return
+            # Lazy import to avoid circular imports
+            from app.core.database import AsyncSessionLocal  # noqa: PLC0415
+            from app.models.llm_usage import LLMUsage  # noqa: PLC0415
+
+            async with AsyncSessionLocal() as db:
+                db.add(
+                    LLMUsage(
+                        user_id=self._user_id,
+                        source="conversation",
+                        prompt_tokens=stream.prompt_tokens,
+                        completion_tokens=stream.completion_tokens,
+                        total_tokens=stream.total_tokens,
+                    )
+                )
+                await db.commit()
+        except Exception:
+            logger.debug("[pipeline] Failed to save token usage — ignored")
 
     async def cancel_current(self) -> None:
         if self.current_task and not self.current_task.done():
