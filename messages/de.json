@@ -321,7 +321,7 @@
     "summaryDuration": "Dauer",
     "summaryGoals": "Ziele",
     "noneSelected": "keine ausgewählt",
-    "buildingPlan": "Plan wird erstellt…",
+    "buildingPlan": "Plan wird erstellt...",
     "startMyPlan": "Meinen Plan starten"
   },
   "plan": {
@@ -555,7 +555,27 @@
     "fieldEmail": "E-Mail (optional)",
     "fieldPassword": "Passwort",
     "fieldDisplayName": "Anzeigename",
-    "submitCreate": "Erstellen"
+    "submitCreate": "Erstellen",
+    "searchPlaceholder": "Nach Benutzername oder E-Mail suchen...",
+    "statsTitle": "Nutzungsstatistiken",
+    "statsCefr": "Aktuelles Niveau",
+    "statsUnit": "Aktuelle Einheit",
+    "statsPlanWeeks": "Plandauer",
+    "statsXp": "Gesamt-XP",
+    "statsStreak": "Serie",
+    "statsActiveDays": "Aktive Tage",
+    "statsLessons": "Abgeschlossene Lektionen",
+    "statsExercises": "Richtige Übungen",
+    "statsMessages": "Gesendete Nachrichten",
+    "statsTokensTotal": "Verbrauchte Tokens (gesamt)",
+    "statsTokensChat": "Tokens — Tutor",
+    "statsTokensConversation": "Tokens — Sprache",
+    "statsTokensNote": "Nur verfügbar, wenn der KI-Anbieter diese Informationen zurückgibt",
+    "statsNoData": "Keine Fortschrittsdaten",
+    "viewStats": "Stats anzeigen",
+    "weeks": "Wochen",
+    "statsTestScore": "Abschlusstestergebnis",
+    "statsDays": "Tage"
   },
   "faq": {
     "title": "FAQ",

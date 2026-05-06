@@ -103,6 +103,7 @@ async def conversation_ws(
         max_duration=max_duration,
         inactivity_timeout=inactivity_timeout,
         initial_context=valid_context,
+        user_id=user_id,
     )
 
     try:
