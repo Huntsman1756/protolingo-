@@ -59,3 +59,31 @@ class PaginatedAdminUsersResponse(BaseModel):
     total: int
     skip: int
     limit: int
+
+
+class AdminUserStatsResponse(BaseModel):
+    """Aggregated stats for a single user, shown in the admin panel."""
+
+    user_id: int
+
+    # Active study plan
+    current_cefr: Optional[str] = None
+    current_unit: Optional[int] = None
+    plan_duration_weeks: Optional[int] = None
+    completion_test_score: Optional[float] = None
+
+    # Progress aggregates
+    xp_total: int = 0
+    streak_current: int = 0
+    active_days: int = 0
+    lessons_completed: int = 0
+    exercises_correct: int = 0
+    exercises_total: int = 0
+
+    # Tutor chat
+    chat_messages_sent: int = 0
+
+    # Token consumption (None means provider never returned usage data)
+    tokens_total: int = 0
+    tokens_chat: int = 0
+    tokens_conversation: int = 0

@@ -321,7 +321,7 @@
     "summaryDuration": "Durée",
     "summaryGoals": "Objectifs",
     "noneSelected": "aucun sélectionné",
-    "buildingPlan": "Création du plan…",
+    "buildingPlan": "Création du plan...",
     "startMyPlan": "Démarrer mon plan"
   },
   "plan": {
@@ -555,7 +555,27 @@
     "fieldEmail": "Email (optionnel)",
     "fieldPassword": "Mot de passe",
     "fieldDisplayName": "Nom d'affichage",
-    "submitCreate": "Créer"
+    "submitCreate": "Créer",
+    "searchPlaceholder": "Rechercher par nom d'utilisateur ou email...",
+    "statsTitle": "Statistiques d'utilisation",
+    "statsCefr": "Niveau actuel",
+    "statsUnit": "Unité actuelle",
+    "statsPlanWeeks": "Durée du plan",
+    "statsXp": "XP total",
+    "statsStreak": "Série",
+    "statsActiveDays": "Jours actifs",
+    "statsLessons": "Leçons terminées",
+    "statsExercises": "Exercices corrects",
+    "statsMessages": "Messages envoyés",
+    "statsTokensTotal": "Tokens consommés (total)",
+    "statsTokensChat": "Tokens — tuteur",
+    "statsTokensConversation": "Tokens — voix",
+    "statsTokensNote": "Disponible uniquement si le fournisseur IA renvoie cette information",
+    "statsNoData": "Aucune donnée de progression",
+    "viewStats": "Voir les stats",
+    "weeks": "semaines",
+    "statsTestScore": "Score du test final",
+    "statsDays": "jours"
   },
   "faq": {
     "title": "FAQ",

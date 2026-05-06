@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 from collections.abc import AsyncGenerator
 
 import anthropic as _anthropic
@@ -9,6 +10,8 @@ from openai import AsyncOpenAI
 from pydantic import BaseModel
 
 from app.core.config import settings
+
+logger = logging.getLogger(__name__)
 
 MAX_RETRIES = 2
 RETRY_DELAY_SECONDS = 2
@@ -42,6 +45,56 @@ class LLMResponseError(LLMError):
 
 class LLMContextOverflowError(LLMError):
     pass
+
+
+class LLMStream:
+    """Wraps an async LLM stream and captures token usage defensively.
+
+    Usage fields (prompt_tokens, completion_tokens, total_tokens) remain None
+    if the provider does not return them — callers must always treat them as
+    optional and must never raise on their absence.
+
+    The wrapper filters out usage-only chunks (choices=[]) so callers that do
+    ``chunk.choices[0]`` never receive an IndexError.
+    """
+
+    def __init__(self, stream: object) -> None:
+        self._stream = stream
+        self.prompt_tokens: int | None = None
+        self.completion_tokens: int | None = None
+        self.total_tokens: int | None = None
+
+    def __aiter__(self):
+        return self._iterate()
+
+    async def _iterate(self):
+        async for chunk in self._stream:  # type: ignore[union-attr]
+            # Defensively capture usage from every chunk (the final one for
+            # OpenAI-compatible streams, or any event for other providers).
+            try:
+                usage = getattr(chunk, "usage", None)
+                if usage is not None:
+                    pt = getattr(usage, "prompt_tokens", None)
+                    ct = getattr(usage, "completion_tokens", None)
+                    tt = getattr(usage, "total_tokens", None)
+                    if pt is not None:
+                        self.prompt_tokens = pt
+                    if ct is not None:
+                        self.completion_tokens = ct
+                    if tt is not None:
+                        self.total_tokens = tt
+                    elif self.prompt_tokens is not None and self.completion_tokens is not None:
+                        self.total_tokens = self.prompt_tokens + self.completion_tokens
+            except Exception:
+                pass
+
+            # Skip usage-only chunks (choices=[]) to prevent IndexError in
+            # callers that do chunk.choices[0].delta.content.
+            choices = getattr(chunk, "choices", None)
+            if choices is not None and len(choices) == 0:
+                continue
+
+            yield chunk
 
 
 class LLMAdapter:
@@ -99,16 +152,28 @@ class LLMAdapter:
 
     async def _do_chat(self, messages: list[dict], stream: bool = False):
         if self.provider == "anthropic":
-            return await self._anthropic_chat(messages, stream)
+            result = await self._anthropic_chat(messages, stream)
+            # Wrap in LLMStream so callers always get a uniform interface.
+            # Anthropic events have a different structure so usage will remain
+            # None, but no code will break.
+            return LLMStream(result) if stream else result
+
+        # For Ollama, OpenAI and DeepSeek (all OpenAI-compatible):
+        # pass stream_options so the final chunk includes token usage.
+        # Defensively build kwargs to stay compatible with older SDK versions.
+        extra: dict = {}
+        if stream:
+            extra["stream_options"] = {"include_usage": True}
 
         response = await self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             stream=stream,
             timeout=REQUEST_TIMEOUT,
+            **extra,
         )
         if stream:
-            return response
+            return LLMStream(response)
 
         content = response.choices[0].message.content
         if not content:
