@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.5] - 2026-05-06
+
+### Fixed
+- Admin user detail page crashed with 500 error for users with a study plan: `AdminUserStatsResponse.current_unit` was typed `Optional[int]` but the database stores it as a string (e.g. `'a1-unit-1'`); changed to `Optional[str]`
+- Admin user detail page: "Lang" label and "XP & Progreso" section title were hardcoded; now use i18n keys `admin.fieldNativeLanguage` and `admin.sectionXpProgress`; language code value now displays the full translated language name via `languages.*`
+- Admin user detail page: error messages "Failed to load user data" and "User not found" were hardcoded in English; now use i18n keys `admin.loadError` and `admin.userNotFound`
+- Admin users list: `nav.admin` sidebar label was already wired to i18n but confirmed working across all 6 locales
+
+### Added
+- i18n keys added to all 6 locales: `admin.fieldNativeLanguage`, `admin.sectionXpProgress`, `admin.loadError`, `admin.userNotFound`
+
 ## [1.3.4] - 2026-05-06
 
 ### Added
