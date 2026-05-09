@@ -85,8 +85,6 @@ async def security_headers_middleware(request: Request, call_next) -> Response:
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["X-XSS-Protection"] = "0"  # Modern browsers ignore it; CSP is the right tool
     response.headers["Content-Security-Policy"] = "default-src 'self'; object-src 'none'; base-uri 'self'"  # API-only responses (JSON/binary)
-    if settings.COOKIE_SECURE:
-        response.headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains"
     return response
 
 app.include_router(auth.router)

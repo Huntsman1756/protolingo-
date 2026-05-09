@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.15] - 2026-05-09
+
+### Fixed
+- `Strict-Transport-Security` header removed from backend middleware — the header was emitted over plain HTTP internally (Cloudflare tunnel terminates TLS), causing browsers to cache an HSTS policy that blocked subsequent visits with a hard security error. HSTS should be configured at the Cloudflare edge (SSL/TLS → Edge Certificates → HSTS), not by the origin server
+
 ## [1.3.14] - 2026-05-09
 
 ### Added
