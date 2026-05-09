@@ -604,9 +604,11 @@
     "sectionQuota": "Quote di conversazione",
     "quotaWeeklySessions": "Limite sessioni settimanali",
     "quotaDailyMinutes": "Limite minuti giornalieri",
+    "quotaWeeklyMinutes": "Limite minuti settimanali",
     "quotaUnlimitedLabel": "Illimitato (0)",
-    "quotaUsedSessions": "Utilizzate questa settimana",
-    "quotaUsedMinutes": "Utilizzati oggi",
+    "quotaUsedSessions": "Usate questa settimana",
+    "quotaUsedMinutes": "Usati oggi",
+    "quotaUsedWeeklyMinutes": "Usati questa settimana (min)",
     "quotaSave": "Salva quote",
     "quotaSaved": "Quote salvate."
   },

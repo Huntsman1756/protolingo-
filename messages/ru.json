@@ -604,9 +604,11 @@
     "sectionQuota": "Квота разговоров",
     "quotaWeeklySessions": "Лимит сессий в неделю",
     "quotaDailyMinutes": "Дневной лимит минут",
+    "quotaWeeklyMinutes": "Недельный лимит минут",
     "quotaUnlimitedLabel": "Без ограничений (0)",
     "quotaUsedSessions": "Использовано на этой неделе",
     "quotaUsedMinutes": "Использовано сегодня",
+    "quotaUsedWeeklyMinutes": "Использовано на этой неделе (мин)",
     "quotaSave": "Сохранить квоту",
     "quotaSaved": "Квота сохранена."
   },

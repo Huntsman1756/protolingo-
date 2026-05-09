@@ -604,9 +604,11 @@
     "sectionQuota": "Limity rozmów",
     "quotaWeeklySessions": "Tygodniowy limit sesji",
     "quotaDailyMinutes": "Dzienny limit minut",
+    "quotaWeeklyMinutes": "Tygodniowy limit minut",
     "quotaUnlimitedLabel": "Nieograniczony (0)",
     "quotaUsedSessions": "Użyte w tym tygodniu",
     "quotaUsedMinutes": "Użyte dzisiaj",
+    "quotaUsedWeeklyMinutes": "Użyte w tym tygodniu (min)",
     "quotaSave": "Zapisz limity",
     "quotaSaved": "Limity zapisane."
   },

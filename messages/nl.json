@@ -604,9 +604,11 @@
     "sectionQuota": "Gespreksquota",
     "quotaWeeklySessions": "Wekelijks sessielimiet",
     "quotaDailyMinutes": "Dagelijks minutenlimiet",
+    "quotaWeeklyMinutes": "Wekelijks minutenlimiet",
     "quotaUnlimitedLabel": "Onbeperkt (0)",
     "quotaUsedSessions": "Gebruikt deze week",
     "quotaUsedMinutes": "Gebruikt vandaag",
+    "quotaUsedWeeklyMinutes": "Gebruikt deze week (min)",
     "quotaSave": "Quota opslaan",
     "quotaSaved": "Quota opgeslagen."
   },
