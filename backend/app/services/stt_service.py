@@ -1,11 +1,13 @@
+import io
 import logging
 
 import httpx
+import openai
 
 logger = logging.getLogger(__name__)
 
 
-class STTService:
+class WhisperSTTService:
     def __init__(self, base_url: str) -> None:
         self.base_url = base_url.rstrip("/")
 
@@ -36,3 +38,27 @@ class STTService:
             text = data.get("text", "").strip()
             logger.info("[stt] Transcribed: %r", text)
             return text
+
+
+class OpenAISTTService:
+    def __init__(self, api_key: str, model: str) -> None:
+        self._client = openai.AsyncOpenAI(api_key=api_key)
+        self.model = model
+
+    async def transcribe(
+        self,
+        audio_bytes: bytes,
+        filename: str = "audio.wav",
+        mime_type: str = "audio/wav",
+        language: str = "en",
+    ) -> str:
+        """Transcribe audio using OpenAI Whisper API."""
+        audio_file = (filename, io.BytesIO(audio_bytes), mime_type)
+        response = await self._client.audio.transcriptions.create(
+            model=self.model,
+            file=audio_file,
+            language=language,
+        )
+        text = response.text.strip()
+        logger.info("[stt-openai] Transcribed: %r", text)
+        return text

@@ -58,6 +58,8 @@ export default function TermsPage() {
           { title: t('s6Title'), body: t('s6Body') },
           { title: t('s7Title'), body: t('s7Body') },
           { title: t('s8Title'), body: t('s8Body') },
+          { title: t('s9Title'), body: t('s9Body') },
+          { title: t('s10Title'), body: t('s10Body') },
         ].map((section) => (
           <section key={section.title} className="space-y-3">
             <h2 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">{section.title}</h2>

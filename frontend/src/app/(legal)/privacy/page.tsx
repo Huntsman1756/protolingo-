@@ -71,6 +71,7 @@ export default function PrivacyPage() {
           { title: t('s5Title'), body: t('s5Body') },
           { title: t('s6Title'), body: t('s6Body') },
           { title: t('s7Title'), body: t('s7Body') },
+          { title: t('s8Title'), body: t('s8Body') },
         ].map((section) => (
           <section key={section.title} className="space-y-3">
             <h2 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">{section.title}</h2>

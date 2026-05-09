@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.6] - 2026-05-09
+
+### Added
+- Public landing page at `/` with sticky nav, hero, feature cards, and footer; i18n in 6 languages (en, es, fr, pt, de, it)
+- `landing` i18n section in all 6 locale files
+- Legal documents completely rewritten for dual-mode operation (self-hosted + hosted service):
+  - Terms of Service: 10 sections covering both modalities, subscription & billing, governing law (Spain), 14-day EU withdrawal right
+  - Privacy Policy: 8 sections including data controller identification, external AI services (OpenAI + Standard Contractual Clauses), GDPR rights, right to lodge complaint with supervisory authority (AEPD/CNIL/BfDI/Garante/CNPD), legal basis of processing (Art. 6(1)(b) GDPR), international transfers
+- Minimum age requirement (16 years, GDPR Art. 8) added to Terms s3 and Privacy s2 in all 6 locales
+- `landing.footer` updated to reflect dual-mode availability (open source · self-host free or subscribe to hosted service)
+- `common.tagline` updated: removed "self-hosted" qualifier
+
+### Changed
+- TTS/STT refactored to provider pattern: `TTS_PROVIDER=local|openai` and `STT_PROVIDER=local|openai`; each resolved independently at startup
+- `TTS_ENABLED` / `STT_ENABLED` env vars removed; provider selection replaces them
+- `RATE_LIMIT_STORAGE` env var removed; Redis is now mandatory and always used for rate limiting
+- `backend/app/core/limiter.py` hardcoded to `REDIS_URL`
+- Middleware updated: `/` is now an exact-match public route (not prefix), preventing all authenticated routes from being treated as public
+- README updated to reflect dual-mode operation, provider pattern for TTS/STT, and new badge
+
+### Fixed
+- Contact email updated from `privacy@freelingo.app` to `freelingo@arturocarreterocalvo.com` in Privacy Policy s8 across all 6 locales
+- German typo in Privacy s6Body: `auszuuüben` → `auszuüben`
+
 ## [1.3.5] - 2026-05-06
 
 ### Fixed
