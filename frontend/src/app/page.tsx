@@ -85,11 +85,11 @@ export default async function Home() {
             © {new Date().getFullYear()} FreeLingo · {t('footer')}
           </span>
           <div className="flex gap-6">
-            <Link href="/terms" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
-              Terms
+            <Link href="/terms?from=landing" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
+              {t('terms')}
             </Link>
-            <Link href="/privacy" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
-              Privacy
+            <Link href="/privacy?from=landing" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
+              {t('privacy')}
             </Link>
           </div>
         </div>
