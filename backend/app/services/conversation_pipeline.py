@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 
 from app.services.language_helpers import get_english_variant, get_iso639
 from app.services.llm_adapter import LLMError, LLMStream, LLMTimeoutError, LLMUnavailableError
+from app.services.quota_service import record_session_seconds
 
 if TYPE_CHECKING:
     from fastapi import WebSocket
@@ -69,6 +70,8 @@ class ConversationPipeline:
         )
         self.max_duration = max_duration
         self.inactivity_timeout = inactivity_timeout
+        self._redis: object | None = None  # injected after construction
+        self._recorded = False
 
         self.current_task: asyncio.Task | None = None
         # Pre-populate history from optional chat context
@@ -156,10 +159,13 @@ class ConversationPipeline:
                 if SENTENCE_END.search(sentence_buffer.strip()) or len(sentence_buffer) > MAX_BUFFER_CHARS:
                     sentence = sentence_buffer.strip()
                     sentence_buffer = ""
+                    # Send accumulated text before audio so transcript updates in sync
+                    await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
                     await self._synthesize_and_send(sentence, ws)
 
             # Flush remaining buffer
             if sentence_buffer.strip():
+                await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
                 await self._synthesize_and_send(sentence_buffer.strip(), ws)
 
             # Persist token usage best-effort (never blocks the response)
@@ -232,6 +238,15 @@ class ConversationPipeline:
             self.history.pop()
 
     async def cleanup(self) -> None:
+        # Record actual session duration once, best-effort
+        if not self._recorded:
+            self._recorded = True
+            elapsed = int(time.monotonic() - self._session_start)
+            if self._redis is not None and self._user_id is not None and elapsed > 0:
+                try:
+                    await record_session_seconds(self._redis, self._user_id, elapsed)
+                except Exception:
+                    logger.debug("[pipeline] Failed to record session seconds — ignored")
         await self.cancel_current()
         for t in self._timer_tasks:
             t.cancel()

@@ -30,6 +30,8 @@ class AdminUserUpdate(BaseModel):
     display_name: Optional[str] = Field(default=None, max_length=100)
     role: Optional[Literal["user", "admin"]] = None
     is_active: Optional[bool] = None
+    conversation_weekly_sessions: Optional[int] = Field(default=None, ge=0)
+    conversation_daily_minutes: Optional[int] = Field(default=None, ge=0)
 
 
 class AdminUserResponse(BaseModel):
@@ -40,6 +42,8 @@ class AdminUserResponse(BaseModel):
     role: str
     native_language: str
     is_active: bool
+    conversation_weekly_sessions: int = 0
+    conversation_daily_minutes: int = 0
     created_at: datetime
     last_login: Optional[datetime]
 
