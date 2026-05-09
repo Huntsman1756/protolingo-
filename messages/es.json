@@ -643,6 +643,7 @@
     "quotaWeeklySessions": "Límite sesiones semanales",
     "quotaDailyMinutes": "Límite minutos diarios",
     "quotaWeeklyMinutes": "Límite de minutos semanales",
+    "quotaMonthlyTokens": "Límite de tokens mensuales",
     "quotaUnlimitedLabel": "Ilimitado (0)",
     "quotaUsedSessions": "Usadas esta semana",
     "quotaUsedMinutes": "Usados hoy",
@@ -742,7 +743,9 @@
     "quotaMinutes": "Minutos hoy",
     "quotaUnlimited": "Ilimitado",
     "quotaExceededSessions": "Has agotado todas tus sesiones de esta semana.",
-    "quotaExceededTime": "Has agotado tu tiempo de práctica diario."
+    "quotaExceededTime": "Has agotado tu tiempo de práctica diario.",
+    "quotaExceededTokens": "Has agotado todos tus tokens de IA mensuales.",
+    "quotaTokens": "Tokens este mes"
   },
   "voiceRecorder": {
     "record": "Grabar",

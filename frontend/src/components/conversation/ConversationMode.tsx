@@ -25,6 +25,9 @@ interface QuotaStatus {
   minutes_today: number
   minutes_limit: number
   time_unlimited: boolean
+  tokens_this_month: number
+  tokens_monthly_limit: number
+  tokens_unlimited: boolean
 }
 
 function QuotaBar({ label, used, limit, unlimited }: { label: string; used: number; limit: number; unlimited: boolean }) {
@@ -52,8 +55,17 @@ function QuotaBar({ label, used, limit, unlimited }: { label: string; used: numb
   )
 }
 
-export default function ConversationMode({ initialContext }: { initialContext?: ChatContextItem[] }) {
+export default function ConversationMode({
+  initialContext,
+  autoStart,
+  onClose,
+}: {
+  initialContext?: ChatContextItem[]
+  autoStart?: boolean
+  onClose?: () => void
+}) {
   const t = useTranslations('conversation')
+  const tCommon = useTranslations('common')
   const accessToken = useAuthStore((s) => s.accessToken)
   const user = useAuthStore((s) => s.user)
 
@@ -138,6 +150,24 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
     transcriptEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [transcript, streamingText])
 
+  // ─── Auto-start when opened as overlay from chat ────────────────────────
+  const pendingAutoStartRef = useRef(false)
+
+  useEffect(() => {
+    if (autoStart && !sessionActive) {
+      pendingAutoStartRef.current = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoStart])
+
+  useEffect(() => {
+    if (pendingAutoStartRef.current && !vad.loading && !vad.errored && !!accessToken && !sessionActive) {
+      pendingAutoStartRef.current = false
+      void handleStart()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vad.loading, vad.errored, accessToken])
+
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
     (token: string, context?: ChatContextItem[]) => {
@@ -214,7 +244,9 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
                     ? t('quotaExceededSessions')
                     : msg.code === 'quota_exceeded_time'
                       ? t('quotaExceededTime')
-                      : (msg.message ?? t('errorConnection')),
+                      : msg.code === 'quota_exceeded_tokens'
+                        ? t('quotaExceededTokens')
+                        : (msg.message ?? t('errorConnection')),
               )
               setStatus('error')
               ws.close()
@@ -316,11 +348,21 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
   return (
     <div className="flex flex-col h-full min-h-[calc(100vh-56px)] md:min-h-screen p-4 md:p-6 max-w-2xl mx-auto">
       {/* Header */}
-      <div className="mb-6 pb-4 border-b border-fl-border">
-        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">
-          {t('subtitle')}
-        </p>
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">{t('title')}</h1>
+      <div className="mb-6 pb-4 border-b border-fl-border flex items-end justify-between">
+        <div>
+          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">
+            {t('subtitle')}
+          </p>
+          <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">{t('title')}</h1>
+        </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="font-mono text-fl-hint tracking-widest text-fl-muted-2 hover:text-fl-fg uppercase transition-colors"
+          >
+            ← {tCommon('back')}
+          </button>
+        )}
       </div>
 
       {/* Timeout warning */}
@@ -333,20 +375,25 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
             {t('tapToStart')}
           </p>
         )}
-        {transcript.map((entry) => (
-          <TranscriptBubble
-            key={entry.id}
-            role={entry.role}
-            text={entry.text}
-            userAvatar={user?.avatar}
-            userInitial={(user?.displayName || user?.username || '?')[0]}
-          />
-        ))}
+        {(() => {
+          const lastUserIdx = transcript.reduce((acc, e, j) => e.role === 'user' ? j : acc, -1)
+          return transcript.map((entry, i) => (
+            <TranscriptBubble
+              key={entry.id}
+              role={entry.role}
+              text={entry.text}
+              speaking={entry.role === 'user' && userSpeaking && i === lastUserIdx}
+              userAvatar={user?.avatar}
+              userInitial={(user?.displayName || user?.username || '?')[0]}
+            />
+          ))
+        })()}
         {streamingText !== null && (
           <TranscriptBubble
             role="assistant"
             text={streamingText}
             streaming
+            speaking={assistantSpeaking}
             userAvatar={user?.avatar}
             userInitial={(user?.displayName || user?.username || '?')[0]}
           />
@@ -383,6 +430,14 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
               limit={quota.minutes_limit}
               unlimited={quota.time_unlimited}
             />
+            {!quota.tokens_unlimited && (
+              <QuotaBar
+                label={t('quotaTokens')}
+                used={quota.tokens_this_month}
+                limit={quota.tokens_monthly_limit}
+                unlimited={false}
+              />
+            )}
           </div>
         )}
         <StatusIndicator

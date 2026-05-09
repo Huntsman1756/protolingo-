@@ -20,7 +20,7 @@ from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.services.conversation_pipeline import ConversationPipeline
 from app.services.llm_adapter import llm_adapter
-from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_weekly_minutes
+from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_monthly_tokens, check_weekly_minutes
 
 router = APIRouter(tags=["conversation"])
 
@@ -136,9 +136,11 @@ async def conversation_ws(
         inactivity_timeout = user.conversation_inactivity_timeout
         native_language = user.native_language
         target_language = user.target_language
+        student_name = user.display_name
         weekly_sessions_limit = user.conversation_weekly_sessions
         daily_minutes_limit = user.conversation_daily_minutes
         weekly_minutes_limit = user.conversation_weekly_minutes
+        monthly_tokens_limit = user.monthly_tokens_limit
 
     # Validate and sanitize optional chat context passed from the tutor chat
     valid_context: list[dict] | None = None
@@ -161,6 +163,26 @@ async def conversation_ws(
     # --- Quota checks ---
     redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
     try:
+        # Check monthly token quota (DB-backed) — blocks both chat and voice
+        if monthly_tokens_limit > 0:
+            async with AsyncSessionLocal() as db_quota:
+                tokens_ok, tokens_used, tokens_limit = await check_monthly_tokens(
+                    db_quota, user_id, monthly_tokens_limit
+                )
+            if not tokens_ok:
+                logger.info(
+                    "[conversation] Monthly token quota exceeded — user=%s used=%s limit=%s",
+                    user_id, tokens_used, tokens_limit,
+                )
+                await websocket.send_json({
+                    "type": "error",
+                    "code": "quota_exceeded_tokens",
+                    "message": f"Monthly token limit reached ({tokens_used}/{tokens_limit} tokens). Voice is unavailable until next month.",
+                })
+                await websocket.close(code=1008)
+                await redis.aclose()
+                return
+
         # Check daily minutes first (read-only) so we never waste a weekly session slot
         daily_ok, minutes_used, minutes_limit = await check_daily_minutes(
             redis, user_id, daily_minutes_limit
@@ -235,6 +257,7 @@ async def conversation_ws(
         cefr_level=cefr_level,
         native_language=native_language,
         target_language=target_language,
+        student_name=student_name,
         max_duration=max_duration,
         inactivity_timeout=inactivity_timeout,
         initial_context=valid_context,

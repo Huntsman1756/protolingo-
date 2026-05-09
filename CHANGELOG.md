@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.16] - 2026-05-10
+
+### Added
+- Monthly token quota per user (`monthly_tokens_limit` field on `User`, 0 = unlimited); admin can set it per-user via PATCH; chat and voice conversation are blocked with a clear error when the monthly limit is exceeded
+- `get_monthly_tokens_used()` and `check_monthly_tokens()` helpers in `quota_service`; `GET /api/auth/quota` now includes `tokens_this_month`, `tokens_monthly_limit`, `tokens_unlimited`
+- Voice conversation `ConversationMode` shows a monthly-token progress bar alongside sessions and minutes; handles `quota_exceeded_tokens` WebSocket error code
+- Admin user-edit page includes a "Monthly tokens limit" field (0 = unlimited)
+- i18n keys `quotaTokens`, `quotaExceededTokens`, `quotaMonthlyTokens` added in all 10 locales
+
 ## [1.3.15] - 2026-05-09
 
 ### Fixed
