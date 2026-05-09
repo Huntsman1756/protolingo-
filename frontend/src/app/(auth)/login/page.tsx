@@ -157,6 +157,11 @@ function LoginForm() {
               {t('register')}
             </a>
           </p>
+          <p className="mt-3 font-mono text-fl-label text-fl-muted-4 tracking-wide text-center">
+            <a href="/forgot-password" className="hover:text-fl-muted-2 transition-colors">
+              {t('forgotPassword')}
+            </a>
+          </p>
         </div>
       </div>
     </div>

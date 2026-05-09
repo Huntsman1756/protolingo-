@@ -7,43 +7,41 @@ applyTo: "backend/app/main.py, backend/app/core/config.py, backend/app/core/limi
 
 ## Approach
 
-Uses [**slowapi**](https://github.com/laurentS/slowapi) (built on `limits`, Rust backend). Default storage is **Redis** — consistent across restarts and multi-node deployments. Redis is already a required dependency (refresh tokens), so there is no additional infrastructure cost.
-
-For development or trusted environments without Redis, switch to in-memory via `RATE_LIMIT_STORAGE=memory` in `.env`.
+Uses [**slowapi**](https://github.com/laurentS/slowapi) (built on `limits`, Rust backend). Storage is always **Redis** — the `storage_uri` is set directly to `settings.REDIS_URL`. Redis is already a required dependency (refresh tokens), so there is no additional infrastructure cost.
 
 ### Configuration
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `RATE_LIMIT_ENABLED` | `true` | Enable/disable rate limiting entirely |
-| `RATE_LIMIT_STORAGE` | `"redis"` | Storage backend: `"redis"` (default) or `"memory"` |
 
-The global default limit is 200 requests/minute for all unclassified endpoints.
+The global default limit is 200 requests/minute for all endpoints without an explicit `@limiter.limit()` decorator.
 
 ### Key strategies
 
-- **IP-based limiting**: used for unauthenticated endpoints (login, register) where no user context exists
+- **IP-based limiting**: used for unauthenticated endpoints (login, register, email verification) where no user context exists
 - **User-based limiting**: used for authenticated endpoints, keyed by `user_id` from JWT. More precise than IP since multiple users may share an IP (self-hosted scenario)
-- **Memory storage**: counters are lost on process restart. Acceptable for self-hosted single-node deployments
+- **Redis storage**: counters persist across restarts and are shared across backend instances
 - **Disable option**: set `RATE_LIMIT_ENABLED=false` to remove all limits (for development or trusted environments)
 
 ---
 
 ## Per-endpoint limits
 
-| Endpoint group | Limit | Key type | Rationale |
-|---------------|-------|----------|-----------|
-| Auth login | 10 requests / minute | IP | Prevent brute-force on credentials |
-| Auth register | 5 requests / minute | IP | Prevent account-creation abuse; invite token provides additional gating |
-| Auth refresh | 20 requests / minute | IP | Token rotation — higher limit to avoid disrupting normal SPA refresh cycles |
-| LLM-heavy (`/api/assessment/start`, `/api/assessment/submit`, `/api/study-plan/generate`, `/api/flashcards/generate`) | 10 requests / minute | User | These call Ollama; prevent queue saturation |
-| LLM-light (`/api/lessons/*`, `/api/exercises/*`, `/api/chat`) | 30 requests / minute | User | Interactive, should feel responsive |
-| Flashcards review (`/api/flashcards/*/review`) | 60 requests / minute | User | Rapid swipes during review sessions |
-| Admin (`/api/admin/*`) | 60 requests / minute | User | Admin UI responsiveness |
-| General read (`/api/auth/me`, `/api/progress/*`, `/api/study-plan/current`, `/api/study-plan/today`) | 120 requests / minute | User | Light reads, high rate acceptable |
-| TTS (`/api/tts`) | 20 requests / minute | User | Audio generation (computationally expensive) |
-| STT (`/api/stt`) | 20 requests / minute | User | Audio transcription (computationally expensive) |
-| Default (all other endpoints) | 200 requests / minute | IP | Catch-all for unclassified routes |
+Only endpoints with explicit `@limiter.limit()` decorators override the global default. Everything else falls back to 200 requests/minute.
+
+| Endpoint | Limit | Key type | Rationale |
+|----------|-------|----------|-----------|
+| `POST /api/auth/register` | 5 / minute | IP | Prevent account-creation abuse; invite token provides additional gating |
+| `POST /api/auth/login` | 10 / minute | IP | Prevent brute-force on credentials |
+| `POST /api/auth/refresh` | 20 / minute | IP | Token rotation — higher limit to avoid disrupting normal SPA refresh cycles |
+| `GET /api/auth/verify-email` | 10 / minute | IP | Prevent token-probing abuse |
+| `POST /api/auth/resend-verification` | 3 / minute | IP | Prevent email-sending abuse |
+| `POST /api/auth/forgot-password` | 5 / minute | IP | Prevent email enumeration / spam |
+| `POST /api/auth/reset-password` | 5 / minute | IP | Prevent token-brute-force |
+| `POST /api/tts` | 20 / minute | User | Audio generation (computationally expensive) |
+| `POST /api/stt` | 20 / minute | User | Audio transcription (computationally expensive) |
+| All other endpoints | 200 / minute | IP | Global default catch-all |
 
 ---
 
@@ -93,8 +91,6 @@ The WebSocket conversation endpoint (`/ws/conversation`) is **not** rate-limited
 
 Since FreeLingo is self-hosted (typically single admin + few users):
 
-- **Defaults are generous** — limits prevent abuse, not normal usage. A single user doing flashcards review generates approximately 1-2 requests/second, well within limits.
+- **Defaults are generous** — limits prevent abuse, not normal usage.
 - **Redis storage** — counters persist across restarts and are shared across backend instances. Redis is already required for auth (refresh tokens), so no extra infrastructure is needed.
-- **In-memory backend optional** — set `RATE_LIMIT_STORAGE=memory` for local development without Redis.
 - **Disable fully** — set `RATE_LIMIT_ENABLED=false` if rate limiting causes issues in a trusted environment.
-- Limits are environment-configurable, not hardcoded — adjust in `.env` if the defaults don't match the deployment scale.

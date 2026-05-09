@@ -42,7 +42,10 @@
     "checking": "Verificando...",
     "backToDashboard": "Voltar ao painel",
     "tagline": "aprendizado de idiomas com IA",
-    "close": "Fechar"
+    "close": "Fechar",
+    "verifyEmailBanner": "Por favor, verifique o seu endereço de e-mail para concluir a configuração da conta.",
+    "verifyEmailSent": "E-mail enviado — verifique a sua caixa de entrada.",
+    "resendVerification": "Reenviar e-mail de verificação"
   },
   "nav": {
     "home": "Início",
@@ -77,7 +80,8 @@
       "showPassword": "Mostrar senha",
       "hidePassword": "Ocultar senha",
       "accountCreated": "Conta criada — você já pode entrar",
-      "invalidEmail": "Por favor, insira um endereço de e-mail válido"
+      "invalidEmail": "Por favor, insira um endereço de e-mail válido",
+      "forgotPassword": "Esqueceu a senha?"
     },
     "register": {
       "title": "Criar conta",
@@ -108,6 +112,36 @@
       "andWord": "e a",
       "privacyLink": "Política de Privacidade",
       "termsRequired": "Você deve aceitar os termos para continuar"
+    },
+    "verifyEmail": {
+      "title": "Verificação de e-mail",
+      "loading": "Verificando...",
+      "success": "O seu e-mail foi verificado. Pode fazer login agora.",
+      "error": "Link de verificação inválido ou expirado.",
+      "goToLogin": "Ir para o login"
+    },
+    "forgotPassword": {
+      "title": "Esqueci a senha",
+      "description": "Insira o e-mail da sua conta e enviaremos um link de redefinição.",
+      "emailPlaceholder": "seu@email.com",
+      "submit": "Enviar link",
+      "sending": "Enviando...",
+      "sent": "Se esse e-mail estiver registrado, um link foi enviado.",
+      "backToLogin": "Voltar ao login",
+      "error": "Algo deu errado. Por favor, tente novamente."
+    },
+    "resetPassword": {
+      "title": "Redefinir senha",
+      "newPassword": "Nova senha",
+      "confirmPassword": "Confirmar senha",
+      "submit": "Salvar senha",
+      "saving": "Salvando...",
+      "success": "Senha atualizada. Redirecionando...",
+      "mismatch": "As senhas não coincidem",
+      "tooShort": "A senha deve ter pelo menos 8 caracteres",
+      "missingToken": "Link inválido. Solicite uma nova redefinição.",
+      "error": "Link inválido ou expirado",
+      "backToLogin": "Voltar ao login"
     }
   },
   "settings": {
@@ -614,7 +648,13 @@
     "quotaUsedMinutes": "Usados hoje",
     "quotaUsedWeeklyMinutes": "Usados esta semana (min)",
     "quotaSave": "Guardar quotas",
-    "quotaSaved": "Quotas guardadas."
+    "quotaSaved": "Quotas guardadas.",
+    "emailVerified": "E-mail verificado",
+    "emailNotVerified": "E-mail não verificado",
+    "verifyEmail": "Verificar e-mail",
+    "unverifyEmail": "Marcar como não verificado",
+    "emailVerifiedSuccess": "E-mail marcado como verificado.",
+    "emailUnverifiedSuccess": "E-mail marcado como não verificado."
   },
   "faq": {
     "title": "FAQ",

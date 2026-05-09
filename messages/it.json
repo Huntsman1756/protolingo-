@@ -42,7 +42,10 @@
     "checking": "Controllo in corso...",
     "backToDashboard": "Torna alla dashboard",
     "tagline": "apprendimento linguistico con IA",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "verifyEmailBanner": "Verifica il tuo indirizzo e-mail per completare la configurazione dell'account.",
+    "verifyEmailSent": "E-mail inviata — controlla la tua casella di posta.",
+    "resendVerification": "Reinvia e-mail di verifica"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
       "showPassword": "Mostra password",
       "hidePassword": "Nascondi password",
       "accountCreated": "Account creato — puoi ora accedere",
-      "invalidEmail": "Inserisci un indirizzo e-mail valido"
+      "invalidEmail": "Inserisci un indirizzo e-mail valido",
+      "forgotPassword": "Hai dimenticato la password?"
     },
     "register": {
       "title": "Crea account",
@@ -108,6 +112,36 @@
       "andWord": "e l'informatica sulla",
       "privacyLink": "Privacy",
       "termsRequired": "Devi accettare i termini per continuare"
+    },
+    "verifyEmail": {
+      "title": "Verifica e-mail",
+      "loading": "Verifica in corso...",
+      "success": "La tua e-mail è stata verificata. Ora puoi accedere.",
+      "error": "Link di verifica non valido o scaduto.",
+      "goToLogin": "Vai al login"
+    },
+    "forgotPassword": {
+      "title": "Password dimenticata",
+      "description": "Inserisci l'e-mail del tuo account e ti invieremo un link per reimpostare la password.",
+      "emailPlaceholder": "tua@email.it",
+      "submit": "Invia link",
+      "sending": "Invio...",
+      "sent": "Se quell'e-mail è registrata, è stato inviato un link.",
+      "backToLogin": "Torna al login",
+      "error": "Qualcosa è andato storto. Riprova."
+    },
+    "resetPassword": {
+      "title": "Reimposta password",
+      "newPassword": "Nuova password",
+      "confirmPassword": "Conferma password",
+      "submit": "Salva password",
+      "saving": "Salvataggio...",
+      "success": "Password aggiornata. Reindirizzamento...",
+      "mismatch": "Le password non corrispondono",
+      "tooShort": "La password deve contenere almeno 8 caratteri",
+      "missingToken": "Link non valido. Richiedi un nuovo reset.",
+      "error": "Link non valido o scaduto",
+      "backToLogin": "Torna al login"
     }
   },
   "settings": {
@@ -614,7 +648,13 @@
     "quotaUsedMinutes": "Usati oggi",
     "quotaUsedWeeklyMinutes": "Usati questa settimana (min)",
     "quotaSave": "Salva quote",
-    "quotaSaved": "Quote salvate."
+    "quotaSaved": "Quote salvate.",
+    "emailVerified": "E-mail verificata",
+    "emailNotVerified": "E-mail non verificata",
+    "verifyEmail": "Verifica e-mail",
+    "unverifyEmail": "Segna come non verificata",
+    "emailVerifiedSuccess": "E-mail contrassegnata come verificata.",
+    "emailUnverifiedSuccess": "E-mail contrassegnata come non verificata."
   },
   "faq": {
     "title": "FAQ",
