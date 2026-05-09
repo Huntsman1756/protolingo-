@@ -7,12 +7,15 @@ import { useSearchParams } from 'next/navigation'
 
 export default function PrivacyPage() {
   const t = useTranslations('legal.privacy')
+  const tCommon = useTranslations('common')
   const searchParams = useSearchParams()
   const from = searchParams.get('from')
   const isFromSettings = from === 'settings'
-  const backHref = isFromSettings ? '/settings' : '/register'
-  const backLabel = isFromSettings ? t('linkBackSettings') : t('linkBack')
-  const termsHref = isFromSettings ? '/terms?from=settings' : '/terms'
+  const isFromRegister = from === 'register'
+  const isFromLanding = from === 'landing'
+  const backHref = isFromSettings ? '/settings' : isFromRegister ? '/register' : isFromLanding ? '/' : '/'
+  const backLabel = isFromSettings ? t('linkBackSettings') : isFromRegister ? t('linkBack') : tCommon('back')
+  const termsHref = isFromSettings ? '/terms?from=settings' : isFromRegister ? '/terms?from=register' : isFromLanding ? '/terms?from=landing' : '/terms'
   const s2Items = [t('s2i1'), t('s2i2'), t('s2i3'), t('s2i4'), t('s2i5'), t('s2i6'), t('s2i7')]
   const s3Items = [t('s3i1'), t('s3i2'), t('s3i3'), t('s3i4')]
 
@@ -23,7 +26,7 @@ export default function PrivacyPage() {
           <Image src="/logo.png" alt="FreeLingo" width={48} height={48} className="mb-3" />
         </Link>
         <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
-        <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">self-hosted language learning</p>
+        <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">{tCommon('tagline')}</p>
       </div>
 
       <div className="border border-fl-border bg-fl-surface p-8 space-y-8">

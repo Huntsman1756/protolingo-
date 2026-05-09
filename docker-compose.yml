@@ -30,6 +30,7 @@ services:
 
   backend:
     image: ghcr.io/artcc/freelingo-backend:latest
+    pull_policy: always
     container_name: freelingo-backend
     restart: unless-stopped
     command: >
@@ -66,6 +67,7 @@ services:
 
   frontend:
     image: ghcr.io/artcc/freelingo-frontend:latest
+    pull_policy: always
     container_name: freelingo-frontend
     restart: unless-stopped
     environment:
