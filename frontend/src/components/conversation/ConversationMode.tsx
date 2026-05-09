@@ -251,7 +251,7 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
   )
 
   // ─── Session lifecycle ────────────────────────────────────────────────────
-  function handleStart() {
+  async function handleStart() {
     if (!accessToken || vad.loading || vad.errored) return
 
     // AudioContext MUST be created during a user-gesture (this click handler)
@@ -270,6 +270,13 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
     setAssistantSpeaking(false)
     refreshQuota()
 
+    // Trigger model warmup on TTS/STT services and WAIT for them to be ready
+    // before opening the WebSocket. Models are loaded lazily by the backend;
+    // this ensures the first transcription/synthesis in the session is fast.
+    // Runs in parallel with VAD mic permission request.
+    setStatus('warming')
+    const warmupPromise = apiFetch('/api/conversation/warmup', { method: 'POST' }).catch(() => undefined)
+
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
       setErrorMsg(e instanceof Error ? e.message : t('errorMic'))
@@ -277,6 +284,7 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
       setSessionActive(false)
     })
 
+    await warmupPromise
     connectWs(accessToken, initialContext)
   }
 

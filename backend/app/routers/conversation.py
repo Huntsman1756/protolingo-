@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import struct
 
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
+from fastapi.responses import JSONResponse
 from redis.asyncio import Redis
 
 logger = logging.getLogger(__name__)
@@ -12,6 +14,7 @@ from sqlalchemy import select
 
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal
+from app.core.deps import get_current_user
 from app.core.security import decode_access_token
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -20,6 +23,62 @@ from app.services.llm_adapter import llm_adapter
 from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_weekly_minutes
 
 router = APIRouter(tags=["conversation"])
+
+
+def _make_silence_wav(duration_ms: int = 100, sample_rate: int = 16000) -> bytes:
+    """Return a minimal valid PCM WAV with silence (for STT warmup)."""
+    num_samples = sample_rate * duration_ms // 1000
+    data = b"\x00" * (num_samples * 2)  # 16-bit mono
+    byte_rate = sample_rate * 2
+    header = struct.pack(
+        "<4sI4s4sIHHIIHH4sI",
+        b"RIFF", 36 + len(data), b"WAVE",
+        b"fmt ", 16, 1, 1, sample_rate, byte_rate, 2, 16,
+        b"data", len(data),
+    )
+    return header + data
+
+
+@router.post("/api/conversation/warmup")
+async def conversation_warmup(
+    request: Request,
+    _current_user: User = Depends(get_current_user),
+) -> JSONResponse:
+    """Pre-heat TTS and STT services before a conversation session starts.
+
+    Awaits model loading synchronously so the caller knows the models are
+    ready before opening the WebSocket. The frontend must await this call
+    and only then connect the WebSocket.
+    """
+    tts_service = getattr(request.app.state, "tts_service", None)
+    stt_service = getattr(request.app.state, "stt_service", None)
+
+    tasks = []
+    if tts_service:
+        tasks.append(_warmup_tts(tts_service))
+    if stt_service:
+        tasks.append(_warmup_stt(stt_service))
+    if tasks:
+        await asyncio.gather(*tasks)
+
+    return JSONResponse({"status": "ready"})
+
+
+async def _warmup_tts(tts_service: object) -> None:
+    try:
+        await tts_service.synthesize("ready")  # type: ignore[union-attr]
+        logger.info("[warmup] TTS ready")
+    except Exception as exc:
+        logger.warning("[warmup] TTS warmup error: %s", exc)
+
+
+async def _warmup_stt(stt_service: object) -> None:
+    try:
+        wav = _make_silence_wav()
+        await stt_service.transcribe(wav, "warmup.wav", "audio/wav")  # type: ignore[union-attr]
+        logger.info("[warmup] STT ready")
+    except Exception as exc:
+        logger.warning("[warmup] STT warmup error: %s", exc)
 
 
 @router.websocket("/ws/conversation")

@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 export type ConvStatus =
   | 'loading'
   | 'ready'
+  | 'warming'
   | 'connecting'
   | 'live'
   | 'ended'
@@ -23,6 +24,9 @@ export default function StatusIndicator({ status, userSpeaking, assistantSpeakin
 
   if (status === 'loading') {
     label = t('statusLoading')
+  } else if (status === 'warming') {
+    label = t('statusWarming')
+    pulse = true
   } else if (status === 'connecting') {
     label = t('statusConnecting')
     pulse = true

@@ -436,15 +436,33 @@ export default function SettingsPage() {
           <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionAuthor')}</span>
         </div>
         <p className="font-mono text-sm text-fl-fg">{t('authorDescription')}</p>
-        <a
-          href="https://github.com/artcc"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mt-3 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
-        >
-          <ExternalLink className="w-3.5 h-3.5" />
-          {t('githubProfile')}
-        </a>
+        <div className="flex flex-col gap-2 mt-3">
+          <a
+            href="https://arturocarreterocalvo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            {t('websiteLink')}
+          </a>
+          <a
+            href="https://github.com/artcc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            {t('githubProfile')}
+          </a>
+          <a
+            href="mailto:freelingo@arturocarreterocalvo.com"
+            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            {t('contactLink')}
+          </a>
+        </div>
       </div>
 
       {/* Legal */}

@@ -12,7 +12,9 @@
     "feature3Desc": "Rozmawiaj z korepetytorem w czasie rzeczywistym. Aktywacja głosem, natychmiastowa odpowiedź.",
     "footer": "Open source · Hostuj samodzielnie za darmo lub subskrybuj usługę hostowaną",
     "terms": "Regulamin",
-    "privacy": "Prywatność"
+    "privacy": "Prywatność",
+    "contact": "Kontakt",
+    "aboutMe": "O mnie"
   },
   "common": {
     "loading": "Ładowanie...",
@@ -155,7 +157,9 @@
     "privacyPolicy": "Polityka prywatności",
     "sectionAuthor": "Autor",
     "authorDescription": "Zbudowane przez Arturo Carretero Calvo",
+    "websiteLink": "Strona internetowa",
     "githubProfile": "Profil GitHub",
+    "contactLink": "Kontakt",
     "deleteAccount": "Usuń konto",
     "deleteAccountTitle": "Usuń konto",
     "deleteAccountMessage": "Spowoduje to trwałe usunięcie Twojego konta i wszystkich danych. Tej operacji nie można cofnąć.",
@@ -659,6 +663,7 @@
     "startNew": "Rozpocznij nową sesję",
     "statusLoading": "Ładowanie modelu głosowego...",
     "statusReady": "Gotowy",
+    "statusWarming": "Ładowanie modeli...",
     "statusConnecting": "Łączenie...",
     "statusListening": "Słuchanie...",
     "statusDetecting": "Wykrywanie mowy...",
