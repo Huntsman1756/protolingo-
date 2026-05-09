@@ -332,7 +332,7 @@ export default function AdminUserStatsPage() {
             />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0">
+            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0 max-w-[10rem] truncate" title={t('quotaWeeklyMinutes')}>
               {t('quotaWeeklyMinutes')}
             </label>
             <input

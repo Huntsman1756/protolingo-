@@ -146,16 +146,16 @@ export default function AdminUsersPage() {
           <span className="text-fl-label text-fl-muted-2">●</span>
           <span className="font-mono text-xs tracking-widest text-fl-muted-1 uppercase">{t('title')} / {t('users')}</span>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={generateInvite}
-            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest text-fl-muted-1 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
+            className="border border-fl-border px-3 py-2 font-mono text-fl-label tracking-widest text-fl-muted-1 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
           >
             {t('inviteBtn')}
           </button>
           <button
             onClick={() => setShowCreate(!showCreate)}
-            className={`border px-4 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${showCreate
+            className={`border px-3 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${showCreate
               ? 'border-fl-border-2 text-fl-fg'
               : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
               }`}
@@ -260,10 +260,10 @@ export default function AdminUsersPage() {
             {users.map((u, i) => (
               <div
                 key={u.id}
-                className={`flex items-center justify-between px-6 py-4 ${i < users.length - 1 ? 'border-b border-fl-border' : ''}`}
+                className={`flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-4 gap-3 ${i < users.length - 1 ? 'border-b border-fl-border' : ''}`}
               >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
+                <div className="space-y-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="font-mono text-sm text-fl-fg">{u.display_name}</span>
                     <span className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${u.role === 'admin' ? 'border-fl-fg/40 text-fl-fg' : 'border-fl-border text-fl-muted-2'
                       }`}>{u.role === 'admin' ? t('roleAdmin') : t('roleUser')}</span>
@@ -271,20 +271,20 @@ export default function AdminUsersPage() {
                       <span className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-2 py-0.5">{t('inactive')}</span>
                     )}
                   </div>
-                  <p className="font-mono text-fl-label text-fl-muted-2">
+                  <p className="font-mono text-fl-label text-fl-muted-2 break-all">
                     <span className="text-fl-muted-4">#{u.id}</span> · {u.username} {u.email ? `· ${u.email}` : ''} · {u.native_language}
                   </p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2 shrink-0">
                   <Link
                     href={`/admin/users/${u.id}`}
-                    className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors"
+                    className="border border-fl-border px-3 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors"
                   >
                     {t('viewStats')}
                   </Link>
                   <button
                     onClick={() => toggleActive(u)}
-                    className={`border px-4 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${u.is_active
+                    className={`border px-3 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${u.is_active
                       ? 'border-fl-error/30 text-fl-error-fg hover:border-fl-error'
                       : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
                       }`}
@@ -294,7 +294,7 @@ export default function AdminUsersPage() {
                   <button
                     onClick={() => setDeletePending(u)}
                     disabled={u.id === currentUserId}
-                    className="border border-fl-error/30 px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-error-fg hover:border-fl-error hover:text-fl-error transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+                    className="border border-fl-error/30 px-3 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-error-fg hover:border-fl-error hover:text-fl-error transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
                     title={u.id === currentUserId ? 'Cannot delete your own account' : 'Delete user'}
                   >
                     {t('delete')}
