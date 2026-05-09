@@ -34,6 +34,7 @@ class AdminUserUpdate(BaseModel):
     conversation_weekly_sessions: Optional[int] = Field(default=None, ge=0)
     conversation_daily_minutes: Optional[int] = Field(default=None, ge=0)
     conversation_weekly_minutes: Optional[int] = Field(default=None, ge=0)
+    monthly_tokens_limit: Optional[int] = Field(default=None, ge=0)
 
 
 class AdminUserResponse(BaseModel):
@@ -48,6 +49,7 @@ class AdminUserResponse(BaseModel):
     conversation_weekly_sessions: int = 0
     conversation_daily_minutes: int = 0
     conversation_weekly_minutes: int = 90
+    monthly_tokens_limit: int = 0
     created_at: datetime
     last_login: Optional[datetime]
 

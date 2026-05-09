@@ -654,7 +654,8 @@
     "verifyEmail": "Verifică e-mail",
     "unverifyEmail": "Marchează ca neverificat",
     "emailVerifiedSuccess": "E-mail marcat ca verificat.",
-    "emailUnverifiedSuccess": "E-mail marcat ca neverificat."
+    "emailUnverifiedSuccess": "E-mail marcat ca neverificat.",
+    "quotaMonthlyTokens": "Limită lunară de tokeni"
   },
   "faq": {
     "title": "Întrebări frecvente",
@@ -742,7 +743,9 @@
     "quotaMinutes": "Minute azi",
     "quotaUnlimited": "Nelimitat",
     "quotaExceededSessions": "Ai folosit toate sesiunile pentru această săptămână.",
-    "quotaExceededTime": "Ai folosit tot timpul zilnic de practică."
+    "quotaExceededTime": "Ai folosit tot timpul zilnic de practică.",
+    "quotaExceededTokens": "Ai folosit toți tokenii IA lunari.",
+    "quotaTokens": "Tokeni luna aceasta"
   },
   "voiceRecorder": {
     "record": "Înregistrează",

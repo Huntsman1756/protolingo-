@@ -21,6 +21,7 @@ MAX_BUFFER_CHARS = 150
 
 CONVERSATION_SYSTEM_PROMPT = """\
 You are an English conversation partner for language learning.
+You are talking with {student_name}.
 Student level: {cefr_level}.
 Student's native language: {native_language}.
 Use {english_variant} English spelling and vocabulary consistently.
@@ -53,6 +54,7 @@ class ConversationPipeline:
         cefr_level: str = "B1",
         native_language: str = "es",
         target_language: str = "en-US",
+        student_name: str = "Student",
         max_duration: int = 1800,
         inactivity_timeout: int = 180,
         initial_context: list[dict] | None = None,
@@ -64,6 +66,7 @@ class ConversationPipeline:
         self._stt_language = get_iso639(target_language)
         self._user_id = user_id
         self.system_prompt = CONVERSATION_SYSTEM_PROMPT.format(
+            student_name=student_name,
             cefr_level=cefr_level,
             native_language=native_language,
             english_variant=get_english_variant(target_language),
@@ -91,12 +94,78 @@ class ConversationPipeline:
         self._timer_tasks: list[asyncio.Task] = []
         self._inactivity_warning_sent = False
 
+    async def _greet(self, ws: "WebSocket") -> None:
+        """Generate and stream an opening greeting from the assistant."""
+        # Inject a hidden trigger so the LLM produces a natural opening line.
+        # This message is NOT added to self.history so it doesn't pollute context.
+        trigger = {"role": "user", "content": "[Session started. Greet the student warmly and naturally — one or two sentences max — and invite them to speak.]"}
+        messages = [{"role": "system", "content": self.system_prompt}] + self.history[-20:] + [trigger]
+
+        tts_queue: asyncio.Queue[asyncio.Future[bytes] | None] = asyncio.Queue()
+        tts_futures: list[asyncio.Future[bytes]] = []
+
+        async def _tts_sender() -> None:
+            while True:
+                item = await tts_queue.get()
+                if item is None:
+                    break
+                try:
+                    audio = await item
+                    await ws.send_bytes(audio)
+                except asyncio.CancelledError:
+                    raise
+                except Exception as exc:
+                    logger.error("[pipeline] TTS greeting failed: %s", exc)
+
+        sender_task = asyncio.create_task(_tts_sender())
+
+        def _enqueue_tts(text: str) -> None:
+            future: asyncio.Future[bytes] = asyncio.ensure_future(self.tts.synthesize(text))
+            tts_futures.append(future)
+            tts_queue.put_nowait(future)
+
+        try:
+            full_response = ""
+            sentence_buffer = ""
+            llm_stream = await self.llm.chat(messages, stream=True)
+            async for chunk in llm_stream:
+                token = chunk.choices[0].delta.content or ""
+                full_response += token
+                sentence_buffer += token
+                if SENTENCE_END.search(sentence_buffer.strip()) or len(sentence_buffer) > MAX_BUFFER_CHARS:
+                    sentence = sentence_buffer.strip()
+                    sentence_buffer = ""
+                    await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
+                    _enqueue_tts(sentence)
+            if sentence_buffer.strip():
+                await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
+                _enqueue_tts(sentence_buffer.strip())
+
+            tts_queue.put_nowait(None)
+            await sender_task
+
+            if full_response.strip():
+                self.history.append({"role": "assistant", "content": full_response.strip()})
+                await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": True})
+                await ws.send_json({"type": "turn_complete"})
+        except asyncio.CancelledError:
+            sender_task.cancel()
+            for f in tts_futures:
+                f.cancel()
+            raise
+        except Exception as exc:
+            sender_task.cancel()
+            for f in tts_futures:
+                f.cancel()
+            logger.error("[pipeline] Greeting failed: %s", exc)
+
     async def run(self, ws: "WebSocket") -> None:
         """Main loop: starts timeout watchers then handles incoming messages."""
         self._timer_tasks = [
             asyncio.create_task(self._max_duration_watcher(ws)),
             asyncio.create_task(self._inactivity_watcher(ws)),
         ]
+        await self._greet(ws)
         try:
             while True:
                 try:

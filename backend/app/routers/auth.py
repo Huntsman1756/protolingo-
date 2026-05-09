@@ -308,17 +308,23 @@ async def delete_me(
 @router.get("/quota")
 async def get_my_quota(
     current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
 ):
     """Return conversation quota status for the current user."""
-    from app.services.quota_service import get_quota_status  # noqa: PLC0415
-    return await get_quota_status(
+    from app.services.quota_service import get_monthly_tokens_used, get_quota_status  # noqa: PLC0415
+    quota = await get_quota_status(
         redis,
         current_user.id,
         current_user.conversation_weekly_sessions,
         current_user.conversation_daily_minutes,
         current_user.conversation_weekly_minutes,
     )
+    tokens_used = await get_monthly_tokens_used(db, current_user.id)
+    quota["tokens_this_month"] = tokens_used
+    quota["tokens_monthly_limit"] = current_user.monthly_tokens_limit
+    quota["tokens_unlimited"] = current_user.monthly_tokens_limit == 0
+    return quota
 
 
 # ---------------------------------------------------------------------------

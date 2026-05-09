@@ -654,7 +654,8 @@
     "verifyEmail": "E-mail verifiëren",
     "unverifyEmail": "Als niet geverifieerd markeren",
     "emailVerifiedSuccess": "E-mail gemarkeerd als geverifieerd.",
-    "emailUnverifiedSuccess": "E-mail gemarkeerd als niet geverifieerd."
+    "emailUnverifiedSuccess": "E-mail gemarkeerd als niet geverifieerd.",
+    "quotaMonthlyTokens": "Maandelijks tokenlimiet"
   },
   "faq": {
     "title": "FAQ",
@@ -742,7 +743,9 @@
     "quotaMinutes": "Minuten vandaag",
     "quotaUnlimited": "Onbeperkt",
     "quotaExceededSessions": "Je hebt al je sessies voor deze week gebruikt.",
-    "quotaExceededTime": "Je hebt al je dagelijkse oefentijd gebruikt."
+    "quotaExceededTime": "Je hebt al je dagelijkse oefentijd gebruikt.",
+    "quotaExceededTokens": "Je hebt al je maandelijkse AI-tokens gebruikt.",
+    "quotaTokens": "Tokens deze maand"
   },
   "voiceRecorder": {
     "record": "Opnemen",
