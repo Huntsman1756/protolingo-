@@ -689,6 +689,25 @@
     "q_password": "Wie ändere ich mein Passwort oder meine Muttersprache?",
     "a_password": "Gehen Sie zu <settingsLink>Einstellungen</settingsLink>. Dort können Sie Ihren Anzeigenamen, Ihre Muttersprache und Ihr Passwort aktualisieren."
   },
+  "cookieBanner": {
+    "message": "Wir verwenden ausschließlich notwendige Cookies, um dich eingeloggt zu halten. Es werden keine Tracking- oder Werbe-Cookies verwendet.",
+    "learnMore": "Datenschutzrichtlinie",
+    "accept": "Verstanden"
+  },
+  "error": {
+    "label": "Unerwarteter Fehler",
+    "title": "Etwas ist schiefgelaufen",
+    "body": "Ein unerwarteter Fehler ist aufgetreten. Du kannst es erneut versuchen oder zum Dashboard zurückkehren.",
+    "retry": "Erneut versuchen",
+    "dashboard": "Zum Dashboard",
+    "digest": "Fehlerreferenz"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "body": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "dashboard": "Zum Dashboard",
+    "home": "Startseite"
+  },
   "errors": {
     "notFound": "Seite nicht gefunden",
     "serverError": "Etwas ist schiefgelaufen",

@@ -117,6 +117,7 @@ async def register(
         verify_token = str(uuid.uuid4())
         await redis.setex(f"verify_email:{verify_token}", 86400, str(user.id))  # 24h
         await email_service.send_verification_email(user.email, user.display_name, verify_token, locale=user.native_language)
+        await email_service.send_welcome_email(user.email, user.display_name, locale=user.native_language)
 
     return RegisterResponse(
         id=user.id,

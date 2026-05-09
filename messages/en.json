@@ -689,6 +689,25 @@
     "q_password": "How do I change my password or native language?",
     "a_password": "Go to <settingsLink>Settings</settingsLink>. You can update your display name, native language, and password from there."
   },
+  "cookieBanner": {
+    "message": "We use strictly necessary cookies to keep you logged in. No tracking or advertising cookies are used.",
+    "learnMore": "Privacy policy",
+    "accept": "Got it"
+  },
+  "error": {
+    "label": "Unexpected error",
+    "title": "Something went wrong",
+    "body": "An unexpected error occurred. You can try again or go back to the dashboard.",
+    "retry": "Try again",
+    "dashboard": "Go to dashboard",
+    "digest": "Error reference"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you are looking for does not exist or has been moved.",
+    "dashboard": "Go to dashboard",
+    "home": "Home"
+  },
   "errors": {
     "notFound": "Page not found",
     "serverError": "Something went wrong",

@@ -689,6 +689,25 @@
     "q_password": "Come cambio la mia password o lingua madre?",
     "a_password": "Vai su <settingsLink>Impostazioni</settingsLink>. Da lì puoi aggiornare il tuo nome visualizzato, la lingua madre e la password."
   },
+  "cookieBanner": {
+    "message": "Utilizziamo cookie strettamente necessari per mantenere la tua sessione attiva. Non vengono utilizzati cookie di tracciamento o pubblicità.",
+    "learnMore": "Informativa sulla privacy",
+    "accept": "Capito"
+  },
+  "error": {
+    "label": "Errore imprevisto",
+    "title": "Qualcosa è andato storto",
+    "body": "Si è verificato un errore imprevisto. Puoi riprovare o tornare alla dashboard.",
+    "retry": "Riprova",
+    "dashboard": "Vai alla dashboard",
+    "digest": "Riferimento errore"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "body": "La pagina che stai cercando non esiste o è stata spostata.",
+    "dashboard": "Vai alla dashboard",
+    "home": "Home"
+  },
   "errors": {
     "notFound": "Pagina non trovata",
     "serverError": "Qualcosa è andato storto",

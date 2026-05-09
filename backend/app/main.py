@@ -6,11 +6,12 @@ from alembic import command
 from alembic.config import Config
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
+from fastapi.responses import JSONResponse, Response
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from app.core.config import settings
+from app.core.database import engine
 from app.core.limiter import limiter
 
 logging.basicConfig(
@@ -30,6 +31,12 @@ def _run_migrations() -> None:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):  # noqa: ANN201
+    if not settings.SECRET_KEY or "CHANGE_ME" in settings.SECRET_KEY or len(settings.SECRET_KEY) < 32:
+        raise RuntimeError(
+            "SECRET_KEY is insecure or unconfigured. "
+            "Set a random value of at least 32 characters in your .env file."
+        )
+
     await asyncio.to_thread(_run_migrations)
 
     if settings.TTS_PROVIDER == "openai":
@@ -96,5 +103,49 @@ app.include_router(conversation.router)
 
 
 @app.get("/health")
-async def health() -> dict:
-    return {"status": "ok"}
+async def health(request: Request) -> JSONResponse:
+    checks: dict[str, str] = {}
+    ok = True
+
+    # Database
+    try:
+        async with engine.connect() as conn:
+            await conn.execute(__import__("sqlalchemy", fromlist=["text"]).text("SELECT 1"))
+        checks["db"] = "ok"
+    except Exception as exc:
+        checks["db"] = f"error: {exc}"
+        ok = False
+
+    # Redis
+    try:
+        from redis.asyncio import Redis as AioRedis
+        redis = AioRedis.from_url(settings.REDIS_URL, decode_responses=True)
+        await redis.ping()
+        await redis.aclose()
+        checks["redis"] = "ok"
+    except Exception as exc:
+        checks["redis"] = f"error: {exc}"
+        ok = False
+
+    # TTS
+    try:
+        tts = getattr(request.app.state, "tts_service", None)
+        if tts is not None:
+            await tts.health()
+        checks["tts"] = "ok"
+    except Exception as exc:
+        checks["tts"] = f"error: {exc}"
+        ok = False
+
+    # STT
+    try:
+        stt = getattr(request.app.state, "stt_service", None)
+        if stt is not None:
+            await stt.health()
+        checks["stt"] = "ok"
+    except Exception as exc:
+        checks["stt"] = f"error: {exc}"
+        ok = False
+
+    status_code = 200 if ok else 503
+    return JSONResponse({"status": "ok" if ok else "degraded", "checks": checks}, status_code=status_code)

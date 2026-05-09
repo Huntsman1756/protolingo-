@@ -34,7 +34,7 @@ services:
     container_name: freelingo-backend
     restart: unless-stopped
     command: >
-      sh -c "cd /tmp && PYTHONPATH=/app alembic -c /app/alembic.ini upgrade head && cd /app && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+      sh -c "cd /tmp && PYTHONPATH=/app alembic -c /app/alembic.ini upgrade head && cd /app && uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${UVICORN_WORKERS:-4}"
     environment:
       DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
@@ -71,6 +71,7 @@ services:
       SMTP_SSL: ${SMTP_SSL:-false}
       APP_BASE_URL: ${APP_BASE_URL:-http://localhost:3000}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      UVICORN_WORKERS: ${UVICORN_WORKERS:-4}
     depends_on:
       postgres:
         condition: service_healthy

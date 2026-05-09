@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.14] - 2026-05-09
+
+### Added
+- `/health` endpoint now checks DB, Redis, TTS, and STT dependencies; returns HTTP 503 with `{"status": "degraded", "checks": {...}}` if any dependency is unreachable (previously always returned 200)
+- `health()` method added to `KokoroTTSService`, `OpenAITTSService`, `WhisperSTTService`, and `OpenAISTTService`
+- `SECRET_KEY` startup validation in `lifespan`: server refuses to start if the value contains `CHANGE_ME` or is shorter than 32 characters
+- `error.tsx` (global error boundary) and `not-found.tsx` (404) pages with FreeLingo branded design — monospaced layout consistent with the rest of the app; i18n in all 10 locales (`error.*`, `notFound.*`)
+- Cookie consent banner (`CookieBanner` component) fixed to the bottom of every page; persists acceptance in `localStorage`; links to Privacy Policy; i18n in all 10 locales (`cookieBanner.*`)
+- Welcome email sent on registration (`send_welcome_email`): 3-step onboarding guide (Assessment → Study Plan → first lesson); HTML template `welcome.html` follows the same design as `verify_email.html` and `reset_password.html`; i18n in all 10 locales
+- `UVICORN_WORKERS` environment variable (default `4` in `docker-compose.yml`, `1` in `Dockerfile`); documented in `.env.example` with sizing guidance (`2 × CPU cores + 1`)
+
 ## [1.3.13] - 2026-05-09
 
 ### Fixed

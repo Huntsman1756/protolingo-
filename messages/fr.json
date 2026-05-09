@@ -689,6 +689,25 @@
     "q_password": "Comment modifier mon mot de passe ou ma langue maternelle ?",
     "a_password": "Allez dans <settingsLink>Paramètres</settingsLink>. Vous pouvez y mettre à jour votre nom d’affichage, votre langue maternelle et votre mot de passe."
   },
+  "cookieBanner": {
+    "message": "Nous utilisons des cookies strictement nécessaires pour maintenir votre connexion. Aucun cookie de suivi ou de publicité n'est utilisé.",
+    "learnMore": "Politique de confidentialité",
+    "accept": "Compris"
+  },
+  "error": {
+    "label": "Erreur inattendue",
+    "title": "Une erreur s'est produite",
+    "body": "Une erreur inattendue s'est produite. Vous pouvez réessayer ou retourner au tableau de bord.",
+    "retry": "Réessayer",
+    "dashboard": "Aller au tableau de bord",
+    "digest": "Référence de l'erreur"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "dashboard": "Aller au tableau de bord",
+    "home": "Accueil"
+  },
   "errors": {
     "notFound": "Page introuvable",
     "serverError": "Une erreur s'est produite",
