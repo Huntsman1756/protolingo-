@@ -295,3 +295,18 @@ async def delete_me(
     response.delete_cookie("refresh_token")
     await db.delete(current_user)
     await db.commit()
+
+
+@router.get("/quota")
+async def get_my_quota(
+    current_user: User = Depends(get_current_user),
+    redis: Redis = Depends(get_redis),
+):
+    """Return conversation quota status for the current user."""
+    from app.services.quota_service import get_quota_status  # noqa: PLC0415
+    return await get_quota_status(
+        redis,
+        current_user.id,
+        current_user.conversation_weekly_sessions,
+        current_user.conversation_daily_minutes,
+    )

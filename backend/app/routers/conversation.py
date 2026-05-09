@@ -4,17 +4,20 @@ import asyncio
 import logging
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from redis.asyncio import Redis
 
 logger = logging.getLogger(__name__)
 from jwt.exceptions import PyJWTError
 from sqlalchemy import select
 
+from app.core.config import settings
 from app.core.database import AsyncSessionLocal
 from app.core.security import decode_access_token
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.services.conversation_pipeline import ConversationPipeline
 from app.services.llm_adapter import llm_adapter
+from app.services.quota_service import check_and_increment_sessions, check_daily_minutes
 
 router = APIRouter(tags=["conversation"])
 
@@ -74,6 +77,8 @@ async def conversation_ws(
         inactivity_timeout = user.conversation_inactivity_timeout
         native_language = user.native_language
         target_language = user.target_language
+        weekly_sessions_limit = user.conversation_weekly_sessions
+        daily_minutes_limit = user.conversation_daily_minutes
 
     # Validate and sanitize optional chat context passed from the tutor chat
     valid_context: list[dict] | None = None
@@ -93,6 +98,54 @@ async def conversation_ws(
                 user_id, cefr_level, max_duration, inactivity_timeout, len(valid_context) if valid_context else 0)
     # (already accepted at the top)
 
+    # --- Quota checks ---
+    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        # Check daily minutes first (read-only) so we never waste a weekly session slot
+        daily_ok, minutes_used, minutes_limit = await check_daily_minutes(
+            redis, user_id, daily_minutes_limit
+        )
+        if not daily_ok:
+            logger.info(
+                "[conversation] Daily minutes quota exceeded — user=%s used=%s limit=%s",
+                user_id, minutes_used, minutes_limit,
+            )
+            await websocket.send_json({
+                "type": "error",
+                "code": "quota_exceeded_time",
+                "message": f"Daily time limit reached ({minutes_used}/{minutes_limit} min).",
+            })
+            await websocket.close(code=1008)
+            await redis.aclose()
+            return
+
+        # Then check + increment weekly sessions
+        sessions_ok, sessions_used, sessions_limit = await check_and_increment_sessions(
+            redis, user_id, weekly_sessions_limit
+        )
+        if not sessions_ok:
+            logger.info(
+                "[conversation] Weekly session quota exceeded — user=%s used=%s limit=%s",
+                user_id, sessions_used, sessions_limit,
+            )
+            await websocket.send_json({
+                "type": "error",
+                "code": "quota_exceeded_sessions",
+                "message": f"Weekly session limit reached ({sessions_used}/{sessions_limit}).",
+            })
+            await websocket.close(code=1008)
+            await redis.aclose()
+            return
+
+        # Cap session max_duration to remaining daily minutes if limited
+        if daily_minutes_limit > 0:
+            remaining_seconds = (daily_minutes_limit - minutes_used) * 60
+            max_duration = min(max_duration, remaining_seconds)
+    except Exception as exc:
+        logger.error("[conversation] Quota check failed: %s", exc)
+        await redis.aclose()
+        raise
+
     pipeline = ConversationPipeline(
         llm=llm_adapter,
         tts=tts_service,
@@ -105,14 +158,15 @@ async def conversation_ws(
         initial_context=valid_context,
         user_id=user_id,
     )
+    pipeline._redis = redis
 
     try:
         await pipeline.run(websocket)
     except WebSocketDisconnect:
         logger.info("[conversation] WebSocketDisconnect — user=%s", user_id)
-        await pipeline.cleanup()
     except asyncio.CancelledError:
         logger.info("[conversation] CancelledError — user=%s", user_id)
-        await pipeline.cleanup()
     finally:
+        await pipeline.cleanup()
+        await redis.aclose()
         logger.info("[conversation] Session ended — user=%s", user_id)

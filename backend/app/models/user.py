@@ -27,6 +27,12 @@ class User(Base):
     conversation_inactivity_timeout: Mapped[int] = mapped_column(
         Integer, nullable=False, default=180    # 180=3min, options: 60|180|300
     )
+    conversation_weekly_sessions: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=0     # 0 = unlimited
+    )
+    conversation_daily_minutes: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=0     # 0 = unlimited
+    )
     avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)

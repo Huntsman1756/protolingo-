@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { useMicVAD } from '@ricky0123/vad-react'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
+import { apiFetch } from '@/lib/api'
 import { float32ToWav, createAudioQueue, type AudioQueue } from '@/lib/audio'
 import { buildConversationWsUrl, type WsMessage, type ChatContextItem } from '@/lib/conversation-ws'
 import StatusIndicator, { type ConvStatus } from './StatusIndicator'
@@ -15,6 +16,40 @@ interface TranscriptEntry {
   id: number
   role: 'user' | 'assistant'
   text: string
+}
+
+interface QuotaStatus {
+  sessions_this_week: number
+  sessions_limit: number
+  sessions_unlimited: boolean
+  minutes_today: number
+  minutes_limit: number
+  time_unlimited: boolean
+}
+
+function QuotaBar({ label, used, limit, unlimited }: { label: string; used: number; limit: number; unlimited: boolean }) {
+  const pct = unlimited || limit === 0 ? null : Math.min(100, Math.round((used / limit) * 100))
+  const exceeded = !unlimited && limit > 0 && used >= limit
+  return (
+    <div className="flex items-center gap-3">
+      <span className="font-mono text-fl-hint tracking-widest text-fl-muted-4 uppercase w-36 shrink-0">{label}</span>
+      {unlimited ? (
+        <span className="font-mono text-fl-hint text-fl-muted-2">∞</span>
+      ) : (
+        <>
+          <div className="flex-1 h-1 bg-fl-surface-2 overflow-hidden">
+            <div
+              className={`h-full transition-all ${exceeded ? 'bg-fl-error' : 'bg-fl-accent'}`}
+              style={{ width: `${pct}%` }}
+            />
+          </div>
+          <span className={`font-mono text-fl-hint tabular-nums ${exceeded ? 'text-fl-error' : 'text-fl-muted-2'}`}>
+            {used}&thinsp;/&thinsp;{limit}
+          </span>
+        </>
+      )}
+    </div>
+  )
 }
 
 export default function ConversationMode({ initialContext }: { initialContext?: ChatContextItem[] }) {
@@ -31,6 +66,17 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [userSpeaking, setUserSpeaking] = useState(false)
   const [assistantSpeaking, setAssistantSpeaking] = useState(false)
+  const [quota, setQuota] = useState<QuotaStatus | null>(null)
+
+  // ─── Fetch quota on mount ─────────────────────────────────────────────────
+  const refreshQuota = useCallback(() => {
+    apiFetch('/api/auth/quota')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: QuotaStatus | null) => data && setQuota(data))
+      .catch(() => { })
+  }, [])
+
+  useEffect(() => { refreshQuota() }, [refreshQuota])
 
   // ─── Refs ─────────────────────────────────────────────────────────────────
   const wsRef = useRef<WebSocket | null>(null)
@@ -164,7 +210,11 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
               setErrorMsg(
                 msg.code === 'services_disabled'
                   ? t('errorServicesDisabled')
-                  : (msg.message ?? t('errorConnection')),
+                  : msg.code === 'quota_exceeded_sessions'
+                    ? t('quotaExceededSessions')
+                    : msg.code === 'quota_exceeded_time'
+                      ? t('quotaExceededTime')
+                      : (msg.message ?? t('errorConnection')),
               )
               setStatus('error')
               ws.close()
@@ -218,6 +268,7 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
     setErrorMsg(null)
     setUserSpeaking(false)
     setAssistantSpeaking(false)
+    refreshQuota()
 
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
@@ -240,6 +291,8 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
     audioQueueRef.current = null
     setSessionActive(false)
     setStatus('ended')
+    // Allow a moment for the backend to record session seconds, then refresh
+    setTimeout(() => refreshQuota(), 1500)
   }
 
   // Cleanup on unmount
@@ -307,6 +360,23 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
 
       {/* Controls */}
       <div className="flex flex-col items-center gap-4 pb-2">
+        {/* Quota widget */}
+        {quota && (
+          <div className="w-full space-y-1.5 border border-fl-border bg-fl-surface px-4 py-3">
+            <QuotaBar
+              label={t('quotaSessions')}
+              used={quota.sessions_this_week}
+              limit={quota.sessions_limit}
+              unlimited={quota.sessions_unlimited}
+            />
+            <QuotaBar
+              label={t('quotaMinutes')}
+              used={quota.minutes_today}
+              limit={quota.minutes_limit}
+              unlimited={quota.time_unlimited}
+            />
+          </div>
+        )}
         <StatusIndicator
           status={status}
           userSpeaking={userSpeaking}

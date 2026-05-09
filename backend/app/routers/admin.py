@@ -192,10 +192,34 @@ async def update_user(
         user.role = data.role
     if data.is_active is not None:
         user.is_active = data.is_active
+    if data.conversation_weekly_sessions is not None:
+        user.conversation_weekly_sessions = data.conversation_weekly_sessions
+    if data.conversation_daily_minutes is not None:
+        user.conversation_daily_minutes = data.conversation_daily_minutes
 
     await db.commit()
     await db.refresh(user)
     return user
+
+
+@router.get("/users/{user_id}/quota")
+async def get_user_quota(
+    user_id: int,
+    admin: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
+):
+    """Return live quota status (Redis) for a user."""
+    user = await db.get(User, user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    from app.services.quota_service import get_quota_status  # noqa: PLC0415
+    return await get_quota_status(
+        redis,
+        user_id,
+        user.conversation_weekly_sessions,
+        user.conversation_daily_minutes,
+    )
 
 
 @router.delete("/users/{user_id}")
