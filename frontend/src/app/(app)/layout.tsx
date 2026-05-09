@@ -46,6 +46,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [logoutConfirm, setLogoutConfirm] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
+  const [resendSent, setResendSent] = useState(false)
+
+  async function handleResendVerification() {
+    const res = await apiFetch('/api/auth/resend-verification', { method: 'POST' })
+    if (res.ok) setResendSent(true)
+  }
 
   // On every page load, Zustand is empty. Use the httpOnly refresh cookie
   // to silently get a new access token, then fetch /me to populate the user.
@@ -84,6 +90,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           conversation_max_duration: me.conversation_max_duration,
           conversation_inactivity_timeout: me.conversation_inactivity_timeout,
           avatar: me.avatar ?? null,
+          is_verified: me.is_verified ?? true,
         })
       } catch {
         logout()
@@ -223,7 +230,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <p className="text-fl-label font-mono text-fl-muted-4 truncate">@{user?.username}</p>
             </div>
           </div>
-          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.11</p>
+          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.12</p>
           <button
             onClick={() => setLogoutConfirm(true)}
             className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
@@ -342,7 +349,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </div>
                 <p className="font-mono text-fl-label text-fl-muted-4 truncate">@{user?.username}</p>
               </div>
-              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.11</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.12</p>
               <button
                 onClick={() => { setMobileMenuOpen(false); setLogoutConfirm(true) }}
                 className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
@@ -356,6 +363,24 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
       {/* Main */}
       <main className="flex-1 overflow-y-auto pt-14 md:pt-0 min-h-screen">
+        {/* Email verification banner */}
+        {user && user.is_verified === false && (
+          <div className="border-b border-fl-border bg-fl-surface px-4 py-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span className="font-mono text-xs text-fl-muted-1 tracking-wide">
+              ● {tCommon('verifyEmailBanner')}
+            </span>
+            {resendSent ? (
+              <span className="font-mono text-xs text-fl-muted-2">{tCommon('verifyEmailSent')}</span>
+            ) : (
+              <button
+                onClick={handleResendVerification}
+                className="font-mono text-xs text-fl-accent underline hover:no-underline transition-all"
+              >
+                {tCommon('resendVerification')}
+              </button>
+            )}
+          </div>
+        )}
         {children}
       </main>
 

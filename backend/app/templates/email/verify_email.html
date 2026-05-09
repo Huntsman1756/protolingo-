@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify your FreeLingo account</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f5f0;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .wrapper {
+      max-width: 520px;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 1px solid #d4d4cc;
+    }
+
+    .header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid #d4d4cc;
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #1a1a18;
+    }
+
+    .body {
+      padding: 32px;
+    }
+
+    .greeting {
+      font-size: 13px;
+      color: #1a1a18;
+      margin: 0 0 16px;
+    }
+
+    .text {
+      font-size: 12px;
+      color: #6b6b64;
+      line-height: 1.7;
+      margin: 0 0 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #1a1a18;
+      color: #f5f5f0;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+    }
+
+    .link-fallback {
+      font-size: 11px;
+      color: #6b6b64;
+      word-break: break-all;
+      margin: 20px 0 0;
+    }
+
+    .footer {
+      padding: 20px 32px;
+      border-top: 1px solid #d4d4cc;
+      font-size: 11px;
+      color: #9b9b94;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <span class="logo">● FreeLingo</span>
+    </div>
+    <div class="body">
+      <p class="greeting">{{greeting}}</p>
+      <p class="text">{{body}}</p>
+      <a href="{{url}}" class="btn">{{button}}</a>
+      <p class="link-fallback">
+        {{link_fallback}}<br />
+        {{url}}
+      </p>
+    </div>
+    <div class="footer">
+      {{footer}}<br />
+      &copy; FreeLingo &mdash; <a href="{{base_url}}" style="color:#9b9b94;">{{base_url}}</a>
+    </div>
+  </div>
+</body>
+
+</html>

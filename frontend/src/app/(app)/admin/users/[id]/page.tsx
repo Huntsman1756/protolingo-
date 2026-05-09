@@ -32,6 +32,7 @@ interface AdminUser {
   role: string
   native_language: string
   is_active: boolean
+  is_verified: boolean
   conversation_weekly_sessions: number
   conversation_daily_minutes: number
   conversation_weekly_minutes: number
@@ -114,6 +115,19 @@ export default function AdminUserStatsPage() {
       .catch(() => setError('loadError'))
       .finally(() => setLoading(false))
   }, [userId])
+
+  async function toggleVerified() {
+    if (!userId || !user) return
+    const res = await apiFetch(`/api/admin/users/${userId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ is_verified: !user.is_verified }),
+    })
+    if (res.ok) {
+      const updated: AdminUser = await res.json()
+      setUser(updated)
+    }
+  }
 
   async function saveQuota() {
     if (!userId) return
@@ -213,6 +227,19 @@ export default function AdminUserStatsPage() {
         <StatRow label="ID" value={`#${user.id}`} />
         <StatRow label={t('fieldUsername')} value={user.username} />
         {user.email && <StatRow label={t('fieldEmail')} value={user.email} />}
+        {user.email && (
+          <div className="flex items-center justify-between py-3 border-b border-fl-border">
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+              {user.is_verified ? t('emailVerified') : t('emailNotVerified')}
+            </span>
+            <button
+              onClick={toggleVerified}
+              className="font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 transition-colors hover:border-fl-fg hover:text-fl-fg border-fl-border text-fl-muted-2"
+            >
+              {user.is_verified ? t('unverifyEmail') : t('verifyEmail')}
+            </button>
+          </div>
+        )}
         <StatRow label={t('fieldNativeLanguage')} value={tLang(user.native_language as 'es' | 'fr' | 'pt' | 'de' | 'it' | 'pl' | 'nl' | 'ro' | 'ru')} />
       </Section>
 
@@ -332,7 +359,7 @@ export default function AdminUserStatsPage() {
             />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0">
+            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0 max-w-[10rem] truncate" title={t('quotaWeeklyMinutes')}>
               {t('quotaWeeklyMinutes')}
             </label>
             <input

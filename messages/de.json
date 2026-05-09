@@ -42,7 +42,10 @@
     "checking": "Wird geprüft...",
     "backToDashboard": "Zurück zum Dashboard",
     "tagline": "KI-gestütztes Sprachenlernen",
-    "close": "Schließen"
+    "close": "Schließen",
+    "verifyEmailBanner": "Bitte bestätige deine E-Mail-Adresse, um dein Konto einzurichten.",
+    "verifyEmailSent": "E-Mail gesendet — prüfe deinen Posteingang.",
+    "resendVerification": "Bestätigungs-E-Mail erneut senden"
   },
   "nav": {
     "home": "Startseite",
@@ -77,7 +80,8 @@
       "showPassword": "Passwort anzeigen",
       "hidePassword": "Passwort verbergen",
       "accountCreated": "Konto erstellt — du kannst dich jetzt anmelden",
-      "invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein"
+      "invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein",
+      "forgotPassword": "Passwort vergessen?"
     },
     "register": {
       "title": "Konto erstellen",
@@ -108,6 +112,36 @@
       "andWord": "und die",
       "privacyLink": "Datenschutzerklärung",
       "termsRequired": "Du musst die Bedingungen akzeptieren, um fortzufahren"
+    },
+    "verifyEmail": {
+      "title": "E-Mail-Verifizierung",
+      "loading": "Wird verifiziert...",
+      "success": "Deine E-Mail wurde bestätigt. Du kannst dich jetzt einloggen.",
+      "error": "Ungültiger oder abgelaufener Bestätigungslink.",
+      "goToLogin": "Zum Login"
+    },
+    "forgotPassword": {
+      "title": "Passwort vergessen",
+      "description": "Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen.",
+      "emailPlaceholder": "deine@email.de",
+      "submit": "Link senden",
+      "sending": "Senden...",
+      "sent": "Falls diese E-Mail registriert ist, wurde ein Link gesendet.",
+      "backToLogin": "Zurück zum Login",
+      "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    },
+    "resetPassword": {
+      "title": "Passwort zurücksetzen",
+      "newPassword": "Neues Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "submit": "Passwort speichern",
+      "saving": "Speichern...",
+      "success": "Passwort aktualisiert. Weiterleitung...",
+      "mismatch": "Passwörter stimmen nicht überein",
+      "tooShort": "Das Passwort muss mindestens 8 Zeichen lang sein",
+      "missingToken": "Ungültiger Link. Bitte fordere eine neue Zurücksetzung an.",
+      "error": "Ungültiger oder abgelaufener Link",
+      "backToLogin": "Zurück zum Login"
     }
   },
   "settings": {
@@ -614,7 +648,13 @@
     "quotaUsedMinutes": "Heute genutzt",
     "quotaUsedWeeklyMinutes": "Diese Woche genutzt (Min.)",
     "quotaSave": "Kontingente speichern",
-    "quotaSaved": "Kontingente gespeichert."
+    "quotaSaved": "Kontingente gespeichert.",
+    "emailVerified": "E-Mail verifiziert",
+    "emailNotVerified": "E-Mail nicht verifiziert",
+    "verifyEmail": "E-Mail verifizieren",
+    "unverifyEmail": "Als nicht verifiziert markieren",
+    "emailVerifiedSuccess": "E-Mail als verifiziert markiert.",
+    "emailUnverifiedSuccess": "E-Mail als nicht verifiziert markiert."
   },
   "faq": {
     "title": "FAQ",

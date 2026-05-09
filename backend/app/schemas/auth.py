@@ -62,6 +62,7 @@ class UserResponse(BaseModel):
     native_language: str
     target_language: str
     is_active: bool
+    is_verified: bool
     conversation_max_duration: int
     conversation_inactivity_timeout: int
     avatar: Optional[str] = None
@@ -99,7 +100,16 @@ class UserUpdateRequest(BaseModel):
 
     @field_validator("conversation_inactivity_timeout")
     @classmethod
-    def validate_inactivity_timeout(cls, v: Optional[int]) -> Optional[int]:
+    def validate_inactivity_timeout(cls, v: Optional[str]) -> Optional[str]:
         if v is not None and v not in (60, 180, 300):
             raise ValueError("conversation_inactivity_timeout must be 60, 180, or 300")
         return v
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str = Field(min_length=8, max_length=128)
