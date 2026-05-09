@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.13] - 2026-05-09
+
+### Fixed
+- `/forgot-password`, `/reset-password`, and `/verify-email` added to `PUBLIC_ROUTES` in Next.js middleware — unauthenticated users were redirected back to `/login` before reaching these pages, making "Forgot your password?" appear to do nothing
+- Redundant Redis delete of invite token in `POST /api/auth/register` removed — the token was already deleted during validation; the second `await redis.delete(...)` call was unreachable when `ALLOW_REGISTRATION=true` and a no-op otherwise
+
+### Added
+- 4 edge-case tests for email system: `test_resend_verification_no_email` (→ 400), `test_resend_verification_email_disabled` (→ 503), `test_verify_email_token_consumed_after_use` (second call → 400), `test_reset_password_token_consumed_after_use` (second call → 400)
+
 ## [1.3.12] - 2026-05-09
 
 ### Added
