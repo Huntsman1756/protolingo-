@@ -604,9 +604,11 @@
     "sectionQuota": "Cotă conversații",
     "quotaWeeklySessions": "Limită sesiuni săptămânale",
     "quotaDailyMinutes": "Limită minute zilnice",
+    "quotaWeeklyMinutes": "Limită minute săptămânale",
     "quotaUnlimitedLabel": "Nelimitat (0)",
     "quotaUsedSessions": "Utilizate această săptămână",
     "quotaUsedMinutes": "Utilizate azi",
+    "quotaUsedWeeklyMinutes": "Utilizate această săptămână (min)",
     "quotaSave": "Salvează cota",
     "quotaSaved": "Cotă salvată."
   },

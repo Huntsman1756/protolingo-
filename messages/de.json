@@ -604,9 +604,11 @@
     "sectionQuota": "Gesprächskontingente",
     "quotaWeeklySessions": "Wöchentliches Sitzungslimit",
     "quotaDailyMinutes": "Tägliches Minutenlimit",
+    "quotaWeeklyMinutes": "Wöchentliches Minutenlimit",
     "quotaUnlimitedLabel": "Unbegrenzt (0)",
     "quotaUsedSessions": "Diese Woche genutzt",
     "quotaUsedMinutes": "Heute genutzt",
+    "quotaUsedWeeklyMinutes": "Diese Woche genutzt (Min.)",
     "quotaSave": "Kontingente speichern",
     "quotaSaved": "Kontingente gespeichert."
   },
