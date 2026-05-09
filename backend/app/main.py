@@ -19,8 +19,8 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 from app.routers import admin, assessment, auth, chat, conversation, flashcards, lessons, progress, study_plan, stt, tts
-from app.services.stt_service import STTService
-from app.services.tts_service import TTSService
+from app.services.stt_service import OpenAISTTService, WhisperSTTService
+from app.services.tts_service import KokoroTTSService, OpenAITTSService
 
 
 def _run_migrations() -> None:
@@ -32,12 +32,26 @@ def _run_migrations() -> None:
 async def lifespan(app: FastAPI):  # noqa: ANN201
     await asyncio.to_thread(_run_migrations)
 
-    app.state.tts_service = (
-        TTSService(settings.TTS_BASE_URL, settings.TTS_VOICE) if settings.TTS_ENABLED else None
-    )
-    app.state.stt_service = (
-        STTService(settings.STT_BASE_URL) if settings.STT_ENABLED else None
-    )
+    if settings.TTS_PROVIDER == "openai":
+        if not settings.OPENAI_API_KEY:
+            raise ValueError("TTS_PROVIDER=openai requires OPENAI_API_KEY to be set")
+        app.state.tts_service = OpenAITTSService(
+            api_key=settings.OPENAI_API_KEY,
+            model=settings.OPENAI_TTS_MODEL,
+            voice=settings.OPENAI_TTS_VOICE,
+        )
+    else:
+        app.state.tts_service = KokoroTTSService(settings.TTS_BASE_URL, settings.TTS_VOICE)
+
+    if settings.STT_PROVIDER == "openai":
+        if not settings.OPENAI_API_KEY:
+            raise ValueError("STT_PROVIDER=openai requires OPENAI_API_KEY to be set")
+        app.state.stt_service = OpenAISTTService(
+            api_key=settings.OPENAI_API_KEY,
+            model=settings.OPENAI_STT_MODEL,
+        )
+    else:
+        app.state.stt_service = WhisperSTTService(settings.STT_BASE_URL)
 
     yield
 

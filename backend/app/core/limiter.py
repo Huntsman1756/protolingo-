@@ -25,5 +25,5 @@ limiter = Limiter(
     key_func=_get_real_ip,
     default_limits=["200/minute"] if settings.RATE_LIMIT_ENABLED else [],
     enabled=settings.RATE_LIMIT_ENABLED,
-    storage_uri="memory://" if settings.RATE_LIMIT_STORAGE == "memory" else settings.REDIS_URL,
+    storage_uri=settings.REDIS_URL,
 )
