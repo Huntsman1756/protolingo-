@@ -32,6 +32,17 @@ class Settings(BaseSettings):
     COOKIE_SECURE: bool = False
     LOG_LEVEL: str = "INFO"
 
+    # Email / SMTP
+    EMAIL_ENABLED: bool = False
+    SMTP_HOST: str = "localhost"
+    SMTP_PORT: int = 587
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_FROM: str = "noreply@freelingo.app"
+    SMTP_TLS: bool = True
+    SMTP_SSL: bool = False
+    APP_BASE_URL: str = "http://localhost:3000"
+
     model_config = {"env_file": ".env"}
 
 

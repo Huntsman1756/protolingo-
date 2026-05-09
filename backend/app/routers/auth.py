@@ -1,5 +1,6 @@
 import logging
 import base64
+import uuid
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, File, HTTPException, Request, Response, UploadFile
@@ -19,10 +20,13 @@ from app.core.security import (
     verify_password,
 )
 from app.models.user import User
+from app.services import email_service
 from app.schemas.auth import (
+    ForgotPasswordRequest,
     LoginRequest,
     RegisterRequest,
     RegisterResponse,
+    ResetPasswordRequest,
     TokenResponse,
     UserResponse,
     UserUpdateRequest,
@@ -92,9 +96,6 @@ async def register(
     await db.commit()
     await db.refresh(user)
 
-    if data.invite_token:
-        await redis.delete(f"invite:{data.invite_token}")
-
     # Auto-login: issue tokens so the frontend can redirect to /onboarding
     access_token = create_access_token(user.id, user.role)
     refresh_token = create_refresh_token()
@@ -110,6 +111,12 @@ async def register(
         samesite="lax",
         max_age=ttl,
     )
+
+    # Send verification email asynchronously (fire-and-forget style — errors are logged, not raised)
+    if user.email and settings.EMAIL_ENABLED:
+        verify_token = str(uuid.uuid4())
+        await redis.setex(f"verify_email:{verify_token}", 86400, str(user.id))  # 24h
+        await email_service.send_verification_email(user.email, user.display_name, verify_token, locale=user.native_language)
 
     return RegisterResponse(
         id=user.id,
@@ -311,3 +318,88 @@ async def get_my_quota(
         current_user.conversation_daily_minutes,
         current_user.conversation_weekly_minutes,
     )
+
+
+# ---------------------------------------------------------------------------
+# Email verification
+# ---------------------------------------------------------------------------
+
+@router.get("/verify-email")
+@limiter.limit("10/minute")
+async def verify_email(
+    request: Request,
+    token: str,
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
+):
+    user_id_str = await redis.get(f"verify_email:{token}")
+    if not user_id_str:
+        raise HTTPException(status_code=400, detail="Invalid or expired verification token")
+    user = await db.get(User, int(user_id_str))
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    user.is_verified = True
+    await db.commit()
+    await redis.delete(f"verify_email:{token}")
+    return {"detail": "Email verified successfully"}
+
+
+@router.post("/resend-verification")
+@limiter.limit("3/minute")
+async def resend_verification(
+    request: Request,
+    current_user: User = Depends(get_current_user),
+    redis: Redis = Depends(get_redis),
+):
+    if current_user.is_verified:
+        return {"detail": "Already verified"}
+    if not current_user.email:
+        raise HTTPException(status_code=400, detail="No email address on file")
+    if not settings.EMAIL_ENABLED:
+        raise HTTPException(status_code=503, detail="Email not configured")
+    verify_token = str(uuid.uuid4())
+    await redis.setex(f"verify_email:{verify_token}", 86400, str(current_user.id))
+    await email_service.send_verification_email(current_user.email, current_user.display_name, verify_token, locale=current_user.native_language)
+    return {"detail": "Verification email sent"}
+
+
+# ---------------------------------------------------------------------------
+# Password reset (public — no auth required)
+# ---------------------------------------------------------------------------
+
+@router.post("/forgot-password")
+@limiter.limit("5/minute")
+async def forgot_password(
+    request: Request,
+    data: ForgotPasswordRequest,
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
+):
+    # Always return 200 to avoid user enumeration
+    result = await db.execute(select(User).where(User.email == data.email))
+    user = result.scalar_one_or_none()
+    if user and settings.EMAIL_ENABLED:
+        reset_token = str(uuid.uuid4())
+        await redis.setex(f"reset_password:{reset_token}", 3600, str(user.id))  # 1h
+        await email_service.send_reset_password_email(user.email, user.display_name, reset_token, locale=user.native_language)
+    return {"detail": "If that email is registered you will receive a reset link shortly"}
+
+
+@router.post("/reset-password")
+@limiter.limit("5/minute")
+async def reset_password(
+    request: Request,
+    data: ResetPasswordRequest,
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
+):
+    user_id_str = await redis.get(f"reset_password:{data.token}")
+    if not user_id_str:
+        raise HTTPException(status_code=400, detail="Invalid or expired reset token")
+    user = await db.get(User, int(user_id_str))
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    user.hashed_password = hash_password(data.new_password)
+    await db.commit()
+    await redis.delete(f"reset_password:{data.token}")
+    return {"detail": "Password updated successfully"}

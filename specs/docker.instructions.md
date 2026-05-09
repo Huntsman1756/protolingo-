@@ -11,10 +11,10 @@ applyTo: "docker-compose.yml, .env*, **/Dockerfile"
 |---------|-------|-------|-------|-------|
 | `postgres` | `postgres:16-alpine` | 5432 (internal) | 1 | Health check via `pg_isready` |
 | `redis` | `redis:7-alpine` | 6379 (internal) | 1 | Password-protected, health check via `redis-cli ping` |
-| `backend` | Built from `backend/Dockerfile` | 8000 | 1 | Python 3.14, Uvicorn, depends on postgres+redis |
-| `frontend` | Built from `frontend/Dockerfile` | 3000 | 1 | Next.js 16, built with `NEXT_PUBLIC_API_URL` as build arg |
-| `kokoro` | `ghcr.io/remsky/kokoro-fastapi-gpu:latest` | 8880 | 2 | TTS, GPU via NVIDIA deploy block |
-| `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | 9000 | 2 | STT, GPU via NVIDIA deploy block |
+| `backend` | `ghcr.io/artcc/freelingo-backend:latest` | 8000 (internal) | 1 | Python 3.14, Uvicorn; runs migrations automatically on startup. Depends on postgres+redis. |
+| `frontend` | `ghcr.io/artcc/freelingo-frontend:latest` | 3000 | 1 | Next.js 16; receives `BACKEND_URL` as runtime env var. Depends on backend. |
+| `kokoro` | `ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master` | 8880 (internal) | 2 | TTS (custom fork with PyTorch 2.7+/cu128 for Blackwell GPU sm_120+). Only needed when `TTS_PROVIDER=local`. |
+| `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | 9000 (internal) | 2 | STT, GPU via NVIDIA deploy block. Only needed when `STT_PROVIDER=local`. |
 
 Ollama is assumed to run on the host machine for GPU access, accessed via `host.docker.internal:11434`. It can alternatively run as a Docker service with its own GPU deploy block.
 
@@ -40,30 +40,30 @@ The compose file defines 6 services (plus optional Ollama) and 2 named volumes (
 
 ### Backend
 
-- Built from `backend/Dockerfile` (Python 3.14 slim)
-- Receives all configuration via environment variables (passed from `.env`)
-- Binds `./backend:/app` volume for live development
-- Startup command: `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+- Pre-built image pulled from `ghcr.io/artcc/freelingo-backend:latest` (`pull_policy: always`)
+- Startup command automatically runs `alembic upgrade head` before launching Uvicorn — no manual migration step needed
+- Receives all configuration via environment variables (from `.env`)
+- No bind mounts in production; CI/CD publishes the image
 - Depends on healthy PostgreSQL and Redis
 
 ### Frontend
 
-- Built from `frontend/Dockerfile` (multi-stage: npm 11 → next build)
-- `NEXT_PUBLIC_API_URL` passed as Docker build ARG and baked at build time (required for WebSocket URL resolution on separate-subdomain deployments)
-- Serves built output on port 3000
+- Pre-built image pulled from `ghcr.io/artcc/freelingo-frontend:latest` (`pull_policy: always`)
+- Receives `BACKEND_URL=http://backend:8000` at runtime (server-side Next.js Route Handlers proxy to the backend)
+- Exposes port 3000 on the host
 - Depends on backend
 
 ### Kokoro TTS (Phase 2)
 
-- GPU image by default (`kokoro-fastapi-gpu`)
-- Exposes port 8880
+- Custom fork: `ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master` — PyTorch 2.7+ with cu128 for Blackwell GPU (sm_120+), backwards-compatible with sm_50+
+- Only required when `TTS_PROVIDER=local`; can be removed from the compose stack when `TTS_PROVIDER=openai`
 - NVIDIA GPU via `deploy.resources.reservations.devices` block
 - No environment variables needed (uses defaults)
 
 ### Whisper STT (Phase 2)
 
 - GPU image by default (`latest-gpu`)
-- Exposes port 9000
+- Only required when `STT_PROVIDER=local`; can be removed when `STT_PROVIDER=openai`
 - Environment: `ASR_MODEL` (from `${STT_MODEL:-large-v3-turbo}`), `ASR_ENGINE` (from `${STT_ENGINE:-faster_whisper}`)
 - NVIDIA GPU via `deploy.resources.reservations.devices` block
 
@@ -71,7 +71,7 @@ The compose file defines 6 services (plus optional Ollama) and 2 named volumes (
 
 ## Environment variables (`.env`)
 
-All required variables with their defaults:
+All required variables with their defaults (see `.env.example` at the repo root for the canonical reference):
 
 ```env
 # ─── Database ────────────────────────────────────────────
@@ -79,16 +79,36 @@ POSTGRES_DB=freelingo
 POSTGRES_USER=freelingo
 POSTGRES_PASSWORD=CHANGE_ME_DB_PASSWORD
 
+# ─── Data persistence (bind mounts for postgres and redis)
+DATA_PATH=/opt/docker/freelingo
+
 # ─── Redis ───────────────────────────────────────────────
 REDIS_PASSWORD=CHANGE_ME_REDIS_PASSWORD
 
 # ─── Auth ────────────────────────────────────────────────
 # Generate with: openssl rand -hex 32
 SECRET_KEY=CHANGE_ME_SECRET_KEY
-ACCESS_TOKEN_EXPIRE_MINUTES=15
-REFRESH_TOKEN_EXPIRE_DAYS=30
+
+# ─── CORS + Cookie ───────────────────────────────────────
+CORS_ORIGINS=["http://localhost:3000"]
+COOKIE_SECURE=false      # set true when serving over HTTPS
+
+# ─── Registration ────────────────────────────────────────
 ALLOW_REGISTRATION=true
 FIRST_USER_IS_ADMIN=true
+
+# ─── Email / SMTP ────────────────────────────────────────
+# Works with any SMTP provider: Gmail (app password), Brevo, Resend, etc.
+EMAIL_ENABLED=false
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASSWORD=
+SMTP_FROM=noreply@freelingo.app
+SMTP_TLS=true
+SMTP_SSL=false
+# Public frontend URL used in email links (no trailing slash)
+APP_BASE_URL=https://freelingo.app
 
 # ─── LLM ─────────────────────────────────────────────────
 # Options: ollama | openai | anthropic | deepseek
@@ -102,32 +122,27 @@ ANTHROPIC_MODEL=claude-3-5-haiku-latest
 DEEPSEEK_API_KEY=
 DEEPSEEK_MODEL=deepseek-chat
 
-# ─── Frontend ────────────────────────────────────────────
-NEXT_PUBLIC_API_URL=http://localhost:8000
-
 # ─── TTS ─────────────────────────────────────────────────
-TTS_ENABLED=false
+# TTS_PROVIDER=local  → uses the kokoro Docker service
+# TTS_PROVIDER=openai → uses OpenAI TTS (OPENAI_API_KEY required, no local service needed)
+TTS_PROVIDER=local
 TTS_BASE_URL=http://kokoro:8880
 TTS_VOICE=af_heart
+OPENAI_TTS_MODEL=tts-1
+OPENAI_TTS_VOICE=nova
+OPENAI_TTS_SPEED=1.0
 
 # ─── STT ─────────────────────────────────────────────────
-STT_ENABLED=false
+# STT_PROVIDER=local  → uses the whisper Docker service
+# STT_PROVIDER=openai → uses OpenAI Whisper API (OPENAI_API_KEY required, no local service needed)
+STT_PROVIDER=local
 STT_BASE_URL=http://whisper:9000
 STT_MODEL=large-v3-turbo
 STT_ENGINE=faster_whisper
-
-# ─── Rate Limiting ───────────────────────────────────────
-RATE_LIMIT_ENABLED=true
-RATE_LIMIT_STORAGE=memory
-
-# ─── CORS ────────────────────────────────────────────────
-CORS_ORIGINS=*
+OPENAI_STT_MODEL=whisper-1
 
 # ─── Logging ─────────────────────────────────────────────
 LOG_LEVEL=INFO
-
-# ─── Cookie ──────────────────────────────────────────────
-COOKIE_SECURE=true
 ```
 
 ---
@@ -138,7 +153,8 @@ COOKIE_SECURE=true
 
 1. Copy `.env.example` to `.env` and fill in `CHANGE_ME_*` values
 2. `docker compose up -d` — start all services
-3. `docker compose exec backend alembic upgrade head` — run DB migrations
+
+The backend container automatically runs `alembic upgrade head` before starting Uvicorn, so there is no separate migration step.
 
 ### Ollama on host (recommended for GPU)
 
@@ -196,22 +212,25 @@ Both TTS and STT services default to GPU images with CUDA support (`*-gpu:latest
 
 | Service | GPU image | CPU image | Additional changes |
 |---------|-----------|-----------|-------------------|
-| Kokoro TTS | `ghcr.io/remsky/kokoro-fastapi-gpu:latest` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Remove the entire `deploy` block |
-| Whisper STT | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | `onerahmet/openai-whisper-asr-webservice:latest` | Remove the `deploy` block; set `STT_MODEL=tiny.en` or `small` for acceptable performance |
+| Kokoro TTS | `ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Replace image, remove the entire `deploy` block |
+| Whisper STT | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | `onerahmet/openai-whisper-asr-webservice:latest` | Replace image tag, remove the `deploy` block; set `STT_MODEL=small` for acceptable performance |
 
 The `deploy.resources.reservations.devices` block references NVIDIA GPUs via the Docker NVIDIA runtime. If this runtime is not installed on the host, Docker will error on startup. Remove these blocks entirely for CPU-only deployments.
 
 ---
 
-## Application-level TTS/STT toggling
+## TTS/STT provider selection
 
-Even when Kokoro and Whisper services are running in Docker Compose, the application-level TTS and STT features are disabled by default:
+The provider for each service is selected independently via env vars:
 
-- `TTS_ENABLED=false`: the `/api/tts` endpoint returns 503, audio buttons are hidden
-- `STT_ENABLED=false`: the `/api/stt` endpoint returns 503, voice recording is hidden
-- Both must be `true` for the Phase 3 WebSocket voice conversation endpoint to accept connections
+| Variable | Value | Behaviour |
+|----------|-------|----------|
+| `TTS_PROVIDER` | `local` (default) | Routes TTS requests to the `kokoro` Docker service |
+| `TTS_PROVIDER` | `openai` | Routes TTS requests to OpenAI TTS API (`OPENAI_API_KEY` required) — `kokoro` service not needed |
+| `STT_PROVIDER` | `local` (default) | Routes STT requests to the `whisper` Docker service |
+| `STT_PROVIDER` | `openai` | Routes STT requests to OpenAI Whisper API (`OPENAI_API_KEY` required) — `whisper` service not needed |
 
-This allows deploying the full stack while enabling features gradually or for specific users.
+When using `openai` providers, the `kokoro` and/or `whisper` services can be removed from the compose stack entirely.
 
 ---
 

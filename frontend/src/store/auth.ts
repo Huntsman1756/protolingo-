@@ -11,6 +11,7 @@ interface User {
   conversation_max_duration: number
   conversation_inactivity_timeout: number
   avatar?: string | null
+  is_verified?: boolean
 }
 
 interface AuthStore {

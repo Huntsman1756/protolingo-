@@ -1,4 +1,5 @@
 import secrets
+import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from redis.asyncio import Redis
@@ -23,6 +24,7 @@ from app.schemas.admin import (
     InviteResponse,
     PaginatedAdminUsersResponse,
 )
+from app.services import email_service
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 
@@ -66,6 +68,7 @@ async def create_user(
     data: AdminUserCreate,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
 ):
     existing = await db.execute(
         select(User).where(User.username == data.username)
@@ -85,6 +88,12 @@ async def create_user(
     db.add(user)
     await db.commit()
     await db.refresh(user)
+
+    if user.email and settings.EMAIL_ENABLED:
+        verify_token = str(uuid.uuid4())
+        await redis.setex(f"verify_email:{verify_token}", 86400, str(user.id))
+        await email_service.send_verification_email(user.email, user.display_name, verify_token, locale=user.native_language)
+
     return user
 
 
@@ -192,6 +201,8 @@ async def update_user(
         user.role = data.role
     if data.is_active is not None:
         user.is_active = data.is_active
+    if data.is_verified is not None:
+        user.is_verified = data.is_verified
     if data.conversation_weekly_sessions is not None:
         user.conversation_weekly_sessions = data.conversation_weekly_sessions
     if data.conversation_daily_minutes is not None:

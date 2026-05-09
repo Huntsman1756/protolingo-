@@ -1,9 +1,11 @@
 ---
-description: "Complete architecture reference for FreeLingo: repository structure, database models, API endpoints (REST + WebSocket), service layer, LLM adapter, auth design, data flow, code standards, and test configuration."
+description: "Core architecture reference for FreeLingo: repository structure, database models, service layer, LLM adapter, auth design, data flow, code standards, and test configuration. API endpoints are documented in api-endpoints.instructions.md."
 applyTo: "backend/**, frontend/**"
 ---
 
 # Architecture — FreeLingo
+
+> API endpoints are documented separately in [api-endpoints.instructions.md](api-endpoints.instructions.md).
 
 ## Repository structure
 
@@ -12,20 +14,20 @@ freelingo/
 ├── backend/                     # Python 3.14 FastAPI
 │   ├── app/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter
-│   │   ├── models/              # SQLAlchemy 2.0 ORM models (8 models)
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (9 models)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas
 │   │   ├── routers/             # 11 routers (10 REST + 1 WebSocket)
-│   │   ├── services/            # Business logic + external service clients (10 modules)
+│   │   ├── services/            # Business logic + external service clients (12 modules)
 │   │   └── data/
 │   │       └── en/              # Static curriculum and content data
 │   ├── alembic/
-│   │   └── versions/            # DB migrations (9)
+│   │   └── versions/            # DB migrations (14)
 │   └── tests/                   # pytest suite (10 test files)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── (auth)/          # Public routes: login, register, onboarding — no sidebar
+│   │   │   ├── (auth)/          # Public routes: login, register, onboarding, verify-email, forgot-password, reset-password — no sidebar
 │   │   │   ├── (app)/           # Authenticated routes (14 pages) — sidebar layout
 │   │   │   │   ├── admin/users/ # User management (admin only)
 │   │   │   │   ├── assessment/  # Level test entry + adaptive quiz
@@ -58,7 +60,7 @@ freelingo/
 │   ├── public/                  # Static assets (flags/, vad/ WASM models)
 │   └── scripts/                 # Postinstall helpers (copy-vad-models.js)
 │
-├── messages/                    # i18n bundles (en, es, fr, pt, de, it)
+├── messages/                    # i18n bundles (en, es, fr, pt, de, it, nl, pl, ro, ru)
 ├── specs/                       # Architecture and phase specification files
 ├── docs/                        # Documentation site
 ├── assets/                      # Logo and branding
@@ -89,8 +91,13 @@ Registration, authentication, and user preferences.
 | native_language | string | e.g. `"es"`, `"fr"` — used for flashcard translations and tutor feedback |
 | target_language | string | BCP-47 tag, e.g. `"en-US"` (default) or `"en-GB"` — the language the user is learning |
 | is_active | boolean | False = account disabled by admin |
+| is_verified | boolean | False until email verified (default False; existing users set to True on migration) |
 | conversation_max_duration | integer | Max voice session duration in seconds (default 1800) |
 | conversation_inactivity_timeout | integer | Seconds of silence before disconnect (default 180) |
+| conversation_weekly_sessions | integer | Counter reset each week (default 0) |
+| conversation_daily_minutes | integer | Limit in minutes per day (default 30) |
+| conversation_weekly_minutes | integer | Limit in minutes per week (default 90) |
+| avatar | text (nullable) | Base64-encoded avatar image |
 | created_at | datetime | Auto-set on creation |
 | last_login | datetime | Updated on each login |
 
@@ -240,120 +247,6 @@ Per-unit competency tracking (Phase 1+).
 
 ---
 
-## API Endpoints
-
-### Auth — `/api/auth`
-
-| Method | Path | Rate limit | Description |
-|--------|------|------------|-------------|
-| POST | `/register` | 5/min (+ invite-gated) | Creates account (respects `ALLOW_REGISTRATION` and invite token) |
-| POST | `/login` | 10/min | Returns access_token (JWT, 15 min) + refresh_token in httpOnly cookie (30 days) |
-| POST | `/refresh` | 20/min | Rotates refresh token, returns new access_token |
-| POST | `/logout` | None | Deletes refresh token from Redis, clears cookie |
-| GET | `/me` | None | Returns authenticated user profile |
-| PATCH | `/me` | None | Updates display_name, email, password, target_language, conversation settings |
-
-### Admin — `/api/admin` (requires `role="admin"`)
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/users` | Lists users (paginated). Query params: `skip` (default 0) and `limit` (default 20, max 100). Returns `{items, total, skip, limit}`. |
-| POST | `/users` | Creates user directly (bypasses `ALLOW_REGISTRATION`) |
-| GET | `/users/{id}` | User detail |
-| PATCH | `/users/{id}` | Edit role, is_active, display_name |
-| DELETE | `/users/{id}` | Deletes account and all associated data |
-| POST | `/invite` | Generates single-use invite link (48h Redis TTL) |
-
-### Assessment — `/api/assessment`
-
-3-step new user onboarding plus end-of-level testing.
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/start` | Begins adaptive quiz (LLM-generated questions, static fallback) |
-| POST | `/submit` | Legacy: submits answers for CEFR evaluation |
-| POST | `/evaluate` | Deterministic CEFR evaluation (no LLM — groups by difficulty) |
-| POST | `/free-write` | Evaluates free-write text for CEFR placement (LLM) |
-| POST | `/complete` | Persists results, creates StudyPlan |
-| GET | `/level-test/questions/{plan_id}` | Generates 20-question level test (LLM, constrained to studied content) |
-| POST | `/level-test/submit` | Submits level test answers → score + recommendation |
-| GET | `/level-test/result/{plan_id}` | Returns test result and recommendation |
-
-### Study Plan — `/api/study-plan`
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/current` | User's active plan with curriculum progress |
-| POST | `/generate` | Creates new plan from CEFR level, goals, and duration |
-| GET | `/today` | Today's lessons (auto-generates missing) |
-
-### Lessons — `/api/lessons`
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/{lesson_id}` | Lesson detail with exercises |
-| POST | `/{lesson_id}/start` | Marks lesson as in-progress |
-| POST | `/{lesson_id}/complete` | Marks as completed, updates progress and competencies |
-| POST | `/exercises/{id}/answer` | Submits answer → evaluates (MC, fill, free_write, pronunciation) → returns score + feedback |
-
-### Flashcards — `/api/flashcards`
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/due` | Cards pending review today (SM-2 ordering) |
-| GET | `/all` | All user's flashcards |
-| POST | `/` | Creates flashcard manually |
-| POST | `/{card_id}/review` | Records SM-2 review (quality 0–5) |
-| POST | `/generate` | Generates N flashcards via LLM with native-language translations |
-
-### Chat — `/api/chat`
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/conversations` | Lists user's text chat conversations |
-| POST | `/conversations` | Creates new conversation |
-| DELETE | `/conversations/{id}` | Deletes conversation and its messages (CASCADE) |
-| GET | `/conversations/{id}/messages` | Returns messages for a conversation |
-| POST | `/` | Sends message → streams AI tutor response (SSE) |
-| GET | `/history` | All chat history (legacy) |
-
-### Progress — `/api/progress`
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/summary` | Streak, XP, skills breakdown |
-| GET | `/history` | Daily progress for last 90 days |
-| GET | `/competencies` | Per-unit competency scores and mastery status |
-
-### TTS — `/api/tts` (Phase 2)
-
-| Method | Path | Rate limit | Description |
-|--------|------|------------|-------------|
-| POST | `/tts` | 20/min | Text → MP3 audio via Kokoro TTS proxy |
-
-### STT — `/api/stt` (Phase 2)
-
-| Method | Path | Rate limit | Description |
-|--------|------|------------|-------------|
-| POST | `/stt` | 20/min | Audio → transcribed text via Whisper proxy |
-
-### WebSocket — `/ws/conversation` (Phase 3)
-
-Full-duplex voice conversation pipeline. Requires `TTS_ENABLED=true` and `STT_ENABLED=true` — rejects connections otherwise.
-
-**Authentication**: After the WebSocket handshake is accepted, the client must send a JSON message `{"type": "auth", "token": "<access_token>"}` within 10 seconds. If the message is missing, malformed, or the token is invalid, the server closes the connection with code 1008.
-
-**Message flow**: Client sends audio chunks → STT transcription → LLM generates response (streamed) → sentence-level TTS → MP3 audio chunks returned.
-
-Features:
-- **Barge-in**: new audio input cancels ongoing TTS playback
-- **VAD**: browser-level voice activity detection (`@ricky0123/vad-react` + onnxruntime-web threaded WASM)
-- **Gapless playback**: `AudioQueue` schedules consecutive `AudioBufferSourceNode`s
-- **Session timeouts**: max duration (default 30 min) and inactivity (default 3 min), each with 60 s warning
-- **In-memory history**: last 20 messages kept for context during session (not persisted)
-
----
-
 ## Service layer
 
 All external dependencies are accessed through the service layer. The frontend never calls Ollama, Kokoro, or Whisper directly — the backend is the single gateway.
@@ -413,13 +306,38 @@ Shared BCP-47 conversion utilities used across the service layer:
 
 ### TTS Service (`tts_service.py`)
 
-HTTP client to Kokoro-FastAPI: `POST /v1/audio/speech` with text, voice, and format parameters. Returns MP3 audio bytes.
+Abstracts TTS behind a common `synthesise(text, voice) → bytes` interface. Provider selected via `TTS_PROVIDER`:
+
+- **`local`**: HTTP client to Kokoro-FastAPI — `POST /v1/audio/speech`. Returns MP3 audio bytes.
+- **`openai`**: OpenAI TTS API (`tts-1` model, configurable via `OPENAI_TTS_MODEL` / `OPENAI_TTS_VOICE`).
 
 ### STT Service (`stt_service.py`)
 
-HTTP client to Whisper ASR: `POST /asr?output=json&language=<lang>&task=transcribe` with multipart audio upload. Returns transcribed text. The `language` parameter is derived dynamically from `target_language` via `language_helpers.get_iso639` (e.g. `"en-US"` → `"en"`).
+Abstracts STT behind a common `transcribe(audio_bytes, language) → str` interface. Provider selected via `STT_PROVIDER`:
 
-**Note**: The STT endpoint is `/asr` (not OpenAI-compatible `/v1/audio/transcriptions`). This is the actual API of the `onerahmet/openai-whisper-asr-webservice` Docker image.
+- **`local`**: HTTP client to Whisper ASR — `POST /asr?output=json&language=<lang>&task=transcribe` (multipart). Uses `onerahmet/openai-whisper-asr-webservice` image (not OpenAI-compatible endpoint).
+- **`openai`**: OpenAI Whisper API (`whisper-1` model, configurable via `OPENAI_STT_MODEL`).
+
+The `language` parameter is derived dynamically from `target_language` via `language_helpers.get_iso639` (e.g. `"en-US"` → `"en"`).
+
+### Email Service (`email_service.py`)
+
+SMTP email dispatch via **fastapi-mail 1.4.1** (async, `aiosmtplib` backend). Only active when `EMAIL_ENABLED=true`.
+
+- `send_verification_email(to, display_name, token, locale)` — sends a verification link valid 24 h.
+- `send_reset_password_email(to, display_name, token, locale)` — sends a password-reset link valid 1 h.
+
+Both functions accept a `locale` parameter (BCP-47 language tag, e.g. `"es"`) and render fully translated email bodies using internal `_VERIFY_I18N` / `_RESET_I18N` dicts covering the 10 supported UI languages. HTML templates are in `backend/app/templates/email/`.
+
+### Quota Service (`quota_service.py`)
+
+Enforces per-user voice conversation quotas stored on the `users` table:
+
+- `conversation_daily_minutes`: max minutes of voice conversation per calendar day.
+- `conversation_weekly_minutes`: max minutes per calendar week (Mon–Sun).
+- `conversation_weekly_sessions`: session count for the current week.
+
+Called by the conversation router before opening a WebSocket session.
 
 ### Conversation Pipeline (`conversation_pipeline.py`)
 
@@ -497,6 +415,8 @@ Barge-in: user speaks again → cancel current generation
 |-------|------|-----------|----------|---------|
 | access_token | JWT | HS256 | 15 min | Zustand store (JS memory) |
 | refresh_token | Opaque UUID4 | random | 30 days | httpOnly cookie + Redis: `refresh:{token}` → user_id |
+| email verification | Opaque UUID4 | random | 24 h | Redis: `verify_email:{token}` → user_id |
+| password reset | Opaque UUID4 | random | 1 h | Redis: `reset_password:{token}` → user_id |
 
 **Design rationale:**
 - **Access token**: verified without DB hit (JWT decode only). Short lifetime limits damage if leaked.
@@ -578,10 +498,22 @@ All configuration is environment-driven. Key variables:
 | ALLOW_REGISTRATION | true | Enables/disables public signups |
 | FIRST_USER_IS_ADMIN | true | Auto-admin for first user |
 | LLM_PROVIDER | ollama | ollama / openai / anthropic / deepseek |
-| TTS_ENABLED | false | Enable Kokoro TTS proxy |
-| STT_ENABLED | false | Enable Whisper STT proxy |
-| STT_MODEL | large-v3-turbo | Whisper model size |
-| STT_ENGINE | faster_whisper | Whisper engine (faster_whisper / ctranslate2) |
+| TTS_PROVIDER | local | local (Kokoro) or openai |
+| STT_PROVIDER | local | local (Whisper) or openai |
+| STT_MODEL | large-v3-turbo | Whisper model size (local provider) |
+| STT_ENGINE | faster_whisper | Whisper engine: faster_whisper / ctranslate2 (local) |
+| OPENAI_TTS_MODEL | tts-1 | OpenAI TTS model (openai provider) |
+| OPENAI_TTS_VOICE | nova | OpenAI TTS voice (openai provider) |
+| OPENAI_STT_MODEL | whisper-1 | OpenAI STT model (openai provider) |
+| EMAIL_ENABLED | false | Enable SMTP email (verification + password reset) |
+| SMTP_HOST | localhost | SMTP server hostname |
+| SMTP_PORT | 587 | SMTP server port |
+| SMTP_USER | — | SMTP username |
+| SMTP_PASSWORD | — | SMTP password |
+| SMTP_FROM | noreply@freelingo.app | From address for outgoing emails |
+| SMTP_TLS | true | Use STARTTLS |
+| SMTP_SSL | false | Use implicit SSL (port 465) |
+| APP_BASE_URL | http://localhost:3000 | Public frontend URL (used in email links) |
 | RATE_LIMIT_ENABLED | true | Enable slowapi rate limiting |
 | RATE_LIMIT_STORAGE | memory | memory or redis |
 | CORS_ORIGINS | * | Allowed CORS origins |

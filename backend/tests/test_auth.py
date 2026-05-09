@@ -331,3 +331,257 @@ async def test_patch_me_same_email_allowed(client, test_user):
         json={"email": "test@example.com"},
     )
     assert response.status_code == 200
+
+
+# ---------------------------------------------------------------------------
+# Email verification
+# ---------------------------------------------------------------------------
+
+@pytest.mark.asyncio
+async def test_verify_email_valid_token(client, db_session, mock_redis):
+    """Valid verify-email token marks user as verified."""
+    from app.models.user import User
+    from app.core.security import hash_password
+    import uuid
+
+    user = User(
+        username="verifyme",
+        email="verifyme@test.com",
+        display_name="Verify Me",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=True,
+        is_verified=False,
+    )
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    token = str(uuid.uuid4())
+    await mock_redis.setex(f"verify_email:{token}", 86400, str(user.id))
+
+    response = await client.get(f"/api/auth/verify-email?token={token}")
+    assert response.status_code == 200
+
+    await db_session.refresh(user)
+    assert user.is_verified is True
+
+
+@pytest.mark.asyncio
+async def test_verify_email_invalid_token(client):
+    response = await client.get("/api/auth/verify-email?token=invalid-token")
+    assert response.status_code == 400
+
+
+# ---------------------------------------------------------------------------
+# Password reset
+# ---------------------------------------------------------------------------
+
+@pytest.mark.asyncio
+async def test_forgot_password_always_200(client):
+    """forgot-password always returns 200 regardless of whether the email exists."""
+    response = await client.post(
+        "/api/auth/forgot-password",
+        json={"email": "nobody@test.com"},
+    )
+    assert response.status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_reset_password_valid_token(client, db_session, mock_redis):
+    from app.models.user import User
+    from app.core.security import hash_password, verify_password
+    import uuid
+
+    user = User(
+        username="resetme",
+        email="resetme@test.com",
+        display_name="Reset Me",
+        hashed_password=hash_password("oldpass1"),
+        role="user",
+        native_language="es",
+        is_active=True,
+    )
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    token = str(uuid.uuid4())
+    await mock_redis.setex(f"reset_password:{token}", 3600, str(user.id))
+
+    response = await client.post(
+        "/api/auth/reset-password",
+        json={"token": token, "new_password": "newpass12"},
+    )
+    assert response.status_code == 200
+
+    await db_session.refresh(user)
+    assert verify_password("newpass12", user.hashed_password)
+
+
+@pytest.mark.asyncio
+async def test_reset_password_invalid_token(client):
+    response = await client.post(
+        "/api/auth/reset-password",
+        json={"token": "bad-token", "new_password": "newpass12"},
+    )
+    assert response.status_code == 400
+
+
+@pytest.mark.asyncio
+async def test_resend_verification_already_verified(client, db_session):
+    from app.models.user import User
+    from app.core.security import hash_password, create_access_token
+
+    user = User(
+        username="alreadyverified",
+        email="alreadyverified@test.com",
+        display_name="Verified",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=True,
+        is_verified=True,
+    )
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    token = create_access_token(user.id, user.role)
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = await client.post("/api/auth/resend-verification", headers=headers)
+    assert response.status_code == 200
+    assert response.json()["detail"] == "Already verified"
+
+
+@pytest.mark.asyncio
+async def test_resend_verification_no_email(client, db_session):
+    """resend-verification returns 400 when user has no email address."""
+    from app.models.user import User
+    from app.core.security import hash_password, create_access_token
+
+    user = User(
+        username="noemailuser",
+        email=None,
+        display_name="No Email",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=True,
+        is_verified=False,
+    )
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    token = create_access_token(user.id, user.role)
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = await client.post("/api/auth/resend-verification", headers=headers)
+    assert response.status_code == 400
+
+
+@pytest.mark.asyncio
+async def test_resend_verification_email_disabled(client, db_session):
+    """resend-verification returns 503 when EMAIL_ENABLED=false."""
+    from app.models.user import User
+    from app.core.security import hash_password, create_access_token
+    from app.core.config import settings
+
+    user = User(
+        username="emaildisabled",
+        email="emaildisabled@test.com",
+        display_name="Email Disabled",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=True,
+        is_verified=False,
+    )
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    token = create_access_token(user.id, user.role)
+    headers = {"Authorization": f"Bearer {token}"}
+
+    original = settings.EMAIL_ENABLED
+    settings.EMAIL_ENABLED = False
+    try:
+        response = await client.post("/api/auth/resend-verification", headers=headers)
+        assert response.status_code == 503
+    finally:
+        settings.EMAIL_ENABLED = original
+
+
+@pytest.mark.asyncio
+async def test_verify_email_token_consumed_after_use(client, db_session, mock_redis):
+    """verify-email token cannot be reused after successful verification."""
+    from app.models.user import User
+    from app.core.security import hash_password
+    import uuid
+
+    user = User(
+        username="oncetoken",
+        email="oncetoken@test.com",
+        display_name="Once Token",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="en",
+        is_active=True,
+        is_verified=False,
+    )
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    token = str(uuid.uuid4())
+    await mock_redis.setex(f"verify_email:{token}", 86400, str(user.id))
+
+    # First call: success
+    r1 = await client.get(f"/api/auth/verify-email?token={token}")
+    assert r1.status_code == 200
+
+    # Second call: token already consumed
+    r2 = await client.get(f"/api/auth/verify-email?token={token}")
+    assert r2.status_code == 400
+
+
+@pytest.mark.asyncio
+async def test_reset_password_token_consumed_after_use(client, db_session, mock_redis):
+    """reset-password token cannot be reused after successful reset."""
+    from app.models.user import User
+    from app.core.security import hash_password
+    import uuid
+
+    user = User(
+        username="oncereset",
+        email="oncereset@test.com",
+        display_name="Once Reset",
+        hashed_password=hash_password("oldpass1"),
+        role="user",
+        native_language="en",
+        is_active=True,
+    )
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    token = str(uuid.uuid4())
+    await mock_redis.setex(f"reset_password:{token}", 3600, str(user.id))
+
+    # First call: success
+    r1 = await client.post(
+        "/api/auth/reset-password",
+        json={"token": token, "new_password": "newpass12"},
+    )
+    assert r1.status_code == 200
+
+    # Second call: token already consumed
+    r2 = await client.post(
+        "/api/auth/reset-password",
+        json={"token": token, "new_password": "anotherpass1"},
+    )
+    assert r2.status_code == 400

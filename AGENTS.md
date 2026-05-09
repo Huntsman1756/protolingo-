@@ -2,7 +2,7 @@
 
 ## Project state
 
-**v1.2.1 — All phases implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), and Phase 3 (voice conversation) are complete. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
+**v1.3.12 — All phases implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), and Phase 4 (multi-language support) are complete. Email verification and password reset are also included. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Architecture at a glance
 
@@ -15,13 +15,40 @@ Monorepo: `backend/` (Python 3.14 FastAPI) + `frontend/` (Next.js 16 App Router)
 - **Registration gating**: `ALLOW_REGISTRATION=false` blocks public signups; admin creates users or generates single-use invite links (48h expiry in Redis).
 - **Ollama should run on the host for GPU access**, accessed via `host.docker.internal:11434`. On Linux, the backend service needs `extra_hosts: ["host.docker.internal:host-gateway"]`.
 
+## Documentation maintenance (MANDATORY)
+
+**Any code change that affects behaviour, models, endpoints, configuration, or dependencies MUST be followed by an update to all affected spec and MD files.**
+
+Rules that apply without exception:
+
+1. **Proactively identify affected docs.** After every implementation change, review which of the files below are impacted and list them explicitly before closing the task.
+2. **Always inform and ask for confirmation.** Before updating any spec or MD file, state exactly what will change and wait for explicit user approval. Never silently update documentation.
+3. **No task is complete without docs in sync.** A feature or fix is considered unfinished if the relevant spec files, `README.md`, `AGENTS.md`, or `CHANGELOG.md` have not been updated (or the user has explicitly opted out).
+4. **Version and changelog.** Any user-visible change must be reflected in `CHANGELOG.md` and `specs/version.md` (with a version bump if warranted).
+
+Files most commonly affected by code changes:
+
+| Change type | Files to update |
+|-------------|----------------|
+| New/modified endpoint | `specs/api-endpoints.instructions.md`, `specs/rate-limiting.instructions.md` |
+| New/modified model or migration | `specs/architecture.instructions.md` |
+| New/modified service or env var | `specs/architecture.instructions.md`, `specs/docker.instructions.md`, `README.md` |
+| New/modified auth flow | `specs/architecture.instructions.md`, `AGENTS.md` (Auth design section) |
+| New phase or major feature | `specs/phase-*.instructions.md` (create if needed), `README.md`, `AGENTS.md`, `CHANGELOG.md`, `specs/version.md` |
+| Docker/compose change | `specs/docker.instructions.md`, `README.md` |
+| Rate limit change | `specs/rate-limiting.instructions.md`, `specs/api-endpoints.instructions.md` |
+| Version bump | `specs/version.md`, `CHANGELOG.md`, `frontend/src/app/(app)/layout.tsx` (sidebar version string) |
+
+---
+
 ## Spec files (authoritative)
 
 These describe what was built — they are the reference documentation:
 
 | File | Covers |
 |------|--------|
-| `specs/architecture.instructions.md` | DB models, API endpoints, LLM adapter, auth design, code standards, test config |
+| `specs/architecture.instructions.md` | DB models, service layer, LLM adapter, auth design, data flow, code standards, test config |
+| `specs/api-endpoints.instructions.md` | All REST endpoints and WebSocket — paths, methods, rate limits, descriptions |
 | `specs/docker.instructions.md` | docker-compose.yml (all phases), `.env.example`, DB migrations, operational notes |
 | `specs/phase-1-platform.instructions.md` | Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat, frontend components |
 | `specs/phase-2-tts-stt.instructions.md` | Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises |
@@ -38,8 +65,7 @@ These describe what was built — they are the reference documentation:
 
 ## Run order (first deployment)
 
-1. `docker compose up -d` — start all services
-2. `docker compose exec backend alembic upgrade head` — run DB migrations
+1. `docker compose up -d` — start all services (DB migrations run automatically on backend startup)
 
 ## Development environment constraints
 

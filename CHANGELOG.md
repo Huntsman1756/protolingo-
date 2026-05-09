@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.12] - 2026-05-09
+
+### Added
+- Email verification system: `is_verified` column on `User`, `GET /api/auth/verify-email`, `POST /api/auth/resend-verification` endpoints
+- Password reset flow: `POST /api/auth/forgot-password` (anti-enumeration, always 200) and `POST /api/auth/reset-password` endpoints
+- Verification and reset tokens stored in Redis with TTL (24h / 1h respectively)
+- Transactional emails sent via SMTP using `fastapi-mail` + `aiosmtplib`; email body localised to the user's native language (10 locales)
+- Generic SMTP configuration: `EMAIL_ENABLED`, `SMTP_HOST/PORT/USER/PASSWORD/FROM/TLS/SSL`, `APP_BASE_URL` — works with Gmail, Brevo, Resend, Google Workspace, etc.
+- Non-blocking email verification banner in the app layout with "Resend verification email" button
+- Frontend pages: `/verify-email`, `/forgot-password`, `/reset-password`
+- "Forgot your password?" link on the login page
+- DB migration `0013_email_verification` — adds `is_verified` column (existing users set to `true`)
+- Admin can toggle `is_verified` for any user via `PATCH /api/admin/users/{id}` and the user detail page
+- All new i18n keys added to all 10 locale files (`verifyEmailBanner`, `verifyEmailSent`, `resendVerification`, `forgotPassword`, `verifyEmail.*`, `forgotPassword.*`, `resetPassword.*`, admin keys)
+- SMTP and registration env vars (`ALLOW_REGISTRATION`, `FIRST_USER_IS_ADMIN`) now explicitly declared in `docker-compose.yml`
+
 ## [1.3.11] - 2026-05-09
 
 ### Added

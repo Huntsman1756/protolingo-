@@ -42,7 +42,10 @@
     "checking": "Controleren...",
     "backToDashboard": "Terug naar dashboard",
     "tagline": "AI-taalonderwijs",
-    "close": "Sluiten"
+    "close": "Sluiten",
+    "verifyEmailBanner": "Verifieer je e-mailadres om je accountinstellingen te voltooien.",
+    "verifyEmailSent": "E-mail verzonden — controleer je inbox.",
+    "resendVerification": "Verificatie-e-mail opnieuw verzenden"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
       "showPassword": "Wachtwoord tonen",
       "hidePassword": "Wachtwoord verbergen",
       "accountCreated": "Account aangemaakt — je kunt nu inloggen",
-      "invalidEmail": "Voer een geldig e-mailadres in"
+      "invalidEmail": "Voer een geldig e-mailadres in",
+      "forgotPassword": "Wachtwoord vergeten?"
     },
     "register": {
       "title": "Account aanmaken",
@@ -108,6 +112,36 @@
       "andWord": "en de",
       "privacyLink": "Privacybeleid",
       "termsRequired": "Je moet de voorwaarden accepteren om door te gaan"
+    },
+    "verifyEmail": {
+      "title": "E-mailverificatie",
+      "loading": "Verifiëren...",
+      "success": "Je e-mail is geverifieerd. Je kunt nu inloggen.",
+      "error": "Ongeldige of verlopen verificatielink.",
+      "goToLogin": "Naar inloggen"
+    },
+    "forgotPassword": {
+      "title": "Wachtwoord vergeten",
+      "description": "Voer het e-mailadres van je account in en we sturen je een resetlink.",
+      "emailPlaceholder": "jouw@email.nl",
+      "submit": "Link versturen",
+      "sending": "Verzenden...",
+      "sent": "Als dat e-mailadres geregistreerd is, is er een link verzonden.",
+      "backToLogin": "Terug naar inloggen",
+      "error": "Er is iets misgegaan. Probeer het opnieuw."
+    },
+    "resetPassword": {
+      "title": "Wachtwoord resetten",
+      "newPassword": "Nieuw wachtwoord",
+      "confirmPassword": "Wachtwoord bevestigen",
+      "submit": "Wachtwoord opslaan",
+      "saving": "Opslaan...",
+      "success": "Wachtwoord bijgewerkt. Doorsturen...",
+      "mismatch": "Wachtwoorden komen niet overeen",
+      "tooShort": "Het wachtwoord moet minimaal 8 tekens bevatten",
+      "missingToken": "Ongeldige link. Vraag een nieuwe reset aan.",
+      "error": "Ongeldige of verlopen link",
+      "backToLogin": "Terug naar inloggen"
     }
   },
   "settings": {
@@ -614,7 +648,13 @@
     "quotaUsedMinutes": "Gebruikt vandaag",
     "quotaUsedWeeklyMinutes": "Gebruikt deze week (min)",
     "quotaSave": "Quota opslaan",
-    "quotaSaved": "Quota opgeslagen."
+    "quotaSaved": "Quota opgeslagen.",
+    "emailVerified": "E-mail geverifieerd",
+    "emailNotVerified": "E-mail niet geverifieerd",
+    "verifyEmail": "E-mail verifiëren",
+    "unverifyEmail": "Als niet geverifieerd markeren",
+    "emailVerifiedSuccess": "E-mail gemarkeerd als geverifieerd.",
+    "emailUnverifiedSuccess": "E-mail gemarkeerd als niet geverifieerd."
   },
   "faq": {
     "title": "FAQ",

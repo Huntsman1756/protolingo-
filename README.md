@@ -115,7 +115,8 @@ The first registered user becomes admin automatically.
 
 ## Internal documentation
 
-- [architecture.instructions.md](specs/architecture.instructions.md) — DB models, API endpoints, LLM adapter, auth design, code standards, test config
+- [api-endpoints.instructions.md](specs/api-endpoints.instructions.md) — All REST endpoints and WebSocket — paths, methods, rate limits, descriptions
+- [architecture.instructions.md](specs/architecture.instructions.md) — DB models, service layer, LLM adapter, auth design, data flow, code standards, test config
 - [CHANGELOG.md](CHANGELOG.md) — Project changelog
 - [changelog.instructions.md](specs/changelog.instructions.md) — Changelog format, entry style, and update rules
 - [docker.instructions.md](specs/docker.instructions.md) — Docker Compose by phase, `.env.example`, DB migrations, operational notes

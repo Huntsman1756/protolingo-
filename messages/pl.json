@@ -42,7 +42,10 @@
     "checking": "Sprawdzanie...",
     "backToDashboard": "Wróć do panelu",
     "tagline": "Nauka języków z AI",
-    "close": "Zamknij"
+    "close": "Zamknij",
+    "verifyEmailBanner": "Prosimy o potwierdzenie adresu e-mail w celu dokończenia konfiguracji konta.",
+    "verifyEmailSent": "Wiadomość wysłana — sprawdź swoją skrzynkę odbiorczą.",
+    "resendVerification": "Wyślij ponownie e-mail weryfikacyjny"
   },
   "nav": {
     "home": "Strona główna",
@@ -77,7 +80,8 @@
       "showPassword": "Pokaż hasło",
       "hidePassword": "Ukryj hasło",
       "accountCreated": "Konto utworzone — możesz się teraz zalogować",
-      "invalidEmail": "Wprowadź prawidłowy adres e-mail"
+      "invalidEmail": "Wprowadź prawidłowy adres e-mail",
+      "forgotPassword": "Zapomniałeś hasła?"
     },
     "register": {
       "title": "Utwórz konto",
@@ -108,6 +112,36 @@
       "andWord": "oraz",
       "privacyLink": "Politykę prywatności",
       "termsRequired": "Musisz zaakceptować regulamin, aby kontynuować"
+    },
+    "verifyEmail": {
+      "title": "Weryfikacja e-mail",
+      "loading": "Weryfikacja...",
+      "success": "Twój e-mail został zweryfikowany. Możesz się teraz zalogować.",
+      "error": "Nieprawidłowy lub wygasły link weryfikacyjny.",
+      "goToLogin": "Przejdź do logowania"
+    },
+    "forgotPassword": {
+      "title": "Zapomniałem hasła",
+      "description": "Podaj adres e-mail swojego konta, a wyślemy Ci link do zresetowania hasła.",
+      "emailPlaceholder": "twoj@email.pl",
+      "submit": "Wyślij link",
+      "sending": "Wysyłanie...",
+      "sent": "Jeśli ten e-mail jest zarejestrowany, link został wysłany.",
+      "backToLogin": "Powrót do logowania",
+      "error": "Coś poszło nie tak. Spróbuj ponownie."
+    },
+    "resetPassword": {
+      "title": "Resetowanie hasła",
+      "newPassword": "Nowe hasło",
+      "confirmPassword": "Potwierdź hasło",
+      "submit": "Zapisz hasło",
+      "saving": "Zapisywanie...",
+      "success": "Hasło zaktualizowane. Przekierowanie...",
+      "mismatch": "Hasła nie są zgodne",
+      "tooShort": "Hasło musi mieć co najmniej 8 znaków",
+      "missingToken": "Nieprawidłowy link. Poproś o nowe resetowanie.",
+      "error": "Nieprawidłowy lub wygasły link",
+      "backToLogin": "Powrót do logowania"
     }
   },
   "settings": {
@@ -614,7 +648,13 @@
     "quotaUsedMinutes": "Użyte dzisiaj",
     "quotaUsedWeeklyMinutes": "Użyte w tym tygodniu (min)",
     "quotaSave": "Zapisz limity",
-    "quotaSaved": "Limity zapisane."
+    "quotaSaved": "Limity zapisane.",
+    "emailVerified": "E-mail zweryfikowany",
+    "emailNotVerified": "E-mail niezweryfikowany",
+    "verifyEmail": "Zweryfikuj e-mail",
+    "unverifyEmail": "Oznacz jako niezweryfikowany",
+    "emailVerifiedSuccess": "E-mail oznaczony jako zweryfikowany.",
+    "emailUnverifiedSuccess": "E-mail oznaczony jako niezweryfikowany."
   },
   "faq": {
     "title": "FAQ",
