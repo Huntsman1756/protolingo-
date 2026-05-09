@@ -12,7 +12,9 @@
     "feature3Desc": "Talk to your tutor in real time. Voice-activated, instant response, no turn-taking.",
     "footer": "Open source · Self-host free or subscribe to the hosted service",
     "terms": "Terms",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "aboutMe": "About me"
   },
   "common": {
     "loading": "Loading...",
@@ -155,7 +157,9 @@
     "privacyPolicy": "Privacy Policy",
     "sectionAuthor": "Author",
     "authorDescription": "Built by Arturo Carretero Calvo",
+    "websiteLink": "Website",
     "githubProfile": "GitHub profile",
+    "contactLink": "Contact",
     "deleteAccount": "Delete Account",
     "deleteAccountTitle": "Delete Account",
     "deleteAccountMessage": "This will permanently delete your account and all your data. This action cannot be undone.",
@@ -659,6 +663,7 @@
     "startNew": "Start New Session",
     "statusLoading": "Loading voice model...",
     "statusReady": "Ready",
+    "statusWarming": "Loading models...",
     "statusConnecting": "Connecting...",
     "statusListening": "Listening...",
     "statusDetecting": "Detecting speech...",

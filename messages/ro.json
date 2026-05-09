@@ -12,7 +12,9 @@
     "feature3Desc": "Vorbește cu tutorele în timp real. Controlat prin voce, răspuns imediat, fără rânduri.",
     "footer": "Sursă deschisă · Găzduire proprie gratuită sau abonament la serviciul găzduit",
     "terms": "Termeni și condiții",
-    "privacy": "Confidențialitate"
+    "privacy": "Confidențialitate",
+    "contact": "Contact",
+    "aboutMe": "Despre mine"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -155,7 +157,9 @@
     "privacyPolicy": "Politică de confidențialitate",
     "sectionAuthor": "Autor",
     "authorDescription": "Creat de Arturo Carretero Calvo",
+    "websiteLink": "Site web",
     "githubProfile": "Profil GitHub",
+    "contactLink": "Contact",
     "deleteAccount": "Șterge contul",
     "deleteAccountTitle": "Șterge contul",
     "deleteAccountMessage": "Acest lucru va șterge permanent contul tău și toate datele asociate. Această acțiune nu poate fi anulată.",
@@ -659,6 +663,7 @@
     "startNew": "Începe o sesiune nouă",
     "statusLoading": "Se încarcă modelul vocal...",
     "statusReady": "Gata",
+    "statusWarming": "Se încarcă modelele...",
     "statusConnecting": "Se conectează...",
     "statusListening": "Ascultă...",
     "statusDetecting": "Se detectează vocea...",

@@ -12,7 +12,9 @@
     "feature3Desc": "Praat met je tutor in realtime. Spraakgestuurd, directe reactie, zonder beurtneming.",
     "footer": "Open source · Zelf hosten gratis of abonneer op de gehoste dienst",
     "terms": "Gebruiksvoorwaarden",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "aboutMe": "Over mij"
   },
   "common": {
     "loading": "Laden...",
@@ -155,7 +157,9 @@
     "privacyPolicy": "Privacybeleid",
     "sectionAuthor": "Auteur",
     "authorDescription": "Gebouwd door Arturo Carretero Calvo",
+    "websiteLink": "Website",
     "githubProfile": "GitHub-profiel",
+    "contactLink": "Contact",
     "deleteAccount": "Account verwijderen",
     "deleteAccountTitle": "Account verwijderen",
     "deleteAccountMessage": "Dit verwijdert je account en alle bijbehorende gegevens permanent. Deze actie kan niet ongedaan worden gemaakt.",
@@ -659,6 +663,7 @@
     "startNew": "Nieuwe sessie starten",
     "statusLoading": "Spraakmodel laden...",
     "statusReady": "Klaar",
+    "statusWarming": "Modellen laden...",
     "statusConnecting": "Verbinden...",
     "statusListening": "Luisteren...",
     "statusDetecting": "Spraak detecteren...",

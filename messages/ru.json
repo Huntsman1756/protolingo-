@@ -12,7 +12,9 @@
     "feature3Desc": "Говорите с репетитором в реальном времени. Управление голосом, мгновенный ответ, без очереди.",
     "footer": "Открытый исходный код · Самостоятельный хостинг бесплатно или подписка на облачный сервис",
     "terms": "Условия использования",
-    "privacy": "Конфиденциальность"
+    "privacy": "Конфиденциальность",
+    "contact": "Контакт",
+    "aboutMe": "О себе"
   },
   "common": {
     "loading": "Загрузка...",
@@ -155,7 +157,9 @@
     "privacyPolicy": "Политика конфиденциальности",
     "sectionAuthor": "Автор",
     "authorDescription": "Создано Arturo Carretero Calvo",
+    "websiteLink": "Веб-сайт",
     "githubProfile": "Профиль GitHub",
+    "contactLink": "Контакт",
     "deleteAccount": "Удалить аккаунт",
     "deleteAccountTitle": "Удалить аккаунт",
     "deleteAccountMessage": "Это навсегда удалит ваш аккаунт и все связанные данные. Это действие нельзя отменить.",
@@ -659,6 +663,7 @@
     "startNew": "Начать новую сессию",
     "statusLoading": "Загрузка голосовой модели...",
     "statusReady": "Готово",
+    "statusWarming": "Загрузка моделей...",
     "statusConnecting": "Подключение...",
     "statusListening": "Слушаю...",
     "statusDetecting": "Обнаружение речи...",

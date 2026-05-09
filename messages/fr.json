@@ -12,7 +12,9 @@
     "feature3Desc": "Parlez à votre tuteur en temps réel. Activation vocale, réponse instantanée, sans attendre votre tour.",
     "footer": "Open source · Auto-hébergez gratuitement ou abonnez-vous au service hébergé",
     "terms": "CGU",
-    "privacy": "Confidentialité"
+    "privacy": "Confidentialité",
+    "contact": "Contact",
+    "aboutMe": "À propos"
   },
   "common": {
     "loading": "Chargement...",
@@ -155,7 +157,9 @@
     "privacyPolicy": "Politique de confidentialité",
     "sectionAuthor": "Auteur",
     "authorDescription": "Créé par Arturo Carretero Calvo",
+    "websiteLink": "Site web",
     "githubProfile": "Profil GitHub",
+    "contactLink": "Contact",
     "deleteAccount": "Supprimer le compte",
     "deleteAccountTitle": "Supprimer le compte",
     "deleteAccountMessage": "Cette action supprimera définitivement votre compte et toutes vos données. Cette action est irréversible.",
@@ -659,6 +663,7 @@
     "startNew": "Nouvelle session",
     "statusLoading": "Chargement du modèle vocal...",
     "statusReady": "Prêt",
+    "statusWarming": "Chargement des modèles...",
     "statusConnecting": "Connexion...",
     "statusListening": "En écoute...",
     "statusDetecting": "Détection de la parole...",
