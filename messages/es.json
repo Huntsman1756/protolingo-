@@ -689,6 +689,25 @@
     "q_password": "¿Cómo cambio mi contraseña o idioma nativo?",
     "a_password": "Ve a <settingsLink>Ajustes</settingsLink>. Desde allí puedes actualizar tu nombre de visualización, idioma nativo y contraseña."
   },
+  "cookieBanner": {
+    "message": "Usamos cookies estrictamente necesarias para mantenerte conectado. No se usan cookies de seguimiento ni publicidad.",
+    "learnMore": "Política de privacidad",
+    "accept": "Entendido"
+  },
+  "error": {
+    "label": "Error inesperado",
+    "title": "Algo salió mal",
+    "body": "Se ha producido un error inesperado. Puedes intentarlo de nuevo o volver al panel de control.",
+    "retry": "Intentar de nuevo",
+    "dashboard": "Ir al panel",
+    "digest": "Referencia del error"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "La página que buscas no existe o ha sido movida.",
+    "dashboard": "Ir al panel",
+    "home": "Inicio"
+  },
   "errors": {
     "notFound": "Página no encontrada",
     "serverError": "Algo salió mal",

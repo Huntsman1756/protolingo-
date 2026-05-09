@@ -689,6 +689,25 @@
     "q_password": "Hoe verander ik mijn wachtwoord of moedertaal?",
     "a_password": "Ga naar <settingsLink>Instellingen</settingsLink>. Daar kun je je weergavenaam, moedertaal en wachtwoord bijwerken."
   },
+  "cookieBanner": {
+    "message": "Wij gebruiken strikt noodzakelijke cookies om je ingelogd te houden. Er worden geen tracking- of advertentiecookies gebruikt.",
+    "learnMore": "Privacybeleid",
+    "accept": "Begrepen"
+  },
+  "error": {
+    "label": "Onverwachte fout",
+    "title": "Er is iets misgegaan",
+    "body": "Er is een onverwachte fout opgetreden. Je kunt het opnieuw proberen of teruggaan naar het dashboard.",
+    "retry": "Opnieuw proberen",
+    "dashboard": "Naar dashboard",
+    "digest": "Foutreferentie"
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "body": "De pagina die je zoekt bestaat niet of is verplaatst.",
+    "dashboard": "Naar dashboard",
+    "home": "Home"
+  },
   "errors": {
     "notFound": "Pagina niet gevonden",
     "serverError": "Er ging iets mis",

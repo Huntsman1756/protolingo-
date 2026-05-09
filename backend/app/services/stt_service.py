@@ -11,6 +11,12 @@ class WhisperSTTService:
     def __init__(self, base_url: str) -> None:
         self.base_url = base_url.rstrip("/")
 
+    async def health(self) -> None:
+        """Raise if Whisper ASR is unreachable."""
+        async with httpx.AsyncClient() as client:
+            r = await client.get(f"{self.base_url}/", timeout=5.0)
+            r.raise_for_status()
+
     async def transcribe(
         self,
         audio_bytes: bytes,
@@ -44,6 +50,10 @@ class OpenAISTTService:
     def __init__(self, api_key: str, model: str) -> None:
         self._client = openai.AsyncOpenAI(api_key=api_key)
         self.model = model
+
+    async def health(self) -> None:
+        """Raise if OpenAI STT is unreachable (lightweight models list call)."""
+        await self._client.models.list()
 
     async def transcribe(
         self,

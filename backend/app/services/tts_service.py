@@ -7,6 +7,12 @@ class KokoroTTSService:
         self.base_url = base_url
         self.voice = voice
 
+    async def health(self) -> None:
+        """Raise if Kokoro is unreachable."""
+        async with httpx.AsyncClient() as client:
+            r = await client.get(f"{self.base_url}/v1/models", timeout=5.0)
+            r.raise_for_status()
+
     async def synthesize(self, text: str, voice: str | None = None) -> bytes:
         """Call Kokoro-FastAPI and return MP3 audio bytes."""
         async with httpx.AsyncClient() as client:
@@ -30,6 +36,10 @@ class OpenAITTSService:
         self.model = model
         self.voice = voice
         self.speed = speed
+
+    async def health(self) -> None:
+        """Raise if OpenAI TTS is unreachable (lightweight models list call)."""
+        await self._client.models.list()
 
     async def synthesize(self, text: str, voice: str | None = None) -> bytes:
         """Call OpenAI TTS API and return MP3 audio bytes."""

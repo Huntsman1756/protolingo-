@@ -689,6 +689,25 @@
     "q_password": "Cum îmi schimb parola sau limba maternă?",
     "a_password": "Mergi la <settingsLink>Setări</settingsLink>. Acolo poți actualiza numele afișat, limba maternă și parola."
   },
+  "cookieBanner": {
+    "message": "Folosim cookie-uri strict necesare pentru a te menține autentificat. Nu se folosesc cookie-uri de urmărire sau publicitate.",
+    "learnMore": "Politică de confidentialitate",
+    "accept": "Am înțeles"
+  },
+  "error": {
+    "label": "Eroare neașteptată",
+    "title": "Ceva a mers greșit",
+    "body": "A apărut o eroare neașteptată. Poți încerca din nou sau te poți întoarce la tabloul de bord.",
+    "retry": "Încearcă din nou",
+    "dashboard": "Mergi la tabloul de bord",
+    "digest": "Referință eroare"
+  },
+  "notFound": {
+    "title": "Pagina nu a fost găsită",
+    "body": "Pagina căutată nu există sau a fost mutată.",
+    "dashboard": "Mergi la tabloul de bord",
+    "home": "Acasă"
+  },
   "errors": {
     "notFound": "Pagina nu a fost găsită",
     "serverError": "Ceva a mers greșit",

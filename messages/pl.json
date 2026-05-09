@@ -689,6 +689,25 @@
     "q_password": "Jak zmienić hasło lub język ojczysty?",
     "a_password": "Przejdź do <settingsLink>Ustawień</settingsLink>. Możesz tam zaktualizować wyświetlaną nazwę, język ojczysty i hasło."
   },
+  "cookieBanner": {
+    "message": "Używamy wyłącznie niezbędnych plików cookie, aby utrzymać Cię zalogowanym. Nie używamy plików cookie do śledzenia ani reklam.",
+    "learnMore": "Polityka prywatności",
+    "accept": "Rozumiem"
+  },
+  "error": {
+    "label": "Nieoczekiwany błąd",
+    "title": "Coś poszło nie tak",
+    "body": "Wystąpił nieoczekiwany błąd. Możesz spróbować ponownie lub wrócić do panelu.",
+    "retry": "Spróbuj ponownie",
+    "dashboard": "Przejdź do panelu",
+    "digest": "Numer referencyjny błędu"
+  },
+  "notFound": {
+    "title": "Strona nie znaleziona",
+    "body": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
+    "dashboard": "Przejdź do panelu",
+    "home": "Strona główna"
+  },
   "errors": {
     "notFound": "Nie znaleziono strony",
     "serverError": "Coś poszło nie tak",

@@ -197,6 +197,109 @@ _RESET_I18N: dict[str, dict[str, str]] = {
     },
 }
 
+_WELCOME_I18N: dict[str, dict[str, str]] = {
+    "en": {
+        "subject": "Welcome to FreeLingo!",
+        "greeting": "Hi {name},",
+        "body": "Your account is ready. Here is how to get started:",
+        "step1": "Take the <strong>Assessment</strong> — it detects your current level (A1–C2) and your strengths and weak points.",
+        "step2": "Generate your <strong>Study Plan</strong> — a week-by-week schedule tailored to your level and goals.",
+        "step3": "Complete your first daily lesson and start building your streak.",
+        "button": "Go to my dashboard",
+        "footer": "Happy learning!",
+    },
+    "es": {
+        "subject": "\u00a1Bienvenido a FreeLingo!",
+        "greeting": "Hola {name},",
+        "body": "Tu cuenta est\u00e1 lista. As\u00ed puedes empezar:",
+        "step1": "Haz la <strong>Evaluaci\u00f3n</strong> \u2014 detecta tu nivel actual (A1\u2013C2) y tus puntos fuertes y d\u00e9biles.",
+        "step2": "Genera tu <strong>Plan de estudio</strong> \u2014 un calendario semanal adaptado a tu nivel y objetivos.",
+        "step3": "Completa tu primera lecci\u00f3n diaria y empieza a construir tu racha.",
+        "button": "Ir a mi panel",
+        "footer": "\u00a1Buena suerte con el aprendizaje!",
+    },
+    "fr": {
+        "subject": "Bienvenue sur FreeLingo\u00a0!",
+        "greeting": "Bonjour {name},",
+        "body": "Votre compte est pr\u00eat. Voici comment commencer\u00a0:",
+        "step1": "Passez l\u2019<strong>\u00e9valuation</strong> \u2014 elle d\u00e9tecte votre niveau actuel (A1\u2013C2) et vos points forts et faibles.",
+        "step2": "G\u00e9n\u00e9rez votre <strong>plan d\u2019\u00e9tude</strong> \u2014 un planning semaine par semaine adapt\u00e9 \u00e0 votre niveau et vos objectifs.",
+        "step3": "Terminez votre premi\u00e8re le\u00e7on quotidienne et commencez \u00e0 construire votre s\u00e9rie.",
+        "button": "Aller \u00e0 mon tableau de bord",
+        "footer": "Bon apprentissage\u00a0!",
+    },
+    "de": {
+        "subject": "Willkommen bei FreeLingo!",
+        "greeting": "Hallo {name},",
+        "body": "Dein Konto ist bereit. So geht es los:",
+        "step1": "Mache das <strong>Assessment</strong> \u2014 es erkennt dein aktuelles Niveau (A1\u2013C2) sowie deine St\u00e4rken und Schw\u00e4chen.",
+        "step2": "Erstelle deinen <strong>Lernplan</strong> \u2014 einen wochenweisen Zeitplan, der auf dein Niveau und deine Ziele abgestimmt ist.",
+        "step3": "Schlie\u00dfe deine erste t\u00e4gliche Lektion ab und baue deine Serie auf.",
+        "button": "Zu meinem Dashboard",
+        "footer": "Viel Spa\u00df beim Lernen!",
+    },
+    "pt": {
+        "subject": "Bem-vindo ao FreeLingo!",
+        "greeting": "Ol\u00e1 {name},",
+        "body": "A sua conta est\u00e1 pronta. Veja como come\u00e7ar:",
+        "step1": "Fa\u00e7a a <strong>Avalia\u00e7\u00e3o</strong> \u2014 ela deteta o seu n\u00edvel atual (A1\u2013C2) e os seus pontos fortes e fracos.",
+        "step2": "Gere o seu <strong>Plano de estudo</strong> \u2014 um calend\u00e1rio semanal adaptado ao seu n\u00edvel e objetivos.",
+        "step3": "Complete a sua primeira li\u00e7\u00e3o di\u00e1ria e comece a construir a sua sequ\u00eancia.",
+        "button": "Ir para o meu painel",
+        "footer": "Bons estudos!",
+    },
+    "it": {
+        "subject": "Benvenuto su FreeLingo!",
+        "greeting": "Ciao {name},",
+        "body": "Il tuo account \u00e8 pronto. Ecco come iniziare:",
+        "step1": "Fai la <strong>Valutazione</strong> \u2014 rileva il tuo livello attuale (A1\u2013C2) e i tuoi punti di forza e debolezza.",
+        "step2": "Genera il tuo <strong>Piano di studio</strong> \u2014 un programma settimanale adattato al tuo livello e ai tuoi obiettivi.",
+        "step3": "Completa la tua prima lezione quotidiana e inizia a costruire la tua serie.",
+        "button": "Vai alla mia dashboard",
+        "footer": "Buono studio!",
+    },
+    "nl": {
+        "subject": "Welkom bij FreeLingo!",
+        "greeting": "Hallo {name},",
+        "body": "Je account is klaar. Zo ga je aan de slag:",
+        "step1": "Doe de <strong>Assessment</strong> \u2014 het detecteert je huidige niveau (A1\u2013C2) en je sterke en zwakke punten.",
+        "step2": "Genereer je <strong>Studieplan</strong> \u2014 een week-voor-week schema afgestemd op je niveau en doelen.",
+        "step3": "Voltooi je eerste dagelijkse les en begin met het opbouwen van je reeks.",
+        "button": "Naar mijn dashboard",
+        "footer": "Veel leerplezier!",
+    },
+    "pl": {
+        "subject": "Witamy w FreeLingo!",
+        "greeting": "Cze\u015b\u0107 {name},",
+        "body": "Twoje konto jest gotowe. Oto jak zacz\u0105\u0107:",
+        "step1": "Wykonaj <strong>Assessment</strong> \u2014 wykryje Tw\u00f3j obecny poziom (A1\u2013C2) oraz mocne i s\u0142abe strony.",
+        "step2": "Wygeneruj sw\u00f3j <strong>Plan nauki</strong> \u2014 tygodniowy harmonogram dostosowany do Twojego poziomu i cel\u00f3w.",
+        "step3": "Uko\u0144cz pierwsz\u0105 codzienn\u0105 lekcj\u0119 i zacznij budowa\u0107 swoj\u0105 seri\u0119.",
+        "button": "Przejd\u017a do mojego panelu",
+        "footer": "Mi\u0142ej nauki!",
+    },
+    "ro": {
+        "subject": "Bun venit la FreeLingo!",
+        "greeting": "Bun\u0103 {name},",
+        "body": "Contul t\u0103u este gata. Iat\u0103 cum po\u021bi \u00eencepe:",
+        "step1": "Faci <strong>Evaluarea</strong> \u2014 detecteaz\u0103 nivelul t\u0103u actual (A1\u2013C2) \u0219i punctele forte \u0219i slabe.",
+        "step2": "Genereaz\u0103 <strong>Planul de studiu</strong> \u2014 un program s\u0103pt\u0103m\u00e2nal adaptat nivelului \u0219i obiectivelor tale.",
+        "step3": "Finalizeaz\u0103 prima lec\u021bie zilnic\u0103 \u0219i \u00eencepe s\u0103 \u00ee\u021bi construie\u0219ti seria.",
+        "button": "Mergi la tabloul meu de bord",
+        "footer": "Mult succes la \u00eenv\u0103\u021bat!",
+    },
+    "ru": {
+        "subject": "\u0414\u043e\u0431\u0440\u043e \u043f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c \u0432 FreeLingo!",
+        "greeting": "\u041f\u0440\u0438\u0432\u0435\u0442, {name},",
+        "body": "\u0412\u0430\u0448 \u0430\u043a\u043a\u0430\u0443\u043d\u0442 \u0433\u043e\u0442\u043e\u0432. \u0412\u043e\u0442 \u043a\u0430\u043a \u043d\u0430\u0447\u0430\u0442\u044c:",
+        "step1": "\u041f\u0440\u043e\u0439\u0434\u0438\u0442\u0435 <strong>\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435</strong> \u2014 \u043e\u043d\u043e \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0438\u0442 \u0432\u0430\u0448 \u0442\u0435\u043a\u0443\u0449\u0438\u0439 \u0443\u0440\u043e\u0432\u0435\u043d\u044c (A1\u2013C2), \u0441\u0438\u043b\u044c\u043d\u044b\u0435 \u0438 \u0441\u043b\u0430\u0431\u044b\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b.",
+        "step2": "\u0421\u043e\u0437\u0434\u0430\u0439\u0442\u0435 <strong>\u041f\u043b\u0430\u043d \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f</strong> \u2014 \u043f\u043e\u043d\u0435\u0434\u0435\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0441\u043f\u0438\u0441\u0430\u043d\u0438\u0435, \u0430\u0434\u0430\u043f\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u043f\u043e\u0434 \u0432\u0430\u0448 \u0443\u0440\u043e\u0432\u0435\u043d\u044c \u0438 \u0446\u0435\u043b\u0438.",
+        "step3": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u043f\u0435\u0440\u0432\u044b\u0439 \u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u044b\u0439 \u0443\u0440\u043e\u043a \u0438 \u043d\u0430\u0447\u043d\u0438\u0442\u0435 \u043d\u0430\u043a\u0430\u043f\u043b\u0438\u0432\u0430\u0442\u044c \u0441\u0435\u0440\u0438\u044e.",
+        "button": "\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043d\u0430 \u043f\u0430\u043d\u0435\u043b\u044c \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f",
+        "footer": "\u0423\u0441\u043f\u0435\u0445\u043e\u0432 \u0432 \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u0438!",
+    },
+}
+
 
 def _render_template(name: str, context: dict) -> str:
     """Render a plain HTML template with simple {{key}} substitution."""
@@ -267,3 +370,36 @@ async def send_reset_password_email(to: str, display_name: str, token: str, loca
         await fm.send_message(message)
     except Exception:
         logger.exception("Failed to send reset password email to %s", to)
+
+
+async def send_welcome_email(to: str, display_name: str, locale: str = "en") -> None:
+    """Send a welcome email with onboarding steps in the user's native language."""
+    if not settings.EMAIL_ENABLED:
+        return
+    strings = _WELCOME_I18N.get(locale, _WELCOME_I18N["en"])
+    url = f"{settings.APP_BASE_URL}/dashboard"
+    html = _render_template(
+        "welcome.html",
+        {
+            "greeting": strings["greeting"].format(name=display_name),
+            "body": strings["body"],
+            "step1": strings["step1"],
+            "step2": strings["step2"],
+            "step3": strings["step3"],
+            "button": strings["button"],
+            "footer": strings["footer"],
+            "url": url,
+            "base_url": settings.APP_BASE_URL,
+        },
+    )
+    message = MessageSchema(
+        subject=strings["subject"],
+        recipients=[to],
+        body=html,
+        subtype=MessageType.html,
+    )
+    try:
+        fm = FastMail(_get_mail_config())
+        await fm.send_message(message)
+    except Exception:
+        logger.exception("Failed to send welcome email to %s", to)
