@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const PUBLIC_ROUTES = ['/login', '/register', '/terms', '/privacy']
+const PUBLIC_ROUTES = ['/login', '/register', '/terms', '/privacy', '/forgot-password', '/reset-password', '/verify-email']
 const PUBLIC_EXACT = ['/']
 const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
 type Locale = (typeof SUPPORTED_LOCALES)[number]
