@@ -4,15 +4,16 @@
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.14-blue?style=flat-square)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
+![Hosted](https://img.shields.io/badge/hosted%20service-available-green?style=flat-square)
 
 <p align="left">
   <img src="assets/logo.png" alt="FreeLingo logo" width="200" />
 </p>
 
-Open source, self-hosted, Dockerized web application for learning languages with AI.
-A local language model (Ollama) evaluates your CEFR level, generates a personalized
-study plan, and guides you through grammar, vocabulary, reading comprehension,
-and writing lessons.
+Open source AI language learning platform available in two modes: self-hosted (free, run it on your own
+infrastructure) and as a hosted service operated by the FreeLingo team (paid subscription).
+A language model evaluates your CEFR level, generates a personalized study plan, and guides you through
+grammar, vocabulary, reading comprehension, and writing lessons — with optional voice features.
 
 The study plan follows a CEFR-aligned curriculum (A1-C2) organized into units with
 clear competencies and prerequisites. After a deterministic placement assessment,
@@ -60,8 +61,8 @@ freelingo/
 | Database   | PostgreSQL 16                                            |
 | Cache      | Redis 7                                                  |
 | LLM        | Ollama (local) · OpenAI · Anthropic · DeepSeek           |
-| TTS (P2)   | Kokoro-FastAPI                                           |
-| STT (P2)   | faster-whisper                                           |
+| TTS        | Kokoro-FastAPI (local) · OpenAI TTS API                  |
+| STT        | faster-whisper (local) · OpenAI Whisper API              |
 | Auth       | JWT (access + refresh), multi-user, roles (admin/user).  |
 | Deploy     | Docker Compose                                           |
 
@@ -135,6 +136,7 @@ The first registered user becomes admin automatically.
 - The recommended model for Ollama is `gemma3:12b`. It can be changed in `.env`.
 - The backend acts as a proxy for Ollama/TTS/STT calls so the frontend never talks directly to those services.
 - The `LLM_PROVIDER` field controls the LLM provider: `ollama` (local, recommended), `openai`, `anthropic`, or `deepseek`.
+- `TTS_PROVIDER` and `STT_PROVIDER` are independent: `local` (Kokoro / faster-whisper) or `openai` (OpenAI API).
 - The target language is always **English** (`en-US` American English or `en-GB` British English). The variant is chosen on the `/onboarding` screen immediately after registration. The user's native language is asked during registration and is used only for flashcard translations and tutor feedback.
 
 ## Reverse proxy requirement (real-time conversation)
@@ -147,54 +149,55 @@ The WebSocket URL is derived automatically from `window.location`, so no extra c
 
 ## Enabling TTS & STT
 
-TTS (Kokoro) and STT (faster-whisper) are disabled by default at the application level, even though the services are running in Docker Compose. Enable them in `.env` to activate voice features.
+TTS and STT each support two providers, selected independently via `.env`.
 
-### GPU host (NVIDIA)
+### Provider options
 
-1. The `kokoro` and `whisper` services are already configured in `docker-compose.yml` with the NVIDIA `deploy` block.
-2. The Kokoro image (`ghcr.io/artcc/kokoro-fastapi-gpu`) ships with PyTorch 2.7+ (cu128), supporting all NVIDIA architectures including **Blackwell (RTX 5000 series, sm_120)**.
-3. Add to `.env`:
-   ```env
-   TTS_ENABLED=true
-   STT_ENABLED=true
-   ```
-4. Restart the stack: `docker compose up -d`.
+| Variable | Values | Notes |
+|----------|--------|-------|
+| `TTS_PROVIDER` | `local` · `openai` | `local` uses Kokoro-FastAPI; `openai` uses OpenAI TTS API |
+| `STT_PROVIDER` | `local` · `openai` | `local` uses faster-whisper; `openai` uses OpenAI Whisper API |
+| `OPENAI_API_KEY` | string | Required for `openai` provider on either service |
 
-### CPU-only host
+When using `openai` providers, the `kokoro` and `whisper` Docker services can be removed from the stack — no local GPU required.
 
-1. Uncomment the `kokoro` and `whisper` services in `docker-compose.yml`.
-2. Replace the image tags and remove the `deploy` block for each service:
+### Option A — Local providers (self-hosted, GPU recommended)
 
-   **Kokoro (TTS):**
-   ```yaml
-   kokoro:
-     image: ghcr.io/remsky/kokoro-fastapi-cpu:latest
-     restart: unless-stopped
-   ```
+The `kokoro` and `whisper` services in `docker-compose.yml` are pre-configured for NVIDIA GPUs.
 
-   **Whisper (STT):**
-   ```yaml
-   whisper:
-     image: onerahmet/openai-whisper-asr-webservice:latest
-     restart: unless-stopped
-     environment:
-       - ASR_MODEL=base
-       - ASR_ENGINE=faster_whisper
-   ```
-   > Use `ASR_MODEL=base` or `small` on CPU. Larger models (`medium`, `large`) are very slow without a GPU.
+```env
+TTS_PROVIDER=local
+STT_PROVIDER=local
+```
 
-3. Add to `.env`:
-   ```env
-   TTS_ENABLED=true
-   STT_ENABLED=true
-   ```
-4. Restart the stack: `docker compose up -d`.
+The Kokoro image (`ghcr.io/artcc/kokoro-fastapi-gpu`) ships with PyTorch 2.7+ (cu128), supporting all NVIDIA architectures including Blackwell (RTX 5000 series).
 
-### Notes
+For CPU-only hosts, replace the image tags and remove the `deploy` block in `docker-compose.yml`:
 
-- If TTS or STT is disabled, the backend returns `503` on those endpoints. The frontend gracefully degrades: the listen/record buttons are not rendered.
-- The TTS voice can be changed via `TTS_VOICE` in `.env` (default: `af_heart`).
-- The STT model and engine are controlled via `.env` (`STT_MODEL` and `STT_ENGINE`).
+```yaml
+kokoro:
+  image: ghcr.io/remsky/kokoro-fastapi-cpu:latest
+  restart: unless-stopped
+
+whisper:
+  image: onerahmet/openai-whisper-asr-webservice:latest
+  restart: unless-stopped
+  environment:
+    - ASR_MODEL=base
+    - ASR_ENGINE=faster_whisper
+```
+
+> Use `ASR_MODEL=base` or `small` on CPU. Larger models are very slow without a GPU.
+
+### Option B — OpenAI providers (no local GPU needed)
+
+```env
+TTS_PROVIDER=openai
+STT_PROVIDER=openai
+OPENAI_API_KEY=sk-...
+```
+
+Uses the same `OPENAI_API_KEY` as the LLM if `LLM_PROVIDER=openai`. No extra services needed.
 
 ### TTS voice options (Kokoro-82M)
 
