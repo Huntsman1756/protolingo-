@@ -47,14 +47,16 @@ services:
       ANTHROPIC_MODEL: ${ANTHROPIC_MODEL}
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
       DEEPSEEK_MODEL: ${DEEPSEEK_MODEL}
-      TTS_ENABLED: ${TTS_ENABLED:-false}
+      TTS_PROVIDER: ${TTS_PROVIDER:-local}
       TTS_BASE_URL: ${TTS_BASE_URL:-http://kokoro:8880}
       TTS_VOICE: ${TTS_VOICE:-af_heart}
-      STT_ENABLED: ${STT_ENABLED:-false}
+      OPENAI_TTS_MODEL: ${OPENAI_TTS_MODEL:-tts-1}
+      OPENAI_TTS_VOICE: ${OPENAI_TTS_VOICE:-nova}
+      STT_PROVIDER: ${STT_PROVIDER:-local}
       STT_BASE_URL: ${STT_BASE_URL:-http://whisper:9000}
+      OPENAI_STT_MODEL: ${OPENAI_STT_MODEL:-whisper-1}
       CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:3000"]}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
-      RATE_LIMIT_STORAGE: ${RATE_LIMIT_STORAGE:-redis}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
     depends_on:
       postgres:
@@ -74,12 +76,13 @@ services:
       - backend
 
   # TTS (Kokoro-FastAPI) ──────────────────────────────────────────
+  # Only required when TTS_PROVIDER=local (default).
+  # Set TTS_PROVIDER=openai to use OpenAI TTS instead — no local service needed.
   # Custom fork with PyTorch 2.7+ (cu128) for Blackwell GPU support (sm_120).
   # Compatible with all previous NVIDIA architectures (sm_50+).
   # CPU-only host: replace image with ghcr.io/remsky/kokoro-fastapi-cpu:latest
   #                and remove the entire 'deploy' block.
   # See: https://github.com/ArtCC/Kokoro-FastAPI
-  # Enable: set TTS_ENABLED=true in .env
   kokoro:
     image: ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master
     container_name: freelingo-kokoro
@@ -95,10 +98,11 @@ services:
               capabilities: [gpu]
 
   # STT (faster-whisper) ──────────────────────────────────────────
+  # Only required when STT_PROVIDER=local (default).
+  # Set STT_PROVIDER=openai to use OpenAI Whisper API instead — no local service needed.
   # GPU host (NVIDIA): uses the image below as-is.
   # CPU-only host:     replace image tag with onerahmet/openai-whisper-asr-webservice:latest
   #                    set ASR_MODEL=base or small, and remove the entire 'deploy' block.
-  # Enable: set STT_ENABLED=true in .env
   whisper:
     image: onerahmet/openai-whisper-asr-webservice:latest-gpu
     container_name: freelingo-whisper

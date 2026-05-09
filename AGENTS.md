@@ -89,10 +89,15 @@ docker compose exec backend alembic upgrade head
 
 ## TTS & STT services
 
-`kokoro` (TTS) and `whisper` (STT) are **active in `docker-compose.yml`** but disabled at the application level by default (`TTS_ENABLED=false`, `STT_ENABLED=false`). To enable them, set those flags to `true` in `.env`. The voice conversation (Phase 3) requires both to be `true` — the WebSocket endpoint rejects connections otherwise.
+Both TTS and STT are always active — the app has no meaning without voice. The provider is selected per-service:
 
-Default STT model is `large-v3-turbo`, controlled via `STT_MODEL` in `.env`. STT engine (faster-whisper or ctranslate2) is controlled via `STT_ENGINE`.
+- `TTS_PROVIDER=local` → Kokoro-FastAPI (`kokoro` Docker service, GPU recommended)
+- `TTS_PROVIDER=openai` → OpenAI TTS API (`OPENAI_API_KEY` required, no local service needed)
+- `STT_PROVIDER=local` → faster-whisper (`whisper` Docker service, GPU recommended)
+- `STT_PROVIDER=openai` → OpenAI Whisper API (`OPENAI_API_KEY` required, no local service needed)
 
-### GPU vs CPU
+When using `openai` providers, the `kokoro` and `whisper` Docker services can be removed from the compose stack. The `OPENAI_API_KEY` used for LLM is reused for TTS/STT.
 
-Both services ship with GPU images by default. For CPU-only hosts, see `specs/docker.instructions.md` for the required image and compose changes.
+Default STT model (local): `large-v3-turbo` via `STT_MODEL` in `.env`. Engine via `STT_ENGINE`.
+Default OpenAI TTS model: `tts-1` via `OPENAI_TTS_MODEL`. Voice via `OPENAI_TTS_VOICE` (default: `nova`).
+Default OpenAI STT model: `whisper-1` via `OPENAI_STT_MODEL`.
