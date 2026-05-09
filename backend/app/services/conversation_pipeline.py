@@ -144,6 +144,34 @@ class ConversationPipeline:
         self.history.append({"role": "user", "content": user_text})
         messages = [{"role": "system", "content": self.system_prompt}] + self.history[-20:]
 
+        # Pipeline: TTS futures fire immediately as each sentence is ready;
+        # a dedicated sender task awaits them in order so audio arrives gapless.
+        tts_queue: asyncio.Queue[asyncio.Future[bytes] | None] = asyncio.Queue()
+        tts_futures: list[asyncio.Future[bytes]] = []
+
+        async def _tts_sender() -> None:
+            while True:
+                item = await tts_queue.get()
+                if item is None:  # sentinel — all sentences dispatched
+                    break
+                try:
+                    audio = await item
+                    logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
+                    await ws.send_bytes(audio)
+                except asyncio.CancelledError:
+                    raise
+                except Exception as exc:
+                    logger.error("[pipeline] TTS failed: %s", exc)
+                    await ws.send_json({"type": "error", "code": "tts_failed", "message": str(exc)})
+
+        sender_task = asyncio.create_task(_tts_sender())
+
+        def _enqueue_tts(text: str) -> None:
+            """Start TTS synthesis immediately and enqueue the future in order."""
+            future: asyncio.Future[bytes] = asyncio.ensure_future(self.tts.synthesize(text))
+            tts_futures.append(future)
+            tts_queue.put_nowait(future)
+
         try:
             await ws.send_json({"type": "status", "value": "thinking"})
             full_response = ""
@@ -155,24 +183,35 @@ class ConversationPipeline:
                 full_response += token
                 sentence_buffer += token
 
-                # 3. Flush complete sentence to TTS immediately
+                # 3. Flush complete sentence — fire TTS immediately (non-blocking)
                 if SENTENCE_END.search(sentence_buffer.strip()) or len(sentence_buffer) > MAX_BUFFER_CHARS:
                     sentence = sentence_buffer.strip()
                     sentence_buffer = ""
-                    # Send accumulated text before audio so transcript updates in sync
                     await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
-                    await self._synthesize_and_send(sentence, ws)
+                    _enqueue_tts(sentence)
 
             # Flush remaining buffer
             if sentence_buffer.strip():
                 await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
-                await self._synthesize_and_send(sentence_buffer.strip(), ws)
+                _enqueue_tts(sentence_buffer.strip())
+
+            # Signal end and wait for all audio to be sent before finalising turn
+            tts_queue.put_nowait(None)
+            await sender_task
 
             # Persist token usage best-effort (never blocks the response)
             asyncio.create_task(self._save_usage(llm_stream))
 
+        except asyncio.CancelledError:
+            sender_task.cancel()
+            for f in tts_futures:
+                f.cancel()
+            raise
         except (LLMTimeoutError, LLMUnavailableError, LLMError) as exc:
             logger.error("[pipeline] LLM failed: %s", exc)
+            sender_task.cancel()
+            for f in tts_futures:
+                f.cancel()
             await ws.send_json({"type": "error", "code": "llm_failed", "message": str(exc)})
             if self.history and self.history[-1]["role"] == "user":
                 self.history.pop()
@@ -182,17 +221,6 @@ class ConversationPipeline:
         logger.info("[pipeline] Turn complete — assistant: %r", full_response[:120])
         await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response, "final": True})
         await ws.send_json({"type": "turn_complete"})
-
-    async def _synthesize_and_send(self, text: str, ws: "WebSocket") -> None:
-        try:
-            logger.debug("[pipeline] TTS synthesizing: %r", text[:80])
-            await ws.send_json({"type": "status", "value": "speaking"})
-            audio_bytes = await self.tts.synthesize(text)
-            logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio_bytes))
-            await ws.send_bytes(audio_bytes)
-        except Exception as exc:
-            logger.error("[pipeline] TTS failed: %s", exc)
-            await ws.send_json({"type": "error", "code": "tts_failed", "message": str(exc)})
 
     async def _save_usage(self, stream: object) -> None:
         """Persists token usage from an LLMStream to the DB.
