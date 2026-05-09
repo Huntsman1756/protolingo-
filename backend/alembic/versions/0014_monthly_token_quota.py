@@ -9,8 +9,8 @@ from __future__ import annotations
 from alembic import op
 import sqlalchemy as sa
 
-revision = "0014"
-down_revision = "0013"
+revision = "0014_monthly_token_quota"
+down_revision = "0013_email_verification"
 branch_labels = None
 depends_on = None
 
