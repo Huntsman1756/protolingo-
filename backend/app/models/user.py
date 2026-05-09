@@ -38,7 +38,7 @@ class User(Base):
         Integer, nullable=False, default=90
     )
     monthly_tokens_limit: Mapped[int] = mapped_column(
-        Integer, nullable=False, default=0   # 0 = unlimited
+        Integer, nullable=False, default=1_000_000   # 0 = unlimited; new users get 1M/month
     )
     avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
