@@ -37,6 +37,9 @@ class User(Base):
     conversation_weekly_minutes: Mapped[int] = mapped_column(
         Integer, nullable=False, default=90
     )
+    monthly_tokens_limit: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=0   # 0 = unlimited
+    )
     avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)

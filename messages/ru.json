@@ -654,7 +654,8 @@
     "verifyEmail": "Подтвердить e-mail",
     "unverifyEmail": "Отметить как неподтверждён",
     "emailVerifiedSuccess": "E-mail отмечен как подтверждённый.",
-    "emailUnverifiedSuccess": "E-mail отмечен как неподтверждённый."
+    "emailUnverifiedSuccess": "E-mail отмечен как неподтверждённый.",
+    "quotaMonthlyTokens": "Месячный лимит токенов"
   },
   "faq": {
     "title": "Вопросы и ответы",
@@ -742,7 +743,9 @@
     "quotaMinutes": "Минут сегодня",
     "quotaUnlimited": "Без ограничений",
     "quotaExceededSessions": "Вы использовали все сессии на этой неделе.",
-    "quotaExceededTime": "Вы использовали всё ежедневное время практики."
+    "quotaExceededTime": "Вы использовали всё ежедневное время практики.",
+    "quotaExceededTokens": "Вы использовали все ежемесячные токены ИИ.",
+    "quotaTokens": "Токены в этом месяце"
   },
   "voiceRecorder": {
     "record": "Запись",

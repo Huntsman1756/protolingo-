@@ -5,6 +5,9 @@ Three independent counters per user:
   - Daily minutes:        conv_seconds:{user_id}:{YYYY-MM-DD}       (resets each midnight UTC)
   - Weekly minutes:       conv_weekly_seconds:{user_id}:{YYYY-Www}  (resets each Monday)
 
+Monthly token quota is checked directly against the llm_usage DB table (no Redis counter needed —
+tokens are already persisted there).
+
 A limit of 0 means unlimited.
 """
 from __future__ import annotations
@@ -153,3 +156,37 @@ async def record_session_seconds(redis: object, user_id: int, seconds: int) -> N
     week_ttl = await redis.ttl(week_key)  # type: ignore[attr-defined]
     if week_ttl < 0:
         await redis.expire(week_key, _seconds_until_monday())  # type: ignore[attr-defined]
+
+
+# ── Monthly token quota (DB-backed) ──────────────────────────────────────────
+
+async def get_monthly_tokens_used(db: object, user_id: int) -> int:
+    """Sum total_tokens consumed by user in the current calendar month."""
+    from sqlalchemy import func, select  # noqa: PLC0415
+    from app.models.llm_usage import LLMUsage  # noqa: PLC0415
+
+    now = datetime.now(timezone.utc)
+    month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
+    result = await db.scalar(  # type: ignore[attr-defined]
+        select(func.coalesce(func.sum(LLMUsage.total_tokens), 0)).where(
+            LLMUsage.user_id == user_id,
+            LLMUsage.created_at >= month_start,
+        )
+    )
+    return int(result or 0)
+
+
+async def check_monthly_tokens(
+    db: object,
+    user_id: int,
+    monthly_limit: int,
+) -> tuple[bool, int, int]:
+    """Check whether the user is under their monthly token limit.
+
+    Returns (allowed, tokens_used_this_month, limit).
+    When limit == 0, always returns (True, tokens_used, 0) — unlimited.
+    """
+    tokens_used = await get_monthly_tokens_used(db, user_id)
+    if monthly_limit == 0:
+        return True, tokens_used, 0
+    return tokens_used < monthly_limit, tokens_used, monthly_limit

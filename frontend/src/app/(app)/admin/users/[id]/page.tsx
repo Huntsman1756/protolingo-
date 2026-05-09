@@ -36,6 +36,7 @@ interface AdminUser {
   conversation_weekly_sessions: number
   conversation_daily_minutes: number
   conversation_weekly_minutes: number
+  monthly_tokens_limit: number
 }
 
 interface QuotaStatus {
@@ -83,6 +84,7 @@ export default function AdminUserStatsPage() {
   const [quotaWeekly, setQuotaWeekly] = useState<string>('')
   const [quotaDaily, setQuotaDaily] = useState<string>('')
   const [quotaWeeklyMinutes, setQuotaWeeklyMinutes] = useState<string>('')
+  const [quotaMonthlyTokens, setQuotaMonthlyTokens] = useState<string>('')
   const [quotaSaving, setQuotaSaving] = useState(false)
   const [quotaSaved, setQuotaSaved] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -107,6 +109,7 @@ export default function AdminUserStatsPage() {
         setQuotaWeekly(String(uData.conversation_weekly_sessions))
         setQuotaDaily(String(uData.conversation_daily_minutes))
         setQuotaWeeklyMinutes(String(uData.conversation_weekly_minutes))
+        setQuotaMonthlyTokens(String(uData.monthly_tokens_limit))
         if (qRes.ok) {
           const qData: QuotaStatus = await qRes.json()
           setQuota(qData)
@@ -136,7 +139,8 @@ export default function AdminUserStatsPage() {
     const weekly = parseInt(quotaWeekly, 10)
     const daily = parseInt(quotaDaily, 10)
     const weeklyMin = parseInt(quotaWeeklyMinutes, 10)
-    if (isNaN(weekly) || weekly < 0 || isNaN(daily) || daily < 0 || isNaN(weeklyMin) || weeklyMin < 0) {
+    const monthlyTok = parseInt(quotaMonthlyTokens, 10)
+    if (isNaN(weekly) || weekly < 0 || isNaN(daily) || daily < 0 || isNaN(weeklyMin) || weeklyMin < 0 || isNaN(monthlyTok) || monthlyTok < 0) {
       setQuotaSaving(false)
       return
     }
@@ -148,6 +152,7 @@ export default function AdminUserStatsPage() {
           conversation_weekly_sessions: weekly,
           conversation_daily_minutes: daily,
           conversation_weekly_minutes: weeklyMin,
+          monthly_tokens_limit: monthlyTok,
         }),
       })
       if (res.ok) {
@@ -156,6 +161,7 @@ export default function AdminUserStatsPage() {
         setQuotaWeekly(String(updated.conversation_weekly_sessions))
         setQuotaDaily(String(updated.conversation_daily_minutes))
         setQuotaWeeklyMinutes(String(updated.conversation_weekly_minutes))
+        setQuotaMonthlyTokens(String(updated.monthly_tokens_limit))
         setQuotaSaved(true)
         setTimeout(() => setQuotaSaved(false), 3000)
       }
@@ -367,6 +373,18 @@ export default function AdminUserStatsPage() {
               min={0}
               value={quotaWeeklyMinutes}
               onChange={(e) => setQuotaWeeklyMinutes(e.target.value)}
+              className="w-24 bg-fl-bg border border-fl-border px-3 py-1.5 font-mono text-sm text-fl-fg text-right focus:outline-none focus:border-fl-accent"
+            />
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0 max-w-[10rem] truncate" title={t('quotaMonthlyTokens')}>
+              {t('quotaMonthlyTokens')}
+            </label>
+            <input
+              type="number"
+              min={0}
+              value={quotaMonthlyTokens}
+              onChange={(e) => setQuotaMonthlyTokens(e.target.value)}
               className="w-24 bg-fl-bg border border-fl-border px-3 py-1.5 font-mono text-sm text-fl-fg text-right focus:outline-none focus:border-fl-accent"
             />
           </div>

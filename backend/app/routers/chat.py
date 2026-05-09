@@ -36,6 +36,7 @@ logger = logging.getLogger(__name__)
 
 TUTOR_SYSTEM_PROMPT = """
 You are an encouraging and patient English language tutor named FreeLingo.
+You are talking with {student_name}.
 Your student is at {cefr_level} level.
 Their native language is {native_language}.
 Use {english_variant} English spelling and vocabulary consistently.
@@ -140,6 +141,18 @@ async def chat(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    # ── Monthly token quota check ────────────────────────────────────────────
+    if current_user.monthly_tokens_limit > 0:
+        from app.services.quota_service import check_monthly_tokens  # noqa: PLC0415
+        allowed, tokens_used, token_limit = await check_monthly_tokens(
+            db, current_user.id, current_user.monthly_tokens_limit
+        )
+        if not allowed:
+            raise HTTPException(
+                status_code=429,
+                detail=f"Monthly token limit reached ({tokens_used}/{token_limit} tokens). Chat is unavailable until next month.",
+            )
+
     # Resolve or create conversation
     if request.conversation_id:
         conv = await db.get(Conversation, request.conversation_id)
@@ -184,6 +197,7 @@ async def chat(
     ) if prog and prog.skills else "none yet"
 
     system_prompt = TUTOR_SYSTEM_PROMPT.format(
+        student_name=current_user.display_name,
         cefr_level=cefr_level,
         native_language=current_user.native_language,
         english_variant=get_english_variant(current_user.target_language),

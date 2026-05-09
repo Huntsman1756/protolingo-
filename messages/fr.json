@@ -654,7 +654,8 @@
     "verifyEmail": "Vérifier l'e-mail",
     "unverifyEmail": "Marquer comme non vérifié",
     "emailVerifiedSuccess": "E-mail marqué comme vérifié.",
-    "emailUnverifiedSuccess": "E-mail marqué comme non vérifié."
+    "emailUnverifiedSuccess": "E-mail marqué comme non vérifié.",
+    "quotaMonthlyTokens": "Limite mensuelle de tokens"
   },
   "faq": {
     "title": "FAQ",
@@ -742,7 +743,9 @@
     "quotaMinutes": "Minutes aujourd'hui",
     "quotaUnlimited": "Illimité",
     "quotaExceededSessions": "Vous avez utilisé toutes vos séances de la semaine.",
-    "quotaExceededTime": "Vous avez utilisé tout votre temps de pratique quotidien."
+    "quotaExceededTime": "Vous avez utilisé tout votre temps de pratique quotidien.",
+    "quotaExceededTokens": "Vous avez utilisé tous vos tokens IA mensuels.",
+    "quotaTokens": "Tokens ce mois-ci"
   },
   "voiceRecorder": {
     "record": "Enregistrer",

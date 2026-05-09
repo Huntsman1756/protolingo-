@@ -27,6 +27,7 @@ const ConversationMode = dynamic(
 
 export default function ConversationPage() {
   const [initialContext, setInitialContext] = useState<ChatContextItem[] | undefined>(undefined)
+  const [autoStart, setAutoStart] = useState(false)
 
   useEffect(() => {
     const raw = sessionStorage.getItem('voice_context')
@@ -36,6 +37,7 @@ export default function ConversationPage() {
         const parsed = JSON.parse(raw) as unknown
         if (Array.isArray(parsed)) {
           setInitialContext(parsed as ChatContextItem[])
+          setAutoStart(true)
         }
       } catch {
         // malformed — ignore
@@ -43,5 +45,5 @@ export default function ConversationPage() {
     }
   }, [])
 
-  return <ConversationMode initialContext={initialContext} />
+  return <ConversationMode initialContext={initialContext} autoStart={autoStart} />
 }

@@ -643,6 +643,7 @@
     "quotaWeeklySessions": "Weekly sessions limit",
     "quotaDailyMinutes": "Daily minutes limit",
     "quotaWeeklyMinutes": "Weekly minutes limit",
+    "quotaMonthlyTokens": "Monthly tokens limit",
     "quotaUnlimitedLabel": "Unlimited (0)",
     "quotaUsedSessions": "Used this week",
     "quotaUsedMinutes": "Used today",
@@ -742,7 +743,9 @@
     "quotaMinutes": "Minutes today",
     "quotaUnlimited": "Unlimited",
     "quotaExceededSessions": "You have used all your sessions for this week.",
-    "quotaExceededTime": "You have used all your daily practice time."
+    "quotaExceededTime": "You have used all your daily practice time.",
+    "quotaExceededTokens": "You have used all your monthly AI tokens.",
+    "quotaTokens": "Tokens this month"
   },
   "voiceRecorder": {
     "record": "Record",
