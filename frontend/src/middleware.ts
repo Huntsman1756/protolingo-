@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 
 const PUBLIC_ROUTES = ['/login', '/register', '/terms', '/privacy']
 const PUBLIC_EXACT = ['/']
-const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'pt', 'de', 'it'] as const
+const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
 type Locale = (typeof SUPPORTED_LOCALES)[number]
 
 function detectLocale(req: NextRequest): Locale {

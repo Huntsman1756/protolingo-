@@ -10,7 +10,7 @@ import NextImage from 'next/image'
 import { ExternalLink } from 'lucide-react'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
-const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it'] as const
+const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
 
 export default function SettingsPage() {
   const t = useTranslations('settings')
@@ -283,7 +283,7 @@ export default function SettingsPage() {
             onChange={(e) => setNativeLanguage(e.target.value)}
             className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
           >
-            {LANGUAGES.map((code) => (
+            {[...LANGUAGES].sort((a, b) => tLang(a).localeCompare(tLang(b))).map((code) => (
               <option key={code} value={code}>{tLang(code)}</option>
             ))}
           </select>

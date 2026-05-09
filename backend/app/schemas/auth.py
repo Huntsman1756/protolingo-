@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import BaseModel, EmailStr, Field, field_serializer, field_validator
 
 SUPPORTED_LANGUAGES = {
-    "en", "es", "fr", "pt", "de", "it", "zh", "ja", "ko", "ar", "ru", "nl", "pl",
+    "en", "es", "fr", "pt", "de", "it", "zh", "ja", "ko", "ar", "ru", "nl", "pl", "ro",
 }
 
 SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}

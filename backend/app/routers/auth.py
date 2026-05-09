@@ -309,4 +309,5 @@ async def get_my_quota(
         current_user.id,
         current_user.conversation_weekly_sessions,
         current_user.conversation_daily_minutes,
+        current_user.conversation_weekly_minutes,
     )

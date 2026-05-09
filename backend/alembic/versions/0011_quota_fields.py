@@ -22,7 +22,7 @@ def upgrade() -> None:
             "conversation_weekly_sessions",
             sa.Integer(),
             nullable=False,
-            server_default="0",
+            server_default="3",
         ),
     )
     op.add_column(
@@ -31,7 +31,7 @@ def upgrade() -> None:
             "conversation_daily_minutes",
             sa.Integer(),
             nullable=False,
-            server_default="0",
+            server_default="30",
         ),
     )
 
