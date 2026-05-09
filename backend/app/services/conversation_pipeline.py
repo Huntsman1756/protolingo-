@@ -156,10 +156,13 @@ class ConversationPipeline:
                 if SENTENCE_END.search(sentence_buffer.strip()) or len(sentence_buffer) > MAX_BUFFER_CHARS:
                     sentence = sentence_buffer.strip()
                     sentence_buffer = ""
+                    # Send accumulated text before audio so transcript updates in sync
+                    await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
                     await self._synthesize_and_send(sentence, ws)
 
             # Flush remaining buffer
             if sentence_buffer.strip():
+                await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
                 await self._synthesize_and_send(sentence_buffer.strip(), ws)
 
             # Persist token usage best-effort (never blocks the response)

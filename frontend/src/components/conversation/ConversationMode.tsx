@@ -20,6 +20,7 @@ interface TranscriptEntry {
 export default function ConversationMode({ initialContext }: { initialContext?: ChatContextItem[] }) {
   const t = useTranslations('conversation')
   const accessToken = useAuthStore((s) => s.accessToken)
+  const user = useAuthStore((s) => s.user)
 
   // ─── UI State ────────────────────────────────────────────────────────────
   const [status, setStatus] = useState<ConvStatus>('loading')
@@ -272,10 +273,22 @@ export default function ConversationMode({ initialContext }: { initialContext?: 
           </p>
         )}
         {transcript.map((entry) => (
-          <TranscriptBubble key={entry.id} role={entry.role} text={entry.text} />
+          <TranscriptBubble
+            key={entry.id}
+            role={entry.role}
+            text={entry.text}
+            userAvatar={user?.avatar}
+            userInitial={(user?.displayName || user?.username || '?')[0]}
+          />
         ))}
         {streamingText !== null && (
-          <TranscriptBubble role="assistant" text={streamingText} streaming />
+          <TranscriptBubble
+            role="assistant"
+            text={streamingText}
+            streaming
+            userAvatar={user?.avatar}
+            userInitial={(user?.displayName || user?.username || '?')[0]}
+          />
         )}
         <div ref={transcriptEndRef} />
       </div>

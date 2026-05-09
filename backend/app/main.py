@@ -39,6 +39,7 @@ async def lifespan(app: FastAPI):  # noqa: ANN201
             api_key=settings.OPENAI_API_KEY,
             model=settings.OPENAI_TTS_MODEL,
             voice=settings.OPENAI_TTS_VOICE,
+            speed=settings.OPENAI_TTS_SPEED,
         )
     else:
         app.state.tts_service = KokoroTTSService(settings.TTS_BASE_URL, settings.TTS_VOICE)
