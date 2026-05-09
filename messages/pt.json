@@ -697,7 +697,11 @@
     "fr": "Francês",
     "pt": "Português",
     "de": "Alemão",
-    "it": "Italiano"
+    "it": "Italiano",
+    "pl": "Polonês",
+    "nl": "Neerlandês",
+    "ro": "Romeno",
+    "ru": "Russo"
   },
   "targetLanguages": {
     "en-US": "Inglês americano",

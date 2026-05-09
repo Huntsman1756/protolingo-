@@ -204,7 +204,7 @@ export default function AdminUserStatsPage() {
         <StatRow label="ID" value={`#${user.id}`} />
         <StatRow label={t('fieldUsername')} value={user.username} />
         {user.email && <StatRow label={t('fieldEmail')} value={user.email} />}
-        <StatRow label={t('fieldNativeLanguage')} value={tLang(user.native_language as 'es' | 'fr' | 'pt' | 'de' | 'it')} />
+        <StatRow label={t('fieldNativeLanguage')} value={tLang(user.native_language as 'es' | 'fr' | 'pt' | 'de' | 'it' | 'pl' | 'nl' | 'ro' | 'ru')} />
       </Section>
 
       {/* Study plan */}

@@ -196,6 +196,8 @@ async def update_user(
         user.conversation_weekly_sessions = data.conversation_weekly_sessions
     if data.conversation_daily_minutes is not None:
         user.conversation_daily_minutes = data.conversation_daily_minutes
+    if data.conversation_weekly_minutes is not None:
+        user.conversation_weekly_minutes = data.conversation_weekly_minutes
 
     await db.commit()
     await db.refresh(user)
@@ -219,6 +221,7 @@ async def get_user_quota(
         user_id,
         user.conversation_weekly_sessions,
         user.conversation_daily_minutes,
+        user.conversation_weekly_minutes,
     )
 
 

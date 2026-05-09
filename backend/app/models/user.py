@@ -28,10 +28,13 @@ class User(Base):
         Integer, nullable=False, default=180    # 180=3min, options: 60|180|300
     )
     conversation_weekly_sessions: Mapped[int] = mapped_column(
-        Integer, nullable=False, default=0     # 0 = unlimited
+        Integer, nullable=False, default=0
     )
     conversation_daily_minutes: Mapped[int] = mapped_column(
-        Integer, nullable=False, default=0     # 0 = unlimited
+        Integer, nullable=False, default=30
+    )
+    conversation_weekly_minutes: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=90
     )
     avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(

@@ -17,7 +17,7 @@ from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.services.conversation_pipeline import ConversationPipeline
 from app.services.llm_adapter import llm_adapter
-from app.services.quota_service import check_and_increment_sessions, check_daily_minutes
+from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_weekly_minutes
 
 router = APIRouter(tags=["conversation"])
 
@@ -79,6 +79,7 @@ async def conversation_ws(
         target_language = user.target_language
         weekly_sessions_limit = user.conversation_weekly_sessions
         daily_minutes_limit = user.conversation_daily_minutes
+        weekly_minutes_limit = user.conversation_weekly_minutes
 
     # Validate and sanitize optional chat context passed from the tutor chat
     valid_context: list[dict] | None = None
@@ -119,6 +120,24 @@ async def conversation_ws(
             await redis.aclose()
             return
 
+        # Check weekly minutes (read-only)
+        weekly_min_ok, weekly_min_used, weekly_min_limit = await check_weekly_minutes(
+            redis, user_id, weekly_minutes_limit
+        )
+        if not weekly_min_ok:
+            logger.info(
+                "[conversation] Weekly minutes quota exceeded — user=%s used=%s limit=%s",
+                user_id, weekly_min_used, weekly_min_limit,
+            )
+            await websocket.send_json({
+                "type": "error",
+                "code": "quota_exceeded_weekly_minutes",
+                "message": f"Weekly time limit reached ({weekly_min_used}/{weekly_min_limit} min).",
+            })
+            await websocket.close(code=1008)
+            await redis.aclose()
+            return
+
         # Then check + increment weekly sessions
         sessions_ok, sessions_used, sessions_limit = await check_and_increment_sessions(
             redis, user_id, weekly_sessions_limit
@@ -141,6 +160,10 @@ async def conversation_ws(
         if daily_minutes_limit > 0:
             remaining_seconds = (daily_minutes_limit - minutes_used) * 60
             max_duration = min(max_duration, remaining_seconds)
+        # Cap session max_duration to remaining weekly minutes if limited
+        if weekly_minutes_limit > 0:
+            remaining_weekly_seconds = (weekly_minutes_limit - weekly_min_used) * 60
+            max_duration = min(max_duration, remaining_weekly_seconds)
     except Exception as exc:
         logger.error("[conversation] Quota check failed: %s", exc)
         await redis.aclose()

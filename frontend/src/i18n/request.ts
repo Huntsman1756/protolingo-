@@ -1,7 +1,7 @@
 import { getRequestConfig } from 'next-intl/server'
 import { cookies, headers } from 'next/headers'
 
-const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'pt', 'de', 'it'] as const
+const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
 type Locale = (typeof SUPPORTED_LOCALES)[number]
 
 function resolveLocale(raw: string | undefined): Locale {

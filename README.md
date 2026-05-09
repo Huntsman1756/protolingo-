@@ -42,7 +42,7 @@ freelingo/
 ├── backend/            # FastAPI (Python)
 ├── docs/               # GitHub Pages landing site
 ├── frontend/           # Next.js (React)
-├── messages/           # i18n translation files (en, es, fr, pt, de, it)
+├── messages/           # i18n translation files (de, en, es, fr, it, nl, pl, pt, ro, ru)
 ├── specs/              # Specification files
 ├── AGENTS.md
 ├── CHANGELOG.md

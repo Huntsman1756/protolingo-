@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.9] - 2026-05-09
+
+### Added
+- Interface languages: Polish (pl), Dutch (nl), Romanian (ro), Russian (ru)
+- Native language options expanded to include pl, nl, ro, ru
+- New `conversation_weekly_minutes` quota field (default 90 min/week, 0 = unlimited) — tracks total voice conversation time per week independently of session count
+
+### Changed
+- Conversation quota defaults: `weekly_sessions` set to 0 (unlimited); `daily_minutes` 30; `weekly_minutes` 90
+- `conversation_weekly_sessions` default reverted to 0 (unlimited) — use `weekly_minutes` to control weekly usage
+
 ## [1.3.8] - 2026-05-09
 
 ### Fixed

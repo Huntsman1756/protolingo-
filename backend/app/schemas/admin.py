@@ -6,7 +6,7 @@ from typing import Literal, Optional
 from pydantic import BaseModel, EmailStr, Field, field_serializer, field_validator
 
 SUPPORTED_LANGUAGES = {
-    "en", "es", "fr", "pt", "de", "it", "zh", "ja", "ko", "ar", "ru", "nl", "pl",
+    "en", "es", "fr", "pt", "de", "it", "zh", "ja", "ko", "ar", "ru", "nl", "pl", "ro",
 }
 
 
@@ -32,6 +32,7 @@ class AdminUserUpdate(BaseModel):
     is_active: Optional[bool] = None
     conversation_weekly_sessions: Optional[int] = Field(default=None, ge=0)
     conversation_daily_minutes: Optional[int] = Field(default=None, ge=0)
+    conversation_weekly_minutes: Optional[int] = Field(default=None, ge=0)
 
 
 class AdminUserResponse(BaseModel):
@@ -44,6 +45,7 @@ class AdminUserResponse(BaseModel):
     is_active: bool
     conversation_weekly_sessions: int = 0
     conversation_daily_minutes: int = 0
+    conversation_weekly_minutes: int = 90
     created_at: datetime
     last_login: Optional[datetime]
 
