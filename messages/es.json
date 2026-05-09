@@ -12,7 +12,9 @@
     "feature3Desc": "Habla con tu tutor en tiempo real. Voz activada, respuesta instantánea, sin turnos.",
     "footer": "Código abierto · Autoalójalo gratis o suscríbete al servicio alojado",
     "terms": "Términos",
-    "privacy": "Privacidad"
+    "privacy": "Privacidad",
+    "contact": "Contacto",
+    "aboutMe": "Sobre mí"
   },
   "common": {
     "loading": "Cargando...",
@@ -155,7 +157,9 @@
     "privacyPolicy": "Política de Privacidad",
     "sectionAuthor": "Autor",
     "authorDescription": "Creado por Arturo Carretero Calvo",
+    "websiteLink": "Sitio web",
     "githubProfile": "Perfil de GitHub",
+    "contactLink": "Contacto",
     "deleteAccount": "Eliminar cuenta",
     "deleteAccountTitle": "Eliminar cuenta",
     "deleteAccountMessage": "Esta acción eliminará tu cuenta y todos tus datos de forma permanente. Esta acción no se puede deshacer.",
@@ -659,6 +663,7 @@
     "startNew": "Nueva sesión",
     "statusLoading": "Cargando modelo de voz...",
     "statusReady": "Listo",
+    "statusWarming": "Cargando modelos...",
     "statusConnecting": "Conectando...",
     "statusListening": "Escuchando...",
     "statusDetecting": "Detectando voz...",

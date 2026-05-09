@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.11] - 2026-05-09
+
+### Added
+- `POST /api/conversation/warmup` endpoint: pre-heats TTS and STT models synchronously before a session starts; frontend awaits it before opening the WebSocket so the first transcription/synthesis is instant
+- New `warming` status in `ConversationMode` — sidebar shows "Loading models..." while warmup runs, with pulsing indicator
+- `statusWarming` i18n key added to all 10 locale files
+- Contact link (`mailto:freelingo@arturocarreterocalvo.com`) added to landing page footer and docs landing nav
+- "Sobre mí" / "About me" link to `arturocarreterocalvo.com` added to landing page footer (new tab)
+- Footer link order in landing: Contact · About me · Privacy · Terms
+- Author section in Settings now includes website link (`arturocarreterocalvo.com`) and Contact (`mailto:`) alongside GitHub, with `websiteLink` and `contactLink` i18n keys in all 10 locales
+
+### Fixed
+- Version number misalignment between desktop and mobile sidebar (both now show `v1.3.11`)
+
 ## [1.3.10] - 2026-05-09
 
 ### Added
