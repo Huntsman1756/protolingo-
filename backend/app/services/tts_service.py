@@ -25,10 +25,11 @@ class KokoroTTSService:
 
 
 class OpenAITTSService:
-    def __init__(self, api_key: str, model: str, voice: str) -> None:
+    def __init__(self, api_key: str, model: str, voice: str, speed: float = 1.0) -> None:
         self._client = openai.AsyncOpenAI(api_key=api_key)
         self.model = model
         self.voice = voice
+        self.speed = speed
 
     async def synthesize(self, text: str, voice: str | None = None) -> bytes:
         """Call OpenAI TTS API and return MP3 audio bytes."""
@@ -37,5 +38,6 @@ class OpenAITTSService:
             voice=voice or self.voice,
             input=text,
             response_format="mp3",
+            speed=self.speed,
         )
         return response.content

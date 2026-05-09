@@ -600,7 +600,15 @@
     "viewStats": "Voir les stats",
     "weeks": "semaines",
     "statsTestScore": "Score du test final",
-    "statsDays": "jours"
+    "statsDays": "jours",
+    "sectionQuota": "Quotas de conversation",
+    "quotaWeeklySessions": "Limite séances hebdomadaires",
+    "quotaDailyMinutes": "Limite minutes quotidiennes",
+    "quotaUnlimitedLabel": "Illimité (0)",
+    "quotaUsedSessions": "Utilisées cette semaine",
+    "quotaUsedMinutes": "Utilisées aujourd'hui",
+    "quotaSave": "Enregistrer les quotas",
+    "quotaSaved": "Quotas enregistrés."
   },
   "faq": {
     "title": "FAQ",
@@ -663,7 +671,12 @@
     "sessionEnded": "Session terminée",
     "tapToStart": "Parlez quand vous êtes prêt",
     "you": "Vous",
-    "assistant": "FreeLingo"
+    "assistant": "FreeLingo",
+    "quotaSessions": "Séances cette semaine",
+    "quotaMinutes": "Minutes aujourd'hui",
+    "quotaUnlimited": "Illimité",
+    "quotaExceededSessions": "Vous avez utilisé toutes vos séances de la semaine.",
+    "quotaExceededTime": "Vous avez utilisé tout votre temps de pratique quotidien."
   },
   "voiceRecorder": {
     "record": "Enregistrer",

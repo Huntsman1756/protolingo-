@@ -1,27 +1,44 @@
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 interface Props {
   role: 'user' | 'assistant'
   text: string
   streaming?: boolean
+  userAvatar?: string | null
+  userInitial?: string
 }
 
-export default function TranscriptBubble({ role, text, streaming = false }: Props) {
+export default function TranscriptBubble({ role, text, streaming = false, userAvatar, userInitial }: Props) {
   const t = useTranslations('conversation')
   const isUser = role === 'user'
 
   return (
-    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
-      <div className={`max-w-[80%] ${isUser ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
+    <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+      {/* Avatar */}
+      <div className="flex-shrink-0 w-7 h-7 rounded-full overflow-hidden border border-fl-border mb-0.5">
+        {!isUser ? (
+          <Image src="/logo.png" alt="Tutor" width={28} height={28} className="w-full h-full object-cover" />
+        ) : userAvatar ? (
+          <Image src={userAvatar} alt="" width={28} height={28} className="w-full h-full object-cover" unoptimized />
+        ) : (
+          <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
+            <span className="font-mono text-fl-hint text-fl-muted-1 select-none">
+              {(userInitial ?? '?').toUpperCase()}
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className={`max-w-[75%] flex flex-col gap-1 ${isUser ? 'items-end' : 'items-start'}`}>
         <span className="font-mono text-fl-label tracking-widest text-fl-muted-4 uppercase">
           {isUser ? t('you') : t('assistant')}
         </span>
         <div
-          className={`px-4 py-3 font-mono text-sm leading-relaxed border ${
-            isUser
+          className={`px-4 py-3 font-mono text-sm leading-relaxed border ${isUser
               ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
               : 'bg-fl-surface text-fl-fg border-fl-border'
-          }`}
+            }`}
         >
           {text}
           {streaming && (
