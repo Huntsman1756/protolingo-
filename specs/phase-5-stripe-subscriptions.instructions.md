@@ -48,7 +48,7 @@ Admin can still override any quota field per user via the admin panel regardless
 ## Environment variables
 
 ```env
-# ── Stripe (Phase 5) ──────────────────────────────────────────────────────────
+# ── Stripe
 # Set STRIPE_ENABLED=true to activate the subscription system.
 # When false (default), all billing features are disabled and no paywall is shown.
 # Self-hosted deployments should leave this false.
