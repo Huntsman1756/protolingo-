@@ -803,13 +803,13 @@
     "paywallLabel": "Premium erforderlich",
     "paywallTitle": "FreeLingo Premium freischalten",
     "paywallDesc": "Starte deine {days}-tägige kostenlose Testversion — heute keine Kosten. Jederzeit kündbar.",
-    "paywallNoCharge": "Keine Kosten während der Testphase · Jederzeit kündbar",
+    "paywallNoCharge": "Karte erforderlich · Keine Abbuchung bis Testende · Jederzeit kündbar",
     "planMonthly": "— Starten für {price}€/Monat →",
     "planYearly": "— Starten für {price}€/Jahr →",
     "checkoutError": "Checkout konnte nicht gestartet werden. Bitte erneut versuchen.",
     "pricingLabel": "Preise",
-    "pricingTitle": "Einfache, transparente Preise",
-    "pricingDesc": "{days} Tage kostenlos testen. Keine Kreditkarte erforderlich.",
+    "pricingTitle": "Einfach und transparent",
+    "pricingDesc": "{days} Tage kostenlos testen. Karte erforderlich, keine Abbuchung bis Testende.",
     "planMonthlyName": "Monatlich",
     "planYearlyName": "Jährlich",
     "bestValue": "Bestes Angebot",
@@ -843,6 +843,7 @@
     "accessUntil": "Zugang bis",
     "manage": "Abonnement verwalten",
     "subscribe": "Abonnieren",
-    "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen."
+    "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen.",
+    "feature5": "2 Monate gratis"
   }
 }
