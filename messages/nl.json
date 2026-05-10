@@ -658,7 +658,10 @@
     "unverifyEmail": "Als niet geverifieerd markeren",
     "emailVerifiedSuccess": "E-mail gemarkeerd als geverifieerd.",
     "emailUnverifiedSuccess": "E-mail gemarkeerd als niet geverifieerd.",
-    "quotaMonthlyTokens": "Maandelijks tokenlimiet"
+    "quotaMonthlyTokens": "Maandelijks tokenlimiet",
+    "fieldSubscription": "Abonnement",
+    "fieldEndsRenews": "Eindigt / Verlengt",
+    "fieldStripeCustomer": "Stripe-klant"
   },
   "faq": {
     "title": "FAQ",
@@ -821,7 +824,7 @@
       "feature2": "3 spraakgesprekssessies per week",
       "feature3": "Flashcards, lessen en voortgangsregistratie",
       "feature4": "Volledige grammatica- en woordenschatreferentie",
-      "feature5": "33% besparing ten opzichte van het maandplan"
+      "feature5": "2 maanden gratis"
     },
     "successLabel": "Betaling bevestigd",
     "successTitle": "Welkom bij FreeLingo Premium!",
@@ -843,7 +846,6 @@
     "accessUntil": "Toegang tot",
     "manage": "Abonnement beheren",
     "subscribe": "Abonneren",
-    "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw.",
-    "feature5": "2 maanden gratis"
+    "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw."
   }
 }
