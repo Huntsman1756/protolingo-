@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.core.deps import get_current_user
+from app.core.deps import require_subscription
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.assessment import (
@@ -103,7 +103,7 @@ _sessions = None  # kept as sentinel so conftest import doesn't break
 
 @router.get("/start", response_model=dict)
 async def start_assessment(
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     redis: Redis = Depends(get_redis),
 ):
     try:
@@ -136,7 +136,7 @@ async def start_assessment(
 @router.post("/submit", response_model=AssessmentResult)
 async def submit_assessment(
     data: LegacyAssessmentSubmitRequest,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     redis: Redis = Depends(get_redis),
 ):
     session_raw = await redis.get(f"assessment:{current_user.id}")
@@ -185,7 +185,7 @@ async def submit_assessment(
 @router.post("/evaluate", response_model=AssessmentResult)
 async def evaluate_quiz(
     data: AssessmentSubmitRequest,
-    _current_user: User = Depends(get_current_user),
+    _current_user: User = Depends(require_subscription),
 ):
     """
     Deterministic CEFR evaluation of the adaptive quiz answers.
@@ -197,7 +197,7 @@ async def evaluate_quiz(
 @router.post("/free-write", response_model=dict)
 async def evaluate_free_write_endpoint(
     data: FreeWriteEvalRequest,
-    _current_user: User = Depends(get_current_user),
+    _current_user: User = Depends(require_subscription),
 ):
     """Optional LLM evaluation of the single free-write question."""
     try:
@@ -213,7 +213,7 @@ async def evaluate_free_write_endpoint(
 @router.post("/complete", response_model=dict)
 async def complete_assessment(
     data: AssessmentCompleteRequest,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     """
@@ -266,7 +266,7 @@ async def complete_assessment(
 @router.get("/level-test/questions/{plan_id}", response_model=dict)
 async def get_level_test_questions(
     plan_id: int,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     """
@@ -312,7 +312,7 @@ async def get_level_test_questions(
 @router.post("/level-test/submit", response_model=LevelTestResult)
 async def submit_level_test(
     data: LevelTestSubmitRequest,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     """Evaluate the end-of-level test and save the result to the study plan."""
@@ -357,7 +357,7 @@ async def submit_level_test(
 @router.get("/level-test/result/{plan_id}", response_model=LevelTestResult)
 async def get_level_test_result(
     plan_id: int,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(
