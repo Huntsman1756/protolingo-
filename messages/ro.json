@@ -658,7 +658,10 @@
     "unverifyEmail": "Marchează ca neverificat",
     "emailVerifiedSuccess": "E-mail marcat ca verificat.",
     "emailUnverifiedSuccess": "E-mail marcat ca neverificat.",
-    "quotaMonthlyTokens": "Limită lunară de tokeni"
+    "quotaMonthlyTokens": "Limită lunară de tokeni",
+    "fieldSubscription": "Abonament",
+    "fieldEndsRenews": "Expiră / Reînnoiește",
+    "fieldStripeCustomer": "Client Stripe"
   },
   "faq": {
     "title": "Întrebări frecvente",
@@ -821,7 +824,7 @@
       "feature2": "3 sesiuni de conversație vocală pe săptămână",
       "feature3": "Flashcard-uri, lecții și urmărirea progresului",
       "feature4": "Referință completă de gramatică și vocabular",
-      "feature5": "Economisești 33% față de planul lunar"
+      "feature5": "2 luni gratuite"
     },
     "successLabel": "Plată confirmată",
     "successTitle": "Bun venit la FreeLingo Premium!",
@@ -843,7 +846,6 @@
     "accessUntil": "Acces până la",
     "manage": "Gestionează abonamentul",
     "subscribe": "Abonează-te",
-    "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou.",
-    "feature5": "2 luni gratuite"
+    "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou."
   }
 }

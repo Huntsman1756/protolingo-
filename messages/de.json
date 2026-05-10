@@ -658,7 +658,10 @@
     "unverifyEmail": "Als nicht verifiziert markieren",
     "emailVerifiedSuccess": "E-Mail als verifiziert markiert.",
     "emailUnverifiedSuccess": "E-Mail als nicht verifiziert markiert.",
-    "quotaMonthlyTokens": "Monatliches Token-Limit"
+    "quotaMonthlyTokens": "Monatliches Token-Limit",
+    "fieldSubscription": "Abonnement",
+    "fieldEndsRenews": "Endet / Erneuert",
+    "fieldStripeCustomer": "Stripe-Kunde"
   },
   "faq": {
     "title": "FAQ",
@@ -821,7 +824,7 @@
       "feature2": "3 Sprachkonversationssitzungen pro Woche",
       "feature3": "Karteikarten, Lektionen & Fortschrittsverfolgung",
       "feature4": "Vollständige Grammatik- & Vokabelreferenz",
-      "feature5": "33% sparen im Vergleich zum Monatsplan"
+      "feature5": "2 Monate gratis"
     },
     "successLabel": "Zahlung bestätigt",
     "successTitle": "Willkommen bei FreeLingo Premium!",
@@ -843,7 +846,6 @@
     "accessUntil": "Zugang bis",
     "manage": "Abonnement verwalten",
     "subscribe": "Abonnieren",
-    "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen.",
-    "feature5": "2 Monate gratis"
+    "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen."
   }
 }
