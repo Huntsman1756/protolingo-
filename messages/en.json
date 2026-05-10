@@ -803,13 +803,13 @@
     "paywallLabel": "Premium required",
     "paywallTitle": "Unlock FreeLingo Premium",
     "paywallDesc": "Start your {days}-day free trial — no charge today. Cancel anytime.",
-    "paywallNoCharge": "No charge during trial · Cancel anytime",
+    "paywallNoCharge": "Card required · No charge until trial ends · Cancel anytime",
     "planMonthly": "— Start for €{price}/month →",
     "planYearly": "— Start for €{price}/year →",
     "checkoutError": "Unable to start checkout. Please try again.",
     "pricingLabel": "Pricing",
-    "pricingTitle": "Simple, transparent pricing",
-    "pricingDesc": "Try free for {days} days. No credit card required upfront.",
+    "pricingTitle": "Simple and transparent",
+    "pricingDesc": "Try free for {days} days. Card required, no charge until trial ends.",
     "planMonthlyName": "Monthly",
     "planYearlyName": "Yearly",
     "bestValue": "Best value",
@@ -843,6 +843,7 @@
     "accessUntil": "Access until",
     "manage": "Manage subscription",
     "subscribe": "Subscribe",
-    "portalError": "Unable to open billing portal. Please try again."
+    "portalError": "Unable to open billing portal. Please try again.",
+    "feature5": "2 months free"
   }
 }

@@ -98,9 +98,6 @@ export default async function Home() {
       {stripeEnabled && (
         <section className="max-w-4xl mx-auto px-6 pb-24 w-full">
           <div className="text-center mb-10">
-            <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">
-              {tBilling('pricingLabel')}
-            </p>
             <h2 className="font-mono text-base font-bold text-fl-fg mb-2">
               {tBilling('pricingTitle')}
             </h2>
@@ -127,12 +124,6 @@ export default async function Home() {
                   </li>
                 ))}
               </ul>
-              <Link
-                href={hasSession ? '/dashboard' : '/register'}
-                className="mt-auto font-mono text-xs font-bold tracking-widest uppercase py-3 text-center bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 transition-colors"
-              >
-                — {tBilling('ctaStart', { days: trialDays })}
-              </Link>
             </div>
 
             {/* Yearly plan */}
@@ -158,13 +149,16 @@ export default async function Home() {
                   </li>
                 ))}
               </ul>
-              <Link
-                href={hasSession ? '/dashboard' : '/register'}
-                className="mt-auto font-mono text-xs font-bold tracking-widest uppercase py-3 text-center border border-fl-accent text-fl-accent hover:bg-fl-accent/10 transition-colors"
-              >
-                — {tBilling('ctaStart', { days: trialDays })}
-              </Link>
             </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              href={hasSession ? '/dashboard' : '/register'}
+              className="inline-block font-mono text-xs font-bold tracking-widest uppercase py-3 px-10 bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 transition-colors"
+            >
+              — {tBilling('ctaStart', { days: trialDays })}
+            </Link>
           </div>
         </section>
       )}

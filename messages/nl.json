@@ -803,13 +803,13 @@
     "paywallLabel": "Premium vereist",
     "paywallTitle": "Ontgrendel FreeLingo Premium",
     "paywallDesc": "Start je gratis proefperiode van {days} dagen — vandaag geen kosten. Altijd opzegbaar.",
-    "paywallNoCharge": "Geen kosten tijdens de proefperiode · Altijd opzegbaar",
+    "paywallNoCharge": "Kaart vereist · Geen kosten tot einde proefperiode · Altijd opzegbaar",
     "planMonthly": "— Starten voor €{price}/maand →",
     "planYearly": "— Starten voor €{price}/jaar →",
     "checkoutError": "Betaling kon niet worden gestart. Probeer opnieuw.",
     "pricingLabel": "Prijzen",
-    "pricingTitle": "Eenvoudige, transparante prijzen",
-    "pricingDesc": "Probeer {days} dagen gratis. Geen creditcard vereist.",
+    "pricingTitle": "Eenvoudig en transparant",
+    "pricingDesc": "Probeer {days} dagen gratis. Kaart vereist, geen kosten tot einde proefperiode.",
     "planMonthlyName": "Maandelijks",
     "planYearlyName": "Jaarlijks",
     "bestValue": "Beste waarde",
@@ -843,6 +843,7 @@
     "accessUntil": "Toegang tot",
     "manage": "Abonnement beheren",
     "subscribe": "Abonneren",
-    "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw."
+    "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw.",
+    "feature5": "2 maanden gratis"
   }
 }
