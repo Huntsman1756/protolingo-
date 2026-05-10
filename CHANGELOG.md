@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3] - 2026-05-10
+
+### Added
+- Onboarding tour modal on first dashboard visit: 6-step guided walkthrough covering chat, voice, flashcards, study plan, and getting started; shown once per browser via `localStorage` (`fl_tour_done`); dismissible at any step with skip or navigation arrows; `tour` i18n namespace added in all 10 supported locales
+
+### Fixed
+- Landing pricing section (`PricingSection`) now uses server-side `stripeEnabled` prop directly (removed dependency on `useConfigStore` which was always `false` before hydration, causing the section to never render for anonymous users)
+- Users with an active or trialing subscription are now correctly identified via `/api/auth/refresh` + `/api/auth/me` on the landing page, hiding the pricing section when already subscribed
+
 ## [1.4.2] - 2026-05-10
 
 ### Fixed

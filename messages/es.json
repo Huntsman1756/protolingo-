@@ -802,6 +802,42 @@
       "social": "Socializar"
     }
   },
+  "tour": {
+    "skip": "Saltar",
+    "prev": "Atrás",
+    "next": "Siguiente",
+    "done": "Empezar",
+    "step1": {
+      "label": "Bienvenido",
+      "title": "Bienvenido a FreeLingo",
+      "desc": "FreeLingo es tu tutor de inglés con inteligencia artificial. Practica a tu ritmo, en cualquier momento, con conversaciones, lecciones y tarjetas de vocabulario."
+    },
+    "step2": {
+      "label": "Chat de texto",
+      "title": "Habla con tu tutor",
+      "desc": "Mantén conversaciones escritas con tu tutor IA. Haz preguntas, recibe correcciones y practica gramática y vocabulario de forma natural."
+    },
+    "step3": {
+      "label": "Voz",
+      "title": "Habla en tiempo real",
+      "desc": "Usa el modo de conversación por voz para practicar tu inglés hablado con transcripción en tiempo real y retroalimentación inmediata sobre tu pronunciación."
+    },
+    "step4": {
+      "label": "Flashcards",
+      "title": "No olvides ninguna palabra",
+      "desc": "Las flashcards usan el algoritmo de repetición espaciada SM-2 para que repases las palabras justo antes de olvidarlas, maximizando la retención."
+    },
+    "step5": {
+      "label": "Plan de estudio",
+      "title": "Tu plan personalizado",
+      "desc": "Basándose en tu evaluación de nivel, FreeLingo crea un plan de estudio estructurado con lecciones diarias adaptadas a tus objetivos y progreso."
+    },
+    "step6": {
+      "label": "Listo",
+      "title": "¡Todo preparado!",
+      "desc": "Empieza con la lección de hoy, abre un chat o lánzate a una sesión de voz: FreeLingo se adapta a cómo te gusta aprender."
+    }
+  },
   "billing": {
     "paywallLabel": "Premium requerido",
     "paywallTitle": "Desbloquea FreeLingo Premium",

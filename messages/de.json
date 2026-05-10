@@ -802,6 +802,42 @@
       "social": "Sozialleben"
     }
   },
+  "tour": {
+    "skip": "Überspringen",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "done": "Loslegen",
+    "step1": {
+      "label": "Willkommen",
+      "title": "Willkommen bei FreeLingo",
+      "desc": "FreeLingo ist dein KI-gestützter Englischtutor. Übe in deinem eigenen Tempo, jederzeit, durch Gespräche, Lektionen und smarte Karteikarten."
+    },
+    "step2": {
+      "label": "Textchat",
+      "title": "Chatte mit deinem Tutor",
+      "desc": "Führe schriftliche Gespräche mit deinem KI-Tutor. Stelle Fragen, erhalte Korrekturen und übe Grammatik und Vokabular auf natürliche Weise."
+    },
+    "step3": {
+      "label": "Sprache",
+      "title": "Sprich in Echtzeit",
+      "desc": "Nutze den Sprachgesprächsmodus, um dein gesprochenes Englisch mit Echtzeit-Transkription und sofortigem Aussprache-Feedback zu üben."
+    },
+    "step4": {
+      "label": "Karteikarten",
+      "title": "Vergiss kein Wort",
+      "desc": "Karteikarten nutzen den SM-2-Algorithmus für verteiltes Wiederholen, damit du Wörter genau dann übst, wenn du sie zu vergessen drohst."
+    },
+    "step5": {
+      "label": "Lernplan",
+      "title": "Dein persönlicher Plan",
+      "desc": "Basierend auf deiner Niveaubeurteilung erstellt FreeLingo einen strukturierten Lernplan mit täglichen Lektionen, die deinen Zielen angepasst sind."
+    },
+    "step6": {
+      "label": "Bereit",
+      "title": "Du bist startklar!",
+      "desc": "Beginne mit der heutigen Lektion, öffne einen Chat oder starte eine Sprachsitzung – FreeLingo passt sich deiner Lernweise an."
+    }
+  },
   "billing": {
     "paywallLabel": "Premium erforderlich",
     "paywallTitle": "FreeLingo Premium freischalten",
