@@ -15,6 +15,7 @@ interface AdminUserItem {
   role: string
   native_language: string
   is_active: boolean
+  subscription_status: string
 }
 
 const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
@@ -269,6 +270,15 @@ export default function AdminUsersPage() {
                       }`}>{u.role === 'admin' ? t('roleAdmin') : t('roleUser')}</span>
                     {!u.is_active && (
                       <span className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-2 py-0.5">{t('inactive')}</span>
+                    )}
+                    {u.subscription_status === 'active' && (
+                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-green-500/40 text-green-400 px-2 py-0.5">active</span>
+                    )}
+                    {u.subscription_status === 'trialing' && (
+                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-blue-500/40 text-blue-400 px-2 py-0.5">trial</span>
+                    )}
+                    {u.subscription_status === 'past_due' && (
+                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-yellow-500/40 text-yellow-400 px-2 py-0.5">past due</span>
                     )}
                   </div>
                   <p className="font-mono text-fl-label text-fl-muted-2 break-all">
