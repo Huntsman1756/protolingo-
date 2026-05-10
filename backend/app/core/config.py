@@ -32,6 +32,14 @@ class Settings(BaseSettings):
     COOKIE_SECURE: bool = False
     LOG_LEVEL: str = "INFO"
 
+    # Stripe (for paid plans and billing management)
+    STRIPE_ENABLED: bool = False
+    STRIPE_SECRET_KEY: str = ""
+    STRIPE_WEBHOOK_SECRET: str = ""
+    STRIPE_PRICE_MONTHLY: str = ""
+    STRIPE_PRICE_YEARLY: str = ""
+    STRIPE_TRIAL_DAYS: int = 7
+
     # Email / SMTP
     EMAIL_ENABLED: bool = False
     SMTP_HOST: str = "localhost"
