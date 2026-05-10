@@ -1,3 +1,4 @@
+import json
 import logging
 import base64
 import uuid
@@ -248,6 +249,10 @@ async def update_me(
         current_user.conversation_max_duration = data.conversation_max_duration
     if data.conversation_inactivity_timeout is not None:
         current_user.conversation_inactivity_timeout = data.conversation_inactivity_timeout
+    if data.bio is not None:
+        current_user.bio = data.bio if data.bio.strip() else None
+    if data.learning_goals is not None:
+        current_user.learning_goals = json.dumps(data.learning_goals)
 
     await db.commit()
     await db.refresh(current_user)

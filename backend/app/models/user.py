@@ -41,6 +41,8 @@ class User(Base):
         Integer, nullable=False, default=1_000_000   # 0 = unlimited; new users get 1M/month
     )
     avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    bio: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    learning_goals: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # JSON array string
     created_at: Mapped[datetime] = mapped_column(
         DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
     )

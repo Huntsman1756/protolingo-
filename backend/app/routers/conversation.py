@@ -137,6 +137,8 @@ async def conversation_ws(
         native_language = user.native_language
         target_language = user.target_language
         student_name = user.display_name
+        user_bio = user.bio
+        user_learning_goals = user.learning_goals
         weekly_sessions_limit = user.conversation_weekly_sessions
         daily_minutes_limit = user.conversation_daily_minutes
         weekly_minutes_limit = user.conversation_weekly_minutes
@@ -262,6 +264,8 @@ async def conversation_ws(
         inactivity_timeout=inactivity_timeout,
         initial_context=valid_context,
         user_id=user_id,
+        bio=user_bio,
+        learning_goals=user_learning_goals,
     )
     pipeline._redis = redis
 

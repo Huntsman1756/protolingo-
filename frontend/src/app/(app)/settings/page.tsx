@@ -26,6 +26,7 @@ export default function SettingsPage() {
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
+  const [bio, setBio] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
@@ -113,6 +114,7 @@ export default function SettingsPage() {
       setDisplayName(user.displayName || '')
       setEmail(user.email || '')
       setNativeLanguage(user.native_language || 'es')
+      setBio(user.bio || '')
       setConvMaxDuration((user.conversation_max_duration as 900 | 1800) || 1800)
       setConvInactivityTimeout((user.conversation_inactivity_timeout as 60 | 180 | 300) || 180)
     }
@@ -134,12 +136,13 @@ export default function SettingsPage() {
           display_name: displayName,
           email: email || null,
           native_language: nativeLanguage,
+          bio: bio || null,
           ...(password ? { password } : {}),
         }),
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null, bio: updated.bio ?? null, learning_goals: updated.learning_goals ?? [] })
       setMessage({ type: 'ok', text: t('saved') })
       setPassword('')
       setConfirmPassword('')
@@ -164,7 +167,7 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null })
+      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null, bio: updated.bio ?? null, learning_goals: updated.learning_goals ?? [] })
       setConvMessage({ type: 'ok', text: t('conversationSaved') })
     } catch (err: unknown) {
       setConvMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
@@ -275,6 +278,19 @@ export default function SettingsPage() {
             />
           </div>
         ))}
+
+        <div>
+          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('bio')}</label>
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            rows={3}
+            maxLength={500}
+            placeholder={t('bioPlaceholder')}
+            className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
+          />
+          <p className="font-mono text-fl-hint text-fl-muted-4 mt-1">{t('bioHint')}</p>
+        </div>
 
         <div>
           <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('nativeLanguage')}</label>

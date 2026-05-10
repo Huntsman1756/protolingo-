@@ -46,7 +46,7 @@ Student progress:
 - Current streak: {streak} days
 - Lessons completed today: {lessons_today}
 - Skills: {skills}
-
+{user_context}
 Guidelines:
 - Adapt your vocabulary and complexity to the student's level
 - When the student makes a grammar mistake, gently correct it
@@ -196,6 +196,20 @@ async def chat(
         f"{k}: {round(v * 100)}%" for k, v in (prog.skills or {}).items()
     ) if prog and prog.skills else "none yet"
 
+    # Build user context section from bio and learning goals
+    _ctx_parts: list[str] = []
+    if current_user.learning_goals:
+        try:
+            import json as _json  # noqa: PLC0415
+            goals = _json.loads(current_user.learning_goals)
+            if goals:
+                _ctx_parts.append(f"Learning goals: {', '.join(goals)}")
+        except (ValueError, TypeError):
+            pass
+    if current_user.bio and current_user.bio.strip():
+        _ctx_parts.append(f"About the student: {current_user.bio.strip()}")
+    user_context = ("\nStudent context:\n" + "\n".join(f"- {p}" for p in _ctx_parts) + "\n") if _ctx_parts else ""
+
     system_prompt = TUTOR_SYSTEM_PROMPT.format(
         student_name=current_user.display_name,
         cefr_level=cefr_level,
@@ -205,6 +219,7 @@ async def chat(
         streak=prog.streak_day if prog else 0,
         lessons_today=prog.lessons_completed if prog else 0,
         skills=skills_str,
+        user_context=user_context,
     )
 
     db.add(

@@ -160,6 +160,9 @@
     "newPasswordPlaceholder": "Lascia vuoto per mantenere",
     "confirmPassword": "Conferma password",
     "confirmPasswordPlaceholder": "Ripeti la nuova password",
+    "bio": "Su di te (contesto IA)",
+    "bioPlaceholder": "es: Sono sviluppatore/trice e viaggio spesso per lavoro...",
+    "bioHint": "Il tutor IA lo userà per personalizzare le conversazioni.",
     "saveChanges": "Salva modifiche",
     "saving": "Salvataggio...",
     "saved": "Profilo aggiornato.",
@@ -781,6 +784,19 @@
     "subtitle": "Quale inglese vuoi imparare?",
     "chooseVariant": "Seleziona variante",
     "continue": "Continua",
-    "saveFailed": "Impossibile salvare le preferenze"
+    "saveFailed": "Impossibile salvare le preferenze",
+    "goals": {
+      "title": "I tuoi obiettivi",
+      "subtitle": "Per cosa vuoi usare l'inglese? Seleziona tutto ciò che si applica.",
+      "skip": "Salta",
+      "travel": "Viaggi e turismo",
+      "work": "Lavoro e carriera",
+      "academic": "Studi e università",
+      "daily": "Conversazione quotidiana",
+      "media": "Film, musica e serie",
+      "emigration": "Vivere all'estero",
+      "exams": "Esami e certificazioni",
+      "social": "Socializzare"
+    }
   }
 }

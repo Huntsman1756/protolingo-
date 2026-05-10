@@ -12,6 +12,8 @@ interface User {
   conversation_inactivity_timeout: number
   avatar?: string | null
   is_verified?: boolean
+  bio?: string | null
+  learning_goals?: string[]
 }
 
 interface AuthStore {
