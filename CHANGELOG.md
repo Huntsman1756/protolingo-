@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 2026-05-10
+
+### Fixed
+- Stripe webhook handler: replaced `.get()` calls with `getattr()` on `StripeObject` instances, required since SDK v15.0.0 where `StripeObject` no longer inherits from `dict`
+- `current_period_end` now read from `SubscriptionItem` (via `sub.items.data[0].current_period_end`) in addition to the subscription root, as the field moved to `SubscriptionItem` in Stripe API v2025-03-31 (SDK v12+); both locations are tried for forward and backward compatibility
+- Added `_subscription_period_end()` helper used by both `_handle_checkout_completed` and `_handle_subscription_updated` handlers
+- Separated `STRIPE_BASE_URL` from `APP_BASE_URL` so Stripe redirect URLs can point to a different domain than email links
+
 ## [1.4.0] - 2026-05-10
 
 ### Added

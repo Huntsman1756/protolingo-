@@ -31,6 +31,18 @@ def _stripe_client() -> None:
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
+def _sget(obj: object, key: str, default=None):
+    """Get a field from a Stripe event object or a plain dict (test mocks).
+
+    In production, Stripe SDK v15+ returns StripeObject instances that no longer
+    inherit from dict — use getattr(). In tests, construct_event is mocked to
+    return plain Python dicts — use .get(). This helper handles both.
+    """
+    if isinstance(obj, dict):
+        return obj.get(key, default)
+    return getattr(obj, key, default)
+
+
 # ── Request schemas ──────────────────────────────────────────────────────────
 
 class CheckoutRequest(BaseModel):
@@ -152,6 +164,26 @@ async def stripe_webhook(
 
 # ── Event handlers ───────────────────────────────────────────────────────────
 
+def _subscription_period_end(sub: object) -> datetime | None:
+    """Extract current_period_end from a Stripe Subscription object.
+
+    In Stripe API >=2025-03-31 (SDK v12+), current_period_end moved from the
+    Subscription root to each SubscriptionItem. We try both locations.
+    Uses _sget so it works with both StripeObject (production) and plain dicts
+    (test mocks).
+    """
+    period_end = _sget(sub, "current_period_end")
+    if period_end is None:
+        items = _sget(sub, "items")
+        if items is not None:
+            data = _sget(items, "data") or []
+            if data:
+                period_end = _sget(data[0], "current_period_end")
+    if period_end is not None:
+        return datetime.utcfromtimestamp(int(period_end))
+    return None
+
+
 async def _get_user_by_customer_id(db: AsyncSession, customer_id: str) -> User | None:
     result = await db.execute(
         select(User).where(User.stripe_customer_id == customer_id)
@@ -159,17 +191,17 @@ async def _get_user_by_customer_id(db: AsyncSession, customer_id: str) -> User |
     return result.scalar_one_or_none()
 
 
-async def _handle_checkout_completed(db: AsyncSession, session: dict) -> None:
-    customer_id: str | None = session.get("customer")
-    subscription_id: str | None = session.get("subscription")
+async def _handle_checkout_completed(db: AsyncSession, session: object) -> None:
+    customer_id: str | None = _sget(session, "customer")
+    subscription_id: str | None = _sget(session, "subscription")
     if not customer_id:
         return
 
     user = await _get_user_by_customer_id(db, customer_id)
     if not user:
         # Try to link by metadata (customer may have been created before storing the ID)
-        metadata: dict = session.get("metadata") or {}
-        user_id_str: str | None = metadata.get("user_id")
+        metadata = _sget(session, "metadata") or {}
+        user_id_str: str | None = _sget(metadata, "user_id")
         if user_id_str:
             user = await db.get(User, int(user_id_str))
             if user:
@@ -187,10 +219,8 @@ async def _handle_checkout_completed(db: AsyncSession, session: dict) -> None:
     if subscription_id:
         try:
             sub = stripe.Subscription.retrieve(subscription_id)
-            status = sub.status  # "trialing" | "active"
-            period_end = sub.get("current_period_end")
-            if period_end:
-                ends_at = datetime.utcfromtimestamp(period_end)
+            status = getattr(sub, "status", "trialing")  # "trialing" | "active"
+            ends_at = _subscription_period_end(sub)
         except Exception as exc:  # noqa: BLE001
             logger.warning(
                 "[billing] Could not retrieve subscription %s: %s", subscription_id, exc
@@ -204,8 +234,8 @@ async def _handle_checkout_completed(db: AsyncSession, session: dict) -> None:
     )
 
 
-async def _handle_subscription_updated(db: AsyncSession, subscription: dict) -> None:
-    customer_id: str | None = subscription.get("customer")
+async def _handle_subscription_updated(db: AsyncSession, subscription: object) -> None:
+    customer_id: str | None = _sget(subscription, "customer")
     if not customer_id:
         return
 
@@ -213,10 +243,10 @@ async def _handle_subscription_updated(db: AsyncSession, subscription: dict) -> 
     if not user:
         return
 
-    user.subscription_status = subscription.get("status", user.subscription_status)
-    period_end = subscription.get("current_period_end")
-    if period_end:
-        user.subscription_ends_at = datetime.utcfromtimestamp(period_end)
+    user.subscription_status = _sget(subscription, "status") or user.subscription_status
+    ends_at = _subscription_period_end(subscription)
+    if ends_at is not None:
+        user.subscription_ends_at = ends_at
 
     await db.commit()
     logger.info(
@@ -224,8 +254,8 @@ async def _handle_subscription_updated(db: AsyncSession, subscription: dict) -> 
     )
 
 
-async def _handle_subscription_deleted(db: AsyncSession, subscription: dict) -> None:
-    customer_id: str | None = subscription.get("customer")
+async def _handle_subscription_deleted(db: AsyncSession, subscription: object) -> None:
+    customer_id: str | None = _sget(subscription, "customer")
     if not customer_id:
         return
 
@@ -238,8 +268,8 @@ async def _handle_subscription_deleted(db: AsyncSession, subscription: dict) -> 
     logger.info("[billing] User %s subscription canceled", user.id)
 
 
-async def _handle_payment_failed(db: AsyncSession, invoice: dict) -> None:
-    customer_id: str | None = invoice.get("customer")
+async def _handle_payment_failed(db: AsyncSession, invoice: object) -> None:
+    customer_id: str | None = _sget(invoice, "customer")
     if not customer_id:
         return
 
