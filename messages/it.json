@@ -803,13 +803,13 @@
     "paywallLabel": "Premium richiesto",
     "paywallTitle": "Sblocca FreeLingo Premium",
     "paywallDesc": "Inizia la tua prova gratuita di {days} giorni — nessun addebito oggi. Annulla quando vuoi.",
-    "paywallNoCharge": "Nessun addebito durante la prova · Annulla quando vuoi",
+    "paywallNoCharge": "Carta richiesta · Nessun addebito fino alla fine della prova · Annulla quando vuoi",
     "planMonthly": "— Inizia a {price}€/mese →",
     "planYearly": "— Inizia a {price}€/anno →",
     "checkoutError": "Impossibile avviare il pagamento. Riprova.",
     "pricingLabel": "Prezzi",
-    "pricingTitle": "Prezzi semplici e trasparenti",
-    "pricingDesc": "Prova gratis per {days} giorni. Nessuna carta richiesta.",
+    "pricingTitle": "Semplice e trasparente",
+    "pricingDesc": "Prova gratis per {days} giorni. Carta richiesta, nessun addebito fino alla fine della prova.",
     "planMonthlyName": "Mensile",
     "planYearlyName": "Annuale",
     "bestValue": "Miglior offerta",
@@ -843,6 +843,7 @@
     "accessUntil": "Accesso fino al",
     "manage": "Gestisci abbonamento",
     "subscribe": "Abbonati",
-    "portalError": "Impossibile aprire il portale di fatturazione. Riprova."
+    "portalError": "Impossibile aprire il portale di fatturazione. Riprova.",
+    "feature5": "2 mesi gratis"
   }
 }

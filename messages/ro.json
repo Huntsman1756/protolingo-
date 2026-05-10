@@ -803,13 +803,13 @@
     "paywallLabel": "Premium necesar",
     "paywallTitle": "Deblochează FreeLingo Premium",
     "paywallDesc": "Încearcă gratuit {days} zile — fără taxe azi. Anulează oricând.",
-    "paywallNoCharge": "Fără taxe în perioada de probă · Anulează oricând",
+    "paywallNoCharge": "Card necesar · Nicio taxă până la sfârșitul perioadei de probă · Anulează oricând",
     "planMonthly": "— Începe la {price}€/lună →",
     "planYearly": "— Începe la {price}€/an →",
     "checkoutError": "Nu s-a putut iniția plata. Încearcă din nou.",
     "pricingLabel": "Prețuri",
-    "pricingTitle": "Prețuri simple și transparente",
-    "pricingDesc": "Încearcă gratuit {days} zile. Nu este necesar card de credit.",
+    "pricingTitle": "Simplu și transparent",
+    "pricingDesc": "Încearcă gratuit {days} zile. Card necesar, nicio taxă până la sfârșitul perioadei de probă.",
     "planMonthlyName": "Lunar",
     "planYearlyName": "Anual",
     "bestValue": "Cea mai bună ofertă",
@@ -843,6 +843,7 @@
     "accessUntil": "Acces până la",
     "manage": "Gestionează abonamentul",
     "subscribe": "Abonează-te",
-    "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou."
+    "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou.",
+    "feature5": "2 luni gratuite"
   }
 }
