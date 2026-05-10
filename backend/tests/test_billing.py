@@ -10,22 +10,20 @@ from __future__ import annotations
 
 import json
 from datetime import datetime
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import MagicMock, patch
 
 import pytest
-import pytest_asyncio
-from httpx import ASGITransport, AsyncClient
-
 from app.core.config import settings
-from app.core.security import create_access_token
 from app.main import app
 from app.services.subscription_service import is_subscribed
 
+# Register the billing router once for the entire test module so routes are
+# available without re-registering on every test (which causes duplicates).
+from app.routers import billing as _billing_module
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-
-def _make_stripe_event(event_type: str, data: dict) -> dict:
-    return {"type": event_type, "data": {"object": data}}
+_BILLING_ROUTES = {r.path for r in app.routes}
+if "/api/billing/checkout" not in _BILLING_ROUTES:
+    app.include_router(_billing_module.router)
 
 
 def _signed_webhook_headers() -> dict:
@@ -143,10 +141,6 @@ async def test_checkout_monthly(client, test_user):
         patch("stripe.Customer.create", return_value=mock_customer),
         patch("stripe.checkout.Session.create", return_value=mock_session),
     ):
-        # Register the billing router
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/checkout",
             json={"plan": "monthly"},
@@ -174,9 +168,6 @@ async def test_checkout_yearly(client, test_user):
         patch("stripe.Customer.create", return_value=mock_customer),
         patch("stripe.checkout.Session.create", return_value=mock_session),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/checkout",
             json={"plan": "yearly"},
@@ -201,9 +192,6 @@ async def test_checkout_missing_price_config(client, test_user):
         patch.object(settings, "STRIPE_PRICE_YEARLY", ""),
         patch("stripe.Customer.create", return_value=mock_customer),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/checkout",
             json={"plan": "monthly"},
@@ -214,6 +202,11 @@ async def test_checkout_missing_price_config(client, test_user):
 
 
 # ── POST /api/billing/webhook ─────────────────────────────────────────────────
+
+def _make_stripe_event(event_type: str, data: dict) -> dict:
+    """Build a minimal Stripe event envelope for webhook tests."""
+    return {"type": event_type, "data": {"object": data}}
+
 
 def _make_webhook_body(event: dict) -> bytes:
     return json.dumps(event).encode()
@@ -244,9 +237,6 @@ async def test_webhook_checkout_completed_activates_subscription(client, db_sess
         patch("stripe.Webhook.construct_event", return_value=event),
         patch("stripe.Subscription.retrieve", return_value=mock_sub),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/webhook",
             content=_make_webhook_body(event),
@@ -279,9 +269,6 @@ async def test_webhook_subscription_updated(client, db_session, test_user):
         patch.object(settings, "STRIPE_ENABLED", True),
         patch("stripe.Webhook.construct_event", return_value=event),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/webhook",
             content=_make_webhook_body(event),
@@ -310,9 +297,6 @@ async def test_webhook_subscription_deleted(client, db_session, test_user):
         patch.object(settings, "STRIPE_ENABLED", True),
         patch("stripe.Webhook.construct_event", return_value=event),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/webhook",
             content=_make_webhook_body(event),
@@ -341,9 +325,6 @@ async def test_webhook_invoice_payment_failed(client, db_session, test_user):
         patch.object(settings, "STRIPE_ENABLED", True),
         patch("stripe.Webhook.construct_event", return_value=event),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/webhook",
             content=_make_webhook_body(event),
@@ -367,9 +348,6 @@ async def test_webhook_invalid_signature_rejected(client):
             side_effect=stripe_error.SignatureVerificationError("bad sig", "sig_header"),
         ),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/webhook",
             content=b"{}",
@@ -387,9 +365,6 @@ async def test_webhook_invalid_payload_rejected(client):
         patch.object(settings, "STRIPE_ENABLED", True),
         patch("stripe.Webhook.construct_event", side_effect=ValueError("bad payload")),
     ):
-        from app.routers import billing as billing_router
-        app.include_router(billing_router.router)
-
         res = await client.post(
             "/api/billing/webhook",
             content=b"not-json",

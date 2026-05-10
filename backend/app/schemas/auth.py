@@ -73,6 +73,8 @@ class UserResponse(BaseModel):
     avatar: Optional[str] = None
     bio: Optional[str] = None
     learning_goals: Optional[list[str]] = None
+    subscription_status: str = "none"
+    subscription_ends_at: Optional[datetime] = None
     created_at: datetime
 
     model_config = {"from_attributes": True}
@@ -93,9 +95,9 @@ class UserResponse(BaseModel):
                 pass
         return None
 
-    @field_serializer("created_at")
-    def serialize_created_at(self, v: datetime, _info):
-        return v.isoformat()
+    @field_serializer("created_at", "subscription_ends_at")
+    def serialize_datetime(self, v: Optional[datetime], _info):
+        return v.isoformat() if v else None
 
 
 class UserUpdateRequest(BaseModel):

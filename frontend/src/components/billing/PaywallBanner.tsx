@@ -24,7 +24,7 @@ export function PaywallBanner() {
       const res = await apiFetch('/api/billing/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ interval }),
+        body: JSON.stringify({ plan: interval }),
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
