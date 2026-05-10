@@ -2,13 +2,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
+import PricingSection from '@/components/billing/PricingSection'
 
 export default async function Home() {
   const cookieStore = await cookies()
   const hasSession = cookieStore.has('refresh_token')
   const t = await getTranslations('landing')
   const tCommon = await getTranslations('common')
-  const tBilling = await getTranslations('billing')
 
   // Fetch Stripe config server-side to conditionally show pricing section.
   // Use BACKEND_URL directly to avoid the Next.js rewrite proxy chain,
@@ -94,74 +94,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Pricing — only shown when Stripe is enabled */}
-      {stripeEnabled && (
-        <section className="max-w-4xl mx-auto px-6 pb-24 w-full">
-          <div className="text-center mb-10">
-            <h2 className="font-mono text-base font-bold text-fl-fg mb-2">
-              {tBilling('pricingTitle')}
-            </h2>
-            <p className="font-mono text-xs text-fl-muted-1 tracking-widest">
-              {tBilling('pricingDesc', { days: trialDays })}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Monthly plan */}
-            <div className="border border-fl-border bg-fl-surface p-6 flex flex-col gap-4">
-              <div className="flex items-center gap-2 pb-3 border-b border-fl-border">
-                <span className="text-fl-muted-2 text-sm">◎</span>
-                <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-                  {tBilling('planMonthlyName')}
-                </span>
-              </div>
-              <p className="font-mono text-xl font-bold text-fl-fg">
-                14.95<span className="text-sm text-fl-muted-1">€ / {tBilling('month')}</span>
-              </p>
-              <ul className="flex flex-col gap-1.5">
-                {['feature1', 'feature2', 'feature3', 'feature4'].map((k) => (
-                  <li key={k} className="font-mono text-xs text-fl-muted-1 flex items-center gap-2">
-                    <span className="text-fl-accent">✓</span> {tBilling(`planFeature.${k}`)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Yearly plan */}
-            <div className="border border-fl-accent/30 bg-fl-surface p-6 flex flex-col gap-4">
-              <div className="flex items-center justify-between pb-3 border-b border-fl-border">
-                <div className="flex items-center gap-2">
-                  <span className="text-fl-muted-2 text-sm">▣</span>
-                  <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-                    {tBilling('planYearlyName')}
-                  </span>
-                </div>
-                <span className="font-mono text-fl-hint text-fl-accent border border-fl-accent/30 px-2 py-0.5 uppercase tracking-widest">
-                  {tBilling('bestValue')}
-                </span>
-              </div>
-              <p className="font-mono text-xl font-bold text-fl-fg">
-                149.50<span className="text-sm text-fl-muted-1">€ / {tBilling('year')}</span>
-              </p>
-              <ul className="flex flex-col gap-1.5">
-                {['feature1', 'feature2', 'feature3', 'feature4', 'feature5'].map((k) => (
-                  <li key={k} className="font-mono text-xs text-fl-muted-1 flex items-center gap-2">
-                    <span className="text-fl-accent">✓</span> {tBilling(`planFeature.${k}`)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <Link
-              href={hasSession ? '/dashboard' : '/register'}
-              className="inline-block font-mono text-xs font-bold tracking-widest uppercase py-3 px-10 bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 transition-colors"
-            >
-              — {tBilling('ctaStart', { days: trialDays })}
-            </Link>
-          </div>
-        </section>
-      )}
+      {/* Pricing — only shown when Stripe is enabled and user is not already subscribed */}
+      <PricingSection stripeEnabled={stripeEnabled} trialDays={trialDays} hasSession={hasSession} />
 
       {/* Footer */}
       <footer className="border-t border-fl-border py-6 px-6">
