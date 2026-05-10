@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 
-interface User {
+export type SubscriptionStatus = 'none' | 'trialing' | 'active' | 'past_due' | 'canceled'
+
+export interface User {
   id: number
   username: string
   displayName: string
@@ -14,6 +16,15 @@ interface User {
   is_verified?: boolean
   bio?: string | null
   learning_goals?: string[]
+  subscription_status?: SubscriptionStatus
+  subscription_ends_at?: string | null
+}
+
+/** Returns true when the user has an active/trialing subscription, or when Stripe is disabled (self-hosted). */
+export function isSubscribed(user: User | null, stripeEnabled: boolean): boolean {
+  if (!stripeEnabled) return true
+  if (!user) return false
+  return user.subscription_status === 'active' || user.subscription_status === 'trialing'
 }
 
 interface AuthStore {

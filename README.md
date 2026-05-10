@@ -75,7 +75,7 @@ freelingo/
 | 2     | Local TTS + STT        | ✅ Complete         |
 | 3     | Real-time conversation | ✅ Complete         |
 | 4     | Multi-language support | ✅ Complete         |
-| 5     | Stripe subscriptions   | 🚧 In progress      |
+| 5     | Stripe subscriptions   | ✅ Complete         |
 
 ## Quick start
 

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
+import { useConfigStore } from '@/store/config'
 import { apiFetch } from '@/lib/api'
 import Image from 'next/image'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
@@ -43,6 +44,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const setUser = useAuthStore((s) => s.setUser)
   const logout = useAuthStore((s) => s.logout)
   const [initializing, setInitializing] = useState(true)
+  const loadConfig = useConfigStore((s) => s.load)
   const [logoutConfirm, setLogoutConfirm] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
@@ -57,6 +59,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   // to silently get a new access token, then fetch /me to populate the user.
   useEffect(() => {
     async function init() {
+      // Load Stripe config once (non-blocking)
+      loadConfig()
       try {
         if (!accessToken) {
           const res = await fetch('/api/auth/refresh', {
@@ -93,6 +97,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           is_verified: me.is_verified ?? true,
           bio: me.bio ?? null,
           learning_goals: me.learning_goals ?? [],
+          subscription_status: me.subscription_status ?? 'none',
+          subscription_ends_at: me.subscription_ends_at ?? null,
         })
       } catch {
         logout()
@@ -232,7 +238,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <p className="text-fl-label font-mono text-fl-muted-4 truncate">@{user?.username}</p>
             </div>
           </div>
-          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.19</p>
+          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.4.0</p>
           <button
             onClick={() => setLogoutConfirm(true)}
             className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"
@@ -351,7 +357,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </div>
                 <p className="font-mono text-fl-label text-fl-muted-4 truncate">@{user?.username}</p>
               </div>
-              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.3.19</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.4.0</p>
               <button
                 onClick={() => { setMobileMenuOpen(false); setLogoutConfirm(true) }}
                 className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase"

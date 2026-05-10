@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
+from typing import Literal
 
 import stripe
 import stripe.error
@@ -14,7 +15,6 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import Literal
 
 from app.core.config import settings
 from app.core.database import get_db

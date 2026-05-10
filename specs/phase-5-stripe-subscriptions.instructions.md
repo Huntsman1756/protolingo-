@@ -358,28 +358,30 @@ stripe trigger checkout.session.completed
 
 ## Implementation order summary
 
-| # | Task | File(s) |
-|---|---|---|
-| 1 | Config + env vars | `config.py`, `.env.example`, `docker-compose.yml` |
-| 2 | `requirements.txt` | `requirements.txt` |
-| 3 | User model fields | `models/user.py` |
-| 4 | Alembic migration 0015 | `alembic/versions/0015_stripe_subscription.py` |
-| 5 | `subscription_service.py` | `services/subscription_service.py` |
-| 6 | `require_subscription` dep | `core/deps.py` |
-| 7 | `GET /api/config` | `routers/config.py` (new) |
-| 8 | `POST /api/billing/checkout` | `routers/billing.py` |
-| 9 | `POST /api/billing/portal` | `routers/billing.py` |
-| 10 | `POST /api/billing/webhook` | `routers/billing.py` |
-| 11 | Apply `require_subscription` | `routers/chat.py`, `conversation.py`, `lessons.py`, `assessment.py`, `flashcards.py`, `study_plan.py` |
-| 12 | Admin schema update | `schemas/admin.py`, `routers/admin.py` |
-| 13 | Frontend config store | `store/config.ts` |
-| 14 | User type update | `store/auth.ts` |
-| 15 | `PaywallBanner` component | `components/billing/PaywallBanner.tsx` |
-| 16 | Paywall in protected pages | 6 page files |
-| 17 | Billing section in settings | `app/(app)/settings/page.tsx` |
-| 18 | Pricing section in landing | `app/(public)/page.tsx` |
-| 19 | `/billing/success` page | `app/(public)/billing/success/page.tsx` |
-| 20 | `/billing/canceled` page | `app/(public)/billing/canceled/page.tsx` |
-| 21 | i18n keys (10 locales) | `messages/*.json` |
-| 22 | Tests | `tests/test_billing.py` |
-| 23 | Docs + version bump | Various |
+> **Status: ✅ COMPLETE (v1.4.0)**
+
+| # | Task | File(s) | Status |
+|---|---|---|---|
+| 1 | Config + env vars | `config.py`, `.env.example`, `docker-compose.yml` | ✅ |
+| 2 | `requirements.txt` | `requirements.txt` | ✅ |
+| 3 | User model fields | `models/user.py` | ✅ |
+| 4 | Alembic migration 0016 | `alembic/versions/0016_stripe_subscription.py` | ✅ |
+| 5 | `subscription_service.py` | `services/subscription_service.py` | ✅ |
+| 6 | `require_subscription` dep | `core/deps.py` | ✅ |
+| 7 | `GET /api/config` | `routers/config.py` (new) | ✅ |
+| 8 | `POST /api/billing/checkout` | `routers/billing.py` | ✅ |
+| 9 | `POST /api/billing/portal` | `routers/billing.py` | ✅ |
+| 10 | `POST /api/billing/webhook` | `routers/billing.py` | ✅ |
+| 11 | Apply `require_subscription` | `routers/chat.py`, `conversation.py`, `lessons.py`, `assessment.py`, `flashcards.py`, `study_plan.py` | ✅ |
+| 12 | Admin schema update | `schemas/admin.py`, `routers/admin.py` | ✅ |
+| 13 | Frontend config store | `store/config.ts` | ✅ |
+| 14 | User type update | `store/auth.ts` | ✅ |
+| 15 | `PaywallBanner` component | `components/billing/PaywallBanner.tsx` | ✅ |
+| 16 | Paywall in protected pages | 6 page files | ✅ |
+| 17 | Billing section in settings | `app/(app)/settings/page.tsx` | ✅ |
+| 18 | Pricing section in landing | `app/page.tsx` | ✅ |
+| 19 | `/billing/success` page | `app/(auth)/billing/success/page.tsx` | ✅ |
+| 20 | `/billing/canceled` page | `app/(auth)/billing/canceled/page.tsx` | ✅ |
+| 21 | i18n keys (10 locales) | `messages/*.json` | ✅ |
+| 22 | Tests | `tests/test_billing.py` | ✅ |
+| 23 | Docs + version bump | Various | ✅ |

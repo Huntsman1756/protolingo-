@@ -163,44 +163,44 @@ This document records what was built and the completion criteria met.
 
 ## Phase 5 — Stripe Subscriptions & Paywall
 
-🔄 Status: In progress (v1.3.17+)
+✅ Status: **Complete (v1.4.0)**
 
 > Optional subscription layer backed by Stripe. Fully gated by `STRIPE_ENABLED` env var — self-hosted deployments are unaffected when set to `false`.
 
 | # | Milestone | Status |
 |---|-----------|--------|
-| 1 | Config + env vars + `docker-compose.yml` + `requirements.txt` | ⬜ |
-| 2 | User model fields (`stripe_customer_id`, `subscription_status`, `subscription_ends_at`) | ⬜ |
-| 3 | Alembic migration `0015_stripe_subscription` | ⬜ |
-| 4 | `subscription_service.py` — `is_subscribed()` + `apply_subscription_quotas()` | ⬜ |
-| 5 | `require_subscription` FastAPI dependency | ⬜ |
-| 6 | `GET /api/config` public endpoint | ⬜ |
-| 7 | `POST /api/billing/checkout` — Stripe Checkout Session | ⬜ |
-| 8 | `POST /api/billing/portal` — Stripe Customer Portal | ⬜ |
-| 9 | `POST /api/billing/webhook` — 4 Stripe events | ⬜ |
-| 10 | Apply `require_subscription` to all AI endpoints | ⬜ |
-| 11 | Admin schema: expose + override subscription status | ⬜ |
-| 12 | Frontend config store (`stripeEnabled`) | ⬜ |
-| 13 | `PaywallBanner` component | ⬜ |
-| 14 | Paywall applied to 6 protected pages | ⬜ |
-| 15 | Billing section in settings/profile | ⬜ |
-| 16 | Pricing section in landing page | ⬜ |
-| 17 | `/billing/success` and `/billing/canceled` pages | ⬜ |
-| 18 | i18n — `billing` namespace in 10 locales | ⬜ |
-| 19 | Tests — `test_billing.py` with Stripe SDK mocks | ⬜ |
+| 1 | Config + env vars + `docker-compose.yml` + `requirements.txt` | ✅ |
+| 2 | User model fields (`stripe_customer_id`, `subscription_status`, `subscription_ends_at`) | ✅ |
+| 3 | Alembic migration `0016_stripe_subscription` | ✅ |
+| 4 | `subscription_service.py` — `is_subscribed()` + `apply_subscription_quotas()` | ✅ |
+| 5 | `require_subscription` FastAPI dependency | ✅ |
+| 6 | `GET /api/config` public endpoint | ✅ |
+| 7 | `POST /api/billing/checkout` — Stripe Checkout Session | ✅ |
+| 8 | `POST /api/billing/portal` — Stripe Customer Portal | ✅ |
+| 9 | `POST /api/billing/webhook` — 4 Stripe events | ✅ |
+| 10 | Apply `require_subscription` to all AI endpoints | ✅ |
+| 11 | Admin schema: expose + override subscription status | ✅ |
+| 12 | Frontend config store (`stripeEnabled`) | ✅ |
+| 13 | `PaywallBanner` component | ✅ |
+| 14 | Paywall applied to 6 protected pages | ✅ |
+| 15 | Billing section in settings/profile | ✅ |
+| 16 | Pricing section in landing page | ✅ |
+| 17 | `/billing/success` and `/billing/canceled` pages | ✅ |
+| 18 | i18n — `billing` namespace in 10 locales | ✅ |
+| 19 | Tests — `test_billing.py` with Stripe SDK mocks | ✅ |
 
 **Plans:**
 - Monthly: 14.95 €/month · 7-day trial (card required)
 - Yearly: 119 €/year (≈ 9.92 €/month, 34% off) · 7-day trial (card required)
 
 **Completion criteria:**
-- [ ] `STRIPE_ENABLED=false` → no paywall, no billing UI, all endpoints accessible
-- [ ] `STRIPE_ENABLED=true` → unsubscribed users see `PaywallBanner` on all AI pages
-- [ ] Stripe Checkout Session created correctly for monthly and yearly plans
-- [ ] Webhook verifies Stripe signature; rejects invalid signatures with 400
-- [ ] All 4 webhook events update `subscription_status` correctly
-- [ ] `require_subscription` returns 402 for unsubscribed users when enabled
-- [ ] Admin can manually override `subscription_status`
-- [ ] Pricing section visible on landing only when `STRIPE_ENABLED=true`
-- [ ] `tsc --noEmit` and `python3 -m compileall` pass clean
-- [ ] No regressions in Phases 1–4
+- [x] `STRIPE_ENABLED=false` → no paywall, no billing UI, all endpoints accessible
+- [x] `STRIPE_ENABLED=true` → unsubscribed users see `PaywallBanner` on all AI pages
+- [x] Stripe Checkout Session created correctly for monthly and yearly plans
+- [x] Webhook verifies Stripe signature; rejects invalid signatures with 400
+- [x] All 4 webhook events update `subscription_status` correctly
+- [x] `require_subscription` returns 402 for unsubscribed users when enabled
+- [x] Admin can manually override `subscription_status`
+- [x] Pricing section visible on landing only when `STRIPE_ENABLED=true`
+- [x] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [x] No regressions in Phases 1–4
