@@ -33,6 +33,9 @@ interface AdminUser {
   native_language: string
   is_active: boolean
   is_verified: boolean
+  subscription_status: string
+  subscription_ends_at: string | null
+  stripe_customer_id: string | null
   conversation_weekly_sessions: number
   conversation_daily_minutes: number
   conversation_weekly_minutes: number
@@ -247,6 +250,22 @@ export default function AdminUserStatsPage() {
           </div>
         )}
         <StatRow label={t('fieldNativeLanguage')} value={tLang(user.native_language as 'es' | 'fr' | 'pt' | 'de' | 'it' | 'pl' | 'nl' | 'ro' | 'ru')} />
+        <StatRow
+          label="Subscription"
+          value={
+            <span className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${user.subscription_status === 'active' ? 'border-green-500/40 text-green-400'
+                : user.subscription_status === 'trialing' ? 'border-blue-500/40 text-blue-400'
+                  : user.subscription_status === 'past_due' ? 'border-yellow-500/40 text-yellow-400'
+                    : 'border-fl-border text-fl-muted-2'
+              }`}>{user.subscription_status}</span>
+          }
+        />
+        {user.subscription_ends_at && (
+          <StatRow label="Ends / Renews" value={new Date(user.subscription_ends_at).toLocaleDateString()} />
+        )}
+        {user.stripe_customer_id && (
+          <StatRow label="Stripe Customer" value={user.stripe_customer_id} />
+        )}
       </Section>
 
       {/* Study plan */}
