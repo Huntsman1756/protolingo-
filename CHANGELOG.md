@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.4] - 2026-05-10
+
+### Fixed
+- Landing page: pricing section now shows immediately for unauthenticated users (no loading state); authenticated users see a full-screen loading overlay (backdrop blur, same pattern as onboarding tour) while subscription status is verified, avoiding layout shifts or premature reveals
+- Middleware: inverted auth logic from public-routes whitelist to protected-routes list; unknown URLs now reach the Next.js 404 handler instead of being redirected to `/login`
+
 ## [1.4.3] - 2026-05-10
 
 ### Added

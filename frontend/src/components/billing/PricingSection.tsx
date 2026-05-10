@@ -12,14 +12,14 @@ interface PricingSectionProps {
 
 export default function PricingSection({ stripeEnabled, trialDays, hasSession }: PricingSectionProps) {
   const tBilling = useTranslations('billing')
-  // null = not yet determined, true = subscribed (hide), false = not subscribed (show)
+  const tCommon = useTranslations('common')
+  // null = checking (only when hasSession=true), true = subscribed (hide pricing), false = show pricing
   const [subscribed, setSubscribed] = useState<boolean | null>(hasSession ? null : false)
 
   useEffect(() => {
     if (!hasSession) return
     async function checkSubscription() {
       try {
-        // Refresh to get an access token (same pattern as app layout)
         const refreshRes = await fetch('/api/auth/refresh', {
           method: 'POST',
           credentials: 'include',
@@ -43,8 +43,19 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
   }, [hasSession])
 
   if (!stripeEnabled) return null
-  // Still checking — render nothing to avoid layout shift
-  if (subscribed === null) return null
+
+  // Loading state: show full-screen overlay while verifying subscription
+  if (subscribed === null) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="absolute inset-0 bg-fl-bg/80 backdrop-blur-sm" />
+        <span className="relative font-mono text-xs tracking-widest text-fl-muted-2 uppercase animate-pulse">
+          {tCommon('loading')}
+        </span>
+      </div>
+    )
+  }
+
   if (subscribed) return null
 
   return (

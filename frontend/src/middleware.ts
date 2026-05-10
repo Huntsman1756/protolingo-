@@ -1,8 +1,26 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const PUBLIC_ROUTES = ['/login', '/register', '/terms', '/privacy', '/forgot-password', '/reset-password', '/verify-email']
-const PUBLIC_EXACT = ['/']
+// Routes that require authentication — anything else passes through so unknown
+// URLs reach Next.js's 404 handler instead of being redirected to /login.
+const PROTECTED_ROUTES = [
+  '/admin',
+  '/assessment',
+  '/billing',
+  '/chat',
+  '/conversation',
+  '/dashboard',
+  '/faq',
+  '/flashcards',
+  '/grammar',
+  '/lesson',
+  '/onboarding',
+  '/phrasebook',
+  '/plan',
+  '/progress',
+  '/settings',
+  '/vocabulary',
+]
 const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
 type Locale = (typeof SUPPORTED_LOCALES)[number]
 
@@ -33,11 +51,9 @@ export function middleware(req: NextRequest) {
   const locale = detectLocale(req)
 
   const hasRefreshToken = req.cookies.has('refresh_token')
-  const isPublic =
-    PUBLIC_EXACT.includes(req.nextUrl.pathname) ||
-    PUBLIC_ROUTES.some((r) => req.nextUrl.pathname.startsWith(r))
+  const isProtected = PROTECTED_ROUTES.some((r) => req.nextUrl.pathname.startsWith(r))
 
-  if (!hasRefreshToken && !isPublic) {
+  if (!hasRefreshToken && isProtected) {
     const response = NextResponse.redirect(new URL('/login', req.url))
     if (!req.cookies.has('NEXT_LOCALE')) {
       response.cookies.set('NEXT_LOCALE', locale, {
