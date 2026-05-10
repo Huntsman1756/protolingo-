@@ -10,6 +10,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import type { ChatContextItem } from '@/lib/conversation-ws'
+import { PaywallGate } from '@/components/billing/PaywallBanner'
 
 const ConversationMode = dynamic(
   () => import('@/components/conversation/ConversationMode'),
@@ -45,5 +46,5 @@ export default function ConversationPage() {
     }
   }, [])
 
-  return <ConversationMode initialContext={initialContext} autoStart={autoStart} />
+  return <PaywallGate><ConversationMode initialContext={initialContext} autoStart={autoStart} /></PaywallGate>
 }

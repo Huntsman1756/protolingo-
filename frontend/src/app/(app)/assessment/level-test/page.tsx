@@ -3,6 +3,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { apiFetch } from '@/lib/api'
+import { useAuthStore, isSubscribed } from '@/store/auth'
+import { useConfigStore } from '@/store/config'
+import { PaywallBanner } from '@/components/billing/PaywallBanner'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -71,6 +74,8 @@ export default function LevelTestPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const planId = searchParams.get('plan')
+  const user = useAuthStore((s) => s.user)
+  const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
 
   const [step, setStep] = useState<FlowStep>('loading')
   const [questions, setQuestions] = useState<LevelTestQuestion[]>([])
@@ -166,6 +171,8 @@ export default function LevelTestPage() {
   }
 
   // ── Renders ───────────────────────────────────────────────────────────────
+
+  if (!isSubscribed(user, stripeEnabled)) return <PaywallBanner />
 
   if (step === 'loading' || step === 'submitting') {
     return (
@@ -423,8 +430,8 @@ export default function LevelTestPage() {
             <div className="space-y-3">
               <div
                 className={`border p-3 font-mono text-xs leading-relaxed ${answers.at(-1)?.correct
-                    ? 'border-green-500 text-green-600 dark:text-green-400'
-                    : 'border-red-500 text-red-500'
+                  ? 'border-green-500 text-green-600 dark:text-green-400'
+                  : 'border-red-500 text-red-500'
                   }`}
               >
                 {answers.at(-1)?.correct ? '✓ Correct' : `✗ Incorrect — correct answer: ${q.correct}`}

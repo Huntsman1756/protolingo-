@@ -35,6 +35,8 @@ class AdminUserUpdate(BaseModel):
     conversation_daily_minutes: Optional[int] = Field(default=None, ge=0)
     conversation_weekly_minutes: Optional[int] = Field(default=None, ge=0)
     monthly_tokens_limit: Optional[int] = Field(default=None, ge=0)
+    subscription_status: Optional[Literal["none", "trialing", "active", "past_due", "canceled"]] = None
+    subscription_ends_at: Optional[datetime] = None
 
 
 class AdminUserResponse(BaseModel):
@@ -50,13 +52,16 @@ class AdminUserResponse(BaseModel):
     conversation_daily_minutes: int = 0
     conversation_weekly_minutes: int = 90
     monthly_tokens_limit: int = 0
+    stripe_customer_id: Optional[str] = None
+    subscription_status: str = "none"
+    subscription_ends_at: Optional[datetime] = None
     created_at: datetime
     last_login: Optional[datetime]
 
     model_config = {"from_attributes": True}
 
-    @field_serializer("created_at", "last_login")
-    def serialize_datetime(self, v: Optional[datetime], _info):
+    @field_serializer("created_at", "last_login", "subscription_ends_at")
+    def serialize_datetime(self, v: Optional[datetime], _info):  # noqa: ANN001
         return v.isoformat() if v else None
 
 

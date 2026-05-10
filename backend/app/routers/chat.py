@@ -8,7 +8,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
-from app.core.deps import get_current_user
+from app.core.deps import require_subscription
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
 from app.models.llm_usage import LLMUsage
@@ -71,7 +71,7 @@ MAX_HISTORY = 30
 
 @router.get("/conversations", response_model=list[ConversationResponse])
 async def list_conversations(
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(
@@ -85,7 +85,7 @@ async def list_conversations(
 @router.post("/conversations", response_model=ConversationResponse)
 async def create_conversation(
     data: ConversationCreate,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     conv = Conversation(
@@ -101,7 +101,7 @@ async def create_conversation(
 @router.delete("/conversations/{conversation_id}", status_code=204)
 async def delete_conversation(
     conversation_id: int,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     conv = await db.get(Conversation, conversation_id)
@@ -114,7 +114,7 @@ async def delete_conversation(
 @router.get("/conversations/{conversation_id}/messages", response_model=ChatHistoryResponse)
 async def get_conversation_messages(
     conversation_id: int,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     conv = await db.get(Conversation, conversation_id)
@@ -138,7 +138,7 @@ async def get_conversation_messages(
 @router.post("")
 async def chat(
     request: ChatRequest,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     # ── Monthly token quota check ────────────────────────────────────────────
@@ -313,7 +313,7 @@ async def chat(
 
 @router.get("/history", response_model=ChatHistoryResponse)
 async def get_history(
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(

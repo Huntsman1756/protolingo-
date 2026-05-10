@@ -14,7 +14,8 @@ from sqlalchemy import select
 
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal
-from app.core.deps import get_current_user
+from app.core.deps import get_current_user, require_subscription
+from app.services.subscription_service import is_subscribed
 from app.core.security import decode_access_token
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -42,7 +43,7 @@ def _make_silence_wav(duration_ms: int = 100, sample_rate: int = 16000) -> bytes
 @router.post("/api/conversation/warmup")
 async def conversation_warmup(
     request: Request,
-    _current_user: User = Depends(get_current_user),
+    _current_user: User = Depends(require_subscription),
 ) -> JSONResponse:
     """Pre-heat TTS and STT services before a conversation session starts.
 
@@ -105,6 +106,17 @@ async def conversation_ws(
         user = await db.get(User, user_id)
         if not user or not user.is_active:
             logger.warning("[conversation] User %s not found or inactive — closing WS 1008", user_id)
+            await websocket.close(code=1008)
+            return
+
+        # Check subscription
+        if not is_subscribed(user, settings.STRIPE_ENABLED):
+            logger.info("[conversation] User %s has no active subscription — closing WS 1008", user_id)
+            await websocket.send_json({
+                "type": "error",
+                "code": "subscription_required",
+                "message": "An active subscription is required to use voice conversation.",
+            })
             await websocket.close(code=1008)
             return
 

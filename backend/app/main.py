@@ -20,6 +20,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 from app.routers import admin, assessment, auth, chat, conversation, flashcards, lessons, progress, study_plan, stt, tts
+from app.routers import config as config_router
 from app.services.stt_service import OpenAISTTService, WhisperSTTService
 from app.services.tts_service import KokoroTTSService, OpenAITTSService
 
@@ -98,6 +99,13 @@ app.include_router(progress.router)
 app.include_router(tts.router)
 app.include_router(stt.router)
 app.include_router(conversation.router)
+app.include_router(config_router.router)
+
+if settings.STRIPE_ENABLED:
+    import stripe as _stripe
+    from app.routers import billing as billing_router
+    _stripe.api_key = settings.STRIPE_SECRET_KEY
+    app.include_router(billing_router.router)
 
 
 @app.get("/health")
