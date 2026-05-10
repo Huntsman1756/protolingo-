@@ -75,6 +75,7 @@ freelingo/
 | 2     | Local TTS + STT        | ✅ Complete         |
 | 3     | Real-time conversation | ✅ Complete         |
 | 4     | Multi-language support | ✅ Complete         |
+| 5     | Stripe subscriptions   | 🚧 In progress      |
 
 ## Quick start
 
@@ -126,6 +127,7 @@ The first registered user becomes admin automatically.
 - [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
 - [phase-4-target-language.instructions.md](specs/phase-4-target-language.instructions.md) — Phase 4: target_language (BCP-47), onboarding flow, auto-login on register
+- [phase-5-stripe-subscriptions.instructions.md](specs/phase-5-stripe-subscriptions.instructions.md) — Phase 5: Stripe subscriptions, paywall, Customer Portal, `STRIPE_ENABLED` toggle
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
