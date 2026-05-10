@@ -802,6 +802,42 @@
       "social": "Socialisation"
     }
   },
+  "tour": {
+    "skip": "Passer",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "done": "Commencer",
+    "step1": {
+      "label": "Bienvenue",
+      "title": "Bienvenue sur FreeLingo",
+      "desc": "FreeLingo est votre tuteur d'anglais alimenté par l'IA. Pratiquez à votre rythme, à tout moment, grâce à des conversations, des leçons et des cartes mémoire intelligentes."
+    },
+    "step2": {
+      "label": "Chat texte",
+      "title": "Discutez avec votre tuteur",
+      "desc": "Ayez des conversations écrites avec votre tuteur IA. Posez des questions, recevez des corrections et pratiquez la grammaire et le vocabulaire naturellement."
+    },
+    "step3": {
+      "label": "Voix",
+      "title": "Parlez en temps réel",
+      "desc": "Utilisez le mode conversation vocale pour pratiquer votre anglais oral avec transcription en temps réel et retour immédiat sur votre prononciation."
+    },
+    "step4": {
+      "label": "Flashcards",
+      "title": "N'oubliez aucun mot",
+      "desc": "Les flashcards utilisent l'algorithme de répétition espacée SM-2 pour réviser les mots exactement quand vous êtes sur le point de les oublier."
+    },
+    "step5": {
+      "label": "Plan d'étude",
+      "title": "Votre plan personnalisé",
+      "desc": "En fonction de votre évaluation de niveau, FreeLingo crée un plan d'études structuré avec des leçons quotidiennes adaptées à vos objectifs."
+    },
+    "step6": {
+      "label": "Prêt",
+      "title": "Vous êtes prêt !",
+      "desc": "Commencez par la leçon du jour, ouvrez un chat ou lancez une session vocale — FreeLingo s'adapte à votre façon d'apprendre."
+    }
+  },
   "billing": {
     "paywallLabel": "Premium requis",
     "paywallTitle": "Débloquer FreeLingo Premium",

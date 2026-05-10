@@ -1,30 +1,51 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useAuthStore, isSubscribed } from '@/store/auth'
-import { useConfigStore } from '@/store/config'
 
 interface PricingSectionProps {
-  /** Whether Stripe is enabled (from server-side config fetch). */
   stripeEnabled: boolean
   trialDays: number
-  /** True if the browser has a refresh_token cookie (user may be logged in). */
   hasSession: boolean
 }
 
 export default function PricingSection({ stripeEnabled, trialDays, hasSession }: PricingSectionProps) {
   const tBilling = useTranslations('billing')
-  const user = useAuthStore((s) => s.user)
-  // Use client-side config when available; fall back to server-side prop.
-  const stripeEnabledClient = useConfigStore((s) => s.stripeEnabled)
-  const resolvedStripeEnabled = stripeEnabledClient ?? stripeEnabled
+  // null = not yet determined, true = subscribed (hide), false = not subscribed (show)
+  const [subscribed, setSubscribed] = useState<boolean | null>(hasSession ? null : false)
 
-  if (!resolvedStripeEnabled) return null
+  useEffect(() => {
+    if (!hasSession) return
+    async function checkSubscription() {
+      try {
+        // Refresh to get an access token (same pattern as app layout)
+        const refreshRes = await fetch('/api/auth/refresh', {
+          method: 'POST',
+          credentials: 'include',
+        })
+        if (!refreshRes.ok) { setSubscribed(false); return }
+        const { access_token } = await refreshRes.json()
 
-  // Hide for subscribed users. If the user has a session but the store hasn't
-  // hydrated yet (user === null), also hide to avoid a flash for subscribed users.
-  if (hasSession && (user === null || isSubscribed(user, true))) return null
+        const meRes = await fetch('/api/auth/me', {
+          headers: { Authorization: `Bearer ${access_token}` },
+          credentials: 'include',
+        })
+        if (!meRes.ok) { setSubscribed(false); return }
+        const me = await meRes.json()
+        const status: string = me.subscription_status ?? 'none'
+        setSubscribed(status === 'active' || status === 'trialing')
+      } catch {
+        setSubscribed(false)
+      }
+    }
+    checkSubscription()
+  }, [hasSession])
+
+  if (!stripeEnabled) return null
+  // Still checking — render nothing to avoid layout shift
+  if (subscribed === null) return null
+  if (subscribed) return null
 
   return (
     <section className="max-w-4xl mx-auto px-6 pb-24 w-full">
