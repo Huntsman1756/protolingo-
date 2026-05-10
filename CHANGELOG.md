@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.19] - 2026-05-10
+
+### Added
+- Account deletion confirmation email: when a user deletes their own account via `DELETE /api/auth/me`, a transactional email is sent in the user's native language confirming the deletion and including a security notice; admin-initiated deletions do not trigger this email
+- `send_account_deleted_email` function in `email_service.py` with `_DELETION_I18N` translations for all 10 supported locales
+- `account_deleted.html` email template (no CTA button, plain confirmation + security footer)
+
+### Fixed
+- Romanian `link_fallback` in `_VERIFY_I18N` and `_RESET_I18N`: `lipirii` (noun genitive) corrected to `lipește` (imperative verb)
+- Romanian `step1` in `_WELCOME_I18N`: `Faci` (indicative) corrected to `Fă` (imperative), consistent with the other steps
+- `welcome.html` email template: added `margin-bottom: 20px` to `.btn` so the CTA button has breathing room before the footer divider
+
 ## [1.3.18] - 2026-05-10
 
 ### Added

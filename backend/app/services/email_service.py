@@ -101,7 +101,7 @@ _VERIFY_I18N: dict[str, dict[str, str]] = {
         "subject": "Verific\u0103-\u021bi contul FreeLingo",
         "body": "Mul\u021bumim c\u0103 \u021bi-ai creat contul FreeLingo.<br />Te rug\u0103m s\u0103-\u021bi verifici adresa de e-mail f\u0103c\u00e2nd clic pe buton. Acest link este valabil <strong>24 de ore</strong>.",
         "button": "Verific\u0103-mi contul",
-        "link_fallback": "Dac\u0103 butonul nu func\u021bioneaz\u0103, copiaz\u0103 \u0219i lipirii acest link \u00een browser:",
+        "link_fallback": "Dac\u0103 butonul nu func\u021bioneaz\u0103, copiaz\u0103 \u0219i lipi\u015fte acest link \u00een browser:",
         "footer": "Dac\u0103 nu ai creat acest cont, po\u021bi ignora acest e-mail.",
     },
     "ru": {
@@ -184,7 +184,7 @@ _RESET_I18N: dict[str, dict[str, str]] = {
         "subject": "Resetez\u0103-\u021bi parola FreeLingo",
         "body": "Am primit o cerere de resetare a parolei contului t\u0103u FreeLingo.<br />F\u0103 clic pe buton pentru a crea o parol\u0103 nou\u0103. Acest link este valabil <strong>1 or\u0103</strong>.",
         "button": "Resetez\u0103 parola",
-        "link_fallback": "Dac\u0103 butonul nu func\u021bioneaz\u0103, copiaz\u0103 \u0219i lipirii acest link \u00een browser:",
+        "link_fallback": "Dac\u0103 butonul nu func\u021bioneaz\u0103, copiaz\u0103 \u0219i lipi\u015fte acest link \u00een browser:",
         "footer": "Dac\u0103 nu ai solicitat resetarea, po\u021bi ignora acest e-mail.",
     },
     "ru": {
@@ -282,7 +282,7 @@ _WELCOME_I18N: dict[str, dict[str, str]] = {
         "subject": "Bun venit la FreeLingo!",
         "greeting": "Bun\u0103 {name},",
         "body": "Contul t\u0103u este gata. Iat\u0103 cum po\u021bi \u00eencepe:",
-        "step1": "Faci <strong>Evaluarea</strong> \u2014 detecteaz\u0103 nivelul t\u0103u actual (A1\u2013C2) \u0219i punctele forte \u0219i slabe.",
+        "step1": "F\u0103 <strong>Evaluarea</strong> \u2014 detecteaz\u0103 nivelul t\u0103u actual (A1\u2013C2) \u0219i punctele forte \u0219i slabe.",
         "step2": "Genereaz\u0103 <strong>Planul de studiu</strong> \u2014 un program s\u0103pt\u0103m\u00e2nal adaptat nivelului \u0219i obiectivelor tale.",
         "step3": "Finalizeaz\u0103 prima lec\u021bie zilnic\u0103 \u0219i \u00eencepe s\u0103 \u00ee\u021bi construie\u0219ti seria.",
         "button": "Mergi la tabloul meu de bord",
@@ -297,6 +297,70 @@ _WELCOME_I18N: dict[str, dict[str, str]] = {
         "step3": "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u0435 \u043f\u0435\u0440\u0432\u044b\u0439 \u0435\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u044b\u0439 \u0443\u0440\u043e\u043a \u0438 \u043d\u0430\u0447\u043d\u0438\u0442\u0435 \u043d\u0430\u043a\u0430\u043f\u043b\u0438\u0432\u0430\u0442\u044c \u0441\u0435\u0440\u0438\u044e.",
         "button": "\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043d\u0430 \u043f\u0430\u043d\u0435\u043b\u044c \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f",
         "footer": "\u0423\u0441\u043f\u0435\u0445\u043e\u0432 \u0432 \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u0438!",
+    },
+}
+
+
+_DELETION_I18N: dict[str, dict[str, str]] = {
+    "en": {
+        "subject": "Your FreeLingo account has been deleted",
+        "greeting": "Hi {name},",
+        "body": "Your FreeLingo account has been successfully deleted. All your data has been permanently removed from our servers.",
+        "footer": "If you did not request this deletion, please contact us immediately.",
+    },
+    "es": {
+        "subject": "Tu cuenta de FreeLingo ha sido eliminada",
+        "greeting": "Hola {name},",
+        "body": "Tu cuenta de FreeLingo ha sido eliminada correctamente. Todos tus datos han sido borrados permanentemente de nuestros servidores.",
+        "footer": "Si no solicitaste esta eliminaci\u00f3n, cont\u00e1ctanos de inmediato.",
+    },
+    "fr": {
+        "subject": "Votre compte FreeLingo a \u00e9t\u00e9 supprim\u00e9",
+        "greeting": "Bonjour {name},",
+        "body": "Votre compte FreeLingo a \u00e9t\u00e9 supprim\u00e9 avec succ\u00e8s. Toutes vos donn\u00e9es ont \u00e9t\u00e9 d\u00e9finitivement effac\u00e9es de nos serveurs.",
+        "footer": "Si vous n\u2019avez pas demand\u00e9 cette suppression, contactez-nous imm\u00e9diatement.",
+    },
+    "de": {
+        "subject": "Dein FreeLingo-Konto wurde gel\u00f6scht",
+        "greeting": "Hallo {name},",
+        "body": "Dein FreeLingo-Konto wurde erfolgreich gel\u00f6scht. Alle deine Daten wurden dauerhaft von unseren Servern entfernt.",
+        "footer": "Falls du diese L\u00f6schung nicht beantragt hast, kontaktiere uns bitte sofort.",
+    },
+    "pt": {
+        "subject": "A sua conta FreeLingo foi eliminada",
+        "greeting": "Ol\u00e1 {name},",
+        "body": "A sua conta FreeLingo foi eliminada com sucesso. Todos os seus dados foram removidos permanentemente dos nossos servidores.",
+        "footer": "Se n\u00e3o solicitou esta elimina\u00e7\u00e3o, contacte-nos imediatamente.",
+    },
+    "it": {
+        "subject": "Il tuo account FreeLingo \u00e8 stato eliminato",
+        "greeting": "Ciao {name},",
+        "body": "Il tuo account FreeLingo \u00e8 stato eliminato con successo. Tutti i tuoi dati sono stati rimossi definitivamente dai nostri server.",
+        "footer": "Se non hai richiesto questa eliminazione, contattaci immediatamente.",
+    },
+    "nl": {
+        "subject": "Je FreeLingo-account is verwijderd",
+        "greeting": "Hallo {name},",
+        "body": "Je FreeLingo-account is succesvol verwijderd. Al je gegevens zijn permanent van onze servers verwijderd.",
+        "footer": "Als je deze verwijdering niet hebt aangevraagd, neem dan onmiddellijk contact met ons op.",
+    },
+    "pl": {
+        "subject": "Twoje konto FreeLingo zosta\u0142o usuni\u0119te",
+        "greeting": "Cze\u015b\u0107 {name},",
+        "body": "Twoje konto FreeLingo zosta\u0142o pomy\u015blnie usuni\u0119te. Wszystkie Twoje dane zosta\u0142y trwale usuni\u0119te z naszych serwerk\u00f3w.",
+        "footer": "Je\u015bli nie prosi\u0142e\u015b o usuni\u0119cie konta, skontaktuj si\u0119 z nami natychmiast.",
+    },
+    "ro": {
+        "subject": "Contul t\u0103u FreeLingo a fost \u0219ters",
+        "greeting": "Bun\u0103 {name},",
+        "body": "Contul t\u0103u FreeLingo a fost \u0219ters cu succes. Toate datele tale au fost eliminate definitiv de pe serverele noastre.",
+        "footer": "Dac\u0103 nu ai solicitat aceast\u0103 \u015ftergere, contacteaz\u0103-ne imediat.",
+    },
+    "ru": {
+        "subject": "\u0412\u0430\u0448 \u0430\u043a\u043a\u0430\u0443\u043d\u0442 FreeLingo \u0443\u0434\u0430\u043b\u0451\u043d",
+        "greeting": "\u041f\u0440\u0438\u0432\u0435\u0442, {name},",
+        "body": "\u0412\u0430\u0448 \u0430\u043a\u043a\u0430\u0443\u043d\u0442 FreeLingo \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0443\u0434\u0430\u043b\u0451\u043d. \u0412\u0441\u0435 \u0432\u0430\u0448\u0438 \u0434\u0430\u043d\u043d\u044b\u0435 \u0431\u044b\u043b\u0438 \u043d\u0430\u0432\u0441\u0435\u0433\u0434\u0430 \u0443\u0434\u0430\u043b\u0435\u043d\u044b \u0441 \u043d\u0430\u0448\u0438\u0445 \u0441\u0435\u0440\u0432\u0435\u0440\u043e\u0432.",
+        "footer": "\u0415\u0441\u043b\u0438 \u0432\u044b \u043d\u0435 \u0437\u0430\u043f\u0440\u0430\u0448\u0438\u0432\u0430\u043b\u0438 \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u0435, \u043d\u0435\u043c\u0435\u0434\u043b\u0435\u043d\u043d\u043e \u0441\u0432\u044f\u0436\u0438\u0442\u0435\u0441\u044c \u0441 \u043d\u0430\u043c\u0438.",
     },
 }
 
@@ -403,3 +467,30 @@ async def send_welcome_email(to: str, display_name: str, locale: str = "en") -> 
         await fm.send_message(message)
     except Exception:
         logger.exception("Failed to send welcome email to %s", to)
+
+
+async def send_account_deleted_email(to: str, display_name: str, locale: str = "en") -> None:
+    """Send account deletion confirmation in the user's native language."""
+    if not settings.EMAIL_ENABLED:
+        return
+    strings = _DELETION_I18N.get(locale, _DELETION_I18N["en"])
+    html = _render_template(
+        "account_deleted.html",
+        {
+            "greeting": strings["greeting"].format(name=display_name),
+            "body": strings["body"],
+            "footer": strings["footer"],
+            "base_url": settings.APP_BASE_URL,
+        },
+    )
+    message = MessageSchema(
+        subject=strings["subject"],
+        recipients=[to],
+        body=html,
+        subtype=MessageType.html,
+    )
+    try:
+        fm = FastMail(_get_mail_config())
+        await fm.send_message(message)
+    except Exception:
+        logger.exception("Failed to send account deleted email to %s", to)
