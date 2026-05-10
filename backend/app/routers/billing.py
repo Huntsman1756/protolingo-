@@ -10,7 +10,6 @@ from datetime import datetime
 from typing import Literal
 
 import stripe
-import stripe.error
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sqlalchemy import select
@@ -126,7 +125,7 @@ async def stripe_webhook(
     except ValueError:
         logger.warning("[billing] Webhook invalid payload")
         raise HTTPException(status_code=400, detail="Invalid payload")
-    except stripe.error.SignatureVerificationError:
+    except stripe.SignatureVerificationError:
         logger.warning("[billing] Webhook invalid signature")
         raise HTTPException(status_code=400, detail="Invalid signature")
 

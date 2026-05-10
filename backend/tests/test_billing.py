@@ -9,6 +9,7 @@ Strategy:
 from __future__ import annotations
 
 import json
+import stripe
 from datetime import datetime
 from unittest.mock import MagicMock, patch
 
@@ -339,13 +340,11 @@ async def test_webhook_invoice_payment_failed(client, db_session, test_user):
 @pytest.mark.asyncio
 async def test_webhook_invalid_signature_rejected(client):
     """Webhook with bad signature → HTTP 400."""
-    import stripe.error as stripe_error
-
     with (
         patch.object(settings, "STRIPE_ENABLED", True),
         patch(
             "stripe.Webhook.construct_event",
-            side_effect=stripe_error.SignatureVerificationError("bad sig", "sig_header"),
+            side_effect=stripe.SignatureVerificationError("bad sig", "sig_header"),
         ),
     ):
         res = await client.post(
