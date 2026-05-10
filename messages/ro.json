@@ -802,6 +802,42 @@
       "social": "Socializare"
     }
   },
+  "tour": {
+    "skip": "Sari peste",
+    "prev": "Înapoi",
+    "next": "Următor",
+    "done": "Să începem",
+    "step1": {
+      "label": "Bun venit",
+      "title": "Bun venit la FreeLingo",
+      "desc": "FreeLingo este tutorul tău de engleză bazat pe inteligență artificială. Exersează în ritmul tău, oricând, prin conversații, lecții și flashcard-uri inteligente."
+    },
+    "step2": {
+      "label": "Chat text",
+      "title": "Discută cu tutorul tău",
+      "desc": "Poartă conversații scrise cu tutorul tău IA. Pune întrebări, primește corecturi și exersează gramatică și vocabular în mod natural."
+    },
+    "step3": {
+      "label": "Voce",
+      "title": "Vorbește în timp real",
+      "desc": "Folosește modul de conversație vocală pentru a-ți exersa engleza vorbită cu transcriere în timp real și feedback imediat despre pronunție."
+    },
+    "step4": {
+      "label": "Flashcard-uri",
+      "title": "Nu uita niciun cuvânt",
+      "desc": "Flashcard-urile folosesc algoritmul de repetiție spațiată SM-2 pentru a revizui cuvintele exact când ești pe cale să le uiți."
+    },
+    "step5": {
+      "label": "Plan de studiu",
+      "title": "Planul tău personalizat",
+      "desc": "Pe baza evaluării nivelului tău, FreeLingo creează un plan de studiu structurat cu lecții zilnice adaptate obiectivelor tale."
+    },
+    "step6": {
+      "label": "Gata",
+      "title": "Ești pregătit!",
+      "desc": "Începe cu lecția de azi, deschide un chat sau lansează o sesiune vocală — FreeLingo se adaptează modului tău de a învăța."
+    }
+  },
   "billing": {
     "paywallLabel": "Premium necesar",
     "paywallTitle": "Deblochează FreeLingo Premium",
