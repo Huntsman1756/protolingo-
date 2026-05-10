@@ -25,7 +25,7 @@ You are talking with {student_name}.
 Student level: {cefr_level}.
 Student's native language: {native_language}.
 Use {english_variant} English spelling and vocabulary consistently.
-
+{user_context}
 Rules:
 - Speak naturally, as in a real conversation
 - Keep responses short (1–3 sentences) unless the student asks for explanation
@@ -59,17 +59,33 @@ class ConversationPipeline:
         inactivity_timeout: int = 180,
         initial_context: list[dict] | None = None,
         user_id: int | None = None,
+        bio: str | None = None,
+        learning_goals: str | None = None,
     ) -> None:
         self.llm = llm
         self.tts = tts
         self.stt = stt
         self._stt_language = get_iso639(target_language)
         self._user_id = user_id
+        # Build user context section
+        _ctx_parts: list[str] = []
+        if learning_goals:
+            try:
+                import json as _json  # noqa: PLC0415
+                goals = _json.loads(learning_goals)
+                if isinstance(goals, list) and goals:
+                    _ctx_parts.append(f"Learning goals: {', '.join(goals)}")
+            except (ValueError, TypeError):
+                pass
+        if bio and bio.strip():
+            _ctx_parts.append(f"About the student: {bio.strip()}")
+        user_context = ("\nStudent context:\n" + "\n".join(f"- {p}" for p in _ctx_parts) + "\n") if _ctx_parts else ""
         self.system_prompt = CONVERSATION_SYSTEM_PROMPT.format(
             student_name=student_name,
             cefr_level=cefr_level,
             native_language=native_language,
             english_variant=get_english_variant(target_language),
+            user_context=user_context,
         )
         self.max_duration = max_duration
         self.inactivity_timeout = inactivity_timeout

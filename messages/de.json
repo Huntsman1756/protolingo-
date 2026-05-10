@@ -160,6 +160,9 @@
     "newPasswordPlaceholder": "Leer lassen zum Beibehalten",
     "confirmPassword": "Passwort bestätigen",
     "confirmPasswordPlaceholder": "Neues Passwort wiederholen",
+    "bio": "Über dich (KI-Kontext)",
+    "bioPlaceholder": "z.B. Ich bin Entwickler/in und reise viel für die Arbeit...",
+    "bioHint": "Der KI-Tutor verwendet dies zur Personalisierung der Gespräche.",
     "saveChanges": "Änderungen speichern",
     "saving": "Wird gespeichert...",
     "saved": "Profil aktualisiert.",
@@ -781,6 +784,19 @@
     "subtitle": "Welches Englisch möchtest du lernen?",
     "chooseVariant": "Variante auswählen",
     "continue": "Weiter",
-    "saveFailed": "Einstellungen konnten nicht gespeichert werden"
+    "saveFailed": "Einstellungen konnten nicht gespeichert werden",
+    "goals": {
+      "title": "Deine Lernziele",
+      "subtitle": "Wozu möchtest du Englisch nutzen? Wähle alles Zutreffende.",
+      "skip": "Überspringen",
+      "travel": "Reisen & Tourismus",
+      "work": "Beruf & Karriere",
+      "academic": "Studium & Akademisch",
+      "daily": "Alltagsgespräche",
+      "media": "Filme, Musik & Serien",
+      "emigration": "Im Ausland leben",
+      "exams": "Prüfungen & Zertifikate",
+      "social": "Sozialleben"
+    }
   }
 }

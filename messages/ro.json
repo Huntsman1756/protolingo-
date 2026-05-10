@@ -160,6 +160,9 @@
     "newPasswordPlaceholder": "Lasă gol pentru a păstra",
     "confirmPassword": "Confirmă parola",
     "confirmPasswordPlaceholder": "Repetă noua parolă",
+    "bio": "Despre tine (context IA)",
+    "bioPlaceholder": "ex: Sunt programator/oare și călătoresc frecvent în interes de serviciu...",
+    "bioHint": "Tutorele IA va folosi aceasta pentru a personaliza conversațiile.",
     "saveChanges": "Salvează modificările",
     "saving": "Se salvează...",
     "saved": "Profil actualizat.",
@@ -781,6 +784,19 @@
     "subtitle": "Ce engleză vrei să înveți?",
     "chooseVariant": "Selectează varianta",
     "continue": "Continuă",
-    "saveFailed": "Salvarea preferințelor a eșuat"
+    "saveFailed": "Salvarea preferințelor a eșuat",
+    "goals": {
+      "title": "Obiectivele tale de învățare",
+      "subtitle": "Pentru ce vrei să folosești engleza? Selectează tot ce ți se potrivește.",
+      "skip": "Sari",
+      "travel": "Călătorii și turism",
+      "work": "Muncă și carieră",
+      "academic": "Studii și academic",
+      "daily": "Conversație zilnică",
+      "media": "Filme, muzică și seriale",
+      "emigration": "A trăi în străinătate",
+      "exams": "Examene și certificări",
+      "social": "Socializare"
+    }
   }
 }

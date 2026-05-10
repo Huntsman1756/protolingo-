@@ -160,6 +160,9 @@
     "newPasswordPlaceholder": "Zostaw puste, aby zachować",
     "confirmPassword": "Potwierdź hasło",
     "confirmPasswordPlaceholder": "Powtórz nowe hasło",
+    "bio": "O sobie (kontekst IA)",
+    "bioPlaceholder": "np. Jestem programistą/ką i często podróżuję służbowo...",
+    "bioHint": "Tutor AI użyje tego do personalizacji rozmów.",
     "saveChanges": "Zapisz zmiany",
     "saving": "Zapisywanie...",
     "saved": "Profil zaktualizowany.",
@@ -781,6 +784,19 @@
     "subtitle": "Którego angielskiego chcesz się uczyć?",
     "chooseVariant": "Wybierz wariant",
     "continue": "Kontynuuj",
-    "saveFailed": "Nie udało się zapisać preferencji"
+    "saveFailed": "Nie udało się zapisać preferencji",
+    "goals": {
+      "title": "Twoje cele nauki",
+      "subtitle": "Do czego chcesz używać angielskiego? Zaznacz wszystkie, które dotyczą Ciebie.",
+      "skip": "Pominąć",
+      "travel": "Podróże i turystyka",
+      "work": "Praca i kariera",
+      "academic": "Studia i akademia",
+      "daily": "Codzienna rozmowa",
+      "media": "Filmy, muzyka i seriale",
+      "emigration": "Życie za granicą",
+      "exams": "Egzaminy i certyfikaty",
+      "social": "Towarzystwo"
+    }
   }
 }

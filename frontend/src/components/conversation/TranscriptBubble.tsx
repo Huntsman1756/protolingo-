@@ -18,9 +18,10 @@ export default function TranscriptBubble({ role, text, streaming = false, speaki
     <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
       {/* Avatar */}
       <div className="relative flex-shrink-0 mb-0.5">
-        {speaking && (
-          <span className="absolute inset-[-4px] rounded-full border-2 border-fl-accent/60 animate-pulse pointer-events-none" />
-        )}
+        <span className={`absolute inset-[-5px] rounded-full border-2 pointer-events-none transition-[border-color,opacity] duration-700 ${speaking
+            ? 'border-fl-accent/65 animate-halo-speaking'
+            : 'border-fl-accent/15 animate-halo-idle'
+          }`} />
         <div className="w-7 h-7 rounded-full overflow-hidden border border-fl-border">
           {!isUser ? (
             <Image src="/logo.png" alt="Tutor" width={28} height={28} className="w-full h-full object-cover" />

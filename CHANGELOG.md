@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.18] - 2026-05-10
+
+### Added
+- Learning goals selection in onboarding step 2: 8 goal categories (travel, work, academic, daily, media, emigration, exams, social) stored as JSON in `users.learning_goals`; injected into LLM system prompt for both text chat and voice conversation
+- User bio field in settings (max 500 chars): free-text context injected into LLM prompts alongside learning goals
+- Alembic migration `0015_user_learning_profile`: adds `bio TEXT` and `learning_goals TEXT` columns to `users`
+- `PATCH /api/auth/me` now accepts `bio` and `learning_goals`; both fields included in `UserResponse`
+- Onboarding page rewritten as a 2-step flow: step 1 = English variant selector, step 2 = learning goals grid
+- i18n keys `onboarding.goals.*` and `settings.bio/bioPlaceholder/bioHint` added in all 10 locales
+
+### Fixed
+- Animated avatar halos in voice conversation: halo is always visible (subtle `animate-halo-idle`) and intensifies when speaking (`animate-halo-speaking`); `px-2` on transcript container prevents horizontal scrollbar from halo overflow
+- Quota widget in voice conversation replaced with a collapsible `QuotaPill` pill (single summary line, expands to detail bars on click)
+- `validate_inactivity_timeout` validator in `UserUpdateRequest` was missing `return v` and had incorrect type hint `Optional[str]` instead of `Optional[int]`, causing the field to always be set to `None`; both corrected
+
 ## [1.3.17] - 2026-05-10
 
 ### Fixed

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from datetime import datetime
 from typing import Optional
 
@@ -10,6 +11,10 @@ SUPPORTED_LANGUAGES = {
 }
 
 SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}
+
+VALID_LEARNING_GOALS: set[str] = {
+    "travel", "work", "academic", "daily", "media", "emigration", "exams", "social",
+}
 
 
 class RegisterRequest(BaseModel):
@@ -66,9 +71,27 @@ class UserResponse(BaseModel):
     conversation_max_duration: int
     conversation_inactivity_timeout: int
     avatar: Optional[str] = None
+    bio: Optional[str] = None
+    learning_goals: Optional[list[str]] = None
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+    @field_validator("learning_goals", mode="before")
+    @classmethod
+    def parse_learning_goals(cls, v: object) -> Optional[list[str]]:
+        if v is None:
+            return None
+        if isinstance(v, list):
+            return v
+        if isinstance(v, str):
+            try:
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except (json.JSONDecodeError, ValueError):
+                pass
+        return None
 
     @field_serializer("created_at")
     def serialize_created_at(self, v: datetime, _info):
@@ -83,6 +106,8 @@ class UserUpdateRequest(BaseModel):
     target_language: Optional[str] = None
     conversation_max_duration: Optional[int] = None
     conversation_inactivity_timeout: Optional[int] = None
+    bio: Optional[str] = Field(default=None, max_length=500)
+    learning_goals: Optional[list[str]] = None
 
     @field_validator("target_language")
     @classmethod
@@ -100,9 +125,18 @@ class UserUpdateRequest(BaseModel):
 
     @field_validator("conversation_inactivity_timeout")
     @classmethod
-    def validate_inactivity_timeout(cls, v: Optional[str]) -> Optional[str]:
+    def validate_inactivity_timeout(cls, v: Optional[int]) -> Optional[int]:
         if v is not None and v not in (60, 180, 300):
             raise ValueError("conversation_inactivity_timeout must be 60, 180, or 300")
+        return v
+
+    @field_validator("learning_goals")
+    @classmethod
+    def validate_learning_goals(cls, v: Optional[list[str]]) -> Optional[list[str]]:
+        if v is not None:
+            for g in v:
+                if g not in VALID_LEARNING_GOALS:
+                    raise ValueError(f"Invalid learning goal: {g}. Valid: {VALID_LEARNING_GOALS}")
         return v
 
 
