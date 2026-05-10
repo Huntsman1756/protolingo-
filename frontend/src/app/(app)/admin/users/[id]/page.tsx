@@ -78,6 +78,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export default function AdminUserStatsPage() {
   const t = useTranslations('admin')
   const tLang = useTranslations('languages')
+  const tBilling = useTranslations('billing')
   const params = useParams()
   const userId = params?.id as string
 
@@ -251,20 +252,25 @@ export default function AdminUserStatsPage() {
         )}
         <StatRow label={t('fieldNativeLanguage')} value={tLang(user.native_language as 'es' | 'fr' | 'pt' | 'de' | 'it' | 'pl' | 'nl' | 'ro' | 'ru')} />
         <StatRow
-          label="Subscription"
+          label={t('fieldSubscription')}
           value={
             <span className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${user.subscription_status === 'active' ? 'border-green-500/40 text-green-400'
-                : user.subscription_status === 'trialing' ? 'border-blue-500/40 text-blue-400'
-                  : user.subscription_status === 'past_due' ? 'border-yellow-500/40 text-yellow-400'
-                    : 'border-fl-border text-fl-muted-2'
-              }`}>{user.subscription_status}</span>
+              : user.subscription_status === 'trialing' ? 'border-blue-500/40 text-blue-400'
+                : user.subscription_status === 'past_due' ? 'border-yellow-500/40 text-yellow-400'
+                  : 'border-fl-border text-fl-muted-2'
+              }`}>
+              {user.subscription_status === 'active' ? tBilling('statusActive')
+                : user.subscription_status === 'trialing' ? tBilling('statusTrialing')
+                  : user.subscription_status === 'past_due' ? tBilling('statusPastDue')
+                    : tBilling('statusNone')}
+            </span>
           }
         />
         {user.subscription_ends_at && (
-          <StatRow label="Ends / Renews" value={new Date(user.subscription_ends_at).toLocaleDateString()} />
+          <StatRow label={t('fieldEndsRenews')} value={new Date(user.subscription_ends_at).toLocaleDateString()} />
         )}
         {user.stripe_customer_id && (
-          <StatRow label="Stripe Customer" value={user.stripe_customer_id} />
+          <StatRow label={t('fieldStripeCustomer')} value={user.stripe_customer_id} />
         )}
       </Section>
 

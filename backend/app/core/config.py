@@ -39,6 +39,7 @@ class Settings(BaseSettings):
     STRIPE_PRICE_MONTHLY: str = ""
     STRIPE_PRICE_YEARLY: str = ""
     STRIPE_TRIAL_DAYS: int = 7
+    STRIPE_BASE_URL: str = "http://localhost:3000"
 
     # Email / SMTP
     EMAIL_ENABLED: bool = False

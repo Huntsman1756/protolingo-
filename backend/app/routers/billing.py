@@ -81,8 +81,8 @@ async def create_checkout_session(
         line_items=[{"price": price_id, "quantity": 1}],
         mode="subscription",
         subscription_data=subscription_data,
-        success_url=f"{settings.APP_BASE_URL}/billing/success",
-        cancel_url=f"{settings.APP_BASE_URL}/billing/canceled",
+        success_url=f"{settings.STRIPE_BASE_URL}/billing/success",
+        cancel_url=f"{settings.STRIPE_BASE_URL}/billing/canceled",
     )
     return {"url": session.url}
 
@@ -99,7 +99,7 @@ async def create_portal_session(
 
     session = stripe.billing_portal.Session.create(
         customer=current_user.stripe_customer_id,
-        return_url=f"{settings.APP_BASE_URL}/settings",
+        return_url=f"{settings.STRIPE_BASE_URL}/settings",
     )
     return {"url": session.url}
 

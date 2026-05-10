@@ -658,7 +658,10 @@
     "verifyEmail": "Verify email",
     "unverifyEmail": "Mark as unverified",
     "emailVerifiedSuccess": "Email marked as verified.",
-    "emailUnverifiedSuccess": "Email marked as unverified."
+    "emailUnverifiedSuccess": "Email marked as unverified.",
+    "fieldSubscription": "Subscription",
+    "fieldEndsRenews": "Ends / Renews",
+    "fieldStripeCustomer": "Stripe Customer"
   },
   "faq": {
     "title": "FAQ",
@@ -821,7 +824,7 @@
       "feature2": "3 voice conversation sessions/week",
       "feature3": "Flashcards, lessons & progress tracking",
       "feature4": "Full grammar & vocabulary reference",
-      "feature5": "Save 33% vs monthly"
+      "feature5": "2 months free"
     },
     "successLabel": "Payment confirmed",
     "successTitle": "Welcome to FreeLingo Premium!",
@@ -843,7 +846,6 @@
     "accessUntil": "Access until",
     "manage": "Manage subscription",
     "subscribe": "Subscribe",
-    "portalError": "Unable to open billing portal. Please try again.",
-    "feature5": "2 months free"
+    "portalError": "Unable to open billing portal. Please try again."
   }
 }

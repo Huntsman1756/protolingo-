@@ -658,7 +658,10 @@
     "unverifyEmail": "Segna come non verificata",
     "emailVerifiedSuccess": "E-mail contrassegnata come verificata.",
     "emailUnverifiedSuccess": "E-mail contrassegnata come non verificata.",
-    "quotaMonthlyTokens": "Limite mensile di token"
+    "quotaMonthlyTokens": "Limite mensile di token",
+    "fieldSubscription": "Abbonamento",
+    "fieldEndsRenews": "Fine / Rinnovo",
+    "fieldStripeCustomer": "Cliente Stripe"
   },
   "faq": {
     "title": "FAQ",
@@ -821,7 +824,7 @@
       "feature2": "3 sessioni di conversazione vocale a settimana",
       "feature3": "Flashcard, lezioni e monitoraggio dei progressi",
       "feature4": "Riferimento completo grammatica e vocabolario",
-      "feature5": "Risparmia il 33% rispetto al piano mensile"
+      "feature5": "2 mesi gratis"
     },
     "successLabel": "Pagamento confermato",
     "successTitle": "Benvenuto in FreeLingo Premium!",
@@ -843,7 +846,6 @@
     "accessUntil": "Accesso fino al",
     "manage": "Gestisci abbonamento",
     "subscribe": "Abbonati",
-    "portalError": "Impossibile aprire il portale di fatturazione. Riprova.",
-    "feature5": "2 mesi gratis"
+    "portalError": "Impossibile aprire il portale di fatturazione. Riprova."
   }
 }
