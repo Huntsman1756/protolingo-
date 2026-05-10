@@ -22,6 +22,7 @@ const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as cons
 
 export default function AdminUsersPage() {
   const t = useTranslations('admin')
+  const tBilling = useTranslations('billing')
   const tLang = useTranslations('languages')
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [total, setTotal] = useState(0)
@@ -272,13 +273,13 @@ export default function AdminUsersPage() {
                       <span className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-2 py-0.5">{t('inactive')}</span>
                     )}
                     {u.subscription_status === 'active' && (
-                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-green-500/40 text-green-400 px-2 py-0.5">active</span>
+                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-green-500/40 text-green-400 px-2 py-0.5">{tBilling('statusActive')}</span>
                     )}
                     {u.subscription_status === 'trialing' && (
-                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-blue-500/40 text-blue-400 px-2 py-0.5">trial</span>
+                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-blue-500/40 text-blue-400 px-2 py-0.5">{tBilling('statusTrialing')}</span>
                     )}
                     {u.subscription_status === 'past_due' && (
-                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-yellow-500/40 text-yellow-400 px-2 py-0.5">past due</span>
+                      <span className="font-mono text-fl-hint tracking-widest uppercase border border-yellow-500/40 text-yellow-400 px-2 py-0.5">{tBilling('statusPastDue')}</span>
                     )}
                   </div>
                   <p className="font-mono text-fl-label text-fl-muted-2 break-all">
