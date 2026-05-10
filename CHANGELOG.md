@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-05-10
+
+### Added
+- **Phase 5: Stripe subscriptions & paywall** — optional hosted subscription layer; self-hosted deployments are unaffected (`STRIPE_ENABLED=false` default)
+- Six new environment variables: `STRIPE_ENABLED`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_MONTHLY`, `STRIPE_PRICE_YEARLY`, `STRIPE_TRIAL_DAYS` (default 7)
+- Alembic migration `0016_stripe_subscription`: adds `stripe_customer_id`, `subscription_status` (default `'none'`), `subscription_ends_at` to `users`
+- `subscription_service.py`: `is_subscribed()` helper and `apply_subscription_quotas()` (sets 3 sessions / 90 min/week / 1M tokens on activation)
+- `require_subscription` FastAPI dependency (HTTP 402 `subscription_required` when paywall is active and user lacks a valid plan)
+- Six backend routers protected by `require_subscription`: chat, lessons, flashcards, study_plan, conversation (WebSocket inline check), assessment level-test
+- Assessment onboarding endpoints (`/start`, `/submit`, `/evaluate`, `/free-write`, `/complete`) remain public so new users can complete initial assessment before subscribing
+- `GET /api/config` — public endpoint returning `stripe_enabled` and `stripe_trial_days`
+- Billing router (`POST /api/billing/checkout`, `POST /api/billing/portal`, `POST /api/billing/webhook`) registered only when `STRIPE_ENABLED=true`; webhook verifies Stripe signature before processing
+- Webhook handlers for four Stripe events: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
+- Admin can manually override `subscription_status` and `subscription_ends_at` via `PATCH /api/admin/users/{id}`
+- `store/config.ts` (frontend): fetches `/api/config` on app load, exposes `stripeEnabled` and `stripeTrialDays`
+- `store/auth.ts`: `User` type extended with `subscription_status` and `subscription_ends_at`; exported `isSubscribed()` helper
+- `PaywallBanner` and `PaywallGate` components: paywall overlay with monthly (14.95€) and yearly (119€) plan buttons; renders nothing when Stripe is disabled
+- `PaywallGate` applied to six frontend pages: `/chat`, `/conversation`, `/flashcards`, `/dashboard`, `/lesson/[id]`, `/assessment/level-test`
+- Settings page: subscription status badge, next billing date, "Manage subscription" portal link, "Subscribe" CTA — section hidden when Stripe is disabled
+- Landing page: pricing section (two plan cards) conditionally rendered when `STRIPE_ENABLED=true`
+- `/billing/success` page: refreshes auth state, auto-redirects to dashboard after 5 s
+- `/billing/canceled` page: "no charge made" message with links to dashboard and settings
+- `billing` i18n namespace in all 10 supported locales (en, es, de, fr, it, nl, pl, pt, ro, ru)
+- `tests/test_billing.py`: 14 tests covering `is_subscribed`, config endpoint, paywall dependency, checkout, portal, and all four webhook events (Stripe SDK fully mocked)
+
+## [1.3.19] - 2026-05-10
+
+### Added
+- Account deletion confirmation email: when a user deletes their own account via `DELETE /api/auth/me`, a transactional email is sent in the user's native language confirming the deletion and including a security notice; admin-initiated deletions do not trigger this email
+- `send_account_deleted_email` function in `email_service.py` with `_DELETION_I18N` translations for all 10 supported locales
+- `account_deleted.html` email template (no CTA button, plain confirmation + security footer)
+
+### Fixed
+- Romanian `link_fallback` in `_VERIFY_I18N` and `_RESET_I18N`: `lipirii` (noun genitive) corrected to `lipește` (imperative verb)
+- Romanian `step1` in `_WELCOME_I18N`: `Faci` (indicative) corrected to `Fă` (imperative), consistent with the other steps
+- `welcome.html` email template: added `margin-bottom: 20px` to `.btn` so the CTA button has breathing room before the footer divider
+
 ## [1.3.18] - 2026-05-10
 
 ### Added

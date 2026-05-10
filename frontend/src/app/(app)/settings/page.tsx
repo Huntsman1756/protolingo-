@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation'
 import NextImage from 'next/image'
 import { ExternalLink } from 'lucide-react'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { useConfigStore } from '@/store/config'
+import { isSubscribed } from '@/store/auth'
 
 const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
 
@@ -16,12 +18,14 @@ export default function SettingsPage() {
   const t = useTranslations('settings')
   const tCommon = useTranslations('common')
   const tLang = useTranslations('languages')
+  const tBilling = useTranslations('billing')
   const user = useAuthStore((s) => s.user)
   const setUser = useAuthStore((s) => s.setUser)
   const logout = useAuthStore((s) => s.logout)
   const router = useRouter()
   const theme = useThemeStore((s) => s.theme)
   const setTheme = useThemeStore((s) => s.setTheme)
+  const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
 
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
@@ -40,6 +44,8 @@ export default function SettingsPage() {
   const [logoutConfirm, setLogoutConfirm] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [portalLoading, setPortalLoading] = useState(false)
+  const [portalError, setPortalError] = useState<string | null>(null)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [avatarUploading, setAvatarUploading] = useState(false)
@@ -173,6 +179,20 @@ export default function SettingsPage() {
       setConvMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
     } finally {
       setSavingConv(false)
+    }
+  }
+
+  async function handleManageSubscription() {
+    setPortalLoading(true)
+    setPortalError(null)
+    try {
+      const res = await apiFetch('/api/billing/portal', { method: 'POST' })
+      if (!res.ok) throw new Error(tBilling('portalError'))
+      const { url } = await res.json()
+      window.location.href = url
+    } catch (err) {
+      setPortalError(err instanceof Error ? err.message : tBilling('portalError'))
+      setPortalLoading(false)
     }
   }
 
@@ -480,6 +500,69 @@ export default function SettingsPage() {
           </a>
         </div>
       </div>
+
+      {/* Subscription / Billing — only shown when Stripe is enabled */}
+      {stripeEnabled && (
+        <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+          <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+            <span className="text-fl-label text-fl-muted-2">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{tBilling('section')}</span>
+          </div>
+          <div className="space-y-4">
+            {/* Status badge */}
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-xs text-fl-muted-1 tracking-widest uppercase">{tBilling('status')}</span>
+              <span className={`font-mono text-xs font-bold tracking-widest uppercase px-2.5 py-1 border ${user?.subscription_status === 'active'
+                  ? 'border-green-600/40 text-green-500'
+                  : user?.subscription_status === 'trialing'
+                    ? 'border-fl-accent/40 text-fl-accent'
+                    : user?.subscription_status === 'past_due'
+                      ? 'border-yellow-500/40 text-yellow-500'
+                      : 'border-fl-border text-fl-muted-3'
+                }`}>
+                {user?.subscription_status === 'active' && tBilling('statusActive')}
+                {user?.subscription_status === 'trialing' && tBilling('statusTrialing')}
+                {user?.subscription_status === 'past_due' && tBilling('statusPastDue')}
+                {(!user?.subscription_status || user?.subscription_status === 'none' || user?.subscription_status === 'canceled') && tBilling('statusNone')}
+              </span>
+            </div>
+
+            {/* Next billing / end date */}
+            {user?.subscription_ends_at && (
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-xs text-fl-muted-1 tracking-widest uppercase">
+                  {user.subscription_status === 'canceled' ? tBilling('accessUntil') : tBilling('nextBilling')}
+                </span>
+                <span className="font-mono text-xs text-fl-muted-1">
+                  {new Date(user.subscription_ends_at).toLocaleDateString()}
+                </span>
+              </div>
+            )}
+
+            {/* Manage or subscribe button */}
+            {isSubscribed(user, stripeEnabled) ? (
+              <button
+                onClick={handleManageSubscription}
+                disabled={portalLoading}
+                className="w-full font-mono text-xs tracking-widest uppercase py-2.5 border border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 disabled:opacity-50 transition-colors"
+              >
+                {portalLoading ? '…' : `— ${tBilling('manage')}`}
+              </button>
+            ) : (
+              <a
+                href="/dashboard"
+                className="block w-full text-center font-mono text-xs tracking-widest uppercase py-2.5 bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 transition-colors"
+              >
+                — {tBilling('subscribe')}
+              </a>
+            )}
+
+            {portalError && (
+              <p className="font-mono text-fl-hint text-red-500">{portalError}</p>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Legal */}
       <div className="border border-fl-border bg-fl-surface p-6 mt-4">

@@ -211,6 +211,10 @@ async def update_user(
         user.conversation_weekly_minutes = data.conversation_weekly_minutes
     if data.monthly_tokens_limit is not None:
         user.monthly_tokens_limit = data.monthly_tokens_limit
+    if data.subscription_status is not None:
+        user.subscription_status = data.subscription_status
+    if data.subscription_ends_at is not None:
+        user.subscription_ends_at = data.subscription_ends_at
 
     await db.commit()
     await db.refresh(user)

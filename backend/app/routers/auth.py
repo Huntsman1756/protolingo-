@@ -306,8 +306,12 @@ async def delete_me(
     if token:
         await redis.delete(f"refresh:{token}")
     response.delete_cookie("refresh_token")
+    user_email = current_user.email
+    user_display_name = current_user.display_name
+    user_locale = current_user.native_language
     await db.delete(current_user)
     await db.commit()
+    await email_service.send_account_deleted_email(user_email, user_display_name, user_locale)
 
 
 @router.get("/quota")

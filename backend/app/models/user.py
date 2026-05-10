@@ -40,6 +40,13 @@ class User(Base):
     monthly_tokens_limit: Mapped[int] = mapped_column(
         Integer, nullable=False, default=1_000_000   # 0 = unlimited; new users get 1M/month
     )
+    # Stripe subscription
+    stripe_customer_id: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    subscription_status: Mapped[str] = mapped_column(
+        String(20), nullable=False, default="none"
+        # Values: "none" | "trialing" | "active" | "past_due" | "canceled"
+    )
+    subscription_ends_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
     avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     bio: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     learning_goals: Mapped[Optional[str]] = mapped_column(Text, nullable=True)  # JSON array string

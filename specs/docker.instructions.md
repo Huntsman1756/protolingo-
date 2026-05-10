@@ -53,14 +53,14 @@ The compose file defines 6 services (plus optional Ollama) and 2 named volumes (
 - Exposes port 3000 on the host
 - Depends on backend
 
-### Kokoro TTS (Phase 2)
+### Kokoro TTS
 
 - Custom fork: `ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master` — PyTorch 2.7+ with cu128 for Blackwell GPU (sm_120+), backwards-compatible with sm_50+
 - Only required when `TTS_PROVIDER=local`; can be removed from the compose stack when `TTS_PROVIDER=openai`
 - NVIDIA GPU via `deploy.resources.reservations.devices` block
 - No environment variables needed (uses defaults)
 
-### Whisper STT (Phase 2)
+### Whisper STT
 
 - GPU image by default (`latest-gpu`)
 - Only required when `STT_PROVIDER=local`; can be removed when `STT_PROVIDER=openai`
