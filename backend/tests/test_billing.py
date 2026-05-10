@@ -21,7 +21,7 @@ from app.services.subscription_service import is_subscribed
 # available without re-registering on every test (which causes duplicates).
 from app.routers import billing as _billing_module
 
-_BILLING_ROUTES = {r.path for r in app.routes}
+_BILLING_ROUTES = {getattr(r, "path", None) for r in app.routes}
 if "/api/billing/checkout" not in _BILLING_ROUTES:
     app.include_router(_billing_module.router)
 
