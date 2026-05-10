@@ -160,6 +160,9 @@
     "newPasswordPlaceholder": "Leeg laten om te behouden",
     "confirmPassword": "Wachtwoord bevestigen",
     "confirmPasswordPlaceholder": "Herhaal nieuw wachtwoord",
+    "bio": "Over jou (AI-context)",
+    "bioPlaceholder": "bijv. Ik ben ontwikkelaar en reis veel voor mijn werk...",
+    "bioHint": "De AI-tutor gebruikt dit om gesprekken te personaliseren.",
     "saveChanges": "Wijzigingen opslaan",
     "saving": "Opslaan...",
     "saved": "Profiel bijgewerkt.",
@@ -781,6 +784,19 @@
     "subtitle": "Welk Engels wil je leren?",
     "chooseVariant": "Selecteer variant",
     "continue": "Doorgaan",
-    "saveFailed": "Opslaan van voorkeuren mislukt"
+    "saveFailed": "Opslaan van voorkeuren mislukt",
+    "goals": {
+      "title": "Jouw leerdoelen",
+      "subtitle": "Waarvoor wil je Engels gebruiken? Selecteer alles wat van toepassing is.",
+      "skip": "Overslaan",
+      "travel": "Reizen en toerisme",
+      "work": "Werk en carrière",
+      "academic": "Studie en academisch",
+      "daily": "Dagelijkse conversatie",
+      "media": "Films, muziek en series",
+      "emigration": "In het buitenland leven",
+      "exams": "Examens en certificaten",
+      "social": "Socialiseren"
+    }
   }
 }

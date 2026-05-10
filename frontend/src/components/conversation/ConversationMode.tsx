@@ -55,6 +55,75 @@ function QuotaBar({ label, used, limit, unlimited }: { label: string; used: numb
   )
 }
 
+function quotaPillSummary(quota: QuotaStatus): { text: string; alert: boolean } {
+  const parts: string[] = []
+  let alert = false
+
+  if (!quota.sessions_unlimited) {
+    parts.push(`${quota.sessions_this_week}/${quota.sessions_limit} ses`)
+    if (quota.sessions_this_week >= quota.sessions_limit) alert = true
+  }
+
+  if (!quota.time_unlimited) {
+    parts.push(`${quota.minutes_today}/${quota.minutes_limit} min`)
+    if (quota.minutes_today >= quota.minutes_limit) alert = true
+  }
+
+  if (!quota.tokens_unlimited) {
+    const kUsed = Math.round(quota.tokens_this_month / 1000)
+    const kLimit = Math.round(quota.tokens_monthly_limit / 1000)
+    parts.push(`${kUsed}k/${kLimit}k tok`)
+    if (quota.tokens_this_month >= quota.tokens_monthly_limit) alert = true
+  }
+
+  return { text: parts.length ? parts.join(' · ') : '∞', alert }
+}
+
+function QuotaPill({ quota, t }: { quota: QuotaStatus; t: (k: string) => string }) {
+  const [open, setOpen] = useState(false)
+  const { text, alert } = quotaPillSummary(quota)
+
+  return (
+    <div className="w-full">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className={`w-full flex items-center justify-between px-3 py-1.5 border font-mono text-fl-hint tracking-widest uppercase transition-colors ${alert
+            ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
+            : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
+          }`}
+      >
+        <span>● {text}</span>
+        <span className="text-fl-muted-4">{open ? '▴' : '▾'}</span>
+      </button>
+
+      {open && (
+        <div className="border border-t-0 border-fl-border bg-fl-surface px-4 py-3 space-y-1.5">
+          <QuotaBar
+            label={t('quotaSessions')}
+            used={quota.sessions_this_week}
+            limit={quota.sessions_limit}
+            unlimited={quota.sessions_unlimited}
+          />
+          <QuotaBar
+            label={t('quotaMinutes')}
+            used={quota.minutes_today}
+            limit={quota.minutes_limit}
+            unlimited={quota.time_unlimited}
+          />
+          {!quota.tokens_unlimited && (
+            <QuotaBar
+              label={t('quotaTokens')}
+              used={quota.tokens_this_month}
+              limit={quota.tokens_monthly_limit}
+              unlimited={false}
+            />
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function ConversationMode({
   initialContext,
   autoStart,
@@ -369,7 +438,7 @@ export default function ConversationMode({
       {warningSeconds !== null && <SessionTimeoutBanner seconds={warningSeconds} />}
 
       {/* Transcript area */}
-      <div className="flex-1 overflow-y-auto space-y-3 mb-4 min-h-[120px]">
+      <div className="flex-1 overflow-y-auto space-y-3 mb-4 min-h-[120px] px-2">
         {transcript.length === 0 && !streamingText && status === 'live' && (
           <p className="font-mono text-fl-label text-fl-muted-4 text-center py-8">
             {t('tapToStart')}
@@ -415,31 +484,8 @@ export default function ConversationMode({
 
       {/* Controls */}
       <div className="flex flex-col items-center gap-4 pb-2">
-        {/* Quota widget */}
-        {quota && (
-          <div className="w-full space-y-1.5 border border-fl-border bg-fl-surface px-4 py-3">
-            <QuotaBar
-              label={t('quotaSessions')}
-              used={quota.sessions_this_week}
-              limit={quota.sessions_limit}
-              unlimited={quota.sessions_unlimited}
-            />
-            <QuotaBar
-              label={t('quotaMinutes')}
-              used={quota.minutes_today}
-              limit={quota.minutes_limit}
-              unlimited={quota.time_unlimited}
-            />
-            {!quota.tokens_unlimited && (
-              <QuotaBar
-                label={t('quotaTokens')}
-                used={quota.tokens_this_month}
-                limit={quota.tokens_monthly_limit}
-                unlimited={false}
-              />
-            )}
-          </div>
-        )}
+        {/* Quota pill */}
+        {quota && <QuotaPill quota={quota} t={t} />}
         <StatusIndicator
           status={status}
           userSpeaking={userSpeaking}

@@ -160,6 +160,9 @@
     "newPasswordPlaceholder": "Leave empty to keep",
     "confirmPassword": "Confirm Password",
     "confirmPasswordPlaceholder": "Repeat new password",
+    "bio": "About You (AI Context)",
+    "bioPlaceholder": "e.g. I'm a software developer who travels frequently for work...",
+    "bioHint": "The AI tutor will use this to personalize conversations.",
     "saveChanges": "Save Changes",
     "saving": "Saving...",
     "saved": "Profile updated.",
@@ -781,6 +784,19 @@
     "subtitle": "Which English do you want to learn?",
     "chooseVariant": "Select variant",
     "continue": "Continue",
-    "saveFailed": "Failed to save preferences"
+    "saveFailed": "Failed to save preferences",
+    "goals": {
+      "title": "Your Learning Goals",
+      "subtitle": "What do you want to use English for? Select all that apply.",
+      "skip": "Skip",
+      "travel": "Travel & Tourism",
+      "work": "Work & Professional",
+      "academic": "Studies & Academic",
+      "daily": "Daily Conversation",
+      "media": "Movies, Music & Series",
+      "emigration": "Living Abroad",
+      "exams": "Exams & Certifications",
+      "social": "Socializing"
+    }
   }
 }
