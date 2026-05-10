@@ -6,7 +6,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
-from app.core.deps import require_subscription
+from app.core.deps import get_current_user, require_subscription
 from app.models.lesson import Exercise, Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -28,7 +28,7 @@ router = APIRouter(prefix="/api/study-plan", tags=["study-plan"])
 
 @router.get("/current", response_model=Optional[StudyPlanResponse])
 async def get_current_plan(
-    current_user: User = Depends(require_subscription),
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(

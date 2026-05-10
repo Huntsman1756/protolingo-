@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { cookies, headers } from 'next/headers'
+import { cookies } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
 
 export default async function Home() {
@@ -10,14 +10,14 @@ export default async function Home() {
   const tCommon = await getTranslations('common')
   const tBilling = await getTranslations('billing')
 
-  // Fetch Stripe config server-side to conditionally show pricing section
+  // Fetch Stripe config server-side to conditionally show pricing section.
+  // Use BACKEND_URL directly to avoid the Next.js rewrite proxy chain,
+  // which can fail in SSR context (self-referential fetch + SSL issues).
   let stripeEnabled = false
   let trialDays = 7
   try {
-    const hdrs = await headers()
-    const host = hdrs.get('host') ?? 'localhost'
-    const proto = process.env.NODE_ENV === 'production' ? 'https' : 'http'
-    const configRes = await fetch(`${proto}://${host}/api/config`, { next: { revalidate: 3600 } })
+    const backendUrl = process.env.BACKEND_URL || 'http://backend:8000'
+    const configRes = await fetch(`${backendUrl}/api/config`, { next: { revalidate: 3600 } })
     if (configRes.ok) {
       const cfg = await configRes.json()
       stripeEnabled = cfg.stripe_enabled ?? false
@@ -149,7 +149,7 @@ export default async function Home() {
                 </span>
               </div>
               <p className="font-mono text-xl font-bold text-fl-fg">
-                119<span className="text-sm text-fl-muted-1">€ / {tBilling('year')}</span>
+                149.50<span className="text-sm text-fl-muted-1">€ / {tBilling('year')}</span>
               </p>
               <ul className="flex flex-col gap-1.5">
                 {['feature1', 'feature2', 'feature3', 'feature4', 'feature5'].map((k) => (
