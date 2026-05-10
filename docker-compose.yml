@@ -78,6 +78,7 @@ services:
       STRIPE_PRICE_MONTHLY: ${STRIPE_PRICE_MONTHLY:-}
       STRIPE_PRICE_YEARLY: ${STRIPE_PRICE_YEARLY:-}
       STRIPE_TRIAL_DAYS: ${STRIPE_TRIAL_DAYS:-7}
+      STRIPE_BASE_URL: ${STRIPE_BASE_URL:-http://localhost:3000}
     depends_on:
       postgres:
         condition: service_healthy
