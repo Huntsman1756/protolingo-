@@ -16,7 +16,7 @@ Introduce an optional, fully configurable subscription layer backed by Stripe. W
 | Plan | Price | Billing | Trial |
 |------|-------|---------|-------|
 | Monthly | 14.95 €/month | Monthly recurring | 7 days free (card required) |
-| Yearly | 119 €/year (≈ 9.92 €/month, 34% off) | Annual recurring | 7 days free (card required) |
+| Yearly | 149.50 €/year (≈ 12.46 €/month, 2 months free) | Annual recurring | 7 days free (card required) |
 
 ### Quotas applied on subscription activation
 | Quota field | Value |
@@ -252,11 +252,11 @@ function isSubscribed(user: User, stripeEnabled: boolean): boolean {
 ### 4.3 `PaywallBanner` component
 Shown in place of protected page content when `stripeEnabled && !isSubscribed`.
 
-- Headline: "Activa tu prueba gratuita de 7 días" (i18n)
+- Headline: "Start your 7-day free trial" (i18n)
 - Subtext: brief list of what's included
-- Two buttons: "Mensual — 14.95€/mes" and "Anual — 119€/año (ahorra 34%)"
+- Two buttons: "Monthly — €14.95/month" and "Yearly — €149.50/year (2 months free)"
 - Each button calls `POST /api/billing/checkout` with the corresponding plan, then `router.push(url)`
-- Small link "¿Ya eres suscriptor? Refresca tu sesión" (calls `/api/auth/refresh` to re-sync status)
+- Small link "Already a subscriber? Refresh your session" (calls `/api/auth/refresh` to re-sync status)
 
 ### 4.4 Apply paywall to protected pages
 In each protected page component, check `stripeEnabled && !isSubscribed(user, stripeEnabled)`:
@@ -271,10 +271,10 @@ The rest of the page (sidebar, header) remains visible — only the main content
 
 ### 4.5 Billing section in Settings/Profile
 Only rendered when `stripeEnabled`. Shows:
-- Current plan: "Mensual" / "Anual" / "Período de prueba" / "Sin suscripción"
+- Current plan: "Monthly" / "Yearly" / "Trial" / "No subscription"
 - Status badge: active (green) / trialing (blue) / past_due (amber) / canceled (red)
 - Next billing date (from `subscription_ends_at`)
-- Button "Gestionar suscripción" → `POST /api/billing/portal` → `router.push(url)`
+- Button "Manage subscription" → `POST /api/billing/portal` → `router.push(url)`
 
 ### 4.6 Pricing section in landing page (`/`)
 Only rendered when `stripeEnabled`. Positioned after the features section.
@@ -282,24 +282,24 @@ Only rendered when `stripeEnabled`. Positioned after the features section.
 Layout:
 ```
 ┌─────────────────────────┐  ┌─────────────────────────┐
-│  Mensual                │  │  Anual  ★ Más popular   │
-│  14.95 €/mes            │  │  119 €/año              │
-│                         │  │  9.92 €/mes             │
-│  7 días gratis          │  │  7 días gratis          │
-│                         │  │  Ahorra 34%             │
-│  ✓ 3 sesiones de voz    │  │  ✓ 3 sesiones de voz    │
-│  ✓ 30 min por sesión    │  │  ✓ 30 min por sesión    │
-│  ✓ Chat con tutor IA    │  │  ✓ Chat con tutor IA    │
-│  ✓ Plan personalizado   │  │  ✓ Plan personalizado   │
-│  ✓ Lecciones y          │  │  ✓ Lecciones y          │
+│  Monthly                │  │  Yearly  ★ Best value   │
+│  14.95 €/month          │  │  149.50 €/year          │
+│                         │  │  12.46 €/month          │
+│  7 days free            │  │  7 days free            │
+│                         │  │  2 months free          │
+│  ✓ 3 voice sessions     │  │  ✓ 3 voice sessions     │
+│  ✓ 30 min per session   │  │  ✓ 30 min per session   │
+│  ✓ AI tutor chat        │  │  ✓ AI tutor chat        │
+│  ✓ Personalised plan    │  │  ✓ Personalised plan    │
+│  ✓ Lessons &            │  │  ✓ Lessons &            │
 │    flashcards           │  │    flashcards           │
 │                         │  │                         │
-│  [Empezar gratis]       │  │  [Empezar gratis]       │
+│  [Start for free]       │  │  [Start for free]       │
 └─────────────────────────┘  └─────────────────────────┘
-         Cancela cuando quieras · Sin permanencia
+              Cancel anytime · No commitment
 ```
 
-Clicking "Empezar gratis" redirects to `/login` if not authenticated, or calls `/api/billing/checkout` directly if already logged in.
+Clicking "Start for free" redirects to `/login` if not authenticated, or calls `/api/billing/checkout` directly if already logged in.
 
 ### 4.7 `/billing/success` page
 - Shown after successful Stripe Checkout.
