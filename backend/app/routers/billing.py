@@ -92,6 +92,7 @@ async def create_checkout_session(
         customer=customer_id,
         line_items=[{"price": price_id, "quantity": 1}],
         mode="subscription",
+        allow_promotion_codes=True,
         subscription_data=subscription_data,
         success_url=f"{settings.STRIPE_BASE_URL}/billing/success",
         cancel_url=f"{settings.STRIPE_BASE_URL}/billing/canceled",

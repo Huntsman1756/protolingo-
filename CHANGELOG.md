@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.7] - 2026-05-11
+
+### Fixed
+- Alembic migration `0017` revision ID shortened from 38 to 23 characters to fit the `varchar(32)` limit of the `alembic_version` table; migration file renamed to `0017_fix_tokens_default.py`.
+- Stripe Checkout Session now passes `allow_promotion_codes=True` so the promo code field is visible to users.
+
 ## [1.4.6] - 2026-05-11
 
 ### Fixed
