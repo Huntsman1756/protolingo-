@@ -14,7 +14,8 @@
     "terms": "Regulamin",
     "privacy": "Prywatność",
     "contact": "Kontakt",
-    "aboutMe": "O mnie"
+    "aboutMe": "O mnie",
+    "github": "GitHub"
   },
   "common": {
     "loading": "Ładowanie...",
@@ -111,7 +112,8 @@
       "termsLink": "Regulamin",
       "andWord": "oraz",
       "privacyLink": "Politykę prywatności",
-      "termsRequired": "Musisz zaakceptować regulamin, aby kontynuować"
+      "termsRequired": "Musisz zaakceptować regulamin, aby kontynuować",
+      "invalidPassword": "Hasło musi mieć od 10 do 25 znaków i zawierać co najmniej jedną wielką literę, cyfrę i symbol"
     },
     "verifyEmail": {
       "title": "Weryfikacja e-mail",

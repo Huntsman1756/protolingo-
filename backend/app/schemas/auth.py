@@ -1,8 +1,21 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime
 from typing import Optional
+
+PASSWORD_PATTERN = re.compile(r'^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{10,25}$')
+
+
+def validate_password_strength(v: str) -> str:
+    if not PASSWORD_PATTERN.match(v):
+        raise ValueError(
+            "Password must be 10-25 characters and include at least "
+            "one uppercase letter, one number, and one symbol"
+        )
+    return v
+
 
 from pydantic import BaseModel, EmailStr, Field, field_serializer, field_validator
 
@@ -20,11 +33,16 @@ VALID_LEARNING_GOALS: set[str] = {
 class RegisterRequest(BaseModel):
     username: str = Field(min_length=3, max_length=50, pattern=r"^[\w.-]+$")
     email: EmailStr
-    password: str = Field(min_length=8, max_length=128)
+    password: str = Field(min_length=10, max_length=25)
     display_name: Optional[str] = Field(default=None, max_length=100)
     native_language: str = Field(min_length=2, max_length=5)
     target_language: str = "en-US"
     invite_token: Optional[str] = None
+
+    @field_validator("password")
+    @classmethod
+    def check_password(cls, v: str) -> str:
+        return validate_password_strength(v)
 
     @field_validator("native_language")
     @classmethod
@@ -43,7 +61,7 @@ class RegisterRequest(BaseModel):
 
 class LoginRequest(BaseModel):
     email: EmailStr
-    password: str = Field(min_length=1, max_length=128)
+    password: str = Field(min_length=1, max_length=25)
 
 
 class TokenResponse(BaseModel):
@@ -103,13 +121,20 @@ class UserResponse(BaseModel):
 class UserUpdateRequest(BaseModel):
     display_name: Optional[str] = Field(default=None, max_length=100)
     email: Optional[EmailStr] = None
-    password: Optional[str] = Field(default=None, min_length=8, max_length=128)
+    password: Optional[str] = Field(default=None, min_length=10, max_length=25)
     native_language: Optional[str] = Field(default=None, min_length=2, max_length=5)
     target_language: Optional[str] = None
     conversation_max_duration: Optional[int] = None
     conversation_inactivity_timeout: Optional[int] = None
     bio: Optional[str] = Field(default=None, max_length=500)
     learning_goals: Optional[list[str]] = None
+
+    @field_validator("password")
+    @classmethod
+    def check_password(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None:
+            return validate_password_strength(v)
+        return v
 
     @field_validator("target_language")
     @classmethod
@@ -148,4 +173,9 @@ class ForgotPasswordRequest(BaseModel):
 
 class ResetPasswordRequest(BaseModel):
     token: str
-    new_password: str = Field(min_length=8, max_length=128)
+    new_password: str = Field(min_length=10, max_length=25)
+
+    @field_validator("new_password")
+    @classmethod
+    def check_new_password(cls, v: str) -> str:
+        return validate_password_strength(v)

@@ -14,7 +14,8 @@
     "terms": "Gebruiksvoorwaarden",
     "privacy": "Privacy",
     "contact": "Contact",
-    "aboutMe": "Over mij"
+    "aboutMe": "Over mij",
+    "github": "GitHub"
   },
   "common": {
     "loading": "Laden...",
@@ -111,7 +112,8 @@
       "termsLink": "Gebruiksvoorwaarden",
       "andWord": "en de",
       "privacyLink": "Privacybeleid",
-      "termsRequired": "Je moet de voorwaarden accepteren om door te gaan"
+      "termsRequired": "Je moet de voorwaarden accepteren om door te gaan",
+      "invalidPassword": "Het wachtwoord moet 10-25 tekens lang zijn en minimaal één hoofdletter, één cijfer en één symbool bevatten"
     },
     "verifyEmail": {
       "title": "E-mailverificatie",

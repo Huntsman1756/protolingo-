@@ -104,6 +104,7 @@ Registration, authentication, and user preferences.
 **Registration rules:**
 - First registered user becomes admin automatically when `FIRST_USER_IS_ADMIN=true` (default).
 - `ALLOW_REGISTRATION=false` blocks public signups; admin creates users or generates single-use invite links (48h expiry in Redis).
+- `BLOCKED_EMAIL_DOMAINS` is a JSON array of lowercase domain strings (e.g. `["yopmail.com","mailinator.com"]`). Registrations using an email from any listed domain are rejected with HTTP 422 before any DB access. Defaults to `[]` (no blocking).
 - `POST /register` returns an `access_token` + sets the refresh token cookie so the frontend can redirect directly to `/onboarding` without an intermediate login.
 - On `/onboarding` the user chooses their `target_language`; the choice is saved via `PATCH /me` before accessing the app.
 
@@ -497,6 +498,7 @@ All configuration is environment-driven. Key variables:
 | REFRESH_TOKEN_EXPIRE_DAYS | 30 | Refresh token TTL |
 | ALLOW_REGISTRATION | true | Enables/disables public signups |
 | FIRST_USER_IS_ADMIN | true | Auto-admin for first user |
+| BLOCKED_EMAIL_DOMAINS | [] | JSON array of blocked email domains (disposable/temporary providers) |
 | LLM_PROVIDER | ollama | ollama / openai / anthropic / deepseek |
 | TTS_PROVIDER | local | local (Kokoro) or openai |
 | STT_PROVIDER | local | local (Whisper) or openai |

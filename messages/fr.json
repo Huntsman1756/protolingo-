@@ -14,7 +14,8 @@
     "terms": "CGU",
     "privacy": "Confidentialité",
     "contact": "Contact",
-    "aboutMe": "À propos"
+    "aboutMe": "À propos",
+    "github": "GitHub"
   },
   "common": {
     "loading": "Chargement...",
@@ -111,7 +112,8 @@
       "termsLink": "Conditions d'utilisation",
       "andWord": "et la",
       "privacyLink": "Politique de confidentialité",
-      "termsRequired": "Vous devez accepter les conditions pour continuer"
+      "termsRequired": "Vous devez accepter les conditions pour continuer",
+      "invalidPassword": "Le mot de passe doit comporter entre 10 et 25 caractères et inclure au moins une majuscule, un chiffre et un symbole"
     },
     "verifyEmail": {
       "title": "Vérification de l'e-mail",

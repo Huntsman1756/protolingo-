@@ -13,7 +13,7 @@ All REST endpoints are prefixed under `/api`. The WebSocket endpoint is at `/ws/
 
 | Method | Path | Rate limit | Description |
 |--------|------|------------|-------------|
-| POST | `/register` | 5/min (+ invite-gated) | Creates account (respects `ALLOW_REGISTRATION` and invite token). Returns `access_token` + sets httpOnly refresh cookie — no separate login step needed. |
+| POST | `/register` | 5/min (+ invite-gated) | Creates account (respects `ALLOW_REGISTRATION`, invite token, and `BLOCKED_EMAIL_DOMAINS`). Password policy: 10–25 chars, at least one uppercase letter, one number, and one symbol. Returns `access_token` + sets httpOnly refresh cookie — no separate login step needed. Rejects blocked domains or invalid password with HTTP 422. |
 | POST | `/login` | 10/min | Returns access_token (JWT, 15 min) + refresh_token in httpOnly cookie (30 days) |
 | POST | `/refresh` | 20/min | Rotates refresh token, returns new access_token |
 | POST | `/logout` | None | Deletes refresh token from Redis, clears cookie |

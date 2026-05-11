@@ -101,7 +101,7 @@ export default async function Home() {
       <footer className="border-t border-fl-border py-6 px-6">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
           <span className="font-mono text-fl-hint text-fl-muted-3 tracking-widest uppercase">
-            © {new Date().getFullYear()} FreeLingo · {t('footer')}
+            © {new Date().getFullYear()} FreeLingo
           </span>
           <div className="flex gap-6">
             <a href="mailto:freelingo@arturocarreterocalvo.com" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
@@ -109,6 +109,9 @@ export default async function Home() {
             </a>
             <a href="https://arturocarreterocalvo.com" target="_blank" rel="noopener noreferrer" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
               {t('aboutMe')}
+            </a>
+            <a href="https://github.com/ArtCC/freelingo" target="_blank" rel="noopener noreferrer" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
+              {t('github')}
             </a>
             <Link href="/privacy?from=landing" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
               {t('privacy')}
