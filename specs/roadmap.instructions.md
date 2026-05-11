@@ -191,7 +191,7 @@ This document records what was built and the completion criteria met.
 
 **Plans:**
 - Monthly: 14.95 €/month · 7-day trial (card required)
-- Yearly: 119 €/year (≈ 9.92 €/month, 34% off) · 7-day trial (card required)
+- Yearly: 149.50 €/year (≈ 12.46 €/month, 2 months free) · 7-day trial (card required)
 
 **Completion criteria:**
 - [x] `STRIPE_ENABLED=false` → no paywall, no billing UI, all endpoints accessible

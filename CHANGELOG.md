@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.6] - 2026-05-11
+
+### Fixed
+- `monthly_tokens_limit` server-default in PostgreSQL corrected from `0` (unlimited) to `1000000`, aligning it with the ORM default; new migration `0017_fix_monthly_tokens_server_default`.
+
+### Changed
+- README: added **Hosted service** section with link to [freelingo.app](https://freelingo.app) to make the managed subscription option visible.
+
 ## [1.4.5] - 2026-05-11
 
 ### Added
@@ -68,7 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Admin can manually override `subscription_status` and `subscription_ends_at` via `PATCH /api/admin/users/{id}`
 - `store/config.ts` (frontend): fetches `/api/config` on app load, exposes `stripeEnabled` and `stripeTrialDays`
 - `store/auth.ts`: `User` type extended with `subscription_status` and `subscription_ends_at`; exported `isSubscribed()` helper
-- `PaywallBanner` and `PaywallGate` components: paywall overlay with monthly (14.95€) and yearly (119€) plan buttons; renders nothing when Stripe is disabled
+- `PaywallBanner` and `PaywallGate` components: paywall overlay with monthly (14.95€) and yearly (149.50€) plan buttons; renders nothing when Stripe is disabled
 - `PaywallGate` applied to six frontend pages: `/chat`, `/conversation`, `/flashcards`, `/dashboard`, `/lesson/[id]`, `/assessment/level-test`
 - Settings page: subscription status badge, next billing date, "Manage subscription" portal link, "Subscribe" CTA — section hidden when Stripe is disabled
 - Landing page: pricing section (two plan cards) conditionally rendered when `STRIPE_ENABLED=true`
