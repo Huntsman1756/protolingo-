@@ -8,7 +8,7 @@ async def test_register_success(client):
         json={
             "username": "newuser",
             "email": "new@test.com",
-            "password": "securepass",
+            "password": "Test1234!@",
             "display_name": "New User",
             "native_language": "es",
         },
@@ -28,7 +28,7 @@ async def test_register_duplicate_username(client):
         json={
             "username": "dup",
             "email": "dup@test.com",
-            "password": "pass1234",
+            "password": "Test1234!@",
             "display_name": "Dup",
             "native_language": "es",
         },
@@ -38,7 +38,7 @@ async def test_register_duplicate_username(client):
         json={
             "username": "dup",
             "email": "dup2@test.com",
-            "password": "pass5678",
+            "password": "Test5678!@",
             "display_name": "Dup2",
             "native_language": "fr",
         },
@@ -58,7 +58,7 @@ async def test_register_when_closed_without_invite(client):
             json={
                 "username": "locked",
                 "email": "locked@test.com",
-                "password": "pass1234",
+                "password": "Test1234!@",
                 "display_name": "Locked",
                 "native_language": "es",
             },
@@ -75,7 +75,7 @@ async def test_first_user_is_admin(client):
         json={
             "username": "first",
             "email": "first@test.com",
-            "password": "pass1234",
+            "password": "Test1234!@",
             "display_name": "First",
             "native_language": "en",
         },
@@ -92,7 +92,7 @@ async def test_second_user_is_not_admin(client):
         json={
             "username": "admin_first",
             "email": "adminfirst@test.com",
-            "password": "pass1234",
+            "password": "Test1234!@",
             "display_name": "Admin",
             "native_language": "en",
         },
@@ -102,7 +102,7 @@ async def test_second_user_is_not_admin(client):
         json={
             "username": "regular",
             "email": "regular@test.com",
-            "password": "pass1234",
+            "password": "Test1234!@",
             "display_name": "Regular",
             "native_language": "es",
         },
@@ -119,14 +119,14 @@ async def test_login_success_and_sets_cookie(client):
         json={
             "username": "loginuser",
             "email": "loginuser@test.com",
-            "password": "testpass",
+            "password": "Test1234!@",
             "display_name": "Login",
             "native_language": "es",
         },
     )
     response = await client.post(
         "/api/auth/login",
-        json={"email": "loginuser@test.com", "password": "testpass"},
+        json={"email": "loginuser@test.com", "password": "Test1234!@"},
     )
     assert response.status_code == 200
     data = response.json()
@@ -175,14 +175,14 @@ async def test_refresh_rotates_token(client):
         json={
             "username": "refreshuser",
             "email": "refreshuser@test.com",
-            "password": "testpass",
+            "password": "Test1234!@",
             "display_name": "Refresh",
             "native_language": "en",
         },
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"email": "refreshuser@test.com", "password": "testpass"},
+        json={"email": "refreshuser@test.com", "password": "Test1234!@"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
@@ -206,14 +206,14 @@ async def test_refresh_replayed_token(client):
         json={
             "username": "replayuser",
             "email": "replayuser@test.com",
-            "password": "testpass1",
+            "password": "Test1234!@",
             "display_name": "Replay",
             "native_language": "en",
         },
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"email": "replayuser@test.com", "password": "testpass1"},
+        json={"email": "replayuser@test.com", "password": "Test1234!@"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
@@ -232,14 +232,14 @@ async def test_logout(client):
         json={
             "username": "logoutuser",
             "email": "logoutuser@test.com",
-            "password": "testpass1",
+            "password": "Test1234!@",
             "display_name": "Logout",
             "native_language": "en",
         },
     )
     login_resp = await client.post(
         "/api/auth/login",
-        json={"email": "logoutuser@test.com", "password": "testpass1"},
+        json={"email": "logoutuser@test.com", "password": "Test1234!@"},
     )
     refresh_cookie = login_resp.cookies.get("refresh_token")
 
@@ -412,19 +412,19 @@ async def test_reset_password_valid_token(client, db_session, mock_redis):
 
     response = await client.post(
         "/api/auth/reset-password",
-        json={"token": token, "new_password": "newpass12"},
+        json={"token": token, "new_password": "NewPass1!@"},
     )
     assert response.status_code == 200
 
     await db_session.refresh(user)
-    assert verify_password("newpass12", user.hashed_password)
+    assert verify_password("NewPass1!@", user.hashed_password)
 
 
 @pytest.mark.asyncio
 async def test_reset_password_invalid_token(client):
     response = await client.post(
         "/api/auth/reset-password",
-        json={"token": "bad-token", "new_password": "newpass12"},
+        json={"token": "bad-token", "new_password": "NewPass1!@"},
     )
     assert response.status_code == 400
 
@@ -575,13 +575,13 @@ async def test_reset_password_token_consumed_after_use(client, db_session, mock_
     # First call: success
     r1 = await client.post(
         "/api/auth/reset-password",
-        json={"token": token, "new_password": "newpass12"},
+        json={"token": token, "new_password": "NewPass1!@"},
     )
     assert r1.status_code == 200
 
     # Second call: token already consumed
     r2 = await client.post(
         "/api/auth/reset-password",
-        json={"token": token, "new_password": "anotherpass1"},
+        json={"token": token, "new_password": "AnotherP1!"},
     )
     assert r2.status_code == 400

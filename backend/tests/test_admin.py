@@ -37,7 +37,7 @@ async def test_create_user_as_admin(client, admin_user):
         headers=headers,
         json={
             "username": "newadminuser",
-            "password": "newpassword",
+            "password": "Test1234!@",
             "display_name": "New Admin User",
             "native_language": "es",
             "role": "user",
@@ -58,7 +58,7 @@ async def test_create_user_duplicate_username(client, admin_user):
         headers=headers,
         json={
             "username": "dupuser",
-            "password": "newpassword",
+            "password": "Test1234!@",
             "display_name": "Dup",
             "native_language": "es",
         },
@@ -68,7 +68,7 @@ async def test_create_user_duplicate_username(client, admin_user):
         headers=headers,
         json={
             "username": "dupuser",
-            "password": "newpassword",
+            "password": "Test1234!@",
             "display_name": "Dup2",
             "native_language": "fr",
         },
@@ -176,7 +176,7 @@ async def test_create_user_invalid_language(client, admin_user):
         headers=headers,
         json={
             "username": "langtest",
-            "password": "pass1234",
+            "password": "Test1234!@",
             "display_name": "Lang Test",
             "native_language": "xx",  # unsupported
             "role": "user",
@@ -195,7 +195,7 @@ async def test_create_user_invalid_email(client, admin_user):
         headers=headers,
         json={
             "username": "emailtest",
-            "password": "pass1234",
+            "password": "Test1234!@",
             "display_name": "Email Test",
             "native_language": "es",
             "email": "not-an-email",
