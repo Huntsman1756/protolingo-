@@ -77,6 +77,18 @@ freelingo/
 | 4     | Multi-language support | ✅ Complete         |
 | 5     | Stripe subscriptions   | ✅ Complete         |
 
+## Hosted service
+
+> **Don't want to manage your own server?**  
+> FreeLingo is available as a fully managed hosted service at **[freelingo.app](https://freelingo.app)**.
+
+Sign up, choose a subscription plan, and start learning immediately — no Docker, no GPU, no maintenance required.
+The hosted instance is operated by the FreeLingo team and always runs the latest stable version.
+
+Self-hosting remains free and open source under the AGPL-3.0 licence. The hosted service exists for users who prefer a managed experience.
+
+---
+
 ## Quick start
 
 ### Option A — Git clone + Docker Compose
