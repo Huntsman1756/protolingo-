@@ -42,6 +42,10 @@ export const useAuthStore = create<AuthStore>((set) => ({
     set({ accessToken: access }),
   setUser: (user: User) =>
     set({ user }),
-  logout: () =>
-    set({ accessToken: null, user: null }),
+  logout: () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('fl_tour_done')
+    }
+    set({ accessToken: null, user: null })
+  },
 }))

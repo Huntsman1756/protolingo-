@@ -14,7 +14,8 @@
     "terms": "Terms",
     "privacy": "Privacy",
     "contact": "Contact",
-    "aboutMe": "About me"
+    "aboutMe": "About me",
+    "github": "GitHub"
   },
   "common": {
     "loading": "Loading...",
@@ -111,7 +112,8 @@
       "termsLink": "Terms of Service",
       "andWord": "and the",
       "privacyLink": "Privacy Policy",
-      "termsRequired": "You must accept the terms to continue"
+      "termsRequired": "You must accept the terms to continue",
+      "invalidPassword": "Password must be 10-25 characters and include at least one uppercase letter, one number, and one symbol"
     },
     "verifyEmail": {
       "title": "Email verification",

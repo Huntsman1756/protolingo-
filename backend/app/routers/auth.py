@@ -66,6 +66,11 @@ async def register(
     else:
         pass
 
+    if settings.BLOCKED_EMAIL_DOMAINS:
+        email_domain = data.email.split("@")[-1].lower()
+        if email_domain in [d.lower() for d in settings.BLOCKED_EMAIL_DOMAINS]:
+            raise HTTPException(status_code=422, detail="Email domain not allowed")
+
     existing = await db.execute(
         select(User).where(
             User.username == data.username
