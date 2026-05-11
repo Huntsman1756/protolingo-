@@ -14,7 +14,8 @@
     "terms": "Termos",
     "privacy": "Privacidade",
     "contact": "Contato",
-    "aboutMe": "Sobre mim"
+    "aboutMe": "Sobre mim",
+    "github": "GitHub"
   },
   "common": {
     "loading": "Carregando...",
@@ -111,7 +112,8 @@
       "termsLink": "Termos de Serviço",
       "andWord": "e a",
       "privacyLink": "Política de Privacidade",
-      "termsRequired": "Você deve aceitar os termos para continuar"
+      "termsRequired": "Você deve aceitar os termos para continuar",
+      "invalidPassword": "A senha deve ter entre 10 e 25 caracteres e incluir pelo menos uma maiúscula, um número e um símbolo"
     },
     "verifyEmail": {
       "title": "Verificação de e-mail",

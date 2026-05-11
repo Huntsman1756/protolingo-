@@ -14,7 +14,8 @@
     "terms": "Termeni și condiții",
     "privacy": "Confidențialitate",
     "contact": "Contact",
-    "aboutMe": "Despre mine"
+    "aboutMe": "Despre mine",
+    "github": "GitHub"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -111,7 +112,8 @@
       "termsLink": "Termenii și condițiile",
       "andWord": "și",
       "privacyLink": "Politica de confidențialitate",
-      "termsRequired": "Trebuie să accepți termenii pentru a continua"
+      "termsRequired": "Trebuie să accepți termenii pentru a continua",
+      "invalidPassword": "Parola trebuie să aibă între 10 şi 25 de caractere şi să includă cel puțin o majusculă, o cifră şi un simbol"
     },
     "verifyEmail": {
       "title": "Verificare e-mail",

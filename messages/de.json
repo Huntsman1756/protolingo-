@@ -14,7 +14,8 @@
     "terms": "AGB",
     "privacy": "Datenschutz",
     "contact": "Kontakt",
-    "aboutMe": "Über mich"
+    "aboutMe": "Über mich",
+    "github": "GitHub"
   },
   "common": {
     "loading": "Laden...",
@@ -111,7 +112,8 @@
       "termsLink": "Nutzungsbedingungen",
       "andWord": "und die",
       "privacyLink": "Datenschutzerklärung",
-      "termsRequired": "Du musst die Bedingungen akzeptieren, um fortzufahren"
+      "termsRequired": "Du musst die Bedingungen akzeptieren, um fortzufahren",
+      "invalidPassword": "Das Passwort muss 10-25 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl und ein Symbol enthalten"
     },
     "verifyEmail": {
       "title": "E-Mail-Verifizierung",

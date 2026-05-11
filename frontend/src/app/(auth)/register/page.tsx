@@ -36,6 +36,10 @@ function RegisterForm() {
         setError(t('passwordMismatch'))
         return
       }
+      if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{10,25}$/.test(password)) {
+        setError(t('invalidPassword'))
+        return
+      }
       if (!termsAccepted) {
         setError(t('termsRequired'))
         return
@@ -64,11 +68,14 @@ function RegisterForm() {
             else if (data.detail === 'Email already taken') msg = t('emailTaken')
             else if (data.detail === 'Registration is closed') msg = t('registrationClosed')
             else if (data.detail === 'Invalid or expired invite') msg = t('invalidInvite')
+            else if (data.detail === 'Email domain not allowed') msg = t('invalidEmail')
           } else if (Array.isArray(data.detail) && data.detail.length > 0) {
             const first = data.detail[0] as { loc?: string[]; msg?: string }
             const loc = (first.loc ?? []).join('.')
             if (loc.includes('email') || first.msg?.toLowerCase().includes('email')) {
               msg = t('invalidEmail')
+            } else if (loc.includes('password')) {
+              msg = t('invalidPassword')
             }
           }
           throw new Error(msg)

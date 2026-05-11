@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.5] - 2026-05-11
+
+### Added
+- `BLOCKED_EMAIL_DOMAINS` env var: JSON array of blocked email domain strings (e.g. disposable/temporary providers like `yopmail.com`). Registrations using a blocked domain are rejected with HTTP 422 before any DB access. Defaults to `[]` (no blocking). Configurable via `.env` and `docker-compose.yml`.
+- Password strength policy upgraded: minimum 10 characters, maximum 25, requires at least one uppercase letter, one number, and one symbol. Enforced in backend schemas (`RegisterRequest`, `UserUpdateRequest`, `ResetPasswordRequest`, `AdminUserCreate`) and client-side in the register form. `invalidPassword` i18n key updated in all 10 locales.
+- Landing footer: added GitHub link pointing to the project repository (`https://github.com/ArtCC/freelingo`), opens in a new tab. `github` i18n key added to all 10 locales.
+
+### Changed
+- Landing footer: removed "Open source · Self-host free or subscribe to the hosted service" tagline from the copyright line.
+- Register error handling: blocked email domain (`Email domain not allowed`) now maps to the existing `invalidEmail` i18n key instead of showing a raw backend message.
+
+### Fixed
+- Onboarding tour resets on logout: `logout()` in the auth store now removes `fl_tour_done` from `localStorage`, so the tour is shown again on the next login regardless of which logout path is used (sidebar, settings, or silent 401 redirect).
+
 ## [1.4.4] - 2026-05-10
 
 ### Fixed

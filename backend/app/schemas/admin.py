@@ -3,6 +3,8 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Literal, Optional
 
+import re
+
 from pydantic import BaseModel, EmailStr, Field, field_serializer, field_validator
 
 SUPPORTED_LANGUAGES = {
@@ -10,13 +12,26 @@ SUPPORTED_LANGUAGES = {
 }
 
 
+_PASSWORD_PATTERN = re.compile(r'^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{10,25}$')
+
+
 class AdminUserCreate(BaseModel):
     username: str = Field(min_length=3, max_length=50, pattern=r"^[\w.-]+$")
     email: Optional[EmailStr] = None
-    password: str = Field(min_length=8, max_length=128)
+    password: str = Field(min_length=10, max_length=25)
     display_name: str = Field(max_length=100)
     native_language: str = Field(min_length=2, max_length=5)
     role: Literal["user", "admin"] = "user"
+
+    @field_validator("password")
+    @classmethod
+    def check_password(cls, v: str) -> str:
+        if not _PASSWORD_PATTERN.match(v):
+            raise ValueError(
+                "Password must be 10-25 characters and include at least "
+                "one uppercase letter, one number, and one symbol"
+            )
+        return v
 
     @field_validator("native_language")
     @classmethod
