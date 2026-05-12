@@ -166,6 +166,12 @@ export default function AdminUserStatsPage() {
         setQuotaDaily(String(updated.conversation_daily_minutes))
         setQuotaWeeklyMinutes(String(updated.conversation_weekly_minutes))
         setQuotaMonthlyTokens(String(updated.monthly_tokens_limit))
+        // Refresh quota display so new limits are reflected immediately
+        const qRes = await apiFetch(`/api/admin/users/${userId}/quota`)
+        if (qRes.ok) {
+          const qData: QuotaStatus = await qRes.json()
+          setQuota(qData)
+        }
         setQuotaSaved(true)
         setTimeout(() => setQuotaSaved(false), 3000)
       }

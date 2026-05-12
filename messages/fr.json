@@ -848,7 +848,7 @@
     "planMonthly": "— Démarrer pour {price}€/mois →",
     "planYearly": "— Démarrer pour {price}€/an →",
     "checkoutError": "Impossible de lancer le paiement. Veuillez réessayer.",
-    "pricingLabel": "Tarifs",
+    "pricingLabel": "Offre de lancement",
     "pricingTitle": "Simple et transparent",
     "pricingDesc": "Essayez gratuitement pendant {days} jours. Carte requise, aucun débit avant la fin de l'essai.",
     "planMonthlyName": "Mensuel",

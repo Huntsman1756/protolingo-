@@ -34,7 +34,7 @@ function detectLocale(req: NextRequest): Locale {
   // 2. Parse Accept-Language header (e.g. "es-ES,es;q=0.9,en;q=0.8")
   const accept = req.headers.get('accept-language') ?? ''
   for (const part of accept.split(',')) {
-    const lang = part.split(';')[0].trim().split('-')[0].toLowerCase()
+    const lang = part.split(';')[0].trim().split(/[-_]/)[0].toLowerCase()
     if ((SUPPORTED_LOCALES as readonly string[]).includes(lang)) {
       return lang as Locale
     }
