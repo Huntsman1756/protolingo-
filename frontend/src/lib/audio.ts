@@ -57,8 +57,13 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   // Using a closure variable (not module-level) so multiple instances are safe.
   let nextTime = 0
   const sources: AudioBufferSourceNode[] = []
+  // Serialize decoding+scheduling so that chunks are always played in the
+  // exact order they were enqueued, regardless of how long decodeAudioData
+  // takes for each chunk. Without this, a short chunk 2 could decode faster
+  // than chunk 1 and get scheduled first, causing out-of-order playback.
+  let chain: Promise<void> = Promise.resolve()
 
-  async function enqueue(arrayBuffer: ArrayBuffer): Promise<void> {
+  async function _decode(arrayBuffer: ArrayBuffer): Promise<void> {
     // Resume context if it was suspended (can happen on iOS Safari)
     if (ctx.state === 'suspended') {
       await ctx.resume()
@@ -83,6 +88,11 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     }
   }
 
+  function enqueue(arrayBuffer: ArrayBuffer): Promise<void> {
+    chain = chain.then(() => _decode(arrayBuffer))
+    return chain
+  }
+
   function cancel(): void {
     for (const s of sources) {
       try {
@@ -93,6 +103,8 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     }
     sources.length = 0
     nextTime = 0
+    // Reset the chain so the queue is clean after a cancel
+    chain = Promise.resolve()
   }
 
   return { enqueue, cancel }
