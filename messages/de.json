@@ -848,7 +848,7 @@
     "planMonthly": "— Starten für {price}€/Monat →",
     "planYearly": "— Starten für {price}€/Jahr →",
     "checkoutError": "Checkout konnte nicht gestartet werden. Bitte erneut versuchen.",
-    "pricingLabel": "Preise",
+    "pricingLabel": "Einführungsangebot",
     "pricingTitle": "Einfach und transparent",
     "pricingDesc": "{days} Tage kostenlos testen. Karte erforderlich, keine Abbuchung bis Testende.",
     "planMonthlyName": "Monatlich",

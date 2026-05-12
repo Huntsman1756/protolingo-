@@ -848,7 +848,7 @@
     "planMonthly": "— Start for €{price}/month →",
     "planYearly": "— Start for €{price}/year →",
     "checkoutError": "Unable to start checkout. Please try again.",
-    "pricingLabel": "Pricing",
+    "pricingLabel": "Launch Offer",
     "pricingTitle": "Simple and transparent",
     "pricingDesc": "Try free for {days} days. Card required, no charge until trial ends.",
     "planMonthlyName": "Monthly",

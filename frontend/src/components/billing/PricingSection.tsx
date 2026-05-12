@@ -80,6 +80,7 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
               {tBilling('planMonthlyName')}
             </span>
           </div>
+          <p className="font-mono text-sm text-fl-muted-2 line-through">19.95 € / {tBilling('month')}</p>
           <p className="font-mono text-xl font-bold text-fl-fg">
             14.95<span className="text-sm text-fl-muted-1"> € / {tBilling('month')}</span>
           </p>
@@ -105,6 +106,7 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
               {tBilling('bestValue')}
             </span>
           </div>
+          <p className="font-mono text-sm text-fl-muted-2 line-through">199.50 € / {tBilling('year')}</p>
           <p className="font-mono text-xl font-bold text-fl-fg">
             149.50<span className="text-sm text-fl-muted-1"> € / {tBilling('year')}</span>
           </p>

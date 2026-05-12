@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.8] - 2026-05-12
+
+### Added
+- Pricing section: crossed-out original prices (19.95 €/month, 199.50 €/year) shown above current launch prices using `text-fl-muted-2 line-through`.
+- `pricingLabel` i18n key updated to "Launch Offer" in all 10 locales (es, en, de, fr, it, pt, nl, pl, ro, ru).
+
+### Changed
+- `conversation_weekly_sessions` reset to `0` (unlimited) in `apply_subscription_quotas` — session count is not used as a quota; time limits (daily/weekly minutes) are the only active constraints.
+- docs/index.html: hero CTA updated to feature hosted service link (freelingo.app); "Open Source" section now mentions the managed hosted option.
+
 ## [1.4.7] - 2026-05-11
 
 ### Fixed

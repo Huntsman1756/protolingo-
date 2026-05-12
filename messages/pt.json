@@ -848,7 +848,7 @@
     "planMonthly": "— Iniciar por €{price}/mês →",
     "planYearly": "— Iniciar por €{price}/ano →",
     "checkoutError": "Não foi possível iniciar o pagamento. Tente novamente.",
-    "pricingLabel": "Preços",
+    "pricingLabel": "Oferta de lançamento",
     "pricingTitle": "Simples e transparente",
     "pricingDesc": "Experimente gratuitamente por {days} dias. Cartão obrigatório, sem cobrança até o fim do período de avaliação.",
     "planMonthlyName": "Mensal",
