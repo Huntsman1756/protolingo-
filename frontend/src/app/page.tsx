@@ -2,7 +2,47 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
 import PricingSection from '@/components/billing/PricingSection'
+
+export const metadata: Metadata = {
+  title: 'FreeLingo — AI-powered English learning',
+  description: 'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons. Self-hosted and privacy-friendly.',
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'FreeLingo — AI-powered English learning',
+    description: 'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
+    url: 'https://freelingo.app',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FreeLingo — AI-powered English learning' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FreeLingo — AI-powered English learning',
+    description: 'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
+    images: ['/og-image.png'],
+  },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'FreeLingo',
+  applicationCategory: 'EducationApplication',
+  operatingSystem: 'Web',
+  url: 'https://freelingo.app',
+  description: 'Self-hosted AI-powered English learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
+  author: {
+    '@type': 'Person',
+    name: 'Arturo Carretero Calvo',
+    url: 'https://arturocarreterocalvo.com',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+}
 
 export default async function Home() {
   const cookieStore = await cookies()
@@ -33,6 +73,10 @@ export default async function Home() {
         backgroundSize: '24px 24px',
       }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Nav */}
       <nav className="border-b border-fl-border bg-fl-bg/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">

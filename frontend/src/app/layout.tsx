@@ -17,9 +17,37 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'FreeLingo',
-  description: 'Self-hosted AI language learning platform',
-  icons: { icon: '/favicon.png' },
+  metadataBase: new URL('https://freelingo.app'),
+  title: {
+    default: 'FreeLingo',
+    template: '%s | FreeLingo',
+  },
+  description: 'FreeLingo is a self-hosted AI-powered English learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
+  keywords: ['English learning', 'AI language tutor', 'self-hosted', 'voice conversation', 'flashcards', 'CEFR', 'language learning app', 'learn English online'],
+  authors: [{ name: 'Arturo Carretero Calvo', url: 'https://arturocarreterocalvo.com' }],
+  creator: 'Arturo Carretero Calvo',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://freelingo.app',
+    siteName: 'FreeLingo',
+    title: 'FreeLingo — AI-powered English learning',
+    description: 'Learn English with an AI tutor, voice conversations, flashcards, and structured lessons. Self-hosted and privacy-friendly.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FreeLingo — AI-powered English learning' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'FreeLingo — AI-powered English learning',
+    description: 'Learn English with an AI tutor, voice conversations, flashcards, and structured lessons.',
+    images: ['/logo.png'],
+  },
 }
 
 export default async function RootLayout({
