@@ -885,5 +885,18 @@
     "manage": "Gestionează abonamentul",
     "subscribe": "Abonează-te",
     "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou."
+  },
+  "whatsNew": {
+    "title": "Noutăți",
+    "version": "v1.4.10",
+    "cta": "Am înțeles",
+    "entry1": {
+      "label": "Voce nouă",
+      "desc": "Conversația vocală în timp real folosește acum o voce nouă pentru o experiență mai naturală și mai captivantă."
+    },
+    "entry2": {
+      "label": "Corecții",
+      "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
+    }
   }
 }

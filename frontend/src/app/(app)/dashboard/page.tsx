@@ -8,6 +8,7 @@ import { useAuthStore } from '@/store/auth'
 import { useProgressStore } from '@/store/progress'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import OnboardingTour from '@/components/tour/OnboardingTour'
+import WhatsNew from '@/components/whats-new/WhatsNew'
 
 interface TodayLessonItem {
   id: number | null
@@ -68,6 +69,7 @@ export default function DashboardPage() {
   return (
     <PaywallGate>
       <OnboardingTour />
+      <WhatsNew />
       <div className="p-6 max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8 pb-4 border-b border-fl-border">

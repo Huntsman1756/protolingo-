@@ -885,5 +885,18 @@
     "manage": "Gerir subscrição",
     "subscribe": "Subscrever",
     "portalError": "Não foi possível abrir o portal de faturação. Tente novamente."
+  },
+  "whatsNew": {
+    "title": "Novidades",
+    "version": "v1.4.10",
+    "cta": "Entendido",
+    "entry1": {
+      "label": "Nova voz",
+      "desc": "A conversa de voz em tempo real utiliza agora uma nova voz para uma experiência mais natural e envolvente."
+    },
+    "entry2": {
+      "label": "Correções",
+      "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
+    }
   }
 }
