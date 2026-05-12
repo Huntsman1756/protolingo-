@@ -21,7 +21,7 @@ Introduce an optional, fully configurable subscription layer backed by Stripe. W
 ### Quotas applied on subscription activation
 | Quota field | Value |
 |---|---|
-| `conversation_weekly_sessions` | 3 |
+| `conversation_weekly_sessions` | 0 (unlimited) |
 | `conversation_weekly_minutes` | 90 |
 | `conversation_daily_minutes` | 30 |
 | `monthly_tokens_limit` | 1 000 000 |

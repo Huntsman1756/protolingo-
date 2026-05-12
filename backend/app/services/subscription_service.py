@@ -23,7 +23,7 @@ def is_subscribed(user: User, stripe_enabled: bool) -> bool:
 
 async def apply_subscription_quotas(user: User, db: AsyncSession) -> None:
     """Set default quotas when a subscription becomes active or trialing."""
-    user.conversation_weekly_sessions = 3
+    user.conversation_weekly_sessions = 0
     user.conversation_weekly_minutes = 90
     user.conversation_daily_minutes = 30
     user.monthly_tokens_limit = 1_000_000
