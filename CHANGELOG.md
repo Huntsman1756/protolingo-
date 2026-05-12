@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `conversation_weekly_sessions` reset to `0` (unlimited) in `apply_subscription_quotas` — session count is not used as a quota; time limits (daily/weekly minutes) are the only active constraints.
 - docs/index.html: hero CTA updated to feature hosted service link (freelingo.app); "Open Source" section now mentions the managed hosted option.
 
+### Fixed
+- Locale detection in `middleware.ts` now splits on `/[-_]/` instead of `'-'` so mobile browsers that send `Accept-Language` values like `es_ES` (underscore) are correctly resolved instead of falling back to English.
+- Admin user detail page: saving quota limits now immediately refetches `/api/admin/users/{id}/quota` so the "Cuotas de conversación" display reflects the new limits without requiring a page reload.
+
 ## [1.4.7] - 2026-05-11
 
 ### Fixed
