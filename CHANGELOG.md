@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.11] - 2026-05-12
+
+### Added
+- What's New modal: version-aware changelog overlay shown automatically on the dashboard on the first visit after an update. Follows the same pattern as OnboardingTour — localStorage-based, no backend required. Tour takes priority for new users; returning users see What's New only.
+
+### Changed
+- Legal texts updated across all 10 locales (en, es, de, fr, it, nl, pl, pt, ro, ru):
+  - Terms of Service: section 5 now mentions monthly **and** yearly subscription plans; section 6 clarifies the free trial period (payment details required; no charge until trial ends), annual billing cycle, and that current prices are displayed at checkout — no fixed prices are stated in the legal text.
+  - Privacy Policy: new data item `s2i8` discloses subscription status, plan type, and Stripe customer identifier stored for paid subscribers; section 4 (External Services) now explicitly names Stripe, Inc. (USA) as payment processor and links to its Privacy Policy; section 6 (GDPR rights) extends the international transfers disclosure to include Stripe alongside OpenAI, both covered by Standard Contractual Clauses (Art. 46 GDPR).
+- Privacy Policy page component (`privacy/page.tsx`): `s2Items` array extended to render the new `s2i8` data item.
+- Real-time voice conversation: improved with a new voice for a more natural and engaging experience.
+
+### Fixed
+- Various minor bug fixes and stability improvements.
+
 ## [1.4.10] - 2026-05-12
 
 ### Added

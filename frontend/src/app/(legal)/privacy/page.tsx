@@ -16,7 +16,7 @@ export default function PrivacyPage() {
   const backHref = isFromSettings ? '/settings' : isFromRegister ? '/register' : isFromLanding ? '/' : '/'
   const backLabel = isFromSettings ? t('linkBackSettings') : isFromRegister ? t('linkBack') : tCommon('back')
   const termsHref = isFromSettings ? '/terms?from=settings' : isFromRegister ? '/terms?from=register' : isFromLanding ? '/terms?from=landing' : '/terms'
-  const s2Items = [t('s2i1'), t('s2i2'), t('s2i3'), t('s2i4'), t('s2i5'), t('s2i6'), t('s2i7')]
+  const s2Items = [t('s2i1'), t('s2i2'), t('s2i3'), t('s2i4'), t('s2i5'), t('s2i6'), t('s2i7'), t('s2i8')]
   const s3Items = [t('s3i1'), t('s3i2'), t('s3i3'), t('s3i4')]
 
   return (
