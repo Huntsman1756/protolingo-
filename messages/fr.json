@@ -885,5 +885,18 @@
     "manage": "Gérer l'abonnement",
     "subscribe": "S'abonner",
     "portalError": "Impossible d'ouvrir le portail de facturation. Veuillez réessayer."
+  },
+  "whatsNew": {
+    "title": "Nouveautés",
+    "version": "v1.4.10",
+    "cta": "Compris",
+    "entry1": {
+      "label": "Nouvelle voix",
+      "desc": "La conversation vocale en temps réel utilise désormais une nouvelle voix pour une expérience plus naturelle et engageante."
+    },
+    "entry2": {
+      "label": "Corrections",
+      "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
+    }
   }
 }

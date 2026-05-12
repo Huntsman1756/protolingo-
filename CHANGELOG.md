@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.10] - 2026-05-12
+
+### Added
+- What's New modal: version-aware changelog overlay shown automatically on the dashboard on the first visit after an update. Follows the same pattern as OnboardingTour — localStorage-based, no backend required. Tour takes priority for new users; returning users see What's New only.
+
+### Changed
+- Real-time voice conversation: improved with a new voice for a more natural and engaging experience.
+
+### Fixed
+- Various minor bug fixes and stability improvements.
+
 ## [1.4.9] - 2026-05-12
 
 ### Fixed

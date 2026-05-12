@@ -145,6 +145,7 @@ The first registered user becomes admin automatically.
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
 - [testing.instructions.md](specs/testing.instructions.md) — Testing strategy: pytest, Vitest, Playwright, mocks, CI
 - [version.md](specs/version.md) — Canonical project version and sync rules
+- [whats-new.instructions.md](specs/whats-new.instructions.md) — What's New modal: version-aware changelog overlay, localStorage trigger, priority with OnboardingTour
 
 ## Operational notes
 

@@ -885,5 +885,18 @@
     "manage": "Abonnement beheren",
     "subscribe": "Abonneren",
     "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw."
+  },
+  "whatsNew": {
+    "title": "Nieuw",
+    "version": "v1.4.10",
+    "cta": "Begrepen",
+    "entry1": {
+      "label": "Nieuwe stem",
+      "desc": "Realtime spraakgesprekken gebruiken nu een nieuwe stem voor een natuurlijkere en boeiendere ervaring."
+    },
+    "entry2": {
+      "label": "Bugfixes",
+      "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
+    }
   }
 }
