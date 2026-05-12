@@ -885,5 +885,18 @@
     "manage": "Gestisci abbonamento",
     "subscribe": "Abbonati",
     "portalError": "Impossibile aprire il portale di fatturazione. Riprova."
+  },
+  "whatsNew": {
+    "title": "Novità",
+    "version": "v1.4.10",
+    "cta": "Capito",
+    "entry1": {
+      "label": "Nuova voce",
+      "desc": "La conversazione vocale in tempo reale utilizza ora una nuova voce per un'esperienza più naturale e coinvolgente."
+    },
+    "entry2": {
+      "label": "Correzioni",
+      "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
+    }
   }
 }

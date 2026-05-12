@@ -885,5 +885,18 @@
     "manage": "Manage subscription",
     "subscribe": "Subscribe",
     "portalError": "Unable to open billing portal. Please try again."
+  },
+  "whatsNew": {
+    "title": "What's New",
+    "version": "v1.4.10",
+    "cta": "Got it",
+    "entry1": {
+      "label": "New voice",
+      "desc": "Real-time voice conversation now uses a new voice for a more natural and engaging experience."
+    },
+    "entry2": {
+      "label": "Bug fixes",
+      "desc": "Various minor bug fixes and stability improvements across the platform."
+    }
   }
 }

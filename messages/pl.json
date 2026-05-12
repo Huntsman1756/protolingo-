@@ -885,5 +885,18 @@
     "manage": "Zarządzaj subskrypcją",
     "subscribe": "Subskrybuj",
     "portalError": "Nie można otworzyć portalu rozliczeń. Spróbuj ponownie."
+  },
+  "whatsNew": {
+    "title": "Co nowego",
+    "version": "v1.4.10",
+    "cta": "Rozumiem",
+    "entry1": {
+      "label": "Nowy głos",
+      "desc": "Rozmowy głosowe w czasie rzeczywistym korzystają teraz z nowego głosu, zapewniając bardziej naturalną i angażującą rozmowę."
+    },
+    "entry2": {
+      "label": "Poprawki",
+      "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
+    }
   }
 }

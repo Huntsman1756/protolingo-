@@ -885,5 +885,18 @@
     "manage": "Abonnement verwalten",
     "subscribe": "Abonnieren",
     "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen."
+  },
+  "whatsNew": {
+    "title": "Neuigkeiten",
+    "version": "v1.4.10",
+    "cta": "Verstanden",
+    "entry1": {
+      "label": "Neue Stimme",
+      "desc": "Das Echtzeit-Gespräch verwendet jetzt eine neue Stimme für ein natürlicheres und ansprechenderes Erlebnis."
+    },
+    "entry2": {
+      "label": "Fehlerbehebungen",
+      "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
+    }
   }
 }
