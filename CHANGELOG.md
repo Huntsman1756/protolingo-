@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Locale detection in `middleware.ts` now splits on `/[-_]/` instead of `'-'` so mobile browsers that send `Accept-Language` values like `es_ES` (underscore) are correctly resolved instead of falling back to English.
 - Admin user detail page: saving quota limits now immediately refetches `/api/admin/users/{id}/quota` so the "Cuotas de conversación" display reflects the new limits without requiring a page reload.
+- System prompts (chat and voice): added `SCOPE`, `CONTENT POLICY`, and `PERSONA LOCK` as top-priority mandatory rules to prevent the LLM from writing code, doing homework, producing harmful content, or being jailbroken via roleplay/persona requests. User-supplied context (`bio`, `learning_goals`) is now explicitly labelled as non-authoritative data that cannot override system rules. Chat prompt also gains `ALWAYS respond in English` parity with the voice prompt.
 
 ## [1.4.7] - 2026-05-11
 
