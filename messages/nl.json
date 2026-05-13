@@ -202,7 +202,15 @@
     "deleteAccount": "Account verwijderen",
     "deleteAccountTitle": "Account verwijderen",
     "deleteAccountMessage": "Dit verwijdert je account en alle bijbehorende gegevens permanent. Deze actie kan niet ongedaan worden gemaakt.",
-    "deleteAccountConfirm": "Account verwijderen"
+    "deleteAccountConfirm": "Account verwijderen",
+    "sectionUsageLimits": "Gebruikslimieten",
+    "quotaSessions": "Sessies / week",
+    "quotaMinutesDay": "Minuten / dag",
+    "quotaMinutesWeek": "Minuten / week",
+    "quotaTokens": "Tokens / maand",
+    "quotaUnlimited": "Onbeperkt",
+    "quotaLoading": "Laden...",
+    "quotaHint": "Gebruik wordt wekelijks (sessies en minuten) en maandelijks (tokens) gereset."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Inhoud en AI-interacties",
       "s4Body": "Gesprekken met de AI-tutor worden opgeslagen in de database voor leercontinuïteit. In de gehoste service worden AI-chat en spraakfuncties verwerkt via de API van OpenAI en is je inhoud onderworpen aan het gebruiksbeleid van OpenAI. De AI kan onjuiste antwoorden geven — gebruik altijd je eigen oordeel. FreeLingo is niet verantwoordelijk voor inhoud gegenereerd door onderliggende taalmodellen.",
       "s5Title": "5. Servicemodi",
-      "s5Body": "Zelf gehoste implementaties zijn gratis en de operator behoudt volledige controle over zijn gegevens en infrastructuur. De gehoste service die wordt beheerd door het FreeLingo-team wordt aangeboden via een betaald abonnement, beschikbaar op maandelijkse of jaarlijkse basis. In de gehoste service worden je gegevens opgeslagen op servers beheerd door het FreeLingo-team.",
+      "s5Body": "Zelf gehoste implementaties zijn gratis en de operator behoudt volledige controle over zijn gegevens en infrastructuur. De gehoste service die wordt beheerd door het FreeLingo-team wordt aangeboden via een betaald abonnement, beschikbaar op maandelijkse of jaarlijkse basis. In de gehoste service worden je gegevens opgeslagen op servers beheerd door het FreeLingo-team. De gehoste service kent gebruikslimieten voor AI-tutoring-functies; uw huidige gebruik is zichtbaar in de accountinstellingen.",
       "s6Title": "6. Abonnement en facturering",
       "s6Body": "Abonnementen zijn beschikbaar op maandelijkse of jaarlijkse factureringscyclus en worden automatisch verlengd, tenzij ze vóór de verlengingsdatum worden opgezegd. Nieuwe abonnees ontvangen een gratis proefperiode (betaalgegevens vereist; er wordt niets in rekening gebracht tot het einde van de proefperiode). Je kunt op elk moment opzeggen via je accountinstellingen, met ingang van het einde van de huidige factureringsperiode. Als je binnen 14 dagen na je eerste betaling opzegt en de service niet wezenlijk hebt gebruikt, kun je een volledige terugbetaling aanvragen op grond van het EU-consumentenrecht. Voor niet-gebruikte tijd worden buiten dit recht geen gedeeltelijke terugbetalingen verstrekt. De huidige abonnementsprijzen worden weergegeven bij het afrekenen.",
       "s7Title": "7. Beschikbaarheid",
@@ -754,7 +762,8 @@
     "quotaExceededSessions": "Je hebt al je sessies voor deze week gebruikt.",
     "quotaExceededTime": "Je hebt al je dagelijkse oefentijd gebruikt.",
     "quotaExceededTokens": "Je hebt al je maandelijkse AI-tokens gebruikt.",
-    "quotaTokens": "Tokens deze maand"
+    "quotaTokens": "Tokens deze maand",
+    "startersHint": "Of begin met een onderwerp"
   },
   "voiceRecorder": {
     "record": "Opnemen",
@@ -889,7 +898,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Begrepen",
     "entry1": {
       "label": "Nieuwe stem",
@@ -898,6 +907,10 @@
     "entry2": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
+    },
+    "entry3": {
+      "label": "Gespreksonderwerpen",
+      "desc": "De spraakgesprekssectie toont nu zes onderwerp-chips om je op weg te helpen een sessie te starten. De onderwerpen worden willekeurig gekozen uit een bank van 30 en verdwijnen zodra een sessie begint."
     }
   }
 }

@@ -202,7 +202,15 @@
     "deleteAccount": "Elimina account",
     "deleteAccountTitle": "Elimina account",
     "deleteAccountMessage": "Questa azione eliminerà definitivamente il tuo account e tutti i tuoi dati. Questa azione non può essere annullata.",
-    "deleteAccountConfirm": "Elimina account"
+    "deleteAccountConfirm": "Elimina account",
+    "sectionUsageLimits": "Limiti di utilizzo",
+    "quotaSessions": "Sessioni / settimana",
+    "quotaMinutesDay": "Minuti / giorno",
+    "quotaMinutesWeek": "Minuti / settimana",
+    "quotaTokens": "Token / mese",
+    "quotaUnlimited": "Illimitato",
+    "quotaLoading": "Caricamento...",
+    "quotaHint": "L'utilizzo si azzera settimanalmente (sessioni e minuti) e mensilmente (token)."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Contenuti e interazioni con l'IA",
       "s4Body": "Le conversazioni con il tutor IA vengono archiviate nel database per la continuità dell'apprendimento. Nel servizio ospitato, la chat e le funzionalità vocali vengono elaborate tramite le API di OpenAI e il tuo contenuto è soggetto alle politiche d'uso di OpenAI. L'IA può produrre risposte imprecise — usa sempre il tuo giudizio. FreeLingo non è responsabile per i contenuti generati dai modelli linguistici sottostanti.",
       "s5Title": "5. Modalità del servizio",
-      "s5Body": "Le installazioni self-hosted sono gratuite e l'operatore mantiene il pieno controllo sui propri dati e infrastruttura. Il servizio ospitato gestito dal team FreeLingo è disponibile tramite abbonamento a pagamento, con ciclo di fatturazione mensile o annuale. Nel servizio ospitato, i tuoi dati sono memorizzati su server gestiti dal team FreeLingo.",
+      "s5Body": "Le installazioni self-hosted sono gratuite e l'operatore mantiene il pieno controllo sui propri dati e infrastruttura. Il servizio ospitato gestito dal team FreeLingo è disponibile tramite abbonamento a pagamento, con ciclo di fatturazione mensile o annuale. Nel servizio ospitato, i tuoi dati sono memorizzati su server gestiti dal team FreeLingo. Il servizio ospitato applica limiti di utilizzo alle funzionalità di tutoraggio IA; il tuo utilizzo attuale è disponibile nelle impostazioni dell'account.",
       "s6Title": "6. Abbonamento e fatturazione",
       "s6Body": "Gli abbonamenti sono disponibili con ciclo di fatturazione mensile o annuale e si rinnovano automaticamente salvo disdetta prima della data di rinnovo. I nuovi iscritti usufruiscono di un periodo di prova gratuito (dati di pagamento richiesti; non viene addebitato nulla fino alla scadenza del periodo di prova). Puoi disdire in qualsiasi momento dalle impostazioni del tuo account, con effetto alla fine del periodo di fatturazione corrente. Se disdici entro 14 giorni dal primo pagamento e non hai utilizzato significativamente il servizio, puoi richiedere un rimborso completo ai sensi del diritto di recesso dell'UE. Non vengono emessi rimborsi parziali per il tempo non utilizzato oltre a questo diritto. I prezzi attuali degli abbonamenti sono visualizzati al momento del pagamento.",
       "s7Title": "7. Disponibilità",
@@ -754,7 +762,8 @@
     "quotaExceededSessions": "Hai esaurito tutte le sessioni di questa settimana.",
     "quotaExceededTime": "Hai esaurito il tuo tempo di pratica giornaliero.",
     "quotaExceededTokens": "Hai esaurito tutti i tuoi token IA mensili.",
-    "quotaTokens": "Token questo mese"
+    "quotaTokens": "Token questo mese",
+    "startersHint": "O inizia con un argomento"
   },
   "voiceRecorder": {
     "record": "Registra",
@@ -889,7 +898,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Capito",
     "entry1": {
       "label": "Nuova voce",
@@ -898,6 +907,10 @@
     "entry2": {
       "label": "Correzioni",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
+    },
+    "entry3": {
+      "label": "Suggerimenti per la conversazione",
+      "desc": "La sezione di conversazione vocale mostra ora sei chip con argomenti per aiutarti a iniziare una sessione. Gli argomenti vengono scelti casualmente da un banco di 30 e scompaiono non appena la sessione inizia."
     }
   }
 }

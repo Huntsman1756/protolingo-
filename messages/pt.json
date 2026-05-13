@@ -202,7 +202,15 @@
     "deleteAccount": "Excluir conta",
     "deleteAccountTitle": "Excluir conta",
     "deleteAccountMessage": "Esta ação excluirá permanentemente sua conta e todos os seus dados. Esta ação não pode ser desfeita.",
-    "deleteAccountConfirm": "Excluir conta"
+    "deleteAccountConfirm": "Excluir conta",
+    "sectionUsageLimits": "Limites de uso",
+    "quotaSessions": "Sessões / semana",
+    "quotaMinutesDay": "Minutos / dia",
+    "quotaMinutesWeek": "Minutos / semana",
+    "quotaTokens": "Tokens / mês",
+    "quotaUnlimited": "Ilimitado",
+    "quotaLoading": "A carregar...",
+    "quotaHint": "O uso reinicia semanalmente (sessões e minutos) e mensalmente (tokens)."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Conteúdo e interações com IA",
       "s4Body": "As conversas com o tutor de IA são armazenadas no banco de dados para continuidade do aprendizado. No serviço hospedado, o chat e os recursos de voz são processados via API da OpenAI, e seu conteúdo está sujeito às políticas de uso da OpenAI. A IA pode produzir respostas imprecisas — aplique sempre seu próprio julgamento. FreeLingo não é responsável pelo conteúdo gerado pelos modelos de linguagem subjacentes.",
       "s5Title": "5. Modalidades do serviço",
-      "s5Body": "As implantações auto-hospedadas são gratuitas e o operador mantém controle total sobre seus dados e infraestrutura. O serviço hospedado operado pela equipe FreeLingo é fornecido via assinatura paga, disponível em ciclo de cobrança mensal ou anual. No serviço hospedado, seus dados são armazenados em servidores operados pela equipe FreeLingo.",
+      "s5Body": "As implantações auto-hospedadas são gratuitas e o operador mantém controle total sobre seus dados e infraestrutura. O serviço hospedado operado pela equipe FreeLingo é fornecido via assinatura paga, disponível em ciclo de cobrança mensal ou anual. No serviço hospedado, seus dados são armazenados em servidores operados pela equipe FreeLingo. O serviço hospedado aplica limites de uso aos recursos de tutoria com IA; seu uso atual está disponível nas configurações da conta.",
       "s6Title": "6. Assinatura e faturamento",
       "s6Body": "As assinaturas estão disponíveis em ciclo de cobrança mensal ou anual e renovam automaticamente, salvo cancelamento antes da data de renovação. Novos assinantes recebem um período de avaliação gratuito (dados de pagamento necessários; nenhuma cobrança é realizada até o fim do período de avaliação). Você pode cancelar a qualquer momento nas configurações da conta, com efeito no final do período de cobrança atual. Se cancelar dentro de 14 dias do primeiro pagamento e não tiver usado o serviço de forma significativa, pode solicitar reembolso integral conforme o direito de desistência da UE. Não são emitidos reembolsos parciais por tempo não utilizado além desse direito. Os preços atuais de assinatura são exibidos no momento do pagamento.",
       "s7Title": "7. Disponibilidade",
@@ -754,7 +762,8 @@
     "quotaExceededSessions": "Você usou todas as suas sessões desta semana.",
     "quotaExceededTime": "Você usou todo o seu tempo de prática diário.",
     "quotaExceededTokens": "Você usou todos os seus tokens de IA mensais.",
-    "quotaTokens": "Tokens este mês"
+    "quotaTokens": "Tokens este mês",
+    "startersHint": "Ou comece com um tema"
   },
   "voiceRecorder": {
     "record": "Gravar",
@@ -889,7 +898,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Entendido",
     "entry1": {
       "label": "Nova voz",
@@ -898,6 +907,10 @@
     "entry2": {
       "label": "Correções",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
+    },
+    "entry3": {
+      "label": "Sugestões de conversa",
+      "desc": "A secção de conversa de voz mostra agora seis chips de tópicos para te ajudar a iniciar uma sessão. Os tópicos são escolhidos aleatoriamente de um banco de 30 e desaparecem assim que a sessão começa."
     }
   }
 }

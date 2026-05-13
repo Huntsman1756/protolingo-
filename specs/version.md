@@ -1,6 +1,6 @@
 # Version
 
-**1.4.11**
+**1.4.12**
 
 > Canonical project version. Update this file when bumping.
 > Full history in [CHANGELOG.md](../CHANGELOG.md).

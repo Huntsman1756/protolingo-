@@ -12,6 +12,21 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { useConfigStore } from '@/store/config'
 import { isSubscribed } from '@/store/auth'
 
+interface QuotaStatus {
+  sessions_this_week: number
+  sessions_limit: number
+  sessions_unlimited: boolean
+  minutes_today: number
+  minutes_limit: number
+  time_unlimited: boolean
+  minutes_this_week: number
+  weekly_minutes_limit: number
+  weekly_minutes_unlimited: boolean
+  tokens_this_month: number
+  tokens_monthly_limit: number
+  tokens_unlimited: boolean
+}
+
 const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
 
 export default function SettingsPage() {
@@ -50,6 +65,7 @@ export default function SettingsPage() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [avatarUploading, setAvatarUploading] = useState(false)
   const [avatarError, setAvatarError] = useState<string | null>(null)
+  const [quota, setQuota] = useState<QuotaStatus | null>(null)
 
   function resizeImage(file: File, maxPx: number): Promise<Blob> {
     return new Promise((resolve, reject) => {
@@ -125,6 +141,13 @@ export default function SettingsPage() {
       setConvInactivityTimeout((user.conversation_inactivity_timeout as 60 | 180 | 300) || 180)
     }
   }, [user])
+
+  useEffect(() => {
+    apiFetch('/api/auth/quota')
+      .then((r) => r.json())
+      .then((data: QuotaStatus) => setQuota(data))
+      .catch(() => { /* silently ignore — quota section stays hidden */ })
+  }, [])
 
   async function handleSave() {
     setSaving(true)
@@ -433,6 +456,54 @@ export default function SettingsPage() {
             {savingConv ? `— ${t('saving')}` : `— ${t('saveConversation')}`}
           </button>
         </div>
+      </div>
+
+      {/* Usage Limits */}
+      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionUsageLimits')}</span>
+        </div>
+        {quota === null ? (
+          <div className="space-y-3 animate-pulse">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className="h-4 bg-fl-surface-2" />
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {[
+              { label: t('quotaSessions'), used: quota.sessions_this_week, limit: quota.sessions_limit, unlimited: quota.sessions_unlimited, format: (v: number) => String(v) },
+              { label: t('quotaMinutesDay'), used: quota.minutes_today, limit: quota.minutes_limit, unlimited: quota.time_unlimited, format: (v: number) => String(v) },
+              { label: t('quotaMinutesWeek'), used: quota.minutes_this_week, limit: quota.weekly_minutes_limit, unlimited: quota.weekly_minutes_unlimited, format: (v: number) => String(v) },
+              { label: t('quotaTokens'), used: Math.round(quota.tokens_this_month / 1000), limit: Math.round(quota.tokens_monthly_limit / 1000), unlimited: quota.tokens_unlimited, format: (v: number) => `${v}k` },
+            ].map(({ label, used, limit, unlimited, format }) => {
+              const pct = unlimited || limit === 0 ? null : Math.min(100, Math.round((used / limit) * 100))
+              const exceeded = !unlimited && limit > 0 && used >= limit
+              return (
+                <div key={label} className="flex items-center gap-3">
+                  <span className="font-mono text-fl-hint tracking-widest text-fl-muted-4 uppercase w-36 shrink-0">{label}</span>
+                  {unlimited ? (
+                    <span className="font-mono text-fl-hint text-fl-muted-2">{t('quotaUnlimited')}</span>
+                  ) : (
+                    <>
+                      <div className="flex-1 h-1 bg-fl-surface-2 overflow-hidden">
+                        <div
+                          className={`h-full transition-all ${exceeded ? 'bg-fl-error' : 'bg-fl-accent'}`}
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <span className={`font-mono text-fl-hint tabular-nums ${exceeded ? 'text-fl-error' : 'text-fl-muted-2'}`}>
+                        {format(used)}&thinsp;/&thinsp;{format(limit)}
+                      </span>
+                    </>
+                  )}
+                </div>
+              )
+            })}
+            <p className="font-mono text-fl-hint text-fl-muted-3 pt-1">{t('quotaHint')}</p>
+          </div>
+        )}
       </div>
 
       {/* Theme */}

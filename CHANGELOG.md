@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.12] - 2026-05-13
+
+### Added
+- **Conversation starters**: 30 curated English-practice topics displayed as clickable chips in the voice conversation section. Six topics are chosen randomly on each component mount. Chips are hidden as soon as a session becomes active and reappear when it ends. Clicking a chip injects a synthetic `initialContext` message so the tutor opens naturally on that topic — no backend changes required.
+- **i18n**: `startersHint` key added to the `conversation` namespace in all 10 locale files (en, es, de, fr, it, pt, pl, nl, ro, ru).
+- **Assessment bank** expanded to 100 questions (A1–C2). New items cover B2, C1, and C2 levels across grammar, vocabulary, and reading comprehension. `MAX_QUESTIONS` per placement test raised from 12 to 15.
+- **Usage Limits section in Settings**: read-only panel showing four progress bars — sessions/week, minutes/day, minutes/week, and tokens/month (in k-units). Data is fetched live from `GET /api/auth/quota` on page load; animate-pulse skeleton shown while loading; bars turn red when a limit is reached; unlimited metrics display a localised "Unlimited" label.
+- **Terms of Service — section 5** updated across all 10 locales (en, es, de, fr, it, pt, pl, nl, ro, ru): added a sentence noting that the hosted service applies usage limits to AI tutoring features and that current usage is visible in account settings (no specific quantities stated).
+- 8 new i18n keys added to the `settings` namespace in all 10 locale files: `sectionUsageLimits`, `quotaSessions`, `quotaMinutesDay`, `quotaMinutesWeek`, `quotaTokens`, `quotaUnlimited`, `quotaLoading`, `quotaHint`.
+
 ## [1.4.11] - 2026-05-12
 
 ### Added
