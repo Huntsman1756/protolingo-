@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.13] - 2026-05-13
+
+### Fixed
+- **Evaluation — critical bug**: last answer was silently dropped from the level-test submission due to a stale React closure. `handleNext` now reads from a `useRef` (`answersRef`) that is updated eagerly alongside state in `handleConfirmAnswer`, guaranteeing all N answers are always included in the payload sent to the backend.
+- **Evaluation — DB consistency**: added missing `await db.refresh(plan)` after `db.commit()` in the `/api/assessment/level-test/submit` endpoint, consistent with every other endpoint in the router.
+- **Evaluation — LLM error handling**: `json.JSONDecodeError` raised by `json.loads()` on a malformed LLM response was not caught in `generate_level_test_questions` or `evaluate_free_write`, causing a generic 500. Both functions now catch it and re-raise as `LLMError` → 502, while still letting `LLMTimeoutError` / `LLMUnavailableError` propagate for their specific HTTP status codes.
+- **Evaluation — plan ID validation**: `planId` from the URL query string is now validated as a positive integer before being sent to the backend. Invalid values (`null`, `"abc"`, `0`) are caught client-side with a clear error message instead of sending `NaN` to the API.
+- **Evaluation — subscription check order**: `loadQuestions` in the level-test page now bails out early when the user is not subscribed, preventing a spurious 402 network error from showing an opaque error panel instead of the `PaywallBanner`.
+
+### Added
+- **Evaluation — start warning dialog**: a `ConfirmDialog` is shown before starting both the initial placement assessment and the level-completion test, warning the user that leaving mid-evaluation will lose all progress and require a restart. Uses the shared `ConfirmDialog` component and follows the same UX pattern as the logout confirmation. Four new i18n keys added to the `assessment` namespace across all 10 locale files (en, es, de, fr, it, pt, nl, pl, ru, ro): `startWarningTitle`, `startWarningMessage`, `startWarningMessageLevelTest`, `startWarningConfirm`.
+
 ## [1.4.12] - 2026-05-13
 
 ### Added

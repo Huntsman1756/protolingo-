@@ -395,6 +395,10 @@
     "summaryGoals": "Objetivos",
     "noneSelected": "nenhum selecionado",
     "buildingPlan": "Criando plano...",
+    "startWarningTitle": "Antes de começar",
+    "startWarningMessage": "Se você sair da avaliação antes de concluí-la, seu progresso será perdido e você precisará recomeçar.",
+    "startWarningMessageLevelTest": "Se você sair do teste de nível antes de concluí-lo, seu progresso será perdido e você precisará refazê-lo.",
+    "startWarningConfirm": "Começar",
     "startMyPlan": "Iniciar meu plano"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Entendido",
     "entry1": {
       "label": "Nova voz",

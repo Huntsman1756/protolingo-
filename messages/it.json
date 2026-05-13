@@ -395,6 +395,10 @@
     "summaryGoals": "Obiettivi",
     "noneSelected": "nessuno selezionato",
     "buildingPlan": "Creazione piano...",
+    "startWarningTitle": "Prima di iniziare",
+    "startWarningMessage": "Se abbandoni la valutazione prima di completarla, perderai i progressi e dovrai ricominciare dall'inizio.",
+    "startWarningMessageLevelTest": "Se abbandoni il test di livello prima di completarlo, perderai i progressi e dovrai rifarlo.",
+    "startWarningConfirm": "Inizia",
     "startMyPlan": "Inizia il mio piano"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Capito",
     "entry1": {
       "label": "Nuova voce",

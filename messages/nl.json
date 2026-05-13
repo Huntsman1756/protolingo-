@@ -395,6 +395,10 @@
     "summaryGoals": "Doelen",
     "noneSelected": "niets geselecteerd",
     "buildingPlan": "Plan bouwen...",
+    "startWarningTitle": "Voordat u begint",
+    "startWarningMessage": "Als u de beoordeling verlaat voordat u klaar bent, gaat uw voortgang verloren en moet u opnieuw beginnen.",
+    "startWarningMessageLevelTest": "Als u de niveautest verlaat voordat u klaar bent, gaat uw voortgang verloren en moet u hem opnieuw afleggen.",
+    "startWarningConfirm": "Beginnen",
     "startMyPlan": "Mijn plan starten"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Begrepen",
     "entry1": {
       "label": "Nieuwe stem",
