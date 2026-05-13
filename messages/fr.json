@@ -202,7 +202,15 @@
     "deleteAccount": "Supprimer le compte",
     "deleteAccountTitle": "Supprimer le compte",
     "deleteAccountMessage": "Cette action supprimera définitivement votre compte et toutes vos données. Cette action est irréversible.",
-    "deleteAccountConfirm": "Supprimer le compte"
+    "deleteAccountConfirm": "Supprimer le compte",
+    "sectionUsageLimits": "Limites d'utilisation",
+    "quotaSessions": "Sessions / semaine",
+    "quotaMinutesDay": "Minutes / jour",
+    "quotaMinutesWeek": "Minutes / semaine",
+    "quotaTokens": "Tokens / mois",
+    "quotaUnlimited": "Illimité",
+    "quotaLoading": "Chargement...",
+    "quotaHint": "L'utilisation se réinitialise chaque semaine (sessions et minutes) et chaque mois (tokens)."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Contenu et interactions avec l'IA",
       "s4Body": "Les conversations avec le tuteur IA sont stockées dans la base de données pour la continuité de l'apprentissage. Dans le service hébergé, le chat et les fonctionnalités vocales sont traités via l'API d'OpenAI, et votre contenu est soumis aux politiques d'utilisation d'OpenAI. L'IA peut produire des réponses inexactes — faites toujours preuve de discernement. FreeLingo n'est pas responsable du contenu généré par les modèles de langage sous-jacents.",
       "s5Title": "5. Modalités du service",
-      "s5Body": "Les déploiements auto-hébergés sont gratuits et l'opérateur conserve le contrôle total de ses données et de son infrastructure. Le service hébergé opéré par l'équipe FreeLingo est proposé via un abonnement payant, disponible en formule mensuelle ou annuelle. Dans le service hébergé, vos données sont stockées sur des serveurs opérés par l'équipe FreeLingo.",
+      "s5Body": "Les déploiements auto-hébergés sont gratuits et l'opérateur conserve le contrôle total de ses données et de son infrastructure. Le service hébergé opéré par l'équipe FreeLingo est proposé via un abonnement payant, disponible en formule mensuelle ou annuelle. Dans le service hébergé, vos données sont stockées sur des serveurs opérés par l'équipe FreeLingo. Le service hébergé applique des limites d'utilisation aux fonctionnalités de tutorat IA ; votre utilisation actuelle est disponible dans les paramètres du compte.",
       "s6Title": "6. Abonnement et facturation",
       "s6Body": "Les abonnements sont disponibles en cycle de facturation mensuel ou annuel et se renouvellent automatiquement sauf annulation avant la date de renouvellement. Les nouveaux abonnés bénéficient d'une période d'essai gratuite (coordonnées de paiement requises ; aucun prélèvement n'est effectué pendant l'essai). Vous pouvez annuler à tout moment depuis les paramètres de votre compte, avec effet à la fin de la période de facturation en cours. Si vous annulez dans les 14 jours suivant votre premier paiement et n'avez pas utilisé le service de manière significative, vous pouvez demander un remboursement complet au titre du droit de rétractation de l'UE. Aucun remboursement partiel n'est accordé pour le temps non utilisé au-delà de ce droit. Les prix actuels des abonnements sont affichés lors du paiement.",
       "s7Title": "7. Disponibilité",
@@ -889,7 +897,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Compris",
     "entry1": {
       "label": "Nouvelle voix",

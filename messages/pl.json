@@ -202,7 +202,15 @@
     "deleteAccount": "Usuń konto",
     "deleteAccountTitle": "Usuń konto",
     "deleteAccountMessage": "Spowoduje to trwałe usunięcie Twojego konta i wszystkich danych. Tej operacji nie można cofnąć.",
-    "deleteAccountConfirm": "Usuń konto"
+    "deleteAccountConfirm": "Usuń konto",
+    "sectionUsageLimits": "Limity użytkowania",
+    "quotaSessions": "Sesje / tydzień",
+    "quotaMinutesDay": "Minuty / dzień",
+    "quotaMinutesWeek": "Minuty / tydzień",
+    "quotaTokens": "Tokeny / miesiąc",
+    "quotaUnlimited": "Nieograniczone",
+    "quotaLoading": "Ładowanie...",
+    "quotaHint": "Limity są resetowane co tydzień (sesje i minuty) i co miesiąc (tokeny)."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Treści i interakcje z AI",
       "s4Body": "Rozmowy z korepetytorem AI są przechowywane w bazie danych dla ciągłości nauki. W usłudze hostowanej czat AI i funkcje głosowe są przetwarzane za pośrednictwem API OpenAI, a Twoje treści podlegają zasadom użytkowania OpenAI. AI może generować niedokładne odpowiedzi — zawsze stosuj własny osąd. FreeLingo nie ponosi odpowiedzialności za treści generowane przez modele językowe.",
       "s5Title": "5. Tryby usługi",
-      "s5Body": "Wdrożenia samodzielnie hostowane są bezpłatne, a operator zachowuje pełną kontrolę nad swoimi danymi i infrastrukturą. Usługa hostowana prowadzona przez zespół FreeLingo jest świadczona w ramach płatnej subskrypcji, dostępnej w cyklu miesięcznym lub rocznym.",
+      "s5Body": "Wdrożenia samodzielnie hostowane są bezpłatne, a operator zachowuje pełną kontrolę nad swoimi danymi i infrastrukturą. Usługa hostowana prowadzona przez zespół FreeLingo jest świadczona w ramach płatnej subskrypcji, dostępnej w cyklu miesięcznym lub rocznym. Usługa hostowana stosuje limity użytkowania dla funkcji tutoringu AI; bieżące zużycie jest dostępne w ustawieniach konta.",
       "s6Title": "6. Subskrypcja i płatności",
       "s6Body": "Subskrypcje są dostępne w miesięcznym lub rocznym cyklu rozliczeniowym i odnawiane automatycznie, chyba że zostaną anulowane przed datą odnowienia. Nowi subskrybenci otrzymują bezpłatny okres próbny (wymagane dane płatnicze; żadna opłata nie jest pobierana do końca okresu próbnego). Możesz anulować subskrypcję w dowolnym momencie z ustawień konta, ze skutkiem na koniec bieżącego okresu rozliczeniowego. Jeśli anulujesz w ciągu 14 dni od pierwszej płatności i nie korzystałeś(-aś) z usługi w znaczący sposób, możesz zażądać pełnego zwrotu środków zgodnie z prawem konsumenckim UE. Za niewykorzystany czas nie są wydawane częściowe zwroty poza tym uprawnieniem. Aktualne ceny subskrypcji są wyświetlane podczas realizacji zakupu.",
       "s7Title": "7. Dostępność",
@@ -889,7 +897,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Nowy głos",

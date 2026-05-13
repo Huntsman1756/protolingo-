@@ -202,7 +202,15 @@
     "deleteAccount": "Eliminar cuenta",
     "deleteAccountTitle": "Eliminar cuenta",
     "deleteAccountMessage": "Esta acción eliminará tu cuenta y todos tus datos de forma permanente. Esta acción no se puede deshacer.",
-    "deleteAccountConfirm": "Eliminar cuenta"
+    "deleteAccountConfirm": "Eliminar cuenta",
+    "sectionUsageLimits": "Límites de uso",
+    "quotaSessions": "Sesiones / semana",
+    "quotaMinutesDay": "Minutos / día",
+    "quotaMinutesWeek": "Minutos / semana",
+    "quotaTokens": "Tokens / mes",
+    "quotaUnlimited": "Ilimitado",
+    "quotaLoading": "Cargando...",
+    "quotaHint": "El uso se reinicia semanalmente (sesiones y minutos) y mensualmente (tokens)."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Contenido e interacciones con la IA",
       "s4Body": "Las conversaciones con el tutor de IA se almacenan en la base de datos para la continuidad del aprendizaje. En el servicio alojado, el chat y las funciones de voz se procesan a través de la API de OpenAI y tu contenido está sujeto a las políticas de uso de OpenAI. La IA puede producir respuestas inexactas — aplica siempre tu propio criterio. FreeLingo no es responsable del contenido generado por los modelos de lenguaje subyacentes.",
       "s5Title": "5. Modalidades del servicio",
-      "s5Body": "Los despliegues autoalojados son gratuitos y el operador mantiene el control total sobre sus datos e infraestructura. El servicio alojado operado por el equipo de FreeLingo se ofrece mediante suscripción de pago, disponible en modalidad mensual o anual. En el servicio alojado, tus datos se almacenan en servidores operados por el equipo de FreeLingo.",
+      "s5Body": "Los despliegues autoalojados son gratuitos y el operador mantiene el control total sobre sus datos e infraestructura. El servicio alojado operado por el equipo de FreeLingo se ofrece mediante suscripción de pago, disponible en modalidad mensual o anual. En el servicio alojado, tus datos se almacenan en servidores operados por el equipo de FreeLingo. El servicio alojado aplica límites de uso a las funciones de tutoría con IA; tu uso actual está disponible en la configuración de la cuenta.",
       "s6Title": "6. Suscripción y facturación",
       "s6Body": "Las suscripciones están disponibles en ciclo de facturación mensual o anual y se renuevan automáticamente salvo que se cancelen antes de la fecha de renovación. Los nuevos suscriptores disfrutan de un período de prueba gratuito (se requieren datos de pago para iniciarlo; no se realiza ningún cargo hasta que finalice el período de prueba). Puedes cancelar en cualquier momento desde la configuración de tu cuenta, con efecto al final del período de facturación en curso. Si cancelas dentro de los 14 días siguientes a tu primer pago y no has usado el servicio de forma significativa, puedes solicitar un reembolso completo conforme al derecho de desistimiento de la UE. No se emiten reembolsos parciales por tiempo no utilizado más allá de este derecho. Los precios actuales de suscripción se muestran en el momento del pago.",
       "s7Title": "7. Disponibilidad",
@@ -889,7 +897,7 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Entendido",
     "entry1": {
       "label": "Nueva voz",
