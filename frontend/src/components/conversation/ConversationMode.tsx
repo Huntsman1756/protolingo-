@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { useMicVAD } from '@ricky0123/vad-react'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
@@ -79,6 +79,39 @@ function quotaPillSummary(quota: QuotaStatus): { text: string; alert: boolean } 
   return { text: parts.length ? parts.join(' · ') : '∞', alert }
 }
 
+const CONVERSATION_STARTERS = [
+  'Art & creativity',
+  'Books & reading',
+  'Childhood memories',
+  'City vs. countryside',
+  'Cooking & recipes',
+  'Dreams & ambitions',
+  'Family & relationships',
+  'Fashion & style',
+  'Favourite films',
+  'Festivals & traditions',
+  'Food from around the world',
+  'Health & wellbeing',
+  'Hobbies & crafts',
+  'Language learning',
+  'Learning new skills',
+  'Money & budgeting',
+  'Music & concerts',
+  'Pets & animals',
+  'Public transport',
+  'Science & space',
+  'Shopping habits',
+  'Social media',
+  'Sports & fitness',
+  'Technology & gadgets',
+  'The environment',
+  'Travel destinations',
+  'TV shows & series',
+  'Weekend plans',
+  'Work & career goals',
+  'Working from home',
+] as const
+
 function QuotaPill({ quota, t }: { quota: QuotaStatus; t: (k: string) => string }) {
   const [open, setOpen] = useState(false)
   const { text, alert } = quotaPillSummary(quota)
@@ -148,6 +181,16 @@ export default function ConversationMode({
   const [userSpeaking, setUserSpeaking] = useState(false)
   const [assistantSpeaking, setAssistantSpeaking] = useState(false)
   const [quota, setQuota] = useState<QuotaStatus | null>(null)
+
+  // 6 random starters picked once per component mount, shown alphabetically
+  const visibleStarters = useMemo(
+    () =>
+      ([...CONVERSATION_STARTERS] as string[])
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 6)
+        .sort((a, b) => a.localeCompare(b)),
+    [],
+  )
 
   // ─── Fetch quota on mount ─────────────────────────────────────────────────
   const refreshQuota = useCallback(() => {
@@ -352,7 +395,7 @@ export default function ConversationMode({
   )
 
   // ─── Session lifecycle ────────────────────────────────────────────────────
-  async function handleStart() {
+  async function handleStart(topicContext?: ChatContextItem[]) {
     if (!accessToken || vad.loading || vad.errored) return
 
     // AudioContext MUST be created during a user-gesture (this click handler)
@@ -386,7 +429,7 @@ export default function ConversationMode({
     })
 
     await warmupPromise
-    connectWs(accessToken, initialContext)
+    connectWs(accessToken, topicContext ?? initialContext)
   }
 
   function handleStop() {
@@ -479,6 +522,26 @@ export default function ConversationMode({
       {status === 'ended' && (
         <div className="mb-4 border border-fl-border bg-fl-surface px-4 py-3 font-mono text-xs text-fl-muted-2">
           — {t('sessionEnded')}
+        </div>
+      )}
+
+      {/* Conversation starters — shown when idle, hidden as soon as session starts */}
+      {!sessionActive && (status === 'ready' || status === 'ended' || status === 'error') && (
+        <div className="mb-4">
+          <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase text-center mb-3">
+            {t('startersHint')}
+          </p>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {visibleStarters.map((topic) => (
+              <button
+                key={topic}
+                onClick={() => void handleStart([{ role: 'user', content: `I'd like to practice English by talking about ${topic}.` }])}
+                className="font-mono text-xs tracking-wide text-fl-muted-1 border border-fl-border px-3 py-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+              >
+                {topic}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

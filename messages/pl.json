@@ -762,7 +762,8 @@
     "quotaExceededSessions": "Wykorzystałeś(-aś) wszystkie sesje w tym tygodniu.",
     "quotaExceededTime": "Wykorzystałeś(-aś) cały dzienny czas ćwiczeń.",
     "quotaExceededTokens": "Wykorzystałeś(-aś) wszystkie miesięczne tokeny AI.",
-    "quotaTokens": "Tokeny w tym miesiącu"
+    "quotaTokens": "Tokeny w tym miesiącu",
+    "startersHint": "Lub zacznij od tematu"
   },
   "voiceRecorder": {
     "record": "Nagraj",
@@ -906,6 +907,10 @@
     "entry2": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
+    },
+    "entry3": {
+      "label": "Tematy rozmów",
+      "desc": "Sekcja rozmów głosowych wyświetla teraz sześć kart tematycznych, które pomagają rozpocząć sesję. Tematy są losowo wybierane z banku 30 propozycji i znikają po rozpoczęciu sesji."
     }
   }
 }
