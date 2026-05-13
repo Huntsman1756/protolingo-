@@ -50,7 +50,7 @@ type FlowStep =
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const MAX_QUESTIONS = 12
+const MAX_QUESTIONS = 15
 const CORRECT_STREAK_TO_UP = 2
 const WRONG_STREAK_TO_DOWN = 2
 const START_LEVEL: CEFRLevel = 'A2'
