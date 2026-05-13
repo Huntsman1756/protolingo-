@@ -346,6 +346,7 @@ async def submit_level_test(
     plan.completion_test_score = score
     plan.completion_test_recommendation = recommendation
     await db.commit()
+    await db.refresh(plan)
 
     return LevelTestResult(
         score=score,

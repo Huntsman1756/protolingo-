@@ -395,6 +395,10 @@
     "summaryGoals": "Objetivos",
     "noneSelected": "ninguno seleccionado",
     "buildingPlan": "Creando plan...",
+    "startWarningTitle": "Antes de comenzar",
+    "startWarningMessage": "Si sales de la evaluación antes de terminarla, perderás el progreso y tendrás que repetirla desde el principio.",
+    "startWarningMessageLevelTest": "Si sales del test de nivel antes de terminarlo, perderás el progreso y tendrás que repetirlo.",
+    "startWarningConfirm": "Comenzar",
     "startMyPlan": "Empezar mi plan"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Entendido",
     "entry1": {
       "label": "Nueva voz",

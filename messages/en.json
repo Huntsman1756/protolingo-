@@ -395,6 +395,10 @@
     "summaryGoals": "Goals",
     "noneSelected": "none selected",
     "buildingPlan": "Building plan...",
+    "startWarningTitle": "Before you begin",
+    "startWarningMessage": "If you leave the assessment before finishing, your progress will be lost and you will need to start over.",
+    "startWarningMessageLevelTest": "If you leave the level test before finishing, your progress will be lost and you will need to retake it.",
+    "startWarningConfirm": "Start",
     "startMyPlan": "Start my plan"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Got it",
     "entry1": {
       "label": "New voice",

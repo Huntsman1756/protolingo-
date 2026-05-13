@@ -395,6 +395,10 @@
     "summaryGoals": "Obiective",
     "noneSelected": "nimic selectat",
     "buildingPlan": "Se construiește planul...",
+    "startWarningTitle": "Înainte de a începe",
+    "startWarningMessage": "Dacă părăsești evaluarea înainte de a o finaliza, progresul tău va fi pierdut și va trebui să o iei de la capăt.",
+    "startWarningMessageLevelTest": "Dacă părăsești testul de nivel înainte de a-l finaliza, progresul tău va fi pierdut și va trebui să îl refaci.",
+    "startWarningConfirm": "Începe",
     "startMyPlan": "Pornește planul meu"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Voce nouă",

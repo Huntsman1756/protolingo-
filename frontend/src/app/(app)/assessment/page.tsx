@@ -17,6 +17,7 @@ import {
 } from '@/data/assessment-bank'
 import { CEFR_LEVELS } from '@/data/curriculum'
 import type { CEFRLevel } from '@/data/grammar'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -81,6 +82,9 @@ export default function AssessmentPage() {
   const [durationOption, setDurationOption] = useState<DurationOption>(DURATION_OPTIONS[2])
   const [selectedGoals, setSelectedGoals] = useState<string[]>(['grammar', 'vocabulary'])
   const [submitting, setSubmitting] = useState(false)
+
+  // Warning dialog shown before the adaptive quiz starts
+  const [showStartWarning, setShowStartWarning] = useState(false)
 
   useEffect(() => {
     async function check() {
@@ -292,21 +296,34 @@ export default function AssessmentPage() {
   // ── BeginnerGate ──────────────────────────────────────────────────────────
   if (step === 'beginner-gate') {
     return (
-      <BeginnerGate
-        onBeginner={() => {
-          setResult({
-            cefr_level: 'A1',
-            score: 0,
-            skill_profile: {},
-            strengths: [],
-            weaknesses: [],
-          })
-          setSelectedLevel('A1')
-          setAnswers([])
-          setStep('duration')
-        }}
-        onHasExperience={startQuiz}
-      />
+      <>
+        <BeginnerGate
+          onBeginner={() => {
+            setResult({
+              cefr_level: 'A1',
+              score: 0,
+              skill_profile: {},
+              strengths: [],
+              weaknesses: [],
+            })
+            setSelectedLevel('A1')
+            setAnswers([])
+            setStep('duration')
+          }}
+          onHasExperience={() => setShowStartWarning(true)}
+        />
+        <ConfirmDialog
+          open={showStartWarning}
+          title={t('startWarningTitle')}
+          message={t('startWarningMessage')}
+          confirmLabel={t('startWarningConfirm')}
+          onConfirm={() => {
+            setShowStartWarning(false)
+            startQuiz()
+          }}
+          onCancel={() => setShowStartWarning(false)}
+        />
+      </>
     )
   }
 
