@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore, isSubscribed } from '@/store/auth'
 import { useConfigStore } from '@/store/config'
 import { PaywallBanner } from '@/components/billing/PaywallBanner'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -71,11 +73,16 @@ const SKILL_ICONS: Record<string, string> = {
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function LevelTestPage() {
+  const t = useTranslations('assessment')
   const router = useRouter()
   const searchParams = useSearchParams()
   const planId = searchParams.get('plan')
   const user = useAuthStore((s) => s.user)
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
+
+  // Bug #6 fix: gate loadQuestions until user confirms the start warning
+  const [startConfirmed, setStartConfirmed] = useState(false)
+  const [showStartWarning, setShowStartWarning] = useState(true)
 
   const [step, setStep] = useState<FlowStep>('loading')
   const [questions, setQuestions] = useState<LevelTestQuestion[]>([])
@@ -85,18 +92,31 @@ export default function LevelTestPage() {
   const [result, setResult] = useState<LevelTestResult | null>(null)
   const [error, setError] = useState('')
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
-  const [confirmed, setConfirmed] = useState(false)
+  // Bug #1 fix: renamed to avoid confusion; this tracks whether the current answer is confirmed
+  const [answerConfirmed, setAnswerConfirmed] = useState(false)
+
+  // Bug #1 fix: ref holds the always-current answers array so handleNext never uses a stale closure
+  const answersRef = useRef<AnswerRecord[]>([])
 
   // ── Load questions ────────────────────────────────────────────────────────
 
   const loadQuestions = useCallback(async () => {
-    if (!planId) {
-      setError('No plan ID provided. Please access the level test from your plan page.')
+    // Bug #6 fix: do not fetch until the user has confirmed starting
+    if (!startConfirmed) return
+
+    // Bug #5 fix: validate planId before converting to number
+    const planIdNum = Number(planId)
+    if (!planId || !Number.isInteger(planIdNum) || planIdNum <= 0) {
+      setError('Invalid plan ID. Please access the level test from your plan page.')
       setStep('error')
       return
     }
+
+    // Bug #6 fix: skip network call for unsubscribed users — PaywallBanner renders instead
+    if (!isSubscribed(user, stripeEnabled)) return
+
     try {
-      const res = await apiFetch(`/api/assessment/level-test/questions/${planId}`)
+      const res = await apiFetch(`/api/assessment/level-test/questions/${planIdNum}`)
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
         throw new Error((d as { detail?: string }).detail ?? `Error ${res.status}`)
@@ -112,7 +132,7 @@ export default function LevelTestPage() {
       setError(err instanceof Error ? err.message : 'Failed to load level test.')
       setStep('error')
     }
-  }, [planId])
+  }, [planId, startConfirmed, user, stripeEnabled])
 
   useEffect(() => {
     void loadQuestions()
@@ -121,41 +141,49 @@ export default function LevelTestPage() {
   // ── Answer handling ───────────────────────────────────────────────────────
 
   function handleSelectOption(option: string) {
-    if (confirmed) return
+    if (answerConfirmed) return
     setSelectedOption(option)
   }
 
   function handleConfirmAnswer() {
-    if (!selectedOption || confirmed) return
+    if (!selectedOption || answerConfirmed) return
     const q = questions[currentIndex]
     const isCorrect = selectedOption === q.correct
-    setConfirmed(true)
+    setAnswerConfirmed(true)
     const record: AnswerRecord = {
       question_id: q.id,
       skill: q.skill,
       difficulty: q.difficulty,
       correct: isCorrect,
     }
-    setAnswers((prev) => [...prev, record])
+    // Bug #1 fix: build the new array eagerly and store it in both state and ref.
+    // handleNext reads from the ref so it always has the latest array regardless of
+    // when React schedules the state update.
+    const newAnswers = [...answers, record]
+    setAnswers(newAnswers)
+    answersRef.current = newAnswers
   }
 
   function handleNext() {
     if (currentIndex + 1 >= questions.length) {
-      void submitTest([...answers])
+      // Bug #1 fix: use the ref instead of the stale `answers` closure
+      void submitTest(answersRef.current)
       return
     }
     setCurrentIndex((i) => i + 1)
     setSelectedOption(null)
-    setConfirmed(false)
+    setAnswerConfirmed(false)
   }
 
   async function submitTest(finalAnswers: AnswerRecord[]) {
     setStep('submitting')
+    // Bug #5 fix: planId already validated above; Number() is safe here
+    const planIdNum = Number(planId)
     try {
       const res = await apiFetch('/api/assessment/level-test/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan_id: Number(planId), answers: finalAnswers }),
+        body: JSON.stringify({ plan_id: planIdNum, answers: finalAnswers }),
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
@@ -173,6 +201,28 @@ export default function LevelTestPage() {
   // ── Renders ───────────────────────────────────────────────────────────────
 
   if (!isSubscribed(user, stripeEnabled)) return <PaywallBanner />
+
+  // Start warning dialog — shown before any loading begins
+  if (showStartWarning) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
+          Loading test…
+        </span>
+        <ConfirmDialog
+          open={true}
+          title={t('startWarningTitle')}
+          message={t('startWarningMessageLevelTest')}
+          confirmLabel={t('startWarningConfirm')}
+          onConfirm={() => {
+            setShowStartWarning(false)
+            setStartConfirmed(true)
+          }}
+          onCancel={() => router.push('/plan')}
+        />
+      </div>
+    )
+  }
 
   if (step === 'loading' || step === 'submitting') {
     return (
@@ -387,7 +437,7 @@ export default function LevelTestPage() {
               let style =
                 'w-full text-left border font-mono text-xs tracking-wide py-3.5 px-4 transition-colors cursor-pointer'
 
-              if (!confirmed) {
+              if (!answerConfirmed) {
                 style += selectedOption === option
                   ? ' border-fl-fg text-fl-fg bg-fl-surface'
                   : ' border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
@@ -407,7 +457,7 @@ export default function LevelTestPage() {
                 <button
                   key={i}
                   onClick={() => handleSelectOption(option)}
-                  disabled={confirmed}
+                  disabled={answerConfirmed}
                   className={style}
                 >
                   <span className="mr-3 text-fl-muted-3">{prefix}.</span>
@@ -418,7 +468,7 @@ export default function LevelTestPage() {
           </div>
 
           {/* Confirm / Next */}
-          {!confirmed ? (
+          {!answerConfirmed ? (
             <button
               onClick={handleConfirmAnswer}
               disabled={!selectedOption}

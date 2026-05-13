@@ -395,6 +395,10 @@
     "summaryGoals": "Ziele",
     "noneSelected": "keine ausgewählt",
     "buildingPlan": "Plan wird erstellt...",
+    "startWarningTitle": "Bevor Sie beginnen",
+    "startWarningMessage": "Wenn Sie die Bewertung vor dem Abschluss verlassen, geht Ihr Fortschritt verloren und Sie müssen von vorne beginnen.",
+    "startWarningMessageLevelTest": "Wenn Sie den Stufentest vor dem Abschluss verlassen, geht Ihr Fortschritt verloren und Sie müssen ihn wiederholen.",
+    "startWarningConfirm": "Beginnen",
     "startMyPlan": "Meinen Plan starten"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Verstanden",
     "entry1": {
       "label": "Neue Stimme",

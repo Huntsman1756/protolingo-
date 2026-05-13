@@ -395,6 +395,10 @@
     "summaryGoals": "Cele",
     "noneSelected": "nic nie wybrano",
     "buildingPlan": "Tworzenie planu...",
+    "startWarningTitle": "Zanim zaczniesz",
+    "startWarningMessage": "Jeśli opuścisz ocenę przed jej ukończeniem, utracisz postęp i będziesz musiał zacząć od nowa.",
+    "startWarningMessageLevelTest": "Jeśli opuścisz test poziomujący przed jego ukończeniem, utracisz postęp i będziesz musiał go powtórzyć.",
+    "startWarningConfirm": "Rozpocznij",
     "startMyPlan": "Rozpocznij mój plan"
   },
   "plan": {
@@ -898,7 +902,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.4.12",
+    "version": "v1.4.13",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Nowy głos",

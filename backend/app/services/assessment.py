@@ -130,6 +130,13 @@ async def evaluate_free_write(req: FreeWriteEvalRequest) -> dict:
         return json.loads(raw)
     except LLMResponseError as e:
         raise LLMError(f"Free-write evaluation failed: {e}") from e
+    except Exception as e:  # noqa: BLE001
+        # Catches json.JSONDecodeError (not a subclass of LLMResponseError).
+        # LLMTimeoutError / LLMUnavailableError are re-raised as-is since they
+        # are already LLMError subclasses and the router handles them specifically.
+        if isinstance(e, LLMError):
+            raise
+        raise LLMError(f"Free-write evaluation failed: malformed JSON response: {e}") from e
 
 
 async def generate_level_test_questions(
@@ -158,4 +165,10 @@ async def generate_level_test_questions(
         return data.get("questions", [])
     except LLMResponseError as e:
         raise LLMError(f"Level test generation failed: {e}") from e
+    except Exception as e:  # noqa: BLE001
+        # Catches json.JSONDecodeError (not a subclass of LLMResponseError).
+        # LLMTimeoutError / LLMUnavailableError are re-raised as-is.
+        if isinstance(e, LLMError):
+            raise
+        raise LLMError(f"Level test generation failed: malformed JSON response: {e}") from e
 
