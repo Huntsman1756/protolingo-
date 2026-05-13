@@ -479,12 +479,12 @@ export default function LevelTestPage() {
           ) : (
             <div className="space-y-3">
               <div
-                className={`border p-3 font-mono text-xs leading-relaxed ${answersRef.current.at(-1)?.correct
+                className={`border p-3 font-mono text-xs leading-relaxed ${answers.at(-1)?.correct
                   ? 'border-green-500 text-green-600 dark:text-green-400'
                   : 'border-red-500 text-red-500'
                   }`}
               >
-                {answersRef.current.at(-1)?.correct ? '✓ Correct' : `✗ Incorrect — correct answer: ${q.correct}`}
+                {answers.at(-1)?.correct ? '✓ Correct' : `✗ Incorrect — correct answer: ${q.correct}`}
               </div>
               <button
                 onClick={handleNext}
