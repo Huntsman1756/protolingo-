@@ -202,7 +202,15 @@
     "deleteAccount": "Șterge contul",
     "deleteAccountTitle": "Șterge contul",
     "deleteAccountMessage": "Acest lucru va șterge permanent contul tău și toate datele asociate. Această acțiune nu poate fi anulată.",
-    "deleteAccountConfirm": "Șterge contul"
+    "deleteAccountConfirm": "Șterge contul",
+    "sectionUsageLimits": "Limite de utilizare",
+    "quotaSessions": "Sesiuni / săptămână",
+    "quotaMinutesDay": "Minute / zi",
+    "quotaMinutesWeek": "Minute / săptămână",
+    "quotaTokens": "Token-uri / lună",
+    "quotaUnlimited": "Nelimitat",
+    "quotaLoading": "Se încarcă...",
+    "quotaHint": "Utilizarea se resetează săptămânal (sesiuni și minute) și lunar (token-uri)."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Conținut și interacțiuni AI",
       "s4Body": "Conversațiile cu tutorele AI sunt stocate în baza de date pentru continuitatea învățării. AI poate oferi răspunsuri incorecte — folosește întotdeauna propriul tău raționament.",
       "s5Title": "5. Moduri de serviciu",
-      "s5Body": "Implementările auto-găzduite sunt gratuite. Serviciul găzduit de echipa FreeLingo este oferit prin abonament plătit, disponibil lunar sau anual.",
+      "s5Body": "Implementările auto-găzduite sunt gratuite. Serviciul găzduit de echipa FreeLingo este oferit prin abonament plătit, disponibil lunar sau anual. Serviciul găzduit aplică limite de utilizare funcțiilor de îndrumare AI; utilizarea curentă este disponibilă în setările contului.",
       "s6Title": "6. Abonament și facturare",
       "s6Body": "Abonamentele sunt disponibile cu ciclu de facturare lunar sau anual şi se reînoiesc automat dacă nu sunt anulate înainte de data de reînoiire. Noii abonanţi beneficiază de o perioadă de încercare gratuită (detalii de plată necesare; nu se efectuează nicio taxă până la sfârşitul perioadei de încercare). Poţi anula oricand din setarile contului, cu efect la sfârşitul perioadei de facturare curente. Preţurile actuale ale abonamentelor sunt afisate la checkout.",
       "s7Title": "7. Disponibilitate",
@@ -754,7 +762,8 @@
     "quotaExceededSessions": "Ai folosit toate sesiunile pentru această săptămână.",
     "quotaExceededTime": "Ai folosit tot timpul zilnic de practică.",
     "quotaExceededTokens": "Ai folosit toți tokenii IA lunari.",
-    "quotaTokens": "Tokeni luna aceasta"
+    "quotaTokens": "Tokeni luna aceasta",
+    "startersHint": "Sau începe cu un subiect"
   },
   "voiceRecorder": {
     "record": "Înregistrează",
@@ -889,7 +898,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Voce nouă",
@@ -898,6 +907,10 @@
     "entry2": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
+    },
+    "entry3": {
+      "label": "Subiecte de conversație",
+      "desc": "Secțiunea de conversație vocală afișează acum șase carduri cu subiecte pentru a te ajuta să începi o sesiune. Subiectele sunt alese aleatoriu dintr-un catalog de 30 și dispar odată ce sesiunea pornește."
     }
   }
 }

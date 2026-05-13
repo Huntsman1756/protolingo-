@@ -120,7 +120,7 @@ Structure for each version's entries:
 ```json
 "whatsNew": {
   "title": "What's New",
-  "version": "v1.4.11",
+  "version": "v1.4.12",
   "cta": "Got it",
   "entry1": {
     "label": "Feature label",

@@ -202,7 +202,15 @@
     "deleteAccount": "Konto löschen",
     "deleteAccountTitle": "Konto löschen",
     "deleteAccountMessage": "Diese Aktion löscht dein Konto und alle deine Daten dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.",
-    "deleteAccountConfirm": "Konto löschen"
+    "deleteAccountConfirm": "Konto löschen",
+    "sectionUsageLimits": "Nutzungslimits",
+    "quotaSessions": "Sitzungen / Woche",
+    "quotaMinutesDay": "Minuten / Tag",
+    "quotaMinutesWeek": "Minuten / Woche",
+    "quotaTokens": "Tokens / Monat",
+    "quotaUnlimited": "Unbegrenzt",
+    "quotaLoading": "Lädt...",
+    "quotaHint": "Limits werden wöchentlich (Sitzungen und Minuten) und monatlich (Tokens) zurückgesetzt."
   },
   "legal": {
     "terms": {
@@ -221,7 +229,7 @@
       "s4Title": "4. Inhalte und KI-Interaktionen",
       "s4Body": "Gespräche mit dem KI-Tutor werden für die Lernkontinuität in der Datenbank gespeichert. Beim gehosteten Dienst werden Chat und Sprachfunktionen über die OpenAI-API verarbeitet, und Ihre Inhalte unterliegen den Nutzungsrichtlinien von OpenAI. Die KI kann ungenaue Antworten liefern — beurteilen Sie diese immer mit eigenem Urteilsvermögen. FreeLingo haftet nicht für Inhalte, die von den zugrunde liegenden Sprachmodellen generiert werden.",
       "s5Title": "5. Dienstmodalitäten",
-      "s5Body": "Selbst gehostete Installationen sind kostenlos, und der Betreiber behält die volle Kontrolle über seine Daten und Infrastruktur. Der vom FreeLingo-Team betriebene gehostete Dienst wird über ein kostenpflichtiges Abonnement angeboten, das monatlich oder jährlich abgerechnet werden kann. Beim gehosteten Dienst werden Ihre Daten auf Servern des FreeLingo-Teams gespeichert.",
+      "s5Body": "Selbst gehostete Installationen sind kostenlos, und der Betreiber behält die volle Kontrolle über seine Daten und Infrastruktur. Der vom FreeLingo-Team betriebene gehostete Dienst wird über ein kostenpflichtiges Abonnement angeboten, das monatlich oder jährlich abgerechnet werden kann. Beim gehosteten Dienst werden Ihre Daten auf Servern des FreeLingo-Teams gespeichert. Beim gehosteten Dienst gelten Nutzungslimits für KI-Tutoring-Funktionen; Ihre aktuelle Nutzung ist in den Kontoeinstellungen einsehbar.",
       "s6Title": "6. Abonnement und Abrechnung",
       "s6Body": "Abonnements sind in monatlichen oder jährlichen Abrechnungszyklen verfügbar und verlängern sich automatisch, sofern sie nicht vor dem Verlängerungsdatum gekündigt werden. Neue Abonnenten erhalten eine kostenlose Testphase (Zahlungsdaten erforderlich; es entstehen keine Kosten bis zum Ende der Testphase). Sie können jederzeit in Ihren Kontoeinstellungen kündigen, wirksam zum Ende des aktuellen Abrechnungszeitraums. Wenn Sie innerhalb von 14 Tagen nach Ihrer ersten Zahlung kündigen und den Dienst nicht wesentlich genutzt haben, können Sie gemäß EU-Verbraucherrecht eine vollständige Rückerstattung beantragen. Für nicht genutzte Zeit werden über dieses Recht hinaus keine Teilrückerstattungen gewährt. Die aktuellen Abonnementpreise werden beim Bezahlvorgang angezeigt.",
       "s7Title": "7. Verfügbarkeit",
@@ -754,7 +762,8 @@
     "quotaExceededSessions": "Du hast alle Sitzungen dieser Woche aufgebraucht.",
     "quotaExceededTime": "Du hast deine tägliche Übungszeit aufgebraucht.",
     "quotaExceededTokens": "Du hast alle monatlichen KI-Token aufgebraucht.",
-    "quotaTokens": "Token diesen Monat"
+    "quotaTokens": "Token diesen Monat",
+    "startersHint": "Oder mit einem Thema beginnen"
   },
   "voiceRecorder": {
     "record": "Aufnehmen",
@@ -889,7 +898,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.4.11",
+    "version": "v1.4.12",
     "cta": "Verstanden",
     "entry1": {
       "label": "Neue Stimme",
@@ -898,6 +907,10 @@
     "entry2": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
+    },
+    "entry3": {
+      "label": "Gesprächsthemen",
+      "desc": "Im Gesprächsbereich werden jetzt sechs Themen-Chips angezeigt, die dir den Einstieg in eine Sitzung erleichtern. Die Themen werden zufällig aus einem Bank von 30 ausgewählt und verschwinden, sobald die Sitzung beginnt."
     }
   }
 }

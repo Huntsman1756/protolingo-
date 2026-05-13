@@ -493,16 +493,253 @@ const readingB1B2: AssessmentQuestion[] = [
   },
 ]
 
+// ── Grammar — B2 (4 questions) ──────────────────────────────────────────────
+const grammarB2: AssessmentQuestion[] = [
+  {
+    id: 'g-b2-001', skill: 'grammar', difficulty: 'B2',
+    question: 'If I ___ harder at school, I would have a better job now.',
+    options: ['had studied', 'studied', 'have studied', 'was studying'],
+    correct: 'had studied',
+    grammar_slug: 'mixed-conditionals',
+  },
+  {
+    id: 'g-b2-002', skill: 'grammar', difficulty: 'B2',
+    question: 'Not only ___ late, but he also forgot the report.',
+    options: ['he arrived', 'arrived he', 'did he arrive', 'had he arrived'],
+    correct: 'did he arrive',
+    grammar_slug: 'inversion',
+  },
+  {
+    id: 'g-b2-003', skill: 'grammar', difficulty: 'B2',
+    question: 'The error ___ by the system before it caused any damage.',
+    options: ['should detect', 'should have detected', 'should have been detected', 'should be detecting'],
+    correct: 'should have been detected',
+    grammar_slug: 'passive-modal-perfect',
+  },
+  {
+    id: 'g-b2-004', skill: 'grammar', difficulty: 'B2',
+    question: 'She wishes she ___ so much time on social media.',
+    options: ["doesn't waste", "didn't waste", "hadn't wasted", "won't waste"],
+    correct: "hadn't wasted",
+    grammar_slug: 'wish-regret',
+  },
+]
+
+// ── Vocabulary — B2 (4 questions) ────────────────────────────────────────────
+const vocabularyB2: AssessmentQuestion[] = [
+  {
+    id: 'v-b2-001', skill: 'vocabulary', difficulty: 'B2',
+    question: 'The new policy has ___ mixed reactions from the public.',
+    options: ['made', 'done', 'drawn', 'brought'],
+    correct: 'drawn',
+  },
+  {
+    id: 'v-b2-002', skill: 'vocabulary', difficulty: 'B2',
+    question: 'Choose the word closest in meaning to "ambiguous".',
+    options: ['clear', 'uncertain', 'dangerous', 'boring'],
+    correct: 'uncertain',
+  },
+  {
+    id: 'v-b2-003', skill: 'vocabulary', difficulty: 'B2',
+    question: 'The company decided to ___ its losses and close the unprofitable branch.',
+    options: ['cut', 'accept', 'mitigate', 'write off'],
+    correct: 'write off',
+  },
+  {
+    id: 'v-b2-004', skill: 'vocabulary', difficulty: 'B2',
+    question: 'What does "prevalent" mean?',
+    options: ['rare', 'unusual', 'widespread', 'powerful'],
+    correct: 'widespread',
+  },
+]
+
+// ── Reading — B2 (2 questions) ────────────────────────────────────────────────
+const readingB2: AssessmentQuestion[] = [
+  {
+    id: 'r-b2-002', skill: 'reading', difficulty: 'B2',
+    question: 'Read: "Despite initial opposition from several board members, the proposal was eventually ratified after significant amendments were made. The outcome, while not ideal for any single party, was viewed as an acceptable compromise." — What can be inferred about the final decision?',
+    options: ['Everyone was fully satisfied.', 'The proposal failed.', 'The result was a middle-ground solution.', 'One party got everything they wanted.'],
+    correct: 'The result was a middle-ground solution.',
+  },
+  {
+    id: 'r-b2-003', skill: 'reading', difficulty: 'B2',
+    question: 'Read: "The government\'s latest initiative on housing has been lauded by some as a bold step forward, while others dismiss it as a superficial gesture that fails to address the root causes of the crisis." — What is the overall tone of this passage?',
+    options: ['Fully supportive', 'Fully critical', 'Neutral and balanced', 'Sarcastic'],
+    correct: 'Neutral and balanced',
+  },
+]
+
+// ── Grammar — C1 (4 questions) ──────────────────────────────────────────────
+const grammarC1: AssessmentQuestion[] = [
+  {
+    id: 'g-c1-001', skill: 'grammar', difficulty: 'C1',
+    question: '___ the manager who approved the decision. (cleft sentence)',
+    options: ['It was', 'It is', 'There was', 'What was'],
+    correct: 'It was',
+    grammar_slug: 'cleft-sentences',
+  },
+  {
+    id: 'g-c1-002', skill: 'grammar', difficulty: 'C1',
+    question: 'Rarely ___ such a convincing performance.',
+    options: ['I have seen', 'have I seen', 'I had seen', 'do I see'],
+    correct: 'have I seen',
+    grammar_slug: 'inversion',
+  },
+  {
+    id: 'g-c1-003', skill: 'grammar', difficulty: 'C1',
+    question: 'The committee recommended that the proposal ___ immediately.',
+    options: ['is reviewed', 'was reviewed', 'be reviewed', 'will be reviewed'],
+    correct: 'be reviewed',
+    grammar_slug: 'subjunctive-formal',
+  },
+  {
+    id: 'g-c1-004', skill: 'grammar', difficulty: 'C1',
+    question: '___ all the evidence, the judge returned a verdict of not guilty.',
+    options: ['Having considered', 'Considering to', 'To have considered', 'Being considered'],
+    correct: 'Having considered',
+    grammar_slug: 'participle-clauses',
+  },
+]
+
+// ── Vocabulary — C1 (4 questions) ────────────────────────────────────────────
+const vocabularyC1: AssessmentQuestion[] = [
+  {
+    id: 'v-c1-001', skill: 'vocabulary', difficulty: 'C1',
+    question: 'Choose the word closest in meaning to "ostensibly".',
+    options: ['genuinely', 'apparently', 'secretly', 'occasionally'],
+    correct: 'apparently',
+  },
+  {
+    id: 'v-c1-002', skill: 'vocabulary', difficulty: 'C1',
+    question: '"She managed to ___ the criticism by addressing each point carefully." (to counter or disprove)',
+    options: ['avoid', 'rebut', 'distract', 'dismiss'],
+    correct: 'rebut',
+  },
+  {
+    id: 'v-c1-003', skill: 'vocabulary', difficulty: 'C1',
+    question: 'What does "pernicious" mean?',
+    options: ['harmless', 'beneficial', 'having a harmful effect', 'temporary'],
+    correct: 'having a harmful effect',
+  },
+  {
+    id: 'v-c1-004', skill: 'vocabulary', difficulty: 'C1',
+    question: '"The politician\'s speech was full of ___." (inflated language designed to impress rather than inform)',
+    options: ['rhetoric', 'irony', 'satire', 'metaphor'],
+    correct: 'rhetoric',
+  },
+]
+
+// ── Reading — C1 (2 questions) ────────────────────────────────────────────────
+const readingC1: AssessmentQuestion[] = [
+  {
+    id: 'r-c1-001', skill: 'reading', difficulty: 'C1',
+    question: 'Read: "The relentless pursuit of economic growth, predicated on the assumption that prosperity and wellbeing are synonymous, has increasingly come under scrutiny. Critics argue that this conflation obscures the very real costs borne by communities and ecosystems alike." — What do the critics argue?',
+    options: ['Economic growth is always beneficial.', 'Wellbeing and prosperity are the same thing.', 'The focus on growth ignores its negative impacts.', 'Communities benefit the most from growth.'],
+    correct: 'The focus on growth ignores its negative impacts.',
+  },
+  {
+    id: 'r-c1-002', skill: 'reading', difficulty: 'C1',
+    question: 'Read: "She answered every question with the kind of careful precision that suggested she had anticipated them all in advance." — What does the passage imply about her?',
+    options: ['She was nervous.', 'She was unprepared.', 'She had prepared thoroughly.', 'She misunderstood the questions.'],
+    correct: 'She had prepared thoroughly.',
+  },
+]
+
+// ── Grammar — C2 (4 questions) ──────────────────────────────────────────────
+const grammarC2: AssessmentQuestion[] = [
+  {
+    id: 'g-c2-001', skill: 'grammar', difficulty: 'C2',
+    question: '"The ___ of new regulations has significantly impacted small businesses." — Choose the correct nominalization of "implement".',
+    options: ['implementation', 'implementing', 'implemented', 'implements'],
+    correct: 'implementation',
+    grammar_slug: 'nominalization',
+  },
+  {
+    id: 'g-c2-002', skill: 'grammar', difficulty: 'C2',
+    question: '___ he known about the risks, he would never have agreed. (formal conditional without "if")',
+    options: ['Had', 'Should', 'Were', 'Did'],
+    correct: 'Had',
+    grammar_slug: 'inversion-conditional',
+  },
+  {
+    id: 'g-c2-003', skill: 'grammar', difficulty: 'C2',
+    question: 'It is essential that every delegate ___ present for the vote. (formal/subjunctive)',
+    options: ['is', 'are', 'be', 'will be'],
+    correct: 'be',
+    grammar_slug: 'subjunctive-formal',
+  },
+  {
+    id: 'g-c2-004', skill: 'grammar', difficulty: 'C2',
+    question: 'The findings ___ to be inconclusive by the review board.',
+    options: ['were considered', 'are considered', 'have been considering', 'had considered'],
+    correct: 'were considered',
+    grammar_slug: 'passive-reporting-verbs',
+  },
+]
+
+// ── Vocabulary — C2 (4 questions) ────────────────────────────────────────────
+const vocabularyC2: AssessmentQuestion[] = [
+  {
+    id: 'v-c2-001', skill: 'vocabulary', difficulty: 'C2',
+    question: '"He remained ___ about the outcome despite the setbacks." — Which word fits? (meaning calmly optimistic)',
+    options: ['pessimistic', 'sanguine', 'indifferent', 'anxious'],
+    correct: 'sanguine',
+  },
+  {
+    id: 'v-c2-002', skill: 'vocabulary', difficulty: 'C2',
+    question: 'The author\'s prose is notable for being ___: she uses far more words than necessary.',
+    options: ['laconic', 'verbose', 'eloquent', 'terse'],
+    correct: 'verbose',
+  },
+  {
+    id: 'v-c2-003', skill: 'vocabulary', difficulty: 'C2',
+    question: '"The new law was designed to ___ the growing power of monopolies." (to limit or cut back something undesirable)',
+    options: ['encourage', 'circumvent', 'curtail', 'expedite'],
+    correct: 'curtail',
+  },
+  {
+    id: 'v-c2-004', skill: 'vocabulary', difficulty: 'C2',
+    question: 'What does "equivocate" mean?',
+    options: ['to speak clearly and directly', 'to use vague language to avoid commitment', 'to exaggerate the facts', 'to repeat the same point'],
+    correct: 'to use vague language to avoid commitment',
+  },
+]
+
+// ── Reading — C2 (2 questions) ────────────────────────────────────────────────
+const readingC2: AssessmentQuestion[] = [
+  {
+    id: 'r-c2-001', skill: 'reading', difficulty: 'C2',
+    question: 'Read: "It would be tempting to describe the author\'s silence on this matter as mere oversight; tempting, but ultimately untenable." — What does the writer suggest about the author\'s silence?',
+    options: ['It was accidental.', 'It was deliberate and significant.', 'It was understandable.', 'It was irrelevant to the argument.'],
+    correct: 'It was deliberate and significant.',
+  },
+  {
+    id: 'r-c2-002', skill: 'reading', difficulty: 'C2',
+    question: 'Read: "The novel\'s narrator is, by turns, unreliable, self-contradictory, and yet strangely compelling — a figure whose distortions of truth ultimately reveal more about the human condition than any straightforward account could." — What is the writer\'s main point about the narrator\'s unreliability?',
+    options: ['It makes the novel confusing and hard to read.', 'It undermines the novel\'s credibility.', 'It is a flaw that the author should have corrected.', 'It paradoxically enhances the novel\'s insight into human nature.'],
+    correct: 'It paradoxically enhances the novel\'s insight into human nature.',
+  },
+]
+
 // ── Full bank ─────────────────────────────────────────────────────────────────
 export const assessmentBank: AssessmentQuestion[] = [
   ...grammarA1,
   ...grammarA2,
   ...grammarB1,
+  ...grammarB2,
+  ...grammarC1,
+  ...grammarC2,
   ...vocabularyA1,
   ...vocabularyA2,
   ...vocabularyB1,
+  ...vocabularyB2,
+  ...vocabularyC1,
+  ...vocabularyC2,
   ...readingA1A2,
   ...readingB1B2,
+  ...readingB2,
+  ...readingC1,
+  ...readingC2,
 ]
 
 // ── Adaptive quiz helpers ─────────────────────────────────────────────────────
