@@ -121,8 +121,8 @@ function QuotaPill({ quota, t }: { quota: QuotaStatus; t: (k: string) => string 
       <button
         onClick={() => setOpen((v) => !v)}
         className={`w-full flex items-center justify-between px-3 py-1.5 border font-mono text-fl-hint tracking-widest uppercase transition-colors ${alert
-            ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
-            : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
+          ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
+          : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
           }`}
       >
         <span>● {text}</span>
@@ -429,7 +429,14 @@ export default function ConversationMode({
     })
 
     await warmupPromise
-    connectWs(accessToken, topicContext ?? initialContext)
+    const latestToken = useAuthStore.getState().accessToken
+    if (!latestToken) {
+      setErrorMsg(t('errorUnauthorized'))
+      setStatus('error')
+      setSessionActive(false)
+      return
+    }
+    connectWs(latestToken, topicContext ?? initialContext)
   }
 
   function handleStop() {
