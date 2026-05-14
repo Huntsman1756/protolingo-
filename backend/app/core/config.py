@@ -44,6 +44,7 @@ class Settings(BaseSettings):
 
     # Email / SMTP
     EMAIL_ENABLED: bool = False
+    CONTACT_EMAIL: str = ""
     SMTP_HOST: str = "localhost"
     SMTP_PORT: int = 587
     SMTP_USER: str = ""

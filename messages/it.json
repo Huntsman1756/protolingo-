@@ -472,7 +472,10 @@
     "examples": "Esempi",
     "pronunciationExercise": "Pronuncia",
     "tapToListen": "Tocca per ascoltare",
-    "recordNow": "Registra la tua risposta"
+    "recordNow": "Registra la tua risposta",
+    "exit": "Esci",
+    "exitConfirmTitle": "Uscire dalla lezione?",
+    "exitConfirmMessage": "Il tuo progresso in questa lezione andrà perso."
   },
   "flashcards": {
     "title": "Schede",
@@ -693,13 +696,15 @@
     "q_language": "Che lingua imparerò?",
     "a_language": "Solo inglese, per ora. La lingua madre scelta alla registrazione è usata esclusivamente per le traduzioni delle flashcard e il feedback del tutor — non cambia la lingua obiettivo.",
     "q_assessment": "Cos'è la Valutazione?",
-    "a_assessment": "Un test di 20 domande generato dall'IA che copre grammatica, vocabolario, comprensione della lettura e trasformazione di frasi, con difficoltà da A1 a C1. Al termine, ottieni il tuo livello QCER, un punteggio e un'analisi dei tuoi punti di forza e di debolezza. Questo risultato alimenta il Piano di Studio e le Flashcard generate.",
+    "a_assessment": "Un test di 15 domande generato dall'IA che copre grammatica, vocabolario, comprensione della lettura e trasformazione di frasi, con difficoltà da A1 a C1. Al termine, ottieni il tuo livello QCER, un punteggio e un'analisi dei tuoi punti di forza e di debolezza. Questo risultato alimenta il Piano di Studio e le Flashcard generate.",
     "q_studyPlan": "Cos'è il Piano di Studio e come ne genero uno?",
     "a_studyPlan": "Dopo la Valutazione, vai al Dashboard e clicca su <strong>Genera Piano di Studio</strong>. Verrà creato automaticamente un piano settimana per settimana con lezioni quotidiane personalizzate per il tuo livello QCER e i tuoi obiettivi. Ogni lezione include esercizi a scelta multipla e di scrittura libera valutati dall'IA.",
     "q_flashcards": "A cosa servono le Flashcard?",
     "a_flashcards": "Un sistema di allenamento del vocabolario che usa l'algoritmo di ripetizione spaziata <strong>SM-2</strong>. Genera carte su qualsiasi argomento (es. \"business\", \"phrasal verbs\", \"cibo\") con definizione, frase d'esempio e traduzione nella tua lingua madre. Il sistema calcola quando rimostrare ogni carta appena prima che tu la dimentichi. Completamente indipendente dal Piano di Studio.",
     "q_tutor": "Come funziona il Tutor IA?",
     "a_tutor": "Una chat libera con streaming. Il tutor conosce il tuo livello QCER e i tuoi punti deboli per adattare le risposte. Fai domande di grammatica, chiedi spiegazioni, esercitati a scrivere in inglese o fai semplicemente una conversazione. Le conversazioni vengono salvate e sono accessibili dalla barra laterale tra una sessione e l'altra.",
+    "q_voice": "Come funziona la conversazione vocale?",
+    "a_voice": "La modalità <strong>Conversazione vocale</strong> ti consente di parlare con il tutor AI in tempo reale. Premi Start per iniziare — l'app rileva automaticamente la tua voce tramite rilevamento dell'attività vocale (VAD) e il tutor risponde con la sintesi vocale. Puoi interrompere il tutor in qualsiasi momento (barge-in). La sessione termina quando si raggiunge il limite di tempo o si preme Stop. Assicurati che il browser abbia il permesso di accedere al microfono.",
     "q_providers": "Quali provider di IA supporta FreeLingo?",
     "a_providers_intro": "Configurabile in <code>.env</code> tramite <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Locale, gratuito. Richiede Ollama in esecuzione sull'host. Modello consigliato: gemma3:12b. Può essere lento senza GPU.",
@@ -902,7 +907,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.4.13",
+    "version": "v1.4.14",
     "cta": "Capito",
     "entry1": {
       "label": "Nuova voce",
@@ -916,5 +921,18 @@
       "label": "Suggerimenti per la conversazione",
       "desc": "La sezione di conversazione vocale mostra ora sei chip con argomenti per aiutarti a iniziare una sessione. Gli argomenti vengono scelti casualmente da un banco di 30 e scompaiono non appena la sessione inizia."
     }
+  },
+  "contact": {
+    "title": "Contatto",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "tua@email.com",
+    "labelSubject": "Oggetto",
+    "placeholderSubject": "Breve descrizione della tua domanda",
+    "labelDescription": "Messaggio",
+    "placeholderDescription": "Descrivi la tua domanda o il tuo commento...",
+    "send": "Invia",
+    "sending": "Invio in corso...",
+    "sent": "Messaggio inviato",
+    "errorGeneric": "Invio fallito. Riprova."
   }
 }

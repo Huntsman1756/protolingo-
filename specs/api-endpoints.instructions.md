@@ -136,6 +136,14 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 
 ---
 
+## Contact — `/api/contact`
+
+| Method | Path | Rate limit | Description |
+|--------|------|------------|-------------|
+| POST | `/contact` | 5/hour | Submits a contact form. Body: `{ email, subject, description }`. Forwards the message to `CONTACT_EMAIL` via SMTP. Returns 204 on success, 502 if email sending fails. No auth required. |
+
+---
+
 ## WebSocket — `/ws/conversation`
 
 Full-duplex voice conversation pipeline.

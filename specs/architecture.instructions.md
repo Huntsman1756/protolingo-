@@ -16,7 +16,7 @@ freelingo/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter
 │   │   ├── models/              # SQLAlchemy 2.0 ORM models (9 models)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas
-│   │   ├── routers/             # 11 routers (10 REST + 1 WebSocket)
+│   │   ├── routers/             # 12 routers (11 REST + 1 WebSocket)
 │   │   ├── services/            # Business logic + external service clients (12 modules)
 │   │   └── data/
 │   │       └── en/              # Static curriculum and content data
@@ -327,8 +327,9 @@ SMTP email dispatch via **fastapi-mail 1.4.1** (async, `aiosmtplib` backend). On
 
 - `send_verification_email(to, display_name, token, locale)` — sends a verification link valid 24 h.
 - `send_reset_password_email(to, display_name, token, locale)` — sends a password-reset link valid 1 h.
+- `send_contact_email(sender_email, subject, description)` — forwards a contact-form submission to `CONTACT_EMAIL`. Sets `Reply-To` to the sender's address. Raises on SMTP failure (the router converts this to HTTP 502).
 
-Both functions accept a `locale` parameter (BCP-47 language tag, e.g. `"es"`) and render fully translated email bodies using internal `_VERIFY_I18N` / `_RESET_I18N` dicts covering the 10 supported UI languages. HTML templates are in `backend/app/templates/email/`.
+Both `send_verification_email` and `send_reset_password_email` accept a `locale` parameter (BCP-47 language tag, e.g. `"es"`) and render fully translated email bodies using internal `_VERIFY_I18N` / `_RESET_I18N` dicts covering the 10 supported UI languages. HTML templates are in `backend/app/templates/email/`.
 
 ### Quota Service (`quota_service.py`)
 
@@ -507,7 +508,8 @@ All configuration is environment-driven. Key variables:
 | OPENAI_TTS_MODEL | tts-1 | OpenAI TTS model (openai provider) |
 | OPENAI_TTS_VOICE | nova | OpenAI TTS voice (openai provider) |
 | OPENAI_STT_MODEL | whisper-1 | OpenAI STT model (openai provider) |
-| EMAIL_ENABLED | false | Enable SMTP email (verification + password reset) |
+| EMAIL_ENABLED | false | Enable SMTP email (verification + password reset + contact form) |
+| CONTACT_EMAIL | — | Destination address for contact form submissions |
 | SMTP_HOST | localhost | SMTP server hostname |
 | SMTP_PORT | 587 | SMTP server port |
 | SMTP_USER | — | SMTP username |

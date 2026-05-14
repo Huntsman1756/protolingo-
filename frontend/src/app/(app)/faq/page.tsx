@@ -58,6 +58,7 @@ export default function FAQPage() {
     { q: t('q_studyPlan'), a: t.rich('a_studyPlan', { strong }) },
     { q: t('q_flashcards'), a: t.rich('a_flashcards', { strong }) },
     { q: t('q_tutor'), a: t('a_tutor') },
+    { q: t('q_voice'), a: t.rich('a_voice', { strong }) },
     {
       q: t('q_providers'),
       a: (

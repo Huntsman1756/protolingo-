@@ -1,6 +1,6 @@
 import json
 import logging
-import base64
+import os
 import uuid
 from datetime import datetime, timezone
 
@@ -266,6 +266,7 @@ async def update_me(
 
 _MAX_AVATAR_BYTES = 2 * 1024 * 1024  # 2 MB
 _ALLOWED_AVATAR_TYPES = {"image/jpeg", "image/png"}
+_AVATARS_DIR = "/app/avatars"
 
 
 @router.post("/me/avatar", response_model=UserResponse)
@@ -279,8 +280,24 @@ async def upload_avatar(
     data = await file.read(_MAX_AVATAR_BYTES + 1)
     if len(data) > _MAX_AVATAR_BYTES:
         raise HTTPException(status_code=400, detail="Image too large (max 2 MB)")
-    b64 = base64.b64encode(data).decode()
-    current_user.avatar = f"data:{file.content_type};base64,{b64}"
+
+    # Delete the existing file if it was previously stored on disk
+    if current_user.avatar and current_user.avatar.startswith("/api/avatars/"):
+        old_filename = current_user.avatar.split("?")[0].split("/")[-1]
+        old_path = os.path.join(_AVATARS_DIR, old_filename)
+        if os.path.exists(old_path):
+            os.remove(old_path)
+
+    ext = "jpg" if file.content_type == "image/jpeg" else "png"
+    filename = f"{current_user.id}.{ext}"
+    filepath = os.path.join(_AVATARS_DIR, filename)
+    os.makedirs(_AVATARS_DIR, exist_ok=True)
+    with open(filepath, "wb") as f:
+        f.write(data)
+
+    # Append a timestamp to bust the browser cache on re-upload
+    ts = int(datetime.now(timezone.utc).timestamp())
+    current_user.avatar = f"/api/avatars/{filename}?v={ts}"
     await db.commit()
     await db.refresh(current_user)
     return current_user
@@ -291,6 +308,11 @@ async def delete_avatar(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    if current_user.avatar and current_user.avatar.startswith("/api/avatars/"):
+        old_filename = current_user.avatar.split("?")[0].split("/")[-1]
+        old_path = os.path.join(_AVATARS_DIR, old_filename)
+        if os.path.exists(old_path):
+            os.remove(old_path)
     current_user.avatar = None
     await db.commit()
     await db.refresh(current_user)
@@ -311,6 +333,12 @@ async def delete_me(
     if token:
         await redis.delete(f"refresh:{token}")
     response.delete_cookie("refresh_token")
+    # Clean up avatar file from disk before deleting the user record
+    if current_user.avatar and current_user.avatar.startswith("/api/avatars/"):
+        old_filename = current_user.avatar.split("?")[0].split("/")[-1]
+        old_path = os.path.join(_AVATARS_DIR, old_filename)
+        if os.path.exists(old_path):
+            os.remove(old_path)
     user_email = current_user.email
     user_display_name = current_user.display_name
     user_locale = current_user.native_language

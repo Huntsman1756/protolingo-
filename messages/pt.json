@@ -472,7 +472,10 @@
     "examples": "Exemplos",
     "pronunciationExercise": "Pronúncia",
     "tapToListen": "Toque para ouvir",
-    "recordNow": "Grave a sua resposta"
+    "recordNow": "Grave a sua resposta",
+    "exit": "Sair",
+    "exitConfirmTitle": "Sair da lição?",
+    "exitConfirmMessage": "O seu progresso nesta lição será perdido."
   },
   "flashcards": {
     "title": "Cartões",
@@ -693,13 +696,15 @@
     "q_language": "Que idioma vou aprender?",
     "a_language": "Apenas inglês, por agora. O idioma nativo escolhido no registo é usado exclusivamente para traduções de cartões e feedback do tutor — não altera o idioma alvo.",
     "q_assessment": "O que é a Avaliação?",
-    "a_assessment": "Um teste de 20 perguntas gerado por IA que abrange gramática, vocabulário, compreensão de leitura e transformação de frases, com dificuldade de A1 a C1. No final, obtém o seu nível QECR, uma pontuação e uma análise dos seus pontos fortes e fracos. Este resultado alimenta o Plano de Estudo e os Cartões gerados.",
+    "a_assessment": "Um teste de 15 perguntas gerado por IA que abrange gramática, vocabulário, compreensão de leitura e transformação de frases, com dificuldade de A1 a C1. No final, obtém o seu nível QECR, uma pontuação e uma análise dos seus pontos fortes e fracos. Este resultado alimenta o Plano de Estudo e os Cartões gerados.",
     "q_studyPlan": "O que é o Plano de Estudo e como o gero?",
     "a_studyPlan": "Após a Avaliação, vá ao Painel e clique em <strong>Gerar Plano de Estudo</strong>. Um plano semana a semana com lições diárias adaptadas ao seu nível QECR e objetivos será criado automaticamente. Cada lição inclui exercícios de escolha múltipla e escrita livre avaliados por IA.",
     "q_flashcards": "Para que servem os Cartões?",
     "a_flashcards": "Um sistema de treino de vocabulário usando o algoritmo de repetição espaçada <strong>SM-2</strong>. Gere cartões sobre qualquer tema (ex. \"negócios\", \"phrasal verbs\", \"comida\") com definição, frase de exemplo e tradução para o seu idioma nativo. O sistema calcula quando voltar a mostrar cada cartão antes que o esqueça. Completamente independente do Plano de Estudo.",
     "q_tutor": "Como funciona o Tutor IA?",
     "a_tutor": "Um chat livre com streaming. O tutor conhece o seu nível QECR e pontos fracos para adaptar as respostas. Faça perguntas de gramática, peça explicações, pratique escrita em inglês ou simplesmente converse. As conversas são guardadas e acessíveis na barra lateral entre sessões.",
+    "q_voice": "Como funciona a conversa por voz?",
+    "a_voice": "O modo <strong>Conversa por voz</strong> permite falar com o tutor de IA em tempo real. Pressione Iniciar para começar — a aplicação deteta a sua voz automaticamente usando deteção de atividade de voz (VAD) e o tutor responde com síntese de voz. Pode interromper o tutor a qualquer momento (barge-in). A sessão termina quando atinge o limite de tempo ou pressiona Parar. Certifique-se de que o browser tem permissão para aceder ao microfone.",
     "q_providers": "Que fornecedores de IA o FreeLingo suporta?",
     "a_providers_intro": "Configurável em <code>.env</code> via <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Local, gratuito. Requer Ollama em execução no host. Modelo recomendado: gemma3:12b. Pode ser lento sem GPU.",
@@ -902,7 +907,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.4.13",
+    "version": "v1.4.14",
     "cta": "Entendido",
     "entry1": {
       "label": "Nova voz",
@@ -916,5 +921,18 @@
       "label": "Sugestões de conversa",
       "desc": "A secção de conversa de voz mostra agora seis chips de tópicos para te ajudar a iniciar uma sessão. Os tópicos são escolhidos aleatoriamente de um banco de 30 e desaparecem assim que a sessão começa."
     }
+  },
+  "contact": {
+    "title": "Contacto",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "o_seu@email.com",
+    "labelSubject": "Assunto",
+    "placeholderSubject": "Breve descrição da sua questão",
+    "labelDescription": "Mensagem",
+    "placeholderDescription": "Descreva a sua questão ou comentário...",
+    "send": "Enviar",
+    "sending": "A enviar...",
+    "sent": "Mensagem enviada",
+    "errorGeneric": "Falha ao enviar. Por favor, tente novamente."
   }
 }

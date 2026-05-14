@@ -472,7 +472,10 @@
     "examples": "Exemples",
     "pronunciationExercise": "Prononciation",
     "tapToListen": "Appuyer pour écouter",
-    "recordNow": "Enregistrez votre réponse"
+    "recordNow": "Enregistrez votre réponse",
+    "exit": "Quitter",
+    "exitConfirmTitle": "Quitter la leçon ?",
+    "exitConfirmMessage": "Votre progression sur cette leçon sera perdue."
   },
   "flashcards": {
     "title": "Fiches",
@@ -693,13 +696,15 @@
     "q_language": "Quelle langue vais-je apprendre ?",
     "a_language": "L’anglais uniquement, pour l’instant. La langue maternelle choisie à l’inscription est utilisée exclusivement pour les traductions de fiches et les retours du tuteur — elle ne change pas la langue cible.",
     "q_assessment": "Qu’est-ce que l’Évaluation ?",
-    "a_assessment": "Un test de 20 questions généré par IA couvrant la grammaire, le vocabulaire, la compréhension écrite et la transformation de phrases, avec une difficulté allant de A1 à C1. À la fin, vous obtenez votre niveau CECR, un score et une analyse de vos forces et faiblesses. Ce résultat alimente le Plan d’Étude et les Fiches générées.",
+    "a_assessment": "Un test de 15 questions généré par IA couvrant la grammaire, le vocabulaire, la compréhension écrite et la transformation de phrases, avec une difficulté allant de A1 à C1. À la fin, vous obtenez votre niveau CECR, un score et une analyse de vos forces et faiblesses. Ce résultat alimente le Plan d’Étude et les Fiches générées.",
     "q_studyPlan": "Qu’est-ce que le Plan d’Étude et comment en générer un ?",
     "a_studyPlan": "Après l'Évaluation, allez au tableau de bord et cliquez sur <strong>Générer le Plan d'Étude</strong>. Un plan semaine par semaine avec des leçons quotidiennes adaptées à votre niveau CECR et vos objectifs sera créé automatiquement. Chaque leçon comprend des exercices à choix multiples et d'écriture libre évalués par IA.",
     "q_flashcards": "À quoi servent les Fiches ?",
     "a_flashcards": "Un système d’entraînement au vocabulaire utilisant l’algorithme de répétition espacée <strong>SM-2</strong>. Générez des fiches sur n’importe quel sujet (ex. « business », « phrasal verbs », « nourriture ») avec une définition, une phrase d’exemple et une traduction dans votre langue maternelle. Le système calcule quand réafficher chaque fiche juste avant que vous l’oubliiez. Complètement indépendant du Plan d’Étude.",
     "q_tutor": "Comment fonctionne le Tuteur IA ?",
     "a_tutor": "Un chat libre avec streaming. Le tuteur connaît votre niveau CECR et vos points faibles pour adapter ses réponses. Posez des questions de grammaire, demandez des explications, entraînez-vous à écrire en anglais ou discutez simplement. Les conversations sont sauvegardées et accessibles depuis la barre latérale entre sessions.",
+    "q_voice": "Comment fonctionne la conversation vocale ?",
+    "a_voice": "Le mode <strong>Conversation vocale</strong> vous permet de parler avec le tuteur IA en temps réel. Appuyez sur Démarrer pour commencer — l'application détecte votre voix automatiquement grâce à la détection d'activité vocale (VAD) et le tuteur répond avec de la synthèse vocale. Vous pouvez interrompre le tuteur à tout moment (barge-in). La session se termine lorsque vous atteignez la limite de temps ou appuyez sur Arrêter. Assurez-vous que votre navigateur a la permission d'accéder au microphone.",
     "q_providers": "Quels fournisseurs d’IA FreeLingo prend-il en charge ?",
     "a_providers_intro": "Configurable dans <code>.env</code> via <code>LLM_PROVIDER</code> :",
     "provider_ollama": "Local, gratuit. Nécessite Ollama en cours d’exécution sur l’hôte. Modèle recommandé : gemma3:12b. Peut être lent sans GPU.",
@@ -902,7 +907,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.4.13",
+    "version": "v1.4.14",
     "cta": "Compris",
     "entry1": {
       "label": "Nouvelle voix",
@@ -916,5 +921,18 @@
       "label": "Suggestions de conversation",
       "desc": "La section de conversation vocale affiche désormais six suggestions de sujets pour démarrer une session. Les sujets sont tirés au hasard d'un catalogue de 30 et disparaissent dès que la session commence."
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "votre@email.com",
+    "labelSubject": "Objet",
+    "placeholderSubject": "Brève description de votre question",
+    "labelDescription": "Message",
+    "placeholderDescription": "Décrivez votre question ou commentaire...",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "sent": "Message envoyé",
+    "errorGeneric": "Échec de l'envoi. Veuillez réessayer."
   }
 }

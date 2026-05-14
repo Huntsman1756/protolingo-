@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact form message</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f5f0;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .wrapper {
+      max-width: 520px;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 1px solid #d4d4cc;
+    }
+
+    .header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid #d4d4cc;
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #1a1a18;
+    }
+
+    .body {
+      padding: 32px;
+    }
+
+    .label {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #9b9b94;
+      margin: 0 0 4px;
+    }
+
+    .value {
+      font-size: 13px;
+      color: #1a1a18;
+      margin: 0 0 20px;
+    }
+
+    .description-block {
+      border-left: 2px solid #d4d4cc;
+      padding: 12px 16px;
+      margin-top: 4px;
+    }
+
+    .description-text {
+      font-size: 12px;
+      color: #6b6b64;
+      line-height: 1.7;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .footer {
+      padding: 20px 32px;
+      border-top: 1px solid #d4d4cc;
+      font-size: 11px;
+      color: #9b9b94;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <span class="logo">● FreeLingo — Contact Form</span>
+    </div>
+    <div class="body">
+      <p class="label">From</p>
+      <p class="value">{{sender_email}}</p>
+      <p class="label">Subject</p>
+      <p class="value">{{subject}}</p>
+      <p class="label">Message</p>
+      <div class="description-block">
+        <p class="description-text">{{description}}</p>
+      </div>
+    </div>
+    <div class="footer">
+      Sent via FreeLingo contact form &mdash; <a href="{{base_url}}" style="color:#9b9b94;">{{base_url}}</a>
+    </div>
+  </div>
+</body>
+
+</html>
