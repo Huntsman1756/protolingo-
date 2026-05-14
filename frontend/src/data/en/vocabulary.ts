@@ -1365,7 +1365,7 @@ const academic_discourse_c1: VocabularySet = {
     { word: 'corroborate', pos: 'verb', definition: 'To confirm or give support to a statement.', example: 'The witness corroborated the account.', ipa: '/kəˈrɒbəreɪt/', frequency_rank: 460 },
     { word: 'refute', pos: 'verb', definition: 'To prove a statement or theory to be wrong.', example: 'The study sought to refute the earlier findings.', ipa: '/rɪˈfjuːt/', frequency_rank: 430 },
     { word: 'extrapolate', pos: 'verb', definition: 'To extend conclusions beyond the data available.', example: 'We should not extrapolate these findings to the whole population.', ipa: '/ɪkˈstræpəleɪt/', frequency_rank: 490 },
-    { word: 'caveat', pos: 'noun', definition: 'A warning or qualification about a statement.', example: 'With the caveat that more research is needed, we can conclude…', ipa: '/ˈkæviæt/', frequency_rank: 450 },
+    { word: 'caveat', pos: 'noun', definition: 'A warning or qualification about a statement.', example: 'With the caveat that more research is needed, we can conclude...', ipa: '/ˈkæviæt/', frequency_rank: 450 },
     { word: 'dichotomy', pos: 'noun', definition: 'A division into two contrasting groups or ideas.', example: 'There is a false dichotomy between growth and sustainability.', ipa: '/daɪˈkɒtəmi/', frequency_rank: 460 },
     { word: 'synthesis', pos: 'noun', definition: 'The combination of ideas to form a coherent whole.', example: 'The paper provides a synthesis of recent research.', ipa: '/ˈsɪnθɪsɪs/', frequency_rank: 380 },
     { word: 'cite', pos: 'verb', definition: 'To quote as evidence or justification.', example: 'The author cites three studies to support this claim.', ipa: '/saɪt/', frequency_rank: 295 },

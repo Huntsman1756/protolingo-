@@ -49,7 +49,7 @@ freelingo/
 │   │   │   ├── assessment/      # AdaptiveQuizCard, BeginnerGate, DurationSelector
 │   │   │   ├── conversation/    # ConversationMode, MicButton, StatusIndicator, TranscriptBubble, SessionTimeoutBanner
 │   │   │   ├── plan/            # LevelTestBanner, UnitCard, UnitDrawer
-│   │   │   ├── ui/              # shadcn/ui + custom: AudioPlayer, VoiceRecorder, confirm-dialog, loading-bar, …
+│   │   │   ├── ui/              # shadcn/ui + custom: AudioPlayer, VoiceRecorder, confirm-dialog, loading-bar, ...
 │   │   │   ├── TargetLanguageSelector.tsx
 │   │   │   └── ThemeProvider.tsx
 │   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook, assessment-bank (+ en/ subfolder)
@@ -318,6 +318,18 @@ Abstracts STT behind a common `transcribe(audio_bytes, language) → str` interf
 
 - **`local`**: HTTP client to Whisper ASR — `POST /asr?output=json&language=<lang>&task=transcribe` (multipart). Uses `onerahmet/openai-whisper-asr-webservice` image (not OpenAI-compatible endpoint).
 - **`openai`**: OpenAI Whisper API (`whisper-1` model, configurable via `OPENAI_STT_MODEL`).
+
+### Logging & Observability (`core/app_logger.py`)
+
+Backend modules now use a shared logging wrapper:
+
+- `get_logger(__name__)` returns an `AppLogger` instance used across routers and services.
+- `AppLogger` supports both styles:
+    - classic stdlib-style messages with positional placeholders (`%s`)
+    - event-style structured logs (`logger.info("event", key=value, ...)`)
+- Effective verbosity is still controlled globally by `LOG_LEVEL` from `.env` (`DEBUG`, `INFO`, `WARNING`, `ERROR`) and configured in `main.py` via `logging.basicConfig(...)`.
+
+For TTS diagnostics, `/api/tts` emits per-request trace and latency fields in logs and response headers so frontend, proxy, and backend timings can be correlated end-to-end.
 
 The `language` parameter is derived dynamically from `target_language` via `language_helpers.get_iso639` (e.g. `"en-US"` → `"en"`).
 

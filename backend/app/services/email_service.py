@@ -5,14 +5,14 @@ functions are no-ops so the app works without SMTP configured.
 """
 from __future__ import annotations
 
-import logging
 from pathlib import Path
 
 from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
 
+from app.core.app_logger import get_logger
 from app.core.config import settings
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 _TEMPLATES_DIR = Path(__file__).parent.parent / "templates" / "email"
 

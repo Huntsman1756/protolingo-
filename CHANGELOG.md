@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.16] - 2026-05-14
+
+### Added
+- Backend logging architecture now includes a shared logger wrapper (`app/core/app_logger.py`). Routers and services use `get_logger(__name__)` for consistent log formatting while preserving compatibility with standard `%s` placeholder messages.
+- TTS observability for diagnostics: `POST /api/tts` now supports trace correlation via `X-TTS-Trace-ID` and returns backend timing headers (`X-TTS-Backend-Synth-Ms`, `X-TTS-Backend-Total-Ms`). The Next.js TTS proxy forwards trace information and exposes proxy timing headers (`X-TTS-Proxy-Fetch-Ms`, `X-TTS-Proxy-Buffer-Ms`, `X-TTS-Proxy-Total-Ms`).
+
 ## [1.4.15] - 2026-05-14
 
 ### Fixed
