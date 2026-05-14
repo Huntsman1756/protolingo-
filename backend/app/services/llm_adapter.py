@@ -2,16 +2,16 @@ from __future__ import annotations
 
 import asyncio
 import json
-import logging
 from collections.abc import AsyncGenerator
 
 import anthropic as _anthropic
 from openai import AsyncOpenAI
 from pydantic import BaseModel
 
+from app.core.app_logger import get_logger
 from app.core.config import settings
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 MAX_RETRIES = 2
 RETRY_DELAY_SECONDS = 2

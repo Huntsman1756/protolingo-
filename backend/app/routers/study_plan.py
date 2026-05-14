@@ -1,10 +1,10 @@
-import logging
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.app_logger import get_logger
 from app.core.database import get_db
 from app.core.deps import get_current_user, require_subscription
 from app.models.lesson import Exercise, Lesson
@@ -21,7 +21,7 @@ from app.services.lesson_generator import generate_lesson
 from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError  # noqa: F401
 from app.services.study_plan_generator import generate_study_plan
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 router = APIRouter(prefix="/api/study-plan", tags=["study-plan"])
 

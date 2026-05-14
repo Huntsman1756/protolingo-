@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import asyncio
 import json
-import logging
 import re
 import time
 from typing import TYPE_CHECKING
 
+from app.core.app_logger import get_logger
 from app.services.language_helpers import get_english_variant, get_iso639
 from app.services.llm_adapter import LLMError, LLMStream, LLMTimeoutError, LLMUnavailableError
 from app.services.quota_service import record_session_seconds
@@ -14,7 +14,7 @@ from app.services.quota_service import record_session_seconds
 if TYPE_CHECKING:
     from fastapi import WebSocket
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 SENTENCE_END = re.compile(r'[.!?]["\'\)\]]?\s*$')
 MAX_BUFFER_CHARS = 150

@@ -1,4 +1,3 @@
-import logging
 import time
 import uuid
 
@@ -7,11 +6,12 @@ from fastapi.responses import Response
 
 from app.core.deps import get_current_user
 from app.core.limiter import limiter
+from app.core.app_logger import get_logger
 from app.models.user import User
 from app.schemas.tts_stt import TTSRequest
 
 router = APIRouter(prefix="/api", tags=["tts"])
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 @router.post("/tts")
@@ -35,14 +35,14 @@ async def text_to_speech(
     total_ms = (time.perf_counter() - t0) * 1000
 
     logger.info(
-        "[tts] trace=%s user_id=%s text_len=%d audio_bytes=%d provider=%s synth_ms=%.1f total_ms=%.1f",
-        trace_id,
-        current_user.id,
-        len(body.text),
-        len(audio),
-        type(tts_service).__name__,
-        synth_ms,
-        total_ms,
+        "tts",
+        trace=trace_id,
+        user_id=current_user.id,
+        text_len=len(body.text),
+        audio_bytes=len(audio),
+        provider=type(tts_service).__name__,
+        synth_ms=round(synth_ms, 1),
+        total_ms=round(total_ms, 1),
     )
 
     return Response(

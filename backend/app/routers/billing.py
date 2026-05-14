@@ -5,7 +5,6 @@ The webhook endpoint verifies the Stripe signature before processing any event.
 """
 from __future__ import annotations
 
-import logging
 from datetime import datetime
 from typing import Literal
 
@@ -15,6 +14,7 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.app_logger import get_logger
 from app.core.config import settings
 from app.core.database import get_db
 from app.core.deps import get_current_user
@@ -23,7 +23,7 @@ from app.models.user import User
 from app.services.subscription_service import apply_subscription_quotas
 
 router = APIRouter(prefix="/api/billing", tags=["billing"])
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 def _stripe_client() -> None:

@@ -1,5 +1,4 @@
 import json
-import logging
 from datetime import date, datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -7,6 +6,7 @@ from fastapi.responses import StreamingResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.app_logger import get_logger
 from app.core.database import get_db
 from app.core.deps import require_subscription
 from app.models.chat_history import ChatHistory
@@ -32,7 +32,7 @@ from app.services.llm_adapter import (
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 TUTOR_SYSTEM_PROMPT = """
 You are an encouraging and patient English language tutor named FreeLingo.

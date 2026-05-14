@@ -1,17 +1,16 @@
 from __future__ import annotations
 
 import asyncio
-import logging
 import struct
 
 from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
 from redis.asyncio import Redis
 
-logger = logging.getLogger(__name__)
 from jwt.exceptions import PyJWTError
 from sqlalchemy import select
 
+from app.core.app_logger import get_logger
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal
 from app.core.deps import get_current_user, require_subscription
@@ -22,6 +21,8 @@ from app.models.user import User
 from app.services.conversation_pipeline import ConversationPipeline
 from app.services.llm_adapter import llm_adapter
 from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_monthly_tokens, check_weekly_minutes
+
+logger = get_logger(__name__)
 
 router = APIRouter(tags=["conversation"])
 
