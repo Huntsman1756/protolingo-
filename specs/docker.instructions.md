@@ -20,6 +20,21 @@ Ollama is assumed to run on the host machine for GPU access, accessed via `host.
 
 ---
 
+## Image channels and publish workflows
+
+FreeLingo publishes two Docker image channels to GHCR:
+
+| Channel | Branch trigger | Workflow | Backend image | Frontend image | Tags |
+|---------|----------------|----------|---------------|----------------|------|
+| Production | `main` | `.github/workflows/docker-publish.yml` | `ghcr.io/artcc/freelingo-backend` | `ghcr.io/artcc/freelingo-frontend` | `latest`, short `sha` |
+| Develop | `develop` | `.github/workflows/docker-publish-develop.yml` | `ghcr.io/artcc/freelingo-backend-develop` | `ghcr.io/artcc/freelingo-frontend-develop` | `latest`, short `sha` |
+
+The compose examples in this spec use production images by default (`:latest` from the production channel).
+
+For local validation of in-progress changes, use the develop channel images in your deployment environment.
+
+---
+
 ## Docker Compose structure
 
 The compose file defines 6 services (plus optional Ollama) and 2 named volumes (`postgres_data`, `redis_data`).
@@ -205,6 +220,26 @@ docker compose exec kokoro nvidia-smi
 docker compose pull kokoro whisper
 docker compose up -d kokoro whisper
 ```
+
+To test the latest `develop` build in an environment with Docker available, point backend/frontend to the develop images before pulling:
+
+```yaml
+# Example override
+services:
+  backend:
+    image: ghcr.io/artcc/freelingo-backend-develop:latest
+  frontend:
+    image: ghcr.io/artcc/freelingo-frontend-develop:latest
+```
+
+Then pull and restart those services:
+
+```bash
+docker compose pull backend frontend
+docker compose up -d backend frontend
+```
+
+If you need a reproducible test on a specific build, replace `latest` with the short SHA tag published by the workflow.
 
 ---
 
