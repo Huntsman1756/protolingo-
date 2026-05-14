@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.14] - 2026-05-14
+
+### Changed
+- **Avatar storage**: profile photos are no longer stored as base64 data URIs inside the `users.avatar` database column. On upload the image is now written to disk at `/app/avatars/{user_id}.{ext}`, persisted via a Docker volume (`${DATA_PATH}/avatars:/app/avatars`), and the column stores only the relative URL (`/api/avatars/{id}.ext?v={ts}`). The `?v=` cache-buster is refreshed on every re-upload. Existing base64 avatars remain visible and are replaced transparently on the user's next upload. `StaticFiles` mounted at `/api/avatars` in FastAPI; served to the browser through the existing Next.js `/api/:path*` rewrite proxy.
+
+### Added
+- **FAQ — voice conversation**: new Q&A entry ("How does the voice conversation work?") added to the FAQ page, positioned after the AI Tutor entry. Covers real-time speech interaction, automatic voice activity detection (VAD), synthesised AI speech, barge-in support, session time limit, and microphone permission requirement. Translated into all 10 supported locales (en, es, fr, pt, de, it, nl, pl, ro, ru).
+- **Tests — avatar**: 23 new tests in `backend/tests/test_avatar.py` covering JPEG and PNG upload, file content written to disk, URL format and cache-buster, invalid type rejection (400), oversized file rejection (400), auth guard (401), re-upload with same and different format (old file deleted), legacy base64 avatar handled gracefully, deletion clearing the DB field and removing the file, deletion with no prior avatar, and `GET /api/auth/me` reflecting avatar state after upload and delete.
+
 ## [1.4.13] - 2026-05-13
 
 ### Fixed
