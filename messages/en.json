@@ -914,12 +914,12 @@
       "desc": "Real-time voice conversation now uses a new voice for a more natural and engaging experience."
     },
     "entry2": {
-      "label": "Bug fixes",
-      "desc": "Various minor bug fixes and stability improvements across the platform."
-    },
-    "entry3": {
       "label": "Conversation starters",
       "desc": "The voice conversation section now shows six topic chips to help you kick off a session. Topics are picked at random from a bank of 30 and disappear once a session starts."
+    },
+    "entry3": {
+      "label": "Bug fixes",
+      "desc": "Various minor bug fixes and stability improvements across the platform."
     }
   },
   "contact": {

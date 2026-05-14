@@ -914,12 +914,12 @@
       "desc": "La conversación de voz en tiempo real ahora utiliza una nueva voz para una experiencia más natural y envolvente."
     },
     "entry2": {
-      "label": "Correcciones",
-      "desc": "Correcciones de errores menores y mejoras de estabilidad en toda la plataforma."
-    },
-    "entry3": {
       "label": "Sugerencias de conversación",
       "desc": "La sección de conversación de voz ahora muestra seis fichas de temas para ayudarte a comenzar una sesión. Los temas se eligen al azar de un banco de 30 y desaparecen en cuanto empieza la sesión."
+    },
+    "entry3": {
+      "label": "Correcciones",
+      "desc": "Correcciones de errores menores y mejoras de estabilidad en toda la plataforma."
     }
   },
   "contact": {

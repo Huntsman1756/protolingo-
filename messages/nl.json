@@ -914,12 +914,12 @@
       "desc": "Realtime spraakgesprekken gebruiken nu een nieuwe stem voor een natuurlijkere en boeiendere ervaring."
     },
     "entry2": {
-      "label": "Bugfixes",
-      "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
-    },
-    "entry3": {
       "label": "Gespreksonderwerpen",
       "desc": "De spraakgesprekssectie toont nu zes onderwerp-chips om je op weg te helpen een sessie te starten. De onderwerpen worden willekeurig gekozen uit een bank van 30 en verdwijnen zodra een sessie begint."
+    },
+    "entry3": {
+      "label": "Bugfixes",
+      "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }
   },
   "contact": {
