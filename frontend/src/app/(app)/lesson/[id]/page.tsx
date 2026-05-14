@@ -10,6 +10,7 @@ import { grammarTopics } from '@/data/grammar'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
+import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 interface ExerciseItem {
   id: number
@@ -45,6 +46,7 @@ export default function LessonPage() {
   const [evaluating, setEvaluating] = useState(false)
   const [completed, setCompleted] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [showExitConfirm, setShowExitConfirm] = useState(false)
 
   const loadLesson = useCallback(async () => {
     setLoading(true)
@@ -136,6 +138,13 @@ export default function LessonPage() {
             <div className="flex items-center gap-2">
               <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.cefr_level}</span>
               <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.lesson_type}</span>
+              <button
+                onClick={() => setShowExitConfirm(true)}
+                className="font-mono text-fl-muted-3 hover:text-fl-fg transition-colors text-lg leading-none ml-1"
+                aria-label={t('exit')}
+              >
+                ✕
+              </button>
             </div>
           </div>
           <div className="px-6 py-5">
@@ -326,6 +335,16 @@ export default function LessonPage() {
           )
         })()}
       </div>
+
+      <ConfirmDialog
+        open={showExitConfirm}
+        title={t('exitConfirmTitle')}
+        message={t('exitConfirmMessage')}
+        confirmLabel={t('exit')}
+        danger
+        onConfirm={() => router.push('/dashboard')}
+        onCancel={() => setShowExitConfirm(false)}
+      />
     </PaywallGate>
   )
 }

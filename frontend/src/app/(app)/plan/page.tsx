@@ -90,14 +90,16 @@ export default function PlanPage() {
   const [error, setError] = useState('')
   const [competencies, setCompetencies] = useState<CompetencyMap>({})
   const [activeDrawer, setActiveDrawer] = useState<CurriculumUnit | null>(null)
+  const [activeLessonId, setActiveLessonId] = useState<number | null>(null)
 
   const loadPlan = useCallback(async () => {
     setLoading(true)
     setError('')
     try {
-      const [planRes, compRes] = await Promise.all([
+      const [planRes, compRes, todayRes] = await Promise.all([
         apiFetch('/api/study-plan/current'),
         apiFetch('/api/progress/competencies').catch(() => null),
+        apiFetch('/api/study-plan/today').catch(() => null),
       ])
 
       if (!planRes.ok) {
@@ -123,6 +125,12 @@ export default function PlanPage() {
         } else {
           setCompetencies(compData as CompetencyMap)
         }
+      }
+
+      if (todayRes?.ok) {
+        const todayData = await todayRes.json() as { lessons: { id: number | null; completed?: boolean }[] }
+        const nextLesson = todayData.lessons.find((l) => l.id != null && !l.completed)
+        setActiveLessonId(nextLesson?.id ?? null)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load')
@@ -244,6 +252,9 @@ export default function PlanPage() {
                 isLevelTest: false,
               }}
               onClick={() => setActiveDrawer(unit)}
+              onStartLesson={isActive && activeLessonId != null
+                ? () => router.push(`/lesson/${activeLessonId}`)
+                : undefined}
             />
           )
         })}

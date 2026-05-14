@@ -472,7 +472,10 @@
     "examples": "Voorbeelden",
     "pronunciationExercise": "Uitspraak",
     "tapToListen": "Tik om te luisteren",
-    "recordNow": "Neem je antwoord op"
+    "recordNow": "Neem je antwoord op",
+    "exit": "Afsluiten",
+    "exitConfirmTitle": "Les afsluiten?",
+    "exitConfirmMessage": "Je voortgang in deze les gaat verloren."
   },
   "flashcards": {
     "title": "Flashcards",

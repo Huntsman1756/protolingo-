@@ -472,7 +472,10 @@
     "examples": "Exemple",
     "pronunciationExercise": "Pronunție",
     "tapToListen": "Apasă pentru a asculta",
-    "recordNow": "Înregistrează răspunsul tău"
+    "recordNow": "Înregistrează răspunsul tău",
+    "exit": "Ieși",
+    "exitConfirmTitle": "Ieșiți din lecție?",
+    "exitConfirmMessage": "Progresul dvs. la această lecție va fi pierdut."
   },
   "flashcards": {
     "title": "Carduri flash",

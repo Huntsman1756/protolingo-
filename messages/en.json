@@ -472,7 +472,10 @@
     "examples": "Examples",
     "pronunciationExercise": "Pronunciation",
     "tapToListen": "Tap to listen",
-    "recordNow": "Record your answer"
+    "recordNow": "Record your answer",
+    "exit": "Exit",
+    "exitConfirmTitle": "Exit lesson?",
+    "exitConfirmMessage": "Your progress on this lesson will be lost."
   },
   "flashcards": {
     "title": "Flashcards",

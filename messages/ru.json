@@ -472,7 +472,10 @@
     "examples": "Примеры",
     "pronunciationExercise": "Произношение",
     "tapToListen": "Нажмите, чтобы послушать",
-    "recordNow": "Запишите свой ответ"
+    "recordNow": "Запишите свой ответ",
+    "exit": "Выйти",
+    "exitConfirmTitle": "Выйти из урока?",
+    "exitConfirmMessage": "Ваш прогресс в этом уроке будет потерян."
   },
   "flashcards": {
     "title": "Карточки",

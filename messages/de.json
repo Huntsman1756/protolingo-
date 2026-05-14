@@ -472,7 +472,10 @@
     "examples": "Beispiele",
     "pronunciationExercise": "Aussprache",
     "tapToListen": "Zum Anhören tippen",
-    "recordNow": "Antwort aufnehmen"
+    "recordNow": "Antwort aufnehmen",
+    "exit": "Beenden",
+    "exitConfirmTitle": "Lektion beenden?",
+    "exitConfirmMessage": "Dein Fortschritt in dieser Lektion geht verloren."
   },
   "flashcards": {
     "title": "Karteikarten",

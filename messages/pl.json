@@ -472,7 +472,10 @@
     "examples": "Przykłady",
     "pronunciationExercise": "Wymowa",
     "tapToListen": "Dotknij, aby posłuchać",
-    "recordNow": "Nagraj swoją odpowiedź"
+    "recordNow": "Nagraj swoją odpowiedź",
+    "exit": "Wyjdź",
+    "exitConfirmTitle": "Wyjść z lekcji?",
+    "exitConfirmMessage": "Twój postęp w tej lekcji zostanie utracony."
   },
   "flashcards": {
     "title": "Fiszki",

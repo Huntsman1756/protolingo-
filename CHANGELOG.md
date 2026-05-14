@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **FAQ — voice conversation**: new Q&A entry ("How does the voice conversation work?") added to the FAQ page, positioned after the AI Tutor entry. Covers real-time speech interaction, automatic voice activity detection (VAD), synthesised AI speech, barge-in support, session time limit, and microphone permission requirement. Translated into all 10 supported locales (en, es, fr, pt, de, it, nl, pl, ro, ru).
 - **Tests — avatar**: 23 new tests in `backend/tests/test_avatar.py` covering JPEG and PNG upload, file content written to disk, URL format and cache-buster, invalid type rejection (400), oversized file rejection (400), auth guard (401), re-upload with same and different format (old file deleted), legacy base64 avatar handled gracefully, deletion clearing the DB field and removing the file, deletion with no prior avatar, and `GET /api/auth/me` reflecting avatar state after upload and delete.
+- **Study Plan — Start button**: active unit card in `/plan` now shows a direct Start button without requiring the user to open the unit drawer first. The button appears only when today's lesson has been generated; if no lesson is available the card behaves as before. Fetches `/api/study-plan/today` in parallel with the existing plan and competency requests.
+- **Lesson — Exit button**: a `✕` button in the lesson header lets users leave a lesson mid-way. Clicking it shows a confirmation dialog (using the shared `ConfirmDialog` component with `danger` styling) warning that progress will be lost; confirming navigates to `/dashboard`. Three new i18n keys added to the `lesson` namespace across all 10 locale files: `exit`, `exitConfirmTitle`, `exitConfirmMessage`.
 
 ## [1.4.13] - 2026-05-13
 
@@ -256,10 +258,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `POST /api/conversation/warmup` endpoint: pre-heats TTS and STT models synchronously before a session starts; frontend awaits it before opening the WebSocket so the first transcription/synthesis is instant
 - New `warming` status in `ConversationMode` — sidebar shows "Loading models..." while warmup runs, with pulsing indicator
 - `statusWarming` i18n key added to all 10 locale files
-- Contact link (`mailto:freelingo@arturocarreterocalvo.com`) added to landing page footer and docs landing nav
-- "Sobre mí" / "About me" link to `arturocarreterocalvo.com` added to landing page footer (new tab)
+- Contact link added to landing page footer and docs landing nav
+- "Sobre mí" / "About me" link added to landing page footer (new tab)
 - Footer link order in landing: Contact · About me · Privacy · Terms
-- Author section in Settings now includes website link (`arturocarreterocalvo.com`) and Contact (`mailto:`) alongside GitHub, with `websiteLink` and `contactLink` i18n keys in all 10 locales
+- Author section in Settings now includes website link and Contact (`mailto:`) alongside GitHub, with `websiteLink` and `contactLink` i18n keys in all 10 locales
 
 ### Fixed
 - Version number misalignment between desktop and mobile sidebar (both now show `v1.3.11`)
@@ -316,7 +318,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README updated to reflect dual-mode operation, provider pattern for TTS/STT, and new badge
 
 ### Fixed
-- Contact email updated from `privacy@freelingo.app` to `freelingo@arturocarreterocalvo.com` in Privacy Policy s8 across all 6 locales
+- Contact email updated in Privacy Policy s8 across all 6 locales
 - German typo in Privacy s6Body: `auszuuüben` → `auszuüben`
 
 ## [1.3.5] - 2026-05-06
