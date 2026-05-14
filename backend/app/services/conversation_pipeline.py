@@ -220,14 +220,33 @@ class ConversationPipeline:
         self.current_task = asyncio.create_task(self._process(audio_bytes, ws))
 
     async def _process(self, audio_bytes: bytes, ws: "WebSocket") -> None:
+        turn_t0 = time.perf_counter()
+        stt_ms: float | None = None
+        llm_ms: float | None = None
+        tts_send_ms: float | None = None
+        tts_chunks_sent = 0
+        tts_audio_bytes = 0
+
         # 1. STT
         try:
             await ws.send_json({"type": "status", "value": "transcribing"})
+            stt_t0 = time.perf_counter()
             user_text = await self.stt.transcribe(audio_bytes, "audio.wav", "audio/wav", self._stt_language)
+            stt_ms = (time.perf_counter() - stt_t0) * 1000
             logger.info("[pipeline] STT result: %r", user_text)
             await ws.send_json({"type": "transcript", "role": "user", "text": user_text, "final": True})
         except Exception as exc:
             logger.error("[pipeline] STT failed: %s", exc)
+            logger.info(
+                "pipeline_turn_metrics",
+                stage="stt_failed",
+                stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
+                llm_ms=None,
+                tts_send_ms=None,
+                tts_chunks_sent=0,
+                tts_audio_bytes=0,
+                turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
+            )
             await ws.send_json({"type": "error", "code": "stt_failed", "message": str(exc)})
             return
 
@@ -241,12 +260,15 @@ class ConversationPipeline:
         tts_futures: list[asyncio.Future[bytes]] = []
 
         async def _tts_sender() -> None:
+            nonlocal tts_chunks_sent, tts_audio_bytes
             while True:
                 item = await tts_queue.get()
                 if item is None:  # sentinel — all sentences dispatched
                     break
                 try:
                     audio = await item
+                    tts_chunks_sent += 1
+                    tts_audio_bytes += len(audio)
                     logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
                     await ws.send_bytes(audio)
                 except asyncio.CancelledError:
@@ -268,6 +290,7 @@ class ConversationPipeline:
             full_response = ""
             sentence_buffer = ""
 
+            llm_t0 = time.perf_counter()
             llm_stream = await self.llm.chat(messages, stream=True)
             async for chunk in llm_stream:
                 token = chunk.choices[0].delta.content or ""
@@ -286,9 +309,13 @@ class ConversationPipeline:
                 await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": False})
                 _enqueue_tts(sentence_buffer.strip())
 
+            llm_ms = (time.perf_counter() - llm_t0) * 1000
+
             # Signal end and wait for all audio to be sent before finalising turn
             tts_queue.put_nowait(None)
+            tts_send_t0 = time.perf_counter()
             await sender_task
+            tts_send_ms = (time.perf_counter() - tts_send_t0) * 1000
 
             # Persist token usage best-effort (never blocks the response)
             asyncio.create_task(self._save_usage(llm_stream))
@@ -303,6 +330,16 @@ class ConversationPipeline:
             sender_task.cancel()
             for f in tts_futures:
                 f.cancel()
+            logger.info(
+                "pipeline_turn_metrics",
+                stage="llm_failed",
+                stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
+                llm_ms=round(llm_ms, 1) if llm_ms is not None else None,
+                tts_send_ms=round(tts_send_ms, 1) if tts_send_ms is not None else None,
+                tts_chunks_sent=tts_chunks_sent,
+                tts_audio_bytes=tts_audio_bytes,
+                turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
+            )
             await ws.send_json({"type": "error", "code": "llm_failed", "message": str(exc)})
             if self.history and self.history[-1]["role"] == "user":
                 self.history.pop()
@@ -310,6 +347,16 @@ class ConversationPipeline:
 
         self.history.append({"role": "assistant", "content": full_response})
         logger.info("[pipeline] Turn complete — assistant: %r", full_response[:120])
+        logger.info(
+            "pipeline_turn_metrics",
+            stage="ok",
+            stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
+            llm_ms=round(llm_ms, 1) if llm_ms is not None else None,
+            tts_send_ms=round(tts_send_ms, 1) if tts_send_ms is not None else None,
+            tts_chunks_sent=tts_chunks_sent,
+            tts_audio_bytes=tts_audio_bytes,
+            turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
+        )
         await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response, "final": True})
         await ws.send_json({"type": "turn_complete"})
 
