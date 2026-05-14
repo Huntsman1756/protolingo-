@@ -921,5 +921,18 @@
       "label": "Suggestions de conversation",
       "desc": "La section de conversation vocale affiche désormais six suggestions de sujets pour démarrer une session. Les sujets sont tirés au hasard d'un catalogue de 30 et disparaissent dès que la session commence."
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "votre@email.com",
+    "labelSubject": "Objet",
+    "placeholderSubject": "Brève description de votre question",
+    "labelDescription": "Message",
+    "placeholderDescription": "Décrivez votre question ou commentaire...",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "sent": "Message envoyé",
+    "errorGeneric": "Échec de l'envoi. Veuillez réessayer."
   }
 }

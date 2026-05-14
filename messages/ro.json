@@ -921,5 +921,18 @@
       "label": "Subiecte de conversație",
       "desc": "Secțiunea de conversație vocală afișează acum șase carduri cu subiecte pentru a te ajuta să începi o sesiune. Subiectele sunt alese aleatoriu dintr-un catalog de 30 și dispar odată ce sesiunea pornește."
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "al_tau@email.com",
+    "labelSubject": "Subiect",
+    "placeholderSubject": "Scurtă descriere a întrebării tale",
+    "labelDescription": "Mesaj",
+    "placeholderDescription": "Descrie întrebarea sau feedback-ul tău...",
+    "send": "Trimite",
+    "sending": "Se trimite...",
+    "sent": "Mesaj trimis",
+    "errorGeneric": "Trimiterea a eșuat. Te rog încearcă din nou."
   }
 }

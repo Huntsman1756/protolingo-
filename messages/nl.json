@@ -921,5 +921,18 @@
       "label": "Gespreksonderwerpen",
       "desc": "De spraakgesprekssectie toont nu zes onderwerp-chips om je op weg te helpen een sessie te starten. De onderwerpen worden willekeurig gekozen uit een bank van 30 en verdwijnen zodra een sessie begint."
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "jouw@email.nl",
+    "labelSubject": "Onderwerp",
+    "placeholderSubject": "Korte beschrijving van je vraag",
+    "labelDescription": "Bericht",
+    "placeholderDescription": "Beschrijf je vraag of feedback...",
+    "send": "Verzenden",
+    "sending": "Verzenden...",
+    "sent": "Bericht verzonden",
+    "errorGeneric": "Verzenden mislukt. Probeer het opnieuw."
   }
 }

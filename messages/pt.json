@@ -921,5 +921,18 @@
       "label": "Sugestões de conversa",
       "desc": "A secção de conversa de voz mostra agora seis chips de tópicos para te ajudar a iniciar uma sessão. Os tópicos são escolhidos aleatoriamente de um banco de 30 e desaparecem assim que a sessão começa."
     }
+  },
+  "contact": {
+    "title": "Contacto",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "o_seu@email.com",
+    "labelSubject": "Assunto",
+    "placeholderSubject": "Breve descrição da sua questão",
+    "labelDescription": "Mensagem",
+    "placeholderDescription": "Descreva a sua questão ou comentário...",
+    "send": "Enviar",
+    "sending": "A enviar...",
+    "sent": "Mensagem enviada",
+    "errorGeneric": "Falha ao enviar. Por favor, tente novamente."
   }
 }

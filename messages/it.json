@@ -921,5 +921,18 @@
       "label": "Suggerimenti per la conversazione",
       "desc": "La sezione di conversazione vocale mostra ora sei chip con argomenti per aiutarti a iniziare una sessione. Gli argomenti vengono scelti casualmente da un banco di 30 e scompaiono non appena la sessione inizia."
     }
+  },
+  "contact": {
+    "title": "Contatto",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "tua@email.com",
+    "labelSubject": "Oggetto",
+    "placeholderSubject": "Breve descrizione della tua domanda",
+    "labelDescription": "Messaggio",
+    "placeholderDescription": "Descrivi la tua domanda o il tuo commento...",
+    "send": "Invia",
+    "sending": "Invio in corso...",
+    "sent": "Messaggio inviato",
+    "errorGeneric": "Invio fallito. Riprova."
   }
 }

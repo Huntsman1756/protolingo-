@@ -921,5 +921,18 @@
       "label": "Conversation starters",
       "desc": "The voice conversation section now shows six topic chips to help you kick off a session. Topics are picked at random from a bank of 30 and disappear once a session starts."
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "labelEmail": "Email",
+    "placeholderEmail": "your@email.com",
+    "labelSubject": "Subject",
+    "placeholderSubject": "Brief description of your question",
+    "labelDescription": "Message",
+    "placeholderDescription": "Describe your question or feedback...",
+    "send": "Send",
+    "sending": "Sending...",
+    "sent": "Message sent",
+    "errorGeneric": "Failed to send. Please try again."
   }
 }

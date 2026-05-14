@@ -921,5 +921,18 @@
       "label": "Sugerencias de conversación",
       "desc": "La sección de conversación de voz ahora muestra seis fichas de temas para ayudarte a comenzar una sesión. Los temas se eligen al azar de un banco de 30 y desaparecen en cuanto empieza la sesión."
     }
+  },
+  "contact": {
+    "title": "Contacto",
+    "labelEmail": "Correo electrónico",
+    "placeholderEmail": "tu@correo.com",
+    "labelSubject": "Asunto",
+    "placeholderSubject": "Breve descripción de tu consulta",
+    "labelDescription": "Mensaje",
+    "placeholderDescription": "Describe tu pregunta o comentario...",
+    "send": "Enviar",
+    "sending": "Enviando...",
+    "sent": "Mensaje enviado",
+    "errorGeneric": "No se pudo enviar. Por favor, inténtalo de nuevo."
   }
 }

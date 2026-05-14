@@ -7,14 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.4.14] - 2026-05-14
 
-### Changed
-- **Avatar storage**: profile photos are no longer stored as base64 data URIs inside the `users.avatar` database column. On upload the image is now written to disk at `/app/avatars/{user_id}.{ext}`, persisted via a Docker volume (`${DATA_PATH}/avatars:/app/avatars`), and the column stores only the relative URL (`/api/avatars/{id}.ext?v={ts}`). The `?v=` cache-buster is refreshed on every re-upload. Existing base64 avatars remain visible and are replaced transparently on the user's next upload. `StaticFiles` mounted at `/api/avatars` in FastAPI; served to the browser through the existing Next.js `/api/:path*` rewrite proxy.
-
 ### Added
+
+- **In-app contact form**: the Contact button in the landing-page footer and in Settings → Author now opens an in-app modal instead of launching the system mail client. The form collects the sender's email, a subject, and a free-text message. On submit the backend forwards the message to `CONTACT_EMAIL` via the existing SMTP service (`send_contact_email`), setting `Reply-To` to the sender's address. On success the modal shows a "Message sent" confirmation and closes automatically; on error the message is shown inline and the form remains open. Rate-limited to 5 requests/hour per IP. No authentication required (works from the public landing page too).
+- **docker-compose — missing `CONTACT_EMAIL`**: the `CONTACT_EMAIL` env var introduced in 1.4.14 was not forwarded to the backend container in `docker-compose.yml`. Added `CONTACT_EMAIL: ${CONTACT_EMAIL:-}` to the backend service environment block so the variable is now properly passed through from the host `.env` file.
+- **New env var `CONTACT_EMAIL`**: destination address for contact-form submissions. Must be set alongside `EMAIL_ENABLED=true` for the form to deliver emails.
+- **New endpoint `POST /api/contact`**: accepts `{ email, subject, description }`, validates input (subject max 200 chars, description max 5000 chars), forwards via SMTP. Returns 204 on success, 502 on SMTP failure.
+- **New email template `contact.html`**: plain HTML template matching the existing transactional email design, displaying sender email, subject, and message body.
+- **i18n**: `contact` namespace added to all 10 locale files (en, es, fr, de, pt, it, nl, pl, ro, ru) with keys for title, field labels, placeholders, send/sending/sent, and error message.
 - **FAQ — voice conversation**: new Q&A entry ("How does the voice conversation work?") added to the FAQ page, positioned after the AI Tutor entry. Covers real-time speech interaction, automatic voice activity detection (VAD), synthesised AI speech, barge-in support, session time limit, and microphone permission requirement. Translated into all 10 supported locales (en, es, fr, pt, de, it, nl, pl, ro, ru).
 - **Tests — avatar**: 23 new tests in `backend/tests/test_avatar.py` covering JPEG and PNG upload, file content written to disk, URL format and cache-buster, invalid type rejection (400), oversized file rejection (400), auth guard (401), re-upload with same and different format (old file deleted), legacy base64 avatar handled gracefully, deletion clearing the DB field and removing the file, deletion with no prior avatar, and `GET /api/auth/me` reflecting avatar state after upload and delete.
 - **Study Plan — Start button**: active unit card in `/plan` now shows a direct Start button without requiring the user to open the unit drawer first. The button appears only when today's lesson has been generated; if no lesson is available the card behaves as before. Fetches `/api/study-plan/today` in parallel with the existing plan and competency requests.
 - **Lesson — Exit button**: a `✕` button in the lesson header lets users leave a lesson mid-way. Clicking it shows a confirmation dialog (using the shared `ConfirmDialog` component with `danger` styling) warning that progress will be lost; confirming navigates to `/dashboard`. Three new i18n keys added to the `lesson` namespace across all 10 locale files: `exit`, `exitConfirmTitle`, `exitConfirmMessage`.
+
+### Changed
+- **Avatar storage**: profile photos are no longer stored as base64 data URIs inside the `users.avatar` database column. On upload the image is now written to disk at `/app/avatars/{user_id}.{ext}`, persisted via a Docker volume (`${DATA_PATH}/avatars:/app/avatars`), and the column stores only the relative URL (`/api/avatars/{id}.ext?v={ts}`). The `?v=` cache-buster is refreshed on every re-upload. Existing base64 avatars remain visible and are replaced transparently on the user's next upload. `StaticFiles` mounted at `/api/avatars` in FastAPI; served to the browser through the existing Next.js `/api/:path*` rewrite proxy.
 
 ## [1.4.13] - 2026-05-13
 

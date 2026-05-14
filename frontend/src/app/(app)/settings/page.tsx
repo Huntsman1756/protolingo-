@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import NextImage from 'next/image'
 import { ExternalLink } from 'lucide-react'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { ContactFormModal } from '@/components/ui/contact-form-modal'
 import { useConfigStore } from '@/store/config'
 import { isSubscribed } from '@/store/auth'
 
@@ -61,6 +62,7 @@ export default function SettingsPage() {
   const [deleting, setDeleting] = useState(false)
   const [portalLoading, setPortalLoading] = useState(false)
   const [portalError, setPortalError] = useState<string | null>(null)
+  const [contactOpen, setContactOpen] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [avatarUploading, setAvatarUploading] = useState(false)
@@ -562,15 +564,17 @@ export default function SettingsPage() {
             <ExternalLink className="w-3.5 h-3.5" />
             {t('githubProfile')}
           </a>
-          <a
-            href="mailto:freelingo@arturocarreterocalvo.com"
+          <button
+            onClick={() => setContactOpen(true)}
             className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             {t('contactLink')}
-          </a>
+          </button>
         </div>
       </div>
+
+      <ContactFormModal open={contactOpen} onClose={() => setContactOpen(false)} />
 
       {/* Subscription / Billing — only shown when Stripe is enabled */}
       {stripeEnabled && (

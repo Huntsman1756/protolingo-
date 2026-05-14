@@ -921,5 +921,18 @@
       "label": "Tematy rozmów",
       "desc": "Sekcja rozmów głosowych wyświetla teraz sześć kart tematycznych, które pomagają rozpocząć sesję. Tematy są losowo wybierane z banku 30 propozycji i znikają po rozpoczęciu sesji."
     }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "twoj@email.pl",
+    "labelSubject": "Temat",
+    "placeholderSubject": "Krótki opis Twojego pytania",
+    "labelDescription": "Wiadomość",
+    "placeholderDescription": "Opisz swoje pytanie lub opinię...",
+    "send": "Wyślij",
+    "sending": "Wysyłanie...",
+    "sent": "Wiadomość wysłana",
+    "errorGeneric": "Wysyłanie nie powiodło się. Spróbuj ponownie."
   }
 }
