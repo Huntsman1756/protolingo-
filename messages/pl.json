@@ -914,12 +914,12 @@
       "desc": "Rozmowy głosowe w czasie rzeczywistym korzystają teraz z nowego głosu, zapewniając bardziej naturalną i angażującą rozmowę."
     },
     "entry2": {
-      "label": "Poprawki",
-      "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
-    },
-    "entry3": {
       "label": "Tematy rozmów",
       "desc": "Sekcja rozmów głosowych wyświetla teraz sześć kart tematycznych, które pomagają rozpocząć sesję. Tematy są losowo wybierane z banku 30 propozycji i znikają po rozpoczęciu sesji."
+    },
+    "entry3": {
+      "label": "Poprawki",
+      "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }
   },
   "contact": {

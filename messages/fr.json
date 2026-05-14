@@ -914,12 +914,12 @@
       "desc": "La conversation vocale en temps réel utilise désormais une nouvelle voix pour une expérience plus naturelle et engageante."
     },
     "entry2": {
-      "label": "Corrections",
-      "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
-    },
-    "entry3": {
       "label": "Suggestions de conversation",
       "desc": "La section de conversation vocale affiche désormais six suggestions de sujets pour démarrer une session. Les sujets sont tirés au hasard d'un catalogue de 30 et disparaissent dès que la session commence."
+    },
+    "entry3": {
+      "label": "Corrections",
+      "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }
   },
   "contact": {
