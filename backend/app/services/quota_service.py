@@ -36,7 +36,7 @@ def _weekly_seconds_key(user_id: int) -> str:
 
 def _seconds_until_monday() -> int:
     now = datetime.now(timezone.utc)
-    days_ahead = 7 - now.weekday()          # weekday: 0=Mon … 6=Sun
+    days_ahead = 7 - now.weekday()          # weekday: 0=Mon ... 6=Sun
     next_monday = (now + timedelta(days=days_ahead)).replace(
         hour=0, minute=0, second=0, microsecond=0
     )

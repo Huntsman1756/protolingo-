@@ -440,7 +440,7 @@ under a new `listening` namespace:
   "tabPractice": "Practice",
   "tabHistory": "History",
   "generateButton": "Generate exercise",
-  "generatingMessage": "Generating your exercise…",
+  "generatingMessage": "Generating your exercise...",
   "readyButton": "I'm ready",
   "submitButton": "Submit answers",
   "nextButton": "Next exercise",

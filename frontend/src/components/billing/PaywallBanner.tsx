@@ -62,14 +62,14 @@ export function PaywallBanner() {
             disabled={loading !== null}
             className="w-full font-mono text-xs tracking-widest uppercase py-3 px-4 bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 disabled:opacity-50 transition-colors"
           >
-            {loading === 'monthly' ? '…' : t('planMonthly', { price: '14.95' })}
+            {loading === 'monthly' ? '...' : t('planMonthly', { price: '14.95' })}
           </button>
           <button
             onClick={() => handleCheckout('yearly')}
             disabled={loading !== null}
             className="w-full font-mono text-xs tracking-widest uppercase py-3 px-4 border border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 disabled:opacity-50 transition-colors"
           >
-            {loading === 'yearly' ? '…' : t('planYearly', { price: '149.50' })}
+            {loading === 'yearly' ? '...' : t('planYearly', { price: '149.50' })}
           </button>
         </div>
 

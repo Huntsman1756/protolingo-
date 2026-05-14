@@ -49,7 +49,7 @@ freelingo/
 │   │   │   ├── assessment/      # AdaptiveQuizCard, BeginnerGate, DurationSelector
 │   │   │   ├── conversation/    # ConversationMode, MicButton, StatusIndicator, TranscriptBubble, SessionTimeoutBanner
 │   │   │   ├── plan/            # LevelTestBanner, UnitCard, UnitDrawer
-│   │   │   ├── ui/              # shadcn/ui + custom: AudioPlayer, VoiceRecorder, confirm-dialog, loading-bar, …
+│   │   │   ├── ui/              # shadcn/ui + custom: AudioPlayer, VoiceRecorder, confirm-dialog, loading-bar, ...
 │   │   │   ├── TargetLanguageSelector.tsx
 │   │   │   └── ThemeProvider.tsx
 │   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook, assessment-bank (+ en/ subfolder)
