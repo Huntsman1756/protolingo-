@@ -124,7 +124,7 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 
 | Method | Path | Rate limit | Description |
 |--------|------|------------|-------------|
-| POST | `/tts` | 20/min | Text → MP3 audio. Uses Kokoro TTS (local) or OpenAI TTS, controlled by `TTS_PROVIDER`. |
+| POST | `/tts` | 20/min | Text → MP3 audio. Uses Kokoro TTS (local) or OpenAI TTS, controlled by `TTS_PROVIDER`. Supports optional trace correlation via request header `X-TTS-Trace-ID`. Returns diagnostic headers: `X-TTS-Trace-ID`, `X-TTS-Backend-Synth-Ms`, `X-TTS-Backend-Total-Ms` (and, when passing through the Next.js proxy, `X-TTS-Proxy-Fetch-Ms`, `X-TTS-Proxy-Buffer-Ms`, `X-TTS-Proxy-Total-Ms`). |
 
 ---
 
