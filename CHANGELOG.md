@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.17] - 2026-05-14
+
+### Fixed
+- Security update: frontend dependencies `next` and `eslint-config-next` upgraded from `16.2.4` to `16.2.6` to include the latest Next.js patch.
+
 ## [1.4.16] - 2026-05-14
 
 ### Added
