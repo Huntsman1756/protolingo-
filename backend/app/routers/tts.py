@@ -1,3 +1,7 @@
+import logging
+import time
+import uuid
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import Response
 
@@ -7,6 +11,7 @@ from app.models.user import User
 from app.schemas.tts_stt import TTSRequest
 
 router = APIRouter(prefix="/api", tags=["tts"])
+logger = logging.getLogger(__name__)
 
 
 @router.post("/tts")
@@ -17,8 +22,35 @@ async def text_to_speech(
     current_user: User = Depends(get_current_user),
 ) -> Response:
     """Proxy TTS request to Kokoro service. Returns audio/mpeg."""
+    t0 = time.perf_counter()
+    trace_id = request.headers.get("X-TTS-Trace-ID") or f"tts-{uuid.uuid4().hex[:12]}"
+
     tts_service = getattr(request.app.state, "tts_service", None)
     if tts_service is None:
         raise HTTPException(status_code=503, detail="TTS service is not enabled")
+
+    synth_t0 = time.perf_counter()
     audio = await tts_service.synthesize(body.text, body.voice)
-    return Response(content=audio, media_type="audio/mpeg")
+    synth_ms = (time.perf_counter() - synth_t0) * 1000
+    total_ms = (time.perf_counter() - t0) * 1000
+
+    logger.info(
+        "[tts] trace=%s user_id=%s text_len=%d audio_bytes=%d provider=%s synth_ms=%.1f total_ms=%.1f",
+        trace_id,
+        current_user.id,
+        len(body.text),
+        len(audio),
+        type(tts_service).__name__,
+        synth_ms,
+        total_ms,
+    )
+
+    return Response(
+        content=audio,
+        media_type="audio/mpeg",
+        headers={
+            "X-TTS-Trace-ID": trace_id,
+            "X-TTS-Backend-Synth-Ms": f"{synth_ms:.1f}",
+            "X-TTS-Backend-Total-Ms": f"{total_ms:.1f}",
+        },
+    )

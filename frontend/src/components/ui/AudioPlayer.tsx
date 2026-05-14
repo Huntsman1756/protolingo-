@@ -31,23 +31,63 @@ export function AudioPlayer({ text, voice, size = 'sm', className = '' }: AudioP
 
     setState('loading')
     try {
+      const traceId = `tts-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+      const t0 = performance.now()
+
+      const fetchStart = performance.now()
       const res = await fetch('/api/tts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-TTS-Trace-ID': traceId,
           ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
         },
         body: JSON.stringify({ text, voice }),
       })
+      const fetchMs = performance.now() - fetchStart
       if (!res.ok) throw new Error(`TTS error ${res.status}`)
 
+      const blobStart = performance.now()
       const blob = await res.blob()
+      const blobMs = performance.now() - blobStart
+
       const url = URL.createObjectURL(blob)
       const audio = new Audio(url)
       audioRef.current = audio
       setState('playing')
 
+      const playStart = performance.now()
       await audio.play()
+      const playMs = performance.now() - playStart
+      const totalMs = performance.now() - t0
+
+      const backendSynthMs = res.headers.get('X-TTS-Backend-Synth-Ms')
+      const backendTotalMs = res.headers.get('X-TTS-Backend-Total-Ms')
+      const proxyFetchMs = res.headers.get('X-TTS-Proxy-Fetch-Ms')
+      const proxyBufferMs = res.headers.get('X-TTS-Proxy-Buffer-Ms')
+      const proxyTotalMs = res.headers.get('X-TTS-Proxy-Total-Ms')
+      const responseTraceId = res.headers.get('X-TTS-Trace-ID') || traceId
+
+      console.info('[tts-metrics]', {
+        traceId: responseTraceId,
+        textLength: text.length,
+        blobBytes: blob.size,
+        client: {
+          fetchMs: Number(fetchMs.toFixed(1)),
+          blobMs: Number(blobMs.toFixed(1)),
+          playMs: Number(playMs.toFixed(1)),
+          totalMs: Number(totalMs.toFixed(1)),
+        },
+        proxy: {
+          fetchMs: proxyFetchMs ? Number(proxyFetchMs) : null,
+          bufferMs: proxyBufferMs ? Number(proxyBufferMs) : null,
+          totalMs: proxyTotalMs ? Number(proxyTotalMs) : null,
+        },
+        backend: {
+          synthMs: backendSynthMs ? Number(backendSynthMs) : null,
+          totalMs: backendTotalMs ? Number(backendTotalMs) : null,
+        },
+      })
 
       audio.onended = () => {
         URL.revokeObjectURL(url)
