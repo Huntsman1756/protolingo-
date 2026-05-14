@@ -1,12 +1,14 @@
 from contextlib import asynccontextmanager
 import asyncio
 import logging
+import os
 
 from alembic import command
 from alembic.config import Config
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
+from fastapi.staticfiles import StaticFiles
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
@@ -19,7 +21,9 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-from app.routers import admin, assessment, auth, chat, conversation, flashcards, lessons, progress, study_plan, stt, tts
+
+_AVATARS_DIR = "/app/avatars"
+from app.routers import admin, assessment, auth, chat, contact, conversation, flashcards, lessons, progress, study_plan, stt, tts
 from app.routers import config as config_router
 from app.services.stt_service import OpenAISTTService, WhisperSTTService
 from app.services.tts_service import KokoroTTSService, OpenAITTSService
@@ -39,6 +43,9 @@ async def lifespan(app: FastAPI):  # noqa: ANN201
         )
 
     await asyncio.to_thread(_run_migrations)
+
+    # Ensure the avatars directory exists on startup (persisted via Docker volume)
+    os.makedirs(_AVATARS_DIR, exist_ok=True)
 
     if settings.TTS_PROVIDER == "openai":
         if not settings.OPENAI_API_KEY:
@@ -100,12 +107,19 @@ app.include_router(tts.router)
 app.include_router(stt.router)
 app.include_router(conversation.router)
 app.include_router(config_router.router)
+app.include_router(contact.router)
 
 if settings.STRIPE_ENABLED:
     import stripe as _stripe
     from app.routers import billing as billing_router
     _stripe.api_key = settings.STRIPE_SECRET_KEY
     app.include_router(billing_router.router)
+
+# Serve uploaded avatars as static files at /api/avatars/<user_id>.<ext>
+# The directory is persisted via a Docker volume (${DATA_PATH}/avatars:/app/avatars).
+# check_dir=False avoids a startup error in environments where the directory does
+# not exist yet (e.g. local dev without Docker); the dir is created in lifespan.
+app.mount("/api/avatars", StaticFiles(directory=_AVATARS_DIR, check_dir=False), name="avatars")
 
 
 @app.get("/health")

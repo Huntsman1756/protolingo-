@@ -107,6 +107,8 @@ SMTP_PASSWORD=
 SMTP_FROM=noreply@freelingo.app
 SMTP_TLS=true
 SMTP_SSL=false
+# Destination address for contact-form submissions (requires EMAIL_ENABLED=true)
+CONTACT_EMAIL=
 # Public frontend URL used in email links (no trailing slash)
 APP_BASE_URL=https://freelingo.app
 

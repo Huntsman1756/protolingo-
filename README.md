@@ -76,6 +76,7 @@ freelingo/
 | 3     | Real-time conversation | ✅ Complete         |
 | 4     | Multi-language support | ✅ Complete         |
 | 5     | Stripe subscriptions   | ✅ Complete         |
+| 6     | Listening              | 🔄 In progress      |
 
 ## Hosted service
 
@@ -140,6 +141,7 @@ The first registered user becomes admin automatically.
 - [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
 - [phase-4-target-language.instructions.md](specs/phase-4-target-language.instructions.md) — Phase 4: target_language (BCP-47), onboarding flow, auto-login on register
 - [phase-5-stripe-subscriptions.instructions.md](specs/phase-5-stripe-subscriptions.instructions.md) — Phase 5: Stripe subscriptions, paywall, Customer Portal, `STRIPE_ENABLED` toggle
+- [phase-6-listening.instructions.md](specs/phase-6-listening.instructions.md) — Phase 6: Listening section
 - [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
 - [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
 - [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria

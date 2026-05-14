@@ -469,6 +469,37 @@ async def send_welcome_email(to: str, display_name: str, locale: str = "en") -> 
         logger.exception("Failed to send welcome email to %s", to)
 
 
+async def send_contact_email(sender_email: str, subject: str, description: str) -> None:
+    """Forward a contact-form submission to the configured CONTACT_EMAIL address."""
+    if not settings.EMAIL_ENABLED:
+        return
+    if not settings.CONTACT_EMAIL:
+        logger.warning("CONTACT_EMAIL is not configured — contact form submission dropped")
+        return
+    html = _render_template(
+        "contact.html",
+        {
+            "sender_email": sender_email,
+            "subject": subject,
+            "description": description,
+            "base_url": settings.APP_BASE_URL,
+        },
+    )
+    message = MessageSchema(
+        subject=f"[FreeLingo Contact] {subject}",
+        recipients=[settings.CONTACT_EMAIL],
+        reply_to=[sender_email],
+        body=html,
+        subtype=MessageType.html,
+    )
+    try:
+        fm = FastMail(_get_mail_config())
+        await fm.send_message(message)
+    except Exception:
+        logger.exception("Failed to send contact email from %s", sender_email)
+        raise
+
+
 async def send_account_deleted_email(to: str, display_name: str, locale: str = "en") -> None:
     """Send account deletion confirmation in the user's native language."""
     if not settings.EMAIL_ENABLED:

@@ -43,6 +43,7 @@ All tests pass on every push. Coverage thresholds are enforced via `pytest --cov
 | `test_progress.py` | 48 | Progress summary and history with empty and populated data |
 | `test_conversation.py` | 247 | WebSocket authentication, TTS/STT disabled rejection, pipeline lifecycle |
 | `test_frontend_data_integrity.py` | 195 | Cross-reference validation: curriculum.ts vs grammar.ts, vocabulary.ts — ensures all referenced slugs and IDs exist |
+| `test_listening.py` | ~200 | Exercise pool (next / generate), generation lock, audio serving, answer evaluation (score + XP), attempt deduplication, history |
 
 ### Test patterns
 

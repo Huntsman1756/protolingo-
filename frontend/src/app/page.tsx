@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import PricingSection from '@/components/billing/PricingSection'
+import { ContactButton } from '@/components/ui/contact-button'
 
 export const metadata: Metadata = {
   title: 'FreeLingo — AI-powered English learning',
@@ -148,9 +149,7 @@ export default async function Home() {
             © {new Date().getFullYear()} FreeLingo
           </span>
           <div className="flex gap-6">
-            <a href="mailto:freelingo@arturocarreterocalvo.com" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
-              {t('contact')}
-            </a>
+            <ContactButton />
             <a href="https://arturocarreterocalvo.com" target="_blank" rel="noopener noreferrer" className="font-mono text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 tracking-widest uppercase transition-colors">
               {t('aboutMe')}
             </a>

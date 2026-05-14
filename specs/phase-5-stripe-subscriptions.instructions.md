@@ -283,8 +283,8 @@ Layout:
 ```
 ┌─────────────────────────┐  ┌─────────────────────────┐
 │  Monthly                │  │  Yearly  ★ Best value   │
-│  14.95 €/month          │  │  149.50 €/year          │
-│                         │  │  12.46 €/month          │
+│  14.95 €/month (temp).  │  │  149.50 €/year (temp).  │
+│                         │  │                         │
 │  7 days free            │  │  7 days free            │
 │                         │  │  2 months free          │
 │  ✓ 3 voice sessions     │  │  ✓ 3 voice sessions     │

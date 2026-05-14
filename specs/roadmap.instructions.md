@@ -190,8 +190,8 @@ This document records what was built and the completion criteria met.
 | 19 | Tests — `test_billing.py` with Stripe SDK mocks | ✅ |
 
 **Plans:**
-- Monthly: 14.95 €/month · 7-day trial (card required)
-- Yearly: 149.50 €/year (≈ 12.46 €/month, 2 months free) · 7-day trial (card required)
+- Monthly: 14.95 €/month (temporal) · 7-day trial (card required)
+- Yearly: 149.50 €/year (temporal, 2 months free) · 7-day trial (card required)
 
 **Completion criteria:**
 - [x] `STRIPE_ENABLED=false` → no paywall, no billing UI, all endpoints accessible
@@ -204,3 +204,39 @@ This document records what was built and the completion criteria met.
 - [x] Pricing section visible on landing only when `STRIPE_ENABLED=true`
 - [x] `tsc --noEmit` and `python3 -m compileall` pass clean
 - [x] No regressions in Phases 1–4
+
+---
+
+## Phase 6 — Listening
+
+🔄 Status: In progress
+
+> LLM-generated audio comprehension exercises. Text and MP3 are generated on demand and
+> cached on disk so subsequent users at the same CEFR level share the same content at no
+> extra cost. The user listens, answers 5 multiple-choice questions, then the transcript
+> is revealed together with score and XP.
+
+| # | Milestone | Status |
+|---|-----------|--------|
+| 1 | DB models — `listening_exercises` + `listening_attempts` + migration `0018` | ⬜ |
+| 2 | Backend service — LLM generation, TTS synthesis, MP3 storage, Redis generation lock | ⬜ |
+| 3 | Backend router — 5 endpoints: next, generate, audio stream, attempt, history | ⬜ |
+| 4 | Frontend page — 4 UI states: idle → ready → answering → results | ⬜ |
+| 5 | Frontend components — ListeningCard, AudioPlayer, QuestionsList, ResultsPanel, HistoryList | ⬜ |
+| 6 | Next.js audio proxy route handler | ⬜ |
+| 7 | Sidebar nav entry (between Tutor and Conversation) | ⬜ |
+| 8 | i18n — `nav.listening` + `listening.*` keys in all 10 locale files | ⬜ |
+| 9 | Stripe paywall guard on all AI endpoints | ⬜ |
+
+**Completion criteria:**
+- [ ] `GET /api/listening/next` returns an uncompleted exercise for the user's level, or `{ "available": false }`
+- [ ] `POST /api/listening/generate` creates text + MP3 via LLM + TTS; Redis lock prevents duplicates
+- [ ] MP3 file persisted in Docker named volume and served via `GET /api/listening/audio/{id}`
+- [ ] Exercise cached and reused for all subsequent users at the same level + language
+- [ ] Completed exercises are not shown again as "new" for the same user
+- [ ] History tab shows past attempts with transcript and original answers
+- [ ] Replaying from history awards no additional XP
+- [ ] Score 0–5, XP 0–50 (10 per correct answer) saved correctly
+- [ ] Paywall returns 403 on AI endpoints when `STRIPE_ENABLED=true` and user is unsubscribed
+- [ ] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [ ] No regressions in Phases 1–5

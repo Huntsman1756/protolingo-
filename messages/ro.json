@@ -472,7 +472,10 @@
     "examples": "Exemple",
     "pronunciationExercise": "Pronunție",
     "tapToListen": "Apasă pentru a asculta",
-    "recordNow": "Înregistrează răspunsul tău"
+    "recordNow": "Înregistrează răspunsul tău",
+    "exit": "Ieși",
+    "exitConfirmTitle": "Ieșiți din lecție?",
+    "exitConfirmMessage": "Progresul dvs. la această lecție va fi pierdut."
   },
   "flashcards": {
     "title": "Carduri flash",
@@ -693,13 +696,15 @@
     "q_language": "Ce limbă voi învăța?",
     "a_language": "Doar engleza, deocamdată. Limba maternă pe care o alegi la înregistrare este folosită exclusiv pentru traducerile cardurilor flash și feedback-ul tutorului.",
     "q_assessment": "Ce este Evaluarea?",
-    "a_assessment": "Un test generat de AI cu 20 de întrebări despre gramatică, vocabular, înțelegerea lecturii și transformarea propozițiilor, cu dificultate de la A1 la C1.",
+    "a_assessment": "Un test generat de AI cu 15 de întrebări despre gramatică, vocabular, înțelegerea lecturii și transformarea propozițiilor, cu dificultate de la A1 la C1.",
     "q_studyPlan": "Ce este Planul de studiu și cum îl generez?",
     "a_studyPlan": "După Evaluare, mergi la tabloul de bord și apasă <strong>Generează plan de studiu</strong>. Va fi creat automat un plan săptămânal cu lecții zilnice adaptate nivelului și obiectivelor tale CEFR.",
     "q_flashcards": "La ce folosesc Cardurile flash?",
     "a_flashcards": "Un sistem de antrenament al vocabularului care folosește algoritmul de repetiție spațiată <strong>SM-2</strong>. Generează carduri pe orice subiect cu o definiție, propoziție exemplu și traducere în limba ta maternă.",
     "q_tutor": "Cum funcționează tutorele AI?",
     "a_tutor": "Un chat în format liber cu streaming. Tutorele cunoaște nivelul tău CEFR și punctele slabe pentru a-și adapta răspunsurile. Pune întrebări de gramatică, cere explicații, exersează scrierea în engleză sau pur și simplu poartă o conversație.",
+    "q_voice": "Cum funcționează conversația vocală?",
+    "a_voice": "Modul <strong>Conversație vocală</strong> îți permite să vorbești cu tutorele AI în timp real. Apasă Start pentru a începe — aplicația detectează automat vocea ta prin detecția activității vocale (VAD) și tutorele răspunde cu sinteză vocală. Poți întrerupe tutorele în orice moment (barge-in). Sesiunea se încheie când se atinge limita de timp sau apeși Stop. Asigură-te că browserul are permisiunea de a accesa microfonul.",
     "q_providers": "Ce furnizori AI acceptă FreeLingo?",
     "a_providers_intro": "Configurabil în <code>.env</code> prin <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Local, gratuit. Necesită Ollama pe gazdă. Model recomandat: gemma3:12b.",
@@ -902,7 +907,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.4.13",
+    "version": "v1.4.14",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Voce nouă",
@@ -916,5 +921,18 @@
       "label": "Subiecte de conversație",
       "desc": "Secțiunea de conversație vocală afișează acum șase carduri cu subiecte pentru a te ajuta să începi o sesiune. Subiectele sunt alese aleatoriu dintr-un catalog de 30 și dispar odată ce sesiunea pornește."
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "al_tau@email.com",
+    "labelSubject": "Subiect",
+    "placeholderSubject": "Scurtă descriere a întrebării tale",
+    "labelDescription": "Mesaj",
+    "placeholderDescription": "Descrie întrebarea sau feedback-ul tău...",
+    "send": "Trimite",
+    "sending": "Se trimite...",
+    "sent": "Mesaj trimis",
+    "errorGeneric": "Trimiterea a eșuat. Te rog încearcă din nou."
   }
 }

@@ -472,7 +472,10 @@
     "examples": "Voorbeelden",
     "pronunciationExercise": "Uitspraak",
     "tapToListen": "Tik om te luisteren",
-    "recordNow": "Neem je antwoord op"
+    "recordNow": "Neem je antwoord op",
+    "exit": "Afsluiten",
+    "exitConfirmTitle": "Les afsluiten?",
+    "exitConfirmMessage": "Je voortgang in deze les gaat verloren."
   },
   "flashcards": {
     "title": "Flashcards",
@@ -693,13 +696,15 @@
     "q_language": "Welke taal leer ik?",
     "a_language": "Alleen Engels, voor nu. De moedertaal die je kiest bij registratie wordt uitsluitend gebruikt voor flashcard-vertalingen en tutorfeedback.",
     "q_assessment": "Wat is de Beoordeling?",
-    "a_assessment": "Een door AI gegenereerde test van 20 vragen over grammatica, woordenschat, leesbegrip en zinnen transformeren, met moeilijkheidsgraad van A1 tot C1.",
+    "a_assessment": "Een door AI gegenereerde test van 15 vragen over grammatica, woordenschat, leesbegrip en zinnen transformeren, met moeilijkheidsgraad van A1 tot C1.",
     "q_studyPlan": "Wat is het Studieplan en hoe genereer ik er een?",
     "a_studyPlan": "Na de Beoordeling ga je naar het dashboard en klik je op <strong>Studieplan genereren</strong>. Er wordt automatisch een week-voor-week plan met dagelijkse lessen op maat van je CEFR-niveau en doelen aangemaakt.",
     "q_flashcards": "Waarvoor zijn Flashcards?",
     "a_flashcards": "Een woordenschattrainingssysteem dat gebruik maakt van het <strong>SM-2</strong> spaced repetition-algoritme. Genereer kaarten over elk onderwerp met een definitie, voorbeeldzin en vertaling in je moedertaal.",
     "q_tutor": "Hoe werkt de AI-tutor?",
     "a_tutor": "Een vrij-formaat streamingchat. De tutor kent je CEFR-niveau en zwakke punten om zijn antwoorden af te stemmen. Stel grammaticavragen, vraag uitleg, oefen schrijven in het Engels of voer gewoon een gesprek.",
+    "q_voice": "Hoe werkt de spraakconversatie?",
+    "a_voice": "De modus <strong>Spraakconversatie</strong> laat je in realtime praten met de AI-tutor. Druk op Start om te beginnen — de app herkent je stem automatisch via spraakactiviteitsdetectie (VAD) en de tutor antwoordt met spraaksynthese. Je kunt de tutor op elk moment onderbreken (barge-in). De sessie eindigt wanneer de tijdslimiet is bereikt of je op Stoppen drukt. Zorg ervoor dat je browser toestemming heeft voor de microfoon.",
     "q_providers": "Welke AI-providers ondersteunt FreeLingo?",
     "a_providers_intro": "Configureerbaar in <code>.env</code> via <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Lokaal, gratis. Vereist Ollama op de host. Aanbevolen model: gemma3:12b.",
@@ -902,7 +907,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.4.13",
+    "version": "v1.4.14",
     "cta": "Begrepen",
     "entry1": {
       "label": "Nieuwe stem",
@@ -916,5 +921,18 @@
       "label": "Gespreksonderwerpen",
       "desc": "De spraakgesprekssectie toont nu zes onderwerp-chips om je op weg te helpen een sessie te starten. De onderwerpen worden willekeurig gekozen uit een bank van 30 en verdwijnen zodra een sessie begint."
     }
+  },
+  "contact": {
+    "title": "Contact",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "jouw@email.nl",
+    "labelSubject": "Onderwerp",
+    "placeholderSubject": "Korte beschrijving van je vraag",
+    "labelDescription": "Bericht",
+    "placeholderDescription": "Beschrijf je vraag of feedback...",
+    "send": "Verzenden",
+    "sending": "Verzenden...",
+    "sent": "Bericht verzonden",
+    "errorGeneric": "Verzenden mislukt. Probeer het opnieuw."
   }
 }

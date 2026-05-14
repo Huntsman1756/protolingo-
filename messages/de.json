@@ -472,7 +472,10 @@
     "examples": "Beispiele",
     "pronunciationExercise": "Aussprache",
     "tapToListen": "Zum Anhören tippen",
-    "recordNow": "Antwort aufnehmen"
+    "recordNow": "Antwort aufnehmen",
+    "exit": "Beenden",
+    "exitConfirmTitle": "Lektion beenden?",
+    "exitConfirmMessage": "Dein Fortschritt in dieser Lektion geht verloren."
   },
   "flashcards": {
     "title": "Karteikarten",
@@ -693,13 +696,15 @@
     "q_language": "Welche Sprache werde ich lernen?",
     "a_language": "Vorerst nur Englisch. Die Muttersprache, die Sie bei der Registrierung wählen, wird ausschließlich für Karteikarten-Übersetzungen und Tutor-Feedback verwendet — sie ändert nicht die Zielsprache.",
     "q_assessment": "Was ist die Einstufung?",
-    "a_assessment": "Ein von KI generierter Test mit 20 Fragen, der Grammatik, Vokabular, Leseverständnis und Satztransformation abdeckt, mit Schwierigkeiten von A1 bis C1. Am Ende erhalten Sie Ihr GER-Niveau, eine Punktzahl und eine Analyse Ihrer Stärken und Schwächen. Dieses Ergebnis fließt in den Lernplan und die generierten Karteikarten ein.",
+    "a_assessment": "Ein von KI generierter Test mit 15 Fragen, der Grammatik, Vokabular, Leseverständnis und Satztransformation abdeckt, mit Schwierigkeiten von A1 bis C1. Am Ende erhalten Sie Ihr GER-Niveau, eine Punktzahl und eine Analyse Ihrer Stärken und Schwächen. Dieses Ergebnis fließt in den Lernplan und die generierten Karteikarten ein.",
     "q_studyPlan": "Was ist der Lernplan und wie erstelle ich einen?",
     "a_studyPlan": "Gehen Sie nach der Einstufung zum Dashboard und klicken Sie auf <strong>Lernplan erstellen</strong>. Ein wöchentlicher Plan mit täglichen Lektionen, die auf Ihr GER-Niveau und Ihre Ziele zugeschnitten sind, wird automatisch erstellt. Jede Lektion umfasst Multiple-Choice- und Freischreib-Übungen, die von KI bewertet werden.",
     "q_flashcards": "Wofür sind die Karteikarten?",
     "a_flashcards": "Ein Vokabeltrainingssystem, das den Spaced-Repetition-Algorithmus <strong>SM-2</strong> verwendet. Generieren Sie Karten zu jedem Thema (z. B. „Business“, „Phrasal Verbs“, „Essen“) mit Definition, Beispielsatz und Übersetzung in Ihre Muttersprache. Das System berechnet, wann jede Karte kurz vor dem Vergessen wieder angezeigt werden soll. Vollständig unabhängig vom Lernplan.",
     "q_tutor": "Wie funktioniert der KI-Tutor?",
     "a_tutor": "Ein freier Streaming-Chat. Der Tutor kennt Ihr GER-Niveau und Ihre Schwachstellen, um seine Antworten anzupassen. Stellen Sie Grammatikfragen, bitten Sie um Erklärungen, üben Sie das Schreiben auf Englisch oder führen Sie einfach ein Gespräch. Gespräche werden gespeichert und sind in der Seitenleiste sitzungsübergreifend zugänglich.",
+    "q_voice": "Wie funktioniert die Sprachkonversation?",
+    "a_voice": "Der Modus <strong>Sprachkonversation</strong> ermöglicht es dir, in Echtzeit mit dem KI-Tutor zu sprechen. Drücke auf Start — die App erkennt deine Stimme automatisch über Sprachaktivitätserkennung (VAD) und der Tutor antwortet mit Sprachsynthese. Du kannst den Tutor jederzeit unterbrechen (Barge-in). Die Sitzung endet, wenn das Zeitlimit erreicht ist oder du auf Stopp drückst. Stelle sicher, dass dein Browser die Mikrofonberechtigung erteilt hat.",
     "q_providers": "Welche KI-Anbieter unterstützt FreeLingo?",
     "a_providers_intro": "Konfigurierbar in <code>.env</code> über <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Lokal, kostenlos. Erfordert Ollama auf dem Host. Empfohlenes Modell: gemma3:12b. Kann ohne GPU langsam sein.",
@@ -902,7 +907,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.4.13",
+    "version": "v1.4.14",
     "cta": "Verstanden",
     "entry1": {
       "label": "Neue Stimme",
@@ -916,5 +921,18 @@
       "label": "Gesprächsthemen",
       "desc": "Im Gesprächsbereich werden jetzt sechs Themen-Chips angezeigt, die dir den Einstieg in eine Sitzung erleichtern. Die Themen werden zufällig aus einem Bank von 30 ausgewählt und verschwinden, sobald die Sitzung beginnt."
     }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "labelEmail": "E-Mail",
+    "placeholderEmail": "deine@email.de",
+    "labelSubject": "Betreff",
+    "placeholderSubject": "Kurze Beschreibung deiner Frage",
+    "labelDescription": "Nachricht",
+    "placeholderDescription": "Beschreibe deine Frage oder dein Feedback...",
+    "send": "Senden",
+    "sending": "Wird gesendet...",
+    "sent": "Nachricht gesendet",
+    "errorGeneric": "Senden fehlgeschlagen. Bitte versuche es erneut."
   }
 }
