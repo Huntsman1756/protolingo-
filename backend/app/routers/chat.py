@@ -178,7 +178,7 @@ async def chat(
         # Auto-create a conversation titled with the first 60 chars of the message
         title = request.message[:60].strip()
         if len(request.message) > 60:
-            title += "…"
+            title += "..."
         conv = Conversation(user_id=current_user.id, title=title)
         db.add(conv)
         await db.commit()

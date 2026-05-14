@@ -343,7 +343,7 @@ export default function ChatPage() {
                 disabled={sending || !input.trim() || loadingMsgs}
                 className="bg-fl-accent text-fl-accent-fg font-mono text-fl-label font-bold tracking-widest uppercase px-5 hover:bg-fl-accent/90 disabled:opacity-30 transition-colors"
               >
-                {sending ? '…' : t('send')}
+                {sending ? '...' : t('send')}
               </button>
             </div>
             <p className="font-mono text-fl-hint text-fl-border-2 mt-2 tracking-wide">{t('enterToSend')}</p>

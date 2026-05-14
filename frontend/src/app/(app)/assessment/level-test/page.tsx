@@ -207,7 +207,7 @@ export default function LevelTestPage() {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
-          Loading test…
+          Loading test...
         </span>
         <ConfirmDialog
           open={true}
@@ -228,7 +228,7 @@ export default function LevelTestPage() {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
-          {step === 'loading' ? 'Loading test…' : 'Submitting answers…'}
+          {step === 'loading' ? 'Loading test...' : 'Submitting answers...'}
         </span>
       </div>
     )

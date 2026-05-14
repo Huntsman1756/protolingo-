@@ -271,7 +271,7 @@ export default function SettingsPage() {
             )}
             {avatarUploading && (
               <div className="absolute inset-0 bg-fl-bg/70 flex items-center justify-center">
-                <span className="font-mono text-fl-hint text-fl-muted-2 animate-pulse">…</span>
+                <span className="font-mono text-fl-hint text-fl-muted-2 animate-pulse">...</span>
               </div>
             )}
           </button>
@@ -588,12 +588,12 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs text-fl-muted-1 tracking-widest uppercase">{tBilling('status')}</span>
               <span className={`font-mono text-xs font-bold tracking-widest uppercase px-2.5 py-1 border ${user?.subscription_status === 'active'
-                  ? 'border-green-600/40 text-green-500'
-                  : user?.subscription_status === 'trialing'
-                    ? 'border-fl-accent/40 text-fl-accent'
-                    : user?.subscription_status === 'past_due'
-                      ? 'border-yellow-500/40 text-yellow-500'
-                      : 'border-fl-border text-fl-muted-3'
+                ? 'border-green-600/40 text-green-500'
+                : user?.subscription_status === 'trialing'
+                  ? 'border-fl-accent/40 text-fl-accent'
+                  : user?.subscription_status === 'past_due'
+                    ? 'border-yellow-500/40 text-yellow-500'
+                    : 'border-fl-border text-fl-muted-3'
                 }`}>
                 {user?.subscription_status === 'active' && tBilling('statusActive')}
                 {user?.subscription_status === 'trialing' && tBilling('statusTrialing')}
@@ -621,7 +621,7 @@ export default function SettingsPage() {
                 disabled={portalLoading}
                 className="w-full font-mono text-xs tracking-widest uppercase py-2.5 border border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 disabled:opacity-50 transition-colors"
               >
-                {portalLoading ? '…' : `— ${tBilling('manage')}`}
+                {portalLoading ? '...' : `— ${tBilling('manage')}`}
               </button>
             ) : (
               <a

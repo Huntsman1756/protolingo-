@@ -198,7 +198,7 @@ export const grammarTopics: GrammarTopic[] = [
       'Use "there is" for singular countable and uncountable nouns.',
       'Use "there are" for plural nouns.',
       "Negative: there isn't / there aren't.",
-      'Question: Is there…? / Are there…?',
+      'Question: Is there...? / Are there...?',
       '"Any" is used in negatives and questions: "There aren\'t any eggs."',
     ],
     examples: [
@@ -688,12 +688,12 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'B1',
     category: 'Reported Speech',
     summary: 'Report what someone said using tense backshift.',
-    explanation: `**Reported speech** (indirect speech) reports what someone said without quoting them directly.\n\nThe tense shifts back:\n\n| Direct speech | Reported speech |\n|--------------|-----------------|\n| "I am tired." | She said she **was** tired. |\n| "I work here." | He said he **worked** there. |\n| "I will help." | She said she **would** help. |\n\n**Reporting verbs**: say, tell, explain, add, reply.\n- **say**: she said (that)…\n- **tell**: she told me/him/her (that)…`,
+    explanation: `**Reported speech** (indirect speech) reports what someone said without quoting them directly.\n\nThe tense shifts back:\n\n| Direct speech | Reported speech |\n|--------------|-----------------|\n| "I am tired." | She said she **was** tired. |\n| "I work here." | He said he **worked** there. |\n| "I will help." | She said she **would** help. |\n\n**Reporting verbs**: say, tell, explain, add, reply.\n- **say**: she said (that)...\n- **tell**: she told me/him/her (that)...`,
     rules: [
       'Present simple → past simple in reported speech.',
       'Will → would; can → could; must → had to.',
-      '"Tell" must have an object (me, him, her): "She told me that…"',
-      '"Say" does not need an object: "She said that…"',
+      '"Tell" must have an object (me, him, her): "She told me that..."',
+      '"Say" does not need an object: "She said that..."',
       'Time/place words change: today → that day, here → there, now → then.',
     ],
     examples: [
@@ -717,7 +717,7 @@ export const grammarTopics: GrammarTopic[] = [
     rules: [
       'Use "used to" for past habits AND past states that are no longer true.',
       'Use "would" only for past repeated actions — never for past states (know, believe, live, be, etc.).',
-      'After "did/didn\'t", write "use to" (no -d): "Did you use to…?" / "I didn\'t use to…"',
+      'After "did/didn\'t", write "use to" (no -d): "Did you use to...?" / "I didn\'t use to..."',
       'Neither "used to" nor "would" can describe a single, one-off past event — use the past simple.',
       'Both imply contrast with the present: the situation has changed.',
     ],
@@ -739,11 +739,11 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'B1',
     category: 'Advanced',
     summary: 'Give, support, and respond to opinions in English.',
-    explanation: `At B1 level, expressing opinions goes beyond "I think" — it includes:\n\n**Introducing opinions:**\n- *In my opinion… / As far as I'm concerned…*\n- *I believe… / It seems to me that…*\n\n**Agreeing:**\n- *I agree with you. / That's a good point. / Exactly!*\n\n**Disagreeing politely:**\n- *I see your point, but… / I'm not sure I agree.*\n\n**Giving reasons:**\n- *because / since / as / due to / given that*`,
+    explanation: `At B1 level, expressing opinions goes beyond "I think" — it includes:\n\n**Introducing opinions:**\n- *In my opinion... / As far as I'm concerned...*\n- *I believe... / It seems to me that...*\n\n**Agreeing:**\n- *I agree with you. / That's a good point. / Exactly!*\n\n**Disagreeing politely:**\n- *I see your point, but... / I'm not sure I agree.*\n\n**Giving reasons:**\n- *because / since / as / due to / given that*`,
     rules: [
       'Use a range of opinion phrases, not just "I think".',
       'Support opinions with reasons using because, since, as.',
-      'Acknowledge the other view before disagreeing: "I see your point, but…"',
+      'Acknowledge the other view before disagreeing: "I see your point, but..."',
       'Avoid absolute statements — hedge with "might", "tend to", "generally".',
     ],
     examples: [
@@ -753,7 +753,7 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     common_mistakes: [
       { wrong: 'I am agree with you.', correct: 'I agree with you.', note: '"Agree" is a verb, not an adjective — no "am" needed.' },
-      { wrong: 'In my opinion, I think…', correct: 'In my opinion, … (or) I think…', note: "Don't use both phrases together — they are synonyms." },
+      { wrong: 'In my opinion, I think...', correct: 'In my opinion, ... (or) I think...', note: "Don't use both phrases together — they are synonyms." },
     ],
     related: ['discourse-connectors-b1', 'modal-verbs'],
   },
@@ -837,7 +837,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary: 'Report what someone said without quoting them directly.',
     explanation: `When reporting speech, the tense usually shifts back (**backshift**):\n\n| Direct | Reported |\n|--------|----------|\n| "I am tired." | She said she was tired. |\n| "I worked." | He said he had worked. |\n| "I will go." | She said she would go. |\n| "I can help." | He said he could help. |\n\nTime and place words also change: *today → that day, here → there, yesterday → the day before.*`,
     rules: [
-      'Say vs tell: "She said (that)…" / "She told me (that)…"',
+      'Say vs tell: "She said (that)..." / "She told me (that)..."',
       'Backshift: present → past, past → past perfect, will → would.',
       'Questions in reported speech use normal word order (no inversion): "She asked where I lived."',
     ],
@@ -1036,7 +1036,7 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'C1',
     category: 'Advanced',
     summary: 'Place the auxiliary before the subject for emphasis or formality.',
-    explanation: `**Inversion** reverses the usual subject-verb order. It is used:\n\n1. After negative/restrictive adverbs at the start of a sentence:\n*Never have I seen such a mess.*\n*Not only did she arrive late, but she also forgot her notes.*\n\n2. After "so/such… that" structures:\n*So tired was he that he fell asleep immediately.*\n\n3. In formal conditionals (replacing if):\n*Had I known, I would have acted differently.* (= If I had known…)`,
+    explanation: `**Inversion** reverses the usual subject-verb order. It is used:\n\n1. After negative/restrictive adverbs at the start of a sentence:\n*Never have I seen such a mess.*\n*Not only did she arrive late, but she also forgot her notes.*\n\n2. After "so/such... that" structures:\n*So tired was he that he fell asleep immediately.*\n\n3. In formal conditionals (replacing if):\n*Had I known, I would have acted differently.* (= If I had known...)`,
     rules: [
       'After negative adverbials: auxiliary + subject + main verb.',
       'If there is no auxiliary, use do/does/did.',
@@ -1081,7 +1081,7 @@ export const grammarTopics: GrammarTopic[] = [
     category: 'Advanced',
     summary: 'Use -ing and -ed participial phrases to replace subordinate clauses concisely.',
     structure: '-ing clause (active) · -ed clause (passive) · Having + past participle',
-    explanation: `Participle clauses reduce subordinate clauses for concise, formal writing.\n\n**-ing clause** (active; simultaneous or causal):\n*Turning the corner, she saw the building.* (= As she turned…)\n\n**-ed clause** (passive meaning):\n*Surrounded by trees, the house was hard to find.* (= Because it was surrounded…)\n\n**Having + past participle** (completed prior action):\n*Having finished the report, he went home.* (= After he had finished…)`,
+    explanation: `Participle clauses reduce subordinate clauses for concise, formal writing.\n\n**-ing clause** (active; simultaneous or causal):\n*Turning the corner, she saw the building.* (= As she turned...)\n\n**-ed clause** (passive meaning):\n*Surrounded by trees, the house was hard to find.* (= Because it was surrounded...)\n\n**Having + past participle** (completed prior action):\n*Having finished the report, he went home.* (= After he had finished...)`,
     rules: [
       'The subject of the participle clause must be the same as the main clause subject.',
       '-ing clause expresses an active, simultaneous, or causal action.',
@@ -1105,11 +1105,11 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'C1',
     category: 'Advanced',
     summary: 'Express claims tentatively to avoid overgeneralisation in academic and professional contexts.',
-    explanation: `**Hedging** indicates caution, uncertainty, or a limited claim. Essential in academic writing.\n\n**Modal verbs**: *may, might, could, would*\n*This may suggest that…*\n\n**Epistemic phrases**: *It seems that… / It appears that… / It is possible that…*\n\n**Limiting adverbs**: *generally, largely, typically, to some extent, in most cases*\n\n**Passive + reporting verb**: *It has been argued that… / It is widely believed that…*`,
+    explanation: `**Hedging** indicates caution, uncertainty, or a limited claim. Essential in academic writing.\n\n**Modal verbs**: *may, might, could, would*\n*This may suggest that...*\n\n**Epistemic phrases**: *It seems that... / It appears that... / It is possible that...*\n\n**Limiting adverbs**: *generally, largely, typically, to some extent, in most cases*\n\n**Passive + reporting verb**: *It has been argued that... / It is widely believed that...*`,
     rules: [
       'Use hedging to avoid absolute claims in academic writing.',
       '"May/might/could" reduce the certainty of a statement.',
-      '"Tend to" hedges generalisations: "Learners tend to overuse…"',
+      '"Tend to" hedges generalisations: "Learners tend to overuse..."',
       '"Arguably" signals a debatable claim without full commitment.',
       'Do not hedge factual statements where certainty is appropriate.',
     ],
@@ -1201,7 +1201,7 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'C2',
     category: 'Advanced',
     summary: 'Turn verbs and adjectives into nouns to create a formal, dense style.',
-    explanation: `**Nominalisation** converts verbs or adjectives into nouns:\n\n- *decide* → *decision* (*The decision was made…* instead of *They decided…*)\n- *fail* → *failure*\n- *significant* → *significance*\n\nCommon in academic, legal, and business English. It creates distance, formality, and allows complex ideas to become the subject of the sentence.`,
+    explanation: `**Nominalisation** converts verbs or adjectives into nouns:\n\n- *decide* → *decision* (*The decision was made...* instead of *They decided...*)\n- *fail* → *failure*\n- *significant* → *significance*\n\nCommon in academic, legal, and business English. It creates distance, formality, and allows complex ideas to become the subject of the sentence.`,
     rules: [
       'Common suffixes: -tion/-sion, -ment, -ance/-ence, -ity, -ness.',
       'Do not overuse it in spoken English — it sounds unnatural.',

@@ -120,7 +120,7 @@ export default function VocabularySetPage({
                 disabled={adding}
                 className="bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-5 py-2.5 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
               >
-                {adding ? '— Adding…' : `— ${t('addAll', { count: vocabSet.words.length })}`}
+                {adding ? '— Adding...' : `— ${t('addAll', { count: vocabSet.words.length })}`}
               </button>
             </div>
           )}

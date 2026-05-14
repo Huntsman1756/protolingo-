@@ -7,7 +7,7 @@ applyTo: "backend/**, frontend/**, messages/**"
 
 ## Objective
 
-Replace the narrow `english_variant` field (`"american"` / `"british"`) with a generic `target_language` field that uses BCP-47 language tags (`"en-US"`, `"en-GB"`, …). Introduce a dedicated post-registration onboarding screen where new users choose the language variant they want to learn. Remove the language selector from `/settings` (the choice is made at registration and treated as immutable in the UI, though it can still be changed via API if needed). Make the entire service layer parameterised by `target_language` so that adding a new target language in the future only requires: adding content data and one entry in `SUPPORTED_TARGET_LANGUAGES`.
+Replace the narrow `english_variant` field (`"american"` / `"british"`) with a generic `target_language` field that uses BCP-47 language tags (`"en-US"`, `"en-GB"`, ...). Introduce a dedicated post-registration onboarding screen where new users choose the language variant they want to learn. Remove the language selector from `/settings` (the choice is made at registration and treated as immutable in the UI, though it can still be changed via API if needed). Make the entire service layer parameterised by `target_language` so that adding a new target language in the future only requires: adding content data and one entry in `SUPPORTED_TARGET_LANGUAGES`.
 
 **Languages available at launch:** American English (`en-US`) and British English (`en-GB`).
 

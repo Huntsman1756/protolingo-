@@ -413,7 +413,7 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-2', level: 'B1', unit_number: 2, title: 'If… (First Conditional)',
+    id: 'b1-unit-2', level: 'B1', unit_number: 2, title: 'If... (First Conditional)',
     default_weeks: [2, 3], grammar_points: ['first-conditional', 'zero-conditional'],
     vocabulary_set_ids: ['environment_b1', 'decisions_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],

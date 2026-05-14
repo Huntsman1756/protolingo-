@@ -19,7 +19,7 @@ const ConversationMode = dynamic(
     loading: () => (
       <div className="flex min-h-[calc(100vh-56px)] md:min-h-screen items-center justify-center">
         <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
-          ● Loading…
+          ● Loading...
         </span>
       </div>
     ),
