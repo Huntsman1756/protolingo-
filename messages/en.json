@@ -395,7 +395,8 @@
       "vocabulary": "Vocabulary",
       "reading": "Reading",
       "writing": "Writing",
-      "conversation": "Conversation"
+      "conversation": "Conversation",
+      "listening": "Listening"
     },
     "summaryLevel": "Level",
     "summaryDuration": "Duration",
