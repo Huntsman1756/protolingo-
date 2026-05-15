@@ -21,6 +21,7 @@ export const GOAL_OPTIONS = [
   { id: 'reading' },
   { id: 'writing' },
   { id: 'conversation' },
+  { id: 'listening' },
 ]
 
 interface Props {
@@ -77,8 +78,8 @@ export default function DurationSelector({
                   key={opt.weeks}
                   onClick={() => onSelectDuration(opt)}
                   className={`border px-4 py-3 text-left transition-colors ${selectedWeeks === opt.weeks
-                      ? 'bg-fl-fg text-fl-bg border-fl-fg'
-                      : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                    ? 'bg-fl-fg text-fl-bg border-fl-fg'
+                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                 >
                   <p className="font-mono text-xs font-bold tracking-widest uppercase">
@@ -112,11 +113,11 @@ export default function DurationSelector({
                   key={g.id}
                   onClick={() => onToggleGoal(g.id)}
                   className={`px-3 py-1.5 font-mono text-xs tracking-widest uppercase border transition-colors ${selectedGoals.includes(g.id)
-                      ? 'bg-fl-fg text-fl-bg border-fl-fg'
-                      : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                    ? 'bg-fl-fg text-fl-bg border-fl-fg'
+                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
                     }`}
                 >
-                  {selectedGoals.includes(g.id) ? '✓ ' : ''}{t(`goals.${g.id as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation'}`)}
+                  {selectedGoals.includes(g.id) ? '✓ ' : ''}{t(`goals.${g.id as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`)}
                 </button>
               ))}
             </div>
@@ -133,7 +134,7 @@ export default function DurationSelector({
             <p>
               {t('summaryGoals')}: <span className="text-fl-fg">
                 {selectedGoals.length > 0
-                  ? selectedGoals.map((g) => t(`goals.${g as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation'}`)).join(', ')
+                  ? selectedGoals.map((g) => t(`goals.${g as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`)).join(', ')
                   : t('noneSelected')}
               </span>
             </p>

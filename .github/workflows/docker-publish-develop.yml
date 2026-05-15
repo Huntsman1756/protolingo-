@@ -10,6 +10,7 @@ env:
   REGISTRY: ghcr.io
   BACKEND_IMAGE: ghcr.io/artcc/freelingo-backend-develop
   FRONTEND_IMAGE: ghcr.io/artcc/freelingo-frontend-develop
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-push:

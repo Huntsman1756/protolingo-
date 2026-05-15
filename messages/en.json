@@ -10,6 +10,12 @@
     "feature2Desc": "Practice with lessons, exercises and flashcards guided by your tutor. Feedback at every step.",
     "feature3Title": "Voice Conversation",
     "feature3Desc": "Talk to your tutor in real time. Voice-activated, instant response, no turn-taking.",
+    "feature4Title": "Listening Exercises",
+    "feature4Desc": "AI-generated audio at your CEFR level. Listen, answer 5 comprehension questions, then unlock the transcript. New exercises generated on demand.",
+    "feature5Title": "Flashcards",
+    "feature5Desc": "Vocabulary review with spaced repetition. The SM-2 algorithm schedules each card at the optimal moment to maximise long-term retention.",
+    "feature6Title": "Progress & Streaks",
+    "feature6Desc": "XP, daily streaks, skill scores and unit competencies. Track your growth week by week and test your level at the end of each CEFR stage.",
     "footer": "Open source · Self-host free or subscribe to the hosted service",
     "terms": "Terms",
     "privacy": "Privacy",
@@ -62,7 +68,8 @@
     "settings": "Settings",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversation"
+    "conversation": "Conversation",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -388,7 +395,8 @@
       "vocabulary": "Vocabulary",
       "reading": "Reading",
       "writing": "Writing",
-      "conversation": "Conversation"
+      "conversation": "Conversation",
+      "listening": "Listening"
     },
     "summaryLevel": "Level",
     "summaryDuration": "Duration",
@@ -707,7 +715,7 @@
     "a_voice": "The <strong>Voice Conversation</strong> mode lets you speak with the AI tutor in real time. Press Start to begin — the app listens for your voice automatically using voice activity detection (VAD) and the tutor replies with synthesised speech. You can interrupt the tutor at any moment (barge-in). The session ends when you reach the time limit or press Stop. Make sure your browser has microphone permission enabled.",
     "q_providers": "Which AI providers does FreeLingo support?",
     "a_providers_intro": "Configurable in <code>.env</code> via <code>LLM_PROVIDER</code>:",
-    "provider_ollama": "Local, free. Requires Ollama running on the host. Recommended model: gemma3:12b. May be slow without a GPU.",
+    "provider_ollama": "Local, free. Requires Ollama running on the host. Recommended model: gemma4:e4b. May be slow without a GPU.",
     "provider_openai": "OpenAI API (GPT-4o, etc.). Fast and reliable. Requires OPENAI_API_KEY.",
     "provider_anthropic": "Anthropic Claude. Requires ANTHROPIC_API_KEY.",
     "provider_deepseek": "DeepSeek API. Requires DEEPSEEK_API_KEY.",
@@ -907,17 +915,13 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Got it",
     "entry1": {
-      "label": "New voice",
-      "desc": "Real-time voice conversation now uses a new voice for a more natural and engaging experience."
+      "label": "Listening exercises",
+      "desc": "Practice English comprehension with AI-generated audio exercises. Listen to a short recording, answer 5 questions, and unlock the transcript — new exercises generated on demand for your CEFR level."
     },
     "entry2": {
-      "label": "Conversation starters",
-      "desc": "The voice conversation section now shows six topic chips to help you kick off a session. Topics are picked at random from a bank of 30 and disappear once a session starts."
-    },
-    "entry3": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }
@@ -934,5 +938,32 @@
     "sending": "Sending...",
     "sent": "Message sent",
     "errorGeneric": "Failed to send. Please try again."
+  },
+  "listening": {
+    "title": "Listening",
+    "topic": "Topic",
+    "listenLabel": "Listen",
+    "questionsLabel": "Questions",
+    "submit": "Submit answers",
+    "generating": "Generating exercise...",
+    "generatingDesc": "AI is creating a new exercise. This usually takes about 30 seconds.",
+    "noExercises": "No exercises available for your level.",
+    "generate": "Generate exercise",
+    "audioError": "Unable to load audio",
+    "alreadyAttempted": "You have already completed this exercise.",
+    "errorLoading": "Failed to load exercise. Please try again.",
+    "errorSubmit": "Failed to submit answers. Please try again.",
+    "resultsLabel": "Results",
+    "transcript": "Transcript",
+    "review": "Answer review",
+    "nextExercise": "Next exercise",
+    "viewHistory": "History",
+    "history": "History",
+    "historyTitle": "Listening history",
+    "historyEmpty": "No completed exercises yet.",
+    "practiceMore": "Practice",
+    "moreInHistory": "+{count} more",
+    "practiceAgain": "Practice again",
+    "replayNoXp": "Replay — no XP"
   }
 }

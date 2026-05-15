@@ -14,7 +14,7 @@ freelingo/
 ├── backend/                     # Python 3.14 FastAPI
 │   ├── app/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter
-│   │   ├── models/              # SQLAlchemy 2.0 ORM models (9 models)
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (11 models)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas
 │   │   ├── routers/             # 12 routers (11 REST + 1 WebSocket)
 │   │   ├── services/            # Business logic + external service clients (12 modules)
@@ -246,6 +246,42 @@ Per-unit competency tracking (Phase 1+).
 | mastered | boolean | True when score >= 0.80 |
 | updated_at | datetime | |
 
+### ListeningExercise (`listening_exercises`)
+
+AI-generated listening comprehension exercises (Phase 6). Shared across all users at the same CEFR level and target language.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| level | string | CEFR level: A1–C2 |
+| target_language | string | BCP-47 tag, e.g. `"en-US"` |
+| exercise_type | string | E.g. `"story"`, `"dialogue"`, `"news_report"` — varies by level |
+| topic | string | Short topic description |
+| text | text | Full transcript (never returned to client before submission) |
+| audio_path | string | Absolute path to MP3 on disk, e.g. `/data/audio/listening/42.mp3` |
+| duration_seconds | integer | Audio length in seconds |
+| questions | JSON | List of `{question, options: [str×4], correct}` objects (5 questions per exercise) |
+| play_count | integer | How many times this exercise has been served (server default 0) |
+| created_at | datetime | Auto-set on creation |
+
+Composite index: `ix_listening_exercises_level_lang` on `(level, target_language)`.
+
+### ListeningAttempt (`listening_attempts`)
+
+Records each user submission for a listening exercise.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| user_id | integer | FK → users (CASCADE DELETE) |
+| exercise_id | integer | FK → listening_exercises (CASCADE DELETE) |
+| answers | JSON | List of strings — the user's selected option per question |
+| score | integer | 0–5 (number of correct answers) |
+| xp_earned | integer | 0–50 (10 per correct answer) |
+| completed_at | datetime | Auto-set on creation |
+
+Unique constraint: one attempt per `(user_id, exercise_id)` — enforced at service level (409 on duplicate).
+
 ---
 
 ## Service layer
@@ -342,6 +378,24 @@ SMTP email dispatch via **fastapi-mail 1.4.1** (async, `aiosmtplib` backend). On
 - `send_contact_email(sender_email, subject, description)` — forwards a contact-form submission to `CONTACT_EMAIL`. Sets `Reply-To` to the sender's address. Raises on SMTP failure (the router converts this to HTTP 502).
 
 Both `send_verification_email` and `send_reset_password_email` accept a `locale` parameter (BCP-47 language tag, e.g. `"es"`) and render fully translated email bodies using internal `_VERIFY_I18N` / `_RESET_I18N` dicts covering the 10 supported UI languages. HTML templates are in `backend/app/templates/email/`.
+
+### Listening Service (`listening_service.py`)
+
+Manages AI-generated listening exercises end-to-end (Phase 6):
+
+- `get_available_exercise(level, target_language, user_id, db)` — returns the oldest unplayed exercise for the user's level/language, excluding already-attempted ones. Returns `None` if pool is empty.
+- `generate_and_save_exercise(level, target_language, db, tts_service, storage_path)` — calls LLM (with one retry on malformed JSON), extracts topic + text + 5 questions, synthesises MP3 via TTS service, flushes to DB to get the ID, writes audio to `{storage_path}/listening/{id}.mp3`, then commits.
+- `calculate_score(questions, answers) → (score, xp_earned)` — pure function, case-insensitive comparison, 10 XP per correct answer.
+- `submit_attempt(exercise_id, user_id, answers, db)` — checks for duplicate (raises 409), calculates score, awards XP via Progress service, increments `play_count`.
+- `get_user_history(user_id, db, skip, limit)` — JOIN query returning `(list[tuple[ListeningAttempt, ListeningExercise]], total)`.
+
+**Exercise types by CEFR level** (`_TYPES_BY_LEVEL`):
+
+| Level | Types |
+|-------|-------|
+| A1, A2 | `story`, `conversation` |
+| B1, B2 | `story`, `dialogue`, `interview` |
+| C1, C2 | `news_report`, `lecture`, `debate` |
 
 ### Quota Service (`quota_service.py`)
 

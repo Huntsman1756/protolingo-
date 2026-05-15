@@ -10,6 +10,12 @@
     "feature2Desc": "Oefen met lessen, oefeningen en flashcards begeleid door je tutor. Feedback bij elke stap.",
     "feature3Title": "Spraakgesprek",
     "feature3Desc": "Praat met je tutor in realtime. Spraakgestuurd, directe reactie, zonder beurtneming.",
+    "feature4Title": "Listening-oefeningen",
+    "feature4Desc": "AI-gegenereerde audio op jouw CEFR-niveau. Luister, beantwoord 5 begripsvragen en ontgrendel het transcript. Nieuwe oefeningen op aanvraag.",
+    "feature5Title": "Flashcards",
+    "feature5Desc": "Vocabulairerevision met spaced repetition. Het SM-2-algoritme plant elke kaart op het optimale moment voor maximale langetermijnretentie.",
+    "feature6Title": "Voortgang & reeksen",
+    "feature6Desc": "XP, dagelijkse reeksen, vaardigheidsscores en eenheidscompetenties. Volg je groei week na week en test je niveau aan het einde van elke CEFR-fase.",
     "footer": "Open source · Zelf hosten gratis of abonneer op de gehoste dienst",
     "terms": "Gebruiksvoorwaarden",
     "privacy": "Privacy",
@@ -62,7 +68,8 @@
     "settings": "Instellingen",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Gesprek"
+    "conversation": "Gesprek",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -388,7 +395,8 @@
       "vocabulary": "Woordenschat",
       "reading": "Lezen",
       "writing": "Schrijven",
-      "conversation": "Gesprek"
+      "conversation": "Gesprek",
+      "listening": "Listening"
     },
     "summaryLevel": "Niveau",
     "summaryDuration": "Duur",
@@ -707,7 +715,7 @@
     "a_voice": "De modus <strong>Spraakconversatie</strong> laat je in realtime praten met de AI-tutor. Druk op Start om te beginnen — de app herkent je stem automatisch via spraakactiviteitsdetectie (VAD) en de tutor antwoordt met spraaksynthese. Je kunt de tutor op elk moment onderbreken (barge-in). De sessie eindigt wanneer de tijdslimiet is bereikt of je op Stoppen drukt. Zorg ervoor dat je browser toestemming heeft voor de microfoon.",
     "q_providers": "Welke AI-providers ondersteunt FreeLingo?",
     "a_providers_intro": "Configureerbaar in <code>.env</code> via <code>LLM_PROVIDER</code>:",
-    "provider_ollama": "Lokaal, gratis. Vereist Ollama op de host. Aanbevolen model: gemma3:12b.",
+    "provider_ollama": "Lokaal, gratis. Vereist Ollama op de host. Aanbevolen model: gemma4:e4b.",
     "provider_openai": "OpenAI API (GPT-4o, enz.). Snel en betrouwbaar. Vereist OPENAI_API_KEY.",
     "provider_anthropic": "Anthropic Claude. Vereist ANTHROPIC_API_KEY.",
     "provider_deepseek": "DeepSeek API. Vereist DEEPSEEK_API_KEY.",
@@ -907,17 +915,13 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Nieuwe stem",
-      "desc": "Realtime spraakgesprekken gebruiken nu een nieuwe stem voor een natuurlijkere en boeiendere ervaring."
+      "label": "Listening-oefeningen",
+      "desc": "Oefen je Engelse luistervaardigheid met AI-gegenereerde audioöfeningen. Beluister een opname, beantwoord 5 vragen en ontdek de transcriptie — nieuwe oefeningen op aanvraag gegenereerd voor jouw ERK-niveau."
     },
     "entry2": {
-      "label": "Gespreksonderwerpen",
-      "desc": "De spraakgesprekssectie toont nu zes onderwerp-chips om je op weg te helpen een sessie te starten. De onderwerpen worden willekeurig gekozen uit een bank van 30 en verdwijnen zodra een sessie begint."
-    },
-    "entry3": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }
@@ -934,5 +938,32 @@
     "sending": "Verzenden...",
     "sent": "Bericht verzonden",
     "errorGeneric": "Verzenden mislukt. Probeer het opnieuw."
+  },
+  "listening": {
+    "title": "Luisteren",
+    "topic": "Onderwerp",
+    "listenLabel": "Luisteren",
+    "questionsLabel": "Vragen",
+    "submit": "Antwoorden indienen",
+    "generating": "Oefening genereren...",
+    "generatingDesc": "De AI maakt een nieuwe oefening. Dit duurt ongeveer 30 seconden.",
+    "noExercises": "Geen oefeningen beschikbaar voor jouw niveau.",
+    "generate": "Oefening genereren",
+    "audioError": "Audio kan niet worden geladen",
+    "alreadyAttempted": "Je hebt deze oefening al voltooid.",
+    "errorLoading": "Oefening laden mislukt. Probeer opnieuw.",
+    "errorSubmit": "Antwoorden indienen mislukt. Probeer opnieuw.",
+    "resultsLabel": "Resultaten",
+    "transcript": "Transcript",
+    "review": "Antwoorden beoordelen",
+    "nextExercise": "Volgende oefening",
+    "viewHistory": "Geschiedenis",
+    "history": "Geschiedenis",
+    "historyTitle": "Listening-geschiedenis",
+    "historyEmpty": "Nog geen voltooide oefeningen.",
+    "practiceMore": "Oefenen",
+    "moreInHistory": "+{count} meer",
+    "practiceAgain": "Opnieuw oefenen",
+    "replayNoXp": "Herhaling — geen XP"
   }
 }

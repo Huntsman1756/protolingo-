@@ -10,6 +10,12 @@
     "feature2Desc": "Ćwicz z lekcjami, ćwiczeniami i fiszkami pod kierunkiem korepetytora. Informacje zwrotne na każdym kroku.",
     "feature3Title": "Rozmowa głosowa",
     "feature3Desc": "Rozmawiaj z korepetytorem w czasie rzeczywistym. Aktywacja głosem, natychmiastowa odpowiedź.",
+    "feature4Title": "Ćwiczenia listening",
+    "feature4Desc": "Audio generowane przez AI na Twoim poziomie CEFR. Słuchaj, odpowiedz na 5 pytań ze zrozumienia i odblokuj transkrypcję. Nowe ćwiczenia generowane na żądanie.",
+    "feature5Title": "Fiszki",
+    "feature5Desc": "Powtarzanie słownictwa metodą spaced repetition. Algorytm SM-2 planuje każdą kartę w optymalnym momencie, aby zmaksymalizować długoterminowe zapamiętywanie.",
+    "feature6Title": "Postęp i serie",
+    "feature6Desc": "XP, codzienne serie, wyniki umiejętności i kompetencje jednostkowe. Śledź swój rozwój tydzień po tygodniu i testuj poziom na końcu każdego etapu CEFR.",
     "footer": "Open source · Hostuj samodzielnie za darmo lub subskrybuj usługę hostowaną",
     "terms": "Regulamin",
     "privacy": "Prywatność",
@@ -62,7 +68,8 @@
     "settings": "Ustawienia",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Rozmowa"
+    "conversation": "Rozmowa",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -388,7 +395,8 @@
       "vocabulary": "Słownictwo",
       "reading": "Czytanie",
       "writing": "Pisanie",
-      "conversation": "Rozmowa"
+      "conversation": "Rozmowa",
+      "listening": "Listening"
     },
     "summaryLevel": "Poziom",
     "summaryDuration": "Czas trwania",
@@ -707,7 +715,7 @@
     "a_voice": "Tryb <strong>Rozmowy głosowej</strong> umożliwia rozmowę z tutorem AI w czasie rzeczywistym. Naciśnij Start, aby rozpocząć — aplikacja automatycznie wykrywa Twój głos za pomocą detekcji aktywności głosowej (VAD), a tutor odpowiada syntezą mowy. Możesz przerwać tutorowi w dowolnym momencie (barge-in). Sesja kończy się po osiągnięciu limitu czasu lub naciśnięciu Zatrzymaj. Upewnij się, że przeglądarka ma uprawnienia do mikrofonu.",
     "q_providers": "Jakich dostawców AI obsługuje FreeLingo?",
     "a_providers_intro": "Konfigurowane w <code>.env</code> przez <code>LLM_PROVIDER</code>:",
-    "provider_ollama": "Lokalny, bezpłatny. Wymaga Ollama działającego na hoście. Zalecany model: gemma3:12b.",
+    "provider_ollama": "Lokalny, bezpłatny. Wymaga Ollama działającego na hoście. Zalecany model: gemma4:e4b.",
     "provider_openai": "OpenAI API (GPT-4o itp.). Szybki i niezawodny. Wymaga OPENAI_API_KEY.",
     "provider_anthropic": "Anthropic Claude. Wymaga ANTHROPIC_API_KEY.",
     "provider_deepseek": "DeepSeek API. Wymaga DEEPSEEK_API_KEY.",
@@ -907,17 +915,13 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Nowy głos",
-      "desc": "Rozmowy głosowe w czasie rzeczywistym korzystają teraz z nowego głosu, zapewniając bardziej naturalną i angażującą rozmowę."
+      "label": "Ćwiczenia listening",
+      "desc": "Ćwicz rozumienie ze słuchu w języku angielskim dzięki ćwiczeniom audio generowanym przez AI. Posłuchaj nagrania, odpowiedz na 5 pytań i odkryj transkrypcję — nowe ćwiczenia generowane na żądanie dla Twojego poziomu ESOKJ."
     },
     "entry2": {
-      "label": "Tematy rozmów",
-      "desc": "Sekcja rozmów głosowych wyświetla teraz sześć kart tematycznych, które pomagają rozpocząć sesję. Tematy są losowo wybierane z banku 30 propozycji i znikają po rozpoczęciu sesji."
-    },
-    "entry3": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }
@@ -934,5 +938,32 @@
     "sending": "Wysyłanie...",
     "sent": "Wiadomość wysłana",
     "errorGeneric": "Wysyłanie nie powiodło się. Spróbuj ponownie."
+  },
+  "listening": {
+    "title": "Słuchanie",
+    "topic": "Temat",
+    "listenLabel": "Słuchaj",
+    "questionsLabel": "Pytania",
+    "submit": "Prześlij odpowiedzi",
+    "generating": "Generowanie ćwiczenia...",
+    "generatingDesc": "AI tworzy nowe ćwiczenie. Zajmuje to około 30 sekund.",
+    "noExercises": "Brak ćwiczeń dla twojego poziomu.",
+    "generate": "Generuj ćwiczenie",
+    "audioError": "Nie można załadować audio",
+    "alreadyAttempted": "To ćwiczenie zostało już ukończone.",
+    "errorLoading": "Nie można załadować ćwiczenia. Spróbuj ponownie.",
+    "errorSubmit": "Nie można przesłać odpowiedzi. Spróbuj ponownie.",
+    "resultsLabel": "Wyniki",
+    "transcript": "Transkrypcja",
+    "review": "Przegląd odpowiedzi",
+    "nextExercise": "Następne ćwiczenie",
+    "viewHistory": "Historia",
+    "history": "Historia",
+    "historyTitle": "Historia listening",
+    "historyEmpty": "Brak ukończonych ćwiczeń.",
+    "practiceMore": "Ćwicz",
+    "moreInHistory": "+{count} więcej",
+    "practiceAgain": "Ćwicz ponownie",
+    "replayNoXp": "Powtórka — brak XP"
   }
 }
