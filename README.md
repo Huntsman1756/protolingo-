@@ -76,7 +76,7 @@ freelingo/
 | 3     | Real-time conversation | ✅ Complete         |
 | 4     | Multi-language support | ✅ Complete         |
 | 5     | Stripe subscriptions   | ✅ Complete         |
-| 6     | Listening              | 🔄 In progress      |
+| 6     | Listening              | ✅ Complete         |
 
 ## Hosted service
 

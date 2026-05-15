@@ -176,3 +176,17 @@ Full-duplex voice conversation pipeline.
 - **Session timeouts**: max duration (default 30 min) and inactivity (default 3 min), each with 60 s warning
 - **In-memory history**: last 20 messages kept for LLM context during session (not persisted to DB)
 - **Warmup**: `POST /api/conversation/warmup` pre-heats TTS and STT models before opening the WebSocket
+
+---
+
+## Listening — `/api/listening`
+
+All endpoints require `require_subscription` (or `get_current_user` where noted). Audio file path is built from the integer exercise ID — never from a DB string — to prevent path traversal.
+
+| Method | Path | Rate limit | Auth | Description |
+|--------|------|------------|------|-------------|
+| GET | `/next` | 10/min | require_subscription | Returns the oldest unplayed `ListeningExercise` for the user's current CEFR level and target language (questions included, **text and correct answers omitted**). Returns `{"available": false, "generating": false}` when the pool is empty, or `{"available": false, "generating": true}` while generation is in progress (Redis lock held). |
+| POST | `/generate` | 5/min | require_subscription | Acquires a per-(level, language) Redis lock (`nx=True, ex=60`) and enqueues a `BackgroundTask` that calls LLM + TTS, saves the exercise and MP3. Returns HTTP 202. Returns 409 if a generation job is already running. |
+| GET | `/audio/{exercise_id}` | 60/min | get_current_user | Serves the MP3 for the given exercise as a `FileResponse` (`audio/mpeg`). Returns 404 if the exercise or its audio file does not exist. |
+| POST | `/attempt` | 20/min | require_subscription | Submits answers (`{exercise_id, answers: [str]}`) for scoring. Returns score (0–5), XP earned (0–50), correct answers, and the full transcript. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers). |
+| GET | `/history` | 30/min | get_current_user | Returns paginated list of the user's past attempts with scores, XP, and transcripts. Query params: `skip` (default 0), `limit` (default 10, max 50). |

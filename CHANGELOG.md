@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-05-15
+
+### Added
+- **Phase 6 — Listening exercises**: AI-generated listening comprehension exercises with text-to-speech audio, multiple-choice questions, scoring, and XP rewards.
+  - **Backend**: two new DB tables (`listening_exercises`, `listening_attempts`) with Alembic migration `0018_listening.py`. LLM generates exercise text + 5 questions; Kokoro/OpenAI TTS synthesises the audio; MP3 stored at `${DATA_PATH}/audio/listening/{id}.mp3` via bind mount.
+  - **Service layer** (`app/services/listening_service.py`): `get_available_exercise`, `generate_and_save_exercise` (LLM → TTS → disk), `calculate_score` (case-insensitive, 10 XP/correct), `submit_attempt` (duplicate guard, XP in `Progress`), `get_user_history`.
+  - **Router** (`GET /api/listening/next`, `POST /api/listening/generate`, `GET /api/listening/audio/{id}`, `POST /api/listening/attempt`, `GET /api/listening/history`). Generation uses a per-(level, language) Redis lock with 60 s TTL so concurrent requests don't spawn duplicate jobs. Audio served via `FileResponse`; path built from integer exercise ID — never from a DB string — to prevent path traversal.
+  - **Frontend** (`/listening`): single-page UI with audio scrubber, question cards, answer review with correct-answer reveal, transcript display, and history list. Polls `GET /next` every 3 s while generation is in progress. Wrapped in `PaywallGate`.
+  - **Nav**: `/listening` added between Conversation and Assessment in both desktop sidebar and mobile dropdown.
+  - **i18n**: `listening` namespace and `nav.listening` key added to all 10 locale files (en, es, de, fr, it, nl, pl, pt, ro, ru).
+  - **Tests**: 20 tests in `backend/tests/test_listening.py` — unit tests for `calculate_score`, HTTP tests for all 5 endpoints including lock semantics, audio serving with `tmp_path`, duplicate-attempt rejection (409), and security (transcript/correct answers never leaked before submission).
+  - **Config**: `AUDIO_STORAGE_PATH` default `"/data/audio"` in `Settings`; Docker bind mount `${DATA_PATH}/audio:/data/audio` added to backend service.
+
 ## [1.4.17] - 2026-05-14
 
 ### Fixed

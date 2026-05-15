@@ -62,7 +62,8 @@
     "settings": "Configurações",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversa"
+    "conversation": "Conversa",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -907,17 +908,13 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Entendido",
     "entry1": {
-      "label": "Nova voz",
-      "desc": "A conversa de voz em tempo real utiliza agora uma nova voz para uma experiência mais natural e envolvente."
+      "label": "Exercícios de listening",
+      "desc": "Pratica a compreensão auditiva em inglês com exercícios de áudio gerados por IA. Ouve uma gravação, responde a 5 perguntas e descobre a transcrição — novos exercícios gerados a pedido para o teu nível QECR."
     },
     "entry2": {
-      "label": "Sugestões de conversa",
-      "desc": "A secção de conversa de voz mostra agora seis chips de tópicos para te ajudar a iniciar uma sessão. Os tópicos são escolhidos aleatoriamente de um banco de 30 e desaparecem assim que a sessão começa."
-    },
-    "entry3": {
       "label": "Correções",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }
@@ -934,5 +931,30 @@
     "sending": "A enviar...",
     "sent": "Mensagem enviada",
     "errorGeneric": "Falha ao enviar. Por favor, tente novamente."
+  },
+  "listening": {
+    "title": "Audição",
+    "topic": "Tópico",
+    "listenLabel": "Ouvir",
+    "questionsLabel": "Perguntas",
+    "submit": "Enviar respostas",
+    "generating": "A gerar exercício...",
+    "generatingDesc": "A IA está a criar um novo exercício. Geralmente demora cerca de 30 segundos.",
+    "noExercises": "Não há exercícios disponíveis para o seu nível.",
+    "generate": "Gerar exercício",
+    "audioError": "Não foi possível carregar o áudio",
+    "alreadyAttempted": "Já concluiu este exercício.",
+    "errorLoading": "Falha ao carregar o exercício. Tente novamente.",
+    "errorSubmit": "Falha ao enviar as respostas. Tente novamente.",
+    "resultsLabel": "Resultados",
+    "transcript": "Transcrição",
+    "review": "Revisão das respostas",
+    "nextExercise": "Próximo exercício",
+    "viewHistory": "Histórico",
+    "history": "Histórico",
+    "historyTitle": "Histórico de listening",
+    "historyEmpty": "Nenhum exercício concluído ainda.",
+    "practiceMore": "Praticar",
+    "moreInHistory": "+{count} mais"
   }
 }

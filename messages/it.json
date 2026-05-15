@@ -62,7 +62,8 @@
     "settings": "Impostazioni",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversazione"
+    "conversation": "Conversazione",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -907,17 +908,13 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Capito",
     "entry1": {
-      "label": "Nuova voce",
-      "desc": "La conversazione vocale in tempo reale utilizza ora una nuova voce per un'esperienza più naturale e coinvolgente."
+      "label": "Esercizi di listening",
+      "desc": "Allenati nella comprensione dell’ascolto in inglese con esercizi audio generati dall’IA. Ascolta una registrazione, rispondi a 5 domande e scopri la trascrizione — nuovi esercizi generati su richiesta per il tuo livello QCER."
     },
     "entry2": {
-      "label": "Suggerimenti per la conversazione",
-      "desc": "La sezione di conversazione vocale mostra ora sei chip con argomenti per aiutarti a iniziare una sessione. Gli argomenti vengono scelti casualmente da un banco di 30 e scompaiono non appena la sessione inizia."
-    },
-    "entry3": {
       "label": "Correzioni",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }
@@ -934,5 +931,30 @@
     "sending": "Invio in corso...",
     "sent": "Messaggio inviato",
     "errorGeneric": "Invio fallito. Riprova."
+  },
+  "listening": {
+    "title": "Ascolto",
+    "topic": "Argomento",
+    "listenLabel": "Ascolta",
+    "questionsLabel": "Domande",
+    "submit": "Invia risposte",
+    "generating": "Generazione in corso...",
+    "generatingDesc": "L'IA sta creando un nuovo esercizio. Richiede circa 30 secondi.",
+    "noExercises": "Nessun esercizio disponibile per il tuo livello.",
+    "generate": "Genera esercizio",
+    "audioError": "Impossibile caricare l'audio",
+    "alreadyAttempted": "Hai già completato questo esercizio.",
+    "errorLoading": "Impossibile caricare l'esercizio. Riprova.",
+    "errorSubmit": "Impossibile inviare le risposte. Riprova.",
+    "resultsLabel": "Risultati",
+    "transcript": "Trascrizione",
+    "review": "Revisione risposte",
+    "nextExercise": "Esercizio successivo",
+    "viewHistory": "Cronologia",
+    "history": "Cronologia",
+    "historyTitle": "Cronologia listening",
+    "historyEmpty": "Nessun esercizio completato ancora.",
+    "practiceMore": "Pratica",
+    "moreInHistory": "+{count} altri"
   }
 }

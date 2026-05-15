@@ -62,7 +62,8 @@
     "settings": "Instellingen",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Gesprek"
+    "conversation": "Gesprek",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -907,17 +908,13 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Nieuwe stem",
-      "desc": "Realtime spraakgesprekken gebruiken nu een nieuwe stem voor een natuurlijkere en boeiendere ervaring."
+      "label": "Listening-oefeningen",
+      "desc": "Oefen je Engelse luistervaardigheid met AI-gegenereerde audioöfeningen. Beluister een opname, beantwoord 5 vragen en ontdek de transcriptie — nieuwe oefeningen op aanvraag gegenereerd voor jouw ERK-niveau."
     },
     "entry2": {
-      "label": "Gespreksonderwerpen",
-      "desc": "De spraakgesprekssectie toont nu zes onderwerp-chips om je op weg te helpen een sessie te starten. De onderwerpen worden willekeurig gekozen uit een bank van 30 en verdwijnen zodra een sessie begint."
-    },
-    "entry3": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }
@@ -934,5 +931,30 @@
     "sending": "Verzenden...",
     "sent": "Bericht verzonden",
     "errorGeneric": "Verzenden mislukt. Probeer het opnieuw."
+  },
+  "listening": {
+    "title": "Luisteren",
+    "topic": "Onderwerp",
+    "listenLabel": "Luisteren",
+    "questionsLabel": "Vragen",
+    "submit": "Antwoorden indienen",
+    "generating": "Oefening genereren...",
+    "generatingDesc": "De AI maakt een nieuwe oefening. Dit duurt ongeveer 30 seconden.",
+    "noExercises": "Geen oefeningen beschikbaar voor jouw niveau.",
+    "generate": "Oefening genereren",
+    "audioError": "Audio kan niet worden geladen",
+    "alreadyAttempted": "Je hebt deze oefening al voltooid.",
+    "errorLoading": "Oefening laden mislukt. Probeer opnieuw.",
+    "errorSubmit": "Antwoorden indienen mislukt. Probeer opnieuw.",
+    "resultsLabel": "Resultaten",
+    "transcript": "Transcript",
+    "review": "Antwoorden beoordelen",
+    "nextExercise": "Volgende oefening",
+    "viewHistory": "Geschiedenis",
+    "history": "Geschiedenis",
+    "historyTitle": "Listening-geschiedenis",
+    "historyEmpty": "Nog geen voltooide oefeningen.",
+    "practiceMore": "Oefenen",
+    "moreInHistory": "+{count} meer"
   }
 }

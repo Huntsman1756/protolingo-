@@ -62,7 +62,8 @@
     "settings": "Settings",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversation"
+    "conversation": "Conversation",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -907,17 +908,13 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Got it",
     "entry1": {
-      "label": "New voice",
-      "desc": "Real-time voice conversation now uses a new voice for a more natural and engaging experience."
+      "label": "Listening exercises",
+      "desc": "Practice English comprehension with AI-generated audio exercises. Listen to a short recording, answer 5 questions, and unlock the transcript — new exercises generated on demand for your CEFR level."
     },
     "entry2": {
-      "label": "Conversation starters",
-      "desc": "The voice conversation section now shows six topic chips to help you kick off a session. Topics are picked at random from a bank of 30 and disappear once a session starts."
-    },
-    "entry3": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }
@@ -934,5 +931,30 @@
     "sending": "Sending...",
     "sent": "Message sent",
     "errorGeneric": "Failed to send. Please try again."
+  },
+  "listening": {
+    "title": "Listening",
+    "topic": "Topic",
+    "listenLabel": "Listen",
+    "questionsLabel": "Questions",
+    "submit": "Submit answers",
+    "generating": "Generating exercise...",
+    "generatingDesc": "AI is creating a new exercise. This usually takes about 30 seconds.",
+    "noExercises": "No exercises available for your level.",
+    "generate": "Generate exercise",
+    "audioError": "Unable to load audio",
+    "alreadyAttempted": "You have already completed this exercise.",
+    "errorLoading": "Failed to load exercise. Please try again.",
+    "errorSubmit": "Failed to submit answers. Please try again.",
+    "resultsLabel": "Results",
+    "transcript": "Transcript",
+    "review": "Answer review",
+    "nextExercise": "Next exercise",
+    "viewHistory": "History",
+    "history": "History",
+    "historyTitle": "Listening history",
+    "historyEmpty": "No completed exercises yet.",
+    "practiceMore": "Practice",
+    "moreInHistory": "+{count} more"
   }
 }

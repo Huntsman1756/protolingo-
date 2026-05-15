@@ -62,7 +62,8 @@
     "settings": "Ajustes",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversación"
+    "conversation": "Conversación",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -907,17 +908,13 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Entendido",
     "entry1": {
-      "label": "Nueva voz",
-      "desc": "La conversación de voz en tiempo real ahora utiliza una nueva voz para una experiencia más natural y envolvente."
+      "label": "Ejercicios de listening",
+      "desc": "Practica la comprensión auditiva en inglés con ejercicios de audio generados por IA. Escucha una grabación, responde 5 preguntas y descubre la transcripción — nuevos ejercicios generados bajo demanda para tu nivel MCER."
     },
     "entry2": {
-      "label": "Sugerencias de conversación",
-      "desc": "La sección de conversación de voz ahora muestra seis fichas de temas para ayudarte a comenzar una sesión. Los temas se eligen al azar de un banco de 30 y desaparecen en cuanto empieza la sesión."
-    },
-    "entry3": {
       "label": "Correcciones",
       "desc": "Correcciones de errores menores y mejoras de estabilidad en toda la plataforma."
     }
@@ -934,5 +931,30 @@
     "sending": "Enviando...",
     "sent": "Mensaje enviado",
     "errorGeneric": "No se pudo enviar. Por favor, inténtalo de nuevo."
+  },
+  "listening": {
+    "title": "Comprensión auditiva",
+    "topic": "Tema",
+    "listenLabel": "Escucha",
+    "questionsLabel": "Preguntas",
+    "submit": "Enviar respuestas",
+    "generating": "Generando ejercicio...",
+    "generatingDesc": "La IA está creando un nuevo ejercicio. Suele tardar unos 30 segundos.",
+    "noExercises": "No hay ejercicios disponibles para tu nivel.",
+    "generate": "Generar ejercicio",
+    "audioError": "No se pudo cargar el audio",
+    "alreadyAttempted": "Ya has completado este ejercicio.",
+    "errorLoading": "Error al cargar el ejercicio. Inténtalo de nuevo.",
+    "errorSubmit": "Error al enviar las respuestas. Inténtalo de nuevo.",
+    "resultsLabel": "Resultados",
+    "transcript": "Transcripción",
+    "review": "Revisión de respuestas",
+    "nextExercise": "Siguiente ejercicio",
+    "viewHistory": "Historial",
+    "history": "Historial",
+    "historyTitle": "Historial de listening",
+    "historyEmpty": "Aún no hay ejercicios completados.",
+    "practiceMore": "Practicar",
+    "moreInHistory": "+{count} más"
   }
 }

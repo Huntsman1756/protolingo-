@@ -62,7 +62,8 @@
     "settings": "Einstellungen",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Gespräch"
+    "conversation": "Gespräch",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -907,17 +908,13 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Neue Stimme",
-      "desc": "Das Echtzeit-Gespräch verwendet jetzt eine neue Stimme für ein natürlicheres und ansprechenderes Erlebnis."
+      "label": "Listening-Übungen",
+      "desc": "Übe dein Englisch-Hörverstehen mit KI-generierten Audioübungen. Höre eine Aufnahme, beantworte 5 Fragen und entdecke das Transkript — neue Übungen werden auf Anfrage für dein GER-Niveau generiert."
     },
     "entry2": {
-      "label": "Gesprächsthemen",
-      "desc": "Im Gesprächsbereich werden jetzt sechs Themen-Chips angezeigt, die dir den Einstieg in eine Sitzung erleichtern. Die Themen werden zufällig aus einem Bank von 30 ausgewählt und verschwinden, sobald die Sitzung beginnt."
-    },
-    "entry3": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
     }
@@ -934,5 +931,30 @@
     "sending": "Wird gesendet...",
     "sent": "Nachricht gesendet",
     "errorGeneric": "Senden fehlgeschlagen. Bitte versuche es erneut."
+  },
+  "listening": {
+    "title": "Hören",
+    "topic": "Thema",
+    "listenLabel": "Anhören",
+    "questionsLabel": "Fragen",
+    "submit": "Antworten abschicken",
+    "generating": "Übung wird erstellt...",
+    "generatingDesc": "Die KI erstellt eine neue Übung. Das dauert etwa 30 Sekunden.",
+    "noExercises": "Keine Übungen für dein Niveau verfügbar.",
+    "generate": "Übung erstellen",
+    "audioError": "Audio konnte nicht geladen werden",
+    "alreadyAttempted": "Du hast diese Übung bereits abgeschlossen.",
+    "errorLoading": "Übung konnte nicht geladen werden. Bitte erneut versuchen.",
+    "errorSubmit": "Antworten konnten nicht gesendet werden. Bitte erneut versuchen.",
+    "resultsLabel": "Ergebnisse",
+    "transcript": "Transkript",
+    "review": "Antworten überprüfen",
+    "nextExercise": "Nächste Übung",
+    "viewHistory": "Verlauf",
+    "history": "Verlauf",
+    "historyTitle": "Listening-Verlauf",
+    "historyEmpty": "Noch keine abgeschlossenen Übungen.",
+    "practiceMore": "Üben",
+    "moreInHistory": "+{count} weitere"
   }
 }

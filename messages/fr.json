@@ -62,7 +62,8 @@
     "settings": "Paramètres",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversation"
+    "conversation": "Conversation",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -907,17 +908,13 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Compris",
     "entry1": {
-      "label": "Nouvelle voix",
-      "desc": "La conversation vocale en temps réel utilise désormais une nouvelle voix pour une expérience plus naturelle et engageante."
+      "label": "Exercices de listening",
+      "desc": "Entraîne-toi à la compréhension orale en anglais avec des exercices audio générés par l’IA. Écoute un enregistrement, réponds à 5 questions et découvre la transcription — de nouveaux exercices sont générés à la demande pour ton niveau CECR."
     },
     "entry2": {
-      "label": "Suggestions de conversation",
-      "desc": "La section de conversation vocale affiche désormais six suggestions de sujets pour démarrer une session. Les sujets sont tirés au hasard d'un catalogue de 30 et disparaissent dès que la session commence."
-    },
-    "entry3": {
       "label": "Corrections",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }
@@ -934,5 +931,30 @@
     "sending": "Envoi en cours...",
     "sent": "Message envoyé",
     "errorGeneric": "Échec de l'envoi. Veuillez réessayer."
+  },
+  "listening": {
+    "title": "Compréhension orale",
+    "topic": "Thème",
+    "listenLabel": "Écouter",
+    "questionsLabel": "Questions",
+    "submit": "Soumettre les réponses",
+    "generating": "Génération de l'exercice...",
+    "generatingDesc": "L'IA crée un nouvel exercice. Cela prend environ 30 secondes.",
+    "noExercises": "Aucun exercice disponible pour votre niveau.",
+    "generate": "Générer un exercice",
+    "audioError": "Impossible de charger l'audio",
+    "alreadyAttempted": "Vous avez déjà complété cet exercice.",
+    "errorLoading": "Impossible de charger l'exercice. Veuillez réessayer.",
+    "errorSubmit": "Impossible de soumettre les réponses. Veuillez réessayer.",
+    "resultsLabel": "Résultats",
+    "transcript": "Transcription",
+    "review": "Révision des réponses",
+    "nextExercise": "Exercice suivant",
+    "viewHistory": "Historique",
+    "history": "Historique",
+    "historyTitle": "Historique de listening",
+    "historyEmpty": "Aucun exercice complété pour l'instant.",
+    "practiceMore": "Pratiquer",
+    "moreInHistory": "+{count} de plus"
   }
 }
