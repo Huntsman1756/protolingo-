@@ -166,7 +166,10 @@ async def test_listening_audio_file_not_found(listening_client, listening_user, 
 
     _, headers = listening_user
     exercise = ListeningExercise(
-        cefr_level="B1",
+        level="B1",
+        target_language="en-US",
+        exercise_type="monologue",
+        topic="test",
         text="Test audio text.",
         questions=[],
         audio_path="/nonexistent/path/999.mp3",
