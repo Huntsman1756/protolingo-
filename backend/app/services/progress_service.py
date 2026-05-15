@@ -22,6 +22,7 @@ async def update_daily_progress(
     lesson_completed: bool = False,
     exercise_correct: bool | None = None,
     flashcard_reviewed: bool = False,
+    xp: int = 0,
     skill: str | None = None,
     skill_score: float | None = None,
 ) -> Progress:
@@ -67,6 +68,9 @@ async def update_daily_progress(
 
     if flashcard_reviewed:
         entry.xp_earned += XP_FLASHCARD_REVIEW
+
+    if xp > 0:
+        entry.xp_earned += xp
 
     if skill and skill_score is not None:
         skills = dict(entry.skills or {})

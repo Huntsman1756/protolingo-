@@ -178,7 +178,7 @@ async def generate_exercise(
 async def get_audio(
     request: Request,
     exercise_id: int,
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> FileResponse:
     """
@@ -242,7 +242,7 @@ async def submit_listening_attempt(
 async def get_listening_history(
     request: Request,
     skip: int = 0,
-    limit: int = 20,
+    limit: int = 10,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> ListeningHistoryResponse:

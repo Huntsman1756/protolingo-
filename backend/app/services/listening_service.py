@@ -4,15 +4,14 @@ import json
 import logging
 import os
 import random
-from datetime import date
 from typing import Any
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.listening import ListeningAttempt, ListeningExercise
-from app.models.progress import Progress
 from app.services.llm_adapter import LLMResponseError, llm_adapter
+from app.services.progress_service import update_daily_progress
 
 logger = logging.getLogger(__name__)
 
@@ -238,20 +237,13 @@ async def submit_attempt(
 
     exercise.play_count += 1
 
-    # Award XP in today's Progress row (only if there is an existing entry today)
-    if xp_earned > 0:
-        today = date.today()
-        prog_result = await db.execute(
-            select(Progress).where(
-                Progress.user_id == user_id, Progress.date == today
-            )
-        )
-        progress = prog_result.scalar_one_or_none()
-        if progress is not None:
-            progress.xp_earned += xp_earned
-
     await db.commit()
     await db.refresh(attempt)
+
+    # Award XP via the shared progress service (creates today's row if missing)
+    if xp_earned > 0:
+        await update_daily_progress(db, user_id, xp=xp_earned)
+
     return attempt, exercise
 
 
@@ -259,7 +251,7 @@ async def get_user_history(
     user_id: int,
     db: AsyncSession,
     skip: int = 0,
-    limit: int = 20,
+    limit: int = 10,
 ) -> tuple[list[tuple[ListeningAttempt, ListeningExercise]], int]:
     """Return (rows, total) for paginated attempt history, newest first."""
     total_result = await db.execute(

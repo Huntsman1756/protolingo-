@@ -250,7 +250,7 @@ function ListeningPage() {
           }
         }
       } catch { /* ignore, keep polling */ }
-      pollRef.current = setTimeout(poll, 3000)
+      pollRef.current = setTimeout(poll, 1000)
     }
     pollRef.current = setTimeout(poll, 3000)
   }
@@ -440,8 +440,8 @@ function ListeningPage() {
               <div
                 key={q.index}
                 className={`border p-4 ${isCorrect
-                    ? 'border-green-600/50 bg-green-950/30'
-                    : 'border-red-600/50 bg-red-950/30'
+                  ? 'border-green-600/50 bg-green-950/30'
+                  : 'border-red-600/50 bg-red-950/30'
                   }`}
               >
                 <p className="font-mono text-xs text-fl-fg mb-3 leading-relaxed">
@@ -452,10 +452,10 @@ function ListeningPage() {
                     <div
                       key={k}
                       className={`font-mono text-fl-label px-3 py-1.5 ${k === correctKey
-                          ? 'text-green-400 font-bold'
-                          : k === userAnswer && !isCorrect
-                            ? 'text-red-400 line-through opacity-70'
-                            : 'text-fl-muted-3'
+                        ? 'text-green-400 font-bold'
+                        : k === userAnswer && !isCorrect
+                          ? 'text-red-400 line-through opacity-70'
+                          : 'text-fl-muted-3'
                         }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
@@ -581,8 +581,8 @@ function ListeningPage() {
                         setAnswers((prev) => ({ ...prev, [String(q.index)]: k }))
                       }
                       className={`w-full text-left px-3 py-2 font-mono text-fl-label border transition-colors ${selected
-                          ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
-                          : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
+                        ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
+                        : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
                         }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
