@@ -13,7 +13,7 @@
 Open source AI language learning platform available in two modes: self-hosted (free, run it on your own
 infrastructure) and as a hosted service operated by the FreeLingo team (paid subscription).
 A language model evaluates your CEFR level, generates a personalized study plan, and guides you through
-grammar, vocabulary, reading comprehension, and writing lessons — with optional voice features.
+grammar, vocabulary, reading comprehension, writing lessons, and AI-generated listening exercises — with optional voice features.
 
 The study plan follows a CEFR-aligned curriculum (A1-C2) organized into units with
 clear competencies and prerequisites. After a deterministic placement assessment,
@@ -24,8 +24,11 @@ and review.
 The platform combines structure and adaptation: lessons are generated within
 curriculum boundaries, flashcards use SM-2 spaced repetition, and the AI tutor
 provides contextual streaming feedback in English (with optional brief support in
-the learner's native language). Progress tracking includes XP, streaks, skill
-scores, unit competencies, and an end-of-level completion test.
+the learner's native language). Listening exercises are generated on demand by the
+LLM, synthesised to MP3 via TTS, and cached per CEFR level — the user listens,
+answers 5 comprehension questions, and earns XP before the transcript is revealed.
+Progress tracking includes XP, streaks, skill scores, unit competencies, and an
+end-of-level completion test.
 
 ## Architecture
 
@@ -106,7 +109,7 @@ cp .env.example .env
 # Edit .env: set OLLAMA_BASE_URL, choose your model, and review other settings
 
 # 3. Pull the recommended model (run on the host, not inside Docker)
-ollama pull gemma3:12b
+ollama pull gemma4:e4b
 
 # 4. Start all services (migrations run automatically on first start)
 docker compose up -d
@@ -151,7 +154,7 @@ The first registered user becomes admin automatically.
 
 ## Operational notes
 
-- The recommended model for Ollama is `gemma3:12b`. It can be changed in `.env`.
+- The recommended model for Ollama is `gemma4:e4b`. It can be changed in `.env`.
 - The backend acts as a proxy for Ollama/TTS/STT calls so the frontend never talks directly to those services.
 - The `LLM_PROVIDER` field controls the LLM provider: `ollama` (local, recommended), `openai`, `anthropic`, or `deepseek`.
 - `TTS_PROVIDER` and `STT_PROVIDER` are independent: `local` (Kokoro / faster-whisper) or `openai` (OpenAI API).

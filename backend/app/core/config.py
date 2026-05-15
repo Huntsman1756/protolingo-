@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     BLOCKED_EMAIL_DOMAINS: list[str] = []
     LLM_PROVIDER: str = "ollama"
     OLLAMA_BASE_URL: str = "http://host.docker.internal:11434"
-    OLLAMA_MODEL: str = "gemma3:12b"
+    OLLAMA_MODEL: str = "gemma4:e4b"
     OPENAI_API_KEY: str = ""
     OPENAI_MODEL: str = "gpt-4o-mini"
     ANTHROPIC_API_KEY: str = ""

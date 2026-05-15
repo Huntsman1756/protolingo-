@@ -125,6 +125,9 @@ export default async function Home() {
             { title: t('feature1Title'), desc: t('feature1Desc'), icon: '◎' },
             { title: t('feature2Title'), desc: t('feature2Desc'), icon: '▣' },
             { title: t('feature3Title'), desc: t('feature3Desc'), icon: '△' },
+            { title: t('feature4Title'), desc: t('feature4Desc'), icon: '◈' },
+            { title: t('feature5Title'), desc: t('feature5Desc'), icon: '◻' },
+            { title: t('feature6Title'), desc: t('feature6Desc'), icon: '◇' },
           ].map((f) => (
             <div key={f.title} className="border border-fl-border bg-fl-surface p-6">
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-fl-border">
