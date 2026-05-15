@@ -961,6 +961,8 @@
     "historyTitle": "Listening-Verlauf",
     "historyEmpty": "Noch keine abgeschlossenen Übungen.",
     "practiceMore": "Üben",
-    "moreInHistory": "+{count} weitere"
+    "moreInHistory": "+{count} weitere",
+    "practiceAgain": "Erneut üben",
+    "replayNoXp": "Wiederholung — kein XP"
   }
 }

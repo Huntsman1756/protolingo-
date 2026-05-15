@@ -961,6 +961,8 @@
     "historyTitle": "Listening history",
     "historyEmpty": "No completed exercises yet.",
     "practiceMore": "Practice",
-    "moreInHistory": "+{count} more"
+    "moreInHistory": "+{count} more",
+    "practiceAgain": "Practice again",
+    "replayNoXp": "Replay — no XP"
   }
 }

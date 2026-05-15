@@ -39,6 +39,7 @@ class ListeningGeneratingResponse(BaseModel):
 class ListeningSubmitRequest(BaseModel):
     exercise_id: int
     answers: dict[str, str]  # {"0": "A", "1": "B", "2": "C", "3": "D", "4": "A"}
+    replay: bool = False  # True → re-attempt from history; awards no XP
 
 
 class CorrectAnswerOut(BaseModel):

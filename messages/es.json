@@ -961,6 +961,8 @@
     "historyTitle": "Historial de listening",
     "historyEmpty": "Aún no hay ejercicios completados.",
     "practiceMore": "Practicar",
-    "moreInHistory": "+{count} más"
+    "moreInHistory": "+{count} más",
+    "practiceAgain": "Practicar de nuevo",
+    "replayNoXp": "Repetición — sin XP"
   }
 }

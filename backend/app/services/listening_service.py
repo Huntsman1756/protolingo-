@@ -203,28 +203,35 @@ async def submit_attempt(
     user_id: int,
     answers: dict[str, str],
     db: AsyncSession,
+    is_replay: bool = False,
 ) -> tuple[ListeningAttempt, ListeningExercise]:
     """
     Score answers, persist attempt, increment play_count, award XP.
     Returns (attempt, exercise).
     Raises ValueError("exercise_not_found") if exercise_id is invalid.
-    Raises ValueError("already_attempted") if user already submitted for this exercise.
+    Raises ValueError("already_attempted") if user already submitted for this exercise
+    and is_replay is False.
+    When is_replay=True the duplicate guard is skipped and xp_earned is forced to 0
+    (spec: replaying an exercise from history awards no additional XP).
     """
     exercise = await db.get(ListeningExercise, exercise_id)
     if exercise is None:
         raise ValueError("exercise_not_found")
 
-    # Guard against duplicate submissions
-    existing = await db.execute(
-        select(ListeningAttempt).where(
-            ListeningAttempt.user_id == user_id,
-            ListeningAttempt.exercise_id == exercise_id,
+    if not is_replay:
+        # Guard against duplicate submissions on first attempt
+        existing = await db.execute(
+            select(ListeningAttempt).where(
+                ListeningAttempt.user_id == user_id,
+                ListeningAttempt.exercise_id == exercise_id,
+            )
         )
-    )
-    if existing.scalar_one_or_none() is not None:
-        raise ValueError("already_attempted")
+        if existing.scalar_one_or_none() is not None:
+            raise ValueError("already_attempted")
 
     score, xp_earned = calculate_score(exercise.questions, answers)
+    if is_replay:
+        xp_earned = 0  # replays never award XP
 
     attempt = ListeningAttempt(
         user_id=user_id,

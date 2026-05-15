@@ -961,6 +961,8 @@
     "historyTitle": "Istoric listening",
     "historyEmpty": "Nu există exerciții finalizate încă.",
     "practiceMore": "Practică",
-    "moreInHistory": "+{count} mai multe"
+    "moreInHistory": "+{count} mai multe",
+    "practiceAgain": "Exersează din nou",
+    "replayNoXp": "Repetare — fără XP"
   }
 }

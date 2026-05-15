@@ -961,6 +961,8 @@
     "historyTitle": "Listening-geschiedenis",
     "historyEmpty": "Nog geen voltooide oefeningen.",
     "practiceMore": "Oefenen",
-    "moreInHistory": "+{count} meer"
+    "moreInHistory": "+{count} meer",
+    "practiceAgain": "Opnieuw oefenen",
+    "replayNoXp": "Herhaling — geen XP"
   }
 }

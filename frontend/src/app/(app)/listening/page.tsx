@@ -197,6 +197,7 @@ function ListeningPage() {
   const [historyTotal, setHistoryTotal] = useState(0)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+  const [isReplay, setIsReplay] = useState(false)
   const generateAbortRef = useRef<AbortController | null>(null)
 
   // Cancel in-flight long-poll on unmount
@@ -218,6 +219,7 @@ function ListeningPage() {
         setExercise(data.exercise)
         setAnswers({})
         setResult(null)
+        setIsReplay(false)
         setPageState('exercise')
       } else {
         setPageState('idle')
@@ -251,6 +253,7 @@ function ListeningPage() {
             setExercise(data.exercise)
             setAnswers({})
             setResult(null)
+            setIsReplay(false)
             setPageState('exercise')
             return
           }
@@ -271,7 +274,7 @@ function ListeningPage() {
       const res = await apiFetch('/api/listening/attempt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ exercise_id: exercise.id, answers }),
+        body: JSON.stringify({ exercise_id: exercise.id, answers, replay: isReplay }),
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({})) as { detail?: string }
@@ -377,9 +380,21 @@ function ListeningPage() {
                     </p>
                   </div>
                 </div>
-                <p className="font-mono text-fl-label text-fl-muted-2 leading-relaxed border-t border-fl-border pt-3">
+                <p className="font-mono text-fl-label text-fl-muted-2 leading-relaxed border-t border-fl-border pt-3 mb-3">
                   {item.text}
                 </p>
+                <button
+                  onClick={() => {
+                    setExercise(item.exercise)
+                    setAnswers({})
+                    setResult(null)
+                    setIsReplay(true)
+                    setPageState('exercise')
+                  }}
+                  className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors"
+                >
+                  {t('practiceAgain')}
+                </button>
               </div>
             ))}
             {historyTotal > history.length && (
@@ -410,7 +425,11 @@ function ListeningPage() {
             </div>
             <div className="text-right">
               <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">XP</p>
-              <p className="font-mono text-xl font-bold text-fl-accent mt-1">+{result.xp_earned}</p>
+              {isReplay ? (
+                <p className="font-mono text-fl-label text-fl-muted-3 mt-1">{t('replayNoXp')}</p>
+              ) : (
+                <p className="font-mono text-xl font-bold text-fl-accent mt-1">+{result.xp_earned}</p>
+              )}
             </div>
           </div>
         </div>
