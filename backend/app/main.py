@@ -23,7 +23,7 @@ logging.basicConfig(
 )
 
 _AVATARS_DIR = "/app/avatars"
-from app.routers import admin, assessment, auth, chat, contact, conversation, flashcards, lessons, progress, study_plan, stt, tts
+from app.routers import admin, assessment, auth, chat, contact, conversation, flashcards, lessons, listening, progress, study_plan, stt, tts
 from app.routers import config as config_router
 from app.services.stt_service import OpenAISTTService, WhisperSTTService
 from app.services.tts_service import KokoroTTSService, OpenAITTSService
@@ -103,6 +103,7 @@ app.include_router(lessons.router)
 app.include_router(flashcards.router)
 app.include_router(chat.router)
 app.include_router(progress.router)
+app.include_router(listening.router)
 app.include_router(tts.router)
 app.include_router(stt.router)
 app.include_router(conversation.router)

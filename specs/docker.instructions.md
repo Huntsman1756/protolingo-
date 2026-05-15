@@ -131,7 +131,7 @@ APP_BASE_URL=https://freelingo.app
 # Options: ollama | openai | anthropic | deepseek
 LLM_PROVIDER=ollama
 OLLAMA_BASE_URL=http://host.docker.internal:11434
-OLLAMA_MODEL=gemma3:12b
+OLLAMA_MODEL=gemma4:e4b
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 ANTHROPIC_API_KEY=

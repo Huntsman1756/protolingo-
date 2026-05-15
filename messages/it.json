@@ -10,6 +10,12 @@
     "feature2Desc": "Pratica con lezioni, esercizi e flashcard guidati dal tuo tutor. Feedback a ogni passo.",
     "feature3Title": "Conversazione vocale",
     "feature3Desc": "Parla con il tuo tutor in tempo reale. Attivazione vocale, risposta istantanea, senza turni.",
+    "feature4Title": "Esercizi di listening",
+    "feature4Desc": "Audio generato dall'IA al tuo livello QCER. Ascolta, rispondi a 5 domande di comprensione, poi sblocca la trascrizione. Nuovi esercizi generati su richiesta.",
+    "feature5Title": "Flashcard",
+    "feature5Desc": "Ripasso del vocabolario con ripetizione spaziata. L'algoritmo SM-2 pianifica ogni scheda nel momento ottimale per massimizzare la memoria a lungo termine.",
+    "feature6Title": "Progressi e serie",
+    "feature6Desc": "XP, serie giornaliere, punteggi di abilità e competenze per unità. Monitora la tua crescita settimana per settimana e metti alla prova il tuo livello alla fine di ogni fase QCER.",
     "footer": "Open source · Self-hostalo gratis o abbonati al servizio ospitato",
     "terms": "Termini",
     "privacy": "Privacy",
@@ -62,7 +68,8 @@
     "settings": "Impostazioni",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversazione"
+    "conversation": "Conversazione",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -707,7 +714,7 @@
     "a_voice": "La modalità <strong>Conversazione vocale</strong> ti consente di parlare con il tutor AI in tempo reale. Premi Start per iniziare — l'app rileva automaticamente la tua voce tramite rilevamento dell'attività vocale (VAD) e il tutor risponde con la sintesi vocale. Puoi interrompere il tutor in qualsiasi momento (barge-in). La sessione termina quando si raggiunge il limite di tempo o si preme Stop. Assicurati che il browser abbia il permesso di accedere al microfono.",
     "q_providers": "Quali provider di IA supporta FreeLingo?",
     "a_providers_intro": "Configurabile in <code>.env</code> tramite <code>LLM_PROVIDER</code>:",
-    "provider_ollama": "Locale, gratuito. Richiede Ollama in esecuzione sull'host. Modello consigliato: gemma3:12b. Può essere lento senza GPU.",
+    "provider_ollama": "Locale, gratuito. Richiede Ollama in esecuzione sull'host. Modello consigliato: gemma4:e4b. Può essere lento senza GPU.",
     "provider_openai": "API OpenAI (GPT-4o, ecc.). Veloce e affidabile. Richiede OPENAI_API_KEY.",
     "provider_anthropic": "Anthropic Claude. Richiede ANTHROPIC_API_KEY.",
     "provider_deepseek": "API DeepSeek. Richiede DEEPSEEK_API_KEY.",
@@ -907,17 +914,13 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Capito",
     "entry1": {
-      "label": "Nuova voce",
-      "desc": "La conversazione vocale in tempo reale utilizza ora una nuova voce per un'esperienza più naturale e coinvolgente."
+      "label": "Esercizi di listening",
+      "desc": "Allenati nella comprensione dell’ascolto in inglese con esercizi audio generati dall’IA. Ascolta una registrazione, rispondi a 5 domande e scopri la trascrizione — nuovi esercizi generati su richiesta per il tuo livello QCER."
     },
     "entry2": {
-      "label": "Suggerimenti per la conversazione",
-      "desc": "La sezione di conversazione vocale mostra ora sei chip con argomenti per aiutarti a iniziare una sessione. Gli argomenti vengono scelti casualmente da un banco di 30 e scompaiono non appena la sessione inizia."
-    },
-    "entry3": {
       "label": "Correzioni",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }
@@ -934,5 +937,30 @@
     "sending": "Invio in corso...",
     "sent": "Messaggio inviato",
     "errorGeneric": "Invio fallito. Riprova."
+  },
+  "listening": {
+    "title": "Ascolto",
+    "topic": "Argomento",
+    "listenLabel": "Ascolta",
+    "questionsLabel": "Domande",
+    "submit": "Invia risposte",
+    "generating": "Generazione in corso...",
+    "generatingDesc": "L'IA sta creando un nuovo esercizio. Richiede circa 30 secondi.",
+    "noExercises": "Nessun esercizio disponibile per il tuo livello.",
+    "generate": "Genera esercizio",
+    "audioError": "Impossibile caricare l'audio",
+    "alreadyAttempted": "Hai già completato questo esercizio.",
+    "errorLoading": "Impossibile caricare l'esercizio. Riprova.",
+    "errorSubmit": "Impossibile inviare le risposte. Riprova.",
+    "resultsLabel": "Risultati",
+    "transcript": "Trascrizione",
+    "review": "Revisione risposte",
+    "nextExercise": "Esercizio successivo",
+    "viewHistory": "Cronologia",
+    "history": "Cronologia",
+    "historyTitle": "Cronologia listening",
+    "historyEmpty": "Nessun esercizio completato ancora.",
+    "practiceMore": "Pratica",
+    "moreInHistory": "+{count} altri"
   }
 }

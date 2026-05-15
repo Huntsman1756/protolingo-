@@ -10,6 +10,12 @@
     "feature2Desc": "Exersează cu lecții, exerciții și carduri flash ghidat de tutore. Feedback la fiecare pas.",
     "feature3Title": "Conversație vocală",
     "feature3Desc": "Vorbește cu tutorele în timp real. Controlat prin voce, răspuns imediat, fără rânduri.",
+    "feature4Title": "Exerciții de listening",
+    "feature4Desc": "Audio generat de IA la nivelul tău CEFR. Ascultă, răspunde la 5 întrebări de înțelegere, apoi deblochează transcrierea. Exerciții noi generate la cerere.",
+    "feature5Title": "Flashcard-uri",
+    "feature5Desc": "Revizuirea vocabularului prin repetiție spațiată. Algoritmul SM-2 programează fiecare card la momentul optim pentru a maximiza retenția pe termen lung.",
+    "feature6Title": "Progres și serii",
+    "feature6Desc": "XP, serii zilnice, scoruri de competențe și aptitudini pe unitate. Urmărește-ți evoluția săptămână după săptămână și testează-ți nivelul la sfârșitul fiecărei etape CEFR.",
     "footer": "Sursă deschisă · Găzduire proprie gratuită sau abonament la serviciul găzduit",
     "terms": "Termeni și condiții",
     "privacy": "Confidențialitate",
@@ -62,7 +68,8 @@
     "settings": "Setări",
     "faq": "Întrebări frecvente",
     "admin": "Admin",
-    "conversation": "Conversație"
+    "conversation": "Conversație",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -707,7 +714,7 @@
     "a_voice": "Modul <strong>Conversație vocală</strong> îți permite să vorbești cu tutorele AI în timp real. Apasă Start pentru a începe — aplicația detectează automat vocea ta prin detecția activității vocale (VAD) și tutorele răspunde cu sinteză vocală. Poți întrerupe tutorele în orice moment (barge-in). Sesiunea se încheie când se atinge limita de timp sau apeși Stop. Asigură-te că browserul are permisiunea de a accesa microfonul.",
     "q_providers": "Ce furnizori AI acceptă FreeLingo?",
     "a_providers_intro": "Configurabil în <code>.env</code> prin <code>LLM_PROVIDER</code>:",
-    "provider_ollama": "Local, gratuit. Necesită Ollama pe gazdă. Model recomandat: gemma3:12b.",
+    "provider_ollama": "Local, gratuit. Necesită Ollama pe gazdă. Model recomandat: gemma4:e4b.",
     "provider_openai": "OpenAI API (GPT-4o etc.). Rapid și fiabil. Necesită OPENAI_API_KEY.",
     "provider_anthropic": "Anthropic Claude. Necesită ANTHROPIC_API_KEY.",
     "provider_deepseek": "DeepSeek API. Necesită DEEPSEEK_API_KEY.",
@@ -907,17 +914,13 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Voce nouă",
-      "desc": "Conversația vocală în timp real folosește acum o voce nouă pentru o experiență mai naturală și mai captivantă."
+      "label": "Exerciții de listening",
+      "desc": "Exersează înțelegerea auditivă a limbii engleze cu exerciții audio generate de IA. Ascultă o înregistrare, răspunde la 5 întrebări şi descoperă transcripția — exerciții noi generate la cerere pentru nivelul tău CECR."
     },
     "entry2": {
-      "label": "Subiecte de conversație",
-      "desc": "Secțiunea de conversație vocală afișează acum șase carduri cu subiecte pentru a te ajuta să începi o sesiune. Subiectele sunt alese aleatoriu dintr-un catalog de 30 și dispar odată ce sesiunea pornește."
-    },
-    "entry3": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }
@@ -934,5 +937,30 @@
     "sending": "Se trimite...",
     "sent": "Mesaj trimis",
     "errorGeneric": "Trimiterea a eșuat. Te rog încearcă din nou."
+  },
+  "listening": {
+    "title": "Ascultare",
+    "topic": "Subiect",
+    "listenLabel": "Ascultă",
+    "questionsLabel": "Întrebări",
+    "submit": "Trimite răspunsurile",
+    "generating": "Se generează exercițiul...",
+    "generatingDesc": "AI creează un exercițiu nou. Durează aproximativ 30 de secunde.",
+    "noExercises": "Nu există exerciții disponibile pentru nivelul tău.",
+    "generate": "Generează exercițiu",
+    "audioError": "Imposibil de încărcat audio",
+    "alreadyAttempted": "Ai completat deja acest exercițiu.",
+    "errorLoading": "Nu s-a putut încărca exercițiul. Încearcă din nou.",
+    "errorSubmit": "Nu s-au putut trimite răspunsurile. Încearcă din nou.",
+    "resultsLabel": "Rezultate",
+    "transcript": "Transcriere",
+    "review": "Revizuire răspunsuri",
+    "nextExercise": "Exercițiul următor",
+    "viewHistory": "Istoric",
+    "history": "Istoric",
+    "historyTitle": "Istoric listening",
+    "historyEmpty": "Nu există exerciții finalizate încă.",
+    "practiceMore": "Practică",
+    "moreInHistory": "+{count} mai multe"
   }
 }

@@ -38,8 +38,18 @@ exercises are not shown again as "new", but remain accessible in a personal hist
 | `story` | Short narrative with characters and plot | B1–C2 |
 | `podcast` | Informal presentation or opinion piece | B2–C2 |
 
-The LLM selects the most appropriate type for the requested level, or one is chosen at
-random from the level-appropriate subset.
+Types available per level (`_TYPES_BY_LEVEL` in `listening_service.py`):
+
+| Level | Available types |
+|-------|-----------------|
+| A1 | `monologue`, `announcement` |
+| A2 | `monologue`, `announcement`, `voicemail` |
+| B1 | `monologue`, `announcement`, `voicemail`, `story` |
+| B2 | `announcement`, `voicemail`, `story`, `podcast` |
+| C1 | `story`, `podcast` |
+| C2 | `story`, `podcast` |
+
+One type is selected at random from the level-appropriate subset.
 
 ---
 
@@ -68,7 +78,7 @@ Two new SQLAlchemy 2.0 models.
 class ListeningExercise(Base):
     __tablename__ = "listening_exercises"
 
-    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     level: Mapped[str] = mapped_column(String(2), nullable=False, index=True)          # A1–C2
     target_language: Mapped[str] = mapped_column(String(10), nullable=False, index=True)  # BCP-47
     exercise_type: Mapped[str] = mapped_column(String(20), nullable=False)             # see table above
@@ -89,22 +99,16 @@ class ListeningExercise(Base):
 class ListeningAttempt(Base):
     __tablename__ = "listening_attempts"
 
-    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
-    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
-    exercise_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("listening_exercises.id", ondelete="CASCADE"), nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    exercise_id: Mapped[int] = mapped_column(Integer, ForeignKey("listening_exercises.id", ondelete="CASCADE"), nullable=False, index=True)
     answers: Mapped[dict] = mapped_column(JSON, nullable=False)   # { "0": "B", "1": "A", ... }
     score: Mapped[int] = mapped_column(Integer, nullable=False)   # 0–5
     xp_earned: Mapped[int] = mapped_column(Integer, nullable=False)
-    completed_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
-
-    user: Mapped["User"] = relationship(back_populates="listening_attempts")
-    exercise: Mapped["ListeningExercise"] = relationship(back_populates="attempts")
+    completed_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=...)
 ```
 
-Add `listening_attempts` relationship to `User` model:
-```python
-listening_attempts: Mapped[list["ListeningAttempt"]] = relationship(back_populates="user", cascade="all, delete-orphan")
-```
+No ORM relationships are defined on these models — queries use explicit JOINs.
 
 ### Questions JSON schema
 
@@ -221,21 +225,21 @@ async def generate_and_save_exercise(
     level: str,
     target_language: str,
     db: AsyncSession,
-    llm: LLMAdapter,
-    tts: TTSService,
+    tts_service: TTSService,
     storage_path: str,
 ) -> ListeningExercise:
     """
-    Calls LLM → generates text + questions.
+    Uses the global llm_adapter singleton (no injection).
+    Calls LLM → generates text + 5 questions (retries once on bad JSON).
     Calls TTS → receives MP3 bytes.
-    Saves MP3 to {storage_path}/listening/{exercise_id}.mp3.
-    Saves ListeningExercise row to DB.
-    Returns the new exercise.
+    Flushes DB to get the integer exercise ID.
+    Saves MP3 to {storage_path}/listening/{id}.mp3.
+    Commits. Returns the new ListeningExercise.
     """
 
 async def submit_attempt(
-    exercise_id: UUID,
-    user_id: UUID,
+    exercise_id: int,
+    user_id: int,
     answers: dict[str, str],   # {"0": "B", "1": "A", ...}
     db: AsyncSession,
 ) -> ListeningAttempt:
@@ -248,11 +252,11 @@ async def submit_attempt(
     """
 
 async def get_user_history(
-    user_id: UUID,
+    user_id: int,
     db: AsyncSession,
     skip: int = 0,
-    limit: int = 20,
-) -> list[ListeningAttemptWithExercise]:
+    limit: int = 10,
+) -> tuple[list[tuple[ListeningAttempt, ListeningExercise]], int]:
     """
     Returns past attempts ordered by completed_at DESC, joined with exercise data.
     """
@@ -284,16 +288,18 @@ class QuestionOut(BaseModel):
     index: int
     question: str
     options: dict[str, str]   # { "A": ..., "B": ..., "C": ..., "D": ... }
-    # correct is omitted
+    # correct is intentionally omitted
 
 class ListeningExerciseOut(BaseModel):
-    id: UUID
+    id: int
     level: str
     target_language: str
     exercise_type: str
     topic: str
     duration_seconds: int
     questions: list[QuestionOut]
+
+    model_config = {"from_attributes": True}
 ```
 
 **`ListeningNextResponse`**:
@@ -301,12 +307,15 @@ class ListeningExerciseOut(BaseModel):
 class ListeningNextResponse(BaseModel):
     available: bool
     exercise: ListeningExerciseOut | None = None
+
+class ListeningGeneratingResponse(BaseModel):
+    status: str  # "generating"
 ```
 
 **`ListeningSubmitRequest`**:
 ```python
 class ListeningSubmitRequest(BaseModel):
-    exercise_id: UUID
+    exercise_id: int
     answers: dict[str, str]   # {"0": "A", "1": "C", ...} — keys "0"–"4"
 ```
 
@@ -326,21 +335,27 @@ class ListeningSubmitResponse(BaseModel):
 **`ListeningAttemptOut`** — used in history:
 ```python
 class ListeningAttemptOut(BaseModel):
-    id: UUID
+    id: int
     score: int
     xp_earned: int
-    completed_at: datetime
+    completed_at: datetime   # serialised as ISO-8601 string via field_serializer
     exercise: ListeningExerciseOut
     text: str           # transcript is included in history view
     answers: dict[str, str]
+
+class ListeningHistoryResponse(BaseModel):
+    items: list[ListeningAttemptOut]
+    total: int
+    skip: int
+    limit: int
 ```
 
 ### 2.6 `app/main.py`
 
-Register the router:
+Register the router (prefix already declared inside the router module):
 ```python
 from app.routers import listening
-app.include_router(listening.router, prefix="/api/listening", tags=["listening"])
+app.include_router(listening.router)  # prefix="/api/listening" set in router
 ```
 
 ---
@@ -349,30 +364,22 @@ app.include_router(listening.router, prefix="/api/listening", tags=["listening"]
 
 ### 3.1 Page — `frontend/src/app/(app)/listening/page.tsx`
 
-Two UI states controlled by local state:
+Single file — all logic and UI inline, wrapped in `PaywallGate`.
 
-**State A — `idle`:** No exercise loaded yet. Calls `GET /api/listening/next`.
-- If `available: true` → transition to state **B** with the exercise data.
-- If `available: false` → show empty state card with "Generate exercise" button.
+Six UI states controlled by local `PageState` type:
 
-**State B — `ready`:** Exercise card visible with audio player. Questions visible but
-disabled. "I'm ready" button becomes active once the audio has been played at least once.
-Clicking "I'm ready" enables the question form.
+| State | Description |
+|-------|-------------|
+| `loading` | Initial fetch of `GET /api/listening/next` in progress |
+| `generating` | `POST /api/listening/generate` sent; polls `GET /next` every 3 s until available |
+| `idle` | No exercise available and no generation in progress; shows "Generate" button |
+| `exercise` | Exercise card + `ExerciseAudioPlayer` + question form; "Submit" activates when all 5 answered |
+| `results` | Score, XP, per-question feedback, transcript, "Next exercise" / "View history" buttons |
+| `history` | Paginated list of past attempts; each row shows topic, score, date, "Review" (expands transcript) |
 
-**State C — `answering`:** All 5 questions enabled. User selects one option per question.
-"Submit" button activates only when all 5 questions have a selection.
-
-**State D — `results`:** After `POST /api/listening/attempt`:
-- Score badge (e.g. "4 / 5").
-- XP badge (e.g. "+40 XP").
-- Correct/incorrect feedback per question (green tick / red cross + correct answer shown).
-- Exercise transcript revealed in a collapsible panel (expanded by default).
-- "Next exercise" button → calls `GET /api/listening/next` again.
-
-**History tab:** Renders `HistoryList` component. Accessible from a tab at the top of the
-page ("Practice" / "History"). Each history entry shows: topic, type badge, level badge,
-date, score chip, and a "Review" button that expands inline to show the transcript and
-the user's original answers vs correct answers.
+**`ExerciseAudioPlayer`** — inline component within the same file:
+- Fetches audio via `apiFetch('/api/listening/audio/{id}')` (carries `Authorization` header) → creates a blob URL → HTML `<audio>` element.
+- Custom scrubber bar (SVG/div), progress %, error state for failed loads.
 
 ### 3.2 Components
 
@@ -413,23 +420,21 @@ Add to `mainNavItems` between `tutor` (chat) and `conversation`:
 
 ### 4.2 i18n keys
 
-Add `"listening": "Listening"` under the `nav` key in **all 10 locale files**:
+Add `"listening": "..."` under the `nav` key in **all 10 locale files**. The label is
+translated per locale (not kept in English):
 
-```
-messages/en.json
-messages/es.json
-messages/fr.json
-messages/de.json
-messages/it.json
-messages/nl.json
-messages/pl.json
-messages/pt.json
-messages/ro.json
-messages/ru.json
-```
-
-The label is "Listening" across all locales (the term is internationally understood in
-language learning contexts and does not need translation).
+| Locale | `nav.listening` |
+|--------|-----------------|
+| en | Listening |
+| es | Escucha |
+| de | Hören |
+| fr | Écoute |
+| it | Ascolto |
+| nl | Luisteren |
+| pl | Słuchanie |
+| pt | Audição |
+| ro | Ascultare |
+| ru | Аудирование |
 
 Also add the page-level strings for buttons, labels, and status messages. Example keys
 under a new `listening` namespace:
@@ -500,7 +505,8 @@ Add Listening to the access rules table in `specs/phase-5-stripe-subscriptions.i
 ```
 /data/audio/
 └── listening/
-    ├── <exercise_uuid>.mp3
+    ├── 1.mp3
+    ├── 2.mp3
     └── ...
 ```
 
@@ -530,126 +536,65 @@ Add Listening to the access rules table in `specs/phase-5-stripe-subscriptions.i
 
 ### Backend — `backend/tests/test_listening.py`
 
-Follows the same infrastructure as the rest of the test suite: SQLite in-memory DB,
-dict-based mock Redis, mocked LLM and TTS, `httpx.AsyncClient` via `ASGITransport`.
-Audio file I/O is redirected to a `tmp_path` pytest fixture by overriding
-`settings.AUDIO_STORAGE_PATH` via `monkeypatch`.
+20 tests using SQLite in-memory DB, a custom `_MockRedis` class (supports `set(nx, ex)` for lock semantics), mocked LLM and TTS, and `httpx.AsyncClient` via `ASGITransport`. Audio files use `tmp_path`; `settings.AUDIO_STORAGE_PATH` is overridden via `monkeypatch` in the `listening_client` fixture.
 
 #### Mocks
 
 | Dependency | Mock strategy |
 |------------|---------------|
-| `LLMAdapter.chat()` | Returns deterministic JSON string with topic, text, and 5 questions |
-| `TTSService.synthesize()` | Returns `b"FAKEMP3DATA"` (fake MP3 bytes) |
-| `settings.AUDIO_STORAGE_PATH` | `monkeypatch` → pytest `tmp_path` |
-| Redis generation lock | Mock Redis `set`/`get`/`delete` (already mocked in `conftest.py`) |
+| `llm_adapter.chat()` | `AsyncMock` returning deterministic JSON (topic + text + 5 questions) |
+| `tts_service.synthesise()` | `AsyncMock` returning `b"FAKEMP3DATA"` |
+| `settings.AUDIO_STORAGE_PATH` | `monkeypatch` on the `listening_client` fixture → `tmp_path` |
+| Redis generation lock | Custom `_MockRedis` class defined in the test file (not shared conftest) |
 
-#### Test cases
+#### Test cases (20 total)
 
-**`GET /api/listening/next`**
-- Returns `{ "available": false }` when no exercise exists for the user's level
-- Returns exercise (without `text` or `correct` answers) when a cached exercise exists for the user's level
-- Does not return an exercise the requesting user has already completed
-- Returns an exercise created by a different user at the same level (shared pool)
-- Returns 401 without a valid access token
+**`calculate_score` — unit (4)**
+- All 5 correct → score 5, xp 50
+- All 5 wrong → score 0, xp 0
+- Partial (3 correct) → score 3, xp 30
+- Case-insensitive matching
 
-**`POST /api/listening/generate`**
-- Calls LLM mock and TTS mock, saves `ListeningExercise` row and MP3 file, returns exercise without `text`/`correct`
-- Response does not include `text` or any `correct` field in `questions`
-- Returns 202 with `{ "status": "generating" }` when Redis generation lock is already held
-- Returns 503 when LLM returns invalid JSON on both attempts (malformed response simulation)
-- Returns 401 without a valid access token
-- Calling generate twice in quick succession: second call returns 202 (lock held by first)
+**`GET /api/listening/next` (5)**
+- Returns 401 without token
+- Returns 404 when user has no study plan
+- Returns `available: false` when pool is empty
+- Returns exercise without `text` or `correct` fields when one exists
+- Skips exercises already completed by the user
 
-**`GET /api/listening/audio/{exercise_id}`**
-- Returns 200 with `Content-Type: audio/mpeg` and the MP3 bytes when file exists
-- Returns 404 with `{ "detail": "Audio file not found" }` when file is missing from disk
-- Returns 404 for a non-existent `exercise_id`
-- Returns 401 without a valid access token
+**`POST /api/listening/generate` (3)**
+- Returns 202 on success
+- Returns 404 when user has no study plan
+- Returns 409 when Redis lock is already held
 
-**`POST /api/listening/attempt`**
-- All 5 correct answers → `score: 5`, `xp_earned: 50`, transcript in response
-- Mixed answers (3 correct) → `score: 3`, `xp_earned: 30`
-- All 5 wrong answers → `score: 0`, `xp_earned: 0`
-- `text` field is present in response (transcript revealed)
-- `correct_answers` list contains all 5 entries with correct letters
-- User `xp` is incremented in the DB by `xp_earned` after submission
-- `exercise.play_count` is incremented by 1 after submission
-- Submitting again for the same exercise returns 409 (attempt already exists)
-- Returns 404 when `exercise_id` does not exist
-- Returns 401 without a valid access token
+**`POST /api/listening/attempt` (4)**
+- Returns 404 for unknown exercise
+- Scores correctly and reveals transcript
+- Returns `score: 0, xp_earned: 0` for all-wrong answers
+- Returns 409 on duplicate submission
 
-**`GET /api/listening/history`**
+**`GET /api/listening/audio` (3)**
+- Returns 404 for unknown exercise
+- Returns 404 when MP3 file is missing from disk
+- Returns 200 with `audio/mpeg` content-type when file exists (`tmp_path`)
+
+**`GET /api/listening/history` (3 + 1 auth)**
 - Returns empty list when user has no attempts
-- Returns paginated list of attempts with exercise data (`topic`, `type`, `level`, `score`, `completed_at`)
-- `text` is included in each history entry (transcript accessible after completion)
-- `answers` contains the user's original submitted answers
-- Default pagination: `skip=0`, `limit=20`
-- Returns 401 without a valid access token
+- Returns paginated attempts with exercise data
+- Caps limit at 50
+- Returns 401 without token
 
-**Score / XP calculation**
-- Unit-level tests on the scoring logic: given `questions` JSON and `answers` dict, verify `score` and `xp_earned` for all boundary cases (0/5, 3/5, 5/5)
-
-#### Fixture: pre-built exercise
-
-A shared `listening_exercise` fixture creates a `ListeningExercise` row in the test DB
-with a known `questions` JSON (5 questions, correct answers `A, B, C, D, A`) and writes
-a fake MP3 file to `tmp_path`. This avoids triggering LLM/TTS in tests that only need an
-existing exercise.
-
-```python
-@pytest.fixture
-async def listening_exercise(db_session, tmp_path, monkeypatch):
-    monkeypatch.setattr(settings, "AUDIO_STORAGE_PATH", str(tmp_path))
-    audio_dir = tmp_path / "listening"
-    audio_dir.mkdir()
-    exercise = ListeningExercise(
-        level="B1",
-        target_language="en-US",
-        exercise_type="monologue",
-        topic="A day at the market",
-        text="It was a bright morning when Sarah decided to visit the local market...",
-        audio_path=str(audio_dir / "<id>.mp3"),  # set after insert
-        questions=[
-            {"index": 0, "question": "Where did Sarah go?", "options": {"A": "The market", "B": "The park", "C": "The school", "D": "The office"}, "correct": "A"},
-            {"index": 1, "question": "When did she go?", "options": {"A": "Evening", "B": "Morning", "C": "Afternoon", "D": "Night"}, "correct": "B"},
-            {"index": 2, "question": "What was the weather like?", "options": {"A": "Rainy", "B": "Cloudy", "C": "Bright", "D": "Snowy"}, "correct": "C"},
-            {"index": 3, "question": "What does 'local' mean here?", "options": {"A": "Far away", "B": "Nearby", "C": "Famous", "D": "Large"}, "correct": "D"},
-            {"index": 4, "question": "What is the main purpose of the text?", "options": {"A": "To advertise", "B": "To inform", "C": "To entertain", "D": "To warn"}, "correct": "A"},
-        ],
-    )
-    db_session.add(exercise)
-    await db_session.commit()
-    await db_session.refresh(exercise)
-    audio_path = audio_dir / f"{exercise.id}.mp3"
-    audio_path.write_bytes(b"FAKEMP3DATA")
-    exercise.audio_path = str(audio_path)
-    await db_session.commit()
-    return exercise
-```
-
-### Update `specs/testing.instructions.md`
+### `specs/testing.instructions.md`
 
 Add `test_listening.py` to the test file inventory table:
 
 | File | Lines (est.) | What it covers |
 |------|-------------|----------------|
-| `test_listening.py` | ~200 | Exercise pool (next / generate), generation lock, audio serving, answer evaluation (score + XP), attempt deduplication, history |
+| `test_listening.py` | ~350 | `calculate_score` unit tests, exercise pool (`next` / `generate`), generation lock, audio serving, answer evaluation (score + XP), attempt deduplication, history |
 
 ### Frontend — Vitest (pending)
 
 Status: **pending implementation**, consistent with the rest of frontend tests.
-
-Tests to implement when frontend testing is set up:
-
-| Component / util | What to test |
-|------------------|-------------|
-| `QuestionCard` | Renders question text and 4 options; selection updates state correctly; disabled prop prevents interaction |
-| `QuestionsList` | Renders 5 questions; submit button disabled until all answered; passes answers array to callback |
-| `ResultsPanel` | Renders correct score badge; XP badge; marks correct/incorrect per question; shows transcript text |
-| `ListeningAudioPlayer` | `onPlayed` callback fires after play; pause/stop controls update playback state |
-| `HistoryList` | Renders empty state when no attempts; renders attempt rows with score chip and "Review" button |
-| Page state machine | `idle` → `ready` after exercise load; `ready` → `answering` after "I'm ready"; `answering` → `results` after submit response |
 
 ---
 

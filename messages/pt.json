@@ -10,6 +10,12 @@
     "feature2Desc": "Pratique com lições, exercícios e flashcards guiados pelo seu tutor. Feedback a cada etapa.",
     "feature3Title": "Conversa por voz",
     "feature3Desc": "Fale com seu tutor em tempo real. Ativação por voz, resposta instantânea, sem esperar a vez.",
+    "feature4Title": "Exercícios de listening",
+    "feature4Desc": "Áudio gerado por IA no seu nível CEFR. Ouça, responda a 5 perguntas de compreensão e desbloqueie a transcrição. Novos exercícios gerados sob demanda.",
+    "feature5Title": "Flashcards",
+    "feature5Desc": "Revisão de vocabulário com repetição espaçada. O algoritmo SM-2 agenda cada cartão no momento ideal para maximizar a retenção a longo prazo.",
+    "feature6Title": "Progresso e sequências",
+    "feature6Desc": "XP, sequências diárias, pontuações de habilidades e competências por unidade. Acompanhe seu crescimento semana a semana e teste seu nível ao final de cada etapa CEFR.",
     "footer": "Código aberto · Auto-hospede gratuitamente ou assine o serviço hospedado",
     "terms": "Termos",
     "privacy": "Privacidade",
@@ -62,7 +68,8 @@
     "settings": "Configurações",
     "faq": "FAQ",
     "admin": "Admin",
-    "conversation": "Conversa"
+    "conversation": "Conversa",
+    "listening": "Listening"
   },
   "auth": {
     "login": {
@@ -707,7 +714,7 @@
     "a_voice": "O modo <strong>Conversa por voz</strong> permite falar com o tutor de IA em tempo real. Pressione Iniciar para começar — a aplicação deteta a sua voz automaticamente usando deteção de atividade de voz (VAD) e o tutor responde com síntese de voz. Pode interromper o tutor a qualquer momento (barge-in). A sessão termina quando atinge o limite de tempo ou pressiona Parar. Certifique-se de que o browser tem permissão para aceder ao microfone.",
     "q_providers": "Que fornecedores de IA o FreeLingo suporta?",
     "a_providers_intro": "Configurável em <code>.env</code> via <code>LLM_PROVIDER</code>:",
-    "provider_ollama": "Local, gratuito. Requer Ollama em execução no host. Modelo recomendado: gemma3:12b. Pode ser lento sem GPU.",
+    "provider_ollama": "Local, gratuito. Requer Ollama em execução no host. Modelo recomendado: gemma4:e4b. Pode ser lento sem GPU.",
     "provider_openai": "API OpenAI (GPT-4o, etc.). Rápido e fiável. Requer OPENAI_API_KEY.",
     "provider_anthropic": "Anthropic Claude. Requer ANTHROPIC_API_KEY.",
     "provider_deepseek": "API DeepSeek. Requer DEEPSEEK_API_KEY.",
@@ -907,17 +914,13 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.4.17",
+    "version": "v1.5.0",
     "cta": "Entendido",
     "entry1": {
-      "label": "Nova voz",
-      "desc": "A conversa de voz em tempo real utiliza agora uma nova voz para uma experiência mais natural e envolvente."
+      "label": "Exercícios de listening",
+      "desc": "Pratica a compreensão auditiva em inglês com exercícios de áudio gerados por IA. Ouve uma gravação, responde a 5 perguntas e descobre a transcrição — novos exercícios gerados a pedido para o teu nível QECR."
     },
     "entry2": {
-      "label": "Sugestões de conversa",
-      "desc": "A secção de conversa de voz mostra agora seis chips de tópicos para te ajudar a iniciar uma sessão. Os tópicos são escolhidos aleatoriamente de um banco de 30 e desaparecem assim que a sessão começa."
-    },
-    "entry3": {
       "label": "Correções",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }
@@ -934,5 +937,30 @@
     "sending": "A enviar...",
     "sent": "Mensagem enviada",
     "errorGeneric": "Falha ao enviar. Por favor, tente novamente."
+  },
+  "listening": {
+    "title": "Audição",
+    "topic": "Tópico",
+    "listenLabel": "Ouvir",
+    "questionsLabel": "Perguntas",
+    "submit": "Enviar respostas",
+    "generating": "A gerar exercício...",
+    "generatingDesc": "A IA está a criar um novo exercício. Geralmente demora cerca de 30 segundos.",
+    "noExercises": "Não há exercícios disponíveis para o seu nível.",
+    "generate": "Gerar exercício",
+    "audioError": "Não foi possível carregar o áudio",
+    "alreadyAttempted": "Já concluiu este exercício.",
+    "errorLoading": "Falha ao carregar o exercício. Tente novamente.",
+    "errorSubmit": "Falha ao enviar as respostas. Tente novamente.",
+    "resultsLabel": "Resultados",
+    "transcript": "Transcrição",
+    "review": "Revisão das respostas",
+    "nextExercise": "Próximo exercício",
+    "viewHistory": "Histórico",
+    "history": "Histórico",
+    "historyTitle": "Histórico de listening",
+    "historyEmpty": "Nenhum exercício concluído ainda.",
+    "practiceMore": "Praticar",
+    "moreInHistory": "+{count} mais"
   }
 }
