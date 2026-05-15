@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import logging
 import os
 
@@ -125,15 +126,44 @@ async def _background_generate(
 @limiter.limit("10/minute")
 async def get_next_exercise(
     request: Request,
+    wait: bool = False,
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
 ) -> ListeningNextResponse:
-    """Return the next uncompleted exercise for the user's CEFR level and language."""
+    """
+    Return the next uncompleted exercise for the user's CEFR level and language.
+
+    When ``wait=true`` the endpoint blocks (async) until an exercise becomes
+    available or the generation lock disappears (max 90 s). This eliminates the
+    need for client-side polling.
+    """
     level, target_language = await _get_user_level(current_user.id, db)
     exercise = await get_available_exercise(level, target_language, current_user.id, db)
-    if exercise is None:
+    if exercise is not None:
+        return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
+
+    if not wait:
         return ListeningNextResponse(available=False)
-    return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
+
+    # Long-poll: wait up to 90 s for the background generation to finish.
+    lock_key = f"listening:generating:{level}:{target_language}"
+    for _ in range(90):
+        await asyncio.sleep(1)
+        exercise = await get_available_exercise(level, target_language, current_user.id, db)
+        if exercise is not None:
+            return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
+        # If the lock is already gone and there is still no exercise, stop waiting.
+        if not await redis.exists(lock_key):
+            break
+
+    # Final check: the background task may have saved the exercise and deleted
+    # the lock between the two checks above (race condition).
+    exercise = await get_available_exercise(level, target_language, current_user.id, db)
+    if exercise is not None:
+        return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
+
+    return ListeningNextResponse(available=False)
 
 
 @router.post("/generate", response_model=ListeningGeneratingResponse, status_code=202)
@@ -151,7 +181,7 @@ async def generate_exercise(
     - Acquires a Redis lock scoped to (level, target_language) with 60 s TTL.
     - If the lock is already held (another generation in progress), returns 202 immediately.
     - Otherwise, starts generation as a FastAPI BackgroundTask and returns 202.
-    - Frontend polls GET /next every second until an exercise becomes available.
+    - Frontend calls GET /next?wait=true once and awaits the response (long poll).
     """
     level, target_language = await _get_user_level(current_user.id, db)
     lock_key = f"listening:generating:{level}:{target_language}"

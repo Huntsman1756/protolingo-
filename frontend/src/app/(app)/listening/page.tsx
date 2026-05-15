@@ -197,7 +197,12 @@ function ListeningPage() {
   const [historyTotal, setHistoryTotal] = useState(0)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const pollRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const generateAbortRef = useRef<AbortController | null>(null)
+
+  // Cancel in-flight long-poll on unmount
+  useEffect(() => {
+    return () => { generateAbortRef.current?.abort() }
+  }, [])
 
   const loadNext = useCallback(async () => {
     setPageState('loading')
@@ -227,20 +232,21 @@ function ListeningPage() {
     loadNext()
   }, [loadNext])
 
-  // Cleanup polling on unmount
-  useEffect(() => {
-    return () => {
-      if (pollRef.current) clearTimeout(pollRef.current)
-    }
-  }, [])
-
-  function startPolling() {
-    if (pollRef.current) clearTimeout(pollRef.current)
-    const poll = async () => {
-      try {
-        const res = await apiFetch('/api/listening/next')
-        if (res.ok) {
-          const data = await res.json() as { available: boolean; exercise?: Exercise }
+  async function handleGenerate() {
+    try {
+      const res = await apiFetch('/api/listening/generate', { method: 'POST' })
+      if (res.ok || res.status === 202) {
+        setPageState('generating')
+        // Single long-poll request — server waits (async) until exercise is ready.
+        // AbortController cancels the request if the component unmounts first.
+        const controller = new AbortController()
+        generateAbortRef.current = controller
+        const nextRes = await apiFetch('/api/listening/next?wait=true', {
+          signal: controller.signal,
+        })
+        generateAbortRef.current = null
+        if (nextRes.ok) {
+          const data = await nextRes.json() as { available: boolean; exercise?: Exercise }
           if (data.available && data.exercise) {
             setExercise(data.exercise)
             setAnswers({})
@@ -249,20 +255,12 @@ function ListeningPage() {
             return
           }
         }
-      } catch { /* ignore, keep polling */ }
-      pollRef.current = setTimeout(poll, 1000)
-    }
-    pollRef.current = setTimeout(poll, 3000)
-  }
-
-  async function handleGenerate() {
-    try {
-      const res = await apiFetch('/api/listening/generate', { method: 'POST' })
-      if (res.ok || res.status === 202) {
-        setPageState('generating')
-        startPolling()
+        setPageState('idle')
       }
-    } catch { /* ignore */ }
+    } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') return
+      setPageState('idle')
+    }
   }
 
   async function handleSubmit() {
