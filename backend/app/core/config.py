@@ -54,6 +54,9 @@ class Settings(BaseSettings):
     SMTP_SSL: bool = False
     APP_BASE_URL: str = "http://localhost:3000"
 
+    # Listening — path where generated MP3 files are stored (Docker volume)
+    AUDIO_STORAGE_PATH: str = "/data/audio"
+
     model_config = {"env_file": ".env"}
 
 
