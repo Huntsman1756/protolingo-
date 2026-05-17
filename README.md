@@ -95,7 +95,7 @@ freelingo/
 | 4     | Multi-language support | ✅ Complete         |
 | 5     | Stripe subscriptions   | ✅ Complete         |
 | 6     | Listening              | ✅ Complete         |
-| 7     | Reading                | 🚧 In progress      |
+| 7     | Reading                | ✅ Complete         |
 
 ## Quick start
 
