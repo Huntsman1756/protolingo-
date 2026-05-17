@@ -10,8 +10,8 @@
     "feature2Desc": "Practice with lessons, exercises and flashcards guided by your tutor. Feedback at every step.",
     "feature3Title": "Voice Conversation",
     "feature3Desc": "Talk to your tutor in real time. Voice-activated, instant response, no turn-taking.",
-    "feature4Title": "Listening Exercises",
-    "feature4Desc": "AI-generated audio at your CEFR level. Listen, answer 5 comprehension questions, then unlock the transcript. New exercises generated on demand.",
+    "feature4Title": "Listening & Reading",
+    "feature4Desc": "AI-generated exercises at your CEFR level. Listen to a passage, answer 5 comprehension questions and unlock the transcript — or read a text and answer questions directly. New exercises on demand.",
     "feature5Title": "Flashcards",
     "feature5Desc": "Vocabulary review with spaced repetition. The SM-2 algorithm schedules each card at the optimal moment to maximise long-term retention.",
     "feature6Title": "Progress & Streaks",
@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Conversation",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -211,6 +212,10 @@
     "deleteAccountMessage": "This will permanently delete your account and all your data. This action cannot be undone.",
     "deleteAccountConfirm": "Delete Account",
     "sectionUsageLimits": "Usage Limits",
+    "sectionVoice": "Voice",
+    "voiceHint": "Select your preferred AI voice from the dropdown, then click play to preview it.",
+    "voicePlay": "Play",
+    "voiceStop": "Stop",
     "quotaSessions": "Sessions / week",
     "quotaMinutesDay": "Minutes / day",
     "quotaMinutesWeek": "Minutes / week",
@@ -862,9 +867,14 @@
       "desc": "Based on your level assessment, FreeLingo builds a structured study plan with daily lessons adapted to your goals and progress."
     },
     "step6": {
+      "label": "Practice",
+      "title": "Listening & Reading",
+      "desc": "Test your comprehension with AI-generated exercises. Listen to a passage and answer 5 questions, or read a text at your CEFR level — earn XP for every correct answer."
+    },
+    "step7": {
       "label": "Ready",
       "title": "You're all set!",
-      "desc": "Start with today's lesson, open a chat, or jump into a voice session — FreeLingo adapts to how you like to learn."
+      "desc": "Start with today's lesson, open a chat, practise listening or reading — FreeLingo adapts to how you like to learn."
     }
   },
   "billing": {
@@ -915,13 +925,17 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.5.1",
+    "version": "v1.5.2",
     "cta": "Got it",
     "entry1": {
-      "label": "Listening exercises",
-      "desc": "Practice English comprehension with AI-generated audio exercises. Listen to a short recording, answer 5 questions, and unlock the transcript — new exercises generated on demand for your CEFR level."
+      "label": "Reading",
+      "desc": "New Reading exercises: AI-generated passages at your CEFR level with 5 comprehension questions. Text and questions are shown together. Earn XP for every correct answer."
     },
     "entry2": {
+      "label": "Voice selector",
+      "desc": "Choose your AI tutor's voice directly from Settings. Preview all 9 available voices before selecting, your preference is saved automatically."
+    },
+    "entry3": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }
@@ -960,6 +974,31 @@
     "viewHistory": "History",
     "history": "History",
     "historyTitle": "Listening history",
+    "historyEmpty": "No completed exercises yet.",
+    "practiceMore": "Practice",
+    "moreInHistory": "+{count} more",
+    "practiceAgain": "Practice again",
+    "replayNoXp": "Replay — no XP"
+  },
+  "reading": {
+    "title": "Reading",
+    "topic": "Topic",
+    "textLabel": "Text",
+    "questionsLabel": "Questions",
+    "submit": "Submit answers",
+    "generating": "Generating exercise...",
+    "generatingDesc": "AI is creating a new exercise. This usually takes about 30 seconds.",
+    "noExercises": "No exercises available for your level.",
+    "generate": "Generate exercise",
+    "alreadyAttempted": "You have already completed this exercise.",
+    "errorLoading": "Failed to load exercise. Please try again.",
+    "errorSubmit": "Failed to submit answers. Please try again.",
+    "resultsLabel": "Results",
+    "review": "Answer review",
+    "nextExercise": "Next exercise",
+    "viewHistory": "History",
+    "history": "History",
+    "historyTitle": "Reading history",
     "historyEmpty": "No completed exercises yet.",
     "practiceMore": "Practice",
     "moreInHistory": "+{count} more",

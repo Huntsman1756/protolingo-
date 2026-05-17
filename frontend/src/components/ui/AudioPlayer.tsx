@@ -19,6 +19,9 @@ export function AudioPlayer({ text, voice, size = 'sm', className = '' }: AudioP
   const accessToken = useAuthStore((s) => s.accessToken)
   const t = useTranslations('audioPlayer')
 
+  // Resolve voice: explicit prop > user localStorage preference > backend default
+  const resolvedVoice = voice ?? (typeof window !== 'undefined' ? (localStorage.getItem('tts_voice') ?? undefined) : undefined)
+
   async function handleClick() {
     if (state === 'loading') return
 
@@ -42,7 +45,7 @@ export function AudioPlayer({ text, voice, size = 'sm', className = '' }: AudioP
           'X-TTS-Trace-ID': traceId,
           ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
         },
-        body: JSON.stringify({ text, voice }),
+        body: JSON.stringify({ text, voice: resolvedVoice }),
       })
       const fetchMs = performance.now() - fetchStart
       if (!res.ok) throw new Error(`TTS error ${res.status}`)

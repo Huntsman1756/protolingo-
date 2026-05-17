@@ -2,45 +2,42 @@ from __future__ import annotations
 
 import asyncio
 import logging
-import os
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Request
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
 from redis.asyncio import Redis
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal, get_db
 from app.core.deps import get_current_user, require_subscription
 from app.core.limiter import limiter
-from app.models.listening import ListeningExercise
 from app.models.study_plan import StudyPlan
 from app.models.user import User
-from app.schemas.listening import (
+from app.schemas.reading import (
     CorrectAnswerOut,
-    ListeningAttemptOut,
-    ListeningExerciseOut,
-    ListeningGeneratingResponse,
-    ListeningHistoryResponse,
-    ListeningNextResponse,
-    ListeningSubmitRequest,
-    ListeningSubmitResponse,
+    ReadingAttemptOut,
+    ReadingExerciseOut,
+    ReadingGeneratingResponse,
+    ReadingHistoryResponse,
+    ReadingNextResponse,
+    ReadingSubmitRequest,
+    ReadingSubmitResponse,
     QuestionOut,
 )
-from app.services.listening_service import (
+from app.services.reading_service import (
     generate_and_save_exercise,
     get_available_exercise,
     get_user_history,
     submit_attempt,
 )
+from sqlalchemy import select
 
-router = APIRouter(prefix="/api/listening", tags=["listening"])
+router = APIRouter(prefix="/api/reading", tags=["reading"])
 logger = logging.getLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
-# Local Redis dependency (same pattern as other routers)
+# Local Redis dependency
 # ---------------------------------------------------------------------------
 
 async def get_redis():  # noqa: ANN201
@@ -55,15 +52,15 @@ async def get_redis():  # noqa: ANN201
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _build_exercise_out(exercise: ListeningExercise) -> ListeningExerciseOut:
-    """Convert ORM model to safe schema — no text, no correct answers."""
-    return ListeningExerciseOut(
+def _build_exercise_out(exercise) -> ReadingExerciseOut:  # noqa: ANN001
+    """Convert ORM model to schema — text IS included for reading."""
+    return ReadingExerciseOut(
         id=exercise.id,
         level=exercise.level,
         target_language=exercise.target_language,
         exercise_type=exercise.exercise_type,
         topic=exercise.topic,
-        duration_seconds=exercise.duration_seconds,
+        text=exercise.text,
         questions=[
             QuestionOut(
                 index=q["index"],
@@ -90,16 +87,13 @@ async def _get_user_level(user_id: int, db: AsyncSession) -> tuple[str, str]:
 
 
 # ---------------------------------------------------------------------------
-# Background task for exercise generation
+# Background task for exercise generation (no TTS)
 # ---------------------------------------------------------------------------
 
 async def _background_generate(
     level: str,
     target_language: str,
-    tts_service: object,
-    storage_path: str,
     lock_key: str,
-    voice: str = "",
 ) -> None:
     """
     Runs after the HTTP response is sent.
@@ -109,12 +103,10 @@ async def _background_generate(
     redis_client = Redis.from_url(settings.REDIS_URL, decode_responses=True)
     try:
         async with AsyncSessionLocal() as db:
-            await generate_and_save_exercise(
-                level, target_language, db, tts_service, storage_path, voice
-            )
+            await generate_and_save_exercise(level, target_language, db)
     except Exception:
         logger.exception(
-            "listening: generation failed level=%s lang=%s", level, target_language
+            "reading: generation failed level=%s lang=%s", level, target_language
         )
     finally:
         await redis_client.delete(lock_key)
@@ -125,7 +117,7 @@ async def _background_generate(
 # Endpoints
 # ---------------------------------------------------------------------------
 
-@router.get("/next", response_model=ListeningNextResponse)
+@router.get("/next", response_model=ReadingNextResponse)
 @limiter.limit("10/minute")
 async def get_next_exercise(
     request: Request,
@@ -133,121 +125,80 @@ async def get_next_exercise(
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
-) -> ListeningNextResponse:
+) -> ReadingNextResponse:
     """
-    Return the next uncompleted exercise for the user's CEFR level and language.
+    Return the next uncompleted reading exercise for the user's CEFR level.
 
     When ``wait=true`` the endpoint blocks (async) until an exercise becomes
-    available or the generation lock disappears (max 90 s). This eliminates the
-    need for client-side polling.
+    available or the generation lock disappears (max 90 s).
     """
     level, target_language = await _get_user_level(current_user.id, db)
     exercise = await get_available_exercise(level, target_language, current_user.id, db)
     if exercise is not None:
-        return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
+        return ReadingNextResponse(available=True, exercise=_build_exercise_out(exercise))
 
     if not wait:
-        return ListeningNextResponse(available=False)
+        return ReadingNextResponse(available=False)
 
-    # Long-poll: wait up to 90 s for the background generation to finish.
-    lock_key = f"listening:generating:{level}:{target_language}"
+    # Long-poll: wait up to 90 s for background generation to finish.
+    lock_key = f"reading:generating:{level}:{target_language}"
     for _ in range(90):
         await asyncio.sleep(1)
         exercise = await get_available_exercise(level, target_language, current_user.id, db)
         if exercise is not None:
-            return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
-        # If the lock is already gone and there is still no exercise, stop waiting.
+            return ReadingNextResponse(available=True, exercise=_build_exercise_out(exercise))
         if not await redis.exists(lock_key):
             break
 
-    # Final check: the background task may have saved the exercise and deleted
-    # the lock between the two checks above (race condition).
+    # Final check after lock disappears
     exercise = await get_available_exercise(level, target_language, current_user.id, db)
     if exercise is not None:
-        return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
+        return ReadingNextResponse(available=True, exercise=_build_exercise_out(exercise))
 
-    return ListeningNextResponse(available=False)
+    return ReadingNextResponse(available=False)
 
 
-@router.post("/generate", response_model=ListeningGeneratingResponse, status_code=202)
+@router.post("/generate", response_model=ReadingGeneratingResponse, status_code=202)
 @limiter.limit("5/minute")
 async def generate_exercise(
     request: Request,
     background_tasks: BackgroundTasks,
-    voice: str = Query(default=""),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
-) -> ListeningGeneratingResponse:
+) -> ReadingGeneratingResponse:
     """
-    Trigger on-demand exercise generation.
+    Trigger on-demand reading exercise generation.
 
-    - Acquires a Redis lock scoped to (level, target_language) with 60 s TTL.
-    - If the lock is already held (another generation in progress), returns 202 immediately.
-    - Otherwise, starts generation as a FastAPI BackgroundTask and returns 202.
-    - Frontend calls GET /next?wait=true once and awaits the response (long poll).
+    Acquires a Redis lock scoped to (level, target_language) with 60 s TTL.
+    If the lock is already held, returns 202 immediately.
+    Frontend calls GET /next?wait=true once and awaits the long-poll response.
     """
     level, target_language = await _get_user_level(current_user.id, db)
-    lock_key = f"listening:generating:{level}:{target_language}"
+    lock_key = f"reading:generating:{level}:{target_language}"
 
     acquired = await redis.set(lock_key, "1", nx=True, ex=60)
     if not acquired:
-        # Another generation is already running
-        return ListeningGeneratingResponse(status="generating")
+        return ReadingGeneratingResponse(status="generating")
 
-    tts_service = request.app.state.tts_service
     background_tasks.add_task(
         _background_generate,
         level,
         target_language,
-        tts_service,
-        settings.AUDIO_STORAGE_PATH,
         lock_key,
-        voice,
     )
-    return ListeningGeneratingResponse(status="generating")
+    return ReadingGeneratingResponse(status="generating")
 
 
-@router.get("/audio/{exercise_id}")
-@limiter.limit("60/minute")
-async def get_audio(
-    request: Request,
-    exercise_id: int,
-    current_user: User = Depends(require_subscription),
-    db: AsyncSession = Depends(get_db),
-) -> FileResponse:
-    """
-    Stream the MP3 audio file for the exercise.
-
-    The path is always constructed from exercise_id (integer) — never from
-    a DB-stored string — to prevent path traversal.
-    """
-    exercise = await db.get(ListeningExercise, exercise_id)
-    if exercise is None:
-        raise HTTPException(status_code=404, detail="exercise_not_found")
-
-    audio_path = os.path.join(
-        settings.AUDIO_STORAGE_PATH, "listening", f"{exercise_id}.mp3"
-    )
-    if not os.path.isfile(audio_path):
-        raise HTTPException(status_code=404, detail="audio_not_found")
-
-    return FileResponse(
-        path=audio_path,
-        media_type="audio/mpeg",
-        headers={"Accept-Ranges": "bytes"},
-    )
-
-
-@router.post("/attempt", response_model=ListeningSubmitResponse)
+@router.post("/attempt", response_model=ReadingSubmitResponse)
 @limiter.limit("20/minute")
-async def submit_listening_attempt(
+async def submit_reading_attempt(
     request: Request,
-    body: ListeningSubmitRequest,
+    body: ReadingSubmitRequest,
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
-) -> ListeningSubmitResponse:
-    """Submit answers and receive score, XP, correct answers, and transcript."""
+) -> ReadingSubmitResponse:
+    """Submit answers and receive score, XP, and correct answers."""
     try:
         attempt, exercise = await submit_attempt(
             body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay
@@ -264,37 +215,39 @@ async def submit_listening_attempt(
         CorrectAnswerOut(index=q["index"], correct=q["correct"])
         for q in exercise.questions
     ]
-    return ListeningSubmitResponse(
+    return ReadingSubmitResponse(
         score=attempt.score,
         xp_earned=attempt.xp_earned,
         correct_answers=correct_answers,
-        text=exercise.text,
     )
 
 
-@router.get("/history", response_model=ListeningHistoryResponse)
+@router.get("/history", response_model=ReadingHistoryResponse)
 @limiter.limit("30/minute")
-async def get_listening_history(
+async def get_reading_history(
     request: Request,
     skip: int = 0,
     limit: int = 10,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
-) -> ListeningHistoryResponse:
-    """Return paginated list of the user's past listening attempts."""
+) -> ReadingHistoryResponse:
+    """Return paginated list of the user's past reading attempts."""
     limit = min(limit, 50)  # hard cap
 
     rows, total = await get_user_history(current_user.id, db, skip=skip, limit=limit)
     items = [
-        ListeningAttemptOut(
+        ReadingAttemptOut(
             id=attempt.id,
             score=attempt.score,
             xp_earned=attempt.xp_earned,
             completed_at=attempt.completed_at,
             exercise=_build_exercise_out(exercise),
-            text=exercise.text,
             answers=attempt.answers,
+            correct_answers=[
+                CorrectAnswerOut(index=q["index"], correct=q["correct"])
+                for q in exercise.questions
+            ],
         )
         for attempt, exercise in rows
     ]
-    return ListeningHistoryResponse(items=items, total=total, skip=skip, limit=limit)
+    return ReadingHistoryResponse(items=items, total=total, skip=skip, limit=limit)

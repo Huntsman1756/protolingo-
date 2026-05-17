@@ -290,6 +290,8 @@ export default function ConversationMode({
 
       ws.onopen = () => {
         const authPayload: Record<string, unknown> = { type: 'auth', token }
+        const storedVoice = typeof window !== 'undefined' ? localStorage.getItem('tts_voice') : null
+        if (storedVoice) authPayload.voice = storedVoice
         if (context?.length) authPayload.context = context
         ws.send(JSON.stringify(authPayload))
         setStatus('live')

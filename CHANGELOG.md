@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2026-05-17
+
+### Added
+- **Phase 7 — Reading exercises**: AI-generated reading comprehension exercises with multiple-choice questions, scoring, and XP rewards.
+- **Backend**: two new DB tables (`reading_exercises`, `reading_attempts`) with Alembic migration `0019_reading.py`. LLM generates a passage + 5 questions graded to the user's CEFR level; no TTS synthesis. Text is stored directly and served to the client immediately.
+- **Service layer** (`app/services/reading_service.py`): `get_available_exercise`, `generate_and_save_exercise` (LLM only), `calculate_score` (10 XP/correct), `submit_attempt` (duplicate guard, replay mode, XP via `update_daily_progress`), `get_user_history`. Exercises are shared across all users at the same level and language variant.
+- **`parse_llm_json`** utility moved from `listening_service.py` to `llm_adapter.py` and shared by both services.
+- **Router** (`GET /api/reading/next`, `POST /api/reading/generate`, `POST /api/reading/attempt`, `GET /api/reading/history`). Generation uses a per-(level, language) Redis lock with 60 s TTL and runs as a `BackgroundTask`. `GET /next?wait=true` long-polls up to 90 s.
+- **Frontend** (`/reading`): two-column layout (passage left, questions right) on desktop; stacked on mobile. Five exercise types across CEFR levels: notice, email, article, news, blog post, review, essay. Wrapped in `PaywallGate`. Sidebar entry added after Listening.
+- **i18n**: `reading` namespace added to all 10 locale files; nav label kept in English ("Reading") across all locales.
+- **Voice selector in Settings**: new *Voice* section visible only when `TTS_PROVIDER=openai`. Users can preview all 9 OpenAI TTS voices (alloy, ash, coral, echo, fable, nova, onyx, sage, shimmer) with inline play/stop buttons and select their preferred voice. Selection is persisted in `localStorage` (key `tts_voice`); default is the server-configured `OPENAI_TTS_VOICE`.
+- **`GET /api/tts/preview/{voice}`** backend endpoint (auth required, 10 req/min): generates a short preview clip for the requested voice and caches the MP3 to disk (`${DATA_PATH}/tts_previews/{voice}.mp3`). Subsequent requests are served from the local cache at zero API cost. Only available when `TTS_PROVIDER=openai`.
+- **`GET /api/config`** now returns `tts_provider` and `openai_tts_voice` so the frontend can conditionally show the voice selector and resolve the server default.
+- **`store/config.ts`** extended with `ttsProvider` and `openaiTtsVoice` fields.
+- **Docker volume** `${DATA_PATH}/tts_previews:/app/tts_previews` added to the backend service so cached preview clips survive redeployments.
+- **i18n**: `sectionVoice`, `voiceHint`, `voicePlay`, `voiceStop` keys added to all 10 locale files (en, es, de, fr, it, nl, pl, pt, ro, ru).
+
 ## [1.5.1] - 2026-05-17
 
 ### Changed
@@ -14,14 +31,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Phase 6 — Listening exercises**: AI-generated listening comprehension exercises with text-to-speech audio, multiple-choice questions, scoring, and XP rewards.
-  - **Backend**: two new DB tables (`listening_exercises`, `listening_attempts`) with Alembic migration `0018_listening.py`. LLM generates exercise text + 5 questions; Kokoro/OpenAI TTS synthesises the audio; MP3 stored at `${DATA_PATH}/audio/listening/{id}.mp3` via bind mount.
-  - **Service layer** (`app/services/listening_service.py`): `get_available_exercise`, `generate_and_save_exercise` (LLM → TTS → disk), `calculate_score` (case-insensitive, 10 XP/correct), `submit_attempt` (duplicate guard, XP in `Progress`), `get_user_history`.
-  - **Router** (`GET /api/listening/next`, `POST /api/listening/generate`, `GET /api/listening/audio/{id}`, `POST /api/listening/attempt`, `GET /api/listening/history`). Generation uses a per-(level, language) Redis lock with 60 s TTL so concurrent requests don't spawn duplicate jobs. Audio served via `FileResponse`; path built from integer exercise ID — never from a DB string — to prevent path traversal.
-  - **Frontend** (`/listening`): single-page UI with audio scrubber, question cards, answer review with correct-answer reveal, transcript display, and history list. Polls `GET /next` every 3 s while generation is in progress. Wrapped in `PaywallGate`.
-  - **Nav**: `/listening` added between Conversation and Assessment in both desktop sidebar and mobile dropdown.
-  - **i18n**: `listening` namespace and `nav.listening` key added to all 10 locale files (en, es, de, fr, it, nl, pl, pt, ro, ru).
-  - **Tests**: 20 tests in `backend/tests/test_listening.py` — unit tests for `calculate_score`, HTTP tests for all 5 endpoints including lock semantics, audio serving with `tmp_path`, duplicate-attempt rejection (409), and security (transcript/correct answers never leaked before submission).
-  - **Config**: `AUDIO_STORAGE_PATH` default `"/data/audio"` in `Settings`; Docker bind mount `${DATA_PATH}/audio:/data/audio` added to backend service.
+- **Backend**: two new DB tables (`listening_exercises`, `listening_attempts`) with Alembic migration `0018_listening.py`. LLM generates exercise text + 5 questions; Kokoro/OpenAI TTS synthesises the audio; MP3 stored at `${DATA_PATH}/audio/listening/{id}.mp3` via bind mount.
+- **Service layer** (`app/services/listening_service.py`): `get_available_exercise`, `generate_and_save_exercise` (LLM → TTS → disk), `calculate_score` (case-insensitive, 10 XP/correct), `submit_attempt` (duplicate guard, XP in `Progress`), `get_user_history`.
+- **Router** (`GET /api/listening/next`, `POST /api/listening/generate`, `GET /api/listening/audio/{id}`, `POST /api/listening/attempt`, `GET /api/listening/history`). Generation uses a per-(level, language) Redis lock with 60 s TTL so concurrent requests don't spawn duplicate jobs. Audio served via `FileResponse`; path built from integer exercise ID — never from a DB string — to prevent path traversal.
+- **Frontend** (`/listening`): single-page UI with audio scrubber, question cards, answer review with correct-answer reveal, transcript display, and history list. Polls `GET /next` every 3 s while generation is in progress. Wrapped in `PaywallGate`.
+- **Nav**: `/listening` added between Conversation and Assessment in both desktop sidebar and mobile dropdown.
+- **i18n**: `listening` namespace and `nav.listening` key added to all 10 locale files (en, es, de, fr, it, nl, pl, pt, ro, ru).
+- **Tests**: 20 tests in `backend/tests/test_listening.py` — unit tests for `calculate_score`, HTTP tests for all 5 endpoints including lock semantics, audio serving with `tmp_path`, duplicate-attempt rejection (409), and security (transcript/correct answers never leaked before submission).
+- **Config**: `AUDIO_STORAGE_PATH` default `"/data/audio"` in `Settings`; Docker bind mount `${DATA_PATH}/audio:/data/audio` added to backend service.
 
 ## [1.4.17] - 2026-05-14
 
@@ -86,8 +103,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Legal texts updated across all 10 locales (en, es, de, fr, it, nl, pl, pt, ro, ru):
-  - Terms of Service: section 5 now mentions monthly **and** yearly subscription plans; section 6 clarifies the free trial period (payment details required; no charge until trial ends), annual billing cycle, and that current prices are displayed at checkout — no fixed prices are stated in the legal text.
-  - Privacy Policy: new data item `s2i8` discloses subscription status, plan type, and Stripe customer identifier stored for paid subscribers; section 4 (External Services) now explicitly names Stripe, Inc. (USA) as payment processor and links to its Privacy Policy; section 6 (GDPR rights) extends the international transfers disclosure to include Stripe alongside OpenAI, both covered by Standard Contractual Clauses (Art. 46 GDPR).
+- Terms of Service: section 5 now mentions monthly **and** yearly subscription plans; section 6 clarifies the free trial period (payment details required; no charge until trial ends), annual billing cycle, and that current prices are displayed at checkout — no fixed prices are stated in the legal text.
+- Privacy Policy: new data item `s2i8` discloses subscription status, plan type, and Stripe customer identifier stored for paid subscribers; section 4 (External Services) now explicitly names Stripe, Inc. (USA) as payment processor and links to its Privacy Policy; section 6 (GDPR rights) extends the international transfers disclosure to include Stripe alongside OpenAI, both covered by Standard Contractual Clauses (Art. 46 GDPR).
 - Privacy Policy page component (`privacy/page.tsx`): `s2Items` array extended to render the new `s2i8` data item.
 - Real-time voice conversation: improved with a new voice for a more natural and engaging experience.
 
@@ -344,8 +361,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Public landing page at `/` with sticky nav, hero, feature cards, and footer; i18n in 6 languages (en, es, fr, pt, de, it)
 - `landing` i18n section in all 6 locale files
 - Legal documents completely rewritten for dual-mode operation (self-hosted + hosted service):
-  - Terms of Service: 10 sections covering both modalities, subscription & billing, governing law (Spain), 14-day EU withdrawal right
-  - Privacy Policy: 8 sections including data controller identification, external AI services (OpenAI + Standard Contractual Clauses), GDPR rights, right to lodge complaint with supervisory authority (AEPD/CNIL/BfDI/Garante/CNPD), legal basis of processing (Art. 6(1)(b) GDPR), international transfers
+- Terms of Service: 10 sections covering both modalities, subscription & billing, governing law (Spain), 14-day EU withdrawal right
+- Privacy Policy: 8 sections including data controller identification, external AI services (OpenAI + Standard Contractual Clauses), GDPR rights, right to lodge complaint with supervisory authority (AEPD/CNIL/BfDI/Garante/CNPD), legal basis of processing (Art. 6(1)(b) GDPR), international transfers
 - Minimum age requirement (16 years, GDPR Art. 8) added to Terms s3 and Privacy s2 in all 6 locales
 - `landing.footer` updated to reflect dual-mode availability (open source · self-host free or subscribe to hosted service)
 - `common.tagline` updated: removed "self-hosted" qualifier
@@ -470,11 +487,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Full i18n coverage for all previously hardcoded UI strings across 6 locale files (en, es, fr, pt, de, it):
-  - `common.close`
-  - `grammar.explanation`, `grammar.backLink`
-  - `plan.unitLabel`, `plan.grammarCovered`, `plan.noLessons`, `plan.weekDay`, `plan.lessonTypes.*` (grammar / vocabulary / reading / writing / conversation / review / level_test), `plan.levelComplete`, `plan.levelCompleteDesc`, `plan.levelCompleteHint`, `plan.beginLevelTest`, `plan.nLessons`, `plan.nGrammar`, `plan.levelTestLabel`, `plan.unitAriaLabel`
-  - `assessment.step1/2/3`, `assessment.studiedBefore`, `assessment.studiedBeforeHint`, `assessment.beginnerOption/Hint`, `assessment.hasExperienceOption/Hint`, `assessment.skills.*`, `assessment.howManyWeeks`, `assessment.nWeeks`, `assessment.intensity.*` (intensive / standard / relaxed / veryRelaxed), `assessment.approxLessons`, `assessment.daysPerWeek`, `assessment.mainGoals`, `assessment.goals.*`, `assessment.summaryLevel/Duration/Goals`, `assessment.noneSelected`, `assessment.buildingPlan`, `assessment.startMyPlan`
-  - `common.tagline`, `voiceRecorder.*` (6 keys), `audioPlayer.*` (4 keys), `languages.*` (5 language names per locale)
+- `common.close`
+- `grammar.explanation`, `grammar.backLink`
+- `plan.unitLabel`, `plan.grammarCovered`, `plan.noLessons`, `plan.weekDay`, `plan.lessonTypes.*` (grammar / vocabulary / reading / writing / conversation / review / level_test), `plan.levelComplete`, `plan.levelCompleteDesc`, `plan.levelCompleteHint`, `plan.beginLevelTest`, `plan.nLessons`, `plan.nGrammar`, `plan.levelTestLabel`, `plan.unitAriaLabel`
+- `assessment.step1/2/3`, `assessment.studiedBefore`, `assessment.studiedBeforeHint`, `assessment.beginnerOption/Hint`, `assessment.hasExperienceOption/Hint`, `assessment.skills.*`, `assessment.howManyWeeks`, `assessment.nWeeks`, `assessment.intensity.*` (intensive / standard / relaxed / veryRelaxed), `assessment.approxLessons`, `assessment.daysPerWeek`, `assessment.mainGoals`, `assessment.goals.*`, `assessment.summaryLevel/Duration/Goals`, `assessment.noneSelected`, `assessment.buildingPlan`, `assessment.startMyPlan`
+- `common.tagline`, `voiceRecorder.*` (6 keys), `audioPlayer.*` (4 keys), `languages.*` (5 language names per locale)
 - `grammar/[slug]/page.tsx`, `UnitDrawer.tsx`, `LevelTestBanner.tsx`, `UnitCard.tsx`, `BeginnerGate.tsx`, `AdaptiveQuizCard.tsx`, `DurationSelector.tsx` now use `useTranslations` — no hardcoded English strings remain in these components
 - `VoiceRecorder.tsx` and `AudioPlayer.tsx` use `useTranslations('voiceRecorder')` / `useTranslations('audioPlayer')`
 - Login and register pages render the app tagline via `tCommon('tagline')`

@@ -240,3 +240,42 @@ This document records what was built and the completion criteria met.
 - [x] Paywall returns 403 on AI endpoints when `STRIPE_ENABLED=true` and user is unsubscribed
 - [x] `tsc --noEmit` and `python3 -m compileall` pass clean
 - [x] No regressions in Phases 1–5
+
+---
+
+## Phase 7 — Reading
+
+✅ Status: Complete (v1.5.2)
+
+> LLM-generated reading comprehension exercises. Text is shown immediately alongside 5
+> multiple-choice questions (no audio, no "I'm ready" gate). Exercises are cached per
+> CEFR level and target language so multiple users share the same content. Score and XP
+> are awarded on submission; completed exercises move to a personal history tab where
+> they can be replayed without earning additional XP.
+
+| # | Milestone | Status |
+|---|-----------|--------|
+| 1 | DB models — `reading_exercises` + `reading_attempts` + migration `0019` | ✅ |
+| 2 | Backend service — LLM generation (no TTS), 7 exercise types, 6 topic sets, Redis generation lock | ✅ |
+| 3 | Backend router — 4 endpoints: next, generate, attempt, history | ✅ |
+| 4 | `parse_llm_json` refactored from `listening_service.py` → `llm_adapter.py` (shared utility) | ✅ |
+| 5 | Frontend page — 6 UI states: loading → generating → idle → exercise → results → history | ✅ |
+| 6 | Two-column layout (passage 55% / questions 45%) on desktop; stacked on mobile | ✅ |
+| 7 | Sidebar nav entry (immediately after Listening) | ✅ |
+| 8 | i18n — `nav.reading` + `reading.*` namespace in all 10 locale files | ✅ |
+| 9 | `PaywallGate` on AI endpoints; history accessible without subscription | ✅ |
+| 10 | Answer count validation (`field_validator` — exactly 5 answers required) | ✅ |
+
+**Completion criteria:**
+- [x] `GET /api/reading/next` returns exercise with `text` included immediately, or `{ "available": false }`
+- [x] `POST /api/reading/generate` enqueues background LLM task; Redis lock prevents duplicate generation
+- [x] Exercise cached and reused for all users at the same level + language
+- [x] `correct` field omitted from `QuestionOut`; only revealed after `POST /attempt`
+- [x] Completed exercises excluded from "new" pool; accessible via history
+- [x] `replay=true` scores correctly but forces `xp_earned = 0`
+- [x] Score 0–5, XP 0–50 (10 per correct answer) saved correctly
+- [x] History paginated (`skip` / `limit`, max 50); returns `total` count
+- [x] Paywall returns 403 on AI endpoints when `STRIPE_ENABLED=true` and user is unsubscribed
+- [x] `POST /attempt` with ≠ 5 answers returns 422 (Pydantic `field_validator`)
+- [x] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [x] No regressions in Phases 1–6

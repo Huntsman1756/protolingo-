@@ -10,8 +10,8 @@
     "feature2Desc": "Ćwicz z lekcjami, ćwiczeniami i fiszkami pod kierunkiem korepetytora. Informacje zwrotne na każdym kroku.",
     "feature3Title": "Rozmowa głosowa",
     "feature3Desc": "Rozmawiaj z korepetytorem w czasie rzeczywistym. Aktywacja głosem, natychmiastowa odpowiedź.",
-    "feature4Title": "Ćwiczenia listening",
-    "feature4Desc": "Audio generowane przez AI na Twoim poziomie CEFR. Słuchaj, odpowiedz na 5 pytań ze zrozumienia i odblokuj transkrypcję. Nowe ćwiczenia generowane na żądanie.",
+    "feature4Title": "Listening & Reading",
+    "feature4Desc": "Ćwiczenia generowane przez AI na Twoim poziomie CEFR. Słuchaj fragmentu i odpowiedz na 5 pytań ze zrozumienia, następnie odblokuj transkrypcję — lub czytaj tekst i odpowiadaj bezpośrednio. Nowe ćwiczenia na żądanie.",
     "feature5Title": "Fiszki",
     "feature5Desc": "Powtarzanie słownictwa metodą spaced repetition. Algorytm SM-2 planuje każdą kartę w optymalnym momencie, aby zmaksymalizować długoterminowe zapamiętywanie.",
     "feature6Title": "Postęp i serie",
@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Rozmowa",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -211,6 +212,10 @@
     "deleteAccountMessage": "Spowoduje to trwałe usunięcie Twojego konta i wszystkich danych. Tej operacji nie można cofnąć.",
     "deleteAccountConfirm": "Usuń konto",
     "sectionUsageLimits": "Limity użytkowania",
+    "sectionVoice": "Głos",
+    "voiceHint": "Wybierz preferowany głos z listy rozwijanej i kliknij odtwarzaj, aby go podejrzeć.",
+    "voicePlay": "Odtwórz",
+    "voiceStop": "Zatrzymaj",
     "quotaSessions": "Sesje / tydzień",
     "quotaMinutesDay": "Minuty / dzień",
     "quotaMinutesWeek": "Minuty / tydzień",
@@ -862,9 +867,14 @@
       "desc": "Na podstawie oceny poziomu FreeLingo tworzy ustrukturyzowany plan nauki z codziennymi lekcjami dostosowanymi do Twoich celów."
     },
     "step6": {
+      "label": "Ćwiczenia",
+      "title": "Słuchanie & Czytanie",
+      "desc": "Sprawdź swoje rozumienie dzięki ćwiczeniom generowanym przez AI. Posłuchaj fragmentu i odpowiedz na 5 pytań lub przeczytaj tekst na swoim poziomie CEFR — zdobywaj XP za każdą poprawną odpowiedź."
+    },
+    "step7": {
       "label": "Gotowy",
       "title": "Wszystko gotowe!",
-      "desc": "Zacznij od dzisiejszej lekcji, otwórz czat lub rozpocznij sesję głosową — FreeLingo dostosowuje się do Twojego stylu nauki."
+      "desc": "Zacznij od dzisiejszej lekcji, otwórz czat lub ćwicz słuchanie i czytanie — FreeLingo dostosowuje się do Twojego stylu nauki."
     }
   },
   "billing": {
@@ -915,13 +925,17 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.5.1",
+    "version": "v1.5.2",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Ćwiczenia listening",
-      "desc": "Ćwicz rozumienie ze słuchu w języku angielskim dzięki ćwiczeniom audio generowanym przez AI. Posłuchaj nagrania, odpowiedz na 5 pytań i odkryj transkrypcję — nowe ćwiczenia generowane na żądanie dla Twojego poziomu ESOKJ."
+      "label": "Reading",
+      "desc": "Nowe ćwiczenia Reading: teksty generowane przez AI na Twoim poziomie CEFR z 5 pytaniami ze zrozumienia. Tekst i pytania są wyświetlane razem. Zdobywaj XP za każdą poprawną odpowiedź."
     },
     "entry2": {
+      "label": "Wybór głosu",
+      "desc": "Wybierz głos swojego tutora AI bezpośrednio w Ustawieniach. Odsłuchaj próbkę wszystkich 9 dostępnych głosów przed wybraniem, Twoja preferencja jest zapisywana automatycznie."
+    },
+    "entry3": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }
@@ -960,6 +974,31 @@
     "viewHistory": "Historia",
     "history": "Historia",
     "historyTitle": "Historia listening",
+    "historyEmpty": "Brak ukończonych ćwiczeń.",
+    "practiceMore": "Ćwicz",
+    "moreInHistory": "+{count} więcej",
+    "practiceAgain": "Ćwicz ponownie",
+    "replayNoXp": "Powtórka — brak XP"
+  },
+  "reading": {
+    "title": "Czytanie",
+    "topic": "Temat",
+    "textLabel": "Tekst",
+    "questionsLabel": "Pytania",
+    "submit": "Prześlij odpowiedzi",
+    "generating": "Generowanie ćwiczenia...",
+    "generatingDesc": "AI tworzy nowe ćwiczenie. Zajmuje to około 30 sekund.",
+    "noExercises": "Brak ćwiczeń dla twojego poziomu.",
+    "generate": "Generuj ćwiczenie",
+    "alreadyAttempted": "To ćwiczenie zostało już ukończone.",
+    "errorLoading": "Nie można załadować ćwiczenia. Spróbuj ponownie.",
+    "errorSubmit": "Nie można przesłać odpowiedzi. Spróbuj ponownie.",
+    "resultsLabel": "Wyniki",
+    "review": "Przegląd odpowiedzi",
+    "nextExercise": "Następne ćwiczenie",
+    "viewHistory": "Historia",
+    "history": "Historia",
+    "historyTitle": "Historia czytania",
     "historyEmpty": "Brak ukończonych ćwiczeń.",
     "practiceMore": "Ćwicz",
     "moreInHistory": "+{count} więcej",

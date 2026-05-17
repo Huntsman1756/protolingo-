@@ -21,7 +21,7 @@ interface Exercise {
   target_language: string
   exercise_type: string
   topic: string
-  duration_seconds: number
+  text: string
   questions: Question[]
 }
 
@@ -34,7 +34,6 @@ interface SubmitResult {
   score: number
   xp_earned: number
   correct_answers: CorrectAnswer[]
-  text: string
 }
 
 interface AttemptItem {
@@ -43,150 +42,18 @@ interface AttemptItem {
   xp_earned: number
   completed_at: string
   exercise: Exercise
-  text: string
   answers: Record<string, string>
+  correct_answers: CorrectAnswer[]
 }
 
 type PageState = 'loading' | 'idle' | 'generating' | 'exercise' | 'results' | 'history'
 
 // ---------------------------------------------------------------------------
-// Audio player for listening exercises
-// Fetches audio via apiFetch (adds Authorization header automatically)
-// ---------------------------------------------------------------------------
-
-function ExerciseAudioPlayer({
-  exerciseId,
-  onFirstPlay,
-}: {
-  exerciseId: number
-  onFirstPlay?: () => void
-}) {
-  const t = useTranslations('listening')
-  const [state, setState] = useState<'idle' | 'loading' | 'playing' | 'paused' | 'error'>('idle')
-  const [progress, setProgress] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const blobUrlRef = useRef<string | null>(null)
-  const playedRef = useRef(false)
-
-  async function handlePlayPause() {
-    if (state === 'loading') return
-
-    if (state === 'playing') {
-      audioRef.current?.pause()
-      setState('paused')
-      return
-    }
-
-    if (state === 'paused' && audioRef.current) {
-      await audioRef.current.play()
-      setState('playing')
-      return
-    }
-
-    // First play: fetch audio blob
-    setState('loading')
-    try {
-      const res = await apiFetch(`/api/listening/audio/${exerciseId}`)
-      if (!res.ok) throw new Error(`${res.status}`)
-      const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      blobUrlRef.current = url
-
-      const audio = new Audio(url)
-      audioRef.current = audio
-
-      audio.addEventListener('loadedmetadata', () => {
-        setDuration(audio.duration)
-      })
-      audio.addEventListener('timeupdate', () => {
-        if (audio.duration > 0) {
-          setProgress((audio.currentTime / audio.duration) * 100)
-        }
-      })
-      audio.addEventListener('ended', () => {
-        setProgress(100)
-        setState('idle')
-      })
-      audio.addEventListener('error', () => setState('error'))
-
-      await audio.play()
-      setState('playing')
-
-      if (!playedRef.current) {
-        playedRef.current = true
-        onFirstPlay?.()
-      }
-    } catch {
-      setState('error')
-    }
-  }
-
-  function handleSeek(e: React.MouseEvent<HTMLDivElement>) {
-    const audio = audioRef.current
-    if (!audio || audio.duration === 0) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const ratio = (e.clientX - rect.left) / rect.width
-    audio.currentTime = ratio * audio.duration
-    setProgress(ratio * 100)
-  }
-
-  useEffect(() => {
-    return () => {
-      audioRef.current?.pause()
-      if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current)
-    }
-  }, [])
-
-  const icon = state === 'loading' ? '◌' : state === 'playing' ? '▐▐' : '▶'
-  const label = state === 'playing' ? 'Pause' : 'Play'
-
-  return (
-    <div className="border border-fl-border bg-fl-surface p-4 space-y-2">
-      <div className="flex items-center gap-4">
-        <button
-          onClick={handlePlayPause}
-          disabled={state === 'loading'}
-          aria-label={label}
-          className="font-mono text-fl-fg hover:text-fl-fg-bright transition-colors disabled:opacity-40 w-8 text-center text-base shrink-0"
-        >
-          {icon}
-        </button>
-
-        {/* Progress bar — clickable scrubber */}
-        <div
-          className="flex-1 h-1.5 bg-fl-border cursor-pointer relative"
-          onClick={handleSeek}
-          role="progressbar"
-          aria-valuenow={Math.round(progress)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-        >
-          <div
-            className="h-full bg-fl-accent transition-all"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        {duration > 0 && (
-          <span className="font-mono text-fl-label text-fl-muted-3 shrink-0 tabular-nums">
-            {Math.ceil(duration)}s
-          </span>
-        )}
-      </div>
-      {state === 'error' && (
-        <p className="font-mono text-fl-label text-red-500">{t('audioError')}</p>
-      )}
-    </div>
-  )
-}
-
-// ---------------------------------------------------------------------------
 // Main page logic
 // ---------------------------------------------------------------------------
 
-function ListeningPage() {
-  const t = useTranslations('listening')
+function ReadingPage() {
+  const t = useTranslations('reading')
   const tCommon = useTranslations('common')
 
   const [pageState, setPageState] = useState<PageState>('loading')
@@ -209,7 +76,7 @@ function ListeningPage() {
     setPageState('loading')
     setError('')
     try {
-      const res = await apiFetch('/api/listening/next')
+      const res = await apiFetch('/api/reading/next')
       if (!res.ok) {
         setPageState('idle')
         return
@@ -235,17 +102,13 @@ function ListeningPage() {
   }, [loadNext])
 
   async function handleGenerate() {
-    const voice = typeof window !== 'undefined' ? (localStorage.getItem('tts_voice') ?? '') : ''
-    const voiceQ = voice ? `?voice=${encodeURIComponent(voice)}` : ''
     try {
-      const res = await apiFetch(`/api/listening/generate${voiceQ}`, { method: 'POST' })
+      const res = await apiFetch('/api/reading/generate', { method: 'POST' })
       if (res.ok || res.status === 202) {
         setPageState('generating')
-        // Single long-poll request — server waits (async) until exercise is ready.
-        // AbortController cancels the request if the component unmounts first.
         const controller = new AbortController()
         generateAbortRef.current = controller
-        const nextRes = await apiFetch('/api/listening/next?wait=true', {
+        const nextRes = await apiFetch('/api/reading/next?wait=true', {
           signal: controller.signal,
         })
         generateAbortRef.current = null
@@ -273,7 +136,7 @@ function ListeningPage() {
     setSubmitting(true)
     setError('')
     try {
-      const res = await apiFetch('/api/listening/attempt', {
+      const res = await apiFetch('/api/reading/attempt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ exercise_id: exercise.id, answers, replay: isReplay }),
@@ -300,7 +163,7 @@ function ListeningPage() {
   async function loadHistory() {
     setPageState('history')
     try {
-      const res = await apiFetch('/api/listening/history')
+      const res = await apiFetch('/api/reading/history')
       if (res.ok) {
         const data = await res.json() as { items: AttemptItem[]; total: number }
         setHistory(data.items)
@@ -324,7 +187,7 @@ function ListeningPage() {
     )
   }
 
-  // ── Generating (poll) ─────────────────────────────────────────────────────
+  // ── Generating (long-poll) ────────────────────────────────────────────────
   if (pageState === 'generating') {
     return (
       <div className="flex min-h-[calc(100vh-56px)] md:min-h-screen flex-col items-center justify-center gap-3 px-4">
@@ -341,7 +204,7 @@ function ListeningPage() {
   // ── History ───────────────────────────────────────────────────────────────
   if (pageState === 'history') {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto">
+      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
             {t('historyTitle')}
@@ -382,8 +245,8 @@ function ListeningPage() {
                     </p>
                   </div>
                 </div>
-                <p className="font-mono text-fl-label text-fl-muted-2 leading-relaxed border-t border-fl-border pt-3 mb-3">
-                  {item.text}
+                <p className="font-mono text-fl-label text-fl-muted-2 leading-relaxed border-t border-fl-border pt-3 mb-3 line-clamp-3">
+                  {item.exercise.text}
                 </p>
                 <button
                   onClick={() => {
@@ -413,7 +276,7 @@ function ListeningPage() {
   // ── Results ───────────────────────────────────────────────────────────────
   if (pageState === 'results' && result && exercise) {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto space-y-5">
+      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-3xl mx-auto space-y-5">
         {/* Score card */}
         <div className="border border-fl-border bg-fl-surface p-5">
           <div className="flex items-center justify-between">
@@ -433,16 +296,6 @@ function ListeningPage() {
                 <p className="font-mono text-xl font-bold text-fl-accent mt-1">+{result.xp_earned}</p>
               )}
             </div>
-          </div>
-        </div>
-
-        {/* Transcript */}
-        <div>
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
-            {t('transcript')}
-          </p>
-          <div className="border border-fl-border bg-fl-surface p-4">
-            <p className="font-mono text-xs text-fl-fg leading-relaxed">{result.text}</p>
           </div>
         </div>
 
@@ -508,7 +361,7 @@ function ListeningPage() {
   // ── Idle (no exercises available) ─────────────────────────────────────────
   if (pageState === 'idle') {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto">
+      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
             {t('title')}
@@ -544,15 +397,15 @@ function ListeningPage() {
   if (!exercise) return null
 
   return (
-    <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto space-y-5">
+    <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 mb-6">
         <div>
           <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
             {t('title')}
           </h1>
           <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mt-0.5">
-            {exercise.level} · {exercise.exercise_type}
+            {exercise.level} · {exercise.exercise_type} · {exercise.topic}
           </p>
         </div>
         <button
@@ -563,82 +416,76 @@ function ListeningPage() {
         </button>
       </div>
 
-      {/* Topic */}
-      <div className="border border-fl-border bg-fl-surface px-4 py-3">
-        <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
-          {t('topic')}
-        </p>
-        <p className="font-mono text-xs font-bold text-fl-fg mt-1">{exercise.topic}</p>
-      </div>
+      {/* Two-column on desktop, stacked on mobile */}
+      <div className="flex flex-col md:grid md:grid-cols-[55fr_45fr] md:gap-6 gap-5">
 
-      {/* Audio player */}
-      <div>
-        <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
-          {t('listenLabel')}
-        </p>
-        <ExerciseAudioPlayer exerciseId={exercise.id} />
-      </div>
+        {/* Left: reading text */}
+        <div>
+          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
+            {t('textLabel')}
+          </p>
+          <div className="border border-fl-border bg-fl-surface p-5">
+            <p className="font-mono text-xs text-fl-fg leading-relaxed whitespace-pre-wrap">
+              {exercise.text}
+            </p>
+          </div>
+        </div>
 
-      {/* Questions */}
-      <div>
-        <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-3">
-          {t('questionsLabel')}
-        </p>
-        <div className="space-y-4">
-          {exercise.questions.map((q) => (
-            <div key={q.index} className="border border-fl-border bg-fl-surface p-4">
-              <p className="font-mono text-xs text-fl-fg mb-3 leading-relaxed">
-                {q.index + 1}. {q.question}
-              </p>
-              <div className="space-y-2">
-                {Object.entries(q.options).map(([k, v]) => {
-                  const selected = answers[String(q.index)] === k
-                  return (
-                    <button
-                      key={k}
-                      onClick={() =>
-                        setAnswers((prev) => ({ ...prev, [String(q.index)]: k }))
-                      }
-                      className={`w-full text-left px-3 py-2 font-mono text-fl-label border transition-colors ${selected
-                        ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
-                        : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
-                        }`}
-                    >
-                      <span className="font-bold">{k}.</span> {v}
-                    </button>
-                  )
-                })}
+        {/* Right: questions */}
+        <div>
+          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
+            {t('questionsLabel')}
+          </p>
+          <div className="space-y-4">
+            {exercise.questions.map((q) => (
+              <div key={q.index} className="border border-fl-border bg-fl-surface p-4">
+                <p className="font-mono text-xs text-fl-fg mb-3 leading-relaxed">
+                  {q.index + 1}. {q.question}
+                </p>
+                <div className="space-y-2">
+                  {Object.entries(q.options).map(([k, v]) => {
+                    const selected = answers[String(q.index)] === k
+                    return (
+                      <button
+                        key={k}
+                        onClick={() =>
+                          setAnswers((prev) => ({ ...prev, [String(q.index)]: k }))
+                        }
+                        className={`w-full text-left px-3 py-2 font-mono text-fl-label border transition-colors ${selected
+                          ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
+                          : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
+                          }`}
+                      >
+                        <span className="font-bold">{k}.</span> {v}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {error && (
+            <p className="font-mono text-fl-label text-red-500 mt-3">{error}</p>
+          )}
+
+          <button
+            onClick={handleSubmit}
+            disabled={!allAnswered || submitting}
+            className="mt-4 w-full border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {submitting ? '...' : t('submit')}
+          </button>
         </div>
       </div>
-
-      {/* Error */}
-      {error && (
-        <p className="font-mono text-fl-label text-red-500">{error}</p>
-      )}
-
-      {/* Submit */}
-      <button
-        onClick={handleSubmit}
-        disabled={!allAnswered || submitting}
-        className="w-full border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 disabled:opacity-40 disabled:cursor-not-allowed"
-      >
-        {submitting ? tCommon('checking') : t('submit')}
-      </button>
     </div>
   )
 }
 
-// ---------------------------------------------------------------------------
-// Export — wrapped in PaywallGate (requires subscription)
-// ---------------------------------------------------------------------------
-
-export default function ListeningPageWrapper() {
+export default function ReadingPageWrapper() {
   return (
     <PaywallGate>
-      <ListeningPage />
+      <ReadingPage />
     </PaywallGate>
   )
 }

@@ -10,8 +10,8 @@
     "feature2Desc": "Pratica con lezioni, esercizi e flashcard guidati dal tuo tutor. Feedback a ogni passo.",
     "feature3Title": "Conversazione vocale",
     "feature3Desc": "Parla con il tuo tutor in tempo reale. Attivazione vocale, risposta istantanea, senza turni.",
-    "feature4Title": "Esercizi di listening",
-    "feature4Desc": "Audio generato dall'IA al tuo livello QCER. Ascolta, rispondi a 5 domande di comprensione, poi sblocca la trascrizione. Nuovi esercizi generati su richiesta.",
+    "feature4Title": "Listening & Reading",
+    "feature4Desc": "Esercizi generati dall'IA al tuo livello QCER. Ascolta un brano e rispondi a 5 domande di comprensione, poi sblocca la trascrizione — oppure leggi un testo e rispondi direttamente. Nuovi esercizi su richiesta.",
     "feature5Title": "Flashcard",
     "feature5Desc": "Ripasso del vocabolario con ripetizione spaziata. L'algoritmo SM-2 pianifica ogni scheda nel momento ottimale per massimizzare la memoria a lungo termine.",
     "feature6Title": "Progressi e serie",
@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Conversazione",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -211,6 +212,10 @@
     "deleteAccountMessage": "Questa azione eliminerà definitivamente il tuo account e tutti i tuoi dati. Questa azione non può essere annullata.",
     "deleteAccountConfirm": "Elimina account",
     "sectionUsageLimits": "Limiti di utilizzo",
+    "sectionVoice": "Voce",
+    "voiceHint": "Seleziona la voce preferita dal menu a tendina, poi clicca su riproduci per ascoltarla.",
+    "voicePlay": "Riproduci",
+    "voiceStop": "Ferma",
     "quotaSessions": "Sessioni / settimana",
     "quotaMinutesDay": "Minuti / giorno",
     "quotaMinutesWeek": "Minuti / settimana",
@@ -862,9 +867,14 @@
       "desc": "In base alla valutazione del tuo livello, FreeLingo crea un piano di studio strutturato con lezioni giornaliere adattate ai tuoi obiettivi."
     },
     "step6": {
+      "label": "Pratica",
+      "title": "Ascolto & Lettura",
+      "desc": "Metti alla prova la comprensione con esercizi generati dall'IA. Ascolta un brano e rispondi a 5 domande, o leggi un testo al tuo livello CEFR — guadagna XP per ogni risposta corretta."
+    },
+    "step7": {
       "label": "Pronto",
       "title": "Sei pronto!",
-      "desc": "Inizia con la lezione di oggi, apri una chat o lancia una sessione vocale — FreeLingo si adatta al tuo modo di apprendere."
+      "desc": "Inizia con la lezione di oggi, apri una chat o esercitati con ascolto e lettura — FreeLingo si adatta al tuo modo di apprendere."
     }
   },
   "billing": {
@@ -915,13 +925,17 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.5.1",
+    "version": "v1.5.2",
     "cta": "Capito",
     "entry1": {
-      "label": "Esercizi di listening",
-      "desc": "Allenati nella comprensione dell’ascolto in inglese con esercizi audio generati dall’IA. Ascolta una registrazione, rispondi a 5 domande e scopri la trascrizione — nuovi esercizi generati su richiesta per il tuo livello QCER."
+      "label": "Reading",
+      "desc": "Nuovi esercizi di Reading: testi generati dall'IA al tuo livello CEFR con 5 domande di comprensione. Testo e domande vengono mostrati insieme. Guadagna XP per ogni risposta corretta."
     },
     "entry2": {
+      "label": "Selettore voce",
+      "desc": "Scegli la voce del tuo tutor IA direttamente dalle Impostazioni. Ascolta un'anteprima delle 9 voci disponibili prima di scegliere, la tua preferenza viene salvata automaticamente."
+    },
+    "entry3": {
       "label": "Correzioni",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }
@@ -960,6 +974,31 @@
     "viewHistory": "Cronologia",
     "history": "Cronologia",
     "historyTitle": "Cronologia listening",
+    "historyEmpty": "Nessun esercizio completato ancora.",
+    "practiceMore": "Pratica",
+    "moreInHistory": "+{count} altri",
+    "practiceAgain": "Esercitarsi di nuovo",
+    "replayNoXp": "Ripetizione — senza XP"
+  },
+  "reading": {
+    "title": "Lettura",
+    "topic": "Argomento",
+    "textLabel": "Testo",
+    "questionsLabel": "Domande",
+    "submit": "Invia risposte",
+    "generating": "Generazione in corso...",
+    "generatingDesc": "L'IA sta creando un nuovo esercizio. Richiede circa 30 secondi.",
+    "noExercises": "Nessun esercizio disponibile per il tuo livello.",
+    "generate": "Genera esercizio",
+    "alreadyAttempted": "Hai già completato questo esercizio.",
+    "errorLoading": "Impossibile caricare l'esercizio. Riprova.",
+    "errorSubmit": "Impossibile inviare le risposte. Riprova.",
+    "resultsLabel": "Risultati",
+    "review": "Revisione risposte",
+    "nextExercise": "Esercizio successivo",
+    "viewHistory": "Cronologia",
+    "history": "Cronologia",
+    "historyTitle": "Cronologia lettura",
     "historyEmpty": "Nessun esercizio completato ancora.",
     "practiceMore": "Pratica",
     "moreInHistory": "+{count} altri",

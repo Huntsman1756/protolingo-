@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 
 const STORAGE_KEY = 'fl_tour_done'
 
-const STEP_ICONS = ['◎', '▣', '◈', '△', '◇', '✦']
+const STEP_ICONS = ['◎', '▣', '◈', '△', '◇', '◉', '✦']
 
 export default function OnboardingTour() {
   const t = useTranslations('tour')
@@ -14,7 +14,7 @@ export default function OnboardingTour() {
   const [leaving, setLeaving] = useState(false)
   const [dir, setDir] = useState<'next' | 'prev'>('next')
 
-  const totalSteps = 6
+  const totalSteps = 7
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !localStorage.getItem(STORAGE_KEY)) {
@@ -77,10 +77,10 @@ export default function OnboardingTour() {
         {/* Step content */}
         <div
           className={`px-6 py-7 transition-all duration-150 ${leaving
-              ? dir === 'next'
-                ? '-translate-x-3 opacity-0'
-                : 'translate-x-3 opacity-0'
-              : 'translate-x-0 opacity-100'
+            ? dir === 'next'
+              ? '-translate-x-3 opacity-0'
+              : 'translate-x-3 opacity-0'
+            : 'translate-x-0 opacity-100'
             }`}
         >
           <div className="flex items-center gap-3 mb-4">

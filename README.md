@@ -13,7 +13,7 @@
 Open source AI language learning platform available in two modes: self-hosted (free, run it on your own
 infrastructure) and as a hosted service operated by the FreeLingo team (paid subscription).
 A language model evaluates your CEFR level, generates a personalized study plan, and guides you through
-grammar, vocabulary, reading comprehension, writing lessons, and AI-generated listening exercises — with optional voice features.
+grammar, vocabulary, reading comprehension, writing lessons, AI-generated listening exercises, and AI-generated reading exercises — with optional voice features.
 
 The study plan follows a CEFR-aligned curriculum (A1-C2) organized into units with
 clear competencies and prerequisites. After a deterministic placement assessment,
@@ -27,6 +27,9 @@ provides contextual streaming feedback in English (with optional brief support i
 the learner's native language). Listening exercises are generated on demand by the
 LLM, synthesised to MP3 via TTS, and cached per CEFR level — the user listens,
 answers 5 comprehension questions, and earns XP before the transcript is revealed.
+Reading exercises follow the same caching model but without audio — the AI generates
+a passage and 5 comprehension questions displayed side by side; the user reads and
+answers immediately, earning XP per correct answer.
 Progress tracking includes XP, streaks, skill scores, unit competencies, and an
 end-of-level completion test.
 
@@ -92,6 +95,7 @@ freelingo/
 | 4     | Multi-language support | ✅ Complete         |
 | 5     | Stripe subscriptions   | ✅ Complete         |
 | 6     | Listening              | ✅ Complete         |
+| 7     | Reading                | ✅ Complete         |
 
 ## Quick start
 
