@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.5.2] - 2026-05-17
+## [1.5.3] - 2026-05-17
 
 ### Added
 - **Phase 7 — Reading exercises**: AI-generated reading comprehension exercises with multiple-choice questions, scoring, and XP rewards.
@@ -21,6 +21,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`store/config.ts`** extended with `ttsProvider` and `openaiTtsVoice` fields.
 - **Docker volume** `${DATA_PATH}/tts_previews:/app/tts_previews` added to the backend service so cached preview clips survive redeployments.
 - **i18n**: `sectionVoice`, `voiceHint`, `voicePlay`, `voiceStop` keys added to all 10 locale files (en, es, de, fr, it, nl, pl, pt, ro, ru).
+
+## [1.5.2] - 2026-05-17
+
+### Fixed
+- Minor bug fixes.
 
 ## [1.5.1] - 2026-05-17
 
