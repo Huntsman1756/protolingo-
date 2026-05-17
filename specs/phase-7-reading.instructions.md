@@ -56,6 +56,24 @@ One type is selected at random from the level-appropriate subset.
 
 ---
 
+## Topics per level
+
+Topics available per level (`_TOPICS_BY_LEVEL` in `reading_service.py`):
+
+| Level | Available topics |
+|-------|------------------|
+| A1 | `daily_routine`, `family`, `shopping`, `home`, `animals` |
+| A2 | `travel`, `food`, `weather`, `hobbies`, `school` |
+| B1 | `health`, `work`, `environment`, `sports`, `friendship` |
+| B2 | `technology`, `culture`, `education`, `media`, `money` |
+| C1 | `politics`, `science`, `literature`, `psychology`, `urban_life` |
+| C2 | `philosophy`, `history`, `global_affairs`, `ethics`, `economics` |
+
+One topic is selected at random from the level-appropriate subset at generation time.
+The selected topic is passed to the LLM prompt as `{topic}` and stored in `ReadingExercise.topic`.
+
+---
+
 ## Text length by CEFR level
 
 | Level | Target word count |
@@ -193,6 +211,7 @@ for a {level} learner. Target language variant: {target_language}.
 
 Requirements:
 - Exercise type: {exercise_type} ({exercise_type_desc})
+- Topic area: {topic}
 - Length: approximately {word_count} words
 - Use {target_language} vocabulary and spelling conventions
 - Write in the natural register appropriate for the exercise type

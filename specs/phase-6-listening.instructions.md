@@ -32,24 +32,27 @@ exercises are not shown again as "new", but remain accessible in a personal hist
 
 | Type | Description | CEFR range |
 |------|-------------|------------|
-| `monologue` | First-person narrative or personal account | A1–B1 |
-| `announcement` | Public announcement (airport, shop, office) | A1–B2 |
-| `voicemail` | Someone leaving a recorded message | A2–B2 |
-| `story` | Short narrative with characters and plot | B1–C2 |
-| `podcast` | Informal presentation or opinion piece | B2–C2 |
+| `monologue` | First-person narrative or personal account | A1–A2, C1–C2 |
+| `announcement` | Public announcement (airport, shop, office) | A1–B1 |
+| `voicemail` | Someone leaving a recorded message | A1–B2 |
+| `dialogue` | Short informal conversation between two people | A1–B1 |
+| `story` | Short narrative with characters and plot | A1–C2 |
+| `podcast` | Informal presentation or opinion piece | B1–C2 |
+| `interview` | Structured Q&A between a host and a guest | B2–C2 |
+| `news` | Short news broadcast or report segment | B2–C2 |
 
-Types available per level (`_TYPES_BY_LEVEL` in `listening_service.py`):
+Each level has exactly 5 types (`_TYPES_BY_LEVEL` in `listening_service.py`):
 
 | Level | Available types |
 |-------|-----------------|
-| A1 | `monologue`, `announcement` |
-| A2 | `monologue`, `announcement`, `voicemail` |
-| B1 | `monologue`, `announcement`, `voicemail`, `story` |
-| B2 | `announcement`, `voicemail`, `story`, `podcast` |
-| C1 | `story`, `podcast` |
-| C2 | `story`, `podcast` |
+| A1 | `monologue`, `announcement`, `voicemail`, `dialogue`, `story` |
+| A2 | `monologue`, `announcement`, `voicemail`, `dialogue`, `story` |
+| B1 | `announcement`, `voicemail`, `story`, `dialogue`, `podcast` |
+| B2 | `voicemail`, `story`, `podcast`, `interview`, `news` |
+| C1 | `story`, `podcast`, `interview`, `news`, `monologue` |
+| C2 | `story`, `podcast`, `interview`, `news`, `monologue` |
 
-One type is selected at random from the level-appropriate subset.
+One type is selected at random from the level-appropriate subset. Types may repeat across levels.
 
 ---
 

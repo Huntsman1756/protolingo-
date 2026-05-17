@@ -17,14 +17,14 @@ logger = logging.getLogger(__name__)
 
 XP_PER_CORRECT_ANSWER = 10
 
-# Valid exercise types per CEFR level
+# Valid exercise types per CEFR level — exactly 5 per level, may repeat across levels
 _TYPES_BY_LEVEL: dict[str, list[str]] = {
-    "A1": ["monologue", "announcement"],
-    "A2": ["monologue", "announcement", "voicemail"],
-    "B1": ["monologue", "announcement", "voicemail", "story"],
-    "B2": ["announcement", "voicemail", "story", "podcast"],
-    "C1": ["story", "podcast"],
-    "C2": ["story", "podcast"],
+    "A1": ["monologue", "announcement", "voicemail", "dialogue", "story"],
+    "A2": ["monologue", "announcement", "voicemail", "dialogue", "story"],
+    "B1": ["announcement", "voicemail", "story", "dialogue", "podcast"],
+    "B2": ["voicemail", "story", "podcast", "interview", "news"],
+    "C1": ["story", "podcast", "interview", "news", "monologue"],
+    "C2": ["story", "podcast", "interview", "news", "monologue"],
 }
 
 _WORD_COUNT_BY_LEVEL: dict[str, int] = {
@@ -42,6 +42,9 @@ _TYPE_DESCRIPTIONS: dict[str, str] = {
     "voicemail": "someone leaving a recorded voice message",
     "story": "a short narrative with characters and plot",
     "podcast": "an informal presentation or opinion piece by a single speaker",
+    "dialogue": "a short informal conversation between two people",
+    "interview": "a structured interview or Q&A between a host and a guest",
+    "news": "a short news broadcast or report segment",
 }
 
 _GENERATION_PROMPT = """\
