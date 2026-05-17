@@ -7,7 +7,7 @@
 ![Hosted](https://img.shields.io/badge/hosted%20service-available-green?style=flat-square)
 
 <p align="left">
-  <img src="assets/logo.png" alt="FreeLingo logo" width="200" />
+  <img src="assets/logo.png" alt="FreeLingo logo" width="225" />
 </p>
 
 Open source AI language learning platform available in two modes: self-hosted (free, run it on your own
@@ -29,6 +29,18 @@ LLM, synthesised to MP3 via TTS, and cached per CEFR level — the user listens,
 answers 5 comprehension questions, and earns XP before the transcript is revealed.
 Progress tracking includes XP, streaks, skill scores, unit competencies, and an
 end-of-level completion test.
+
+## Hosted service
+
+> **Don't want to manage your own server?**  
+> FreeLingo is available as a fully managed hosted service at **[freelingo.app](https://freelingo.app)**.
+
+Sign up, choose a subscription plan, and start learning immediately — no Docker, no GPU, no maintenance required.
+The hosted instance is operated by the FreeLingo team and always runs the latest stable version.
+
+Self-hosting remains free and open source under the AGPL-3.0 licence. The hosted service exists for users who prefer a managed experience.
+
+---
 
 ## Architecture
 
@@ -81,18 +93,6 @@ freelingo/
 | 5     | Stripe subscriptions   | ✅ Complete         |
 | 6     | Listening              | ✅ Complete         |
 
-## Hosted service
-
-> **Don't want to manage your own server?**  
-> FreeLingo is available as a fully managed hosted service at **[freelingo.app](https://freelingo.app)**.
-
-Sign up, choose a subscription plan, and start learning immediately — no Docker, no GPU, no maintenance required.
-The hosted instance is operated by the FreeLingo team and always runs the latest stable version.
-
-Self-hosting remains free and open source under the AGPL-3.0 licence. The hosted service exists for users who prefer a managed experience.
-
----
-
 ## Quick start
 
 ### Option A — Git clone + Docker Compose
@@ -129,28 +129,6 @@ The first registered user becomes admin automatically.
 5. Access the app at `http://<server-ip>:3000`. Database migrations run automatically when the backend starts.
 
 > **Tip:** If Ollama runs on the same host as Portainer, set `OLLAMA_BASE_URL=http://host.docker.internal:11434`. On Linux you may need to add the `extra_hosts` entry in the compose file (already included by default).
-
-## Internal documentation
-
-- [api-endpoints.instructions.md](specs/api-endpoints.instructions.md) — All REST endpoints and WebSocket — paths, methods, rate limits, descriptions
-- [architecture.instructions.md](specs/architecture.instructions.md) — DB models, service layer, LLM adapter, auth design, data flow, code standards, test config
-- [CHANGELOG.md](CHANGELOG.md) — Project changelog
-- [changelog.instructions.md](specs/changelog.instructions.md) — Changelog format, entry style, and update rules
-- [docker.instructions.md](specs/docker.instructions.md) — Docker Compose by phase, `.env.example`, DB migrations, operational notes
-- [llm-error-handling.instructions.md](specs/llm-error-handling.instructions.md) — LLM failures: malformed JSON, timeouts, retries, context overflow
-- [phase-1-platform.instructions.md](specs/phase-1-platform.instructions.md) — Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat
-- [phase-1-plus.instructions.md](specs/phase-1-plus.instructions.md) — Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test
-- [phase-2-tts-stt.instructions.md](specs/phase-2-tts-stt.instructions.md) — Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises
-- [phase-3-conversation.instructions.md](specs/phase-3-conversation.instructions.md) — Phase 3: WebSocket voice pipeline, VAD, barge-in
-- [phase-4-target-language.instructions.md](specs/phase-4-target-language.instructions.md) — Phase 4: target_language (BCP-47), onboarding flow, auto-login on register
-- [phase-5-stripe-subscriptions.instructions.md](specs/phase-5-stripe-subscriptions.instructions.md) — Phase 5: Stripe subscriptions, paywall, Customer Portal, `STRIPE_ENABLED` toggle
-- [phase-6-listening.instructions.md](specs/phase-6-listening.instructions.md) — Phase 6: Listening section
-- [rate-limiting.instructions.md](specs/rate-limiting.instructions.md) — slowapi-based rate limits per-endpoint, self-hosted defaults
-- [readme.instructions.md](specs/readme.instructions.md) — README structure, badges, and update guidelines
-- [roadmap.instructions.md](specs/roadmap.instructions.md) — Development roadmap with milestones and completion criteria
-- [testing.instructions.md](specs/testing.instructions.md) — Testing strategy: pytest, Vitest, Playwright, mocks, CI
-- [version.md](specs/version.md) — Canonical project version and sync rules
-- [whats-new.instructions.md](specs/whats-new.instructions.md) — What's New modal: version-aware changelog overlay, localStorage trigger, priority with OnboardingTour
 
 ## Operational notes
 
@@ -210,17 +188,7 @@ whisper:
 
 > Use `ASR_MODEL=base` or `small` on CPU. Larger models are very slow without a GPU.
 
-### Option B — OpenAI providers (no local GPU needed)
-
-```env
-TTS_PROVIDER=openai
-STT_PROVIDER=openai
-OPENAI_API_KEY=sk-...
-```
-
-Uses the same `OPENAI_API_KEY` as the LLM if `LLM_PROVIDER=openai`. No extra services needed.
-
-### TTS voice options (Kokoro-82M)
+#### TTS voice options (Kokoro-82M)
 
 All voices are for English. Grades reflect training data quality and quantity.
 
@@ -237,7 +205,7 @@ All voices are for English. Grades reflect training data quality and quantity.
 
 Set with `TTS_VOICE=<voice>` in `.env`. Default: `af_heart`.
 
-### STT model options (Whisper)
+#### STT model options (Whisper)
 
 | Model | VRAM | Speed vs large | Notes |
 |-------|------|----------------|-------|
@@ -256,6 +224,16 @@ Set with `STT_MODEL=<model>` in `.env`. Default: `large-v3-turbo`.
 | `whisperx` | Adds speaker diarization; requires HuggingFace token |
 
 Set with `STT_ENGINE=<engine>` in `.env`. Default: `faster_whisper`.
+
+### Option B — OpenAI providers (no local GPU needed)
+
+```env
+TTS_PROVIDER=openai
+STT_PROVIDER=openai
+OPENAI_API_KEY=sk-...
+```
+
+Uses the same `OPENAI_API_KEY` as the LLM if `LLM_PROVIDER=openai`. No extra services needed.
 
 ## Contributing
 
