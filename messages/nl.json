@@ -867,9 +867,14 @@
       "desc": "Op basis van je niveaubeoordeling maakt FreeLingo een gestructureerd studieplan met dagelijkse lessen afgestemd op jouw doelen."
     },
     "step6": {
+      "label": "Oefening",
+      "title": "Luisteren & Lezen",
+      "desc": "Test je begrip met door AI gegenereerde oefeningen. Luister naar een fragment en beantwoord 5 vragen, of lees een tekst op jouw CEFR-niveau — verdien XP voor elk correct antwoord."
+    },
+    "step7": {
       "label": "Klaar",
       "title": "Je bent er klaar voor!",
-      "desc": "Begin met de les van vandaag, open een chat of start een spraaksessie — FreeLingo past zich aan hoe jij wilt leren."
+      "desc": "Begin met de les van vandaag, open een chat of oefen luisteren en lezen — FreeLingo past zich aan hoe jij wilt leren."
     }
   },
   "billing": {

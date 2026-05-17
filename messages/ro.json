@@ -867,9 +867,14 @@
       "desc": "Pe baza evaluării nivelului tău, FreeLingo creează un plan de studiu structurat cu lecții zilnice adaptate obiectivelor tale."
     },
     "step6": {
+      "label": "Practică",
+      "title": "Ascultare & Lectură",
+      "desc": "Testează-ți înțelegerea cu exerciții generate de IA. Ascultă un pasaj și răspunde la 5 întrebări, sau citește un text la nivelul tău CEFR — câștigă XP pentru fiecare răspuns corect."
+    },
+    "step7": {
       "label": "Gata",
       "title": "Ești pregătit!",
-      "desc": "Începe cu lecția de azi, deschide un chat sau lansează o sesiune vocală — FreeLingo se adaptează modului tău de a învăța."
+      "desc": "Începe cu lecția de azi, deschide un chat sau exersează ascultarea și lectura — FreeLingo se adaptează modului tău de a învăța."
     }
   },
   "billing": {

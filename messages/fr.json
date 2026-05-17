@@ -867,9 +867,14 @@
       "desc": "En fonction de votre évaluation de niveau, FreeLingo crée un plan d'études structuré avec des leçons quotidiennes adaptées à vos objectifs."
     },
     "step6": {
+      "label": "Pratique",
+      "title": "Écoute & Lecture",
+      "desc": "Testez votre compréhension avec des exercices générés par l'IA. Écoutez un passage et répondez à 5 questions, ou lisez un texte à votre niveau CECR — gagnez des XP pour chaque bonne réponse."
+    },
+    "step7": {
       "label": "Prêt",
       "title": "Vous êtes prêt !",
-      "desc": "Commencez par la leçon du jour, ouvrez un chat ou lancez une session vocale — FreeLingo s'adapte à votre façon d'apprendre."
+      "desc": "Commencez par la leçon du jour, ouvrez un chat ou pratiquez l'écoute et la lecture — FreeLingo s'adapte à votre façon d'apprendre."
     }
   },
   "billing": {

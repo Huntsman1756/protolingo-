@@ -867,9 +867,14 @@
       "desc": "Basierend auf deiner Niveaubeurteilung erstellt FreeLingo einen strukturierten Lernplan mit täglichen Lektionen, die deinen Zielen angepasst sind."
     },
     "step6": {
+      "label": "Übung",
+      "title": "Hören & Lesen",
+      "desc": "Teste dein Verständnis mit KI-generierten Übungen. Höre einem Abschnitt zu und beantworte 5 Fragen, oder lies einen Text auf deinem CEFR-Niveau — verdiene XP für jede richtige Antwort."
+    },
+    "step7": {
       "label": "Bereit",
       "title": "Du bist startklar!",
-      "desc": "Beginne mit der heutigen Lektion, öffne einen Chat oder starte eine Sprachsitzung – FreeLingo passt sich deiner Lernweise an."
+      "desc": "Beginne mit der heutigen Lektion, öffne einen Chat oder übe Hören und Lesen – FreeLingo passt sich deiner Lernweise an."
     }
   },
   "billing": {
