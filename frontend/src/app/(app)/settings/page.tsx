@@ -539,32 +539,24 @@ export default function SettingsPage() {
             <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionVoice')}</span>
           </div>
           <p className="font-mono text-fl-hint text-fl-muted-3 mb-4">{t('voiceHint')}</p>
-          <div className="space-y-2">
-            {OPENAI_VOICES.map((voice) => (
-              <div
-                key={voice}
-                className={`flex items-center justify-between px-4 py-3 border cursor-pointer transition-colors ${selectedVoice === voice
-                  ? 'border-fl-accent bg-fl-accent/5 text-fl-fg'
-                  : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
-                onClick={() => selectVoice(voice)}
-              >
-                <div className="flex items-center gap-3">
-                  <span className={`font-mono text-fl-label ${selectedVoice === voice ? 'text-fl-accent' : 'text-fl-muted-3'}`}>
-                    {selectedVoice === voice ? '◆' : '◇'}
-                  </span>
-                  <span className="font-mono text-xs tracking-widest uppercase">{voice}</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); void togglePreview(voice) }}
-                  disabled={loadingVoice === voice}
-                  className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-3 hover:text-fl-fg disabled:opacity-40 transition-colors ml-2 px-2 py-1 border border-transparent hover:border-fl-border"
-                >
-                  {loadingVoice === voice ? '...' : playingVoice === voice ? t('voiceStop') : t('voicePlay')}
-                </button>
-              </div>
-            ))}
+          <div className="flex items-center gap-3">
+            <select
+              value={selectedVoice}
+              onChange={(e) => selectVoice(e.target.value)}
+              className="flex-1 bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg uppercase tracking-widest focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
+            >
+              {OPENAI_VOICES.map((voice) => (
+                <option key={voice} value={voice}>{voice}</option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={() => void togglePreview(selectedVoice)}
+              disabled={loadingVoice === selectedVoice}
+              className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-3 hover:text-fl-fg disabled:opacity-40 transition-colors px-4 py-3 border border-fl-border hover:border-fl-border-2 whitespace-nowrap"
+            >
+              {loadingVoice === selectedVoice ? '...' : playingVoice === selectedVoice ? t('voiceStop') : t('voicePlay')}
+            </button>
           </div>
         </div>
       )}
