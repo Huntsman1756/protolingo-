@@ -4,7 +4,7 @@ import asyncio
 import logging
 import os
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Request
 from fastapi.responses import FileResponse
 from redis.asyncio import Redis
 from sqlalchemy import select
@@ -99,6 +99,7 @@ async def _background_generate(
     tts_service: object,
     storage_path: str,
     lock_key: str,
+    voice: str = "",
 ) -> None:
     """
     Runs after the HTTP response is sent.
@@ -108,7 +109,9 @@ async def _background_generate(
     redis_client = Redis.from_url(settings.REDIS_URL, decode_responses=True)
     try:
         async with AsyncSessionLocal() as db:
-            await generate_and_save_exercise(level, target_language, db, tts_service, storage_path)
+            await generate_and_save_exercise(
+                level, target_language, db, tts_service, storage_path, voice
+            )
     except Exception:
         logger.exception(
             "listening: generation failed level=%s lang=%s", level, target_language
@@ -171,6 +174,7 @@ async def get_next_exercise(
 async def generate_exercise(
     request: Request,
     background_tasks: BackgroundTasks,
+    voice: str = Query(default=""),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
@@ -199,6 +203,7 @@ async def generate_exercise(
         tts_service,
         settings.AUDIO_STORAGE_PATH,
         lock_key,
+        voice,
     )
     return ListeningGeneratingResponse(status="generating")
 

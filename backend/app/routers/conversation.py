@@ -95,6 +95,15 @@ async def conversation_ws(
         auth_msg = await asyncio.wait_for(websocket.receive_json(), timeout=10.0)
         token = auth_msg.get("token", "")
         initial_context_raw = auth_msg.get("context")  # optional chat history
+        voice_pref: str = auth_msg.get("voice", "") or ""
+        if settings.TTS_PROVIDER == "openai":
+            _VALID_VOICES = frozenset(
+                {"alloy", "ash", "coral", "echo", "fable", "nova", "onyx", "sage", "shimmer"}
+            )
+            if voice_pref not in _VALID_VOICES:
+                voice_pref = ""
+        else:
+            voice_pref = ""  # local TTS ignores voice param
         payload = decode_access_token(token)
         user_id = int(payload["sub"])
     except (asyncio.TimeoutError, PyJWTError, KeyError, ValueError, Exception):
@@ -279,6 +288,7 @@ async def conversation_ws(
         user_id=user_id,
         bio=user_bio,
         learning_goals=user_learning_goals,
+        voice=voice_pref,
     )
     pipeline._redis = redis
 

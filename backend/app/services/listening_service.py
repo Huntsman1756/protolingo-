@@ -109,6 +109,7 @@ async def generate_and_save_exercise(
     db: AsyncSession,
     tts_service: Any,
     storage_path: str,
+    voice: str = "",
 ) -> ListeningExercise:
     """
     Generate exercise text via LLM, synthesise audio via TTS, persist both.
@@ -146,8 +147,8 @@ async def generate_and_save_exercise(
     text: str = parsed["text"]  # type: ignore[index]
     questions: list[dict[str, Any]] = parsed["questions"]  # type: ignore[index]
 
-    # TTS synthesis
-    audio_bytes: bytes = await tts_service.synthesize(text)
+    # TTS synthesis — use the voice of the user who triggered generation
+    audio_bytes: bytes = await tts_service.synthesize(text, voice or None)
 
     # Prepare audio directory
     audio_dir = os.path.join(storage_path, "listening")

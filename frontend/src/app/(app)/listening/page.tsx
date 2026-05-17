@@ -235,8 +235,10 @@ function ListeningPage() {
   }, [loadNext])
 
   async function handleGenerate() {
+    const voice = typeof window !== 'undefined' ? (localStorage.getItem('tts_voice') ?? '') : ''
+    const voiceQ = voice ? `?voice=${encodeURIComponent(voice)}` : ''
     try {
-      const res = await apiFetch('/api/listening/generate', { method: 'POST' })
+      const res = await apiFetch(`/api/listening/generate${voiceQ}`, { method: 'POST' })
       if (res.ok || res.status === 202) {
         setPageState('generating')
         // Single long-poll request — server waits (async) until exercise is ready.
