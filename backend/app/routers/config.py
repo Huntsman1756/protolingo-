@@ -21,4 +21,6 @@ async def get_config(request: Request) -> dict:  # noqa: ANN001
     return {
         "stripe_enabled": settings.STRIPE_ENABLED,
         "stripe_trial_days": settings.STRIPE_TRIAL_DAYS,
+        "tts_provider": settings.TTS_PROVIDER,
+        "openai_tts_voice": settings.OPENAI_TTS_VOICE,
     }

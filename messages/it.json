@@ -211,6 +211,10 @@
     "deleteAccountMessage": "Questa azione eliminerà definitivamente il tuo account e tutti i tuoi dati. Questa azione non può essere annullata.",
     "deleteAccountConfirm": "Elimina account",
     "sectionUsageLimits": "Limiti di utilizzo",
+    "sectionVoice": "Voce",
+    "voiceHint": "Seleziona la voce del tutor IA. Clicca su riproduci per ascoltare ogni opzione.",
+    "voicePlay": "Riproduci",
+    "voiceStop": "Ferma",
     "quotaSessions": "Sessioni / settimana",
     "quotaMinutesDay": "Minuti / giorno",
     "quotaMinutesWeek": "Minuti / settimana",
@@ -915,11 +919,11 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.5.1",
+    "version": "v1.5.2",
     "cta": "Capito",
     "entry1": {
-      "label": "Esercizi di listening",
-      "desc": "Allenati nella comprensione dell’ascolto in inglese con esercizi audio generati dall’IA. Ascolta una registrazione, rispondi a 5 domande e scopri la trascrizione — nuovi esercizi generati su richiesta per il tuo livello QCER."
+      "label": "Selettore voce",
+      "desc": "Scegli la voce del tuo tutor IA direttamente dalle Impostazioni. Ascolta un'anteprima delle 9 voci disponibili prima di scegliere, la tua preferenza viene salvata automaticamente."
     },
     "entry2": {
       "label": "Correzioni",

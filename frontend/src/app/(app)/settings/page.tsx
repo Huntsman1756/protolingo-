@@ -13,6 +13,9 @@ import { ContactFormModal } from '@/components/ui/contact-form-modal'
 import { useConfigStore } from '@/store/config'
 import { isSubscribed } from '@/store/auth'
 
+const OPENAI_VOICES = ['alloy', 'ash', 'coral', 'echo', 'fable', 'nova', 'onyx', 'sage', 'shimmer'] as const
+const TTS_VOICE_STORAGE_KEY = 'tts_voice'
+
 interface QuotaStatus {
   sessions_this_week: number
   sessions_limit: number
@@ -42,6 +45,74 @@ export default function SettingsPage() {
   const theme = useThemeStore((s) => s.theme)
   const setTheme = useThemeStore((s) => s.setTheme)
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
+  const ttsProvider = useConfigStore((s) => s.ttsProvider)
+  const openaiTtsVoice = useConfigStore((s) => s.openaiTtsVoice)
+
+  // Voice preview state (only used when ttsProvider === 'openai')
+  const [selectedVoice, setSelectedVoice] = useState<string>('')
+  const [playingVoice, setPlayingVoice] = useState<string | null>(null)
+  const [loadingVoice, setLoadingVoice] = useState<string | null>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  // Initialise selected voice from localStorage once config is loaded
+  useEffect(() => {
+    if (ttsProvider !== 'openai') return
+    const stored = typeof window !== 'undefined' ? localStorage.getItem(TTS_VOICE_STORAGE_KEY) : null
+    const voices: readonly string[] = OPENAI_VOICES
+    setSelectedVoice(stored && voices.includes(stored) ? stored : openaiTtsVoice || 'nova')
+  }, [ttsProvider, openaiTtsVoice])
+
+  function selectVoice(voice: string) {
+    setSelectedVoice(voice)
+    localStorage.setItem(TTS_VOICE_STORAGE_KEY, voice)
+  }
+
+  async function togglePreview(voice: string) {
+    // Stop current audio if same voice is playing
+    if (playingVoice === voice) {
+      audioRef.current?.pause()
+      audioRef.current = null
+      setPlayingVoice(null)
+      return
+    }
+    // Stop any currently playing audio
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = null
+      setPlayingVoice(null)
+    }
+    setLoadingVoice(voice)
+    try {
+      const res = await apiFetch(`/api/tts/preview/${voice}`)
+      if (!res.ok) return
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const audio = new Audio(url)
+      audioRef.current = audio
+      setPlayingVoice(voice)
+      audio.onended = () => {
+        URL.revokeObjectURL(url)
+        setPlayingVoice(null)
+        audioRef.current = null
+      }
+      audio.onerror = () => {
+        URL.revokeObjectURL(url)
+        setPlayingVoice(null)
+        audioRef.current = null
+      }
+      await audio.play()
+    } finally {
+      setLoadingVoice(null)
+    }
+  }
+
+  // Cleanup audio on unmount
+  useEffect(() => {
+    return () => {
+      audioRef.current?.pause()
+      audioRef.current = null
+    }
+  }, [])
 
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
@@ -459,6 +530,44 @@ export default function SettingsPage() {
           </button>
         </div>
       </div>
+
+      {/* Voice — only shown when TTS_PROVIDER=openai */}
+      {ttsProvider === 'openai' && (
+        <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+          <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+            <span className="text-fl-label text-fl-muted-2">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionVoice')}</span>
+          </div>
+          <p className="font-mono text-fl-hint text-fl-muted-3 mb-4">{t('voiceHint')}</p>
+          <div className="space-y-2">
+            {OPENAI_VOICES.map((voice) => (
+              <div
+                key={voice}
+                className={`flex items-center justify-between px-4 py-3 border cursor-pointer transition-colors ${selectedVoice === voice
+                  ? 'border-fl-accent bg-fl-accent/5 text-fl-fg'
+                  : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
+                onClick={() => selectVoice(voice)}
+              >
+                <div className="flex items-center gap-3">
+                  <span className={`font-mono text-fl-label ${selectedVoice === voice ? 'text-fl-accent' : 'text-fl-muted-3'}`}>
+                    {selectedVoice === voice ? '◆' : '◇'}
+                  </span>
+                  <span className="font-mono text-xs tracking-widest uppercase">{voice}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); void togglePreview(voice) }}
+                  disabled={loadingVoice === voice}
+                  className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-3 hover:text-fl-fg disabled:opacity-40 transition-colors ml-2 px-2 py-1 border border-transparent hover:border-fl-border"
+                >
+                  {loadingVoice === voice ? '...' : playingVoice === voice ? t('voiceStop') : t('voicePlay')}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Usage Limits */}
       <div className="border border-fl-border bg-fl-surface p-6 mt-4">

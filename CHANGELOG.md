@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2026-05-17
+
+### Added
+- **Voice selector in Settings**: new *Voice* section visible only when `TTS_PROVIDER=openai`. Users can preview all 9 OpenAI TTS voices (alloy, ash, coral, echo, fable, nova, onyx, sage, shimmer) with inline play/stop buttons and select their preferred voice. Selection is persisted in `localStorage` (key `tts_voice`); default is the server-configured `OPENAI_TTS_VOICE`.
+- **`GET /api/tts/preview/{voice}`** backend endpoint (auth required, 10 req/min): generates a short preview clip for the requested voice and caches the MP3 to disk (`${DATA_PATH}/tts_previews/{voice}.mp3`). Subsequent requests are served from the local cache at zero API cost. Only available when `TTS_PROVIDER=openai`.
+- **`GET /api/config`** now returns `tts_provider` and `openai_tts_voice` so the frontend can conditionally show the voice selector and resolve the server default.
+- **`store/config.ts`** extended with `ttsProvider` and `openaiTtsVoice` fields.
+- **Docker volume** `${DATA_PATH}/tts_previews:/app/tts_previews` added to the backend service so cached preview clips survive redeployments.
+- **i18n**: `sectionVoice`, `voiceHint`, `voicePlay`, `voiceStop` keys added to all 10 locale files (en, es, de, fr, it, nl, pl, pt, ro, ru).
+
 ## [1.5.1] - 2026-05-17
 
 ### Changed
