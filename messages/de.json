@@ -922,10 +922,14 @@
     "version": "v1.5.2",
     "cta": "Verstanden",
     "entry1": {
+      "label": "Reading",
+      "desc": "Neue Reading-Übungen: KI-generierte Lesetexte auf deinem CEFR-Niveau mit 5 Verständnisfragen. Text und Fragen werden gleichzeitig angezeigt. XP für jede richtige Antwort."
+    },
+    "entry2": {
       "label": "Stimmauswahl",
       "desc": "Wähle die Stimme deines KI-Tutors direkt in den Einstellungen. Höre alle 9 verfügbaren Stimmen an, bevor du auswählst, deine Auswahl wird automatisch gespeichert."
     },
-    "entry2": {
+    "entry3": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
     }

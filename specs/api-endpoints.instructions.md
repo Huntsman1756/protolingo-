@@ -190,3 +190,14 @@ All endpoints require `require_subscription` (or `get_current_user` where noted)
 | GET | `/audio/{exercise_id}` | 60/min | get_current_user | Serves the MP3 for the given exercise as a `FileResponse` (`audio/mpeg`). Returns 404 if the exercise or its audio file does not exist. |
 | POST | `/attempt` | 20/min | require_subscription | Submits answers (`{exercise_id, answers: [str]}`) for scoring. Returns score (0–5), XP earned (0–50), correct answers, and the full transcript. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers). |
 | GET | `/history` | 30/min | get_current_user | Returns paginated list of the user's past attempts with scores, XP, and transcripts. Query params: `skip` (default 0), `limit` (default 10, max 50). |
+
+## Reading — `/api/reading`
+
+All endpoints require `require_subscription` (or `get_current_user` where noted). Unlike Listening, exercise text is included in the exercise response — there is no audio endpoint and no transcript reveal on submit.
+
+| Method | Path | Rate limit | Auth | Description |
+|--------|------|------------|------|-------------|
+| GET | `/next` | 10/min | require_subscription | Returns the oldest uncompleted `ReadingExercise` for the user's current CEFR level and target language. **Text and questions are included immediately.** Returns `{"available": false}` when the pool is empty. Supports `?wait=true` for long-polling (max 90 s) while generation is in progress. |
+| POST | `/generate` | 5/min | require_subscription | Acquires a per-(level, language) Redis lock (`nx=True, ex=60`) and enqueues a `BackgroundTask` that calls LLM and saves the exercise. Returns HTTP 202 with `{"status": "generating"}`. Returns 202 (no-op) if a generation job is already running. |
+| POST | `/attempt` | 20/min | require_subscription | Submits answers (`{exercise_id, answers: dict[str,str], replay: bool}`) for scoring. Returns score (0–5), XP earned (0–50), and correct answers. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers). |
+| GET | `/history` | 30/min | get_current_user | Returns paginated list of the user's past attempts with scores, XP, exercise text, and correct answers. Query params: `skip` (default 0), `limit` (default 10, max 50). |

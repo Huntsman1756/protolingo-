@@ -922,10 +922,14 @@
     "version": "v1.5.2",
     "cta": "Capito",
     "entry1": {
+      "label": "Reading",
+      "desc": "Nuovi esercizi di Reading: testi generati dall'IA al tuo livello CEFR con 5 domande di comprensione. Testo e domande vengono mostrati insieme. Guadagna XP per ogni risposta corretta."
+    },
+    "entry2": {
       "label": "Selettore voce",
       "desc": "Scegli la voce del tuo tutor IA direttamente dalle Impostazioni. Ascolta un'anteprima delle 9 voci disponibili prima di scegliere, la tua preferenza viene salvata automaticamente."
     },
-    "entry2": {
+    "entry3": {
       "label": "Correzioni",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }

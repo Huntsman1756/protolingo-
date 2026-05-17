@@ -922,10 +922,14 @@
     "version": "v1.5.2",
     "cta": "Rozumiem",
     "entry1": {
+      "label": "Reading",
+      "desc": "Nowe ćwiczenia Reading: teksty generowane przez AI na Twoim poziomie CEFR z 5 pytaniami ze zrozumienia. Tekst i pytania są wyświetlane razem. Zdobywaj XP za każdą poprawną odpowiedź."
+    },
+    "entry2": {
       "label": "Wybór głosu",
       "desc": "Wybierz głos swojego tutora AI bezpośrednio w Ustawieniach. Odsłuchaj próbkę wszystkich 9 dostępnych głosów przed wybraniem, Twoja preferencja jest zapisywana automatycznie."
     },
-    "entry2": {
+    "entry3": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }

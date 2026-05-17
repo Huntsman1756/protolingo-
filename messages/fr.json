@@ -922,10 +922,14 @@
     "version": "v1.5.2",
     "cta": "Compris",
     "entry1": {
+      "label": "Reading",
+      "desc": "Nouveaux exercices de Reading : textes générés par IA à votre niveau CECR avec 5 questions de compréhension. Texte et questions s'affichent ensemble. Gagnez des XP pour chaque bonne réponse."
+    },
+    "entry2": {
       "label": "Sélecteur de voix",
       "desc": "Choisissez la voix de votre tuteur IA directement dans les Paramètres. Écoutez un aperçu des 9 voix disponibles avant de sélectionner, votre préférence est sauvegardée automatiquement."
     },
-    "entry2": {
+    "entry3": {
       "label": "Corrections",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }

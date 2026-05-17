@@ -922,10 +922,14 @@
     "version": "v1.5.2",
     "cta": "Am înțeles",
     "entry1": {
+      "label": "Reading",
+      "desc": "Exerciții noi de Reading: texte generate de IA la nivelul tău CEFR cu 5 întrebări de înțelegere. Textul și întrebările sunt afișate împreună. Câștigă XP pentru fiecare răspuns corect."
+    },
+    "entry2": {
       "label": "Selector de voce",
       "desc": "Alege vocea tutorului tău IA direct din Setări. Ascultă o mostră din toate cele 9 voci disponibile înainte de a alege, preferința ta este salvată automat."
     },
-    "entry2": {
+    "entry3": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }

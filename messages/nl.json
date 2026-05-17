@@ -922,10 +922,14 @@
     "version": "v1.5.2",
     "cta": "Begrepen",
     "entry1": {
+      "label": "Reading",
+      "desc": "Nieuwe Reading-oefeningen: AI-gegenereerde teksten op jouw CEFR-niveau met 5 begripsvragen. Tekst en vragen worden tegelijk getoond. Verdien XP voor elk correct antwoord."
+    },
+    "entry2": {
       "label": "Stemkiezer",
       "desc": "Kies de stem van je AI-tutor rechtstreeks in Instellingen. Beluister een voorbeeld van alle 9 beschikbare stemmen voor je er een kiest, je voorkeur wordt automatisch opgeslagen."
     },
-    "entry2": {
+    "entry3": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }
