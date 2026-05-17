@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Rozmowa",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -968,6 +969,31 @@
     "viewHistory": "Historia",
     "history": "Historia",
     "historyTitle": "Historia listening",
+    "historyEmpty": "Brak ukończonych ćwiczeń.",
+    "practiceMore": "Ćwicz",
+    "moreInHistory": "+{count} więcej",
+    "practiceAgain": "Ćwicz ponownie",
+    "replayNoXp": "Powtórka — brak XP"
+  },
+  "reading": {
+    "title": "Czytanie",
+    "topic": "Temat",
+    "textLabel": "Tekst",
+    "questionsLabel": "Pytania",
+    "submit": "Prześlij odpowiedzi",
+    "generating": "Generowanie ćwiczenia...",
+    "generatingDesc": "AI tworzy nowe ćwiczenie. Zajmuje to około 30 sekund.",
+    "noExercises": "Brak ćwiczeń dla twojego poziomu.",
+    "generate": "Generuj ćwiczenie",
+    "alreadyAttempted": "To ćwiczenie zostało już ukończone.",
+    "errorLoading": "Nie można załadować ćwiczenia. Spróbuj ponownie.",
+    "errorSubmit": "Nie można przesłać odpowiedzi. Spróbuj ponownie.",
+    "resultsLabel": "Wyniki",
+    "review": "Przegląd odpowiedzi",
+    "nextExercise": "Następne ćwiczenie",
+    "viewHistory": "Historia",
+    "history": "Historia",
+    "historyTitle": "Historia czytania",
     "historyEmpty": "Brak ukończonych ćwiczeń.",
     "practiceMore": "Ćwicz",
     "moreInHistory": "+{count} więcej",

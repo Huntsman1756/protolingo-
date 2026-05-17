@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Conversa",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -968,6 +969,31 @@
     "viewHistory": "Histórico",
     "history": "Histórico",
     "historyTitle": "Histórico de listening",
+    "historyEmpty": "Nenhum exercício concluído ainda.",
+    "practiceMore": "Praticar",
+    "moreInHistory": "+{count} mais",
+    "practiceAgain": "Praticar novamente",
+    "replayNoXp": "Repetição — sem XP"
+  },
+  "reading": {
+    "title": "Leitura",
+    "topic": "Tópico",
+    "textLabel": "Texto",
+    "questionsLabel": "Perguntas",
+    "submit": "Enviar respostas",
+    "generating": "A gerar exercício...",
+    "generatingDesc": "A IA está a criar um novo exercício. Geralmente demora cerca de 30 segundos.",
+    "noExercises": "Não há exercícios disponíveis para o seu nível.",
+    "generate": "Gerar exercício",
+    "alreadyAttempted": "Já concluiu este exercício.",
+    "errorLoading": "Falha ao carregar o exercício. Tente novamente.",
+    "errorSubmit": "Falha ao enviar as respostas. Tente novamente.",
+    "resultsLabel": "Resultados",
+    "review": "Revisão das respostas",
+    "nextExercise": "Próximo exercício",
+    "viewHistory": "Histórico",
+    "history": "Histórico",
+    "historyTitle": "Histórico de leitura",
     "historyEmpty": "Nenhum exercício concluído ainda.",
     "practiceMore": "Praticar",
     "moreInHistory": "+{count} mais",

@@ -69,7 +69,8 @@
     "faq": "Întrebări frecvente",
     "admin": "Admin",
     "conversation": "Conversație",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -973,5 +974,30 @@
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
     "replayNoXp": "Repetare — fără XP"
+  },
+  "reading": {
+    "title": "Lectură",
+    "topic": "Subiect",
+    "textLabel": "Text",
+    "questionsLabel": "Întriebări",
+    "submit": "Trimite răspunsurile",
+    "generating": "Se generează exercițiul...",
+    "generatingDesc": "AI creează un exercițiu nou. Durează aproximativ 30 de secunde.",
+    "noExercises": "Nu există exerciții disponibile pentru nivelul tău.",
+    "generate": "Generează exercițiu",
+    "alreadyAttempted": "Ai completat deja acest exercițiu.",
+    "errorLoading": "Nu s-a putut încărca exercițiul. Încarcă din nou.",
+    "errorSubmit": "Nu s-au putut trimite răspunsurile. Încarcă din nou.",
+    "resultsLabel": "Rezultate",
+    "review": "Revizuire răspunsuri",
+    "nextExercise": "Exercițiul următor",
+    "viewHistory": "Istoric",
+    "history": "Istoric",
+    "historyTitle": "Istoric lectură",
+    "historyEmpty": "Nu există exerciții finalizate êncă.",
+    "practiceMore": "Exersează",
+    "moreInHistory": "+{count} mai multe",
+    "practiceAgain": "Exersează din nou",
+    "replayNoXp": "Reluare — fără XP"
   }
 }

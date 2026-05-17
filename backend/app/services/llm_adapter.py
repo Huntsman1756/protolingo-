@@ -276,3 +276,15 @@ class LLMAdapter:
 
 
 llm_adapter = LLMAdapter()
+
+
+def parse_llm_json(raw: str) -> dict:
+    """Strip optional code fences and parse JSON from LLM output."""
+    cleaned = raw.strip()
+    if cleaned.startswith("```"):
+        parts = cleaned.split("```")
+        # parts[1] is the content inside the fences (may start with "json\n")
+        cleaned = parts[1]
+        if cleaned.startswith("json"):
+            cleaned = cleaned[4:]
+    return json.loads(cleaned.strip())

@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Conversation",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -968,6 +969,31 @@
     "viewHistory": "History",
     "history": "History",
     "historyTitle": "Listening history",
+    "historyEmpty": "No completed exercises yet.",
+    "practiceMore": "Practice",
+    "moreInHistory": "+{count} more",
+    "practiceAgain": "Practice again",
+    "replayNoXp": "Replay — no XP"
+  },
+  "reading": {
+    "title": "Reading",
+    "topic": "Topic",
+    "textLabel": "Text",
+    "questionsLabel": "Questions",
+    "submit": "Submit answers",
+    "generating": "Generating exercise...",
+    "generatingDesc": "AI is creating a new exercise. This usually takes about 30 seconds.",
+    "noExercises": "No exercises available for your level.",
+    "generate": "Generate exercise",
+    "alreadyAttempted": "You have already completed this exercise.",
+    "errorLoading": "Failed to load exercise. Please try again.",
+    "errorSubmit": "Failed to submit answers. Please try again.",
+    "resultsLabel": "Results",
+    "review": "Answer review",
+    "nextExercise": "Next exercise",
+    "viewHistory": "History",
+    "history": "History",
+    "historyTitle": "Reading history",
     "historyEmpty": "No completed exercises yet.",
     "practiceMore": "Practice",
     "moreInHistory": "+{count} more",

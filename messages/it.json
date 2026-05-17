@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Conversazione",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -968,6 +969,31 @@
     "viewHistory": "Cronologia",
     "history": "Cronologia",
     "historyTitle": "Cronologia listening",
+    "historyEmpty": "Nessun esercizio completato ancora.",
+    "practiceMore": "Pratica",
+    "moreInHistory": "+{count} altri",
+    "practiceAgain": "Esercitarsi di nuovo",
+    "replayNoXp": "Ripetizione — senza XP"
+  },
+  "reading": {
+    "title": "Lettura",
+    "topic": "Argomento",
+    "textLabel": "Testo",
+    "questionsLabel": "Domande",
+    "submit": "Invia risposte",
+    "generating": "Generazione in corso...",
+    "generatingDesc": "L'IA sta creando un nuovo esercizio. Richiede circa 30 secondi.",
+    "noExercises": "Nessun esercizio disponibile per il tuo livello.",
+    "generate": "Genera esercizio",
+    "alreadyAttempted": "Hai già completato questo esercizio.",
+    "errorLoading": "Impossibile caricare l'esercizio. Riprova.",
+    "errorSubmit": "Impossibile inviare le risposte. Riprova.",
+    "resultsLabel": "Risultati",
+    "review": "Revisione risposte",
+    "nextExercise": "Esercizio successivo",
+    "viewHistory": "Cronologia",
+    "history": "Cronologia",
+    "historyTitle": "Cronologia lettura",
     "historyEmpty": "Nessun esercizio completato ancora.",
     "practiceMore": "Pratica",
     "moreInHistory": "+{count} altri",

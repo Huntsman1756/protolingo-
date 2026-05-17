@@ -69,7 +69,8 @@
     "faq": "Вопросы и ответы",
     "admin": "Админ",
     "conversation": "Разговор",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -972,6 +973,31 @@
     "practiceMore": "Практиковать",
     "moreInHistory": "+{count} ещё",
     "practiceAgain": "Практиковаться снова",
+    "replayNoXp": "Повтор — без XP"
+  },
+  "reading": {
+    "title": "Чтение",
+    "topic": "Тема",
+    "textLabel": "Текст",
+    "questionsLabel": "Вопросы",
+    "submit": "Отправить ответы",
+    "generating": "Генерация упражнения...",
+    "generatingDesc": "ИИ создёт новое упражнение. Это обычно занимает около 30 секунд.",
+    "noExercises": "Нет доступных упражнений для вашего уровня.",
+    "generate": "Создать упражнение",
+    "alreadyAttempted": "Вы уже выполнили это упражнение.",
+    "errorLoading": "Не удалось загрузить упражнение. Попробуйте снова.",
+    "errorSubmit": "Не удалось отправить ответы. Попробуйте снова.",
+    "resultsLabel": "Результаты",
+    "review": "Разбор ответов",
+    "nextExercise": "Следующее упражнение",
+    "viewHistory": "История",
+    "history": "История",
+    "historyTitle": "История чтения",
+    "historyEmpty": "Нет завершённых упражнений.",
+    "practiceMore": "Практиковать",
+    "moreInHistory": "+{count} ещё",
+    "practiceAgain": "Практиковать снова",
     "replayNoXp": "Повтор — без XP"
   }
 }

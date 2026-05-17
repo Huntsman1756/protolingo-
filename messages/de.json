@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Gespräch",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -968,6 +969,31 @@
     "viewHistory": "Verlauf",
     "history": "Verlauf",
     "historyTitle": "Listening-Verlauf",
+    "historyEmpty": "Noch keine abgeschlossenen Übungen.",
+    "practiceMore": "Üben",
+    "moreInHistory": "+{count} weitere",
+    "practiceAgain": "Erneut üben",
+    "replayNoXp": "Wiederholung — kein XP"
+  },
+  "reading": {
+    "title": "Lesen",
+    "topic": "Thema",
+    "textLabel": "Text",
+    "questionsLabel": "Fragen",
+    "submit": "Antworten abschicken",
+    "generating": "Übung wird erstellt...",
+    "generatingDesc": "Die KI erstellt eine neue Übung. Das dauert etwa 30 Sekunden.",
+    "noExercises": "Keine Übungen für dein Niveau verfügbar.",
+    "generate": "Übung erstellen",
+    "alreadyAttempted": "Du hast diese Übung bereits abgeschlossen.",
+    "errorLoading": "Übung konnte nicht geladen werden. Bitte erneut versuchen.",
+    "errorSubmit": "Antworten konnten nicht gesendet werden. Bitte erneut versuchen.",
+    "resultsLabel": "Ergebnisse",
+    "review": "Antworten überprüfen",
+    "nextExercise": "Nächste Übung",
+    "viewHistory": "Verlauf",
+    "history": "Verlauf",
+    "historyTitle": "Lese-Verlauf",
     "historyEmpty": "Noch keine abgeschlossenen Übungen.",
     "practiceMore": "Üben",
     "moreInHistory": "+{count} weitere",

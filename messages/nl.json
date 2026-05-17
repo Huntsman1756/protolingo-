@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Gesprek",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -968,6 +969,31 @@
     "viewHistory": "Geschiedenis",
     "history": "Geschiedenis",
     "historyTitle": "Listening-geschiedenis",
+    "historyEmpty": "Nog geen voltooide oefeningen.",
+    "practiceMore": "Oefenen",
+    "moreInHistory": "+{count} meer",
+    "practiceAgain": "Opnieuw oefenen",
+    "replayNoXp": "Herhaling — geen XP"
+  },
+  "reading": {
+    "title": "Lezen",
+    "topic": "Onderwerp",
+    "textLabel": "Tekst",
+    "questionsLabel": "Vragen",
+    "submit": "Antwoorden indienen",
+    "generating": "Oefening genereren...",
+    "generatingDesc": "De AI maakt een nieuwe oefening. Dit duurt ongeveer 30 seconden.",
+    "noExercises": "Geen oefeningen beschikbaar voor jouw niveau.",
+    "generate": "Oefening genereren",
+    "alreadyAttempted": "Je hebt deze oefening al voltooid.",
+    "errorLoading": "Oefening laden mislukt. Probeer opnieuw.",
+    "errorSubmit": "Antwoorden indienen mislukt. Probeer opnieuw.",
+    "resultsLabel": "Resultaten",
+    "review": "Antwoorden beoordelen",
+    "nextExercise": "Volgende oefening",
+    "viewHistory": "Geschiedenis",
+    "history": "Geschiedenis",
+    "historyTitle": "Lees-geschiedenis",
     "historyEmpty": "Nog geen voltooide oefeningen.",
     "practiceMore": "Oefenen",
     "moreInHistory": "+{count} meer",
