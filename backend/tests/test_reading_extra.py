@@ -244,4 +244,4 @@ async def test_paywall_blocked(reading_client) -> None:
     with patch.object(settings, "STRIPE_ENABLED", True):
         r = await ac.get("/api/reading/next", headers=headers)
 
-    assert r.status_code == 403
+    assert r.status_code == 402
