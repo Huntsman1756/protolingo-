@@ -23,6 +23,7 @@ logging.basicConfig(
 )
 
 _AVATARS_DIR = "/app/avatars"
+_TTS_PREVIEWS_DIR = "/app/tts_previews"
 from app.routers import admin, assessment, auth, chat, contact, conversation, flashcards, lessons, listening, progress, study_plan, stt, tts
 from app.routers import config as config_router
 from app.services.stt_service import OpenAISTTService, WhisperSTTService
@@ -46,6 +47,8 @@ async def lifespan(app: FastAPI):  # noqa: ANN201
 
     # Ensure the avatars directory exists on startup (persisted via Docker volume)
     os.makedirs(_AVATARS_DIR, exist_ok=True)
+    # Ensure the TTS preview cache directory exists on startup
+    os.makedirs(_TTS_PREVIEWS_DIR, exist_ok=True)
 
     if settings.TTS_PROVIDER == "openai":
         if not settings.OPENAI_API_KEY:

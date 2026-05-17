@@ -1,9 +1,11 @@
+import os
 import time
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Request
-from fastapi.responses import Response
+from fastapi.responses import FileResponse, Response
 
+from app.core.config import settings
 from app.core.deps import get_current_user
 from app.core.limiter import limiter
 from app.core.app_logger import get_logger
@@ -12,6 +14,10 @@ from app.schemas.tts_stt import TTSRequest
 
 router = APIRouter(prefix="/api", tags=["tts"])
 logger = get_logger(__name__)
+
+_PREVIEW_DIR = "/app/tts_previews"
+_OPENAI_VOICES = frozenset({"alloy", "ash", "coral", "echo", "fable", "nova", "onyx", "sage", "shimmer"})
+_PREVIEW_TEXT = "Hello! I'm your English tutor. This is how I sound — warm, clear, and ready to help you practise every day. Let's get started!"
 
 
 @router.post("/tts")
@@ -54,3 +60,41 @@ async def text_to_speech(
             "X-TTS-Backend-Total-Ms": f"{total_ms:.1f}",
         },
     )
+
+
+@router.get("/tts/preview/{voice}")
+@limiter.limit("10/minute")
+async def voice_preview(
+    request: Request,
+    voice: str,
+    current_user: User = Depends(get_current_user),
+) -> FileResponse:
+    """Return a cached preview audio clip for the given OpenAI TTS voice.
+
+    The MP3 is generated once and persisted to disk so subsequent requests
+    are served from the local cache without incurring further API costs.
+    Only available when TTS_PROVIDER=openai.
+    """
+    if settings.TTS_PROVIDER != "openai":
+        raise HTTPException(status_code=404, detail="Voice preview is only available with OpenAI TTS")
+
+    if voice not in _OPENAI_VOICES:
+        raise HTTPException(status_code=400, detail="Invalid voice name")
+
+    tts_service = getattr(request.app.state, "tts_service", None)
+    if tts_service is None:
+        raise HTTPException(status_code=503, detail="TTS service is not enabled")
+
+    cache_path = os.path.join(_PREVIEW_DIR, f"{voice}.mp3")
+
+    if not os.path.exists(cache_path):
+        os.makedirs(_PREVIEW_DIR, exist_ok=True)
+        audio = await tts_service.synthesize(_PREVIEW_TEXT, voice)
+        # Write atomically via a temp file to avoid partial reads
+        tmp_path = cache_path + ".tmp"
+        with open(tmp_path, "wb") as fh:  # noqa: PTH123
+            fh.write(audio)
+        os.replace(tmp_path, cache_path)
+        logger.info("tts_preview_cached", voice=voice, bytes=len(audio))
+
+    return FileResponse(cache_path, media_type="audio/mpeg")
