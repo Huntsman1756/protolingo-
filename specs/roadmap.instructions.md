@@ -245,7 +245,7 @@ This document records what was built and the completion criteria met.
 
 ## Phase 7 — Reading
 
-✅ Status: Complete (v1.5.2)
+✅ Status: Complete (v1.5.3)
 
 > LLM-generated reading comprehension exercises. Text is shown immediately alongside 5
 > multiple-choice questions (no audio, no "I'm ready" gate). Exercises are cached per
