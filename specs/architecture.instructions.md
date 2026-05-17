@@ -282,6 +282,40 @@ Records each user submission for a listening exercise.
 
 Unique constraint: one attempt per `(user_id, exercise_id)` — enforced at service level (409 on duplicate).
 
+### ReadingExercise (`reading_exercises`)
+
+AI-generated reading comprehension exercises (Phase 7). Shared across all users at the same CEFR level and target language. Unlike listening, no audio is produced — the text is served directly to the client.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| level | string | CEFR level: A1–C2 |
+| target_language | string | BCP-47 tag, e.g. `"en-US"` |
+| exercise_type | string | `notice`, `email`, `article`, `news`, `blog_post`, `review`, `essay` |
+| topic | string | Short topic description |
+| text | text | Full passage text — **included in exercise response** (unlike listening) |
+| questions | JSON | List of `{index, question, options: {A,B,C,D}, correct}` objects (5 per exercise) |
+| view_count | integer | How many times this exercise has been served (server default 0) |
+| created_at | datetime | Auto-set on creation |
+
+Composite index: `ix_reading_exercises_level_lang` on `(level, target_language)`.
+
+### ReadingAttempt (`reading_attempts`)
+
+Records each user submission for a reading exercise.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| user_id | integer | FK → users (CASCADE DELETE) |
+| exercise_id | integer | FK → reading_exercises (CASCADE DELETE) |
+| answers | JSON | `{ "0": "B", "1": "A", ... }` — the user's selected option per question |
+| score | integer | 0–5 (number of correct answers) |
+| xp_earned | integer | 0–50 (10 per correct answer) |
+| completed_at | datetime | Auto-set on creation |
+
+Unique constraint: one attempt per `(user_id, exercise_id)` — enforced at service level (409 on duplicate).
+
 ---
 
 ## Service layer
@@ -302,6 +336,7 @@ Singleton providing provider-agnostic LLM access. Supports four providers select
 **Key capabilities:**
 - `chat(messages, stream=False)` — returns string or async generator
 - `structured_output(messages, schema)` — returns validated Pydantic model (JSON mode + retry on parse failure)
+- `parse_llm_json(raw)` — module-level utility; strips optional code fences and parses JSON from LLM output. Shared by `listening_service.py` and `reading_service.py`.
 - 2 automatic retries with exponential backoff, 60 s timeout
 - Custom exception hierarchy: `LLMError`, `LLMTimeoutError`, `LLMUnavailableError`, `LLMResponseError`, `LLMContextOverflowError`
 

@@ -69,7 +69,8 @@
     "faq": "Întrebări frecvente",
     "admin": "Admin",
     "conversation": "Conversație",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -866,9 +867,14 @@
       "desc": "Pe baza evaluării nivelului tău, FreeLingo creează un plan de studiu structurat cu lecții zilnice adaptate obiectivelor tale."
     },
     "step6": {
+      "label": "Practică",
+      "title": "Ascultare & Lectură",
+      "desc": "Testează-ți înțelegerea cu exerciții generate de IA. Ascultă un pasaj și răspunde la 5 întrebări, sau citește un text la nivelul tău CEFR — câștigă XP pentru fiecare răspuns corect."
+    },
+    "step7": {
       "label": "Gata",
       "title": "Ești pregătit!",
-      "desc": "Începe cu lecția de azi, deschide un chat sau lansează o sesiune vocală — FreeLingo se adaptează modului tău de a învăța."
+      "desc": "Începe cu lecția de azi, deschide un chat sau exersează ascultarea și lectura — FreeLingo se adaptează modului tău de a învăța."
     }
   },
   "billing": {
@@ -922,10 +928,14 @@
     "version": "v1.5.2",
     "cta": "Am înțeles",
     "entry1": {
+      "label": "Reading",
+      "desc": "Exerciții noi de Reading: texte generate de IA la nivelul tău CEFR cu 5 întrebări de înțelegere. Textul și întrebările sunt afișate împreună. Câștigă XP pentru fiecare răspuns corect."
+    },
+    "entry2": {
       "label": "Selector de voce",
       "desc": "Alege vocea tutorului tău IA direct din Setări. Ascultă o mostră din toate cele 9 voci disponibile înainte de a alege, preferința ta este salvată automat."
     },
-    "entry2": {
+    "entry3": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }
@@ -969,5 +979,30 @@
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
     "replayNoXp": "Repetare — fără XP"
+  },
+  "reading": {
+    "title": "Lectură",
+    "topic": "Subiect",
+    "textLabel": "Text",
+    "questionsLabel": "Întriebări",
+    "submit": "Trimite răspunsurile",
+    "generating": "Se generează exercițiul...",
+    "generatingDesc": "AI creează un exercițiu nou. Durează aproximativ 30 de secunde.",
+    "noExercises": "Nu există exerciții disponibile pentru nivelul tău.",
+    "generate": "Generează exercițiu",
+    "alreadyAttempted": "Ai completat deja acest exercițiu.",
+    "errorLoading": "Nu s-a putut încărca exercițiul. Încarcă din nou.",
+    "errorSubmit": "Nu s-au putut trimite răspunsurile. Încarcă din nou.",
+    "resultsLabel": "Rezultate",
+    "review": "Revizuire răspunsuri",
+    "nextExercise": "Exercițiul următor",
+    "viewHistory": "Istoric",
+    "history": "Istoric",
+    "historyTitle": "Istoric lectură",
+    "historyEmpty": "Nu există exerciții finalizate êncă.",
+    "practiceMore": "Exersează",
+    "moreInHistory": "+{count} mai multe",
+    "practiceAgain": "Exersează din nou",
+    "replayNoXp": "Reluare — fără XP"
   }
 }

@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Gesprek",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -866,9 +867,14 @@
       "desc": "Op basis van je niveaubeoordeling maakt FreeLingo een gestructureerd studieplan met dagelijkse lessen afgestemd op jouw doelen."
     },
     "step6": {
+      "label": "Oefening",
+      "title": "Luisteren & Lezen",
+      "desc": "Test je begrip met door AI gegenereerde oefeningen. Luister naar een fragment en beantwoord 5 vragen, of lees een tekst op jouw CEFR-niveau — verdien XP voor elk correct antwoord."
+    },
+    "step7": {
       "label": "Klaar",
       "title": "Je bent er klaar voor!",
-      "desc": "Begin met de les van vandaag, open een chat of start een spraaksessie — FreeLingo past zich aan hoe jij wilt leren."
+      "desc": "Begin met de les van vandaag, open een chat of oefen luisteren en lezen — FreeLingo past zich aan hoe jij wilt leren."
     }
   },
   "billing": {
@@ -922,10 +928,14 @@
     "version": "v1.5.2",
     "cta": "Begrepen",
     "entry1": {
+      "label": "Reading",
+      "desc": "Nieuwe Reading-oefeningen: AI-gegenereerde teksten op jouw CEFR-niveau met 5 begripsvragen. Tekst en vragen worden tegelijk getoond. Verdien XP voor elk correct antwoord."
+    },
+    "entry2": {
       "label": "Stemkiezer",
       "desc": "Kies de stem van je AI-tutor rechtstreeks in Instellingen. Beluister een voorbeeld van alle 9 beschikbare stemmen voor je er een kiest, je voorkeur wordt automatisch opgeslagen."
     },
-    "entry2": {
+    "entry3": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }
@@ -964,6 +974,31 @@
     "viewHistory": "Geschiedenis",
     "history": "Geschiedenis",
     "historyTitle": "Listening-geschiedenis",
+    "historyEmpty": "Nog geen voltooide oefeningen.",
+    "practiceMore": "Oefenen",
+    "moreInHistory": "+{count} meer",
+    "practiceAgain": "Opnieuw oefenen",
+    "replayNoXp": "Herhaling — geen XP"
+  },
+  "reading": {
+    "title": "Lezen",
+    "topic": "Onderwerp",
+    "textLabel": "Tekst",
+    "questionsLabel": "Vragen",
+    "submit": "Antwoorden indienen",
+    "generating": "Oefening genereren...",
+    "generatingDesc": "De AI maakt een nieuwe oefening. Dit duurt ongeveer 30 seconden.",
+    "noExercises": "Geen oefeningen beschikbaar voor jouw niveau.",
+    "generate": "Oefening genereren",
+    "alreadyAttempted": "Je hebt deze oefening al voltooid.",
+    "errorLoading": "Oefening laden mislukt. Probeer opnieuw.",
+    "errorSubmit": "Antwoorden indienen mislukt. Probeer opnieuw.",
+    "resultsLabel": "Resultaten",
+    "review": "Antwoorden beoordelen",
+    "nextExercise": "Volgende oefening",
+    "viewHistory": "Geschiedenis",
+    "history": "Geschiedenis",
+    "historyTitle": "Lees-geschiedenis",
     "historyEmpty": "Nog geen voltooide oefeningen.",
     "practiceMore": "Oefenen",
     "moreInHistory": "+{count} meer",

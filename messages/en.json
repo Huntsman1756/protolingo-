@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Conversation",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -866,9 +867,14 @@
       "desc": "Based on your level assessment, FreeLingo builds a structured study plan with daily lessons adapted to your goals and progress."
     },
     "step6": {
+      "label": "Practice",
+      "title": "Listening & Reading",
+      "desc": "Test your comprehension with AI-generated exercises. Listen to a passage and answer 5 questions, or read a text at your CEFR level — earn XP for every correct answer."
+    },
+    "step7": {
       "label": "Ready",
       "title": "You're all set!",
-      "desc": "Start with today's lesson, open a chat, or jump into a voice session — FreeLingo adapts to how you like to learn."
+      "desc": "Start with today's lesson, open a chat, practise listening or reading — FreeLingo adapts to how you like to learn."
     }
   },
   "billing": {
@@ -922,10 +928,14 @@
     "version": "v1.5.2",
     "cta": "Got it",
     "entry1": {
+      "label": "Reading",
+      "desc": "New Reading exercises: AI-generated passages at your CEFR level with 5 comprehension questions. Text and questions are shown together. Earn XP for every correct answer."
+    },
+    "entry2": {
       "label": "Voice selector",
       "desc": "Choose your AI tutor's voice directly from Settings. Preview all 9 available voices before selecting, your preference is saved automatically."
     },
-    "entry2": {
+    "entry3": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }
@@ -964,6 +974,31 @@
     "viewHistory": "History",
     "history": "History",
     "historyTitle": "Listening history",
+    "historyEmpty": "No completed exercises yet.",
+    "practiceMore": "Practice",
+    "moreInHistory": "+{count} more",
+    "practiceAgain": "Practice again",
+    "replayNoXp": "Replay — no XP"
+  },
+  "reading": {
+    "title": "Reading",
+    "topic": "Topic",
+    "textLabel": "Text",
+    "questionsLabel": "Questions",
+    "submit": "Submit answers",
+    "generating": "Generating exercise...",
+    "generatingDesc": "AI is creating a new exercise. This usually takes about 30 seconds.",
+    "noExercises": "No exercises available for your level.",
+    "generate": "Generate exercise",
+    "alreadyAttempted": "You have already completed this exercise.",
+    "errorLoading": "Failed to load exercise. Please try again.",
+    "errorSubmit": "Failed to submit answers. Please try again.",
+    "resultsLabel": "Results",
+    "review": "Answer review",
+    "nextExercise": "Next exercise",
+    "viewHistory": "History",
+    "history": "History",
+    "historyTitle": "Reading history",
     "historyEmpty": "No completed exercises yet.",
     "practiceMore": "Practice",
     "moreInHistory": "+{count} more",

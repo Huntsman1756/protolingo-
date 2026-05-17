@@ -1,0 +1,253 @@
+from __future__ import annotations
+
+import asyncio
+import logging
+
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
+from redis.asyncio import Redis
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.core.config import settings
+from app.core.database import AsyncSessionLocal, get_db
+from app.core.deps import get_current_user, require_subscription
+from app.core.limiter import limiter
+from app.models.study_plan import StudyPlan
+from app.models.user import User
+from app.schemas.reading import (
+    CorrectAnswerOut,
+    ReadingAttemptOut,
+    ReadingExerciseOut,
+    ReadingGeneratingResponse,
+    ReadingHistoryResponse,
+    ReadingNextResponse,
+    ReadingSubmitRequest,
+    ReadingSubmitResponse,
+    QuestionOut,
+)
+from app.services.reading_service import (
+    generate_and_save_exercise,
+    get_available_exercise,
+    get_user_history,
+    submit_attempt,
+)
+from sqlalchemy import select
+
+router = APIRouter(prefix="/api/reading", tags=["reading"])
+logger = logging.getLogger(__name__)
+
+
+# ---------------------------------------------------------------------------
+# Local Redis dependency
+# ---------------------------------------------------------------------------
+
+async def get_redis():  # noqa: ANN201
+    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        yield redis
+    finally:
+        await redis.aclose()
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _build_exercise_out(exercise) -> ReadingExerciseOut:  # noqa: ANN001
+    """Convert ORM model to schema — text IS included for reading."""
+    return ReadingExerciseOut(
+        id=exercise.id,
+        level=exercise.level,
+        target_language=exercise.target_language,
+        exercise_type=exercise.exercise_type,
+        topic=exercise.topic,
+        text=exercise.text,
+        questions=[
+            QuestionOut(
+                index=q["index"],
+                question=q["question"],
+                options=q["options"],
+            )
+            for q in exercise.questions
+        ],
+    )
+
+
+async def _get_user_level(user_id: int, db: AsyncSession) -> tuple[str, str]:
+    """Return (cefr_level, target_language) from the user's active study plan."""
+    result = await db.execute(
+        select(StudyPlan)
+        .where(StudyPlan.user_id == user_id, StudyPlan.is_active.is_(True))
+        .order_by(StudyPlan.created_at.desc())
+        .limit(1)
+    )
+    plan = result.scalar_one_or_none()
+    if plan is None:
+        raise HTTPException(status_code=404, detail="no_study_plan")
+    return plan.cefr_level, plan.target_language
+
+
+# ---------------------------------------------------------------------------
+# Background task for exercise generation (no TTS)
+# ---------------------------------------------------------------------------
+
+async def _background_generate(
+    level: str,
+    target_language: str,
+    lock_key: str,
+) -> None:
+    """
+    Runs after the HTTP response is sent.
+    Creates its own DB session and Redis client (request resources are already closed).
+    Releases the Redis lock in all cases (success or failure).
+    """
+    redis_client = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        async with AsyncSessionLocal() as db:
+            await generate_and_save_exercise(level, target_language, db)
+    except Exception:
+        logger.exception(
+            "reading: generation failed level=%s lang=%s", level, target_language
+        )
+    finally:
+        await redis_client.delete(lock_key)
+        await redis_client.aclose()
+
+
+# ---------------------------------------------------------------------------
+# Endpoints
+# ---------------------------------------------------------------------------
+
+@router.get("/next", response_model=ReadingNextResponse)
+@limiter.limit("10/minute")
+async def get_next_exercise(
+    request: Request,
+    wait: bool = False,
+    current_user: User = Depends(require_subscription),
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
+) -> ReadingNextResponse:
+    """
+    Return the next uncompleted reading exercise for the user's CEFR level.
+
+    When ``wait=true`` the endpoint blocks (async) until an exercise becomes
+    available or the generation lock disappears (max 90 s).
+    """
+    level, target_language = await _get_user_level(current_user.id, db)
+    exercise = await get_available_exercise(level, target_language, current_user.id, db)
+    if exercise is not None:
+        return ReadingNextResponse(available=True, exercise=_build_exercise_out(exercise))
+
+    if not wait:
+        return ReadingNextResponse(available=False)
+
+    # Long-poll: wait up to 90 s for background generation to finish.
+    lock_key = f"reading:generating:{level}:{target_language}"
+    for _ in range(90):
+        await asyncio.sleep(1)
+        exercise = await get_available_exercise(level, target_language, current_user.id, db)
+        if exercise is not None:
+            return ReadingNextResponse(available=True, exercise=_build_exercise_out(exercise))
+        if not await redis.exists(lock_key):
+            break
+
+    # Final check after lock disappears
+    exercise = await get_available_exercise(level, target_language, current_user.id, db)
+    if exercise is not None:
+        return ReadingNextResponse(available=True, exercise=_build_exercise_out(exercise))
+
+    return ReadingNextResponse(available=False)
+
+
+@router.post("/generate", response_model=ReadingGeneratingResponse, status_code=202)
+@limiter.limit("5/minute")
+async def generate_exercise(
+    request: Request,
+    background_tasks: BackgroundTasks,
+    current_user: User = Depends(require_subscription),
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
+) -> ReadingGeneratingResponse:
+    """
+    Trigger on-demand reading exercise generation.
+
+    Acquires a Redis lock scoped to (level, target_language) with 60 s TTL.
+    If the lock is already held, returns 202 immediately.
+    Frontend calls GET /next?wait=true once and awaits the long-poll response.
+    """
+    level, target_language = await _get_user_level(current_user.id, db)
+    lock_key = f"reading:generating:{level}:{target_language}"
+
+    acquired = await redis.set(lock_key, "1", nx=True, ex=60)
+    if not acquired:
+        return ReadingGeneratingResponse(status="generating")
+
+    background_tasks.add_task(
+        _background_generate,
+        level,
+        target_language,
+        lock_key,
+    )
+    return ReadingGeneratingResponse(status="generating")
+
+
+@router.post("/attempt", response_model=ReadingSubmitResponse)
+@limiter.limit("20/minute")
+async def submit_reading_attempt(
+    request: Request,
+    body: ReadingSubmitRequest,
+    current_user: User = Depends(require_subscription),
+    db: AsyncSession = Depends(get_db),
+) -> ReadingSubmitResponse:
+    """Submit answers and receive score, XP, and correct answers."""
+    try:
+        attempt, exercise = await submit_attempt(
+            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay
+        )
+    except ValueError as exc:
+        detail = str(exc)
+        if detail == "exercise_not_found":
+            raise HTTPException(status_code=404, detail="exercise_not_found") from exc
+        if detail == "already_attempted":
+            raise HTTPException(status_code=409, detail="already_attempted") from exc
+        raise HTTPException(status_code=400, detail=detail) from exc
+
+    correct_answers = [
+        CorrectAnswerOut(index=q["index"], correct=q["correct"])
+        for q in exercise.questions
+    ]
+    return ReadingSubmitResponse(
+        score=attempt.score,
+        xp_earned=attempt.xp_earned,
+        correct_answers=correct_answers,
+    )
+
+
+@router.get("/history", response_model=ReadingHistoryResponse)
+@limiter.limit("30/minute")
+async def get_reading_history(
+    request: Request,
+    skip: int = 0,
+    limit: int = 10,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+) -> ReadingHistoryResponse:
+    """Return paginated list of the user's past reading attempts."""
+    limit = min(limit, 50)  # hard cap
+
+    rows, total = await get_user_history(current_user.id, db, skip=skip, limit=limit)
+    items = [
+        ReadingAttemptOut(
+            id=attempt.id,
+            score=attempt.score,
+            xp_earned=attempt.xp_earned,
+            completed_at=attempt.completed_at,
+            exercise=_build_exercise_out(exercise),
+            answers=attempt.answers,
+            correct_answers=[
+                CorrectAnswerOut(index=q["index"], correct=q["correct"])
+                for q in exercise.questions
+            ],
+        )
+        for attempt, exercise in rows
+    ]
+    return ReadingHistoryResponse(items=items, total=total, skip=skip, limit=limit)

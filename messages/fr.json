@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Conversation",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -866,9 +867,14 @@
       "desc": "En fonction de votre évaluation de niveau, FreeLingo crée un plan d'études structuré avec des leçons quotidiennes adaptées à vos objectifs."
     },
     "step6": {
+      "label": "Pratique",
+      "title": "Écoute & Lecture",
+      "desc": "Testez votre compréhension avec des exercices générés par l'IA. Écoutez un passage et répondez à 5 questions, ou lisez un texte à votre niveau CECR — gagnez des XP pour chaque bonne réponse."
+    },
+    "step7": {
       "label": "Prêt",
       "title": "Vous êtes prêt !",
-      "desc": "Commencez par la leçon du jour, ouvrez un chat ou lancez une session vocale — FreeLingo s'adapte à votre façon d'apprendre."
+      "desc": "Commencez par la leçon du jour, ouvrez un chat ou pratiquez l'écoute et la lecture — FreeLingo s'adapte à votre façon d'apprendre."
     }
   },
   "billing": {
@@ -922,10 +928,14 @@
     "version": "v1.5.2",
     "cta": "Compris",
     "entry1": {
+      "label": "Reading",
+      "desc": "Nouveaux exercices de Reading : textes générés par IA à votre niveau CECR avec 5 questions de compréhension. Texte et questions s'affichent ensemble. Gagnez des XP pour chaque bonne réponse."
+    },
+    "entry2": {
       "label": "Sélecteur de voix",
       "desc": "Choisissez la voix de votre tuteur IA directement dans les Paramètres. Écoutez un aperçu des 9 voix disponibles avant de sélectionner, votre préférence est sauvegardée automatiquement."
     },
-    "entry2": {
+    "entry3": {
       "label": "Corrections",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }
@@ -964,6 +974,31 @@
     "viewHistory": "Historique",
     "history": "Historique",
     "historyTitle": "Historique de listening",
+    "historyEmpty": "Aucun exercice complété pour l'instant.",
+    "practiceMore": "Pratiquer",
+    "moreInHistory": "+{count} de plus",
+    "practiceAgain": "Pratiquer à nouveau",
+    "replayNoXp": "Répétition — sans XP"
+  },
+  "reading": {
+    "title": "Lecture",
+    "topic": "Thème",
+    "textLabel": "Texte",
+    "questionsLabel": "Questions",
+    "submit": "Soumettre les réponses",
+    "generating": "Génération de l'exercice...",
+    "generatingDesc": "L'IA crée un nouvel exercice. Cela prend environ 30 secondes.",
+    "noExercises": "Aucun exercice disponible pour votre niveau.",
+    "generate": "Générer un exercice",
+    "alreadyAttempted": "Vous avez déjà complété cet exercice.",
+    "errorLoading": "Impossible de charger l'exercice. Veuillez réessayer.",
+    "errorSubmit": "Impossible de soumettre les réponses. Veuillez réessayer.",
+    "resultsLabel": "Résultats",
+    "review": "Révision des réponses",
+    "nextExercise": "Exercice suivant",
+    "viewHistory": "Historique",
+    "history": "Historique",
+    "historyTitle": "Historique de lecture",
     "historyEmpty": "Aucun exercice complété pour l'instant.",
     "practiceMore": "Pratiquer",
     "moreInHistory": "+{count} de plus",

@@ -23,6 +23,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     { href: '/flashcards', label: tNav('flashcards') },
     { href: '/chat', label: tNav('tutor') },
     { href: '/listening', label: tNav('listening') },
+    { href: '/reading', label: tNav('reading') },
     { href: '/conversation', label: tNav('conversation') },
     { href: '/assessment', label: tNav('assessment') },
   ]

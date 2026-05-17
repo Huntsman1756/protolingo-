@@ -69,7 +69,8 @@
     "faq": "FAQ",
     "admin": "Admin",
     "conversation": "Gespräch",
-    "listening": "Listening"
+    "listening": "Listening",
+    "reading": "Reading"
   },
   "auth": {
     "login": {
@@ -866,9 +867,14 @@
       "desc": "Basierend auf deiner Niveaubeurteilung erstellt FreeLingo einen strukturierten Lernplan mit täglichen Lektionen, die deinen Zielen angepasst sind."
     },
     "step6": {
+      "label": "Übung",
+      "title": "Hören & Lesen",
+      "desc": "Teste dein Verständnis mit KI-generierten Übungen. Höre einem Abschnitt zu und beantworte 5 Fragen, oder lies einen Text auf deinem CEFR-Niveau — verdiene XP für jede richtige Antwort."
+    },
+    "step7": {
       "label": "Bereit",
       "title": "Du bist startklar!",
-      "desc": "Beginne mit der heutigen Lektion, öffne einen Chat oder starte eine Sprachsitzung – FreeLingo passt sich deiner Lernweise an."
+      "desc": "Beginne mit der heutigen Lektion, öffne einen Chat oder übe Hören und Lesen – FreeLingo passt sich deiner Lernweise an."
     }
   },
   "billing": {
@@ -922,10 +928,14 @@
     "version": "v1.5.2",
     "cta": "Verstanden",
     "entry1": {
+      "label": "Reading",
+      "desc": "Neue Reading-Übungen: KI-generierte Lesetexte auf deinem CEFR-Niveau mit 5 Verständnisfragen. Text und Fragen werden gleichzeitig angezeigt. XP für jede richtige Antwort."
+    },
+    "entry2": {
       "label": "Stimmauswahl",
       "desc": "Wähle die Stimme deines KI-Tutors direkt in den Einstellungen. Höre alle 9 verfügbaren Stimmen an, bevor du auswählst, deine Auswahl wird automatisch gespeichert."
     },
-    "entry2": {
+    "entry3": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
     }
@@ -964,6 +974,31 @@
     "viewHistory": "Verlauf",
     "history": "Verlauf",
     "historyTitle": "Listening-Verlauf",
+    "historyEmpty": "Noch keine abgeschlossenen Übungen.",
+    "practiceMore": "Üben",
+    "moreInHistory": "+{count} weitere",
+    "practiceAgain": "Erneut üben",
+    "replayNoXp": "Wiederholung — kein XP"
+  },
+  "reading": {
+    "title": "Lesen",
+    "topic": "Thema",
+    "textLabel": "Text",
+    "questionsLabel": "Fragen",
+    "submit": "Antworten abschicken",
+    "generating": "Übung wird erstellt...",
+    "generatingDesc": "Die KI erstellt eine neue Übung. Das dauert etwa 30 Sekunden.",
+    "noExercises": "Keine Übungen für dein Niveau verfügbar.",
+    "generate": "Übung erstellen",
+    "alreadyAttempted": "Du hast diese Übung bereits abgeschlossen.",
+    "errorLoading": "Übung konnte nicht geladen werden. Bitte erneut versuchen.",
+    "errorSubmit": "Antworten konnten nicht gesendet werden. Bitte erneut versuchen.",
+    "resultsLabel": "Ergebnisse",
+    "review": "Antworten überprüfen",
+    "nextExercise": "Nächste Übung",
+    "viewHistory": "Verlauf",
+    "history": "Verlauf",
+    "historyTitle": "Lese-Verlauf",
     "historyEmpty": "Noch keine abgeschlossenen Übungen.",
     "practiceMore": "Üben",
     "moreInHistory": "+{count} weitere",
