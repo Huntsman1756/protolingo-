@@ -921,7 +921,10 @@
     "accessUntil": "Acceso hasta",
     "manage": "Gestionar suscripción",
     "subscribe": "Suscribirse",
-    "portalError": "No se pudo abrir el portal de facturación. Inténtalo de nuevo."
+    "portalError": "No se pudo abrir el portal de facturación. Inténtalo de nuevo.",
+    "openSourceTitle": "Código abierto",
+    "openSourceDesc": "Autoalójalo gratis en tu propio servidor",
+    "openSourceCta": "Ver en GitHub"
   },
   "whatsNew": {
     "title": "Novedades",

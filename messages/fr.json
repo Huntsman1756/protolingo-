@@ -921,7 +921,10 @@
     "accessUntil": "Accès jusqu'au",
     "manage": "Gérer l'abonnement",
     "subscribe": "S'abonner",
-    "portalError": "Impossible d'ouvrir le portail de facturation. Veuillez réessayer."
+    "portalError": "Impossible d'ouvrir le portail de facturation. Veuillez réessayer.",
+    "openSourceTitle": "Open source",
+    "openSourceDesc": "Hébergez-le gratuitement sur votre serveur",
+    "openSourceCta": "Voir sur GitHub"
   },
   "whatsNew": {
     "title": "Nouveautés",
