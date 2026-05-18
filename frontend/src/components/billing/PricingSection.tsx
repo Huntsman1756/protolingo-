@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
@@ -127,6 +128,42 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
         >
           — {tBilling('ctaStart', { days: trialDays })}
         </Link>
+      </div>
+
+      {/* Open Source Banner */}
+      <div className="mt-6 border border-fl-border bg-fl-surface px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Image
+            src="/github.svg"
+            alt="GitHub"
+            width={20}
+            height={20}
+            className="block dark:hidden opacity-80"
+          />
+          <Image
+            src="/github_white.svg"
+            alt="GitHub"
+            width={20}
+            height={20}
+            className="hidden dark:block opacity-80"
+          />
+          <div className="text-left">
+            <p className="font-mono text-xs font-bold text-fl-fg tracking-widest uppercase">
+              {tBilling('openSourceTitle')}
+            </p>
+            <p className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase mt-0.5">
+              {tBilling('openSourceDesc')}
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://github.com/ArtCC/freelingo"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-xs font-bold tracking-widest uppercase px-6 py-2.5 border border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors whitespace-nowrap"
+        >
+          — {tBilling('openSourceCta')}
+        </a>
       </div>
     </section>
   )

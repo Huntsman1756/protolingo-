@@ -921,7 +921,10 @@
     "accessUntil": "Dostęp do",
     "manage": "Zarządzaj subskrypcją",
     "subscribe": "Subskrybuj",
-    "portalError": "Nie można otworzyć portalu rozliczeń. Spróbuj ponownie."
+    "portalError": "Nie można otworzyć portalu rozliczeń. Spróbuj ponownie.",
+    "openSourceTitle": "Otwarte źródło",
+    "openSourceDesc": "Bezpłatnie hostuj na własnym serwerze",
+    "openSourceCta": "Zobacz na GitHubie"
   },
   "whatsNew": {
     "title": "Co nowego",
