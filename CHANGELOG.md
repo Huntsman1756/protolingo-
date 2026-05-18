@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.4] - 2026-05-18
+
+### Fixed
+- **Anthropic LLM provider**: resolved crash `'NoneType' object has no attribute 'beta'` in `structured_output` caused by routing Anthropic through `_do_structured_output`, which uses the OpenAI `beta.chat.completions.parse` API while `self.client` is `None` for Anthropic. All providers now go through `_structured_via_json`.
+- **Anthropic — system prompt lost**: `_anthropic_chat` was extracting only the first system message via `next()`; extra instructions appended by `_structured_via_json` (JSON format hint) were silently dropped. All system messages are now combined with `\n\n` before the API call.
+- **Anthropic — `system=None` API error**: passing `system=None` explicitly to `messages.create` could cause an SDK validation error; the parameter is now omitted when no system message is present.
+- **Anthropic — missing timeout**: `messages.create` calls had no `timeout` guard; `REQUEST_TIMEOUT` (60 s) is now applied.
+- **Anthropic — double retry**: `_anthropic_chat` wrapped the API call in its own `_call_with_retry`, nesting it inside the outer retry loop in `_do_chat` (up to 9 attempts). The inner retry was removed; the outer loop is sufficient.
+- **Dead code removed**: `_do_structured_output` (referenced `self.client.beta` — broken for Anthropic, unreachable for all providers) deleted.
+
 ## [1.5.3] - 2026-05-17
 
 ### Added
