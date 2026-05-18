@@ -116,7 +116,12 @@ class LLMAdapter:
             )
             self.model = settings.DEEPSEEK_MODEL
         elif self.provider == "anthropic":
-            self._anthropic = _anthropic.AsyncAnthropic(api_key=settings.ANTHROPIC_API_KEY)
+            self._anthropic = _anthropic.AsyncAnthropic(
+                api_key=settings.ANTHROPIC_API_KEY,
+                # Retries are handled by _call_with_retry; disable the SDK's
+                # built-in retry logic to avoid exponential back-off stacking.
+                max_retries=0,
+            )
             self.client = None
             self.model = settings.ANTHROPIC_MODEL
 
@@ -125,6 +130,11 @@ class LLMAdapter:
         for attempt in range(MAX_RETRIES + 1):
             try:
                 return await fn(*args, **kwargs)
+            except LLMError as e:
+                # Already a typed LLM error raised by a provider-specific
+                # handler (e.g. _anthropic_chat). Preserve the type instead of
+                # re-wrapping into a generic LLMError.
+                last_error = e
             except TimeoutError:
                 last_error = LLMTimeoutError(f"{self.provider} timed out after {REQUEST_TIMEOUT}s")
             except Exception as e:
@@ -240,6 +250,13 @@ class LLMAdapter:
         system = "\n\n".join(system_parts) if system_parts else None
         user_messages = [m for m in messages if m["role"] != "system"]
 
+        # Anthropic requires at least one user message. When callers pass only
+        # system messages (e.g. structured_output with a single system prompt),
+        # inject a minimal trigger so the API call succeeds. All task
+        # instructions are already in the system parameter.
+        if not user_messages:
+            user_messages = [{"role": "user", "content": "Generate the content as specified."}]
+
         kwargs: dict = dict(
             model=self.model,
             messages=user_messages,
@@ -251,7 +268,25 @@ class LLMAdapter:
         if system is not None:
             kwargs["system"] = system
 
-        response = await self._anthropic.messages.create(**kwargs)
+        # Map Anthropic SDK exceptions to our internal error types so that
+        # _call_with_retry can classify and retry them correctly.
+        # Exception hierarchy per SDK docs:
+        #   APITimeoutError, APIConnectionError, RateLimitError < APIStatusError < APIError
+        try:
+            response = await self._anthropic.messages.create(**kwargs)
+        except _anthropic.APITimeoutError as e:
+            raise LLMTimeoutError(f"anthropic timed out after {REQUEST_TIMEOUT}s") from e
+        except _anthropic.APIConnectionError as e:
+            raise LLMUnavailableError(
+                "anthropic is unreachable. Check that the service is running."
+            ) from e
+        except _anthropic.RateLimitError as e:
+            raise LLMUnavailableError(
+                "anthropic rate limit exceeded. Try again later."
+            ) from e
+        except _anthropic.APIStatusError as e:
+            raise LLMError(f"anthropic error: {e}") from e
+
         if stream:
             return response
         content = response.content[0].text if response.content else ""
