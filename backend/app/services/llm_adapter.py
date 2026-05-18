@@ -184,24 +184,7 @@ class LLMAdapter:
         self, messages: list[dict], schema: type[BaseModel]
     ) -> BaseModel:
         # Use JSON mode for all providers — more reliable across versions
-        if self.provider == "anthropic":
-            return await self._call_with_retry(self._do_structured_output, messages, schema)
         return await self._structured_via_json(messages, schema)
-
-    async def _do_structured_output(self, messages: list[dict], schema: type[BaseModel]):
-        response = await self.client.beta.chat.completions.parse(
-            model=self.model,
-            messages=messages,
-            response_format=schema,
-            timeout=REQUEST_TIMEOUT,
-        )
-        parsed = response.choices[0].message.parsed
-        if parsed is None:
-            raise LLMResponseError(
-                "LLM refused to generate structured output",
-                raw_response=str(response.choices[0].message.refusal or ""),
-            )
-        return parsed
 
     async def _structured_via_json(
         self, messages: list[dict], schema: type[BaseModel]
@@ -250,29 +233,31 @@ class LLMAdapter:
                 ) from e2
 
     async def _anthropic_chat(self, messages: list[dict], stream: bool = False):
-        async def call():
-            system = next(
-                (m["content"] for m in messages if m["role"] == "system"), None
-            )
-            user_messages = [
-                m for m in messages if m["role"] != "system"
-            ]
+        # Combine ALL system messages so that extra instructions (e.g. the
+        # JSON format hint appended by _structured_via_json) are not silently
+        # dropped by a naive next()-based extraction.
+        system_parts = [m["content"] for m in messages if m["role"] == "system"]
+        system = "\n\n".join(system_parts) if system_parts else None
+        user_messages = [m for m in messages if m["role"] != "system"]
 
-            response = await self._anthropic.messages.create(
-                model=self.model,
-                system=system,
-                messages=user_messages,
-                max_tokens=4096,
-                stream=stream,
-            )
-            if stream:
-                return response
-            content = response.content[0].text if response.content else ""
-            if not content:
-                raise LLMResponseError("Anthropic returned empty response")
-            return content
+        kwargs: dict = dict(
+            model=self.model,
+            messages=user_messages,
+            max_tokens=4096,
+            stream=stream,
+            timeout=REQUEST_TIMEOUT,
+        )
+        # Only pass system when present — Anthropic SDK does not accept None.
+        if system is not None:
+            kwargs["system"] = system
 
-        return await self._call_with_retry(call)
+        response = await self._anthropic.messages.create(**kwargs)
+        if stream:
+            return response
+        content = response.content[0].text if response.content else ""
+        if not content:
+            raise LLMResponseError("Anthropic returned empty response")
+        return content
 
 
 llm_adapter = LLMAdapter()
