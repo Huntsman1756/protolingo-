@@ -921,11 +921,14 @@
     "accessUntil": "Zugang bis",
     "manage": "Abonnement verwalten",
     "subscribe": "Abonnieren",
-    "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen."
+    "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen.",
+    "openSourceTitle": "Open Source",
+    "openSourceDesc": "Kostenlos selbst hosten auf deinem Server",
+    "openSourceCta": "Auf GitHub ansehen"
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.5.3",
+    "version": "v1.5.4",
     "cta": "Verstanden",
     "entry1": {
       "label": "Reading",

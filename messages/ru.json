@@ -921,11 +921,14 @@
     "accessUntil": "Доступ до",
     "manage": "Управлять подпиской",
     "subscribe": "Подписаться",
-    "portalError": "Не удалось открыть портал оплаты. Попробуйте ещё раз."
+    "portalError": "Не удалось открыть портал оплаты. Попробуйте ещё раз.",
+    "openSourceTitle": "Открытый исходный код",
+    "openSourceDesc": "Бесплатно разверните на своём сервере",
+    "openSourceCta": "Посмотреть на GitHub"
   },
   "whatsNew": {
     "title": "Что нового",
-    "version": "v1.5.3",
+    "version": "v1.5.4",
     "cta": "Понятно",
     "entry1": {
       "label": "Reading",

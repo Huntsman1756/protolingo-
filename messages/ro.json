@@ -921,11 +921,14 @@
     "accessUntil": "Acces până la",
     "manage": "Gestionează abonamentul",
     "subscribe": "Abonează-te",
-    "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou."
+    "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou.",
+    "openSourceTitle": "Sursă deschisă",
+    "openSourceDesc": "Găzduieşte-l gratuit pe propriul server",
+    "openSourceCta": "Vezi pe GitHub"
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.5.3",
+    "version": "v1.5.4",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Reading",

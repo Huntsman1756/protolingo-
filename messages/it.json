@@ -921,11 +921,14 @@
     "accessUntil": "Accesso fino al",
     "manage": "Gestisci abbonamento",
     "subscribe": "Abbonati",
-    "portalError": "Impossibile aprire il portale di fatturazione. Riprova."
+    "portalError": "Impossibile aprire il portale di fatturazione. Riprova.",
+    "openSourceTitle": "Open source",
+    "openSourceDesc": "Ospitalo gratis sul tuo server",
+    "openSourceCta": "Vedi su GitHub"
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.5.3",
+    "version": "v1.5.4",
     "cta": "Capito",
     "entry1": {
       "label": "Reading",

@@ -921,11 +921,14 @@
     "accessUntil": "Toegang tot",
     "manage": "Abonnement beheren",
     "subscribe": "Abonneren",
-    "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw."
+    "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw.",
+    "openSourceTitle": "Open source",
+    "openSourceDesc": "Gratis zelf hosten op je eigen server",
+    "openSourceCta": "Bekijk op GitHub"
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.5.3",
+    "version": "v1.5.4",
     "cta": "Begrepen",
     "entry1": {
       "label": "Reading",
