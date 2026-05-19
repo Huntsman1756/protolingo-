@@ -896,11 +896,22 @@
     "year": "year",
     "ctaStart": "Start {days}-day free trial",
     "planFeature": {
-      "feature1": "Unlimited AI chat tutor sessions",
-      "feature2": "3 voice conversation sessions/week",
-      "feature3": "Flashcards, lessons & progress tracking",
-      "feature4": "Full grammar & vocabulary reference",
+      "feature1": "Chat with your AI tutor",
+      "feature2": "Voice conversations",
+      "feature3": "Listening exercises",
+      "feature4": "Reading exercises",
       "feature5": "2 months free"
+    },
+    "planFreeName": "Free",
+    "trialBadge": "7 days free",
+    "ctaRegister": "Get started",
+    "everythingFree": "Everything included in the free plan, plus:",
+    "freeFeature": {
+      "f1": "Level test & assessment",
+      "f2": "Lessons & study plan",
+      "f3": "Grammar & vocabulary reference",
+      "f4": "Dashboard & progress tracking",
+      "f5": "Flashcards & spaced repetition"
     },
     "successLabel": "Payment confirmed",
     "successTitle": "Welcome to FreeLingo Premium!",
@@ -929,15 +940,15 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.5.4",
+    "version": "v1.5.5",
     "cta": "Got it",
     "entry1": {
-      "label": "Reading",
-      "desc": "New Reading exercises: AI-generated passages at your CEFR level with 5 comprehension questions. Text and questions are shown together. Earn XP for every correct answer."
+      "label": "Free plan",
+      "desc": "Dashboard, flashcards, lessons, study plan, and level assessment are now free for all registered users. No subscription required to access these features."
     },
     "entry2": {
-      "label": "Voice selector",
-      "desc": "Choose your AI tutor's voice directly from Settings. Preview all 9 available voices before selecting, your preference is saved automatically."
+      "label": "Pricing redesign",
+      "desc": "The landing page now shows three pricing cards: Free, Monthly, and Yearly. The Free card lists everything included without a subscription. Paid cards offer a 7-day free trial."
     },
     "entry3": {
       "label": "Bug fixes",

@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.5] - 2026-05-19
+
+### Changed
+- **Freemium model restructured**: dashboard, flashcards, lessons, study plan, and level assessment are now available to all registered users at no cost. Chat with AI tutor, voice conversations, listening exercises, and reading exercises remain subscription-only features.
+- **Backend**: `require_subscription` dependency removed from `/api/lessons`, `/api/flashcards`, `/api/study-plan`, and `/api/assessment` routers; all endpoints in these routers now use `get_current_user` only.
+- **Frontend**: `PaywallGate` removed from `/dashboard`, `/flashcards`, and `/assessment/level-test` pages.
+- **Landing page pricing section redesigned**: three cards instead of two — Free (lists all features available without subscription), Monthly (all free features plus paid features, 7-day free trial badge), and Yearly (same as monthly plus 2-months-free badge). CTA button updated from "Start X-day free trial" to a register invitation.
+- **i18n**: `pricingLabel` updated to the native word for "Pricing" in all 10 locales. New keys added: `planFreeName`, `trialBadge`, `ctaRegister`, `everythingFree`, `freeFeature` (f1–f5). `planFeature.feature1–4` updated to reflect the actual paid-only features (AI chat tutor, voice conversations, listening exercises, reading exercises). All changes applied to all 10 locale files (en, es, de, fr, it, pl, pt, nl, ro, ru).
+
 ## [1.5.4] - 2026-05-18
 
 ### Fixed
