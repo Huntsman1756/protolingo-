@@ -886,7 +886,7 @@
     "planMonthly": "— Inizia a {price}€/mese →",
     "planYearly": "— Inizia a {price}€/anno →",
     "checkoutError": "Impossibile avviare il pagamento. Riprova.",
-    "pricingLabel": "Offerta di lancio",
+    "pricingLabel": "Prezzo",
     "pricingTitle": "Semplice e trasparente",
     "pricingDesc": "Prova gratis per {days} giorni. Carta richiesta, nessun addebito fino alla fine della prova.",
     "planMonthlyName": "Mensile",

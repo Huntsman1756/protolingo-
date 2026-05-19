@@ -886,7 +886,7 @@
     "planMonthly": "— Zacznij za {price}€/miesiąc →",
     "planYearly": "— Zacznij za {price}€/rok →",
     "checkoutError": "Nie można uruchomić płatności. Spróbuj ponownie.",
-    "pricingLabel": "Oferta startowa",
+    "pricingLabel": "Cena",
     "pricingTitle": "Prosto i przejrzyście",
     "pricingDesc": "Wypróbuj bezpłatnie przez {days} dni. Karta wymagana, brak opłat do końca okresu próbnego.",
     "planMonthlyName": "Miesięczny",

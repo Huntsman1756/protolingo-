@@ -886,7 +886,7 @@
     "planMonthly": "— Starten voor €{price}/maand →",
     "planYearly": "— Starten voor €{price}/jaar →",
     "checkoutError": "Betaling kon niet worden gestart. Probeer opnieuw.",
-    "pricingLabel": "Lanceringaanbieding",
+    "pricingLabel": "Prijs",
     "pricingTitle": "Eenvoudig en transparant",
     "pricingDesc": "Probeer {days} dagen gratis. Kaart vereist, geen kosten tot einde proefperiode.",
     "planMonthlyName": "Maandelijks",
