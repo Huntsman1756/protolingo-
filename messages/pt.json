@@ -70,7 +70,8 @@
     "admin": "Admin",
     "conversation": "Conversa",
     "listening": "Listening",
-    "reading": "Reading"
+    "reading": "Reading",
+    "contact": "Contato"
   },
   "auth": {
     "login": {
