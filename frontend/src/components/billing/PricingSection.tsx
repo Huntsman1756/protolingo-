@@ -62,9 +62,6 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
   return (
     <section className="max-w-5xl mx-auto px-6 pb-24 w-full">
       <div className="text-center mb-10">
-        <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-4 block">
-          {tBilling('pricingLabel')}
-        </span>
         <h2 className="font-mono text-base font-bold text-fl-fg mb-2">
           {tBilling('pricingTitle')}
         </h2>
@@ -109,13 +106,6 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
           <p className="font-mono text-xl font-bold text-fl-fg">
             14.95<span className="text-sm text-fl-muted-1"> € / {tBilling('month')}</span>
           </p>
-          <ul className="flex flex-col gap-1.5">
-            {['f1', 'f2', 'f3', 'f4', 'f5'].map((k) => (
-              <li key={k} className="font-mono text-xs text-fl-muted-1 flex items-center gap-2">
-                <span className="text-fl-accent">✓</span> {tBilling(`freeFeature.${k}`)}
-              </li>
-            ))}
-          </ul>
           <p className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border-t border-fl-border pt-3">
             {tBilling('everythingFree')}
           </p>
@@ -137,7 +127,7 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
                 {tBilling('planYearlyName')}
               </span>
             </div>
-            <div className="flex flex-col items-end gap-1">
+            <div className="flex flex-row items-center gap-1">
               <span className="font-mono text-fl-hint text-fl-accent border border-fl-accent/30 px-2 py-0.5 uppercase tracking-widest">
                 {tBilling('bestValue')}
               </span>
@@ -150,13 +140,6 @@ export default function PricingSection({ stripeEnabled, trialDays, hasSession }:
           <p className="font-mono text-xl font-bold text-fl-fg">
             149.50<span className="text-sm text-fl-muted-1"> € / {tBilling('year')}</span>
           </p>
-          <ul className="flex flex-col gap-1.5">
-            {['f1', 'f2', 'f3', 'f4', 'f5'].map((k) => (
-              <li key={k} className="font-mono text-xs text-fl-muted-1 flex items-center gap-2">
-                <span className="text-fl-accent">✓</span> {tBilling(`freeFeature.${k}`)}
-              </li>
-            ))}
-          </ul>
           <p className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border-t border-fl-border pt-3">
             {tBilling('everythingFree')}
           </p>
