@@ -220,7 +220,7 @@ async def _handle_checkout_completed(db: AsyncSession, session: object) -> None:
     ends_at: datetime | None = None
     if subscription_id:
         try:
-            sub = stripe.Subscription.retrieve(subscription_id)
+            sub = await stripe.Subscription.retrieve_async(subscription_id)
             status = getattr(sub, "status", "trialing")  # "trialing" | "active"
             ends_at = _subscription_period_end(sub)
         except Exception as exc:  # noqa: BLE001

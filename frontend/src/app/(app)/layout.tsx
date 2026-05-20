@@ -273,7 +273,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
         {/* Dropdown */}
         {mobileMenuOpen && (
-          <nav className="border-t border-fl-border bg-fl-bg pb-2">
+          <nav className="border-t border-fl-border bg-fl-bg pb-2 overflow-y-auto max-h-[calc(100svh-3.5rem)] overscroll-contain">
             {mainNavItems.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + '/')
               return (
