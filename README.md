@@ -48,9 +48,10 @@ Self-hosting remains free and open source under the AGPL-3.0 licence. The hosted
 Need FreeLingo for your team or organisation?
 
 - **Private / on-premise deployment** — Deploy FreeLingo on your own infrastructure with full control over data and configuration. Ideal for schools, language academies, and companies with data-sovereignty requirements.
-- **Dedicated managed instance** — Request a hosted instance operated exclusively for your organisation, without sharing resources with the public service.
+- **Dedicated managed instance** — A turnkey deployment operated exclusively for your organisation: setup, hosting, maintenance, and updates included. Your data stays isolated in a dedicated environment.
+- **Commercial licence** — Organisations that need to deploy a customised or white-labelled version without the open-source obligations of the AGPL can obtain a commercial licence. See [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) for details.
 
-[Get in touch](https://arturocarreterocalvo.com) to discuss your requirements.
+[Get in touch](mailto:freelingo@arturocarreterocalvo.com) to discuss your requirements.
 
 If FreeLingo is useful to you or your organisation, consider [**sponsoring the project on GitHub**](https://github.com/sponsors/artcc) to support continued development and keep the self-hosted version free for everyone.
 
@@ -252,11 +253,13 @@ Uses the same `OPENAI_API_KEY` as the LLM if `LLM_PROVIDER=openai`. No extra ser
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, and submitting pull requests.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, and submitting pull requests. By opening a pull request you accept the [Contributor License Agreement](CONTRIBUTOR_LICENSE_AGREEMENT.md).
 
 ## License
 
 Distributed under the [GNU Affero General Public License v3](LICENSE).
+
+Organisations that need to deploy FreeLingo without the AGPL's copyleft obligations can obtain a **commercial licence**. See [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) or [get in touch](https://arturocarreterocalvo.com).
 
 ## Author
 
