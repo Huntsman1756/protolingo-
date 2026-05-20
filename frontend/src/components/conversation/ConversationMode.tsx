@@ -157,13 +157,22 @@ function QuotaPill({ quota, t }: { quota: QuotaStatus; t: (k: string) => string 
   )
 }
 
+function vadRedemptionMs(cefrLevel: string | null | undefined): number {
+  if (!cefrLevel) return 1500
+  if (cefrLevel === 'A1' || cefrLevel === 'A2') return 2000
+  if (cefrLevel === 'B1' || cefrLevel === 'B2') return 1750
+  return 1500 // C1, C2
+}
+
 export default function ConversationMode({
   initialContext,
   autoStart,
+  cefrLevel,
   onClose,
 }: {
   initialContext?: ChatContextItem[]
   autoStart?: boolean
+  cefrLevel?: string | null
   onClose?: () => void
 }) {
   const t = useTranslations('conversation')
@@ -220,6 +229,7 @@ export default function ConversationMode({
     onnxWASMBasePath: '/vad/',
     model: 'v5',
     startOnLoad: false,
+    redemptionMs: vadRedemptionMs(cefrLevel),
     ortConfig: (ort) => {
       // Single-threaded ONNX — no SharedArrayBuffer / COOP headers required
       ort.env.wasm.numThreads = 1

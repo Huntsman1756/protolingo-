@@ -242,7 +242,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <p className="text-fl-label font-mono text-fl-muted-4 truncate">@{user?.username}</p>
             </div>
           </div>
-          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.5</p>
+          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.6</p>
           <button
             onClick={() => setContactOpen(true)}
             className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase mb-1"
@@ -273,7 +273,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
         {/* Dropdown */}
         {mobileMenuOpen && (
-          <nav className="border-t border-fl-border bg-fl-bg pb-2">
+          <nav className="border-t border-fl-border bg-fl-bg pb-2 overflow-y-auto max-h-[calc(100svh-3.5rem)] overscroll-contain">
             {mainNavItems.map((item) => {
               const active = pathname === item.href || pathname.startsWith(item.href + '/')
               return (
@@ -367,7 +367,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </div>
                 <p className="font-mono text-fl-label text-fl-muted-4 truncate">@{user?.username}</p>
               </div>
-              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.5</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.6</p>
               <button
                 onClick={() => { setMobileMenuOpen(false); setContactOpen(true) }}
                 className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase mb-1 block"
