@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import type { ChatContextItem } from '@/lib/conversation-ws'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
+import { apiFetch } from '@/lib/api'
 
 const ConversationMode = dynamic(
   () => import('@/components/conversation/ConversationMode'),
@@ -29,6 +30,8 @@ const ConversationMode = dynamic(
 export default function ConversationPage() {
   const [initialContext, setInitialContext] = useState<ChatContextItem[] | undefined>(undefined)
   const [autoStart, setAutoStart] = useState(false)
+  const [cefrLevel, setCefrLevel] = useState<string | null>(null)
+  const [planReady, setPlanReady] = useState(false)
 
   useEffect(() => {
     const raw = sessionStorage.getItem('voice_context')
@@ -44,7 +47,14 @@ export default function ConversationPage() {
         // malformed — ignore
       }
     }
+    apiFetch('/api/plan/today')
+      .then((res) => res.ok ? res.json() : null)
+      .then((data) => { if (data?.cefr_level) setCefrLevel(data.cefr_level) })
+      .catch(() => { /* sin plan — usa default 1500ms */ })
+      .finally(() => setPlanReady(true))
   }, [])
 
-  return <PaywallGate><ConversationMode initialContext={initialContext} autoStart={autoStart} /></PaywallGate>
+  if (!planReady) return null
+
+  return <PaywallGate><ConversationMode initialContext={initialContext} autoStart={autoStart} cefrLevel={cefrLevel} /></PaywallGate>
 }
