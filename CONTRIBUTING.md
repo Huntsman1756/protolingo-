@@ -4,7 +4,7 @@ Thank you for your interest in contributing. Please read these guidelines before
 
 ## Code of Conduct
 
-Be respectful and constructive. Harassment of any kind is not tolerated.
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating you agree to abide by its terms. Report unacceptable behavior to [freelingo@arturocarreterocalvo.com](mailto:freelingo@arturocarreterocalvo.com).
 
 ## How to contribute
 
@@ -86,6 +86,6 @@ docker compose exec backend alembic revision --autogenerate -m "short descriptio
 docker compose exec backend alembic upgrade head
 ```
 
-## License
+## Contributor License Agreement
 
-By contributing you agree that your contributions will be licensed under the [GNU Affero General Public License v3](LICENSE).
+Al abrir una pull request aceptas el [Acuerdo de Licencia de Contribuidor](CONTRIBUTOR_LICENSE_AGREEMENT.md). En esencia, otorgas a Arturo Carretero Calvo permiso para licenciar tus contribuciones bajo cualquier término que considere oportuno, lo que permite mantener la opción de ofrecer el proyecto bajo licencias comerciales además de la AGPL-3.0.
