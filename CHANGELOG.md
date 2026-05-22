@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.7] - 2026-05-22
+
+### Added
+- **Phase 8 — Feedback board**: users can submit feature requests and bug reports, vote on suggestions, and leave comments. Entries are visible to all logged-in users. Admins can update entry status and delete any entry from a dedicated admin panel.
+- **Backend**: three new DB tables (`feedback_entries`, `feedback_votes`, `feedback_comments`) with Alembic migration `0020_feedback.py`. `FeedbackEntry` stores type (`feature`|`bug`), title, description, status, author and a denormalised `vote_count`. `FeedbackVote` enforces one vote per user per feature (`UNIQUE(entry_id, user_id)`). `FeedbackComment` stores flat comment threads with cascade delete from the parent entry.
+- **Router** (`app/routers/feedback.py`): 9 endpoints under `/api/feedback` — list (paginated, sortable by votes or date, filterable by type and status), create, get detail, delete (author or admin), toggle vote (features only), update status (admin only), list comments, add comment, delete comment.
+- **Rate limits**: 10/hour for entry creation, 20/hour for comments, 60/min for reads, 30/min for votes and status updates.
+- **Frontend** (`/feedback`): two-tab layout (Suggestions / Bug reports). Each tab shows a paginated list sorted by votes (default) or date, with inline vote toggle (▲), status badge, author, date, and comment count. Clicking an entry opens a detail view with the full description, a flat comment thread, and forms to add/delete comments. Admin users see a delete button on all entries; regular users see it only on their own. Pagination pattern identical to the admin users list.
+- **Admin panel** (`/admin/feedback`): paginated table with filter by type and status. Status can be changed inline (click the badge → dropdown → auto-save). Entries can be deleted with confirmation. Accessible at `/admin/feedback`.
+- **Status workflow**: `pending` → `planned` → `in_progress` → `done` / `declined`. Each status has a distinct colour badge consistent with the existing design system (grey / blue / yellow / green / red).
+- **Navigation**: `/feedback` added to `bottomNavItems` in the sidebar (alongside Settings and FAQ) and to `PROTECTED_ROUTES` in `middleware.ts`.
+- **i18n**: `feedback` namespace (44 keys) added to all 10 locale files (en, es, fr, de, it, nl, pl, pt, ro, ru) with full translations. `nav.feedback` key added to all locales.
+- **Maintenance mode**: admin can toggle a maintenance mode from the admin users panel (`/admin/users`) via `PATCH /api/admin/maintenance`. When active, the four subscription-gated features (tutor chat, voice conversation, listening, reading) are blocked with a 503 backend response and a static maintenance banner in the frontend. No restart required — stored in Redis (`maintenance_mode` key). The toggle does not affect free features (lessons, flashcards, assessment, progress, etc.). Backend: `get_redis()` centralized in `deps.py`, `check_maintenance_mode()` dependency, `require_subscription` checks maintenance first. Frontend: `MaintenanceGate` component, `config.ts` extended with `maintenanceMode`, `PaywallGate` unchanged.
+
+### Fixed
+- **`lesson/[id]` no longer paywalled**: removed `PaywallGate` wrapper from the lesson page. Lessons are free features and were incorrectly gated on the frontend (the backend never required subscription for lessons).
+
 ## [1.5.6] - 2026-05-20
 
 ### Fixed

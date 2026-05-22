@@ -1,6 +1,7 @@
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import PyJWTError as JWTError
+from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
@@ -10,6 +11,16 @@ from app.models.user import User
 from app.services.subscription_service import is_subscribed
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
+
+MAINTENANCE_KEY = "maintenance_mode"
+
+
+async def get_redis():
+    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        yield redis
+    finally:
+        await redis.aclose()
 
 
 async def get_current_user(
@@ -33,12 +44,32 @@ async def require_admin(current_user: User = Depends(get_current_user)) -> User:
     return current_user
 
 
-async def require_subscription(current_user: User = Depends(get_current_user)) -> User:
+async def check_maintenance_mode(redis: Redis = Depends(get_redis)) -> None:
+    """Raise 503 if maintenance mode is active in Redis."""
+    try:
+        if await redis.get(MAINTENANCE_KEY) == "1":
+            raise HTTPException(
+                status_code=503,
+                detail="Service temporarily unavailable — maintenance mode is active",
+            )
+    except HTTPException:
+        raise
+    except Exception:
+        pass  # Redis failure → allow through
+
+
+async def require_subscription(
+    current_user: User = Depends(get_current_user),
+    redis: Redis = Depends(get_redis),
+) -> User:
     """Dependency for AI-powered endpoints gated by subscription.
 
     Returns the user unchanged when STRIPE_ENABLED=false (self-hosted mode).
+    Raises HTTP 503 when maintenance mode is active.
     Raises HTTP 402 when STRIPE_ENABLED=true and user has no active subscription.
     """
+    await check_maintenance_mode(redis)
+
     if not is_subscribed(current_user, settings.STRIPE_ENABLED):
         raise HTTPException(status_code=402, detail="subscription_required")
     return current_user

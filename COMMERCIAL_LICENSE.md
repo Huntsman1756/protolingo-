@@ -37,7 +37,7 @@ Commercial licences are negotiated individually based on deployment scope and re
 To request a commercial licence or discuss your needs, contact:
 
 **Arturo Carretero Calvo**
-[freelingo@arturocarreterocalvo.com](mailto:freelingo@arturocarreterocalvo.com)
+[contacto@arturocarreterocalvo.com](mailto:contacto@arturocarreterocalvo.com)
 
 ---
 

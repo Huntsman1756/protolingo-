@@ -71,7 +71,8 @@
     "conversation": "Rozmowa",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Przechowywanie i usuwanie danych",
       "s7Body": "Twoje dane są przechowywane przez cały czas istnienia konta. Możesz trwale usunąć swoje konto i wszystkie powiązane dane w dowolnym momencie ze strony Ustawień. Usunięcie jest natychmiastowe i nieodwracalne.",
       "s8Title": "8. Kontakt",
-      "s8Body": "W sprawach dotyczących prywatności usługi hostowanej skontaktuj się z nami pod adresem: freelingo@arturocarreterocalvo.com.",
+      "s8Body": "W sprawach dotyczących prywatności usługi hostowanej skontaktuj się z nami pod adresem: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Regulamin",
       "linkBack": "Wróć do rejestracji",
       "linkBackSettings": "Wróć do ustawień"
@@ -693,7 +694,12 @@
     "quotaMonthlyTokens": "Miesięczny limit tokenów",
     "fieldSubscription": "Subskrypcja",
     "fieldEndsRenews": "Kończy / Odnawia",
-    "fieldStripeCustomer": "Klient Stripe"
+    "fieldStripeCustomer": "Klient Stripe",
+    "maintenanceTitle": "Tryb Konserwacji",
+    "maintenanceOn": "WŁ.",
+    "maintenanceEnable": "Włącz Konserwację",
+    "maintenanceDisable": "Wyłącz Konserwację",
+    "maintenanceDesc": "Po włączeniu wszystkie funkcje subskrypcyjne (czat, rozmowy głosowe, ćwiczenia ze słuchu i czytania) będą niedostępne dla wszystkich użytkowników."
   },
   "faq": {
     "title": "FAQ",
@@ -940,15 +946,15 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Darmowy plan",
       "desc": "Panel, fiszki, lekcje, plan nauki i test poziomujący są teraz bezpłatne dla wszystkich zarejestrowanych użytkowników. Subskrypcja nie jest wymagana."
     },
     "entry2": {
-      "label": "Nowy cennik",
-      "desc": "Strona główna pokazuje teraz trzy karty cenowe: Darmową, Miesięczną i Roczną. Karta darmowa zawiera listę wszystkich funkcji bez subskrypcji. Płatne karty oferują 7 dni bezpłatnego okresu próbnego."
+      "label": "Tablica opinii",
+      "desc": "Teraz możesz zgłaszać pomysły na nowe funkcje i błędy bezpośrednio z aplikacji. Głosuj na propozycje innych użytkowników, zostawiaj komentarze i śledź status każdego zgłoszenia aż do realizacji."
     },
     "entry3": {
       "label": "Poprawki",
@@ -1019,5 +1025,62 @@
     "moreInHistory": "+{count} więcej",
     "practiceAgain": "Ćwicz ponownie",
     "replayNoXp": "Powtórka — brak XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Sugestie i zgłoszenia błędów",
+    "tabFeatures": "Sugestie",
+    "tabBugs": "Błędy",
+    "newFeature": "+ Nowa sugestia",
+    "newBug": "+ Zgłoś błąd",
+    "sortBy": "Sortuj według",
+    "sortVotes": "Najczęściej głosowane",
+    "sortDate": "Najnowsze",
+    "filterStatus": "Status",
+    "filterAll": "Wszystkie",
+    "noEntries": "Nic tu jeszcze nie ma. Bądź pierwszy!",
+    "votes": "{count} głosów",
+    "vote": "1 głos",
+    "comments": "{count} komentarzy",
+    "comment": "1 komentarz",
+    "by": "przez",
+    "statusPending": "Oczekuje",
+    "statusPlanned": "Zaplanowane",
+    "statusInProgress": "W toku",
+    "statusDone": "Gotowe",
+    "statusDeclined": "Odrzucone",
+    "modalCreateTitleFeature": "Nowa sugestia",
+    "modalCreateTitleBug": "Zgłoś błąd",
+    "labelTitle": "Tytuł",
+    "placeholderTitleFeature": "Opisz swoją sugestię w jednym zdaniu",
+    "placeholderTitleBug": "Krótki opis błędu",
+    "labelDescription": "Szczegóły",
+    "placeholderDescriptionFeature": "Wyjaśnij funkcję i dlaczego byłaby przydatna",
+    "placeholderDescriptionBug": "Kroki do odtworzenia, oczekiwane zachowanie, co się stało",
+    "submit": "Wyślij",
+    "submitting": "Wysyłanie...",
+    "cancel": "Anuluj",
+    "deleteEntry": "Usuń",
+    "deleteEntryConfirmTitle": "Usuń wpis",
+    "deleteEntryConfirmMessage": "Usunąć ten wpis? Tej operacji nie można cofnąć.",
+    "deleteEntryConfirm": "Usuń",
+    "addComment": "Dodaj komentarz",
+    "commentPlaceholder": "Napisz komentarz...",
+    "postComment": "Opublikuj",
+    "postingComment": "Publikowanie...",
+    "deleteComment": "Usuń",
+    "deleteCommentConfirmTitle": "Usuń komentarz",
+    "deleteCommentConfirmMessage": "Usunąć ten komentarz?",
+    "deleteCommentConfirm": "Usuń",
+    "backToList": "← Wróć",
+    "errorLoad": "Ładowanie nie powiodło się. Spróbuj ponownie.",
+    "errorSubmit": "Wysyłanie nie powiodło się. Spróbuj ponownie.",
+    "prevPage": "← Poprz.",
+    "nextPage": "Nast. →"
+  },
+  "maintenance": {
+    "label": "Konserwacja",
+    "title": "W Trakcie Konserwacji",
+    "description": "Ta sekcja jest tymczasowo niedostępna z powodu prac konserwacyjnych. Spróbuj ponownie później."
   }
 }

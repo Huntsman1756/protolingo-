@@ -71,7 +71,8 @@
     "conversation": "Conversación",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Conservación y eliminación de datos",
       "s7Body": "Tus datos se conservan mientras exista tu cuenta. Puedes eliminar tu cuenta y todos los datos asociados de forma permanente en cualquier momento desde la página de Ajustes. La eliminación es inmediata e irreversible.",
       "s8Title": "8. Contacto",
-      "s8Body": "Para consultas sobre privacidad en el servicio alojado, contáctanos en: freelingo@arturocarreterocalvo.com. Para despliegues autoalojados, contacta con el administrador de la instancia que estás usando. Para preguntas sobre el proyecto de código abierto FreeLingo, visita el repositorio del proyecto en GitHub.",
+      "s8Body": "Para consultas sobre privacidad en el servicio alojado, contáctanos en: contacto@arturocarreterocalvo.com. Para despliegues autoalojados, contacta con el administrador de la instancia que estás usando. Para preguntas sobre el proyecto de código abierto FreeLingo, visita el repositorio del proyecto en GitHub.",
       "linkTerms": "Términos de servicio",
       "linkBack": "Volver al registro",
       "linkBackSettings": "Volver a ajustes"
@@ -693,7 +694,12 @@
     "emailUnverifiedSuccess": "Email marcado como no verificado.",
     "fieldSubscription": "Suscripción",
     "fieldEndsRenews": "Finaliza / Renueva",
-    "fieldStripeCustomer": "Cliente Stripe"
+    "fieldStripeCustomer": "Cliente Stripe",
+    "maintenanceTitle": "Modo Mantenimiento",
+    "maintenanceOn": "ACTIVO",
+    "maintenanceEnable": "Activar Mantenimiento",
+    "maintenanceDisable": "Desactivar Mantenimiento",
+    "maintenanceDesc": "Al activarse, todas las funciones de suscripción (chat, conversaciones de voz, ejercicios de listening y reading) estarán bloqueadas para todos los usuarios."
   },
   "faq": {
     "title": "FAQ",
@@ -940,15 +946,15 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Entendido",
     "entry1": {
       "label": "Plan gratuito",
       "desc": "El panel, las tarjetas, las lecciones, el plan de estudio y el test de nivel ahora son gratuitos para todos los usuarios registrados. No necesitas suscripción para acceder a estas funciones."
     },
     "entry2": {
-      "label": "Precios renovados",
-      "desc": "La página de inicio muestra ahora tres tarjetas de precio: Gratis, Mensual y Anual. La tarjeta gratuita lista todo lo que incluye el plan sin suscripción. Las tarjetas de pago incluyen 7 días de prueba gratis."
+      "label": "Tablón de feedback",
+      "desc": "Ya puedes sugerir nuevas funcionalidades y reportar errores directamente desde la app. Vota las sugerencias de otros usuarios, deja comentarios y sigue el estado de cada solicitud hasta que esté completada."
     },
     "entry3": {
       "label": "Correcciones",
@@ -1019,5 +1025,62 @@
     "moreInHistory": "+{count} más",
     "practiceAgain": "Practicar de nuevo",
     "replayNoXp": "Repetición — sin XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Sugerencias y errores",
+    "tabFeatures": "Sugerencias",
+    "tabBugs": "Errores",
+    "newFeature": "+ Nueva sugerencia",
+    "newBug": "+ Reportar error",
+    "sortBy": "Ordenar por",
+    "sortVotes": "Más votados",
+    "sortDate": "Más recientes",
+    "filterStatus": "Estado",
+    "filterAll": "Todos",
+    "noEntries": "Nada aquí todavía. ¡Sé el primero en enviar algo!",
+    "votes": "{count} votos",
+    "vote": "1 voto",
+    "comments": "{count} comentarios",
+    "comment": "1 comentario",
+    "by": "por",
+    "statusPending": "Pendiente",
+    "statusPlanned": "Planificado",
+    "statusInProgress": "En progreso",
+    "statusDone": "Hecho",
+    "statusDeclined": "Rechazado",
+    "modalCreateTitleFeature": "Nueva sugerencia",
+    "modalCreateTitleBug": "Reportar un error",
+    "labelTitle": "Título",
+    "placeholderTitleFeature": "Describe tu sugerencia en una frase",
+    "placeholderTitleBug": "Descripción breve del error",
+    "labelDescription": "Detalles",
+    "placeholderDescriptionFeature": "Explica la funcionalidad y por qué sería útil",
+    "placeholderDescriptionBug": "Pasos para reproducirlo, comportamiento esperado, qué ocurrió",
+    "submit": "Enviar",
+    "submitting": "Enviando...",
+    "cancel": "Cancelar",
+    "deleteEntry": "Eliminar",
+    "deleteEntryConfirmTitle": "Eliminar entrada",
+    "deleteEntryConfirmMessage": "¿Seguro que quieres eliminar esta entrada? No se puede deshacer.",
+    "deleteEntryConfirm": "Eliminar",
+    "addComment": "Añadir un comentario",
+    "commentPlaceholder": "Escribe un comentario...",
+    "postComment": "Publicar",
+    "postingComment": "Publicando...",
+    "deleteComment": "Eliminar",
+    "deleteCommentConfirmTitle": "Eliminar comentario",
+    "deleteCommentConfirmMessage": "¿Eliminar este comentario?",
+    "deleteCommentConfirm": "Eliminar",
+    "backToList": "← Volver",
+    "errorLoad": "Error al cargar. Inténtalo de nuevo.",
+    "errorSubmit": "Error al enviar. Inténtalo de nuevo.",
+    "prevPage": "← Anterior",
+    "nextPage": "Siguiente →"
+  },
+  "maintenance": {
+    "label": "Mantenimiento",
+    "title": "En Mantenimiento",
+    "description": "Esta sección no está disponible temporalmente por tareas de mantenimiento. Vuelve más tarde."
   }
 }

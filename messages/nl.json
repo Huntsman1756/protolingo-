@@ -71,7 +71,8 @@
     "conversation": "Gesprek",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Bewaring en verwijdering van gegevens",
       "s7Body": "Je gegevens worden bewaard zolang je account bestaat. Je kunt je account en alle bijbehorende gegevens op elk moment permanent verwijderen via de pagina Instellingen. Verwijdering is onmiddellijk en onomkeerbaar.",
       "s8Title": "8. Contact",
-      "s8Body": "Voor privacygerelateerde vragen over de gehoste service, neem contact met ons op via: freelingo@arturocarreterocalvo.com.",
+      "s8Body": "Voor privacygerelateerde vragen over de gehoste service, neem contact met ons op via: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Gebruiksvoorwaarden",
       "linkBack": "Terug naar registratie",
       "linkBackSettings": "Terug naar instellingen"
@@ -693,7 +694,12 @@
     "quotaMonthlyTokens": "Maandelijks tokenlimiet",
     "fieldSubscription": "Abonnement",
     "fieldEndsRenews": "Eindigt / Verlengt",
-    "fieldStripeCustomer": "Stripe-klant"
+    "fieldStripeCustomer": "Stripe-klant",
+    "maintenanceTitle": "Onderhoudsmodus",
+    "maintenanceOn": "AAN",
+    "maintenanceEnable": "Onderhoud Inschakelen",
+    "maintenanceDisable": "Onderhoud Uitschakelen",
+    "maintenanceDesc": "Indien ingeschakeld zijn alle abonnementsfuncties (tutorchat, spraakgesprekken, luister- en leesoefeningen) niet beschikbaar voor alle gebruikers."
   },
   "faq": {
     "title": "FAQ",
@@ -940,15 +946,15 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Begrepen",
     "entry1": {
       "label": "Gratis plan",
       "desc": "Dashboard, flashcards, lessen, studieplan en niveautest zijn nu gratis voor alle geregistreerde gebruikers. Geen abonnement vereist."
     },
     "entry2": {
-      "label": "Prijzen vernieuwd",
-      "desc": "De startpagina toont nu drie prijskaarten: Gratis, Maandelijks en Jaarlijks. De gratis kaart toont alle functies zonder abonnement. Betaalde kaarten bevatten 7 dagen gratis."
+      "label": "Feedbackbord",
+      "desc": "Je kunt nu direct vanuit de app nieuwe functies voorstellen en bugs melden. Stem op suggesties van andere gebruikers, laat reacties achter en volg de status van elke aanvraag tot aan de afronding."
     },
     "entry3": {
       "label": "Bugfixes",
@@ -1019,5 +1025,62 @@
     "moreInHistory": "+{count} meer",
     "practiceAgain": "Opnieuw oefenen",
     "replayNoXp": "Herhaling — geen XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Suggesties en bugrapporten",
+    "tabFeatures": "Suggesties",
+    "tabBugs": "Bugs",
+    "newFeature": "+ Nieuwe suggestie",
+    "newBug": "+ Bug melden",
+    "sortBy": "Sorteren op",
+    "sortVotes": "Meeste stemmen",
+    "sortDate": "Nieuwste",
+    "filterStatus": "Status",
+    "filterAll": "Alle",
+    "noEntries": "Nog niets hier. Wees de eerste!",
+    "votes": "{count} stemmen",
+    "vote": "1 stem",
+    "comments": "{count} reacties",
+    "comment": "1 reactie",
+    "by": "door",
+    "statusPending": "In behandeling",
+    "statusPlanned": "Gepland",
+    "statusInProgress": "In uitvoering",
+    "statusDone": "Klaar",
+    "statusDeclined": "Afgewezen",
+    "modalCreateTitleFeature": "Nieuwe suggestie",
+    "modalCreateTitleBug": "Bug melden",
+    "labelTitle": "Titel",
+    "placeholderTitleFeature": "Beschrijf je suggestie in één zin",
+    "placeholderTitleBug": "Korte beschrijving van de bug",
+    "labelDescription": "Details",
+    "placeholderDescriptionFeature": "Leg de functie uit en waarom die nuttig zou zijn",
+    "placeholderDescriptionBug": "Stappen om te reproduceren, verwacht gedrag, wat er gebeurde",
+    "submit": "Versturen",
+    "submitting": "Versturen...",
+    "cancel": "Annuleren",
+    "deleteEntry": "Verwijderen",
+    "deleteEntryConfirmTitle": "Verwijder item",
+    "deleteEntryConfirmMessage": "Dit item verwijderen? Dit kan niet ongedaan worden gemaakt.",
+    "deleteEntryConfirm": "Verwijderen",
+    "addComment": "Reactie toevoegen",
+    "commentPlaceholder": "Schrijf een reactie...",
+    "postComment": "Plaatsen",
+    "postingComment": "Plaatsen...",
+    "deleteComment": "Verwijderen",
+    "deleteCommentConfirmTitle": "Verwijder reactie",
+    "deleteCommentConfirmMessage": "Deze reactie verwijderen?",
+    "deleteCommentConfirm": "Verwijderen",
+    "backToList": "← Terug",
+    "errorLoad": "Laden mislukt. Probeer opnieuw.",
+    "errorSubmit": "Versturen mislukt. Probeer opnieuw.",
+    "prevPage": "← Vorige",
+    "nextPage": "Volgende →"
+  },
+  "maintenance": {
+    "label": "Onderhoud",
+    "title": "In Onderhoud",
+    "description": "Dit gedeelte is tijdelijk niet beschikbaar vanwege onderhoud. Probeer het later opnieuw."
   }
 }

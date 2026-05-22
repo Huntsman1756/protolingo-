@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
+import { useConfigStore } from '@/store/config'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 interface AdminUserItem {
@@ -43,6 +44,8 @@ export default function AdminUsersPage() {
   const [error, setError] = useState('')
   const [deletePending, setDeletePending] = useState<AdminUserItem | null>(null)
   const currentUserId = useAuthStore((s) => s.user?.id)
+  const maintenanceMode = useConfigStore((s) => s.maintenanceMode)
+  const [maintenanceLoading, setMaintenanceLoading] = useState(false)
 
   const loadUsers = useCallback(async (pageIndex: number, query: string) => {
     setLoading(true)
@@ -130,6 +133,21 @@ export default function AdminUsersPage() {
     setInviteUrl(`${window.location.origin}${data.invite_url}`)
   }
 
+  async function toggleMaintenance() {
+    setMaintenanceLoading(true)
+    try {
+      const res = await apiFetch('/api/admin/maintenance', { method: 'PATCH' })
+      if (res.ok) {
+        const data = await res.json()
+        useConfigStore.setState({ maintenanceMode: data.maintenance_mode })
+      }
+    } catch {
+      // ignore
+    } finally {
+      setMaintenanceLoading(false)
+    }
+  }
+
   const inputCls = 'w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors'
 
   if (loading) {
@@ -163,6 +181,32 @@ export default function AdminUsersPage() {
               }`}
           >
             {showCreate ? `- ${t('createUser')}` : t('createUserBtn')}
+          </button>
+        </div>
+      </div>
+
+      {/* Maintenance mode card */}
+      <div className={`border px-5 py-4 ${maintenanceMode ? 'border-yellow-500/40 bg-yellow-500/5' : 'border-fl-border bg-fl-surface'}`}>
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className={`text-fl-label ${maintenanceMode ? 'text-yellow-500' : 'text-fl-muted-2'}`}>●</span>
+              <span className="font-mono text-xs tracking-widest uppercase text-fl-muted-1">{t('maintenanceTitle')}</span>
+              {maintenanceMode && (
+                <span className="font-mono text-fl-hint tracking-widest uppercase border border-yellow-500/40 text-yellow-500 px-2 py-0.5">{t('maintenanceOn')}</span>
+              )}
+            </div>
+            <p className="font-mono text-fl-hint text-fl-muted-2 ml-5">{t('maintenanceDesc')}</p>
+          </div>
+          <button
+            onClick={toggleMaintenance}
+            disabled={maintenanceLoading}
+            className={`shrink-0 px-4 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors ${maintenanceMode
+                ? 'bg-fl-fg text-fl-bg hover:bg-fl-fg/90'
+                : 'bg-yellow-500 text-black hover:bg-yellow-500/90'
+              } disabled:opacity-50`}
+          >
+            {maintenanceLoading ? '...' : maintenanceMode ? t('maintenanceDisable') : t('maintenanceEnable')}
           </button>
         </div>
       </div>

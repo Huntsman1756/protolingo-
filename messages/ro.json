@@ -71,7 +71,8 @@
     "conversation": "Conversație",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Retenția și ștergerea datelor",
       "s7Body": "Datele tale sunt păstrate atât timp cât contul tău există. Poți șterge permanent contul și toate datele asociate în orice moment din pagina Setări.",
       "s8Title": "8. Contact",
-      "s8Body": "Pentru întrebări legate de confidențialitate, contactează-ne la: freelingo@arturocarreterocalvo.com.",
+      "s8Body": "Pentru întrebări legate de confidențialitate, contactează-ne la: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Termeni și condiții",
       "linkBack": "Înapoi la înregistrare",
       "linkBackSettings": "Înapoi la setări"
@@ -693,7 +694,12 @@
     "quotaMonthlyTokens": "Limită lunară de tokeni",
     "fieldSubscription": "Abonament",
     "fieldEndsRenews": "Expiră / Reînnoiește",
-    "fieldStripeCustomer": "Client Stripe"
+    "fieldStripeCustomer": "Client Stripe",
+    "maintenanceTitle": "Mod Mentenanță",
+    "maintenanceOn": "ACTIV",
+    "maintenanceEnable": "Activează Mentenanța",
+    "maintenanceDisable": "Dezactivează Mentenanța",
+    "maintenanceDesc": "Când este activat, toate funcțiile de abonament (chat, conversații vocale, exerciții de ascultare și citire) vor fi indisponibile pentru toți utilizatorii."
   },
   "faq": {
     "title": "Întrebări frecvente",
@@ -940,15 +946,15 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Plan gratuit",
       "desc": "Tabloul de bord, cardurile de memorie, lecțiile, planul de studiu și testul de nivel sunt acum gratuite pentru toți utilizatorii înregistrați. Nu este necesară nicio abonare."
     },
     "entry2": {
-      "label": "Prețuri redesenate",
-      "desc": "Pagina principală afișează acum trei carduri de preț: Gratuit, Lunar și Anual. Cardul gratuit listează toate funcțiile fără abonament. Cardurile plătite includ 7 zile de probă gratuită."
+      "label": "Panou de feedback",
+      "desc": "Acum poți sugera funcționalități noi și raporta erori direct din aplicație. Votează sugestiile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri până la finalizare."
     },
     "entry3": {
       "label": "Corecții",
@@ -1019,5 +1025,62 @@
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
     "replayNoXp": "Reluare — fără XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Sugestii și rapoarte de erori",
+    "tabFeatures": "Sugestii",
+    "tabBugs": "Erori",
+    "newFeature": "+ Sugestie nouă",
+    "newBug": "+ Raportează o eroare",
+    "sortBy": "Sortează după",
+    "sortVotes": "Cele mai votate",
+    "sortDate": "Cele mai recente",
+    "filterStatus": "Stare",
+    "filterAll": "Toate",
+    "noEntries": "Nimic aici încă. Fii primul care trimite ceva!",
+    "votes": "{count} voturi",
+    "vote": "1 vot",
+    "comments": "{count} comentarii",
+    "comment": "1 comentariu",
+    "by": "de",
+    "statusPending": "În așteptare",
+    "statusPlanned": "Planificat",
+    "statusInProgress": "În progres",
+    "statusDone": "Finalizat",
+    "statusDeclined": "Respins",
+    "modalCreateTitleFeature": "Sugestie nouă",
+    "modalCreateTitleBug": "Raportează o eroare",
+    "labelTitle": "Titlu",
+    "placeholderTitleFeature": "Descrie sugestia ta într-o propoziție",
+    "placeholderTitleBug": "Descriere scurtă a erorii",
+    "labelDescription": "Detalii",
+    "placeholderDescriptionFeature": "Explică funcționalitatea și de ce ar fi utilă",
+    "placeholderDescriptionBug": "Pași pentru reproducere, comportament așteptat, ce s-a întâmplat",
+    "submit": "Trimite",
+    "submitting": "Se trimite...",
+    "cancel": "Anulează",
+    "deleteEntry": "Șterge",
+    "deleteEntryConfirmTitle": "Șterge intrarea",
+    "deleteEntryConfirmMessage": "Ștergi această intrare? Acțiunea nu poate fi anulată.",
+    "deleteEntryConfirm": "Șterge",
+    "addComment": "Adaugă un comentariu",
+    "commentPlaceholder": "Scrie un comentariu...",
+    "postComment": "Publică",
+    "postingComment": "Se publică...",
+    "deleteComment": "Șterge",
+    "deleteCommentConfirmTitle": "Șterge comentariul",
+    "deleteCommentConfirmMessage": "Ștergi acest comentariu?",
+    "deleteCommentConfirm": "Șterge",
+    "backToList": "← Înapoi",
+    "errorLoad": "Încărcare eșuată. Încearcă din nou.",
+    "errorSubmit": "Trimitere eșuată. Încearcă din nou.",
+    "prevPage": "← Prev.",
+    "nextPage": "Urm. →"
+  },
+  "maintenance": {
+    "label": "Întreținere",
+    "title": "În Mentenanță",
+    "description": "Această secțiune este temporar indisponibilă pentru lucrări de întreținere. Încearcă din nou mai târziu."
   }
 }

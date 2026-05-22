@@ -51,7 +51,7 @@ Need FreeLingo for your team or organisation?
 - **Dedicated managed instance** — A turnkey deployment operated exclusively for your organisation: setup, hosting, maintenance, and updates included. Your data stays isolated in a dedicated environment.
 - **Commercial licence** — Organisations that need to deploy a customised or white-labelled version without the open-source obligations of the AGPL can obtain a commercial licence. See [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md) for details.
 
-[Get in touch](mailto:freelingo@arturocarreterocalvo.com) to discuss your requirements.
+[Get in touch](mailto:contacto@arturocarreterocalvo.com) to discuss your requirements.
 
 If FreeLingo is useful to you or your organisation, consider [**sponsoring the project on GitHub**](https://github.com/sponsors/artcc) to support continued development and keep the self-hosted version free for everyone.
 
@@ -108,6 +108,7 @@ freelingo/
 | 5     | Stripe subscriptions   | ✅ Complete         |
 | 6     | Listening              | ✅ Complete         |
 | 7     | Reading                | ✅ Complete         |
+| 8     | Feedback board         | ✅ Complete         |
 
 ## Quick start
 
