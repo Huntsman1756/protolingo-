@@ -138,7 +138,8 @@ export default function AdminUsersPage() {
     try {
       const res = await apiFetch('/api/admin/maintenance', { method: 'PATCH' })
       if (res.ok) {
-        useConfigStore.getState().load()
+        const data = await res.json()
+        useConfigStore.setState({ maintenanceMode: data.maintenance_mode })
       }
     } catch {
       // ignore
@@ -200,11 +201,10 @@ export default function AdminUsersPage() {
           <button
             onClick={toggleMaintenance}
             disabled={maintenanceLoading}
-            className={`shrink-0 px-4 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors ${
-              maintenanceMode
+            className={`shrink-0 px-4 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors ${maintenanceMode
                 ? 'bg-fl-fg text-fl-bg hover:bg-fl-fg/90'
                 : 'bg-yellow-500 text-black hover:bg-yellow-500/90'
-            } disabled:opacity-50`}
+              } disabled:opacity-50`}
           >
             {maintenanceLoading ? '...' : maintenanceMode ? t('maintenanceDisable') : t('maintenanceEnable')}
           </button>

@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.core.deps import require_admin
+from app.core.deps import MAINTENANCE_KEY, require_admin
 from app.core.security import hash_password
 from app.models.chat_history import ChatHistory
 from app.models.lesson import Lesson
@@ -274,7 +274,7 @@ async def get_maintenance_mode(
     admin: User = Depends(require_admin),
     redis: Redis = Depends(get_redis),
 ):
-    mode = await redis.get("maintenance_mode")
+    mode = await redis.get(MAINTENANCE_KEY)
     return {"maintenance_mode": mode == "1"}
 
 
@@ -283,7 +283,7 @@ async def toggle_maintenance_mode(
     admin: User = Depends(require_admin),
     redis: Redis = Depends(get_redis),
 ):
-    current = await redis.get("maintenance_mode")
+    current = await redis.get(MAINTENANCE_KEY)
     new_mode = "1" if current != "1" else "0"
-    await redis.set("maintenance_mode", new_mode)
+    await redis.set(MAINTENANCE_KEY, new_mode)
     return {"maintenance_mode": new_mode == "1"}

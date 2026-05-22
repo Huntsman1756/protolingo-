@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, Request
 from redis.asyncio import Redis
 
 from app.core.config import settings
-from app.core.deps import get_redis
+from app.core.deps import MAINTENANCE_KEY, get_redis
 from app.core.limiter import limiter
 
 router = APIRouter(tags=["config"])
@@ -25,7 +25,7 @@ async def get_config(
     """Return public runtime configuration flags."""
     maintenance_mode = False
     try:
-        maintenance_mode = await redis.get("maintenance_mode") == "1"
+        maintenance_mode = await redis.get(MAINTENANCE_KEY) == "1"
     except Exception:
         pass
 
