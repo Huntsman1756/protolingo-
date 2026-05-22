@@ -725,6 +725,10 @@
     "a_tutor": "Ein freier Streaming-Chat. Der Tutor kennt Ihr GER-Niveau und Ihre Schwachstellen, um seine Antworten anzupassen. Stellen Sie Grammatikfragen, bitten Sie um Erklärungen, üben Sie das Schreiben auf Englisch oder führen Sie einfach ein Gespräch. Gespräche werden gespeichert und sind in der Seitenleiste sitzungsübergreifend zugänglich.",
     "q_voice": "Wie funktioniert die Sprachkonversation?",
     "a_voice": "Der Modus <strong>Sprachkonversation</strong> ermöglicht es dir, in Echtzeit mit dem KI-Tutor zu sprechen. Drücke auf Start — die App erkennt deine Stimme automatisch über Sprachaktivitätserkennung (VAD) und der Tutor antwortet mit Sprachsynthese. Du kannst den Tutor jederzeit unterbrechen (Barge-in). Die Sitzung endet, wenn das Zeitlimit erreicht ist oder du auf Stopp drückst. Stelle sicher, dass dein Browser die Mikrofonberechtigung erteilt hat.",
+    "q_listening": "Wie funktionieren die Hörübungen?",
+    "a_listening": "Der <strong>Listening</strong>-Bereich generiert kurze Audiopassagen auf deinem CEFR-Niveau, vertont von KI. Höre dir die Audio an und beantworte 5 Fragen zum Hörverstehen. Nach dem Einreichen erhältst du deine Punktzahl (0–5), XP, die richtigen Antworten und das vollständige Transkript. Du kannst bei Bedarf neue Übungen generieren.",
+    "q_reading": "Wie funktionieren die Leseübungen?",
+    "a_reading": "Der <strong>Reading</strong>-Bereich generiert Texte auf deinem CEFR-Niveau — Mitteilungen, E-Mails, Artikel, Blogbeiträge und mehr. Lies den Text und beantworte 5 Multiple-Choice-Fragen. Nach dem Einreichen erhältst du deine Punktzahl (0–5) und XP. Neue Übungen können bei Bedarf generiert werden.",
     "q_providers": "Welche KI-Anbieter unterstützt FreeLingo?",
     "a_providers_intro": "Konfigurierbar in <code>.env</code> über <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Lokal, kostenlos. Erfordert Ollama auf dem Host. Empfohlenes Modell: gemma4:e4b. Kann ohne GPU langsam sein.",
@@ -734,7 +738,9 @@
     "q_invite": "Kann ich andere Personen einladen?",
     "a_invite": "Ja. Über <adminLink>Admin → Benutzer</adminLink> kann der Administrator Benutzer direkt erstellen oder Einladungslinks zur einmaligen Verwendung generieren, die nach 48 Stunden ablaufen. Die öffentliche Registrierung ist standardmäßig deaktiviert (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "Wie ändere ich mein Passwort oder meine Muttersprache?",
-    "a_password": "Gehen Sie zu <settingsLink>Einstellungen</settingsLink>. Dort können Sie Ihren Anzeigenamen, Ihre Muttersprache und Ihr Passwort aktualisieren."
+    "a_password": "Gehen Sie zu <settingsLink>Einstellungen</settingsLink>. Dort können Sie Ihren Anzeigenamen, Ihre Muttersprache und Ihr Passwort aktualisieren.",
+    "q_feedback": "Wie kann ich eine neue Funktion vorschlagen oder einen Fehler melden?",
+    "a_feedback": "Nutzen Sie den Bereich <feedbackLink>Feedback</feedbackLink> in der Seitenleiste. Sie können Vorschläge für neue Funktionen einreichen oder Fehler melden. Stimmen Sie für Ideen anderer Nutzer ab, hinterlassen Sie Kommentare und verfolgen Sie den Status jeder Anfrage. Alle Einreichungen sind öffentlich und werden vom Administrator geprüft."
   },
   "cookieBanner": {
     "message": "Wir verwenden ausschließlich notwendige Cookies, um dich eingeloggt zu halten. Es werden keine Tracking- oder Werbe-Cookies verwendet.",

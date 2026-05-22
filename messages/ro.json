@@ -725,6 +725,10 @@
     "a_tutor": "Un chat în format liber cu streaming. Tutorele cunoaște nivelul tău CEFR și punctele slabe pentru a-și adapta răspunsurile. Pune întrebări de gramatică, cere explicații, exersează scrierea în engleză sau pur și simplu poartă o conversație.",
     "q_voice": "Cum funcționează conversația vocală?",
     "a_voice": "Modul <strong>Conversație vocală</strong> îți permite să vorbești cu tutorele AI în timp real. Apasă Start pentru a începe — aplicația detectează automat vocea ta prin detecția activității vocale (VAD) și tutorele răspunde cu sinteză vocală. Poți întrerupe tutorele în orice moment (barge-in). Sesiunea se încheie când se atinge limita de timp sau apeși Stop. Asigură-te că browserul are permisiunea de a accesa microfonul.",
+    "q_listening": "Cum funcționează exercițiile de ascultare?",
+    "a_listening": "Secțiunea <strong>Listening</strong> generează scurte fragmente audio la nivelul tău CEFR, narate de AI. Ascultă audio și răspunde la 5 întrebări de înțelegere. După trimitere, primești scorul (0–5), XP, răspunsurile corecte și transcrierea completă. Poți genera exerciții noi la cerere.",
+    "q_reading": "Cum funcționează exercițiile de citire?",
+    "a_reading": "Secțiunea <strong>Reading</strong> generează texte la nivelul tău CEFR — anunțuri, e-mailuri, articole, postări de blog și multe altele. Citește textul și răspunde la 5 întrebări cu variante multiple. După trimitere, primești scorul (0–5) și XP. Exerciții noi pot fi generate la cerere.",
     "q_providers": "Ce furnizori AI acceptă FreeLingo?",
     "a_providers_intro": "Configurabil în <code>.env</code> prin <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Local, gratuit. Necesită Ollama pe gazdă. Model recomandat: gemma4:e4b.",
@@ -734,7 +738,9 @@
     "q_invite": "Pot invita pe alții?",
     "a_invite": "Da. Prin <adminLink>Admin → Utilizatori</adminLink>, administratorul poate crea utilizatori direct sau poate genera linkuri de invitație de unică folosință care expiră după 48 de ore.",
     "q_password": "Cum îmi schimb parola sau limba maternă?",
-    "a_password": "Mergi la <settingsLink>Setări</settingsLink>. Acolo poți actualiza numele afișat, limba maternă și parola."
+    "a_password": "Mergi la <settingsLink>Setări</settingsLink>. Acolo poți actualiza numele afișat, limba maternă și parola.",
+    "q_feedback": "Cum pot sugera o funcționalitate nouă sau raporta o eroare?",
+    "a_feedback": "Folosește secțiunea <feedbackLink>Feedback</feedbackLink> din bara laterală. Poți crea sugestii pentru funcționalități noi sau raporta erori. Votează ideile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri. Toate trimiterile sunt publice și sunt revizuite de administrator."
   },
   "cookieBanner": {
     "message": "Folosim cookie-uri strict necesare pentru a te menține autentificat. Nu se folosesc cookie-uri de urmărire sau publicitate.",

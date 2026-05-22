@@ -725,6 +725,10 @@
     "a_tutor": "Swobodny czat strumieniowy. Korepetytor zna Twój poziom CEFR i słabe punkty, aby dostosować odpowiedzi. Zadawaj pytania gramatyczne, proś o wyjaśnienia, ćwicz pisanie po angielsku lub po prostu rozmawiaj.",
     "q_voice": "Jak działa rozmowa głosowa?",
     "a_voice": "Tryb <strong>Rozmowy głosowej</strong> umożliwia rozmowę z tutorem AI w czasie rzeczywistym. Naciśnij Start, aby rozpocząć — aplikacja automatycznie wykrywa Twój głos za pomocą detekcji aktywności głosowej (VAD), a tutor odpowiada syntezą mowy. Możesz przerwać tutorowi w dowolnym momencie (barge-in). Sesja kończy się po osiągnięciu limitu czasu lub naciśnięciu Zatrzymaj. Upewnij się, że przeglądarka ma uprawnienia do mikrofonu.",
+    "q_listening": "Jak działają ćwiczenia ze słuchu?",
+    "a_listening": "Sekcja <strong>Listening</strong> generuje krótkie nagrania audio na Twoim poziomie CEFR, odczytywane przez AI. Odsłuchaj nagranie i odpowiedz na 5 pytań sprawdzających rozumienie. Po przesłaniu otrzymujesz wynik (0–5), XP, poprawne odpowiedzi i pełną transkrypcję. Możesz generować nowe ćwiczenia na żądanie.",
+    "q_reading": "Jak działają ćwiczenia z czytania?",
+    "a_reading": "Sekcja <strong>Reading</strong> generuje teksty na Twoim poziomie CEFR — ogłoszenia, e-maile, artykuły, wpisy na blogu i więcej. Przeczytaj tekst i odpowiedz na 5 pytań wielokrotnego wyboru. Po przesłaniu otrzymujesz wynik (0–5) i XP. Nowe ćwiczenia mogą być generowane na żądanie.",
     "q_providers": "Jakich dostawców AI obsługuje FreeLingo?",
     "a_providers_intro": "Konfigurowane w <code>.env</code> przez <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Lokalny, bezpłatny. Wymaga Ollama działającego na hoście. Zalecany model: gemma4:e4b.",
@@ -734,7 +738,9 @@
     "q_invite": "Czy mogę zapraszać innych?",
     "a_invite": "Tak. Z <adminLink>Admin → Użytkownicy</adminLink> administrator może tworzyć użytkowników bezpośrednio lub generować jednorazowe linki zaproszenia wygasające po 48 godzinach.",
     "q_password": "Jak zmienić hasło lub język ojczysty?",
-    "a_password": "Przejdź do <settingsLink>Ustawień</settingsLink>. Możesz tam zaktualizować wyświetlaną nazwę, język ojczysty i hasło."
+    "a_password": "Przejdź do <settingsLink>Ustawień</settingsLink>. Możesz tam zaktualizować wyświetlaną nazwę, język ojczysty i hasło.",
+    "q_feedback": "Jak mogę zaproponować nową funkcję lub zgłosić błąd?",
+    "a_feedback": "Skorzystaj z sekcji <feedbackLink>Feedback</feedbackLink> na pasku bocznym. Możesz zgłaszać pomysły na nowe funkcje lub błędy. Głosuj na pomysły innych użytkowników, zostawiaj komentarze i śledź status każdego zgłoszenia. Wszystkie zgłoszenia są publiczne i sprawdzane przez administratora."
   },
   "cookieBanner": {
     "message": "Używamy wyłącznie niezbędnych plików cookie, aby utrzymać Cię zalogowanym. Nie używamy plików cookie do śledzenia ani reklam.",

@@ -725,6 +725,10 @@
     "a_tutor": "A free-form streaming chat. The tutor knows your CEFR level and weak points to tailor its responses. Ask grammar questions, request explanations, practice writing in English, or just have a conversation. Conversations are saved and accessible from the sidebar across sessions.",
     "q_voice": "How does the voice conversation work?",
     "a_voice": "The <strong>Voice Conversation</strong> mode lets you speak with the AI tutor in real time. Press Start to begin — the app listens for your voice automatically using voice activity detection (VAD) and the tutor replies with synthesised speech. You can interrupt the tutor at any moment (barge-in). The session ends when you reach the time limit or press Stop. Make sure your browser has microphone permission enabled.",
+    "q_listening": "How do listening exercises work?",
+    "a_listening": "The <strong>Listening</strong> section generates short audio passages at your CEFR level, voiced by AI. Listen to the audio, then answer 5 comprehension questions. After submitting, you get your score (0–5), XP, correct answers, and the full transcript. You can generate new exercises on demand.",
+    "q_reading": "How do reading exercises work?",
+    "a_reading": "The <strong>Reading</strong> section generates texts at your CEFR level — notices, emails, articles, blog posts, and more. Read the passage and answer 5 multiple-choice questions. After submitting, you get your score (0–5) and XP. New exercises can be generated on demand.",
     "q_providers": "Which AI providers does FreeLingo support?",
     "a_providers_intro": "Configurable in <code>.env</code> via <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Local, free. Requires Ollama running on the host. Recommended model: gemma4:e4b. May be slow without a GPU.",
@@ -734,7 +738,9 @@
     "q_invite": "Can I invite other people?",
     "a_invite": "Yes. From <adminLink>Admin → Users</adminLink> the admin can create users directly or generate single-use invite links that expire in 48 hours. Public registration is disabled by default (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "How do I change my password or native language?",
-    "a_password": "Go to <settingsLink>Settings</settingsLink>. You can update your display name, native language, and password from there."
+    "a_password": "Go to <settingsLink>Settings</settingsLink>. You can update your display name, native language, and password from there.",
+    "q_feedback": "How do I suggest a new feature or report a bug?",
+    "a_feedback": "Use the <feedbackLink>Feedback</feedbackLink> section in the sidebar. You can create suggestions for new features or report bugs. Vote on other users' ideas, leave comments, and track the status of each request. All submissions are public and are reviewed by the admin."
   },
   "cookieBanner": {
     "message": "We use strictly necessary cookies to keep you logged in. No tracking or advertising cookies are used.",
