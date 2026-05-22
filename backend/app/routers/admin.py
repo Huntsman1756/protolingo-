@@ -267,3 +267,23 @@ async def create_invite(
     token = secrets.token_urlsafe(32)
     await redis.setex(f"invite:{token}", 172800, "1")
     return {"invite_url": f"/register?invite={token}"}
+
+
+@router.get("/maintenance")
+async def get_maintenance_mode(
+    admin: User = Depends(require_admin),
+    redis: Redis = Depends(get_redis),
+):
+    mode = await redis.get("maintenance_mode")
+    return {"maintenance_mode": mode == "1"}
+
+
+@router.patch("/maintenance")
+async def toggle_maintenance_mode(
+    admin: User = Depends(require_admin),
+    redis: Redis = Depends(get_redis),
+):
+    current = await redis.get("maintenance_mode")
+    new_mode = "1" if current != "1" else "0"
+    await redis.set("maintenance_mode", new_mode)
+    return {"maintenance_mode": new_mode == "1"}

@@ -694,7 +694,12 @@
     "quotaMonthlyTokens": "Monatliches Token-Limit",
     "fieldSubscription": "Abonnement",
     "fieldEndsRenews": "Endet / Erneuert",
-    "fieldStripeCustomer": "Stripe-Kunde"
+    "fieldStripeCustomer": "Stripe-Kunde",
+    "maintenanceTitle": "Wartungsmodus",
+    "maintenanceOn": "AN",
+    "maintenanceEnable": "Wartung Aktivieren",
+    "maintenanceDisable": "Wartung Deaktivieren",
+    "maintenanceDesc": "Wenn aktiviert, sind alle Abonnement-Funktionen (Tutor-Chat, Sprachgespräche, Hör- und Leseübungen) für alle Benutzer nicht verfügbar."
   },
   "faq": {
     "title": "FAQ",
@@ -1072,5 +1077,10 @@
     "errorSubmit": "Senden fehlgeschlagen. Bitte erneut versuchen.",
     "prevPage": "← Zurück",
     "nextPage": "Weiter →"
+  },
+  "maintenance": {
+    "label": "Wartung",
+    "title": "Wartungsarbeiten",
+    "description": "Dieser Bereich ist wegen Wartungsarbeiten vorübergehend nicht verfügbar. Bitte versuche es später erneut."
   }
 }

@@ -564,6 +564,7 @@ Barge-in: user speaks again → cancel current generation
 | refresh_token | Opaque UUID4 | random | 30 days | httpOnly cookie + Redis: `refresh:{token}` → user_id |
 | email verification | Opaque UUID4 | random | 24 h | Redis: `verify_email:{token}` → user_id |
 | password reset | Opaque UUID4 | random | 1 h | Redis: `reset_password:{token}` → user_id |
+| maintenance mode | bool flag | — | indefinite | Redis: `maintenance_mode` → `"1"` or `"0"` |
 
 **Design rationale:**
 - **Access token**: verified without DB hit (JWT decode only). Short lifetime limits damage if leaked.
@@ -571,6 +572,19 @@ Barge-in: user speaks again → cancel current generation
 - **Token rotation**: on refresh, old token is deleted from Redis and a new one is created — prevents replay attacks.
 - **Logout**: deletes the refresh token from Redis and clears the cookie.
 - **Frontend interceptor** (`apiFetch`): on 401 response, silently refreshes the access token and retries the request. On refresh failure, redirects to `/login`.
+
+### Maintenance mode
+
+Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by the admin at runtime via `PATCH /api/admin/maintenance` — no restart required.
+
+**Backend guard** (`app/core/deps.py`):
+- `get_redis()` — centralized async Redis dependency.
+- `check_maintenance_mode()` — raises HTTP 503 when `maintenance_mode == "1"`. Swallows Redis errors to fail open.
+- `require_subscription` — calls `check_maintenance_mode` before the subscription check. Both the HTTP endpoints (chat, listening, reading) and the WebSocket (`/ws/conversation`) are protected.
+
+**Frontend**: `MaintenanceGate` component renders a static banner when `maintenance_mode` is true. Applied on top of `PaywallGate` in the four subscription-gated pages: `/chat`, `/conversation`, `/listening`, `/reading`.
+
+**Public exposure**: `GET /api/config` returns `maintenance_mode: bool` so the frontend can read the state without an authenticated request.
 
 ---
 

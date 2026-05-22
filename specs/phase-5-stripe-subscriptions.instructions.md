@@ -36,12 +36,25 @@ Admin can still override any quota field per user via the admin panel regardless
 |---|---|---|---|
 | Register / Profile / Stats | ✅ | ✅ | ✅ |
 | Progress / Streak | ✅ | ✅ | ✅ |
-| Lecciones / Assessment / Flashcards | ✅ | ✅ | ❌ Paywall |
+| Lessons / Assessment / Flashcards | ✅ | ✅ | ✅ |
 | Chat con tutor | ✅ | ✅ | ❌ Paywall |
 | Conversación por voz | ✅ | ✅ | ❌ Paywall |
-| Study Plan generation | ✅ | ✅ | ❌ Paywall |
+| Listening exercises | ✅ | ✅ | ❌ Paywall |
+| Reading exercises | ✅ | ✅ | ❌ Paywall |
 
 **Single rule:** `is_subscribed(user) = True` when `STRIPE_ENABLED=false` OR when `subscription_status in ("trialing", "active")`.
+
+### Maintenance mode
+
+A runtime toggle (Redis flag `maintenance_mode`) that blocks all subscription-gated features regardless of the user's subscription status. This allows the admin to preventively disable LLM-dependent features (chat, voice conversation, listening, reading) without revoking API keys or changing environment variables.
+
+- **Backend**: `require_subscription` dependency checks `maintenance_mode` first → returns HTTP 503 when active. The WebSocket (`/ws/conversation`) also checks the flag manually.
+- **Frontend**: `MaintenanceGate` component renders a static banner. Applied on the four gated pages (`/chat`, `/conversation`, `/listening`, `/reading`). Lessons, flashcards, and other free features are unaffected.
+- **Admin toggle**: `PATCH /api/admin/maintenance` — no restart required.
+
+### Lessons are no longer paywalled
+
+As of v1.5.7 the frontend `PaywallGate` has been removed from `lesson/[id]`. Lessons, assessment, and flashcards are fully free (backend never required subscription for these).
 
 ---
 

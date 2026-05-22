@@ -694,7 +694,12 @@
     "emailUnverifiedSuccess": "Email marked as unverified.",
     "fieldSubscription": "Subscription",
     "fieldEndsRenews": "Ends / Renews",
-    "fieldStripeCustomer": "Stripe Customer"
+    "fieldStripeCustomer": "Stripe Customer",
+    "maintenanceTitle": "Maintenance Mode",
+    "maintenanceOn": "ON",
+    "maintenanceEnable": "Enable Maintenance",
+    "maintenanceDisable": "Disable Maintenance",
+    "maintenanceDesc": "When enabled, all subscription-gated features (tutor chat, voice conversations, listening & reading exercises) will be unavailable to all users."
   },
   "faq": {
     "title": "FAQ",
@@ -1072,5 +1077,10 @@
     "errorSubmit": "Failed to submit. Please try again.",
     "prevPage": "← Prev",
     "nextPage": "Next →"
+  },
+  "maintenance": {
+    "label": "Maintenance",
+    "title": "Under Maintenance",
+    "description": "This section is temporarily unavailable while we perform maintenance. Please check back later."
   }
 }

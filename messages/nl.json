@@ -694,7 +694,12 @@
     "quotaMonthlyTokens": "Maandelijks tokenlimiet",
     "fieldSubscription": "Abonnement",
     "fieldEndsRenews": "Eindigt / Verlengt",
-    "fieldStripeCustomer": "Stripe-klant"
+    "fieldStripeCustomer": "Stripe-klant",
+    "maintenanceTitle": "Onderhoudsmodus",
+    "maintenanceOn": "AAN",
+    "maintenanceEnable": "Onderhoud Inschakelen",
+    "maintenanceDisable": "Onderhoud Uitschakelen",
+    "maintenanceDesc": "Indien ingeschakeld zijn alle abonnementsfuncties (tutorchat, spraakgesprekken, luister- en leesoefeningen) niet beschikbaar voor alle gebruikers."
   },
   "faq": {
     "title": "FAQ",
@@ -1072,5 +1077,10 @@
     "errorSubmit": "Versturen mislukt. Probeer opnieuw.",
     "prevPage": "← Vorige",
     "nextPage": "Volgende →"
+  },
+  "maintenance": {
+    "label": "Onderhoud",
+    "title": "In Onderhoud",
+    "description": "Dit gedeelte is tijdelijk niet beschikbaar vanwege onderhoud. Probeer het later opnieuw."
   }
 }

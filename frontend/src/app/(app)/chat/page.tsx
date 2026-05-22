@@ -9,6 +9,7 @@ import { useAuthStore } from '@/store/auth'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
+import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -185,6 +186,7 @@ export default function ChatPage() {
   }
 
   return (
+    <MaintenanceGate>
     <PaywallGate>
       <div className="flex w-full h-[calc(100dvh-56px)] md:h-screen overflow-hidden">
 
@@ -361,6 +363,7 @@ export default function ChatPage() {
         />
       </div>
     </PaywallGate>
+    </MaintenanceGate>
   )
 }
 

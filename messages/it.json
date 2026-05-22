@@ -694,7 +694,12 @@
     "quotaMonthlyTokens": "Limite mensile di token",
     "fieldSubscription": "Abbonamento",
     "fieldEndsRenews": "Fine / Rinnovo",
-    "fieldStripeCustomer": "Cliente Stripe"
+    "fieldStripeCustomer": "Cliente Stripe",
+    "maintenanceTitle": "Modalità Manutenzione",
+    "maintenanceOn": "ATTIVO",
+    "maintenanceEnable": "Attiva Manutenzione",
+    "maintenanceDisable": "Disattiva Manutenzione",
+    "maintenanceDesc": "Se attivato, tutte le funzionalità in abbonamento (chat, conversazioni vocali, esercizi di ascolto e lettura) non saranno disponibili per tutti gli utenti."
   },
   "faq": {
     "title": "FAQ",
@@ -1072,5 +1077,10 @@
     "errorSubmit": "Invio fallito. Riprova.",
     "prevPage": "← Prec.",
     "nextPage": "Succ. →"
+  },
+  "maintenance": {
+    "label": "Manutenzione",
+    "title": "In Manutenzione",
+    "description": "Questa sezione è temporaneamente non disponibile per manutenzione. Riprova più tardi."
   }
 }

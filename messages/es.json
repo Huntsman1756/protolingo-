@@ -694,7 +694,12 @@
     "emailUnverifiedSuccess": "Email marcado como no verificado.",
     "fieldSubscription": "Suscripción",
     "fieldEndsRenews": "Finaliza / Renueva",
-    "fieldStripeCustomer": "Cliente Stripe"
+    "fieldStripeCustomer": "Cliente Stripe",
+    "maintenanceTitle": "Modo Mantenimiento",
+    "maintenanceOn": "ACTIVO",
+    "maintenanceEnable": "Activar Mantenimiento",
+    "maintenanceDisable": "Desactivar Mantenimiento",
+    "maintenanceDesc": "Al activarse, todas las funciones de suscripción (chat, conversaciones de voz, ejercicios de listening y reading) estarán bloqueadas para todos los usuarios."
   },
   "faq": {
     "title": "FAQ",
@@ -1072,5 +1077,10 @@
     "errorSubmit": "Error al enviar. Inténtalo de nuevo.",
     "prevPage": "← Anterior",
     "nextPage": "Siguiente →"
+  },
+  "maintenance": {
+    "label": "Mantenimiento",
+    "title": "En Mantenimiento",
+    "description": "Esta sección no está disponible temporalmente por tareas de mantenimiento. Vuelve más tarde."
   }
 }

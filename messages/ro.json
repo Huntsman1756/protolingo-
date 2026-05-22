@@ -694,7 +694,12 @@
     "quotaMonthlyTokens": "Limită lunară de tokeni",
     "fieldSubscription": "Abonament",
     "fieldEndsRenews": "Expiră / Reînnoiește",
-    "fieldStripeCustomer": "Client Stripe"
+    "fieldStripeCustomer": "Client Stripe",
+    "maintenanceTitle": "Mod Mentenanță",
+    "maintenanceOn": "ACTIV",
+    "maintenanceEnable": "Activează Mentenanța",
+    "maintenanceDisable": "Dezactivează Mentenanța",
+    "maintenanceDesc": "Când este activat, toate funcțiile de abonament (chat, conversații vocale, exerciții de ascultare și citire) vor fi indisponibile pentru toți utilizatorii."
   },
   "faq": {
     "title": "Întrebări frecvente",
@@ -1072,5 +1077,10 @@
     "errorSubmit": "Trimitere eșuată. Încearcă din nou.",
     "prevPage": "← Prev.",
     "nextPage": "Urm. →"
+  },
+  "maintenance": {
+    "label": "Întreținere",
+    "title": "În Mentenanță",
+    "description": "Această secțiune este temporar indisponibilă pentru lucrări de întreținere. Încearcă din nou mai târziu."
   }
 }

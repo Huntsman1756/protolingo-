@@ -694,7 +694,12 @@
     "quotaMonthlyTokens": "Miesięczny limit tokenów",
     "fieldSubscription": "Subskrypcja",
     "fieldEndsRenews": "Kończy / Odnawia",
-    "fieldStripeCustomer": "Klient Stripe"
+    "fieldStripeCustomer": "Klient Stripe",
+    "maintenanceTitle": "Tryb Konserwacji",
+    "maintenanceOn": "WŁ.",
+    "maintenanceEnable": "Włącz Konserwację",
+    "maintenanceDisable": "Wyłącz Konserwację",
+    "maintenanceDesc": "Po włączeniu wszystkie funkcje subskrypcyjne (czat, rozmowy głosowe, ćwiczenia ze słuchu i czytania) będą niedostępne dla wszystkich użytkowników."
   },
   "faq": {
     "title": "FAQ",
@@ -1072,5 +1077,10 @@
     "errorSubmit": "Wysyłanie nie powiodło się. Spróbuj ponownie.",
     "prevPage": "← Poprz.",
     "nextPage": "Nast. →"
+  },
+  "maintenance": {
+    "label": "Konserwacja",
+    "title": "W Trakcie Konserwacji",
+    "description": "Ta sekcja jest tymczasowo niedostępna z powodu prac konserwacyjnych. Spróbuj ponownie później."
   }
 }

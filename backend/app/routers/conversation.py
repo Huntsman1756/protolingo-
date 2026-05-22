@@ -13,7 +13,7 @@ from sqlalchemy import select
 from app.core.app_logger import get_logger
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal
-from app.core.deps import get_current_user, require_subscription
+from app.core.deps import MAINTENANCE_KEY, get_current_user, require_subscription
 from app.services.subscription_service import is_subscribed
 from app.core.security import decode_access_token
 from app.models.study_plan import StudyPlan
@@ -118,6 +118,23 @@ async def conversation_ws(
             logger.warning("[conversation] User %s not found or inactive — closing WS 1008", user_id)
             await websocket.close(code=1008)
             return
+
+        # Check maintenance mode
+        try:
+            redis_check = Redis.from_url(settings.REDIS_URL, decode_responses=True)
+            maintenance = await redis_check.get(MAINTENANCE_KEY)
+            await redis_check.aclose()
+            if maintenance == "1":
+                logger.info("[conversation] Maintenance mode active — closing WS for user %s", user_id)
+                await websocket.send_json({
+                    "type": "error",
+                    "code": "maintenance_mode",
+                    "message": "Service temporarily unavailable — maintenance mode is active.",
+                })
+                await websocket.close(code=1013)
+                return
+        except Exception:
+            pass  # Redis failure → allow through
 
         # Check subscription
         if not is_subscribed(user, settings.STRIPE_ENABLED):

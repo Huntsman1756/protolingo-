@@ -44,6 +44,8 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 | GET | `/users/{id}/stats` | Usage statistics: XP, streak, lessons, exercises, tokens |
 | GET | `/users/{id}/quota` | Live quota status from Redis (sessions this week, minutes today, minutes this week) |
 | POST | `/invite` | Generates single-use invite link (48h Redis TTL) |
+| GET | `/maintenance` | Returns `{"maintenance_mode": bool}` — current maintenance mode state |
+| PATCH | `/maintenance` | Toggles maintenance mode on/off in Redis. Returns `{"maintenance_mode": bool}` |
 
 ---
 
