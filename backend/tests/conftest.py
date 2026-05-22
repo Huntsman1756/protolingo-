@@ -60,6 +60,9 @@ def mock_redis():
         async def setex(self, key, ttl, value):
             store[key] = value
 
+        async def set(self, key, value, *args, **kwargs):
+            store[key] = value
+
         async def get(self, key):
             return store.get(key)
 
