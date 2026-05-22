@@ -32,8 +32,13 @@ type TabFilter = 'all' | 'feature' | 'bug'
 
 const PAGE_SIZE = 20
 
-const STATUS_OPTIONS = ['pending', 'planned', 'in_progress', 'done', 'declined'] as const
-type Status = (typeof STATUS_OPTIONS)[number]
+const STATUS_OPTIONS = [
+  'pending',
+  'planned',
+  'in_progress',
+  'done',
+  'declined',
+] as const
 
 const STATUS_STYLES: Record<string, string> = {
   pending: 'border-fl-border text-fl-muted-2',
@@ -94,7 +99,7 @@ export default function AdminFeedbackPage() {
 
         const res = await apiFetch(`/api/feedback?${params.toString()}`)
         if (res.status === 403) {
-          setError(tAdmin('loading') + ' — admin access required')
+          setError(t('errorLoad'))
           return
         }
         if (!res.ok) throw new Error()
@@ -142,7 +147,9 @@ export default function AdminFeedbackPage() {
   }
 
   async function handleDelete(entry: FeedbackEntry) {
-    const res = await apiFetch(`/api/feedback/${entry.id}`, { method: 'DELETE' })
+    const res = await apiFetch(`/api/feedback/${entry.id}`, {
+      method: 'DELETE',
+    })
     setDeletePending(null)
     if (res.ok) {
       const newTotal = total - 1
@@ -183,7 +190,7 @@ export default function AdminFeedbackPage() {
   if (loading && entries.length === 0) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           {tAdmin('loading')}
         </span>
       </div>
@@ -191,12 +198,12 @@ export default function AdminFeedbackPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl p-6 space-y-4">
+    <div className="mx-auto max-w-3xl space-y-4 p-6">
       {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-xs tracking-widest text-fl-muted-1 uppercase">
+          <span className="text-fl-muted-1 font-mono text-xs tracking-widest uppercase">
             {tAdmin('title')} /{' '}
             <Link
               href="/admin/users"
@@ -207,22 +214,22 @@ export default function AdminFeedbackPage() {
             / {t('title')}
           </span>
         </div>
-        <span className="font-mono text-fl-hint text-fl-muted-4 uppercase tracking-widest">
+        <span className="text-fl-hint text-fl-muted-4 font-mono tracking-widest uppercase">
           {total} {tAdmin('total')}
         </span>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 items-center border border-fl-border bg-fl-surface px-5 py-3">
+      <div className="border-fl-border bg-fl-surface flex flex-wrap items-center gap-3 border px-5 py-3">
         {/* Type filter */}
-        <span className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-4">
+        <span className="text-fl-hint text-fl-muted-4 font-mono tracking-widest uppercase">
           {t('tabFeatures').toLowerCase()}/{t('tabBugs').toLowerCase()}
         </span>
         {typeFilterOptions.map((o) => (
           <button
             key={o.value}
             onClick={() => setTypeFilter(o.value)}
-            className={`font-mono text-fl-hint tracking-widest uppercase border px-3 py-1 transition-colors ${
+            className={`text-fl-hint border px-3 py-1 font-mono tracking-widest uppercase transition-colors ${
               typeFilter === o.value
                 ? 'border-fl-fg/40 text-fl-fg'
                 : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
@@ -232,13 +239,13 @@ export default function AdminFeedbackPage() {
           </button>
         ))}
 
-        <span className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-4 ml-2">
+        <span className="text-fl-hint text-fl-muted-4 ml-2 font-mono tracking-widest uppercase">
           {t('filterStatus')}
         </span>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-fl-bg border border-fl-border px-3 py-1 font-mono text-fl-hint text-fl-muted-1 focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
+          className="bg-fl-bg border-fl-border text-fl-hint text-fl-muted-1 focus:border-fl-border-2 appearance-none border px-3 py-1 font-mono transition-colors focus:outline-none"
         >
           {statusFilterOptions.map((o) => (
             <option key={o.value} value={o.value}>
@@ -250,15 +257,15 @@ export default function AdminFeedbackPage() {
 
       {/* Error */}
       {error && (
-        <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">
+        <div className="border-fl-error/40 text-fl-error border px-4 py-3 font-mono text-xs">
           ✕ {error}
         </div>
       )}
 
       {/* Entry list */}
-      <div className="border border-fl-border bg-fl-surface">
+      <div className="border-fl-border bg-fl-surface border">
         {entries.length === 0 && !loading ? (
-          <p className="px-6 py-10 font-mono text-xs text-fl-muted-2 text-center">
+          <p className="text-fl-muted-2 px-6 py-10 text-center font-mono text-xs">
             {t('noEntries')}
           </p>
         ) : (
@@ -266,12 +273,12 @@ export default function AdminFeedbackPage() {
             {entries.map((entry, i) => (
               <div
                 key={entry.id}
-                className={`px-5 py-4 space-y-2 ${i < entries.length - 1 ? 'border-b border-fl-border' : ''}`}
+                className={`space-y-2 px-5 py-4 ${i < entries.length - 1 ? 'border-fl-border border-b' : ''}`}
               >
                 {/* Row 1: type badge + title + status */}
                 <div className="flex flex-wrap items-start gap-2">
                   <span
-                    className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 shrink-0 ${
+                    className={`text-fl-hint shrink-0 border px-2 py-0.5 font-mono tracking-widest uppercase ${
                       entry.type === 'feature'
                         ? 'border-fl-border text-fl-muted-2'
                         : 'border-fl-error/20 text-fl-error-fg'
@@ -279,28 +286,29 @@ export default function AdminFeedbackPage() {
                   >
                     {entry.type === 'feature' ? t('tabFeatures') : t('tabBugs')}
                   </span>
-                  <span className="font-mono text-sm font-semibold text-fl-fg flex-1 min-w-0">
+                  <span className="text-fl-fg min-w-0 flex-1 font-mono text-sm font-semibold">
                     {entry.title}
                   </span>
                 </div>
 
                 {/* Row 2: description preview */}
-                <p className="font-mono text-xs text-fl-muted-2 line-clamp-2 leading-relaxed">
+                <p className="text-fl-muted-2 line-clamp-2 font-mono text-xs leading-relaxed">
                   {entry.description}
                 </p>
 
                 {/* Row 3: meta + actions */}
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-mono text-fl-hint text-fl-muted-4">
-                    {t('by')} {entry.author.display_name} · {formatDate(entry.created_at)}
+                  <span className="text-fl-hint text-fl-muted-4 font-mono">
+                    {t('by')} {entry.author.display_name} ·{' '}
+                    {formatDate(entry.created_at)}
                   </span>
                   {entry.type === 'feature' && (
-                    <span className="font-mono text-fl-hint text-fl-muted-4">
+                    <span className="text-fl-hint text-fl-muted-4 font-mono">
                       ▲ {entry.vote_count}
                     </span>
                   )}
                   {entry.comment_count > 0 && (
-                    <span className="font-mono text-fl-hint text-fl-muted-4">
+                    <span className="text-fl-hint text-fl-muted-4 font-mono">
                       ◌ {entry.comment_count}
                     </span>
                   )}
@@ -312,10 +320,15 @@ export default function AdminFeedbackPage() {
                         <select
                           defaultValue={entry.status}
                           autoFocus
-                          onChange={(e) => handleStatusChange(entry, e.target.value)}
-                          onBlur={() => setEditingStatus(null)}
+                          onChange={(e) =>
+                            handleStatusChange(entry, e.target.value)
+                          }
+                          onBlur={() => {
+                            if (savingStatus !== entry.id)
+                              setEditingStatus(null)
+                          }}
                           disabled={savingStatus === entry.id}
-                          className="bg-fl-bg border border-fl-border px-2 py-1 font-mono text-fl-hint text-fl-muted-1 focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
+                          className="bg-fl-bg border-fl-border text-fl-hint text-fl-muted-1 focus:border-fl-border-2 appearance-none border px-2 py-1 font-mono transition-colors focus:outline-none"
                         >
                           {STATUS_OPTIONS.map((s) => (
                             <option key={s} value={s}>
@@ -327,7 +340,7 @@ export default function AdminFeedbackPage() {
                     ) : (
                       <button
                         onClick={() => setEditingStatus(entry.id)}
-                        className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 transition-colors hover:border-fl-border-2 ${
+                        className={`text-fl-hint hover:border-fl-border-2 border px-2 py-0.5 font-mono tracking-widest uppercase transition-colors ${
                           STATUS_STYLES[entry.status] ?? STATUS_STYLES.pending
                         }`}
                       >
@@ -338,7 +351,7 @@ export default function AdminFeedbackPage() {
                     {/* Delete */}
                     <button
                       onClick={() => setDeletePending(entry)}
-                      className="border border-fl-error/30 px-3 py-1 font-mono text-fl-hint tracking-widest uppercase text-fl-error-fg hover:border-fl-error hover:text-fl-error transition-colors"
+                      className="border-fl-error/30 text-fl-hint text-fl-error-fg hover:border-fl-error hover:text-fl-error border px-3 py-1 font-mono tracking-widest uppercase transition-colors"
                     >
                       {tAdmin('delete')}
                     </button>
@@ -352,21 +365,21 @@ export default function AdminFeedbackPage() {
 
       {/* Pagination */}
       {total > PAGE_SIZE && (
-        <div className="flex items-center justify-between border border-fl-border bg-fl-surface px-6 py-3">
+        <div className="border-fl-border bg-fl-surface flex items-center justify-between border px-6 py-3">
           <button
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
           >
             {tAdmin('prevPage')}
           </button>
-          <span className="font-mono text-fl-label text-fl-muted-2 tracking-widest">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest">
             {page + 1} / {Math.ceil(total / PAGE_SIZE)}
           </span>
           <button
             onClick={() => setPage((p) => p + 1)}
             disabled={(page + 1) * PAGE_SIZE >= total}
-            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
           >
             {tAdmin('nextPage')}
           </button>

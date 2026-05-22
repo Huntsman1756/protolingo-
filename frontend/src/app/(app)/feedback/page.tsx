@@ -39,7 +39,6 @@ interface FeedbackComment {
 
 type Tab = 'feature' | 'bug'
 type SortOption = 'votes' | 'date'
-type View = 'list' | 'detail'
 
 const PAGE_SIZE = 20
 
@@ -70,7 +69,9 @@ function formatDate(iso: string): string {
 function StatusBadge({ status, label }: { status: string; label: string }) {
   const cls = STATUS_STYLES[status] ?? STATUS_STYLES.pending
   return (
-    <span className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${cls}`}>
+    <span
+      className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${cls}`}
+    >
       {label}
     </span>
   )
@@ -104,7 +105,11 @@ function CreateModal({ type, onClose, onCreated }: CreateModalProps) {
       const res = await apiFetch('/api/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, title: title.trim(), description: description.trim() }),
+        body: JSON.stringify({
+          type,
+          title: title.trim(),
+          description: description.trim(),
+        }),
       })
       if (!res.ok) throw new Error()
       onCreated()
@@ -126,38 +131,43 @@ function CreateModal({ type, onClose, onCreated }: CreateModalProps) {
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(2px)' }}
+      style={{
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        backdropFilter: 'blur(2px)',
+      }}
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md border border-fl-border bg-fl-surface shadow-2xl"
+        className="border-fl-border bg-fl-surface w-full max-w-md border shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+        <div className="border-fl-border flex items-center justify-between border-b px-6 py-4">
           <div className="flex items-center gap-2">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              {type === 'feature' ? t('modalCreateTitleFeature') : t('modalCreateTitleBug')}
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+              {type === 'feature'
+                ? t('modalCreateTitleFeature')
+                : t('modalCreateTitleBug')}
             </span>
           </div>
           <button
             onClick={onClose}
-            className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg transition-colors"
+            className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono transition-colors"
           >
             ✕
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3 p-6">
           {error && (
-            <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">
+            <div className="border-fl-error/40 text-fl-error border px-4 py-3 font-mono text-xs">
               ✕ {error}
             </div>
           )}
           <div>
-            <label className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-2 block mb-1">
+            <label className="text-fl-hint text-fl-muted-2 mb-1 block font-mono tracking-widest uppercase">
               {t('labelTitle')}
             </label>
             <input
@@ -167,14 +177,16 @@ function CreateModal({ type, onClose, onCreated }: CreateModalProps) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder={
-                type === 'feature' ? t('placeholderTitleFeature') : t('placeholderTitleBug')
+                type === 'feature'
+                  ? t('placeholderTitleFeature')
+                  : t('placeholderTitleBug')
               }
               className={inputCls}
               autoFocus
             />
           </div>
           <div>
-            <label className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-2 block mb-1">
+            <label className="text-fl-hint text-fl-muted-2 mb-1 block font-mono tracking-widest uppercase">
               {t('labelDescription')}
             </label>
             <textarea
@@ -195,14 +207,14 @@ function CreateModal({ type, onClose, onCreated }: CreateModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 border border-fl-border px-4 py-3 font-mono text-xs tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors"
+              className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 flex-1 border px-4 py-3 font-mono text-xs tracking-widest uppercase transition-colors"
             >
               {t('cancel')}
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="flex-1 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors disabled:opacity-50"
+              className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 flex-1 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
             >
               {submitting ? t('submitting') : t('submit')}
             </button>
@@ -241,7 +253,8 @@ function DetailView({
   const [comments, setComments] = useState<FeedbackComment[]>([])
   const [commentBody, setCommentBody] = useState('')
   const [postingComment, setPostingComment] = useState(false)
-  const [deletePendingComment, setDeletePendingComment] = useState<FeedbackComment | null>(null)
+  const [deletePendingComment, setDeletePendingComment] =
+    useState<FeedbackComment | null>(null)
   const [deleteEntryPending, setDeleteEntryPending] = useState(false)
   const [voting, setVoting] = useState(false)
   const [error, setError] = useState('')
@@ -258,10 +271,16 @@ function DetailView({
     if (voting) return
     setVoting(true)
     try {
-      const res = await apiFetch(`/api/feedback/${entry.id}/vote`, { method: 'POST' })
+      const res = await apiFetch(`/api/feedback/${entry.id}/vote`, {
+        method: 'POST',
+      })
       if (res.ok) {
         const data = await res.json()
-        setEntry((e) => ({ ...e, voted_by_me: data.voted, vote_count: data.vote_count }))
+        setEntry((e) => ({
+          ...e,
+          voted_by_me: data.voted,
+          vote_count: data.vote_count,
+        }))
         onVoteToggled(entry.id, data.voted, data.vote_count)
       }
     } finally {
@@ -293,7 +312,9 @@ function DetailView({
   }
 
   async function handleDeleteComment(comment: FeedbackComment) {
-    await apiFetch(`/api/feedback/${entry.id}/comments/${comment.id}`, { method: 'DELETE' })
+    await apiFetch(`/api/feedback/${entry.id}/comments/${comment.id}`, {
+      method: 'DELETE',
+    })
     setComments((prev) => prev.filter((c) => c.id !== comment.id))
     setEntry((e) => ({ ...e, comment_count: Math.max(0, e.comment_count - 1) }))
     setDeletePendingComment(null)
@@ -313,33 +334,34 @@ function DetailView({
       {/* Back */}
       <button
         onClick={onBack}
-        className="font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg transition-colors"
+        className="text-fl-label text-fl-muted-1 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
       >
         {t('backToList')}
       </button>
 
       {/* Entry card */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="px-6 py-5 border-b border-fl-border space-y-3">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border space-y-3 border-b px-6 py-5">
           <div className="flex flex-wrap items-start justify-between gap-3">
-            <h2 className="font-mono text-base font-bold text-fl-fg leading-snug flex-1 min-w-0">
+            <h2 className="text-fl-fg min-w-0 flex-1 font-mono text-base leading-snug font-bold">
               {entry.title}
             </h2>
             <StatusBadge status={entry.status} label={statusLabel} />
           </div>
-          <p className="font-mono text-xs text-fl-muted-1 whitespace-pre-wrap leading-relaxed">
+          <p className="text-fl-muted-1 font-mono text-xs leading-relaxed whitespace-pre-wrap">
             {entry.description}
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-1">
-            <span className="font-mono text-fl-hint text-fl-muted-4">
-              {t('by')} {entry.author.display_name} · {formatDate(entry.created_at)}
+            <span className="text-fl-hint text-fl-muted-4 font-mono">
+              {t('by')} {entry.author.display_name} ·{' '}
+              {formatDate(entry.created_at)}
             </span>
             {/* Vote button — only for features */}
             {entry.type === 'feature' && (
               <button
                 onClick={handleVote}
                 disabled={voting}
-                className={`font-mono text-fl-hint tracking-widest uppercase border px-3 py-1 transition-colors disabled:opacity-50 ${
+                className={`text-fl-hint border px-3 py-1 font-mono tracking-widest uppercase transition-colors disabled:opacity-50 ${
                   entry.voted_by_me
                     ? 'border-fl-accent/60 text-fl-accent bg-fl-accent/10'
                     : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
@@ -352,7 +374,7 @@ function DetailView({
             {(currentUserId === entry.author.id || isAdmin) && (
               <button
                 onClick={() => setDeleteEntryPending(true)}
-                className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-3 py-1 hover:border-fl-error transition-colors ml-auto"
+                className="text-fl-hint border-fl-error/30 text-fl-error-fg hover:border-fl-error ml-auto border px-3 py-1 font-mono tracking-widest uppercase transition-colors"
               >
                 {t('deleteEntry')}
               </button>
@@ -361,28 +383,28 @@ function DetailView({
         </div>
 
         {/* Comments */}
-        <div className="divide-y divide-fl-border">
+        <div className="divide-fl-border divide-y">
           {comments.length === 0 ? (
-            <p className="px-6 py-6 font-mono text-xs text-fl-muted-4 text-center">
+            <p className="text-fl-muted-4 px-6 py-6 text-center font-mono text-xs">
               {t('addComment')}
             </p>
           ) : (
             comments.map((c) => (
-              <div key={c.id} className="px-6 py-4 space-y-1">
+              <div key={c.id} className="space-y-1 px-6 py-4">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-fl-hint text-fl-muted-2">
+                  <span className="text-fl-hint text-fl-muted-2 font-mono">
                     {c.author.display_name} · {formatDate(c.created_at)}
                   </span>
                   {currentUserId === c.author.id && (
                     <button
                       onClick={() => setDeletePendingComment(c)}
-                      className="font-mono text-fl-hint text-fl-muted-4 hover:text-fl-error-fg transition-colors uppercase tracking-widest"
+                      className="text-fl-hint text-fl-muted-4 hover:text-fl-error-fg font-mono tracking-widest uppercase transition-colors"
                     >
                       {t('deleteComment')}
                     </button>
                   )}
                 </div>
-                <p className="font-mono text-xs text-fl-muted-1 whitespace-pre-wrap leading-relaxed">
+                <p className="text-fl-muted-1 font-mono text-xs leading-relaxed whitespace-pre-wrap">
                   {c.body}
                 </p>
               </div>
@@ -391,9 +413,12 @@ function DetailView({
         </div>
 
         {/* Add comment form */}
-        <form onSubmit={handlePostComment} className="px-6 py-4 border-t border-fl-border space-y-2">
+        <form
+          onSubmit={handlePostComment}
+          className="border-fl-border space-y-2 border-t px-6 py-4"
+        >
           {error && (
-            <div className="border border-fl-error/40 px-4 py-2 font-mono text-xs text-fl-error">
+            <div className="border-fl-error/40 text-fl-error border px-4 py-2 font-mono text-xs">
               ✕ {error}
             </div>
           )}
@@ -403,12 +428,12 @@ function DetailView({
             onChange={(e) => setCommentBody(e.target.value)}
             placeholder={t('commentPlaceholder')}
             maxLength={2000}
-            className="w-full bg-fl-bg border border-fl-border px-4 py-2 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full resize-none border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
           />
           <button
             type="submit"
             disabled={postingComment || !commentBody.trim()}
-            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-30"
           >
             {postingComment ? t('postingComment') : t('postComment')}
           </button>
@@ -433,7 +458,9 @@ function DetailView({
         message={t('deleteCommentConfirmMessage')}
         confirmLabel={t('deleteCommentConfirm')}
         danger
-        onConfirm={() => deletePendingComment && handleDeleteComment(deletePendingComment)}
+        onConfirm={() =>
+          deletePendingComment && handleDeleteComment(deletePendingComment)
+        }
         onCancel={() => setDeletePendingComment(null)}
       />
     </div>
@@ -466,7 +493,12 @@ export default function FeedbackPage() {
   const [deletePending, setDeletePending] = useState<FeedbackEntry | null>(null)
 
   const loadEntries = useCallback(
-    async (pageIndex: number, currentTab: Tab, currentSort: SortOption, currentStatus: string) => {
+    async (
+      pageIndex: number,
+      currentTab: Tab,
+      currentSort: SortOption,
+      currentStatus: string
+    ) => {
       setLoading(true)
       setError('')
       try {
@@ -506,9 +538,17 @@ export default function FeedbackPage() {
     }
   }, [tab, sort, statusFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  function handleVoteToggled(entryId: number, voted: boolean, voteCount: number) {
+  function handleVoteToggled(
+    entryId: number,
+    voted: boolean,
+    voteCount: number
+  ) {
     setEntries((prev) =>
-      prev.map((e) => (e.id === entryId ? { ...e, voted_by_me: voted, vote_count: voteCount } : e))
+      prev.map((e) =>
+        e.id === entryId
+          ? { ...e, voted_by_me: voted, vote_count: voteCount }
+          : e
+      )
     )
   }
 
@@ -547,7 +587,7 @@ export default function FeedbackPage() {
   // If a detail view is open, render it instead
   if (selectedEntry) {
     return (
-      <div className="p-6 max-w-2xl mx-auto">
+      <div className="mx-auto max-w-2xl p-6">
         <DetailView
           entry={selectedEntry}
           currentUserId={currentUserId}
@@ -562,27 +602,27 @@ export default function FeedbackPage() {
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4 p-6">
       {/* Page header */}
-      <div className="pb-4 border-b border-fl-border">
-        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">
+      <div className="border-fl-border border-b pb-4">
+        <p className="text-fl-label text-fl-muted-2 mb-1 font-mono tracking-widest uppercase">
           {t('title')}
         </p>
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">
+        <h1 className="text-fl-fg font-mono text-2xl font-bold tracking-tight">
           {t('subtitle')}
         </h1>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-fl-border">
+      <div className="border-fl-border flex border-b">
         {(['feature', 'bug'] as Tab[]).map((tabOption) => (
           <button
             key={tabOption}
             onClick={() => setTab(tabOption)}
-            className={`px-5 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors border-b-2 -mb-px ${
+            className={`text-fl-label -mb-px border-b-2 px-5 py-2 font-mono tracking-widest uppercase transition-colors ${
               tab === tabOption
                 ? 'border-fl-fg text-fl-fg'
-                : 'border-transparent text-fl-muted-2 hover:text-fl-fg'
+                : 'text-fl-muted-2 hover:text-fl-fg border-transparent'
             }`}
           >
             {tabOption === 'feature' ? t('tabFeatures') : t('tabBugs')}
@@ -591,22 +631,22 @@ export default function FeedbackPage() {
         <div className="flex-1" />
         <button
           onClick={() => setShowCreate(true)}
-          className="px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg transition-colors"
+          className="text-fl-label text-fl-muted-1 hover:text-fl-fg px-4 py-2 font-mono tracking-widest uppercase transition-colors"
         >
           {tab === 'feature' ? t('newFeature') : t('newBug')}
         </button>
       </div>
 
       {/* Filters + sort row */}
-      <div className="flex flex-wrap gap-3 items-center">
-        <span className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <span className="text-fl-hint text-fl-muted-4 font-mono tracking-widest uppercase">
           {t('sortBy')}
         </span>
         {(['votes', 'date'] as SortOption[]).map((s) => (
           <button
             key={s}
             onClick={() => setSort(s)}
-            className={`font-mono text-fl-hint tracking-widest uppercase border px-3 py-1 transition-colors ${
+            className={`text-fl-hint border px-3 py-1 font-mono tracking-widest uppercase transition-colors ${
               sort === s
                 ? 'border-fl-fg/40 text-fl-fg'
                 : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
@@ -616,13 +656,13 @@ export default function FeedbackPage() {
           </button>
         ))}
 
-        <span className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-4 ml-2">
+        <span className="text-fl-hint text-fl-muted-4 ml-2 font-mono tracking-widest uppercase">
           {t('filterStatus')}
         </span>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="bg-fl-bg border border-fl-border px-3 py-1 font-mono text-fl-hint text-fl-muted-1 focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
+          className="bg-fl-bg border-fl-border text-fl-hint text-fl-muted-1 focus:border-fl-border-2 appearance-none border px-3 py-1 font-mono transition-colors focus:outline-none"
         >
           {statusOptions.map((o) => (
             <option key={o.value} value={o.value}>
@@ -634,19 +674,19 @@ export default function FeedbackPage() {
 
       {/* Error */}
       {error && (
-        <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">
+        <div className="border-fl-error/40 text-fl-error border px-4 py-3 font-mono text-xs">
           ✕ {error}
         </div>
       )}
 
       {/* List */}
-      <div className="border border-fl-border bg-fl-surface">
+      <div className="border-fl-border bg-fl-surface border">
         {loading ? (
-          <p className="px-6 py-10 font-mono text-xs text-fl-muted-2 text-center animate-pulse tracking-widest uppercase">
+          <p className="text-fl-muted-2 animate-pulse px-6 py-10 text-center font-mono text-xs tracking-widest uppercase">
             {t('title')}...
           </p>
         ) : entries.length === 0 ? (
-          <p className="px-6 py-10 font-mono text-xs text-fl-muted-2 text-center">
+          <p className="text-fl-muted-2 px-6 py-10 text-center font-mono text-xs">
             {t('noEntries')}
           </p>
         ) : (
@@ -656,29 +696,36 @@ export default function FeedbackPage() {
               return (
                 <div
                   key={entry.id}
-                  className={`flex gap-4 px-5 py-4 cursor-pointer hover:bg-fl-surface-2 transition-colors ${
-                    i < entries.length - 1 ? 'border-b border-fl-border' : ''
+                  className={`hover:bg-fl-surface-2 flex cursor-pointer gap-4 px-5 py-4 transition-colors ${
+                    i < entries.length - 1 ? 'border-fl-border border-b' : ''
                   }`}
                   onClick={() => setSelectedEntry(entry)}
                 >
                   {/* Vote column — only for features */}
                   {entry.type === 'feature' && (
                     <div
-                      className="flex flex-col items-center gap-0.5 shrink-0 pt-0.5"
+                      className="flex shrink-0 flex-col items-center gap-0.5 pt-0.5"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <button
                         onClick={async (e) => {
                           e.stopPropagation()
-                          const res = await apiFetch(`/api/feedback/${entry.id}/vote`, {
-                            method: 'POST',
-                          })
+                          const res = await apiFetch(
+                            `/api/feedback/${entry.id}/vote`,
+                            {
+                              method: 'POST',
+                            }
+                          )
                           if (res.ok) {
                             const data = await res.json()
-                            handleVoteToggled(entry.id, data.voted, data.vote_count)
+                            handleVoteToggled(
+                              entry.id,
+                              data.voted,
+                              data.vote_count
+                            )
                           }
                         }}
-                        className={`font-mono text-sm leading-none border px-2 py-1 transition-colors ${
+                        className={`border px-2 py-1 font-mono text-sm leading-none transition-colors ${
                           entry.voted_by_me
                             ? 'border-fl-accent/60 text-fl-accent bg-fl-accent/10'
                             : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
@@ -687,7 +734,7 @@ export default function FeedbackPage() {
                       >
                         ▲
                       </button>
-                      <span className="font-mono text-fl-hint text-fl-muted-2 tabular-nums">
+                      <span className="text-fl-hint text-fl-muted-2 font-mono tabular-nums">
                         {entry.vote_count}
                       </span>
                     </div>
@@ -696,22 +743,26 @@ export default function FeedbackPage() {
                   {entry.type === 'bug' && <div className="w-8 shrink-0" />}
 
                   {/* Content */}
-                  <div className="flex-1 min-w-0 space-y-1.5">
+                  <div className="min-w-0 flex-1 space-y-1.5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-sm font-semibold text-fl-fg truncate">
+                      <span className="text-fl-fg truncate font-mono text-sm font-semibold">
                         {entry.title}
                       </span>
-                      <StatusBadge status={entry.status} label={getStatusLabel(entry.status)} />
+                      <StatusBadge
+                        status={entry.status}
+                        label={getStatusLabel(entry.status)}
+                      />
                     </div>
-                    <p className="font-mono text-xs text-fl-muted-2 line-clamp-2 leading-relaxed">
+                    <p className="text-fl-muted-2 line-clamp-2 font-mono text-xs leading-relaxed">
                       {entry.description}
                     </p>
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="font-mono text-fl-hint text-fl-muted-4">
-                        {t('by')} {entry.author.display_name} · {formatDate(entry.created_at)}
+                      <span className="text-fl-hint text-fl-muted-4 font-mono">
+                        {t('by')} {entry.author.display_name} ·{' '}
+                        {formatDate(entry.created_at)}
                       </span>
                       {entry.comment_count > 0 && (
-                        <span className="font-mono text-fl-hint text-fl-muted-4">
+                        <span className="text-fl-hint text-fl-muted-4 font-mono">
                           ◌{' '}
                           {entry.comment_count === 1
                             ? t('comment')
@@ -724,7 +775,7 @@ export default function FeedbackPage() {
                             e.stopPropagation()
                             setDeletePending(entry)
                           }}
-                          className="font-mono text-fl-hint text-fl-muted-4 hover:text-fl-error-fg transition-colors uppercase tracking-widest ml-auto"
+                          className="text-fl-hint text-fl-muted-4 hover:text-fl-error-fg ml-auto font-mono tracking-widest uppercase transition-colors"
                         >
                           {t('deleteEntry')}
                         </button>
@@ -740,21 +791,21 @@ export default function FeedbackPage() {
 
       {/* Pagination */}
       {total > PAGE_SIZE && (
-        <div className="flex items-center justify-between border border-fl-border bg-fl-surface px-6 py-3">
+        <div className="border-fl-border bg-fl-surface flex items-center justify-between border px-6 py-3">
           <button
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
           >
             {t('prevPage')}
           </button>
-          <span className="font-mono text-fl-label text-fl-muted-2 tracking-widest">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest">
             {page + 1} / {Math.ceil(total / PAGE_SIZE)}
           </span>
           <button
             onClick={() => setPage((p) => p + 1)}
             disabled={(page + 1) * PAGE_SIZE >= total}
-            className="border border-fl-border px-4 py-2 font-mono text-fl-label tracking-widest uppercase text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
           >
             {t('nextPage')}
           </button>
