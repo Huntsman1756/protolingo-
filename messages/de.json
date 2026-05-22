@@ -71,7 +71,8 @@
     "conversation": "Gespräch",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -940,15 +941,15 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Verstanden",
     "entry1": {
       "label": "Kostenloser Plan",
       "desc": "Dashboard, Karteikarten, Lektionen, Lernplan und Stufentest sind jetzt für alle registrierten Nutzer kostenlos. Kein Abonnement erforderlich."
     },
     "entry2": {
-      "label": "Neues Preisdesign",
-      "desc": "Die Startseite zeigt jetzt drei Preiskarten: Kostenlos, Monatlich und Jährlich. Die kostenlose Karte listet alle enthaltenen Funktionen ohne Abonnement. Bezahlkarten beinhalten 7 Tage kostenlos."
+      "label": "Feedback-Board",
+      "desc": "Du kannst jetzt direkt in der App neue Funktionen vorschlagen und Fehler melden. Stimme für Vorschläge anderer Nutzer ab, hinterlasse Kommentare und verfolge den Status jeder Anfrage bis zur Umsetzung."
     },
     "entry3": {
       "label": "Fehlerbehebungen",
@@ -1019,5 +1020,57 @@
     "moreInHistory": "+{count} weitere",
     "practiceAgain": "Erneut üben",
     "replayNoXp": "Wiederholung — kein XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Vorschläge und Fehlerberichte",
+    "tabFeatures": "Vorschläge",
+    "tabBugs": "Fehler",
+    "newFeature": "+ Neuer Vorschlag",
+    "newBug": "+ Fehler melden",
+    "sortBy": "Sortieren nach",
+    "sortVotes": "Meiste Stimmen",
+    "sortDate": "Neueste",
+    "filterStatus": "Status",
+    "filterAll": "Alle",
+    "noEntries": "Noch nichts hier. Sei der Erste!",
+    "votes": "{count} Stimmen",
+    "vote": "1 Stimme",
+    "comments": "{count} Kommentare",
+    "comment": "1 Kommentar",
+    "by": "von",
+    "statusPending": "Ausstehend",
+    "statusPlanned": "Geplant",
+    "statusInProgress": "In Bearbeitung",
+    "statusDone": "Erledigt",
+    "statusDeclined": "Abgelehnt",
+    "modalCreateTitleFeature": "Neuer Vorschlag",
+    "modalCreateTitleBug": "Fehler melden",
+    "labelTitle": "Titel",
+    "placeholderTitleFeature": "Beschreibe deinen Vorschlag in einem Satz",
+    "placeholderTitleBug": "Kurzbeschreibung des Fehlers",
+    "labelDescription": "Details",
+    "placeholderDescriptionFeature": "Erkläre die Funktion und warum sie nützlich wäre",
+    "placeholderDescriptionBug": "Schritte zum Reproduzieren, erwartetes Verhalten, was passiert ist",
+    "submit": "Senden",
+    "submitting": "Wird gesendet...",
+    "cancel": "Abbrechen",
+    "deleteEntry": "Löschen",
+    "deleteEntryConfirmTitle": "Eintrag löschen",
+    "deleteEntryConfirmMessage": "Diesen Eintrag wirklich löschen? Das kann nicht rückgängig gemacht werden.",
+    "deleteEntryConfirm": "Löschen",
+    "addComment": "Kommentar hinzufügen",
+    "commentPlaceholder": "Kommentar schreiben...",
+    "postComment": "Veröffentlichen",
+    "postingComment": "Wird veröffentlicht...",
+    "deleteComment": "Löschen",
+    "deleteCommentConfirmTitle": "Kommentar löschen",
+    "deleteCommentConfirmMessage": "Diesen Kommentar löschen?",
+    "deleteCommentConfirm": "Löschen",
+    "backToList": "← Zurück",
+    "errorLoad": "Laden fehlgeschlagen. Bitte erneut versuchen.",
+    "errorSubmit": "Senden fehlgeschlagen. Bitte erneut versuchen.",
+    "prevPage": "← Zurück",
+    "nextPage": "Weiter →"
   }
 }

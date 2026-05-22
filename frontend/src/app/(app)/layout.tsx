@@ -38,6 +38,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const bottomNavItems = [
     { href: '/settings', label: tNav('settings') },
     { href: '/faq', label: tNav('faq') },
+    { href: '/feedback', label: tNav('feedback') },
   ]
 
   const router = useRouter()
@@ -242,7 +243,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <p className="text-fl-label font-mono text-fl-muted-4 truncate">@{user?.username}</p>
             </div>
           </div>
-          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.6</p>
+          <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.7</p>
           <button
             onClick={() => setContactOpen(true)}
             className="w-full text-left text-fl-label font-mono tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase mb-1"
@@ -367,7 +368,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </div>
                 <p className="font-mono text-fl-label text-fl-muted-4 truncate">@{user?.username}</p>
               </div>
-              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.6</p>
+              <p className="font-mono text-fl-label text-fl-muted-4 tracking-wider mb-2">v1.5.7</p>
               <button
                 onClick={() => { setMobileMenuOpen(false); setContactOpen(true) }}
                 className="font-mono text-fl-label tracking-widest text-fl-muted-2 hover:text-fl-fg transition-colors uppercase mb-1 block"

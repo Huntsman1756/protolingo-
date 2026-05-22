@@ -71,7 +71,8 @@
     "conversation": "Разговор",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Контакт"
+    "contact": "Контакт",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -940,15 +941,15 @@
   },
   "whatsNew": {
     "title": "Что нового",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Понятно",
     "entry1": {
       "label": "Бесплатный план",
       "desc": "Панель управления, карточки, уроки, план обучения и тест уровня теперь бесплатны для всех зарегистрированных пользователей. Подписка не требуется."
     },
     "entry2": {
-      "label": "Новый дизайн цен",
-      "desc": "Главная страница теперь отображает три карточки цен: Бесплатную, Ежемесячную и Ежегодную. Бесплатная карточка перечисляет все функции без подписки. Платные карточки включают 7 дней бесплатного пробного периода."
+      "label": "Доска обратной связи",
+      "desc": "Теперь вы можете предлагать новые функции и сообщать об ошибках прямо из приложения. Голосуйте за предложения других пользователей, оставляйте комментарии и следите за статусом каждого запроса до его выполнения."
     },
     "entry3": {
       "label": "Исправления",
@@ -1019,5 +1020,57 @@
     "moreInHistory": "+{count} ещё",
     "practiceAgain": "Практиковать снова",
     "replayNoXp": "Повтор — без XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Предложения и отчёты об ошибках",
+    "tabFeatures": "Предложения",
+    "tabBugs": "Ошибки",
+    "newFeature": "+ Новое предложение",
+    "newBug": "+ Сообщить об ошибке",
+    "sortBy": "Сортировать по",
+    "sortVotes": "По голосам",
+    "sortDate": "По дате",
+    "filterStatus": "Статус",
+    "filterAll": "Все",
+    "noEntries": "Пока ничего нет. Будьте первым!",
+    "votes": "{count} голосов",
+    "vote": "1 голос",
+    "comments": "{count} комментариев",
+    "comment": "1 комментарий",
+    "by": "от",
+    "statusPending": "Ожидает",
+    "statusPlanned": "Запланировано",
+    "statusInProgress": "В процессе",
+    "statusDone": "Готово",
+    "statusDeclined": "Отклонено",
+    "modalCreateTitleFeature": "Новое предложение",
+    "modalCreateTitleBug": "Сообщить об ошибке",
+    "labelTitle": "Заголовок",
+    "placeholderTitleFeature": "Опишите предложение в одном предложении",
+    "placeholderTitleBug": "Краткое описание ошибки",
+    "labelDescription": "Подробности",
+    "placeholderDescriptionFeature": "Объясните функцию и почему она была бы полезна",
+    "placeholderDescriptionBug": "Шаги для воспроизведения, ожидаемое поведение, что произошло",
+    "submit": "Отправить",
+    "submitting": "Отправка...",
+    "cancel": "Отмена",
+    "deleteEntry": "Удалить",
+    "deleteEntryConfirmTitle": "Удалить запись",
+    "deleteEntryConfirmMessage": "Удалить эту запись? Это действие нельзя отменить.",
+    "deleteEntryConfirm": "Удалить",
+    "addComment": "Добавить комментарий",
+    "commentPlaceholder": "Напишите комментарий...",
+    "postComment": "Опубликовать",
+    "postingComment": "Публикация...",
+    "deleteComment": "Удалить",
+    "deleteCommentConfirmTitle": "Удалить комментарий",
+    "deleteCommentConfirmMessage": "Удалить этот комментарий?",
+    "deleteCommentConfirm": "Удалить",
+    "backToList": "← Назад",
+    "errorLoad": "Ошибка загрузки. Попробуйте снова.",
+    "errorSubmit": "Ошибка отправки. Попробуйте снова.",
+    "prevPage": "← Пред.",
+    "nextPage": "След. →"
   }
 }

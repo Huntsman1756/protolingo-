@@ -11,6 +11,7 @@ const PROTECTED_ROUTES = [
   '/conversation',
   '/dashboard',
   '/faq',
+  '/feedback',
   '/flashcards',
   '/grammar',
   '/lesson',

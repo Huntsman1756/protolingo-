@@ -14,9 +14,9 @@ freelingo/
 ├── backend/                     # Python 3.14 FastAPI
 │   ├── app/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter
-│   │   ├── models/              # SQLAlchemy 2.0 ORM models (11 models)
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (14 models)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas
-│   │   ├── routers/             # 12 routers (11 REST + 1 WebSocket)
+│   │   ├── routers/             # 13 routers (12 REST + 1 WebSocket)
 │   │   ├── services/            # Business logic + external service clients (12 modules)
 │   │   └── data/
 │   │       └── en/              # Static curriculum and content data
@@ -28,13 +28,15 @@ freelingo/
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── (auth)/          # Public routes: login, register, onboarding, verify-email, forgot-password, reset-password — no sidebar
-│   │   │   ├── (app)/           # Authenticated routes (14 pages) — sidebar layout
+│   │   │   ├── (app)/           # Authenticated routes (16 pages) — sidebar layout
 │   │   │   │   ├── admin/users/ # User management (admin only)
+│   │   │   │   ├── admin/feedback/ # Feedback board admin panel (admin only)
 │   │   │   │   ├── assessment/  # Level test entry + adaptive quiz
 │   │   │   │   ├── chat/        # AI tutor chat (SSE streaming, conversation history)
 │   │   │   │   ├── conversation/ # Real-time voice conversation (WebSocket + VAD)
 │   │   │   │   ├── dashboard/   # Home with XP, streak, plan summary
 │   │   │   │   ├── faq/
+│   │   │   │   ├── feedback/    # Feature requests & bug reports board
 │   │   │   │   ├── flashcards/
 │   │   │   │   ├── grammar/     # Grammar reference (index + [slug] detail)
 │   │   │   │   ├── lesson/[id]/ # Lesson player
@@ -315,6 +317,48 @@ Records each user submission for a reading exercise.
 | completed_at | datetime | Auto-set on creation |
 
 Unique constraint: one attempt per `(user_id, exercise_id)` — enforced at service level (409 on duplicate).
+
+### FeedbackEntry (`feedback_entries`)
+
+A feature request or bug report submitted by a user.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| type | string(10) | `"feature"` or `"bug"` |
+| title | string(200) | Short title |
+| description | text | Full description (max 5000 chars via schema) |
+| status | string(20) | `pending` (default) \| `planned` \| `in_progress` \| `done` \| `declined` |
+| author_id | integer | FK → users (CASCADE DELETE) |
+| vote_count | integer | Denormalised sum of votes (default 0) |
+| created_at | datetime | Auto-set on creation |
+
+Indexes: `type`, `status`, `author_id`, `created_at`.
+
+### FeedbackVote (`feedback_votes`)
+
+One vote per user per feature request. Bugs are not voteable.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| entry_id | integer | FK → feedback_entries (CASCADE DELETE) |
+| user_id | integer | FK → users (CASCADE DELETE) |
+| created_at | datetime | Auto-set on creation |
+
+Unique constraint: `UNIQUE(entry_id, user_id)` — enforced at DB level (`uq_feedback_vote`).
+
+### FeedbackComment (`feedback_comments`)
+
+A flat comment on a feedback entry. No nesting.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| entry_id | integer | FK → feedback_entries (CASCADE DELETE) |
+| author_id | integer | FK → users (CASCADE DELETE) |
+| body | text | Comment body (max 2000 chars via schema) |
+| created_at | datetime | Auto-set on creation |
 
 ---
 

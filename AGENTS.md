@@ -2,7 +2,7 @@
 
 ## Project state
 
-**v1.5.0 — Phase 6 (Listening) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), and Phase 6 (Listening exercises) are complete. Email verification and password reset are also included. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
+**v1.5.7 — Phase 8 (Feedback board) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), and Phase 8 (Feedback board) are complete. Email verification and password reset are also included. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Architecture at a glance
 
@@ -57,6 +57,8 @@ These describe what was built — they are the reference documentation:
 | `specs/phase-4-target-language.instructions.md` | Phase 4: multi-language support, `target_language` (BCP-47), onboarding flow, auto-login on register |
 | `specs/phase-5-stripe-subscriptions.instructions.md` | Phase 5: Stripe subscriptions & paywall, `STRIPE_ENABLED` toggle, Customer Portal, self-hosted safe |
 | `specs/phase-6-listening.instructions.md` | Phase 6: AI-generated listening exercises, LLM+TTS generation pipeline, Redis lock, audio storage, 5 endpoints, frontend 6-state UI |
+| `specs/phase-7-reading.instructions.md` | Phase 7: AI-generated reading comprehension exercises, LLM generation pipeline, Redis lock, 4 endpoints, frontend 2-column layout |
+| `specs/phase-8-feedback.instructions.md` | Phase 8: Feedback board — feature requests & bug reports, voting, comments, admin panel, 9 endpoints |
 | `specs/whats-new.instructions.md` | What's New modal: version-aware changelog overlay, localStorage trigger, priority with OnboardingTour |
 | `specs/roadmap.instructions.md` | Development roadmap with milestones and completion criteria per phase |
 | `specs/changelog.instructions.md` | Changelog format, entry style, and update rules |

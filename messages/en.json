@@ -71,7 +71,8 @@
     "conversation": "Conversation",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -940,15 +941,15 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Got it",
     "entry1": {
       "label": "Free plan",
       "desc": "Dashboard, flashcards, lessons, study plan, and level assessment are now free for all registered users. No subscription required to access these features."
     },
     "entry2": {
-      "label": "Pricing redesign",
-      "desc": "The landing page now shows three pricing cards: Free, Monthly, and Yearly. The Free card lists everything included without a subscription. Paid cards offer a 7-day free trial."
+      "label": "Feedback board",
+      "desc": "You can now suggest new features and report bugs directly from the app. Vote on suggestions from other users, leave comments, and track the status of each request as it moves from Pending to Done."
     },
     "entry3": {
       "label": "Bug fixes",
@@ -1019,5 +1020,57 @@
     "moreInHistory": "+{count} more",
     "practiceAgain": "Practice again",
     "replayNoXp": "Replay — no XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Feature requests & bug reports",
+    "tabFeatures": "Suggestions",
+    "tabBugs": "Bug reports",
+    "newFeature": "+ New suggestion",
+    "newBug": "+ Report a bug",
+    "sortBy": "Sort by",
+    "sortVotes": "Most voted",
+    "sortDate": "Most recent",
+    "filterStatus": "Status",
+    "filterAll": "All",
+    "noEntries": "Nothing here yet. Be the first to submit one.",
+    "votes": "{count} votes",
+    "vote": "1 vote",
+    "comments": "{count} comments",
+    "comment": "1 comment",
+    "by": "by",
+    "statusPending": "Pending",
+    "statusPlanned": "Planned",
+    "statusInProgress": "In progress",
+    "statusDone": "Done",
+    "statusDeclined": "Declined",
+    "modalCreateTitleFeature": "New suggestion",
+    "modalCreateTitleBug": "Report a bug",
+    "labelTitle": "Title",
+    "placeholderTitleFeature": "Describe your suggestion in one sentence",
+    "placeholderTitleBug": "Short description of the bug",
+    "labelDescription": "Details",
+    "placeholderDescriptionFeature": "Explain the feature and why it would be useful",
+    "placeholderDescriptionBug": "Steps to reproduce, expected behaviour, what happened instead",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel",
+    "deleteEntry": "Delete",
+    "deleteEntryConfirmTitle": "Delete entry",
+    "deleteEntryConfirmMessage": "Are you sure you want to delete this entry? This cannot be undone.",
+    "deleteEntryConfirm": "Delete",
+    "addComment": "Add a comment",
+    "commentPlaceholder": "Write a comment...",
+    "postComment": "Post",
+    "postingComment": "Posting...",
+    "deleteComment": "Delete",
+    "deleteCommentConfirmTitle": "Delete comment",
+    "deleteCommentConfirmMessage": "Delete this comment?",
+    "deleteCommentConfirm": "Delete",
+    "backToList": "← Back",
+    "errorLoad": "Failed to load. Please try again.",
+    "errorSubmit": "Failed to submit. Please try again.",
+    "prevPage": "← Prev",
+    "nextPage": "Next →"
   }
 }
