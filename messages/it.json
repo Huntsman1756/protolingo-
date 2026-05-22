@@ -725,6 +725,10 @@
     "a_tutor": "Una chat libera con streaming. Il tutor conosce il tuo livello QCER e i tuoi punti deboli per adattare le risposte. Fai domande di grammatica, chiedi spiegazioni, esercitati a scrivere in inglese o fai semplicemente una conversazione. Le conversazioni vengono salvate e sono accessibili dalla barra laterale tra una sessione e l'altra.",
     "q_voice": "Come funziona la conversazione vocale?",
     "a_voice": "La modalità <strong>Conversazione vocale</strong> ti consente di parlare con il tutor AI in tempo reale. Premi Start per iniziare — l'app rileva automaticamente la tua voce tramite rilevamento dell'attività vocale (VAD) e il tutor risponde con la sintesi vocale. Puoi interrompere il tutor in qualsiasi momento (barge-in). La sessione termina quando si raggiunge il limite di tempo o si preme Stop. Assicurati che il browser abbia il permesso di accedere al microfono.",
+    "q_listening": "Come funzionano gli esercizi di ascolto?",
+    "a_listening": "La sezione <strong>Listening</strong> genera brevi brani audio al tuo livello CEFR, sintetizzati dall'IA. Ascolta l'audio e rispondi a 5 domande di comprensione. Dopo l'invio, ottieni il tuo punteggio (0–5), XP, le risposte corrette e la trascrizione completa. Puoi generare nuovi esercizi su richiesta.",
+    "q_reading": "Come funzionano gli esercizi di lettura?",
+    "a_reading": "La sezione <strong>Reading</strong> genera testi al tuo livello CEFR: avvisi, email, articoli, post di blog e altro. Leggi il testo e rispondi a 5 domande a scelta multipla. Dopo l'invio, ottieni il tuo punteggio (0–5) e XP. Nuovi esercizi possono essere generati su richiesta.",
     "q_providers": "Quali provider di IA supporta FreeLingo?",
     "a_providers_intro": "Configurabile in <code>.env</code> tramite <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Locale, gratuito. Richiede Ollama in esecuzione sull'host. Modello consigliato: gemma4:e4b. Può essere lento senza GPU.",
@@ -734,7 +738,9 @@
     "q_invite": "Posso invitare altre persone?",
     "a_invite": "Sì. Da <adminLink>Admin → Utenti</adminLink> l'amministratore può creare utenti direttamente o generare link di invito monouso che scadono in 48 ore. La registrazione pubblica è disabilitata per impostazione predefinita (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "Come cambio la mia password o lingua madre?",
-    "a_password": "Vai su <settingsLink>Impostazioni</settingsLink>. Da lì puoi aggiornare il tuo nome visualizzato, la lingua madre e la password."
+    "a_password": "Vai su <settingsLink>Impostazioni</settingsLink>. Da lì puoi aggiornare il tuo nome visualizzato, la lingua madre e la password.",
+    "q_feedback": "Come posso suggerire una nuova funzionalità o segnalare un bug?",
+    "a_feedback": "Usa la sezione <feedbackLink>Feedback</feedbackLink> nella barra laterale. Puoi creare suggerimenti per nuove funzionalità o segnalare bug. Vota le idee degli altri utenti, lascia commenti e segui lo stato di ogni richiesta. Tutti gli invii sono pubblici e vengono esaminati dall'amministratore."
   },
   "cookieBanner": {
     "message": "Utilizziamo cookie strettamente necessari per mantenere la tua sessione attiva. Non vengono utilizzati cookie di tracciamento o pubblicità.",
