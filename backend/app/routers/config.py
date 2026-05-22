@@ -6,9 +6,11 @@ No sensitive information is exposed.
 """
 from __future__ import annotations
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, Request
+from redis.asyncio import Redis
 
 from app.core.config import settings
+from app.core.deps import MAINTENANCE_KEY, get_redis
 from app.core.limiter import limiter
 
 router = APIRouter(tags=["config"])
@@ -16,11 +18,21 @@ router = APIRouter(tags=["config"])
 
 @router.get("/api/config")
 @limiter.limit("60/minute")
-async def get_config(request: Request) -> dict:  # noqa: ANN001
+async def get_config(
+    request: Request,  # noqa: ARG001
+    redis: Redis = Depends(get_redis),
+) -> dict:
     """Return public runtime configuration flags."""
+    maintenance_mode = False
+    try:
+        maintenance_mode = await redis.get(MAINTENANCE_KEY) == "1"
+    except Exception:
+        pass
+
     return {
         "stripe_enabled": settings.STRIPE_ENABLED,
         "stripe_trial_days": settings.STRIPE_TRIAL_DAYS,
         "tts_provider": settings.TTS_PROVIDER,
         "openai_tts_voice": settings.OPENAI_TTS_VOICE,
+        "maintenance_mode": maintenance_mode,
     }

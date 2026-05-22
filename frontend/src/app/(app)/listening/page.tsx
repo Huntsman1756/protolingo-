@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
+import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -637,8 +638,10 @@ function ListeningPage() {
 
 export default function ListeningPageWrapper() {
   return (
+    <MaintenanceGate>
     <PaywallGate>
       <ListeningPage />
     </PaywallGate>
+    </MaintenanceGate>
   )
 }

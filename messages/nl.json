@@ -71,7 +71,8 @@
     "conversation": "Gesprek",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Bewaring en verwijdering van gegevens",
       "s7Body": "Je gegevens worden bewaard zolang je account bestaat. Je kunt je account en alle bijbehorende gegevens op elk moment permanent verwijderen via de pagina Instellingen. Verwijdering is onmiddellijk en onomkeerbaar.",
       "s8Title": "8. Contact",
-      "s8Body": "Voor privacygerelateerde vragen over de gehoste service, neem contact met ons op via: freelingo@arturocarreterocalvo.com.",
+      "s8Body": "Voor privacygerelateerde vragen over de gehoste service, neem contact met ons op via: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Gebruiksvoorwaarden",
       "linkBack": "Terug naar registratie",
       "linkBackSettings": "Terug naar instellingen"
@@ -693,7 +694,12 @@
     "quotaMonthlyTokens": "Maandelijks tokenlimiet",
     "fieldSubscription": "Abonnement",
     "fieldEndsRenews": "Eindigt / Verlengt",
-    "fieldStripeCustomer": "Stripe-klant"
+    "fieldStripeCustomer": "Stripe-klant",
+    "maintenanceTitle": "Onderhoudsmodus",
+    "maintenanceOn": "AAN",
+    "maintenanceEnable": "Onderhoud Inschakelen",
+    "maintenanceDisable": "Onderhoud Uitschakelen",
+    "maintenanceDesc": "Indien ingeschakeld zijn alle abonnementsfuncties (tutorchat, spraakgesprekken, luister- en leesoefeningen) niet beschikbaar voor alle gebruikers."
   },
   "faq": {
     "title": "FAQ",
@@ -719,6 +725,10 @@
     "a_tutor": "Een vrij-formaat streamingchat. De tutor kent je CEFR-niveau en zwakke punten om zijn antwoorden af te stemmen. Stel grammaticavragen, vraag uitleg, oefen schrijven in het Engels of voer gewoon een gesprek.",
     "q_voice": "Hoe werkt de spraakconversatie?",
     "a_voice": "De modus <strong>Spraakconversatie</strong> laat je in realtime praten met de AI-tutor. Druk op Start om te beginnen — de app herkent je stem automatisch via spraakactiviteitsdetectie (VAD) en de tutor antwoordt met spraaksynthese. Je kunt de tutor op elk moment onderbreken (barge-in). De sessie eindigt wanneer de tijdslimiet is bereikt of je op Stoppen drukt. Zorg ervoor dat je browser toestemming heeft voor de microfoon.",
+    "q_listening": "Hoe werken de luisteroefeningen?",
+    "a_listening": "De <strong>Listening</strong>-sectie genereert korte audiofragmenten op jouw CEFR-niveau, ingesproken door AI. Luister naar de audio en beantwoord 5 begripsvragen. Na het insturen krijg je je score (0–5), XP, de juiste antwoorden en de volledige transcriptie. Je kunt op aanvraag nieuwe oefeningen genereren.",
+    "q_reading": "Hoe werken de leesoefeningen?",
+    "a_reading": "De <strong>Reading</strong>-sectie genereert teksten op jouw CEFR-niveau — mededelingen, e-mails, artikelen, blogposts en meer. Lees de tekst en beantwoord 5 multiple-choice vragen. Na het insturen krijg je je score (0–5) en XP. Nieuwe oefeningen kunnen op aanvraag worden gegenereerd.",
     "q_providers": "Welke AI-providers ondersteunt FreeLingo?",
     "a_providers_intro": "Configureerbaar in <code>.env</code> via <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Lokaal, gratis. Vereist Ollama op de host. Aanbevolen model: gemma4:e4b.",
@@ -728,7 +738,9 @@
     "q_invite": "Kan ik anderen uitnodigen?",
     "a_invite": "Ja. Via <adminLink>Admin → Gebruikers</adminLink> kan de beheerder gebruikers direct aanmaken of eenmalige uitnodigingslinks genereren die na 48 uur verlopen.",
     "q_password": "Hoe verander ik mijn wachtwoord of moedertaal?",
-    "a_password": "Ga naar <settingsLink>Instellingen</settingsLink>. Daar kun je je weergavenaam, moedertaal en wachtwoord bijwerken."
+    "a_password": "Ga naar <settingsLink>Instellingen</settingsLink>. Daar kun je je weergavenaam, moedertaal en wachtwoord bijwerken.",
+    "q_feedback": "Hoe kan ik een nieuwe functie voorstellen of een bug melden?",
+    "a_feedback": "Gebruik de <feedbackLink>Feedback</feedbackLink> sectie in de zijbalk. Je kunt suggesties voor nieuwe functies indienen of bugs melden. Stem op ideeën van andere gebruikers, laat reacties achter en volg de status van elk verzoek. Alle inzendingen zijn openbaar en worden beoordeeld door de beheerder."
   },
   "cookieBanner": {
     "message": "Wij gebruiken strikt noodzakelijke cookies om je ingelogd te houden. Er worden geen tracking- of advertentiecookies gebruikt.",
@@ -940,15 +952,15 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Begrepen",
     "entry1": {
       "label": "Gratis plan",
       "desc": "Dashboard, flashcards, lessen, studieplan en niveautest zijn nu gratis voor alle geregistreerde gebruikers. Geen abonnement vereist."
     },
     "entry2": {
-      "label": "Prijzen vernieuwd",
-      "desc": "De startpagina toont nu drie prijskaarten: Gratis, Maandelijks en Jaarlijks. De gratis kaart toont alle functies zonder abonnement. Betaalde kaarten bevatten 7 dagen gratis."
+      "label": "Feedbackbord",
+      "desc": "Je kunt nu direct vanuit de app nieuwe functies voorstellen en bugs melden. Stem op suggesties van andere gebruikers, laat reacties achter en volg de status van elke aanvraag tot aan de afronding."
     },
     "entry3": {
       "label": "Bugfixes",
@@ -1019,5 +1031,62 @@
     "moreInHistory": "+{count} meer",
     "practiceAgain": "Opnieuw oefenen",
     "replayNoXp": "Herhaling — geen XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Suggesties en bugrapporten",
+    "tabFeatures": "Suggesties",
+    "tabBugs": "Bugs",
+    "newFeature": "+ Nieuwe suggestie",
+    "newBug": "+ Bug melden",
+    "sortBy": "Sorteren op",
+    "sortVotes": "Meeste stemmen",
+    "sortDate": "Nieuwste",
+    "filterStatus": "Status",
+    "filterAll": "Alle",
+    "noEntries": "Nog niets hier. Wees de eerste!",
+    "votes": "{count} stemmen",
+    "vote": "1 stem",
+    "comments": "{count} reacties",
+    "comment": "1 reactie",
+    "by": "door",
+    "statusPending": "In behandeling",
+    "statusPlanned": "Gepland",
+    "statusInProgress": "In uitvoering",
+    "statusDone": "Klaar",
+    "statusDeclined": "Afgewezen",
+    "modalCreateTitleFeature": "Nieuwe suggestie",
+    "modalCreateTitleBug": "Bug melden",
+    "labelTitle": "Titel",
+    "placeholderTitleFeature": "Beschrijf je suggestie in één zin",
+    "placeholderTitleBug": "Korte beschrijving van de bug",
+    "labelDescription": "Details",
+    "placeholderDescriptionFeature": "Leg de functie uit en waarom die nuttig zou zijn",
+    "placeholderDescriptionBug": "Stappen om te reproduceren, verwacht gedrag, wat er gebeurde",
+    "submit": "Versturen",
+    "submitting": "Versturen...",
+    "cancel": "Annuleren",
+    "deleteEntry": "Verwijderen",
+    "deleteEntryConfirmTitle": "Verwijder item",
+    "deleteEntryConfirmMessage": "Dit item verwijderen? Dit kan niet ongedaan worden gemaakt.",
+    "deleteEntryConfirm": "Verwijderen",
+    "addComment": "Reactie toevoegen",
+    "commentPlaceholder": "Schrijf een reactie...",
+    "postComment": "Plaatsen",
+    "postingComment": "Plaatsen...",
+    "deleteComment": "Verwijderen",
+    "deleteCommentConfirmTitle": "Verwijder reactie",
+    "deleteCommentConfirmMessage": "Deze reactie verwijderen?",
+    "deleteCommentConfirm": "Verwijderen",
+    "backToList": "← Terug",
+    "errorLoad": "Laden mislukt. Probeer opnieuw.",
+    "errorSubmit": "Versturen mislukt. Probeer opnieuw.",
+    "prevPage": "← Vorige",
+    "nextPage": "Volgende →"
+  },
+  "maintenance": {
+    "label": "Onderhoud",
+    "title": "In Onderhoud",
+    "description": "Dit gedeelte is tijdelijk niet beschikbaar vanwege onderhoud. Probeer het later opnieuw."
   }
 }

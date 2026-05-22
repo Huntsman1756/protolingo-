@@ -44,6 +44,8 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 | GET | `/users/{id}/stats` | Usage statistics: XP, streak, lessons, exercises, tokens |
 | GET | `/users/{id}/quota` | Live quota status from Redis (sessions this week, minutes today, minutes this week) |
 | POST | `/invite` | Generates single-use invite link (48h Redis TTL) |
+| GET | `/maintenance` | Returns `{"maintenance_mode": bool}` — current maintenance mode state |
+| PATCH | `/maintenance` | Toggles maintenance mode on/off in Redis. Returns `{"maintenance_mode": bool}` |
 
 ---
 
@@ -201,3 +203,21 @@ All endpoints require `require_subscription` (or `get_current_user` where noted)
 | POST | `/generate` | 5/min | require_subscription | Acquires a per-(level, language) Redis lock (`nx=True, ex=60`) and enqueues a `BackgroundTask` that calls LLM and saves the exercise. Returns HTTP 202 with `{"status": "generating"}`. Returns 202 (no-op) if a generation job is already running. |
 | POST | `/attempt` | 20/min | require_subscription | Submits answers (`{exercise_id, answers: dict[str,str], replay: bool}`) for scoring. Returns score (0–5), XP earned (0–50), and correct answers. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers). |
 | GET | `/history` | 30/min | get_current_user | Returns paginated list of the user's past attempts with scores, XP, exercise text, and correct answers. Query params: `skip` (default 0), `limit` (default 10, max 50). |
+
+---
+
+## Feedback — `/api/feedback`
+
+All endpoints require `get_current_user`. Status update requires `require_admin`.
+
+| Method | Path | Rate limit | Auth | Description |
+|--------|------|------------|------|-------------|
+| GET | `` | 60/min | get_current_user | Returns paginated list of feedback entries. Query params: `type` (`feature`\|`bug`), `status` (`pending`\|`planned`\|`in_progress`\|`done`\|`declined`), `sort` (`votes`\|`date`, default `votes`), `order` (`asc`\|`desc`, default `desc`), `skip` (default 0), `limit` (default 20, max 100). Response: `{items, total, skip, limit}`. Each item includes `voted_by_me` and `comment_count` fields injected server-side. |
+| POST | `` | 10/hour | get_current_user | Creates a new feature request or bug report. Body: `{type, title, description}`. Returns HTTP 201 + the created entry. |
+| GET | `/{id}` | 60/min | get_current_user | Returns a single entry with its full comment thread ordered by `created_at ASC`. |
+| DELETE | `/{id}` | 20/min | get_current_user | Deletes an entry. Author can delete their own; admin can delete any. Cascade-deletes all votes and comments. Returns HTTP 204. |
+| POST | `/{id}/vote` | 30/min | get_current_user | Toggles the authenticated user's vote on a feature request. Returns `{voted: bool, vote_count: int}`. Returns 400 if entry type is `bug`. |
+| PATCH | `/{id}/status` | 30/min | require_admin | Updates the entry status. Body: `{status}`. Valid values: `pending`, `planned`, `in_progress`, `done`, `declined`. Returns the updated entry. |
+| GET | `/{id}/comments` | 60/min | get_current_user | Returns all comments for an entry ordered by date ASC. Response: `{items, total}`. |
+| POST | `/{id}/comments` | 20/hour | get_current_user | Adds a comment to an entry. Body: `{body}` (max 2000 chars). Returns HTTP 201 + the created comment. |
+| DELETE | `/{id}/comments/{cid}` | 20/min | get_current_user | Deletes a comment. Author can delete their own; admin can delete any. Returns HTTP 204. |

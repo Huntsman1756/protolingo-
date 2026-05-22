@@ -8,7 +8,6 @@ import { apiFetch } from '@/lib/api'
 import { useProgressStore } from '@/store/progress'
 import { grammarTopics } from '@/data/grammar'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
-import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
@@ -126,7 +125,7 @@ export default function LessonPage() {
   const explanation = lesson?.content?.explanation as Record<string, unknown> | undefined
 
   return (
-    <PaywallGate>
+    <>
       <div className="mx-auto max-w-2xl p-6 space-y-4">
         {/* Lesson header */}
         <div className="border border-fl-border bg-fl-surface">
@@ -345,6 +344,6 @@ export default function LessonPage() {
         onConfirm={() => router.push('/dashboard')}
         onCancel={() => setShowExitConfirm(false)}
       />
-    </PaywallGate>
+    </>
   )
 }

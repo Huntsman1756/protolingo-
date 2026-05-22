@@ -71,7 +71,8 @@
     "conversation": "Conversation",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Data Retention & Deletion",
       "s7Body": "Your data is retained for as long as your account exists. You can permanently delete your account and all associated data at any time from the Settings page. Deletion is immediate and irreversible.",
       "s8Title": "8. Contact",
-      "s8Body": "For privacy-related concerns about the hosted service, contact us at: freelingo@arturocarreterocalvo.com. For self-hosted deployments, contact the administrator of the instance you are using. For questions about the FreeLingo open-source project, visit the project repository on GitHub.",
+      "s8Body": "For privacy-related concerns about the hosted service, contact us at: contacto@arturocarreterocalvo.com. For self-hosted deployments, contact the administrator of the instance you are using. For questions about the FreeLingo open-source project, visit the project repository on GitHub.",
       "linkTerms": "Terms of Service",
       "linkBack": "Back to Register",
       "linkBackSettings": "Back to Settings"
@@ -693,7 +694,12 @@
     "emailUnverifiedSuccess": "Email marked as unverified.",
     "fieldSubscription": "Subscription",
     "fieldEndsRenews": "Ends / Renews",
-    "fieldStripeCustomer": "Stripe Customer"
+    "fieldStripeCustomer": "Stripe Customer",
+    "maintenanceTitle": "Maintenance Mode",
+    "maintenanceOn": "ON",
+    "maintenanceEnable": "Enable Maintenance",
+    "maintenanceDisable": "Disable Maintenance",
+    "maintenanceDesc": "When enabled, all subscription-gated features (tutor chat, voice conversations, listening & reading exercises) will be unavailable to all users."
   },
   "faq": {
     "title": "FAQ",
@@ -719,6 +725,10 @@
     "a_tutor": "A free-form streaming chat. The tutor knows your CEFR level and weak points to tailor its responses. Ask grammar questions, request explanations, practice writing in English, or just have a conversation. Conversations are saved and accessible from the sidebar across sessions.",
     "q_voice": "How does the voice conversation work?",
     "a_voice": "The <strong>Voice Conversation</strong> mode lets you speak with the AI tutor in real time. Press Start to begin — the app listens for your voice automatically using voice activity detection (VAD) and the tutor replies with synthesised speech. You can interrupt the tutor at any moment (barge-in). The session ends when you reach the time limit or press Stop. Make sure your browser has microphone permission enabled.",
+    "q_listening": "How do listening exercises work?",
+    "a_listening": "The <strong>Listening</strong> section generates short audio passages at your CEFR level, voiced by AI. Listen to the audio, then answer 5 comprehension questions. After submitting, you get your score (0–5), XP, correct answers, and the full transcript. You can generate new exercises on demand.",
+    "q_reading": "How do reading exercises work?",
+    "a_reading": "The <strong>Reading</strong> section generates texts at your CEFR level — notices, emails, articles, blog posts, and more. Read the passage and answer 5 multiple-choice questions. After submitting, you get your score (0–5) and XP. New exercises can be generated on demand.",
     "q_providers": "Which AI providers does FreeLingo support?",
     "a_providers_intro": "Configurable in <code>.env</code> via <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Local, free. Requires Ollama running on the host. Recommended model: gemma4:e4b. May be slow without a GPU.",
@@ -728,7 +738,9 @@
     "q_invite": "Can I invite other people?",
     "a_invite": "Yes. From <adminLink>Admin → Users</adminLink> the admin can create users directly or generate single-use invite links that expire in 48 hours. Public registration is disabled by default (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "How do I change my password or native language?",
-    "a_password": "Go to <settingsLink>Settings</settingsLink>. You can update your display name, native language, and password from there."
+    "a_password": "Go to <settingsLink>Settings</settingsLink>. You can update your display name, native language, and password from there.",
+    "q_feedback": "How do I suggest a new feature or report a bug?",
+    "a_feedback": "Use the <feedbackLink>Feedback</feedbackLink> section in the sidebar. You can create suggestions for new features or report bugs. Vote on other users' ideas, leave comments, and track the status of each request. All submissions are public and are reviewed by the admin."
   },
   "cookieBanner": {
     "message": "We use strictly necessary cookies to keep you logged in. No tracking or advertising cookies are used.",
@@ -940,15 +952,15 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Got it",
     "entry1": {
       "label": "Free plan",
       "desc": "Dashboard, flashcards, lessons, study plan, and level assessment are now free for all registered users. No subscription required to access these features."
     },
     "entry2": {
-      "label": "Pricing redesign",
-      "desc": "The landing page now shows three pricing cards: Free, Monthly, and Yearly. The Free card lists everything included without a subscription. Paid cards offer a 7-day free trial."
+      "label": "Feedback board",
+      "desc": "You can now suggest new features and report bugs directly from the app. Vote on suggestions from other users, leave comments, and track the status of each request as it moves from Pending to Done."
     },
     "entry3": {
       "label": "Bug fixes",
@@ -1019,5 +1031,62 @@
     "moreInHistory": "+{count} more",
     "practiceAgain": "Practice again",
     "replayNoXp": "Replay — no XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Feature requests & bug reports",
+    "tabFeatures": "Suggestions",
+    "tabBugs": "Bug reports",
+    "newFeature": "+ New suggestion",
+    "newBug": "+ Report a bug",
+    "sortBy": "Sort by",
+    "sortVotes": "Most voted",
+    "sortDate": "Most recent",
+    "filterStatus": "Status",
+    "filterAll": "All",
+    "noEntries": "Nothing here yet. Be the first to submit one.",
+    "votes": "{count} votes",
+    "vote": "1 vote",
+    "comments": "{count} comments",
+    "comment": "1 comment",
+    "by": "by",
+    "statusPending": "Pending",
+    "statusPlanned": "Planned",
+    "statusInProgress": "In progress",
+    "statusDone": "Done",
+    "statusDeclined": "Declined",
+    "modalCreateTitleFeature": "New suggestion",
+    "modalCreateTitleBug": "Report a bug",
+    "labelTitle": "Title",
+    "placeholderTitleFeature": "Describe your suggestion in one sentence",
+    "placeholderTitleBug": "Short description of the bug",
+    "labelDescription": "Details",
+    "placeholderDescriptionFeature": "Explain the feature and why it would be useful",
+    "placeholderDescriptionBug": "Steps to reproduce, expected behaviour, what happened instead",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "cancel": "Cancel",
+    "deleteEntry": "Delete",
+    "deleteEntryConfirmTitle": "Delete entry",
+    "deleteEntryConfirmMessage": "Are you sure you want to delete this entry? This cannot be undone.",
+    "deleteEntryConfirm": "Delete",
+    "addComment": "Add a comment",
+    "commentPlaceholder": "Write a comment...",
+    "postComment": "Post",
+    "postingComment": "Posting...",
+    "deleteComment": "Delete",
+    "deleteCommentConfirmTitle": "Delete comment",
+    "deleteCommentConfirmMessage": "Delete this comment?",
+    "deleteCommentConfirm": "Delete",
+    "backToList": "← Back",
+    "errorLoad": "Failed to load. Please try again.",
+    "errorSubmit": "Failed to submit. Please try again.",
+    "prevPage": "← Prev",
+    "nextPage": "Next →"
+  },
+  "maintenance": {
+    "label": "Maintenance",
+    "title": "Under Maintenance",
+    "description": "This section is temporarily unavailable while we perform maintenance. Please check back later."
   }
 }

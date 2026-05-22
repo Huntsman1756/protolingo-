@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import type { ChatContextItem } from '@/lib/conversation-ws'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
+import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { apiFetch } from '@/lib/api'
 
 const ConversationMode = dynamic(
@@ -56,5 +57,5 @@ export default function ConversationPage() {
 
   if (!planReady) return null
 
-  return <PaywallGate><ConversationMode initialContext={initialContext} autoStart={autoStart} cefrLevel={cefrLevel} /></PaywallGate>
+  return <MaintenanceGate><PaywallGate><ConversationMode initialContext={initialContext} autoStart={autoStart} cefrLevel={cefrLevel} /></PaywallGate></MaintenanceGate>
 }

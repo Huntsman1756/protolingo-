@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { useAuthStore } from '@/store/auth'
 
 interface FAQItem {
   q: string
@@ -12,14 +13,31 @@ interface FAQItem {
 export default function FAQPage() {
   const t = useTranslations('faq')
   const [open, setOpen] = useState<number | null>(null)
+  const isAdmin = useAuthStore((s) => s.user?.role === 'admin')
 
-  const strong = (chunks: React.ReactNode) => <strong className="text-fl-fg">{chunks}</strong>
-  const code = (chunks: React.ReactNode) => <code className="text-fl-fg bg-fl-surface-2 px-1">{chunks}</code>
+  const strong = (chunks: React.ReactNode) => (
+    <strong className="text-fl-fg">{chunks}</strong>
+  )
+  const code = (chunks: React.ReactNode) => (
+    <code className="text-fl-fg bg-fl-surface-2 px-1">{chunks}</code>
+  )
   const adminLink = (chunks: React.ReactNode) => (
-    <Link href="/admin/users" className="text-fl-fg underline underline-offset-2">{chunks}</Link>
+    <Link
+      href="/admin/users"
+      className="text-fl-fg underline underline-offset-2"
+    >
+      {chunks}
+    </Link>
   )
   const settingsLink = (chunks: React.ReactNode) => (
-    <Link href="/settings" className="text-fl-fg underline underline-offset-2">{chunks}</Link>
+    <Link href="/settings" className="text-fl-fg underline underline-offset-2">
+      {chunks}
+    </Link>
+  )
+  const feedbackLink = (chunks: React.ReactNode) => (
+    <Link href="/feedback" className="text-fl-fg underline underline-offset-2">
+      {chunks}
+    </Link>
   )
 
   const workflowSteps = [
@@ -38,68 +56,93 @@ export default function FAQPage() {
     ['deepseek', t('provider_deepseek')],
   ]
 
-  const faqs: FAQItem[] = [
-    { q: t('q_start'), a: t.rich('a_start', { strong }) },
-    {
-      q: t('q_workflow'),
-      a: (
-        <ol className="list-none space-y-1">
-          {workflowSteps.map((step, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <span className="font-mono text-fl-label text-fl-muted-4 mt-0.5 shrink-0">{i + 1}.</span>
-              <span>{step}</span>
-            </li>
-          ))}
-        </ol>
-      ),
-    },
-    { q: t('q_language'), a: t('a_language') },
-    { q: t('q_assessment'), a: t('a_assessment') },
-    { q: t('q_studyPlan'), a: t.rich('a_studyPlan', { strong }) },
-    { q: t('q_flashcards'), a: t.rich('a_flashcards', { strong }) },
-    { q: t('q_tutor'), a: t('a_tutor') },
-    { q: t('q_voice'), a: t.rich('a_voice', { strong }) },
-    {
-      q: t('q_providers'),
-      a: (
-        <>
-          {t.rich('a_providers_intro', { code })}
-          <ul className="mt-2 space-y-1 list-none">
-            {providers.map(([name, desc]) => (
-              <li key={name} className="flex items-start gap-2">
-                <code className="text-fl-muted-1 shrink-0">{name}</code>
-                <span className="text-fl-muted-2">— {desc}</span>
+  const faqs: FAQItem[] = (() => {
+    const items: FAQItem[] = [
+      { q: t('q_start'), a: t.rich('a_start', { strong }) },
+      { q: t('q_language'), a: t('a_language') },
+      {
+        q: t('q_workflow'),
+        a: (
+          <ol className="list-none space-y-1">
+            {workflowSteps.map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="text-fl-label text-fl-muted-4 mt-0.5 shrink-0 font-mono">
+                  {i + 1}.
+                </span>
+                <span>{step}</span>
               </li>
             ))}
-          </ul>
-        </>
-      ),
-    },
-    { q: t('q_invite'), a: t.rich('a_invite', { adminLink, code }) },
-    { q: t('q_password'), a: t.rich('a_password', { settingsLink }) },
-  ]
+          </ol>
+        ),
+      },
+      { q: t('q_assessment'), a: t('a_assessment') },
+      { q: t('q_studyPlan'), a: t.rich('a_studyPlan', { strong }) },
+      { q: t('q_flashcards'), a: t.rich('a_flashcards', { strong }) },
+      { q: t('q_tutor'), a: t('a_tutor') },
+      { q: t('q_voice'), a: t.rich('a_voice', { strong }) },
+      { q: t('q_listening'), a: t.rich('a_listening', { strong }) },
+      { q: t('q_reading'), a: t.rich('a_reading', { strong }) },
+      { q: t('q_feedback'), a: t.rich('a_feedback', { feedbackLink }) },
+      { q: t('q_password'), a: t.rich('a_password', { settingsLink }) },
+    ]
+
+    if (isAdmin) {
+      items.push(
+        {
+          q: t('q_providers'),
+          a: (
+            <>
+              {t.rich('a_providers_intro', { code })}
+              <ul className="mt-2 list-none space-y-1">
+                {providers.map(([name, desc]) => (
+                  <li key={name} className="flex items-start gap-2">
+                    <code className="text-fl-muted-1 shrink-0">{name}</code>
+                    <span className="text-fl-muted-2">— {desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ),
+        },
+        { q: t('q_invite'), a: t.rich('a_invite', { adminLink, code }) }
+      )
+    }
+
+    return items
+  })()
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
+    <div className="mx-auto max-w-2xl p-6">
       {/* Header */}
-      <div className="mb-8 pb-4 border-b border-fl-border">
-        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">{t('title')}</p>
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">{t('subtitle')}</h1>
+      <div className="border-fl-border mb-8 border-b pb-4">
+        <p className="text-fl-label text-fl-muted-2 mb-1 font-mono tracking-widest uppercase">
+          {t('title')}
+        </p>
+        <h1 className="text-fl-fg font-mono text-2xl font-bold tracking-tight">
+          {t('subtitle')}
+        </h1>
       </div>
 
       {/* Accordion */}
-      <div className="border border-fl-border">
+      <div className="border-fl-border border">
         {faqs.map((item, i) => (
-          <div key={i} className={i < faqs.length - 1 ? 'border-b border-fl-border' : ''}>
+          <div
+            key={i}
+            className={i < faqs.length - 1 ? 'border-fl-border border-b' : ''}
+          >
             <button
               onClick={() => setOpen(open === i ? null : i)}
-              className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-fl-surface transition-colors"
+              className="hover:bg-fl-surface flex w-full items-center justify-between px-5 py-4 text-left transition-colors"
             >
-              <span className="font-mono text-xs text-fl-fg tracking-wide pr-4">{item.q}</span>
-              <span className="font-mono text-fl-muted-2 text-sm shrink-0">{open === i ? '−' : '+'}</span>
+              <span className="text-fl-fg pr-4 font-mono text-xs tracking-wide">
+                {item.q}
+              </span>
+              <span className="text-fl-muted-2 shrink-0 font-mono text-sm">
+                {open === i ? '−' : '+'}
+              </span>
             </button>
             {open === i && (
-              <div className="px-5 pb-5 font-mono text-xs text-fl-muted-1 leading-relaxed border-t border-fl-border pt-4 bg-fl-bg-alt">
+              <div className="text-fl-muted-1 border-fl-border bg-fl-bg-alt border-t px-5 pt-4 pb-5 font-mono text-xs leading-relaxed">
                 {item.a}
               </div>
             )}

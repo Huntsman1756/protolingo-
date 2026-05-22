@@ -71,7 +71,8 @@
     "conversation": "Conversație",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Retenția și ștergerea datelor",
       "s7Body": "Datele tale sunt păstrate atât timp cât contul tău există. Poți șterge permanent contul și toate datele asociate în orice moment din pagina Setări.",
       "s8Title": "8. Contact",
-      "s8Body": "Pentru întrebări legate de confidențialitate, contactează-ne la: freelingo@arturocarreterocalvo.com.",
+      "s8Body": "Pentru întrebări legate de confidențialitate, contactează-ne la: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Termeni și condiții",
       "linkBack": "Înapoi la înregistrare",
       "linkBackSettings": "Înapoi la setări"
@@ -693,7 +694,12 @@
     "quotaMonthlyTokens": "Limită lunară de tokeni",
     "fieldSubscription": "Abonament",
     "fieldEndsRenews": "Expiră / Reînnoiește",
-    "fieldStripeCustomer": "Client Stripe"
+    "fieldStripeCustomer": "Client Stripe",
+    "maintenanceTitle": "Mod Mentenanță",
+    "maintenanceOn": "ACTIV",
+    "maintenanceEnable": "Activează Mentenanța",
+    "maintenanceDisable": "Dezactivează Mentenanța",
+    "maintenanceDesc": "Când este activat, toate funcțiile de abonament (chat, conversații vocale, exerciții de ascultare și citire) vor fi indisponibile pentru toți utilizatorii."
   },
   "faq": {
     "title": "Întrebări frecvente",
@@ -719,6 +725,10 @@
     "a_tutor": "Un chat în format liber cu streaming. Tutorele cunoaște nivelul tău CEFR și punctele slabe pentru a-și adapta răspunsurile. Pune întrebări de gramatică, cere explicații, exersează scrierea în engleză sau pur și simplu poartă o conversație.",
     "q_voice": "Cum funcționează conversația vocală?",
     "a_voice": "Modul <strong>Conversație vocală</strong> îți permite să vorbești cu tutorele AI în timp real. Apasă Start pentru a începe — aplicația detectează automat vocea ta prin detecția activității vocale (VAD) și tutorele răspunde cu sinteză vocală. Poți întrerupe tutorele în orice moment (barge-in). Sesiunea se încheie când se atinge limita de timp sau apeși Stop. Asigură-te că browserul are permisiunea de a accesa microfonul.",
+    "q_listening": "Cum funcționează exercițiile de ascultare?",
+    "a_listening": "Secțiunea <strong>Listening</strong> generează scurte fragmente audio la nivelul tău CEFR, narate de AI. Ascultă audio și răspunde la 5 întrebări de înțelegere. După trimitere, primești scorul (0–5), XP, răspunsurile corecte și transcrierea completă. Poți genera exerciții noi la cerere.",
+    "q_reading": "Cum funcționează exercițiile de citire?",
+    "a_reading": "Secțiunea <strong>Reading</strong> generează texte la nivelul tău CEFR — anunțuri, e-mailuri, articole, postări de blog și multe altele. Citește textul și răspunde la 5 întrebări cu variante multiple. După trimitere, primești scorul (0–5) și XP. Exerciții noi pot fi generate la cerere.",
     "q_providers": "Ce furnizori AI acceptă FreeLingo?",
     "a_providers_intro": "Configurabil în <code>.env</code> prin <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Local, gratuit. Necesită Ollama pe gazdă. Model recomandat: gemma4:e4b.",
@@ -728,7 +738,9 @@
     "q_invite": "Pot invita pe alții?",
     "a_invite": "Da. Prin <adminLink>Admin → Utilizatori</adminLink>, administratorul poate crea utilizatori direct sau poate genera linkuri de invitație de unică folosință care expiră după 48 de ore.",
     "q_password": "Cum îmi schimb parola sau limba maternă?",
-    "a_password": "Mergi la <settingsLink>Setări</settingsLink>. Acolo poți actualiza numele afișat, limba maternă și parola."
+    "a_password": "Mergi la <settingsLink>Setări</settingsLink>. Acolo poți actualiza numele afișat, limba maternă și parola.",
+    "q_feedback": "Cum pot sugera o funcționalitate nouă sau raporta o eroare?",
+    "a_feedback": "Folosește secțiunea <feedbackLink>Feedback</feedbackLink> din bara laterală. Poți crea sugestii pentru funcționalități noi sau raporta erori. Votează ideile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri. Toate trimiterile sunt publice și sunt revizuite de administrator."
   },
   "cookieBanner": {
     "message": "Folosim cookie-uri strict necesare pentru a te menține autentificat. Nu se folosesc cookie-uri de urmărire sau publicitate.",
@@ -940,15 +952,15 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Plan gratuit",
       "desc": "Tabloul de bord, cardurile de memorie, lecțiile, planul de studiu și testul de nivel sunt acum gratuite pentru toți utilizatorii înregistrați. Nu este necesară nicio abonare."
     },
     "entry2": {
-      "label": "Prețuri redesenate",
-      "desc": "Pagina principală afișează acum trei carduri de preț: Gratuit, Lunar și Anual. Cardul gratuit listează toate funcțiile fără abonament. Cardurile plătite includ 7 zile de probă gratuită."
+      "label": "Panou de feedback",
+      "desc": "Acum poți sugera funcționalități noi și raporta erori direct din aplicație. Votează sugestiile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri până la finalizare."
     },
     "entry3": {
       "label": "Corecții",
@@ -1019,5 +1031,62 @@
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
     "replayNoXp": "Reluare — fără XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Sugestii și rapoarte de erori",
+    "tabFeatures": "Sugestii",
+    "tabBugs": "Erori",
+    "newFeature": "+ Sugestie nouă",
+    "newBug": "+ Raportează o eroare",
+    "sortBy": "Sortează după",
+    "sortVotes": "Cele mai votate",
+    "sortDate": "Cele mai recente",
+    "filterStatus": "Stare",
+    "filterAll": "Toate",
+    "noEntries": "Nimic aici încă. Fii primul care trimite ceva!",
+    "votes": "{count} voturi",
+    "vote": "1 vot",
+    "comments": "{count} comentarii",
+    "comment": "1 comentariu",
+    "by": "de",
+    "statusPending": "În așteptare",
+    "statusPlanned": "Planificat",
+    "statusInProgress": "În progres",
+    "statusDone": "Finalizat",
+    "statusDeclined": "Respins",
+    "modalCreateTitleFeature": "Sugestie nouă",
+    "modalCreateTitleBug": "Raportează o eroare",
+    "labelTitle": "Titlu",
+    "placeholderTitleFeature": "Descrie sugestia ta într-o propoziție",
+    "placeholderTitleBug": "Descriere scurtă a erorii",
+    "labelDescription": "Detalii",
+    "placeholderDescriptionFeature": "Explică funcționalitatea și de ce ar fi utilă",
+    "placeholderDescriptionBug": "Pași pentru reproducere, comportament așteptat, ce s-a întâmplat",
+    "submit": "Trimite",
+    "submitting": "Se trimite...",
+    "cancel": "Anulează",
+    "deleteEntry": "Șterge",
+    "deleteEntryConfirmTitle": "Șterge intrarea",
+    "deleteEntryConfirmMessage": "Ștergi această intrare? Acțiunea nu poate fi anulată.",
+    "deleteEntryConfirm": "Șterge",
+    "addComment": "Adaugă un comentariu",
+    "commentPlaceholder": "Scrie un comentariu...",
+    "postComment": "Publică",
+    "postingComment": "Se publică...",
+    "deleteComment": "Șterge",
+    "deleteCommentConfirmTitle": "Șterge comentariul",
+    "deleteCommentConfirmMessage": "Ștergi acest comentariu?",
+    "deleteCommentConfirm": "Șterge",
+    "backToList": "← Înapoi",
+    "errorLoad": "Încărcare eșuată. Încearcă din nou.",
+    "errorSubmit": "Trimitere eșuată. Încearcă din nou.",
+    "prevPage": "← Prev.",
+    "nextPage": "Urm. →"
+  },
+  "maintenance": {
+    "label": "Întreținere",
+    "title": "În Mentenanță",
+    "description": "Această secțiune este temporar indisponibilă pentru lucrări de întreținere. Încearcă din nou mai târziu."
   }
 }

@@ -4,7 +4,7 @@ Thank you for your interest in contributing. Please read these guidelines before
 
 ## Code of Conduct
 
-This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating you agree to abide by its terms. Report unacceptable behavior to [freelingo@arturocarreterocalvo.com](mailto:freelingo@arturocarreterocalvo.com).
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating you agree to abide by its terms. Report unacceptable behavior to [contacto@arturocarreterocalvo.com](mailto:contacto@arturocarreterocalvo.com).
 
 ## How to contribute
 

@@ -11,6 +11,7 @@ const PROTECTED_ROUTES = [
   '/conversation',
   '/dashboard',
   '/faq',
+  '/feedback',
   '/flashcards',
   '/grammar',
   '/lesson',
@@ -21,7 +22,18 @@ const PROTECTED_ROUTES = [
   '/settings',
   '/vocabulary',
 ]
-const SUPPORTED_LOCALES = ['en', 'es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
+const SUPPORTED_LOCALES = [
+  'en',
+  'es',
+  'fr',
+  'pt',
+  'de',
+  'it',
+  'pl',
+  'nl',
+  'ro',
+  'ru',
+] as const
 type Locale = (typeof SUPPORTED_LOCALES)[number]
 
 function detectLocale(req: NextRequest): Locale {
@@ -51,7 +63,9 @@ export function middleware(req: NextRequest) {
   const locale = detectLocale(req)
 
   const hasRefreshToken = req.cookies.has('refresh_token')
-  const isProtected = PROTECTED_ROUTES.some((r) => req.nextUrl.pathname.startsWith(r))
+  const isProtected = PROTECTED_ROUTES.some((r) =>
+    req.nextUrl.pathname.startsWith(r)
+  )
 
   if (!hasRefreshToken && isProtected) {
     const response = NextResponse.redirect(new URL('/login', req.url))
@@ -85,5 +99,7 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|favicon\.ico|api|.*\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)'],
+  matcher: [
+    '/((?!_next|favicon\.ico|api|.*\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+  ],
 }

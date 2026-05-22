@@ -8,6 +8,7 @@ os.environ["RATE_LIMIT_ENABLED"] = "false"
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy import event
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 from app.core.database import Base, get_db
@@ -15,9 +16,17 @@ from app.core.security import create_access_token
 from app.main import app
 
 
+def _set_sqlite_pragma(dbapi_connection, connection_record):
+    """Enable foreign key support on SQLite connections."""
+    cursor = dbapi_connection.cursor()
+    cursor.execute("PRAGMA foreign_keys = ON")
+    cursor.close()
+
+
 @pytest.fixture(scope="session")
 def test_engine():
     engine = create_async_engine(os.environ["DATABASE_URL"], echo=False)
+    event.listen(engine.sync_engine, "connect", _set_sqlite_pragma)
     return engine
 
 
@@ -51,6 +60,9 @@ def mock_redis():
         async def setex(self, key, ttl, value):
             store[key] = value
 
+        async def set(self, key, value, *args, **kwargs):
+            store[key] = value
+
         async def get(self, key):
             return store.get(key)
 
@@ -78,6 +90,11 @@ async def client(db_session, mock_redis):
     app.dependency_overrides[auth_get_redis] = lambda: mock_redis
     app.dependency_overrides[admin_get_redis] = lambda: mock_redis
     app.dependency_overrides[assessment_get_redis] = lambda: mock_redis
+
+    # Override centralized get_redis from deps.py (used by require_subscription, etc.)
+    from app.core.deps import get_redis as deps_get_redis
+
+    app.dependency_overrides[deps_get_redis] = lambda: mock_redis
 
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:

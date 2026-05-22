@@ -71,7 +71,8 @@
     "conversation": "Conversación",
     "listening": "Listening",
     "reading": "Reading",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "feedback": "Feedback"
   },
   "auth": {
     "login": {
@@ -288,7 +289,7 @@
       "s7Title": "7. Conservación y eliminación de datos",
       "s7Body": "Tus datos se conservan mientras exista tu cuenta. Puedes eliminar tu cuenta y todos los datos asociados de forma permanente en cualquier momento desde la página de Ajustes. La eliminación es inmediata e irreversible.",
       "s8Title": "8. Contacto",
-      "s8Body": "Para consultas sobre privacidad en el servicio alojado, contáctanos en: freelingo@arturocarreterocalvo.com. Para despliegues autoalojados, contacta con el administrador de la instancia que estás usando. Para preguntas sobre el proyecto de código abierto FreeLingo, visita el repositorio del proyecto en GitHub.",
+      "s8Body": "Para consultas sobre privacidad en el servicio alojado, contáctanos en: contacto@arturocarreterocalvo.com. Para despliegues autoalojados, contacta con el administrador de la instancia que estás usando. Para preguntas sobre el proyecto de código abierto FreeLingo, visita el repositorio del proyecto en GitHub.",
       "linkTerms": "Términos de servicio",
       "linkBack": "Volver al registro",
       "linkBackSettings": "Volver a ajustes"
@@ -693,7 +694,12 @@
     "emailUnverifiedSuccess": "Email marcado como no verificado.",
     "fieldSubscription": "Suscripción",
     "fieldEndsRenews": "Finaliza / Renueva",
-    "fieldStripeCustomer": "Cliente Stripe"
+    "fieldStripeCustomer": "Cliente Stripe",
+    "maintenanceTitle": "Modo Mantenimiento",
+    "maintenanceOn": "ACTIVO",
+    "maintenanceEnable": "Activar Mantenimiento",
+    "maintenanceDisable": "Desactivar Mantenimiento",
+    "maintenanceDesc": "Al activarse, todas las funciones de suscripción (chat, conversaciones de voz, ejercicios de listening y reading) estarán bloqueadas para todos los usuarios."
   },
   "faq": {
     "title": "FAQ",
@@ -719,6 +725,10 @@
     "a_tutor": "Un chat de formato libre con streaming. El tutor conoce tu nivel MCER y tus puntos débiles para adaptar sus respuestas. Haz preguntas de gramática, pide explicaciones, practica la escritura en inglés o simplemente mantén una conversación. Las conversaciones se guardan y son accesibles desde la barra lateral entre sesiones.",
     "q_voice": "¿Cómo funciona la conversación por voz?",
     "a_voice": "El modo de <strong>Conversación por voz</strong> te permite hablar con el tutor de IA en tiempo real. Pulsa Iniciar para comenzar — la aplicación detecta tu voz automáticamente mediante detección de actividad de voz (VAD) y el tutor responde con síntesis de voz. Puedes interrumpir al tutor en cualquier momento (barge-in). La sesión finaliza cuando se alcanza el límite de tiempo o pulsas Detener. Asegúrate de que el navegador tiene permiso para usar el micrófono.",
+    "q_listening": "¿Cómo funcionan los ejercicios de listening?",
+    "a_listening": "La sección de <strong>Listening</strong> genera audios breves a tu nivel CEFR, locutados por IA. Escucha el audio y responde 5 preguntas de comprensión. Al enviar, obtienes tu puntuación (0–5), XP, respuestas correctas y la transcripción completa. Puedes generar nuevos ejercicios bajo demanda.",
+    "q_reading": "¿Cómo funcionan los ejercicios de reading?",
+    "a_reading": "La sección de <strong>Reading</strong> genera textos a tu nivel CEFR: avisos, correos, artículos, entradas de blog y más. Lee el texto y responde 5 preguntas tipo test. Al enviar, obtienes tu puntuación (0–5) y XP. Puedes generar nuevos ejercicios bajo demanda.",
     "q_providers": "¿Qué proveedores de IA admite FreeLingo?",
     "a_providers_intro": "Configurable en <code>.env</code> mediante <code>LLM_PROVIDER</code>:",
     "provider_ollama": "Local, gratuito. Requiere Ollama ejecutándose en el host. Modelo recomendado: gemma4:e4b. Puede ser lento sin GPU.",
@@ -728,7 +738,9 @@
     "q_invite": "¿Puedo invitar a otras personas?",
     "a_invite": "Sí. Desde <adminLink>Admin → Usuarios</adminLink> el administrador puede crear usuarios directamente o generar enlaces de invitación de un solo uso que expiran en 48 horas. El registro público está desactivado por defecto (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "¿Cómo cambio mi contraseña o idioma nativo?",
-    "a_password": "Ve a <settingsLink>Ajustes</settingsLink>. Desde allí puedes actualizar tu nombre de visualización, idioma nativo y contraseña."
+    "a_password": "Ve a <settingsLink>Ajustes</settingsLink>. Desde allí puedes actualizar tu nombre de visualización, idioma nativo y contraseña.",
+    "q_feedback": "¿Cómo puedo sugerir una nueva funcionalidad o reportar un error?",
+    "a_feedback": "Usa la sección de <feedbackLink>Feedback</feedbackLink> en la barra lateral. Puedes crear sugerencias de nuevas funcionalidades o reportar errores. Vota las ideas de otros usuarios, deja comentarios y sigue el estado de cada solicitud. Todos los envíos son públicos y los revisa el administrador."
   },
   "cookieBanner": {
     "message": "Usamos cookies estrictamente necesarias para mantenerte conectado. No se usan cookies de seguimiento ni publicidad.",
@@ -940,15 +952,15 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.5.6",
+    "version": "v1.5.7",
     "cta": "Entendido",
     "entry1": {
       "label": "Plan gratuito",
       "desc": "El panel, las tarjetas, las lecciones, el plan de estudio y el test de nivel ahora son gratuitos para todos los usuarios registrados. No necesitas suscripción para acceder a estas funciones."
     },
     "entry2": {
-      "label": "Precios renovados",
-      "desc": "La página de inicio muestra ahora tres tarjetas de precio: Gratis, Mensual y Anual. La tarjeta gratuita lista todo lo que incluye el plan sin suscripción. Las tarjetas de pago incluyen 7 días de prueba gratis."
+      "label": "Tablón de feedback",
+      "desc": "Ya puedes sugerir nuevas funcionalidades y reportar errores directamente desde la app. Vota las sugerencias de otros usuarios, deja comentarios y sigue el estado de cada solicitud hasta que esté completada."
     },
     "entry3": {
       "label": "Correcciones",
@@ -1019,5 +1031,62 @@
     "moreInHistory": "+{count} más",
     "practiceAgain": "Practicar de nuevo",
     "replayNoXp": "Repetición — sin XP"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "subtitle": "Sugerencias y errores",
+    "tabFeatures": "Sugerencias",
+    "tabBugs": "Errores",
+    "newFeature": "+ Nueva sugerencia",
+    "newBug": "+ Reportar error",
+    "sortBy": "Ordenar por",
+    "sortVotes": "Más votados",
+    "sortDate": "Más recientes",
+    "filterStatus": "Estado",
+    "filterAll": "Todos",
+    "noEntries": "Nada aquí todavía. ¡Sé el primero en enviar algo!",
+    "votes": "{count} votos",
+    "vote": "1 voto",
+    "comments": "{count} comentarios",
+    "comment": "1 comentario",
+    "by": "por",
+    "statusPending": "Pendiente",
+    "statusPlanned": "Planificado",
+    "statusInProgress": "En progreso",
+    "statusDone": "Hecho",
+    "statusDeclined": "Rechazado",
+    "modalCreateTitleFeature": "Nueva sugerencia",
+    "modalCreateTitleBug": "Reportar un error",
+    "labelTitle": "Título",
+    "placeholderTitleFeature": "Describe tu sugerencia en una frase",
+    "placeholderTitleBug": "Descripción breve del error",
+    "labelDescription": "Detalles",
+    "placeholderDescriptionFeature": "Explica la funcionalidad y por qué sería útil",
+    "placeholderDescriptionBug": "Pasos para reproducirlo, comportamiento esperado, qué ocurrió",
+    "submit": "Enviar",
+    "submitting": "Enviando...",
+    "cancel": "Cancelar",
+    "deleteEntry": "Eliminar",
+    "deleteEntryConfirmTitle": "Eliminar entrada",
+    "deleteEntryConfirmMessage": "¿Seguro que quieres eliminar esta entrada? No se puede deshacer.",
+    "deleteEntryConfirm": "Eliminar",
+    "addComment": "Añadir un comentario",
+    "commentPlaceholder": "Escribe un comentario...",
+    "postComment": "Publicar",
+    "postingComment": "Publicando...",
+    "deleteComment": "Eliminar",
+    "deleteCommentConfirmTitle": "Eliminar comentario",
+    "deleteCommentConfirmMessage": "¿Eliminar este comentario?",
+    "deleteCommentConfirm": "Eliminar",
+    "backToList": "← Volver",
+    "errorLoad": "Error al cargar. Inténtalo de nuevo.",
+    "errorSubmit": "Error al enviar. Inténtalo de nuevo.",
+    "prevPage": "← Anterior",
+    "nextPage": "Siguiente →"
+  },
+  "maintenance": {
+    "label": "Mantenimiento",
+    "title": "En Mantenimiento",
+    "description": "Esta sección no está disponible temporalmente por tareas de mantenimiento. Vuelve más tarde."
   }
 }
