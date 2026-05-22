@@ -88,6 +88,11 @@ async def client(db_session, mock_redis):
     app.dependency_overrides[admin_get_redis] = lambda: mock_redis
     app.dependency_overrides[assessment_get_redis] = lambda: mock_redis
 
+    # Override centralized get_redis from deps.py (used by require_subscription, etc.)
+    from app.core.deps import get_redis as deps_get_redis
+
+    app.dependency_overrides[deps_get_redis] = lambda: mock_redis
+
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         yield ac
