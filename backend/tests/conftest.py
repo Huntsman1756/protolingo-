@@ -8,6 +8,7 @@ os.environ["RATE_LIMIT_ENABLED"] = "false"
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy import event
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 from app.core.database import Base, get_db
@@ -15,9 +16,17 @@ from app.core.security import create_access_token
 from app.main import app
 
 
+def _set_sqlite_pragma(dbapi_connection, connection_record):
+    """Enable foreign key support on SQLite connections."""
+    cursor = dbapi_connection.cursor()
+    cursor.execute("PRAGMA foreign_keys = ON")
+    cursor.close()
+
+
 @pytest.fixture(scope="session")
 def test_engine():
     engine = create_async_engine(os.environ["DATABASE_URL"], echo=False)
+    event.listen(engine.sync_engine, "connect", _set_sqlite_pragma)
     return engine
 
 
