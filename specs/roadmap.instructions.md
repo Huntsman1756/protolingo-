@@ -279,3 +279,76 @@ This document records what was built and the completion criteria met.
 - [x] `POST /attempt` with ≠ 5 answers returns 422 (Pydantic `field_validator`)
 - [x] `tsc --noEmit` and `python3 -m compileall` pass clean
 - [x] No regressions in Phases 1–6
+
+---
+
+## Phase 8 — Feedback Board
+
+✅ Status: Complete (v1.5.7)
+
+> Community feedback board where users submit feature requests and bug reports, vote on
+> suggestions, and discuss entries via flat comment threads. Admins manage entry status
+> and can delete any entry or comment.
+
+| # | Milestone | Status |
+|---|-----------|--------|
+| 1 | DB models — `feedback_entries` + `feedback_votes` + `feedback_comments` + migration `0020` | ✅ |
+| 2 | Backend router — 9 endpoints: list, create, get, vote toggle, add comment, delete comment, delete entry, admin status update | ✅ |
+| 3 | Admin frontend page — `/admin/feedback` with status management | ✅ |
+| 4 | User frontend page — `/feedback` with list + detail view, tabs (feature/bug), sort, status filter, pagination | ✅ |
+| 5 | Vote toggle inline on list cards and in detail view | ✅ |
+| 6 | Flat comment thread in detail view with add/delete | ✅ |
+| 7 | i18n — `feedback.*` namespace in all 10 locale files | ✅ |
+
+**Completion criteria:**
+- [x] `GET /api/feedback` filters by `type`, `status`, `sort`, `order`, `skip`, `limit` correctly
+- [x] `POST /api/feedback` creates entry with status `pending`; returns 201
+- [x] Vote toggle increments/decrements `vote_count` atomically; only feature entries accept votes
+- [x] Bug entries return 400 on vote attempt
+- [x] `UNIQUE(entry_id, user_id)` constraint enforced — no duplicate votes
+- [x] Admin can update status to any of: `pending`, `planned`, `in_progress`, `done`, `declined`
+- [x] Author or admin can delete an entry; cascade removes all votes and comments
+- [x] Author or admin can delete a comment
+- [x] `voted_by_me` and `comment_count` correctly populated per authenticated user
+- [x] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [x] No regressions in Phases 1–7
+
+---
+
+## Phase 9 — LLM Memory
+
+✅ Status: Complete (v1.6.0)
+
+> The AI tutor autonomously remembers important details about the student (preferences,
+> hobbies, profession, learning goals, struggles) as they emerge during chat or voice
+> conversations. The LLM appends a structured marker block to its response when it
+> decides something is worth persisting; the backend strips the block before the student
+> sees it and saves the facts to the `memories` table. Saved memories are injected back
+> into the system prompt for both chat and voice sessions, giving the tutor persistent
+> cross-session context at zero extra LLM cost.
+
+| # | Milestone | Status |
+|---|-----------|--------|
+| 1 | DB model — `memories` table + migration `0022_memory` | ✅ |
+| 2 | `memory_service.py` — parse/strip marker, build context, save (dedup + FIFO eviction), get, delete, clear | ✅ |
+| 3 | Chat integration — marker withheld mid-stream, `{"memory_updated": true}` SSE signal after `done` | ✅ |
+| 4 | Voice integration — marker stripped from TTS path, `{"type": "memory_updated"}` WebSocket signal before `turn_complete` | ✅ |
+| 5 | `MEMORY_SYSTEM_INSTRUCTION` injected into both chat and voice system prompts | ✅ |
+| 6 | REST API — 3 endpoints: list, delete single, clear all (all require `require_subscription`) | ✅ |
+| 7 | Frontend toast in chat and voice conversation on `memory_updated` signal | ✅ |
+| 8 | Settings → Memory subpage (`/settings/memories`) — full list, individual delete, clear all | ✅ |
+| 9 | i18n — `settings.sectionMemory`, `settings.memoryEmpty`, `settings.memoryClearAll*`, `chat.memoryUpdated`, `conversation.memoryUpdated` in all 10 locale files | ✅ |
+| 10 | Tests — `test_memories.py` with 18 test cases (unit + integration, IDOR guard, dedup, eviction, subscription gate) | ✅ |
+
+**Completion criteria:**
+- [x] LLM marker `<<MEMORY>>…<<ENDMEMORY>>` never reaches the frontend (stripped in both chat SSE and voice WebSocket)
+- [x] New memories saved after each turn that contains the marker block
+- [x] Exact-duplicate items skipped; FIFO eviction when `MAX_MEMORIES_PER_USER` (50) is exceeded
+- [x] Up to `MAX_MEMORIES_CONTEXT` (20) most recent memories injected into system prompt per request
+- [x] `GET /api/memories` returns all memories oldest-first
+- [x] `DELETE /api/memories/{id}` returns 404 if wrong owner (IDOR guard)
+- [x] `DELETE /api/memories` returns `{"deleted": N}`
+- [x] Toast notification appears in chat and voice when new memories are saved
+- [x] `/settings/memories` subpage lists all memories with individual delete and clear-all
+- [x] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [x] No regressions in Phases 1–8
