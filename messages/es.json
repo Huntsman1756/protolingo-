@@ -224,7 +224,13 @@
     "quotaTokens": "Tokens / mes",
     "quotaUnlimited": "Ilimitado",
     "quotaLoading": "Cargando...",
-    "quotaHint": "El uso se reinicia semanalmente (sesiones y minutos) y mensualmente (tokens)."
+    "quotaHint": "El uso se reinicia semanalmente (sesiones y minutos) y mensualmente (tokens).",
+    "sectionMemory": "Memoria",
+    "memoryEmpty": "Aún no hay recuerdos guardados. El tutor de IA recordará detalles importantes sobre ti durante las conversaciones y los guardará aquí.",
+    "memoryClearAll": "Borrar todos los recuerdos",
+    "memoryClearAllTitle": "Borrar todos los recuerdos",
+    "memoryClearAllMessage": "Esto eliminará permanentemente todos los recuerdos guardados. Esta acción no se puede deshacer.",
+    "memoryClearAllConfirm": "Borrar todo"
   },
   "legal": {
     "terms": {
@@ -536,7 +542,8 @@
     "deleteMessage": "Esta conversación se eliminará permanentemente.",
     "deleteConfirm": "Eliminar",
     "enterToSend": "Intro para enviar",
-    "continueInVoice": "Continuar en voz"
+    "continueInVoice": "Continuar en voz",
+    "memoryUpdated": "Memoria actualizada"
   },
   "progress": {
     "title": "Progreso",
@@ -798,6 +805,7 @@
     "quotaExceededTime": "Has agotado tu tiempo de práctica diario.",
     "quotaExceededTokens": "Has agotado todos tus tokens de IA mensuales.",
     "quotaTokens": "Tokens este mes",
+    "memoryUpdated": "Memoria actualizada",
     "startersHint": "O empieza con un tema"
   },
   "voiceRecorder": {
@@ -968,6 +976,10 @@
       "desc": "Tus conversaciones por voz ahora aparecen en el historial del chat. Cada palabra se guarda como texto, repasa sesiones pasadas o retómalas desde la sección Tutor."
     },
     "entry4": {
+      "label": "Memoria",
+      "desc": "El tutor de IA ahora recuerda cosas importantes sobre ti entre conversaciones — tus intereses, objetivos, profesión y dificultades de aprendizaje. Los recuerdos se guardan automáticamente y puedes consultarlos o eliminarlos cuando quieras desde Ajustes."
+    },
+    "entry5": {
       "label": "Correcciones",
       "desc": "Correcciones de errores menores y mejoras de estabilidad en toda la plataforma."
     }

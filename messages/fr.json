@@ -224,7 +224,13 @@
     "quotaTokens": "Tokens / mois",
     "quotaUnlimited": "Illimité",
     "quotaLoading": "Chargement...",
-    "quotaHint": "L'utilisation se réinitialise chaque semaine (sessions et minutes) et chaque mois (tokens)."
+    "quotaHint": "L'utilisation se réinitialise chaque semaine (sessions et minutes) et chaque mois (tokens).",
+    "sectionMemory": "Mémoire",
+    "memoryEmpty": "Aucun souvenir enregistré pour l'instant. Le tuteur IA mémorisera les détails importants vous concernant et les sauvegardera ici.",
+    "memoryClearAll": "Effacer tous les souvenirs",
+    "memoryClearAllTitle": "Effacer tous les souvenirs",
+    "memoryClearAllMessage": "Cela supprimera définitivement tous les souvenirs enregistrés. Cette action est irréversible.",
+    "memoryClearAllConfirm": "Tout effacer"
   },
   "legal": {
     "terms": {
@@ -536,7 +542,8 @@
     "deleteMessage": "Cette conversation sera définitivement supprimée.",
     "deleteConfirm": "Supprimer",
     "enterToSend": "Entrée pour envoyer",
-    "continueInVoice": "Continuer en vocal"
+    "continueInVoice": "Continuer en vocal",
+    "memoryUpdated": "Mémoire mise à jour"
   },
   "progress": {
     "title": "Progrès",
@@ -798,6 +805,7 @@
     "quotaExceededTime": "Vous avez utilisé tout votre temps de pratique quotidien.",
     "quotaExceededTokens": "Vous avez utilisé tous vos tokens IA mensuels.",
     "quotaTokens": "Tokens ce mois-ci",
+    "memoryUpdated": "Mémoire mise à jour",
     "startersHint": "Ou commencez par un sujet"
   },
   "voiceRecorder": {
@@ -968,6 +976,10 @@
       "desc": "Vos conversations vocales apparaissent désormais dans l'historique du chat. Chaque mot prononcé est sauvegardé comme transcription texte, révisez vos sessions passées ou reprenez-les depuis l'onglet Tuteur."
     },
     "entry4": {
+      "label": "Mémoire",
+      "desc": "Le tuteur IA se souvient désormais des informations importantes te concernant d'une conversation à l'autre — tes centres d'intérêt, tes objectifs, ta profession et tes difficultés d'apprentissage. Les souvenirs sont enregistrés automatiquement et tu peux les consulter ou les supprimer à tout moment dans les Paramètres."
+    },
+    "entry5": {
       "label": "Corrections",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }

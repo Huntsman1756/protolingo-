@@ -224,7 +224,13 @@
     "quotaTokens": "Tokens / Monat",
     "quotaUnlimited": "Unbegrenzt",
     "quotaLoading": "Lädt...",
-    "quotaHint": "Limits werden wöchentlich (Sitzungen und Minuten) und monatlich (Tokens) zurückgesetzt."
+    "quotaHint": "Limits werden wöchentlich (Sitzungen und Minuten) und monatlich (Tokens) zurückgesetzt.",
+    "sectionMemory": "Erinnerungen",
+    "memoryEmpty": "Noch keine Erinnerungen gespeichert. Der KI-Tutor merkt sich wichtige Details über dich und speichert sie hier.",
+    "memoryClearAll": "Alle Erinnerungen löschen",
+    "memoryClearAllTitle": "Alle Erinnerungen löschen",
+    "memoryClearAllMessage": "Dadurch werden alle gespeicherten Erinnerungen dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "memoryClearAllConfirm": "Alles löschen"
   },
   "legal": {
     "terms": {
@@ -536,7 +542,8 @@
     "deleteMessage": "Dieses Gespräch wird dauerhaft gelöscht.",
     "deleteConfirm": "Löschen",
     "enterToSend": "Enter zum Senden",
-    "continueInVoice": "Mit Sprache fortfahren"
+    "continueInVoice": "Mit Sprache fortfahren",
+    "memoryUpdated": "Erinnerung gespeichert"
   },
   "progress": {
     "title": "Fortschritt",
@@ -798,6 +805,7 @@
     "quotaExceededTime": "Du hast deine tägliche Übungszeit aufgebraucht.",
     "quotaExceededTokens": "Du hast alle monatlichen KI-Token aufgebraucht.",
     "quotaTokens": "Token diesen Monat",
+    "memoryUpdated": "Erinnerung gespeichert",
     "startersHint": "Oder mit einem Thema beginnen"
   },
   "voiceRecorder": {
@@ -968,6 +976,10 @@
       "desc": "Deine Sprachkonversationen erscheinen jetzt im Chat-Verlauf. Jedes gesprochene Wort wird als Text gespeichert, vergangene Sitzungen lassen sich durchsehen oder direkt vom Tutor-Tab aus fortsetzen."
     },
     "entry4": {
+      "label": "Erinnerungen",
+      "desc": "Der KI-Tutor merkt sich nun wichtige Dinge über dich über Gespräche hinweg — deine Interessen, Ziele, deinen Beruf und deine Lernschwierigkeiten. Erinnerungen werden automatisch gespeichert und können jederzeit in den Einstellungen eingesehen oder gelöscht werden."
+    },
+    "entry5": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
     }

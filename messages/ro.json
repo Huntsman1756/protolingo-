@@ -224,7 +224,13 @@
     "quotaTokens": "Token-uri / lună",
     "quotaUnlimited": "Nelimitat",
     "quotaLoading": "Se încarcă...",
-    "quotaHint": "Utilizarea se resetează săptămânal (sesiuni și minute) și lunar (token-uri)."
+    "quotaHint": "Utilizarea se resetează săptămânal (sesiuni și minute) și lunar (token-uri).",
+    "sectionMemory": "Memorie",
+    "memoryEmpty": "Nu există amintiri salvate încă. Tutorul AI va reține detalii importante despre tine în timpul conversațiilor și le va salva aici.",
+    "memoryClearAll": "Șterge toate amintirile",
+    "memoryClearAllTitle": "Șterge toate amintirile",
+    "memoryClearAllMessage": "Aceasta va șterge permanent toate amintirile salvate. Această acțiune nu poate fi anulată.",
+    "memoryClearAllConfirm": "Șterge tot"
   },
   "legal": {
     "terms": {
@@ -536,7 +542,8 @@
     "deleteMessage": "Această conversație va fi ștearsă permanent.",
     "deleteConfirm": "Șterge",
     "enterToSend": "Enter pentru a trimite",
-    "continueInVoice": "Continuă cu voce"
+    "continueInVoice": "Continuă cu voce",
+    "memoryUpdated": "Memorie actualizată"
   },
   "progress": {
     "title": "Progres",
@@ -798,6 +805,7 @@
     "quotaExceededTime": "Ai folosit tot timpul zilnic de practică.",
     "quotaExceededTokens": "Ai folosit toți tokenii IA lunari.",
     "quotaTokens": "Tokeni luna aceasta",
+    "memoryUpdated": "Memorie actualizată",
     "startersHint": "Sau începe cu un subiect"
   },
   "voiceRecorder": {
@@ -968,6 +976,10 @@
       "desc": "Conversațiile vocale apar acum în istoricul chatului. Fiecare cuvânt este salvat ca text, revizuiește sesiunile anterioare sau continuă-le din fila Tutor."
     },
     "entry4": {
+      "label": "Memorie",
+      "desc": "Tutorele AI îți reține acum informații importante despre tine între conversații — interesele, obiectivele, profesia și dificultățile tale de învățare. Amintirile sunt salvate automat și le poți consulta sau șterge oricând din Setări."
+    },
+    "entry5": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }

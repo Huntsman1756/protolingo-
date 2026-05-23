@@ -224,7 +224,13 @@
     "quotaTokens": "Token / mese",
     "quotaUnlimited": "Illimitato",
     "quotaLoading": "Caricamento...",
-    "quotaHint": "L'utilizzo si azzera settimanalmente (sessioni e minuti) e mensilmente (token)."
+    "quotaHint": "L'utilizzo si azzera settimanalmente (sessioni e minuti) e mensilmente (token).",
+    "sectionMemory": "Memoria",
+    "memoryEmpty": "Nessun ricordo salvato ancora. Il tutor IA ricorderà dettagli importanti su di te durante le conversazioni e li salverà qui.",
+    "memoryClearAll": "Cancella tutti i ricordi",
+    "memoryClearAllTitle": "Cancella tutti i ricordi",
+    "memoryClearAllMessage": "Questo eliminerà definitivamente tutti i ricordi salvati. Questa azione non può essere annullata.",
+    "memoryClearAllConfirm": "Cancella tutto"
   },
   "legal": {
     "terms": {
@@ -536,7 +542,8 @@
     "deleteMessage": "Questa conversazione verrà eliminata definitivamente.",
     "deleteConfirm": "Elimina",
     "enterToSend": "Invio per inviare",
-    "continueInVoice": "Continua in voce"
+    "continueInVoice": "Continua in voce",
+    "memoryUpdated": "Memoria aggiornata"
   },
   "progress": {
     "title": "Progressi",
@@ -798,6 +805,7 @@
     "quotaExceededTime": "Hai esaurito il tuo tempo di pratica giornaliero.",
     "quotaExceededTokens": "Hai esaurito tutti i tuoi token IA mensili.",
     "quotaTokens": "Token questo mese",
+    "memoryUpdated": "Memoria aggiornata",
     "startersHint": "O inizia con un argomento"
   },
   "voiceRecorder": {
@@ -968,6 +976,10 @@
       "desc": "Le conversazioni vocali ora appaiono nella cronologia della chat. Ogni parola viene salvata come testo, rivedi le sessioni passate o riprendile dal tab Tutor."
     },
     "entry4": {
+      "label": "Memoria",
+      "desc": "Il tutor IA ora ricorda le cose importanti su di te tra una conversazione e l'altra — i tuoi interessi, obiettivi, professione e difficoltà di apprendimento. I ricordi vengono salvati automaticamente e puoi rivederli o eliminarli in qualsiasi momento dalle Impostazioni."
+    },
+    "entry5": {
       "label": "Correzioni",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }

@@ -151,8 +151,8 @@ function QuotaPill({
       <button
         onClick={() => setOpen((v) => !v)}
         className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${alert
-            ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
-            : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
+          ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
+          : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
           }`}
       >
         <span>● {text}</span>
@@ -219,6 +219,7 @@ export default function ConversationMode({
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [userSpeaking, setUserSpeaking] = useState(false)
   const [assistantSpeaking, setAssistantSpeaking] = useState(false)
+  const [memoryToast, setMemoryToast] = useState(false)
   const [quota, setQuota] = useState<QuotaStatus | null>(null)
 
   // 6 random starters picked once per component mount, shown alphabetically
@@ -432,6 +433,12 @@ export default function ConversationMode({
               setStatus('error')
               ws.close()
               break
+
+            case 'memory_updated':
+              setMemoryToast(true)
+              setTimeout(() => setMemoryToast(false), 3500)
+              break
+
           }
         } catch {
           // Non-JSON (shouldn't happen for text frames) — ignore
@@ -558,6 +565,13 @@ export default function ConversationMode({
           </button>
         )}
       </div>
+
+      {/* Memory updated toast */}
+      {memoryToast && (
+        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 font-mono text-xs tracking-widest uppercase px-4 py-2 border border-fl-border bg-fl-surface text-fl-muted-1 shadow-lg animate-in fade-in slide-in-from-top-2">
+          {t('memoryUpdated')}
+        </div>
+      )}
 
       {/* Timeout warning */}
       {warningSeconds !== null && (
