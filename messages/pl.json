@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Ucz się angielskiego z prawdziwym partnerem do rozmowy głosowej",
+    "hero": "Ucz się języków z prawdziwym partnerem do rozmowy głosowej",
     "heroSub": "Mów. Słuchaj. Rozwijaj się.",
     "signIn": "Zaloguj się",
     "dashboard": "Kontynuuj",
@@ -224,7 +224,14 @@
     "quotaTokens": "Tokeny / miesiąc",
     "quotaUnlimited": "Nieograniczone",
     "quotaLoading": "Ładowanie...",
-    "quotaHint": "Limity są resetowane co tydzień (sesje i minuty) i co miesiąc (tokeny)."
+    "quotaHint": "Limity są resetowane co tydzień (sesje i minuty) i co miesiąc (tokeny).",
+    "sectionMemory": "Pamięć",
+    "memoryEmpty": "Nie zapisano jeszcze żadnych wspomnień. Tutor AI będzie zapamiętywał ważne szczegóły o Tobie i zapisywał je tutaj.",
+    "memoryClearAll": "Wyczyść wszystkie wspomnienia",
+    "memoryClearAllTitle": "Wyczyść wszystkie wspomnienia",
+    "memoryClearAllMessage": "Spowoduje to trwałe usunięcie wszystkich zapisanych wspomnień. Tej akcji nie można cofnąć.",
+    "memoryClearAllConfirm": "Wyczyść wszystko",
+    "memoryManage": "Zarządzaj wspomnieniami"
   },
   "legal": {
     "terms": {
@@ -431,6 +438,7 @@
     "learningRoadmap": "Plan nauki",
     "level": "Poziom",
     "duration": "Czas trwania",
+    "durationDetail": "{weeks} tygodnie · {days} dni/tydzień",
     "unitsLabel": "Jednostki",
     "noUnitsForLevel": "Brak dostępnych jednostek dla poziomu {level}",
     "takeAssessmentArrow": "Oceń poziom →",
@@ -536,7 +544,8 @@
     "deleteMessage": "Ta rozmowa zostanie trwale usunięta.",
     "deleteConfirm": "Usuń",
     "enterToSend": "Enter aby wysłać",
-    "continueInVoice": "Kontynuuj głosowo"
+    "continueInVoice": "Kontynuuj głosowo",
+    "memoryUpdated": "Pamięć zaktualizowana"
   },
   "progress": {
     "title": "Postępy",
@@ -798,6 +807,7 @@
     "quotaExceededTime": "Wykorzystałeś(-aś) cały dzienny czas ćwiczeń.",
     "quotaExceededTokens": "Wykorzystałeś(-aś) wszystkie miesięczne tokeny AI.",
     "quotaTokens": "Tokeny w tym miesiącu",
+    "memoryUpdated": "Pamięć zaktualizowana",
     "startersHint": "Lub zacznij od tematu"
   },
   "voiceRecorder": {
@@ -857,7 +867,7 @@
     "step1": {
       "label": "Witaj",
       "title": "Witaj w FreeLingo",
-      "desc": "FreeLingo to Twój korepetytor angielskiego oparty na sztucznej inteligencji. Ćwicz we własnym tempie, o dowolnej porze, przez rozmowy, lekcje i inteligentne fiszki."
+      "desc": "FreeLingo to Twój korepetytor językowy oparty na sztucznej inteligencji. Ćwicz we własnym tempie, o dowolnej porze, przez rozmowy, lekcje i inteligentne fiszki."
     },
     "step2": {
       "label": "Czat tekstowy",
@@ -867,7 +877,7 @@
     "step3": {
       "label": "Głos",
       "title": "Mów w czasie rzeczywistym",
-      "desc": "Korzystaj z trybu rozmowy głosowej, aby ćwiczyć mówiony angielski z transkrypcją na żywo i natychmiastową informacją zwrotną o wymowie."
+      "desc": "Korzystaj z trybu rozmowy głosowej, aby ćwiczyć mówiony język z transkrypcją na żywo i natychmiastową informacją zwrotną o wymowie."
     },
     "step4": {
       "label": "Fiszki",
@@ -938,6 +948,7 @@
     "section": "Subskrypcja",
     "status": "Status",
     "statusActive": "Aktywna",
+    "statusCanceled": "Anulowana",
     "statusTrialing": "Wersja próbna",
     "statusPastDue": "Zaległa płatność",
     "statusNone": "Brak subskrypcji",
@@ -952,7 +963,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Darmowy plan",
@@ -963,6 +974,14 @@
       "desc": "Teraz możesz zgłaszać pomysły na nowe funkcje i błędy bezpośrednio z aplikacji. Głosuj na propozycje innych użytkowników, zostawiaj komentarze i śledź status każdego zgłoszenia aż do realizacji."
     },
     "entry3": {
+      "label": "Historia głosowa",
+      "desc": "Rozmowy głosowe pojawiają się teraz w historii czatu. Każde słowo jest zapisywane jako tekst, przeglądaj poprzednie sesje lub kontynuuj je z poziomu zakładki Tutor."
+    },
+    "entry4": {
+      "label": "Pamięć",
+      "desc": "Korepetytor AI zapamiętuje teraz ważne rzeczy o Tobie między rozmowami — Twoje zainteresowania, cele, zawód i trudności w nauce. Wspomnienia są zapisywane automatycznie i możesz je przeglądać lub usuwać w dowolnym momencie w Ustawieniach."
+    },
+    "entry5": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }

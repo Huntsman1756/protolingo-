@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -308,7 +309,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
+    <div className="p-6 max-w-2xl mx-auto">
       {/* Header */}
       <div className="mb-8 pb-4 border-b border-fl-border">
         <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">{t('sectionAccount')}</p>
@@ -461,6 +462,21 @@ export default function SettingsPage() {
         >
           {saving ? `— ${t('saving')}` : `— ${t('saveChanges')}`}
         </button>
+      </div>
+
+      {/* Memory */}
+      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+        <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionMemory')}</span>
+        </div>
+        <Link
+          href="/settings/memories"
+          className="flex items-center justify-between font-mono text-xs text-fl-muted-1 hover:text-fl-fg transition-colors group"
+        >
+          <span className="tracking-widest uppercase">{t('memoryManage')}</span>
+          <span className="text-fl-muted-3 group-hover:text-fl-fg transition-colors">›</span>
+        </Link>
       </div>
 
       {/* Conversation */}
@@ -786,6 +802,7 @@ export default function SettingsPage() {
         onConfirm={handleDeleteAccount}
         onCancel={() => setDeleteConfirm(false)}
       />
+
     </div>
   )
 }

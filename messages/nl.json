@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Leer Engels met een echte gesprekspartner via spraak",
+    "hero": "Leer talen met een echte gesprekspartner via spraak",
     "heroSub": "Praat. Luister. Verbeter.",
     "signIn": "Inloggen",
     "dashboard": "Verdergaan",
@@ -224,7 +224,14 @@
     "quotaTokens": "Tokens / maand",
     "quotaUnlimited": "Onbeperkt",
     "quotaLoading": "Laden...",
-    "quotaHint": "Gebruik wordt wekelijks (sessies en minuten) en maandelijks (tokens) gereset."
+    "quotaHint": "Gebruik wordt wekelijks (sessies en minuten) en maandelijks (tokens) gereset.",
+    "sectionMemory": "Geheugen",
+    "memoryEmpty": "Nog geen herinneringen opgeslagen. De AI-tutor zal belangrijke details over jou onthouden en hier opslaan.",
+    "memoryClearAll": "Alle herinneringen wissen",
+    "memoryClearAllTitle": "Alle herinneringen wissen",
+    "memoryClearAllMessage": "Hiermee worden alle opgeslagen herinneringen permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "memoryClearAllConfirm": "Alles wissen",
+    "memoryManage": "Herinneringen beheren"
   },
   "legal": {
     "terms": {
@@ -431,6 +438,7 @@
     "learningRoadmap": "Leertraject",
     "level": "Niveau",
     "duration": "Duur",
+    "durationDetail": "{weeks} weken · {days} dagen/week",
     "unitsLabel": "Eenheden",
     "noUnitsForLevel": "Geen eenheden beschikbaar voor niveau {level}",
     "takeAssessmentArrow": "Beoordeling nemen →",
@@ -536,7 +544,8 @@
     "deleteMessage": "Dit gesprek wordt permanent verwijderd.",
     "deleteConfirm": "Verwijderen",
     "enterToSend": "Enter om te versturen",
-    "continueInVoice": "Verdergaan met spraak"
+    "continueInVoice": "Verdergaan met spraak",
+    "memoryUpdated": "Geheugen bijgewerkt"
   },
   "progress": {
     "title": "Voortgang",
@@ -798,6 +807,7 @@
     "quotaExceededTime": "Je hebt al je dagelijkse oefentijd gebruikt.",
     "quotaExceededTokens": "Je hebt al je maandelijkse AI-tokens gebruikt.",
     "quotaTokens": "Tokens deze maand",
+    "memoryUpdated": "Geheugen bijgewerkt",
     "startersHint": "Of begin met een onderwerp"
   },
   "voiceRecorder": {
@@ -857,7 +867,7 @@
     "step1": {
       "label": "Welkom",
       "title": "Welkom bij FreeLingo",
-      "desc": "FreeLingo is je AI-aangedreven Engelse tutor. Oefen in je eigen tempo, op elk moment, via gesprekken, lessen en slimme flashcards."
+      "desc": "FreeLingo is je AI-aangedreven taaltutor. Oefen in je eigen tempo, op elk moment, via gesprächen, lessen en slimme flashcards."
     },
     "step2": {
       "label": "Tekstchat",
@@ -867,7 +877,7 @@
     "step3": {
       "label": "Stem",
       "title": "Spreek in real time",
-      "desc": "Gebruik de spraakgespreksmodus om je gesproken Engels te oefenen met realtime transcriptie en directe feedback op je uitspraak."
+      "desc": "Gebruik de spraakgespreksmodus om je gesproken taal te oefenen met realtime transcriptie en directe feedback op je uitspraak."
     },
     "step4": {
       "label": "Flashcards",
@@ -938,6 +948,7 @@
     "section": "Abonnement",
     "status": "Status",
     "statusActive": "Actief",
+    "statusCanceled": "Geannuleerd",
     "statusTrialing": "Proefperiode",
     "statusPastDue": "Betaling achterstallig",
     "statusNone": "Geen abonnement",
@@ -952,7 +963,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Begrepen",
     "entry1": {
       "label": "Gratis plan",
@@ -963,6 +974,14 @@
       "desc": "Je kunt nu direct vanuit de app nieuwe functies voorstellen en bugs melden. Stem op suggesties van andere gebruikers, laat reacties achter en volg de status van elke aanvraag tot aan de afronding."
     },
     "entry3": {
+      "label": "Spraakgeschiedenis",
+      "desc": "Je spraakgesprekken verschijnen nu in de chatgeschiedenis. Elk woord wordt opgeslagen als tekst, bekijk eerdere sessies of ga verder waar je was, direct vanuit het Tutor-tabblad."
+    },
+    "entry4": {
+      "label": "Geheugen",
+      "desc": "De AI-tutor onthoudt nu belangrijke dingen over jou tussen gesprekken — je interesses, doelen, beroep en leerproblemen. Herinneringen worden automatisch opgeslagen en je kunt ze altijd bekijken of verwijderen via Instellingen."
+    },
+    "entry5": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }

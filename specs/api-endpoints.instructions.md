@@ -103,7 +103,7 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/conversations` | Lists user's text chat conversations |
+| GET | `/conversations` | Lists user's conversations (text + voice), ordered by `updated_at` desc. Response includes `source` (`chat` or `voice`). |
 | POST | `/conversations` | Creates new conversation |
 | DELETE | `/conversations/{id}` | Deletes conversation and its messages (CASCADE) |
 | GET | `/conversations/{id}/messages` | Returns messages for a conversation |
@@ -221,3 +221,13 @@ All endpoints require `get_current_user`. Status update requires `require_admin`
 | GET | `/{id}/comments` | 60/min | get_current_user | Returns all comments for an entry ordered by date ASC. Response: `{items, total}`. |
 | POST | `/{id}/comments` | 20/hour | get_current_user | Adds a comment to an entry. Body: `{body}` (max 2000 chars). Returns HTTP 201 + the created comment. |
 | DELETE | `/{id}/comments/{cid}` | 20/min | get_current_user | Deletes a comment. Author can delete their own; admin can delete any. Returns HTTP 204. |
+
+## Memories — `/api/memories`
+
+All endpoints require `require_subscription`.
+
+| Method | Path | Rate limit | Auth | Description |
+|--------|------|------------|------|-------------|
+| GET | `` | 30/min | require_subscription | Returns all memories for the authenticated user. Response: `{memories: [{id, content, source, created_at}]}`. |
+| DELETE | `/{id}` | 30/min | require_subscription | Deletes a single memory by ID. Returns HTTP 204. Returns 404 if not found or not owned by the user. |
+| DELETE | `` | 10/min | require_subscription | Clears all memories for the authenticated user. Response: `{deleted: int}`. |

@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Învață engleza cu un partener de conversație real prin voce",
+    "hero": "Învață limbi străine cu un partener de conversație real prin voce",
     "heroSub": "Vorbește. Ascultă. Îmbunătățește-te.",
     "signIn": "Conectare",
     "dashboard": "Continuă",
@@ -224,7 +224,14 @@
     "quotaTokens": "Token-uri / lună",
     "quotaUnlimited": "Nelimitat",
     "quotaLoading": "Se încarcă...",
-    "quotaHint": "Utilizarea se resetează săptămânal (sesiuni și minute) și lunar (token-uri)."
+    "quotaHint": "Utilizarea se resetează săptămânal (sesiuni și minute) și lunar (token-uri).",
+    "sectionMemory": "Memorie",
+    "memoryEmpty": "Nu există amintiri salvate încă. Tutorul AI va reține detalii importante despre tine în timpul conversațiilor și le va salva aici.",
+    "memoryClearAll": "Șterge toate amintirile",
+    "memoryClearAllTitle": "Șterge toate amintirile",
+    "memoryClearAllMessage": "Aceasta va șterge permanent toate amintirile salvate. Această acțiune nu poate fi anulată.",
+    "memoryClearAllConfirm": "Șterge tot",
+    "memoryManage": "Gestionează amintirile"
   },
   "legal": {
     "terms": {
@@ -431,6 +438,7 @@
     "learningRoadmap": "Foaia de parcurs",
     "level": "Nivel",
     "duration": "Durată",
+    "durationDetail": "{weeks} săptămâni · {days} zile/săptămână",
     "unitsLabel": "Unități",
     "noUnitsForLevel": "Nu sunt unități disponibile pentru nivelul {level}",
     "takeAssessmentArrow": "Fă evaluarea →",
@@ -536,7 +544,8 @@
     "deleteMessage": "Această conversație va fi ștearsă permanent.",
     "deleteConfirm": "Șterge",
     "enterToSend": "Enter pentru a trimite",
-    "continueInVoice": "Continuă cu voce"
+    "continueInVoice": "Continuă cu voce",
+    "memoryUpdated": "Memorie actualizată"
   },
   "progress": {
     "title": "Progres",
@@ -798,6 +807,7 @@
     "quotaExceededTime": "Ai folosit tot timpul zilnic de practică.",
     "quotaExceededTokens": "Ai folosit toți tokenii IA lunari.",
     "quotaTokens": "Tokeni luna aceasta",
+    "memoryUpdated": "Memorie actualizată",
     "startersHint": "Sau începe cu un subiect"
   },
   "voiceRecorder": {
@@ -857,7 +867,7 @@
     "step1": {
       "label": "Bun venit",
       "title": "Bun venit la FreeLingo",
-      "desc": "FreeLingo este tutorul tău de engleză bazat pe inteligență artificială. Exersează în ritmul tău, oricând, prin conversații, lecții și flashcard-uri inteligente."
+      "desc": "FreeLingo este tutorul tău de limbi străine bazat pe inteligență artificială. Exersează în ritmul tău, oricând, prin conversații, lecții și flashcard-uri inteligente."
     },
     "step2": {
       "label": "Chat text",
@@ -867,7 +877,7 @@
     "step3": {
       "label": "Voce",
       "title": "Vorbește în timp real",
-      "desc": "Folosește modul de conversație vocală pentru a-ți exersa engleza vorbită cu transcriere în timp real și feedback imediat despre pronunție."
+      "desc": "Folosește modul de conversație vocală pentru a-ți exersa limba vorbită cu transcriere în timp real și feedback imediat despre pronunție."
     },
     "step4": {
       "label": "Flashcard-uri",
@@ -938,6 +948,7 @@
     "section": "Abonament",
     "status": "Status",
     "statusActive": "Activ",
+    "statusCanceled": "Anulat",
     "statusTrialing": "Perioadă de probă",
     "statusPastDue": "Plată restantă",
     "statusNone": "Fără abonament",
@@ -952,7 +963,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Plan gratuit",
@@ -963,6 +974,14 @@
       "desc": "Acum poți sugera funcționalități noi și raporta erori direct din aplicație. Votează sugestiile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri până la finalizare."
     },
     "entry3": {
+      "label": "Istoric vocal",
+      "desc": "Conversațiile vocale apar acum în istoricul chatului. Fiecare cuvânt este salvat ca text, revizuiește sesiunile anterioare sau continuă-le din fila Tutor."
+    },
+    "entry4": {
+      "label": "Memorie",
+      "desc": "Tutorele AI îți reține acum informații importante despre tine între conversații — interesele, obiectivele, profesia și dificultățile tale de învățare. Amintirile sunt salvate automat și le poți consulta sau șterge oricând din Setări."
+    },
+    "entry5": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }

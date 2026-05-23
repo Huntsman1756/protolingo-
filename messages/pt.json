@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Aprenda inglês com um parceiro de conversa por voz real",
+    "hero": "Aprenda idiomas com um parceiro de conversa por voz real",
     "heroSub": "Fale. Ouça. Melhore.",
     "signIn": "Entrar",
     "dashboard": "Continuar",
@@ -224,7 +224,14 @@
     "quotaTokens": "Tokens / mês",
     "quotaUnlimited": "Ilimitado",
     "quotaLoading": "A carregar...",
-    "quotaHint": "O uso reinicia semanalmente (sessões e minutos) e mensalmente (tokens)."
+    "quotaHint": "O uso reinicia semanalmente (sessões e minutos) e mensalmente (tokens).",
+    "sectionMemory": "Memória",
+    "memoryEmpty": "Ainda não há memórias guardadas. O tutor de IA vai lembrar detalhes importantes sobre si e guardá-los aqui.",
+    "memoryClearAll": "Apagar todas as memórias",
+    "memoryClearAllTitle": "Apagar todas as memórias",
+    "memoryClearAllMessage": "Isto irá eliminar permanentemente todas as memórias guardadas. Esta ação não pode ser desfeita.",
+    "memoryClearAllConfirm": "Apagar tudo",
+    "memoryManage": "Gerenciar memórias"
   },
   "legal": {
     "terms": {
@@ -431,6 +438,7 @@
     "learningRoadmap": "Roteiro de aprendizado",
     "level": "Nível",
     "duration": "Duração",
+    "durationDetail": "{weeks} semanas · {days} dias/semana",
     "unitsLabel": "Unidades",
     "noUnitsForLevel": "Nenhuma unidade disponível para o nível {level}",
     "takeAssessmentArrow": "Fazer avaliação →",
@@ -536,7 +544,8 @@
     "deleteMessage": "Esta conversa será eliminada permanentemente.",
     "deleteConfirm": "Eliminar",
     "enterToSend": "Enter para enviar",
-    "continueInVoice": "Continuar por voz"
+    "continueInVoice": "Continuar por voz",
+    "memoryUpdated": "Memória atualizada"
   },
   "progress": {
     "title": "Progresso",
@@ -798,6 +807,7 @@
     "quotaExceededTime": "Você usou todo o seu tempo de prática diário.",
     "quotaExceededTokens": "Você usou todos os seus tokens de IA mensais.",
     "quotaTokens": "Tokens este mês",
+    "memoryUpdated": "Memória atualizada",
     "startersHint": "Ou comece com um tema"
   },
   "voiceRecorder": {
@@ -857,7 +867,7 @@
     "step1": {
       "label": "Bem-vindo",
       "title": "Bem-vindo ao FreeLingo",
-      "desc": "O FreeLingo é o seu tutor de inglês com inteligência artificial. Pratique no seu ritmo, a qualquer momento, por meio de conversas, lições e flashcards inteligentes."
+      "desc": "O FreeLingo é o seu tutor de idiomas com inteligência artificial. Pratique no seu ritmo, a qualquer momento, por meio de conversas, lições e flashcards inteligentes."
     },
     "step2": {
       "label": "Chat de texto",
@@ -867,7 +877,7 @@
     "step3": {
       "label": "Voz",
       "title": "Fale em tempo real",
-      "desc": "Use o modo de conversa por voz para praticar seu inglês falado com transcrição em tempo real e feedback imediato sobre sua pronúncia."
+      "desc": "Use o modo de conversa por voz para praticar seu idioma falado com transcrição em tempo real e feedback imediato sobre sua pronúncia."
     },
     "step4": {
       "label": "Flashcards",
@@ -938,6 +948,7 @@
     "section": "Subscrição",
     "status": "Estado",
     "statusActive": "Ativa",
+    "statusCanceled": "Cancelada",
     "statusTrialing": "Avaliação",
     "statusPastDue": "Pagamento em atraso",
     "statusNone": "Sem subscrição",
@@ -952,7 +963,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Entendido",
     "entry1": {
       "label": "Plano gratuito",
@@ -963,6 +974,14 @@
       "desc": "Já podes sugerir novas funcionalidades e reportar erros diretamente na app. Vota nas sugestões de outros utilizadores, deixa comentários e acompanha o estado de cada pedido até à conclusão."
     },
     "entry3": {
+      "label": "Histórico de voz",
+      "desc": "As tuas conversas por voz agora aparecem no histórico do chat. Cada palavra é guardada como transcrição de texto, revê sessões passadas ou continua onde ficaste, diretamente do separador Tutor."
+    },
+    "entry4": {
+      "label": "Memória",
+      "desc": "O tutor de IA agora lembra de coisas importantes sobre você entre as conversas — seus interesses, objetivos, profissão e dificuldades de aprendizado. As memórias são salvas automaticamente e você pode revisá-las ou excluí-las a qualquer momento em Configurações."
+    },
+    "entry5": {
       "label": "Correções",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }

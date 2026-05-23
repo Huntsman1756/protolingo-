@@ -19,6 +19,7 @@ interface Message {
 interface Conversation {
   id: number
   title: string
+  source: string
   created_at: string
   updated_at: string
 }
@@ -38,6 +39,7 @@ export default function ChatPage() {
   const [loadingMsgs, setLoadingMsgs] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [deletePending, setDeletePending] = useState<number | null>(null)
+  const [memoryToast, setMemoryToast] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -45,7 +47,9 @@ export default function ChatPage() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [])
 
-  useEffect(() => { scrollBottom() }, [messages, scrollBottom])
+  useEffect(() => {
+    scrollBottom()
+  }, [messages, scrollBottom])
 
   // Open sidebar by default only on desktop
   useEffect(() => {
@@ -60,7 +64,9 @@ export default function ChatPage() {
         setConversations(data)
         return data
       }
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
     return []
   }, [])
 
@@ -89,8 +95,11 @@ export default function ChatPage() {
         const data = await res.json()
         setMessages(data.messages || [])
       }
-    } catch { /* ignore */ }
-    finally { setLoadingMsgs(false) }
+    } catch {
+      /* ignore */
+    } finally {
+      setLoadingMsgs(false)
+    }
   }
 
   async function newChat() {
@@ -105,7 +114,16 @@ export default function ChatPage() {
     const context = messages
       .filter((m) => m.content.trim().length > 0)
       .slice(-20)
-    sessionStorage.setItem('voice_context', JSON.stringify(context))
+    // Only pass the message context — no conversation_id.
+    // The voice session will create its own new conversation record so the
+    // original text chat stays clean and the two appear as separate entries
+    // in the sidebar (the voice one gets the 🎤 icon).
+    sessionStorage.setItem(
+      'voice_context',
+      JSON.stringify({
+        messages: context,
+      })
+    )
     router.push('/conversation')
   }
 
@@ -165,16 +183,24 @@ export default function ChatPage() {
               assistantContent += data.token
               setMessages((prev) => {
                 const copy = [...prev]
-                copy[copy.length - 1] = { role: 'assistant', content: assistantContent }
+                copy[copy.length - 1] = {
+                  role: 'assistant',
+                  content: assistantContent,
+                }
                 return copy
               })
             }
             if (data.error) setError(data.error)
             if (data.done) {
-              // Refresh sidebar to update updated_at order
               loadConversations().then((list) => setConversations(list))
             }
-          } catch { /* skip malformed */ }
+            if (data.memory_updated) {
+              setMemoryToast(true)
+              setTimeout(() => setMemoryToast(false), 3500)
+            }
+          } catch {
+            /* skip malformed */
+          }
         }
       }
     } catch (err: unknown) {
@@ -187,183 +213,245 @@ export default function ChatPage() {
 
   return (
     <MaintenanceGate>
-    <PaywallGate>
-      <div className="flex w-full h-[calc(100dvh-56px)] md:h-screen overflow-hidden">
-
-        {/* Sidebar backdrop — mobile only */}
-        {sidebarOpen && (
-          <div
-            className="md:hidden fixed top-14 inset-x-0 bottom-0 z-10 bg-black/40"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-
-        {/* Sidebar */}
-        {sidebarOpen && (
-          <aside className="fixed top-14 bottom-0 left-0 z-20 w-56 md:relative md:top-auto md:bottom-auto md:left-auto md:z-auto shrink-0 flex flex-col border-r border-fl-border bg-fl-bg overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-fl-border">
-              <span className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase">{t('conversations')}</span>
-              <button
-                onClick={newChat}
-                className="font-mono text-fl-label tracking-widest text-fl-muted-1 hover:text-fl-fg transition-colors uppercase"
-                title={t('newConversation')}
-              >
-                + {t('newConversation')}
-              </button>
+      <PaywallGate>
+        <div className="flex h-[calc(100dvh-56px)] w-full overflow-hidden md:h-screen">
+          {/* Memory updated toast */}
+          {memoryToast && (
+            <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 font-mono text-xs tracking-widest uppercase px-4 py-2 border border-fl-border bg-fl-surface text-fl-muted-1 shadow-lg animate-in fade-in slide-in-from-top-2">
+              {t('memoryUpdated')}
             </div>
-            <div className="flex-1 overflow-y-auto">
-              {loadingConvs ? (
-                <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4 animate-pulse">{tCommon('loading')}</p>
-              ) : conversations.length === 0 ? (
-                <p className="font-mono text-fl-label text-fl-muted-4 px-4 py-4">{t('noConversation')}</p>
-              ) : (
-                conversations.map((c) => (
-                  <div
-                    key={c.id}
-                    onClick={() => selectConversation(c.id)}
-                    className={`group flex items-center justify-between px-4 py-3 cursor-pointer border-b border-fl-surface-2 transition-colors ${activeId === c.id ? 'bg-fl-surface-2 border-l-2 border-l-fl-fg' : 'hover:bg-fl-surface border-l-2 border-l-transparent'
-                      }`}
-                  >
-                    <span className={`font-mono text-fl-label leading-tight truncate pr-1 ${activeId === c.id ? 'text-fl-fg' : 'text-fl-muted-1'}`}>
-                      {c.title}
-                    </span>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); setDeletePending(c.id) }}
-                      className="opacity-0 group-hover:opacity-100 font-mono text-fl-label text-fl-error-fg hover:text-fl-error transition-all shrink-0"
-                      title="Delete"
+          )}
+          {/* Sidebar backdrop — mobile only */}
+          {sidebarOpen && (
+            <div
+              className="fixed inset-x-0 top-14 bottom-0 z-10 bg-black/40 md:hidden"
+              onClick={() => setSidebarOpen(false)}
+            />
+          )}
+
+          {/* Sidebar */}
+          {sidebarOpen && (
+            <aside className="border-fl-border bg-fl-bg fixed top-14 bottom-0 left-0 z-20 flex w-56 shrink-0 flex-col overflow-hidden border-r md:relative md:top-auto md:bottom-auto md:left-auto md:z-auto">
+              <div className="border-fl-border flex items-center justify-between border-b px-4 py-3">
+                <span className="text-fl-hint text-fl-muted-2 font-mono tracking-widest uppercase">
+                  {t('conversations')}
+                </span>
+                <button
+                  onClick={newChat}
+                  className="text-fl-label text-fl-muted-1 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
+                  title={t('newConversation')}
+                >
+                  + {t('newConversation')}
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                {loadingConvs ? (
+                  <p className="text-fl-label text-fl-muted-4 animate-pulse px-4 py-4 font-mono">
+                    {tCommon('loading')}
+                  </p>
+                ) : conversations.length === 0 ? (
+                  <p className="text-fl-label text-fl-muted-4 px-4 py-4 font-mono">
+                    {t('noConversation')}
+                  </p>
+                ) : (
+                  conversations.map((c) => (
+                    <div
+                      key={c.id}
+                      onClick={() => selectConversation(c.id)}
+                      className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${activeId === c.id
+                        ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
+                        : 'hover:bg-fl-surface border-l-2 border-l-transparent'
+                        }`}
                     >
-                      ✕
-                    </button>
+                      <span
+                        className={`text-fl-label truncate pr-1 font-mono leading-tight ${activeId === c.id ? 'text-fl-fg' : 'text-fl-muted-1'}`}
+                      >
+                        {c.source === 'voice' && (
+                          <span
+                            className="text-fl-muted-3 mr-1.5"
+                            title="Voice session"
+                          >
+                            🎤
+                          </span>
+                        )}
+                        {c.title}
+                      </span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setDeletePending(c.id)
+                        }}
+                        className="text-fl-label text-fl-error-fg hover:text-fl-error shrink-0 font-mono opacity-0 transition-all group-hover:opacity-100"
+                        title="Delete"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+            </aside>
+          )}
+
+          {/* Main chat area */}
+          <div className="flex flex-1 flex-col overflow-hidden">
+            {/* Header */}
+            <div className="border-fl-border bg-fl-bg flex shrink-0 items-center gap-2 border-b px-5 py-4">
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="text-fl-label text-fl-muted-2 hover:text-fl-fg mr-1 font-mono tracking-widest transition-colors"
+                title={sidebarOpen ? 'Hide sidebar' : 'Show sidebar'}
+              >
+                {sidebarOpen ? '◂' : '▸'}
+              </button>
+              <span className="text-fl-label text-fl-muted-3">●</span>
+              <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+                {activeId
+                  ? (conversations.find((c) => c.id === activeId)?.title ??
+                    t('title'))
+                  : t('newConversation')}
+              </span>
+              {sending ? (
+                <span className="text-fl-hint text-fl-muted-3 ml-auto animate-pulse font-mono tracking-widest uppercase">
+                  {t('thinking')}
+                </span>
+              ) : messages.length > 0 ? (
+                <button
+                  onClick={continueInVoice}
+                  className="text-fl-hint text-fl-muted-2 hover:text-fl-fg ml-auto font-mono tracking-widest uppercase transition-colors"
+                >
+                  {t('continueInVoice')}
+                </button>
+              ) : null}
+            </div>
+
+            {/* Messages */}
+            <div className="flex-1 space-y-4 overflow-y-auto px-6 py-4">
+              {loadingMsgs ? (
+                <div className="flex h-full items-center justify-center">
+                  <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
+                    {tCommon('loading')}
+                  </span>
+                </div>
+              ) : messages.length === 0 ? (
+                <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
+                  <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+                    {t('title')}
+                  </p>
+                  <p className="text-fl-muted-2 max-w-xs font-mono text-xs leading-relaxed">
+                    {t('subtitle')}
+                  </p>
+                </div>
+              ) : (
+                messages.map((msg, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+                  >
+                    {/* Avatar */}
+                    <div className="border-fl-border mb-0.5 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border">
+                      {msg.role === 'assistant' ? (
+                        <Image
+                          src="/logo.png"
+                          alt="Tutor"
+                          width={28}
+                          height={28}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : user?.avatar ? (
+                        <Image
+                          src={user.avatar}
+                          alt=""
+                          width={28}
+                          height={28}
+                          className="h-full w-full object-cover"
+                          unoptimized
+                        />
+                      ) : (
+                        <div className="bg-fl-surface-2 flex h-full w-full items-center justify-center">
+                          <span className="text-fl-hint text-fl-muted-1 font-mono select-none">
+                            {(user?.displayName ||
+                              user?.username ||
+                              '?')[0].toUpperCase()}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className={`max-w-[75%] text-left`}>
+                      <div
+                        className={`border px-4 py-3 font-mono text-sm leading-relaxed ${msg.role === 'user'
+                          ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
+                          : 'bg-fl-surface text-fl-fg-2 border-fl-border'
+                          }`}
+                      >
+                        {msg.content ||
+                          (sending && i === messages.length - 1 ? (
+                            <span className="text-fl-muted-2 animate-pulse">
+                              ▌
+                            </span>
+                          ) : null)}
+                      </div>
+                      {msg.role === 'assistant' &&
+                        msg.content &&
+                        !(sending && i === messages.length - 1) && (
+                          <div className="mt-1">
+                            <AudioPlayer text={msg.content} size="sm" />
+                          </div>
+                        )}
+                    </div>
                   </div>
                 ))
               )}
-            </div>
-          </aside>
-        )}
-
-        {/* Main chat area */}
-        <div className="flex flex-col flex-1 overflow-hidden">
-          {/* Header */}
-          <div className="flex items-center gap-2 px-5 py-4 border-b border-fl-border bg-fl-bg shrink-0">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg transition-colors mr-1 tracking-widest"
-              title={sidebarOpen ? 'Hide sidebar' : 'Show sidebar'}
-            >
-              {sidebarOpen ? '◂' : '▸'}
-            </button>
-            <span className="text-fl-label text-fl-muted-3">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
-              {activeId
-                ? (conversations.find((c) => c.id === activeId)?.title ?? t('title'))
-                : t('newConversation')}
-            </span>
-            {sending ? (
-              <span className="ml-auto font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase animate-pulse">{t('thinking')}</span>
-            ) : messages.length > 0 ? (
-              <button
-                onClick={continueInVoice}
-                className="ml-auto font-mono text-fl-hint tracking-widest text-fl-muted-2 hover:text-fl-fg uppercase transition-colors"
-              >
-                {t('continueInVoice')}
-              </button>
-            ) : null}
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
-            {loadingMsgs ? (
-              <div className="flex items-center justify-center h-full">
-                <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">{tCommon('loading')}</span>
-              </div>
-            ) : messages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-center gap-3">
-                <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('title')}</p>
-                <p className="font-mono text-xs text-fl-muted-2 max-w-xs leading-relaxed">
-                  {t('subtitle')}
-                </p>
-              </div>
-            ) : (
-              messages.map((msg, i) => (
-                <div key={i} className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                  {/* Avatar */}
-                  <div className="flex-shrink-0 w-7 h-7 rounded-full overflow-hidden border border-fl-border mb-0.5">
-                    {msg.role === 'assistant' ? (
-                      <Image src="/logo.png" alt="Tutor" width={28} height={28} className="w-full h-full object-cover" />
-                    ) : user?.avatar ? (
-                      <Image src={user.avatar} alt="" width={28} height={28} className="w-full h-full object-cover" unoptimized />
-                    ) : (
-                      <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
-                        <span className="font-mono text-fl-hint text-fl-muted-1 select-none">
-                          {(user?.displayName || user?.username || '?')[0].toUpperCase()}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className={`max-w-[75%] text-left`}>
-                    <div className={`font-mono text-sm leading-relaxed px-4 py-3 border ${msg.role === 'user'
-                      ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
-                      : 'bg-fl-surface text-fl-fg-2 border-fl-border'
-                      }`}>
-                      {msg.content || (sending && i === messages.length - 1
-                        ? <span className="animate-pulse text-fl-muted-2">▌</span>
-                        : null
-                      )}
-                    </div>
-                    {msg.role === 'assistant' && msg.content && !(sending && i === messages.length - 1) && (
-                      <div className="mt-1">
-                        <AudioPlayer text={msg.content} size="sm" />
-                      </div>
-                    )}
-                  </div>
+              {error && (
+                <div className="text-fl-label text-fl-error-fg border-fl-error/30 border px-4 py-2 font-mono">
+                  ✕ {error}
                 </div>
-              ))
-            )}
-            {error && (
-              <div className="font-mono text-fl-label text-fl-error-fg border border-fl-error/30 px-4 py-2">
-                ✕ {error}
-              </div>
-            )}
-            <div ref={bottomRef} />
-          </div>
-
-          {/* Input */}
-          <div className="border-t border-fl-border px-4 py-4 bg-fl-bg shrink-0">
-            <div className="flex gap-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                disabled={sending || loadingMsgs}
-                placeholder={t('placeholder')}
-                className="flex-1 bg-fl-surface border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-border-2 focus:outline-none focus:border-fl-border-2 disabled:opacity-40 transition-colors"
-              />
-              <button
-                onClick={sendMessage}
-                disabled={sending || !input.trim() || loadingMsgs}
-                className="bg-fl-accent text-fl-accent-fg font-mono text-fl-label font-bold tracking-widest uppercase px-5 hover:bg-fl-accent/90 disabled:opacity-30 transition-colors"
-              >
-                {sending ? '...' : t('send')}
-              </button>
+              )}
+              <div ref={bottomRef} />
             </div>
-            <p className="font-mono text-fl-hint text-fl-border-2 mt-2 tracking-wide">{t('enterToSend')}</p>
-          </div>
-        </div>
 
-        <ConfirmDialog
-          open={deletePending !== null}
-          title={t('deleteTitle')}
-          message={t('deleteMessage')}
-          confirmLabel={t('deleteConfirm')}
-          danger
-          onConfirm={() => deletePending !== null && deleteConversation(deletePending)}
-          onCancel={() => setDeletePending(null)}
-        />
-      </div>
-    </PaywallGate>
+            {/* Input */}
+            <div className="border-fl-border bg-fl-bg shrink-0 border-t px-4 py-4">
+              <div className="flex gap-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) =>
+                    e.key === 'Enter' && !e.shiftKey && sendMessage()
+                  }
+                  disabled={sending || loadingMsgs}
+                  placeholder={t('placeholder')}
+                  className="bg-fl-surface border-fl-border text-fl-fg placeholder:text-fl-border-2 focus:border-fl-border-2 flex-1 border px-4 py-3 font-mono text-sm transition-colors focus:outline-none disabled:opacity-40"
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={sending || !input.trim() || loadingMsgs}
+                  className="bg-fl-accent text-fl-accent-fg text-fl-label hover:bg-fl-accent/90 px-5 font-mono font-bold tracking-widest uppercase transition-colors disabled:opacity-30"
+                >
+                  {sending ? '...' : t('send')}
+                </button>
+              </div>
+              <p className="text-fl-hint text-fl-border-2 mt-2 font-mono tracking-wide">
+                {t('enterToSend')}
+              </p>
+            </div>
+          </div>
+
+          <ConfirmDialog
+            open={deletePending !== null}
+            title={t('deleteTitle')}
+            message={t('deleteMessage')}
+            confirmLabel={t('deleteConfirm')}
+            danger
+            onConfirm={() =>
+              deletePending !== null && deleteConversation(deletePending)
+            }
+            onCancel={() => setDeletePending(null)}
+          />
+        </div>
+      </PaywallGate>
     </MaintenanceGate>
   )
 }
-

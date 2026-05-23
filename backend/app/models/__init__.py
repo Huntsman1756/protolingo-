@@ -6,6 +6,7 @@ from app.models.flashcard import Flashcard
 from app.models.lesson import Exercise, Lesson
 from app.models.listening import ListeningAttempt, ListeningExercise
 from app.models.llm_usage import LLMUsage
+from app.models.memory import Memory
 from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -23,6 +24,7 @@ __all__ = [
     "ListeningAttempt",
     "ListeningExercise",
     "LLMUsage",
+    "Memory",
     "Progress",
     "StudyPlan",
     "User",

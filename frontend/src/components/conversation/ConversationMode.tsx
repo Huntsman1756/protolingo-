@@ -6,7 +6,11 @@ import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { apiFetch } from '@/lib/api'
 import { float32ToWav, createAudioQueue, type AudioQueue } from '@/lib/audio'
-import { buildConversationWsUrl, type WsMessage, type ChatContextItem } from '@/lib/conversation-ws'
+import {
+  buildConversationWsUrl,
+  type WsMessage,
+  type ChatContextItem,
+} from '@/lib/conversation-ws'
 import StatusIndicator, { type ConvStatus } from './StatusIndicator'
 import TranscriptBubble from './TranscriptBubble'
 import SessionTimeoutBanner from './SessionTimeoutBanner'
@@ -30,23 +34,40 @@ interface QuotaStatus {
   tokens_unlimited: boolean
 }
 
-function QuotaBar({ label, used, limit, unlimited }: { label: string; used: number; limit: number; unlimited: boolean }) {
-  const pct = unlimited || limit === 0 ? null : Math.min(100, Math.round((used / limit) * 100))
+function QuotaBar({
+  label,
+  used,
+  limit,
+  unlimited,
+}: {
+  label: string
+  used: number
+  limit: number
+  unlimited: boolean
+}) {
+  const pct =
+    unlimited || limit === 0
+      ? null
+      : Math.min(100, Math.round((used / limit) * 100))
   const exceeded = !unlimited && limit > 0 && used >= limit
   return (
     <div className="flex items-center gap-3">
-      <span className="font-mono text-fl-hint tracking-widest text-fl-muted-4 uppercase w-36 shrink-0">{label}</span>
+      <span className="text-fl-hint text-fl-muted-4 w-36 shrink-0 font-mono tracking-widest uppercase">
+        {label}
+      </span>
       {unlimited ? (
-        <span className="font-mono text-fl-hint text-fl-muted-2">∞</span>
+        <span className="text-fl-hint text-fl-muted-2 font-mono">∞</span>
       ) : (
         <>
-          <div className="flex-1 h-1 bg-fl-surface-2 overflow-hidden">
+          <div className="bg-fl-surface-2 h-1 flex-1 overflow-hidden">
             <div
               className={`h-full transition-all ${exceeded ? 'bg-fl-error' : 'bg-fl-accent'}`}
               style={{ width: `${pct}%` }}
             />
           </div>
-          <span className={`font-mono text-fl-hint tabular-nums ${exceeded ? 'text-fl-error' : 'text-fl-muted-2'}`}>
+          <span
+            className={`text-fl-hint font-mono tabular-nums ${exceeded ? 'text-fl-error' : 'text-fl-muted-2'}`}
+          >
             {used}&thinsp;/&thinsp;{limit}
           </span>
         </>
@@ -55,7 +76,10 @@ function QuotaBar({ label, used, limit, unlimited }: { label: string; used: numb
   )
 }
 
-function quotaPillSummary(quota: QuotaStatus): { text: string; alert: boolean } {
+function quotaPillSummary(quota: QuotaStatus): {
+  text: string
+  alert: boolean
+} {
   const parts: string[] = []
   let alert = false
 
@@ -112,7 +136,13 @@ const CONVERSATION_STARTERS = [
   'Working from home',
 ] as const
 
-function QuotaPill({ quota, t }: { quota: QuotaStatus; t: (k: string) => string }) {
+function QuotaPill({
+  quota,
+  t,
+}: {
+  quota: QuotaStatus
+  t: (k: string) => string
+}) {
   const [open, setOpen] = useState(false)
   const { text, alert } = quotaPillSummary(quota)
 
@@ -120,7 +150,7 @@ function QuotaPill({ quota, t }: { quota: QuotaStatus; t: (k: string) => string 
     <div className="w-full">
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`w-full flex items-center justify-between px-3 py-1.5 border font-mono text-fl-hint tracking-widest uppercase transition-colors ${alert
+        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${alert
           ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
           : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
           }`}
@@ -130,7 +160,7 @@ function QuotaPill({ quota, t }: { quota: QuotaStatus; t: (k: string) => string 
       </button>
 
       {open && (
-        <div className="border border-t-0 border-fl-border bg-fl-surface px-4 py-3 space-y-1.5">
+        <div className="border-fl-border bg-fl-surface space-y-1.5 border border-t-0 px-4 py-3">
           <QuotaBar
             label={t('quotaSessions')}
             used={quota.sessions_this_week}
@@ -189,6 +219,7 @@ export default function ConversationMode({
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [userSpeaking, setUserSpeaking] = useState(false)
   const [assistantSpeaking, setAssistantSpeaking] = useState(false)
+  const [memoryToast, setMemoryToast] = useState(false)
   const [quota, setQuota] = useState<QuotaStatus | null>(null)
 
   // 6 random starters picked once per component mount, shown alphabetically
@@ -198,7 +229,7 @@ export default function ConversationMode({
         .sort(() => Math.random() - 0.5)
         .slice(0, 6)
         .sort((a, b) => a.localeCompare(b)),
-    [],
+    []
   )
 
   // ─── Fetch quota on mount ─────────────────────────────────────────────────
@@ -209,7 +240,9 @@ export default function ConversationMode({
       .catch(() => { })
   }, [])
 
-  useEffect(() => { refreshQuota() }, [refreshQuota])
+  useEffect(() => {
+    refreshQuota()
+  }, [refreshQuota])
 
   // ─── Refs ─────────────────────────────────────────────────────────────────
   const wsRef = useRef<WebSocket | null>(null)
@@ -258,8 +291,13 @@ export default function ConversationMode({
     if (vad.errored) {
       const errMsg = typeof vad.errored === 'string' ? vad.errored : ''
       const isPermission =
-        errMsg.includes('NotAllowedError') || errMsg.includes('PermissionDeniedError')
-      setErrorMsg(isPermission ? t('errorMic') : `${t('errorVadInit')}${errMsg ? ` — ${errMsg}` : ''}`)
+        errMsg.includes('NotAllowedError') ||
+        errMsg.includes('PermissionDeniedError')
+      setErrorMsg(
+        isPermission
+          ? t('errorMic')
+          : `${t('errorVadInit')}${errMsg ? ` — ${errMsg}` : ''}`
+      )
       setStatus('error')
       return
     }
@@ -283,7 +321,13 @@ export default function ConversationMode({
   }, [autoStart])
 
   useEffect(() => {
-    if (pendingAutoStartRef.current && !vad.loading && !vad.errored && !!accessToken && !sessionActive) {
+    if (
+      pendingAutoStartRef.current &&
+      !vad.loading &&
+      !vad.errored &&
+      !!accessToken &&
+      !sessionActive
+    ) {
       pendingAutoStartRef.current = false
       void handleStart()
     }
@@ -292,7 +336,10 @@ export default function ConversationMode({
 
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
-    (token: string, context?: ChatContextItem[]) => {
+    (
+      token: string,
+      context?: ChatContextItem[]
+    ) => {
       const url = buildConversationWsUrl()
       const ws = new WebSocket(url)
       ws.binaryType = 'arraybuffer'
@@ -300,7 +347,10 @@ export default function ConversationMode({
 
       ws.onopen = () => {
         const authPayload: Record<string, unknown> = { type: 'auth', token }
-        const storedVoice = typeof window !== 'undefined' ? localStorage.getItem('tts_voice') : null
+        const storedVoice =
+          typeof window !== 'undefined'
+            ? localStorage.getItem('tts_voice')
+            : null
         if (storedVoice) authPayload.voice = storedVoice
         if (context?.length) authPayload.context = context
         ws.send(JSON.stringify(authPayload))
@@ -324,7 +374,11 @@ export default function ConversationMode({
                 // STT result — always final
                 setTranscript((prev) => [
                   ...prev,
-                  { id: transcriptIdRef.current++, role: 'user', text: msg.text },
+                  {
+                    id: transcriptIdRef.current++,
+                    role: 'user',
+                    text: msg.text,
+                  },
                 ])
               } else {
                 // LLM token stream
@@ -332,7 +386,11 @@ export default function ConversationMode({
                   setStreamingText(null)
                   setTranscript((prev) => [
                     ...prev,
-                    { id: transcriptIdRef.current++, role: 'assistant', text: msg.text },
+                    {
+                      id: transcriptIdRef.current++,
+                      role: 'assistant',
+                      text: msg.text,
+                    },
                   ])
                   setAssistantSpeaking(false)
                 } else {
@@ -370,11 +428,17 @@ export default function ConversationMode({
                       ? t('quotaExceededTime')
                       : msg.code === 'quota_exceeded_tokens'
                         ? t('quotaExceededTokens')
-                        : (msg.message ?? t('errorConnection')),
+                        : (msg.message ?? t('errorConnection'))
               )
               setStatus('error')
               ws.close()
               break
+
+            case 'memory_updated':
+              setMemoryToast(true)
+              setTimeout(() => setMemoryToast(false), 3500)
+              break
+
           }
         } catch {
           // Non-JSON (shouldn't happen for text frames) — ignore
@@ -394,7 +458,9 @@ export default function ConversationMode({
           if (ev.code === 1008) {
             setErrorMsg(t('errorUnauthorized'))
           } else if (ev.code !== 1000) {
-            setErrorMsg(`${t('errorConnection')} [code ${ev.code}: ${ev.reason || 'no reason'} → ${url}]`)
+            setErrorMsg(
+              `${t('errorConnection')} [code ${ev.code}: ${ev.reason || 'no reason'} → ${url}]`
+            )
           }
           setStatus('error')
           setSessionActive(false)
@@ -403,7 +469,7 @@ export default function ConversationMode({
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [t],
+    [t]
   )
 
   // ─── Session lifecycle ────────────────────────────────────────────────────
@@ -431,7 +497,9 @@ export default function ConversationMode({
     // this ensures the first transcription/synthesis in the session is fast.
     // Runs in parallel with VAD mic permission request.
     setStatus('warming')
-    const warmupPromise = apiFetch('/api/conversation/warmup', { method: 'POST' }).catch(() => undefined)
+    const warmupPromise = apiFetch('/api/conversation/warmup', {
+      method: 'POST',
+    }).catch(() => undefined)
 
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
@@ -477,43 +545,59 @@ export default function ConversationMode({
 
   // ─── Render ───────────────────────────────────────────────────────────────
   return (
-    <div className="flex flex-col h-full min-h-[calc(100vh-56px)] md:min-h-screen p-4 md:p-6 max-w-2xl mx-auto">
+    <div className="mx-auto flex h-full min-h-[calc(100vh-56px)] max-w-2xl flex-col p-4 md:min-h-screen md:p-6">
       {/* Header */}
-      <div className="mb-6 pb-4 border-b border-fl-border flex items-end justify-between">
+      <div className="border-fl-border mb-6 flex items-end justify-between border-b pb-4">
         <div>
-          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">
+          <p className="text-fl-label text-fl-muted-2 mb-1 font-mono tracking-widest uppercase">
             {t('subtitle')}
           </p>
-          <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">{t('title')}</h1>
+          <h1 className="text-fl-fg font-mono text-2xl font-bold tracking-tight">
+            {t('title')}
+          </h1>
         </div>
         {onClose && (
           <button
             onClick={onClose}
-            className="font-mono text-fl-hint tracking-widest text-fl-muted-2 hover:text-fl-fg uppercase transition-colors"
+            className="text-fl-hint text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
           >
             ← {tCommon('back')}
           </button>
         )}
       </div>
 
+      {/* Memory updated toast */}
+      {memoryToast && (
+        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 font-mono text-xs tracking-widest uppercase px-4 py-2 border border-fl-border bg-fl-surface text-fl-muted-1 shadow-lg animate-in fade-in slide-in-from-top-2">
+          {t('memoryUpdated')}
+        </div>
+      )}
+
       {/* Timeout warning */}
-      {warningSeconds !== null && <SessionTimeoutBanner seconds={warningSeconds} />}
+      {warningSeconds !== null && (
+        <SessionTimeoutBanner seconds={warningSeconds} />
+      )}
 
       {/* Transcript area */}
-      <div className="flex-1 overflow-y-auto space-y-3 mb-4 min-h-[120px] px-2">
+      <div className="mb-4 min-h-[120px] flex-1 space-y-3 overflow-y-auto px-2">
         {transcript.length === 0 && !streamingText && status === 'live' && (
-          <p className="font-mono text-fl-label text-fl-muted-4 text-center py-8">
+          <p className="text-fl-label text-fl-muted-4 py-8 text-center font-mono">
             {t('tapToStart')}
           </p>
         )}
         {(() => {
-          const lastUserIdx = transcript.reduce((acc, e, j) => e.role === 'user' ? j : acc, -1)
+          const lastUserIdx = transcript.reduce(
+            (acc, e, j) => (e.role === 'user' ? j : acc),
+            -1
+          )
           return transcript.map((entry, i) => (
             <TranscriptBubble
               key={entry.id}
               role={entry.role}
               text={entry.text}
-              speaking={entry.role === 'user' && userSpeaking && i === lastUserIdx}
+              speaking={
+                entry.role === 'user' && userSpeaking && i === lastUserIdx
+              }
               userAvatar={user?.avatar}
               userInitial={(user?.displayName || user?.username || '?')[0]}
             />
@@ -534,35 +618,43 @@ export default function ConversationMode({
 
       {/* Status message */}
       {status === 'error' && errorMsg && (
-        <div className="mb-4 border border-fl-error/40 bg-fl-surface px-4 py-3 font-mono text-xs text-fl-error">
+        <div className="border-fl-error/40 bg-fl-surface text-fl-error mb-4 border px-4 py-3 font-mono text-xs">
           ✕ {errorMsg}
         </div>
       )}
       {status === 'ended' && (
-        <div className="mb-4 border border-fl-border bg-fl-surface px-4 py-3 font-mono text-xs text-fl-muted-2">
+        <div className="border-fl-border bg-fl-surface text-fl-muted-2 mb-4 border px-4 py-3 font-mono text-xs">
           — {t('sessionEnded')}
         </div>
       )}
 
       {/* Conversation starters — shown when idle, hidden as soon as session starts */}
-      {!sessionActive && (status === 'ready' || status === 'ended' || status === 'error') && (
-        <div className="mb-4">
-          <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase text-center mb-3">
-            {t('startersHint')}
-          </p>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {visibleStarters.map((topic) => (
-              <button
-                key={topic}
-                onClick={() => void handleStart([{ role: 'user', content: `I'd like to practice English by talking about ${topic}.` }])}
-                className="font-mono text-xs tracking-wide text-fl-muted-1 border border-fl-border px-3 py-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
-              >
-                {topic}
-              </button>
-            ))}
+      {!sessionActive &&
+        (status === 'ready' || status === 'ended' || status === 'error') && (
+          <div className="mb-4">
+            <p className="text-fl-hint text-fl-muted-3 mb-3 text-center font-mono tracking-widest uppercase">
+              {t('startersHint')}
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {visibleStarters.map((topic) => (
+                <button
+                  key={topic}
+                  onClick={() =>
+                    void handleStart([
+                      {
+                        role: 'user',
+                        content: `I'd like to practice English by talking about ${topic}.`,
+                      },
+                    ])
+                  }
+                  className="text-fl-muted-1 border-fl-border hover:border-fl-border-2 hover:text-fl-fg border px-3 py-2 font-mono text-xs tracking-wide transition-colors"
+                >
+                  {topic}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* Controls */}
       <div className="flex flex-col items-center gap-4 pb-2">

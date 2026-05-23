@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Learn English with a real voice conversation partner",
+    "hero": "Learn languages with a real voice conversation partner",
     "heroSub": "Talk. Listen. Improve.",
     "signIn": "Sign in",
     "dashboard": "Continue",
@@ -224,7 +224,14 @@
     "quotaTokens": "Tokens / month",
     "quotaUnlimited": "Unlimited",
     "quotaLoading": "Loading...",
-    "quotaHint": "Usage resets weekly (sessions & minutes) and monthly (tokens)."
+    "quotaHint": "Usage resets weekly (sessions & minutes) and monthly (tokens).",
+    "sectionMemory": "Memory",
+    "memoryEmpty": "No memories saved yet. The AI will remember important details about you during conversations and save them here.",
+    "memoryClearAll": "Clear All Memories",
+    "memoryClearAllTitle": "Clear All Memories",
+    "memoryClearAllMessage": "This will permanently delete all saved memories. This action cannot be undone.",
+    "memoryClearAllConfirm": "Clear All",
+    "memoryManage": "Manage memories"
   },
   "legal": {
     "terms": {
@@ -431,6 +438,7 @@
     "learningRoadmap": "Learning Roadmap",
     "level": "Level",
     "duration": "Duration",
+    "durationDetail": "{weeks} weeks · {days} days/week",
     "unitsLabel": "Units",
     "noUnitsForLevel": "No units available for level {level}",
     "takeAssessmentArrow": "Take Assessment →",
@@ -536,7 +544,8 @@
     "deleteMessage": "This conversation will be permanently deleted.",
     "deleteConfirm": "Delete",
     "enterToSend": "Enter to send",
-    "continueInVoice": "Continue in voice"
+    "continueInVoice": "Continue in voice",
+    "memoryUpdated": "Memory updated"
   },
   "progress": {
     "title": "Progress",
@@ -798,6 +807,7 @@
     "quotaExceededTime": "You have used all your daily practice time.",
     "quotaExceededTokens": "You have used all your monthly AI tokens.",
     "quotaTokens": "Tokens this month",
+    "memoryUpdated": "Memory updated",
     "startersHint": "Or start with a topic"
   },
   "voiceRecorder": {
@@ -857,7 +867,7 @@
     "step1": {
       "label": "Welcome",
       "title": "Welcome to FreeLingo",
-      "desc": "FreeLingo is your AI-powered English tutor. Practice at your own pace, at any time, through conversation, lessons, and smart flashcards."
+      "desc": "FreeLingo is your AI-powered language tutor. Practice at your own pace, at any time, through conversation, lessons, and smart flashcards."
     },
     "step2": {
       "label": "Text chat",
@@ -867,7 +877,7 @@
     "step3": {
       "label": "Voice",
       "title": "Speak in real time",
-      "desc": "Use voice conversation mode to practise your spoken English with real-time transcription and instant feedback on your pronunciation."
+      "desc": "Use voice conversation mode to practise your spoken language with real-time transcription and instant feedback on your pronunciation."
     },
     "step4": {
       "label": "Flashcards",
@@ -938,6 +948,7 @@
     "section": "Subscription",
     "status": "Status",
     "statusActive": "Active",
+    "statusCanceled": "Canceled",
     "statusTrialing": "Trial",
     "statusPastDue": "Past due",
     "statusNone": "No subscription",
@@ -952,7 +963,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Got it",
     "entry1": {
       "label": "Free plan",
@@ -963,6 +974,14 @@
       "desc": "You can now suggest new features and report bugs directly from the app. Vote on suggestions from other users, leave comments, and track the status of each request as it moves from Pending to Done."
     },
     "entry3": {
+      "label": "Voice history",
+      "desc": "Voice conversations now appear in your chat history. Every word spoken is saved as a text transcript, review past sessions or pick up where you left off, right from the Tutor tab."
+    },
+    "entry4": {
+      "label": "Memory",
+      "desc": "The AI tutor now remembers important things about you across conversations — your interests, goals, profession, and learning struggles. Memories are saved automatically and you can review or delete them anytime from Settings."
+    },
+    "entry5": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }
