@@ -938,6 +938,7 @@
     "section": "Abonnement",
     "status": "Status",
     "statusActive": "Actief",
+    "statusCanceled": "Geannuleerd",
     "statusTrialing": "Proefperiode",
     "statusPastDue": "Betaling achterstallig",
     "statusNone": "Geen abonnement",

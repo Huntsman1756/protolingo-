@@ -938,6 +938,7 @@
     "section": "Подписка",
     "status": "Статус",
     "statusActive": "Активна",
+    "statusCanceled": "Отменена",
     "statusTrialing": "Пробный период",
     "statusPastDue": "Просроченный платёж",
     "statusNone": "Нет подписки",

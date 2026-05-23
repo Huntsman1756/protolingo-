@@ -1,6 +1,8 @@
 import secrets
 import uuid
 
+from typing import Literal, Optional
+
 from fastapi import APIRouter, Depends, HTTPException, Query
 from redis.asyncio import Redis
 from sqlalchemy import func, select
@@ -42,8 +44,9 @@ async def list_users(
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
     skip: int = Query(default=0, ge=0),
-    limit: int = Query(default=20, ge=1, le=100),
+    limit: int = Query(default=10, ge=1, le=100),
     q: str = Query(default="", max_length=100),
+    subscription: Optional[Literal["none", "trialing", "active", "past_due", "canceled"]] = Query(default=None),
 ):
     base = select(User)
     if q.strip():
@@ -51,6 +54,8 @@ async def list_users(
         base = base.where(
             User.username.ilike(pattern) | User.email.ilike(pattern)
         )
+    if subscription:
+        base = base.where(User.subscription_status == subscription)
     total = await db.scalar(select(func.count()).select_from(base.subquery()))
     result = await db.execute(
         base.order_by(User.username.asc()).offset(skip).limit(limit)

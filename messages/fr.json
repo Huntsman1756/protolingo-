@@ -938,6 +938,7 @@
     "section": "Abonnement",
     "status": "Statut",
     "statusActive": "Actif",
+    "statusCanceled": "Annulé",
     "statusTrialing": "Essai",
     "statusPastDue": "Paiement en retard",
     "statusNone": "Aucun abonnement",

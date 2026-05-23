@@ -268,7 +268,8 @@ export default function AdminUserStatsPage() {
               {user.subscription_status === 'active' ? tBilling('statusActive')
                 : user.subscription_status === 'trialing' ? tBilling('statusTrialing')
                   : user.subscription_status === 'past_due' ? tBilling('statusPastDue')
-                    : tBilling('statusNone')}
+                    : user.subscription_status === 'canceled' ? tBilling('statusCanceled')
+                      : tBilling('statusNone')}
             </span>
           }
         />

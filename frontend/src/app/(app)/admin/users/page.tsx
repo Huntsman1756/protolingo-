@@ -33,6 +33,7 @@ const LANGUAGES = [
 
 export default function AdminUsersPage() {
   const t = useTranslations('admin')
+  const tCommon = useTranslations('common')
   const tBilling = useTranslations('billing')
   const tLang = useTranslations('languages')
   const tNav = useTranslations('nav')
@@ -40,7 +41,8 @@ export default function AdminUsersPage() {
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(0)
   const [search, setSearch] = useState('')
-  const PAGE_SIZE = 20
+  const [subscriptionFilter, setSubscriptionFilter] = useState('')
+  const PAGE_SIZE = 10
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
   const [inviteUrl, setInviteUrl] = useState('')
@@ -58,12 +60,13 @@ export default function AdminUsersPage() {
   const maintenanceMode = useConfigStore((s) => s.maintenanceMode)
   const [maintenanceLoading, setMaintenanceLoading] = useState(false)
 
-  const loadUsers = useCallback(async (pageIndex: number, query: string) => {
+  const loadUsers = useCallback(async (pageIndex: number, query: string, subscription: string) => {
     setLoading(true)
     try {
       const qs = query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''
+      const ss = subscription ? `&subscription=${encodeURIComponent(subscription)}` : ''
       const res = await apiFetch(
-        `/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}${qs}`
+        `/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}${qs}${ss}`
       )
       if (res.ok) {
         const data = await res.json()
@@ -81,7 +84,7 @@ export default function AdminUsersPage() {
 
   // Page changes (e.g. pagination buttons) fire immediately.
   useEffect(() => {
-    loadUsers(page, search)
+    loadUsers(page, search, subscriptionFilter)
   }, [loadUsers, page]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Search changes: debounce 300 ms then reset to page 0 (or reload if already on 0).
@@ -90,11 +93,20 @@ export default function AdminUsersPage() {
       if (page !== 0) {
         setPage(0) // triggers the page effect above
       } else {
-        loadUsers(0, search) // already on page 0 — call directly
+        loadUsers(0, search, subscriptionFilter) // already on page 0 — call directly
       }
     }, 300)
     return () => clearTimeout(timer)
   }, [search]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Subscription filter changes: reset to page 0 immediately (select, no debounce needed).
+  useEffect(() => {
+    if (page !== 0) {
+      setPage(0)
+    } else {
+      loadUsers(0, search, subscriptionFilter)
+    }
+  }, [subscriptionFilter]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function createUser(e: React.FormEvent) {
     e.preventDefault()
@@ -115,7 +127,7 @@ export default function AdminUsersPage() {
         native_language: 'es',
         role: 'user',
       })
-      await loadUsers(page, search)
+      await loadUsers(page, search, subscriptionFilter)
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to create user')
     }
@@ -127,7 +139,7 @@ export default function AdminUsersPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ is_active: !user.is_active }),
     })
-    await loadUsers(page, search)
+    await loadUsers(page, search, subscriptionFilter)
   }
 
   async function deleteUser(user: AdminUserItem) {
@@ -146,7 +158,7 @@ export default function AdminUsersPage() {
       if (targetPage !== page) {
         setPage(targetPage)
       } else {
-        await loadUsers(targetPage, search)
+        await loadUsers(targetPage, search, subscriptionFilter)
       }
     }
   }
@@ -204,11 +216,10 @@ export default function AdminUsersPage() {
           </button>
           <button
             onClick={() => setShowCreate(!showCreate)}
-            className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${
-              showCreate
+            className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${showCreate
                 ? 'border-fl-border-2 text-fl-fg'
                 : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
-            }`}
+              }`}
           >
             {showCreate ? `- ${t('createUser')}` : t('createUserBtn')}
           </button>
@@ -249,11 +260,10 @@ export default function AdminUsersPage() {
           <button
             onClick={toggleMaintenance}
             disabled={maintenanceLoading}
-            className={`shrink-0 px-4 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors ${
-              maintenanceMode
+            className={`shrink-0 px-4 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors ${maintenanceMode
                 ? 'bg-fl-fg text-fl-bg hover:bg-fl-fg/90'
                 : 'bg-yellow-500 text-black hover:bg-yellow-500/90'
-            } disabled:opacity-50`}
+              } disabled:opacity-50`}
           >
             {maintenanceLoading
               ? '...'
@@ -387,8 +397,8 @@ export default function AdminUsersPage() {
             {total} {t('total')}
           </span>
         </div>
-        {/* Search */}
-        <div className="border-fl-border border-b px-6 py-3">
+        {/* Search & filter */}
+        <div className="border-fl-border flex gap-2 border-b px-6 py-3">
           <input
             type="search"
             placeholder={t('searchPlaceholder')}
@@ -397,8 +407,20 @@ export default function AdminUsersPage() {
             autoCorrect="off"
             autoCapitalize="none"
             spellCheck={false}
-            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 flex-1 border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
           />
+          <select
+            value={subscriptionFilter}
+            onChange={(e) => setSubscriptionFilter(e.target.value)}
+            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 shrink-0 border px-4 py-2 font-mono text-xs transition-colors focus:outline-none appearance-none"
+          >
+            <option value="">{tCommon('all')}</option>
+            <option value="none">{tBilling('statusNone')}</option>
+            <option value="active">{tBilling('statusActive')}</option>
+            <option value="trialing">{tBilling('statusTrialing')}</option>
+            <option value="past_due">{tBilling('statusPastDue')}</option>
+            <option value="canceled">{tBilling('statusCanceled')}</option>
+          </select>
         </div>
         {users.length === 0 ? (
           <p className="text-fl-muted-2 px-6 py-8 text-center font-mono text-xs">
@@ -417,11 +439,10 @@ export default function AdminUsersPage() {
                       {u.display_name}
                     </span>
                     <span
-                      className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${
-                        u.role === 'admin'
+                      className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${u.role === 'admin'
                           ? 'border-fl-fg/40 text-fl-fg'
                           : 'border-fl-border text-fl-muted-2'
-                      }`}
+                        }`}
                     >
                       {u.role === 'admin' ? t('roleAdmin') : t('roleUser')}
                     </span>
@@ -445,6 +466,11 @@ export default function AdminUsersPage() {
                         {tBilling('statusPastDue')}
                       </span>
                     )}
+                    {u.subscription_status === 'canceled' && (
+                      <span className="text-fl-hint border border-fl-border px-2 py-0.5 font-mono tracking-widest text-fl-muted-2 uppercase">
+                        {tBilling('statusCanceled')}
+                      </span>
+                    )}
                   </div>
                   <p className="text-fl-label text-fl-muted-2 font-mono break-all">
                     <span className="text-fl-muted-4">#{u.id}</span> ·{' '}
@@ -461,11 +487,10 @@ export default function AdminUsersPage() {
                   </Link>
                   <button
                     onClick={() => toggleActive(u)}
-                    className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${
-                      u.is_active
+                    className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${u.is_active
                         ? 'border-fl-error/30 text-fl-error-fg hover:border-fl-error'
                         : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
-                    }`}
+                      }`}
                   >
                     {u.is_active ? t('deactivate') : t('activate')}
                   </button>

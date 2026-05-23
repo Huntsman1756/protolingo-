@@ -938,6 +938,7 @@
     "section": "Abonament",
     "status": "Status",
     "statusActive": "Activ",
+    "statusCanceled": "Anulat",
     "statusTrialing": "Perioadă de probă",
     "statusPastDue": "Plată restantă",
     "statusNone": "Fără abonament",

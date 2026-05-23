@@ -938,6 +938,7 @@
     "section": "Subscription",
     "status": "Status",
     "statusActive": "Active",
+    "statusCanceled": "Canceled",
     "statusTrialing": "Trial",
     "statusPastDue": "Past due",
     "statusNone": "No subscription",

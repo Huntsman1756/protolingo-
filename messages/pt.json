@@ -938,6 +938,7 @@
     "section": "Subscrição",
     "status": "Estado",
     "statusActive": "Ativa",
+    "statusCanceled": "Cancelada",
     "statusTrialing": "Avaliação",
     "statusPastDue": "Pagamento em atraso",
     "statusNone": "Sem subscrição",
