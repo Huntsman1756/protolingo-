@@ -39,6 +39,7 @@ export default function ChatPage() {
   const [loadingMsgs, setLoadingMsgs] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [deletePending, setDeletePending] = useState<number | null>(null)
+  const [memoryToast, setMemoryToast] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -191,8 +192,11 @@ export default function ChatPage() {
             }
             if (data.error) setError(data.error)
             if (data.done) {
-              // Refresh sidebar to update updated_at order
               loadConversations().then((list) => setConversations(list))
+            }
+            if (data.memory_updated) {
+              setMemoryToast(true)
+              setTimeout(() => setMemoryToast(false), 3500)
             }
           } catch {
             /* skip malformed */
@@ -211,6 +215,12 @@ export default function ChatPage() {
     <MaintenanceGate>
       <PaywallGate>
         <div className="flex h-[calc(100dvh-56px)] w-full overflow-hidden md:h-screen">
+          {/* Memory updated toast */}
+          {memoryToast && (
+            <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 font-mono text-xs tracking-widest uppercase px-4 py-2 border border-fl-border bg-fl-surface text-fl-muted-1 shadow-lg animate-in fade-in slide-in-from-top-2">
+              {t('memoryUpdated')}
+            </div>
+          )}
           {/* Sidebar backdrop — mobile only */}
           {sidebarOpen && (
             <div
@@ -249,8 +259,8 @@ export default function ChatPage() {
                       key={c.id}
                       onClick={() => selectConversation(c.id)}
                       className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${activeId === c.id
-                          ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
-                          : 'hover:bg-fl-surface border-l-2 border-l-transparent'
+                        ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
+                        : 'hover:bg-fl-surface border-l-2 border-l-transparent'
                         }`}
                     >
                       <span
@@ -370,8 +380,8 @@ export default function ChatPage() {
                     <div className={`max-w-[75%] text-left`}>
                       <div
                         className={`border px-4 py-3 font-mono text-sm leading-relaxed ${msg.role === 'user'
-                            ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
-                            : 'bg-fl-surface text-fl-fg-2 border-fl-border'
+                          ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
+                          : 'bg-fl-surface text-fl-fg-2 border-fl-border'
                           }`}
                       >
                         {msg.content ||

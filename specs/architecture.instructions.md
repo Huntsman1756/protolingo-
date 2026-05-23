@@ -14,15 +14,15 @@ freelingo/
 ├── backend/                     # Python 3.14 FastAPI
 │   ├── app/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter
-│   │   ├── models/              # SQLAlchemy 2.0 ORM models (14 models)
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (18 model classes)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas
-│   │   ├── routers/             # 13 routers (12 REST + 1 WebSocket)
-│   │   ├── services/            # Business logic + external service clients (12 modules)
+│   │   ├── routers/             # 18 routers (17 REST + 1 WebSocket)
+│   │   └── services/            # Business logic + external service clients (16 modules)
 │   │   └── data/
 │   │       └── en/              # Static curriculum and content data
 │   ├── alembic/
-│   │   └── versions/            # DB migrations (14)
-│   └── tests/                   # pytest suite (10 test files)
+│   │   └── versions/            # DB migrations (22)
+│   └── tests/                   # pytest suite (25 test files)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
@@ -99,9 +99,15 @@ Registration, authentication, and user preferences.
 | conversation_weekly_sessions | integer | Counter reset each week (default 0) |
 | conversation_daily_minutes | integer | Limit in minutes per day (default 30) |
 | conversation_weekly_minutes | integer | Limit in minutes per week (default 90) |
+| monthly_tokens_limit | integer | Max LLM tokens per billing period (default 1 000 000) |
+| stripe_customer_id | string (nullable) | Stripe customer ID (set when subscription is created) |
+| subscription_status | string | Subscription state: `none` (default), `trialing`, `active`, `past_due`, `canceled` |
+| subscription_ends_at | datetime (nullable) | When the current subscription period ends |
 | avatar | text (nullable) | Base64-encoded avatar image |
+| bio | text (nullable) | User-written profile bio |
+| learning_goals | text (nullable) | JSON-encoded array of learning goal strings |
 | created_at | datetime | Auto-set on creation |
-| last_login | datetime | Updated on each login |
+| last_login | datetime (nullable) | Updated on each successful login |
 
 **Registration rules:**
 - First registered user becomes admin automatically when `FIRST_USER_IS_ADMIN=true` (default).
@@ -361,6 +367,32 @@ A flat comment on a feedback entry. No nesting.
 | body | text | Comment body (max 2000 chars via schema) |
 | created_at | datetime | Auto-set on creation |
 
+### Memory (`memories`)
+
+User-specific context persisted by the LLM during conversations. The AI tutor autonomously decides what to remember.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| user_id | integer | FK → users (CASCADE DELETE) |
+| content | text | Memory text, max 200 chars enforced at service layer |
+| source | varchar(10) | `"chat"` or `"voice"` |
+| created_at | datetime | Auto-set on creation |
+
+### LLMUsage (`llm_usage`)
+
+Token-usage audit trail, one row per LLM call. Used to track consumption against `monthly_tokens_limit`.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key |
+| user_id | integer | FK → users (CASCADE DELETE), indexed |
+| source | varchar(20) | Feature that triggered the call: `"chat"`, `"lesson"`, `"assessment"`, etc. |
+| prompt_tokens | integer (nullable) | Input token count |
+| completion_tokens | integer (nullable) | Output token count |
+| total_tokens | integer (nullable) | Total tokens (may differ from prompt + completion for some providers) |
+| created_at | datetime | Auto-set on creation |
+
 ---
 
 ## Service layer
@@ -413,6 +445,16 @@ Full SM-2 spaced repetition algorithm:
 Shared BCP-47 conversion utilities used across the service layer:
 - `get_english_variant(target_language)` — converts `"en-US"` → `"american"`, `"en-GB"` → `"british"` for LLM prompts
 - `get_iso639(target_language)` — strips region subtag: `"en-US"` → `"en"` for Whisper
+- `voice_session_title(native_language)` — localised "Voice session — date" strings for all 9 supported languages
+
+### Memory Service (`memory_service.py`)
+
+Handles LLM-driven persistent context across conversations:
+- `parse_memory_marker(text)` — extracts items from `<<MEMORY>>{"items":[...]}<<ENDMEMORY>>` blocks in LLM responses
+- `strip_memory_marker(text)` — removes the marker block before the response reaches the user
+- `build_memory_context(memories)` — formats up to 20 memories × 200 chars for injection into system prompts
+- `save_memories(db, user_id, items, source)` — persists new items, skipping exact duplicates
+- Zero-cost design: the LLM includes the marker in its normal response; no extra API calls needed.
 
 ### Progress Service (`progress_service.py`)
 
@@ -477,6 +519,26 @@ Manages AI-generated listening exercises end-to-end (Phase 6):
 | B1, B2 | `story`, `dialogue`, `interview` |
 | C1, C2 | `news_report`, `lecture`, `debate` |
 
+### Reading Service (`reading_service.py`)
+
+Manages AI-generated reading comprehension exercises end-to-end (Phase 7):
+
+- `get_available_exercise(level, target_language, user_id, db)` — returns the oldest unread exercise for the user’s level/language, excluding already-attempted ones. Returns `None` if pool is empty.
+- `generate_and_save_exercise(level, target_language, db)` — calls LLM (with one retry on malformed JSON), extracts topic + text + 5 questions. No audio — text is served directly to the client.
+- `calculate_score(questions, answers) → (score, xp_earned)` — pure function, case-insensitive option comparison, 10 XP per correct answer.
+- `submit_attempt(exercise_id, user_id, answers, db)` — checks for duplicate (raises 409), calculates score, awards XP via Progress service, increments `view_count`.
+- `get_user_history(user_id, db, skip, limit)` — JOIN query returning `(list[tuple[ReadingAttempt, ReadingExercise]], total)`.
+
+**Exercise types by CEFR level** (`_TYPES_BY_LEVEL`):
+
+| Level | Types |
+|-------|-------|
+| A1, A2 | `notice`, `email` |
+| B1 | `email`, `article`, `news` |
+| B2 | `article`, `news`, `blog_post`, `review` |
+| C1 | `news`, `blog_post`, `review`, `essay` |
+| C2 | `review`, `essay` |
+
 ### Quota Service (`quota_service.py`)
 
 Enforces per-user voice conversation quotas stored on the `users` table:
@@ -486,6 +548,15 @@ Enforces per-user voice conversation quotas stored on the `users` table:
 - `conversation_weekly_sessions`: session count for the current week.
 
 Called by the conversation router before opening a WebSocket session.
+
+### Subscription Service (`subscription_service.py`)
+
+Single source of truth for subscription-based access control (Phase 5):
+
+- `is_subscribed(user, stripe_enabled) → bool` — returns `True` unconditionally when `stripe_enabled=False` (self-hosted mode, default); otherwise requires `subscription_status` to be `"trialing"` or `"active"`.
+- `apply_subscription_quotas(user, db)` — resets conversation and token quotas to defaults when a subscription becomes active or enters trial.
+
+Used by `require_subscription` in `core/deps.py`, which gates all chat, listening, reading, conversation, and memory endpoints.
 
 ### Conversation Pipeline (`conversation_pipeline.py`)
 
@@ -617,20 +688,35 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 
 ### Backend: pytest + pytest-asyncio
 
-Located in `backend/tests/` with 10 test files:
+Located in `backend/tests/` with 25 test files:
 
 | File | Covers |
 |------|--------|
 | `conftest.py` | Fixtures: SQLite in-memory DB, mock Redis (dict-based), HTTP test client, test user/admin |
 | `test_auth.py` | Register, login, refresh, logout, me, update-profile |
+| `test_auth_extra.py` | Email verification, password reset, blocked-domain rejection, invite-link flow |
 | `test_admin.py` | CRUD users, role enforcement (403 for non-admin), invite creation |
-| `test_assessment.py` | Quiz start/submit, deterministic evaluation, LLM error handling |
-| `test_study_plan.py` | Generate plan, today's lessons, auto-generation |
+| `test_admin_extra.py` | Admin pagination, maintenance mode toggle, edge cases |
+| `test_assessment.py` | Quiz start/submit, deterministic CEFR evaluation, LLM error handling |
+| `test_study_plan.py` | Generate plan, today’s lessons, auto-generation |
 | `test_lessons.py` | Lesson CRUD, exercise answering (MC, free_write, pronunciation), completion flow |
-| `test_flashcards.py` | SM-2 algorithm (quality 0–5, interval/ease_factor logic), edge cases |
+| `test_lessons_extra.py` | Lesson edge cases: repeat answers, invalid exercise type, scoring boundaries |
+| `test_flashcards.py` | SM-2 algorithm (quality 0–5, interval/ease_factor logic) |
+| `test_flashcards_extra.py` | Flashcard edge cases: bulk create, due-date filtering |
 | `test_chat.py` | SSE streaming, conversation CRUD |
+| `test_chat_conversations.py` | Conversation rename, delete, history pagination |
 | `test_progress.py` | Summary, history, competencies |
+| `test_progress_extra.py` | XP edge cases, streak boundaries, skill score updates |
 | `test_conversation.py` | WebSocket auth, TTS/STT disabled rejection, pipeline lifecycle |
+| `test_listening.py` | Listening exercise generation, retrieval, attempt submission, history |
+| `test_listening_extra.py` | Pool exhaustion, duplicate-attempt rejection, score/XP calculation |
+| `test_reading.py` | Reading exercise generation, retrieval, attempt submission, history |
+| `test_reading_extra.py` | Pool exhaustion, duplicate-attempt rejection, score/XP calculation |
+| `test_feedback.py` | Feedback board: create, vote, comment, status update (admin), pagination |
+| `test_billing.py` | Stripe Checkout, Customer Portal, webhook event handling |
+| `test_maintenance.py` | Maintenance mode: toggle, 503 guard, Redis-fail-open behaviour |
+| `test_avatar.py` | Avatar upload, Base64 validation, delete |
+| `test_memories.py` | Memory CRUD, marker parsing, FIFO eviction, subscription gate |
 | `test_frontend_data_integrity.py` | Cross-references frontend `curriculum.ts` against `grammar.ts`/`vocabulary.ts` |
 
 **Key design choices for tests:**
@@ -653,21 +739,39 @@ All configuration is environment-driven. Key variables:
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | DATABASE_URL | — | asyncpg connection string |
-| REDIS_URL | — | Redis connection string |
+| REDIS_URL | redis://localhost:6379/0 | Redis connection string |
 | SECRET_KEY | — | JWT signing key (HS256) |
 | ACCESS_TOKEN_EXPIRE_MINUTES | 15 | JWT lifetime |
 | REFRESH_TOKEN_EXPIRE_DAYS | 30 | Refresh token TTL |
 | ALLOW_REGISTRATION | true | Enables/disables public signups |
 | FIRST_USER_IS_ADMIN | true | Auto-admin for first user |
 | BLOCKED_EMAIL_DOMAINS | [] | JSON array of blocked email domains (disposable/temporary providers) |
-| LLM_PROVIDER | ollama | ollama / openai / anthropic / deepseek |
-| TTS_PROVIDER | local | local (Kokoro) or openai |
-| STT_PROVIDER | local | local (Whisper) or openai |
-| STT_MODEL | large-v3-turbo | Whisper model size (local provider) |
-| STT_ENGINE | faster_whisper | Whisper engine: faster_whisper / ctranslate2 (local) |
+| COOKIE_SECURE | false | Set `Secure` flag on cookies (enable in production behind HTTPS) |
+| LLM_PROVIDER | ollama | `ollama` / `openai` / `anthropic` / `deepseek` |
+| OLLAMA_BASE_URL | http://host.docker.internal:11434 | Ollama API endpoint |
+| OLLAMA_MODEL | gemma4:e4b | Model tag to use with Ollama |
+| OPENAI_API_KEY | `` | OpenAI API key (also reused for TTS/STT when provider is `openai`) |
+| OPENAI_MODEL | gpt-4o-mini | OpenAI chat model |
+| ANTHROPIC_API_KEY | `` | Anthropic API key |
+| ANTHROPIC_MODEL | claude-3-5-haiku-latest | Anthropic chat model |
+| DEEPSEEK_API_KEY | `` | DeepSeek API key |
+| DEEPSEEK_MODEL | deepseek-chat | DeepSeek chat model |
+| TTS_PROVIDER | local | `local` (Kokoro) or `openai` |
+| TTS_BASE_URL | http://kokoro:8880 | Kokoro-FastAPI endpoint (local provider) |
+| TTS_VOICE | af_heart | Kokoro voice ID (local provider) |
 | OPENAI_TTS_MODEL | tts-1 | OpenAI TTS model (openai provider) |
 | OPENAI_TTS_VOICE | nova | OpenAI TTS voice (openai provider) |
+| OPENAI_TTS_SPEED | 1.0 | OpenAI TTS playback speed (openai provider) |
+| STT_PROVIDER | local | `local` (Whisper) or `openai` |
+| STT_BASE_URL | http://whisper:9000 | Whisper ASR endpoint (local provider) |
 | OPENAI_STT_MODEL | whisper-1 | OpenAI STT model (openai provider) |
+| STRIPE_ENABLED | false | Enable Stripe paywall; `false` = all active users have full access |
+| STRIPE_SECRET_KEY | `` | Stripe secret key |
+| STRIPE_WEBHOOK_SECRET | `` | Stripe webhook signing secret |
+| STRIPE_PRICE_MONTHLY | `` | Stripe Price ID for monthly plan |
+| STRIPE_PRICE_YEARLY | `` | Stripe Price ID for yearly plan |
+| STRIPE_TRIAL_DAYS | 7 | Free trial duration in days |
+| STRIPE_BASE_URL | http://localhost:3000 | Frontend base URL used in Stripe redirect URLs |
 | EMAIL_ENABLED | false | Enable SMTP email (verification + password reset + contact form) |
 | CONTACT_EMAIL | — | Destination address for contact form submissions |
 | SMTP_HOST | localhost | SMTP server hostname |
@@ -678,7 +782,7 @@ All configuration is environment-driven. Key variables:
 | SMTP_TLS | true | Use STARTTLS |
 | SMTP_SSL | false | Use implicit SSL (port 465) |
 | APP_BASE_URL | http://localhost:3000 | Public frontend URL (used in email links) |
+| AUDIO_STORAGE_PATH | /data/audio | Docker volume path for generated listening MP3 files |
 | RATE_LIMIT_ENABLED | true | Enable slowapi rate limiting |
-| RATE_LIMIT_STORAGE | memory | memory or redis |
-| CORS_ORIGINS | * | Allowed CORS origins |
-| LOG_LEVEL | INFO | Application log level |
+| CORS_ORIGINS | ["http://localhost:3000"] | Allowed CORS origins (JSON array) |
+| LOG_LEVEL | INFO | Application log level (`DEBUG`, `INFO`, `WARNING`, `ERROR`) |

@@ -224,7 +224,13 @@
     "quotaTokens": "Tokens / maand",
     "quotaUnlimited": "Onbeperkt",
     "quotaLoading": "Laden...",
-    "quotaHint": "Gebruik wordt wekelijks (sessies en minuten) en maandelijks (tokens) gereset."
+    "quotaHint": "Gebruik wordt wekelijks (sessies en minuten) en maandelijks (tokens) gereset.",
+    "sectionMemory": "Geheugen",
+    "memoryEmpty": "Nog geen herinneringen opgeslagen. De AI-tutor zal belangrijke details over jou onthouden en hier opslaan.",
+    "memoryClearAll": "Alle herinneringen wissen",
+    "memoryClearAllTitle": "Alle herinneringen wissen",
+    "memoryClearAllMessage": "Hiermee worden alle opgeslagen herinneringen permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "memoryClearAllConfirm": "Alles wissen"
   },
   "legal": {
     "terms": {
@@ -536,7 +542,8 @@
     "deleteMessage": "Dit gesprek wordt permanent verwijderd.",
     "deleteConfirm": "Verwijderen",
     "enterToSend": "Enter om te versturen",
-    "continueInVoice": "Verdergaan met spraak"
+    "continueInVoice": "Verdergaan met spraak",
+    "memoryUpdated": "Geheugen bijgewerkt"
   },
   "progress": {
     "title": "Voortgang",
@@ -798,6 +805,7 @@
     "quotaExceededTime": "Je hebt al je dagelijkse oefentijd gebruikt.",
     "quotaExceededTokens": "Je hebt al je maandelijkse AI-tokens gebruikt.",
     "quotaTokens": "Tokens deze maand",
+    "memoryUpdated": "Geheugen bijgewerkt",
     "startersHint": "Of begin met een onderwerp"
   },
   "voiceRecorder": {
@@ -968,6 +976,10 @@
       "desc": "Je spraakgesprekken verschijnen nu in de chatgeschiedenis. Elk woord wordt opgeslagen als tekst, bekijk eerdere sessies of ga verder waar je was, direct vanuit het Tutor-tabblad."
     },
     "entry4": {
+      "label": "Geheugen",
+      "desc": "De AI-tutor onthoudt nu belangrijke dingen over jou tussen gesprekken — je interesses, doelen, beroep en leerproblemen. Herinneringen worden automatisch opgeslagen en je kunt ze altijd bekijken of verwijderen via Instellingen."
+    },
+    "entry5": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }

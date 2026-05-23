@@ -56,12 +56,17 @@ export interface ErrorMessage {
   message?: string
 }
 
+export interface MemoryUpdatedMessage {
+  type: 'memory_updated'
+}
+
 export type WsMessage =
   | TranscriptMessage
   | BargeInMessage
   | SessionWarningMessage
   | SessionEndMessage
   | ErrorMessage
+  | MemoryUpdatedMessage
 
 // ─── Chat context passed from tutor chat to voice session ────────────────────
 

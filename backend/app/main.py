@@ -24,7 +24,7 @@ logging.basicConfig(
 
 _AVATARS_DIR = "/app/avatars"
 _TTS_PREVIEWS_DIR = "/app/tts_previews"
-from app.routers import admin, assessment, auth, chat, contact, conversation, feedback, flashcards, lessons, listening, progress, reading, study_plan, stt, tts
+from app.routers import admin, assessment, auth, chat, contact, conversation, feedback, flashcards, lessons, listening, memories, progress, reading, study_plan, stt, tts
 from app.routers import config as config_router
 from app.services.stt_service import OpenAISTTService, WhisperSTTService
 from app.services.tts_service import KokoroTTSService, OpenAITTSService
@@ -114,6 +114,7 @@ app.include_router(conversation.router)
 app.include_router(config_router.router)
 app.include_router(contact.router)
 app.include_router(feedback.router)
+app.include_router(memories.router)
 
 if settings.STRIPE_ENABLED:
     import stripe as _stripe

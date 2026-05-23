@@ -224,7 +224,13 @@
     "quotaTokens": "Tokeny / miesiąc",
     "quotaUnlimited": "Nieograniczone",
     "quotaLoading": "Ładowanie...",
-    "quotaHint": "Limity są resetowane co tydzień (sesje i minuty) i co miesiąc (tokeny)."
+    "quotaHint": "Limity są resetowane co tydzień (sesje i minuty) i co miesiąc (tokeny).",
+    "sectionMemory": "Pamięć",
+    "memoryEmpty": "Nie zapisano jeszcze żadnych wspomnień. Tutor AI będzie zapamiętywał ważne szczegóły o Tobie i zapisywał je tutaj.",
+    "memoryClearAll": "Wyczyść wszystkie wspomnienia",
+    "memoryClearAllTitle": "Wyczyść wszystkie wspomnienia",
+    "memoryClearAllMessage": "Spowoduje to trwałe usunięcie wszystkich zapisanych wspomnień. Tej akcji nie można cofnąć.",
+    "memoryClearAllConfirm": "Wyczyść wszystko"
   },
   "legal": {
     "terms": {
@@ -536,7 +542,8 @@
     "deleteMessage": "Ta rozmowa zostanie trwale usunięta.",
     "deleteConfirm": "Usuń",
     "enterToSend": "Enter aby wysłać",
-    "continueInVoice": "Kontynuuj głosowo"
+    "continueInVoice": "Kontynuuj głosowo",
+    "memoryUpdated": "Pamięć zaktualizowana"
   },
   "progress": {
     "title": "Postępy",
@@ -798,6 +805,7 @@
     "quotaExceededTime": "Wykorzystałeś(-aś) cały dzienny czas ćwiczeń.",
     "quotaExceededTokens": "Wykorzystałeś(-aś) wszystkie miesięczne tokeny AI.",
     "quotaTokens": "Tokeny w tym miesiącu",
+    "memoryUpdated": "Pamięć zaktualizowana",
     "startersHint": "Lub zacznij od tematu"
   },
   "voiceRecorder": {
@@ -968,6 +976,10 @@
       "desc": "Rozmowy głosowe pojawiają się teraz w historii czatu. Każde słowo jest zapisywane jako tekst, przeglądaj poprzednie sesje lub kontynuuj je z poziomu zakładki Tutor."
     },
     "entry4": {
+      "label": "Pamięć",
+      "desc": "Korepetytor AI zapamiętuje teraz ważne rzeczy o Tobie między rozmowami — Twoje zainteresowania, cele, zawód i trudności w nauce. Wspomnienia są zapisywane automatycznie i możesz je przeglądać lub usuwać w dowolnym momencie w Ustawieniach."
+    },
+    "entry5": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }

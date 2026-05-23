@@ -22,6 +22,7 @@ from app.models.user import User
 from app.services.conversation_pipeline import ConversationPipeline
 from app.services.language_helpers import voice_session_title
 from app.services.llm_adapter import llm_adapter
+from app.services.memory_service import get_user_memories
 from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_monthly_tokens, check_weekly_minutes
 
 logger = get_logger(__name__)
@@ -329,6 +330,14 @@ async def conversation_ws(
         await redis.aclose()
         return
 
+    # Fetch user memories for context injection
+    memories = []
+    try:
+        async with AsyncSessionLocal() as db_mem:
+            memories = await get_user_memories(db_mem, user_id)
+    except Exception:
+        pass
+
     pipeline = ConversationPipeline(
         llm=llm_adapter,
         tts=tts_service,
@@ -344,6 +353,7 @@ async def conversation_ws(
         conversation_id=conversation_id,
         bio=user_bio,
         learning_goals=user_learning_goals,
+        memories=memories,
         voice=voice_pref,
     )
     pipeline._redis = redis
