@@ -953,7 +953,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Begrepen",
     "entry1": {
       "label": "Gratis plan",
@@ -964,6 +964,10 @@
       "desc": "Je kunt nu direct vanuit de app nieuwe functies voorstellen en bugs melden. Stem op suggesties van andere gebruikers, laat reacties achter en volg de status van elke aanvraag tot aan de afronding."
     },
     "entry3": {
+      "label": "Spraakgeschiedenis",
+      "desc": "Je spraakgesprekken verschijnen nu in de chatgeschiedenis. Elk woord wordt opgeslagen als tekst, bekijk eerdere sessies of ga verder waar je was, direct vanuit het Tutor-tabblad."
+    },
+    "entry4": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }

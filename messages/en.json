@@ -953,7 +953,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Got it",
     "entry1": {
       "label": "Free plan",
@@ -964,6 +964,10 @@
       "desc": "You can now suggest new features and report bugs directly from the app. Vote on suggestions from other users, leave comments, and track the status of each request as it moves from Pending to Done."
     },
     "entry3": {
+      "label": "Voice history",
+      "desc": "Voice conversations now appear in your chat history. Every word spoken is saved as a text transcript, review past sessions or pick up where you left off, right from the Tutor tab."
+    },
+    "entry4": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }

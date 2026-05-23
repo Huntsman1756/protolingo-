@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-05-23
+
+### Added
+- **Voice transcript history**: voice conversations are now persisted as text transcripts alongside chat conversations. Every user utterance (STT) and assistant response is saved incrementally to `chat_history` during the session, grouped under a `Conversation` record with `source='voice'`. This means:
+- Voice sessions appear in the tutor chat sidebar (with a mic icon) alongside regular text conversations.
+- Users can click a past voice session to review the full transcript as text, exactly like a chat history.
+- Clicking "Continue in Voice" from the chat appends new voice messages to the same conversation rather than starting a separate session.
+- **Backend**: `Conversation` model gains a `source` column (`VARCHAR(10)`, default `'chat'`, values `'chat'`|`'voice'`). Alembic migration `0021_conversation_source.py`. `ConversationPipeline` now accepts `conversation_id` and calls `_save_message()` (fire-and-forget via `asyncio.create_task`) after each STT transcription and each completed LLM response. The WebSocket handler creates a `Conversation` row on session start with a localized title ("Sesión de voz — 23 de mayo de 2026", etc.) and reuses an existing `conversation_id` when provided by the frontend.
+- **Title translation**: `voice_session_title()` in `language_helpers.py` maps "Voice session" to all 9 supported native languages with localized month names and date formatting.
+- **Frontend**: `ConversationResponse` and the React `Conversation` interface now include `source`. The sidebar shows a mic icon (🎤) for voice-originated conversations. The `voice_context` sessionStorage payload was upgraded from a plain array to `{messages, conversation_id}` so the WebSocket can append to the same conversation.
+
 ## [1.5.7] - 2026-05-22
 
 ### Added

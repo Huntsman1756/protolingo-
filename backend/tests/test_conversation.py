@@ -319,6 +319,193 @@ def test_pipeline_initial_context_filters_invalid_role() -> None:
     assert pipeline.history[1]["role"] == "assistant"
 
 
+# ---------------------------------------------------------------------------
+# voice_session_title — unit tests
+# ---------------------------------------------------------------------------
+
+
+def test_voice_session_title_english_fallback() -> None:
+    """Unknown / English language code falls back to English label and format."""
+    from app.services.language_helpers import voice_session_title
+
+    title = voice_session_title("en")
+    assert title.startswith("Voice session — ")
+    # Fallback uses strftime '%B %d, %Y', which always produces a non-empty date.
+    assert len(title) > len("Voice session — ")
+
+
+def test_voice_session_title_unknown_language() -> None:
+    """Completely unknown language code falls back to English."""
+    from app.services.language_helpers import voice_session_title
+
+    title = voice_session_title("xx")
+    assert title.startswith("Voice session — ")
+
+
+def test_voice_session_title_spanish() -> None:
+    """Spanish uses 'Sesión de voz' label and 'D de mes de YYYY' format."""
+    from app.services.language_helpers import voice_session_title
+
+    title = voice_session_title("es")
+    assert title.startswith("Sesión de voz — ")
+    # Exactly two 'de' separators in the date portion.
+    date_part = title.split(" — ", 1)[1]
+    assert date_part.count(" de ") == 2
+
+
+def test_voice_session_title_portuguese() -> None:
+    """Portuguese uses 'Sessão de voz' label and 'D de mes de YYYY' format."""
+    from app.services.language_helpers import voice_session_title
+
+    title = voice_session_title("pt")
+    assert title.startswith("Sessão de voz — ")
+    date_part = title.split(" — ", 1)[1]
+    assert date_part.count(" de ") == 2
+
+
+def test_voice_session_title_german() -> None:
+    """German uses 'Sprachsitzung' label and plain 'D Month YYYY' format."""
+    from app.services.language_helpers import voice_session_title
+
+    title = voice_session_title("de")
+    assert title.startswith("Sprachsitzung — ")
+    # No 'de' separators in German dates.
+    date_part = title.split(" — ", 1)[1]
+    assert " de " not in date_part
+
+
+def test_voice_session_title_polish() -> None:
+    """Polish uses 'Sesja głosowa' label and plain 'D month YYYY' format (genitive months)."""
+    from app.services.language_helpers import voice_session_title
+
+    title = voice_session_title("pl")
+    assert title.startswith("Sesja głosowa — ")
+    date_part = title.split(" — ", 1)[1]
+    assert " de " not in date_part
+
+
+def test_voice_session_title_russian() -> None:
+    """Russian uses Cyrillic label and plain 'D month YYYY' format (genitive months)."""
+    from app.services.language_helpers import voice_session_title
+
+    title = voice_session_title("ru")
+    assert title.startswith("Голосовая сессия — ")
+    date_part = title.split(" — ", 1)[1]
+    assert " de " not in date_part
+
+
+def test_voice_session_title_all_supported_languages_produce_nonempty() -> None:
+    """Every supported native language must produce a non-empty title."""
+    from app.services.language_helpers import voice_session_title
+
+    supported = ["es", "fr", "pt", "de", "it", "pl", "nl", "ro", "ru"]
+    for lang in supported:
+        title = voice_session_title(lang)
+        assert title.strip(), f"Empty title for language '{lang}'"
+        assert " — " in title, f"Missing date separator for language '{lang}'"
+
+
+# ---------------------------------------------------------------------------
+# ConversationPipeline — _save_message deferred until turn success
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.asyncio
+async def test_pipeline_does_not_save_user_msg_on_llm_failure() -> None:
+    """User message must NOT be persisted when the LLM fails.
+
+    The save is deferred to after a successful turn so no orphan rows appear
+    in the transcript when a turn errors out.
+    """
+    saved_roles: list[str] = []
+
+    class FakeWS:
+        async def send_json(self, _data):
+            pass
+
+        async def send_bytes(self, _data):
+            pass
+
+    from app.services.conversation_pipeline import ConversationPipeline
+    from app.services.llm_adapter import LLMError
+
+    pipeline = ConversationPipeline(
+        llm=AsyncMock(),
+        tts=AsyncMock(),
+        stt=AsyncMock(),
+        cefr_level="B1",
+        max_duration=1800,
+        inactivity_timeout=180,
+        user_id=1,
+        conversation_id=1,
+    )
+
+    # Patch _save_message to track what gets saved instead of hitting the DB.
+    async def _track_save(role: str, content: str) -> None:
+        saved_roles.append(role)
+
+    pipeline._save_message = _track_save  # type: ignore[method-assign]
+
+    # STT succeeds, LLM raises immediately.
+    pipeline.stt.transcribe = AsyncMock(return_value="hello")  # type: ignore[attr-defined]
+    pipeline.llm.chat = AsyncMock(side_effect=LLMError("LLM down"))  # type: ignore[attr-defined]
+
+    await pipeline._process(b"audio", FakeWS())
+
+    # On LLM failure neither user nor assistant message should be persisted.
+    assert saved_roles == [], f"Expected no saves on LLM failure, got: {saved_roles}"
+
+
+@pytest.mark.asyncio
+async def test_pipeline_saves_both_messages_on_successful_turn() -> None:
+    """User and assistant messages are both persisted on a successful turn."""
+    saved: list[tuple[str, str]] = []
+
+    class FakeWS:
+        async def send_json(self, _data):
+            pass
+
+        async def send_bytes(self, _data):
+            pass
+
+    chunk = MagicMock()
+    chunk.choices[0].delta.content = "Hello."
+
+    async def fake_stream():
+        yield chunk
+
+    from app.services.conversation_pipeline import ConversationPipeline
+
+    pipeline = ConversationPipeline(
+        llm=AsyncMock(),
+        tts=AsyncMock(),
+        stt=AsyncMock(),
+        cefr_level="B1",
+        max_duration=1800,
+        inactivity_timeout=180,
+        user_id=1,
+        conversation_id=1,
+    )
+
+    async def _track_save(role: str, content: str) -> None:
+        saved.append((role, content))
+
+    pipeline._save_message = _track_save  # type: ignore[method-assign]
+    pipeline.stt.transcribe = AsyncMock(return_value="hi there")  # type: ignore[attr-defined]
+    pipeline.llm.chat = AsyncMock(return_value=fake_stream())  # type: ignore[attr-defined]
+    pipeline.tts.synthesize = AsyncMock(return_value=b"audio")  # type: ignore[attr-defined]
+
+    await pipeline._process(b"audio", FakeWS())
+    # Give the event loop a cycle to run the create_task()-scheduled saves.
+    await asyncio.sleep(0)
+
+    roles = [r for r, _ in saved]
+    assert "user" in roles, "User message should be saved on successful turn"
+    assert "assistant" in roles, "Assistant message should be saved on successful turn"
+    # User must appear before assistant in the saved sequence.
+    assert roles.index("user") < roles.index("assistant")
+
+
 def test_pipeline_initial_context_filters_empty_content() -> None:
     """Entries with empty or whitespace-only content are silently dropped."""
     context = [

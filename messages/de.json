@@ -953,7 +953,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Verstanden",
     "entry1": {
       "label": "Kostenloser Plan",
@@ -964,6 +964,10 @@
       "desc": "Du kannst jetzt direkt in der App neue Funktionen vorschlagen und Fehler melden. Stimme für Vorschläge anderer Nutzer ab, hinterlasse Kommentare und verfolge den Status jeder Anfrage bis zur Umsetzung."
     },
     "entry3": {
+      "label": "Sprachverlauf",
+      "desc": "Deine Sprachkonversationen erscheinen jetzt im Chat-Verlauf. Jedes gesprochene Wort wird als Text gespeichert, vergangene Sitzungen lassen sich durchsehen oder direkt vom Tutor-Tab aus fortsetzen."
+    },
+    "entry4": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
     }

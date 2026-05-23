@@ -103,7 +103,7 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/conversations` | Lists user's text chat conversations |
+| GET | `/conversations` | Lists user's conversations (text + voice), ordered by `updated_at` desc. Response includes `source` (`chat` or `voice`). |
 | POST | `/conversations` | Creates new conversation |
 | DELETE | `/conversations/{id}` | Deletes conversation and its messages (CASCADE) |
 | GET | `/conversations/{id}/messages` | Returns messages for a conversation |

@@ -953,7 +953,7 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Entendido",
     "entry1": {
       "label": "Plan gratuito",
@@ -964,6 +964,10 @@
       "desc": "Ya puedes sugerir nuevas funcionalidades y reportar errores directamente desde la app. Vota las sugerencias de otros usuarios, deja comentarios y sigue el estado de cada solicitud hasta que esté completada."
     },
     "entry3": {
+      "label": "Historial de voz",
+      "desc": "Tus conversaciones por voz ahora aparecen en el historial del chat. Cada palabra se guarda como texto, repasa sesiones pasadas o retómalas desde la sección Tutor."
+    },
+    "entry4": {
       "label": "Correcciones",
       "desc": "Correcciones de errores menores y mejoras de estabilidad en toda la plataforma."
     }
