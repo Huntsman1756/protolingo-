@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Învață engleza cu un partener de conversație real prin voce",
+    "hero": "Învață limbi străine cu un partener de conversație real prin voce",
     "heroSub": "Vorbește. Ascultă. Îmbunătățește-te.",
     "signIn": "Conectare",
     "dashboard": "Continuă",
@@ -230,7 +230,8 @@
     "memoryClearAll": "Șterge toate amintirile",
     "memoryClearAllTitle": "Șterge toate amintirile",
     "memoryClearAllMessage": "Aceasta va șterge permanent toate amintirile salvate. Această acțiune nu poate fi anulată.",
-    "memoryClearAllConfirm": "Șterge tot"
+    "memoryClearAllConfirm": "Șterge tot",
+    "memoryManage": "Gestionează amintirile"
   },
   "legal": {
     "terms": {
@@ -437,6 +438,7 @@
     "learningRoadmap": "Foaia de parcurs",
     "level": "Nivel",
     "duration": "Durată",
+    "durationDetail": "{weeks} săptămâni · {days} zile/săptămână",
     "unitsLabel": "Unități",
     "noUnitsForLevel": "Nu sunt unități disponibile pentru nivelul {level}",
     "takeAssessmentArrow": "Fă evaluarea →",
@@ -865,7 +867,7 @@
     "step1": {
       "label": "Bun venit",
       "title": "Bun venit la FreeLingo",
-      "desc": "FreeLingo este tutorul tău de engleză bazat pe inteligență artificială. Exersează în ritmul tău, oricând, prin conversații, lecții și flashcard-uri inteligente."
+      "desc": "FreeLingo este tutorul tău de limbi străine bazat pe inteligență artificială. Exersează în ritmul tău, oricând, prin conversații, lecții și flashcard-uri inteligente."
     },
     "step2": {
       "label": "Chat text",
@@ -875,7 +877,7 @@
     "step3": {
       "label": "Voce",
       "title": "Vorbește în timp real",
-      "desc": "Folosește modul de conversație vocală pentru a-ți exersa engleza vorbită cu transcriere în timp real și feedback imediat despre pronunție."
+      "desc": "Folosește modul de conversație vocală pentru a-ți exersa limba vorbită cu transcriere în timp real și feedback imediat despre pronunție."
     },
     "step4": {
       "label": "Flashcard-uri",

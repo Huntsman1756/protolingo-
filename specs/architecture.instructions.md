@@ -682,6 +682,18 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 - No semicolons, single quotes, 2-space tabs, trailing commas "es5".
 - shadcn/ui components installed: `button card input progress badge separator sheet tabs`.
 
+#### Page content width convention
+
+Every page wrapper uses `mx-auto` plus one of three canonical widths. Do not use other sizes:
+
+| Class | Width | Use for |
+|-------|-------|---------|
+| `max-w-4xl` | 896 px | Index/overview pages with grids or card layouts (dashboard, grammar, vocabulary, phrasebook, progress) |
+| `max-w-3xl` | 768 px | Admin list pages (admin/users, admin/feedback) |
+| `max-w-2xl` | 672 px | Detail pages, forms, long-form content (lesson, grammar detail, settings, feedback, flashcards, faq, plan) |
+
+Full-screen interactive experiences (conversation, chat, listening, reading, assessment) are exempt — they manage their own layout internally.
+
 ---
 
 ## Tests

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -138,11 +139,6 @@ export default function SettingsPage() {
   const [avatarError, setAvatarError] = useState<string | null>(null)
   const [quota, setQuota] = useState<QuotaStatus | null>(null)
 
-  interface MItem { id: number; content: string; source: string; created_at: string }
-  const [memories, setMemories] = useState<MItem[]>([])
-  const [memoriesLoading, setMemoriesLoading] = useState(true)
-  const [clearAllMemoriesConfirm, setClearAllMemoriesConfirm] = useState(false)
-
   function resizeImage(file: File, maxPx: number): Promise<Blob> {
     return new Promise((resolve, reject) => {
       const img = new Image()
@@ -224,31 +220,6 @@ export default function SettingsPage() {
       .then((data: QuotaStatus) => setQuota(data))
       .catch(() => { /* silently ignore — quota section stays hidden */ })
   }, [])
-
-  const fetchMemories = useCallback(async () => {
-    setMemoriesLoading(true)
-    try {
-      const res = await apiFetch('/api/memories')
-      if (res.ok) {
-        const data = await res.json()
-        setMemories(data.memories || [])
-      }
-    } catch { /* ignore */ }
-    setMemoriesLoading(false)
-  }, [])
-
-  useEffect(() => { fetchMemories() }, [fetchMemories])
-
-  async function handleDeleteMemory(id: number) {
-    await apiFetch(`/api/memories/${id}`, { method: 'DELETE' })
-    setMemories((prev) => prev.filter((m) => m.id !== id))
-  }
-
-  async function handleClearAllMemories() {
-    await apiFetch('/api/memories', { method: 'DELETE' })
-    setMemories([])
-    setClearAllMemoriesConfirm(false)
-  }
 
   async function handleSave() {
     setSaving(true)
@@ -338,7 +309,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
+    <div className="p-6 max-w-2xl mx-auto">
       {/* Header */}
       <div className="mb-8 pb-4 border-b border-fl-border">
         <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">{t('sectionAccount')}</p>
@@ -491,6 +462,21 @@ export default function SettingsPage() {
         >
           {saving ? `— ${t('saving')}` : `— ${t('saveChanges')}`}
         </button>
+      </div>
+
+      {/* Memory */}
+      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
+        <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionMemory')}</span>
+        </div>
+        <Link
+          href="/settings/memories"
+          className="flex items-center justify-between font-mono text-xs text-fl-muted-1 hover:text-fl-fg transition-colors group"
+        >
+          <span className="tracking-widest uppercase">{t('memoryManage')}</span>
+          <span className="text-fl-muted-3 group-hover:text-fl-fg transition-colors">›</span>
+        </Link>
       </div>
 
       {/* Conversation */}
@@ -781,41 +767,6 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Memory */}
-      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-        <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
-          <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionMemory')}</span>
-        </div>
-        {memoriesLoading ? (
-          <p className="font-mono text-fl-hint text-fl-muted-2">{tCommon('loading')}</p>
-        ) : memories.length === 0 ? (
-          <p className="font-mono text-fl-hint text-fl-muted-2">{t('memoryEmpty')}</p>
-        ) : (
-          <>
-            <div className="flex flex-col gap-3 mb-4 max-h-64 overflow-y-auto">
-              {memories.map((m) => (
-                <div key={m.id} className="flex items-start justify-between gap-3 border border-fl-border p-3">
-                  <p className="font-mono text-xs text-fl-muted-1 leading-relaxed flex-1">{m.content}</p>
-                  <button
-                    onClick={() => handleDeleteMemory(m.id)}
-                    className="text-fl-muted-2 hover:text-fl-error shrink-0 transition-colors"
-                  >
-                    <span className="font-mono text-xs">×</span>
-                  </button>
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={() => setClearAllMemoriesConfirm(true)}
-              className="w-full font-mono text-fl-hint text-fl-muted-2 border border-fl-border py-2 tracking-widest uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
-            >
-              — {t('memoryClearAll')}
-            </button>
-          </>
-        )}
-      </div>
-
       <button
         onClick={() => setLogoutConfirm(true)}
         className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 mt-4 uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
@@ -852,15 +803,6 @@ export default function SettingsPage() {
         onCancel={() => setDeleteConfirm(false)}
       />
 
-      <ConfirmDialog
-        open={clearAllMemoriesConfirm}
-        title={t('memoryClearAllTitle')}
-        message={t('memoryClearAllMessage')}
-        confirmLabel={t('memoryClearAllConfirm')}
-        danger
-        onConfirm={handleClearAllMemories}
-        onCancel={() => setClearAllMemoriesConfirm(false)}
-      />
     </div>
   )
 }

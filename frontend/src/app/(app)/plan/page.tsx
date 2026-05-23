@@ -200,7 +200,7 @@ export default function PlanPage() {
           <div>
             <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">{t('duration')}</p>
             <p className="font-mono text-fl-body text-fl-muted-1">
-              {plan.duration_weeks} weeks · {plan.days_per_week} days/week
+              {t('durationDetail', { weeks: plan.duration_weeks, days: plan.days_per_week })}
             </p>
           </div>
           <div className="h-8 w-px bg-fl-border" />

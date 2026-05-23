@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Lerne Englisch mit einem echten Sprachgesprächspartner",
+    "hero": "Lerne Sprachen mit einem echten Sprachgesprächspartner",
     "heroSub": "Sprechen. Zuhören. Verbessern.",
     "signIn": "Anmelden",
     "dashboard": "Weiter",
@@ -230,7 +230,8 @@
     "memoryClearAll": "Alle Erinnerungen löschen",
     "memoryClearAllTitle": "Alle Erinnerungen löschen",
     "memoryClearAllMessage": "Dadurch werden alle gespeicherten Erinnerungen dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
-    "memoryClearAllConfirm": "Alles löschen"
+    "memoryClearAllConfirm": "Alles löschen",
+    "memoryManage": "Erinnerungen verwalten"
   },
   "legal": {
     "terms": {
@@ -437,6 +438,7 @@
     "learningRoadmap": "Lernfahrplan",
     "level": "Niveau",
     "duration": "Dauer",
+    "durationDetail": "{weeks} Wochen · {days} Tage/Woche",
     "unitsLabel": "Einheiten",
     "noUnitsForLevel": "Keine Einheiten für Niveau {level} verfügbar",
     "takeAssessmentArrow": "Bewertung starten →",
@@ -865,7 +867,7 @@
     "step1": {
       "label": "Willkommen",
       "title": "Willkommen bei FreeLingo",
-      "desc": "FreeLingo ist dein KI-gestützter Englischtutor. Übe in deinem eigenen Tempo, jederzeit, durch Gespräche, Lektionen und smarte Karteikarten."
+      "desc": "FreeLingo ist dein KI-gestützter Sprachtutor. Übe in deinem eigenen Tempo, jederzeit, durch Gespräche, Lektionen und smarte Karteikarten."
     },
     "step2": {
       "label": "Textchat",
@@ -875,7 +877,7 @@
     "step3": {
       "label": "Sprache",
       "title": "Sprich in Echtzeit",
-      "desc": "Nutze den Sprachgesprächsmodus, um dein gesprochenes Englisch mit Echtzeit-Transkription und sofortigem Aussprache-Feedback zu üben."
+      "desc": "Nutze den Sprachgesprächsmodus, um deine gesprochene Sprache mit Echtzeit-Transkription und sofortigem Aussprache-Feedback zu üben."
     },
     "step4": {
       "label": "Karteikarten",

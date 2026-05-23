@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Learn English with a real voice conversation partner",
+    "hero": "Learn languages with a real voice conversation partner",
     "heroSub": "Talk. Listen. Improve.",
     "signIn": "Sign in",
     "dashboard": "Continue",
@@ -230,7 +230,8 @@
     "memoryClearAll": "Clear All Memories",
     "memoryClearAllTitle": "Clear All Memories",
     "memoryClearAllMessage": "This will permanently delete all saved memories. This action cannot be undone.",
-    "memoryClearAllConfirm": "Clear All"
+    "memoryClearAllConfirm": "Clear All",
+    "memoryManage": "Manage memories"
   },
   "legal": {
     "terms": {
@@ -437,6 +438,7 @@
     "learningRoadmap": "Learning Roadmap",
     "level": "Level",
     "duration": "Duration",
+    "durationDetail": "{weeks} weeks · {days} days/week",
     "unitsLabel": "Units",
     "noUnitsForLevel": "No units available for level {level}",
     "takeAssessmentArrow": "Take Assessment →",
@@ -865,7 +867,7 @@
     "step1": {
       "label": "Welcome",
       "title": "Welcome to FreeLingo",
-      "desc": "FreeLingo is your AI-powered English tutor. Practice at your own pace, at any time, through conversation, lessons, and smart flashcards."
+      "desc": "FreeLingo is your AI-powered language tutor. Practice at your own pace, at any time, through conversation, lessons, and smart flashcards."
     },
     "step2": {
       "label": "Text chat",
@@ -875,7 +877,7 @@
     "step3": {
       "label": "Voice",
       "title": "Speak in real time",
-      "desc": "Use voice conversation mode to practise your spoken English with real-time transcription and instant feedback on your pronunciation."
+      "desc": "Use voice conversation mode to practise your spoken language with real-time transcription and instant feedback on your pronunciation."
     },
     "step4": {
       "label": "Flashcards",
