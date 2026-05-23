@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Apprenez l'anglais avec un vrai partenaire de conversation vocale",
+    "hero": "Apprenez les langues avec un vrai partenaire de conversation vocale",
     "heroSub": "Parlez. Écoutez. Progressez.",
     "signIn": "Se connecter",
     "dashboard": "Continuer",
@@ -230,7 +230,8 @@
     "memoryClearAll": "Effacer tous les souvenirs",
     "memoryClearAllTitle": "Effacer tous les souvenirs",
     "memoryClearAllMessage": "Cela supprimera définitivement tous les souvenirs enregistrés. Cette action est irréversible.",
-    "memoryClearAllConfirm": "Tout effacer"
+    "memoryClearAllConfirm": "Tout effacer",
+    "memoryManage": "Gérer les souvenirs"
   },
   "legal": {
     "terms": {
@@ -437,6 +438,7 @@
     "learningRoadmap": "Feuille de route",
     "level": "Niveau",
     "duration": "Durée",
+    "durationDetail": "{weeks} semaines · {days} jours/semaine",
     "unitsLabel": "Unités",
     "noUnitsForLevel": "Aucune unité disponible pour le niveau {level}",
     "takeAssessmentArrow": "Passer l'évaluation →",
@@ -865,7 +867,7 @@
     "step1": {
       "label": "Bienvenue",
       "title": "Bienvenue sur FreeLingo",
-      "desc": "FreeLingo est votre tuteur d'anglais alimenté par l'IA. Pratiquez à votre rythme, à tout moment, grâce à des conversations, des leçons et des cartes mémoire intelligentes."
+      "desc": "FreeLingo est votre tuteur de langues alimenté par l'IA. Pratiquez à votre rythme, à tout moment, grâce à des conversations, des leçons et des cartes mémoire intelligentes."
     },
     "step2": {
       "label": "Chat texte",
@@ -875,7 +877,7 @@
     "step3": {
       "label": "Voix",
       "title": "Parlez en temps réel",
-      "desc": "Utilisez le mode conversation vocale pour pratiquer votre anglais oral avec transcription en temps réel et retour immédiat sur votre prononciation."
+      "desc": "Utilisez le mode conversation vocale pour pratiquer votre langue orale avec transcription en temps réel et retour immédiat sur votre prononciation."
     },
     "step4": {
       "label": "Flashcards",

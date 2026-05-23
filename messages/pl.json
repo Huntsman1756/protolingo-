@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Ucz się angielskiego z prawdziwym partnerem do rozmowy głosowej",
+    "hero": "Ucz się języków z prawdziwym partnerem do rozmowy głosowej",
     "heroSub": "Mów. Słuchaj. Rozwijaj się.",
     "signIn": "Zaloguj się",
     "dashboard": "Kontynuuj",
@@ -230,7 +230,8 @@
     "memoryClearAll": "Wyczyść wszystkie wspomnienia",
     "memoryClearAllTitle": "Wyczyść wszystkie wspomnienia",
     "memoryClearAllMessage": "Spowoduje to trwałe usunięcie wszystkich zapisanych wspomnień. Tej akcji nie można cofnąć.",
-    "memoryClearAllConfirm": "Wyczyść wszystko"
+    "memoryClearAllConfirm": "Wyczyść wszystko",
+    "memoryManage": "Zarządzaj wspomnieniami"
   },
   "legal": {
     "terms": {
@@ -437,6 +438,7 @@
     "learningRoadmap": "Plan nauki",
     "level": "Poziom",
     "duration": "Czas trwania",
+    "durationDetail": "{weeks} tygodnie · {days} dni/tydzień",
     "unitsLabel": "Jednostki",
     "noUnitsForLevel": "Brak dostępnych jednostek dla poziomu {level}",
     "takeAssessmentArrow": "Oceń poziom →",
@@ -865,7 +867,7 @@
     "step1": {
       "label": "Witaj",
       "title": "Witaj w FreeLingo",
-      "desc": "FreeLingo to Twój korepetytor angielskiego oparty na sztucznej inteligencji. Ćwicz we własnym tempie, o dowolnej porze, przez rozmowy, lekcje i inteligentne fiszki."
+      "desc": "FreeLingo to Twój korepetytor językowy oparty na sztucznej inteligencji. Ćwicz we własnym tempie, o dowolnej porze, przez rozmowy, lekcje i inteligentne fiszki."
     },
     "step2": {
       "label": "Czat tekstowy",
@@ -875,7 +877,7 @@
     "step3": {
       "label": "Głos",
       "title": "Mów w czasie rzeczywistym",
-      "desc": "Korzystaj z trybu rozmowy głosowej, aby ćwiczyć mówiony angielski z transkrypcją na żywo i natychmiastową informacją zwrotną o wymowie."
+      "desc": "Korzystaj z trybu rozmowy głosowej, aby ćwiczyć mówiony język z transkrypcją na żywo i natychmiastową informacją zwrotną o wymowie."
     },
     "step4": {
       "label": "Fiszki",

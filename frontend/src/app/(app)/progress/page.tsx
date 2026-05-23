@@ -174,7 +174,7 @@ export default function ProgressPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl p-6 space-y-8">
+    <div className="mx-auto max-w-4xl p-6 space-y-8">
       {/* Header */}
       <div className="border border-fl-border bg-fl-surface">
         <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">

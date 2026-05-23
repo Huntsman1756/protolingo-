@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Aprende inglés con un compañero de conversación por voz real",
+    "hero": "Aprende idiomas con un compañero de conversación por voz real",
     "heroSub": "Habla. Escucha. Mejora.",
     "signIn": "Iniciar sesión",
     "dashboard": "Continuar",
@@ -230,7 +230,8 @@
     "memoryClearAll": "Borrar todos los recuerdos",
     "memoryClearAllTitle": "Borrar todos los recuerdos",
     "memoryClearAllMessage": "Esto eliminará permanentemente todos los recuerdos guardados. Esta acción no se puede deshacer.",
-    "memoryClearAllConfirm": "Borrar todo"
+    "memoryClearAllConfirm": "Borrar todo",
+    "memoryManage": "Gestionar memorias"
   },
   "legal": {
     "terms": {
@@ -437,6 +438,7 @@
     "learningRoadmap": "Hoja de ruta",
     "level": "Nivel",
     "duration": "Duración",
+    "durationDetail": "{weeks} semanas · {days} días/semana",
     "unitsLabel": "Unidades",
     "noUnitsForLevel": "No hay unidades disponibles para el nivel {level}",
     "takeAssessmentArrow": "Hacer evaluación →",
@@ -865,7 +867,7 @@
     "step1": {
       "label": "Bienvenido",
       "title": "Bienvenido a FreeLingo",
-      "desc": "FreeLingo es tu tutor de inglés con inteligencia artificial. Practica a tu ritmo, en cualquier momento, con conversaciones, lecciones y tarjetas de vocabulario."
+      "desc": "FreeLingo es tu tutor de idiomas con inteligencia artificial. Practica a tu ritmo, en cualquier momento, con conversaciones, lecciones y tarjetas de vocabulario."
     },
     "step2": {
       "label": "Chat de texto",
@@ -875,7 +877,7 @@
     "step3": {
       "label": "Voz",
       "title": "Habla en tiempo real",
-      "desc": "Usa el modo de conversación por voz para practicar tu inglés hablado con transcripción en tiempo real y retroalimentación inmediata sobre tu pronunciación."
+      "desc": "Usa el modo de conversación por voz para practicar tu idioma hablado con transcripción en tiempo real y retroalimentación inmediata sobre tu pronunciación."
     },
     "step4": {
       "label": "Flashcards",

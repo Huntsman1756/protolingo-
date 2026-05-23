@@ -1,6 +1,6 @@
 {
   "landing": {
-    "hero": "Aprenda inglês com um parceiro de conversa por voz real",
+    "hero": "Aprenda idiomas com um parceiro de conversa por voz real",
     "heroSub": "Fale. Ouça. Melhore.",
     "signIn": "Entrar",
     "dashboard": "Continuar",
@@ -230,7 +230,8 @@
     "memoryClearAll": "Apagar todas as memórias",
     "memoryClearAllTitle": "Apagar todas as memórias",
     "memoryClearAllMessage": "Isto irá eliminar permanentemente todas as memórias guardadas. Esta ação não pode ser desfeita.",
-    "memoryClearAllConfirm": "Apagar tudo"
+    "memoryClearAllConfirm": "Apagar tudo",
+    "memoryManage": "Gerenciar memórias"
   },
   "legal": {
     "terms": {
@@ -437,6 +438,7 @@
     "learningRoadmap": "Roteiro de aprendizado",
     "level": "Nível",
     "duration": "Duração",
+    "durationDetail": "{weeks} semanas · {days} dias/semana",
     "unitsLabel": "Unidades",
     "noUnitsForLevel": "Nenhuma unidade disponível para o nível {level}",
     "takeAssessmentArrow": "Fazer avaliação →",
@@ -865,7 +867,7 @@
     "step1": {
       "label": "Bem-vindo",
       "title": "Bem-vindo ao FreeLingo",
-      "desc": "O FreeLingo é o seu tutor de inglês com inteligência artificial. Pratique no seu ritmo, a qualquer momento, por meio de conversas, lições e flashcards inteligentes."
+      "desc": "O FreeLingo é o seu tutor de idiomas com inteligência artificial. Pratique no seu ritmo, a qualquer momento, por meio de conversas, lições e flashcards inteligentes."
     },
     "step2": {
       "label": "Chat de texto",
@@ -875,7 +877,7 @@
     "step3": {
       "label": "Voz",
       "title": "Fale em tempo real",
-      "desc": "Use o modo de conversa por voz para praticar seu inglês falado com transcrição em tempo real e feedback imediato sobre sua pronúncia."
+      "desc": "Use o modo de conversa por voz para praticar seu idioma falado com transcrição em tempo real e feedback imediato sobre sua pronúncia."
     },
     "step4": {
       "label": "Flashcards",
