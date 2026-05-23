@@ -938,6 +938,7 @@
     "section": "Abonament",
     "status": "Status",
     "statusActive": "Activ",
+    "statusCanceled": "Anulat",
     "statusTrialing": "Perioadă de probă",
     "statusPastDue": "Plată restantă",
     "statusNone": "Fără abonament",
@@ -952,7 +953,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Plan gratuit",
@@ -963,6 +964,10 @@
       "desc": "Acum poți sugera funcționalități noi și raporta erori direct din aplicație. Votează sugestiile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri până la finalizare."
     },
     "entry3": {
+      "label": "Istoric vocal",
+      "desc": "Conversațiile vocale apar acum în istoricul chatului. Fiecare cuvânt este salvat ca text, revizuiește sesiunile anterioare sau continuă-le din fila Tutor."
+    },
+    "entry4": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }

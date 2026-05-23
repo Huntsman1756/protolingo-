@@ -938,6 +938,7 @@
     "section": "Subskrypcja",
     "status": "Status",
     "statusActive": "Aktywna",
+    "statusCanceled": "Anulowana",
     "statusTrialing": "Wersja próbna",
     "statusPastDue": "Zaległa płatność",
     "statusNone": "Brak subskrypcji",
@@ -952,7 +953,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Darmowy plan",
@@ -963,6 +964,10 @@
       "desc": "Teraz możesz zgłaszać pomysły na nowe funkcje i błędy bezpośrednio z aplikacji. Głosuj na propozycje innych użytkowników, zostawiaj komentarze i śledź status każdego zgłoszenia aż do realizacji."
     },
     "entry3": {
+      "label": "Historia głosowa",
+      "desc": "Rozmowy głosowe pojawiają się teraz w historii czatu. Każde słowo jest zapisywane jako tekst, przeglądaj poprzednie sesje lub kontynuuj je z poziomu zakładki Tutor."
+    },
+    "entry4": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }

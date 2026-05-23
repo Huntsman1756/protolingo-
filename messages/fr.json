@@ -938,6 +938,7 @@
     "section": "Abonnement",
     "status": "Statut",
     "statusActive": "Actif",
+    "statusCanceled": "Annulé",
     "statusTrialing": "Essai",
     "statusPastDue": "Paiement en retard",
     "statusNone": "Aucun abonnement",
@@ -952,7 +953,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Compris",
     "entry1": {
       "label": "Plan gratuit",
@@ -963,6 +964,10 @@
       "desc": "Vous pouvez maintenant suggérer de nouvelles fonctionnalités et signaler des bugs directement depuis l'application. Votez pour les suggestions d'autres utilisateurs, laissez des commentaires et suivez l'avancement de chaque demande."
     },
     "entry3": {
+      "label": "Historique vocal",
+      "desc": "Vos conversations vocales apparaissent désormais dans l'historique du chat. Chaque mot prononcé est sauvegardé comme transcription texte, révisez vos sessions passées ou reprenez-les depuis l'onglet Tuteur."
+    },
+    "entry4": {
       "label": "Corrections",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }

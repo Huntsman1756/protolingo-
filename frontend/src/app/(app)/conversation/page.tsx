@@ -19,17 +19,19 @@ const ConversationMode = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex min-h-[calc(100vh-56px)] md:min-h-screen items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+      <div className="flex min-h-[calc(100vh-56px)] items-center justify-center md:min-h-screen">
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           ● Loading...
         </span>
       </div>
     ),
-  },
+  }
 )
 
 export default function ConversationPage() {
-  const [initialContext, setInitialContext] = useState<ChatContextItem[] | undefined>(undefined)
+  const [initialContext, setInitialContext] = useState<
+    ChatContextItem[] | undefined
+  >(undefined)
   const [autoStart, setAutoStart] = useState(false)
   const [cefrLevel, setCefrLevel] = useState<string | null>(null)
   const [planReady, setPlanReady] = useState(false)
@@ -40,7 +42,17 @@ export default function ConversationPage() {
       sessionStorage.removeItem('voice_context')
       try {
         const parsed = JSON.parse(raw) as unknown
-        if (Array.isArray(parsed)) {
+        if (
+          typeof parsed === 'object' &&
+          parsed !== null &&
+          'messages' in (parsed as Record<string, unknown>)
+        ) {
+          const pkg = parsed as { messages: unknown }
+          if (Array.isArray(pkg.messages)) {
+            setInitialContext(pkg.messages as ChatContextItem[])
+          }
+          setAutoStart(true)
+        } else if (Array.isArray(parsed)) {
           setInitialContext(parsed as ChatContextItem[])
           setAutoStart(true)
         }
@@ -49,13 +61,27 @@ export default function ConversationPage() {
       }
     }
     apiFetch('/api/plan/today')
-      .then((res) => res.ok ? res.json() : null)
-      .then((data) => { if (data?.cefr_level) setCefrLevel(data.cefr_level) })
-      .catch(() => { /* sin plan — usa default 1500ms */ })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.cefr_level) setCefrLevel(data.cefr_level)
+      })
+      .catch(() => {
+        /* sin plan — usa default 1500ms */
+      })
       .finally(() => setPlanReady(true))
   }, [])
 
   if (!planReady) return null
 
-  return <MaintenanceGate><PaywallGate><ConversationMode initialContext={initialContext} autoStart={autoStart} cefrLevel={cefrLevel} /></PaywallGate></MaintenanceGate>
+  return (
+    <MaintenanceGate>
+      <PaywallGate>
+        <ConversationMode
+          initialContext={initialContext}
+          autoStart={autoStart}
+          cefrLevel={cefrLevel}
+        />
+      </PaywallGate>
+    </MaintenanceGate>
+  )
 }

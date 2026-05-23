@@ -211,19 +211,20 @@ Daily progress record, one row per user per day.
 
 ### Conversation (`conversations`)
 
-Grouping of chat messages into named conversations.
+Grouping of chat messages (text and voice) into named conversations.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users (CASCADE) |
 | title | string | Auto-generated or user-set |
+| source | string | `'chat'` or `'voice'` (default `'chat'`) |
 | created_at | datetime | |
 | updated_at | datetime | |
 
 ### ChatHistory (`chat_history`)
 
-Individual messages within text chat conversations.
+Individual messages within text chat and voice conversations.
 
 | Column | Type | Notes |
 |--------|------|-------|

@@ -938,6 +938,7 @@
     "section": "Subscrição",
     "status": "Estado",
     "statusActive": "Ativa",
+    "statusCanceled": "Cancelada",
     "statusTrialing": "Avaliação",
     "statusPastDue": "Pagamento em atraso",
     "statusNone": "Sem subscrição",
@@ -952,7 +953,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.5.7",
+    "version": "v1.6.0",
     "cta": "Entendido",
     "entry1": {
       "label": "Plano gratuito",
@@ -963,6 +964,10 @@
       "desc": "Já podes sugerir novas funcionalidades e reportar erros diretamente na app. Vota nas sugestões de outros utilizadores, deixa comentários e acompanha o estado de cada pedido até à conclusão."
     },
     "entry3": {
+      "label": "Histórico de voz",
+      "desc": "As tuas conversas por voz agora aparecem no histórico do chat. Cada palavra é guardada como transcrição de texto, revê sessões passadas ou continua onde ficaste, diretamente do separador Tutor."
+    },
+    "entry4": {
       "label": "Correções",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }

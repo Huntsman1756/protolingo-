@@ -4,6 +4,7 @@ import asyncio
 import json
 import re
 import time
+from datetime import datetime, timezone
 from typing import TYPE_CHECKING
 
 from app.core.app_logger import get_logger
@@ -65,6 +66,7 @@ class ConversationPipeline:
         inactivity_timeout: int = 180,
         initial_context: list[dict] | None = None,
         user_id: int | None = None,
+        conversation_id: int | None = None,
         bio: str | None = None,
         learning_goals: str | None = None,
         voice: str = "",
@@ -75,6 +77,7 @@ class ConversationPipeline:
         self._voice = voice
         self._stt_language = get_iso639(target_language)
         self._user_id = user_id
+        self._conversation_id = conversation_id
         # Build user context section
         _ctx_parts: list[str] = []
         if learning_goals:
@@ -172,6 +175,7 @@ class ConversationPipeline:
 
             if full_response.strip():
                 self.history.append({"role": "assistant", "content": full_response.strip()})
+                asyncio.create_task(self._save_message("assistant", full_response.strip()))
                 await ws.send_json({"type": "transcript", "role": "assistant", "text": full_response.strip(), "final": True})
                 await ws.send_json({"type": "turn_complete"})
         except asyncio.CancelledError:
@@ -256,6 +260,9 @@ class ConversationPipeline:
 
         # 2. Streaming LLM
         self.history.append({"role": "user", "content": user_text})
+        # NOTE: user message is intentionally saved *after* a successful turn
+        # (alongside the assistant reply) so no orphan rows are written on
+        # LLM failures or barge-in cancellations.
         messages = [{"role": "system", "content": self.system_prompt}] + self.history[-20:]
 
         # Pipeline: TTS futures fire immediately as each sentence is ready;
@@ -352,6 +359,9 @@ class ConversationPipeline:
             return
 
         self.history.append({"role": "assistant", "content": full_response})
+        # Persist both sides of the turn together — only reached on success.
+        asyncio.create_task(self._save_message("user", user_text))
+        asyncio.create_task(self._save_message("assistant", full_response))
         logger.info("[pipeline] Turn complete — assistant: %r", full_response[:120])
         logger.info(
             "pipeline_turn_metrics",
@@ -398,6 +408,40 @@ class ConversationPipeline:
                 await db.commit()
         except Exception:
             logger.debug("[pipeline] Failed to save token usage — ignored")
+
+    async def _save_message(self, role: str, content: str) -> None:
+        """Persists a conversation transcript message to chat_history.
+
+        Completely defensive — silently ignores any error.
+        The save is sent to the background via asyncio.create_task so it never
+        blocks the voice pipeline.
+        """
+        if self._user_id is None or self._conversation_id is None:
+            return
+        try:
+            from app.core.database import AsyncSessionLocal  # noqa: PLC0415
+            from app.models.chat_history import ChatHistory  # noqa: PLC0415
+            from sqlalchemy import update  # noqa: PLC0415
+
+            from app.models.conversation import Conversation  # noqa: PLC0415
+
+            async with AsyncSessionLocal() as db:
+                db.add(
+                    ChatHistory(
+                        user_id=self._user_id,
+                        conversation_id=self._conversation_id,
+                        role=role,
+                        content=content,
+                    )
+                )
+                await db.execute(
+                    update(Conversation)
+                    .where(Conversation.id == self._conversation_id)
+                    .values(updated_at=datetime.now(timezone.utc).replace(tzinfo=None))
+                )
+                await db.commit()
+        except Exception:
+            logger.debug("[pipeline] Failed to save message — ignored")
 
     async def cancel_current(self) -> None:
         if self.current_task and not self.current_task.done():

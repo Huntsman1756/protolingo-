@@ -80,6 +80,57 @@ async def test_create_conversation_default_title(client, test_user):
 
 
 @pytest.mark.asyncio
+async def test_create_conversation_source_defaults_to_chat(client, test_user):
+    """Conversations created via the API always have source='chat'."""
+    _, headers = test_user
+    response = await client.post(
+        "/api/chat/conversations",
+        headers=headers,
+        json={"title": "Source test"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["source"] == "chat"
+
+
+@pytest.mark.asyncio
+async def test_list_conversations_includes_source_field(client, test_user):
+    """The list endpoint returns the 'source' field for every conversation."""
+    _, headers = test_user
+    await client.post(
+        "/api/chat/conversations",
+        headers=headers,
+        json={"title": "Has source"},
+    )
+    response = await client.get("/api/chat/conversations", headers=headers)
+    assert response.status_code == 200
+    for conv in response.json():
+        assert "source" in conv, f"Missing 'source' in conversation {conv}"
+
+
+@pytest.mark.asyncio
+async def test_voice_conversation_visible_in_list(client, test_user, db_session):
+    """A voice-sourced conversation inserted directly in the DB appears in the
+    chat list with source='voice', making it reviewable from the tutor sidebar."""
+    user, headers = test_user
+    from app.models.conversation import Conversation
+
+    conv = Conversation(
+        user_id=user.id,
+        title="Voice session — 23 de mayo de 2026",
+        source="voice",
+    )
+    db_session.add(conv)
+    await db_session.commit()
+
+    response = await client.get("/api/chat/conversations", headers=headers)
+    assert response.status_code == 200
+    voice_convs = [c for c in response.json() if c["source"] == "voice"]
+    assert len(voice_convs) == 1
+    assert voice_convs[0]["title"] == "Voice session — 23 de mayo de 2026"
+
+
+@pytest.mark.asyncio
 async def test_list_conversations_after_create(client, test_user):
     """Created conversation appears in the list."""
     _, headers = test_user

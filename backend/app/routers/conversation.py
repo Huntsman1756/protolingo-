@@ -16,9 +16,11 @@ from app.core.database import AsyncSessionLocal
 from app.core.deps import MAINTENANCE_KEY, get_current_user, require_subscription
 from app.services.subscription_service import is_subscribed
 from app.core.security import decode_access_token
+from app.models.conversation import Conversation as ConversationModel
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.services.conversation_pipeline import ConversationPipeline
+from app.services.language_helpers import voice_session_title
 from app.services.llm_adapter import llm_adapter
 from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_monthly_tokens, check_weekly_minutes
 
@@ -96,6 +98,7 @@ async def conversation_ws(
         token = auth_msg.get("token", "")
         initial_context_raw = auth_msg.get("context")  # optional chat history
         voice_pref: str = auth_msg.get("voice", "") or ""
+        client_conversation_id_raw = auth_msg.get("conversation_id")  # optional: reserved for future API use
         if settings.TTS_PROVIDER == "openai":
             _VALID_VOICES = frozenset(
                 {"alloy", "ash", "coral", "echo", "fable", "nova", "onyx", "sage", "shimmer"}
@@ -291,6 +294,41 @@ async def conversation_ws(
         await redis.aclose()
         raise
 
+    # Create or reuse a Conversation record so the full transcript is persisted
+    # to the same chat_history table used by text chats — this makes voice
+    # sessions visible & reviewable in the tutor chat sidebar.
+    # The frontend currently never sends conversation_id, so a new record is
+    # always created. The reuse path is kept for future API flexibility.
+    conversation_id: int | None = None
+    try:
+        async with AsyncSessionLocal() as db_conv:
+            # Reuse path: if a caller explicitly passes a valid conversation_id
+            # that belongs to this user, append to that conversation.
+            if isinstance(client_conversation_id_raw, (int, float)) and int(client_conversation_id_raw) > 0:
+                existing = await db_conv.get(ConversationModel, int(client_conversation_id_raw))
+                if existing and existing.user_id == user_id:
+                    conversation_id = existing.id
+            if conversation_id is None:
+                conv = ConversationModel(
+                    user_id=user_id,
+                    title=voice_session_title(native_language),
+                    source="voice",
+                )
+                db_conv.add(conv)
+                await db_conv.commit()
+                await db_conv.refresh(conv)
+                conversation_id = conv.id
+    except Exception as exc:
+        logger.error("[conversation] Failed to create conversation record: %s", exc)
+        await websocket.send_json({
+            "type": "error",
+            "code": "internal_error",
+            "message": "Failed to initialise conversation session.",
+        })
+        await websocket.close(code=1011)
+        await redis.aclose()
+        return
+
     pipeline = ConversationPipeline(
         llm=llm_adapter,
         tts=tts_service,
@@ -303,6 +341,7 @@ async def conversation_ws(
         inactivity_timeout=inactivity_timeout,
         initial_context=valid_context,
         user_id=user_id,
+        conversation_id=conversation_id,
         bio=user_bio,
         learning_goals=user_learning_goals,
         voice=voice_pref,

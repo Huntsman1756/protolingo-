@@ -175,7 +175,7 @@ Log level is controlled by the `LOG_LEVEL` environment variable (default `INFO`)
 
 ### Conversation history
 
-History is **in-memory only** during the session (last 20 messages). Unlike the text chat in Phase 1, voice conversations are not persisted to PostgreSQL — they are ephemeral. This is intentional: voice conversations are practice sessions, not reference material.
+Voice conversations are **persisted incrementally** to the same `chat_history` table used by text chats. Each user utterance (STT result) and each completed assistant response is saved via `asyncio.create_task` as a `ChatHistory` row linked to a `Conversation` record with `source='voice'`. This makes voice sessions visible and reviewable in the tutor chat sidebar alongside text conversations — users can click a past voice session to read the full transcript, or continue it in voice mode.
 
 ---
 

@@ -16,6 +16,7 @@ class Conversation(Base):
         Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
     )
     title: Mapped[str] = mapped_column(String(200), nullable=False, default="New conversation")
+    source: Mapped[str] = mapped_column(String(10), nullable=False, default="chat")
     created_at: Mapped[datetime] = mapped_column(
         DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
     )
