@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New feedback submitted</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f5f0;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .wrapper {
+      max-width: 520px;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 1px solid #d4d4cc;
+    }
+
+    .header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid #d4d4cc;
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #1a1a18;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .badge-feature {
+      background: #e8f4e8;
+      color: #2d7a2d;
+      border: 1px solid #b8d8b8;
+    }
+
+    .badge-bug {
+      background: #fce8e8;
+      color: #c0392b;
+      border: 1px solid #f0c0c0;
+    }
+
+    .body {
+      padding: 32px;
+    }
+
+    .label {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #9b9b94;
+      margin: 0 0 4px;
+    }
+
+    .value {
+      font-size: 13px;
+      color: #1a1a18;
+      margin: 0 0 20px;
+    }
+
+    .description-block {
+      border-left: 2px solid #d4d4cc;
+      padding: 12px 16px;
+      margin-top: 4px;
+    }
+
+    .description-text {
+      font-size: 12px;
+      color: #6b6b64;
+      line-height: 1.7;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .cta {
+      margin-top: 28px;
+    }
+
+    .cta a {
+      display: inline-block;
+      background: #1a1a18;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 20px;
+    }
+
+    .footer {
+      padding: 20px 32px;
+      border-top: 1px solid #d4d4cc;
+      font-size: 11px;
+      color: #9b9b94;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <span class="logo">● FreeLingo — New Feedback</span><br />
+      <span class="badge badge-{{type}}">{{type_label}}</span>
+    </div>
+    <div class="body">
+      <p class="label">Submitted by</p>
+      <p class="value">{{author_username}}</p>
+      <p class="label">Title</p>
+      <p class="value">{{title}}</p>
+      <p class="label">Description</p>
+      <div class="description-block">
+        <p class="description-text">{{description}}</p>
+      </div>
+      <div class="cta">
+        <a href="{{admin_url}}">View in admin panel &rarr;</a>
+      </div>
+    </div>
+    <div class="footer">
+      FreeLingo feedback board &mdash; <a href="{{base_url}}" style="color:#9b9b94;">{{base_url}}</a>
+    </div>
+  </div>
+</body>
+
+</html>

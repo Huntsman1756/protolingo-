@@ -756,3 +756,79 @@ async def test_feedback_entry_detail_includes_comments(client, test_user, db_ses
     assert len(data["comments"]) == 1
     assert data["comments"][0]["body"] == "Hello"
     assert data["comment_count"] == 1
+
+
+# ── Admin email notification on feedback creation ─────────────────────────────
+
+
+@pytest.mark.asyncio
+async def test_create_feedback_sends_admin_email(client, test_user):
+    """Creating a feature request triggers one admin notification email."""
+    from unittest.mock import AsyncMock, patch
+
+    _, headers = test_user
+    with patch(
+        "app.routers.feedback.email_service.send_feedback_notification",
+        new_callable=AsyncMock,
+    ) as mock_notify:
+        resp = await client.post(
+            "/api/feedback",
+            headers=headers,
+            json={"type": "feature", "title": "Admin notif test", "description": "Should email admin."},
+        )
+    assert resp.status_code == 201
+    mock_notify.assert_awaited_once()
+    call_kwargs = mock_notify.call_args.kwargs
+    assert call_kwargs["entry_type"] == "feature"
+    assert call_kwargs["title"] == "Admin notif test"
+
+
+@pytest.mark.asyncio
+async def test_create_bug_sends_admin_email(client, test_user):
+    """Creating a bug report also triggers one admin notification email."""
+    from unittest.mock import AsyncMock, patch
+
+    _, headers = test_user
+    with patch(
+        "app.routers.feedback.email_service.send_feedback_notification",
+        new_callable=AsyncMock,
+    ) as mock_notify:
+        resp = await client.post(
+            "/api/feedback",
+            headers=headers,
+            json={"type": "bug", "title": "Crash on login", "description": "App crashes."},
+        )
+    assert resp.status_code == 201
+    mock_notify.assert_awaited_once()
+    call_kwargs = mock_notify.call_args.kwargs
+    assert call_kwargs["entry_type"] == "bug"
+
+
+@pytest.mark.asyncio
+async def test_add_comment_does_not_send_admin_email(client, test_user, db_session):
+    """Adding a comment does NOT trigger any admin notification email."""
+    from unittest.mock import AsyncMock, patch
+    from app.models.feedback import FeedbackEntry
+    from datetime import datetime, timezone
+
+    user, headers = test_user
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    entry = FeedbackEntry(
+        type="feature", title="No email on comment", description="d",
+        status="pending", author_id=user.id, created_at=now,
+    )
+    db_session.add(entry)
+    await db_session.commit()
+    await db_session.refresh(entry)
+
+    with patch(
+        "app.routers.feedback.email_service.send_feedback_notification",
+        new_callable=AsyncMock,
+    ) as mock_notify:
+        resp = await client.post(
+            f"/api/feedback/{entry.id}/comments",
+            headers=headers,
+            json={"body": "Just a comment"},
+        )
+    assert resp.status_code == 201
+    mock_notify.assert_not_awaited()

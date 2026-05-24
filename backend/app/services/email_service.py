@@ -525,3 +525,49 @@ async def send_account_deleted_email(to: str, display_name: str, locale: str = "
         await fm.send_message(message)
     except Exception:
         logger.exception("Failed to send account deleted email to %s", to)
+
+
+async def send_feedback_notification(
+    entry_type: str,
+    title: str,
+    description: str,
+    author_username: str,
+    entry_id: int,
+) -> None:
+    """Notify CONTACT_EMAIL when a new feature request or bug report is submitted.
+
+    Always sent in English (admin-facing notification, no i18n needed).
+    Silently skipped when EMAIL_ENABLED=false or CONTACT_EMAIL is not set.
+    Never raises — the feedback entry is already persisted before this is called.
+    """
+    if not settings.EMAIL_ENABLED:
+        return
+    if not settings.CONTACT_EMAIL:
+        logger.warning("CONTACT_EMAIL is not configured — feedback notification dropped")
+        return
+    type_label = "Feature request" if entry_type == "feature" else "Bug report"
+    admin_url = f"{settings.APP_BASE_URL}/admin/feedback/{entry_id}"
+    html = _render_template(
+        "feedback_submitted.html",
+        {
+            "type": entry_type,
+            "type_label": type_label,
+            "author_username": author_username,
+            "title": title,
+            "description": description,
+            "admin_url": admin_url,
+            "base_url": settings.APP_BASE_URL,
+        },
+    )
+    subject_prefix = "[Feature Request]" if entry_type == "feature" else "[Bug Report]"
+    message = MessageSchema(
+        subject=f"{subject_prefix} {title}",
+        recipients=[settings.CONTACT_EMAIL],
+        body=html,
+        subtype=MessageType.html,
+    )
+    try:
+        fm = FastMail(_get_mail_config())
+        await fm.send_message(message)
+    except Exception:
+        logger.exception("Failed to send feedback notification for entry #%d", entry_id)

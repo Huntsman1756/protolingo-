@@ -1,6 +1,7 @@
 """Feedback router — feature requests and bug reports with voting and comments."""
 from __future__ import annotations
 
+import asyncio
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
@@ -24,6 +25,7 @@ from app.schemas.feedback import (
     FeedbackVoteResponse,
     PaginatedFeedbackResponse,
 )
+from app.services import email_service
 
 router = APIRouter(prefix="/api/feedback", tags=["feedback"])
 
@@ -155,6 +157,15 @@ async def create_feedback(
     db.add(entry)
     await db.commit()
     await db.refresh(entry)
+    asyncio.create_task(
+        email_service.send_feedback_notification(
+            entry_type=entry.type,
+            title=entry.title,
+            description=entry.description,
+            author_username=current_user.username,
+            entry_id=entry.id,
+        )
+    )
     return await _build_entry_out(entry, current_user, db)
 
 
