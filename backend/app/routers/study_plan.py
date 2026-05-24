@@ -174,9 +174,9 @@ async def get_today_lessons(
 
     days = week["days"] if isinstance(week, dict) else week.days
 
-    # Build title→id lookup from already-loaded lessons
-    lesson_by_title: dict[str, int] = {
-        row.title: row.id
+    # Build title→(id, is_completed) lookup from already-loaded lessons
+    lesson_by_title: dict[str, tuple[int, bool]] = {
+        row.title: (row.id, row.is_completed)
         for row in lessons_by_wday.get((current_week, current_day), [])
     }
 
@@ -191,7 +191,9 @@ async def get_today_lessons(
         d_min = d["estimated_minutes"] if isinstance(d, dict) else d.estimated_minutes
         d_unit_id = d.get("unit_id", "") if isinstance(d, dict) else getattr(d, "unit_id", "")
 
-        lesson_id = lesson_by_title.get(d_title)
+        _existing = lesson_by_title.get(d_title)
+        lesson_id: Optional[int] = _existing[0] if _existing else None
+        lesson_completed: bool = _existing[1] if _existing else False
 
         # Resolve curriculum context for lesson generation
         grammar_points: list[str] = []
@@ -266,6 +268,7 @@ async def get_today_lessons(
                 existing = dup.scalar_one_or_none()
                 if existing:
                     lesson_id = existing.id
+                    lesson_completed = existing.is_completed
             except Exception:
                 logger.exception("Failed to generate or persist lesson for plan %s", plan.id)
 
@@ -280,6 +283,7 @@ async def get_today_lessons(
                     objectives=d_obj,
                     estimated_minutes=d_min,
                     unit_id=d_unit_id,
+                    is_completed=lesson_completed,
                 )
             )
 

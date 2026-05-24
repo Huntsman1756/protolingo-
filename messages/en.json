@@ -469,7 +469,9 @@
     "noUnitsDesc": "Content for this level is being prepared. Check back soon.",
     "completionTestTitle": "Level {level} Completion Test",
     "levelTestResult": "Level Test Result",
-    "testScore": "Score:"
+    "testScore": "Score:",
+    "pendingLessons": "Pending lessons",
+    "resume": "Resume"
   },
   "lesson": {
     "loading": "Loading lesson...",

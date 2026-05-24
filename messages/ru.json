@@ -469,7 +469,9 @@
     "noUnitsDesc": "Контент для этого уровня готовится. Скоро будет доступен.",
     "completionTestTitle": "Тест завершения уровня {level}",
     "levelTestResult": "Результат теста уровня",
-    "testScore": "Счёт:"
+    "testScore": "Счёт:",
+    "pendingLessons": "Незавершённые уроки",
+    "resume": "Продолжить"
   },
   "lesson": {
     "loading": "Загрузка урока...",

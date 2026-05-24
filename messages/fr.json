@@ -469,7 +469,9 @@
     "noUnitsDesc": "Le contenu pour ce niveau est en cours de préparation. Revenez bientôt.",
     "completionTestTitle": "Test de fin de niveau {level}",
     "levelTestResult": "Résultat du test de niveau",
-    "testScore": "Score :"
+    "testScore": "Score :",
+    "pendingLessons": "Leçons en attente",
+    "resume": "Reprendre"
   },
   "lesson": {
     "loading": "Chargement de la leçon...",

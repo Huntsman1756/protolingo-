@@ -333,3 +333,42 @@ async def test_today_auto_advances_when_day_complete(client, test_user, db_sessi
     data = response.json()
     # Auto-advance should have moved progress_day from 0 to 1
     assert data["progress_day"] == 1
+
+
+# ── GET /today when plan is fully complete ────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_today_returns_empty_when_plan_complete(client, test_user, db_session):
+    """GET /today with progress_day == total_days returns empty lessons list."""
+    from app.models.study_plan import StudyPlan
+
+    user, headers = test_user
+
+    total = 2  # 1 week × 2 days
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        goals=["grammar"],
+        duration_weeks=1,
+        days_per_week=2,
+        current_unit="",
+        generated_plan={
+            "title": "Complete Plan",
+            "cefr_level": "A1",
+            "duration_weeks": 1,
+            "days_per_week": 2,
+            "ends_with_test": False,
+            "weekly_plan": [],
+        },
+        is_active=True,
+        progress_day=total,  # already at total — plan finished
+    )
+    db_session.add(plan)
+    await db_session.commit()
+
+    response = await client.get("/api/study-plan/today", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["lessons"] == []
+    assert data["progress_day"] == total
+    assert data["total_days"] == total

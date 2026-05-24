@@ -469,7 +469,9 @@
     "noUnitsDesc": "Conținutul pentru acest nivel este în pregătire. Revino curând.",
     "completionTestTitle": "Test de finalizare a nivelului {level}",
     "levelTestResult": "Rezultatul testului de nivel",
-    "testScore": "Scor:"
+    "testScore": "Scor:",
+    "pendingLessons": "Lecții restante",
+    "resume": "Reia"
   },
   "lesson": {
     "loading": "Se încarcă lecția...",

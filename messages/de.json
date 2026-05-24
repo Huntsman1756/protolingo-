@@ -469,7 +469,9 @@
     "noUnitsDesc": "Die Inhalte für diese Stufe werden gerade vorbereitet. Schau bald wieder vorbei.",
     "completionTestTitle": "Stufenabschlusstest {level}",
     "levelTestResult": "Stufentestergebnis",
-    "testScore": "Punktzahl:"
+    "testScore": "Punktzahl:",
+    "pendingLessons": "Ausstehende Lektionen",
+    "resume": "Fortsetzen"
   },
   "lesson": {
     "loading": "Lektion wird geladen...",

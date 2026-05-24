@@ -12,6 +12,14 @@ import type { CEFRLevel } from '@/data/grammar'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
+interface PendingLesson {
+  id: number
+  title: string
+  lesson_type: string
+  week_number: number
+  day_number: number
+}
+
 interface Lesson {
   id: number | null
   title: string
@@ -91,15 +99,17 @@ export default function PlanPage() {
   const [competencies, setCompetencies] = useState<CompetencyMap>({})
   const [activeDrawer, setActiveDrawer] = useState<CurriculumUnit | null>(null)
   const [activeLessonId, setActiveLessonId] = useState<number | null>(null)
+  const [pendingLessons, setPendingLessons] = useState<PendingLesson[]>([])
 
   const loadPlan = useCallback(async () => {
     setLoading(true)
     setError('')
     try {
-      const [planRes, compRes, todayRes] = await Promise.all([
+      const [planRes, compRes, todayRes, pendingRes] = await Promise.all([
         apiFetch('/api/study-plan/current'),
         apiFetch('/api/progress/competencies').catch(() => null),
         apiFetch('/api/study-plan/today').catch(() => null),
+        apiFetch('/api/study-plan/pending-lessons').catch(() => null),
       ])
 
       if (!planRes.ok) {
@@ -128,9 +138,14 @@ export default function PlanPage() {
       }
 
       if (todayRes?.ok) {
-        const todayData = await todayRes.json() as { lessons: { id: number | null; completed?: boolean }[] }
-        const nextLesson = todayData.lessons.find((l) => l.id != null && !l.completed)
+        const todayData = await todayRes.json() as { lessons: { id: number | null; is_completed?: boolean }[] }
+        const nextLesson = todayData.lessons.find((l) => l.id != null && !l.is_completed)
         setActiveLessonId(nextLesson?.id ?? null)
+      }
+
+      if (pendingRes?.ok) {
+        const pendingData = await pendingRes.json() as PendingLesson[]
+        setPendingLessons(pendingData)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load')
@@ -210,6 +225,36 @@ export default function PlanPage() {
           </div>
         </div>
       </div>
+
+      {/* ── Pending lessons ── */}
+      {pendingLessons.length > 0 && (
+        <div className="border border-fl-accent/30 bg-fl-surface">
+          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-accent/20">
+            <span className="text-fl-label text-fl-accent">●</span>
+            <span className="font-mono text-fl-label tracking-widest text-fl-accent uppercase">
+              {pendingLessons.length} {t('pendingLessons')}
+            </span>
+          </div>
+          <div className="divide-y divide-fl-border">
+            {pendingLessons.map((lesson) => (
+              <div key={lesson.id} className="flex items-center justify-between px-6 py-3">
+                <div>
+                  <p className="font-mono text-xs text-fl-fg">{lesson.title}</p>
+                  <p className="font-mono text-fl-hint text-fl-muted-3 uppercase tracking-widest mt-0.5">
+                    W{lesson.week_number} D{lesson.day_number} · {lesson.lesson_type}
+                  </p>
+                </div>
+                <button
+                  onClick={() => router.push(`/lesson/${lesson.id}`)}
+                  className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-3 py-1 uppercase hover:bg-fl-accent/90 transition-colors"
+                >
+                  {t('resume')}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* ── Unit list ── */}
       <div className="space-y-2">

@@ -469,7 +469,9 @@
     "noUnitsDesc": "Il contenuto per questo livello è in preparazione. Torna presto.",
     "completionTestTitle": "Test di completamento livello {level}",
     "levelTestResult": "Risultato del test di livello",
-    "testScore": "Punteggio:"
+    "testScore": "Punteggio:",
+    "pendingLessons": "Lezioni in sospeso",
+    "resume": "Riprendi"
   },
   "lesson": {
     "loading": "Caricamento lezione...",

@@ -469,7 +469,9 @@
     "noUnitsDesc": "Inhoud voor dit niveau wordt voorbereid. Kom snel terug.",
     "completionTestTitle": "Niveauafsluitingstest {level}",
     "levelTestResult": "Niveautestresultaat",
-    "testScore": "Score:"
+    "testScore": "Score:",
+    "pendingLessons": "Openstaande lessen",
+    "resume": "Hervatten"
   },
   "lesson": {
     "loading": "Les laden...",

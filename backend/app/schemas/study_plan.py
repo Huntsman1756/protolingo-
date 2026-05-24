@@ -77,6 +77,7 @@ class TodayLesson(BaseModel):
     objectives: list[str]
     estimated_minutes: int
     unit_id: str = ""
+    is_completed: bool = False
 
 
 class TodayResponse(BaseModel):
