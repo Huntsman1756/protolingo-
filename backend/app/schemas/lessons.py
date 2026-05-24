@@ -11,7 +11,7 @@ class ExerciseContent(BaseModel):
     question: str
     options: Optional[list[str]] = None
     correct: str
-    explanation: str
+    explanation: Optional[str] = None
 
 
 class LessonContent(BaseModel):
@@ -19,7 +19,7 @@ class LessonContent(BaseModel):
     title: str
     cefr_level: str
     explanation: dict
-    exercises: list[dict]
+    exercises: list[ExerciseContent]
     vocabulary: Optional[list[dict]] = None
     grammar_refs: list[str] = []
     unit_id: Optional[str] = None
@@ -54,6 +54,7 @@ class ExerciseResponse(BaseModel):
     user_answer: Optional[str] = None
     score: Optional[float] = None
     feedback: Optional[str] = None
+    explanation: Optional[str] = None
     answered_at: Optional[datetime] = None
 
     model_config = {"from_attributes": True}
@@ -83,6 +84,12 @@ class FreeWriteEvaluation(BaseModel):
     score: float
     feedback: str
     corrections: list[dict]
+
+
+class FillBlankEvaluation(BaseModel):
+    is_correct: bool
+    score: float
+    feedback: str
 
 
 class PronunciationEvaluation(BaseModel):

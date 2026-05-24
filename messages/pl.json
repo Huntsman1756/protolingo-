@@ -320,7 +320,10 @@
     "startWithAssessment": "Zacznij od oceny poziomu.",
     "takeAssessmentArrow": "Oceń poziom →",
     "goToMyPlan": "Mój plan →",
-    "quickActions": "Szybkie akcje"
+    "quickActions": "Szybkie akcje",
+    "dayProgress": "Dzień {current} z {total}",
+    "skipDay": "Pomiń dzisiaj",
+    "pendingLessons": "zaległe lekcje"
   },
   "assessment": {
     "title": "Ocena poziomu",
@@ -466,7 +469,9 @@
     "noUnitsDesc": "Treści dla tego poziomu są przygotowywane. Sprawdź ponownie wkrótce.",
     "completionTestTitle": "Test ukończenia poziomu {level}",
     "levelTestResult": "Wynik testu poziomu",
-    "testScore": "Wynik:"
+    "testScore": "Wynik:",
+    "pendingLessons": "Zaległe lekcje",
+    "resume": "Wznów"
   },
   "lesson": {
     "loading": "Ładowanie lekcji...",
@@ -494,11 +499,17 @@
     "score": "Wynik",
     "examples": "Przykłady",
     "pronunciationExercise": "Wymowa",
+    "exerciseTypeMultipleChoice": "Wielokrotny wybór",
+    "exerciseTypeFillBlank": "Uzupełnianie luk",
+    "exerciseTypeFreeWrite": "Swobodne pisanie",
+    "exerciseTypePronunciation": "Wymowa",
     "tapToListen": "Dotknij, aby posłuchać",
     "recordNow": "Nagraj swoją odpowiedź",
     "exit": "Wyjdź",
     "exitConfirmTitle": "Wyjść z lekcji?",
-    "exitConfirmMessage": "Twój postęp w tej lekcji zostanie utracony."
+    "exitConfirmMessage": "Twój postęp w tej lekcji zostanie utracony.",
+    "dayComplete": "Dzień ukończony!",
+    "dayCompleteMsg": "Wszystkie dzisiejsze lekcje są ukończone."
   },
   "flashcards": {
     "title": "Fiszki",
@@ -963,11 +974,11 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Darmowy plan",
-      "desc": "Panel, fiszki, lekcje, plan nauki i test poziomujący są teraz bezpłatne dla wszystkich zarejestrowanych użytkowników. Subskrypcja nie jest wymagana."
+      "label": "Ulepszenia planu nauki",
+      "desc": "Twój postęp w planie nauki jest teraz śledzony dzień po dniu, niezależnie od dat w kalendarzu. Ukończone dni przechodzą automatycznie, możesz pominąć bieżący dzień i nadrobić zaległe lekcje w dowolnym momencie. Panel wyświetla pasek postępu i licznik dni na pierwszy rzut oka."
     },
     "entry2": {
       "label": "Tablica opinii",

@@ -129,6 +129,7 @@ One active plan per user. Generated after CEFR assessment.
 | duration_weeks | integer | 4, 8, 12, or 16 (maps to intensity) |
 | days_per_week | integer | Derived: 5, 5, 4, or 3 |
 | current_unit | string | Curriculum unit ID, e.g. `"a1-unit-3"` |
+| progress_day | integer | 0-indexed count of days completed. `N` means N days done; user is on day index N. Default 0. See `specs/study-plan.instructions.md` for full semantics. |
 | generated_plan | JSON | Full week-by-week plan (WeekPlan → DayPlan → Unit assignments) |
 | is_active | boolean | True for the current plan |
 | completion_test_taken | boolean | Whether end-of-level test was completed |

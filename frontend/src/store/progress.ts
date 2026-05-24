@@ -9,6 +9,7 @@ interface TodayLesson {
   objectives: string[]
   estimatedMinutes: number
   unitId?: string
+  isCompleted?: boolean
 }
 
 interface UnitProgress {

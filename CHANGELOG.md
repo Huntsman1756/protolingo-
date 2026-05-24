@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.1] - 2026-05-24
+
+### Added
+
+- **Progress-based study plan advancement**: the study plan now tracks progress with a dedicated `progress_day` counter instead of calendar dates. `progress_day` is a 0-indexed integer counting completed days; the current day is always derived from it regardless of when the user last logged in.
+- **Auto-advance**: `GET /api/study-plan/today` automatically moves `progress_day` forward whenever all lessons for the current day are marked complete, so users are always presented with the next pending day without any manual action.
+- **Skip day** (`POST /api/study-plan/skip-day`): users can skip the current day's lessons and move straight to the next one. Skipped but unfinished lessons become *pending*.
+- **Pending lessons** (`GET /api/study-plan/pending-lessons`): returns incomplete lessons from days that have already been passed (via completion or skip). The dashboard shows a pending-lessons counter and a quick-access button linking to `/plan`.
+- **Day-complete celebration**: the lesson player detects when completing a lesson triggers an auto-advance and shows a "Day complete" banner on the completion screen.
+- **Dashboard progress bar**: a thin progress bar and "Day X of Y" label reflect the user's position in the plan at a glance.
+- **DB migration** `0025_plan_progress_day`: adds `progress_day INTEGER NOT NULL DEFAULT 0` to `study_plans`; existing plans are back-filled based on the furthest completed lesson.
+- **i18n**: `dashboard.dayProgress`, `dashboard.skipDay`, `dashboard.pendingLessons`, `lesson.dayComplete`, `lesson.dayCompleteMsg` keys added to all 10 locale files.
+
+### Fixed
+- Minor bug fixes and improvements.
+
 ## [1.6.0] - 2026-05-23
 
 ### Added
