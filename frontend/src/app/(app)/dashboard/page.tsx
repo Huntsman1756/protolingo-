@@ -17,6 +17,7 @@ interface TodayLessonItem {
   day: number
   objectives: string[]
   estimated_minutes: number
+  is_completed: boolean
 }
 
 export default function DashboardPage() {
@@ -54,6 +55,7 @@ export default function DashboardPage() {
           id: l.id, title: l.title, lessonType: l.lesson_type,
           week: l.week, day: l.day, objectives: l.objectives || [],
           estimatedMinutes: l.estimated_minutes || 25,
+          isCompleted: l.is_completed,
         })))
         setHasPlan(true)
       }
@@ -169,7 +171,7 @@ export default function DashboardPage() {
                         {tPlan(`lessonTypes.${lesson.lessonType}`)} · {lesson.estimatedMinutes}min
                       </p>
                     </div>
-                    {lesson.id && completedToday.includes(lesson.id) ? (
+                    {lesson.id && (completedToday.includes(lesson.id) || lesson.isCompleted) ? (
                       <span className="font-mono text-fl-label text-fl-muted-2 uppercase tracking-widest">✓ {t('lessonDone')}</span>
                     ) : lesson.id ? (
                       <Link href={`/lesson/${lesson.id}`}>
