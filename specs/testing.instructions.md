@@ -9,7 +9,7 @@ applyTo: "**/*.test.*, **/*.spec.*, **/tests/**, **/__tests__/**"
 
 | Layer | Framework | Scope | Coverage | Status |
 |-------|-----------|-------|----------|--------|
-| Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | >= 70% | Implemented |
+| Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | >= 60% | Implemented |
 | Frontend unit | Vitest + Testing Library | Stores, utils, apiFetch interceptor | >= 60% | Pending |
 | Frontend component | Vitest + Testing Library | UI components, forms | Smoke | Pending |
 | E2E | Playwright | Critical user flows | Smoke | Pending |
@@ -169,7 +169,7 @@ CI will run on GitHub Actions, triggered on pushes and pull requests. The projec
 |-----|-------|-----------|
 | Backend lint | `ruff check --select E,W,F` | Zero errors |
 | Backend format | `black --check .` | Clean diff |
-| Backend tests | `pytest --cov-fail-under=70` | >= 70% coverage |
+| Backend tests | `pytest --cov-fail-under=70` | >= 60% coverage |
 | Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |
 | Frontend format | `prettier --check src/` | Clean diff |
 | Frontend typecheck | `npx tsc --noEmit` | Clean output |

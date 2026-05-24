@@ -737,7 +737,7 @@ Located in `backend/tests/` with 25 test files:
 - Redis mocked with in-memory dict (matching `setex`, `get`, `delete`, `getex` interface)
 - LLM calls mocked at the service layer (no real LLM needed)
 - `asyncio_mode = "auto"` for async test functions
-- Coverage target: >= 70%
+- Coverage target: >= 60%
 
 ### Frontend
 

@@ -13,6 +13,7 @@ from app.models.user import User
 from app.schemas.lessons import (
     ExerciseAnswerRequest,
     ExerciseAnswerResponse,
+    ExerciseResponse,
     LessonDetailResponse,
     LessonResponse,
 )
@@ -53,7 +54,23 @@ async def get_lesson(
     )
     exercises = result.scalars().all()
 
-    return LessonDetailResponse(lesson=lesson, exercises=exercises)
+    # Sanitize fill_blank exercises that were generated before constraint #6 was enforced:
+    # if `question` is an instruction text (no ___) but `explanation` has the gapped sentence,
+    # swap them so the user sees the sentence — without touching the DB.
+    fixed: list[ExerciseResponse] = []
+    for ex in exercises:
+        q, exp = ex.question, ex.explanation
+        if ex.exercise_type == "fill_blank" and "___" not in q:
+            if exp and "___" in exp:
+                q, exp = exp, q
+        fixed.append(ExerciseResponse(
+            id=ex.id, lesson_id=ex.lesson_id, exercise_type=ex.exercise_type,
+            question=q, options=ex.options, correct_answer=ex.correct_answer,
+            user_answer=ex.user_answer, score=ex.score, feedback=ex.feedback,
+            explanation=exp, answered_at=ex.answered_at,
+        ))
+
+    return LessonDetailResponse(lesson=lesson, exercises=fixed)
 
 
 @router.post("/{lesson_id}/start", response_model=LessonResponse)
