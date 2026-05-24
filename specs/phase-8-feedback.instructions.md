@@ -76,7 +76,7 @@ Creates `feedback_entries`, `feedback_votes`, `feedback_comments` with all index
 | Method | Path | Rate limit | Auth | Notes |
 |--------|------|------------|------|-------|
 | GET | `/` | 60/min | get_current_user | Accepts `type`, `status` (alias for `status_filter`), `sort` (votes\|date), `order` (asc\|desc), `skip`, `limit`. Count runs against `stmt.subquery()` for accurate filtered totals. |
-| POST | `/` | 10/hour | get_current_user | Creates entry with status `pending`. Returns HTTP 201. |
+| POST | `/` | 10/hour | get_current_user | Creates entry with status `pending`. Returns HTTP 201. Fires an admin email notification (see below). |
 | GET | `/{id}` | 60/min | get_current_user | Returns `FeedbackEntryDetail` with comments list (ordered by `created_at ASC`). |
 | DELETE | `/{id}` | 20/min | get_current_user | Allowed if `author_id == current_user.id` OR `current_user.role == "admin"`. Returns HTTP 204. |
 | POST | `/{id}/vote` | 30/min | get_current_user | Toggle: if vote exists → delete + decrement `vote_count`; else → insert + increment. `max(0, ...)` guard prevents negative counts. Returns `{voted, vote_count}`. |
@@ -147,3 +147,16 @@ Paginated table of all entries (admin only). Filters: type (all/feature/bug) and
 ## i18n
 
 `feedback` namespace (44 keys) added to all 10 locale files: `en`, `es`, `fr`, `de`, `it`, `nl`, `pl`, `pt`, `ro`, `ru`. `nav.feedback` key added to all 10 locales. All non-English locales have full native translations for UI strings and status labels.
+
+---
+
+## Admin email notifications
+
+When a user creates a new feature request or bug report, an email is sent to `CONTACT_EMAIL` (if `EMAIL_ENABLED=true` and `CONTACT_EMAIL` is configured).
+
+- **Triggered by:** `POST /api/feedback` only. Comments (`POST /{id}/comments`) do **not** send notifications.
+- **Language:** English only (admin-facing, no i18n).
+- **Subject:** `[Feature Request] <title>` or `[Bug Report] <title>`.
+- **Template:** `backend/app/templates/email/feedback_submitted.html` — shows type badge, author username, title, description, and a direct link to `APP_BASE_URL/admin/feedback/{id}`.
+- **Implementation:** `email_service.send_feedback_notification()`. Called via `asyncio.create_task()` after `db.commit()` to avoid blocking the HTTP response. Errors are logged but never re-raised — the entry is already persisted.
+- **Config:** reuses existing `EMAIL_ENABLED` and `CONTACT_EMAIL` settings; no new env vars required.
