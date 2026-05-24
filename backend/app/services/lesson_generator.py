@@ -34,14 +34,28 @@ STRICT CONSTRAINTS:
 4. Do NOT introduce structures from higher levels.
 5. In "grammar_refs", return 1–3 grammar topic slugs that are most relevant to this lesson.
    Only use slugs from this list: {valid_slugs}.
-6. For "fill_blank" exercises: the "question" field MUST be the sentence with the blank (use ___ for the gap),
-   NOT a general instruction like "Complete the sentence with...". Put any instructions in "explanation" only.
-   Example — WRONG: "question": "Complete with the correct possessive adjective: my / your / his"
-   Example — CORRECT: "question": "___ name is Maria. (she)"
-7. For "multiple_choice" exercises: options MUST NOT include letter or number prefixes
+6. For "multiple_choice" exercises: options MUST NOT include letter or number prefixes
    (no "A.", "B.", "1.", "2."). Each option must be plain answer text only.
    Example — WRONG: "options": ["A. works", "B. is working"]
    Example — CORRECT: "options": ["works", "is working"]
+
+━━━ CRITICAL RULE FOR fill_blank EXERCISES ━━━
+The "question" field MUST contain the gapped sentence with ___ marking the blank.
+NEVER put an instruction like "Complete the sentence with..." in "question".
+ALWAYS put the actual sentence with the gap in "question". Use "explanation" for hints only.
+
+WRONG (question has no sentence, no ___):
+  "question": "Complete with the correct possessive adjective: my / your / his",
+  "explanation": "Her name is Maria. Fill in the blank."
+
+WRONG (instruction in question, sentence buried in explanation):
+  "question": "Fill in the blank:",
+  "explanation": "___ name is Maria. (she)"
+
+CORRECT:
+  "question": "___ name is Maria. (she)",
+  "explanation": "Use the possessive adjective for 'she'."
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 The lesson should take about 20-30 minutes. Include 3-5 exercises of mixed types
 (multiple_choice, fill_blank, free_write, pronunciation).
@@ -96,6 +110,10 @@ Return a JSON object:
   ],
   "grammar_refs": ["present-continuous", "present-simple"]
 }}
+
+Before returning, verify:
+- Every fill_blank exercise has ___ inside the "question" field (not in "explanation").
+- No multiple_choice option starts with a letter or number prefix (A., B., 1., 2.).
 """
 
 FILL_BLANK_EVAL_PROMPT = """
@@ -197,6 +215,13 @@ async def generate_lesson(
     )
     # Validate grammar_refs — strip any slugs not in the known set
     lesson.grammar_refs = [s for s in lesson.grammar_refs if s in VALID_GRAMMAR_SLUGS]
+    # Sanitize fill_blank exercises: question MUST contain ___ (the gapped sentence).
+    # If the LLM put the instruction in question and the actual sentence in explanation,
+    # swap them so the user always sees the gapped sentence in the UI.
+    for ex in lesson.exercises:
+        if ex.type == "fill_blank" and "___" not in ex.question:
+            if ex.explanation and "___" in ex.explanation:
+                ex.question, ex.explanation = ex.explanation, ex.question
     return lesson
 
 
