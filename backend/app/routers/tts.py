@@ -36,7 +36,11 @@ async def text_to_speech(
         raise HTTPException(status_code=503, detail="TTS service is not enabled")
 
     synth_t0 = time.perf_counter()
-    audio = await tts_service.synthesize(body.text, body.voice)
+    # For local Kokoro TTS, ignore the client voice param — only OpenAI voices
+    # should be forwarded. Prevents 400 errors when user switches from OpenAI
+    # to local and stale OpenAI voice names (e.g. "nova") remain in localStorage.
+    voice = body.voice if settings.TTS_PROVIDER != "local" else None
+    audio = await tts_service.synthesize(body.text, voice)
     synth_ms = (time.perf_counter() - synth_t0) * 1000
     total_ms = (time.perf_counter() - t0) * 1000
 
