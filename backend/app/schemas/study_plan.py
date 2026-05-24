@@ -53,6 +53,7 @@ class StudyPlanResponse(BaseModel):
     duration_weeks: int
     days_per_week: int
     current_unit: str
+    progress_day: int = 0
     generated_plan: dict
     is_active: bool
     completion_test_taken: bool
@@ -76,10 +77,24 @@ class TodayLesson(BaseModel):
     objectives: list[str]
     estimated_minutes: int
     unit_id: str = ""
+    is_completed: bool = False
 
 
 class TodayResponse(BaseModel):
     plan_id: int
     cefr_level: str
     lessons: list[TodayLesson]
+    progress_day: int = 0
+    total_days: int = 0
+    pending_count: int = 0
+
+
+class PendingLessonResponse(BaseModel):
+    id: int
+    title: str
+    lesson_type: str
+    week_number: int
+    day_number: int
+
+    model_config = {"from_attributes": True}
 

@@ -34,6 +34,7 @@ Files most commonly affected by code changes:
 | New/modified model or migration | `specs/architecture.instructions.md` |
 | New/modified service or env var | `specs/architecture.instructions.md`, `specs/docker.instructions.md`, `README.md` |
 | New/modified auth flow | `specs/architecture.instructions.md`, `AGENTS.md` (Auth design section) |
+| Study plan / lesson / progress change | `specs/study-plan.instructions.md`, `specs/api-endpoints.instructions.md`, `specs/architecture.instructions.md` |
 | New phase or major feature | `specs/phase-*.instructions.md` (create if needed), `README.md`, `AGENTS.md`, `CHANGELOG.md`, `specs/version.md` |
 | Docker/compose change | `specs/docker.instructions.md`, `README.md` |
 | Rate limit change | `specs/rate-limiting.instructions.md`, `specs/api-endpoints.instructions.md` |
@@ -49,6 +50,7 @@ These describe what was built — they are the reference documentation:
 |------|--------|
 | `specs/architecture.instructions.md` | DB models, service layer, LLM adapter, auth design, data flow, code standards, test config |
 | `specs/api-endpoints.instructions.md` | All REST endpoints and WebSocket — paths, methods, rate limits, descriptions |
+| `specs/study-plan.instructions.md` | **Current-state reference** for the study plan & lesson system: data model, `progress_day` semantics, auto-advance, skip day, pending lessons, lesson lifecycle, frontend integration |
 | `specs/docker.instructions.md` | docker-compose.yml (all phases), `.env.example`, DB migrations, operational notes |
 | `specs/phase-1-platform.instructions.md` | Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat, frontend components |
 | `specs/phase-2-tts-stt.instructions.md` | Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises |

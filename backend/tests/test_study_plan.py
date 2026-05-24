@@ -69,6 +69,12 @@ async def test_get_today_lessons(client, test_user):
     assert response.status_code == 200
     data = response.json()
     assert "plan_id" in data
+    assert "progress_day" in data
+    assert "total_days" in data
+    assert "pending_count" in data
+    assert data["progress_day"] == 0
+    assert data["total_days"] == 48  # 12 weeks × 4 days
+    assert data["pending_count"] == 0
     assert len(data["lessons"]) >= 0
 
 
@@ -96,3 +102,273 @@ async def test_generate_study_plan_defaults(client, test_user):
     assert data["cefr_level"] == "B1"
     assert data["duration_weeks"] == 12
     assert data["days_per_week"] == 4
+    assert data["progress_day"] == 0
+
+
+# ── POST /api/study-plan/skip-day ─────────────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_skip_day_increments_progress(client, test_user):
+    """POST /skip-day increments progress_day by 1 and returns updated state."""
+    user, headers = test_user
+
+    await client.post(
+        "/api/study-plan/generate",
+        headers=headers,
+        json={"cefr_level": "A1", "goals": ["grammar"]},
+    )
+
+    response = await client.post("/api/study-plan/skip-day", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["progress_day"] == 1
+    assert data["total_days"] == 48
+
+
+@pytest.mark.asyncio
+async def test_skip_day_no_plan_returns_404(client, test_user):
+    """POST /skip-day with no active plan returns 404."""
+    _, headers = test_user
+    response = await client.post("/api/study-plan/skip-day", headers=headers)
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_skip_day_requires_auth(client):
+    """POST /skip-day without a valid token returns 401."""
+    response = await client.post(
+        "/api/study-plan/skip-day",
+        headers={"Authorization": "Bearer invalid"},
+    )
+    assert response.status_code == 401
+
+
+@pytest.mark.asyncio
+async def test_skip_day_does_not_exceed_total(client, test_user, db_session):
+    """POST /skip-day is capped at total_days and does not go over."""
+    from app.models.study_plan import StudyPlan
+
+    user, headers = test_user
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        goals=["grammar"],
+        duration_weeks=1,
+        days_per_week=2,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+        progress_day=2,  # already at total_days (1 * 2)
+    )
+    db_session.add(plan)
+    await db_session.commit()
+
+    response = await client.post("/api/study-plan/skip-day", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    # Should stay at 2, not exceed it
+    assert data["progress_day"] == 2
+    assert data["total_days"] == 2
+
+
+# ── GET /api/study-plan/pending-lessons ───────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_pending_lessons_empty_for_new_plan(client, test_user):
+    """No pending lessons for a brand-new plan with progress_day=0."""
+    user, headers = test_user
+
+    await client.post(
+        "/api/study-plan/generate",
+        headers=headers,
+        json={"cefr_level": "A1", "goals": ["grammar"]},
+    )
+
+    response = await client.get("/api/study-plan/pending-lessons", headers=headers)
+    assert response.status_code == 200
+    assert response.json() == []
+
+
+@pytest.mark.asyncio
+async def test_pending_lessons_returns_incomplete_past_lessons(client, test_user, db_session):
+    """Incomplete lessons from days before progress_day appear in pending list."""
+    from app.models.lesson import Lesson
+    from app.models.study_plan import StudyPlan
+
+    user, headers = test_user
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+        progress_day=1,  # day 0 (week1/day1) is "passed"
+    )
+    db_session.add(plan)
+    await db_session.flush()
+
+    # Incomplete lesson on day 0 (week=1, day=1) — should be pending
+    pending_lesson = Lesson(
+        study_plan_id=plan.id,
+        title="Pending Grammar",
+        lesson_type="grammar",
+        cefr_level="A1",
+        week_number=1,
+        day_number=1,
+        content={},
+        is_completed=False,
+    )
+    db_session.add(pending_lesson)
+
+    # Incomplete lesson on day 1 (week=1, day=2) — current day, not pending
+    current_lesson = Lesson(
+        study_plan_id=plan.id,
+        title="Current Vocab",
+        lesson_type="vocabulary",
+        cefr_level="A1",
+        week_number=1,
+        day_number=2,
+        content={},
+        is_completed=False,
+    )
+    db_session.add(current_lesson)
+    await db_session.commit()
+
+    response = await client.get("/api/study-plan/pending-lessons", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) == 1
+    assert data[0]["title"] == "Pending Grammar"
+
+
+@pytest.mark.asyncio
+async def test_pending_lessons_requires_auth(client):
+    """GET /pending-lessons without a valid token returns 401."""
+    response = await client.get(
+        "/api/study-plan/pending-lessons",
+        headers={"Authorization": "Bearer invalid"},
+    )
+    assert response.status_code == 401
+
+
+# ── Auto-advance in GET /api/study-plan/today ─────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_today_auto_advances_when_day_complete(client, test_user, db_session):
+    """GET /today auto-advances progress_day when all lessons for the current day are complete."""
+    from app.models.lesson import Lesson
+    from app.models.study_plan import StudyPlan
+
+    user, headers = test_user
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={
+            "title": "Test",
+            "cefr_level": "A1",
+            "duration_weeks": 4,
+            "days_per_week": 4,
+            "ends_with_test": False,
+            "weekly_plan": [
+                {
+                    "week": 1,
+                    "theme": "basics",
+                    "days": [
+                        {
+                            "day": 1,
+                            "lesson_type": "grammar",
+                            "title": "Day 1 Lesson",
+                            "objectives": [],
+                            "estimated_minutes": 20,
+                            "unit_id": "",
+                            "grammar_points": [],
+                            "vocabulary_set_ids": [],
+                        },
+                        {
+                            "day": 2,
+                            "lesson_type": "vocabulary",
+                            "title": "Day 2 Lesson",
+                            "objectives": [],
+                            "estimated_minutes": 20,
+                            "unit_id": "",
+                            "grammar_points": [],
+                            "vocabulary_set_ids": [],
+                        },
+                    ],
+                }
+            ],
+        },
+        is_active=True,
+        progress_day=0,
+    )
+    db_session.add(plan)
+    await db_session.flush()
+
+    # Add a completed lesson for day 1 (progress_day=0 → week=1, day=1)
+    lesson = Lesson(
+        study_plan_id=plan.id,
+        title="Day 1 Lesson",
+        lesson_type="grammar",
+        cefr_level="A1",
+        week_number=1,
+        day_number=1,
+        content={},
+        is_completed=True,
+    )
+    db_session.add(lesson)
+    await db_session.commit()
+
+    response = await client.get("/api/study-plan/today", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    # Auto-advance should have moved progress_day from 0 to 1
+    assert data["progress_day"] == 1
+
+
+# ── GET /today when plan is fully complete ────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_today_returns_empty_when_plan_complete(client, test_user, db_session):
+    """GET /today with progress_day == total_days returns empty lessons list."""
+    from app.models.study_plan import StudyPlan
+
+    user, headers = test_user
+
+    total = 2  # 1 week × 2 days
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        goals=["grammar"],
+        duration_weeks=1,
+        days_per_week=2,
+        current_unit="",
+        generated_plan={
+            "title": "Complete Plan",
+            "cefr_level": "A1",
+            "duration_weeks": 1,
+            "days_per_week": 2,
+            "ends_with_test": False,
+            "weekly_plan": [],
+        },
+        is_active=True,
+        progress_day=total,  # already at total — plan finished
+    )
+    db_session.add(plan)
+    await db_session.commit()
+
+    response = await client.get("/api/study-plan/today", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["lessons"] == []
+    assert data["progress_day"] == total
+    assert data["total_days"] == total

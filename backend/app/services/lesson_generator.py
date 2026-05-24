@@ -1,5 +1,5 @@
 from app.data.curriculum import CURRICULUM
-from app.schemas.lessons import FreeWriteEvaluation, LessonContent, PronunciationEvaluation
+from app.schemas.lessons import FillBlankEvaluation, FreeWriteEvaluation, LessonContent, PronunciationEvaluation
 from app.services.language_helpers import get_english_variant
 from app.services.llm_adapter import llm_adapter
 
@@ -34,6 +34,14 @@ STRICT CONSTRAINTS:
 4. Do NOT introduce structures from higher levels.
 5. In "grammar_refs", return 1–3 grammar topic slugs that are most relevant to this lesson.
    Only use slugs from this list: {valid_slugs}.
+6. For "fill_blank" exercises: the "question" field MUST be the sentence with the blank (use ___ for the gap),
+   NOT a general instruction like "Complete the sentence with...". Put any instructions in "explanation" only.
+   Example — WRONG: "question": "Complete with the correct possessive adjective: my / your / his"
+   Example — CORRECT: "question": "___ name is Maria. (she)"
+7. For "multiple_choice" exercises: options MUST NOT include letter or number prefixes
+   (no "A.", "B.", "1.", "2."). Each option must be plain answer text only.
+   Example — WRONG: "options": ["A. works", "B. is working"]
+   Example — CORRECT: "options": ["works", "is working"]
 
 The lesson should take about 20-30 minutes. Include 3-5 exercises of mixed types
 (multiple_choice, fill_blank, free_write, pronunciation).
@@ -67,6 +75,20 @@ Return a JSON object:
       "options": ["works", "is working", "worked", "has worked"],
       "correct": "is working",
       "explanation": "We use present continuous for actions happening now."
+    }},
+    {{
+      "type": "fill_blank",
+      "question": "___ name is Maria. (she)",
+      "options": null,
+      "correct": "Her",
+      "explanation": "We use 'her' as the possessive adjective for she/her."
+    }},
+    {{
+      "type": "free_write",
+      "question": "Write 2-3 sentences describing what you do every morning. Use the present simple.",
+      "options": ["Use at least two different verbs.", "Write complete sentences."],
+      "correct": "Sample: I wake up at 7. I eat breakfast and drink coffee.",
+      "explanation": "Evaluates use of present simple for routines."
     }}
   ],
   "vocabulary": [
@@ -75,6 +97,32 @@ Return a JSON object:
   "grammar_refs": ["present-continuous", "present-simple"]
 }}
 """
+
+FILL_BLANK_EVAL_PROMPT = """
+Student level: {cefr_level}
+Sentence with blank: {question}
+Expected answer: {correct_answer}
+Student's answer: {student_answer}
+
+The student had to fill in the blank in the sentence above. Evaluate whether the answer is correct.
+Be lenient with minor spelling variation and case. Treat contractions as equivalent to their full forms
+(e.g. "isn't" = "is not", "I'm" = "I am", "doesn't" = "does not").
+
+Return JSON:
+{{
+  "is_correct": true,
+  "score": 1.0,
+  "feedback": "Correct! Brief positive reinforcement."
+}}
+
+If incorrect:
+{{
+  "is_correct": false,
+  "score": 0.0,
+  "feedback": "The correct answer is '{correct_answer}'. Brief explanation of why."
+}}
+"""
+
 
 FREE_WRITE_EVAL_PROMPT = """
 Student level: {cefr_level}
@@ -185,5 +233,24 @@ async def evaluate_pronunciation(
     result = await llm_adapter.structured_output(
         [{"role": "system", "content": eval_prompt}],
         PronunciationEvaluation,
+    )
+    return result
+
+
+async def evaluate_fill_blank(
+    cefr_level: str,
+    question: str,
+    correct_answer: str,
+    student_answer: str,
+) -> FillBlankEvaluation:
+    eval_prompt = FILL_BLANK_EVAL_PROMPT.format(
+        cefr_level=cefr_level,
+        question=question,
+        correct_answer=correct_answer,
+        student_answer=student_answer,
+    )
+    result = await llm_adapter.structured_output(
+        [{"role": "system", "content": eval_prompt}],
+        FillBlankEvaluation,
     )
     return result

@@ -1,7 +1,9 @@
+from collections import defaultdict
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
@@ -13,6 +15,7 @@ from app.models.user import User
 from app.schemas.study_plan import (
     GeneratedPlan,
     GenerateStudyPlanRequest,
+    PendingLessonResponse,
     StudyPlanResponse,
     TodayLesson,
     TodayResponse,
@@ -96,12 +99,53 @@ async def get_today_lessons(
     if not plan:
         raise HTTPException(status_code=404, detail="No active study plan found")
 
-    from datetime import date
+    total_days = plan.duration_weeks * plan.days_per_week
 
-    start_date = plan.created_at.date() if hasattr(plan.created_at, "date") else plan.created_at
-    days_elapsed = (date.today() - start_date).days
-    current_week = min((days_elapsed // plan.days_per_week) + 1, plan.duration_weeks)
-    current_day = (days_elapsed % plan.days_per_week) + 1
+    # Load all existing lessons for this plan at once
+    all_lessons_result = await db.execute(
+        select(Lesson).where(Lesson.study_plan_id == plan.id)
+    )
+    all_lessons = all_lessons_result.scalars().all()
+
+    # Index by (week_number, day_number) for fast lookups
+    lessons_by_wday: dict[tuple[int, int], list] = defaultdict(list)
+    for lsn in all_lessons:
+        lessons_by_wday[(lsn.week_number, lsn.day_number)].append(lsn)
+
+    # Auto-advance: move past days where every lesson is already complete
+    original_progress = plan.progress_day
+    while plan.progress_day < total_days:
+        _w = (plan.progress_day // plan.days_per_week) + 1
+        _d = (plan.progress_day % plan.days_per_week) + 1
+        day_ls = lessons_by_wday.get((_w, _d), [])
+        if day_ls and all(lsn.is_completed for lsn in day_ls):
+            plan.progress_day += 1
+        else:
+            break
+
+    if plan.progress_day != original_progress:
+        await db.commit()
+
+    # Count incomplete lessons from days the plan has already passed
+    pending_count = sum(
+        1
+        for lsn in all_lessons
+        if not lsn.is_completed
+        and (lsn.week_number - 1) * plan.days_per_week + (lsn.day_number - 1) < plan.progress_day
+    )
+
+    if plan.progress_day >= total_days:
+        return TodayResponse(
+            plan_id=plan.id,
+            cefr_level=plan.cefr_level,
+            lessons=[],
+            progress_day=plan.progress_day,
+            total_days=total_days,
+            pending_count=pending_count,
+        )
+
+    current_week = (plan.progress_day // plan.days_per_week) + 1
+    current_day = (plan.progress_day % plan.days_per_week) + 1
 
     weekly_plan = (
         plan.generated_plan.get("weekly_plan")
@@ -119,20 +163,21 @@ async def get_today_lessons(
             break
 
     if not week:
-        week = weekly_plan[0]
+        return TodayResponse(
+            plan_id=plan.id,
+            cefr_level=plan.cefr_level,
+            lessons=[],
+            progress_day=plan.progress_day,
+            total_days=total_days,
+            pending_count=pending_count,
+        )
 
     days = week["days"] if isinstance(week, dict) else week.days
 
-    # Resolve lesson IDs from the DB (matched by week + day + title)
-    lesson_rows_result = await db.execute(
-        select(Lesson).where(
-            Lesson.study_plan_id == plan.id,
-            Lesson.week_number == current_week,
-            Lesson.day_number == current_day,
-        )
-    )
-    lesson_by_title: dict[str, int] = {
-        row.title: row.id for row in lesson_rows_result.scalars().all()
+    # Build title→(id, is_completed) lookup from already-loaded lessons
+    lesson_by_title: dict[str, tuple[int, bool]] = {
+        row.title: (row.id, row.is_completed)
+        for row in lessons_by_wday.get((current_week, current_day), [])
     }
 
     today_lessons = []
@@ -146,13 +191,16 @@ async def get_today_lessons(
         d_min = d["estimated_minutes"] if isinstance(d, dict) else d.estimated_minutes
         d_unit_id = d.get("unit_id", "") if isinstance(d, dict) else getattr(d, "unit_id", "")
 
-        lesson_id = lesson_by_title.get(d_title)
+        _existing = lesson_by_title.get(d_title)
+        lesson_id: Optional[int] = _existing[0] if _existing else None
+        lesson_completed: bool = _existing[1] if _existing else False
 
-        # Resolve curriculum grammar/vocabulary context for this unit
+        # Resolve curriculum context for lesson generation
         grammar_points: list[str] = []
         vocabulary_set_ids: list[str] = []
         if d_unit_id:
             from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
+
             for cu in get_curriculum_units(plan.cefr_level):
                 if cu.id == d_unit_id:
                     grammar_points = cu.grammar_points
@@ -188,33 +236,113 @@ async def get_today_lessons(
                 db.add(lesson)
                 await db.flush()
 
-                for ex in (content_dict.get("exercises") or []):
+                exercises_data = content_dict.get("exercises") or []
+                for ex in exercises_data:
                     exercise = Exercise(
                         lesson_id=lesson.id,
                         exercise_type=ex.get("type", "multiple_choice"),
                         question=ex.get("question", ""),
                         options=ex.get("options"),
                         correct_answer=ex.get("correct", ""),
+                        explanation=ex.get("explanation"),
                     )
                     db.add(exercise)
+
+                if not exercises_data:
+                    await db.rollback()
+                    raise ValueError("Lesson generated with no exercises")
 
                 await db.commit()
                 await db.refresh(lesson)
                 lesson_id = lesson.id
+            except IntegrityError:
+                await db.rollback()
+                dup = await db.execute(
+                    select(Lesson).where(
+                        Lesson.study_plan_id == plan.id,
+                        Lesson.week_number == current_week,
+                        Lesson.day_number == current_day,
+                        Lesson.title == d_title,
+                    )
+                )
+                existing = dup.scalar_one_or_none()
+                if existing:
+                    lesson_id = existing.id
+                    lesson_completed = existing.is_completed
             except Exception:
                 logger.exception("Failed to generate or persist lesson for plan %s", plan.id)
 
-        today_lessons.append(
-            TodayLesson(
-                id=lesson_id,
-                title=d_title,
-                lesson_type=d_type,
-                week=current_week,
-                day=current_day,
-                objectives=d_obj,
-                estimated_minutes=d_min,
-                unit_id=d_unit_id,
+        if lesson_id is not None:
+            today_lessons.append(
+                TodayLesson(
+                    id=lesson_id,
+                    title=d_title,
+                    lesson_type=d_type,
+                    week=current_week,
+                    day=current_day,
+                    objectives=d_obj,
+                    estimated_minutes=d_min,
+                    unit_id=d_unit_id,
+                    is_completed=lesson_completed,
+                )
             )
-        )
 
-    return TodayResponse(plan_id=plan.id, cefr_level=plan.cefr_level, lessons=today_lessons)
+    return TodayResponse(
+        plan_id=plan.id,
+        cefr_level=plan.cefr_level,
+        lessons=today_lessons,
+        progress_day=plan.progress_day,
+        total_days=total_days,
+        pending_count=pending_count,
+    )
+
+
+@router.post("/skip-day")
+async def skip_today(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    result = await db.execute(
+        select(StudyPlan)
+        .where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
+        .order_by(StudyPlan.created_at.desc())
+        .limit(1)
+    )
+    plan = result.scalar_one_or_none()
+    if not plan:
+        raise HTTPException(status_code=404, detail="No active study plan found")
+
+    total_days = plan.duration_weeks * plan.days_per_week
+    plan.progress_day = min(plan.progress_day + 1, total_days)
+    await db.commit()
+    return {"progress_day": plan.progress_day, "total_days": total_days}
+
+
+@router.get("/pending-lessons", response_model=list[PendingLessonResponse])
+async def get_pending_lessons(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    result = await db.execute(
+        select(StudyPlan)
+        .where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
+        .order_by(StudyPlan.created_at.desc())
+        .limit(1)
+    )
+    plan = result.scalar_one_or_none()
+    if not plan:
+        raise HTTPException(status_code=404, detail="No active study plan found")
+
+    incomplete_result = await db.execute(
+        select(Lesson).where(
+            Lesson.study_plan_id == plan.id,
+            Lesson.is_completed.is_(False),
+        )
+    )
+    pending = [
+        lsn
+        for lsn in incomplete_result.scalars().all()
+        if (lsn.week_number - 1) * plan.days_per_week + (lsn.day_number - 1) < plan.progress_day
+    ]
+    return pending
+

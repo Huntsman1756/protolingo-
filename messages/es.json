@@ -320,7 +320,10 @@
     "startWithAssessment": "Comienza con una evaluación.",
     "takeAssessmentArrow": "Hacer evaluación →",
     "goToMyPlan": "Mi plan →",
-    "quickActions": "Acciones rápidas"
+    "quickActions": "Acciones rápidas",
+    "dayProgress": "Día {current} de {total}",
+    "skipDay": "Saltar hoy",
+    "pendingLessons": "lecciones pendientes"
   },
   "assessment": {
     "title": "Evaluación",
@@ -466,7 +469,9 @@
     "noUnitsDesc": "El contenido para este nivel está en preparación. Vuelve pronto.",
     "completionTestTitle": "Test de finalización del nivel {level}",
     "levelTestResult": "Resultado del test de nivel",
-    "testScore": "Puntuación:"
+    "testScore": "Puntuación:",
+    "pendingLessons": "Lecciones pendientes",
+    "resume": "Reanudar"
   },
   "lesson": {
     "loading": "Cargando lección...",
@@ -494,11 +499,17 @@
     "score": "Puntuación",
     "examples": "Ejemplos",
     "pronunciationExercise": "Pronunciación",
+    "exerciseTypeMultipleChoice": "Opción múltiple",
+    "exerciseTypeFillBlank": "Completar el espacio",
+    "exerciseTypeFreeWrite": "Escritura libre",
+    "exerciseTypePronunciation": "Pronunciación",
     "tapToListen": "Toca para escuchar",
     "recordNow": "Graba tu respuesta",
     "exit": "Salir",
     "exitConfirmTitle": "¿Salir de la lección?",
-    "exitConfirmMessage": "Perderás el progreso de esta lección."
+    "exitConfirmMessage": "Perderás el progreso de esta lección.",
+    "dayComplete": "¡Día completado!",
+    "dayCompleteMsg": "Has completado todas las lecciones de hoy."
   },
   "flashcards": {
     "title": "Tarjetas",
@@ -963,11 +974,11 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Entendido",
     "entry1": {
-      "label": "Plan gratuito",
-      "desc": "El panel, las tarjetas, las lecciones, el plan de estudio y el test de nivel ahora son gratuitos para todos los usuarios registrados. No necesitas suscripción para acceder a estas funciones."
+      "label": "Mejoras en el plan de estudio",
+      "desc": "Tu avance en el plan de estudio ahora se rastrea día a día sin depender de fechas de calendario. Los días completados avanzan automáticamente, puedes saltar el día actual y recuperar las lecciones pendientes en cualquier momento. El panel muestra una barra de progreso y el contador de días de un vistazo."
     },
     "entry2": {
       "label": "Tablón de feedback",

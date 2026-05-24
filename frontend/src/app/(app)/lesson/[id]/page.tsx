@@ -17,6 +17,7 @@ interface ExerciseItem {
   question: string
   options: string[] | null
   correct_answer: string
+  explanation: string | null
   user_answer: string | null
   score: number | null
   feedback: string | null
@@ -33,6 +34,7 @@ interface LessonData {
 export default function LessonPage() {
   const t = useTranslations('lesson')
   const tCommon = useTranslations('common')
+  const tPlan = useTranslations('dashboard')
   const params = useParams()
   const router = useRouter()
   const id = params.id as string
@@ -44,6 +46,8 @@ export default function LessonPage() {
   const [answer, setAnswer] = useState('')
   const [evaluating, setEvaluating] = useState(false)
   const [completed, setCompleted] = useState(false)
+  const [dayComplete, setDayComplete] = useState(false)
+  const [progressDayAtStart, setProgressDayAtStart] = useState(-1)
   const [loading, setLoading] = useState(true)
   const [showExitConfirm, setShowExitConfirm] = useState(false)
 
@@ -59,6 +63,21 @@ export default function LessonPage() {
   }, [id])
 
   useEffect(() => { loadLesson() }, [loadLesson])
+
+  // Capture progress_day at the time the lesson starts (for day-complete detection)
+  useEffect(() => {
+    apiFetch('/api/study-plan/today')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d?.progress_day !== undefined) setProgressDayAtStart(d.progress_day) })
+      .catch(() => { })
+  }, [])
+
+  // Restore the answer field whenever the active exercise changes
+  // (seeds previous user_answer for already-answered exercises, clears for fresh ones)
+  useEffect(() => {
+    const ex = exercises[currentExercise]
+    setAnswer(ex?.score !== null && ex?.score !== undefined ? (ex.user_answer ?? '') : '')
+  }, [currentExercise, exercises])
 
   async function submitAnswer(overrideAnswer?: string) {
     const finalAnswer = overrideAnswer ?? answer
@@ -85,13 +104,22 @@ export default function LessonPage() {
   function nextExercise() {
     if (currentExercise < exercises.length - 1) {
       setCurrentExercise(currentExercise + 1)
-      setAnswer('')
     }
   }
 
   async function completeLessonHandler() {
     await apiFetch(`/api/lessons/${id}/complete`, { method: 'POST' })
     if (lesson) completeLesson(lesson.id)
+    // Detect if completing this lesson advanced the plan to the next day
+    try {
+      const todayRes = await apiFetch('/api/study-plan/today')
+      if (todayRes.ok) {
+        const d = await todayRes.json()
+        if (progressDayAtStart >= 0 && d.progress_day > progressDayAtStart) {
+          setDayComplete(true)
+        }
+      }
+    } catch { /* ignore */ }
     setCompleted(true)
   }
 
@@ -109,6 +137,12 @@ export default function LessonPage() {
         <div className="border border-fl-border bg-fl-surface px-10 py-10 text-center">
           <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-4">● {tCommon('complete')}</p>
           <p className="font-mono text-xl font-bold text-fl-fg tracking-widest">{t('lessonDone')}</p>
+          {dayComplete && (
+            <div className="mt-6 border border-fl-accent/30 bg-fl-accent/5 px-6 py-4">
+              <p className="font-mono text-sm font-bold text-fl-accent tracking-widest">{t('dayComplete')}</p>
+              <p className="font-mono text-xs text-fl-muted-1 mt-1">{t('dayCompleteMsg')}</p>
+            </div>
+          )}
           <button
             onClick={() => router.push('/dashboard')}
             className="mt-8 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-8 py-3 hover:bg-fl-accent/90 transition-colors"
@@ -136,7 +170,11 @@ export default function LessonPage() {
             </div>
             <div className="flex items-center gap-2">
               <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.cefr_level}</span>
-              <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.lesson_type}</span>
+              <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">
+                {lesson?.lesson_type
+                  ? (({ grammar: tPlan('lessonTypes.grammar'), vocabulary: tPlan('lessonTypes.vocabulary'), reading: tPlan('lessonTypes.reading'), writing: tPlan('lessonTypes.writing'), review: tPlan('lessonTypes.review'), level_test: tPlan('lessonTypes.level_test') } as Record<string, string>)[lesson.lesson_type] ?? lesson.lesson_type)
+                  : ''}
+              </span>
               <button
                 onClick={() => setShowExitConfirm(true)}
                 className="font-mono text-fl-muted-3 hover:text-fl-fg transition-colors text-lg leading-none ml-1"
@@ -196,7 +234,14 @@ export default function LessonPage() {
                   {t('exercise')} {currentExercise + 1} / {exercises.length}
                 </span>
               </div>
-              <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{exercise.exercise_type}</span>
+              <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">
+                {({
+                  multiple_choice: t('exerciseTypeMultipleChoice'),
+                  fill_blank: t('exerciseTypeFillBlank'),
+                  free_write: t('exerciseTypeFreeWrite'),
+                  pronunciation: t('exerciseTypePronunciation'),
+                } as Record<string, string>)[exercise.exercise_type] ?? exercise.exercise_type}
+              </span>
             </div>
 
             {/* Progress bar */}
@@ -213,13 +258,12 @@ export default function LessonPage() {
               {exercise.exercise_type === 'multiple_choice' && exercise.options ? (
                 <div className="space-y-2">
                   {exercise.options.map((opt) => {
-                    const letter = opt.split('.')[0]
-                    const isSelected = answer === letter
+                    const isSelected = answer === opt
                     return (
                       <button
-                        key={letter}
+                        key={opt}
                         disabled={isEvaluated}
-                        onClick={() => setAnswer(letter)}
+                        onClick={() => setAnswer(opt)}
                         className={`w-full text-left px-4 py-3 border font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${isSelected
                           ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                           : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
@@ -261,20 +305,28 @@ export default function LessonPage() {
                 />
               )}
 
-              {!isEvaluated && exercise.exercise_type !== 'pronunciation' ? (
-                <button
-                  onClick={() => submitAnswer()}
-                  disabled={evaluating || !answer.trim()}
-                  className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
-                >
-                  {evaluating ? `— ${tCommon('checking')}` : `— ${t('submitAnswer')}`}
-                </button>
+              {!isEvaluated ? (
+                exercise.exercise_type !== 'pronunciation' ? (
+                  <button
+                    onClick={() => submitAnswer()}
+                    disabled={evaluating || !answer.trim()}
+                    className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+                  >
+                    {evaluating ? `— ${tCommon('checking')}` : `— ${t('submitAnswer')}`}
+                  </button>
+                ) : null
               ) : (
                 <div className="space-y-4">
                   {exercise.feedback && (
                     <div className="border border-fl-border px-4 py-4">
                       <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('feedback')}</p>
                       <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{exercise.feedback}</p>
+                    </div>
+                  )}
+                  {exercise.explanation && (
+                    <div className="border border-fl-border px-4 py-4">
+                      <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('explanation')}</p>
+                      <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{exercise.explanation}</p>
                     </div>
                   )}
                   <div className="flex items-center gap-4">
@@ -305,6 +357,32 @@ export default function LessonPage() {
             </div>
           </div>
         )}
+
+        {/* Vocabulary */}
+        {(() => {
+          const vocabItems = (lesson?.content?.vocabulary ?? []) as Array<Record<string, string>>
+          if (!vocabItems.length) return null
+          return (
+            <div className="border border-fl-border bg-fl-surface p-5">
+              <p className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase mb-3">
+                {t('vocabulary')}
+              </p>
+              <div className="space-y-3">
+                {vocabItems.map((item, idx) => (
+                  <div key={idx} className="border border-fl-border px-4 py-3">
+                    <p className="font-mono text-xs text-fl-fg font-semibold tracking-wide mb-1">{item.word}</p>
+                    {item.definition && (
+                      <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{item.definition}</p>
+                    )}
+                    {item.example && (
+                      <p className="font-mono text-xs text-fl-muted-2 italic mt-1">{item.example}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })()}
 
         {/* Related Grammar */}
         {(() => {

@@ -21,6 +21,7 @@ class StudyPlan(Base):
     duration_weeks: Mapped[int] = mapped_column(Integer, nullable=False, default=12)
     days_per_week: Mapped[int] = mapped_column(Integer, nullable=False, default=4)
     current_unit: Mapped[str] = mapped_column(String(50), nullable=False, default="")
+    progress_day: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     generated_plan: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     completion_test_taken: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
