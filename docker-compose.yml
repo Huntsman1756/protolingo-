@@ -106,14 +106,12 @@ services:
   # TTS (Kokoro-FastAPI) ──────────────────────────────────────────
   # Only required when TTS_PROVIDER=local (default).
   # Set TTS_PROVIDER=openai to use OpenAI TTS instead — no local service needed.
-  # Official upstream image (CUDA 12.6, supports Turing+ GPUs sm_75+).
-  # Blackwell / RTX 50-series GPUs: use tag :latest-cu128 for cu128 optimisations.
-  # GTX 10xx (Pascal) or older: not supported by GPU images — use the CPU image instead
-  #   (ghcr.io/remsky/kokoro-fastapi-cpu:latest) and remove the 'deploy' block.
-  # CPU-only host: same as above, use CPU image and remove the 'deploy' block.
-  # See: https://github.com/remsky/Kokoro-FastAPI
+  # Custom fork built for Blackwell/RTX 50-series (sm_120) — the official
+  # upstream image does not ship sm_120 kernels yet despite README claims.
+  # For Turing+ up to Hopper (sm_75–sm_90): use ghcr.io/remsky/kokoro-fastapi-gpu:latest
+  # GTX 10xx (Pascal) or older: use ghcr.io/remsky/kokoro-fastapi-cpu:latest and remove 'deploy' block
   kokoro:
-    image: ghcr.io/remsky/kokoro-fastapi-gpu:latest
+    image: ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master
     container_name: freelingo-kokoro
     restart: unless-stopped
     environment:

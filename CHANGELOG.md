@@ -5,11 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.6.3] - 2026-05-24
-
-### Changed
-- **Kokoro TTS image**: switched from custom fork to official upstream image (`ghcr.io/remsky/kokoro-fastapi-gpu:latest`). Blackwell/RTX 50-series use `:latest-cu128`. Documented GPU compatibility: Turing+ for GPU images, Pascal/GTX 10xx should use the CPU image.
-
 ## [1.6.2] - 2026-05-24
 
 ### Fixed
@@ -703,7 +698,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `TTS_ENABLED` and `STT_ENABLED` feature flags in `.env` — both services are disabled by default
 - Kokoro and Whisper services defined in `docker-compose.yml` with NVIDIA GPU `deploy` block
 - Custom `docker/kokoro.Dockerfile` upgrading PyTorch to 2.7+ (cu128) for Blackwell GPU support (RTX 5000 series, sm_120), compatible with all previous NVIDIA architectures (sm_50+)
-- `docker-compose.yml` updated to use fork image `ghcr.io/remsky/kokoro-fastapi-gpu:latest` with full Blackwell support
+- `docker-compose.yml` updated to use fork image `ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master` with full Blackwell support
 - `AudioPlayer` added to tutor chat messages — button appears after streaming completes
 
 ### Fixed
