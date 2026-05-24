@@ -187,7 +187,7 @@ TTS_PROVIDER=local
 STT_PROVIDER=local
 ```
 
-The Kokoro image (`ghcr.io/artcc/kokoro-fastapi-gpu`) ships with PyTorch 2.7+ (cu128), supporting all NVIDIA architectures including Blackwell (RTX 5000 series).
+The Kokoro image (`ghcr.io/remsky/kokoro-fastapi-gpu`) supports Turing+ NVIDIA GPUs (sm_75+). For Blackwell / RTX 50-series, use the `:latest-cu128` tag. GTX 10xx (Pascal) users should use the CPU image.
 
 For CPU-only hosts, replace the image tags and remove the `deploy` block in `docker-compose.yml`:
 
