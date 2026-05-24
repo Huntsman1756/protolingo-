@@ -15,6 +15,27 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
+    # Remove duplicate lessons before adding the unique constraint.
+    # Duplicates exist in production because the IntegrityError guard was not
+    # yet in place. Strategy: per group keep the completed lesson (if any),
+    # otherwise keep the oldest (MIN id). DISTINCT ON is PostgreSQL-specific
+    # and safe here — we only ever run on PostgreSQL.
+    op.execute(
+        """
+        DELETE FROM lessons
+        WHERE id NOT IN (
+            SELECT DISTINCT ON (study_plan_id, week_number, day_number, title) id
+            FROM lessons
+            ORDER BY
+                study_plan_id,
+                week_number,
+                day_number,
+                title,
+                is_completed DESC,
+                id ASC
+        )
+        """
+    )
     op.create_unique_constraint(
         "uq_lessons_plan_week_day_title",
         "lessons",
