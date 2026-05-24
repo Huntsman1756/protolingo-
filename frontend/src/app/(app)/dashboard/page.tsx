@@ -29,6 +29,10 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
   const [hasPlan, setHasPlan] = useState(false)
   const [cefrLevel, setCefrLevel] = useState<string | null>(null)
+  const [progressDay, setProgressDay] = useState(0)
+  const [totalDays, setTotalDays] = useState(0)
+  const [pendingCount, setPendingCount] = useState(0)
+  const [skipping, setSkipping] = useState(false)
 
   const loadData = useCallback(async () => {
     try {
@@ -43,17 +47,29 @@ export default function DashboardPage() {
       if (planRes.ok) {
         const plan = await planRes.json()
         setCefrLevel(plan.cefr_level ?? null)
+        setProgressDay(plan.progress_day ?? 0)
+        setTotalDays(plan.total_days ?? 0)
+        setPendingCount(plan.pending_count ?? 0)
         setTodayLessons(plan.lessons.map((l: TodayLessonItem) => ({
           id: l.id, title: l.title, lessonType: l.lesson_type,
           week: l.week, day: l.day, objectives: l.objectives || [],
           estimatedMinutes: l.estimated_minutes || 25,
         })))
-        setHasPlan(plan.lessons.length > 0)
+        setHasPlan(true)
       }
     } catch { /* ignore */ } finally { setLoading(false) }
   }, [setProgress, setTodayLessons])
 
   useEffect(() => { loadData() }, [loadData])
+
+  async function skipDay() {
+    if (skipping) return
+    setSkipping(true)
+    try {
+      await apiFetch('/api/study-plan/skip-day', { method: 'POST' })
+      await loadData()
+    } catch { /* ignore */ } finally { setSkipping(false) }
+  }
 
   if (loading) {
     return (
@@ -121,10 +137,28 @@ export default function DashboardPage() {
 
           {/* Today's lessons */}
           <div className="bg-fl-surface p-5">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-fl-label text-fl-muted-2">●</span>
-              <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('today')}</span>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <span className="text-fl-label text-fl-muted-2">●</span>
+                <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('today')}</span>
+              </div>
+              {hasPlan && totalDays > 0 && (
+                <span className="font-mono text-fl-hint text-fl-muted-3 tracking-widest">
+                  {t('dayProgress', { current: Math.min(progressDay + 1, totalDays), total: totalDays })}
+                </span>
+              )}
             </div>
+
+            {/* Plan progress bar */}
+            {hasPlan && totalDays > 0 && (
+              <div className="h-px bg-fl-border w-full mb-4">
+                <div
+                  className="h-px bg-fl-accent transition-all duration-500"
+                  style={{ width: `${Math.round((progressDay / totalDays) * 100)}%` }}
+                />
+              </div>
+            )}
+
             {todayLessons.length > 0 ? (
               <div className="space-y-2">
                 {todayLessons.map((lesson, i) => (
@@ -146,17 +180,28 @@ export default function DashboardPage() {
                     ) : null}
                   </div>
                 ))}
+                <div className="pt-1">
+                  <button
+                    onClick={skipDay}
+                    disabled={skipping}
+                    className="font-mono text-fl-hint text-fl-muted-3 tracking-widest uppercase hover:text-fl-muted-1 transition-colors disabled:opacity-40"
+                  >
+                    {skipping ? '…' : t('skipDay')}
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="space-y-3">
                 <p className="font-mono text-xs text-fl-muted-2">
                   {hasPlan ? t('allCaughtUp') : t('startWithAssessment')}
                 </p>
-                <Link href="/assessment">
-                  <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-accent/90 transition-colors">
-                    {t('takeAssessmentArrow')}
-                  </button>
-                </Link>
+                {!hasPlan && (
+                  <Link href="/assessment">
+                    <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-accent/90 transition-colors">
+                      {t('takeAssessmentArrow')}
+                    </button>
+                  </Link>
+                )}
               </div>
             )}
           </div>
@@ -168,6 +213,13 @@ export default function DashboardPage() {
             <Link href="/plan">
               <button className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-4 py-2 uppercase hover:bg-fl-accent/90 transition-colors">
                 {t('goToMyPlan')}
+              </button>
+            </Link>
+          )}
+          {pendingCount > 0 && (
+            <Link href="/plan">
+              <button className="font-mono text-fl-label tracking-widest text-fl-fg border border-fl-accent/50 px-4 py-2 uppercase hover:border-fl-accent transition-colors">
+                {pendingCount} {t('pendingLessons')} →
               </button>
             </Link>
           )}
@@ -191,3 +243,4 @@ export default function DashboardPage() {
     </>
   )
 }
+

@@ -320,7 +320,10 @@
     "startWithAssessment": "Start with an assessment.",
     "takeAssessmentArrow": "Take Assessment →",
     "goToMyPlan": "My Plan →",
-    "quickActions": "Quick Actions"
+    "quickActions": "Quick Actions",
+    "dayProgress": "Day {current} of {total}",
+    "skipDay": "Skip today",
+    "pendingLessons": "pending lessons"
   },
   "assessment": {
     "title": "Assessment",
@@ -494,11 +497,17 @@
     "score": "Score",
     "examples": "Examples",
     "pronunciationExercise": "Pronunciation",
+    "exerciseTypeMultipleChoice": "Multiple Choice",
+    "exerciseTypeFillBlank": "Fill in the Blank",
+    "exerciseTypeFreeWrite": "Free Write",
+    "exerciseTypePronunciation": "Pronunciation",
     "tapToListen": "Tap to listen",
     "recordNow": "Record your answer",
     "exit": "Exit",
     "exitConfirmTitle": "Exit lesson?",
-    "exitConfirmMessage": "Your progress on this lesson will be lost."
+    "exitConfirmMessage": "Your progress on this lesson will be lost.",
+    "dayComplete": "Day complete!",
+    "dayCompleteMsg": "All today's lessons are done."
   },
   "flashcards": {
     "title": "Flashcards",
@@ -963,11 +972,11 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Got it",
     "entry1": {
-      "label": "Free plan",
-      "desc": "Dashboard, flashcards, lessons, study plan, and level assessment are now free for all registered users. No subscription required to access these features."
+      "label": "Study plan improvements",
+      "desc": "Your progress is now tracked day by day, independently of calendar dates. Completed days advance automatically, you can skip the current day and catch up on pending lessons at any time, and the dashboard shows a progress bar and day counter at a glance."
     },
     "entry2": {
       "label": "Feedback board",

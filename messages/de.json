@@ -320,7 +320,10 @@
     "startWithAssessment": "Starte mit einer Bewertung.",
     "takeAssessmentArrow": "Bewertung starten →",
     "goToMyPlan": "Mein Plan →",
-    "quickActions": "Schnellaktionen"
+    "quickActions": "Schnellaktionen",
+    "dayProgress": "Tag {current} von {total}",
+    "skipDay": "Heute überspringen",
+    "pendingLessons": "ausstehende Lektionen"
   },
   "assessment": {
     "title": "Einstufungstest",
@@ -494,11 +497,17 @@
     "score": "Punktzahl",
     "examples": "Beispiele",
     "pronunciationExercise": "Aussprache",
+    "exerciseTypeMultipleChoice": "Mehrfachauswahl",
+    "exerciseTypeFillBlank": "Lückentext",
+    "exerciseTypeFreeWrite": "Freitext",
+    "exerciseTypePronunciation": "Aussprache",
     "tapToListen": "Zum Anhören tippen",
     "recordNow": "Antwort aufnehmen",
     "exit": "Beenden",
     "exitConfirmTitle": "Lektion beenden?",
-    "exitConfirmMessage": "Dein Fortschritt in dieser Lektion geht verloren."
+    "exitConfirmMessage": "Dein Fortschritt in dieser Lektion geht verloren.",
+    "dayComplete": "Tag abgeschlossen!",
+    "dayCompleteMsg": "Alle heutigen Lektionen sind abgeschlossen."
   },
   "flashcards": {
     "title": "Karteikarten",
@@ -963,11 +972,11 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Kostenloser Plan",
-      "desc": "Dashboard, Karteikarten, Lektionen, Lernplan und Stufentest sind jetzt für alle registrierten Nutzer kostenlos. Kein Abonnement erforderlich."
+      "label": "Verbesserungen am Lernplan",
+      "desc": "Dein Fortschritt im Lernplan wird jetzt täglich unabhängig vom Kalenderdatum erfasst. Abgeschlossene Tage rücken automatisch weiter, du kannst den aktuellen Tag überspringen und ausstehende Lektionen jederzeit nachholen. Das Dashboard zeigt einen Fortschrittsbalken und einen Tageszähler auf einen Blick."
     },
     "entry2": {
       "label": "Feedback-Board",

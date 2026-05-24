@@ -320,7 +320,10 @@
     "startWithAssessment": "Begin met een beoordeling.",
     "takeAssessmentArrow": "Beoordeling nemen →",
     "goToMyPlan": "Mijn plan →",
-    "quickActions": "Snelle acties"
+    "quickActions": "Snelle acties",
+    "dayProgress": "Dag {current} van {total}",
+    "skipDay": "Vandaag overslaan",
+    "pendingLessons": "lopende lessen"
   },
   "assessment": {
     "title": "Beoordeling",
@@ -494,11 +497,17 @@
     "score": "Score",
     "examples": "Voorbeelden",
     "pronunciationExercise": "Uitspraak",
+    "exerciseTypeMultipleChoice": "Meerkeuzevraag",
+    "exerciseTypeFillBlank": "Invuloefening",
+    "exerciseTypeFreeWrite": "Vrije schrijfopdracht",
+    "exerciseTypePronunciation": "Uitspraak",
     "tapToListen": "Tik om te luisteren",
     "recordNow": "Neem je antwoord op",
     "exit": "Afsluiten",
     "exitConfirmTitle": "Les afsluiten?",
-    "exitConfirmMessage": "Je voortgang in deze les gaat verloren."
+    "exitConfirmMessage": "Je voortgang in deze les gaat verloren.",
+    "dayComplete": "Dag voltooid!",
+    "dayCompleteMsg": "Alle lessen van vandaag zijn klaar."
   },
   "flashcards": {
     "title": "Flashcards",
@@ -963,11 +972,11 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Gratis plan",
-      "desc": "Dashboard, flashcards, lessen, studieplan en niveautest zijn nu gratis voor alle geregistreerde gebruikers. Geen abonnement vereist."
+      "label": "Verbeteringen aan het studieplan",
+      "desc": "Je voortgang in het studieplan wordt nu dag voor dag bijgehouden, onafhankelijk van kalenderdatums. Voltooide dagen schuiven automatisch op, je kunt de huidige dag overslaan en achterstallige lessen op elk moment inhalen. Het dashboard toont een voortgangsbalk en een dagenteller in één oogopslag."
     },
     "entry2": {
       "label": "Feedbackbord",

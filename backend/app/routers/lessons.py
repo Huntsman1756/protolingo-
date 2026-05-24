@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import re
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
@@ -15,7 +16,7 @@ from app.schemas.lessons import (
     LessonDetailResponse,
     LessonResponse,
 )
-from app.services.lesson_generator import evaluate_free_write, evaluate_pronunciation, generate_lesson
+from app.services.lesson_generator import evaluate_fill_blank, evaluate_free_write, evaluate_pronunciation, generate_lesson
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -132,12 +133,15 @@ async def answer_exercise(
 
     lesson = await _get_lesson_for_user(exercise.lesson_id, current_user.id, db)
 
-    user_answer = data.answer.strip().lower() if data.answer else ""
-    correct = exercise.correct_answer.strip().lower()
+    if exercise.answered_at is not None:
+        raise HTTPException(status_code=409, detail="Exercise already answered")
 
     if exercise.exercise_type == "free_write":
         prompt = exercise.question
-        criteria = ["grammar", "spelling", "coherence"]
+        # Bug 4: use exercise-specific criteria from options if available
+        criteria = [opt for opt in (exercise.options or []) if isinstance(opt, str) and opt.strip()]
+        if not criteria:
+            criteria = ["grammar", "spelling", "coherence"]
         try:
             eval_result = await evaluate_free_write(
                 cefr_level=lesson.cefr_level,
@@ -152,6 +156,24 @@ async def answer_exercise(
         except (LLMTimeoutError, LLMUnavailableError, LLMError):
             exercise.score = 0.5
             exercise.feedback = "Could not evaluate free-write answer at this time."
+    elif exercise.exercise_type == "fill_blank":
+        try:
+            eval_result = await evaluate_fill_blank(
+                cefr_level=lesson.cefr_level,
+                question=exercise.question,
+                correct_answer=exercise.correct_answer,
+                student_answer=data.answer,
+            )
+            exercise.score = eval_result.score
+            exercise.feedback = eval_result.feedback
+        except (LLMTimeoutError, LLMUnavailableError, LLMError):
+            # Fallback: normalised string comparison
+            ua = data.answer.strip().lower().rstrip(".,!?")
+            ca = exercise.correct_answer.strip().lower().rstrip(".,!?")
+            alternatives = [a.strip().lower() for a in ca.split("/")]
+            is_correct = ua == ca or ua in alternatives
+            exercise.score = 1.0 if is_correct else 0.0
+            exercise.feedback = "Correct!" if is_correct else f"The correct answer is: {exercise.correct_answer}"
     elif exercise.exercise_type == "pronunciation":
         transcription = data.answer
         try:
@@ -178,7 +200,12 @@ async def answer_exercise(
                 else f"The target phrase was: {exercise.correct_answer}"
             )
     else:
-        is_correct = user_answer == correct
+        user_ans = data.answer.strip().lower()
+        correct_ans = exercise.correct_answer.strip().lower()
+        # Compatibility: old exercises may store correct_answer as bare letter ("a")
+        # while clients now submit full option text ("a. works"). Accept both.
+        _stripped = re.sub(r'^[a-z]\. *', '', user_ans)
+        is_correct = user_ans == correct_ans or _stripped == correct_ans or user_ans == re.sub(r'^[a-z]\. *', '', correct_ans)
         exercise.score = 1.0 if is_correct else 0.0
         exercise.feedback = "Correct!" if is_correct else f"The correct answer is: {exercise.correct_answer}"
 

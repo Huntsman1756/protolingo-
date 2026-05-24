@@ -42,4 +42,5 @@ class Exercise(Base):
     user_answer: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     feedback: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    explanation: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     answered_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)

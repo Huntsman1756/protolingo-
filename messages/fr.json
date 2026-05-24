@@ -320,7 +320,10 @@
     "startWithAssessment": "Commencez par une évaluation.",
     "takeAssessmentArrow": "Passer l'évaluation →",
     "goToMyPlan": "Mon plan →",
-    "quickActions": "Actions rapides"
+    "quickActions": "Actions rapides",
+    "dayProgress": "Jour {current} sur {total}",
+    "skipDay": "Passer aujourd'hui",
+    "pendingLessons": "leçons en attente"
   },
   "assessment": {
     "title": "Évaluation",
@@ -494,11 +497,17 @@
     "score": "Score",
     "examples": "Exemples",
     "pronunciationExercise": "Prononciation",
+    "exerciseTypeMultipleChoice": "Choix multiple",
+    "exerciseTypeFillBlank": "Texte à trous",
+    "exerciseTypeFreeWrite": "Rédaction libre",
+    "exerciseTypePronunciation": "Prononciation",
     "tapToListen": "Appuyer pour écouter",
     "recordNow": "Enregistrez votre réponse",
     "exit": "Quitter",
     "exitConfirmTitle": "Quitter la leçon ?",
-    "exitConfirmMessage": "Votre progression sur cette leçon sera perdue."
+    "exitConfirmMessage": "Votre progression sur cette leçon sera perdue.",
+    "dayComplete": "Journée terminée !",
+    "dayCompleteMsg": "Toutes les leçons d'aujourd'hui sont terminées."
   },
   "flashcards": {
     "title": "Fiches",
@@ -963,11 +972,11 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Compris",
     "entry1": {
-      "label": "Plan gratuit",
-      "desc": "Le tableau de bord, les cartes mémoire, les leçons, le plan d'étude et le test de niveau sont désormais gratuits pour tous les utilisateurs inscrits. Aucun abonnement requis."
+      "label": "Améliorations du plan d'étude",
+      "desc": "Ta progression dans le plan d'étude est désormais suivie jour par jour, indépendamment des dates du calendrier. Les jours complétés avancent automatiquement, tu peux passer le jour actuel et rattraper les leçons en retard à tout moment. Le tableau de bord affiche une barre de progression et un compteur de jours en un coup d'œil."
     },
     "entry2": {
       "label": "Tableau de feedback",

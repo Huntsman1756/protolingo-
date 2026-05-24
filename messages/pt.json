@@ -320,7 +320,10 @@
     "startWithAssessment": "Comece com uma avaliação.",
     "takeAssessmentArrow": "Fazer avaliação →",
     "goToMyPlan": "Meu plano →",
-    "quickActions": "Ações rápidas"
+    "quickActions": "Ações rápidas",
+    "dayProgress": "Dia {current} de {total}",
+    "skipDay": "Pular hoje",
+    "pendingLessons": "lições pendentes"
   },
   "assessment": {
     "title": "Avaliação",
@@ -494,11 +497,17 @@
     "score": "Pontuação",
     "examples": "Exemplos",
     "pronunciationExercise": "Pronúncia",
+    "exerciseTypeMultipleChoice": "Múltipla escolha",
+    "exerciseTypeFillBlank": "Preencher o espaço",
+    "exerciseTypeFreeWrite": "Escrita livre",
+    "exerciseTypePronunciation": "Pronúncia",
     "tapToListen": "Toque para ouvir",
     "recordNow": "Grave a sua resposta",
     "exit": "Sair",
     "exitConfirmTitle": "Sair da lição?",
-    "exitConfirmMessage": "O seu progresso nesta lição será perdido."
+    "exitConfirmMessage": "O seu progresso nesta lição será perdido.",
+    "dayComplete": "Dia concluído!",
+    "dayCompleteMsg": "Todas as lições de hoje estão concluídas."
   },
   "flashcards": {
     "title": "Cartões",
@@ -963,11 +972,11 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Entendido",
     "entry1": {
-      "label": "Plano gratuito",
-      "desc": "O painel, os flashcards, as lições, o plano de estudo e o teste de nível são agora gratuitos para todos os utilizadores registados. Não é necessária subscrição."
+      "label": "Melhorias no plano de estudos",
+      "desc": "O teu progresso no plano de estudos é agora acompanhado dia a dia, independentemente das datas do calendário. Os dias concluídos avançam automaticamente, podes saltar o dia atual e recuperar as lições pendentes a qualquer momento. O painel mostra uma barra de progresso e um contador de dias de relance."
     },
     "entry2": {
       "label": "Quadro de feedback",

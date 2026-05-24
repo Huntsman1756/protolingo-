@@ -320,7 +320,10 @@
     "startWithAssessment": "Începe cu o evaluare.",
     "takeAssessmentArrow": "Fă evaluarea →",
     "goToMyPlan": "Planul meu →",
-    "quickActions": "Acțiuni rapide"
+    "quickActions": "Acțiuni rapide",
+    "dayProgress": "Ziua {current} din {total}",
+    "skipDay": "Sari astăzi",
+    "pendingLessons": "lecții în așteptare"
   },
   "assessment": {
     "title": "Evaluare",
@@ -494,11 +497,17 @@
     "score": "Scor",
     "examples": "Exemple",
     "pronunciationExercise": "Pronunție",
+    "exerciseTypeMultipleChoice": "Alegere multiplă",
+    "exerciseTypeFillBlank": "Completează spațiul",
+    "exerciseTypeFreeWrite": "Scriere liberă",
+    "exerciseTypePronunciation": "Pronunție",
     "tapToListen": "Apasă pentru a asculta",
     "recordNow": "Înregistrează răspunsul tău",
     "exit": "Ieși",
     "exitConfirmTitle": "Ieșiți din lecție?",
-    "exitConfirmMessage": "Progresul dvs. la această lecție va fi pierdut."
+    "exitConfirmMessage": "Progresul dvs. la această lecție va fi pierdut.",
+    "dayComplete": "Ziua finalizată!",
+    "dayCompleteMsg": "Toate lecțiile de astăzi sunt finalizate."
   },
   "flashcards": {
     "title": "Carduri flash",
@@ -963,11 +972,11 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Plan gratuit",
-      "desc": "Tabloul de bord, cardurile de memorie, lecțiile, planul de studiu și testul de nivel sunt acum gratuite pentru toți utilizatorii înregistrați. Nu este necesară nicio abonare."
+      "label": "Îmbunătățiri la planul de studiu",
+      "desc": "Progresul tău în planul de studiu este acum urmărit zi de zi, independent de datele calendaristice. Zilele finalizate avansează automat, poți sări ziua curentă și recupera lecțiile restante oricând. Tabloul de bord afișează o bară de progres și un contor de zile dintr-o privire."
     },
     "entry2": {
       "label": "Panou de feedback",

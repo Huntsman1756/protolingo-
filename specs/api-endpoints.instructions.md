@@ -72,7 +72,9 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 |--------|------|-------------|
 | GET | `/current` | User's active plan with curriculum progress |
 | POST | `/generate` | Creates new plan from CEFR level, goals, and duration |
-| GET | `/today` | Today's lessons (auto-generates missing lesson content via LLM on first access) |
+| GET | `/today` | Today's lessons; auto-generates missing content via LLM on first access; auto-advances `progress_day` when all lessons for the current day are complete. Returns `plan_id`, `cefr_level`, `lessons`, `progress_day`, `total_days`, `pending_count`. |
+| POST | `/skip-day` | Increments `progress_day` by 1 (capped at `total_days`). Returns `{progress_day, total_days}`. |
+| GET | `/pending-lessons` | Returns incomplete lessons from days before `progress_day` (generated but not completed). |
 
 ---
 

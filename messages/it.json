@@ -320,7 +320,10 @@
     "startWithAssessment": "Inizia con una valutazione.",
     "takeAssessmentArrow": "Fai la valutazione →",
     "goToMyPlan": "Il mio piano →",
-    "quickActions": "Azioni rapide"
+    "quickActions": "Azioni rapide",
+    "dayProgress": "Giorno {current} di {total}",
+    "skipDay": "Salta oggi",
+    "pendingLessons": "lezioni in sospeso"
   },
   "assessment": {
     "title": "Valutazione",
@@ -494,11 +497,17 @@
     "score": "Punteggio",
     "examples": "Esempi",
     "pronunciationExercise": "Pronuncia",
+    "exerciseTypeMultipleChoice": "Scelta multipla",
+    "exerciseTypeFillBlank": "Completa la frase",
+    "exerciseTypeFreeWrite": "Scrittura libera",
+    "exerciseTypePronunciation": "Pronuncia",
     "tapToListen": "Tocca per ascoltare",
     "recordNow": "Registra la tua risposta",
     "exit": "Esci",
     "exitConfirmTitle": "Uscire dalla lezione?",
-    "exitConfirmMessage": "Il tuo progresso in questa lezione andrà perso."
+    "exitConfirmMessage": "Il tuo progresso in questa lezione andrà perso.",
+    "dayComplete": "Giornata completata!",
+    "dayCompleteMsg": "Tutte le lezioni di oggi sono completate."
   },
   "flashcards": {
     "title": "Schede",
@@ -963,11 +972,11 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.6.0",
+    "version": "v1.6.1",
     "cta": "Capito",
     "entry1": {
-      "label": "Piano gratuito",
-      "desc": "Dashboard, flashcard, lezioni, piano di studio e test di livello sono ora gratuiti per tutti gli utenti registrati. Nessun abbonamento richiesto."
+      "label": "Miglioramenti al piano di studio",
+      "desc": "Il tuo avanzamento nel piano di studio è ora tracciato giorno per giorno, indipendentemente dalle date del calendario. I giorni completati avanzano automaticamente, puoi saltare il giorno corrente e recuperare le lezioni in sospeso in qualsiasi momento. La dashboard mostra una barra di avanzamento e un contatore di giorni a colpo d'occhio."
     },
     "entry2": {
       "label": "Bacheca feedback",
