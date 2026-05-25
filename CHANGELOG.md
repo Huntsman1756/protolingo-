@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.4] - 2026-05-25
+
+### Changed
+- **Kokoro TTS**: switched to official upstream image `ghcr.io/remsky/kokoro-fastapi-gpu:v0.4.0-cu128` which now properly ships Blackwell/RTX 50-series (sm_120) kernels. Documented GPU compatibility tiers for all NVIDIA architectures.
+- **TTS router**: ignore client voice param when `TTS_PROVIDER=local` to prevent 400 errors from stale OpenAI voice names in localStorage.
+
 ## [1.6.3] - 2026-05-24
 
 ### Fixed
