@@ -106,12 +106,12 @@ services:
   # TTS (Kokoro-FastAPI) ──────────────────────────────────────────
   # Only required when TTS_PROVIDER=local (default).
   # Set TTS_PROVIDER=openai to use OpenAI TTS instead — no local service needed.
-  # Custom fork built for Blackwell/RTX 50-series (sm_120) — the official
-  # upstream image does not ship sm_120 kernels yet despite README claims.
-  # For Turing+ up to Hopper (sm_75–sm_90): use ghcr.io/remsky/kokoro-fastapi-gpu:latest
-  # GTX 10xx (Pascal) or older: use ghcr.io/remsky/kokoro-fastapi-cpu:latest and remove 'deploy' block
+  # Upstream image (0.4.0+), cu128 variant for Blackwell/RTX 50-series.
+  # For Maxwell/Pascal/Turing/Ampere/Hopper GPUs: use :latest (cu126).
+  # CPU-only host: use :cpu-latest and remove the 'deploy' block.
+  # See: https://github.com/remsky/Kokoro-FastAPI
   kokoro:
-    image: ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master
+    image: ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128
     container_name: freelingo-kokoro
     restart: unless-stopped
     environment:
