@@ -13,7 +13,7 @@ applyTo: "docker-compose.yml, .env*, **/Dockerfile"
 | `redis` | `redis:7-alpine` | 6379 (internal) | 1 | Password-protected, health check via `redis-cli ping` |
 | `backend` | `ghcr.io/artcc/freelingo-backend:latest` | 8000 (internal) | 1 | Runs Alembic migrations automatically before Uvicorn. Depends on healthy postgres + redis. |
 | `frontend` | `ghcr.io/artcc/freelingo-frontend:latest` | 3000 (host) | 1 | Receives `BACKEND_URL` as runtime env var. Depends on backend. |
-| `kokoro` | `ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master` | 8880 (internal) | 2 | TTS — custom fork built for Blackwell/RTX 50-series (sm_120). Official upstream lacks sm_120 kernels. Only needed when `TTS_PROVIDER=local`. |
+| `kokoro` | `ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128` | 8880 (internal) | 2 | TTS — upstream image (0.4.0+), cu128 variant for Blackwell/RTX 50-series. Only needed when `TTS_PROVIDER=local`. |
 | `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | 9000 (internal) | 2 | STT — GPU via NVIDIA deploy block. Only needed when `STT_PROVIDER=local`. |
 
 Ollama is assumed to run on the host machine for GPU access, reached from containers via `host.docker.internal:11434`.
@@ -63,9 +63,8 @@ Two named volumes: `postgres_data` and `redis_data`. Both services also accept b
 
 ### Kokoro TTS
 
-- Custom fork: built for Blackwell/RTX 50-series (sm_120); the official upstream image does not ship sm_120 kernels
-- For Turing+ up to Hopper (sm_75–sm_90): use `ghcr.io/remsky/kokoro-fastapi-gpu:latest`
-- GTX 10xx (Pascal) or older: use the CPU image (`ghcr.io/remsky/kokoro-fastapi-cpu:latest`) instead
+- Upstream image (`0.4.0+`). Cu128 variant (`:latest-cu128`) for Blackwell/RTX 50-series (sm_120).
+- For Maxwell/Pascal/Turing/Ampere/Hopper (sm_50–sm_90): use `:latest` (cu126, confirmed Pascal support in pyproject.toml).
 - Remove from stack entirely when `TTS_PROVIDER=openai`
 - GPU assigned via `deploy.resources.reservations.devices`; remove this block for CPU-only hosts
 
@@ -119,7 +118,7 @@ Run via the backend container after model changes. Migrations run automatically 
 
 | Service | GPU image | CPU image | Change needed |
 |---------|-----------|-----------|---------------|
-| Kokoro TTS | `ghcr.io/artcc/kokoro-fastapi-gpu:v0.2.4-master` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Replace image; remove `deploy` block |
+| Kokoro TTS | `ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Replace image; remove `deploy` block |
 | Whisper STT | `*:latest-gpu` | `*:latest` | Replace tag; remove `deploy` block; use `STT_MODEL=small` |
 
 The `deploy.resources.reservations.devices` block requires the Docker NVIDIA runtime. Remove it entirely for CPU-only hosts.
