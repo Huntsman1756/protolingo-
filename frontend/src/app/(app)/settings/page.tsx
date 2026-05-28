@@ -521,7 +521,7 @@ export default function SettingsPage() {
             rows={3}
             maxLength={500}
             placeholder={t('bioPlaceholder')}
-            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full resize-none border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full resize-y min-h-[74px] border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
           />
           <p className="text-fl-hint text-fl-muted-4 mt-1 font-mono">
             {t('bioHint')}

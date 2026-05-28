@@ -159,7 +159,7 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   disabled={isLoading}
-                  className="border-fl-border bg-fl-bg text-fl-fg placeholder:text-fl-muted-3 focus:border-fl-border-2 resize-none border px-3 py-2 font-mono text-xs transition-colors focus:outline-none disabled:opacity-50"
+                  className="border-fl-border bg-fl-bg text-fl-fg placeholder:text-fl-muted-3 focus:border-fl-border-2 resize-y min-h-[98px] border px-3 py-2 font-mono text-xs transition-colors focus:outline-none disabled:opacity-50"
                   placeholder={t('placeholderDescription')}
                 />
               </div>

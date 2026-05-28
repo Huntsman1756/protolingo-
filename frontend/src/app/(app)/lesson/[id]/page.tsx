@@ -377,7 +377,7 @@ export default function LessonPage() {
                 </div>
               ) : (
                 <textarea
-                  className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 min-h-[90px] w-full resize-none border px-4 py-3 font-mono text-xs transition-colors focus:outline-none"
+                  className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 min-h-[90px] w-full resize-y border px-4 py-3 font-mono text-xs transition-colors focus:outline-none"
                   placeholder={t('yourAnswer')}
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}

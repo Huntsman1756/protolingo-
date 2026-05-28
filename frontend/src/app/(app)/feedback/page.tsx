@@ -96,6 +96,8 @@ function CreateModal({ type, onClose, onCreated }: CreateModalProps) {
 
   const inputCls =
     'w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none'
+  const textareaCls =
+    'w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-y min-h-[106px]'
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -200,7 +202,7 @@ function CreateModal({ type, onClose, onCreated }: CreateModalProps) {
                   ? t('placeholderDescriptionFeature')
                   : t('placeholderDescriptionBug')
               }
-              className={inputCls}
+              className={textareaCls}
             />
           </div>
           <div className="flex gap-2 pt-1">
@@ -428,7 +430,7 @@ function DetailView({
             onChange={(e) => setCommentBody(e.target.value)}
             placeholder={t('commentPlaceholder')}
             maxLength={2000}
-            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full resize-none border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full resize-y min-h-[50px] border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
           />
           <button
             type="submit"
