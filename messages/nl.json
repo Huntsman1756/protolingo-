@@ -719,7 +719,9 @@
     "maintenanceOn": "AAN",
     "maintenanceEnable": "Onderhoud Inschakelen",
     "maintenanceDisable": "Onderhoud Uitschakelen",
-    "maintenanceDesc": "Indien ingeschakeld zijn alle abonnementsfuncties (tutorchat, spraakgesprekken, luister- en leesoefeningen) niet beschikbaar voor alle gebruikers."
+    "maintenanceDesc": "Indien ingeschakeld zijn alle abonnementsfuncties (tutorchat, spraakgesprekken, luister- en leesoefeningen) niet beschikbaar voor alle gebruikers.",
+    "cannotDeactivateSelf": "Je kunt je eigen account niet deactiveren",
+    "cannotDeleteSelf": "Je kunt je eigen account niet verwijderen"
   },
   "faq": {
     "title": "FAQ",

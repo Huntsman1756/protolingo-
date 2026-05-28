@@ -719,7 +719,9 @@
     "maintenanceOn": "ACTIV",
     "maintenanceEnable": "Activează Mentenanța",
     "maintenanceDisable": "Dezactivează Mentenanța",
-    "maintenanceDesc": "Când este activat, toate funcțiile de abonament (chat, conversații vocale, exerciții de ascultare și citire) vor fi indisponibile pentru toți utilizatorii."
+    "maintenanceDesc": "Când este activat, toate funcțiile de abonament (chat, conversații vocale, exerciții de ascultare și citire) vor fi indisponibile pentru toți utilizatorii.",
+    "cannotDeactivateSelf": "Nu îți poți dezactiva propriul cont",
+    "cannotDeleteSelf": "Nu îți poți șterge propriul cont"
   },
   "faq": {
     "title": "Întrebări frecvente",

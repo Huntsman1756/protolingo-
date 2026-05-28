@@ -719,7 +719,9 @@
     "maintenanceOn": "ATIVO",
     "maintenanceEnable": "Ativar Manutenção",
     "maintenanceDisable": "Desativar Manutenção",
-    "maintenanceDesc": "Quando ativado, todos os recursos de assinatura (chat, conversas por voz, exercícios de listening e reading) ficarão indisponíveis para todos os usuários."
+    "maintenanceDesc": "Quando ativado, todos os recursos de assinatura (chat, conversas por voz, exercícios de listening e reading) ficarão indisponíveis para todos os usuários.",
+    "cannotDeactivateSelf": "Não é possível desativar a sua própria conta",
+    "cannotDeleteSelf": "Não é possível eliminar a sua própria conta"
   },
   "faq": {
     "title": "FAQ",
