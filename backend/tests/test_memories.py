@@ -1,4 +1,5 @@
 """Tests for the Memory feature — service layer and API endpoints."""
+
 from unittest.mock import AsyncMock, patch
 
 import pytest
@@ -15,18 +16,17 @@ from app.services.memory_service import (
     strip_memory_marker,
 )
 
-
 # ── Service layer unit tests ────────────────────────────────────────────────
 
 
 class TestParseMemoryMarker:
     def test_extracts_single_item(self):
-        text = "Hello student!\n\n<<MEMORY>>{\"items\":[\"User is a teacher\"]}<<ENDMEMORY>>"
+        text = 'Hello student!\n\n<<MEMORY>>{"items":["User is a teacher"]}<<ENDMEMORY>>'
         items = parse_memory_marker(text)
         assert items == ["User is a teacher"]
 
     def test_extracts_multiple_items(self):
-        text = "Reply.<<MEMORY>>{\"items\":[\"Fact 1\",\"Fact 2\"]}<<ENDMEMORY>>"
+        text = 'Reply.<<MEMORY>>{"items":["Fact 1","Fact 2"]}<<ENDMEMORY>>'
         items = parse_memory_marker(text)
         assert items == ["Fact 1", "Fact 2"]
 
@@ -40,7 +40,7 @@ class TestParseMemoryMarker:
         assert items == []
 
     def test_returns_empty_on_missing_items_key(self):
-        text = "<<MEMORY>>{\"other\": []}<<ENDMEMORY>>"
+        text = '<<MEMORY>>{"other": []}<<ENDMEMORY>>'
         items = parse_memory_marker(text)
         assert items == []
 
@@ -51,19 +51,19 @@ class TestParseMemoryMarker:
         assert len(items[0]) == 200
 
     def test_handles_marker_with_newlines(self):
-        text = "Reply.\n<<MEMORY>>\n{\"items\":[\"Fact\"]}\n<<ENDMEMORY>>"
+        text = 'Reply.\n<<MEMORY>>\n{"items":["Fact"]}\n<<ENDMEMORY>>'
         items = parse_memory_marker(text)
         assert items == ["Fact"]
 
     def test_filters_empty_items(self):
-        text = "<<MEMORY>>{\"items\":[\"\", \"Valid\"]}<<ENDMEMORY>>"
+        text = '<<MEMORY>>{"items":["", "Valid"]}<<ENDMEMORY>>'
         items = parse_memory_marker(text)
         assert items == ["Valid"]
 
 
 class TestStripMemoryMarker:
     def test_removes_marker_from_end(self):
-        text = "Hello student!<<MEMORY>>{\"items\":[\"f\"]}<<ENDMEMORY>>"
+        text = 'Hello student!<<MEMORY>>{"items":["f"]}<<ENDMEMORY>>'
         result = strip_memory_marker(text)
         assert result == "Hello student!"
 
@@ -73,7 +73,7 @@ class TestStripMemoryMarker:
         assert result == "Hello student!"
 
     def test_handles_multiline_marker(self):
-        text = "Line 1.\nLine 2.\n<<MEMORY>>\n{\"items\":[\"f\"]}\n<<ENDMEMORY>>"
+        text = 'Line 1.\nLine 2.\n<<MEMORY>>\n{"items":["f"]}\n<<ENDMEMORY>>'
         result = strip_memory_marker(text)
         assert result == "Line 1.\nLine 2."
 
@@ -92,12 +92,11 @@ class TestBuildMemoryContext:
 
     def test_limits_to_last_20(self):
         memories = [
-            Memory(id=i, user_id=1, content=f"Fact #{i:02d}", source="chat")
-            for i in range(1, 26)
+            Memory(id=i, user_id=1, content=f"Fact #{i:02d}", source="chat") for i in range(1, 26)
         ]
         result = build_memory_context(memories)
-        assert "Fact #06" in result   # oldest kept (memories[5])
-        assert "Fact #25" in result   # newest
+        assert "Fact #06" in result  # oldest kept (memories[5])
+        assert "Fact #25" in result  # newest
         assert "Fact #05" not in result  # oldest dropped (memories[4])
 
 
@@ -140,9 +139,7 @@ async def test_delete_memory(client, test_user, db_session):
     assert response.status_code == 204
 
     # Verify it's gone
-    result = await db_session.execute(
-        select(Memory).where(Memory.id == memory.id)
-    )
+    result = await db_session.execute(select(Memory).where(Memory.id == memory.id))
     assert result.scalar_one_or_none() is None
 
 
@@ -181,9 +178,7 @@ async def test_clear_all_memories(client, test_user, db_session):
     assert data["deleted"] == 2
 
     # Verify all gone
-    result = await db_session.execute(
-        select(Memory).where(Memory.user_id == user.id)
-    )
+    result = await db_session.execute(select(Memory).where(Memory.user_id == user.id))
     assert len(result.scalars().all()) == 0
 
 
@@ -202,6 +197,7 @@ async def test_memories_require_subscription(client, test_user):
 async def test_memories_blocked_without_stripe_subscription(client, test_user, monkeypatch):
     """With STRIPE_ENABLED=true and no subscription the endpoint returns 402."""
     from app.core import config as _cfg
+
     monkeypatch.setattr(_cfg.settings, "STRIPE_ENABLED", True)
     _user, headers = test_user
     response = await client.get("/api/memories", headers=headers)
@@ -210,11 +206,12 @@ async def test_memories_blocked_without_stripe_subscription(client, test_user, m
 
 # ── Memory service DB tests ─────────────────────────────────────────────────
 
+
 @pytest.fixture
 async def memory_user(db_session):
     """Create a user for memory service tests."""
-    from app.models.user import User
     from app.core.security import hash_password
+    from app.models.user import User
 
     user = User(
         username="memuser",
@@ -288,8 +285,8 @@ async def test_delete_memory_wrong_user_service(db_session, memory_user):
 @pytest.mark.asyncio
 async def test_clear_all_memories_service(db_session, memory_user):
     # Create a second user
-    from app.models.user import User
     from app.core.security import hash_password
+    from app.models.user import User
 
     user2 = User(
         username="memuser2",
@@ -327,14 +324,18 @@ async def test_chat_strips_memory_marker_from_response(client, test_user):
         class Choice:
             class Delta:
                 content = "Hi"
+
             delta = Delta()
+
         choices = [Choice()]
 
     class FakeMarkerChunk:
         class Choice:
             class Delta:
-                content = "<<MEMORY>>{\"items\":[\"User likes cats\"]}<<ENDMEMORY>>"
+                content = '<<MEMORY>>{"items":["User likes cats"]}<<ENDMEMORY>>'
+
             delta = Delta()
+
         choices = [Choice()]
 
     async def fake_stream():

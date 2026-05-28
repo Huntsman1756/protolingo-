@@ -5,10 +5,10 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import FileResponse, Response
 
+from app.core.app_logger import get_logger
 from app.core.config import settings
 from app.core.deps import get_current_user
 from app.core.limiter import limiter
-from app.core.app_logger import get_logger
 from app.models.user import User
 from app.schemas.tts_stt import TTSRequest
 
@@ -16,7 +16,9 @@ router = APIRouter(prefix="/api", tags=["tts"])
 logger = get_logger(__name__)
 
 _PREVIEW_DIR = "/app/tts_previews"
-_OPENAI_VOICES = frozenset({"alloy", "ash", "coral", "echo", "fable", "nova", "onyx", "sage", "shimmer"})
+_OPENAI_VOICES = frozenset(
+    {"alloy", "ash", "coral", "echo", "fable", "nova", "onyx", "sage", "shimmer"}
+)
 _PREVIEW_TEXT = "Hello! I'm your English tutor. This is how I sound — warm, clear, and ready to help you practise every day. Let's get started!"
 
 
@@ -80,7 +82,9 @@ async def voice_preview(
     Only available when TTS_PROVIDER=openai.
     """
     if settings.TTS_PROVIDER != "openai":
-        raise HTTPException(status_code=404, detail="Voice preview is only available with OpenAI TTS")
+        raise HTTPException(
+            status_code=404, detail="Voice preview is only available with OpenAI TTS"
+        )
 
     if voice not in _OPENAI_VOICES:
         raise HTTPException(status_code=400, detail="Invalid voice name")

@@ -33,13 +33,13 @@ export interface GrammarTopic {
   title: string
   level: CEFRLevel
   category: GrammarCategory
-  summary: string       // one-liner for the index card
-  explanation: string   // full explanation in Markdown
-  structure?: string    // formula/pattern, e.g. "Subject + verb + object"
-  rules: string[]       // bullet-point key rules
+  summary: string // one-liner for the index card
+  explanation: string // full explanation in Markdown
+  structure?: string // formula/pattern, e.g. "Subject + verb + object"
+  rules: string[] // bullet-point key rules
   examples: GrammarExample[]
   common_mistakes: GrammarMistake[]
-  related: string[]     // slugs of related topics
+  related: string[] // slugs of related topics
 }
 
 export const grammarTopics: GrammarTopic[] = [
@@ -63,8 +63,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'Does he speak French?', note: 'question with does' },
     ],
     common_mistakes: [
-      { wrong: 'She work here.', correct: 'She works here.', note: 'Missing -s for third person.' },
-      { wrong: "He don't know.", correct: "He doesn't know.", note: "Use doesn't, not don't, for he/she/it." },
+      {
+        wrong: 'She work here.',
+        correct: 'She works here.',
+        note: 'Missing -s for third person.',
+      },
+      {
+        wrong: "He don't know.",
+        correct: "He doesn't know.",
+        note: "Use doesn't, not don't, for he/she/it.",
+      },
     ],
     related: ['present-continuous', 'past-simple', 'questions-yes-no'],
   },
@@ -87,8 +95,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'They are not ready yet.', note: 'negative' },
     ],
     common_mistakes: [
-      { wrong: 'She is very nice person.', correct: 'She is a very nice person.', note: "Don't forget the article before a singular noun." },
-      { wrong: 'I am agree.', correct: 'I agree.', note: '"Agree" is a verb, not an adjective. Don\'t use "be" with it.' },
+      {
+        wrong: 'She is very nice person.',
+        correct: 'She is a very nice person.',
+        note: "Don't forget the article before a singular noun.",
+      },
+      {
+        wrong: 'I am agree.',
+        correct: 'I agree.',
+        note: '"Agree" is a verb, not an adjective. Don\'t use "be" with it.',
+      },
     ],
     related: ['articles', 'present-simple'],
   },
@@ -106,13 +122,24 @@ export const grammarTopics: GrammarTopic[] = [
       'No article for general plurals: "Dogs are loyal." (not "The dogs are loyal.")',
     ],
     examples: [
-      { english: 'I saw a dog in the park.', note: 'a = first mention; the = specific park' },
+      {
+        english: 'I saw a dog in the park.',
+        note: 'a = first mention; the = specific park',
+      },
       { english: 'She is an engineer.' },
       { english: 'The sun rises in the east.', note: 'unique nouns use "the"' },
     ],
     common_mistakes: [
-      { wrong: 'I am engineer.', correct: 'I am an engineer.', note: 'Always use an article before a singular countable noun.' },
-      { wrong: 'The life is beautiful.', correct: 'Life is beautiful.', note: 'No article for abstract nouns used in a general sense.' },
+      {
+        wrong: 'I am engineer.',
+        correct: 'I am an engineer.',
+        note: 'Always use an article before a singular countable noun.',
+      },
+      {
+        wrong: 'The life is beautiful.',
+        correct: 'Life is beautiful.',
+        note: 'No article for abstract nouns used in a general sense.',
+      },
     ],
     related: ['countable-uncountable', 'to-be'],
   },
@@ -136,8 +163,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'Do they speak English?' },
     ],
     common_mistakes: [
-      { wrong: 'Does she works here?', correct: 'Does she work here?', note: 'After does, use the base form of the verb.' },
-      { wrong: 'You are tired?', correct: 'Are you tired?', note: 'Invert subject and verb in questions.' },
+      {
+        wrong: 'Does she works here?',
+        correct: 'Does she work here?',
+        note: 'After does, use the base form of the verb.',
+      },
+      {
+        wrong: 'You are tired?',
+        correct: 'Are you tired?',
+        note: 'Invert subject and verb in questions.',
+      },
     ],
     related: ['questions-yes-no', 'present-simple', 'to-be'],
   },
@@ -159,7 +194,11 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'It is raining outside.' },
     ],
     common_mistakes: [
-      { wrong: 'Me and my friend went.', correct: 'My friend and I went.', note: 'Use "I", not "me", as the subject. And put yourself last.' },
+      {
+        wrong: 'Me and my friend went.',
+        correct: 'My friend and I went.',
+        note: 'Use "I", not "me", as the subject. And put yourself last.',
+      },
     ],
     related: ['possessive-adjectives'],
   },
@@ -181,8 +220,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'The dog wagged its tail.' },
     ],
     common_mistakes: [
-      { wrong: "The cat lost it's collar.", correct: 'The cat lost its collar.', note: '"its" without apostrophe is possessive.' },
-      { wrong: 'Their going to the park.', correct: "They're going to the park.", note: '"Their" is possessive; "they\'re" = they are.' },
+      {
+        wrong: "The cat lost it's collar.",
+        correct: 'The cat lost its collar.',
+        note: '"its" without apostrophe is possessive.',
+      },
+      {
+        wrong: 'Their going to the park.',
+        correct: "They're going to the park.",
+        note: '"Their" is possessive; "they\'re" = they are.',
+      },
     ],
     related: ['subject-pronouns'],
   },
@@ -191,7 +238,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'There is / There are',
     level: 'A1',
     category: 'Tenses',
-    summary: 'Describe what exists in a place using "there is" and "there are".',
+    summary:
+      'Describe what exists in a place using "there is" and "there are".',
     structure: 'There is + singular noun · There are + plural noun',
     explanation: `Use **there is** (singular/uncountable) and **there are** (plural) to say that something exists or is located somewhere.\n\n- *There is a park near my house.*\n- *There are three bedrooms in my flat.*\n\nNegative: *There isn't a café here.* / *There aren't any shops nearby.*\n\nQuestion: *Is there a bank near here?* / *Are there any seats?*`,
     rules: [
@@ -205,11 +253,22 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'There is a supermarket on the corner.' },
       { english: 'There are two windows in the room.' },
       { english: 'Is there a bus stop near here?', note: 'question' },
-      { english: "There aren't any hotels in this village.", note: 'negative plural' },
+      {
+        english: "There aren't any hotels in this village.",
+        note: 'negative plural',
+      },
     ],
     common_mistakes: [
-      { wrong: 'There is two books on the table.', correct: 'There are two books on the table.', note: 'Use "there are" with plural nouns.' },
-      { wrong: 'It is a park near here.', correct: 'There is a park near here.', note: 'Use "there is/are" to say something exists, not "it is".' },
+      {
+        wrong: 'There is two books on the table.',
+        correct: 'There are two books on the table.',
+        note: 'Use "there are" with plural nouns.',
+      },
+      {
+        wrong: 'It is a park near here.',
+        correct: 'There is a park near here.',
+        note: 'Use "there is/are" to say something exists, not "it is".',
+      },
     ],
     related: ['to-be', 'articles', 'prepositions-place'],
   },
@@ -218,7 +277,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Prepositions of Place',
     level: 'A1',
     category: 'Prepositions',
-    summary: 'Use in, on, at, under, next to, behind and more to describe location.',
+    summary:
+      'Use in, on, at, under, next to, behind and more to describe location.',
     explanation: `Prepositions of place tell us where something is.\n\n| Preposition | Use | Example |\n|-------------|-----|---------|\n| in | inside a space | *in the room, in London* |\n| on | on a surface | *on the table, on the wall* |\n| at | at a specific point | *at the door, at school* |\n| under | below | *under the bed* |\n| next to | beside | *next to the bank* |\n| behind | at the back | *behind the sofa* |\n| in front of | facing | *in front of the building* |`,
     rules: [
       '"In" for enclosed spaces, cities, and countries.',
@@ -233,8 +293,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'The cat is under the table.' },
     ],
     common_mistakes: [
-      { wrong: 'She is in the school.', correct: 'She is at school.', note: 'Use "at school" (no article) as a set phrase.' },
-      { wrong: 'The book is in the table.', correct: 'The book is on the table.', note: 'Use "on" for surfaces, not "in".' },
+      {
+        wrong: 'She is in the school.',
+        correct: 'She is at school.',
+        note: 'Use "at school" (no article) as a set phrase.',
+      },
+      {
+        wrong: 'The book is in the table.',
+        correct: 'The book is on the table.',
+        note: 'Use "on" for surfaces, not "in".',
+      },
     ],
     related: ['there-is-are', 'articles'],
   },
@@ -260,8 +328,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'Did you see that film?' },
     ],
     common_mistakes: [
-      { wrong: "He didn't went home.", correct: "He didn't go home.", note: "After did/didn't use the base form, not past tense." },
-      { wrong: 'I have went to school yesterday.', correct: 'I went to school yesterday.', note: 'With specific past time markers (yesterday, last week), use simple past, not present perfect.' },
+      {
+        wrong: "He didn't went home.",
+        correct: "He didn't go home.",
+        note: "After did/didn't use the base form, not past tense.",
+      },
+      {
+        wrong: 'I have went to school yesterday.',
+        correct: 'I went to school yesterday.',
+        note: 'With specific past time markers (yesterday, last week), use simple past, not present perfect.',
+      },
     ],
     related: ['present-simple', 'present-perfect', 'past-simple'],
   },
@@ -284,8 +360,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'What are you doing?' },
     ],
     common_mistakes: [
-      { wrong: 'I am knowing the answer.', correct: 'I know the answer.', note: '"Know" is a stative verb — it does not take continuous form.' },
-      { wrong: 'She is work right now.', correct: 'She is working right now.', note: 'Use the -ing form after is/am/are.' },
+      {
+        wrong: 'I am knowing the answer.',
+        correct: 'I know the answer.',
+        note: '"Know" is a stative verb — it does not take continuous form.',
+      },
+      {
+        wrong: 'She is work right now.',
+        correct: 'She is working right now.',
+        note: 'Use the -ing form after is/am/are.',
+      },
     ],
     related: ['present-simple', 'past-simple'],
   },
@@ -309,8 +393,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: "This is the best coffee I've ever had." },
     ],
     common_mistakes: [
-      { wrong: 'She is more tall than me.', correct: 'She is taller than me.', note: 'Short adjectives take -er, not "more".' },
-      { wrong: 'He is the most fast runner.', correct: 'He is the fastest runner.', note: 'Short adjectives take -est, not "most".' },
+      {
+        wrong: 'She is more tall than me.',
+        correct: 'She is taller than me.',
+        note: 'Short adjectives take -er, not "more".',
+      },
+      {
+        wrong: 'He is the most fast runner.',
+        correct: 'He is the fastest runner.',
+        note: 'Short adjectives take -est, not "most".',
+      },
     ],
     related: ['comparatives-superlatives', 'adverbs-manner'],
   },
@@ -333,8 +425,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: "I can't find my keys." },
     ],
     common_mistakes: [
-      { wrong: 'She cans drive.', correct: 'She can drive.', note: 'Modal verbs never take -s.' },
-      { wrong: 'I can to swim.', correct: 'I can swim.', note: 'Do not use "to" after modal verbs.' },
+      {
+        wrong: 'She cans drive.',
+        correct: 'She can drive.',
+        note: 'Modal verbs never take -s.',
+      },
+      {
+        wrong: 'I can to swim.',
+        correct: 'I can swim.',
+        note: 'Do not use "to" after modal verbs.',
+      },
     ],
     related: ['modal-verbs', 'could-past-ability'],
   },
@@ -353,13 +453,27 @@ export const grammarTopics: GrammarTopic[] = [
       '"Going to" is different from "will" (spontaneous) and present continuous (fixed arrangements).',
     ],
     examples: [
-      { english: 'We are going to visit Rome next summer.', note: 'planned intention' },
+      {
+        english: 'We are going to visit Rome next summer.',
+        note: 'planned intention',
+      },
       { english: 'She is going to start her new job on Monday.' },
-      { english: "Look at the traffic — we're going to be late!", note: 'prediction with evidence' },
+      {
+        english: "Look at the traffic — we're going to be late!",
+        note: 'prediction with evidence',
+      },
     ],
     common_mistakes: [
-      { wrong: 'I am going to went home.', correct: 'I am going to go home.', note: 'Use the base verb after "going to", not the past form.' },
-      { wrong: 'She going to call you.', correct: 'She is going to call you.', note: 'Do not forget the verb "be" before "going to".' },
+      {
+        wrong: 'I am going to went home.',
+        correct: 'I am going to go home.',
+        note: 'Use the base verb after "going to", not the past form.',
+      },
+      {
+        wrong: 'She going to call you.',
+        correct: 'She is going to call you.',
+        note: 'Do not forget the verb "be" before "going to".',
+      },
     ],
     related: ['will-future', 'present-continuous'],
   },
@@ -380,11 +494,22 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       { english: "I'll call you tomorrow.", note: 'promise' },
       { english: 'I think she will pass the exam.', note: 'prediction' },
-      { english: "A: The phone is ringing. B: I'll get it!", note: 'spontaneous decision' },
+      {
+        english: "A: The phone is ringing. B: I'll get it!",
+        note: 'spontaneous decision',
+      },
     ],
     common_mistakes: [
-      { wrong: 'She wills be there.', correct: 'She will be there.', note: 'Will never takes -s.' },
-      { wrong: 'I will to call you.', correct: 'I will call you.', note: 'Do not use "to" after will.' },
+      {
+        wrong: 'She wills be there.',
+        correct: 'She will be there.',
+        note: 'Will never takes -s.',
+      },
+      {
+        wrong: 'I will to call you.',
+        correct: 'I will call you.',
+        note: 'Do not use "to" after will.',
+      },
     ],
     related: ['going-to-future', 'first-conditional', 'present-continuous'],
   },
@@ -403,12 +528,25 @@ export const grammarTopics: GrammarTopic[] = [
       'For a specific one-time achievement in the past, use "was/were able to", not "could".',
     ],
     examples: [
-      { english: 'I could speak a little French when I was a child.', note: 'past ability' },
-      { english: "She couldn't drive until she was 25.", note: 'past inability' },
-      { english: 'Could you help me with this, please?', note: 'polite request' },
+      {
+        english: 'I could speak a little French when I was a child.',
+        note: 'past ability',
+      },
+      {
+        english: "She couldn't drive until she was 25.",
+        note: 'past inability',
+      },
+      {
+        english: 'Could you help me with this, please?',
+        note: 'polite request',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Yesterday I could finish the project.', correct: 'Yesterday I was able to finish the project.', note: 'For a specific one-time achievement, use "was/were able to".' },
+      {
+        wrong: 'Yesterday I could finish the project.',
+        correct: 'Yesterday I was able to finish the project.',
+        note: 'For a specific one-time achievement, use "was/were able to".',
+      },
     ],
     related: ['can-cant', 'modal-verbs'],
   },
@@ -417,7 +555,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Countable & Uncountable Nouns',
     level: 'A2',
     category: 'Nouns',
-    summary: 'Understand the difference between nouns you can count and those you cannot.',
+    summary:
+      'Understand the difference between nouns you can count and those you cannot.',
     explanation: `**Countable nouns** have singular and plural forms:\n*one apple → two apples · a book → three books*\n\n**Uncountable nouns** have no plural and cannot be used with "a/an":\n*water, money, information, bread, rice, advice*\n\nTo express quantity with uncountable nouns, use **a piece of**, **a glass of**, **a kilo of**, etc.`,
     rules: [
       'Countable: can use a/an and plurals (a dog, three dogs).',
@@ -426,13 +565,30 @@ export const grammarTopics: GrammarTopic[] = [
       'Use "much" with uncountable; "many" with countable.',
     ],
     examples: [
-      { english: 'Can I have a glass of water?', note: 'uncountable — use "a glass of"' },
-      { english: 'She gave me some useful information.', note: 'information is always uncountable' },
-      { english: 'I need two kilos of rice.', note: 'quantity expression for uncountable noun' },
+      {
+        english: 'Can I have a glass of water?',
+        note: 'uncountable — use "a glass of"',
+      },
+      {
+        english: 'She gave me some useful information.',
+        note: 'information is always uncountable',
+      },
+      {
+        english: 'I need two kilos of rice.',
+        note: 'quantity expression for uncountable noun',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Can you give me an advice?', correct: 'Can you give me some advice?', note: '"Advice" is uncountable — no a/an.' },
-      { wrong: 'I have many homeworks.', correct: 'I have a lot of homework.', note: '"Homework" is uncountable — no plural.' },
+      {
+        wrong: 'Can you give me an advice?',
+        correct: 'Can you give me some advice?',
+        note: '"Advice" is uncountable — no a/an.',
+      },
+      {
+        wrong: 'I have many homeworks.',
+        correct: 'I have a lot of homework.',
+        note: '"Homework" is uncountable — no plural.',
+      },
     ],
     related: ['articles', 'some-any-much-many'],
   },
@@ -456,8 +612,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'How much money do you have?' },
     ],
     common_mistakes: [
-      { wrong: "I don't have some sugar.", correct: "I don't have any sugar.", note: 'Use "any" in negative sentences.' },
-      { wrong: 'How many water do you drink?', correct: 'How much water do you drink?', note: '"Water" is uncountable — use "much".' },
+      {
+        wrong: "I don't have some sugar.",
+        correct: "I don't have any sugar.",
+        note: 'Use "any" in negative sentences.',
+      },
+      {
+        wrong: 'How many water do you drink?',
+        correct: 'How much water do you drink?',
+        note: '"Water" is uncountable — use "much".',
+      },
     ],
     related: ['countable-uncountable', 'articles'],
   },
@@ -481,8 +645,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'Take two tablets twice a day.', note: 'medical instruction' },
     ],
     common_mistakes: [
-      { wrong: 'You open the window please.', correct: 'Open the window, please.', note: 'Imperatives have no subject — remove "you".' },
-      { wrong: "Don't to run!", correct: "Don't run!", note: "No 'to' after don't in imperatives." },
+      {
+        wrong: 'You open the window please.',
+        correct: 'Open the window, please.',
+        note: 'Imperatives have no subject — remove "you".',
+      },
+      {
+        wrong: "Don't to run!",
+        correct: "Don't run!",
+        note: "No 'to' after don't in imperatives.",
+      },
     ],
     related: ['modal-verbs', 'present-simple'],
   },
@@ -506,8 +678,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'I saw him last week.', note: 'no preposition with "last"' },
     ],
     common_mistakes: [
-      { wrong: 'She arrived in Monday.', correct: 'She arrived on Monday.', note: 'Use "on" for days of the week.' },
-      { wrong: 'I was born on 1990.', correct: 'I was born in 1990.', note: 'Use "in" for years.' },
+      {
+        wrong: 'She arrived in Monday.',
+        correct: 'She arrived on Monday.',
+        note: 'Use "on" for days of the week.',
+      },
+      {
+        wrong: 'I was born on 1990.',
+        correct: 'I was born in 1990.',
+        note: 'Use "in" for years.',
+      },
     ],
     related: ['prepositions-place', 'past-simple', 'present-simple'],
   },
@@ -528,13 +708,24 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       { english: 'She sings beautifully.' },
-      { english: 'He worked hard all day.', note: '"hard" is the same as adjective and adverb' },
+      {
+        english: 'He worked hard all day.',
+        note: '"hard" is the same as adjective and adverb',
+      },
       { english: 'Please speak slowly.', note: 'after the verb' },
       { english: 'She plays the piano well.', note: 'irregular: good → well' },
     ],
     common_mistakes: [
-      { wrong: 'She speaks good English.', correct: 'She speaks English well.', note: '"Good" is an adjective; the adverb is "well".' },
-      { wrong: 'He drives fastly.', correct: 'He drives fast.', note: '"Fast" is its own adverb — no -ly.' },
+      {
+        wrong: 'She speaks good English.',
+        correct: 'She speaks English well.',
+        note: '"Good" is an adjective; the adverb is "well".',
+      },
+      {
+        wrong: 'He drives fastly.',
+        correct: 'He drives fast.',
+        note: '"Fast" is its own adverb — no -ly.',
+      },
     ],
     related: ['comparatives-superlatives', 'present-simple'],
   },
@@ -556,12 +747,23 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       { english: 'Have you ever eaten sushi?', note: 'life experience' },
-      { english: 'She has just left the office.', note: 'recent, relevant now' },
+      {
+        english: 'She has just left the office.',
+        note: 'recent, relevant now',
+      },
       { english: "I haven't seen him since Monday." },
     ],
     common_mistakes: [
-      { wrong: 'I have seen her yesterday.', correct: 'I saw her yesterday.', note: '"Yesterday" is specific → past simple.' },
-      { wrong: 'He has went to the store.', correct: 'He has gone to the store.', note: 'Use the past participle (gone), not simple past (went).' },
+      {
+        wrong: 'I have seen her yesterday.',
+        correct: 'I saw her yesterday.',
+        note: '"Yesterday" is specific → past simple.',
+      },
+      {
+        wrong: 'He has went to the store.',
+        correct: 'He has gone to the store.',
+        note: 'Use the past participle (gone), not simple past (went).',
+      },
     ],
     related: ['past-simple', 'past-perfect'],
   },
@@ -585,7 +787,11 @@ export const grammarTopics: GrammarTopic[] = [
       { english: "If she calls, tell her I'm busy." },
     ],
     common_mistakes: [
-      { wrong: 'If it will rain, we will stay.', correct: 'If it rains, we will stay.', note: 'Do not use "will" in the if-clause.' },
+      {
+        wrong: 'If it will rain, we will stay.',
+        correct: 'If it rains, we will stay.',
+        note: 'Do not use "will" in the if-clause.',
+      },
     ],
     related: ['zero-conditional', 'second-conditional', 'will-future'],
   },
@@ -608,7 +814,11 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'The results will be announced tomorrow.' },
     ],
     common_mistakes: [
-      { wrong: 'The cake was ate by the children.', correct: 'The cake was eaten by the children.', note: 'Use the past participle (eaten), not simple past (ate).' },
+      {
+        wrong: 'The cake was ate by the children.',
+        correct: 'The cake was eaten by the children.',
+        note: 'Use the past participle (eaten), not simple past (ate).',
+      },
     ],
     related: ['advanced-passive', 'past-simple'],
   },
@@ -627,11 +837,21 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       { english: 'The girl who won the prize is my sister.', note: 'defining' },
-      { english: 'London, which is the capital of England, is very expensive.', note: 'non-defining' },
-      { english: 'The bag whose strap is broken needs to be repaired.', note: 'possession' },
+      {
+        english: 'London, which is the capital of England, is very expensive.',
+        note: 'non-defining',
+      },
+      {
+        english: 'The bag whose strap is broken needs to be repaired.',
+        note: 'possession',
+      },
     ],
     common_mistakes: [
-      { wrong: 'The woman which works here is called Anna.', correct: 'The woman who works here is called Anna.', note: 'Use "who" for people, not "which".' },
+      {
+        wrong: 'The woman which works here is called Anna.',
+        correct: 'The woman who works here is called Anna.',
+        note: 'Use "who" for people, not "which".',
+      },
     ],
     related: ['advanced-relative-clauses', 'discourse-connectors-b1'],
   },
@@ -640,7 +860,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Modal Verbs',
     level: 'B1',
     category: 'Modals',
-    summary: 'must, should, could, might, would — expressing obligation, advice, and probability.',
+    summary:
+      'must, should, could, might, would — expressing obligation, advice, and probability.',
     explanation: `Modal verbs modify the main verb to express:\n\n| Modal | Use |\n|-------|-----|\n| must | strong obligation / deduction |\n| should | advice / expectation |\n| could | past ability / polite request / possibility |\n| might | weak possibility |\n| would | conditional / polite request |\n\nAll modals: no -s, followed by base verb, no "to".`,
     rules: [
       'No -s for third person: "she must", not "she musts".',
@@ -653,8 +874,16 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'Could you pass the salt, please?' },
     ],
     common_mistakes: [
-      { wrong: 'She musts leave now.', correct: 'She must leave now.', note: 'Modals never take -s.' },
-      { wrong: 'You should to call him.', correct: 'You should call him.', note: 'No "to" after modals.' },
+      {
+        wrong: 'She musts leave now.',
+        correct: 'She must leave now.',
+        note: 'Modals never take -s.',
+      },
+      {
+        wrong: 'You should to call him.',
+        correct: 'You should call him.',
+        note: 'No "to" after modals.',
+      },
     ],
     related: ['can-cant', 'second-conditional', 'modal-perfects'],
   },
@@ -673,12 +902,22 @@ export const grammarTopics: GrammarTopic[] = [
       'Different from first conditional (real future possibility).',
     ],
     examples: [
-      { english: 'If you mix red and blue, you get purple.', note: 'scientific fact' },
-      { english: 'If she stays up late, she feels tired the next day.', note: 'habit/general truth' },
+      {
+        english: 'If you mix red and blue, you get purple.',
+        note: 'scientific fact',
+      },
+      {
+        english: 'If she stays up late, she feels tired the next day.',
+        note: 'habit/general truth',
+      },
       { english: 'If it rains, the ground gets wet.', note: 'natural fact' },
     ],
     common_mistakes: [
-      { wrong: 'If you heat water, it will boil.', correct: 'If you heat water, it boils.', note: 'Zero conditional uses present simple in both clauses, not will.' },
+      {
+        wrong: 'If you heat water, it will boil.',
+        correct: 'If you heat water, it boils.',
+        note: 'Zero conditional uses present simple in both clauses, not will.',
+      },
     ],
     related: ['first-conditional', 'present-simple'],
   },
@@ -697,13 +936,24 @@ export const grammarTopics: GrammarTopic[] = [
       'Time/place words change: today → that day, here → there, now → then.',
     ],
     examples: [
-      { english: '"I live in Paris." → He said he lived in Paris.', note: 'tense backshift' },
+      {
+        english: '"I live in Paris." → He said he lived in Paris.',
+        note: 'tense backshift',
+      },
       { english: '"I will call you." → She said she would call me.' },
-      { english: "\"I can't come.\" → He told me he couldn't come." },
+      { english: '"I can\'t come." → He told me he couldn\'t come.' },
     ],
     common_mistakes: [
-      { wrong: 'She said me she was tired.', correct: 'She told me she was tired.', note: '"Said" takes no object. Use "told me".' },
-      { wrong: 'He said that he will come.', correct: 'He said that he would come.', note: '"Will" becomes "would" in reported speech.' },
+      {
+        wrong: 'She said me she was tired.',
+        correct: 'She told me she was tired.',
+        note: '"Said" takes no object. Use "told me".',
+      },
+      {
+        wrong: 'He said that he will come.',
+        correct: 'He said that he would come.',
+        note: '"Will" becomes "would" in reported speech.',
+      },
     ],
     related: ['past-simple', 'modal-verbs'],
   },
@@ -712,7 +962,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Used To & Would (Past Habits)',
     level: 'B1',
     category: 'Tenses',
-    summary: 'Describe past habits, repeated actions, and states that no longer exist using *used to* and *would*.',
+    summary:
+      'Describe past habits, repeated actions, and states that no longer exist using *used to* and *would*.',
     explanation: `**Used to** describes past habits, repeated actions, or states that are no longer true.\n\n**Structure:** *subject + used to + base verb*\n- *I used to play football every weekend.* (past habit)\n- *She used to live in Madrid.* (past state)\n\n**Would** describes past repeated actions or habits (NOT states).\n\n**Structure:** *subject + would + base verb*\n- *Every summer, we would visit my grandparents.* (past habit)\n- ❌ *She would live in Madrid.* (wrong — states need "used to", not "would")\n\n**Key differences:**\n| | used to | would |\n|---|---|---|\n| Habits | ✓ | ✓ |\n| States | ✓ | ✗ |\n| Single past events | ✗ | ✗ |\n\n**Negatives and questions use "used to":**\n- *I didn't use to like coffee.* (note: "use to", not "used to", after "did")\n- *Did you use to play chess?*`,
     rules: [
       'Use "used to" for past habits AND past states that are no longer true.',
@@ -722,14 +973,34 @@ export const grammarTopics: GrammarTopic[] = [
       'Both imply contrast with the present: the situation has changed.',
     ],
     examples: [
-      { english: 'I used to hate vegetables, but now I love them.', note: 'past state — use "used to", not "would"' },
-      { english: 'Every Friday, we would go to the cinema together.', note: 'past repeated action — "would" is fine' },
-      { english: "She didn't use to speak English very well.", note: 'negative form — "use to" after "didn\'t"' },
-      { english: 'Did you use to have long hair?', note: 'question form — "use to" after "did"' },
+      {
+        english: 'I used to hate vegetables, but now I love them.',
+        note: 'past state — use "used to", not "would"',
+      },
+      {
+        english: 'Every Friday, we would go to the cinema together.',
+        note: 'past repeated action — "would" is fine',
+      },
+      {
+        english: "She didn't use to speak English very well.",
+        note: 'negative form — "use to" after "didn\'t"',
+      },
+      {
+        english: 'Did you use to have long hair?',
+        note: 'question form — "use to" after "did"',
+      },
     ],
     common_mistakes: [
-      { wrong: 'He would live in Paris when he was young.', correct: 'He used to live in Paris when he was young.', note: '"Would" cannot describe past states — use "used to".' },
-      { wrong: 'I didn\'t used to like jazz.', correct: 'I didn\'t use to like jazz.', note: 'The -d is carried by "did" — "use to" has no -d after auxiliaries.' },
+      {
+        wrong: 'He would live in Paris when he was young.',
+        correct: 'He used to live in Paris when he was young.',
+        note: '"Would" cannot describe past states — use "used to".',
+      },
+      {
+        wrong: "I didn't used to like jazz.",
+        correct: "I didn't use to like jazz.",
+        note: 'The -d is carried by "did" — "use to" has no -d after auxiliaries.',
+      },
     ],
     related: ['past-simple', 'past-perfect', 'reported-speech-basics'],
   },
@@ -747,13 +1018,30 @@ export const grammarTopics: GrammarTopic[] = [
       'Avoid absolute statements — hedge with "might", "tend to", "generally".',
     ],
     examples: [
-      { english: 'In my opinion, social media has more disadvantages than advantages.' },
-      { english: 'I see your point, but I think the benefits outweigh the risks.' },
-      { english: "As far as I'm concerned, the most important issue is education." },
+      {
+        english:
+          'In my opinion, social media has more disadvantages than advantages.',
+      },
+      {
+        english:
+          'I see your point, but I think the benefits outweigh the risks.',
+      },
+      {
+        english:
+          "As far as I'm concerned, the most important issue is education.",
+      },
     ],
     common_mistakes: [
-      { wrong: 'I am agree with you.', correct: 'I agree with you.', note: '"Agree" is a verb, not an adjective — no "am" needed.' },
-      { wrong: 'In my opinion, I think...', correct: 'In my opinion, ... (or) I think...', note: "Don't use both phrases together — they are synonyms." },
+      {
+        wrong: 'I am agree with you.',
+        correct: 'I agree with you.',
+        note: '"Agree" is a verb, not an adjective — no "am" needed.',
+      },
+      {
+        wrong: 'In my opinion, I think...',
+        correct: 'In my opinion, ... (or) I think...',
+        note: "Don't use both phrases together — they are synonyms.",
+      },
     ],
     related: ['discourse-connectors-b1', 'modal-verbs'],
   },
@@ -771,14 +1059,34 @@ export const grammarTopics: GrammarTopic[] = [
       'Vary connectors — do not repeat "but" or "and" too often.',
     ],
     examples: [
-      { english: 'I was tired. However, I finished the report.', note: '"However" at sentence start' },
-      { english: 'Although it was raining, we went for a walk.', note: '"Although" mid-sentence' },
-      { english: 'Despite the rain, we enjoyed ourselves.', note: '"Despite" + noun phrase' },
-      { english: 'She studied hard; therefore, she passed.', note: 'cause and result' },
+      {
+        english: 'I was tired. However, I finished the report.',
+        note: '"However" at sentence start',
+      },
+      {
+        english: 'Although it was raining, we went for a walk.',
+        note: '"Although" mid-sentence',
+      },
+      {
+        english: 'Despite the rain, we enjoyed ourselves.',
+        note: '"Despite" + noun phrase',
+      },
+      {
+        english: 'She studied hard; therefore, she passed.',
+        note: 'cause and result',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Despite it was raining, we went out.', correct: 'Although it was raining, we went out.', note: '"Despite" cannot be followed by a clause; use "although".' },
-      { wrong: 'However I agree.', correct: 'However, I agree.', note: 'Use a comma after "however" at the start of a clause.' },
+      {
+        wrong: 'Despite it was raining, we went out.',
+        correct: 'Although it was raining, we went out.',
+        note: '"Despite" cannot be followed by a clause; use "although".',
+      },
+      {
+        wrong: 'However I agree.',
+        correct: 'However, I agree.',
+        note: 'Use a comma after "however" at the start of a clause.',
+      },
     ],
     related: ['expressing-opinions'],
   },
@@ -803,7 +1111,11 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'What would you do if you lost your phone?' },
     ],
     common_mistakes: [
-      { wrong: 'If I would have money, I would travel.', correct: 'If I had money, I would travel.', note: 'Do not use "would" in the if-clause.' },
+      {
+        wrong: 'If I would have money, I would travel.',
+        correct: 'If I had money, I would travel.',
+        note: 'Do not use "would" in the if-clause.',
+      },
     ],
     related: ['first-conditional', 'third-conditional', 'mixed-conditionals'],
   },
@@ -821,11 +1133,17 @@ export const grammarTopics: GrammarTopic[] = [
       'Can use could have / might have instead of would have.',
     ],
     examples: [
-      { english: "If she had left earlier, she wouldn't have missed the train." },
+      {
+        english: "If she had left earlier, she wouldn't have missed the train.",
+      },
       { english: 'He might have got the job if he had prepared better.' },
     ],
     common_mistakes: [
-      { wrong: 'If I would have known, I would have helped.', correct: 'If I had known, I would have helped.', note: 'No "would" in the if-clause of the third conditional.' },
+      {
+        wrong: 'If I would have known, I would have helped.',
+        correct: 'If I had known, I would have helped.',
+        note: 'No "would" in the if-clause of the third conditional.',
+      },
     ],
     related: ['second-conditional', 'mixed-conditionals', 'past-perfect'],
   },
@@ -847,7 +1165,12 @@ export const grammarTopics: GrammarTopic[] = [
       { english: '"Where do you work?" → She asked where I worked.' },
     ],
     common_mistakes: [
-      { wrong: 'She told that she was tired.', correct: 'She said that she was tired. / She told me that she was tired.', note: '"Tell" needs an object (me/him/her).' },
+      {
+        wrong: 'She told that she was tired.',
+        correct:
+          'She said that she was tired. / She told me that she was tired.',
+        note: '"Tell" needs an object (me/him/her).',
+      },
     ],
     related: ['past-perfect', 'modal-verbs'],
   },
@@ -869,7 +1192,11 @@ export const grammarTopics: GrammarTopic[] = [
       { english: 'By the time she called, he had already left.' },
     ],
     common_mistakes: [
-      { wrong: 'When I arrived, she already left.', correct: 'When I arrived, she had already left.', note: 'Use past perfect for the earlier action.' },
+      {
+        wrong: 'When I arrived, she already left.',
+        correct: 'When I arrived, she had already left.',
+        note: 'Use past perfect for the earlier action.',
+      },
     ],
     related: ['present-perfect', 'third-conditional', 'reported-speech'],
   },
@@ -879,7 +1206,8 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'B2',
     category: 'Conditionals',
     summary: 'Express wishes about the present and regrets about the past.',
-    structure: 'I wish / If only + past simple · I wish / If only + past perfect',
+    structure:
+      'I wish / If only + past simple · I wish / If only + past perfect',
     explanation: `**I wish / If only** express dissatisfaction with the present or regret about the past.\n\n**Present wish** (situation is not real now):\n*I wish I had more time.* (I don't have time.)\n*If only she lived closer!*\n\n**Past regret** (something happened or didn't happen):\n*I wish I had studied harder.* (I didn't study hard — I regret it.)\n*If only I hadn't said that!*\n\n**Wish + would** (annoying habit or wanting a change):\n*I wish you would stop interrupting me.*`,
     rules: [
       'Present wish: I wish + past simple.',
@@ -889,14 +1217,31 @@ export const grammarTopics: GrammarTopic[] = [
       'Never use "I wish + present simple" — always a past form.',
     ],
     examples: [
-      { english: 'I wish I spoke Spanish.', note: "present wish — I don't speak Spanish" },
-      { english: 'If only I had listened to her advice.', note: "past regret — I didn't listen" },
-      { english: 'I wish you would be quiet!', note: 'wish + would — annoying behaviour' },
+      {
+        english: 'I wish I spoke Spanish.',
+        note: "present wish — I don't speak Spanish",
+      },
+      {
+        english: 'If only I had listened to her advice.',
+        note: "past regret — I didn't listen",
+      },
+      {
+        english: 'I wish you would be quiet!',
+        note: 'wish + would — annoying behaviour',
+      },
       { english: "I wish I hadn't eaten so much.", note: 'past regret' },
     ],
     common_mistakes: [
-      { wrong: 'I wish I am taller.', correct: 'I wish I were taller.', note: 'Use past simple (or "were") after I wish for present wishes.' },
-      { wrong: 'I wish I studied harder yesterday.', correct: 'I wish I had studied harder yesterday.', note: 'For past regrets, use past perfect after I wish.' },
+      {
+        wrong: 'I wish I am taller.',
+        correct: 'I wish I were taller.',
+        note: 'Use past simple (or "were") after I wish for present wishes.',
+      },
+      {
+        wrong: 'I wish I studied harder yesterday.',
+        correct: 'I wish I had studied harder yesterday.',
+        note: 'For past regrets, use past perfect after I wish.',
+      },
     ],
     related: ['second-conditional', 'third-conditional', 'modal-perfects'],
   },
@@ -905,8 +1250,10 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Advanced Passive (Causative & Modal Passive)',
     level: 'B2',
     category: 'Tenses',
-    summary: 'Use have/get + object + past participle and passive with modal verbs.',
-    structure: 'Have/Get + object + past participle · Modal + be + past participle',
+    summary:
+      'Use have/get + object + past participle and passive with modal verbs.',
+    structure:
+      'Have/Get + object + past participle · Modal + be + past participle',
     explanation: `**Causative have/get**: used to say that someone else performs a service for you.\n*I had my car repaired.* (Someone repaired it for me.)\n*She got her hair cut.*\n\n**Passive with modal verbs**:\n*This must be signed by the manager.*\n*The form can be submitted online.*\n\n**Passive infinitives**:\n*He wants to be promoted.*\n*She hoped to be chosen.*`,
     rules: [
       'Causative: have/get + object + past participle.',
@@ -916,14 +1263,34 @@ export const grammarTopics: GrammarTopic[] = [
       'The agent (by + person) is optional; include only when important.',
     ],
     examples: [
-      { english: 'We had the office repainted last month.', note: 'causative have' },
-      { english: 'She got her phone fixed for free.', note: 'causative get (informal)' },
-      { english: 'The report must be submitted by Monday.', note: 'modal passive' },
-      { english: 'He wants to be considered for the promotion.', note: 'passive infinitive' },
+      {
+        english: 'We had the office repainted last month.',
+        note: 'causative have',
+      },
+      {
+        english: 'She got her phone fixed for free.',
+        note: 'causative get (informal)',
+      },
+      {
+        english: 'The report must be submitted by Monday.',
+        note: 'modal passive',
+      },
+      {
+        english: 'He wants to be considered for the promotion.',
+        note: 'passive infinitive',
+      },
     ],
     common_mistakes: [
-      { wrong: 'I had repaired my car.', correct: 'I had my car repaired.', note: 'In causative "have", the object comes before the past participle.' },
-      { wrong: 'This should be submit today.', correct: 'This should be submitted today.', note: 'Modal passive needs the full past participle.' },
+      {
+        wrong: 'I had repaired my car.',
+        correct: 'I had my car repaired.',
+        note: 'In causative "have", the object comes before the past participle.',
+      },
+      {
+        wrong: 'This should be submit today.',
+        correct: 'This should be submitted today.',
+        note: 'Modal passive needs the full past participle.',
+      },
     ],
     related: ['passive-voice-simple', 'modal-verbs', 'modal-perfects'],
   },
@@ -932,7 +1299,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Gerunds & Infinitives',
     level: 'B2',
     category: 'Tenses',
-    summary: 'Know which verbs take a gerund (-ing) or an infinitive (to + verb).',
+    summary:
+      'Know which verbs take a gerund (-ing) or an infinitive (to + verb).',
     structure: 'Verb + gerund (enjoy doing) · Verb + infinitive (want to do)',
     explanation: `Some verbs are followed by a **gerund** (-ing), others by an **infinitive** (to + base verb), and some take both.\n\n**Gerund only** (enjoy, avoid, consider, deny, finish, mind, miss, suggest, admit, risk):\n*She enjoys reading. / He avoided speaking to her.*\n\n**Infinitive only** (want, decide, plan, promise, manage, refuse, hope, agree):\n*They decided to leave. / She refused to answer.*\n\n**Both — different meaning**:\n- *remember doing* (past action) vs *remember to do* (future obligation)\n- *stop doing* (end an activity) vs *stop to do* (pause in order to)\n- *try doing* (experiment) vs *try to do* (attempt)`,
     rules: [
@@ -943,14 +1311,34 @@ export const grammarTopics: GrammarTopic[] = [
       'Gerund as subject: "Swimming is healthy."',
     ],
     examples: [
-      { english: 'I enjoy cooking at the weekend.', note: 'gerund after enjoy' },
-      { english: 'She decided to study medicine.', note: 'infinitive after decide' },
-      { english: 'I remember locking the door.', note: 'remember + gerund = it happened in the past' },
-      { english: 'Remember to lock the door!', note: 'remember + infinitive = future action' },
+      {
+        english: 'I enjoy cooking at the weekend.',
+        note: 'gerund after enjoy',
+      },
+      {
+        english: 'She decided to study medicine.',
+        note: 'infinitive after decide',
+      },
+      {
+        english: 'I remember locking the door.',
+        note: 'remember + gerund = it happened in the past',
+      },
+      {
+        english: 'Remember to lock the door!',
+        note: 'remember + infinitive = future action',
+      },
     ],
     common_mistakes: [
-      { wrong: 'I enjoy to cook.', correct: 'I enjoy cooking.', note: '"Enjoy" always takes a gerund.' },
-      { wrong: 'She suggested to leave early.', correct: 'She suggested leaving early.', note: '"Suggest" takes a gerund, not an infinitive.' },
+      {
+        wrong: 'I enjoy to cook.',
+        correct: 'I enjoy cooking.',
+        note: '"Enjoy" always takes a gerund.',
+      },
+      {
+        wrong: 'She suggested to leave early.',
+        correct: 'She suggested leaving early.',
+        note: '"Suggest" takes a gerund, not an infinitive.',
+      },
     ],
     related: ['present-continuous', 'modal-verbs'],
   },
@@ -959,7 +1347,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Modal Perfects (Past Modals)',
     level: 'B2',
     category: 'Modals',
-    summary: 'Talk about past deductions, obligations, and missed opportunities.',
+    summary:
+      'Talk about past deductions, obligations, and missed opportunities.',
     structure: 'Modal + have + past participle',
     explanation: `**Modal perfects** use *modal + have + past participle* to speculate about, criticise, or deduce past events.\n\n| Form | Meaning | Example |\n|------|---------|----------|\n| must have | past deduction (certain) | *She must have left already.* |\n| can't have | past deduction (impossible) | *He can't have done it.* |\n| could have | past possibility (but didn't) | *I could have helped you.* |\n| should have | past obligation not fulfilled | *You should have called.* |\n| might have | past possibility (uncertain) | *She might have forgotten.* |`,
     rules: [
@@ -970,14 +1359,34 @@ export const grammarTopics: GrammarTopic[] = [
       '"Could have" = opportunity existed but was not taken.',
     ],
     examples: [
-      { english: 'She must have taken the wrong train.', note: 'past deduction — almost certain' },
-      { english: "He can't have known about it.", note: 'past deduction — certain it did not happen' },
-      { english: "I should have left earlier — sorry I'm late.", note: 'past regret' },
-      { english: 'You could have called me!', note: 'missed opportunity / mild reproach' },
+      {
+        english: 'She must have taken the wrong train.',
+        note: 'past deduction — almost certain',
+      },
+      {
+        english: "He can't have known about it.",
+        note: 'past deduction — certain it did not happen',
+      },
+      {
+        english: "I should have left earlier — sorry I'm late.",
+        note: 'past regret',
+      },
+      {
+        english: 'You could have called me!',
+        note: 'missed opportunity / mild reproach',
+      },
     ],
     common_mistakes: [
-      { wrong: 'She should of called.', correct: 'She should have called.', note: '"Should of" is a spelling error. Always write "should have".' },
-      { wrong: 'He must have be there.', correct: 'He must have been there.', note: 'The past participle of "be" is "been".' },
+      {
+        wrong: 'She should of called.',
+        correct: 'She should have called.',
+        note: '"Should of" is a spelling error. Always write "should have".',
+      },
+      {
+        wrong: 'He must have be there.',
+        correct: 'He must have been there.',
+        note: 'The past participle of "be" is "been".',
+      },
     ],
     related: ['modal-verbs', 'past-perfect', 'wishes-regrets'],
   },
@@ -996,16 +1405,40 @@ export const grammarTopics: GrammarTopic[] = [
       '"Nevertheless" is more formal and emphatic than "however".',
     ],
     examples: [
-      { english: 'Even though the exam was difficult, most students passed.', note: '"even though" + clause' },
-      { english: 'Despite studying hard, she failed the test.', note: '"despite" + gerund' },
-      { english: 'The project was expensive. Nevertheless, it was approved.', note: 'formal contrast' },
-      { english: 'Whereas the north is industrial, the south is agricultural.', note: '"whereas" for equal contrast' },
+      {
+        english: 'Even though the exam was difficult, most students passed.',
+        note: '"even though" + clause',
+      },
+      {
+        english: 'Despite studying hard, she failed the test.',
+        note: '"despite" + gerund',
+      },
+      {
+        english: 'The project was expensive. Nevertheless, it was approved.',
+        note: 'formal contrast',
+      },
+      {
+        english: 'Whereas the north is industrial, the south is agricultural.',
+        note: '"whereas" for equal contrast',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Despite it was raining, we went out.', correct: 'Despite the rain, we went out.', note: '"Despite" cannot be followed by a subject + verb clause.' },
-      { wrong: 'However it was cold, we enjoyed it.', correct: 'Although it was cold, we enjoyed it.', note: '"However" cannot join two clauses directly like a conjunction.' },
+      {
+        wrong: 'Despite it was raining, we went out.',
+        correct: 'Despite the rain, we went out.',
+        note: '"Despite" cannot be followed by a subject + verb clause.',
+      },
+      {
+        wrong: 'However it was cold, we enjoyed it.',
+        correct: 'Although it was cold, we enjoyed it.',
+        note: '"However" cannot join two clauses directly like a conjunction.',
+      },
     ],
-    related: ['discourse-connectors-b1', 'discourse-markers', 'expressing-opinions'],
+    related: [
+      'discourse-connectors-b1',
+      'discourse-markers',
+      'expressing-opinions',
+    ],
   },
 
   /* ── C1 ─────────────────────────────────────────────────── */
@@ -1023,10 +1456,17 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       { english: 'If I had taken that job, I would be living in Tokyo now.' },
-      { english: "If you weren't so afraid of flying, you would have come with us." },
+      {
+        english:
+          "If you weren't so afraid of flying, you would have come with us.",
+      },
     ],
     common_mistakes: [
-      { wrong: 'Confusing with 2nd or 3rd conditional', correct: 'Identify the time frame of each clause separately', note: 'Ask: is the condition past or present? Is the result past or present?' },
+      {
+        wrong: 'Confusing with 2nd or 3rd conditional',
+        correct: 'Identify the time frame of each clause separately',
+        note: 'Ask: is the condition past or present? Is the result past or present?',
+      },
     ],
     related: ['second-conditional', 'third-conditional'],
   },
@@ -1035,7 +1475,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Inversion',
     level: 'C1',
     category: 'Advanced',
-    summary: 'Place the auxiliary before the subject for emphasis or formality.',
+    summary:
+      'Place the auxiliary before the subject for emphasis or formality.',
     explanation: `**Inversion** reverses the usual subject-verb order. It is used:\n\n1. After negative/restrictive adverbs at the start of a sentence:\n*Never have I seen such a mess.*\n*Not only did she arrive late, but she also forgot her notes.*\n\n2. After "so/such... that" structures:\n*So tired was he that he fell asleep immediately.*\n\n3. In formal conditionals (replacing if):\n*Had I known, I would have acted differently.* (= If I had known...)`,
     rules: [
       'After negative adverbials: auxiliary + subject + main verb.',
@@ -1045,10 +1486,17 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       { english: 'Rarely does she make mistakes.' },
       { english: 'Not until he read the letter did he understand.' },
-      { english: 'Should you need help, please contact us.', note: 'formal conditional' },
+      {
+        english: 'Should you need help, please contact us.',
+        note: 'formal conditional',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Never I have seen this.', correct: 'Never have I seen this.', note: 'The auxiliary must come before the subject.' },
+      {
+        wrong: 'Never I have seen this.',
+        correct: 'Never have I seen this.',
+        note: 'The auxiliary must come before the subject.',
+      },
     ],
     related: ['mixed-conditionals', 'cleft-sentences'],
   },
@@ -1070,7 +1518,11 @@ export const grammarTopics: GrammarTopic[] = [
       { english: "It's honesty that I admire most in people." },
     ],
     common_mistakes: [
-      { wrong: 'It was the noise which woke me up.', correct: 'It was the noise that woke me up.', note: '"That" is preferred (not "which") in it-cleft sentences.' },
+      {
+        wrong: 'It was the noise which woke me up.',
+        correct: 'It was the noise that woke me up.',
+        note: '"That" is preferred (not "which") in it-cleft sentences.',
+      },
     ],
     related: ['inversion', 'relative-clauses'],
   },
@@ -1079,8 +1531,10 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Participle Clauses',
     level: 'C1',
     category: 'Advanced',
-    summary: 'Use -ing and -ed participial phrases to replace subordinate clauses concisely.',
-    structure: '-ing clause (active) · -ed clause (passive) · Having + past participle',
+    summary:
+      'Use -ing and -ed participial phrases to replace subordinate clauses concisely.',
+    structure:
+      '-ing clause (active) · -ed clause (passive) · Having + past participle',
     explanation: `Participle clauses reduce subordinate clauses for concise, formal writing.\n\n**-ing clause** (active; simultaneous or causal):\n*Turning the corner, she saw the building.* (= As she turned...)\n\n**-ed clause** (passive meaning):\n*Surrounded by trees, the house was hard to find.* (= Because it was surrounded...)\n\n**Having + past participle** (completed prior action):\n*Having finished the report, he went home.* (= After he had finished...)`,
     rules: [
       'The subject of the participle clause must be the same as the main clause subject.',
@@ -1090,21 +1544,39 @@ export const grammarTopics: GrammarTopic[] = [
       'Dangling participles (different subjects) are a serious error.',
     ],
     examples: [
-      { english: 'Walking to work, she noticed a new café had opened.', note: '-ing clause (simultaneous)' },
-      { english: 'Shocked by the news, he sat down in silence.', note: '-ed clause (passive state)' },
-      { english: 'Having read the contract, she signed it.', note: 'having + past participle (prior action)' },
+      {
+        english: 'Walking to work, she noticed a new café had opened.',
+        note: '-ing clause (simultaneous)',
+      },
+      {
+        english: 'Shocked by the news, he sat down in silence.',
+        note: '-ed clause (passive state)',
+      },
+      {
+        english: 'Having read the contract, she signed it.',
+        note: 'having + past participle (prior action)',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Walking home, it started to rain.', correct: 'Walking home, she got caught in the rain.', note: 'The subject of the participle must match the main clause subject.' },
+      {
+        wrong: 'Walking home, it started to rain.',
+        correct: 'Walking home, she got caught in the rain.',
+        note: 'The subject of the participle must match the main clause subject.',
+      },
     ],
-    related: ['relative-clauses', 'advanced-relative-clauses', 'gerunds-infinitives'],
+    related: [
+      'relative-clauses',
+      'advanced-relative-clauses',
+      'gerunds-infinitives',
+    ],
   },
   {
     slug: 'hedging-language',
     title: 'Hedging Language',
     level: 'C1',
     category: 'Advanced',
-    summary: 'Express claims tentatively to avoid overgeneralisation in academic and professional contexts.',
+    summary:
+      'Express claims tentatively to avoid overgeneralisation in academic and professional contexts.',
     explanation: `**Hedging** indicates caution, uncertainty, or a limited claim. Essential in academic writing.\n\n**Modal verbs**: *may, might, could, would*\n*This may suggest that...*\n\n**Epistemic phrases**: *It seems that... / It appears that... / It is possible that...*\n\n**Limiting adverbs**: *generally, largely, typically, to some extent, in most cases*\n\n**Passive + reporting verb**: *It has been argued that... / It is widely believed that...*`,
     rules: [
       'Use hedging to avoid absolute claims in academic writing.',
@@ -1114,12 +1586,26 @@ export const grammarTopics: GrammarTopic[] = [
       'Do not hedge factual statements where certainty is appropriate.',
     ],
     examples: [
-      { english: 'The results may suggest a correlation between the two variables.', note: '"may" hedges the interpretation' },
-      { english: 'It appears that the policy has had limited impact.', note: '"it appears" avoids overclaiming' },
-      { english: 'This approach tends to be more effective in formal contexts.', note: '"tends to" limits the generalisation' },
+      {
+        english:
+          'The results may suggest a correlation between the two variables.',
+        note: '"may" hedges the interpretation',
+      },
+      {
+        english: 'It appears that the policy has had limited impact.',
+        note: '"it appears" avoids overclaiming',
+      },
+      {
+        english: 'This approach tends to be more effective in formal contexts.',
+        note: '"tends to" limits the generalisation',
+      },
     ],
     common_mistakes: [
-      { wrong: 'The results prove that X causes Y.', correct: 'The results suggest that X may cause Y.', note: '"Prove" overclaims in research contexts. Hedge with "suggest" + modal.' },
+      {
+        wrong: 'The results prove that X causes Y.',
+        correct: 'The results suggest that X may cause Y.',
+        note: '"Prove" overclaims in research contexts. Hedge with "suggest" + modal.',
+      },
     ],
     related: ['expressing-opinions', 'modal-perfects', 'discourse-markers'],
   },
@@ -1128,7 +1614,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Ellipsis & Substitution',
     level: 'C1',
     category: 'Advanced',
-    summary: 'Avoid repetition by omitting (ellipsis) or replacing (substitution) recoverable elements.',
+    summary:
+      'Avoid repetition by omitting (ellipsis) or replacing (substitution) recoverable elements.',
     explanation: `These devices create natural, cohesive text by reducing unnecessary repetition.\n\n**Ellipsis**: omitting words understood from context.\n*She can play piano and he can too.* (= and he can play piano too.)\n\n**Substitution**: replacing a word or clause with a pro-form.\n- **so** (clausal, positive): *I think so.*\n- **not** (clausal, negative): *I hope not.*\n- **do so** (formal verb-phrase substitute): *She promised to help and she did so.*\n- **one/ones** (noun substitute): *Which one do you prefer?*`,
     rules: [
       'Ellipsis omits recoverable information to avoid repetition.',
@@ -1138,12 +1625,25 @@ export const grammarTopics: GrammarTopic[] = [
       'Do not omit information that would cause ambiguity.',
     ],
     examples: [
-      { english: 'I have read the report and you should too.', note: 'ellipsis of repeated verb phrase' },
-      { english: 'Will it rain? I hope not.', note: '"not" substitutes the full clause negatively' },
-      { english: 'He was asked to submit the form and he did so promptly.', note: '"did so" = submitted the form' },
+      {
+        english: 'I have read the report and you should too.',
+        note: 'ellipsis of repeated verb phrase',
+      },
+      {
+        english: 'Will it rain? I hope not.',
+        note: '"not" substitutes the full clause negatively',
+      },
+      {
+        english: 'He was asked to submit the form and he did so promptly.',
+        note: '"did so" = submitted the form',
+      },
     ],
     common_mistakes: [
-      { wrong: 'I think so it will work.', correct: 'I think so.', note: '"So" replaces the whole clause — do not add extra pronouns.' },
+      {
+        wrong: 'I think so it will work.',
+        correct: 'I think so.',
+        note: '"So" replaces the whole clause — do not add extra pronouns.',
+      },
     ],
     related: ['discourse-markers', 'cleft-sentences'],
   },
@@ -1152,7 +1652,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Advanced Relative Clauses',
     level: 'C1',
     category: 'Advanced',
-    summary: 'Use preposition + which/whom, whereby, and reduced relative clauses for formal precision.',
+    summary:
+      'Use preposition + which/whom, whereby, and reduced relative clauses for formal precision.',
     explanation: `At C1, relative clauses extend beyond basic who/which/that.\n\n**Preposition + which/whom** (formal):\n*The policy, about which much has been written, was controversial.*\n*The person to whom I spoke was very helpful.*\n\n**Whereby / wherein** (formal connectors):\n*A system whereby users can opt out.* (= by which)\n\n**Reduced relative clauses** (drop who/which is/are):\n*The man sitting in the corner is my colleague.* (= who is sitting)\n*The report published last year was influential.* (= which was published)`,
     rules: [
       'Formal English places the preposition before "which/whom", not at the end.',
@@ -1162,12 +1663,27 @@ export const grammarTopics: GrammarTopic[] = [
       'Non-defining clauses require commas; defining clauses do not.',
     ],
     examples: [
-      { english: 'The contract, under which both parties agreed, was signed in 2023.', note: 'preposition + which' },
-      { english: 'The process whereby data is collected must be transparent.', note: '"whereby" = by which' },
-      { english: 'The documents required for the application must be certified.', note: 'reduced relative' },
+      {
+        english:
+          'The contract, under which both parties agreed, was signed in 2023.',
+        note: 'preposition + which',
+      },
+      {
+        english: 'The process whereby data is collected must be transparent.',
+        note: '"whereby" = by which',
+      },
+      {
+        english:
+          'The documents required for the application must be certified.',
+        note: 'reduced relative',
+      },
     ],
     common_mistakes: [
-      { wrong: 'The person which I spoke to was helpful.', correct: 'The person to whom I spoke was helpful.', note: 'Use "whom" (not "which") for people in formal relative clauses.' },
+      {
+        wrong: 'The person which I spoke to was helpful.',
+        correct: 'The person to whom I spoke was helpful.',
+        note: 'Use "whom" (not "which") for people in formal relative clauses.',
+      },
     ],
     related: ['relative-clauses', 'participle-clauses', 'cleft-sentences'],
   },
@@ -1178,7 +1694,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Discourse Markers',
     level: 'C2',
     category: 'Advanced',
-    summary: 'Words and phrases that structure and connect ideas in speech and writing.',
+    summary:
+      'Words and phrases that structure and connect ideas in speech and writing.',
     explanation: `Discourse markers signal the relationship between ideas.\n\n| Function | Examples |\n|----------|----------|\n| Adding | furthermore, in addition, what is more |\n| Contrasting | nevertheless, however, that said, even so |\n| Conceding | admittedly, granted, to be fair |\n| Exemplifying | namely, in particular, to illustrate |\n| Concluding | ultimately, in short, to sum up |\n| Hedging | arguably, to some extent, it could be said that |`,
     rules: [
       'Discourse markers are not interchangeable — each has a specific logical role.',
@@ -1186,12 +1703,24 @@ export const grammarTopics: GrammarTopic[] = [
       'Formal markers (furthermore, nevertheless) are appropriate in essays, not chat.',
     ],
     examples: [
-      { english: 'The plan has merits; nevertheless, the cost is prohibitive.' },
-      { english: 'Admittedly, the research is limited, but the findings are promising.' },
-      { english: 'To sum up, climate action requires political will, not just technology.' },
+      {
+        english: 'The plan has merits; nevertheless, the cost is prohibitive.',
+      },
+      {
+        english:
+          'Admittedly, the research is limited, but the findings are promising.',
+      },
+      {
+        english:
+          'To sum up, climate action requires political will, not just technology.',
+      },
     ],
     common_mistakes: [
-      { wrong: 'However I agree with you.', correct: 'However, I agree with you.', note: 'Discourse markers at the start of a clause are followed by a comma.' },
+      {
+        wrong: 'However I agree with you.',
+        correct: 'However, I agree with you.',
+        note: 'Discourse markers at the start of a clause are followed by a comma.',
+      },
     ],
     related: ['inversion', 'advanced-passive'],
   },
@@ -1200,7 +1729,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Nominalisation',
     level: 'C2',
     category: 'Advanced',
-    summary: 'Turn verbs and adjectives into nouns to create a formal, dense style.',
+    summary:
+      'Turn verbs and adjectives into nouns to create a formal, dense style.',
     explanation: `**Nominalisation** converts verbs or adjectives into nouns:\n\n- *decide* → *decision* (*The decision was made...* instead of *They decided...*)\n- *fail* → *failure*\n- *significant* → *significance*\n\nCommon in academic, legal, and business English. It creates distance, formality, and allows complex ideas to become the subject of the sentence.`,
     rules: [
       'Common suffixes: -tion/-sion, -ment, -ance/-ence, -ity, -ness.',
@@ -1210,10 +1740,17 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       { english: 'The implementation of the strategy proved difficult.' },
       { english: 'There was a significant improvement in results.' },
-      { english: 'His failure to respond caused confusion.', note: 'failure = he failed; confusion = people were confused' },
+      {
+        english: 'His failure to respond caused confusion.',
+        note: 'failure = he failed; confusion = people were confused',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Using nominalisation in casual speech', correct: 'Reserve it for formal writing contexts', note: 'In everyday speech, prefer active verbs.' },
+      {
+        wrong: 'Using nominalisation in casual speech',
+        correct: 'Reserve it for formal writing contexts',
+        note: 'In everyday speech, prefer active verbs.',
+      },
     ],
     related: ['discourse-markers', 'advanced-passive'],
   },
@@ -1222,7 +1759,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Fronting for Emphasis',
     level: 'C2',
     category: 'Advanced',
-    summary: 'Move a sentence element to the front position to create emphasis or contrast.',
+    summary:
+      'Move a sentence element to the front position to create emphasis or contrast.',
     explanation: `**Fronting** places a non-subject element at the start of the sentence for rhetorical effect.\n\n**Object fronting**:\n*This I cannot accept.* (= I cannot accept this.)\n\n**Adjective fronting + concession**:\n*Remarkable as it may seem, she refused.*\n\n**Place/direction adverbial fronting** (often triggers inversion):\n*On the table lay a single letter.*\n*Down the stairs came the children.*\n\nFronting signals contrast, emphasis, and literary voice.`,
     rules: [
       'Object fronting: move the object to the front for contrast or emphasis.',
@@ -1232,12 +1770,25 @@ export const grammarTopics: GrammarTopic[] = [
       '"Rarely/never/seldom" + inversion is a subset of adverbial fronting.',
     ],
     examples: [
-      { english: 'This kind of behaviour I will not tolerate.', note: 'object fronting for emphasis' },
-      { english: 'Strange as it may seem, she felt relieved.', note: 'fronted adjective + concession' },
-      { english: 'Outside the door stood a tall figure.', note: 'place adverbial + inversion' },
+      {
+        english: 'This kind of behaviour I will not tolerate.',
+        note: 'object fronting for emphasis',
+      },
+      {
+        english: 'Strange as it may seem, she felt relieved.',
+        note: 'fronted adjective + concession',
+      },
+      {
+        english: 'Outside the door stood a tall figure.',
+        note: 'place adverbial + inversion',
+      },
     ],
     common_mistakes: [
-      { wrong: 'Strange as it may seem, she was very feeling relieved.', correct: 'Strange as it may seem, she felt relieved.', note: 'Keep verb forms crisp in formal/literary style.' },
+      {
+        wrong: 'Strange as it may seem, she was very feeling relieved.',
+        correct: 'Strange as it may seem, she felt relieved.',
+        note: 'Keep verb forms crisp in formal/literary style.',
+      },
     ],
     related: ['inversion', 'cleft-sentences', 'discourse-markers'],
   },
@@ -1246,7 +1797,8 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Register & Stylistic Variation',
     level: 'C2',
     category: 'Advanced',
-    summary: 'Make conscious choices of formality, voice, and tone to suit any audience and purpose.',
+    summary:
+      'Make conscious choices of formality, voice, and tone to suit any audience and purpose.',
     explanation: `**Register** is the level of formality; **style** covers vocabulary, syntax, and rhythm.\n\n**Formal register**: Latinate vocabulary, passive voice, nominalisation, no contractions, complex sentences, hedged claims.\n\n**Neutral/semi-formal**: mixed vocabulary, active and passive, moderate sentence complexity.\n\n**Informal register**: phrasal verbs, idioms, contractions, direct address, simple syntax.\n\nA C2 writer switches register deliberately: academic argument, professional correspondence, narrative prose, and persuasive rhetoric each require distinct stylistic choices.`,
     rules: [
       'Match register to purpose: academic, professional, journalistic, creative, conversational.',
@@ -1256,13 +1808,35 @@ export const grammarTopics: GrammarTopic[] = [
       'Stylistic choices convey authority, stance, and voice.',
     ],
     examples: [
-      { english: 'The implementation of the policy was met with considerable resistance.', note: 'formal — nominalisation + passive' },
-      { english: "The policy didn't go down well at all.", note: 'informal — phrasal verb + contraction' },
-      { english: 'We regret to inform you that your application was unsuccessful.', note: 'professional — hedged, impersonal' },
+      {
+        english:
+          'The implementation of the policy was met with considerable resistance.',
+        note: 'formal — nominalisation + passive',
+      },
+      {
+        english: "The policy didn't go down well at all.",
+        note: 'informal — phrasal verb + contraction',
+      },
+      {
+        english:
+          'We regret to inform you that your application was unsuccessful.',
+        note: 'professional — hedged, impersonal',
+      },
     ],
     common_mistakes: [
-      { wrong: "We'd like to let you know your app didn't make it. (formal business email)", correct: 'We regret to inform you that your application was unsuccessful.', note: 'Business correspondence requires formal register.' },
+      {
+        wrong:
+          "We'd like to let you know your app didn't make it. (formal business email)",
+        correct:
+          'We regret to inform you that your application was unsuccessful.',
+        note: 'Business correspondence requires formal register.',
+      },
     ],
-    related: ['nominalisation', 'advanced-passive', 'fronting-emphasis', 'discourse-markers'],
+    related: [
+      'nominalisation',
+      'advanced-passive',
+      'fronting-emphasis',
+      'discourse-markers',
+    ],
   },
 ]

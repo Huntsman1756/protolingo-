@@ -4,10 +4,12 @@ Revision ID: 0004_lesson_unit_id
 Revises: 0003_curriculum_studyplan
 Create Date: 2026-05-01
 """
+
 from __future__ import annotations
 
-from alembic import op
 import sqlalchemy as sa
+
+from alembic import op
 
 revision = "0004_lesson_unit_id"
 down_revision = "0003_curriculum_studyplan"

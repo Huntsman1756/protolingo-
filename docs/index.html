@@ -12,8 +12,6 @@
 </head>
 
 <body>
-
-  <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#">
       <img src="assets/logo.png" alt="FreeLingo" />
@@ -21,7 +19,6 @@
     </a>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
-      <li><a href="#quickstart">Quick Start</a></li>
       <li><a href="https://github.com/ArtCC/freelingo" target="_blank" rel="noopener"><svg class="gh-icon"
             viewBox="0 0 16 16" aria-hidden="true">
             <path
@@ -45,7 +42,6 @@
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://freelingo.app" target="_blank" rel="noopener">Try the Hosted
           Version</a>
-        <a class="btn btn-secondary" href="#quickstart">Self-Host for Free</a>
         <a class="btn btn-secondary" href="https://github.com/ArtCC/freelingo" target="_blank" rel="noopener"><svg
             class="gh-icon" viewBox="0 0 16 16" aria-hidden="true">
             <path
@@ -57,7 +53,7 @@
     <!-- FEATURES -->
     <section id="features">
       <p class="section-label">Features</p>
-      <h2 class="section-title">Everything you need to learn English</h2>
+      <h2 class="section-title">Everything you need to learn a language</h2>
       <div class="features-grid">
 
         <div class="feature-card">
@@ -104,70 +100,14 @@
 
         <div class="feature-card">
           <div class="feature-icon">🎧</div>
-          <h3>Listening Exercises</h3>
-          <p>AI-generated audio exercises to train comprehension at your CEFR level.</p>
+          <h3>Listening &amp; Reading Exercises</h3>
+          <p>AI-generated audio and reading comprehension exercises to train your skills at your CEFR level.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🔒</div>
           <h3>Privacy First &amp; Any LLM</h3>
           <p>100% self-hosted with Ollama, OpenAI, Anthropic, or DeepSeek. Your data, your server, your rules.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- QUICK START -->
-    <section id="quickstart">
-      <p class="section-label">Quick Start</p>
-      <h2 class="section-title">Up and running in four steps</h2>
-      <div class="quickstart-steps">
-
-        <div class="step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3>Install Docker and Ollama</h3>
-            <p>Run Docker and Docker Compose on your server. Install <a href="https://ollama.com" target="_blank"
-                rel="noopener">Ollama</a> on the host for GPU access.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3>Clone the repository and configure</h3>
-            <div class="code-block">
-              <pre>git clone https://github.com/ArtCC/freelingo.git
-cd freelingo
-cp .env.example .env
-# Edit .env — set OLLAMA_BASE_URL and review other settings</pre>
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3>Pull the recommended model</h3>
-            <div class="code-block">
-              <pre>ollama pull gemma4:e4b</pre>
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h3>Start all services</h3>
-            <div class="code-block">
-              <pre>docker compose up -d</pre>
-              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <p>Open <strong>http://&lt;server-ip&gt;:3000</strong>. The first registered user becomes admin
-              automatically.</p>
-          </div>
         </div>
 
       </div>
@@ -200,7 +140,6 @@ cp .env.example .env
     <p>Made by <a href="https://github.com/ArtCC" target="_blank" rel="noopener">Arturo Carretero Calvo</a></p>
   </footer>
 
-  <script src="js/script.js"></script>
 </body>
 
 </html>

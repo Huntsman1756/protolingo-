@@ -43,9 +43,7 @@ async def get_due_flashcards(
     due = result.scalars().all()
 
     count_result = await db.execute(
-        select(func.count(Flashcard.id)).where(
-            Flashcard.user_id == current_user.id
-        )
+        select(func.count(Flashcard.id)).where(Flashcard.user_id == current_user.id)
     )
     total = count_result.scalar()
 
@@ -100,7 +98,8 @@ async def review_flashcard(
     await db.refresh(card)
 
     await update_daily_progress(
-        db, current_user.id,
+        db,
+        current_user.id,
         flashcard_reviewed=True,
         skill="vocabulary",
         skill_score=min(data.quality / 5.0, 1.0),
@@ -135,14 +134,8 @@ async def generate_flashcards_endpoint(
         await db.commit()
         return result
     except LLMTimeoutError:
-        raise HTTPException(
-            status_code=504, detail="The AI model took too long."
-        )
+        raise HTTPException(status_code=504, detail="The AI model took too long.")
     except LLMUnavailableError as e:
-        raise HTTPException(
-            status_code=503, detail=f"AI service unavailable: {str(e)}"
-        )
+        raise HTTPException(status_code=503, detail=f"AI service unavailable: {str(e)}")
     except LLMError as e:
-        raise HTTPException(
-            status_code=502, detail=f"Failed to generate flashcards: {str(e)}"
-        )
+        raise HTTPException(status_code=502, detail=f"Failed to generate flashcards: {str(e)}")

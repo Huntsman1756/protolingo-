@@ -255,7 +255,9 @@ Uses the same `OPENAI_API_KEY` as the LLM if `LLM_PROVIDER=openai`. No extra ser
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs, suggesting features, and submitting pull requests. By opening a pull request you accept the [Contributor License Agreement](CONTRIBUTOR_LICENSE_AGREEMENT.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs and suggesting features. By opening a pull request you accept the [Contributor License Agreement](CONTRIBUTOR_LICENSE_AGREEMENT.md).
+
+> **External code contributions (pull requests) are temporarily not being accepted.** Bug reports and feature suggestions via issues are still welcome.
 
 ## License
 

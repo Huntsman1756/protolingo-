@@ -1,4 +1,5 @@
 """Contact form router — receives in-app contact submissions and forwards them by email."""
+
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException, Request, status

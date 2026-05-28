@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Optional
 
 from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
@@ -16,7 +15,7 @@ class ChatHistory(Base):
     user_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
     )
-    conversation_id: Mapped[Optional[int]] = mapped_column(
+    conversation_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("conversations.id", ondelete="CASCADE"), nullable=True, index=True
     )
     role: Mapped[str] = mapped_column(String(20), nullable=False)

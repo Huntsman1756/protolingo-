@@ -4,15 +4,17 @@ Revision ID: 0003_curriculum_studyplan
 Revises: 0002_conversations
 Create Date: 2026-05-01
 """
-from typing import Sequence, Union
+
+from collections.abc import Sequence
 
 import sqlalchemy as sa
+
 from alembic import op
 
 revision: str = "0003_curriculum_studyplan"
-down_revision: Union[str, None] = "0002_conversations"
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+down_revision: str | None = "0002_conversations"
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
@@ -64,9 +66,7 @@ def downgrade() -> None:
     op.drop_index("ix_user_competencies_user_id", table_name="user_competencies")
     op.drop_table("user_competencies")
 
-    op.add_column(
-        "study_plans", sa.Column("weeks_planned", sa.Integer(), nullable=True)
-    )
+    op.add_column("study_plans", sa.Column("weeks_planned", sa.Integer(), nullable=True))
     op.execute("UPDATE study_plans SET weeks_planned = duration_weeks WHERE weeks_planned IS NULL")
     op.alter_column("study_plans", "weeks_planned", nullable=False)
 

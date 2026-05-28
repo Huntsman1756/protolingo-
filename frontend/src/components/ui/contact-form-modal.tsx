@@ -78,22 +78,25 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(2px)' }}
+      style={{
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        backdropFilter: 'blur(2px)',
+      }}
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md border border-fl-border bg-fl-surface shadow-2xl"
+        className="border-fl-border bg-fl-surface w-full max-w-md border shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest uppercase text-fl-muted-2 flex-1">
+          <span className="text-fl-label text-fl-muted-2 flex-1 font-mono tracking-widest uppercase">
             {t('title')}
           </span>
           <button
             onClick={onClose}
-            className="font-mono text-fl-label text-fl-muted-3 hover:text-fl-fg transition-colors"
+            className="text-fl-label text-fl-muted-3 hover:text-fl-fg font-mono transition-colors"
             aria-label={tCommon('close')}
           >
             ✕
@@ -102,18 +105,18 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
 
         {status === 'success' ? (
           /* Success state */
-          <div className="px-6 py-10 flex flex-col items-center gap-3">
-            <span className="font-mono text-sm text-fl-success tracking-widest uppercase">
+          <div className="flex flex-col items-center gap-3 px-6 py-10">
+            <span className="text-fl-success font-mono text-sm tracking-widest uppercase">
               ✓ {t('sent')}
             </span>
           </div>
         ) : (
           /* Form */
           <form onSubmit={handleSubmit}>
-            <div className="px-6 py-6 flex flex-col gap-4">
+            <div className="flex flex-col gap-4 px-6 py-6">
               {/* Email */}
               <div className="flex flex-col gap-1">
-                <label className="font-mono text-[10px] tracking-widest uppercase text-fl-muted-3">
+                <label className="text-fl-muted-3 font-mono text-[10px] tracking-widest uppercase">
                   {t('labelEmail')}
                 </label>
                 <input
@@ -122,14 +125,14 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isLoading}
-                  className="border border-fl-border bg-fl-bg px-3 py-2 font-mono text-xs text-fl-fg placeholder:text-fl-muted-3 focus:outline-none focus:border-fl-border-2 disabled:opacity-50 transition-colors"
+                  className="border-fl-border bg-fl-bg text-fl-fg placeholder:text-fl-muted-3 focus:border-fl-border-2 border px-3 py-2 font-mono text-xs transition-colors focus:outline-none disabled:opacity-50"
                   placeholder={t('placeholderEmail')}
                 />
               </div>
 
               {/* Subject */}
               <div className="flex flex-col gap-1">
-                <label className="font-mono text-[10px] tracking-widest uppercase text-fl-muted-3">
+                <label className="text-fl-muted-3 font-mono text-[10px] tracking-widest uppercase">
                   {t('labelSubject')}
                 </label>
                 <input
@@ -139,14 +142,14 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   disabled={isLoading}
-                  className="border border-fl-border bg-fl-bg px-3 py-2 font-mono text-xs text-fl-fg placeholder:text-fl-muted-3 focus:outline-none focus:border-fl-border-2 disabled:opacity-50 transition-colors"
+                  className="border-fl-border bg-fl-bg text-fl-fg placeholder:text-fl-muted-3 focus:border-fl-border-2 border px-3 py-2 font-mono text-xs transition-colors focus:outline-none disabled:opacity-50"
                   placeholder={t('placeholderSubject')}
                 />
               </div>
 
               {/* Description */}
               <div className="flex flex-col gap-1">
-                <label className="font-mono text-[10px] tracking-widest uppercase text-fl-muted-3">
+                <label className="text-fl-muted-3 font-mono text-[10px] tracking-widest uppercase">
                   {t('labelDescription')}
                 </label>
                 <textarea
@@ -156,14 +159,16 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   disabled={isLoading}
-                  className="border border-fl-border bg-fl-bg px-3 py-2 font-mono text-xs text-fl-fg placeholder:text-fl-muted-3 focus:outline-none focus:border-fl-border-2 disabled:opacity-50 resize-none transition-colors"
+                  className="border-fl-border bg-fl-bg text-fl-fg placeholder:text-fl-muted-3 focus:border-fl-border-2 min-h-[98px] resize-y border px-3 py-2 font-mono text-xs transition-colors focus:outline-none disabled:opacity-50"
                   placeholder={t('placeholderDescription')}
                 />
               </div>
 
               {/* Error */}
               {status === 'error' && (
-                <p className="font-mono text-xs text-fl-error-fg leading-relaxed">{errorMsg}</p>
+                <p className="text-fl-error-fg font-mono text-xs leading-relaxed">
+                  {errorMsg}
+                </p>
               )}
             </div>
 
@@ -173,14 +178,14 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
                 type="button"
                 onClick={onClose}
                 disabled={isLoading}
-                className="flex-1 border border-fl-border py-3 font-mono text-fl-label font-bold tracking-widest uppercase text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors disabled:opacity-50"
+                className="border-fl-border text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg flex-1 border py-3 font-mono font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
               >
                 — {tCommon('cancel')}
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 bg-fl-fg text-fl-bg py-3 font-mono text-fl-label font-bold tracking-widest uppercase hover:bg-fl-fg-bright transition-colors disabled:opacity-50"
+                className="bg-fl-fg text-fl-bg text-fl-label hover:bg-fl-fg-bright flex-1 py-3 font-mono font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
               >
                 — {isLoading ? t('sending') : t('send')}
               </button>

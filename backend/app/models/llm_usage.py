@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Optional
 
 from sqlalchemy import DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
@@ -25,9 +24,9 @@ class LLMUsage(Base):
     )
     # "chat" (tutor chat) or "conversation" (real-time voice pipeline)
     source: Mapped[str] = mapped_column(String(20), nullable=False, index=True)
-    prompt_tokens: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
-    completion_tokens: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
-    total_tokens: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    prompt_tokens: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    completion_tokens: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    total_tokens: Mapped[int | None] = mapped_column(Integer, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,

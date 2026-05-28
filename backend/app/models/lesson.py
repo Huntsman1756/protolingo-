@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Optional
 
 from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.dialects.postgresql import JSON
@@ -13,7 +12,13 @@ from app.core.database import Base
 class Lesson(Base):
     __tablename__ = "lessons"
     __table_args__ = (
-        UniqueConstraint("study_plan_id", "week_number", "day_number", "title", name="uq_lessons_plan_week_day_title"),
+        UniqueConstraint(
+            "study_plan_id",
+            "week_number",
+            "day_number",
+            "title",
+            name="uq_lessons_plan_week_day_title",
+        ),
     )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
@@ -25,10 +30,10 @@ class Lesson(Base):
     cefr_level: Mapped[str] = mapped_column(String(10), nullable=False)
     week_number: Mapped[int] = mapped_column(Integer, nullable=False)
     day_number: Mapped[int] = mapped_column(Integer, nullable=False)
-    unit_id: Mapped[Optional[str]] = mapped_column(String(50), nullable=True, index=True)
+    unit_id: Mapped[str | None] = mapped_column(String(50), nullable=True, index=True)
     content: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
     is_completed: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
-    completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
 
 class Exercise(Base):
@@ -42,8 +47,8 @@ class Exercise(Base):
     question: Mapped[str] = mapped_column(Text, nullable=False)
     options: Mapped[list] = mapped_column(JSON, nullable=True, default=list)
     correct_answer: Mapped[str] = mapped_column(Text, nullable=False)
-    user_answer: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
-    feedback: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    explanation: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    answered_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    user_answer: Mapped[str | None] = mapped_column(Text, nullable=True)
+    score: Mapped[float | None] = mapped_column(Float, nullable=True)
+    feedback: Mapped[str | None] = mapped_column(Text, nullable=True)
+    explanation: Mapped[str | None] = mapped_column(Text, nullable=True)
+    answered_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)

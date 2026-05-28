@@ -14,7 +14,10 @@ function renderExplanation(text: string) {
   return lines.map((line, i) => {
     if (line.startsWith('- ')) {
       return (
-        <li key={i} className="font-mono text-xs text-fl-muted-1 leading-relaxed">
+        <li
+          key={i}
+          className="text-fl-muted-1 font-mono text-xs leading-relaxed"
+        >
           <span className="text-fl-muted-3 mr-2">·</span>
           <RichText text={line.slice(2)} />
         </li>
@@ -25,16 +28,22 @@ function renderExplanation(text: string) {
     if (line.startsWith('|')) {
       return (
         <tr key={i}>
-          {line.split('|').filter(Boolean).map((cell, ci) => (
-            <td key={ci} className="font-mono text-fl-label text-fl-muted-1 border border-fl-border px-3 py-1.5">
-              <RichText text={cell.trim()} />
-            </td>
-          ))}
+          {line
+            .split('|')
+            .filter(Boolean)
+            .map((cell, ci) => (
+              <td
+                key={ci}
+                className="text-fl-label text-fl-muted-1 border-fl-border border px-3 py-1.5 font-mono"
+              >
+                <RichText text={cell.trim()} />
+              </td>
+            ))}
         </tr>
       )
     }
     return (
-      <p key={i} className="font-mono text-xs text-fl-muted-1 leading-relaxed">
+      <p key={i} className="text-fl-muted-1 font-mono text-xs leading-relaxed">
         <RichText text={line} />
       </p>
     )
@@ -48,10 +57,18 @@ function RichText({ text }: { text: string }) {
     <>
       {parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={i} className="text-fl-fg font-bold">{part.slice(2, -2)}</strong>
+          return (
+            <strong key={i} className="text-fl-fg font-bold">
+              {part.slice(2, -2)}
+            </strong>
+          )
         }
         if (part.startsWith('`') && part.endsWith('`')) {
-          return <code key={i} className="font-mono bg-fl-surface-2 px-1 text-fl-fg">{part.slice(1, -1)}</code>
+          return (
+            <code key={i} className="bg-fl-surface-2 text-fl-fg px-1 font-mono">
+              {part.slice(1, -1)}
+            </code>
+          )
         }
         return <span key={i}>{part}</span>
       })}
@@ -81,66 +98,69 @@ export default function GrammarDetailPage({
     .filter(Boolean)
 
   return (
-    <div className="mx-auto max-w-2xl p-6 space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4 p-6">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 font-mono text-fl-label text-fl-muted-3">
-        <Link href="/grammar" className="hover:text-fl-fg transition-colors uppercase tracking-widest">
+      <nav className="text-fl-label text-fl-muted-3 flex items-center gap-2 font-mono">
+        <Link
+          href="/grammar"
+          className="hover:text-fl-fg tracking-widest uppercase transition-colors"
+        >
           {tNav('grammar')}
         </Link>
         <span>›</span>
-        <span className="text-fl-muted-2 tracking-widest uppercase">{topic.level}</span>
+        <span className="text-fl-muted-2 tracking-widest uppercase">
+          {topic.level}
+        </span>
         <span>›</span>
         <span className="text-fl-fg tracking-wide">{topic.title}</span>
       </nav>
 
       {/* Title card */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('backToGrammar')}
           </span>
         </div>
-        <div className="px-6 py-5 space-y-3">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+        <div className="space-y-3 px-6 py-5">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="border-fl-border text-fl-label text-fl-muted-3 border px-2 py-0.5 font-mono tracking-widest uppercase">
               {topic.level}
             </span>
-            <span className="border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+            <span className="border-fl-border text-fl-label text-fl-muted-3 border px-2 py-0.5 font-mono tracking-widest uppercase">
               {topic.category}
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold text-fl-fg tracking-wide">
+          <h1 className="text-fl-fg font-mono text-xl font-bold tracking-wide">
             {topic.title}
           </h1>
-          <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
+          <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
             {topic.summary}
           </p>
           {topic.structure && (
-            <div className="border border-fl-border bg-fl-bg px-4 py-3">
-              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-1">
+            <div className="border-fl-border bg-fl-bg border px-4 py-3">
+              <p className="text-fl-label text-fl-muted-3 mb-1 font-mono tracking-widest uppercase">
                 {t('structure')}
               </p>
-              <p className="font-mono text-xs text-fl-fg">{topic.structure}</p>
+              <p className="text-fl-fg font-mono text-xs">{topic.structure}</p>
             </div>
           )}
         </div>
       </div>
 
       {/* Explanation */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('explanation')}
           </span>
         </div>
-        <div className="px-6 py-5 space-y-2">
+        <div className="space-y-2 px-6 py-5">
           {hasTable ? (
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
-                <tbody>
-                  {renderExplanation(topic.explanation)}
-                </tbody>
+                <tbody>{renderExplanation(topic.explanation)}</tbody>
               </table>
             </div>
           ) : hasList ? (
@@ -157,17 +177,21 @@ export default function GrammarDetailPage({
 
       {/* Key Rules */}
       {topic.rules.length > 0 && (
-        <div className="border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+        <div className="border-fl-border bg-fl-surface border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t('keyRules')}
             </span>
           </div>
-          <ul className="px-6 py-5 space-y-2">
+          <ul className="space-y-2 px-6 py-5">
             {topic.rules.map((rule, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="font-mono text-fl-label text-fl-muted-3 mt-0.5 shrink-0">{i + 1}.</span>
-                <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{rule}</p>
+                <span className="text-fl-label text-fl-muted-3 mt-0.5 shrink-0 font-mono">
+                  {i + 1}.
+                </span>
+                <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                  {rule}
+                </p>
               </li>
             ))}
           </ul>
@@ -176,18 +200,23 @@ export default function GrammarDetailPage({
 
       {/* Examples */}
       {topic.examples.length > 0 && (
-        <div className="border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+        <div className="border-fl-border bg-fl-surface border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t('examples')}
             </span>
           </div>
-          <div className="px-6 py-5 space-y-3">
+          <div className="space-y-3 px-6 py-5">
             {topic.examples.map((ex, i) => (
-              <div key={i} className="border-l-2 border-fl-border pl-4 space-y-0.5">
-                <p className="font-mono text-xs text-fl-fg">{ex.english}</p>
+              <div
+                key={i}
+                className="border-fl-border space-y-0.5 border-l-2 pl-4"
+              >
+                <p className="text-fl-fg font-mono text-xs">{ex.english}</p>
                 {ex.note && (
-                  <p className="font-mono text-fl-label text-fl-muted-3 italic">{ex.note}</p>
+                  <p className="text-fl-label text-fl-muted-3 font-mono italic">
+                    {ex.note}
+                  </p>
                 )}
               </div>
             ))}
@@ -197,29 +226,37 @@ export default function GrammarDetailPage({
 
       {/* Common Mistakes */}
       {topic.common_mistakes.length > 0 && (
-        <div className="border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+        <div className="border-fl-border bg-fl-surface border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t('commonMistakes')}
             </span>
           </div>
-          <div className="px-6 py-5 space-y-4">
+          <div className="space-y-4 px-6 py-5">
             {topic.common_mistakes.map((m, i) => (
               <div key={i} className="space-y-1.5">
                 {m.wrong && (
                   <div className="flex items-start gap-2">
-                    <span className="font-mono text-fl-label text-red-500 shrink-0">✗</span>
-                    <p className="font-mono text-xs text-fl-muted-2 line-through">{m.wrong}</p>
+                    <span className="text-fl-label shrink-0 font-mono text-red-500">
+                      ✗
+                    </span>
+                    <p className="text-fl-muted-2 font-mono text-xs line-through">
+                      {m.wrong}
+                    </p>
                   </div>
                 )}
                 {m.correct && (
                   <div className="flex items-start gap-2">
-                    <span className="font-mono text-fl-label text-green-500 shrink-0">✓</span>
-                    <p className="font-mono text-xs text-fl-fg">{m.correct}</p>
+                    <span className="text-fl-label shrink-0 font-mono text-green-500">
+                      ✓
+                    </span>
+                    <p className="text-fl-fg font-mono text-xs">{m.correct}</p>
                   </div>
                 )}
                 {m.note && (
-                  <p className="font-mono text-fl-label text-fl-muted-3 pl-5">{m.note}</p>
+                  <p className="text-fl-label text-fl-muted-3 pl-5 font-mono">
+                    {m.note}
+                  </p>
                 )}
               </div>
             ))}
@@ -229,23 +266,26 @@ export default function GrammarDetailPage({
 
       {/* Related Topics */}
       {relatedTopics.length > 0 && (
-        <div className="border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+        <div className="border-fl-border bg-fl-surface border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t('relatedTopics')}
             </span>
           </div>
-          <div className="px-6 py-5 flex flex-wrap gap-2">
-            {relatedTopics.map((rt) => rt && (
-              <Link
-                key={rt.slug}
-                href={`/grammar/${rt.slug}`}
-                className="border border-fl-border px-3 py-2 font-mono text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors uppercase tracking-widest"
-              >
-                ● {rt.title}
-                <span className="ml-2 text-fl-muted-4">{rt.level}</span>
-              </Link>
-            ))}
+          <div className="flex flex-wrap gap-2 px-6 py-5">
+            {relatedTopics.map(
+              (rt) =>
+                rt && (
+                  <Link
+                    key={rt.slug}
+                    href={`/grammar/${rt.slug}`}
+                    className="border-fl-border text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg border px-3 py-2 font-mono tracking-widest uppercase transition-colors"
+                  >
+                    ● {rt.title}
+                    <span className="text-fl-muted-4 ml-2">{rt.level}</span>
+                  </Link>
+                )
+            )}
           </div>
         </div>
       )}
@@ -253,7 +293,7 @@ export default function GrammarDetailPage({
       {/* Back link */}
       <Link
         href="/grammar"
-        className="inline-block font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase hover:text-fl-fg transition-colors"
+        className="text-fl-label text-fl-muted-2 hover:text-fl-fg inline-block font-mono tracking-widest uppercase transition-colors"
       >
         ← {t('backLink')}
       </Link>

@@ -1,5 +1,5 @@
-from datetime import datetime, timezone
 import re
+from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
@@ -17,7 +17,11 @@ from app.schemas.lessons import (
     LessonDetailResponse,
     LessonResponse,
 )
-from app.services.lesson_generator import evaluate_fill_blank, evaluate_free_write, evaluate_pronunciation, generate_lesson
+from app.services.lesson_generator import (
+    evaluate_fill_blank,
+    evaluate_free_write,
+    evaluate_pronunciation,
+)
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -63,12 +67,21 @@ async def get_lesson(
         if ex.exercise_type == "fill_blank" and "___" not in q:
             if exp and "___" in exp:
                 q, exp = exp, q
-        fixed.append(ExerciseResponse(
-            id=ex.id, lesson_id=ex.lesson_id, exercise_type=ex.exercise_type,
-            question=q, options=ex.options, correct_answer=ex.correct_answer,
-            user_answer=ex.user_answer, score=ex.score, feedback=ex.feedback,
-            explanation=exp, answered_at=ex.answered_at,
-        ))
+        fixed.append(
+            ExerciseResponse(
+                id=ex.id,
+                lesson_id=ex.lesson_id,
+                exercise_type=ex.exercise_type,
+                question=q,
+                options=ex.options,
+                correct_answer=ex.correct_answer,
+                user_answer=ex.user_answer,
+                score=ex.score,
+                feedback=ex.feedback,
+                explanation=exp,
+                answered_at=ex.answered_at,
+            )
+        )
 
     return LessonDetailResponse(lesson=lesson, exercises=fixed)
 
@@ -97,7 +110,8 @@ async def complete_lesson(
     await db.refresh(lesson)
 
     await update_daily_progress(
-        db, current_user.id,
+        db,
+        current_user.id,
         lesson_completed=True,
         skill=lesson.lesson_type,
     )
@@ -167,10 +181,14 @@ async def answer_exercise(
                 answer=data.answer,
             )
             sco = eval_result.score if hasattr(eval_result, "score") else eval_result["score"]
-            fb = eval_result.feedback if hasattr(eval_result, "feedback") else eval_result["feedback"]
+            fb = (
+                eval_result.feedback
+                if hasattr(eval_result, "feedback")
+                else eval_result["feedback"]
+            )
             exercise.score = sco
             exercise.feedback = fb
-        except (LLMTimeoutError, LLMUnavailableError, LLMError):
+        except LLMTimeoutError, LLMUnavailableError, LLMError:
             exercise.score = 0.5
             exercise.feedback = "Could not evaluate free-write answer at this time."
     elif exercise.exercise_type == "fill_blank":
@@ -183,14 +201,16 @@ async def answer_exercise(
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
-        except (LLMTimeoutError, LLMUnavailableError, LLMError):
+        except LLMTimeoutError, LLMUnavailableError, LLMError:
             # Fallback: normalised string comparison
             ua = data.answer.strip().lower().rstrip(".,!?")
             ca = exercise.correct_answer.strip().lower().rstrip(".,!?")
             alternatives = [a.strip().lower() for a in ca.split("/")]
             is_correct = ua == ca or ua in alternatives
             exercise.score = 1.0 if is_correct else 0.0
-            exercise.feedback = "Correct!" if is_correct else f"The correct answer is: {exercise.correct_answer}"
+            exercise.feedback = (
+                "Correct!" if is_correct else f"The correct answer is: {exercise.correct_answer}"
+            )
     elif exercise.exercise_type == "pronunciation":
         transcription = data.answer
         try:
@@ -201,7 +221,7 @@ async def answer_exercise(
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
-        except (LLMTimeoutError, LLMUnavailableError, LLMError):
+        except LLMTimeoutError, LLMUnavailableError, LLMError:
             # Fallback: simple normalised comparison
             norm_target = exercise.correct_answer.strip().lower()
             norm_answer = transcription.strip().lower()
@@ -221,10 +241,16 @@ async def answer_exercise(
         correct_ans = exercise.correct_answer.strip().lower()
         # Compatibility: old exercises may store correct_answer as bare letter ("a")
         # while clients now submit full option text ("a. works"). Accept both.
-        _stripped = re.sub(r'^[a-z]\. *', '', user_ans)
-        is_correct = user_ans == correct_ans or _stripped == correct_ans or user_ans == re.sub(r'^[a-z]\. *', '', correct_ans)
+        _stripped = re.sub(r"^[a-z]\. *", "", user_ans)
+        is_correct = (
+            user_ans == correct_ans
+            or _stripped == correct_ans
+            or user_ans == re.sub(r"^[a-z]\. *", "", correct_ans)
+        )
         exercise.score = 1.0 if is_correct else 0.0
-        exercise.feedback = "Correct!" if is_correct else f"The correct answer is: {exercise.correct_answer}"
+        exercise.feedback = (
+            "Correct!" if is_correct else f"The correct answer is: {exercise.correct_answer}"
+        )
 
     exercise.user_answer = data.answer
     exercise.answered_at = datetime.now(timezone.utc).replace(tzinfo=None)
@@ -232,7 +258,8 @@ async def answer_exercise(
     await db.refresh(exercise)
 
     await update_daily_progress(
-        db, current_user.id,
+        db,
+        current_user.id,
         exercise_correct=exercise.score >= 0.5,
         skill=lesson.lesson_type,
         skill_score=exercise.score,

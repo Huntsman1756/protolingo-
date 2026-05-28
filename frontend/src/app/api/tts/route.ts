@@ -43,7 +43,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const bufferMs = performance.now() - bufferStart
   const totalMs = performance.now() - t0
 
-  const traceId = backendRes.headers.get('X-TTS-Trace-ID') || incomingTraceId || `tts-${crypto.randomUUID()}`
+  const traceId =
+    backendRes.headers.get('X-TTS-Trace-ID') ||
+    incomingTraceId ||
+    `tts-${crypto.randomUUID()}`
   const outHeaders = new Headers()
   outHeaders.set('Content-Type', 'audio/mpeg')
   outHeaders.set('X-TTS-Trace-ID', traceId)

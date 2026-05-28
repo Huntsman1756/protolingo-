@@ -1,4 +1,5 @@
 """Tests for the reading endpoint (Phase 7 — Block E)."""
+
 from __future__ import annotations
 
 from unittest.mock import AsyncMock, patch
@@ -37,6 +38,7 @@ _PARTIAL = {"0": "B", "1": "B", "2": "A", "3": "A", "4": "A"}  # 2 correct
 # In-memory Redis mock
 # ---------------------------------------------------------------------------
 
+
 class _MockRedis:
     def __init__(self) -> None:
         self._store: dict[str, str] = {}
@@ -69,6 +71,7 @@ class _MockRedis:
 # ---------------------------------------------------------------------------
 # DB helpers
 # ---------------------------------------------------------------------------
+
 
 async def _make_user(
     db,
@@ -126,6 +129,7 @@ async def _make_exercise(db, level: str = "B1") -> ReadingExercise:
 # Fixtures
 # ---------------------------------------------------------------------------
 
+
 @pytest_asyncio.fixture
 async def reading_client(db_session):
     """Client with reading Redis override (no TTS mock needed)."""
@@ -136,9 +140,9 @@ async def reading_client(db_session):
 
     app.dependency_overrides[get_db] = override_get_db
 
-    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.admin import get_redis as admin_get_redis
     from app.routers.assessment import get_redis as assessment_get_redis
+    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.reading import get_redis as reading_get_redis
 
     app.dependency_overrides[auth_get_redis] = lambda: mock_redis
@@ -166,6 +170,7 @@ async def user_with_plan(reading_client):
 # ---------------------------------------------------------------------------
 # Unit tests — calculate_score (no DB, no HTTP)
 # ---------------------------------------------------------------------------
+
 
 def test_calculate_score_all_correct() -> None:
     from app.services.reading_service import calculate_score
@@ -204,6 +209,7 @@ def test_calculate_score_case_insensitive() -> None:
 # GET /api/reading/next — no exercises
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_next_no_exercise(user_with_plan) -> None:
     """Pool is empty → available=False."""
@@ -237,6 +243,7 @@ async def test_next_returns_exercise(user_with_plan) -> None:
 # POST /api/reading/generate + GET /next flow
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_generate_and_next(user_with_plan) -> None:
     """Generate endpoint returns 202; once exercise is inserted, /next finds it."""
@@ -261,6 +268,7 @@ async def test_generate_and_next(user_with_plan) -> None:
 # ---------------------------------------------------------------------------
 # POST /api/reading/attempt
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_submit_correct(user_with_plan) -> None:
@@ -353,6 +361,7 @@ async def test_replay_no_xp(user_with_plan) -> None:
 # ---------------------------------------------------------------------------
 # GET /api/reading/history
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_history_empty(user_with_plan) -> None:

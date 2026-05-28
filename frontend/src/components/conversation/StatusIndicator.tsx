@@ -15,7 +15,11 @@ interface Props {
   assistantSpeaking: boolean
 }
 
-export default function StatusIndicator({ status, userSpeaking, assistantSpeaking }: Props) {
+export default function StatusIndicator({
+  status,
+  userSpeaking,
+  assistantSpeaking,
+}: Props) {
   const t = useTranslations('conversation')
 
   let label: string
@@ -55,8 +59,14 @@ export default function StatusIndicator({ status, userSpeaking, assistantSpeakin
 
   return (
     <div className="flex items-center gap-2">
-      <span className={`text-fl-label ${dotClass} ${pulse ? 'animate-pulse' : ''}`}>●</span>
-      <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">{label}</span>
+      <span
+        className={`text-fl-label ${dotClass} ${pulse ? 'animate-pulse' : ''}`}
+      >
+        ●
+      </span>
+      <span className="text-fl-muted-2 font-mono text-xs tracking-widest uppercase">
+        {label}
+      </span>
     </div>
   )
 }

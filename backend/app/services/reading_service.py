@@ -174,9 +174,7 @@ def calculate_score(
 ) -> tuple[int, int]:
     """Return (score 0–5, xp_earned). Pure function — no DB access."""
     score = sum(
-        1
-        for q in questions
-        if answers.get(str(q["index"]), "").upper() == q["correct"].upper()
+        1 for q in questions if answers.get(str(q["index"]), "").upper() == q["correct"].upper()
     )
     return score, score * XP_PER_CORRECT_ANSWER
 
@@ -245,9 +243,7 @@ async def get_user_history(
 ) -> tuple[list[tuple[ReadingAttempt, ReadingExercise]], int]:
     """Return (rows, total) for paginated attempt history, newest first."""
     total_result = await db.execute(
-        select(func.count(ReadingAttempt.id)).where(
-            ReadingAttempt.user_id == user_id
-        )
+        select(func.count(ReadingAttempt.id)).where(ReadingAttempt.user_id == user_id)
     )
     total: int = total_result.scalar_one()
 

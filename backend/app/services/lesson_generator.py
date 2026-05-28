@@ -1,15 +1,17 @@
 from app.data.curriculum import CURRICULUM
-from app.schemas.lessons import FillBlankEvaluation, FreeWriteEvaluation, LessonContent, PronunciationEvaluation
+from app.schemas.lessons import (
+    FillBlankEvaluation,
+    FreeWriteEvaluation,
+    LessonContent,
+    PronunciationEvaluation,
+)
 from app.services.language_helpers import get_english_variant
 from app.services.llm_adapter import llm_adapter
 
 # Derived from the canonical curriculum — never edit this manually.
 # Any slug added to curriculum.py is automatically recognised here.
 VALID_GRAMMAR_SLUGS: set[str] = {
-    slug
-    for units in CURRICULUM.values()
-    for unit in units
-    for slug in unit.grammar_points
+    slug for units in CURRICULUM.values() for unit in units for slug in unit.grammar_points
 }
 
 _VALID_SLUGS_STR: str = ", ".join(sorted(VALID_GRAMMAR_SLUGS))

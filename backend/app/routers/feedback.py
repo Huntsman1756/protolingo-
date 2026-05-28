@@ -1,4 +1,5 @@
 """Feedback router — feature requests and bug reports with voting and comments."""
+
 from __future__ import annotations
 
 import asyncio
@@ -14,13 +15,13 @@ from app.core.limiter import limiter
 from app.models.feedback import FeedbackComment, FeedbackEntry, FeedbackVote
 from app.models.user import User
 from app.schemas.feedback import (
+    FeedbackAuthor,
     FeedbackCommentCreate,
     FeedbackCommentOut,
     FeedbackCommentsResponse,
     FeedbackEntryCreate,
     FeedbackEntryDetail,
     FeedbackEntryOut,
-    FeedbackAuthor,
     FeedbackStatusUpdate,
     FeedbackVoteResponse,
     PaginatedFeedbackResponse,
@@ -60,7 +61,9 @@ async def _build_entry_out(
         )
     )
     comment_count = await db.scalar(
-        select(func.count()).select_from(FeedbackComment).where(FeedbackComment.entry_id == entry.id)
+        select(func.count())
+        .select_from(FeedbackComment)
+        .where(FeedbackComment.entry_id == entry.id)
     )
     return FeedbackEntryOut(
         id=entry.id,

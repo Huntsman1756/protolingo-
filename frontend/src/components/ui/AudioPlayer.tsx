@@ -13,14 +13,23 @@ interface AudioPlayerProps {
 
 type PlayerState = 'idle' | 'loading' | 'playing' | 'error'
 
-export function AudioPlayer({ text, voice, size = 'sm', className = '' }: AudioPlayerProps) {
+export function AudioPlayer({
+  text,
+  voice,
+  size = 'sm',
+  className = '',
+}: AudioPlayerProps) {
   const [state, setState] = useState<PlayerState>('idle')
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const accessToken = useAuthStore((s) => s.accessToken)
   const t = useTranslations('audioPlayer')
 
   // Resolve voice: explicit prop > user localStorage preference > backend default
-  const resolvedVoice = voice ?? (typeof window !== 'undefined' ? (localStorage.getItem('tts_voice') ?? undefined) : undefined)
+  const resolvedVoice =
+    voice ??
+    (typeof window !== 'undefined'
+      ? (localStorage.getItem('tts_voice') ?? undefined)
+      : undefined)
 
   async function handleClick() {
     if (state === 'loading') return
@@ -109,18 +118,26 @@ export function AudioPlayer({ text, voice, size = 'sm', className = '' }: AudioP
     }
   }
 
-  const sizeClass = size === 'sm' ? 'px-2 py-1 text-fl-hint' : 'px-3 py-2 text-xs'
+  const sizeClass =
+    size === 'sm' ? 'px-2 py-1 text-fl-hint' : 'px-3 py-2 text-xs'
 
   const label =
-    state === 'loading' ? '...' :
-      state === 'playing' ? '■' :
-        state === 'error' ? '✕' : '▶'
+    state === 'loading'
+      ? '...'
+      : state === 'playing'
+        ? '■'
+        : state === 'error'
+          ? '✕'
+          : '▶'
 
   const colorClass =
-    state === 'playing' ? 'border-fl-border-2 text-fl-fg' :
-      state === 'loading' ? 'border-fl-border text-fl-muted-3 animate-pulse' :
-        state === 'error' ? 'border-fl-error/40 text-fl-error-fg' :
-          'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+    state === 'playing'
+      ? 'border-fl-border-2 text-fl-fg'
+      : state === 'loading'
+        ? 'border-fl-border text-fl-muted-3 animate-pulse'
+        : state === 'error'
+          ? 'border-fl-error/40 text-fl-error-fg'
+          : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
 
   return (
     <button

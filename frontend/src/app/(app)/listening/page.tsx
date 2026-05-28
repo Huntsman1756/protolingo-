@@ -48,7 +48,13 @@ interface AttemptItem {
   answers: Record<string, string>
 }
 
-type PageState = 'loading' | 'idle' | 'generating' | 'exercise' | 'results' | 'history'
+type PageState =
+  | 'loading'
+  | 'idle'
+  | 'generating'
+  | 'exercise'
+  | 'results'
+  | 'history'
 
 // ---------------------------------------------------------------------------
 // Audio player for listening exercises
@@ -63,7 +69,9 @@ function ExerciseAudioPlayer({
   onFirstPlay?: () => void
 }) {
   const t = useTranslations('listening')
-  const [state, setState] = useState<'idle' | 'loading' | 'playing' | 'paused' | 'error'>('idle')
+  const [state, setState] = useState<
+    'idle' | 'loading' | 'playing' | 'paused' | 'error'
+  >('idle')
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -143,20 +151,20 @@ function ExerciseAudioPlayer({
   const label = state === 'playing' ? 'Pause' : 'Play'
 
   return (
-    <div className="border border-fl-border bg-fl-surface p-4 space-y-2">
+    <div className="border-fl-border bg-fl-surface space-y-2 border p-4">
       <div className="flex items-center gap-4">
         <button
           onClick={handlePlayPause}
           disabled={state === 'loading'}
           aria-label={label}
-          className="font-mono text-fl-fg hover:text-fl-fg-bright transition-colors disabled:opacity-40 w-8 text-center text-base shrink-0"
+          className="text-fl-fg hover:text-fl-fg-bright w-8 shrink-0 text-center font-mono text-base transition-colors disabled:opacity-40"
         >
           {icon}
         </button>
 
         {/* Progress bar — clickable scrubber */}
         <div
-          className="flex-1 h-1.5 bg-fl-border cursor-pointer relative"
+          className="bg-fl-border relative h-1.5 flex-1 cursor-pointer"
           onClick={handleSeek}
           role="progressbar"
           aria-valuenow={Math.round(progress)}
@@ -164,19 +172,21 @@ function ExerciseAudioPlayer({
           aria-valuemax={100}
         >
           <div
-            className="h-full bg-fl-accent transition-all"
+            className="bg-fl-accent h-full transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
 
         {duration > 0 && (
-          <span className="font-mono text-fl-label text-fl-muted-3 shrink-0 tabular-nums">
+          <span className="text-fl-label text-fl-muted-3 shrink-0 font-mono tabular-nums">
             {Math.ceil(duration)}s
           </span>
         )}
       </div>
       {state === 'error' && (
-        <p className="font-mono text-fl-label text-red-500">{t('audioError')}</p>
+        <p className="text-fl-label font-mono text-red-500">
+          {t('audioError')}
+        </p>
       )}
     </div>
   )
@@ -203,7 +213,9 @@ function ListeningPage() {
 
   // Cancel in-flight long-poll on unmount
   useEffect(() => {
-    return () => { generateAbortRef.current?.abort() }
+    return () => {
+      generateAbortRef.current?.abort()
+    }
   }, [])
 
   const loadNext = useCallback(async () => {
@@ -215,7 +227,10 @@ function ListeningPage() {
         setPageState('idle')
         return
       }
-      const data = await res.json() as { available: boolean; exercise?: Exercise }
+      const data = (await res.json()) as {
+        available: boolean
+        exercise?: Exercise
+      }
       if (data.available && data.exercise) {
         setExercise(data.exercise)
         setAnswers({})
@@ -236,10 +251,15 @@ function ListeningPage() {
   }, [loadNext])
 
   async function handleGenerate() {
-    const voice = typeof window !== 'undefined' ? (localStorage.getItem('tts_voice') ?? '') : ''
+    const voice =
+      typeof window !== 'undefined'
+        ? (localStorage.getItem('tts_voice') ?? '')
+        : ''
     const voiceQ = voice ? `?voice=${encodeURIComponent(voice)}` : ''
     try {
-      const res = await apiFetch(`/api/listening/generate${voiceQ}`, { method: 'POST' })
+      const res = await apiFetch(`/api/listening/generate${voiceQ}`, {
+        method: 'POST',
+      })
       if (res.ok || res.status === 202) {
         setPageState('generating')
         // Single long-poll request — server waits (async) until exercise is ready.
@@ -251,7 +271,10 @@ function ListeningPage() {
         })
         generateAbortRef.current = null
         if (nextRes.ok) {
-          const data = await nextRes.json() as { available: boolean; exercise?: Exercise }
+          const data = (await nextRes.json()) as {
+            available: boolean
+            exercise?: Exercise
+          }
           if (data.available && data.exercise) {
             setExercise(data.exercise)
             setAnswers({})
@@ -277,18 +300,22 @@ function ListeningPage() {
       const res = await apiFetch('/api/listening/attempt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ exercise_id: exercise.id, answers, replay: isReplay }),
+        body: JSON.stringify({
+          exercise_id: exercise.id,
+          answers,
+          replay: isReplay,
+        }),
       })
       if (!res.ok) {
-        const d = await res.json().catch(() => ({})) as { detail?: string }
+        const d = (await res.json().catch(() => ({}))) as { detail?: string }
         setError(
           d.detail === 'already_attempted'
             ? t('alreadyAttempted')
-            : t('errorSubmit'),
+            : t('errorSubmit')
         )
         return
       }
-      const data = await res.json() as SubmitResult
+      const data = (await res.json()) as SubmitResult
       setResult(data)
       setPageState('results')
     } catch {
@@ -303,11 +330,16 @@ function ListeningPage() {
     try {
       const res = await apiFetch('/api/listening/history')
       if (res.ok) {
-        const data = await res.json() as { items: AttemptItem[]; total: number }
+        const data = (await res.json()) as {
+          items: AttemptItem[]
+          total: number
+        }
         setHistory(data.items)
         setHistoryTotal(data.total)
       }
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   }
 
   const allAnswered = exercise
@@ -317,8 +349,8 @@ function ListeningPage() {
   // ── Loading ──────────────────────────────────────────────────────────────
   if (pageState === 'loading') {
     return (
-      <div className="flex min-h-[calc(100vh-56px)] md:min-h-screen items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+      <div className="flex min-h-[calc(100vh-56px)] items-center justify-center md:min-h-screen">
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           ● {tCommon('loading')}
         </span>
       </div>
@@ -328,11 +360,11 @@ function ListeningPage() {
   // ── Generating (poll) ─────────────────────────────────────────────────────
   if (pageState === 'generating') {
     return (
-      <div className="flex min-h-[calc(100vh-56px)] md:min-h-screen flex-col items-center justify-center gap-3 px-4">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+      <div className="flex min-h-[calc(100vh-56px)] flex-col items-center justify-center gap-3 px-4 md:min-h-screen">
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           ● {t('generating')}
         </span>
-        <p className="font-mono text-fl-label text-fl-muted-4 text-center max-w-xs">
+        <p className="text-fl-label text-fl-muted-4 max-w-xs text-center font-mono">
           {t('generatingDesc')}
         </p>
       </div>
@@ -342,48 +374,51 @@ function ListeningPage() {
   // ── History ───────────────────────────────────────────────────────────────
   if (pageState === 'history') {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
+      <div className="mx-auto min-h-screen max-w-2xl px-4 py-6 md:min-h-0 md:px-8">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
             {t('historyTitle')}
           </h1>
           <button
             onClick={loadNext}
-            className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors"
+            className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
           >
             {t('practiceMore')}
           </button>
         </div>
 
         {history.length === 0 ? (
-          <div className="border border-fl-border bg-fl-surface p-6 text-center">
-            <p className="font-mono text-xs text-fl-muted-3 tracking-wide">
+          <div className="border-fl-border bg-fl-surface border p-6 text-center">
+            <p className="text-fl-muted-3 font-mono text-xs tracking-wide">
               {t('historyEmpty')}
             </p>
           </div>
         ) : (
           <div className="space-y-3">
             {history.map((item) => (
-              <div key={item.id} className="border border-fl-border bg-fl-surface p-4">
-                <div className="flex items-start justify-between gap-4 mb-3">
+              <div
+                key={item.id}
+                className="border-fl-border bg-fl-surface border p-4"
+              >
+                <div className="mb-3 flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="font-mono text-xs font-bold text-fl-fg tracking-wide truncate">
+                    <p className="text-fl-fg truncate font-mono text-xs font-bold tracking-wide">
                       {item.exercise.topic}
                     </p>
-                    <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mt-0.5">
+                    <p className="text-fl-label text-fl-muted-3 mt-0.5 font-mono tracking-widest uppercase">
                       {item.exercise.level} · {item.exercise.exercise_type}
                     </p>
                   </div>
-                  <div className="text-right shrink-0">
-                    <p className="font-mono text-xs font-bold text-fl-fg">
+                  <div className="shrink-0 text-right">
+                    <p className="text-fl-fg font-mono text-xs font-bold">
                       {item.score}/{item.exercise.questions.length}
                     </p>
-                    <p className="font-mono text-fl-label text-fl-accent">
+                    <p className="text-fl-label text-fl-accent font-mono">
                       +{item.xp_earned} XP
                     </p>
                   </div>
                 </div>
-                <p className="font-mono text-fl-label text-fl-muted-2 leading-relaxed border-t border-fl-border pt-3 mb-3">
+                <p className="text-fl-label text-fl-muted-2 border-fl-border mb-3 border-t pt-3 font-mono leading-relaxed">
                   {item.text}
                 </p>
                 <button
@@ -394,14 +429,14 @@ function ListeningPage() {
                     setIsReplay(true)
                     setPageState('exercise')
                   }}
-                  className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors"
+                  className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
                 >
                   {t('practiceAgain')}
                 </button>
               </div>
             ))}
             {historyTotal > history.length && (
-              <p className="font-mono text-fl-label text-fl-muted-4 text-center py-2">
+              <p className="text-fl-label text-fl-muted-4 py-2 text-center font-mono">
                 {t('moreInHistory', { count: historyTotal - history.length })}
               </p>
             )}
@@ -414,24 +449,30 @@ function ListeningPage() {
   // ── Results ───────────────────────────────────────────────────────────────
   if (pageState === 'results' && result && exercise) {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto space-y-5">
+      <div className="mx-auto min-h-screen max-w-2xl space-y-5 px-4 py-6 md:min-h-0 md:px-8">
         {/* Score card */}
-        <div className="border border-fl-border bg-fl-surface p-5">
+        <div className="border-fl-border bg-fl-surface border p-5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
+              <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
                 {t('resultsLabel')}
               </p>
-              <p className="font-mono text-2xl font-bold text-fl-fg mt-1">
+              <p className="text-fl-fg mt-1 font-mono text-2xl font-bold">
                 {result.score}/{exercise.questions.length}
               </p>
             </div>
             <div className="text-right">
-              <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">XP</p>
+              <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+                XP
+              </p>
               {isReplay ? (
-                <p className="font-mono text-fl-label text-fl-muted-3 mt-1">{t('replayNoXp')}</p>
+                <p className="text-fl-label text-fl-muted-3 mt-1 font-mono">
+                  {t('replayNoXp')}
+                </p>
               ) : (
-                <p className="font-mono text-xl font-bold text-fl-accent mt-1">+{result.xp_earned}</p>
+                <p className="text-fl-accent mt-1 font-mono text-xl font-bold">
+                  +{result.xp_earned}
+                </p>
               )}
             </div>
           </div>
@@ -439,44 +480,50 @@ function ListeningPage() {
 
         {/* Transcript */}
         <div>
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
+          <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
             {t('transcript')}
           </p>
-          <div className="border border-fl-border bg-fl-surface p-4">
-            <p className="font-mono text-xs text-fl-fg leading-relaxed">{result.text}</p>
+          <div className="border-fl-border bg-fl-surface border p-4">
+            <p className="text-fl-fg font-mono text-xs leading-relaxed">
+              {result.text}
+            </p>
           </div>
         </div>
 
         {/* Question review */}
         <div className="space-y-3">
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
+          <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
             {t('review')}
           </p>
           {exercise.questions.map((q) => {
-            const correctKey = result.correct_answers.find((c) => c.index === q.index)?.correct
+            const correctKey = result.correct_answers.find(
+              (c) => c.index === q.index
+            )?.correct
             const userAnswer = answers[String(q.index)]
             const isCorrect = userAnswer === correctKey
             return (
               <div
                 key={q.index}
-                className={`border p-4 ${isCorrect
-                  ? 'border-green-600/50 bg-green-950/30'
-                  : 'border-red-600/50 bg-red-950/30'
-                  }`}
+                className={`border p-4 ${
+                  isCorrect
+                    ? 'border-green-600/50 bg-green-950/30'
+                    : 'border-red-600/50 bg-red-950/30'
+                }`}
               >
-                <p className="font-mono text-xs text-fl-fg mb-3 leading-relaxed">
+                <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
                 </p>
                 <div className="space-y-1">
                   {Object.entries(q.options).map(([k, v]) => (
                     <div
                       key={k}
-                      className={`font-mono text-fl-label px-3 py-1.5 ${k === correctKey
-                        ? 'text-green-400 font-bold'
-                        : k === userAnswer && !isCorrect
-                          ? 'text-red-400 line-through opacity-70'
-                          : 'text-fl-muted-3'
-                        }`}
+                      className={`text-fl-label px-3 py-1.5 font-mono ${
+                        k === correctKey
+                          ? 'font-bold text-green-400'
+                          : k === userAnswer && !isCorrect
+                            ? 'text-red-400 line-through opacity-70'
+                            : 'text-fl-muted-3'
+                      }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </div>
@@ -491,13 +538,13 @@ function ListeningPage() {
         <div className="flex gap-3 pt-1">
           <button
             onClick={loadNext}
-            className="flex-1 border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3"
+            className="border-fl-border bg-fl-surface text-fl-fg hover:bg-fl-surface-2 flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('nextExercise')}
           </button>
           <button
             onClick={loadHistory}
-            className="border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 px-4"
+            className="border-fl-border bg-fl-surface text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface-2 border px-4 py-3 font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('viewHistory')}
           </button>
@@ -509,30 +556,30 @@ function ListeningPage() {
   // ── Idle (no exercises available) ─────────────────────────────────────────
   if (pageState === 'idle') {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
+      <div className="mx-auto min-h-screen max-w-2xl px-4 py-6 md:min-h-0 md:px-8">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
             {t('title')}
           </h1>
           <button
             onClick={loadHistory}
-            className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors"
+            className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
           >
             {t('history')}
           </button>
         </div>
 
         {error && (
-          <p className="font-mono text-fl-label text-red-500 mb-4">{error}</p>
+          <p className="text-fl-label mb-4 font-mono text-red-500">{error}</p>
         )}
 
-        <div className="border border-fl-border bg-fl-surface p-8 flex flex-col items-center gap-5 text-center">
-          <p className="font-mono text-xs text-fl-muted-2 tracking-wide">
+        <div className="border-fl-border bg-fl-surface flex flex-col items-center gap-5 border p-8 text-center">
+          <p className="text-fl-muted-2 font-mono text-xs tracking-wide">
             {t('noExercises')}
           </p>
           <button
             onClick={handleGenerate}
-            className="border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 px-8"
+            className="border-fl-border bg-fl-surface text-fl-fg hover:bg-fl-surface-2 border px-8 py-3 font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('generate')}
           </button>
@@ -545,36 +592,38 @@ function ListeningPage() {
   if (!exercise) return null
 
   return (
-    <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-2xl mx-auto space-y-5">
+    <div className="mx-auto min-h-screen max-w-2xl space-y-5 px-4 py-6 md:min-h-0 md:px-8">
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
+          <h1 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
             {t('title')}
           </h1>
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mt-0.5">
+          <p className="text-fl-label text-fl-muted-3 mt-0.5 font-mono tracking-widest uppercase">
             {exercise.level} · {exercise.exercise_type}
           </p>
         </div>
         <button
           onClick={loadHistory}
-          className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors shrink-0"
+          className="text-fl-label text-fl-muted-2 hover:text-fl-fg shrink-0 font-mono tracking-widest uppercase transition-colors"
         >
           {t('history')}
         </button>
       </div>
 
       {/* Topic */}
-      <div className="border border-fl-border bg-fl-surface px-4 py-3">
-        <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
+      <div className="border-fl-border bg-fl-surface border px-4 py-3">
+        <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
           {t('topic')}
         </p>
-        <p className="font-mono text-xs font-bold text-fl-fg mt-1">{exercise.topic}</p>
+        <p className="text-fl-fg mt-1 font-mono text-xs font-bold">
+          {exercise.topic}
+        </p>
       </div>
 
       {/* Audio player */}
       <div>
-        <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
+        <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
           {t('listenLabel')}
         </p>
         <ExerciseAudioPlayer exerciseId={exercise.id} />
@@ -582,13 +631,16 @@ function ListeningPage() {
 
       {/* Questions */}
       <div>
-        <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-3">
+        <p className="text-fl-label text-fl-muted-3 mb-3 font-mono tracking-widest uppercase">
           {t('questionsLabel')}
         </p>
         <div className="space-y-4">
           {exercise.questions.map((q) => (
-            <div key={q.index} className="border border-fl-border bg-fl-surface p-4">
-              <p className="font-mono text-xs text-fl-fg mb-3 leading-relaxed">
+            <div
+              key={q.index}
+              className="border-fl-border bg-fl-surface border p-4"
+            >
+              <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                 {q.index + 1}. {q.question}
               </p>
               <div className="space-y-2">
@@ -598,12 +650,16 @@ function ListeningPage() {
                     <button
                       key={k}
                       onClick={() =>
-                        setAnswers((prev) => ({ ...prev, [String(q.index)]: k }))
+                        setAnswers((prev) => ({
+                          ...prev,
+                          [String(q.index)]: k,
+                        }))
                       }
-                      className={`w-full text-left px-3 py-2 font-mono text-fl-label border transition-colors ${selected
-                        ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
-                        : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
-                        }`}
+                      className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${
+                        selected
+                          ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
+                          : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
+                      }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </button>
@@ -616,15 +672,13 @@ function ListeningPage() {
       </div>
 
       {/* Error */}
-      {error && (
-        <p className="font-mono text-fl-label text-red-500">{error}</p>
-      )}
+      {error && <p className="text-fl-label font-mono text-red-500">{error}</p>}
 
       {/* Submit */}
       <button
         onClick={handleSubmit}
         disabled={!allAnswered || submitting}
-        className="w-full border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="border-fl-border bg-fl-surface text-fl-fg hover:bg-fl-surface-2 w-full border py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-40"
       >
         {submitting ? tCommon('checking') : t('submit')}
       </button>
@@ -639,9 +693,9 @@ function ListeningPage() {
 export default function ListeningPageWrapper() {
   return (
     <MaintenanceGate>
-    <PaywallGate>
-      <ListeningPage />
-    </PaywallGate>
+      <PaywallGate>
+        <ListeningPage />
+      </PaywallGate>
     </MaintenanceGate>
   )
 }

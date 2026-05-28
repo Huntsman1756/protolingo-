@@ -10,26 +10,32 @@ import { CEFR_LEVELS, type CEFRLevel } from '@/data/curriculum'
 
 // ── Set card ──────────────────────────────────────────────────────────────────
 
-function SetCard({ s, wordsLabel }: { s: typeof vocabularySets[0]; wordsLabel: string }) {
+function SetCard({
+  s,
+  wordsLabel,
+}: {
+  s: (typeof vocabularySets)[0]
+  wordsLabel: string
+}) {
   return (
     <Link
       href={`/vocabulary/${s.id}`}
-      className="block border border-fl-border bg-fl-surface hover:border-fl-border-2 hover:bg-fl-surface-2 transition-colors group"
+      className="border-fl-border bg-fl-surface hover:border-fl-border-2 hover:bg-fl-surface-2 group block border transition-colors"
     >
-      <div className="px-4 py-4 space-y-2">
+      <div className="space-y-2 px-4 py-4">
         <div className="flex items-start justify-between gap-2">
-          <p className="font-mono text-xs font-bold text-fl-fg tracking-wide leading-snug group-hover:text-fl-fg-bright transition-colors">
+          <p className="text-fl-fg group-hover:text-fl-fg-bright font-mono text-xs leading-snug font-bold tracking-wide transition-colors">
             {s.topic}
           </p>
-          <span className="shrink-0 border border-fl-border font-mono text-fl-label tracking-widest uppercase px-1.5 py-0.5 text-fl-muted-3">
+          <span className="border-fl-border text-fl-label text-fl-muted-3 shrink-0 border px-1.5 py-0.5 font-mono tracking-widest uppercase">
             {s.level}
           </span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
+          <span className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
             {s.words.length} {wordsLabel}
           </span>
-          <span className="font-mono text-fl-label text-fl-muted-4 uppercase tracking-widest">
+          <span className="text-fl-label text-fl-muted-4 font-mono tracking-widest uppercase">
             {s.unit_ref}
           </span>
         </div>
@@ -50,27 +56,31 @@ export default function VocabularyIndexPage() {
     const q = search.toLowerCase()
     return vocabularySets.filter((s) => {
       const matchesLevel = activeLevel === 'All' || s.level === activeLevel
-      const matchesSearch = !q || s.topic.toLowerCase().includes(q) || s.id.includes(q)
+      const matchesSearch =
+        !q || s.topic.toLowerCase().includes(q) || s.id.includes(q)
       return matchesLevel && matchesSearch
     })
   }, [activeLevel, search])
 
   const totalWords = vocabularySets.reduce((acc, s) => acc + s.words.length, 0)
-  const usedLevels = [...new Set(vocabularySets.map((s) => s.level))] as CEFRLevel[]
+  const usedLevels = [
+    ...new Set(vocabularySets.map((s) => s.level)),
+  ] as CEFRLevel[]
 
   return (
-    <div className="mx-auto max-w-4xl p-6 space-y-8">
+    <div className="mx-auto max-w-4xl space-y-8 p-6">
       {/* Header */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('title')}
           </span>
         </div>
-        <div className="px-6 py-5 space-y-4">
-          <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
-            {vocabularySets.length} {t('sets')} · {totalWords} {t('words')} · {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
+        <div className="space-y-4 px-6 py-5">
+          <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
+            {vocabularySets.length} {t('sets')} · {totalWords} {t('words')} ·{' '}
+            {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
           </p>
           {/* Search */}
           <input
@@ -78,27 +88,31 @@ export default function VocabularyIndexPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t('searchPlaceholder')}
-            className="w-full max-w-sm bg-fl-bg border border-fl-border px-4 py-2.5 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full max-w-sm border px-4 py-2.5 font-mono text-xs transition-colors focus:outline-none"
           />
           {/* Level filter */}
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setActiveLevel('All')}
-              className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeLevel === 'All'
-                ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
-                }`}
+              className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                activeLevel === 'All'
+                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+              }`}
             >
               {t('all')}
             </button>
             {usedLevels.map((level) => (
               <button
                 key={level}
-                onClick={() => setActiveLevel(activeLevel === level ? 'All' : level)}
-                className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeLevel === level
-                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
+                onClick={() =>
+                  setActiveLevel(activeLevel === level ? 'All' : level)
+                }
+                className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                  activeLevel === level
+                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                }`}
               >
                 {level}
               </button>
@@ -114,9 +128,11 @@ export default function VocabularyIndexPage() {
         return (
           <section key={level} className="space-y-3">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-base font-bold text-fl-fg tracking-widest">{level}</span>
-              <div className="flex-1 h-px bg-fl-border" />
-              <span className="font-mono text-fl-label text-fl-muted-3">
+              <span className="text-fl-fg font-mono text-base font-bold tracking-widest">
+                {level}
+              </span>
+              <div className="bg-fl-border h-px flex-1" />
+              <span className="text-fl-label text-fl-muted-3 font-mono">
                 {sets.length} set{sets.length !== 1 ? 's' : ''} ·{' '}
                 {sets.reduce((a, s) => a + s.words.length, 0)} {t('words')}
               </span>
@@ -131,14 +147,17 @@ export default function VocabularyIndexPage() {
       })}
 
       {filtered.length === 0 && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
-          <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
+        <div className="border-fl-border bg-fl-surface space-y-4 border px-6 py-10 text-center">
+          <p className="text-fl-muted-3 font-mono text-xs tracking-widest uppercase">
             {t('noResults')}
           </p>
           {(search || activeLevel !== 'All') && (
             <button
-              onClick={() => { setSearch(''); setActiveLevel('All') }}
-              className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+              onClick={() => {
+                setSearch('')
+                setActiveLevel('All')
+              }}
+              className="text-fl-label border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg border px-4 py-2 font-mono tracking-widest uppercase transition-colors"
             >
               {tCommon('clearFilters')}
             </button>

@@ -1,20 +1,18 @@
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import BaseModel
-
 
 # ── Quiz question (static bank shape — mirrored from assessment-bank.ts) ──────
 
+
 class QuizQuestion(BaseModel):
     id: str
-    skill: str          # grammar | vocabulary | reading
-    difficulty: str     # CEFRLevel
+    skill: str  # grammar | vocabulary | reading
+    difficulty: str  # CEFRLevel
     question: str
     options: list[str]  # exactly 4
-    correct: str        # matches one option exactly
-    grammar_slug: Optional[str] = None
+    correct: str  # matches one option exactly
+    grammar_slug: str | None = None
 
 
 class QuizResponse(BaseModel):
@@ -23,10 +21,12 @@ class QuizResponse(BaseModel):
 
 # ── Submission ─────────────────────────────────────────────────────────────────
 
+
 class AnswerRecord(BaseModel):
     """One answered question from the adaptive quiz."""
+
     question_id: str
-    skill: str       # grammar | vocabulary | reading
+    skill: str  # grammar | vocabulary | reading
     difficulty: str  # CEFRLevel
     correct: bool
 
@@ -37,16 +37,18 @@ class AssessmentSubmitRequest(BaseModel):
 
 # ── Result ─────────────────────────────────────────────────────────────────────
 
+
 class AssessmentResult(BaseModel):
     cefr_level: str
     score: float
-    skill_profile: dict[str, float] = {}   # {grammar: 0.7, vocabulary: 0.5, reading: 0.6}
+    skill_profile: dict[str, float] = {}  # {grammar: 0.7, vocabulary: 0.5, reading: 0.6}
     strengths: list[str] = []
     weaknesses: list[str] = []
     analysis: str = ""
 
 
 # ── Free-write evaluation ──────────────────────────────────────────────────────
+
 
 class FreeWriteEvalRequest(BaseModel):
     preliminary_level: str
@@ -55,6 +57,7 @@ class FreeWriteEvalRequest(BaseModel):
 
 
 # ── Completion (saves result + creates plan) ───────────────────────────────────
+
 
 class AssessmentCompleteRequest(BaseModel):
     cefr_level: str
@@ -68,6 +71,7 @@ class AssessmentCompleteRequest(BaseModel):
 
 # ── Level test ─────────────────────────────────────────────────────────────────
 
+
 class LevelTestSubmitRequest(BaseModel):
     plan_id: int
     answers: list[AnswerRecord]
@@ -75,6 +79,5 @@ class LevelTestSubmitRequest(BaseModel):
 
 class LevelTestResult(BaseModel):
     score: float
-    recommendation: str   # advance | extend | repeat
-    next_level: Optional[str] = None
-
+    recommendation: str  # advance | extend | repeat
+    next_level: str | None = None

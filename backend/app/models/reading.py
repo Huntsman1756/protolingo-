@@ -20,7 +20,9 @@ class ReadingExercise(Base):
     exercise_type: Mapped[str] = mapped_column(String(20), nullable=False)
     # notice | email | article | news | blog_post | review | essay
     topic: Mapped[str] = mapped_column(String(200), nullable=False)
-    text: Mapped[str] = mapped_column(Text, nullable=False)  # sent to client immediately (unlike listening)
+    text: Mapped[str] = mapped_column(
+        Text, nullable=False
+    )  # sent to client immediately (unlike listening)
     questions: Mapped[dict] = mapped_column(JSON, nullable=False)
     # [{"index": 0, "question": "...", "options": {"A":...,"B":...,"C":...,"D":...}, "correct": "B"}, ...]
     view_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)

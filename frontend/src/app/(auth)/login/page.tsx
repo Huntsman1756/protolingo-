@@ -45,7 +45,10 @@ function LoginForm() {
           if (Array.isArray(data.detail) && data.detail.length > 0) {
             const first = data.detail[0] as { loc?: string[]; msg?: string }
             const loc = (first.loc ?? []).join('.')
-            if (loc.includes('email') || first.msg?.toLowerCase().includes('email')) {
+            if (
+              loc.includes('email') ||
+              first.msg?.toLowerCase().includes('email')
+            ) {
               throw new Error(t('invalidEmail'))
             }
           }
@@ -66,37 +69,57 @@ function LoginForm() {
   )
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-fl-bg px-4"
-      style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
+    <div
+      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
+      style={{
+        backgroundImage:
+          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
+        backgroundSize: '24px 24px',
+      }}
+    >
       <div className="w-full max-w-sm">
         {/* Brand */}
-        <div className="flex flex-col items-center mb-10">
-          <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
-          <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
-          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">{tCommon('tagline')}</p>
+        <div className="mb-10 flex flex-col items-center">
+          <Image
+            src="/logo.png"
+            alt="FreeLingo"
+            width={80}
+            height={80}
+            className="mb-4"
+          />
+          <h1 className="text-fl-fg font-mono text-xl font-bold tracking-widest uppercase">
+            FreeLingo
+          </h1>
+          <p className="text-fl-caption text-fl-muted-2 mt-1 font-mono tracking-widest uppercase">
+            {tCommon('tagline')}
+          </p>
         </div>
 
-        <div className="border border-fl-border bg-fl-surface p-8">
+        <div className="border-fl-border bg-fl-surface border p-8">
           {/* Header */}
-          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-fl-border">
+          <div className="border-fl-border mb-6 flex items-center gap-2 border-b pb-4">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">{t('title')}</span>
+            <span className="text-fl-muted-2 font-mono text-xs tracking-widest uppercase">
+              {t('title')}
+            </span>
           </div>
 
           {registered && (
-            <div className="mb-5 border border-fl-border px-4 py-3 font-mono text-xs text-fl-muted-1 tracking-wide">
+            <div className="border-fl-border text-fl-muted-1 mb-5 border px-4 py-3 font-mono text-xs tracking-wide">
               ✓ {t('accountCreated')}
             </div>
           )}
           {error && (
-            <div className="mb-5 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error tracking-wide">
+            <div className="border-fl-error/40 text-fl-error mb-5 border px-4 py-3 font-mono text-xs tracking-wide">
               ✕ {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <div>
-              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('email')}</label>
+              <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+                {t('email')}
+              </label>
               <input
                 type="text"
                 value={email}
@@ -105,11 +128,13 @@ function LoginForm() {
                 autoCorrect="off"
                 autoCapitalize="none"
                 spellCheck={false}
-                className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
+                className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
               />
             </div>
             <div>
-              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('password')}</label>
+              <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+                {t('password')}
+              </label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -119,22 +144,44 @@ function LoginForm() {
                   autoCorrect="off"
                   autoCapitalize="none"
                   spellCheck={false}
-                  className="w-full bg-fl-bg border border-fl-border px-4 py-3 pr-11 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
+                  className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full border px-4 py-3 pr-11 font-mono text-sm transition-colors focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute inset-y-0 right-0 flex items-center px-3 text-fl-muted-4 hover:text-fl-muted-0 transition-colors"
-                  aria-label={showPassword ? t('hidePassword') : t('showPassword')}
+                  className="text-fl-muted-4 hover:text-fl-muted-0 absolute inset-y-0 right-0 flex items-center px-3 transition-colors"
+                  aria-label={
+                    showPassword ? t('hidePassword') : t('showPassword')
+                  }
                 >
                   {showPassword ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
                       <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
                       <line x1="1" y1="1" x2="23" y2="23" />
                     </svg>
                   ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                       <circle cx="12" cy="12" r="3" />
                     </svg>
@@ -145,20 +192,26 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+              className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 mt-2 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
             >
               {loading ? `— ${t('signingIn')}` : `— ${t('submit')}`}
             </button>
           </form>
 
-          <p className="mt-6 font-mono text-fl-label text-fl-muted-2 tracking-wide text-center">
+          <p className="text-fl-label text-fl-muted-2 mt-6 text-center font-mono tracking-wide">
             {t('noAccount')}{' '}
-            <a href="/register" className="text-fl-muted-1 hover:text-fl-fg transition-colors">
+            <a
+              href="/register"
+              className="text-fl-muted-1 hover:text-fl-fg transition-colors"
+            >
               {t('register')}
             </a>
           </p>
-          <p className="mt-3 font-mono text-fl-label text-fl-muted-4 tracking-wide text-center">
-            <a href="/forgot-password" className="hover:text-fl-muted-2 transition-colors">
+          <p className="text-fl-label text-fl-muted-4 mt-3 text-center font-mono tracking-wide">
+            <a
+              href="/forgot-password"
+              className="hover:text-fl-muted-2 transition-colors"
+            >
               {t('forgotPassword')}
             </a>
           </p>

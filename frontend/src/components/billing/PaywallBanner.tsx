@@ -39,19 +39,19 @@ export function PaywallBanner() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 py-16 text-center">
-      <div className="border border-fl-border bg-fl-surface max-w-md w-full p-8">
+    <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-16 text-center">
+      <div className="border-fl-border bg-fl-surface w-full max-w-md border p-8">
         {/* Icon */}
-        <div className="text-2xl text-fl-muted-2 mb-4">◎</div>
+        <div className="text-fl-muted-2 mb-4 text-2xl">◎</div>
 
         {/* Headline */}
-        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">
+        <p className="text-fl-label text-fl-muted-2 mb-2 font-mono tracking-widest uppercase">
           {t('paywallLabel')}
         </p>
-        <h2 className="font-mono text-base font-bold text-fl-fg mb-3">
+        <h2 className="text-fl-fg mb-3 font-mono text-base font-bold">
           {t('paywallTitle')}
         </h2>
-        <p className="font-mono text-xs text-fl-muted-1 leading-relaxed mb-6">
+        <p className="text-fl-muted-1 mb-6 font-mono text-xs leading-relaxed">
           {t('paywallDesc', { days: trialDays })}
         </p>
 
@@ -60,24 +60,28 @@ export function PaywallBanner() {
           <button
             onClick={() => handleCheckout('monthly')}
             disabled={loading !== null}
-            className="w-full font-mono text-xs tracking-widest uppercase py-3 px-4 bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 disabled:opacity-50 transition-colors"
+            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full px-4 py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-50"
           >
-            {loading === 'monthly' ? '...' : t('planMonthly', { price: '14.95' })}
+            {loading === 'monthly'
+              ? '...'
+              : t('planMonthly', { price: '14.95' })}
           </button>
           <button
             onClick={() => handleCheckout('yearly')}
             disabled={loading !== null}
-            className="w-full font-mono text-xs tracking-widest uppercase py-3 px-4 border border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 disabled:opacity-50 transition-colors"
+            className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 w-full border px-4 py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-50"
           >
-            {loading === 'yearly' ? '...' : t('planYearly', { price: '149.50' })}
+            {loading === 'yearly'
+              ? '...'
+              : t('planYearly', { price: '149.50' })}
           </button>
         </div>
 
         {error && (
-          <p className="mt-4 font-mono text-fl-hint text-red-500">{error}</p>
+          <p className="text-fl-hint mt-4 font-mono text-red-500">{error}</p>
         )}
 
-        <p className="mt-6 font-mono text-fl-hint text-fl-muted-3 tracking-widest uppercase">
+        <p className="text-fl-hint text-fl-muted-3 mt-6 font-mono tracking-widest uppercase">
           {t('paywallNoCharge')}
         </p>
       </div>
@@ -90,6 +94,7 @@ export function PaywallGate({ children }: { children: React.ReactNode }) {
   const user = useAuthStore((s) => s.user)
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
 
-  if (!stripeEnabled || isSubscribed(user, stripeEnabled)) return <>{children}</>
+  if (!stripeEnabled || isSubscribed(user, stripeEnabled))
+    return <>{children}</>
   return <PaywallBanner />
 }

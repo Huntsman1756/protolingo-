@@ -3,6 +3,7 @@
 Reads configuration from settings. If EMAIL_ENABLED=false, all send_*
 functions are no-ops so the app works without SMTP configured.
 """
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -374,7 +375,9 @@ def _render_template(name: str, context: dict) -> str:
     return html
 
 
-async def send_verification_email(to: str, display_name: str, token: str, locale: str = "en") -> None:
+async def send_verification_email(
+    to: str, display_name: str, token: str, locale: str = "en"
+) -> None:
     """Send email verification link in the user's native language."""
     if not settings.EMAIL_ENABLED:
         return
@@ -405,7 +408,9 @@ async def send_verification_email(to: str, display_name: str, token: str, locale
         logger.exception("Failed to send verification email to %s", to)
 
 
-async def send_reset_password_email(to: str, display_name: str, token: str, locale: str = "en") -> None:
+async def send_reset_password_email(
+    to: str, display_name: str, token: str, locale: str = "en"
+) -> None:
     """Send password reset link in the user's native language."""
     if not settings.EMAIL_ENABLED:
         return

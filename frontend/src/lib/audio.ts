@@ -2,7 +2,10 @@
  * Encodes a Float32Array of mono PCM samples into a standard WAV ArrayBuffer.
  * VAD delivers samples at 16 000 Hz; STT service accepts audio/wav.
  */
-export function float32ToWav(samples: Float32Array, sampleRate: number): ArrayBuffer {
+export function float32ToWav(
+  samples: Float32Array,
+  sampleRate: number
+): ArrayBuffer {
   const numChannels = 1
   const bitsPerSample = 16
   const blockAlign = numChannels * (bitsPerSample / 8)
@@ -12,15 +15,16 @@ export function float32ToWav(samples: Float32Array, sampleRate: number): ArrayBu
   const view = new DataView(buffer)
 
   function writeStr(offset: number, s: string) {
-    for (let i = 0; i < s.length; i++) view.setUint8(offset + i, s.charCodeAt(i))
+    for (let i = 0; i < s.length; i++)
+      view.setUint8(offset + i, s.charCodeAt(i))
   }
 
   writeStr(0, 'RIFF')
   view.setUint32(4, 36 + dataSize, true)
   writeStr(8, 'WAVE')
   writeStr(12, 'fmt ')
-  view.setUint32(16, 16, true)            // PCM chunk size
-  view.setUint16(20, 1, true)             // PCM format
+  view.setUint32(16, 16, true) // PCM chunk size
+  view.setUint16(20, 1, true) // PCM format
   view.setUint16(22, numChannels, true)
   view.setUint32(24, sampleRate, true)
   view.setUint32(28, byteRate, true)

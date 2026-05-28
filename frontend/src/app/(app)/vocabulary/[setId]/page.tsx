@@ -43,7 +43,7 @@ export default function VocabularySetPage({
         word: w.word,
         definition: w.definition,
         example_sentence: w.example,
-        translation: '',   // user's native language translation will be added by LLM generation
+        translation: '', // user's native language translation will be added by LLM generation
       }))
       const res = await apiFetch('/api/flashcards/bulk', {
         method: 'POST',
@@ -52,9 +52,11 @@ export default function VocabularySetPage({
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
-        throw new Error((d as { detail?: string }).detail ?? `Error ${res.status}`)
+        throw new Error(
+          (d as { detail?: string }).detail ?? `Error ${res.status}`
+        )
       }
-      const data = await res.json() as { created: number }
+      const data = (await res.json()) as { created: number }
       setAddedCount(data.created)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to add flashcards.')
@@ -64,39 +66,44 @@ export default function VocabularySetPage({
   }
 
   return (
-    <div className="mx-auto max-w-2xl p-6 space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4 p-6">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 font-mono text-fl-label text-fl-muted-3">
-        <Link href="/vocabulary" className="hover:text-fl-fg transition-colors uppercase tracking-widest">
+      <nav className="text-fl-label text-fl-muted-3 flex items-center gap-2 font-mono">
+        <Link
+          href="/vocabulary"
+          className="hover:text-fl-fg tracking-widest uppercase transition-colors"
+        >
           Vocabulary
         </Link>
         <span>›</span>
-        <span className="text-fl-muted-2 tracking-widest uppercase">{vocabSet.level}</span>
+        <span className="text-fl-muted-2 tracking-widest uppercase">
+          {vocabSet.level}
+        </span>
         <span>›</span>
         <span className="text-fl-fg tracking-wide">{vocabSet.topic}</span>
       </nav>
 
       {/* Header */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('vocabularySet')}
           </span>
         </div>
-        <div className="px-6 py-5 space-y-3">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+        <div className="space-y-3 px-6 py-5">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="border-fl-border text-fl-label text-fl-muted-3 border px-2 py-0.5 font-mono tracking-widest uppercase">
               {vocabSet.level}
             </span>
-            <span className="border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+            <span className="border-fl-border text-fl-label text-fl-muted-3 border px-2 py-0.5 font-mono tracking-widest uppercase">
               {vocabSet.unit_ref}
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold text-fl-fg tracking-wide">
+          <h1 className="text-fl-fg font-mono text-xl font-bold tracking-wide">
             {vocabSet.topic}
           </h1>
-          <p className="font-mono text-fl-label text-fl-muted-3">
+          <p className="text-fl-label text-fl-muted-3 font-mono">
             {vocabSet.words.length} {t('words')}
           </p>
 
@@ -118,40 +125,44 @@ export default function VocabularySetPage({
               <button
                 onClick={handleAddAll}
                 disabled={adding}
-                className="bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-5 py-2.5 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-5 py-2.5 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
               >
-                {adding ? '— Adding...' : `— ${t('addAll', { count: vocabSet.words.length })}`}
+                {adding
+                  ? '— Adding...'
+                  : `— ${t('addAll', { count: vocabSet.words.length })}`}
               </button>
             </div>
           )}
-          {error && (
-            <p className="font-mono text-xs text-red-500">{error}</p>
-          )}
+          {error && <p className="font-mono text-xs text-red-500">{error}</p>}
         </div>
       </div>
 
       {/* Word list */}
-      <div className="border border-fl-border bg-fl-surface divide-y divide-fl-border">
+      <div className="border-fl-border bg-fl-surface divide-fl-border divide-y border">
         {vocabSet.words.map((word, i) => (
-          <div key={i} className="px-5 py-4 space-y-1.5">
+          <div key={i} className="space-y-1.5 px-5 py-4">
             <div className="flex items-baseline gap-3">
-              <span className="font-mono text-sm font-bold text-fl-fg">{word.word}</span>
-              <span className="font-mono text-fl-label text-fl-muted-3 italic">
+              <span className="text-fl-fg font-mono text-sm font-bold">
+                {word.word}
+              </span>
+              <span className="text-fl-label text-fl-muted-3 font-mono italic">
                 {POS_LABELS[word.pos] ?? word.pos}
               </span>
               {word.ipa && (
-                <span className="font-mono text-fl-label text-fl-muted-3">{word.ipa}</span>
+                <span className="text-fl-label text-fl-muted-3 font-mono">
+                  {word.ipa}
+                </span>
               )}
               {word.frequency_rank && (
-                <span className="ml-auto font-mono text-fl-label text-fl-muted-4">
+                <span className="text-fl-label text-fl-muted-4 ml-auto font-mono">
                   #{word.frequency_rank}
                 </span>
               )}
             </div>
-            <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
+            <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
               {word.definition}
             </p>
-            <p className="font-mono text-xs text-fl-muted-3 italic leading-relaxed">
+            <p className="text-fl-muted-3 font-mono text-xs leading-relaxed italic">
               &ldquo;{word.example}&rdquo;
             </p>
           </div>
@@ -160,7 +171,7 @@ export default function VocabularySetPage({
 
       <Link
         href="/vocabulary"
-        className="inline-block font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase hover:text-fl-fg transition-colors"
+        className="text-fl-label text-fl-muted-2 hover:text-fl-fg inline-block font-mono tracking-widest uppercase transition-colors"
       >
         ← {t('backToVocabulary')}
       </Link>

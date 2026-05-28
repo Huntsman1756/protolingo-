@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, field_serializer
 
@@ -9,9 +8,9 @@ from pydantic import BaseModel, field_serializer
 class ExerciseContent(BaseModel):
     type: str
     question: str
-    options: Optional[list[str]] = None
+    options: list[str] | None = None
     correct: str
-    explanation: Optional[str] = None
+    explanation: str | None = None
 
 
 class LessonContent(BaseModel):
@@ -20,9 +19,9 @@ class LessonContent(BaseModel):
     cefr_level: str
     explanation: dict
     exercises: list[ExerciseContent]
-    vocabulary: Optional[list[dict]] = None
+    vocabulary: list[dict] | None = None
     grammar_refs: list[str] = []
-    unit_id: Optional[str] = None
+    unit_id: str | None = None
 
 
 class LessonResponse(BaseModel):
@@ -35,12 +34,12 @@ class LessonResponse(BaseModel):
     day_number: int
     content: dict
     is_completed: bool
-    completed_at: Optional[datetime] = None
+    completed_at: datetime | None = None
 
     model_config = {"from_attributes": True}
 
     @field_serializer("completed_at")
-    def serialize_completed_at(self, v: Optional[datetime], _info):
+    def serialize_completed_at(self, v: datetime | None, _info):
         return v.isoformat() if v else None
 
 
@@ -49,18 +48,18 @@ class ExerciseResponse(BaseModel):
     lesson_id: int
     exercise_type: str
     question: str
-    options: Optional[list] = None
+    options: list | None = None
     correct_answer: str
-    user_answer: Optional[str] = None
-    score: Optional[float] = None
-    feedback: Optional[str] = None
-    explanation: Optional[str] = None
-    answered_at: Optional[datetime] = None
+    user_answer: str | None = None
+    score: float | None = None
+    feedback: str | None = None
+    explanation: str | None = None
+    answered_at: datetime | None = None
 
     model_config = {"from_attributes": True}
 
     @field_serializer("answered_at")
-    def serialize_answered_at(self, v: Optional[datetime], _info):
+    def serialize_answered_at(self, v: datetime | None, _info):
         return v.isoformat() if v else None
 
 

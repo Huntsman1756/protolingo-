@@ -21,7 +21,6 @@ from app.core.security import (
     verify_password,
 )
 from app.models.user import User
-from app.services import email_service
 from app.schemas.auth import (
     ForgotPasswordRequest,
     LoginRequest,
@@ -32,6 +31,7 @@ from app.schemas.auth import (
     UserResponse,
     UserUpdateRequest,
 )
+from app.services import email_service
 
 logger = get_logger(__name__)
 
@@ -71,17 +71,11 @@ async def register(
         if email_domain in [d.lower() for d in settings.BLOCKED_EMAIL_DOMAINS]:
             raise HTTPException(status_code=422, detail="Email domain not allowed")
 
-    existing = await db.execute(
-        select(User).where(
-            User.username == data.username
-        )
-    )
+    existing = await db.execute(select(User).where(User.username == data.username))
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="Username already taken")
 
-    email_check = await db.execute(
-        select(User).where(User.email == data.email)
-    )
+    email_check = await db.execute(select(User).where(User.email == data.email))
     if email_check.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="Email already taken")
 
@@ -122,8 +116,12 @@ async def register(
     if user.email and settings.EMAIL_ENABLED:
         verify_token = str(uuid.uuid4())
         await redis.setex(f"verify_email:{verify_token}", 86400, str(user.id))  # 24h
-        await email_service.send_verification_email(user.email, user.display_name, verify_token, locale=user.native_language)
-        await email_service.send_welcome_email(user.email, user.display_name, locale=user.native_language)
+        await email_service.send_verification_email(
+            user.email, user.display_name, verify_token, locale=user.native_language
+        )
+        await email_service.send_welcome_email(
+            user.email, user.display_name, locale=user.native_language
+        )
 
     return RegisterResponse(
         id=user.id,
@@ -354,7 +352,11 @@ async def get_my_quota(
     redis: Redis = Depends(get_redis),
 ):
     """Return conversation quota status for the current user."""
-    from app.services.quota_service import get_monthly_tokens_used, get_quota_status  # noqa: PLC0415
+    from app.services.quota_service import (  # noqa: PLC0415
+        get_monthly_tokens_used,
+        get_quota_status,
+    )
+
     quota = await get_quota_status(
         redis,
         current_user.id,
@@ -372,6 +374,7 @@ async def get_my_quota(
 # ---------------------------------------------------------------------------
 # Email verification
 # ---------------------------------------------------------------------------
+
 
 @router.get("/verify-email")
 @limiter.limit("10/minute")
@@ -408,13 +411,19 @@ async def resend_verification(
         raise HTTPException(status_code=503, detail="Email not configured")
     verify_token = str(uuid.uuid4())
     await redis.setex(f"verify_email:{verify_token}", 86400, str(current_user.id))
-    await email_service.send_verification_email(current_user.email, current_user.display_name, verify_token, locale=current_user.native_language)
+    await email_service.send_verification_email(
+        current_user.email,
+        current_user.display_name,
+        verify_token,
+        locale=current_user.native_language,
+    )
     return {"detail": "Verification email sent"}
 
 
 # ---------------------------------------------------------------------------
 # Password reset (public — no auth required)
 # ---------------------------------------------------------------------------
+
 
 @router.post("/forgot-password")
 @limiter.limit("5/minute")
@@ -430,7 +439,9 @@ async def forgot_password(
     if user and settings.EMAIL_ENABLED:
         reset_token = str(uuid.uuid4())
         await redis.setex(f"reset_password:{reset_token}", 3600, str(user.id))  # 1h
-        await email_service.send_reset_password_email(user.email, user.display_name, reset_token, locale=user.native_language)
+        await email_service.send_reset_password_email(
+            user.email, user.display_name, reset_token, locale=user.native_language
+        )
     return {"detail": "If that email is registered you will receive a reset link shortly"}
 
 

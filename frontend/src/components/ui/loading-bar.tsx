@@ -8,9 +8,9 @@ export function LoadingBar() {
   if (!loading) return null
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[300] h-px overflow-hidden">
+    <div className="fixed top-0 right-0 left-0 z-[300] h-px overflow-hidden">
       <div
-        className="h-full bg-fl-fg animate-loading-bar"
+        className="bg-fl-fg animate-loading-bar h-full"
         style={{ width: '100%' }}
       />
       <style>{`

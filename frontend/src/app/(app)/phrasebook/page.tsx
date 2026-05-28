@@ -22,7 +22,7 @@ function CategoryCard({
   cat,
   registerFilter,
 }: {
-  cat: typeof phrasebookCategories[0]
+  cat: (typeof phrasebookCategories)[0]
   registerFilter: Register | 'All'
 }) {
   const t = useTranslations('phrasebook')
@@ -34,37 +34,39 @@ function CategoryCard({
   if (!phrases.length) return null
 
   return (
-    <div className="border border-fl-border bg-fl-surface">
+    <div className="border-fl-border bg-fl-surface border">
       {/* Card header */}
-      <div className="flex items-center gap-3 px-5 py-4 border-b border-fl-border">
+      <div className="border-fl-border flex items-center gap-3 border-b px-5 py-4">
         <span className="text-xl">{cat.icon}</span>
-        <div className="flex-1 min-w-0">
-          <p className="font-mono text-xs font-bold text-fl-fg tracking-wide truncate">
+        <div className="min-w-0 flex-1">
+          <p className="text-fl-fg truncate font-mono text-xs font-bold tracking-wide">
             {cat.situation}
           </p>
         </div>
-        <span className="shrink-0 border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+        <span className="border-fl-border text-fl-label text-fl-muted-3 shrink-0 border px-2 py-0.5 font-mono tracking-widest uppercase">
           {cat.level}
         </span>
       </div>
 
       {/* Phrases */}
-      <ul className="divide-y divide-fl-border">
+      <ul className="divide-fl-border divide-y">
         {phrases.map((phrase, i) => (
-          <li key={i} className="px-5 py-3 space-y-1 group">
+          <li key={i} className="group space-y-1 px-5 py-3">
             <div className="flex items-start justify-between gap-3">
-              <p className="font-mono text-xs text-fl-fg leading-relaxed flex-1">
+              <p className="text-fl-fg flex-1 font-mono text-xs leading-relaxed">
                 {phrase.english}
               </p>
-              <div className="flex items-center gap-1 shrink-0">
-                <span className={`font-mono text-fl-label tracking-widest uppercase ${REGISTER_COLORS[phrase.register]}`}>
+              <div className="flex shrink-0 items-center gap-1">
+                <span
+                  className={`text-fl-label font-mono tracking-widest uppercase ${REGISTER_COLORS[phrase.register]}`}
+                >
                   {t(phrase.register)}
                 </span>
                 <CopyButton text={phrase.english} />
               </div>
             </div>
             {phrase.context && (
-              <p className="font-mono text-fl-label text-fl-muted-3 italic">
+              <p className="text-fl-label text-fl-muted-3 font-mono italic">
                 {phrase.context}
               </p>
             )}
@@ -83,13 +85,15 @@ function CopyButton({ text }: { text: string }) {
       await navigator.clipboard.writeText(text)
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   }
 
   return (
     <button
       onClick={handleCopy}
-      className="font-mono text-fl-label text-fl-muted-4 hover:text-fl-fg transition-colors px-1"
+      className="text-fl-label text-fl-muted-4 hover:text-fl-fg px-1 font-mono transition-colors"
       title="Copy"
       aria-label="Copy phrase"
     >
@@ -110,25 +114,29 @@ export default function PhrasebookPage() {
     return phrasebookCategories.filter((cat) => {
       const matchesLevel = activeLevel === 'All' || cat.level === activeLevel
       const matchesRegister =
-        activeRegister === 'All' || cat.phrases.some((p) => p.register === activeRegister)
+        activeRegister === 'All' ||
+        cat.phrases.some((p) => p.register === activeRegister)
       return matchesLevel && matchesRegister
     })
   }, [activeLevel, activeRegister])
 
-  const totalPhrases = phrasebookCategories.reduce((acc, c) => acc + c.phrases.length, 0)
+  const totalPhrases = phrasebookCategories.reduce(
+    (acc, c) => acc + c.phrases.length,
+    0
+  )
 
   return (
-    <div className="mx-auto max-w-4xl p-6 space-y-8">
+    <div className="mx-auto max-w-4xl space-y-8 p-6">
       {/* Header */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('title')}
           </span>
         </div>
-        <div className="px-6 py-5 space-y-4">
-          <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
+        <div className="space-y-4 px-6 py-5">
+          <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
             {t('statsLine', {
               situationCount: phrasebookCategories.length,
               phraseCount: totalPhrases,
@@ -138,16 +146,19 @@ export default function PhrasebookPage() {
 
           {/* Level filter */}
           <div className="space-y-2">
-            <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('level')}</p>
+            <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+              {t('level')}
+            </p>
             <div className="flex flex-wrap gap-2">
               {(['All', ...CEFR_LEVELS] as const).map((lvl) => (
                 <button
                   key={lvl}
                   onClick={() => setActiveLevel(lvl)}
-                  className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeLevel === lvl
-                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                    activeLevel === lvl
+                      ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                      : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
                 >
                   {lvl === 'All' ? tCommon('all') : lvl}
                 </button>
@@ -157,16 +168,19 @@ export default function PhrasebookPage() {
 
           {/* Register filter */}
           <div className="space-y-2">
-            <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('register')}</p>
+            <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+              {t('register')}
+            </p>
             <div className="flex flex-wrap gap-2">
               {(['All', ...REGISTERS] as const).map((reg) => (
                 <button
                   key={reg}
                   onClick={() => setActiveRegister(reg)}
-                  className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeRegister === reg
-                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                    activeRegister === reg
+                      ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                      : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
                 >
                   {reg === 'All' ? tCommon('all') : t(reg)}
                 </button>
@@ -178,7 +192,7 @@ export default function PhrasebookPage() {
 
       {/* Results */}
       {(activeLevel !== 'All' || activeRegister !== 'All') && (
-        <p className="font-mono text-fl-label text-fl-muted-3">
+        <p className="text-fl-label text-fl-muted-3 font-mono">
           {t('situationsShown', { count: filteredCategories.length })}
         </p>
       )}
@@ -190,8 +204,10 @@ export default function PhrasebookPage() {
         return (
           <section key={level} className="space-y-3">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-base font-bold text-fl-fg tracking-widest">{level}</span>
-              <div className="flex-1 h-px bg-fl-border" />
+              <span className="text-fl-fg font-mono text-base font-bold tracking-widest">
+                {level}
+              </span>
+              <div className="bg-fl-border h-px flex-1" />
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               {cats.map((cat) => (
@@ -207,14 +223,17 @@ export default function PhrasebookPage() {
       })}
 
       {filteredCategories.length === 0 && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
-          <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
+        <div className="border-fl-border bg-fl-surface space-y-4 border px-6 py-10 text-center">
+          <p className="text-fl-muted-3 font-mono text-xs tracking-widest uppercase">
             {t('noResults')}
           </p>
           {(activeLevel !== 'All' || activeRegister !== 'All') && (
             <button
-              onClick={() => { setActiveLevel('All'); setActiveRegister('All') }}
-              className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+              onClick={() => {
+                setActiveLevel('All')
+                setActiveRegister('All')
+              }}
+              className="text-fl-label border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg border px-4 py-2 font-mono tracking-widest uppercase transition-colors"
             >
               {tCommon('clearFilters')}
             </button>

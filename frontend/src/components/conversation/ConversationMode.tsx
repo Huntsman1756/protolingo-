@@ -150,10 +150,11 @@ function QuotaPill({
     <div className="w-full">
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${alert
-          ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
-          : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
-          }`}
+        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+          alert
+            ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
+            : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
+        }`}
       >
         <span>● {text}</span>
         <span className="text-fl-muted-4">{open ? '▴' : '▾'}</span>
@@ -237,7 +238,7 @@ export default function ConversationMode({
     apiFetch('/api/auth/quota')
       .then((r) => (r.ok ? r.json() : null))
       .then((data: QuotaStatus | null) => data && setQuota(data))
-      .catch(() => { })
+      .catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -336,10 +337,7 @@ export default function ConversationMode({
 
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
-    (
-      token: string,
-      context?: ChatContextItem[]
-    ) => {
+    (token: string, context?: ChatContextItem[]) => {
       const url = buildConversationWsUrl()
       const ws = new WebSocket(url)
       ws.binaryType = 'arraybuffer'
@@ -438,7 +436,6 @@ export default function ConversationMode({
               setMemoryToast(true)
               setTimeout(() => setMemoryToast(false), 3500)
               break
-
           }
         } catch {
           // Non-JSON (shouldn't happen for text frames) — ignore
@@ -568,7 +565,7 @@ export default function ConversationMode({
 
       {/* Memory updated toast */}
       {memoryToast && (
-        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 font-mono text-xs tracking-widest uppercase px-4 py-2 border border-fl-border bg-fl-surface text-fl-muted-1 shadow-lg animate-in fade-in slide-in-from-top-2">
+        <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 fixed top-16 left-1/2 z-50 -translate-x-1/2 border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
           {t('memoryUpdated')}
         </div>
       )}

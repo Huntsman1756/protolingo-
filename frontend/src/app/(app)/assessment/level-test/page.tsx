@@ -11,7 +11,7 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 interface LevelTestQuestion {
   id: string
-  skill: string        // grammar | vocabulary | reading
+  skill: string // grammar | vocabulary | reading
   difficulty: string
   question: string
   options: string[]
@@ -26,7 +26,7 @@ interface AnswerRecord {
 }
 
 interface LevelTestResult {
-  score: number                    // 0–1
+  score: number // 0–1
   recommendation: 'advance' | 'extend' | 'repeat'
   next_level: string | null
 }
@@ -42,7 +42,7 @@ type FlowStep = 'loading' | 'quiz' | 'submitting' | 'result' | 'error'
 
 function computeSkillBreakdown(
   questions: LevelTestQuestion[],
-  answers: AnswerRecord[],
+  answers: AnswerRecord[]
 ): Record<string, SkillBreakdown> {
   const map: Record<string, SkillBreakdown> = {}
   answers.forEach((a) => {
@@ -104,18 +104,28 @@ export default function LevelTestPage() {
     // Bug #5 fix: validate planId before converting to number
     const planIdNum = Number(planId)
     if (!planId || !Number.isInteger(planIdNum) || planIdNum <= 0) {
-      setError('Invalid plan ID. Please access the level test from your plan page.')
+      setError(
+        'Invalid plan ID. Please access the level test from your plan page.'
+      )
       setStep('error')
       return
     }
 
     try {
-      const res = await apiFetch(`/api/assessment/level-test/questions/${planIdNum}`)
+      const res = await apiFetch(
+        `/api/assessment/level-test/questions/${planIdNum}`
+      )
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
-        throw new Error((d as { detail?: string }).detail ?? `Error ${res.status}`)
+        throw new Error(
+          (d as { detail?: string }).detail ?? `Error ${res.status}`
+        )
       }
-      const data = await res.json() as { plan_id: number; cefr_level: string; questions: LevelTestQuestion[] }
+      const data = (await res.json()) as {
+        plan_id: number
+        cefr_level: string
+        questions: LevelTestQuestion[]
+      }
       if (!data.questions?.length) {
         throw new Error('No questions received from the server.')
       }
@@ -123,7 +133,9 @@ export default function LevelTestPage() {
       setCefrLevel(data.cefr_level)
       setStep('quiz')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load level test.')
+      setError(
+        err instanceof Error ? err.message : 'Failed to load level test.'
+      )
       setStep('error')
     }
   }, [planId, startConfirmed, user])
@@ -181,7 +193,9 @@ export default function LevelTestPage() {
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
-        throw new Error((d as { detail?: string }).detail ?? `Error ${res.status}`)
+        throw new Error(
+          (d as { detail?: string }).detail ?? `Error ${res.status}`
+        )
       }
       const data = (await res.json()) as LevelTestResult
       setResult(data)
@@ -198,7 +212,7 @@ export default function LevelTestPage() {
   if (showStartWarning) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
           Loading test...
         </span>
         <ConfirmDialog
@@ -219,7 +233,7 @@ export default function LevelTestPage() {
   if (step === 'loading' || step === 'submitting') {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
           {step === 'loading' ? 'Loading test...' : 'Submitting answers...'}
         </span>
       </div>
@@ -229,18 +243,20 @@ export default function LevelTestPage() {
   if (step === 'error') {
     return (
       <div className="flex min-h-[60vh] items-center justify-center p-6">
-        <div className="w-full max-w-md border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+        <div className="border-fl-border bg-fl-surface w-full max-w-md border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
             <span className="text-fl-label text-fl-muted-3">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               Level Test
             </span>
           </div>
-          <div className="p-8 space-y-6">
-            <p className="font-mono text-xs text-red-500 leading-relaxed">{error}</p>
+          <div className="space-y-6 p-8">
+            <p className="font-mono text-xs leading-relaxed text-red-500">
+              {error}
+            </p>
             <button
               onClick={() => router.push('/plan')}
-              className="w-full border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+              className="border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg w-full border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
             >
               ← Back to Plan
             </button>
@@ -259,14 +275,22 @@ export default function LevelTestPage() {
 
     const recConfig: Record<
       LevelTestResult['recommendation'],
-      { icon: string; label: string; message: string; nextAction: string; nextLabel: string }
+      {
+        icon: string
+        label: string
+        message: string
+        nextAction: string
+        nextLabel: string
+      }
     > = {
       advance: {
         icon: '🎉',
         label: `ADVANCE TO ${result.next_level ?? 'NEXT LEVEL'}`,
         message: `You demonstrated solid ${cefrLevel} mastery. Your ${result.next_level ?? 'next-level'} programme is ready!`,
         nextAction: result.next_level ? '/assessment' : '/plan',
-        nextLabel: result.next_level ? `Start ${result.next_level} Programme →` : 'Go to Plan',
+        nextLabel: result.next_level
+          ? `Start ${result.next_level} Programme →`
+          : 'Go to Plan',
       },
       extend: {
         icon: '⚠',
@@ -288,51 +312,55 @@ export default function LevelTestPage() {
 
     return (
       <div className="flex min-h-[60vh] items-center justify-center p-6">
-        <div className="w-full max-w-lg border border-fl-border bg-fl-surface">
+        <div className="border-fl-border bg-fl-surface w-full max-w-lg border">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+          <div className="border-fl-border flex items-center justify-between border-b px-6 py-4">
             <div className="flex items-center gap-2">
               <span className="text-fl-label text-fl-muted-3">●</span>
-              <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+              <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
                 {cefrLevel} Level Test — Results
               </span>
             </div>
           </div>
 
-          <div className="p-8 space-y-6">
+          <div className="space-y-6 p-8">
             {/* Score */}
-            <div className="text-center space-y-2">
-              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">
+            <div className="space-y-2 text-center">
+              <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
                 Final Score
               </p>
-              <p className="font-mono text-7xl font-bold text-fl-fg tracking-widest">
+              <p className="text-fl-fg font-mono text-7xl font-bold tracking-widest">
                 {pct}%
               </p>
-              <p className="font-mono text-xs text-fl-muted-3">
-                {answers.filter((a) => a.correct).length} / {questions.length} correct
+              <p className="text-fl-muted-3 font-mono text-xs">
+                {answers.filter((a) => a.correct).length} / {questions.length}{' '}
+                correct
               </p>
             </div>
 
             {/* Skill breakdown */}
             <div className="space-y-2">
               {Object.entries(breakdown).map(([skill, v]) => {
-                const skillPct = v.total > 0 ? Math.round((v.correct / v.total) * 100) : 0
+                const skillPct =
+                  v.total > 0 ? Math.round((v.correct / v.total) * 100) : 0
                 const isWeak = skillPct < 60
                 return (
                   <div key={skill} className="flex items-center gap-3">
-                    <span className="font-mono text-fl-label w-6 text-center text-fl-muted-3 uppercase">
+                    <span className="text-fl-label text-fl-muted-3 w-6 text-center font-mono uppercase">
                       {SKILL_ICONS[skill] ?? skill[0].toUpperCase()}
                     </span>
-                    <span className="font-mono text-fl-label text-fl-muted-2 w-24 uppercase tracking-widest">
+                    <span className="text-fl-label text-fl-muted-2 w-24 font-mono tracking-widest uppercase">
                       {SKILL_LABELS[skill] ?? skill}
                     </span>
-                    <div className="flex-1 h-1.5 bg-fl-border">
+                    <div className="bg-fl-border h-1.5 flex-1">
                       <div
                         className={`h-full transition-all ${isWeak ? 'bg-amber-500' : 'bg-fl-fg'}`}
                         style={{ width: `${skillPct}%` }}
                       />
                     </div>
-                    <span className={`font-mono text-fl-label w-16 text-right ${isWeak ? 'text-amber-500' : 'text-fl-fg'}`}>
+                    <span
+                      className={`text-fl-label w-16 text-right font-mono ${isWeak ? 'text-amber-500' : 'text-fl-fg'}`}
+                    >
                       {v.correct}/{v.total} ({skillPct}%)
                       {isWeak && ' ◂'}
                     </span>
@@ -342,14 +370,14 @@ export default function LevelTestPage() {
             </div>
 
             {/* Recommendation */}
-            <div className="border border-fl-border p-6 space-y-3">
+            <div className="border-fl-border space-y-3 border p-6">
               <div className="flex items-center gap-2">
                 <span className="text-xl">{rec.icon}</span>
-                <span className="font-mono text-fl-label tracking-widest text-fl-fg uppercase font-bold">
+                <span className="text-fl-label text-fl-fg font-mono font-bold tracking-widest uppercase">
                   Recommendation: {rec.label}
                 </span>
               </div>
-              <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
+              <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
                 {rec.message}
               </p>
             </div>
@@ -358,13 +386,13 @@ export default function LevelTestPage() {
             <div className="flex flex-col gap-2">
               <button
                 onClick={() => router.push(rec.nextAction)}
-                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-accent/90 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3.5 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
               >
                 {rec.nextLabel}
               </button>
               <button
                 onClick={() => router.push('/plan')}
-                className="w-full border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+                className="border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg w-full border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
               >
                 ← Back to Plan
               </button>
@@ -380,46 +408,46 @@ export default function LevelTestPage() {
   const q = questions[currentIndex]
   if (!q) return null
 
-  const progress = ((currentIndex) / questions.length) * 100
+  const progress = (currentIndex / questions.length) * 100
   const skillLabel = SKILL_LABELS[q.skill] ?? q.skill
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center p-6">
-      <div className="w-full max-w-lg border border-fl-border bg-fl-surface">
+      <div className="border-fl-border bg-fl-surface w-full max-w-lg border">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-fl-border space-y-3">
+        <div className="border-fl-border space-y-3 border-b px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-fl-label text-fl-muted-3">●</span>
-              <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+              <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
                 {cefrLevel} Level Test
               </span>
             </div>
-            <span className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
+            <span className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
               {currentIndex + 1} / {questions.length}
             </span>
           </div>
           {/* Progress bar */}
-          <div className="h-0.5 bg-fl-border">
+          <div className="bg-fl-border h-0.5">
             <div
-              className="h-full bg-fl-fg transition-all duration-300"
+              className="bg-fl-fg h-full transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
           {/* Skill badge */}
           <div className="flex items-center gap-2">
-            <span className="border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-2">
+            <span className="border-fl-border text-fl-label text-fl-muted-2 border px-2 py-0.5 font-mono tracking-widest uppercase">
               {skillLabel}
             </span>
-            <span className="border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+            <span className="border-fl-border text-fl-label text-fl-muted-3 border px-2 py-0.5 font-mono tracking-widest uppercase">
               {q.difficulty}
             </span>
           </div>
         </div>
 
         {/* Question */}
-        <div className="p-8 space-y-6">
-          <p className="font-mono text-sm text-fl-fg leading-relaxed">
+        <div className="space-y-6 p-8">
+          <p className="text-fl-fg font-mono text-sm leading-relaxed">
             {q.question}
           </p>
 
@@ -430,12 +458,14 @@ export default function LevelTestPage() {
                 'w-full text-left border font-mono text-xs tracking-wide py-3.5 px-4 transition-colors cursor-pointer'
 
               if (!answerConfirmed) {
-                style += selectedOption === option
-                  ? ' border-fl-fg text-fl-fg bg-fl-surface'
-                  : ' border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                style +=
+                  selectedOption === option
+                    ? ' border-fl-fg text-fl-fg bg-fl-surface'
+                    : ' border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
               } else {
                 if (option === q.correct) {
-                  style += ' border-green-500 text-green-600 dark:text-green-400'
+                  style +=
+                    ' border-green-500 text-green-600 dark:text-green-400'
                 } else if (option === selectedOption && option !== q.correct) {
                   style += ' border-red-500 text-red-500'
                 } else {
@@ -452,7 +482,7 @@ export default function LevelTestPage() {
                   disabled={answerConfirmed}
                   className={style}
                 >
-                  <span className="mr-3 text-fl-muted-3">{prefix}.</span>
+                  <span className="text-fl-muted-3 mr-3">{prefix}.</span>
                   {option}
                 </button>
               )
@@ -464,25 +494,30 @@ export default function LevelTestPage() {
             <button
               onClick={handleConfirmAnswer}
               disabled={!selectedOption}
-              className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-accent/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3.5 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-40"
             >
               Confirm Answer
             </button>
           ) : (
             <div className="space-y-3">
               <div
-                className={`border p-3 font-mono text-xs leading-relaxed ${answers.at(-1)?.correct
-                  ? 'border-green-500 text-green-600 dark:text-green-400'
-                  : 'border-red-500 text-red-500'
-                  }`}
+                className={`border p-3 font-mono text-xs leading-relaxed ${
+                  answers.at(-1)?.correct
+                    ? 'border-green-500 text-green-600 dark:text-green-400'
+                    : 'border-red-500 text-red-500'
+                }`}
               >
-                {answers.at(-1)?.correct ? '✓ Correct' : `✗ Incorrect — correct answer: ${q.correct}`}
+                {answers.at(-1)?.correct
+                  ? '✓ Correct'
+                  : `✗ Incorrect — correct answer: ${q.correct}`}
               </div>
               <button
                 onClick={handleNext}
-                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3.5 hover:bg-fl-accent/90 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3.5 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
               >
-                {currentIndex + 1 >= questions.length ? 'Submit Test →' : 'Next Question →'}
+                {currentIndex + 1 >= questions.length
+                  ? 'Submit Test →'
+                  : 'Next Question →'}
               </button>
             </div>
           )}

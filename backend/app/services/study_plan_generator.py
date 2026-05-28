@@ -51,4 +51,3 @@ async def generate_study_plan(request: GenerateStudyPlanRequest) -> GeneratedPla
         ends_with_test=True,
         weekly_plan=weekly_plan,
     )
-

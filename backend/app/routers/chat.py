@@ -94,6 +94,7 @@ MAX_HISTORY = 30
 
 # ── Conversations ────────────────────────────────────────────────────────────
 
+
 @router.get("/conversations", response_model=list[ConversationResponse])
 async def list_conversations(
     current_user: User = Depends(require_subscription),
@@ -160,6 +161,7 @@ async def get_conversation_messages(
 
 # ── Chat (streaming) ─────────────────────────────────────────────────────────
 
+
 @router.post("")
 async def chat(
     request: ChatRequest,
@@ -169,6 +171,7 @@ async def chat(
     # ── Monthly token quota check ────────────────────────────────────────────
     if current_user.monthly_tokens_limit > 0:
         from app.services.quota_service import check_monthly_tokens  # noqa: PLC0415
+
         allowed, tokens_used, token_limit = await check_monthly_tokens(
             db, current_user.id, current_user.monthly_tokens_limit
         )
@@ -213,27 +216,32 @@ async def chat(
         )
     )
     prog = prog_result.scalar_one_or_none()
-    total_xp_result = await db.execute(
-        select(Progress).where(Progress.user_id == current_user.id)
-    )
+    total_xp_result = await db.execute(select(Progress).where(Progress.user_id == current_user.id))
     total_xp = sum(p.xp_earned for p in total_xp_result.scalars().all())
-    skills_str = ", ".join(
-        f"{k}: {round(v * 100)}%" for k, v in (prog.skills or {}).items()
-    ) if prog and prog.skills else "none yet"
+    skills_str = (
+        ", ".join(f"{k}: {round(v * 100)}%" for k, v in (prog.skills or {}).items())
+        if prog and prog.skills
+        else "none yet"
+    )
 
     # Build user context section from bio and learning goals
     _ctx_parts: list[str] = []
     if current_user.learning_goals:
         try:
             import json as _json  # noqa: PLC0415
+
             goals = _json.loads(current_user.learning_goals)
             if goals:
                 _ctx_parts.append(f"Learning goals: {', '.join(goals)}")
-        except (ValueError, TypeError):
+        except ValueError, TypeError:
             pass
     if current_user.bio and current_user.bio.strip():
         _ctx_parts.append(f"About the student: {current_user.bio.strip()}")
-    user_context = ("\nStudent context:\n" + "\n".join(f"- {p}" for p in _ctx_parts) + "\n") if _ctx_parts else ""
+    user_context = (
+        ("\nStudent context:\n" + "\n".join(f"- {p}" for p in _ctx_parts) + "\n")
+        if _ctx_parts
+        else ""
+    )
 
     memories = await get_user_memories(db, current_user.id)
     memory_context = build_memory_context(memories)
@@ -364,13 +372,17 @@ async def chat(
                     await db.rollback()
                     logger.debug("Failed to save LLM usage — ignored")
         except LLMTimeoutError:
-            logger.warning("LLM timeout for user %s conversation %s", current_user.id, conversation_id)
+            logger.warning(
+                "LLM timeout for user %s conversation %s", current_user.id, conversation_id
+            )
             yield f"data: {json.dumps({'error': 'The AI model took too long. Please try again.'})}\n\n"
         except LLMUnavailableError:
             logger.error("LLM unavailable for user %s", current_user.id)
             yield f"data: {json.dumps({'error': 'The AI service is currently unavailable.'})}\n\n"
         except LLMError:
-            logger.exception("LLM error for user %s conversation %s", current_user.id, conversation_id)
+            logger.exception(
+                "LLM error for user %s conversation %s", current_user.id, conversation_id
+            )
             yield f"data: {json.dumps({'error': 'Something went wrong. Please try again.'})}\n\n"
 
     return StreamingResponse(
@@ -381,6 +393,7 @@ async def chat(
 
 
 # ── Legacy history endpoint (kept for backwards compat) ──────────────────────
+
 
 @router.get("/history", response_model=ChatHistoryResponse)
 async def get_history(
@@ -393,8 +406,5 @@ async def get_history(
         .order_by(ChatHistory.created_at.asc())
         .limit(MAX_HISTORY)
     )
-    messages = [
-        {"role": m.role, "content": m.content} for m in result.scalars().all()
-    ]
+    messages = [{"role": m.role, "content": m.content} for m in result.scalars().all()]
     return ChatHistoryResponse(messages=messages)
-

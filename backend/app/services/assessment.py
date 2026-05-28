@@ -69,9 +69,7 @@ def evaluate_adaptive_quiz(answers: list[AnswerRecord]) -> AssessmentResult:
     - Determine highest level where score >= 0.6 with at least 2 questions.
     - Build per-skill profile (grammar, vocabulary, reading).
     """
-    level_scores: dict[str, dict] = {
-        level: {"correct": 0, "total": 0} for level in CEFR_LEVELS
-    }
+    level_scores: dict[str, dict] = {level: {"correct": 0, "total": 0} for level in CEFR_LEVELS}
     skill_scores: dict[str, list[int]] = {
         "grammar": [],
         "vocabulary": [],
@@ -156,7 +154,8 @@ async def generate_level_test_questions(
     prompt = END_OF_LEVEL_TEST_PROMPT.format(
         cefr_level=cefr_level,
         grammar_points_studied=", ".join(grammar_points_studied) or "all grammar for this level",
-        vocabulary_sets_studied=", ".join(vocabulary_sets_studied) or "all vocabulary for this level",
+        vocabulary_sets_studied=", ".join(vocabulary_sets_studied)
+        or "all vocabulary for this level",
         next_level=next_level,
     )
     try:
@@ -171,4 +170,3 @@ async def generate_level_test_questions(
         if isinstance(e, LLMError):
             raise
         raise LLMError(f"Level test generation failed: malformed JSON response: {e}") from e
-

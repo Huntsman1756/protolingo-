@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from sqlalchemy import func, select
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
@@ -18,9 +18,7 @@ async def get_summary(
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(
-        select(Progress)
-        .where(Progress.user_id == current_user.id)
-        .order_by(Progress.date.desc())
+        select(Progress).where(Progress.user_id == current_user.id).order_by(Progress.date.desc())
     )
     all_entries = result.scalars().all()
 
