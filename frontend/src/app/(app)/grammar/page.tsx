@@ -3,7 +3,11 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { grammarTopics, type GrammarCategory, type GrammarTopic } from '@/data/grammar'
+import {
+  grammarTopics,
+  type GrammarCategory,
+  type GrammarTopic,
+} from '@/data/grammar'
 import { CEFR_LEVELS } from '@/data/curriculum'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -31,21 +35,21 @@ function TopicCard({ topic }: { topic: GrammarTopic }) {
   return (
     <Link
       href={`/grammar/${topic.slug}`}
-      className="block border border-fl-border bg-fl-surface hover:border-fl-border-2 hover:bg-fl-surface-2 transition-colors group"
+      className="border-fl-border bg-fl-surface hover:border-fl-border-2 hover:bg-fl-surface-2 group block border transition-colors"
     >
-      <div className="px-4 py-4 space-y-2">
+      <div className="space-y-2 px-4 py-4">
         <div className="flex items-start justify-between gap-2">
-          <p className="font-mono text-xs font-bold text-fl-fg tracking-wide leading-snug group-hover:text-fl-fg-bright transition-colors">
+          <p className="text-fl-fg group-hover:text-fl-fg-bright font-mono text-xs leading-snug font-bold tracking-wide transition-colors">
             {topic.title}
           </p>
-          <span className="shrink-0 border border-fl-border font-mono text-fl-label tracking-widest uppercase px-1.5 py-0.5 text-fl-muted-3">
+          <span className="border-fl-border text-fl-label text-fl-muted-3 shrink-0 border px-1.5 py-0.5 font-mono tracking-widest uppercase">
             {topic.level}
           </span>
         </div>
-        <p className="font-mono text-fl-label text-fl-muted-2 leading-relaxed">
+        <p className="text-fl-label text-fl-muted-2 font-mono leading-relaxed">
           {topic.summary}
         </p>
-        <span className="inline-block border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+        <span className="border-fl-border text-fl-label text-fl-muted-3 inline-block border px-2 py-0.5 font-mono tracking-widest uppercase">
           {topic.category}
         </span>
       </div>
@@ -59,7 +63,9 @@ export default function GrammarIndexPage() {
   const t = useTranslations('grammar')
   const tCommon = useTranslations('common')
   const [search, setSearch] = useState('')
-  const [activeCategory, setActiveCategory] = useState<GrammarCategory | 'All'>('All')
+  const [activeCategory, setActiveCategory] = useState<GrammarCategory | 'All'>(
+    'All'
+  )
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
@@ -81,17 +87,17 @@ export default function GrammarIndexPage() {
   }, [])
 
   return (
-    <div className="mx-auto max-w-4xl p-6 space-y-8">
+    <div className="mx-auto max-w-4xl space-y-8 p-6">
       {/* Header */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('title')}
           </span>
         </div>
-        <div className="px-6 py-5 space-y-4">
-          <p className="font-mono text-xs text-fl-muted-2 leading-relaxed">
+        <div className="space-y-4 px-6 py-5">
+          <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
             {grammarTopics.length} topics · A1 – C2
           </p>
           {/* Search */}
@@ -100,27 +106,31 @@ export default function GrammarIndexPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t('searchPlaceholder')}
-            className="w-full max-w-sm bg-fl-bg border border-fl-border px-4 py-2.5 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full max-w-sm border px-4 py-2.5 font-mono text-xs transition-colors focus:outline-none"
           />
           {/* Category filter */}
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setActiveCategory('All')}
-              className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeCategory === 'All'
-                ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
-                }`}
+              className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                activeCategory === 'All'
+                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+              }`}
             >
               {t('allCategories')}
             </button>
             {usedCategories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(activeCategory === cat ? 'All' : cat)}
-                className={`font-mono text-fl-label tracking-widest uppercase px-3 py-1.5 border transition-colors ${activeCategory === cat
-                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
-                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
+                onClick={() =>
+                  setActiveCategory(activeCategory === cat ? 'All' : cat)
+                }
+                className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                  activeCategory === cat
+                    ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                    : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+                }`}
               >
                 {cat}
               </button>
@@ -131,7 +141,7 @@ export default function GrammarIndexPage() {
 
       {/* Results count when filtering */}
       {(search || activeCategory !== 'All') && (
-        <p className="font-mono text-fl-label text-fl-muted-3">
+        <p className="text-fl-label text-fl-muted-3 font-mono">
           {t('topicsFound', { count: filtered.length })}
         </p>
       )}
@@ -143,11 +153,11 @@ export default function GrammarIndexPage() {
         return (
           <section key={level} className="space-y-3">
             <div className="flex items-center gap-3">
-              <span className="font-mono text-base font-bold text-fl-fg tracking-widest">
+              <span className="text-fl-fg font-mono text-base font-bold tracking-widest">
                 {level}
               </span>
-              <div className="flex-1 h-px bg-fl-border" />
-              <span className="font-mono text-fl-label text-fl-muted-3">
+              <div className="bg-fl-border h-px flex-1" />
+              <span className="text-fl-label text-fl-muted-3 font-mono">
                 {topics.length} topic{topics.length !== 1 ? 's' : ''}
               </span>
             </div>
@@ -161,14 +171,17 @@ export default function GrammarIndexPage() {
       })}
 
       {filtered.length === 0 && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-4">
-          <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
+        <div className="border-fl-border bg-fl-surface space-y-4 border px-6 py-10 text-center">
+          <p className="text-fl-muted-3 font-mono text-xs tracking-widest uppercase">
             {t('noResults')}
           </p>
           {(search || activeCategory !== 'All') && (
             <button
-              onClick={() => { setSearch(''); setActiveCategory('All') }}
-              className="font-mono text-fl-label tracking-widest uppercase px-4 py-2 border border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+              onClick={() => {
+                setSearch('')
+                setActiveCategory('All')
+              }}
+              className="text-fl-label border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg border px-4 py-2 font-mono tracking-widest uppercase transition-colors"
             >
               {tCommon('clearFilters')}
             </button>

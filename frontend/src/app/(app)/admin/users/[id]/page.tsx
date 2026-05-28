@@ -56,19 +56,29 @@ interface QuotaStatus {
 
 function StatRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between py-3 border-b border-fl-border last:border-0">
-      <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{label}</span>
-      <span className="font-mono text-sm text-fl-fg">{value}</span>
+    <div className="border-fl-border flex items-center justify-between border-b py-3 last:border-0">
+      <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+        {label}
+      </span>
+      <span className="text-fl-fg font-mono text-sm">{value}</span>
     </div>
   )
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
   return (
-    <div className="border border-fl-border bg-fl-surface">
-      <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+    <div className="border-fl-border bg-fl-surface border">
+      <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
         <span className="text-fl-label text-fl-muted-2">●</span>
-        <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{title}</span>
+        <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+          {title}
+        </span>
       </div>
       <div className="px-6">{children}</div>
     </div>
@@ -144,7 +154,16 @@ export default function AdminUserStatsPage() {
     const daily = parseInt(quotaDaily, 10)
     const weeklyMin = parseInt(quotaWeeklyMinutes, 10)
     const monthlyTok = parseInt(quotaMonthlyTokens, 10)
-    if (isNaN(weekly) || weekly < 0 || isNaN(daily) || daily < 0 || isNaN(weeklyMin) || weeklyMin < 0 || isNaN(monthlyTok) || monthlyTok < 0) {
+    if (
+      isNaN(weekly) ||
+      weekly < 0 ||
+      isNaN(daily) ||
+      daily < 0 ||
+      isNaN(weeklyMin) ||
+      weeklyMin < 0 ||
+      isNaN(monthlyTok) ||
+      monthlyTok < 0
+    ) {
       setQuotaSaving(false)
       return
     }
@@ -183,7 +202,7 @@ export default function AdminUserStatsPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           {t('loading')}
         </span>
       </div>
@@ -193,7 +212,7 @@ export default function AdminUserStatsPage() {
   if (error || !user || !stats) {
     return (
       <div className="mx-auto max-w-2xl p-6">
-        <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">
+        <div className="border-fl-error/40 text-fl-error border px-4 py-3 font-mono text-xs">
           ✕ {error ? t(error as 'loadError') : t('userNotFound')}
         </div>
       </div>
@@ -206,32 +225,33 @@ export default function AdminUserStatsPage() {
       : null
 
   return (
-    <div className="mx-auto max-w-2xl p-6 space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4 p-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Link
             href="/admin/users"
-            className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg transition-colors"
+            className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
           >
             {t('users')}
           </Link>
-          <span className="text-fl-muted-4 font-mono text-fl-label">/</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-fg uppercase">
+          <span className="text-fl-muted-4 text-fl-label font-mono">/</span>
+          <span className="text-fl-label text-fl-fg font-mono tracking-widest uppercase">
             {user.display_name}
           </span>
         </div>
         <div className="flex items-center gap-2">
           {!user.is_active && (
-            <span className="font-mono text-fl-hint tracking-widest uppercase border border-fl-error/30 text-fl-error-fg px-2 py-0.5">
+            <span className="text-fl-hint border-fl-error/30 text-fl-error-fg border px-2 py-0.5 font-mono tracking-widest uppercase">
               {t('inactive')}
             </span>
           )}
           <span
-            className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${user.role === 'admin'
-              ? 'border-fl-fg/40 text-fl-fg'
-              : 'border-fl-border text-fl-muted-2'
-              }`}
+            className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${
+              user.role === 'admin'
+                ? 'border-fl-fg/40 text-fl-fg'
+                : 'border-fl-border text-fl-muted-2'
+            }`}
           >
             {user.role === 'admin' ? t('roleAdmin') : t('roleUser')}
           </span>
@@ -244,49 +264,76 @@ export default function AdminUserStatsPage() {
         <StatRow label={t('fieldUsername')} value={user.username} />
         {user.email && <StatRow label={t('fieldEmail')} value={user.email} />}
         {user.email && (
-          <div className="flex items-center justify-between py-3 border-b border-fl-border">
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <div className="border-fl-border flex items-center justify-between border-b py-3">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {user.is_verified ? t('emailVerified') : t('emailNotVerified')}
             </span>
             <button
               onClick={toggleVerified}
-              className="font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 transition-colors hover:border-fl-fg hover:text-fl-fg border-fl-border text-fl-muted-2"
+              className="text-fl-hint hover:border-fl-fg hover:text-fl-fg border-fl-border text-fl-muted-2 border px-2 py-0.5 font-mono tracking-widest uppercase transition-colors"
             >
               {user.is_verified ? t('unverifyEmail') : t('verifyEmail')}
             </button>
           </div>
         )}
-        <StatRow label={t('fieldNativeLanguage')} value={tLang(user.native_language as 'es' | 'fr' | 'pt' | 'de' | 'it' | 'pl' | 'nl' | 'ro' | 'ru')} />
+        <StatRow
+          label={t('fieldNativeLanguage')}
+          value={tLang(
+            user.native_language as
+              | 'es'
+              | 'fr'
+              | 'pt'
+              | 'de'
+              | 'it'
+              | 'pl'
+              | 'nl'
+              | 'ro'
+              | 'ru'
+          )}
+        />
         <StatRow
           label={t('fieldSubscription')}
           value={
-            <span className={`font-mono text-fl-hint tracking-widest uppercase border px-2 py-0.5 ${user.subscription_status === 'active' ? 'border-green-500/40 text-green-400'
-              : user.subscription_status === 'trialing' ? 'border-blue-500/40 text-blue-400'
-                : user.subscription_status === 'past_due' ? 'border-yellow-500/40 text-yellow-400'
-                  : 'border-fl-border text-fl-muted-2'
-              }`}>
-              {user.subscription_status === 'active' ? tBilling('statusActive')
-                : user.subscription_status === 'trialing' ? tBilling('statusTrialing')
-                  : user.subscription_status === 'past_due' ? tBilling('statusPastDue')
-                    : user.subscription_status === 'canceled' ? tBilling('statusCanceled')
+            <span
+              className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${
+                user.subscription_status === 'active'
+                  ? 'border-green-500/40 text-green-400'
+                  : user.subscription_status === 'trialing'
+                    ? 'border-blue-500/40 text-blue-400'
+                    : user.subscription_status === 'past_due'
+                      ? 'border-yellow-500/40 text-yellow-400'
+                      : 'border-fl-border text-fl-muted-2'
+              }`}
+            >
+              {user.subscription_status === 'active'
+                ? tBilling('statusActive')
+                : user.subscription_status === 'trialing'
+                  ? tBilling('statusTrialing')
+                  : user.subscription_status === 'past_due'
+                    ? tBilling('statusPastDue')
+                    : user.subscription_status === 'canceled'
+                      ? tBilling('statusCanceled')
                       : tBilling('statusNone')}
             </span>
           }
         />
         {user.subscription_ends_at && (
-          <StatRow label={t('fieldEndsRenews')} value={new Date(user.subscription_ends_at).toLocaleDateString()} />
+          <StatRow
+            label={t('fieldEndsRenews')}
+            value={new Date(user.subscription_ends_at).toLocaleDateString()}
+          />
         )}
         {user.stripe_customer_id && (
-          <StatRow label={t('fieldStripeCustomer')} value={user.stripe_customer_id} />
+          <StatRow
+            label={t('fieldStripeCustomer')}
+            value={user.stripe_customer_id}
+          />
         )}
       </Section>
 
       {/* Study plan */}
       <Section title={t('statsCefr')}>
-        <StatRow
-          label={t('statsCefr')}
-          value={stats.current_cefr ?? '—'}
-        />
+        <StatRow label={t('statsCefr')} value={stats.current_cefr ?? '—'} />
         <StatRow
           label={t('statsUnit')}
           value={stats.current_unit != null ? `${stats.current_unit}` : '—'}
@@ -334,7 +381,9 @@ export default function AdminUserStatsPage() {
       {/* Token usage */}
       <Section title="Tokens">
         {stats.tokens_total === 0 ? (
-          <p className="py-4 font-mono text-xs text-fl-muted-2">{t('statsTokensNote')}</p>
+          <p className="text-fl-muted-2 py-4 font-mono text-xs">
+            {t('statsTokensNote')}
+          </p>
         ) : (
           <>
             <StatRow
@@ -359,21 +408,33 @@ export default function AdminUserStatsPage() {
           <>
             <StatRow
               label={t('quotaUsedSessions')}
-              value={quota.sessions_unlimited ? t('quotaUnlimitedLabel') : `${quota.sessions_this_week} / ${quota.sessions_limit}`}
+              value={
+                quota.sessions_unlimited
+                  ? t('quotaUnlimitedLabel')
+                  : `${quota.sessions_this_week} / ${quota.sessions_limit}`
+              }
             />
             <StatRow
               label={t('quotaUsedMinutes')}
-              value={quota.time_unlimited ? t('quotaUnlimitedLabel') : `${quota.minutes_today} / ${quota.minutes_limit} min`}
+              value={
+                quota.time_unlimited
+                  ? t('quotaUnlimitedLabel')
+                  : `${quota.minutes_today} / ${quota.minutes_limit} min`
+              }
             />
             <StatRow
               label={t('quotaUsedWeeklyMinutes')}
-              value={quota.weekly_minutes_unlimited ? t('quotaUnlimitedLabel') : `${quota.minutes_this_week} / ${quota.weekly_minutes_limit} min`}
+              value={
+                quota.weekly_minutes_unlimited
+                  ? t('quotaUnlimitedLabel')
+                  : `${quota.minutes_this_week} / ${quota.weekly_minutes_limit} min`
+              }
             />
           </>
         )}
-        <div className="py-3 space-y-3">
+        <div className="space-y-3 py-3">
           <div className="flex items-center justify-between gap-4">
-            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0">
+            <label className="text-fl-label text-fl-muted-2 shrink-0 font-mono tracking-widest uppercase">
               {t('quotaWeeklySessions')}
             </label>
             <input
@@ -381,11 +442,11 @@ export default function AdminUserStatsPage() {
               min={0}
               value={quotaWeekly}
               onChange={(e) => setQuotaWeekly(e.target.value)}
-              className="w-24 bg-fl-bg border border-fl-border px-3 py-1.5 font-mono text-sm text-fl-fg text-right focus:outline-none focus:border-fl-accent"
+              className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-accent w-24 border px-3 py-1.5 text-right font-mono text-sm focus:outline-none"
             />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0">
+            <label className="text-fl-label text-fl-muted-2 shrink-0 font-mono tracking-widest uppercase">
               {t('quotaDailyMinutes')}
             </label>
             <input
@@ -393,11 +454,14 @@ export default function AdminUserStatsPage() {
               min={0}
               value={quotaDaily}
               onChange={(e) => setQuotaDaily(e.target.value)}
-              className="w-24 bg-fl-bg border border-fl-border px-3 py-1.5 font-mono text-sm text-fl-fg text-right focus:outline-none focus:border-fl-accent"
+              className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-accent w-24 border px-3 py-1.5 text-right font-mono text-sm focus:outline-none"
             />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0 max-w-[10rem] truncate" title={t('quotaWeeklyMinutes')}>
+            <label
+              className="text-fl-label text-fl-muted-2 max-w-[10rem] shrink-0 truncate font-mono tracking-widest uppercase"
+              title={t('quotaWeeklyMinutes')}
+            >
               {t('quotaWeeklyMinutes')}
             </label>
             <input
@@ -405,11 +469,14 @@ export default function AdminUserStatsPage() {
               min={0}
               value={quotaWeeklyMinutes}
               onChange={(e) => setQuotaWeeklyMinutes(e.target.value)}
-              className="w-24 bg-fl-bg border border-fl-border px-3 py-1.5 font-mono text-sm text-fl-fg text-right focus:outline-none focus:border-fl-accent"
+              className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-accent w-24 border px-3 py-1.5 text-right font-mono text-sm focus:outline-none"
             />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <label className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase shrink-0 max-w-[10rem] truncate" title={t('quotaMonthlyTokens')}>
+            <label
+              className="text-fl-label text-fl-muted-2 max-w-[10rem] shrink-0 truncate font-mono tracking-widest uppercase"
+              title={t('quotaMonthlyTokens')}
+            >
               {t('quotaMonthlyTokens')}
             </label>
             <input
@@ -417,14 +484,16 @@ export default function AdminUserStatsPage() {
               min={0}
               value={quotaMonthlyTokens}
               onChange={(e) => setQuotaMonthlyTokens(e.target.value)}
-              className="w-24 bg-fl-bg border border-fl-border px-3 py-1.5 font-mono text-sm text-fl-fg text-right focus:outline-none focus:border-fl-accent"
+              className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-accent w-24 border px-3 py-1.5 text-right font-mono text-sm focus:outline-none"
             />
           </div>
-          <p className="font-mono text-fl-hint text-fl-muted-4">{t('quotaUnlimitedLabel')}</p>
+          <p className="text-fl-hint text-fl-muted-4 font-mono">
+            {t('quotaUnlimitedLabel')}
+          </p>
           <button
             onClick={saveQuota}
             disabled={quotaSaving}
-            className="w-full border border-fl-border bg-fl-surface px-4 py-2 font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg hover:border-fl-fg transition-colors disabled:opacity-40"
+            className="border-fl-border bg-fl-surface text-fl-label text-fl-muted-2 hover:text-fl-fg hover:border-fl-fg w-full border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
           >
             {quotaSaved ? `✓ ${t('quotaSaved')}` : t('quotaSave')}
           </button>

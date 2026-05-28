@@ -719,7 +719,9 @@
     "maintenanceOn": "WŁ.",
     "maintenanceEnable": "Włącz Konserwację",
     "maintenanceDisable": "Wyłącz Konserwację",
-    "maintenanceDesc": "Po włączeniu wszystkie funkcje subskrypcyjne (czat, rozmowy głosowe, ćwiczenia ze słuchu i czytania) będą niedostępne dla wszystkich użytkowników."
+    "maintenanceDesc": "Po włączeniu wszystkie funkcje subskrypcyjne (czat, rozmowy głosowe, ćwiczenia ze słuchu i czytania) będą niedostępne dla wszystkich użytkowników.",
+    "cannotDeactivateSelf": "Nie możesz dezaktywować własnego konta",
+    "cannotDeleteSelf": "Nie możesz usunąć własnego konta"
   },
   "faq": {
     "title": "FAQ",
@@ -974,7 +976,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.6.4",
+    "version": "v1.6.5",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Ulepszenia planu nauki",

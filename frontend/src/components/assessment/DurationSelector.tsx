@@ -47,7 +47,9 @@ export default function DurationSelector({
 }: Props) {
   const t = useTranslations('assessment')
   const tCommon = useTranslations('common')
-  const selected = DURATION_OPTIONS.find((o) => o.weeks === selectedWeeks) ?? DURATION_OPTIONS[2]
+  const selected =
+    DURATION_OPTIONS.find((o) => o.weeks === selectedWeeks) ??
+    DURATION_OPTIONS[2]
 
   const intensityMap: Record<string, string> = {
     intensive: t('intensity.intensive'),
@@ -58,18 +60,18 @@ export default function DurationSelector({
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center p-6">
-      <div className="w-full max-w-md border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface w-full max-w-md border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('step3')}
           </span>
         </div>
 
-        <div className="p-8 space-y-8">
+        <div className="space-y-8 p-8">
           {/* Duration */}
           <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-3">
+            <p className="text-fl-hint text-fl-muted-3 mb-3 font-mono tracking-widest uppercase">
               {t('howManyWeeks', { cefr_level })}
             </p>
             <div className="grid grid-cols-2 gap-2">
@@ -77,23 +79,31 @@ export default function DurationSelector({
                 <button
                   key={opt.weeks}
                   onClick={() => onSelectDuration(opt)}
-                  className={`border px-4 py-3 text-left transition-colors ${selectedWeeks === opt.weeks
-                    ? 'bg-fl-fg text-fl-bg border-fl-fg'
-                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  className={`border px-4 py-3 text-left transition-colors ${
+                    selectedWeeks === opt.weeks
+                      ? 'bg-fl-fg text-fl-bg border-fl-fg'
+                      : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
                 >
                   <p className="font-mono text-xs font-bold tracking-widest uppercase">
                     {t('nWeeks', { count: opt.weeks })}
                   </p>
                   <p
-                    className={`font-mono text-fl-hint mt-0.5 ${selectedWeeks === opt.weeks ? 'opacity-70' : 'text-fl-muted-3'
-                      }`}
+                    className={`text-fl-hint mt-0.5 font-mono ${
+                      selectedWeeks === opt.weeks
+                        ? 'opacity-70'
+                        : 'text-fl-muted-3'
+                    }`}
                   >
-                    {intensityMap[opt.intensity]} · {t('approxLessons', { count: opt.weeks * opt.daysPerWeek })}
+                    {intensityMap[opt.intensity]} ·{' '}
+                    {t('approxLessons', { count: opt.weeks * opt.daysPerWeek })}
                   </p>
                   <p
-                    className={`font-mono text-fl-hint mt-0.5 ${selectedWeeks === opt.weeks ? 'opacity-60' : 'text-fl-muted-3'
-                      }`}
+                    className={`text-fl-hint mt-0.5 font-mono ${
+                      selectedWeeks === opt.weeks
+                        ? 'opacity-60'
+                        : 'text-fl-muted-3'
+                    }`}
                   >
                     {t('daysPerWeek', { count: opt.daysPerWeek })}
                   </p>
@@ -104,7 +114,7 @@ export default function DurationSelector({
 
           {/* Goals */}
           <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-3">
+            <p className="text-fl-hint text-fl-muted-3 mb-3 font-mono tracking-widest uppercase">
               {t('mainGoals')}
             </p>
             <div className="flex flex-wrap gap-2">
@@ -112,29 +122,48 @@ export default function DurationSelector({
                 <button
                   key={g.id}
                   onClick={() => onToggleGoal(g.id)}
-                  className={`px-3 py-1.5 font-mono text-xs tracking-widest uppercase border transition-colors ${selectedGoals.includes(g.id)
-                    ? 'bg-fl-fg text-fl-bg border-fl-fg'
-                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  className={`border px-3 py-1.5 font-mono text-xs tracking-widest uppercase transition-colors ${
+                    selectedGoals.includes(g.id)
+                      ? 'bg-fl-fg text-fl-bg border-fl-fg'
+                      : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
                 >
-                  {selectedGoals.includes(g.id) ? '✓ ' : ''}{t(`goals.${g.id as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`)}
+                  {selectedGoals.includes(g.id) ? '✓ ' : ''}
+                  {t(
+                    `goals.${g.id as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`
+                  )}
                 </button>
               ))}
             </div>
           </div>
 
           {/* Summary */}
-          <div className="border border-fl-border px-4 py-3 font-mono text-fl-label text-fl-muted-1 tracking-wide space-y-1">
-            <p>{t('summaryLevel')}: <span className="text-fl-fg font-bold">{cefr_level}</span></p>
+          <div className="border-fl-border text-fl-label text-fl-muted-1 space-y-1 border px-4 py-3 font-mono tracking-wide">
             <p>
-              {t('summaryDuration')}: <span className="text-fl-fg">{t('nWeeks', { count: selected.weeks })}</span>
-              {' · '}
-              <span className="text-fl-fg">{t('daysPerWeek', { count: selected.daysPerWeek })}</span>
+              {t('summaryLevel')}:{' '}
+              <span className="text-fl-fg font-bold">{cefr_level}</span>
             </p>
             <p>
-              {t('summaryGoals')}: <span className="text-fl-fg">
+              {t('summaryDuration')}:{' '}
+              <span className="text-fl-fg">
+                {t('nWeeks', { count: selected.weeks })}
+              </span>
+              {' · '}
+              <span className="text-fl-fg">
+                {t('daysPerWeek', { count: selected.daysPerWeek })}
+              </span>
+            </p>
+            <p>
+              {t('summaryGoals')}:{' '}
+              <span className="text-fl-fg">
                 {selectedGoals.length > 0
-                  ? selectedGoals.map((g) => t(`goals.${g as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`)).join(', ')
+                  ? selectedGoals
+                      .map((g) =>
+                        t(
+                          `goals.${g as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`
+                        )
+                      )
+                      .join(', ')
                   : t('noneSelected')}
               </span>
             </p>
@@ -143,14 +172,14 @@ export default function DurationSelector({
           <div className="flex gap-2">
             <button
               onClick={onBack}
-              className="flex-1 border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+              className="border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
             >
               ← {tCommon('back')}
             </button>
             <button
               onClick={onConfirm}
               disabled={loading || selectedGoals.length === 0}
-              className="flex-[2] bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-fg-bright disabled:opacity-40 transition-colors"
+              className="bg-fl-fg text-fl-bg hover:bg-fl-fg-bright flex-[2] py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
             >
               {loading ? `— ${t('buildingPlan')}` : `— ${t('startMyPlan')} →`}
             </button>

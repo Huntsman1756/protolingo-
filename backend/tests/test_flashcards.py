@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 
 import pytest
+
 from app.services.flashcard_sm2 import sm2_update
 
 

@@ -1,4 +1,5 @@
 """Tests for POST /api/lessons/{id}/start."""
+
 from __future__ import annotations
 
 import pytest
@@ -39,6 +40,7 @@ async def _create_lesson_with_plan(db_session, user_id: int):
 
 # ── POST /api/lessons/{id}/start ─────────────────────────────────────────────
 
+
 @pytest.mark.asyncio
 async def test_start_lesson_success(client, test_user, db_session):
     """POST /start returns 200 with the lesson data."""
@@ -76,7 +78,7 @@ async def test_start_lesson_requires_auth(client):
 @pytest.mark.asyncio
 async def test_start_lesson_other_user_forbidden(client, test_user, db_session):
     """A user cannot start a lesson that belongs to a different user's plan."""
-    from app.core.security import create_access_token, hash_password
+    from app.core.security import hash_password
     from app.models.user import User
 
     # Create the lesson owner

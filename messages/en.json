@@ -719,7 +719,9 @@
     "maintenanceOn": "ON",
     "maintenanceEnable": "Enable Maintenance",
     "maintenanceDisable": "Disable Maintenance",
-    "maintenanceDesc": "When enabled, all subscription-gated features (tutor chat, voice conversations, listening & reading exercises) will be unavailable to all users."
+    "maintenanceDesc": "When enabled, all subscription-gated features (tutor chat, voice conversations, listening & reading exercises) will be unavailable to all users.",
+    "cannotDeactivateSelf": "Cannot deactivate your own account",
+    "cannotDeleteSelf": "Cannot delete your own account"
   },
   "faq": {
     "title": "FAQ",
@@ -974,7 +976,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.4",
+    "version": "v1.6.5",
     "cta": "Got it",
     "entry1": {
       "label": "Study plan improvements",

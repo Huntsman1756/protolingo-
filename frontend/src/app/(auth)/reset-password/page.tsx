@@ -50,29 +50,43 @@ function ResetPasswordContent() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-fl-bg px-4"
-      style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
+      style={{
+        backgroundImage:
+          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
+        backgroundSize: '24px 24px',
+      }}
     >
       <div className="w-full max-w-sm">
-        <div className="flex flex-col items-center mb-10">
-          <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
+        <div className="mb-10 flex flex-col items-center">
+          <h1 className="text-fl-fg font-mono text-xl font-bold tracking-widest uppercase">
+            FreeLingo
+          </h1>
         </div>
 
-        <div className="border border-fl-border bg-fl-surface p-8 space-y-6">
+        <div className="border-fl-border bg-fl-surface space-y-6 border p-8">
           <div className="flex items-center gap-2">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-caption tracking-widest text-fl-muted-2 uppercase">{t('title')}</span>
+            <span className="text-fl-caption text-fl-muted-2 font-mono tracking-widest uppercase">
+              {t('title')}
+            </span>
           </div>
 
           {done ? (
-            <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{t('success')}</p>
+            <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+              {t('success')}
+            </p>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               {!token && (
-                <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">{t('missingToken')}</div>
+                <div className="border-fl-error/40 text-fl-error border px-4 py-3 font-mono text-xs">
+                  {t('missingToken')}
+                </div>
               )}
               {error && (
-                <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error">✕ {error}</div>
+                <div className="border-fl-error/40 text-fl-error border px-4 py-3 font-mono text-xs">
+                  ✕ {error}
+                </div>
               )}
               <input
                 type="password"
@@ -81,7 +95,7 @@ function ResetPasswordContent() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="new-password"
-                className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
+                className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-xs transition-colors focus:outline-none"
               />
               <input
                 type="password"
@@ -90,18 +104,18 @@ function ResetPasswordContent() {
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
                 autoComplete="new-password"
-                className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
+                className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-xs transition-colors focus:outline-none"
               />
               <button
                 type="submit"
                 disabled={loading || !token}
-                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors disabled:opacity-50"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
               >
                 {loading ? t('saving') : t('submit')}
               </button>
               <Link
                 href="/login"
-                className="block font-mono text-xs text-fl-muted-4 hover:text-fl-muted-2 transition-colors text-center"
+                className="text-fl-muted-4 hover:text-fl-muted-2 block text-center font-mono text-xs transition-colors"
               >
                 {t('backToLogin')}
               </Link>

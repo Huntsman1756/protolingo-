@@ -17,7 +17,12 @@ export type { CEFRLevel }
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type LessonType = 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'review'
+export type LessonType =
+  | 'grammar'
+  | 'vocabulary'
+  | 'reading'
+  | 'writing'
+  | 'review'
 
 export type Intensity = 'intensive' | 'standard' | 'relaxed' | 'very_relaxed'
 
@@ -112,7 +117,7 @@ const A1_UNITS: CurriculumUnit[] = [
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     competency_checklist: [
       'Correctly uses am / is / are in affirmative sentences',
-      'Correctly uses am not / isn\'t / aren\'t in negatives',
+      "Correctly uses am not / isn't / aren't in negatives",
       'Asks and answers "What is your name?" and "Where are you from?"',
       'Uses I, you, he, she, it, we, they as subjects',
       'Counts and writes numbers 1–20',
@@ -143,13 +148,17 @@ const A1_UNITS: CurriculumUnit[] = [
     title: 'Daily Life',
     default_weeks: [3, 5],
     grammar_points: ['present-simple', 'questions-yes-no'],
-    vocabulary_set_ids: ['daily_routines_a1', 'time_expressions_a1', 'verbs_basic_a1'],
+    vocabulary_set_ids: [
+      'daily_routines_a1',
+      'time_expressions_a1',
+      'verbs_basic_a1',
+    ],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a1-unit-2',
     competency_checklist: [
       'Uses present simple for habits and routines',
       'Adds -s / -es correctly for he/she/it',
-      'Forms negatives with don\'t / doesn\'t',
+      "Forms negatives with don't / doesn't",
       'Asks yes/no questions with Do / Does',
       'Tells the time and uses frequency adverbs (always, often, never)',
     ],
@@ -195,13 +204,17 @@ const A1_UNITS: CurriculumUnit[] = [
     title: 'Yesterday',
     default_weeks: [7, 9],
     grammar_points: ['past-simple'],
-    vocabulary_set_ids: ['past_time_expressions_a1', 'regular_verbs_past_a1', 'irregular_verbs_basic_a1'],
+    vocabulary_set_ids: [
+      'past_time_expressions_a1',
+      'regular_verbs_past_a1',
+      'irregular_verbs_basic_a1',
+    ],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a1-unit-5',
     competency_checklist: [
       'Adds -ed to regular verbs in the past (worked, played, visited)',
       'Uses common irregular past forms (went, said, had, came, saw)',
-      'Forms past negative with didn\'t + base verb',
+      "Forms past negative with didn't + base verb",
       'Asks past questions with Did + subject + base verb?',
       'Uses yesterday, last week, in 2020 correctly',
     ],
@@ -217,7 +230,7 @@ const A1_UNITS: CurriculumUnit[] = [
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a1-unit-6',
     competency_checklist: [
-      'Uses can / can\'t to express ability',
+      "Uses can / can't to express ability",
       'Never adds -s to can for third person',
       'Uses want to / need to / like to + infinitive',
       'Talks about hobbies and food preferences using can / like',
@@ -230,13 +243,24 @@ const A1_UNITS: CurriculumUnit[] = [
     title: 'A1 Consolidation',
     default_weeks: [11, 12],
     grammar_points: [
-      'to-be', 'subject-pronouns', 'articles', 'possessive-adjectives',
-      'present-simple', 'questions-yes-no', 'present-continuous',
-      'past-simple', 'can-cant',
+      'to-be',
+      'subject-pronouns',
+      'articles',
+      'possessive-adjectives',
+      'present-simple',
+      'questions-yes-no',
+      'present-continuous',
+      'past-simple',
+      'can-cant',
     ],
     vocabulary_set_ids: [
-      'identity_a1', 'daily_routines_a1', 'home_a1', 'city_places_a1',
-      'action_verbs_a1', 'regular_verbs_past_a1', 'abilities_a1',
+      'identity_a1',
+      'daily_routines_a1',
+      'home_a1',
+      'city_places_a1',
+      'action_verbs_a1',
+      'regular_verbs_past_a1',
+      'abilities_a1',
     ],
     lesson_types: ['reading', 'writing', 'review'],
     prerequisite_unit: 'a1-unit-7',
@@ -316,7 +340,7 @@ const A2_UNITS: CurriculumUnit[] = [
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a2-unit-3',
     competency_checklist: [
-      'Uses could / couldn\'t for past ability',
+      "Uses could / couldn't for past ability",
       'Uses can / could for polite requests',
       'Distinguishes can (present) from could (past or polite)',
     ],
@@ -349,8 +373,8 @@ const A2_UNITS: CurriculumUnit[] = [
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a2-unit-5',
     competency_checklist: [
-      'Uses should / shouldn\'t for advice',
-      'Uses must / mustn\'t for obligation and prohibition',
+      "Uses should / shouldn't for advice",
+      "Uses must / mustn't for obligation and prohibition",
       'Describes symptoms and gives health advice in a dialogue',
     ],
   },
@@ -377,12 +401,19 @@ const A2_UNITS: CurriculumUnit[] = [
     title: 'A2 Consolidation',
     default_weeks: [11, 12],
     grammar_points: [
-      'past-simple', 'going-to-future', 'will-future',
-      'comparatives-superlatives', 'countable-uncountable', 'modal-verbs',
+      'past-simple',
+      'going-to-future',
+      'will-future',
+      'comparatives-superlatives',
+      'countable-uncountable',
+      'modal-verbs',
     ],
     vocabulary_set_ids: [
-      'irregular_verbs_a2', 'adjectives_a2', 'food_shopping_a2',
-      'transport_a2', 'body_health_a2',
+      'irregular_verbs_a2',
+      'adjectives_a2',
+      'food_shopping_a2',
+      'transport_a2',
+      'body_health_a2',
     ],
     lesson_types: ['reading', 'writing', 'review'],
     prerequisite_unit: 'a2-unit-7',
@@ -401,8 +432,13 @@ const A2_UNITS: CurriculumUnit[] = [
 
 const B1_UNITS: CurriculumUnit[] = [
   {
-    id: 'b1-unit-1', level: 'B1', unit_number: 1, title: 'Experiences (Present Perfect)',
-    default_weeks: [1, 2], grammar_points: ['present-perfect'], vocabulary_set_ids: ['experiences_b1'],
+    id: 'b1-unit-1',
+    level: 'B1',
+    unit_number: 1,
+    title: 'Experiences (Present Perfect)',
+    default_weeks: [1, 2],
+    grammar_points: ['present-perfect'],
+    vocabulary_set_ids: ['experiences_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     competency_checklist: [
       'Uses ever/never, already/yet, just correctly',
@@ -413,8 +449,12 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-2', level: 'B1', unit_number: 2, title: 'If... (First Conditional)',
-    default_weeks: [2, 3], grammar_points: ['first-conditional', 'zero-conditional'],
+    id: 'b1-unit-2',
+    level: 'B1',
+    unit_number: 2,
+    title: 'If... (First Conditional)',
+    default_weeks: [2, 3],
+    grammar_points: ['first-conditional', 'zero-conditional'],
     vocabulary_set_ids: ['environment_b1', 'decisions_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-1',
@@ -427,8 +467,12 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-3', level: 'B1', unit_number: 3, title: 'It Gets Done (Passive)',
-    default_weeks: [3, 5], grammar_points: ['passive-voice-simple'],
+    id: 'b1-unit-3',
+    level: 'B1',
+    unit_number: 3,
+    title: 'It Gets Done (Passive)',
+    default_weeks: [3, 5],
+    grammar_points: ['passive-voice-simple'],
     vocabulary_set_ids: ['processes_b1', 'media_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-2',
@@ -441,8 +485,12 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-4', level: 'B1', unit_number: 4, title: 'Describing in Detail (Relative Clauses)',
-    default_weeks: [5, 6], grammar_points: ['relative-clauses'],
+    id: 'b1-unit-4',
+    level: 'B1',
+    unit_number: 4,
+    title: 'Describing in Detail (Relative Clauses)',
+    default_weeks: [5, 6],
+    grammar_points: ['relative-clauses'],
     vocabulary_set_ids: ['descriptions_b1', 'technology_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-3',
@@ -455,8 +503,12 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-5', level: 'B1', unit_number: 5, title: 'Advice & Obligation (Modals)',
-    default_weeks: [6, 7], grammar_points: ['modal-verbs'],
+    id: 'b1-unit-5',
+    level: 'B1',
+    unit_number: 5,
+    title: 'Advice & Obligation (Modals)',
+    default_weeks: [6, 7],
+    grammar_points: ['modal-verbs'],
     vocabulary_set_ids: ['work_obligations_b1', 'advice_phrases_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-4',
@@ -469,8 +521,12 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-6', level: 'B1', unit_number: 6, title: 'What They Said (Reported Speech)',
-    default_weeks: [7, 9], grammar_points: ['reported-speech-basics'],
+    id: 'b1-unit-6',
+    level: 'B1',
+    unit_number: 6,
+    title: 'What They Said (Reported Speech)',
+    default_weeks: [7, 9],
+    grammar_points: ['reported-speech-basics'],
     vocabulary_set_ids: ['news_media_b1', 'communication_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-5',
@@ -483,8 +539,12 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-7', level: 'B1', unit_number: 7, title: 'Opinions & Discussion',
-    default_weeks: [9, 10], grammar_points: ['expressing-opinions', 'discourse-connectors-b1'],
+    id: 'b1-unit-7',
+    level: 'B1',
+    unit_number: 7,
+    title: 'Opinions & Discussion',
+    default_weeks: [9, 10],
+    grammar_points: ['expressing-opinions', 'discourse-connectors-b1'],
     vocabulary_set_ids: ['opinion_phrases_b1', 'society_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-6',
@@ -497,9 +557,18 @@ const B1_UNITS: CurriculumUnit[] = [
     ],
   },
   {
-    id: 'b1-unit-8', level: 'B1', unit_number: 8, title: 'B1 Consolidation',
+    id: 'b1-unit-8',
+    level: 'B1',
+    unit_number: 8,
+    title: 'B1 Consolidation',
     default_weeks: [11, 12],
-    grammar_points: ['present-perfect', 'first-conditional', 'passive-voice-simple', 'relative-clauses', 'modal-verbs'],
+    grammar_points: [
+      'present-perfect',
+      'first-conditional',
+      'passive-voice-simple',
+      'relative-clauses',
+      'modal-verbs',
+    ],
     vocabulary_set_ids: ['experiences_b1', 'environment_b1', 'technology_b1'],
     lesson_types: ['reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-7',
@@ -518,21 +587,24 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
   A1: {
     level: 'A1',
     title: 'Beginner English',
-    description: 'Master the foundations: introduce yourself, describe your world, talk about routines and the past.',
+    description:
+      'Master the foundations: introduce yourself, describe your world, talk about routines and the past.',
     default_duration_weeks: 12,
     units: A1_UNITS,
   },
   A2: {
     level: 'A2',
     title: 'Elementary English',
-    description: 'Expand into comparisons, future plans, quantities, and everyday social situations.',
+    description:
+      'Expand into comparisons, future plans, quantities, and everyday social situations.',
     default_duration_weeks: 12,
     units: A2_UNITS,
   },
   B1: {
     level: 'B1',
     title: 'Intermediate English',
-    description: 'Handle most familiar topics: give opinions, discuss experiences, write structured texts.',
+    description:
+      'Handle most familiar topics: give opinions, discuss experiences, write structured texts.',
     default_duration_weeks: 12,
     units: B1_UNITS,
   },
@@ -540,12 +612,17 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
   B2: {
     level: 'B2',
     title: 'Upper-Intermediate English',
-    description: 'Express nuance, handle complex grammar, discuss abstract topics.',
+    description:
+      'Express nuance, handle complex grammar, discuss abstract topics.',
     default_duration_weeks: 12,
     units: [
       {
-        id: 'b2-unit-1', level: 'B2', unit_number: 1, title: 'Past Narratives & Sequencing',
-        default_weeks: [1, 2], grammar_points: ['past-perfect'],
+        id: 'b2-unit-1',
+        level: 'B2',
+        unit_number: 1,
+        title: 'Past Narratives & Sequencing',
+        default_weeks: [1, 2],
+        grammar_points: ['past-perfect'],
         vocabulary_set_ids: ['academic_vocabulary_b2', 'narrative_time_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         competency_checklist: [
@@ -557,8 +634,12 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         ],
       },
       {
-        id: 'b2-unit-2', level: 'B2', unit_number: 2, title: 'Wishes & Regrets',
-        default_weeks: [2, 3], grammar_points: ['wishes-regrets'],
+        id: 'b2-unit-2',
+        level: 'B2',
+        unit_number: 2,
+        title: 'Wishes & Regrets',
+        default_weeks: [2, 3],
+        grammar_points: ['wishes-regrets'],
         vocabulary_set_ids: ['emotions_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-1',
@@ -571,8 +652,12 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         ],
       },
       {
-        id: 'b2-unit-3', level: 'B2', unit_number: 3, title: 'Conditionals 2 & 3',
-        default_weeks: [3, 5], grammar_points: ['second-conditional', 'third-conditional'],
+        id: 'b2-unit-3',
+        level: 'B2',
+        unit_number: 3,
+        title: 'Conditionals 2 & 3',
+        default_weeks: [3, 5],
+        grammar_points: ['second-conditional', 'third-conditional'],
         vocabulary_set_ids: ['workplace_b2', 'hypothetical_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-2',
@@ -585,8 +670,12 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         ],
       },
       {
-        id: 'b2-unit-4', level: 'B2', unit_number: 4, title: 'Advanced Passive & Causative',
-        default_weeks: [5, 6], grammar_points: ['advanced-passive'],
+        id: 'b2-unit-4',
+        level: 'B2',
+        unit_number: 4,
+        title: 'Advanced Passive & Causative',
+        default_weeks: [5, 6],
+        grammar_points: ['advanced-passive'],
         vocabulary_set_ids: ['industries_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-3',
@@ -599,8 +688,12 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         ],
       },
       {
-        id: 'b2-unit-5', level: 'B2', unit_number: 5, title: 'Gerunds & Infinitives',
-        default_weeks: [6, 7], grammar_points: ['gerunds-infinitives'],
+        id: 'b2-unit-5',
+        level: 'B2',
+        unit_number: 5,
+        title: 'Gerunds & Infinitives',
+        default_weeks: [6, 7],
+        grammar_points: ['gerunds-infinitives'],
         vocabulary_set_ids: ['media_society_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-4',
@@ -613,8 +706,12 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         ],
       },
       {
-        id: 'b2-unit-6', level: 'B2', unit_number: 6, title: 'Reported Speech & Modal Perfects',
-        default_weeks: [7, 9], grammar_points: ['reported-speech', 'modal-perfects'],
+        id: 'b2-unit-6',
+        level: 'B2',
+        unit_number: 6,
+        title: 'Reported Speech & Modal Perfects',
+        default_weeks: [7, 9],
+        grammar_points: ['reported-speech', 'modal-perfects'],
         vocabulary_set_ids: ['news_events_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-5',
@@ -627,8 +724,12 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         ],
       },
       {
-        id: 'b2-unit-7', level: 'B2', unit_number: 7, title: 'Concession, Contrast & Academic Discourse',
-        default_weeks: [9, 10], grammar_points: ['concession-contrast-b2'],
+        id: 'b2-unit-7',
+        level: 'B2',
+        unit_number: 7,
+        title: 'Concession, Contrast & Academic Discourse',
+        default_weeks: [9, 10],
+        grammar_points: ['concession-contrast-b2'],
         vocabulary_set_ids: ['academic_vocabulary_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-6',
@@ -641,10 +742,24 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         ],
       },
       {
-        id: 'b2-unit-8', level: 'B2', unit_number: 8, title: 'B2 Consolidation',
+        id: 'b2-unit-8',
+        level: 'B2',
+        unit_number: 8,
+        title: 'B2 Consolidation',
         default_weeks: [11, 12],
-        grammar_points: ['past-perfect', 'second-conditional', 'third-conditional', 'gerunds-infinitives', 'reported-speech', 'modal-perfects'],
-        vocabulary_set_ids: ['academic_vocabulary_b2', 'workplace_b2', 'media_society_b2'],
+        grammar_points: [
+          'past-perfect',
+          'second-conditional',
+          'third-conditional',
+          'gerunds-infinitives',
+          'reported-speech',
+          'modal-perfects',
+        ],
+        vocabulary_set_ids: [
+          'academic_vocabulary_b2',
+          'workplace_b2',
+          'media_society_b2',
+        ],
         lesson_types: ['reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-7',
         competency_checklist: [
@@ -659,7 +774,8 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
   C1: {
     level: 'C1',
     title: 'Advanced English',
-    description: 'Write sophisticated texts, understand implicit meaning, use inversion and cleft sentences.',
+    description:
+      'Write sophisticated texts, understand implicit meaning, use inversion and cleft sentences.',
     default_duration_weeks: 12,
     units: [
       {
@@ -794,8 +910,20 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         unit_number: 8,
         title: 'C1 Consolidation',
         default_weeks: [2, 3],
-        grammar_points: ['mixed-conditionals', 'participle-clauses', 'inversion', 'cleft-sentences', 'ellipsis-substitution', 'advanced-relative-clauses', 'hedging-language'],
-        vocabulary_set_ids: ['abstract_concepts_c1', 'academic_discourse_c1', 'debate_rhetoric_c1'],
+        grammar_points: [
+          'mixed-conditionals',
+          'participle-clauses',
+          'inversion',
+          'cleft-sentences',
+          'ellipsis-substitution',
+          'advanced-relative-clauses',
+          'hedging-language',
+        ],
+        vocabulary_set_ids: [
+          'abstract_concepts_c1',
+          'academic_discourse_c1',
+          'debate_rhetoric_c1',
+        ],
         lesson_types: ['grammar', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c1-unit-7',
         competency_checklist: [
@@ -811,7 +939,8 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
   C2: {
     level: 'C2',
     title: 'Proficiency English',
-    description: 'Near-native mastery: discourse markers, nominalisation, academic and professional writing.',
+    description:
+      'Near-native mastery: discourse markers, nominalisation, academic and professional writing.',
     default_duration_weeks: 12,
     units: [
       {
@@ -910,8 +1039,21 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         unit_number: 6,
         title: 'C2 Consolidation',
         default_weeks: [2, 3],
-        grammar_points: ['discourse-markers', 'nominalisation', 'fronting-emphasis', 'register-and-style', 'inversion', 'cleft-sentences'],
-        vocabulary_set_ids: ['nuanced_adjectives_c2', 'formal_register_c2', 'idiomatic_expressions_c2', 'literary_devices_c2', 'critical_analysis_c2'],
+        grammar_points: [
+          'discourse-markers',
+          'nominalisation',
+          'fronting-emphasis',
+          'register-and-style',
+          'inversion',
+          'cleft-sentences',
+        ],
+        vocabulary_set_ids: [
+          'nuanced_adjectives_c2',
+          'formal_register_c2',
+          'idiomatic_expressions_c2',
+          'literary_devices_c2',
+          'critical_analysis_c2',
+        ],
         lesson_types: ['grammar', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c2-unit-5',
         competency_checklist: [
@@ -940,10 +1082,22 @@ export function getCurriculumUnits(level: CEFRLevel): CurriculumUnit[] {
 export function distributeLessonsAcrossWeeks(
   level: CEFRLevel,
   durationWeeks: number,
-  daysPerWeek: number,
-): Array<{ week: number; day: number; unit_id: string; lesson_type: LessonType; title: string }> {
+  daysPerWeek: number
+): Array<{
+  week: number
+  day: number
+  unit_id: string
+  lesson_type: LessonType
+  title: string
+}> {
   const units = getCurriculumUnits(level)
-  const slots: Array<{ week: number; day: number; unit_id: string; lesson_type: LessonType; title: string }> = []
+  const slots: Array<{
+    week: number
+    day: number
+    unit_id: string
+    lesson_type: LessonType
+    title: string
+  }> = []
 
   const totalDays = durationWeeks * daysPerWeek
   // Last day is reserved for the level completion test
@@ -951,7 +1105,11 @@ export function distributeLessonsAcrossWeeks(
 
   // Expand all unit lessons in order
   const allLessons = units.flatMap((unit) =>
-    unit.lesson_types.map((lt) => ({ unit_id: unit.id, lesson_type: lt, unit_title: unit.title })),
+    unit.lesson_types.map((lt) => ({
+      unit_id: unit.id,
+      lesson_type: lt,
+      unit_title: unit.title,
+    }))
   )
 
   // Distribute evenly; repeat review lessons if there is spare capacity
@@ -974,7 +1132,13 @@ export function distributeLessonsAcrossWeeks(
   // Final slot: level completion test
   const testWeek = durationWeeks
   const testDay = daysPerWeek + 1
-  slots.push({ week: testWeek, day: testDay, unit_id: `${level.toLowerCase()}-test`, lesson_type: 'review', title: `${level} Level Completion Test` })
+  slots.push({
+    week: testWeek,
+    day: testDay,
+    unit_id: `${level.toLowerCase()}-test`,
+    lesson_type: 'review',
+    title: `${level} Level Completion Test`,
+  })
 
   return slots
 }

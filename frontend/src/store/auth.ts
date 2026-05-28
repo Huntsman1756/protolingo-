@@ -1,6 +1,11 @@
 import { create } from 'zustand'
 
-export type SubscriptionStatus = 'none' | 'trialing' | 'active' | 'past_due' | 'canceled'
+export type SubscriptionStatus =
+  | 'none'
+  | 'trialing'
+  | 'active'
+  | 'past_due'
+  | 'canceled'
 
 export interface User {
   id: number
@@ -21,10 +26,16 @@ export interface User {
 }
 
 /** Returns true when the user has an active/trialing subscription, or when Stripe is disabled (self-hosted). */
-export function isSubscribed(user: User | null, stripeEnabled: boolean): boolean {
+export function isSubscribed(
+  user: User | null,
+  stripeEnabled: boolean
+): boolean {
   if (!stripeEnabled) return true
   if (!user) return false
-  return user.subscription_status === 'active' || user.subscription_status === 'trialing'
+  return (
+    user.subscription_status === 'active' ||
+    user.subscription_status === 'trialing'
+  )
 }
 
 interface AuthStore {
@@ -38,10 +49,8 @@ interface AuthStore {
 export const useAuthStore = create<AuthStore>((set) => ({
   accessToken: null,
   user: null,
-  setTokens: (access: string) =>
-    set({ accessToken: access }),
-  setUser: (user: User) =>
-    set({ user }),
+  setTokens: (access: string) => set({ accessToken: access }),
+  setUser: (user: User) => set({ user }),
   logout: () => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('fl_tour_done')

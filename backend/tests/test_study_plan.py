@@ -1,5 +1,3 @@
-from unittest.mock import patch
-
 import pytest
 
 
@@ -107,6 +105,7 @@ async def test_generate_study_plan_defaults(client, test_user):
 
 # ── POST /api/study-plan/skip-day ─────────────────────────────────────────────
 
+
 @pytest.mark.asyncio
 async def test_skip_day_increments_progress(client, test_user):
     """POST /skip-day increments progress_day by 1 and returns updated state."""
@@ -173,6 +172,7 @@ async def test_skip_day_does_not_exceed_total(client, test_user, db_session):
 
 
 # ── GET /api/study-plan/pending-lessons ───────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_pending_lessons_empty_for_new_plan(client, test_user):
@@ -258,6 +258,7 @@ async def test_pending_lessons_requires_auth(client):
 
 # ── Auto-advance in GET /api/study-plan/today ─────────────────────────────────
 
+
 @pytest.mark.asyncio
 async def test_today_auto_advances_when_day_complete(client, test_user, db_session):
     """GET /today auto-advances progress_day when all lessons for the current day are complete."""
@@ -336,6 +337,7 @@ async def test_today_auto_advances_when_day_complete(client, test_user, db_sessi
 
 
 # ── GET /today when plan is fully complete ────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_today_returns_empty_when_plan_complete(client, test_user, db_session):

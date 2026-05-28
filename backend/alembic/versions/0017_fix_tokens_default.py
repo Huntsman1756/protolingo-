@@ -4,15 +4,17 @@ Revision ID: 0017_fix_tokens_default
 Revises: 0016_stripe_subscription
 Create Date: 2026-05-11
 """
-from typing import Sequence, Union
+
+from collections.abc import Sequence
 
 import sqlalchemy as sa
+
 from alembic import op
 
 revision: str = "0017_fix_tokens_default"
-down_revision: Union[str, None] = "0016_stripe_subscription"
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+down_revision: str | None = "0016_stripe_subscription"
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:

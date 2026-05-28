@@ -13,23 +13,23 @@ export default function LevelTestBanner({ planId, level }: Props) {
   const router = useRouter()
 
   return (
-    <div className="border border-fl-fg bg-fl-surface mt-2">
-      <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-fg/20">
-        <span className="font-mono text-fl-label text-fl-fg">⊞</span>
-        <span className="font-mono text-fl-label tracking-widest text-fl-fg uppercase">
+    <div className="border-fl-fg bg-fl-surface mt-2 border">
+      <div className="border-fl-fg/20 flex items-center gap-2 border-b px-6 py-4">
+        <span className="text-fl-label text-fl-fg font-mono">⊞</span>
+        <span className="text-fl-label text-fl-fg font-mono tracking-widest uppercase">
           {t('levelComplete', { level })}
         </span>
       </div>
-      <div className="p-6 space-y-4">
-        <p className="font-mono text-fl-label text-fl-muted-1 leading-relaxed">
+      <div className="space-y-4 p-6">
+        <p className="text-fl-label text-fl-muted-1 font-mono leading-relaxed">
           {t('levelCompleteDesc', { level })}
         </p>
-        <p className="font-mono text-fl-hint text-fl-muted-3">
+        <p className="text-fl-hint text-fl-muted-3 font-mono">
           {t('levelCompleteHint')}
         </p>
         <button
           onClick={() => router.push(`/assessment/level-test?plan=${planId}`)}
-          className="bg-fl-fg text-fl-bg font-mono text-xs font-bold tracking-widest uppercase px-6 py-3 hover:bg-fl-fg-bright transition-colors"
+          className="bg-fl-fg text-fl-bg hover:bg-fl-fg-bright px-6 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
         >
           — {t('beginLevelTest')} →
         </button>

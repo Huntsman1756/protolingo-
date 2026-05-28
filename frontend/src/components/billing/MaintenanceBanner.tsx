@@ -7,17 +7,17 @@ export function MaintenanceBanner() {
   const t = useTranslations('maintenance')
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 py-16 text-center">
-      <div className="border border-yellow-500/40 bg-yellow-500/5 max-w-md w-full p-8">
-        <div className="text-2xl mb-4">⚙</div>
+    <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-16 text-center">
+      <div className="w-full max-w-md border border-yellow-500/40 bg-yellow-500/5 p-8">
+        <div className="mb-4 text-2xl">⚙</div>
 
-        <p className="font-mono text-fl-label tracking-widest text-yellow-500 uppercase mb-2">
+        <p className="text-fl-label mb-2 font-mono tracking-widest text-yellow-500 uppercase">
           {t('label')}
         </p>
-        <h2 className="font-mono text-base font-bold text-fl-fg mb-3">
+        <h2 className="text-fl-fg mb-3 font-mono text-base font-bold">
           {t('title')}
         </h2>
-        <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">
+        <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
           {t('description')}
         </p>
       </div>

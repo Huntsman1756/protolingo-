@@ -4,15 +4,17 @@ Revision ID: 0007_target_language
 Revises: 0006_conversation_timeouts
 Create Date: 2026-05-04
 """
-from typing import Sequence, Union
+
+from collections.abc import Sequence
 
 import sqlalchemy as sa
+
 from alembic import op
 
 revision: str = "0007_target_language"
-down_revision: Union[str, None] = "0006_conversation_timeouts"
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+down_revision: str | None = "0006_conversation_timeouts"
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
@@ -23,15 +25,13 @@ def upgrade() -> None:
         sa.Column("target_language", sa.String(10), nullable=True),
     )
     # 2. Back-fill from english_variant
-    op.execute(
-        """
+    op.execute("""
         UPDATE users
         SET target_language = CASE
             WHEN english_variant = 'british' THEN 'en-GB'
             ELSE 'en-US'
         END
-        """
-    )
+        """)
     # 3. Make NOT NULL with default
     op.alter_column("users", "target_language", nullable=False, server_default="en-US")
     # 4. Drop old column
@@ -55,14 +55,12 @@ def downgrade() -> None:
         "users",
         sa.Column("english_variant", sa.String(10), nullable=True),
     )
-    op.execute(
-        """
+    op.execute("""
         UPDATE users
         SET english_variant = CASE
             WHEN target_language = 'en-GB' THEN 'british'
             ELSE 'american'
         END
-        """
-    )
+        """)
     op.alter_column("users", "english_variant", nullable=False, server_default="american")
     op.drop_column("users", "target_language")

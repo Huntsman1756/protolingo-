@@ -43,6 +43,7 @@ logger = logging.getLogger(__name__)
 # Local Redis dependency (same pattern as other routers)
 # ---------------------------------------------------------------------------
 
+
 async def get_redis():  # noqa: ANN201
     redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
     try:
@@ -54,6 +55,7 @@ async def get_redis():  # noqa: ANN201
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 def _build_exercise_out(exercise: ListeningExercise) -> ListeningExerciseOut:
     """Convert ORM model to safe schema — no text, no correct answers."""
@@ -93,6 +95,7 @@ async def _get_user_level(user_id: int, db: AsyncSession) -> tuple[str, str]:
 # Background task for exercise generation
 # ---------------------------------------------------------------------------
 
+
 async def _background_generate(
     level: str,
     target_language: str,
@@ -113,9 +116,7 @@ async def _background_generate(
                 level, target_language, db, tts_service, storage_path, voice
             )
     except Exception:
-        logger.exception(
-            "listening: generation failed level=%s lang=%s", level, target_language
-        )
+        logger.exception("listening: generation failed level=%s lang=%s", level, target_language)
     finally:
         await redis_client.delete(lock_key)
         await redis_client.aclose()
@@ -124,6 +125,7 @@ async def _background_generate(
 # ---------------------------------------------------------------------------
 # Endpoints
 # ---------------------------------------------------------------------------
+
 
 @router.get("/next", response_model=ListeningNextResponse)
 @limiter.limit("10/minute")
@@ -226,9 +228,7 @@ async def get_audio(
     if exercise is None:
         raise HTTPException(status_code=404, detail="exercise_not_found")
 
-    audio_path = os.path.join(
-        settings.AUDIO_STORAGE_PATH, "listening", f"{exercise_id}.mp3"
-    )
+    audio_path = os.path.join(settings.AUDIO_STORAGE_PATH, "listening", f"{exercise_id}.mp3")
     if not os.path.isfile(audio_path):
         raise HTTPException(status_code=404, detail="audio_not_found")
 
@@ -261,8 +261,7 @@ async def submit_listening_attempt(
         raise HTTPException(status_code=400, detail=detail) from exc
 
     correct_answers = [
-        CorrectAnswerOut(index=q["index"], correct=q["correct"])
-        for q in exercise.questions
+        CorrectAnswerOut(index=q["index"], correct=q["correct"]) for q in exercise.questions
     ]
     return ListeningSubmitResponse(
         score=attempt.score,

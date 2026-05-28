@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useAuthStore } from '@/store/auth'
+import { apiFetch } from '@/lib/api'
 
 interface VoiceRecorderProps {
   onTranscription: (text: string) => void
@@ -21,7 +21,6 @@ export function VoiceRecorder({
 }: VoiceRecorderProps) {
   const [state, setState] = useState<RecorderState>('idle')
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
-  const accessToken = useAuthStore((s) => s.accessToken)
   const t = useTranslations('voiceRecorder')
 
   async function handleClick() {
@@ -37,7 +36,9 @@ export function VoiceRecorder({
     setState('recording')
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/ogg'
+      const mimeType = MediaRecorder.isTypeSupported('audio/webm')
+        ? 'audio/webm'
+        : 'audio/ogg'
       const recorder = new MediaRecorder(stream, { mimeType })
       mediaRecorderRef.current = recorder
       const chunks: Blob[] = []
@@ -54,9 +55,8 @@ export function VoiceRecorder({
           const formData = new FormData()
           formData.append('audio', blob, 'recording.webm')
 
-          const res = await fetch('/api/stt', {
+          const res = await apiFetch('/api/stt', {
             method: 'POST',
-            headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
             body: formData,
           })
           if (!res.ok) throw new Error(`STT error ${res.status}`)
@@ -81,17 +81,24 @@ export function VoiceRecorder({
   }
 
   const label =
-    state === 'recording' ? `■ ${t('stop')}` :
-      state === 'transcribing' ? `... ${t('processing')}` :
-        state === 'error' ? `✕ ${t('error')}` :
-          `● ${t('record')}`
+    state === 'recording'
+      ? `■ ${t('stop')}`
+      : state === 'transcribing'
+        ? `... ${t('processing')}`
+        : state === 'error'
+          ? `✕ ${t('error')}`
+          : `● ${t('record')}`
 
   const colorClass =
-    state === 'recording' ? 'border-fl-error/60 text-fl-error-fg animate-pulse' :
-      state === 'transcribing' ? 'border-fl-border text-fl-muted-3 animate-pulse' :
-        state === 'error' ? 'border-fl-error/40 text-fl-error-fg' :
-          disabled ? 'border-fl-border text-fl-muted-4 cursor-not-allowed opacity-40' :
-            'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+    state === 'recording'
+      ? 'border-fl-error/60 text-fl-error-fg animate-pulse'
+      : state === 'transcribing'
+        ? 'border-fl-border text-fl-muted-3 animate-pulse'
+        : state === 'error'
+          ? 'border-fl-error/40 text-fl-error-fg'
+          : disabled
+            ? 'border-fl-border text-fl-muted-4 cursor-not-allowed opacity-40'
+            : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
 
   return (
     <button

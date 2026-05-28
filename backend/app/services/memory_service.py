@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timezone
 
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -58,7 +57,7 @@ def parse_memory_marker(text: str) -> list[str]:
             for item in items
             if isinstance(item, str) and item.strip()
         ]
-    except (json.JSONDecodeError, TypeError, KeyError):
+    except json.JSONDecodeError, TypeError, KeyError:
         logger.debug("Failed to parse memory marker JSON")
         return []
 
@@ -115,7 +114,8 @@ async def save_memories(
     new_items = [
         item.strip()[:MAX_MEMORY_CHARS]
         for item in items
-        if item.strip()[:MAX_MEMORY_CHARS] and item.strip()[:MAX_MEMORY_CHARS] not in existing_contents
+        if item.strip()[:MAX_MEMORY_CHARS]
+        and item.strip()[:MAX_MEMORY_CHARS] not in existing_contents
     ]
 
     if not new_items:
@@ -144,9 +144,7 @@ async def save_memories(
 async def get_user_memories(db: AsyncSession, user_id: int) -> list[Memory]:
     """Return all memories for a user, ordered by creation date (oldest first)."""
     result = await db.execute(
-        select(Memory)
-        .where(Memory.user_id == user_id)
-        .order_by(Memory.created_at.asc())
+        select(Memory).where(Memory.user_id == user_id).order_by(Memory.created_at.asc())
     )
     return list(result.scalars().all())
 
@@ -163,8 +161,6 @@ async def delete_memory(db: AsyncSession, memory_id: int, user_id: int) -> bool:
 
 async def clear_all_memories(db: AsyncSession, user_id: int) -> int:
     """Delete all memories for a user. Returns the number deleted."""
-    result = await db.execute(
-        delete(Memory).where(Memory.user_id == user_id)
-    )
+    result = await db.execute(delete(Memory).where(Memory.user_id == user_id))
     await db.commit()
     return result.rowcount or 0

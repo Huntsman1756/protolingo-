@@ -4,20 +4,24 @@ Revision ID: 0012_weekly_minutes
 Revises: 0011_quota_fields
 Create Date: 2026-05-09
 """
-from typing import Sequence, Union
+
+from collections.abc import Sequence
 
 import sqlalchemy as sa
+
 from alembic import op
 
 revision: str = "0012_weekly_minutes"
-down_revision: Union[str, None] = "0011_quota_fields"
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+down_revision: str | None = "0011_quota_fields"
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
     # Reset weekly_sessions to 0 (unlimited) for users still on the old default of 3
-    op.execute("UPDATE users SET conversation_weekly_sessions = 0 WHERE conversation_weekly_sessions = 3")
+    op.execute(
+        "UPDATE users SET conversation_weekly_sessions = 0 WHERE conversation_weekly_sessions = 3"
+    )
     op.alter_column("users", "conversation_weekly_sessions", server_default="0")
 
     op.add_column(

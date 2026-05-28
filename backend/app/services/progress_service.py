@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import date, datetime, timedelta, timezone
-from typing import Optional
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -109,7 +108,7 @@ async def upsert_unit_competency(
                 UserCompetency.competency_text == text,
             )
         )
-        row: Optional[UserCompetency] = result.scalar_one_or_none()
+        row: UserCompetency | None = result.scalar_one_or_none()
 
         if row is None:
             row = UserCompetency(
@@ -134,9 +133,7 @@ async def get_unit_competencies(
     user_id: int,
 ) -> list[dict]:
     """Return aggregated competency scores per unit for the given user."""
-    result = await db.execute(
-        select(UserCompetency).where(UserCompetency.user_id == user_id)
-    )
+    result = await db.execute(select(UserCompetency).where(UserCompetency.user_id == user_id))
     rows = result.scalars().all()
 
     # Aggregate per unit: average score across all competency rows
@@ -148,11 +145,8 @@ async def get_unit_competencies(
         {
             "unit_id": uid,
             "score": round(sum(scores) / len(scores), 3),
-            "mastered_count": sum(
-                1 for r in rows if r.unit_id == uid and r.mastered
-            ),
+            "mastered_count": sum(1 for r in rows if r.unit_id == uid and r.mastered),
             "total_count": len(scores),
         }
         for uid, scores in unit_scores.items()
     ]
-

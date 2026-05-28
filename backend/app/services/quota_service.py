@@ -10,12 +10,13 @@ tokens are already persisted there).
 
 A limit of 0 means unlimited.
 """
+
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 
-
 # ── Key helpers ──────────────────────────────────────────────────────────────
+
 
 def _week_key(user_id: int) -> str:
     now = datetime.now(timezone.utc)
@@ -36,7 +37,7 @@ def _weekly_seconds_key(user_id: int) -> str:
 
 def _seconds_until_monday() -> int:
     now = datetime.now(timezone.utc)
-    days_ahead = 7 - now.weekday()          # weekday: 0=Mon ... 6=Sun
+    days_ahead = 7 - now.weekday()  # weekday: 0=Mon ... 6=Sun
     next_monday = (now + timedelta(days=days_ahead)).replace(
         hour=0, minute=0, second=0, microsecond=0
     )
@@ -45,13 +46,12 @@ def _seconds_until_monday() -> int:
 
 def _seconds_until_midnight() -> int:
     now = datetime.now(timezone.utc)
-    tomorrow = (now + timedelta(days=1)).replace(
-        hour=0, minute=0, second=0, microsecond=0
-    )
+    tomorrow = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
     return max(int((tomorrow - now).total_seconds()), 1)
 
 
 # ── Public API ────────────────────────────────────────────────────────────────
+
 
 async def get_quota_status(
     redis: object,
@@ -160,9 +160,11 @@ async def record_session_seconds(redis: object, user_id: int, seconds: int) -> N
 
 # ── Monthly token quota (DB-backed) ──────────────────────────────────────────
 
+
 async def get_monthly_tokens_used(db: object, user_id: int) -> int:
     """Sum total_tokens consumed by user in the current calendar month."""
     from sqlalchemy import func, select  # noqa: PLC0415
+
     from app.models.llm_usage import LLMUsage  # noqa: PLC0415
 
     now = datetime.now(timezone.utc)

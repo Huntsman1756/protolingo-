@@ -5,6 +5,7 @@ import logging
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request
 from redis.asyncio import Redis
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
@@ -15,6 +16,7 @@ from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.reading import (
     CorrectAnswerOut,
+    QuestionOut,
     ReadingAttemptOut,
     ReadingExerciseOut,
     ReadingGeneratingResponse,
@@ -22,7 +24,6 @@ from app.schemas.reading import (
     ReadingNextResponse,
     ReadingSubmitRequest,
     ReadingSubmitResponse,
-    QuestionOut,
 )
 from app.services.reading_service import (
     generate_and_save_exercise,
@@ -30,7 +31,6 @@ from app.services.reading_service import (
     get_user_history,
     submit_attempt,
 )
-from sqlalchemy import select
 
 router = APIRouter(prefix="/api/reading", tags=["reading"])
 logger = logging.getLogger(__name__)
@@ -39,6 +39,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Local Redis dependency
 # ---------------------------------------------------------------------------
+
 
 async def get_redis():  # noqa: ANN201
     redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
@@ -51,6 +52,7 @@ async def get_redis():  # noqa: ANN201
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
 
 def _build_exercise_out(exercise) -> ReadingExerciseOut:  # noqa: ANN001
     """Convert ORM model to schema — text IS included for reading."""
@@ -90,6 +92,7 @@ async def _get_user_level(user_id: int, db: AsyncSession) -> tuple[str, str]:
 # Background task for exercise generation (no TTS)
 # ---------------------------------------------------------------------------
 
+
 async def _background_generate(
     level: str,
     target_language: str,
@@ -105,9 +108,7 @@ async def _background_generate(
         async with AsyncSessionLocal() as db:
             await generate_and_save_exercise(level, target_language, db)
     except Exception:
-        logger.exception(
-            "reading: generation failed level=%s lang=%s", level, target_language
-        )
+        logger.exception("reading: generation failed level=%s lang=%s", level, target_language)
     finally:
         await redis_client.delete(lock_key)
         await redis_client.aclose()
@@ -116,6 +117,7 @@ async def _background_generate(
 # ---------------------------------------------------------------------------
 # Endpoints
 # ---------------------------------------------------------------------------
+
 
 @router.get("/next", response_model=ReadingNextResponse)
 @limiter.limit("10/minute")
@@ -212,8 +214,7 @@ async def submit_reading_attempt(
         raise HTTPException(status_code=400, detail=detail) from exc
 
     correct_answers = [
-        CorrectAnswerOut(index=q["index"], correct=q["correct"])
-        for q in exercise.questions
+        CorrectAnswerOut(index=q["index"], correct=q["correct"]) for q in exercise.questions
     ]
     return ReadingSubmitResponse(
         score=attempt.score,
@@ -244,8 +245,7 @@ async def get_reading_history(
             exercise=_build_exercise_out(exercise),
             answers=attempt.answers,
             correct_answers=[
-                CorrectAnswerOut(index=q["index"], correct=q["correct"])
-                for q in exercise.questions
+                CorrectAnswerOut(index=q["index"], correct=q["correct"]) for q in exercise.questions
             ],
         )
         for attempt, exercise in rows

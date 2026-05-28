@@ -1,4 +1,5 @@
 """Tests for chat conversation CRUD: list, create, delete, get messages."""
+
 from __future__ import annotations
 
 import pytest
@@ -7,8 +8,8 @@ import pytest_asyncio
 from app.core.security import create_access_token, hash_password
 from app.models.user import User
 
-
 # ── Helper: create a second user for ownership tests ─────────────────────────
+
 
 @pytest_asyncio.fixture
 async def other_user(db_session):
@@ -30,6 +31,7 @@ async def other_user(db_session):
 
 # ── GET /api/chat/conversations ───────────────────────────────────────────────
 
+
 @pytest.mark.asyncio
 async def test_list_conversations_empty(client, test_user):
     """A new user has no conversations."""
@@ -49,6 +51,7 @@ async def test_list_conversations_requires_auth(client):
 
 
 # ── POST /api/chat/conversations ──────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_create_conversation_with_title(client, test_user):
@@ -147,6 +150,7 @@ async def test_list_conversations_after_create(client, test_user):
 
 # ── DELETE /api/chat/conversations/{id} ───────────────────────────────────────
 
+
 @pytest.mark.asyncio
 async def test_delete_conversation_removes_it(client, test_user):
     """DELETE removes the conversation; subsequent list is empty."""
@@ -197,6 +201,7 @@ async def test_delete_other_users_conversation(client, test_user, other_user, db
 
 
 # ── GET /api/chat/conversations/{id}/messages ─────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_get_conversation_messages_empty(client, test_user):

@@ -1,7 +1,7 @@
 """Tests for the listening endpoint (Phase 6 — Block E)."""
+
 from __future__ import annotations
 
-import os
 from unittest.mock import AsyncMock, patch
 
 import pytest
@@ -38,11 +38,14 @@ _PARTIAL = {"0": "B", "1": "B", "2": "A", "3": "A", "4": "A"}  # 2 correct
 # In-memory Redis mock — adds set(nx, ex) needed by the generation lock
 # ---------------------------------------------------------------------------
 
+
 class _MockRedis:
     def __init__(self) -> None:
         self._store: dict[str, str] = {}
 
-    async def set(self, key: str, value: str, *, nx: bool = False, ex: int | None = None) -> bool | None:
+    async def set(
+        self, key: str, value: str, *, nx: bool = False, ex: int | None = None
+    ) -> bool | None:
         if nx and key in self._store:
             return None  # lock already held → signal not acquired
         self._store[key] = value
@@ -67,6 +70,7 @@ class _MockRedis:
 # ---------------------------------------------------------------------------
 # DB helpers
 # ---------------------------------------------------------------------------
+
 
 async def _make_user(
     db,
@@ -126,6 +130,7 @@ async def _make_exercise(db, level: str = "B1") -> ListeningExercise:
 # Fixtures
 # ---------------------------------------------------------------------------
 
+
 @pytest_asyncio.fixture
 async def listening_client(db_session):
     """Client with listening Redis override and mock TTS service."""
@@ -140,9 +145,9 @@ async def listening_client(db_session):
 
     app.dependency_overrides[get_db] = override_get_db
 
-    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.admin import get_redis as admin_get_redis
     from app.routers.assessment import get_redis as assessment_get_redis
+    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.listening import get_redis as listening_get_redis
 
     app.dependency_overrides[auth_get_redis] = lambda: mock_redis
@@ -171,6 +176,7 @@ async def user_with_plan(listening_client):
 # ---------------------------------------------------------------------------
 # Unit tests — calculate_score (no DB, no HTTP)
 # ---------------------------------------------------------------------------
+
 
 def test_calculate_score_all_correct() -> None:
     from app.services.listening_service import calculate_score
@@ -208,6 +214,7 @@ def test_calculate_score_case_insensitive() -> None:
 # ---------------------------------------------------------------------------
 # GET /api/listening/next
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_next_requires_auth(listening_client) -> None:
@@ -259,13 +266,15 @@ async def test_next_returns_exercise(user_with_plan) -> None:
 async def test_next_skips_completed_exercises(user_with_plan) -> None:
     ac, _, headers, user, db = user_with_plan
     ex = await _make_exercise(db)
-    db.add(ListeningAttempt(
-        user_id=user.id,
-        exercise_id=ex.id,
-        answers=_ALL_CORRECT,
-        score=5,
-        xp_earned=50,
-    ))
+    db.add(
+        ListeningAttempt(
+            user_id=user.id,
+            exercise_id=ex.id,
+            answers=_ALL_CORRECT,
+            score=5,
+            xp_earned=50,
+        )
+    )
     await db.commit()
 
     r = await ac.get("/api/listening/next", headers=headers)
@@ -276,6 +285,7 @@ async def test_next_skips_completed_exercises(user_with_plan) -> None:
 # ---------------------------------------------------------------------------
 # POST /api/listening/generate
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_generate_returns_202(user_with_plan) -> None:
@@ -310,6 +320,7 @@ async def test_generate_lock_already_held(user_with_plan) -> None:
 # ---------------------------------------------------------------------------
 # POST /api/listening/attempt
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_attempt_exercise_not_found(user_with_plan) -> None:
@@ -389,6 +400,7 @@ async def test_attempt_duplicate_rejected(user_with_plan) -> None:
 # GET /api/listening/audio/{exercise_id}
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_audio_exercise_not_found(listening_client) -> None:
     ac, _, db = listening_client
@@ -435,6 +447,7 @@ async def test_audio_serves_file(user_with_plan, tmp_path) -> None:
 # GET /api/listening/history
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_history_empty(user_with_plan) -> None:
     ac, _, headers, _user, _db = user_with_plan
@@ -449,13 +462,15 @@ async def test_history_empty(user_with_plan) -> None:
 async def test_history_returns_attempts(user_with_plan) -> None:
     ac, _, headers, user, db = user_with_plan
     ex = await _make_exercise(db)
-    db.add(ListeningAttempt(
-        user_id=user.id,
-        exercise_id=ex.id,
-        answers=_ALL_CORRECT,
-        score=5,
-        xp_earned=50,
-    ))
+    db.add(
+        ListeningAttempt(
+            user_id=user.id,
+            exercise_id=ex.id,
+            answers=_ALL_CORRECT,
+            score=5,
+            xp_earned=50,
+        )
+    )
     await db.commit()
 
     r = await ac.get("/api/listening/history", headers=headers)

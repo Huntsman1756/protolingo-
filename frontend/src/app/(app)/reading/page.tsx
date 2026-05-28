@@ -47,7 +47,13 @@ interface AttemptItem {
   correct_answers: CorrectAnswer[]
 }
 
-type PageState = 'loading' | 'idle' | 'generating' | 'exercise' | 'results' | 'history'
+type PageState =
+  | 'loading'
+  | 'idle'
+  | 'generating'
+  | 'exercise'
+  | 'results'
+  | 'history'
 
 // ---------------------------------------------------------------------------
 // Main page logic
@@ -70,7 +76,9 @@ function ReadingPage() {
 
   // Cancel in-flight long-poll on unmount
   useEffect(() => {
-    return () => { generateAbortRef.current?.abort() }
+    return () => {
+      generateAbortRef.current?.abort()
+    }
   }, [])
 
   const loadNext = useCallback(async () => {
@@ -82,7 +90,10 @@ function ReadingPage() {
         setPageState('idle')
         return
       }
-      const data = await res.json() as { available: boolean; exercise?: Exercise }
+      const data = (await res.json()) as {
+        available: boolean
+        exercise?: Exercise
+      }
       if (data.available && data.exercise) {
         setExercise(data.exercise)
         setAnswers({})
@@ -114,7 +125,10 @@ function ReadingPage() {
         })
         generateAbortRef.current = null
         if (nextRes.ok) {
-          const data = await nextRes.json() as { available: boolean; exercise?: Exercise }
+          const data = (await nextRes.json()) as {
+            available: boolean
+            exercise?: Exercise
+          }
           if (data.available && data.exercise) {
             setExercise(data.exercise)
             setAnswers({})
@@ -140,18 +154,22 @@ function ReadingPage() {
       const res = await apiFetch('/api/reading/attempt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ exercise_id: exercise.id, answers, replay: isReplay }),
+        body: JSON.stringify({
+          exercise_id: exercise.id,
+          answers,
+          replay: isReplay,
+        }),
       })
       if (!res.ok) {
-        const d = await res.json().catch(() => ({})) as { detail?: string }
+        const d = (await res.json().catch(() => ({}))) as { detail?: string }
         setError(
           d.detail === 'already_attempted'
             ? t('alreadyAttempted')
-            : t('errorSubmit'),
+            : t('errorSubmit')
         )
         return
       }
-      const data = await res.json() as SubmitResult
+      const data = (await res.json()) as SubmitResult
       setResult(data)
       setPageState('results')
     } catch {
@@ -166,11 +184,16 @@ function ReadingPage() {
     try {
       const res = await apiFetch('/api/reading/history')
       if (res.ok) {
-        const data = await res.json() as { items: AttemptItem[]; total: number }
+        const data = (await res.json()) as {
+          items: AttemptItem[]
+          total: number
+        }
         setHistory(data.items)
         setHistoryTotal(data.total)
       }
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   }
 
   const allAnswered = exercise
@@ -180,8 +203,8 @@ function ReadingPage() {
   // ── Loading ──────────────────────────────────────────────────────────────
   if (pageState === 'loading') {
     return (
-      <div className="flex min-h-[calc(100vh-56px)] md:min-h-screen items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+      <div className="flex min-h-[calc(100vh-56px)] items-center justify-center md:min-h-screen">
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           ● {tCommon('loading')}
         </span>
       </div>
@@ -191,11 +214,11 @@ function ReadingPage() {
   // ── Generating (long-poll) ────────────────────────────────────────────────
   if (pageState === 'generating') {
     return (
-      <div className="flex min-h-[calc(100vh-56px)] md:min-h-screen flex-col items-center justify-center gap-3 px-4">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">
+      <div className="flex min-h-[calc(100vh-56px)] flex-col items-center justify-center gap-3 px-4 md:min-h-screen">
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           ● {t('generating')}
         </span>
-        <p className="font-mono text-fl-label text-fl-muted-4 text-center max-w-xs">
+        <p className="text-fl-label text-fl-muted-4 max-w-xs text-center font-mono">
           {t('generatingDesc')}
         </p>
       </div>
@@ -205,48 +228,51 @@ function ReadingPage() {
   // ── History ───────────────────────────────────────────────────────────────
   if (pageState === 'history') {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
+      <div className="mx-auto min-h-screen max-w-3xl px-4 py-6 md:min-h-0 md:px-8">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
             {t('historyTitle')}
           </h1>
           <button
             onClick={loadNext}
-            className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors"
+            className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
           >
             {t('practiceMore')}
           </button>
         </div>
 
         {history.length === 0 ? (
-          <div className="border border-fl-border bg-fl-surface p-6 text-center">
-            <p className="font-mono text-xs text-fl-muted-3 tracking-wide">
+          <div className="border-fl-border bg-fl-surface border p-6 text-center">
+            <p className="text-fl-muted-3 font-mono text-xs tracking-wide">
               {t('historyEmpty')}
             </p>
           </div>
         ) : (
           <div className="space-y-3">
             {history.map((item) => (
-              <div key={item.id} className="border border-fl-border bg-fl-surface p-4">
-                <div className="flex items-start justify-between gap-4 mb-3">
+              <div
+                key={item.id}
+                className="border-fl-border bg-fl-surface border p-4"
+              >
+                <div className="mb-3 flex items-start justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="font-mono text-xs font-bold text-fl-fg tracking-wide truncate">
+                    <p className="text-fl-fg truncate font-mono text-xs font-bold tracking-wide">
                       {item.exercise.topic}
                     </p>
-                    <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mt-0.5">
+                    <p className="text-fl-label text-fl-muted-3 mt-0.5 font-mono tracking-widest uppercase">
                       {item.exercise.level} · {item.exercise.exercise_type}
                     </p>
                   </div>
-                  <div className="text-right shrink-0">
-                    <p className="font-mono text-xs font-bold text-fl-fg">
+                  <div className="shrink-0 text-right">
+                    <p className="text-fl-fg font-mono text-xs font-bold">
                       {item.score}/{item.exercise.questions.length}
                     </p>
-                    <p className="font-mono text-fl-label text-fl-accent">
+                    <p className="text-fl-label text-fl-accent font-mono">
                       +{item.xp_earned} XP
                     </p>
                   </div>
                 </div>
-                <p className="font-mono text-fl-label text-fl-muted-2 leading-relaxed border-t border-fl-border pt-3 mb-3 line-clamp-3">
+                <p className="text-fl-label text-fl-muted-2 border-fl-border mb-3 line-clamp-3 border-t pt-3 font-mono leading-relaxed">
                   {item.exercise.text}
                 </p>
                 <button
@@ -257,14 +283,14 @@ function ReadingPage() {
                     setIsReplay(true)
                     setPageState('exercise')
                   }}
-                  className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors"
+                  className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
                 >
                   {t('practiceAgain')}
                 </button>
               </div>
             ))}
             {historyTotal > history.length && (
-              <p className="font-mono text-fl-label text-fl-muted-4 text-center py-2">
+              <p className="text-fl-label text-fl-muted-4 py-2 text-center font-mono">
                 {t('moreInHistory', { count: historyTotal - history.length })}
               </p>
             )}
@@ -277,24 +303,30 @@ function ReadingPage() {
   // ── Results ───────────────────────────────────────────────────────────────
   if (pageState === 'results' && result && exercise) {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-3xl mx-auto space-y-5">
+      <div className="mx-auto min-h-screen max-w-3xl space-y-5 px-4 py-6 md:min-h-0 md:px-8">
         {/* Score card */}
-        <div className="border border-fl-border bg-fl-surface p-5">
+        <div className="border-fl-border bg-fl-surface border p-5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
+              <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
                 {t('resultsLabel')}
               </p>
-              <p className="font-mono text-2xl font-bold text-fl-fg mt-1">
+              <p className="text-fl-fg mt-1 font-mono text-2xl font-bold">
                 {result.score}/{exercise.questions.length}
               </p>
             </div>
             <div className="text-right">
-              <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">XP</p>
+              <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+                XP
+              </p>
               {isReplay ? (
-                <p className="font-mono text-fl-label text-fl-muted-3 mt-1">{t('replayNoXp')}</p>
+                <p className="text-fl-label text-fl-muted-3 mt-1 font-mono">
+                  {t('replayNoXp')}
+                </p>
               ) : (
-                <p className="font-mono text-xl font-bold text-fl-accent mt-1">+{result.xp_earned}</p>
+                <p className="text-fl-accent mt-1 font-mono text-xl font-bold">
+                  +{result.xp_earned}
+                </p>
               )}
             </div>
           </div>
@@ -302,34 +334,38 @@ function ReadingPage() {
 
         {/* Question review */}
         <div className="space-y-3">
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">
+          <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
             {t('review')}
           </p>
           {exercise.questions.map((q) => {
-            const correctKey = result.correct_answers.find((c) => c.index === q.index)?.correct
+            const correctKey = result.correct_answers.find(
+              (c) => c.index === q.index
+            )?.correct
             const userAnswer = answers[String(q.index)]
             const isCorrect = userAnswer === correctKey
             return (
               <div
                 key={q.index}
-                className={`border p-4 ${isCorrect
-                  ? 'border-green-600/50 bg-green-950/30'
-                  : 'border-red-600/50 bg-red-950/30'
-                  }`}
+                className={`border p-4 ${
+                  isCorrect
+                    ? 'border-green-600/50 bg-green-950/30'
+                    : 'border-red-600/50 bg-red-950/30'
+                }`}
               >
-                <p className="font-mono text-xs text-fl-fg mb-3 leading-relaxed">
+                <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
                 </p>
                 <div className="space-y-1">
                   {Object.entries(q.options).map(([k, v]) => (
                     <div
                       key={k}
-                      className={`font-mono text-fl-label px-3 py-1.5 ${k === correctKey
-                        ? 'text-green-400 font-bold'
-                        : k === userAnswer && !isCorrect
-                          ? 'text-red-400 line-through opacity-70'
-                          : 'text-fl-muted-3'
-                        }`}
+                      className={`text-fl-label px-3 py-1.5 font-mono ${
+                        k === correctKey
+                          ? 'font-bold text-green-400'
+                          : k === userAnswer && !isCorrect
+                            ? 'text-red-400 line-through opacity-70'
+                            : 'text-fl-muted-3'
+                      }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </div>
@@ -344,13 +380,13 @@ function ReadingPage() {
         <div className="flex gap-3 pt-1">
           <button
             onClick={loadNext}
-            className="flex-1 border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3"
+            className="border-fl-border bg-fl-surface text-fl-fg hover:bg-fl-surface-2 flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('nextExercise')}
           </button>
           <button
             onClick={loadHistory}
-            className="border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 px-4"
+            className="border-fl-border bg-fl-surface text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface-2 border px-4 py-3 font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('viewHistory')}
           </button>
@@ -362,30 +398,30 @@ function ReadingPage() {
   // ── Idle (no exercises available) ─────────────────────────────────────────
   if (pageState === 'idle') {
     return (
-      <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
+      <div className="mx-auto min-h-screen max-w-3xl px-4 py-6 md:min-h-0 md:px-8">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
             {t('title')}
           </h1>
           <button
             onClick={loadHistory}
-            className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors"
+            className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono tracking-widest uppercase transition-colors"
           >
             {t('history')}
           </button>
         </div>
 
         {error && (
-          <p className="font-mono text-fl-label text-red-500 mb-4">{error}</p>
+          <p className="text-fl-label mb-4 font-mono text-red-500">{error}</p>
         )}
 
-        <div className="border border-fl-border bg-fl-surface p-8 flex flex-col items-center gap-5 text-center">
-          <p className="font-mono text-xs text-fl-muted-2 tracking-wide">
+        <div className="border-fl-border bg-fl-surface flex flex-col items-center gap-5 border p-8 text-center">
+          <p className="text-fl-muted-2 font-mono text-xs tracking-wide">
             {t('noExercises')}
           </p>
           <button
             onClick={handleGenerate}
-            className="border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 px-8"
+            className="border-fl-border bg-fl-surface text-fl-fg hover:bg-fl-surface-2 border px-8 py-3 font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('generate')}
           </button>
@@ -398,35 +434,34 @@ function ReadingPage() {
   if (!exercise) return null
 
   return (
-    <div className="min-h-screen md:min-h-0 px-4 md:px-8 py-6 max-w-5xl mx-auto">
+    <div className="mx-auto min-h-screen max-w-5xl px-4 py-6 md:min-h-0 md:px-8">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4 mb-6">
+      <div className="mb-6 flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-mono text-sm font-bold tracking-widest text-fl-fg uppercase">
+          <h1 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
             {t('title')}
           </h1>
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mt-0.5">
+          <p className="text-fl-label text-fl-muted-3 mt-0.5 font-mono tracking-widest uppercase">
             {exercise.level} · {exercise.exercise_type} · {exercise.topic}
           </p>
         </div>
         <button
           onClick={loadHistory}
-          className="font-mono text-fl-label text-fl-muted-2 hover:text-fl-fg uppercase tracking-widest transition-colors shrink-0"
+          className="text-fl-label text-fl-muted-2 hover:text-fl-fg shrink-0 font-mono tracking-widest uppercase transition-colors"
         >
           {t('history')}
         </button>
       </div>
 
       {/* Two-column on desktop, stacked on mobile */}
-      <div className="flex flex-col md:grid md:grid-cols-[55fr_45fr] md:gap-6 gap-5">
-
+      <div className="flex flex-col gap-5 md:grid md:grid-cols-[55fr_45fr] md:gap-6">
         {/* Left: reading text */}
         <div>
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
+          <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
             {t('textLabel')}
           </p>
-          <div className="border border-fl-border bg-fl-surface p-5">
-            <p className="font-mono text-xs text-fl-fg leading-relaxed whitespace-pre-wrap">
+          <div className="border-fl-border bg-fl-surface border p-5">
+            <p className="text-fl-fg font-mono text-xs leading-relaxed whitespace-pre-wrap">
               {exercise.text}
             </p>
           </div>
@@ -434,13 +469,16 @@ function ReadingPage() {
 
         {/* Right: questions */}
         <div>
-          <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest mb-2">
+          <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
             {t('questionsLabel')}
           </p>
           <div className="space-y-4">
             {exercise.questions.map((q) => (
-              <div key={q.index} className="border border-fl-border bg-fl-surface p-4">
-                <p className="font-mono text-xs text-fl-fg mb-3 leading-relaxed">
+              <div
+                key={q.index}
+                className="border-fl-border bg-fl-surface border p-4"
+              >
+                <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
                 </p>
                 <div className="space-y-2">
@@ -450,12 +488,16 @@ function ReadingPage() {
                       <button
                         key={k}
                         onClick={() =>
-                          setAnswers((prev) => ({ ...prev, [String(q.index)]: k }))
+                          setAnswers((prev) => ({
+                            ...prev,
+                            [String(q.index)]: k,
+                          }))
                         }
-                        className={`w-full text-left px-3 py-2 font-mono text-fl-label border transition-colors ${selected
-                          ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
-                          : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
-                          }`}
+                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${
+                          selected
+                            ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
+                            : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
+                        }`}
                       >
                         <span className="font-bold">{k}.</span> {v}
                       </button>
@@ -467,13 +509,13 @@ function ReadingPage() {
           </div>
 
           {error && (
-            <p className="font-mono text-fl-label text-red-500 mt-3">{error}</p>
+            <p className="text-fl-label mt-3 font-mono text-red-500">{error}</p>
           )}
 
           <button
             onClick={handleSubmit}
             disabled={!allAnswered || submitting}
-            className="mt-4 w-full border border-fl-border bg-fl-surface font-mono text-xs tracking-widest uppercase text-fl-fg hover:bg-fl-surface-2 transition-colors py-3 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="border-fl-border bg-fl-surface text-fl-fg hover:bg-fl-surface-2 mt-4 w-full border py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-40"
           >
             {submitting ? '...' : t('submit')}
           </button>
@@ -486,9 +528,9 @@ function ReadingPage() {
 export default function ReadingPageWrapper() {
   return (
     <MaintenanceGate>
-    <PaywallGate>
-      <ReadingPage />
-    </PaywallGate>
+      <PaywallGate>
+        <ReadingPage />
+      </PaywallGate>
     </MaintenanceGate>
   )
 }

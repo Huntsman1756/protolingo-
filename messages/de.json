@@ -719,7 +719,9 @@
     "maintenanceOn": "AN",
     "maintenanceEnable": "Wartung Aktivieren",
     "maintenanceDisable": "Wartung Deaktivieren",
-    "maintenanceDesc": "Wenn aktiviert, sind alle Abonnement-Funktionen (Tutor-Chat, Sprachgespräche, Hör- und Leseübungen) für alle Benutzer nicht verfügbar."
+    "maintenanceDesc": "Wenn aktiviert, sind alle Abonnement-Funktionen (Tutor-Chat, Sprachgespräche, Hör- und Leseübungen) für alle Benutzer nicht verfügbar.",
+    "cannotDeactivateSelf": "Eigenes Konto kann nicht deaktiviert werden",
+    "cannotDeleteSelf": "Eigenes Konto kann nicht gelöscht werden"
   },
   "faq": {
     "title": "FAQ",
@@ -974,7 +976,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.6.4",
+    "version": "v1.6.5",
     "cta": "Verstanden",
     "entry1": {
       "label": "Verbesserungen am Lernplan",

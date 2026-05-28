@@ -155,9 +155,7 @@ class LLMAdapter:
 
         raise last_error
 
-    async def chat(
-        self, messages: list[dict], stream: bool = False
-    ) -> str | AsyncGenerator:
+    async def chat(self, messages: list[dict], stream: bool = False) -> str | AsyncGenerator:
         return await self._call_with_retry(self._do_chat, messages, stream)
 
     async def _do_chat(self, messages: list[dict], stream: bool = False):
@@ -190,22 +188,22 @@ class LLMAdapter:
             raise LLMResponseError("LLM returned empty response")
         return content
 
-    async def structured_output(
-        self, messages: list[dict], schema: type[BaseModel]
-    ) -> BaseModel:
+    async def structured_output(self, messages: list[dict], schema: type[BaseModel]) -> BaseModel:
         # Use JSON mode for all providers — more reliable across versions
         return await self._structured_via_json(messages, schema)
 
     async def _structured_via_json(
         self, messages: list[dict], schema: type[BaseModel]
     ) -> BaseModel:
-        messages_with_format = messages + [{
-            "role": "system",
-            "content": (
-                "IMPORTANT: Respond with ONLY a valid JSON object. "
-                "No markdown, no code fences, no extra text."
-            ),
-        }]
+        messages_with_format = messages + [
+            {
+                "role": "system",
+                "content": (
+                    "IMPORTANT: Respond with ONLY a valid JSON object. "
+                    "No markdown, no code fences, no extra text."
+                ),
+            }
+        ]
 
         raw = await self._call_with_retry(self._do_chat, messages_with_format, False)
 
@@ -219,13 +217,15 @@ class LLMAdapter:
         try:
             return schema.model_validate(json.loads(cleaned))
         except (json.JSONDecodeError, ValueError) as e:
-            retry_messages = messages_with_format + [{
-                "role": "user",
-                "content": (
-                    f"That response was not valid JSON. Error: {str(e)}. "
-                    "Please return ONLY the JSON object."
-                ),
-            }]
+            retry_messages = messages_with_format + [
+                {
+                    "role": "user",
+                    "content": (
+                        f"That response was not valid JSON. Error: {str(e)}. "
+                        "Please return ONLY the JSON object."
+                    ),
+                }
+            ]
             try:
                 raw2 = await self._call_with_retry(self._do_chat, retry_messages, False)
                 cleaned2 = (
@@ -239,7 +239,7 @@ class LLMAdapter:
             except Exception as e2:
                 raise LLMResponseError(
                     f"Failed to parse JSON after retry: {str(e2)}",
-                    raw_response=raw2 if 'raw2' in locals() else raw,
+                    raw_response=raw2 if "raw2" in locals() else raw,
                 ) from e2
 
     async def _anthropic_chat(self, messages: list[dict], stream: bool = False):
@@ -281,9 +281,7 @@ class LLMAdapter:
                 "anthropic is unreachable. Check that the service is running."
             ) from e
         except _anthropic.RateLimitError as e:
-            raise LLMUnavailableError(
-                "anthropic rate limit exceeded. Try again later."
-            ) from e
+            raise LLMUnavailableError("anthropic rate limit exceeded. Try again later.") from e
         except _anthropic.APIStatusError as e:
             raise LLMError(f"anthropic error: {e}") from e
 

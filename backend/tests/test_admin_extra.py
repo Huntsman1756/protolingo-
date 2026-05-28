@@ -1,10 +1,11 @@
 """Extra admin tests: GET /users/{id}/stats and GET /users/{id}/quota."""
+
 from __future__ import annotations
 
 import pytest
 
-
 # ── GET /api/admin/users/{id}/stats ──────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_admin_user_stats_zero_for_new_user(client, admin_user, test_user):
@@ -27,7 +28,9 @@ async def test_admin_user_stats_zero_for_new_user(client, admin_user, test_user)
 
 
 @pytest.mark.asyncio
-async def test_admin_user_stats_reflects_completed_lesson(client, admin_user, test_user, db_session):
+async def test_admin_user_stats_reflects_completed_lesson(
+    client, admin_user, test_user, db_session
+):
     """After completing a lesson, lessons_completed increments to 1."""
     _, admin_headers = admin_user
     user, _ = test_user
@@ -91,6 +94,7 @@ async def test_admin_user_stats_requires_admin(client, test_user):
 
 
 # ── GET /api/admin/users/{id}/quota ──────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_admin_user_quota_returns_fields(client, admin_user, test_user):

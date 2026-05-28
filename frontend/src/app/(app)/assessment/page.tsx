@@ -67,7 +67,8 @@ export default function AssessmentPage() {
   const [existingPlan, setExistingPlan] = useState<ExistingPlan | null>(null)
   const [error, setError] = useState('')
 
-  const [currentQuestion, setCurrentQuestion] = useState<AssessmentQuestion | null>(null)
+  const [currentQuestion, setCurrentQuestion] =
+    useState<AssessmentQuestion | null>(null)
   const [questionNumber, setQuestionNumber] = useState(0)
   const [answers, setAnswers] = useState<AnswerRecord[]>([])
   const [usedIds] = useState<Set<string>>(() => new Set())
@@ -79,8 +80,13 @@ export default function AssessmentPage() {
   const [selectedLevel, setSelectedLevel] = useState<CEFRLevel>('A1')
   const [evaluating, setEvaluating] = useState(false)
 
-  const [durationOption, setDurationOption] = useState<DurationOption>(DURATION_OPTIONS[2])
-  const [selectedGoals, setSelectedGoals] = useState<string[]>(['grammar', 'vocabulary'])
+  const [durationOption, setDurationOption] = useState<DurationOption>(
+    DURATION_OPTIONS[2]
+  )
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([
+    'grammar',
+    'vocabulary',
+  ])
   const [submitting, setSubmitting] = useState(false)
 
   // Warning dialog shown before the adaptive quiz starts
@@ -98,7 +104,9 @@ export default function AssessmentPage() {
             return
           }
         }
-      } catch { /* no plan */ }
+      } catch {
+        /* no plan */
+      }
       setStep('beginner-gate')
     }
     void check()
@@ -186,7 +194,9 @@ export default function AssessmentPage() {
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
-        throw new Error((d as { detail?: string }).detail ?? `Error ${res.status}`)
+        throw new Error(
+          (d as { detail?: string }).detail ?? `Error ${res.status}`
+        )
       }
       const data = (await res.json()) as AssessmentResult
       setResult(data)
@@ -219,7 +229,9 @@ export default function AssessmentPage() {
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
-        throw new Error((d as { detail?: string }).detail ?? `Error ${res.status}`)
+        throw new Error(
+          (d as { detail?: string }).detail ?? `Error ${res.status}`
+        )
       }
       router.push('/plan')
     } catch (err) {
@@ -229,10 +241,13 @@ export default function AssessmentPage() {
   }
 
   // ── Loading ────────────────────────────────────────────────────────────────
-  if (step === 'checking' || (step === 'quiz' && (evaluating || !currentQuestion))) {
+  if (
+    step === 'checking' ||
+    (step === 'quiz' && (evaluating || !currentQuestion))
+  ) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
           {evaluating ? t('evaluating') : tCommon('loading')}
         </span>
       </div>
@@ -241,48 +256,53 @@ export default function AssessmentPage() {
 
   // ── Existing plan ─────────────────────────────────────────────────────────
   if (step === 'existing' && existingPlan) {
-    const assessedDate = new Date(existingPlan.created_at).toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
+    const assessedDate = new Date(existingPlan.created_at).toLocaleDateString(
+      undefined,
+      {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }
+    )
     return (
       <div className="flex min-h-[60vh] items-center justify-center p-6">
-        <div className="w-full max-w-md border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+        <div className="border-fl-border bg-fl-surface w-full max-w-md border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
             <span className="text-fl-label text-fl-muted-3">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t('title')}
             </span>
           </div>
-          <div className="p-8 text-center space-y-6">
+          <div className="space-y-6 p-8 text-center">
             <div>
-              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">
+              <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
                 {t('currentLevel')}
               </p>
-              <p className="font-mono text-6xl font-bold text-fl-fg tracking-widest">
+              <p className="text-fl-fg font-mono text-6xl font-bold tracking-widest">
                 {existingPlan.cefr_level}
               </p>
             </div>
-            <div className="border border-fl-border py-3">
-              <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
+            <div className="border-fl-border border py-3">
+              <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
                 {t('assessedOn')}
               </p>
-              <p className="font-mono text-xs text-fl-muted-1 mt-1">{assessedDate}</p>
+              <p className="text-fl-muted-1 mt-1 font-mono text-xs">
+                {assessedDate}
+              </p>
             </div>
-            <p className="font-mono text-fl-label text-fl-muted-3 leading-relaxed">
+            <p className="text-fl-label text-fl-muted-3 font-mono leading-relaxed">
               {t('alreadyHasPlan')}
             </p>
             <div className="flex gap-2">
               <button
                 onClick={() => router.push('/dashboard')}
-                className="flex-1 border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+                className="border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
               >
                 ← {tCommon('backToDashboard')}
               </button>
               <button
                 onClick={() => setStep('beginner-gate')}
-                className="flex-[2] bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 flex-[2] py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
               >
                 — {t('retake')}
               </button>
@@ -346,58 +366,63 @@ export default function AssessmentPage() {
     const levelChanged = selectedLevel !== aiLevel
     return (
       <div className="flex min-h-[60vh] items-center justify-center p-6">
-        <div className="w-full max-w-md border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+        <div className="border-fl-border bg-fl-surface w-full max-w-md border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
             <span className="text-fl-label text-fl-muted-3">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t('resultStep')}
             </span>
           </div>
-          <div className="p-8 text-center space-y-6">
+          <div className="space-y-6 p-8 text-center">
             <div>
-              <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">
+              <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
                 {t('cefrLevel')}
               </p>
-              <p className="font-mono text-6xl font-bold text-fl-fg tracking-widest">{aiLevel}</p>
+              <p className="text-fl-fg font-mono text-6xl font-bold tracking-widest">
+                {aiLevel}
+              </p>
             </div>
-            <div className="border border-fl-border py-3">
-              <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">{tCommon('score')}</p>
-              <p className="font-mono text-2xl text-fl-fg-2 mt-1">{score}%</p>
+            <div className="border-fl-border border py-3">
+              <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+                {tCommon('score')}
+              </p>
+              <p className="text-fl-fg-2 mt-1 font-mono text-2xl">{score}%</p>
             </div>
             <div>
-              <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
+              <p className="text-fl-hint text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
                 {t('overrideLevel')}
               </p>
-              <div className="flex gap-1 justify-center flex-wrap">
+              <div className="flex flex-wrap justify-center gap-1">
                 {CEFR_LEVELS.map((lvl) => (
                   <button
                     key={lvl}
                     onClick={() => setSelectedLevel(lvl)}
-                    className={`px-3 py-1.5 font-mono text-xs font-bold tracking-widest border transition-colors ${selectedLevel === lvl
+                    className={`border px-3 py-1.5 font-mono text-xs font-bold tracking-widest transition-colors ${
+                      selectedLevel === lvl
                         ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                         : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                      }`}
+                    }`}
                   >
                     {lvl}
                   </button>
                 ))}
               </div>
               {levelChanged && (
-                <p className="font-mono text-fl-hint text-fl-muted-1 mt-2">
+                <p className="text-fl-hint text-fl-muted-1 mt-2 font-mono">
                   {t('suggestedLevel', { aiLevel, selectedLevel })}
                 </p>
               )}
             </div>
             {result.strengths.length > 0 && (
               <div>
-                <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
+                <p className="text-fl-hint text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
                   {t('strengths')}
                 </p>
-                <div className="flex flex-wrap gap-1 justify-center">
+                <div className="flex flex-wrap justify-center gap-1">
                   {result.strengths.map((s) => (
                     <span
                       key={s}
-                      className="border border-fl-border px-3 py-1 font-mono text-fl-label text-fl-muted-1 uppercase tracking-widest"
+                      className="border-fl-border text-fl-label text-fl-muted-1 border px-3 py-1 font-mono tracking-widest uppercase"
                     >
                       {s}
                     </span>
@@ -407,14 +432,14 @@ export default function AssessmentPage() {
             )}
             {result.weaknesses.length > 0 && (
               <div>
-                <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
+                <p className="text-fl-hint text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
                   {t('needsWork')}
                 </p>
-                <div className="flex flex-wrap gap-1 justify-center">
+                <div className="flex flex-wrap justify-center gap-1">
                   {result.weaknesses.map((w) => (
                     <span
                       key={w}
-                      className="border border-fl-error/30 px-3 py-1 font-mono text-fl-label text-fl-error-dim uppercase tracking-widest"
+                      className="border-fl-error/30 text-fl-label text-fl-error-dim border px-3 py-1 font-mono tracking-widest uppercase"
                     >
                       {w}
                     </span>
@@ -423,13 +448,13 @@ export default function AssessmentPage() {
               </div>
             )}
             {error && (
-              <div className="border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error-fg">
+              <div className="border-fl-error/40 text-fl-error-fg border px-4 py-3 font-mono text-xs">
                 ✕ {error}
               </div>
             )}
             <button
               onClick={() => setStep('duration')}
-              className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
+              className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
             >
               — {t('createPlan')} →
             </button>
@@ -448,7 +473,9 @@ export default function AssessmentPage() {
         onSelectDuration={setDurationOption}
         onToggleGoal={(goal) =>
           setSelectedGoals((prev) =>
-            prev.includes(goal) ? prev.filter((g) => g !== goal) : [...prev, goal],
+            prev.includes(goal)
+              ? prev.filter((g) => g !== goal)
+              : [...prev, goal]
           )
         }
         onConfirm={handleComplete}

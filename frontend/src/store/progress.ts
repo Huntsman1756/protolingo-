@@ -82,4 +82,3 @@ export const useProgressStore = create<ProgressStore>((set) => ({
   unlockLevelTest: () => set({ levelTestUnlocked: true }),
   setLevelTestResult: (result) => set({ levelTestResult: result }),
 }))
-

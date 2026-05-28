@@ -66,11 +66,13 @@ def _extract_grammar_related_refs(src: str) -> set[str]:
 
 def _extract_vocabulary_const_names(src: str) -> set[str]:
     """Extract names of all `const <name>: VocabularySet = {` declarations."""
-    return set(re.findall(
-        r"^const\s+([a-z][a-z0-9_]+)\s*:\s*VocabularySet\s*=",
-        src,
-        re.MULTILINE,
-    ))
+    return set(
+        re.findall(
+            r"^const\s+([a-z][a-z0-9_]+)\s*:\s*VocabularySet\s*=",
+            src,
+            re.MULTILINE,
+        )
+    )
 
 
 def _extract_vocabulary_export_names(src: str) -> set[str]:
@@ -100,9 +102,10 @@ def test_curriculum_grammar_refs_all_defined() -> None:
     referenced = _extract_curriculum_grammar_refs(_read(CURRICULUM_FILE))
 
     missing = referenced - defined
-    assert not missing, (
-        f"curriculum.ts references {len(missing)} undefined grammar slug(s):\n"
-        + "\n".join(f"  - {s}" for s in sorted(missing))
+    assert (
+        not missing
+    ), f"curriculum.ts references {len(missing)} undefined grammar slug(s):\n" + "\n".join(
+        f"  - {s}" for s in sorted(missing)
     )
 
 
@@ -112,9 +115,10 @@ def test_curriculum_vocab_refs_all_defined() -> None:
     referenced = _extract_curriculum_vocab_refs(_read(CURRICULUM_FILE))
 
     missing = referenced - defined
-    assert not missing, (
-        f"curriculum.ts references {len(missing)} undefined vocabulary set ID(s):\n"
-        + "\n".join(f"  - {s}" for s in sorted(missing))
+    assert (
+        not missing
+    ), f"curriculum.ts references {len(missing)} undefined vocabulary set ID(s):\n" + "\n".join(
+        f"  - {s}" for s in sorted(missing)
     )
 
 
@@ -154,9 +158,8 @@ def test_grammar_slug_uniqueness() -> None:
         if slug in seen:
             duplicates.append(slug)
         seen.add(slug)
-    assert not duplicates, (
-        f"Duplicate grammar slug(s) found:\n"
-        + "\n".join(f"  - {s}" for s in sorted(set(duplicates)))
+    assert not duplicates, "Duplicate grammar slug(s) found:\n" + "\n".join(
+        f"  - {s}" for s in sorted(set(duplicates))
     )
 
 
@@ -170,9 +173,8 @@ def test_vocabulary_id_uniqueness() -> None:
         if vid in seen:
             duplicates.append(vid)
         seen.add(vid)
-    assert not duplicates, (
-        f"Duplicate vocabulary set ID(s) found:\n"
-        + "\n".join(f"  - {s}" for s in sorted(set(duplicates)))
+    assert not duplicates, "Duplicate vocabulary set ID(s) found:\n" + "\n".join(
+        f"  - {s}" for s in sorted(set(duplicates))
     )
 
 
@@ -189,7 +191,6 @@ def test_curriculum_unit_id_uniqueness() -> None:
         if uid in seen:
             duplicates.append(uid)
         seen.add(uid)
-    assert not duplicates, (
-        f"Duplicate curriculum unit ID(s) found:\n"
-        + "\n".join(f"  - {s}" for s in sorted(set(duplicates)))
+    assert not duplicates, "Duplicate curriculum unit ID(s) found:\n" + "\n".join(
+        f"  - {s}" for s in sorted(set(duplicates))
     )

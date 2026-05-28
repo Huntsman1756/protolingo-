@@ -40,7 +40,8 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(0)
-  const [search, setSearch] = useState('')
+  const [searchInput, setSearchInput] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
   const [subscriptionFilter, setSubscriptionFilter] = useState('')
   const PAGE_SIZE = 10
   const [loading, setLoading] = useState(true)
@@ -60,53 +61,56 @@ export default function AdminUsersPage() {
   const maintenanceMode = useConfigStore((s) => s.maintenanceMode)
   const [maintenanceLoading, setMaintenanceLoading] = useState(false)
 
-  const loadUsers = useCallback(async (pageIndex: number, query: string, subscription: string) => {
-    setLoading(true)
-    try {
-      const qs = query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''
-      const ss = subscription ? `&subscription=${encodeURIComponent(subscription)}` : ''
-      const res = await apiFetch(
-        `/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}${qs}${ss}`
-      )
-      if (res.ok) {
-        const data = await res.json()
-        setUsers(data.items)
-        setTotal(data.total)
-      } else if (res.status === 403) {
-        setError('Admin access required')
+  const loadUsers = useCallback(
+    async (pageIndex: number, query: string, subscription: string) => {
+      setLoading(true)
+      try {
+        const qs = query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''
+        const ss = subscription
+          ? `&subscription=${encodeURIComponent(subscription)}`
+          : ''
+        const res = await apiFetch(
+          `/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}${qs}${ss}`
+        )
+        if (res.ok) {
+          const data = await res.json()
+          setUsers(data.items)
+          setTotal(data.total)
+        } else if (res.status === 403) {
+          setError('Admin access required')
+        }
+      } catch {
+        setError('Failed to load users')
+      } finally {
+        setLoading(false)
       }
-    } catch {
-      setError('Failed to load users')
-    } finally {
-      setLoading(false)
-    }
-  }, [])
+    },
+    []
+  )
 
   // Page changes (e.g. pagination buttons) fire immediately.
   useEffect(() => {
-    loadUsers(page, search, subscriptionFilter)
+    loadUsers(page, searchTerm, subscriptionFilter)
   }, [loadUsers, page]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Search changes: debounce 300 ms then reset to page 0 (or reload if already on 0).
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (page !== 0) {
-        setPage(0) // triggers the page effect above
-      } else {
-        loadUsers(0, search, subscriptionFilter) // already on page 0 — call directly
-      }
-    }, 300)
-    return () => clearTimeout(timer)
-  }, [search]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Subscription filter changes: reset to page 0 immediately (select, no debounce needed).
+  // Subscription filter changes: reset to page 0 immediately.
   useEffect(() => {
     if (page !== 0) {
       setPage(0)
     } else {
-      loadUsers(0, search, subscriptionFilter)
+      loadUsers(0, searchTerm, subscriptionFilter)
     }
   }, [subscriptionFilter]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  function handleSearch() {
+    const term = searchInput
+    setSearchTerm(term)
+    if (page !== 0) {
+      setPage(0)
+    } else {
+      loadUsers(0, term, subscriptionFilter)
+    }
+  }
 
   async function createUser(e: React.FormEvent) {
     e.preventDefault()
@@ -127,7 +131,7 @@ export default function AdminUsersPage() {
         native_language: 'es',
         role: 'user',
       })
-      await loadUsers(page, search, subscriptionFilter)
+      await loadUsers(page, searchTerm, subscriptionFilter)
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to create user')
     }
@@ -139,7 +143,7 @@ export default function AdminUsersPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ is_active: !user.is_active }),
     })
-    await loadUsers(page, search, subscriptionFilter)
+    await loadUsers(page, searchTerm, subscriptionFilter)
   }
 
   async function deleteUser(user: AdminUserItem) {
@@ -158,7 +162,7 @@ export default function AdminUsersPage() {
       if (targetPage !== page) {
         setPage(targetPage)
       } else {
-        await loadUsers(targetPage, search, subscriptionFilter)
+        await loadUsers(targetPage, searchTerm, subscriptionFilter)
       }
     }
   }
@@ -402,17 +406,41 @@ export default function AdminUsersPage() {
           <input
             type="search"
             placeholder={t('searchPlaceholder')}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleSearch()
+            }}
             autoCorrect="off"
             autoCapitalize="none"
             spellCheck={false}
             className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 flex-1 border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
           />
+          <button
+            type="button"
+            onClick={handleSearch}
+            className="bg-fl-bg border-fl-border text-fl-muted-3 hover:text-fl-fg hover:border-fl-border-2 shrink-0 border px-3 py-2 transition-colors"
+            aria-label="Search"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </button>
           <select
             value={subscriptionFilter}
             onChange={(e) => setSubscriptionFilter(e.target.value)}
-            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 shrink-0 border px-4 py-2 font-mono text-xs transition-colors focus:outline-none appearance-none"
+            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 shrink-0 appearance-none border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
           >
             <option value="">{tCommon('all')}</option>
             <option value="none">{tBilling('statusNone')}</option>
@@ -467,7 +495,7 @@ export default function AdminUsersPage() {
                       </span>
                     )}
                     {u.subscription_status === 'canceled' && (
-                      <span className="text-fl-hint border border-fl-border px-2 py-0.5 font-mono tracking-widest text-fl-muted-2 uppercase">
+                      <span className="text-fl-hint border-fl-border text-fl-muted-2 border px-2 py-0.5 font-mono tracking-widest uppercase">
                         {tBilling('statusCanceled')}
                       </span>
                     )}
@@ -487,10 +515,20 @@ export default function AdminUsersPage() {
                   </Link>
                   <button
                     onClick={() => toggleActive(u)}
-                    className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${u.is_active
-                        ? 'border-fl-error/30 text-fl-error-fg hover:border-fl-error'
-                        : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
+                    disabled={u.id === currentUserId}
+                    className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${u.id === currentUserId
+                        ? 'cursor-not-allowed opacity-20'
+                        : u.is_active
+                          ? 'border-fl-error/30 text-fl-error-fg hover:border-fl-error'
+                          : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
                       }`}
+                    title={
+                      u.id === currentUserId
+                        ? t('cannotDeactivateSelf')
+                        : u.is_active
+                          ? t('deactivate')
+                          : t('activate')
+                    }
                   >
                     {u.is_active ? t('deactivate') : t('activate')}
                   </button>
@@ -500,7 +538,7 @@ export default function AdminUsersPage() {
                     className="border-fl-error/30 text-fl-label text-fl-error-fg hover:border-fl-error hover:text-fl-error border px-3 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
                     title={
                       u.id === currentUserId
-                        ? 'Cannot delete your own account'
+                        ? t('cannotDeleteSelf')
                         : 'Delete user'
                     }
                   >

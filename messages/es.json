@@ -719,7 +719,9 @@
     "maintenanceOn": "ACTIVO",
     "maintenanceEnable": "Activar Mantenimiento",
     "maintenanceDisable": "Desactivar Mantenimiento",
-    "maintenanceDesc": "Al activarse, todas las funciones de suscripción (chat, conversaciones de voz, ejercicios de listening y reading) estarán bloqueadas para todos los usuarios."
+    "maintenanceDesc": "Al activarse, todas las funciones de suscripción (chat, conversaciones de voz, ejercicios de listening y reading) estarán bloqueadas para todos los usuarios.",
+    "cannotDeactivateSelf": "No puedes desactivar tu propia cuenta",
+    "cannotDeleteSelf": "No puedes eliminar tu propia cuenta"
   },
   "faq": {
     "title": "FAQ",
@@ -974,7 +976,7 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.6.4",
+    "version": "v1.6.5",
     "cta": "Entendido",
     "entry1": {
       "label": "Mejoras en el plan de estudio",

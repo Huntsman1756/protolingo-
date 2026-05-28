@@ -178,14 +178,10 @@ async def generate_and_save_exercise(
     return exercise
 
 
-def calculate_score(
-    questions: list[dict[str, Any]], answers: dict[str, str]
-) -> tuple[int, int]:
+def calculate_score(questions: list[dict[str, Any]], answers: dict[str, str]) -> tuple[int, int]:
     """Return (score 0–5, xp_earned). Pure function — no DB access."""
     score = sum(
-        1
-        for q in questions
-        if answers.get(str(q["index"]), "").upper() == q["correct"].upper()
+        1 for q in questions if answers.get(str(q["index"]), "").upper() == q["correct"].upper()
     )
     return score, score * XP_PER_CORRECT_ANSWER
 
@@ -254,9 +250,7 @@ async def get_user_history(
 ) -> tuple[list[tuple[ListeningAttempt, ListeningExercise]], int]:
     """Return (rows, total) for paginated attempt history, newest first."""
     total_result = await db.execute(
-        select(func.count(ListeningAttempt.id)).where(
-            ListeningAttempt.user_id == user_id
-        )
+        select(func.count(ListeningAttempt.id)).where(ListeningAttempt.user_id == user_id)
     )
     total: int = total_result.scalar_one()
 

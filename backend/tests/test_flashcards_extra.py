@@ -1,4 +1,5 @@
 """Extra flashcard tests: GET /all and POST /generate (LLM bulk generation)."""
+
 from __future__ import annotations
 
 from unittest.mock import AsyncMock, patch
@@ -7,8 +8,8 @@ import pytest
 
 from app.schemas.flashcards import FlashcardGenerateResponse, GeneratedFlashcard
 
-
 # ── GET /api/flashcards/all ───────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_get_all_flashcards_empty(client, test_user):
@@ -25,6 +26,7 @@ async def test_get_all_flashcards_returns_non_due_cards(client, test_user, db_se
     user, headers = test_user
 
     from datetime import date, timedelta
+
     from app.models.flashcard import Flashcard
 
     # Card with a future review date (not "due" yet)
@@ -69,13 +71,15 @@ async def test_get_all_excludes_other_users_cards(client, test_user, db_session)
     db_session.add(other)
     await db_session.flush()
 
-    db_session.add(Flashcard(
-        user_id=other.id,
-        word="foreignword",
-        definition="def",
-        example_sentence="ex.",
-        translation="t",
-    ))
+    db_session.add(
+        Flashcard(
+            user_id=other.id,
+            word="foreignword",
+            definition="def",
+            example_sentence="ex.",
+            translation="t",
+        )
+    )
     await db_session.commit()
 
     response = await client.get("/api/flashcards/all", headers=headers)
@@ -136,11 +140,11 @@ async def test_generate_flashcards_success(client, test_user, db_session):
     assert "ubiquitous" in words
 
     # Verify cards were persisted
-    from app.models.flashcard import Flashcard
     from sqlalchemy import select
-    result = await db_session.execute(
-        select(Flashcard).where(Flashcard.user_id == user.id)
-    )
+
+    from app.models.flashcard import Flashcard
+
+    result = await db_session.execute(select(Flashcard).where(Flashcard.user_id == user.id))
     saved = result.scalars().all()
     assert len(saved) == 2
 

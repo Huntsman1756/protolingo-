@@ -3,6 +3,7 @@
 These functions are the single source of truth for subscription access control.
 When STRIPE_ENABLED=false every user is considered subscribed (self-hosted mode).
 """
+
 from __future__ import annotations
 
 from sqlalchemy.ext.asyncio import AsyncSession

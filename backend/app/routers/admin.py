@@ -1,7 +1,6 @@
 import secrets
 import uuid
-
-from typing import Literal, Optional
+from typing import Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from redis.asyncio import Redis
@@ -46,20 +45,18 @@ async def list_users(
     skip: int = Query(default=0, ge=0),
     limit: int = Query(default=10, ge=1, le=100),
     q: str = Query(default="", max_length=100),
-    subscription: Optional[Literal["none", "trialing", "active", "past_due", "canceled"]] = Query(default=None),
+    subscription: Literal["none", "trialing", "active", "past_due", "canceled"] | None = Query(
+        default=None
+    ),
 ):
     base = select(User)
     if q.strip():
         pattern = f"%{q.strip()}%"
-        base = base.where(
-            User.username.ilike(pattern) | User.email.ilike(pattern)
-        )
+        base = base.where(User.username.ilike(pattern) | User.email.ilike(pattern))
     if subscription:
         base = base.where(User.subscription_status == subscription)
     total = await db.scalar(select(func.count()).select_from(base.subquery()))
-    result = await db.execute(
-        base.order_by(User.username.asc()).offset(skip).limit(limit)
-    )
+    result = await db.execute(base.order_by(User.username.asc()).offset(skip).limit(limit))
     return PaginatedAdminUsersResponse(
         items=result.scalars().all(),
         total=total or 0,
@@ -75,9 +72,7 @@ async def create_user(
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
 ):
-    existing = await db.execute(
-        select(User).where(User.username == data.username)
-    )
+    existing = await db.execute(select(User).where(User.username == data.username))
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="Username already taken")
 
@@ -97,7 +92,9 @@ async def create_user(
     if user.email and settings.EMAIL_ENABLED:
         verify_token = str(uuid.uuid4())
         await redis.setex(f"verify_email:{verify_token}", 86400, str(user.id))
-        await email_service.send_verification_email(user.email, user.display_name, verify_token, locale=user.native_language)
+        await email_service.send_verification_email(
+            user.email, user.display_name, verify_token, locale=user.native_language
+        )
 
     return user
 
@@ -122,11 +119,14 @@ async def get_user_stats(
     plan = plan_result.scalar_one_or_none()
 
     # Lessons completed across all study plans of this user
-    lessons_done = await db.scalar(
-        select(func.count(Lesson.id))
-        .join(StudyPlan, Lesson.study_plan_id == StudyPlan.id)
-        .where(StudyPlan.user_id == user_id, Lesson.is_completed.is_(True))
-    ) or 0
+    lessons_done = (
+        await db.scalar(
+            select(func.count(Lesson.id))
+            .join(StudyPlan, Lesson.study_plan_id == StudyPlan.id)
+            .where(StudyPlan.user_id == user_id, Lesson.is_completed.is_(True))
+        )
+        or 0
+    )
 
     # XP total, streak, active days, exercises
     progress_agg = await db.execute(
@@ -141,11 +141,14 @@ async def get_user_stats(
     prog = progress_agg.one()
 
     # Tutor chat messages sent by the user (role="user")
-    chat_count = await db.scalar(
-        select(func.count(ChatHistory.id)).where(
-            ChatHistory.user_id == user_id, ChatHistory.role == "user"
+    chat_count = (
+        await db.scalar(
+            select(func.count(ChatHistory.id)).where(
+                ChatHistory.user_id == user_id, ChatHistory.role == "user"
+            )
         )
-    ) or 0
+        or 0
+    )
 
     # Token consumption grouped by source
     token_rows = await db.execute(
@@ -205,6 +208,8 @@ async def update_user(
     if data.role is not None:
         user.role = data.role
     if data.is_active is not None:
+        if not data.is_active and user.id == admin.id:
+            raise HTTPException(status_code=400, detail="Cannot deactivate yourself")
         user.is_active = data.is_active
     if data.is_verified is not None:
         user.is_verified = data.is_verified
@@ -238,6 +243,7 @@ async def get_user_quota(
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     from app.services.quota_service import get_quota_status  # noqa: PLC0415
+
     return await get_quota_status(
         redis,
         user_id,
