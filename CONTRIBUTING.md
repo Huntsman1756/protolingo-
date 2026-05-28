@@ -2,6 +2,8 @@
 
 Thank you for your interest in contributing. Please read these guidelines before opening issues or pull requests.
 
+> **Note:** **External code contributions (pull requests) are temporarily not being accepted.** Bug reports and feature suggestions via issues are still welcome. This is a temporary measure — check back later for updates.
+
 ## Code of Conduct
 
 This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating you agree to abide by its terms. Report unacceptable behavior to [contacto@arturocarreterocalvo.com](mailto:contacto@arturocarreterocalvo.com).
@@ -88,4 +90,4 @@ docker compose exec backend alembic upgrade head
 
 ## Contributor License Agreement
 
-Al abrir una pull request aceptas el [Acuerdo de Licencia de Contribuidor](CONTRIBUTOR_LICENSE_AGREEMENT.md). En esencia, otorgas a Arturo Carretero Calvo permiso para licenciar tus contribuciones bajo cualquier término que considere oportuno, lo que permite mantener la opción de ofrecer el proyecto bajo licencias comerciales además de la AGPL-3.0.
+By opening a pull request you accept the [Contributor License Agreement](CONTRIBUTOR_LICENSE_AGREEMENT.md). In essence, you grant Arturo Carretero Calvo permission to license your contributions under any terms deemed appropriate, which preserves the option to offer the project under commercial licences in addition to AGPL-3.0.

@@ -430,7 +430,7 @@ function DetailView({
             onChange={(e) => setCommentBody(e.target.value)}
             placeholder={t('commentPlaceholder')}
             maxLength={2000}
-            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full resize-y min-h-[50px] border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 min-h-[50px] w-full resize-y border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
           />
           <button
             type="submit"
