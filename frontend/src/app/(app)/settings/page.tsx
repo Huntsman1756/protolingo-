@@ -13,7 +13,17 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { useConfigStore } from '@/store/config'
 import { isSubscribed } from '@/store/auth'
 
-const OPENAI_VOICES = ['alloy', 'ash', 'coral', 'echo', 'fable', 'nova', 'onyx', 'sage', 'shimmer'] as const
+const OPENAI_VOICES = [
+  'alloy',
+  'ash',
+  'coral',
+  'echo',
+  'fable',
+  'nova',
+  'onyx',
+  'sage',
+  'shimmer',
+] as const
 const TTS_VOICE_STORAGE_KEY = 'tts_voice'
 
 interface QuotaStatus {
@@ -31,7 +41,17 @@ interface QuotaStatus {
   tokens_unlimited: boolean
 }
 
-const LANGUAGES = ['es', 'fr', 'pt', 'de', 'it', 'pl', 'nl', 'ro', 'ru'] as const
+const LANGUAGES = [
+  'es',
+  'fr',
+  'pt',
+  'de',
+  'it',
+  'pl',
+  'nl',
+  'ro',
+  'ru',
+] as const
 
 export default function SettingsPage() {
   const t = useTranslations('settings')
@@ -57,9 +77,14 @@ export default function SettingsPage() {
   // Initialise selected voice from localStorage once config is loaded
   useEffect(() => {
     if (ttsProvider !== 'openai') return
-    const stored = typeof window !== 'undefined' ? localStorage.getItem(TTS_VOICE_STORAGE_KEY) : null
+    const stored =
+      typeof window !== 'undefined'
+        ? localStorage.getItem(TTS_VOICE_STORAGE_KEY)
+        : null
     const voices: readonly string[] = OPENAI_VOICES
-    setSelectedVoice(stored && voices.includes(stored) ? stored : openaiTtsVoice || 'nova')
+    setSelectedVoice(
+      stored && voices.includes(stored) ? stored : openaiTtsVoice || 'nova'
+    )
   }, [ttsProvider, openaiTtsVoice])
 
   function selectVoice(voice: string) {
@@ -120,12 +145,20 @@ export default function SettingsPage() {
   const [bio, setBio] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
+  const [message, setMessage] = useState<{
+    type: 'ok' | 'err'
+    text: string
+  } | null>(null)
   const [saving, setSaving] = useState(false)
 
   const [convMaxDuration, setConvMaxDuration] = useState<900 | 1800>(1800)
-  const [convInactivityTimeout, setConvInactivityTimeout] = useState<60 | 180 | 300>(180)
-  const [convMessage, setConvMessage] = useState<{ type: 'ok' | 'err'; text: string } | null>(null)
+  const [convInactivityTimeout, setConvInactivityTimeout] = useState<
+    60 | 180 | 300
+  >(180)
+  const [convMessage, setConvMessage] = useState<{
+    type: 'ok' | 'err'
+    text: string
+  } | null>(null)
   const [savingConv, setSavingConv] = useState(false)
 
   const [logoutConfirm, setLogoutConfirm] = useState(false)
@@ -147,13 +180,23 @@ export default function SettingsPage() {
         URL.revokeObjectURL(url)
         let { width, height } = img
         if (width > maxPx || height > maxPx) {
-          if (width > height) { height = Math.round((height * maxPx) / width); width = maxPx }
-          else { width = Math.round((width * maxPx) / height); height = maxPx }
+          if (width > height) {
+            height = Math.round((height * maxPx) / width)
+            width = maxPx
+          } else {
+            width = Math.round((width * maxPx) / height)
+            height = maxPx
+          }
         }
         const canvas = document.createElement('canvas')
-        canvas.width = width; canvas.height = height
+        canvas.width = width
+        canvas.height = height
         canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
-        canvas.toBlob((b) => b ? resolve(b) : reject(new Error()), file.type, 0.9)
+        canvas.toBlob(
+          (b) => (b ? resolve(b) : reject(new Error())),
+          file.type,
+          0.9
+        )
       }
       img.onerror = reject
       img.src = url
@@ -178,7 +221,10 @@ export default function SettingsPage() {
       const blob = await resizeImage(file, 1024)
       const form = new FormData()
       form.append('file', blob, file.name)
-      const res = await apiFetch('/api/auth/me/avatar', { method: 'POST', body: form })
+      const res = await apiFetch('/api/auth/me/avatar', {
+        method: 'POST',
+        body: form,
+      })
       if (!res.ok) throw new Error()
       const updated = await res.json()
       setUser({ ...user!, avatar: updated.avatar })
@@ -210,7 +256,9 @@ export default function SettingsPage() {
       setNativeLanguage(user.native_language || 'es')
       setBio(user.bio || '')
       setConvMaxDuration((user.conversation_max_duration as 900 | 1800) || 1800)
-      setConvInactivityTimeout((user.conversation_inactivity_timeout as 60 | 180 | 300) || 180)
+      setConvInactivityTimeout(
+        (user.conversation_inactivity_timeout as 60 | 180 | 300) || 180
+      )
     }
   }, [user])
 
@@ -218,7 +266,9 @@ export default function SettingsPage() {
     apiFetch('/api/auth/quota')
       .then((r) => r.json())
       .then((data: QuotaStatus) => setQuota(data))
-      .catch(() => { /* silently ignore — quota section stays hidden */ })
+      .catch(() => {
+        /* silently ignore — quota section stays hidden */
+      })
   }, [])
 
   async function handleSave() {
@@ -243,12 +293,29 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null, bio: updated.bio ?? null, learning_goals: updated.learning_goals ?? [] })
+      setUser({
+        id: updated.id,
+        username: updated.username,
+        displayName: updated.display_name,
+        email: updated.email,
+        role: updated.role,
+        native_language: updated.native_language,
+        target_language: updated.target_language,
+        conversation_max_duration: updated.conversation_max_duration,
+        conversation_inactivity_timeout:
+          updated.conversation_inactivity_timeout,
+        avatar: updated.avatar ?? user?.avatar ?? null,
+        bio: updated.bio ?? null,
+        learning_goals: updated.learning_goals ?? [],
+      })
       setMessage({ type: 'ok', text: t('saved') })
       setPassword('')
       setConfirmPassword('')
     } catch (err: unknown) {
-      setMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
+      setMessage({
+        type: 'err',
+        text: err instanceof Error ? err.message : t('saveFailed'),
+      })
     } finally {
       setSaving(false)
     }
@@ -268,10 +335,27 @@ export default function SettingsPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({ id: updated.id, username: updated.username, displayName: updated.display_name, email: updated.email, role: updated.role, native_language: updated.native_language, target_language: updated.target_language, conversation_max_duration: updated.conversation_max_duration, conversation_inactivity_timeout: updated.conversation_inactivity_timeout, avatar: updated.avatar ?? user?.avatar ?? null, bio: updated.bio ?? null, learning_goals: updated.learning_goals ?? [] })
+      setUser({
+        id: updated.id,
+        username: updated.username,
+        displayName: updated.display_name,
+        email: updated.email,
+        role: updated.role,
+        native_language: updated.native_language,
+        target_language: updated.target_language,
+        conversation_max_duration: updated.conversation_max_duration,
+        conversation_inactivity_timeout:
+          updated.conversation_inactivity_timeout,
+        avatar: updated.avatar ?? user?.avatar ?? null,
+        bio: updated.bio ?? null,
+        learning_goals: updated.learning_goals ?? [],
+      })
       setConvMessage({ type: 'ok', text: t('conversationSaved') })
     } catch (err: unknown) {
-      setConvMessage({ type: 'err', text: err instanceof Error ? err.message : t('saveFailed') })
+      setConvMessage({
+        type: 'err',
+        text: err instanceof Error ? err.message : t('saveFailed'),
+      })
     } finally {
       setSavingConv(false)
     }
@@ -286,7 +370,9 @@ export default function SettingsPage() {
       const { url } = await res.json()
       window.location.href = url
     } catch (err) {
-      setPortalError(err instanceof Error ? err.message : tBilling('portalError'))
+      setPortalError(
+        err instanceof Error ? err.message : tBilling('portalError')
+      )
       setPortalLoading(false)
     }
   }
@@ -309,17 +395,23 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
+    <div className="mx-auto max-w-2xl p-6">
       {/* Header */}
-      <div className="mb-8 pb-4 border-b border-fl-border">
-        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-1">{t('sectionAccount')}</p>
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-fl-fg">{t('title')}</h1>
+      <div className="border-fl-border mb-8 border-b pb-4">
+        <p className="text-fl-label text-fl-muted-2 mb-1 font-mono tracking-widest uppercase">
+          {t('sectionAccount')}
+        </p>
+        <h1 className="text-fl-fg font-mono text-2xl font-bold tracking-tight">
+          {t('title')}
+        </h1>
       </div>
 
-      <div className="border border-fl-border bg-fl-surface p-6 space-y-5 mb-4">
-        <div className="flex items-center gap-2 pb-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface mb-4 space-y-5 border p-6">
+        <div className="border-fl-border flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionProfile')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionProfile')}
+          </span>
         </div>
 
         {/* Avatar */}
@@ -328,20 +420,31 @@ export default function SettingsPage() {
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={avatarUploading}
-            className="relative flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border border-fl-border hover:border-fl-border-2 transition-colors focus:outline-none disabled:opacity-60"
+            className="border-fl-border hover:border-fl-border-2 relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border transition-colors focus:outline-none disabled:opacity-60"
           >
             {user?.avatar ? (
-              <NextImage src={user.avatar} alt="" width={64} height={64} className="w-full h-full object-cover" unoptimized />
+              <NextImage
+                src={user.avatar}
+                alt=""
+                width={64}
+                height={64}
+                className="h-full w-full object-cover"
+                unoptimized
+              />
             ) : (
-              <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
-                <span className="font-mono text-xl text-fl-muted-1 select-none">
-                  {(user?.displayName || user?.username || '?')[0].toUpperCase()}
+              <div className="bg-fl-surface-2 flex h-full w-full items-center justify-center">
+                <span className="text-fl-muted-1 font-mono text-xl select-none">
+                  {(user?.displayName ||
+                    user?.username ||
+                    '?')[0].toUpperCase()}
                 </span>
               </div>
             )}
             {avatarUploading && (
-              <div className="absolute inset-0 bg-fl-bg/70 flex items-center justify-center">
-                <span className="font-mono text-fl-hint text-fl-muted-2 animate-pulse">...</span>
+              <div className="bg-fl-bg/70 absolute inset-0 flex items-center justify-center">
+                <span className="text-fl-hint text-fl-muted-2 animate-pulse font-mono">
+                  ...
+                </span>
               </div>
             )}
           </button>
@@ -350,7 +453,7 @@ export default function SettingsPage() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={avatarUploading}
-              className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg transition-colors disabled:opacity-40"
+              className="text-fl-label text-fl-muted-2 hover:text-fl-fg block font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
             >
               — {avatarUploading ? t('avatarUploading') : t('avatarChange')}
             </button>
@@ -358,7 +461,7 @@ export default function SettingsPage() {
               <button
                 type="button"
                 onClick={handleAvatarRemove}
-                className="block font-mono text-fl-label tracking-widest text-fl-muted-4 uppercase hover:text-fl-error transition-colors"
+                className="text-fl-label text-fl-muted-4 hover:text-fl-error block font-mono tracking-widest uppercase transition-colors"
               >
                 — {t('avatarRemove')}
               </button>
@@ -373,15 +476,29 @@ export default function SettingsPage() {
           />
         </div>
         {avatarError && (
-          <div className="font-mono text-xs px-4 py-3 border border-fl-error/40 text-fl-error">✕ {avatarError}</div>
+          <div className="border-fl-error/40 text-fl-error border px-4 py-3 font-mono text-xs">
+            ✕ {avatarError}
+          </div>
         )}
 
         {[
-          { label: t('displayName'), value: displayName, onChange: setDisplayName, type: 'text' },
-          { label: t('email'), value: email, onChange: setEmail, type: 'email' },
+          {
+            label: t('displayName'),
+            value: displayName,
+            onChange: setDisplayName,
+            type: 'text',
+          },
+          {
+            label: t('email'),
+            value: email,
+            onChange: setEmail,
+            type: 'email',
+          },
         ].map((field) => (
           <div key={field.label}>
-            <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{field.label}</label>
+            <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+              {field.label}
+            </label>
             <input
               type={field.type}
               value={field.value}
@@ -389,39 +506,51 @@ export default function SettingsPage() {
               autoCorrect={field.type === 'email' ? 'off' : undefined}
               autoCapitalize={field.type === 'email' ? 'none' : undefined}
               spellCheck={field.type === 'email' ? false : undefined}
-              className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors"
+              className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
             />
           </div>
         ))}
 
         <div>
-          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('bio')}</label>
+          <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+            {t('bio')}
+          </label>
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             rows={3}
             maxLength={500}
             placeholder={t('bioPlaceholder')}
-            className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full resize-none border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
           />
-          <p className="font-mono text-fl-hint text-fl-muted-4 mt-1">{t('bioHint')}</p>
+          <p className="text-fl-hint text-fl-muted-4 mt-1 font-mono">
+            {t('bioHint')}
+          </p>
         </div>
 
         <div>
-          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('nativeLanguage')}</label>
+          <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+            {t('nativeLanguage')}
+          </label>
           <select
             value={nativeLanguage}
             onChange={(e) => setNativeLanguage(e.target.value)}
-            className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
+            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full appearance-none border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
           >
-            {[...LANGUAGES].sort((a, b) => tLang(a).localeCompare(tLang(b))).map((code) => (
-              <option key={code} value={code}>{tLang(code)}</option>
-            ))}
+            {[...LANGUAGES]
+              .sort((a, b) => tLang(a).localeCompare(tLang(b)))
+              .map((code) => (
+                <option key={code} value={code}>
+                  {tLang(code)}
+                </option>
+              ))}
           </select>
         </div>
 
         <div>
-          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('newPassword')}</label>
+          <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+            {t('newPassword')}
+          </label>
           <input
             type="password"
             value={password}
@@ -430,12 +559,14 @@ export default function SettingsPage() {
             autoCorrect="off"
             autoCapitalize="none"
             spellCheck={false}
-            className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
           />
         </div>
 
         <div>
-          <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('confirmPassword')}</label>
+          <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+            {t('confirmPassword')}
+          </label>
           <input
             type="password"
             value={confirmPassword}
@@ -445,50 +576,59 @@ export default function SettingsPage() {
             autoCorrect="off"
             autoCapitalize="none"
             spellCheck={false}
-            className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 disabled:opacity-30 transition-colors"
+            className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-sm transition-colors focus:outline-none disabled:opacity-30"
           />
         </div>
 
         {message && (
-          <div className={`font-mono text-xs px-4 py-3 border ${message.type === 'ok' ? 'border-fl-border text-fl-muted-1' : 'border-fl-error/40 text-fl-error'}`}>
-            {message.type === 'ok' ? '✓ ' : '✕ '}{message.text}
+          <div
+            className={`border px-4 py-3 font-mono text-xs ${message.type === 'ok' ? 'border-fl-border text-fl-muted-1' : 'border-fl-error/40 text-fl-error'}`}
+          >
+            {message.type === 'ok' ? '✓ ' : '✕ '}
+            {message.text}
           </div>
         )}
 
         <button
           onClick={handleSave}
           disabled={saving}
-          className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+          className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
         >
           {saving ? `— ${t('saving')}` : `— ${t('saveChanges')}`}
         </button>
       </div>
 
       {/* Memory */}
-      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-        <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+        <div className="border-fl-border mb-4 flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionMemory')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionMemory')}
+          </span>
         </div>
         <Link
           href="/settings/memories"
-          className="flex items-center justify-between font-mono text-xs text-fl-muted-1 hover:text-fl-fg transition-colors group"
+          className="text-fl-muted-1 hover:text-fl-fg group flex items-center justify-between font-mono text-xs transition-colors"
         >
           <span className="tracking-widest uppercase">{t('memoryManage')}</span>
-          <span className="text-fl-muted-3 group-hover:text-fl-fg transition-colors">›</span>
+          <span className="text-fl-muted-3 group-hover:text-fl-fg transition-colors">
+            ›
+          </span>
         </Link>
       </div>
 
       {/* Conversation */}
-      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+        <div className="border-fl-border mb-5 flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionConversation')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionConversation')}
+          </span>
         </div>
 
         <div className="space-y-5">
           <div>
-            <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">
+            <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
               {t('conversationMaxDuration')}
             </label>
             <div className="flex gap-2">
@@ -497,10 +637,11 @@ export default function SettingsPage() {
                   key={val}
                   type="button"
                   onClick={() => setConvMaxDuration(val)}
-                  className={`flex-1 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${convMaxDuration === val
-                    ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
-                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  className={`flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors ${
+                    convMaxDuration === val
+                      ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
+                      : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
                 >
                   {val === 900 ? t('min15') : t('min30')}
                 </button>
@@ -509,7 +650,7 @@ export default function SettingsPage() {
           </div>
 
           <div>
-            <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">
+            <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
               {t('conversationInactivityTimeout')}
             </label>
             <div className="flex gap-2">
@@ -518,10 +659,11 @@ export default function SettingsPage() {
                   key={val}
                   type="button"
                   onClick={() => setConvInactivityTimeout(val)}
-                  className={`flex-1 py-3 font-mono text-xs tracking-widest uppercase border transition-colors ${convInactivityTimeout === val
-                    ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
-                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  className={`flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors ${
+                    convInactivityTimeout === val
+                      ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
+                      : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                  }`}
                 >
                   {val === 60 ? t('min1') : val === 180 ? t('min3') : t('min5')}
                 </button>
@@ -530,15 +672,18 @@ export default function SettingsPage() {
           </div>
 
           {convMessage && (
-            <div className={`font-mono text-xs px-4 py-3 border ${convMessage.type === 'ok' ? 'border-fl-border text-fl-muted-1' : 'border-fl-error/40 text-fl-error'}`}>
-              {convMessage.type === 'ok' ? '✓ ' : '✕ '}{convMessage.text}
+            <div
+              className={`border px-4 py-3 font-mono text-xs ${convMessage.type === 'ok' ? 'border-fl-border text-fl-muted-1' : 'border-fl-error/40 text-fl-error'}`}
+            >
+              {convMessage.type === 'ok' ? '✓ ' : '✕ '}
+              {convMessage.text}
             </div>
           )}
 
           <button
             onClick={handleSaveConversation}
             disabled={savingConv}
-            className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
           >
             {savingConv ? `— ${t('saving')}` : `— ${t('saveConversation')}`}
           </button>
@@ -547,70 +692,115 @@ export default function SettingsPage() {
 
       {/* Voice — only shown when TTS_PROVIDER=openai */}
       {ttsProvider === 'openai' && (
-        <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-          <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+        <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+          <div className="border-fl-border mb-5 flex items-center gap-2 border-b pb-4">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionVoice')}</span>
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+              {t('sectionVoice')}
+            </span>
           </div>
-          <p className="font-mono text-fl-hint text-fl-muted-3 mb-4">{t('voiceHint')}</p>
+          <p className="text-fl-hint text-fl-muted-3 mb-4 font-mono">
+            {t('voiceHint')}
+          </p>
           <div className="flex items-center gap-3">
             <select
               value={selectedVoice}
               onChange={(e) => selectVoice(e.target.value)}
-              className="flex-1 bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg uppercase tracking-widest focus:outline-none focus:border-fl-border-2 transition-colors appearance-none"
+              className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 flex-1 appearance-none border px-4 py-3 font-mono text-sm tracking-widest uppercase transition-colors focus:outline-none"
             >
               {OPENAI_VOICES.map((voice) => (
-                <option key={voice} value={voice}>{voice}</option>
+                <option key={voice} value={voice}>
+                  {voice}
+                </option>
               ))}
             </select>
             <button
               type="button"
               onClick={() => void togglePreview(selectedVoice)}
               disabled={loadingVoice === selectedVoice}
-              className="font-mono text-fl-hint tracking-widest uppercase text-fl-muted-3 hover:text-fl-fg disabled:opacity-40 transition-colors px-4 py-3 border border-fl-border hover:border-fl-border-2 whitespace-nowrap"
+              className="text-fl-hint text-fl-muted-3 hover:text-fl-fg border-fl-border hover:border-fl-border-2 border px-4 py-3 font-mono tracking-widest whitespace-nowrap uppercase transition-colors disabled:opacity-40"
             >
-              {loadingVoice === selectedVoice ? '...' : playingVoice === selectedVoice ? t('voiceStop') : t('voicePlay')}
+              {loadingVoice === selectedVoice
+                ? '...'
+                : playingVoice === selectedVoice
+                  ? t('voiceStop')
+                  : t('voicePlay')}
             </button>
           </div>
         </div>
       )}
 
       {/* Usage Limits */}
-      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+        <div className="border-fl-border mb-5 flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionUsageLimits')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionUsageLimits')}
+          </span>
         </div>
         {quota === null ? (
-          <div className="space-y-3 animate-pulse">
+          <div className="animate-pulse space-y-3">
             {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="h-4 bg-fl-surface-2" />
+              <div key={i} className="bg-fl-surface-2 h-4" />
             ))}
           </div>
         ) : (
           <div className="space-y-3">
             {[
-              { label: t('quotaSessions'), used: quota.sessions_this_week, limit: quota.sessions_limit, unlimited: quota.sessions_unlimited, format: (v: number) => String(v) },
-              { label: t('quotaMinutesDay'), used: quota.minutes_today, limit: quota.minutes_limit, unlimited: quota.time_unlimited, format: (v: number) => String(v) },
-              { label: t('quotaMinutesWeek'), used: quota.minutes_this_week, limit: quota.weekly_minutes_limit, unlimited: quota.weekly_minutes_unlimited, format: (v: number) => String(v) },
-              { label: t('quotaTokens'), used: Math.round(quota.tokens_this_month / 1000), limit: Math.round(quota.tokens_monthly_limit / 1000), unlimited: quota.tokens_unlimited, format: (v: number) => `${v}k` },
+              {
+                label: t('quotaSessions'),
+                used: quota.sessions_this_week,
+                limit: quota.sessions_limit,
+                unlimited: quota.sessions_unlimited,
+                format: (v: number) => String(v),
+              },
+              {
+                label: t('quotaMinutesDay'),
+                used: quota.minutes_today,
+                limit: quota.minutes_limit,
+                unlimited: quota.time_unlimited,
+                format: (v: number) => String(v),
+              },
+              {
+                label: t('quotaMinutesWeek'),
+                used: quota.minutes_this_week,
+                limit: quota.weekly_minutes_limit,
+                unlimited: quota.weekly_minutes_unlimited,
+                format: (v: number) => String(v),
+              },
+              {
+                label: t('quotaTokens'),
+                used: Math.round(quota.tokens_this_month / 1000),
+                limit: Math.round(quota.tokens_monthly_limit / 1000),
+                unlimited: quota.tokens_unlimited,
+                format: (v: number) => `${v}k`,
+              },
             ].map(({ label, used, limit, unlimited, format }) => {
-              const pct = unlimited || limit === 0 ? null : Math.min(100, Math.round((used / limit) * 100))
+              const pct =
+                unlimited || limit === 0
+                  ? null
+                  : Math.min(100, Math.round((used / limit) * 100))
               const exceeded = !unlimited && limit > 0 && used >= limit
               return (
                 <div key={label} className="flex items-center gap-3">
-                  <span className="font-mono text-fl-hint tracking-widest text-fl-muted-4 uppercase w-36 shrink-0">{label}</span>
+                  <span className="text-fl-hint text-fl-muted-4 w-36 shrink-0 font-mono tracking-widest uppercase">
+                    {label}
+                  </span>
                   {unlimited ? (
-                    <span className="font-mono text-fl-hint text-fl-muted-2">{t('quotaUnlimited')}</span>
+                    <span className="text-fl-hint text-fl-muted-2 font-mono">
+                      {t('quotaUnlimited')}
+                    </span>
                   ) : (
                     <>
-                      <div className="flex-1 h-1 bg-fl-surface-2 overflow-hidden">
+                      <div className="bg-fl-surface-2 h-1 flex-1 overflow-hidden">
                         <div
                           className={`h-full transition-all ${exceeded ? 'bg-fl-error' : 'bg-fl-accent'}`}
                           style={{ width: `${pct}%` }}
                         />
                       </div>
-                      <span className={`font-mono text-fl-hint tabular-nums ${exceeded ? 'text-fl-error' : 'text-fl-muted-2'}`}>
+                      <span
+                        className={`text-fl-hint font-mono tabular-nums ${exceeded ? 'text-fl-error' : 'text-fl-muted-2'}`}
+                      >
                         {format(used)}&thinsp;/&thinsp;{format(limit)}
                       </span>
                     </>
@@ -618,22 +808,32 @@ export default function SettingsPage() {
                 </div>
               )
             })}
-            <p className="font-mono text-fl-hint text-fl-muted-3 pt-1">{t('quotaHint')}</p>
+            <p className="text-fl-hint text-fl-muted-3 pt-1 font-mono">
+              {t('quotaHint')}
+            </p>
           </div>
         )}
       </div>
 
       {/* Theme */}
-      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+        <div className="border-fl-border mb-5 flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionAppearance')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionAppearance')}
+          </span>
         </div>
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="font-mono text-xs text-fl-fg tracking-wide">{t('theme')}</p>
-            <p className="font-mono text-fl-label text-fl-muted-2 mt-0.5">
-              {theme === 'dark' ? t('darkActive') : theme === 'light' ? t('lightActive') : t('systemActive')}
+            <p className="text-fl-fg font-mono text-xs tracking-wide">
+              {t('theme')}
+            </p>
+            <p className="text-fl-label text-fl-muted-2 mt-0.5 font-mono">
+              {theme === 'dark'
+                ? t('darkActive')
+                : theme === 'light'
+                  ? t('lightActive')
+                  : t('systemActive')}
             </p>
           </div>
           <div className="flex gap-1">
@@ -641,12 +841,17 @@ export default function SettingsPage() {
               <button
                 key={opt}
                 onClick={() => setTheme(opt)}
-                className={`border px-3 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${theme === opt
-                  ? 'border-fl-border-2 text-fl-fg bg-fl-surface-2'
-                  : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
+                className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${
+                  theme === opt
+                    ? 'border-fl-border-2 text-fl-fg bg-fl-surface-2'
+                    : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+                }`}
               >
-                {opt === 'system' ? t('themeSystem') : opt === 'dark' ? t('themeDark') : t('themeLight')}
+                {opt === 'system'
+                  ? t('themeSystem')
+                  : opt === 'dark'
+                    ? t('themeDark')
+                    : t('themeLight')}
               </button>
             ))}
           </div>
@@ -654,29 +859,31 @@ export default function SettingsPage() {
       </div>
 
       {/* Author */}
-      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-        <div className="flex items-center gap-2 pb-4 mb-5 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+        <div className="border-fl-border mb-5 flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionAuthor')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionAuthor')}
+          </span>
         </div>
-        <p className="font-mono text-sm text-fl-fg">{t('authorDescription')}</p>
-        <div className="flex flex-col gap-2 mt-3">
+        <p className="text-fl-fg font-mono text-sm">{t('authorDescription')}</p>
+        <div className="mt-3 flex flex-col gap-2">
           <a
             href="https://arturocarreterocalvo.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
+            className="text-fl-muted-2 hover:text-fl-fg inline-flex items-center gap-2 font-mono text-xs transition-colors hover:underline"
           >
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="h-3.5 w-3.5" />
             {t('websiteLink')}
           </a>
           <a
             href="https://github.com/artcc"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs text-fl-muted-2 hover:text-fl-fg hover:underline transition-colors"
+            className="text-fl-muted-2 hover:text-fl-fg inline-flex items-center gap-2 font-mono text-xs transition-colors hover:underline"
           >
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="h-3.5 w-3.5" />
             {t('githubProfile')}
           </a>
         </div>
@@ -684,37 +891,52 @@ export default function SettingsPage() {
 
       {/* Subscription / Billing — only shown when Stripe is enabled */}
       {stripeEnabled && (
-        <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-          <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+        <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+          <div className="border-fl-border mb-4 flex items-center gap-2 border-b pb-4">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{tBilling('section')}</span>
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+              {tBilling('section')}
+            </span>
           </div>
           <div className="space-y-4">
             {/* Status badge */}
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs text-fl-muted-1 tracking-widest uppercase">{tBilling('status')}</span>
-              <span className={`font-mono text-xs font-bold tracking-widest uppercase px-2.5 py-1 border ${user?.subscription_status === 'active'
-                ? 'border-green-600/40 text-green-500'
-                : user?.subscription_status === 'trialing'
-                  ? 'border-fl-accent/40 text-fl-accent'
-                  : user?.subscription_status === 'past_due'
-                    ? 'border-yellow-500/40 text-yellow-500'
-                    : 'border-fl-border text-fl-muted-3'
-                }`}>
-                {user?.subscription_status === 'active' && tBilling('statusActive')}
-                {user?.subscription_status === 'trialing' && tBilling('statusTrialing')}
-                {user?.subscription_status === 'past_due' && tBilling('statusPastDue')}
-                {(!user?.subscription_status || user?.subscription_status === 'none' || user?.subscription_status === 'canceled') && tBilling('statusNone')}
+              <span className="text-fl-muted-1 font-mono text-xs tracking-widest uppercase">
+                {tBilling('status')}
+              </span>
+              <span
+                className={`border px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase ${
+                  user?.subscription_status === 'active'
+                    ? 'border-green-600/40 text-green-500'
+                    : user?.subscription_status === 'trialing'
+                      ? 'border-fl-accent/40 text-fl-accent'
+                      : user?.subscription_status === 'past_due'
+                        ? 'border-yellow-500/40 text-yellow-500'
+                        : 'border-fl-border text-fl-muted-3'
+                }`}
+              >
+                {user?.subscription_status === 'active' &&
+                  tBilling('statusActive')}
+                {user?.subscription_status === 'trialing' &&
+                  tBilling('statusTrialing')}
+                {user?.subscription_status === 'past_due' &&
+                  tBilling('statusPastDue')}
+                {(!user?.subscription_status ||
+                  user?.subscription_status === 'none' ||
+                  user?.subscription_status === 'canceled') &&
+                  tBilling('statusNone')}
               </span>
             </div>
 
             {/* Next billing / end date */}
             {user?.subscription_ends_at && (
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-fl-muted-1 tracking-widest uppercase">
-                  {user.subscription_status === 'canceled' ? tBilling('accessUntil') : tBilling('nextBilling')}
+                <span className="text-fl-muted-1 font-mono text-xs tracking-widest uppercase">
+                  {user.subscription_status === 'canceled'
+                    ? tBilling('accessUntil')
+                    : tBilling('nextBilling')}
                 </span>
-                <span className="font-mono text-xs text-fl-muted-1">
+                <span className="text-fl-muted-1 font-mono text-xs">
                   {new Date(user.subscription_ends_at).toLocaleDateString()}
                 </span>
               </div>
@@ -725,42 +947,46 @@ export default function SettingsPage() {
               <button
                 onClick={handleManageSubscription}
                 disabled={portalLoading}
-                className="w-full font-mono text-xs tracking-widest uppercase py-2.5 border border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 disabled:opacity-50 transition-colors"
+                className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 w-full border py-2.5 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-50"
               >
                 {portalLoading ? '...' : `— ${tBilling('manage')}`}
               </button>
             ) : (
               <a
                 href="/dashboard"
-                className="block w-full text-center font-mono text-xs tracking-widest uppercase py-2.5 bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 block w-full py-2.5 text-center font-mono text-xs tracking-widest uppercase transition-colors"
               >
                 — {tBilling('subscribe')}
               </a>
             )}
 
             {portalError && (
-              <p className="font-mono text-fl-hint text-red-500">{portalError}</p>
+              <p className="text-fl-hint font-mono text-red-500">
+                {portalError}
+              </p>
             )}
           </div>
         </div>
       )}
 
       {/* Legal */}
-      <div className="border border-fl-border bg-fl-surface p-6 mt-4">
-        <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+        <div className="border-fl-border mb-4 flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionLegal')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionLegal')}
+          </span>
         </div>
         <div className="flex flex-col gap-2">
           <a
             href="/terms?from=settings"
-            className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
+            className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('termsOfService')}
           </a>
           <a
             href="/privacy?from=settings"
-            className="font-mono text-xs text-fl-muted-2 hover:text-fl-fg tracking-widest uppercase transition-colors"
+            className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {t('privacyPolicy')}
           </a>
@@ -769,7 +995,7 @@ export default function SettingsPage() {
 
       <button
         onClick={() => setLogoutConfirm(true)}
-        className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 mt-4 uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
+        className="text-fl-label text-fl-muted-2 border-fl-border hover:text-fl-error hover:border-fl-error/40 mt-4 w-full border py-3 font-mono tracking-widest uppercase transition-colors"
       >
         — {tCommon('logout')}
       </button>
@@ -778,7 +1004,7 @@ export default function SettingsPage() {
         <button
           onClick={() => setDeleteConfirm(true)}
           disabled={deleting}
-          className="w-full font-mono text-fl-label tracking-widest text-fl-muted-2 border border-fl-border py-3 mt-2 uppercase hover:text-fl-error hover:border-fl-error/40 disabled:opacity-40 transition-colors"
+          className="text-fl-label text-fl-muted-2 border-fl-border hover:text-fl-error hover:border-fl-error/40 mt-2 w-full border py-3 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
         >
           — {t('deleteAccount')}
         </button>
@@ -802,7 +1028,6 @@ export default function SettingsPage() {
         onConfirm={handleDeleteAccount}
         onCancel={() => setDeleteConfirm(false)}
       />
-
     </div>
   )
 }

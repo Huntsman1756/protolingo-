@@ -1,5 +1,4 @@
 import os
-from unittest.mock import AsyncMock
 
 os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///:memory:"
 os.environ["SECRET_KEY"] = "test-secret-key-for-pytest"
@@ -83,9 +82,9 @@ async def client(db_session, mock_redis):
     app.dependency_overrides[get_db] = override_get_db
 
     # Override Redis in auth, admin and assessment routers
-    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.admin import get_redis as admin_get_redis
     from app.routers.assessment import get_redis as assessment_get_redis
+    from app.routers.auth import get_redis as auth_get_redis
 
     app.dependency_overrides[auth_get_redis] = lambda: mock_redis
     app.dependency_overrides[admin_get_redis] = lambda: mock_redis
@@ -104,8 +103,8 @@ async def client(db_session, mock_redis):
 
 @pytest_asyncio.fixture
 async def test_user(db_session):
-    from app.models.user import User
     from app.core.security import hash_password
+    from app.models.user import User
 
     user = User(
         username="testuser",
@@ -126,8 +125,8 @@ async def test_user(db_session):
 
 @pytest_asyncio.fixture
 async def admin_user(db_session):
-    from app.models.user import User
     from app.core.security import hash_password
+    from app.models.user import User
 
     user = User(
         username="admin",

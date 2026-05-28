@@ -1,6 +1,7 @@
 from unittest.mock import patch
 
 import pytest
+
 from app.services.llm_adapter import LLMTimeoutError, LLMUnavailableError
 
 
@@ -79,7 +80,7 @@ async def test_submit_assessment_returns_cefr_level(client, test_user):
         side_effect=[mock_quiz, mock_eval],
     ):
         start_resp = await client.get("/api/assessment/start", headers=headers)
-        session_id = start_resp.json()["session_id"]
+        _ = start_resp.json()["session_id"]
 
         submit_resp = await client.post(
             "/api/assessment/submit",

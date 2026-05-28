@@ -36,7 +36,7 @@ export default function OnboardingPage() {
 
   function toggleGoal(goal: LearningGoal) {
     setSelectedGoals((prev) =>
-      prev.includes(goal) ? prev.filter((g) => g !== goal) : [...prev, goal],
+      prev.includes(goal) ? prev.filter((g) => g !== goal) : [...prev, goal]
     )
   }
 
@@ -67,7 +67,8 @@ export default function OnboardingPage() {
         native_language: updated.native_language,
         target_language: updated.target_language,
         conversation_max_duration: updated.conversation_max_duration,
-        conversation_inactivity_timeout: updated.conversation_inactivity_timeout,
+        conversation_inactivity_timeout:
+          updated.conversation_inactivity_timeout,
         learning_goals: updated.learning_goals ?? [],
       })
       router.push('/assessment')
@@ -80,35 +81,46 @@ export default function OnboardingPage() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-fl-bg px-4"
+      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
       style={{
-        backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
+        backgroundImage:
+          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
         backgroundSize: '24px 24px',
       }}
     >
       <div className="w-full max-w-sm">
-        <div className="flex flex-col items-center mb-10">
-          <Image src="/logo.png" alt="FreeLingo" width={80} height={80} className="mb-4" />
-          <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
-          <p className="font-mono text-fl-caption text-fl-muted-2 tracking-widest uppercase mt-1">
+        <div className="mb-10 flex flex-col items-center">
+          <Image
+            src="/logo.png"
+            alt="FreeLingo"
+            width={80}
+            height={80}
+            className="mb-4"
+          />
+          <h1 className="text-fl-fg font-mono text-xl font-bold tracking-widest uppercase">
+            FreeLingo
+          </h1>
+          <p className="text-fl-caption text-fl-muted-2 mt-1 font-mono tracking-widest uppercase">
             {tCommon('tagline')}
           </p>
         </div>
 
-        <div className="border border-fl-border bg-fl-surface p-8">
+        <div className="border-fl-border bg-fl-surface border p-8">
           {/* Step indicator */}
-          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-fl-border justify-between">
+          <div className="border-fl-border mb-6 flex items-center justify-between gap-2 border-b pb-4">
             <div className="flex items-center gap-2">
               <span className="text-fl-label text-fl-muted-2">●</span>
-              <span className="font-mono text-xs tracking-widest text-fl-muted-2 uppercase">
+              <span className="text-fl-muted-2 font-mono text-xs tracking-widest uppercase">
                 {step === 1 ? t('title') : t('goals.title')}
               </span>
             </div>
-            <span className="font-mono text-fl-hint text-fl-muted-4 tabular-nums">{step}/2</span>
+            <span className="text-fl-hint text-fl-muted-4 font-mono tabular-nums">
+              {step}/2
+            </span>
           </div>
 
           {error && (
-            <div className="mb-5 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error tracking-wide">
+            <div className="border-fl-error/40 text-fl-error mb-5 border px-4 py-3 font-mono text-xs tracking-wide">
               ✕ {error}
             </div>
           )}
@@ -116,16 +128,21 @@ export default function OnboardingPage() {
           {/* Step 1: Language */}
           {step === 1 && (
             <form onSubmit={handleStep1} className="space-y-6">
-              <p className="font-mono text-sm text-fl-fg mb-4">{t('subtitle')}</p>
+              <p className="text-fl-fg mb-4 font-mono text-sm">
+                {t('subtitle')}
+              </p>
               <div>
-                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-3">
+                <label className="text-fl-label text-fl-muted-2 mb-3 block font-mono tracking-widest uppercase">
                   {t('chooseVariant')}
                 </label>
-                <TargetLanguageSelector value={targetLanguage} onChange={setTargetLanguage} />
+                <TargetLanguageSelector
+                  value={targetLanguage}
+                  onChange={setTargetLanguage}
+                />
               </div>
               <button
                 type="submit"
-                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
               >
                 — {tCommon('next')}
               </button>
@@ -135,7 +152,9 @@ export default function OnboardingPage() {
           {/* Step 2: Learning goals */}
           {step === 2 && (
             <div className="space-y-5">
-              <p className="font-mono text-sm text-fl-fg">{t('goals.subtitle')}</p>
+              <p className="text-fl-fg font-mono text-sm">
+                {t('goals.subtitle')}
+              </p>
               <div className="grid grid-cols-2 gap-2">
                 {LEARNING_GOALS.map((goal) => {
                   const active = selectedGoals.includes(goal)
@@ -144,10 +163,11 @@ export default function OnboardingPage() {
                       key={goal}
                       type="button"
                       onClick={() => toggleGoal(goal)}
-                      className={`px-3 py-3 font-mono text-fl-label tracking-widest uppercase border text-left transition-colors ${active
+                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${
+                        active
                           ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                           : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                        }`}
+                      }`}
                     >
                       {t(`goals.${goal}`)}
                     </button>
@@ -158,7 +178,7 @@ export default function OnboardingPage() {
                 type="button"
                 disabled={loading}
                 onClick={() => handleStep2(false)}
-                className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
               >
                 {loading ? `— ${tCommon('saving')}` : `— ${t('continue')}`}
               </button>
@@ -166,7 +186,7 @@ export default function OnboardingPage() {
                 type="button"
                 disabled={loading}
                 onClick={() => handleStep2(true)}
-                className="w-full font-mono text-fl-label tracking-widest text-fl-muted-4 uppercase hover:text-fl-muted-2 disabled:opacity-40 transition-colors py-1"
+                className="text-fl-label text-fl-muted-4 hover:text-fl-muted-2 w-full py-1 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
               >
                 {t('goals.skip')}
               </button>

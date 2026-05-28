@@ -2,6 +2,7 @@ import io
 
 import httpx
 import openai
+
 from app.core.app_logger import get_logger
 
 logger = get_logger(__name__)
@@ -30,7 +31,12 @@ class WhisperSTTService:
         POST /asr?output=json&language=<code> (not the OpenAI /v1/audio/transcriptions path).
         """
         async with httpx.AsyncClient() as client:
-            logger.debug("[stt] POST /asr — %d bytes, filename=%s lang=%s", len(audio_bytes), filename, language)
+            logger.debug(
+                "[stt] POST /asr — %d bytes, filename=%s lang=%s",
+                len(audio_bytes),
+                filename,
+                language,
+            )
             response = await client.post(
                 f"{self.base_url}/asr",
                 params={"output": "json", "language": language, "task": "transcribe"},

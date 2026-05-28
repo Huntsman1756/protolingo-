@@ -1,4 +1,5 @@
 """Extra auth tests: DELETE /api/auth/me, GET /api/auth/quota, blocked email domains."""
+
 from __future__ import annotations
 
 from unittest.mock import patch
@@ -7,8 +8,8 @@ import pytest
 
 from app.core.config import settings
 
-
 # ── DELETE /api/auth/me ───────────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_delete_me_success(client, test_user, db_session):
@@ -18,6 +19,7 @@ async def test_delete_me_success(client, test_user, db_session):
     assert response.status_code == 204
 
     from app.models.user import User
+
     found = await db_session.get(User, user.id)
     assert found is None
 
@@ -55,10 +57,15 @@ async def test_delete_me_clears_refresh_cookie(client, test_user, mock_redis):
     assert response.status_code == 204
     # Cookie should be cleared (max_age=0 or absent from Set-Cookie)
     set_cookie = response.headers.get("set-cookie", "")
-    assert "refresh_token" not in set_cookie or "max-age=0" in set_cookie.lower() or 'expires' in set_cookie.lower()
+    assert (
+        "refresh_token" not in set_cookie
+        or "max-age=0" in set_cookie.lower()
+        or "expires" in set_cookie.lower()
+    )
 
 
 # ── GET /api/auth/quota ───────────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_get_quota_returns_expected_fields(client, test_user):
@@ -100,6 +107,7 @@ async def test_get_quota_requires_auth(client):
 
 
 # ── Blocked email domains ─────────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_register_blocked_email_domain(client):

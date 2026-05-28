@@ -208,21 +208,23 @@ async def test_create_user_invalid_email(client, admin_user):
 @pytest.mark.asyncio
 async def test_list_users_pagination(client, admin_user, db_session):
     """M-07: GET /api/admin/users should support skip/limit pagination."""
-    from app.models.user import User
     from app.core.security import hash_password
+    from app.models.user import User
 
     admin, headers = admin_user
 
     for i in range(5):
-        db_session.add(User(
-            username=f"paguser{i}",
-            email=f"paguser{i}@test.com",
-            display_name=f"Pag {i}",
-            hashed_password=hash_password("pass1234"),
-            role="user",
-            native_language="es",
-            is_active=True,
-        ))
+        db_session.add(
+            User(
+                username=f"paguser{i}",
+                email=f"paguser{i}@test.com",
+                display_name=f"Pag {i}",
+                hashed_password=hash_password("pass1234"),
+                role="user",
+                native_language="es",
+                is_active=True,
+            )
+        )
     await db_session.commit()
 
     resp_page1 = await client.get("/api/admin/users?skip=0&limit=3", headers=headers)

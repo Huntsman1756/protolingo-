@@ -6,7 +6,12 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
-interface MItem { id: number; content: string; source: string; created_at: string }
+interface MItem {
+  id: number
+  content: string
+  source: string
+  created_at: string
+}
 
 export default function SettingsMemoriesPage() {
   const t = useTranslations('settings')
@@ -24,11 +29,15 @@ export default function SettingsMemoriesPage() {
         const data = await res.json()
         setMemories(data.memories || [])
       }
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
     setLoading(false)
   }, [])
 
-  useEffect(() => { fetchMemories() }, [fetchMemories])
+  useEffect(() => {
+    fetchMemories()
+  }, [fetchMemories])
 
   async function handleDelete(id: number) {
     await apiFetch(`/api/memories/${id}`, { method: 'DELETE' })
@@ -42,33 +51,51 @@ export default function SettingsMemoriesPage() {
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <nav className="flex items-center gap-2 font-mono text-fl-label text-fl-muted-3 mb-8">
-        <Link href="/settings" className="hover:text-fl-fg transition-colors uppercase tracking-widest">
+    <div className="mx-auto max-w-2xl p-6">
+      <nav className="text-fl-label text-fl-muted-3 mb-8 flex items-center gap-2 font-mono">
+        <Link
+          href="/settings"
+          className="hover:text-fl-fg tracking-widest uppercase transition-colors"
+        >
           {t('title')}
         </Link>
         <span>›</span>
-        <span className="text-fl-fg tracking-widest uppercase">{t('sectionMemory')}</span>
+        <span className="text-fl-fg tracking-widest uppercase">
+          {t('sectionMemory')}
+        </span>
       </nav>
 
-      <div className="border border-fl-border bg-fl-surface p-6">
-        <div className="flex items-center gap-2 pb-4 mb-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border p-6">
+        <div className="border-fl-border mb-4 flex items-center gap-2 border-b pb-4">
           <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('sectionMemory')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionMemory')}
+          </span>
         </div>
 
         {loading ? (
-          <p className="font-mono text-fl-hint text-fl-muted-2">{tCommon('loading')}</p>
+          <p className="text-fl-hint text-fl-muted-2 font-mono">
+            {tCommon('loading')}
+          </p>
         ) : memories.length === 0 ? (
-          <p className="font-mono text-fl-hint text-fl-muted-2">{t('memoryEmpty')}</p>
+          <p className="text-fl-hint text-fl-muted-2 font-mono">
+            {t('memoryEmpty')}
+          </p>
         ) : (
           <>
-            <div className="flex flex-col gap-3 mb-4">
+            <div className="mb-4 flex flex-col gap-3">
               {memories.map((m) => (
-                <div key={m.id} className="flex items-start justify-between gap-3 border border-fl-border p-3">
+                <div
+                  key={m.id}
+                  className="border-fl-border flex items-start justify-between gap-3 border p-3"
+                >
                   <div className="flex-1 space-y-1">
-                    <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{m.content}</p>
-                    <p className="font-mono text-fl-label text-fl-muted-3 uppercase tracking-widest">{m.source}</p>
+                    <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                      {m.content}
+                    </p>
+                    <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+                      {m.source}
+                    </p>
                   </div>
                   <button
                     onClick={() => handleDelete(m.id)}
@@ -81,7 +108,7 @@ export default function SettingsMemoriesPage() {
             </div>
             <button
               onClick={() => setClearConfirm(true)}
-              className="w-full font-mono text-fl-hint text-fl-muted-2 border border-fl-border py-2 tracking-widest uppercase hover:text-fl-error hover:border-fl-error/40 transition-colors"
+              className="text-fl-hint text-fl-muted-2 border-fl-border hover:text-fl-error hover:border-fl-error/40 w-full border py-2 font-mono tracking-widest uppercase transition-colors"
             >
               — {t('memoryClearAll')}
             </button>

@@ -53,9 +53,7 @@ async def test_maintenance_unauthenticated_gets_401(client):
 
 
 @pytest.mark.asyncio
-async def test_maintenance_mode_returns_503_on_subscription_endpoint(
-    client, admin_user, test_user
-):
+async def test_maintenance_mode_returns_503_on_subscription_endpoint(client, admin_user, test_user):
     """When maintenance mode is ON, subscription-gated endpoints return 503."""
     # Turn maintenance on
     admin, admin_headers = admin_user

@@ -1,12 +1,11 @@
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
 
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=5000)
-    conversation_id: Optional[int] = None
+    conversation_id: int | None = None
 
 
 class ChatHistoryItem(BaseModel):
@@ -19,7 +18,7 @@ class ChatHistoryResponse(BaseModel):
 
 
 class ConversationCreate(BaseModel):
-    title: Optional[str] = None
+    title: str | None = None
 
 
 class ConversationResponse(BaseModel):

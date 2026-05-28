@@ -15,7 +15,6 @@ from app.core.deps import get_current_user
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.assessment import (
-    AnswerRecord,
     AssessmentCompleteRequest,
     AssessmentResult,
     AssessmentSubmitRequest,
@@ -23,6 +22,7 @@ from app.schemas.assessment import (
     LevelTestResult,
     LevelTestSubmitRequest,
 )
+from app.schemas.study_plan import GenerateStudyPlanRequest
 from app.services.assessment import (
     END_OF_LEVEL_TEST_PROMPT,  # noqa: F401 (kept for potential reuse)
     evaluate_adaptive_quiz,
@@ -36,7 +36,6 @@ from app.services.llm_adapter import (
     llm_adapter,
 )
 from app.services.study_plan_generator import generate_study_plan
-from app.schemas.study_plan import GenerateStudyPlanRequest
 
 router = APIRouter(prefix="/api/assessment", tags=["assessment"])
 
@@ -52,8 +51,7 @@ def _strip_answers(quiz: dict) -> dict:
     allow users to cheat by inspecting network traffic.
     """
     questions = [
-        {k: v for k, v in q.items() if k not in _ANSWER_FIELDS}
-        for q in quiz.get("questions", [])
+        {k: v for k, v in q.items() if k not in _ANSWER_FIELDS} for q in quiz.get("questions", [])
     ]
     return {**quiz, "questions": questions}
 
@@ -222,9 +220,7 @@ async def complete_assessment(
     """
     # Deactivate any existing active plans
     old_result = await db.execute(
-        select(StudyPlan).where(
-            StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True)
-        )
+        select(StudyPlan).where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
     )
     for old in old_result.scalars().all():
         old.is_active = False
@@ -381,4 +377,3 @@ async def get_level_test_result(
         recommendation=plan.completion_test_recommendation or "repeat",
         next_level=next_level if plan.completion_test_recommendation == "advance" else None,
     )
-

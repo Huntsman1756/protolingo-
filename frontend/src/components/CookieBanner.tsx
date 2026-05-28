@@ -23,24 +23,29 @@ export function CookieBanner() {
   function accept() {
     try {
       localStorage.setItem(COOKIE_KEY, 'accepted')
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
     setVisible(false)
   }
 
   if (!visible) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-fl-border bg-fl-surface">
-      <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <p className="font-mono text-xs text-fl-fg-2 leading-relaxed flex-1">
+    <div className="border-fl-border bg-fl-surface fixed right-0 bottom-0 left-0 z-50 border-t">
+      <div className="mx-auto flex max-w-5xl flex-col items-start gap-4 px-6 py-4 sm:flex-row sm:items-center">
+        <p className="text-fl-fg-2 flex-1 font-mono text-xs leading-relaxed">
           {t('message')}{' '}
-          <Link href="/privacy" className="underline text-fl-fg hover:text-fl-fg-bright">
+          <Link
+            href="/privacy"
+            className="text-fl-fg hover:text-fl-fg-bright underline"
+          >
             {t('learnMore')}
           </Link>
         </p>
         <button
           onClick={accept}
-          className="flex-shrink-0 font-mono text-xs tracking-widest uppercase px-6 py-2 bg-fl-fg text-fl-bg hover:bg-fl-fg-bright transition-colors whitespace-nowrap"
+          className="bg-fl-fg text-fl-bg hover:bg-fl-fg-bright flex-shrink-0 px-6 py-2 font-mono text-xs tracking-widest whitespace-nowrap uppercase transition-colors"
         >
           {t('accept')}
         </button>

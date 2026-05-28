@@ -10,26 +10,51 @@ interface Props {
   userInitial?: string
 }
 
-export default function TranscriptBubble({ role, text, streaming = false, speaking = false, userAvatar, userInitial }: Props) {
+export default function TranscriptBubble({
+  role,
+  text,
+  streaming = false,
+  speaking = false,
+  userAvatar,
+  userInitial,
+}: Props) {
   const t = useTranslations('conversation')
   const isUser = role === 'user'
 
   return (
-    <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+    <div
+      className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
+    >
       {/* Avatar */}
-      <div className="relative flex-shrink-0 mb-0.5">
-        <span className={`absolute inset-[-5px] rounded-full border-2 pointer-events-none transition-[border-color,opacity] duration-700 ${speaking
-            ? 'border-fl-accent/65 animate-halo-speaking'
-            : 'border-fl-accent/15 animate-halo-idle'
-          }`} />
-        <div className="w-7 h-7 rounded-full overflow-hidden border border-fl-border">
+      <div className="relative mb-0.5 flex-shrink-0">
+        <span
+          className={`pointer-events-none absolute inset-[-5px] rounded-full border-2 transition-[border-color,opacity] duration-700 ${
+            speaking
+              ? 'border-fl-accent/65 animate-halo-speaking'
+              : 'border-fl-accent/15 animate-halo-idle'
+          }`}
+        />
+        <div className="border-fl-border h-7 w-7 overflow-hidden rounded-full border">
           {!isUser ? (
-            <Image src="/logo.png" alt="Tutor" width={28} height={28} className="w-full h-full object-cover" />
+            <Image
+              src="/logo.png"
+              alt="Tutor"
+              width={28}
+              height={28}
+              className="h-full w-full object-cover"
+            />
           ) : userAvatar ? (
-            <Image src={userAvatar} alt="" width={28} height={28} className="w-full h-full object-cover" unoptimized />
+            <Image
+              src={userAvatar}
+              alt=""
+              width={28}
+              height={28}
+              className="h-full w-full object-cover"
+              unoptimized
+            />
           ) : (
-            <div className="w-full h-full bg-fl-surface-2 flex items-center justify-center">
-              <span className="font-mono text-fl-hint text-fl-muted-1 select-none">
+            <div className="bg-fl-surface-2 flex h-full w-full items-center justify-center">
+              <span className="text-fl-hint text-fl-muted-1 font-mono select-none">
                 {(userInitial ?? '?').toUpperCase()}
               </span>
             </div>
@@ -37,19 +62,22 @@ export default function TranscriptBubble({ role, text, streaming = false, speaki
         </div>
       </div>
 
-      <div className={`max-w-[75%] flex flex-col gap-1 ${isUser ? 'items-end' : 'items-start'}`}>
-        <span className="font-mono text-fl-label tracking-widest text-fl-muted-4 uppercase">
+      <div
+        className={`flex max-w-[75%] flex-col gap-1 ${isUser ? 'items-end' : 'items-start'}`}
+      >
+        <span className="text-fl-label text-fl-muted-4 font-mono tracking-widest uppercase">
           {isUser ? t('you') : t('assistant')}
         </span>
         <div
-          className={`px-4 py-3 font-mono text-sm leading-relaxed border ${isUser
-            ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
-            : 'bg-fl-surface text-fl-fg border-fl-border'
-            }`}
+          className={`border px-4 py-3 font-mono text-sm leading-relaxed ${
+            isUser
+              ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
+              : 'bg-fl-surface text-fl-fg border-fl-border'
+          }`}
         >
           {text}
           {streaming && (
-            <span className="inline-block w-1 h-3 ml-1 bg-current animate-pulse align-middle" />
+            <span className="ml-1 inline-block h-3 w-1 animate-pulse bg-current align-middle" />
           )}
         </div>
       </div>

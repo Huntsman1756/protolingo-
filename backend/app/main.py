@@ -1,9 +1,8 @@
-from contextlib import asynccontextmanager
 import asyncio
 import logging
 import os
+from contextlib import asynccontextmanager
 
-from alembic import command
 from alembic.config import Config
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,6 +11,7 @@ from fastapi.staticfiles import StaticFiles
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
+from alembic import command
 from app.core.config import settings
 from app.core.database import engine
 from app.core.limiter import limiter
@@ -24,7 +24,24 @@ logging.basicConfig(
 
 _AVATARS_DIR = "/app/avatars"
 _TTS_PREVIEWS_DIR = "/app/tts_previews"
-from app.routers import admin, assessment, auth, chat, contact, conversation, feedback, flashcards, lessons, listening, memories, progress, reading, study_plan, stt, tts
+from app.routers import (
+    admin,
+    assessment,
+    auth,
+    chat,
+    contact,
+    conversation,
+    feedback,
+    flashcards,
+    lessons,
+    listening,
+    memories,
+    progress,
+    reading,
+    stt,
+    study_plan,
+    tts,
+)
 from app.routers import config as config_router
 from app.services.stt_service import OpenAISTTService, WhisperSTTService
 from app.services.tts_service import KokoroTTSService, OpenAITTSService
@@ -37,7 +54,11 @@ def _run_migrations() -> None:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):  # noqa: ANN201
-    if not settings.SECRET_KEY or "CHANGE_ME" in settings.SECRET_KEY or len(settings.SECRET_KEY) < 32:
+    if (
+        not settings.SECRET_KEY
+        or "CHANGE_ME" in settings.SECRET_KEY
+        or len(settings.SECRET_KEY) < 32
+    ):
         raise RuntimeError(
             "SECRET_KEY is insecure or unconfigured. "
             "Set a random value of at least 32 characters in your .env file."
@@ -95,8 +116,11 @@ async def security_headers_middleware(request: Request, call_next) -> Response:
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["X-XSS-Protection"] = "0"  # Modern browsers ignore it; CSP is the right tool
-    response.headers["Content-Security-Policy"] = "default-src 'self'; object-src 'none'; base-uri 'self'"  # API-only responses (JSON/binary)
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; object-src 'none'; base-uri 'self'"  # API-only responses (JSON/binary)
+    )
     return response
+
 
 app.include_router(auth.router)
 app.include_router(admin.router)
@@ -118,7 +142,9 @@ app.include_router(memories.router)
 
 if settings.STRIPE_ENABLED:
     import stripe as _stripe
+
     from app.routers import billing as billing_router
+
     _stripe.api_key = settings.STRIPE_SECRET_KEY
     app.include_router(billing_router.router)
 
@@ -146,6 +172,7 @@ async def health(request: Request) -> JSONResponse:
     # Redis
     try:
         from redis.asyncio import Redis as AioRedis
+
         redis = AioRedis.from_url(settings.REDIS_URL, decode_responses=True)
         await redis.ping()
         await redis.aclose()
@@ -175,4 +202,6 @@ async def health(request: Request) -> JSONResponse:
         ok = False
 
     status_code = 200 if ok else 503
-    return JSONResponse({"status": "ok" if ok else "degraded", "checks": checks}, status_code=status_code)
+    return JSONResponse(
+        {"status": "ok" if ok else "degraded", "checks": checks}, status_code=status_code
+    )

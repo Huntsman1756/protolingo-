@@ -53,7 +53,7 @@ interface StudyPlan {
 }
 
 interface CompetencyMap {
-  [unitId: string]: number  // 0–1
+  [unitId: string]: number // 0–1
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -138,13 +138,17 @@ export default function PlanPage() {
       }
 
       if (todayRes?.ok) {
-        const todayData = await todayRes.json() as { lessons: { id: number | null; is_completed?: boolean }[] }
-        const nextLesson = todayData.lessons.find((l) => l.id != null && !l.is_completed)
+        const todayData = (await todayRes.json()) as {
+          lessons: { id: number | null; is_completed?: boolean }[]
+        }
+        const nextLesson = todayData.lessons.find(
+          (l) => l.id != null && !l.is_completed
+        )
         setActiveLessonId(nextLesson?.id ?? null)
       }
 
       if (pendingRes?.ok) {
-        const pendingData = await pendingRes.json() as PendingLesson[]
+        const pendingData = (await pendingRes.json()) as PendingLesson[]
         setPendingLessons(pendingData)
       }
     } catch (err) {
@@ -161,7 +165,7 @@ export default function PlanPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
           {tCommon('loading')}
         </span>
       </div>
@@ -171,13 +175,13 @@ export default function PlanPage() {
   if (error || !plan) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center p-6">
-        <div className="w-full max-w-md border border-fl-border bg-fl-surface p-8 space-y-4">
-          <p className="font-mono text-fl-label text-fl-error-fg">
+        <div className="border-fl-border bg-fl-surface w-full max-w-md space-y-4 border p-8">
+          <p className="text-fl-label text-fl-error-fg font-mono">
             {error || t('noPlan')}
           </p>
           <button
             onClick={() => router.push('/assessment')}
-            className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 transition-colors"
+            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
           >
             — {t('startAssessment')}
           </button>
@@ -193,60 +197,76 @@ export default function PlanPage() {
   const currentUnitId = plan.current_unit
 
   const allUnitsCompleted =
-    units.length > 0 &&
-    units.every((u) => (competencies[u.id] ?? 0) >= 0.8)
+    units.length > 0 && units.every((u) => (competencies[u.id] ?? 0) >= 0.8)
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+    <div className="mx-auto max-w-2xl space-y-6 px-4 py-8">
       {/* ── Header ── */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('learningRoadmap')}
           </span>
         </div>
-        <div className="px-6 py-4 flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 px-6 py-4">
           <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">{t('level')}</p>
-            <p className="font-mono text-2xl font-bold text-fl-fg tracking-widest">{level}</p>
-          </div>
-          <div className="h-8 w-px bg-fl-border" />
-          <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">{t('duration')}</p>
-            <p className="font-mono text-fl-body text-fl-muted-1">
-              {t('durationDetail', { weeks: plan.duration_weeks, days: plan.days_per_week })}
+            <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
+              {t('level')}
+            </p>
+            <p className="text-fl-fg font-mono text-2xl font-bold tracking-widest">
+              {level}
             </p>
           </div>
-          <div className="h-8 w-px bg-fl-border" />
+          <div className="bg-fl-border h-8 w-px" />
           <div>
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">{t('unitsLabel')}</p>
-            <p className="font-mono text-fl-body text-fl-muted-1">{units.length}</p>
+            <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
+              {t('duration')}
+            </p>
+            <p className="text-fl-body text-fl-muted-1 font-mono">
+              {t('durationDetail', {
+                weeks: plan.duration_weeks,
+                days: plan.days_per_week,
+              })}
+            </p>
+          </div>
+          <div className="bg-fl-border h-8 w-px" />
+          <div>
+            <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
+              {t('unitsLabel')}
+            </p>
+            <p className="text-fl-body text-fl-muted-1 font-mono">
+              {units.length}
+            </p>
           </div>
         </div>
       </div>
 
       {/* ── Pending lessons ── */}
       {pendingLessons.length > 0 && (
-        <div className="border border-fl-accent/30 bg-fl-surface">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-accent/20">
+        <div className="border-fl-accent/30 bg-fl-surface border">
+          <div className="border-fl-accent/20 flex items-center gap-2 border-b px-6 py-4">
             <span className="text-fl-label text-fl-accent">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-accent uppercase">
+            <span className="text-fl-label text-fl-accent font-mono tracking-widest uppercase">
               {pendingLessons.length} {t('pendingLessons')}
             </span>
           </div>
-          <div className="divide-y divide-fl-border">
+          <div className="divide-fl-border divide-y">
             {pendingLessons.map((lesson) => (
-              <div key={lesson.id} className="flex items-center justify-between px-6 py-3">
+              <div
+                key={lesson.id}
+                className="flex items-center justify-between px-6 py-3"
+              >
                 <div>
-                  <p className="font-mono text-xs text-fl-fg">{lesson.title}</p>
-                  <p className="font-mono text-fl-hint text-fl-muted-3 uppercase tracking-widest mt-0.5">
-                    W{lesson.week_number} D{lesson.day_number} · {lesson.lesson_type}
+                  <p className="text-fl-fg font-mono text-xs">{lesson.title}</p>
+                  <p className="text-fl-hint text-fl-muted-3 mt-0.5 font-mono tracking-widest uppercase">
+                    W{lesson.week_number} D{lesson.day_number} ·{' '}
+                    {lesson.lesson_type}
                   </p>
                 </div>
                 <button
                   onClick={() => router.push(`/lesson/${lesson.id}`)}
-                  className="font-mono text-fl-label tracking-widest text-fl-bg bg-fl-fg px-3 py-1 uppercase hover:bg-fl-accent/90 transition-colors"
+                  className="text-fl-label text-fl-bg bg-fl-fg hover:bg-fl-accent/90 px-3 py-1 font-mono tracking-widest uppercase transition-colors"
                 >
                   {t('resume')}
                 </button>
@@ -259,11 +279,11 @@ export default function PlanPage() {
       {/* ── Unit list ── */}
       <div className="space-y-2">
         {units.length === 0 && (
-          <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center space-y-3">
-            <p className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase">
+          <div className="border-fl-border bg-fl-surface space-y-3 border px-6 py-10 text-center">
+            <p className="text-fl-muted-3 font-mono text-xs tracking-widest uppercase">
               {t('noUnitsForLevel', { level })}
             </p>
-            <p className="font-mono text-fl-label text-fl-muted-4">
+            <p className="text-fl-label text-fl-muted-4 font-mono">
               {t('noUnitsDesc')}
             </p>
           </div>
@@ -273,14 +293,17 @@ export default function PlanPage() {
           const completedLessons = unitLessons.filter((l) => l.completed).length
           const isActive = unit.id === currentUnitId
           const unitComp = competencies[unit.id] ?? 0
-          const isCompleted = unitComp >= 0.8 || (completedLessons > 0 && completedLessons === unitLessons.length)
+          const isCompleted =
+            unitComp >= 0.8 ||
+            (completedLessons > 0 && completedLessons === unitLessons.length)
 
           // A unit is locked if its prerequisite is not completed
           const prereqUnit = unit.prerequisite_unit
           const prereqCompleted = prereqUnit
             ? (competencies[prereqUnit] ?? 0) >= 0.8
             : true
-          const isLocked = !isActive && !isCompleted && !prereqCompleted && i > 0
+          const isLocked =
+            !isActive && !isCompleted && !prereqCompleted && i > 0
 
           return (
             <UnitCard
@@ -297,9 +320,11 @@ export default function PlanPage() {
                 isLevelTest: false,
               }}
               onClick={() => setActiveDrawer(unit)}
-              onStartLesson={isActive && activeLessonId != null
-                ? () => router.push(`/lesson/${activeLessonId}`)
-                : undefined}
+              onStartLesson={
+                isActive && activeLessonId != null
+                  ? () => router.push(`/lesson/${activeLessonId}`)
+                  : undefined
+              }
             />
           )
         })}
@@ -311,7 +336,11 @@ export default function PlanPage() {
             index={units.length}
             lessonCount={1}
             grammarCount={0}
-            competency={plan.completion_test_score != null ? plan.completion_test_score : 0}
+            competency={
+              plan.completion_test_score != null
+                ? plan.completion_test_score
+                : 0
+            }
             status={{
               completed: plan.completion_test_taken,
               active: allUnitsCompleted && !plan.completion_test_taken,
@@ -334,11 +363,11 @@ export default function PlanPage() {
 
       {/* ── Completion test result ── */}
       {plan.completion_test_taken && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-4 space-y-2">
-          <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">
+        <div className="border-fl-border bg-fl-surface space-y-2 border px-6 py-4">
+          <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
             {t('levelTestResult')}
           </p>
-          <p className="font-mono text-fl-body text-fl-fg">
+          <p className="text-fl-body text-fl-fg font-mono">
             {t('testScore')}{' '}
             <span className="font-bold">
               {plan.completion_test_score != null
@@ -347,7 +376,7 @@ export default function PlanPage() {
             </span>
           </p>
           {plan.completion_test_recommendation && (
-            <p className="font-mono text-fl-label text-fl-muted-1">
+            <p className="text-fl-label text-fl-muted-1 font-mono">
               {plan.completion_test_recommendation}
             </p>
           )}

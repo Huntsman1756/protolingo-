@@ -2,10 +2,11 @@
 Static curriculum data — Python mirror of frontend/src/data/curriculum.ts.
 This is the authoritative learning sequence. The LLM never designs the sequence.
 """
+
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Literal, Optional
+from dataclasses import dataclass
+from typing import Literal
 
 CEFRLevel = Literal["A1", "A2", "B1", "B2", "C1", "C2"]
 LessonType = Literal["grammar", "vocabulary", "reading", "writing", "review"]
@@ -13,25 +14,25 @@ LessonType = Literal["grammar", "vocabulary", "reading", "writing", "review"]
 CEFR_LEVELS: list[str] = ["A1", "A2", "B1", "B2", "C1", "C2"]
 
 INTENSITY_CONFIG: dict[str, dict] = {
-    "intensive":    {"duration_weeks": 4,  "days_per_week": 5},
-    "standard":     {"duration_weeks": 8,  "days_per_week": 5},
-    "relaxed":      {"duration_weeks": 12, "days_per_week": 4},  # default
+    "intensive": {"duration_weeks": 4, "days_per_week": 5},
+    "standard": {"duration_weeks": 8, "days_per_week": 5},
+    "relaxed": {"duration_weeks": 12, "days_per_week": 4},  # default
     "very_relaxed": {"duration_weeks": 16, "days_per_week": 3},
 }
 
 
 @dataclass
 class CurriculumUnit:
-    id: str                            # e.g. "a1-unit-1"
+    id: str  # e.g. "a1-unit-1"
     level: str
     unit_number: int
     title: str
-    grammar_points: list[str]          # grammar slugs from grammar.ts
-    vocabulary_set_ids: list[str]      # slugs from vocabulary.ts
+    grammar_points: list[str]  # grammar slugs from grammar.ts
+    vocabulary_set_ids: list[str]  # slugs from vocabulary.ts
     lesson_types: list[LessonType]
-    competency_checklist: list[str]    # observable outcomes
-    default_weeks: int                 # weeks this unit takes at default intensity
-    prerequisite_unit: Optional[str] = None
+    competency_checklist: list[str]  # observable outcomes
+    default_weeks: int  # weeks this unit takes at default intensity
+    prerequisite_unit: str | None = None
 
 
 # ── A1 ───────────────────────────────────────────────────────────────────────
@@ -123,7 +124,11 @@ A1_UNITS: list[CurriculumUnit] = [
         unit_number=6,
         title="Yesterday",
         grammar_points=["past-simple"],
-        vocabulary_set_ids=["past_time_expressions_a1", "regular_verbs_past_a1", "irregular_verbs_basic_a1"],
+        vocabulary_set_ids=[
+            "past_time_expressions_a1",
+            "regular_verbs_past_a1",
+            "irregular_verbs_basic_a1",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Talk about completed actions in the past",
@@ -155,8 +160,14 @@ A1_UNITS: list[CurriculumUnit] = [
         unit_number=8,
         title="A1 Consolidation",
         grammar_points=[
-            "to-be", "subject-pronouns", "articles", "possessive-adjectives",
-            "present-simple", "present-continuous", "past-simple", "can-cant",
+            "to-be",
+            "subject-pronouns",
+            "articles",
+            "possessive-adjectives",
+            "present-simple",
+            "present-continuous",
+            "past-simple",
+            "can-cant",
             "questions-yes-no",
         ],
         vocabulary_set_ids=["food_drinks_a1"],
@@ -292,12 +303,19 @@ A2_UNITS: list[CurriculumUnit] = [
         unit_number=8,
         title="A2 Consolidation",
         grammar_points=[
-            "past-simple", "going-to-future", "will-future",
-            "comparatives-superlatives", "countable-uncountable", "modal-verbs",
+            "past-simple",
+            "going-to-future",
+            "will-future",
+            "comparatives-superlatives",
+            "countable-uncountable",
+            "modal-verbs",
         ],
         vocabulary_set_ids=[
-            "irregular_verbs_a2", "adjectives_a2", "food_shopping_a2",
-            "transport_a2", "body_health_a2",
+            "irregular_verbs_a2",
+            "adjectives_a2",
+            "food_shopping_a2",
+            "transport_a2",
+            "body_health_a2",
         ],
         lesson_types=["reading", "writing", "review"],
         competency_checklist=[
@@ -431,8 +449,13 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=8,
         title="B1 Consolidation",
         grammar_points=[
-            "present-perfect", "first-conditional", "second-conditional",
-            "passive-voice-simple", "relative-clauses", "modal-verbs", "reported-speech",
+            "present-perfect",
+            "first-conditional",
+            "second-conditional",
+            "passive-voice-simple",
+            "relative-clauses",
+            "modal-verbs",
+            "reported-speech",
         ],
         vocabulary_set_ids=["consolidation_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
@@ -581,8 +604,12 @@ B2_UNITS: list[CurriculumUnit] = [
         unit_number=8,
         title="B2 Consolidation",
         grammar_points=[
-            "past-perfect", "second-conditional", "third-conditional",
-            "gerunds-infinitives", "reported-speech", "modal-perfects",
+            "past-perfect",
+            "second-conditional",
+            "third-conditional",
+            "gerunds-infinitives",
+            "reported-speech",
+            "modal-perfects",
         ],
         vocabulary_set_ids=["academic_vocabulary_b2", "workplace_b2", "media_society_b2"],
         lesson_types=["reading", "writing", "review"],
@@ -732,8 +759,13 @@ C1_UNITS: list[CurriculumUnit] = [
         unit_number=8,
         title="C1 Consolidation",
         grammar_points=[
-            "mixed-conditionals", "participle-clauses", "inversion", "cleft-sentences",
-            "ellipsis-substitution", "advanced-relative-clauses", "hedging-language",
+            "mixed-conditionals",
+            "participle-clauses",
+            "inversion",
+            "cleft-sentences",
+            "ellipsis-substitution",
+            "advanced-relative-clauses",
+            "hedging-language",
         ],
         vocabulary_set_ids=["abstract_concepts_c1", "academic_discourse_c1", "debate_rhetoric_c1"],
         lesson_types=["grammar", "reading", "writing", "review"],
@@ -848,12 +880,19 @@ C2_UNITS: list[CurriculumUnit] = [
         unit_number=6,
         title="C2 Consolidation",
         grammar_points=[
-            "discourse-markers", "nominalisation", "fronting-emphasis",
-            "register-and-style", "inversion", "cleft-sentences",
+            "discourse-markers",
+            "nominalisation",
+            "fronting-emphasis",
+            "register-and-style",
+            "inversion",
+            "cleft-sentences",
         ],
         vocabulary_set_ids=[
-            "nuanced_adjectives_c2", "formal_register_c2", "idiomatic_expressions_c2",
-            "literary_devices_c2", "critical_analysis_c2",
+            "nuanced_adjectives_c2",
+            "formal_register_c2",
+            "idiomatic_expressions_c2",
+            "literary_devices_c2",
+            "critical_analysis_c2",
         ],
         lesson_types=["grammar", "reading", "writing", "review"],
         competency_checklist=[

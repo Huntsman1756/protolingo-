@@ -4,6 +4,7 @@ Returns runtime flags the frontend needs to decide UI behaviour
 (e.g. whether to show the pricing/billing section).
 No sensitive information is exposed.
 """
+
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, Request

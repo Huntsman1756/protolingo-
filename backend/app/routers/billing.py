@@ -3,6 +3,7 @@
 This router is only registered in main.py when STRIPE_ENABLED=true.
 The webhook endpoint verifies the Stripe signature before processing any event.
 """
+
 from __future__ import annotations
 
 from datetime import datetime
@@ -45,11 +46,13 @@ def _sget(obj: object, key: str, default=None):
 
 # ── Request schemas ──────────────────────────────────────────────────────────
 
+
 class CheckoutRequest(BaseModel):
     plan: Literal["monthly", "yearly"]
 
 
 # ── Endpoints ────────────────────────────────────────────────────────────────
+
 
 @router.post("/checkout")
 @limiter.limit("10/minute")
@@ -65,9 +68,7 @@ async def create_checkout_session(
     can start a new subscription.
     """
     price_id = (
-        settings.STRIPE_PRICE_MONTHLY
-        if body.plan == "monthly"
-        else settings.STRIPE_PRICE_YEARLY
+        settings.STRIPE_PRICE_MONTHLY if body.plan == "monthly" else settings.STRIPE_PRICE_YEARLY
     )
     if not price_id:
         raise HTTPException(status_code=503, detail="Stripe prices not configured")
@@ -133,9 +134,7 @@ async def stripe_webhook(
     sig_header = request.headers.get("stripe-signature", "")
 
     try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
+        event = stripe.Webhook.construct_event(payload, sig_header, settings.STRIPE_WEBHOOK_SECRET)
     except ValueError:
         logger.warning("[billing] Webhook invalid payload")
         raise HTTPException(status_code=400, detail="Invalid payload")
@@ -166,6 +165,7 @@ async def stripe_webhook(
 
 # ── Event handlers ───────────────────────────────────────────────────────────
 
+
 def _subscription_period_end(sub: object) -> datetime | None:
     """Extract current_period_end from a Stripe Subscription object.
 
@@ -187,9 +187,7 @@ def _subscription_period_end(sub: object) -> datetime | None:
 
 
 async def _get_user_by_customer_id(db: AsyncSession, customer_id: str) -> User | None:
-    result = await db.execute(
-        select(User).where(User.stripe_customer_id == customer_id)
-    )
+    result = await db.execute(select(User).where(User.stripe_customer_id == customer_id))
     return result.scalar_one_or_none()
 
 
@@ -224,16 +222,12 @@ async def _handle_checkout_completed(db: AsyncSession, session: object) -> None:
             status = getattr(sub, "status", "trialing")  # "trialing" | "active"
             ends_at = _subscription_period_end(sub)
         except Exception as exc:  # noqa: BLE001
-            logger.warning(
-                "[billing] Could not retrieve subscription %s: %s", subscription_id, exc
-            )
+            logger.warning("[billing] Could not retrieve subscription %s: %s", subscription_id, exc)
 
     user.subscription_status = status
     user.subscription_ends_at = ends_at
     await apply_subscription_quotas(user, db)
-    logger.info(
-        "[billing] User %s subscription activated — status=%s", user.id, status
-    )
+    logger.info("[billing] User %s subscription activated — status=%s", user.id, status)
 
 
 async def _handle_subscription_updated(db: AsyncSession, subscription: object) -> None:

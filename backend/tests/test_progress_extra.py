@@ -1,10 +1,11 @@
 """Tests for GET /api/progress/competencies (per-unit skill scores)."""
+
 from __future__ import annotations
 
 import pytest
 
-
 # ── GET /api/progress/competencies ───────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_competencies_empty_for_new_user(client, test_user):

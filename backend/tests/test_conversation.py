@@ -1,8 +1,9 @@
 """Tests for the WebSocket conversation endpoint and pipeline."""
+
 from __future__ import annotations
 
 import asyncio
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 from httpx import ASGITransport, AsyncClient
@@ -10,7 +11,6 @@ from httpx_ws import aconnect_ws
 
 from app.core.security import create_access_token
 from app.main import app
-
 
 # ---------------------------------------------------------------------------
 # Helper: create a real user and return a valid JWT
@@ -252,7 +252,7 @@ async def test_pipeline_stt_failure_sends_error_frame() -> None:
 # ---------------------------------------------------------------------------
 
 
-def _make_pipeline(**kwargs) -> "ConversationPipeline":
+def _make_pipeline(**kwargs):  # noqa: F821
     from app.services.conversation_pipeline import ConversationPipeline
 
     return ConversationPipeline(

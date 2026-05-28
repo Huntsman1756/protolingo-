@@ -4,14 +4,19 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
-import { getCurriculumUnits, CEFR_LEVELS, type CurriculumUnit, type CEFRLevel } from '@/data/curriculum'
+import {
+  getCurriculumUnits,
+  CEFR_LEVELS,
+  type CurriculumUnit,
+  type CEFRLevel,
+} from '@/data/curriculum'
 import { vocabularySets } from '@/data/vocabulary'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 interface CompetencyRecord {
   unit_id: string
-  score: number          // 0–1 average
+  score: number // 0–1 average
   mastered_count: number
   total_count: number
 }
@@ -39,7 +44,7 @@ function getCompetencyStatus(
   itemIndex: number,
   masteredCount: number,
   totalCount: number,
-  score: number,
+  score: number
 ): CompetencyStatus {
   if (itemIndex < masteredCount) return 'mastered'
   if (score > 0 && itemIndex < totalCount) return 'in-progress'
@@ -70,24 +75,27 @@ function UnitCompetencyBlock({
   const masteredCount = record?.mastered_count ?? 0
   const totalCount = unit.competency_checklist.length
   const score = record?.score ?? 0
-  const pct = totalCount > 0 ? Math.round((masteredCount / totalCount) * 100) : 0
+  const pct =
+    totalCount > 0 ? Math.round((masteredCount / totalCount) * 100) : 0
 
   return (
-    <div className="border border-fl-border bg-fl-surface">
+    <div className="border-fl-border bg-fl-surface border">
       {/* Unit header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-fl-border">
+      <div className="border-fl-border flex items-center justify-between border-b px-5 py-4">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
+          <span className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
             Unit {unit.unit_number}
           </span>
-          <span className="font-mono text-xs font-bold text-fl-fg">{unit.title}</span>
+          <span className="text-fl-fg font-mono text-xs font-bold">
+            {unit.title}
+          </span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="font-mono text-fl-label text-fl-muted-3">
+          <span className="text-fl-label text-fl-muted-3 font-mono">
             {masteredCount}/{totalCount} mastered
           </span>
           {record && (
-            <span className="font-mono text-fl-label text-fl-muted-2">
+            <span className="text-fl-label text-fl-muted-2 font-mono">
               {Math.round(score * 100)}%
             </span>
           )}
@@ -95,25 +103,34 @@ function UnitCompetencyBlock({
       </div>
 
       {/* Progress bar */}
-      <div className="h-0.5 bg-fl-border">
+      <div className="bg-fl-border h-0.5">
         <div
-          className="h-full bg-fl-accent transition-all"
+          className="bg-fl-accent h-full transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
 
       {/* Competency list */}
-      <ul className="px-5 py-3 space-y-2">
+      <ul className="space-y-2 px-5 py-3">
         {unit.competency_checklist.map((text, idx) => {
-          const status = getCompetencyStatus(idx, masteredCount, record?.total_count ?? 0, score)
+          const status = getCompetencyStatus(
+            idx,
+            masteredCount,
+            record?.total_count ?? 0,
+            score
+          )
           return (
             <li key={idx} className="flex items-start gap-3">
-              <span className="shrink-0 text-base leading-none mt-0.5">{STATUS_ICON[status]}</span>
-              <span className={`font-mono text-xs leading-relaxed ${STATUS_COLOR[status]}`}>
+              <span className="mt-0.5 shrink-0 text-base leading-none">
+                {STATUS_ICON[status]}
+              </span>
+              <span
+                className={`font-mono text-xs leading-relaxed ${STATUS_COLOR[status]}`}
+              >
                 {text}
               </span>
               {status === 'in-progress' && record && (
-                <span className="ml-auto shrink-0 font-mono text-fl-label text-fl-muted-3">
+                <span className="text-fl-label text-fl-muted-3 ml-auto shrink-0 font-mono">
                   {Math.round(score * 100)}%
                 </span>
               )}
@@ -142,11 +159,15 @@ export default function ProgressPage() {
           apiFetch('/api/progress/competencies'),
           apiFetch('/api/study-plan/current'),
         ])
-        if (sumRes.ok) setSummary(await sumRes.json() as ProgressSummary)
-        if (compRes.ok) setCompetencies(await compRes.json() as CompetencyRecord[])
-        if (planRes.ok) setPlan(await planRes.json() as StudyPlan)
-      } catch { /* ignore */ }
-      finally { setLoading(false) }
+        if (sumRes.ok) setSummary((await sumRes.json()) as ProgressSummary)
+        if (compRes.ok)
+          setCompetencies((await compRes.json()) as CompetencyRecord[])
+        if (planRes.ok) setPlan((await planRes.json()) as StudyPlan)
+      } catch {
+        /* ignore */
+      } finally {
+        setLoading(false)
+      }
     }
     void load()
   }, [])
@@ -166,7 +187,7 @@ export default function ProgressPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
           {t('loading')}
         </span>
       </div>
@@ -174,16 +195,16 @@ export default function ProgressPage() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl p-6 space-y-8">
+    <div className="mx-auto max-w-4xl space-y-8 p-6">
       {/* Header */}
-      <div className="border border-fl-border bg-fl-surface">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-fl-border">
+      <div className="border-fl-border bg-fl-surface border">
+        <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('subtitle')}
           </span>
           {cefrLevel && (
-            <span className="ml-auto border border-fl-border font-mono text-fl-label tracking-widest uppercase px-2 py-0.5 text-fl-muted-3">
+            <span className="border-fl-border text-fl-label text-fl-muted-3 ml-auto border px-2 py-0.5 font-mono tracking-widest uppercase">
               {cefrLevel} Programme
             </span>
           )}
@@ -191,18 +212,23 @@ export default function ProgressPage() {
 
         {/* XP + streak */}
         {summary && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-fl-border border-b border-fl-border">
+          <div className="divide-fl-border border-fl-border grid grid-cols-2 divide-x border-b sm:grid-cols-4">
             {[
               { label: t('xp'), value: summary.total_xp.toLocaleString() },
               { label: t('streak'), value: `${summary.current_streak}d 🔥` },
               { label: t('lessons'), value: summary.total_lessons },
-              { label: t('accuracy'), value: `${Math.round(summary.accuracy * 100)}%` },
+              {
+                label: t('accuracy'),
+                value: `${Math.round(summary.accuracy * 100)}%`,
+              },
             ].map(({ label, value }) => (
               <div key={label} className="px-5 py-4 text-center">
-                <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-1">
+                <p className="text-fl-label text-fl-muted-3 mb-1 font-mono tracking-widest uppercase">
                   {label}
                 </p>
-                <p className="font-mono text-sm font-bold text-fl-fg">{value}</p>
+                <p className="text-fl-fg font-mono text-sm font-bold">
+                  {value}
+                </p>
               </div>
             ))}
           </div>
@@ -210,7 +236,7 @@ export default function ProgressPage() {
 
         {!plan && (
           <div className="px-6 py-6 text-center">
-            <p className="font-mono text-xs text-fl-muted-3 leading-relaxed">
+            <p className="text-fl-muted-3 font-mono text-xs leading-relaxed">
               {t('noActivePlanDesc')}
             </p>
           </div>
@@ -221,10 +247,12 @@ export default function ProgressPage() {
       {levelUnits.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-base font-bold text-fl-fg tracking-widest">
-              {cefrLevel ? t('competenciesSection', { level: cefrLevel }) : t('competencies')}
+            <span className="text-fl-fg font-mono text-base font-bold tracking-widest">
+              {cefrLevel
+                ? t('competenciesSection', { level: cefrLevel })
+                : t('competencies')}
             </span>
-            <div className="flex-1 h-px bg-fl-border" />
+            <div className="bg-fl-border h-px flex-1" />
           </div>
 
           {levelUnits.map((unit) => (
@@ -236,13 +264,13 @@ export default function ProgressPage() {
           ))}
 
           {competencies.length === 0 && (
-            <div className="border border-fl-border bg-fl-surface px-6 py-8 text-center">
-              <p className="font-mono text-xs text-fl-muted-3 leading-relaxed">
+            <div className="border-fl-border bg-fl-surface border px-6 py-8 text-center">
+              <p className="text-fl-muted-3 font-mono text-xs leading-relaxed">
                 {t('noCompetencies')}
               </p>
               <Link
                 href="/plan"
-                className="inline-block mt-4 font-mono text-fl-label tracking-widest uppercase text-fl-muted-2 hover:text-fl-fg transition-colors"
+                className="text-fl-label text-fl-muted-2 hover:text-fl-fg mt-4 inline-block font-mono tracking-widest uppercase transition-colors"
               >
                 {t('goToMyPlan')}
               </Link>
@@ -255,29 +283,34 @@ export default function ProgressPage() {
       {levelVocabSets.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-base font-bold text-fl-fg tracking-widest">
-              {cefrLevel ? t('vocabularyHeader', { level: cefrLevel }) : t('vocabularySection')}
+            <span className="text-fl-fg font-mono text-base font-bold tracking-widest">
+              {cefrLevel
+                ? t('vocabularyHeader', { level: cefrLevel })
+                : t('vocabularySection')}
             </span>
-            <div className="flex-1 h-px bg-fl-border" />
-            <span className="font-mono text-fl-label text-fl-muted-3">
+            <div className="bg-fl-border h-px flex-1" />
+            <span className="text-fl-label text-fl-muted-3 font-mono">
               {totalLevelWords} words
             </span>
           </div>
 
-          <div className="border border-fl-border bg-fl-surface divide-y divide-fl-border">
+          <div className="border-fl-border bg-fl-surface divide-fl-border divide-y border">
             {levelVocabSets.map((s) => (
               <div key={s.id} className="flex items-center gap-4 px-5 py-3">
                 <Link
                   href={`/vocabulary/${s.id}`}
-                  className="font-mono text-xs text-fl-muted-1 hover:text-fl-fg transition-colors flex-1 min-w-0 truncate"
+                  className="text-fl-muted-1 hover:text-fl-fg min-w-0 flex-1 truncate font-mono text-xs transition-colors"
                 >
                   {s.topic}
                 </Link>
                 <div className="flex items-center gap-3">
-                  <div className="w-24 h-1.5 bg-fl-border">
-                    <div className="h-full bg-fl-accent" style={{ width: '0%' }} />
+                  <div className="bg-fl-border h-1.5 w-24">
+                    <div
+                      className="bg-fl-accent h-full"
+                      style={{ width: '0%' }}
+                    />
                   </div>
-                  <span className="font-mono text-fl-label text-fl-muted-3 w-12 text-right">
+                  <span className="text-fl-label text-fl-muted-3 w-12 text-right font-mono">
                     {s.words.length}w
                   </span>
                 </div>
@@ -285,7 +318,7 @@ export default function ProgressPage() {
             ))}
           </div>
 
-          <p className="font-mono text-fl-label text-fl-muted-4">
+          <p className="text-fl-label text-fl-muted-4 font-mono">
             {t('addToFlashcards')}
           </p>
         </section>
@@ -295,24 +328,24 @@ export default function ProgressPage() {
       {summary && Object.keys(summary.skills).length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-base font-bold text-fl-fg tracking-widest">
+            <span className="text-fl-fg font-mono text-base font-bold tracking-widest">
               {t('skills')}
             </span>
-            <div className="flex-1 h-px bg-fl-border" />
+            <div className="bg-fl-border h-px flex-1" />
           </div>
-          <div className="border border-fl-border bg-fl-surface divide-y divide-fl-border">
+          <div className="border-fl-border bg-fl-surface divide-fl-border divide-y border">
             {Object.entries(summary.skills).map(([skill, value]) => (
               <div key={skill} className="flex items-center gap-4 px-5 py-3">
-                <span className="font-mono text-fl-label tracking-widest uppercase text-fl-muted-2 w-24">
+                <span className="text-fl-label text-fl-muted-2 w-24 font-mono tracking-widest uppercase">
                   {skill}
                 </span>
-                <div className="flex-1 h-1.5 bg-fl-border">
+                <div className="bg-fl-border h-1.5 flex-1">
                   <div
-                    className="h-full bg-fl-accent"
+                    className="bg-fl-accent h-full"
                     style={{ width: `${Math.round(value * 100)}%` }}
                   />
                 </div>
-                <span className="font-mono text-fl-label text-fl-muted-2 w-10 text-right">
+                <span className="text-fl-label text-fl-muted-2 w-10 text-right font-mono">
                   {Math.round(value * 100)}%
                 </span>
               </div>

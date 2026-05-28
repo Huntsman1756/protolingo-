@@ -4,7 +4,6 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field, field_serializer
 
-
 # ---------------------------------------------------------------------------
 # Shared author info embedded in responses
 # ---------------------------------------------------------------------------
@@ -65,7 +64,7 @@ class FeedbackEntryOut(BaseModel):
     author: FeedbackAuthor
     vote_count: int
     voted_by_me: bool = False  # injected per-request, not from ORM directly
-    comment_count: int = 0     # injected per-request
+    comment_count: int = 0  # injected per-request
     created_at: datetime
 
     @field_serializer("created_at")
@@ -92,8 +91,8 @@ class PaginatedFeedbackResponse(BaseModel):
 
 
 class FeedbackVoteResponse(BaseModel):
-    voted: bool       # True = vote added, False = vote removed
-    vote_count: int   # updated count after the toggle
+    voted: bool  # True = vote added, False = vote removed
+    vote_count: int  # updated count after the toggle
 
 
 # ---------------------------------------------------------------------------

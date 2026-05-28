@@ -58,25 +58,36 @@ export default function LessonPage() {
       const data = await res.json()
       setLesson(data.lesson)
       setExercises(data.exercises)
-    } catch { /* ignore */ }
-    finally { setLoading(false) }
+    } catch {
+      /* ignore */
+    } finally {
+      setLoading(false)
+    }
   }, [id])
 
-  useEffect(() => { loadLesson() }, [loadLesson])
+  useEffect(() => {
+    loadLesson()
+  }, [loadLesson])
 
   // Capture progress_day at the time the lesson starts (for day-complete detection)
   useEffect(() => {
     apiFetch('/api/study-plan/today')
       .then((r) => (r.ok ? r.json() : null))
-      .then((d) => { if (d?.progress_day !== undefined) setProgressDayAtStart(d.progress_day) })
-      .catch(() => { })
+      .then((d) => {
+        if (d?.progress_day !== undefined) setProgressDayAtStart(d.progress_day)
+      })
+      .catch(() => {})
   }, [])
 
   // Restore the answer field whenever the active exercise changes
   // (seeds previous user_answer for already-answered exercises, clears for fresh ones)
   useEffect(() => {
     const ex = exercises[currentExercise]
-    setAnswer(ex?.score !== null && ex?.score !== undefined ? (ex.user_answer ?? '') : '')
+    setAnswer(
+      ex?.score !== null && ex?.score !== undefined
+        ? (ex.user_answer ?? '')
+        : ''
+    )
   }, [currentExercise, exercises])
 
   async function submitAnswer(overrideAnswer?: string) {
@@ -85,20 +96,31 @@ export default function LessonPage() {
     const exercise = exercises[currentExercise]
     setEvaluating(true)
     try {
-      const res = await apiFetch(`/api/lessons/exercises/${exercise.id}/answer`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answer: finalAnswer }),
-      })
+      const res = await apiFetch(
+        `/api/lessons/exercises/${exercise.id}/answer`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answer: finalAnswer }),
+        }
+      )
       const result = await res.json()
       setExercises((prev) => {
         const copy = [...prev]
-        copy[currentExercise] = { ...copy[currentExercise], score: result.score, feedback: result.feedback, user_answer: finalAnswer }
+        copy[currentExercise] = {
+          ...copy[currentExercise],
+          score: result.score,
+          feedback: result.feedback,
+          user_answer: finalAnswer,
+        }
         return copy
       })
       if (overrideAnswer !== undefined) setAnswer(overrideAnswer)
-    } catch { /* ignore */ }
-    finally { setEvaluating(false) }
+    } catch {
+      /* ignore */
+    } finally {
+      setEvaluating(false)
+    }
   }
 
   function nextExercise() {
@@ -119,14 +141,18 @@ export default function LessonPage() {
           setDayComplete(true)
         }
       }
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
     setCompleted(true)
   }
 
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-2 tracking-widest uppercase animate-pulse">{t('loading')}</span>
+        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
+          {t('loading')}
+        </span>
       </div>
     )
   }
@@ -134,18 +160,26 @@ export default function LessonPage() {
   if (completed) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 p-6">
-        <div className="border border-fl-border bg-fl-surface px-10 py-10 text-center">
-          <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-4">● {tCommon('complete')}</p>
-          <p className="font-mono text-xl font-bold text-fl-fg tracking-widest">{t('lessonDone')}</p>
+        <div className="border-fl-border bg-fl-surface border px-10 py-10 text-center">
+          <p className="text-fl-label text-fl-muted-2 mb-4 font-mono tracking-widest uppercase">
+            ● {tCommon('complete')}
+          </p>
+          <p className="text-fl-fg font-mono text-xl font-bold tracking-widest">
+            {t('lessonDone')}
+          </p>
           {dayComplete && (
-            <div className="mt-6 border border-fl-accent/30 bg-fl-accent/5 px-6 py-4">
-              <p className="font-mono text-sm font-bold text-fl-accent tracking-widest">{t('dayComplete')}</p>
-              <p className="font-mono text-xs text-fl-muted-1 mt-1">{t('dayCompleteMsg')}</p>
+            <div className="border-fl-accent/30 bg-fl-accent/5 mt-6 border px-6 py-4">
+              <p className="text-fl-accent font-mono text-sm font-bold tracking-widest">
+                {t('dayComplete')}
+              </p>
+              <p className="text-fl-muted-1 mt-1 font-mono text-xs">
+                {t('dayCompleteMsg')}
+              </p>
             </div>
           )}
           <button
             onClick={() => router.push('/dashboard')}
-            className="mt-8 bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-8 py-3 hover:bg-fl-accent/90 transition-colors"
+            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 mt-8 px-8 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
           >
             — {tCommon('backToDashboard')}
           </button>
@@ -156,28 +190,43 @@ export default function LessonPage() {
 
   const exercise = exercises[currentExercise]
   const isEvaluated = exercise?.score !== null
-  const explanation = lesson?.content?.explanation as Record<string, unknown> | undefined
+  const explanation = lesson?.content?.explanation as
+    | Record<string, unknown>
+    | undefined
 
   return (
     <>
-      <div className="mx-auto max-w-2xl p-6 space-y-4">
+      <div className="mx-auto max-w-2xl space-y-4 p-6">
         {/* Lesson header */}
-        <div className="border border-fl-border bg-fl-surface">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+        <div className="border-fl-border bg-fl-surface border">
+          <div className="border-fl-border flex items-center justify-between border-b px-6 py-4">
             <div className="flex items-center gap-2">
               <span className="text-fl-label text-fl-muted-2">●</span>
-              <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('label')}</span>
+              <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+                {t('label')}
+              </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">{lesson?.cefr_level}</span>
-              <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">
+              <span className="text-fl-hint text-fl-muted-2 border-fl-border border px-2 py-1 font-mono tracking-widest uppercase">
+                {lesson?.cefr_level}
+              </span>
+              <span className="text-fl-hint text-fl-muted-2 border-fl-border border px-2 py-1 font-mono tracking-widest uppercase">
                 {lesson?.lesson_type
-                  ? (({ grammar: tPlan('lessonTypes.grammar'), vocabulary: tPlan('lessonTypes.vocabulary'), reading: tPlan('lessonTypes.reading'), writing: tPlan('lessonTypes.writing'), review: tPlan('lessonTypes.review'), level_test: tPlan('lessonTypes.level_test') } as Record<string, string>)[lesson.lesson_type] ?? lesson.lesson_type)
+                  ? ((
+                      {
+                        grammar: tPlan('lessonTypes.grammar'),
+                        vocabulary: tPlan('lessonTypes.vocabulary'),
+                        reading: tPlan('lessonTypes.reading'),
+                        writing: tPlan('lessonTypes.writing'),
+                        review: tPlan('lessonTypes.review'),
+                        level_test: tPlan('lessonTypes.level_test'),
+                      } as Record<string, string>
+                    )[lesson.lesson_type] ?? lesson.lesson_type)
                   : ''}
               </span>
               <button
                 onClick={() => setShowExitConfirm(true)}
-                className="font-mono text-fl-muted-3 hover:text-fl-fg transition-colors text-lg leading-none ml-1"
+                className="text-fl-muted-3 hover:text-fl-fg ml-1 font-mono text-lg leading-none transition-colors"
                 aria-label={t('exit')}
               >
                 ✕
@@ -185,34 +234,51 @@ export default function LessonPage() {
             </div>
           </div>
           <div className="px-6 py-5">
-            <p className="font-mono text-base font-bold text-fl-fg tracking-wide">{lesson?.title}</p>
+            <p className="text-fl-fg font-mono text-base font-bold tracking-wide">
+              {lesson?.title}
+            </p>
             {explanation && (
               <div className="mt-4 space-y-3">
                 {explanation.text != null && (
-                  <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{String(explanation.text)}</p>
+                  <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                    {String(explanation.text)}
+                  </p>
                 )}
                 {(explanation.key_points as string[])?.length > 0 && (
-                  <ul className="space-y-1 border-t border-fl-border pt-3">
+                  <ul className="border-fl-border space-y-1 border-t pt-3">
                     {(explanation.key_points as string[]).map((kp, i) => (
-                      <li key={i} className="font-mono text-xs text-fl-muted-3">
-                        <span className="text-fl-muted-2 mr-2">·</span>{kp}
+                      <li key={i} className="text-fl-muted-3 font-mono text-xs">
+                        <span className="text-fl-muted-2 mr-2">·</span>
+                        {kp}
                       </li>
                     ))}
                   </ul>
                 )}
-                {(explanation.examples as { sentence: string; note: string }[])?.length > 0 && (
-                  <div className="border-t border-fl-border pt-3 space-y-2">
-                    <p className="font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase">{t('examples')}</p>
-                    {(explanation.examples as { sentence: string; note: string }[]).map((ex, i) => (
+                {(explanation.examples as { sentence: string; note: string }[])
+                  ?.length > 0 && (
+                  <div className="border-fl-border space-y-2 border-t pt-3">
+                    <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+                      {t('examples')}
+                    </p>
+                    {(
+                      explanation.examples as {
+                        sentence: string
+                        note: string
+                      }[]
+                    ).map((ex, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <span className="text-fl-muted-3 mt-0.5">·</span>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-mono text-xs text-fl-muted-1 italic">{ex.sentence}</span>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-fl-muted-1 font-mono text-xs italic">
+                              {ex.sentence}
+                            </span>
                             <AudioPlayer text={ex.sentence} size="sm" />
                           </div>
                           {ex.note && (
-                            <p className="font-mono text-fl-hint text-fl-muted-3 mt-0.5">{ex.note}</p>
+                            <p className="text-fl-hint text-fl-muted-3 mt-0.5 font-mono">
+                              {ex.note}
+                            </p>
                           )}
                         </div>
                       </div>
@@ -226,36 +292,43 @@ export default function LessonPage() {
 
         {/* Exercise */}
         {exercise && (
-          <div className="border border-fl-border bg-fl-surface">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+          <div className="border-fl-border bg-fl-surface border">
+            <div className="border-fl-border flex items-center justify-between border-b px-6 py-4">
               <div className="flex items-center gap-2">
                 <span className="text-fl-label text-fl-muted-2">●</span>
-                <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+                <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
                   {t('exercise')} {currentExercise + 1} / {exercises.length}
                 </span>
               </div>
-              <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest uppercase border border-fl-border px-2 py-1">
-                {({
-                  multiple_choice: t('exerciseTypeMultipleChoice'),
-                  fill_blank: t('exerciseTypeFillBlank'),
-                  free_write: t('exerciseTypeFreeWrite'),
-                  pronunciation: t('exerciseTypePronunciation'),
-                } as Record<string, string>)[exercise.exercise_type] ?? exercise.exercise_type}
+              <span className="text-fl-hint text-fl-muted-2 border-fl-border border px-2 py-1 font-mono tracking-widest uppercase">
+                {(
+                  {
+                    multiple_choice: t('exerciseTypeMultipleChoice'),
+                    fill_blank: t('exerciseTypeFillBlank'),
+                    free_write: t('exerciseTypeFreeWrite'),
+                    pronunciation: t('exerciseTypePronunciation'),
+                  } as Record<string, string>
+                )[exercise.exercise_type] ?? exercise.exercise_type}
               </span>
             </div>
 
             {/* Progress bar */}
-            <div className="h-px bg-fl-border">
+            <div className="bg-fl-border h-px">
               <div
-                className="h-px bg-fl-accent transition-all duration-300"
-                style={{ width: `${Math.round(((currentExercise + 1) / exercises.length) * 100)}%` }}
+                className="bg-fl-accent h-px transition-all duration-300"
+                style={{
+                  width: `${Math.round(((currentExercise + 1) / exercises.length) * 100)}%`,
+                }}
               />
             </div>
 
-            <div className="px-6 py-6 space-y-5">
-              <p className="font-mono text-sm text-fl-fg leading-relaxed">{exercise.question}</p>
+            <div className="space-y-5 px-6 py-6">
+              <p className="text-fl-fg font-mono text-sm leading-relaxed">
+                {exercise.question}
+              </p>
 
-              {exercise.exercise_type === 'multiple_choice' && exercise.options ? (
+              {exercise.exercise_type === 'multiple_choice' &&
+              exercise.options ? (
                 <div className="space-y-2">
                   {exercise.options.map((opt) => {
                     const isSelected = answer === opt
@@ -264,10 +337,11 @@ export default function LessonPage() {
                         key={opt}
                         disabled={isEvaluated}
                         onClick={() => setAnswer(opt)}
-                        className={`w-full text-left px-4 py-3 border font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${isSelected
-                          ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
-                          : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
-                          }`}
+                        className={`w-full border px-4 py-3 text-left font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${
+                          isSelected
+                            ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
+                            : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
+                        }`}
                       >
                         {opt}
                       </button>
@@ -277,12 +351,16 @@ export default function LessonPage() {
               ) : exercise.exercise_type === 'pronunciation' ? (
                 <div className="space-y-4">
                   {/* Target phrase + listen button */}
-                  <div className="border border-fl-border bg-fl-bg px-4 py-4 flex items-center gap-3 flex-wrap">
-                    <span className="font-mono text-sm font-bold text-fl-fg flex-1">{exercise.correct_answer}</span>
+                  <div className="border-fl-border bg-fl-bg flex flex-wrap items-center gap-3 border px-4 py-4">
+                    <span className="text-fl-fg flex-1 font-mono text-sm font-bold">
+                      {exercise.correct_answer}
+                    </span>
                     <AudioPlayer text={exercise.correct_answer} size="md" />
                   </div>
                   {exercise.options?.[0] && (
-                    <p className="font-mono text-fl-hint text-fl-muted-3">{exercise.options[0]}</p>
+                    <p className="text-fl-hint text-fl-muted-3 font-mono">
+                      {exercise.options[0]}
+                    </p>
                   )}
                   {!isEvaluated && (
                     <VoiceRecorder
@@ -292,12 +370,14 @@ export default function LessonPage() {
                     />
                   )}
                   {evaluating && (
-                    <p className="font-mono text-fl-hint text-fl-muted-3 tracking-widest uppercase animate-pulse">{tCommon('checking')}</p>
+                    <p className="text-fl-hint text-fl-muted-3 animate-pulse font-mono tracking-widest uppercase">
+                      {tCommon('checking')}
+                    </p>
                   )}
                 </div>
               ) : (
                 <textarea
-                  className="min-h-[90px] w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-xs text-fl-fg placeholder:text-fl-muted-4 focus:outline-none focus:border-fl-border-2 transition-colors resize-none"
+                  className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 min-h-[90px] w-full resize-none border px-4 py-3 font-mono text-xs transition-colors focus:outline-none"
                   placeholder={t('yourAnswer')}
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
@@ -310,43 +390,57 @@ export default function LessonPage() {
                   <button
                     onClick={() => submitAnswer()}
                     disabled={evaluating || !answer.trim()}
-                    className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+                    className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
                   >
-                    {evaluating ? `— ${tCommon('checking')}` : `— ${t('submitAnswer')}`}
+                    {evaluating
+                      ? `— ${tCommon('checking')}`
+                      : `— ${t('submitAnswer')}`}
                   </button>
                 ) : null
               ) : (
                 <div className="space-y-4">
                   {exercise.feedback && (
-                    <div className="border border-fl-border px-4 py-4">
-                      <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('feedback')}</p>
-                      <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{exercise.feedback}</p>
+                    <div className="border-fl-border border px-4 py-4">
+                      <p className="text-fl-label text-fl-muted-2 mb-2 font-mono tracking-widest uppercase">
+                        {t('feedback')}
+                      </p>
+                      <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                        {exercise.feedback}
+                      </p>
                     </div>
                   )}
                   {exercise.explanation && (
-                    <div className="border border-fl-border px-4 py-4">
-                      <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase mb-2">{t('explanation')}</p>
-                      <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{exercise.explanation}</p>
+                    <div className="border-fl-border border px-4 py-4">
+                      <p className="text-fl-label text-fl-muted-2 mb-2 font-mono tracking-widest uppercase">
+                        {t('explanation')}
+                      </p>
+                      <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                        {exercise.explanation}
+                      </p>
                     </div>
                   )}
                   <div className="flex items-center gap-4">
-                    <div className="border border-fl-border px-4 py-2">
-                      <span className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase">{tCommon('score')} </span>
-                      <span className="font-mono text-sm font-bold text-fl-fg">
-                        {exercise.score !== null ? Math.round((exercise.score ?? 0) * 100) + '%' : 'N/A'}
+                    <div className="border-fl-border border px-4 py-2">
+                      <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+                        {tCommon('score')}{' '}
+                      </span>
+                      <span className="text-fl-fg font-mono text-sm font-bold">
+                        {exercise.score !== null
+                          ? Math.round((exercise.score ?? 0) * 100) + '%'
+                          : 'N/A'}
                       </span>
                     </div>
                     {currentExercise < exercises.length - 1 ? (
                       <button
                         onClick={nextExercise}
-                        className="border border-fl-border px-6 py-2 font-mono text-xs tracking-widest text-fl-muted-1 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
+                        className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors"
                       >
                         {tCommon('next')} →
                       </button>
                     ) : (
                       <button
                         onClick={completeLessonHandler}
-                        className="bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase px-6 py-2 hover:bg-fl-accent/90 transition-colors"
+                        className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-6 py-2 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
                       >
                         — {t('completeLesson')}
                       </button>
@@ -360,22 +454,30 @@ export default function LessonPage() {
 
         {/* Vocabulary */}
         {(() => {
-          const vocabItems = (lesson?.content?.vocabulary ?? []) as Array<Record<string, string>>
+          const vocabItems = (lesson?.content?.vocabulary ?? []) as Array<
+            Record<string, string>
+          >
           if (!vocabItems.length) return null
           return (
-            <div className="border border-fl-border bg-fl-surface p-5">
-              <p className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase mb-3">
+            <div className="border-fl-border bg-fl-surface border p-5">
+              <p className="text-fl-label text-fl-muted-2 mb-3 font-mono tracking-widest uppercase">
                 {t('vocabulary')}
               </p>
               <div className="space-y-3">
                 {vocabItems.map((item, idx) => (
-                  <div key={idx} className="border border-fl-border px-4 py-3">
-                    <p className="font-mono text-xs text-fl-fg font-semibold tracking-wide mb-1">{item.word}</p>
+                  <div key={idx} className="border-fl-border border px-4 py-3">
+                    <p className="text-fl-fg mb-1 font-mono text-xs font-semibold tracking-wide">
+                      {item.word}
+                    </p>
                     {item.definition && (
-                      <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">{item.definition}</p>
+                      <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                        {item.definition}
+                      </p>
                     )}
                     {item.example && (
-                      <p className="font-mono text-xs text-fl-muted-2 italic mt-1">{item.example}</p>
+                      <p className="text-fl-muted-2 mt-1 font-mono text-xs italic">
+                        {item.example}
+                      </p>
                     )}
                   </div>
                 ))}
@@ -389,8 +491,8 @@ export default function LessonPage() {
           const grammarRefs = (lesson?.content?.grammar_refs ?? []) as string[]
           if (!grammarRefs.length) return null
           return (
-            <div className="border border-fl-border bg-fl-surface p-5">
-              <p className="font-mono text-fl-label text-fl-muted-2 tracking-widest uppercase mb-3">
+            <div className="border-fl-border bg-fl-surface border p-5">
+              <p className="text-fl-label text-fl-muted-2 mb-3 font-mono tracking-widest uppercase">
                 {t('relatedGrammar')}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -401,7 +503,7 @@ export default function LessonPage() {
                     <Link
                       key={slug}
                       href={`/grammar/${slug}`}
-                      className="border border-fl-border px-3 py-1.5 font-mono text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg transition-colors uppercase tracking-widest"
+                      className="border-fl-border text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors"
                     >
                       ● {topic.title}
                     </Link>

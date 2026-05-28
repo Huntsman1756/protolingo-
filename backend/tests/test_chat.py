@@ -11,7 +11,9 @@ async def test_chat_returns_sse_stream(client, test_user):
         class Choice:
             class Delta:
                 content = "Hello"
+
             delta = Delta()
+
         choices = [Choice()]
 
     async def fake_stream():

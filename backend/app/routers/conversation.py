@@ -5,16 +5,14 @@ import struct
 
 from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
-from redis.asyncio import Redis
-
 from jwt.exceptions import PyJWTError
+from redis.asyncio import Redis
 from sqlalchemy import select
 
 from app.core.app_logger import get_logger
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal
-from app.core.deps import MAINTENANCE_KEY, get_current_user, require_subscription
-from app.services.subscription_service import is_subscribed
+from app.core.deps import MAINTENANCE_KEY, require_subscription
 from app.core.security import decode_access_token
 from app.models.conversation import Conversation as ConversationModel
 from app.models.study_plan import StudyPlan
@@ -23,7 +21,13 @@ from app.services.conversation_pipeline import ConversationPipeline
 from app.services.language_helpers import voice_session_title
 from app.services.llm_adapter import llm_adapter
 from app.services.memory_service import get_user_memories
-from app.services.quota_service import check_and_increment_sessions, check_daily_minutes, check_monthly_tokens, check_weekly_minutes
+from app.services.quota_service import (
+    check_and_increment_sessions,
+    check_daily_minutes,
+    check_monthly_tokens,
+    check_weekly_minutes,
+)
+from app.services.subscription_service import is_subscribed
 
 logger = get_logger(__name__)
 
@@ -37,9 +41,19 @@ def _make_silence_wav(duration_ms: int = 100, sample_rate: int = 16000) -> bytes
     byte_rate = sample_rate * 2
     header = struct.pack(
         "<4sI4s4sIHHIIHH4sI",
-        b"RIFF", 36 + len(data), b"WAVE",
-        b"fmt ", 16, 1, 1, sample_rate, byte_rate, 2, 16,
-        b"data", len(data),
+        b"RIFF",
+        36 + len(data),
+        b"WAVE",
+        b"fmt ",
+        16,
+        1,
+        1,
+        sample_rate,
+        byte_rate,
+        2,
+        16,
+        b"data",
+        len(data),
     )
     return header + data
 
@@ -99,7 +113,9 @@ async def conversation_ws(
         token = auth_msg.get("token", "")
         initial_context_raw = auth_msg.get("context")  # optional chat history
         voice_pref: str = auth_msg.get("voice", "") or ""
-        client_conversation_id_raw = auth_msg.get("conversation_id")  # optional: reserved for future API use
+        client_conversation_id_raw = auth_msg.get(
+            "conversation_id"
+        )  # optional: reserved for future API use
         if settings.TTS_PROVIDER == "openai":
             _VALID_VOICES = frozenset(
                 {"alloy", "ash", "coral", "echo", "fable", "nova", "onyx", "sage", "shimmer"}
@@ -110,16 +126,20 @@ async def conversation_ws(
             voice_pref = ""  # local TTS ignores voice param
         payload = decode_access_token(token)
         user_id = int(payload["sub"])
-    except (asyncio.TimeoutError, PyJWTError, KeyError, ValueError, Exception):
+    except TimeoutError, PyJWTError, KeyError, ValueError, Exception:
         logger.warning("[conversation] Auth failed — closing WS 1008")
-        await websocket.send_json({"type": "error", "code": "auth_failed", "message": "Authentication failed"})
+        await websocket.send_json(
+            {"type": "error", "code": "auth_failed", "message": "Authentication failed"}
+        )
         await websocket.close(code=1008)
         return
 
     async with AsyncSessionLocal() as db:
         user = await db.get(User, user_id)
         if not user or not user.is_active:
-            logger.warning("[conversation] User %s not found or inactive — closing WS 1008", user_id)
+            logger.warning(
+                "[conversation] User %s not found or inactive — closing WS 1008", user_id
+            )
             await websocket.close(code=1008)
             return
 
@@ -129,12 +149,16 @@ async def conversation_ws(
             maintenance = await redis_check.get(MAINTENANCE_KEY)
             await redis_check.aclose()
             if maintenance == "1":
-                logger.info("[conversation] Maintenance mode active — closing WS for user %s", user_id)
-                await websocket.send_json({
-                    "type": "error",
-                    "code": "maintenance_mode",
-                    "message": "Service temporarily unavailable — maintenance mode is active.",
-                })
+                logger.info(
+                    "[conversation] Maintenance mode active — closing WS for user %s", user_id
+                )
+                await websocket.send_json(
+                    {
+                        "type": "error",
+                        "code": "maintenance_mode",
+                        "message": "Service temporarily unavailable — maintenance mode is active.",
+                    }
+                )
                 await websocket.close(code=1013)
                 return
         except Exception:
@@ -142,12 +166,16 @@ async def conversation_ws(
 
         # Check subscription
         if not is_subscribed(user, settings.STRIPE_ENABLED):
-            logger.info("[conversation] User %s has no active subscription — closing WS 1008", user_id)
-            await websocket.send_json({
-                "type": "error",
-                "code": "subscription_required",
-                "message": "An active subscription is required to use voice conversation.",
-            })
+            logger.info(
+                "[conversation] User %s has no active subscription — closing WS 1008", user_id
+            )
+            await websocket.send_json(
+                {
+                    "type": "error",
+                    "code": "subscription_required",
+                    "message": "An active subscription is required to use voice conversation.",
+                }
+            )
             await websocket.close(code=1008)
             return
 
@@ -156,11 +184,13 @@ async def conversation_ws(
         stt_service = getattr(websocket.app.state, "stt_service", None)
         if tts_service is None or stt_service is None:
             logger.warning("[conversation] TTS or STT disabled — rejecting WS for user %s", user_id)
-            await websocket.send_json({
-                "type": "error",
-                "code": "services_disabled",
-                "message": "TTS and STT must be enabled for conversation mode.",
-            })
+            await websocket.send_json(
+                {
+                    "type": "error",
+                    "code": "services_disabled",
+                    "message": "TTS and STT must be enabled for conversation mode.",
+                }
+            )
             await websocket.close(code=1011)
             return
 
@@ -201,8 +231,14 @@ async def conversation_ws(
         if sanitized:
             valid_context = sanitized
 
-    logger.info("[conversation] Session started — user=%s cefr=%s max_duration=%ss inactivity=%ss context_turns=%s",
-                user_id, cefr_level, max_duration, inactivity_timeout, len(valid_context) if valid_context else 0)
+    logger.info(
+        "[conversation] Session started — user=%s cefr=%s max_duration=%ss inactivity=%ss context_turns=%s",
+        user_id,
+        cefr_level,
+        max_duration,
+        inactivity_timeout,
+        len(valid_context) if valid_context else 0,
+    )
     # (already accepted at the top)
 
     # --- Quota checks ---
@@ -217,13 +253,17 @@ async def conversation_ws(
             if not tokens_ok:
                 logger.info(
                     "[conversation] Monthly token quota exceeded — user=%s used=%s limit=%s",
-                    user_id, tokens_used, tokens_limit,
+                    user_id,
+                    tokens_used,
+                    tokens_limit,
                 )
-                await websocket.send_json({
-                    "type": "error",
-                    "code": "quota_exceeded_tokens",
-                    "message": f"Monthly token limit reached ({tokens_used}/{tokens_limit} tokens). Voice is unavailable until next month.",
-                })
+                await websocket.send_json(
+                    {
+                        "type": "error",
+                        "code": "quota_exceeded_tokens",
+                        "message": f"Monthly token limit reached ({tokens_used}/{tokens_limit} tokens). Voice is unavailable until next month.",
+                    }
+                )
                 await websocket.close(code=1008)
                 await redis.aclose()
                 return
@@ -235,13 +275,17 @@ async def conversation_ws(
         if not daily_ok:
             logger.info(
                 "[conversation] Daily minutes quota exceeded — user=%s used=%s limit=%s",
-                user_id, minutes_used, minutes_limit,
+                user_id,
+                minutes_used,
+                minutes_limit,
             )
-            await websocket.send_json({
-                "type": "error",
-                "code": "quota_exceeded_time",
-                "message": f"Daily time limit reached ({minutes_used}/{minutes_limit} min).",
-            })
+            await websocket.send_json(
+                {
+                    "type": "error",
+                    "code": "quota_exceeded_time",
+                    "message": f"Daily time limit reached ({minutes_used}/{minutes_limit} min).",
+                }
+            )
             await websocket.close(code=1008)
             await redis.aclose()
             return
@@ -253,13 +297,17 @@ async def conversation_ws(
         if not weekly_min_ok:
             logger.info(
                 "[conversation] Weekly minutes quota exceeded — user=%s used=%s limit=%s",
-                user_id, weekly_min_used, weekly_min_limit,
+                user_id,
+                weekly_min_used,
+                weekly_min_limit,
             )
-            await websocket.send_json({
-                "type": "error",
-                "code": "quota_exceeded_weekly_minutes",
-                "message": f"Weekly time limit reached ({weekly_min_used}/{weekly_min_limit} min).",
-            })
+            await websocket.send_json(
+                {
+                    "type": "error",
+                    "code": "quota_exceeded_weekly_minutes",
+                    "message": f"Weekly time limit reached ({weekly_min_used}/{weekly_min_limit} min).",
+                }
+            )
             await websocket.close(code=1008)
             await redis.aclose()
             return
@@ -271,13 +319,17 @@ async def conversation_ws(
         if not sessions_ok:
             logger.info(
                 "[conversation] Weekly session quota exceeded — user=%s used=%s limit=%s",
-                user_id, sessions_used, sessions_limit,
+                user_id,
+                sessions_used,
+                sessions_limit,
             )
-            await websocket.send_json({
-                "type": "error",
-                "code": "quota_exceeded_sessions",
-                "message": f"Weekly session limit reached ({sessions_used}/{sessions_limit}).",
-            })
+            await websocket.send_json(
+                {
+                    "type": "error",
+                    "code": "quota_exceeded_sessions",
+                    "message": f"Weekly session limit reached ({sessions_used}/{sessions_limit}).",
+                }
+            )
             await websocket.close(code=1008)
             await redis.aclose()
             return
@@ -305,7 +357,10 @@ async def conversation_ws(
         async with AsyncSessionLocal() as db_conv:
             # Reuse path: if a caller explicitly passes a valid conversation_id
             # that belongs to this user, append to that conversation.
-            if isinstance(client_conversation_id_raw, (int, float)) and int(client_conversation_id_raw) > 0:
+            if (
+                isinstance(client_conversation_id_raw, (int, float))
+                and int(client_conversation_id_raw) > 0
+            ):
                 existing = await db_conv.get(ConversationModel, int(client_conversation_id_raw))
                 if existing and existing.user_id == user_id:
                     conversation_id = existing.id
@@ -321,11 +376,13 @@ async def conversation_ws(
                 conversation_id = conv.id
     except Exception as exc:
         logger.error("[conversation] Failed to create conversation record: %s", exc)
-        await websocket.send_json({
-            "type": "error",
-            "code": "internal_error",
-            "message": "Failed to initialise conversation session.",
-        })
+        await websocket.send_json(
+            {
+                "type": "error",
+                "code": "internal_error",
+                "message": "Failed to initialise conversation session.",
+            }
+        )
         await websocket.close(code=1011)
         await redis.aclose()
         return

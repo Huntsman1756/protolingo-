@@ -6,21 +6,23 @@ Strategy:
 - Webhook signature verification is patched to avoid real Stripe keys.
 - All Stripe API calls are mocked so no real network requests are made.
 """
+
 from __future__ import annotations
 
 import json
-import stripe
 from datetime import datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
+import stripe
+
 from app.core.config import settings
 from app.main import app
-from app.services.subscription_service import is_subscribed
 
 # Register the billing router once for the entire test module so routes are
 # available without re-registering on every test (which causes duplicates).
 from app.routers import billing as _billing_module
+from app.services.subscription_service import is_subscribed
 
 _BILLING_ROUTES = {getattr(r, "path", None) for r in app.routes}
 if "/api/billing/checkout" not in _BILLING_ROUTES:
@@ -36,6 +38,7 @@ def _signed_webhook_headers() -> dict:
 
 
 # ── subscription_service.is_subscribed ───────────────────────────────────────
+
 
 class TestIsSubscribed:
     def test_stripe_disabled_always_true(self):
@@ -71,6 +74,7 @@ class TestIsSubscribed:
 
 # ── GET /api/config ───────────────────────────────────────────────────────────
 
+
 @pytest.mark.asyncio
 async def test_config_stripe_disabled(client):
     with patch.object(settings, "STRIPE_ENABLED", False):
@@ -90,6 +94,7 @@ async def test_config_stripe_enabled(client):
 
 
 # ── require_subscription dependency ──────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_require_subscription_blocks_when_stripe_enabled(client, test_user):
@@ -124,6 +129,7 @@ async def test_require_subscription_passes_for_active_user(client, db_session, t
 
 
 # ── POST /api/billing/checkout ────────────────────────────────────────────────
+
 
 @pytest.mark.asyncio
 async def test_checkout_monthly(client, test_user):
@@ -203,6 +209,7 @@ async def test_checkout_missing_price_config(client, test_user):
 
 
 # ── POST /api/billing/webhook ─────────────────────────────────────────────────
+
 
 def _make_stripe_event(event_type: str, data: dict) -> dict:
     """Build a minimal Stripe event envelope for webhook tests."""

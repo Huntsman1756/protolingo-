@@ -55,11 +55,16 @@ export default function FlashcardsPage() {
         setCurrent(0)
         setFlipped(false)
       }
-    } catch { /* ignore */ }
-    finally { setLoading(false) }
+    } catch {
+      /* ignore */
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
-  useEffect(() => { loadDue() }, [loadDue])
+  useEffect(() => {
+    loadDue()
+  }, [loadDue])
 
   async function reviewCard(quality: number) {
     if (cards.length === 0) return
@@ -80,7 +85,11 @@ export default function FlashcardsPage() {
   async function handleSpeakingTranscription(transcription: string) {
     if (cards.length === 0) return
     const card = cards[current]
-    const norm = (s: string) => s.trim().toLowerCase().replace(/[^a-z0-9 ]/g, '')
+    const norm = (s: string) =>
+      s
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9 ]/g, '')
     const isCorrect = norm(transcription) === norm(card.word)
     await reviewCard(isCorrect ? 5 : 2)
   }
@@ -118,26 +127,33 @@ export default function FlashcardsPage() {
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="font-mono text-xs text-fl-muted-3 tracking-widest uppercase animate-pulse">{tCommon('loading')}</span>
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
+          {tCommon('loading')}
+        </span>
       </div>
     )
   }
 
   return (
-    <div className="mx-auto max-w-2xl p-6 space-y-4">
+    <div className="mx-auto max-w-2xl space-y-4 p-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-3">●</span>
-          <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('title')}</span>
-          <span className="font-mono text-fl-hint text-fl-muted-2 tracking-widest">— {total} {t('total')} · {cards.length} {t('due')}</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('title')}
+          </span>
+          <span className="text-fl-hint text-fl-muted-2 font-mono tracking-widest">
+            — {total} {t('total')} · {cards.length} {t('due')}
+          </span>
         </div>
         <button
           onClick={() => setShowGenerate(!showGenerate)}
-          className={`border px-4 py-2 font-mono text-fl-label tracking-widest uppercase transition-colors ${showGenerate
-            ? 'border-fl-border-2 text-fl-fg'
-            : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-            }`}
+          className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
+            showGenerate
+              ? 'border-fl-border-2 text-fl-fg'
+              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
+          }`}
         >
           + {t('generateBtn')}
         </button>
@@ -145,52 +161,70 @@ export default function FlashcardsPage() {
 
       {/* Generate panel */}
       {showGenerate && (
-        <div className="border border-fl-border bg-fl-surface">
-          <div className="flex items-center gap-2 px-5 py-4 border-b border-fl-border">
+        <div className="border-fl-border bg-fl-surface border">
+          <div className="border-fl-border flex items-center gap-2 border-b px-5 py-4">
             <span className="text-fl-label text-fl-muted-3">●</span>
-            <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">{t('generate')}</span>
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+              {t('generate')}
+            </span>
           </div>
           {genError && (
-            <div className="mx-5 mt-4 border border-fl-error/40 px-4 py-3 font-mono text-xs text-fl-error-fg">✕ {genError}</div>
+            <div className="border-fl-error/40 text-fl-error-fg mx-5 mt-4 border px-4 py-3 font-mono text-xs">
+              ✕ {genError}
+            </div>
           )}
-          <form onSubmit={generateCards} className="p-5 space-y-3">
+          <form onSubmit={generateCards} className="space-y-3 p-5">
             <div>
-              <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">{t('topic')}</label>
+              <label className="text-fl-label text-fl-muted-3 mb-2 block font-mono tracking-widest uppercase">
+                {t('topic')}
+              </label>
               <input
                 type="text"
                 value={genTopic}
                 onChange={(e) => setGenTopic(e.target.value)}
                 required
                 placeholder={t('topicPlaceholder')}
-                className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg placeholder:text-fl-border-2 focus:outline-none focus:border-fl-border-2 transition-colors"
+                className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-border-2 focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
               />
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">{t('count')}</label>
+                <label className="text-fl-label text-fl-muted-3 mb-2 block font-mono tracking-widest uppercase">
+                  {t('count')}
+                </label>
                 <select
                   value={genCount}
                   onChange={(e) => setGenCount(Number(e.target.value))}
-                  className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 appearance-none"
+                  className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full appearance-none border px-4 py-3 font-mono text-sm focus:outline-none"
                 >
-                  {[5, 10, 15, 20].map(n => <option key={n} value={n}>{n} {t('cards')}</option>)}
+                  {[5, 10, 15, 20].map((n) => (
+                    <option key={n} value={n}>
+                      {n} {t('cards')}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
-                <label className="block font-mono text-fl-label tracking-widest text-fl-muted-3 uppercase mb-2">{t('level')}</label>
+                <label className="text-fl-label text-fl-muted-3 mb-2 block font-mono tracking-widest uppercase">
+                  {t('level')}
+                </label>
                 <select
                   value={genCefr}
                   onChange={(e) => setGenCefr(e.target.value)}
-                  className="w-full bg-fl-bg border border-fl-border px-4 py-3 font-mono text-sm text-fl-fg focus:outline-none focus:border-fl-border-2 appearance-none"
+                  className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full appearance-none border px-4 py-3 font-mono text-sm focus:outline-none"
                 >
-                  {CEFR_LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
+                  {CEFR_LEVELS.map((l) => (
+                    <option key={l} value={l}>
+                      {l}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <button
               type="submit"
               disabled={generating || !genTopic.trim()}
-              className="w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 hover:bg-fl-accent/90 disabled:opacity-40 transition-colors"
+              className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
             >
               {generating ? `— ${t('generating')}` : `— ${t('submit')}`}
             </button>
@@ -200,14 +234,17 @@ export default function FlashcardsPage() {
 
       {/* No cards */}
       {cards.length === 0 && (
-        <div className="border border-fl-border bg-fl-surface px-6 py-10 text-center">
-          <p className="font-mono text-sm text-fl-muted-1">{t('noDue')}</p>
+        <div className="border-fl-border bg-fl-surface border px-6 py-10 text-center">
+          <p className="text-fl-muted-1 font-mono text-sm">{t('noDue')}</p>
           {total === 0 && (
-            <p className="font-mono text-xs text-fl-muted-2 mt-2">Use <span className="text-fl-muted-1">+ Generate</span> to create your first cards with AI</p>
+            <p className="text-fl-muted-2 mt-2 font-mono text-xs">
+              Use <span className="text-fl-muted-1">+ Generate</span> to create
+              your first cards with AI
+            </p>
           )}
           <button
             onClick={loadDue}
-            className="mt-6 border border-fl-border px-6 py-2 font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase hover:text-fl-fg hover:border-fl-border-2 transition-colors"
+            className="border-fl-border text-fl-label text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 mt-6 border px-6 py-2 font-mono tracking-widest uppercase transition-colors"
           >
             — {t('refresh')}
           </button>
@@ -217,19 +254,27 @@ export default function FlashcardsPage() {
       {/* Card review */}
       {cards.length > 0 && (
         <>
-          <div className="flex items-center justify-between font-mono text-fl-label text-fl-muted-3 tracking-widest uppercase">
-            <span>{current + 1} / {cards.length} due</span>
+          <div className="text-fl-label text-fl-muted-3 flex items-center justify-between font-mono tracking-widest uppercase">
+            <span>
+              {current + 1} / {cards.length} due
+            </span>
             {/* Mode toggle */}
             <div className="flex gap-1">
               <button
-                onClick={() => { setSpeakingMode(false); setFlipped(false) }}
-                className={`border px-3 py-1 text-fl-hint tracking-widest transition-colors ${!speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
+                onClick={() => {
+                  setSpeakingMode(false)
+                  setFlipped(false)
+                }}
+                className={`text-fl-hint border px-3 py-1 tracking-widest transition-colors ${!speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
               >
                 {t('standardMode')}
               </button>
               <button
-                onClick={() => { setSpeakingMode(true); setFlipped(false) }}
-                className={`border px-3 py-1 text-fl-hint tracking-widest transition-colors ${speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
+                onClick={() => {
+                  setSpeakingMode(true)
+                  setFlipped(false)
+                }}
+                className={`text-fl-hint border px-3 py-1 tracking-widest transition-colors ${speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
               >
                 {t('speakingMode')}
               </button>
@@ -240,37 +285,45 @@ export default function FlashcardsPage() {
           {!speakingMode && (
             <>
               <div
-                className="min-h-[220px] border border-fl-border bg-fl-surface cursor-pointer select-none transition-colors hover:border-fl-border-2"
+                className="border-fl-border bg-fl-surface hover:border-fl-border-2 min-h-[220px] cursor-pointer border transition-colors select-none"
                 onClick={() => setFlipped(!flipped)}
               >
-                <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+                <div className="border-fl-border flex items-center justify-between border-b px-6 py-4">
                   <div className="flex items-center gap-2">
                     <span className="text-fl-label text-fl-muted-3">●</span>
-                    <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+                    <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
                       {flipped ? 'Definition' : 'Word'}
                     </span>
                   </div>
-                  <span className="font-mono text-fl-hint text-fl-border-2 uppercase tracking-widest">
+                  <span className="text-fl-hint text-fl-border-2 font-mono tracking-widest uppercase">
                     tap to {flipped ? 'hide' : 'reveal'}
                   </span>
                 </div>
 
-                <div className="flex flex-col items-center justify-center p-10 gap-4 text-center">
+                <div className="flex flex-col items-center justify-center gap-4 p-10 text-center">
                   {!flipped ? (
                     <div className="flex items-center gap-3">
-                      <p className="font-mono text-3xl font-bold text-fl-fg tracking-wide">{cards[current].word}</p>
+                      <p className="text-fl-fg font-mono text-3xl font-bold tracking-wide">
+                        {cards[current].word}
+                      </p>
                       <span onClick={(e) => e.stopPropagation()}>
                         <AudioPlayer text={cards[current].word} size="md" />
                       </span>
                     </div>
                   ) : (
                     <>
-                      <p className="font-mono text-base text-fl-fg-2 leading-relaxed">{cards[current].definition}</p>
+                      <p className="text-fl-fg-2 font-mono text-base leading-relaxed">
+                        {cards[current].definition}
+                      </p>
                       {cards[current].example_sentence && (
-                        <p className="font-mono text-xs text-fl-muted-1 italic">{cards[current].example_sentence}</p>
+                        <p className="text-fl-muted-1 font-mono text-xs italic">
+                          {cards[current].example_sentence}
+                        </p>
                       )}
                       {cards[current].translation && (
-                        <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest border-t border-fl-border pt-3 mt-1 uppercase">{cards[current].translation}</p>
+                        <p className="text-fl-label text-fl-muted-3 border-fl-border mt-1 border-t pt-3 font-mono tracking-widest uppercase">
+                          {cards[current].translation}
+                        </p>
                       )}
                     </>
                   )}
@@ -278,12 +331,12 @@ export default function FlashcardsPage() {
               </div>
 
               {flipped && (
-                <div className="flex gap-2 flex-wrap">
+                <div className="flex flex-wrap gap-2">
                   {QUALITY_BUTTONS.map(({ label, q, color }) => (
                     <button
                       key={q}
                       onClick={() => reviewCard(q)}
-                      className="flex-1 min-w-[80px] border border-fl-border py-3 font-mono text-fl-label tracking-widest uppercase transition-all hover:border-fl-border-2"
+                      className="border-fl-border text-fl-label hover:border-fl-border-2 min-w-[80px] flex-1 border py-3 font-mono tracking-widest uppercase transition-all"
                       style={{ color }}
                     >
                       {label}
@@ -296,22 +349,32 @@ export default function FlashcardsPage() {
 
           {/* ── Speaking mode ── */}
           {speakingMode && (
-            <div className="border border-fl-border bg-fl-surface">
-              <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border">
+            <div className="border-fl-border bg-fl-surface border">
+              <div className="border-fl-border flex items-center justify-between border-b px-6 py-4">
                 <div className="flex items-center gap-2">
                   <span className="text-fl-label text-fl-muted-3">●</span>
-                  <span className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">Speaking</span>
+                  <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+                    Speaking
+                  </span>
                 </div>
-                <span className="font-mono text-fl-hint text-fl-border-2 uppercase tracking-widest">{t('sayWord')}</span>
+                <span className="text-fl-hint text-fl-border-2 font-mono tracking-widest uppercase">
+                  {t('sayWord')}
+                </span>
               </div>
 
-              <div className="flex flex-col items-center justify-center p-10 gap-5 text-center">
-                <p className="font-mono text-base text-fl-fg-2 leading-relaxed">{cards[current].definition}</p>
+              <div className="flex flex-col items-center justify-center gap-5 p-10 text-center">
+                <p className="text-fl-fg-2 font-mono text-base leading-relaxed">
+                  {cards[current].definition}
+                </p>
                 {cards[current].example_sentence && (
-                  <p className="font-mono text-xs text-fl-muted-1 italic">{cards[current].example_sentence}</p>
+                  <p className="text-fl-muted-1 font-mono text-xs italic">
+                    {cards[current].example_sentence}
+                  </p>
                 )}
                 {cards[current].translation && (
-                  <p className="font-mono text-fl-label text-fl-muted-3 tracking-widest border-t border-fl-border pt-3 mt-1 uppercase">{cards[current].translation}</p>
+                  <p className="text-fl-label text-fl-muted-3 border-fl-border mt-1 border-t pt-3 font-mono tracking-widest uppercase">
+                    {cards[current].translation}
+                  </p>
                 )}
                 <VoiceRecorder
                   onTranscription={handleSpeakingTranscription}
@@ -322,8 +385,9 @@ export default function FlashcardsPage() {
             </div>
           )}
 
-          <p className="font-mono text-fl-hint text-fl-border-2 tracking-widest uppercase text-center">
-            EF {cards[current].ease_factor.toFixed(2)} · Interval {cards[current].interval}d · Rep {cards[current].repetitions}
+          <p className="text-fl-hint text-fl-border-2 text-center font-mono tracking-widest uppercase">
+            EF {cards[current].ease_factor.toFixed(2)} · Interval{' '}
+            {cards[current].interval}d · Rep {cards[current].repetitions}
           </p>
         </>
       )}

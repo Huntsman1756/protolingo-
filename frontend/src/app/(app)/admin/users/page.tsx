@@ -60,27 +60,32 @@ export default function AdminUsersPage() {
   const maintenanceMode = useConfigStore((s) => s.maintenanceMode)
   const [maintenanceLoading, setMaintenanceLoading] = useState(false)
 
-  const loadUsers = useCallback(async (pageIndex: number, query: string, subscription: string) => {
-    setLoading(true)
-    try {
-      const qs = query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''
-      const ss = subscription ? `&subscription=${encodeURIComponent(subscription)}` : ''
-      const res = await apiFetch(
-        `/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}${qs}${ss}`
-      )
-      if (res.ok) {
-        const data = await res.json()
-        setUsers(data.items)
-        setTotal(data.total)
-      } else if (res.status === 403) {
-        setError('Admin access required')
+  const loadUsers = useCallback(
+    async (pageIndex: number, query: string, subscription: string) => {
+      setLoading(true)
+      try {
+        const qs = query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''
+        const ss = subscription
+          ? `&subscription=${encodeURIComponent(subscription)}`
+          : ''
+        const res = await apiFetch(
+          `/api/admin/users?skip=${pageIndex * PAGE_SIZE}&limit=${PAGE_SIZE}${qs}${ss}`
+        )
+        if (res.ok) {
+          const data = await res.json()
+          setUsers(data.items)
+          setTotal(data.total)
+        } else if (res.status === 403) {
+          setError('Admin access required')
+        }
+      } catch {
+        setError('Failed to load users')
+      } finally {
+        setLoading(false)
       }
-    } catch {
-      setError('Failed to load users')
-    } finally {
-      setLoading(false)
-    }
-  }, [])
+    },
+    []
+  )
 
   // Page changes (e.g. pagination buttons) fire immediately.
   useEffect(() => {
@@ -216,10 +221,11 @@ export default function AdminUsersPage() {
           </button>
           <button
             onClick={() => setShowCreate(!showCreate)}
-            className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${showCreate
+            className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${
+              showCreate
                 ? 'border-fl-border-2 text-fl-fg'
                 : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
-              }`}
+            }`}
           >
             {showCreate ? `- ${t('createUser')}` : t('createUserBtn')}
           </button>
@@ -260,10 +266,11 @@ export default function AdminUsersPage() {
           <button
             onClick={toggleMaintenance}
             disabled={maintenanceLoading}
-            className={`shrink-0 px-4 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors ${maintenanceMode
+            className={`shrink-0 px-4 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors ${
+              maintenanceMode
                 ? 'bg-fl-fg text-fl-bg hover:bg-fl-fg/90'
                 : 'bg-yellow-500 text-black hover:bg-yellow-500/90'
-              } disabled:opacity-50`}
+            } disabled:opacity-50`}
           >
             {maintenanceLoading
               ? '...'
@@ -412,7 +419,7 @@ export default function AdminUsersPage() {
           <select
             value={subscriptionFilter}
             onChange={(e) => setSubscriptionFilter(e.target.value)}
-            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 shrink-0 border px-4 py-2 font-mono text-xs transition-colors focus:outline-none appearance-none"
+            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 shrink-0 appearance-none border px-4 py-2 font-mono text-xs transition-colors focus:outline-none"
           >
             <option value="">{tCommon('all')}</option>
             <option value="none">{tBilling('statusNone')}</option>
@@ -439,10 +446,11 @@ export default function AdminUsersPage() {
                       {u.display_name}
                     </span>
                     <span
-                      className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${u.role === 'admin'
+                      className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${
+                        u.role === 'admin'
                           ? 'border-fl-fg/40 text-fl-fg'
                           : 'border-fl-border text-fl-muted-2'
-                        }`}
+                      }`}
                     >
                       {u.role === 'admin' ? t('roleAdmin') : t('roleUser')}
                     </span>
@@ -467,7 +475,7 @@ export default function AdminUsersPage() {
                       </span>
                     )}
                     {u.subscription_status === 'canceled' && (
-                      <span className="text-fl-hint border border-fl-border px-2 py-0.5 font-mono tracking-widest text-fl-muted-2 uppercase">
+                      <span className="text-fl-hint border-fl-border text-fl-muted-2 border px-2 py-0.5 font-mono tracking-widest uppercase">
                         {tBilling('statusCanceled')}
                       </span>
                     )}
@@ -487,10 +495,11 @@ export default function AdminUsersPage() {
                   </Link>
                   <button
                     onClick={() => toggleActive(u)}
-                    className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${u.is_active
+                    className={`text-fl-label border px-3 py-2 font-mono tracking-widest uppercase transition-colors ${
+                      u.is_active
                         ? 'border-fl-error/30 text-fl-error-fg hover:border-fl-error'
                         : 'border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2'
-                      }`}
+                    }`}
                   >
                     {u.is_active ? t('deactivate') : t('activate')}
                   </button>

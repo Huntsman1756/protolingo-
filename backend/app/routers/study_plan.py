@@ -13,7 +13,6 @@ from app.models.lesson import Exercise, Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.study_plan import (
-    GeneratedPlan,
     GenerateStudyPlanRequest,
     PendingLessonResponse,
     StudyPlanResponse,
@@ -54,9 +53,7 @@ async def create_study_plan(
 ):
     # Deactivate old plans
     old_plans = await db.execute(
-        select(StudyPlan).where(
-            StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True)
-        )
+        select(StudyPlan).where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
     )
     for old in old_plans.scalars().all():
         old.is_active = False
@@ -64,6 +61,7 @@ async def create_study_plan(
     generated = await generate_study_plan(data)
 
     from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
+
     units = get_curriculum_units(data.cefr_level)
     first_unit_id = units[0].id if units else ""
 
@@ -102,9 +100,7 @@ async def get_today_lessons(
     total_days = plan.duration_weeks * plan.days_per_week
 
     # Load all existing lessons for this plan at once
-    all_lessons_result = await db.execute(
-        select(Lesson).where(Lesson.study_plan_id == plan.id)
-    )
+    all_lessons_result = await db.execute(select(Lesson).where(Lesson.study_plan_id == plan.id))
     all_lessons = all_lessons_result.scalars().all()
 
     # Index by (week_number, day_number) for fast lookups
@@ -192,7 +188,7 @@ async def get_today_lessons(
         d_unit_id = d.get("unit_id", "") if isinstance(d, dict) else getattr(d, "unit_id", "")
 
         _existing = lesson_by_title.get(d_title)
-        lesson_id: Optional[int] = _existing[0] if _existing else None
+        lesson_id: int | None = _existing[0] if _existing else None
         lesson_completed: bool = _existing[1] if _existing else False
 
         # Resolve curriculum context for lesson generation
@@ -345,4 +341,3 @@ async def get_pending_lessons(
         if (lsn.week_number - 1) * plan.days_per_week + (lsn.day_number - 1) < plan.progress_day
     ]
     return pending
-

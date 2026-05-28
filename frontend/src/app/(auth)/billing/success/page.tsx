@@ -38,7 +38,9 @@ export default function BillingSuccessPage() {
             subscription_ends_at: me.subscription_ends_at ?? null,
           })
         }
-      } catch { /* non-fatal */ }
+      } catch {
+        /* non-fatal */
+      }
     }
     void refreshUser()
   }, [setUser])
@@ -55,26 +57,30 @@ export default function BillingSuccessPage() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-fl-bg px-4"
-      style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
+      style={{
+        backgroundImage:
+          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
+        backgroundSize: '24px 24px',
+      }}
     >
-      <div className="w-full max-w-sm border border-fl-border bg-fl-surface p-8 text-center space-y-5">
-        <div className="text-2xl text-fl-accent">◎</div>
-        <p className="font-mono text-fl-label tracking-widest text-fl-muted-2 uppercase">
+      <div className="border-fl-border bg-fl-surface w-full max-w-sm space-y-5 border p-8 text-center">
+        <div className="text-fl-accent text-2xl">◎</div>
+        <p className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
           {t('successLabel')}
         </p>
-        <h1 className="font-mono text-base font-bold text-fl-fg">
+        <h1 className="text-fl-fg font-mono text-base font-bold">
           {t('successTitle')}
         </h1>
-        <p className="font-mono text-xs text-fl-muted-1 leading-relaxed">
+        <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
           {t('successDesc')}
         </p>
-        <p className="font-mono text-fl-hint text-fl-muted-3 tracking-widest uppercase">
+        <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
           {t('successRedirect', { seconds: countdown })}
         </p>
         <Link
           href="/dashboard"
-          className="block font-mono text-xs font-bold tracking-widest uppercase py-3 bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 transition-colors"
+          className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 block py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
         >
           — {t('successCta')}
         </Link>

@@ -1,7 +1,6 @@
 """Extra listening tests: GET /history and GET /audio/{id} (not covered in test_listening.py)."""
-from __future__ import annotations
 
-from unittest.mock import AsyncMock, patch
+from __future__ import annotations
 
 import pytest
 import pytest_asyncio
@@ -12,10 +11,10 @@ from app.core.security import create_access_token, hash_password
 from app.main import app
 from app.models.user import User
 
-
 # ---------------------------------------------------------------------------
 # Local Redis mock (matching the one in test_listening.py for consistency)
 # ---------------------------------------------------------------------------
+
 
 class _MockRedis:
     def __init__(self) -> None:
@@ -47,14 +46,15 @@ class _MockRedis:
 # Fixtures
 # ---------------------------------------------------------------------------
 
+
 @pytest_asyncio.fixture
 async def listening_client(db_session):
     """Client with listening Redis overridden (needed for /next and /generate).
     For /history and /audio the Redis override is irrelevant but kept for
     consistency with the rest of the listening test suite."""
-    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.admin import get_redis as admin_get_redis
     from app.routers.assessment import get_redis as assessment_get_redis
+    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.listening import get_redis as listening_get_redis
 
     mock_redis = _MockRedis()
@@ -96,6 +96,7 @@ async def listening_user(db_session):
 # ---------------------------------------------------------------------------
 # GET /api/listening/history
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_listening_history_empty(listening_client, listening_user):
@@ -149,6 +150,7 @@ async def test_listening_history_requires_auth(listening_client):
 # ---------------------------------------------------------------------------
 # GET /api/listening/audio/{exercise_id}
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_listening_audio_exercise_not_found(listening_client, listening_user):

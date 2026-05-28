@@ -37,7 +37,9 @@ export function VoiceRecorder({
     setState('recording')
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/ogg'
+      const mimeType = MediaRecorder.isTypeSupported('audio/webm')
+        ? 'audio/webm'
+        : 'audio/ogg'
       const recorder = new MediaRecorder(stream, { mimeType })
       mediaRecorderRef.current = recorder
       const chunks: Blob[] = []
@@ -56,7 +58,9 @@ export function VoiceRecorder({
 
           const res = await fetch('/api/stt', {
             method: 'POST',
-            headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+            headers: accessToken
+              ? { Authorization: `Bearer ${accessToken}` }
+              : {},
             body: formData,
           })
           if (!res.ok) throw new Error(`STT error ${res.status}`)
@@ -81,17 +85,24 @@ export function VoiceRecorder({
   }
 
   const label =
-    state === 'recording' ? `■ ${t('stop')}` :
-      state === 'transcribing' ? `... ${t('processing')}` :
-        state === 'error' ? `✕ ${t('error')}` :
-          `● ${t('record')}`
+    state === 'recording'
+      ? `■ ${t('stop')}`
+      : state === 'transcribing'
+        ? `... ${t('processing')}`
+        : state === 'error'
+          ? `✕ ${t('error')}`
+          : `● ${t('record')}`
 
   const colorClass =
-    state === 'recording' ? 'border-fl-error/60 text-fl-error-fg animate-pulse' :
-      state === 'transcribing' ? 'border-fl-border text-fl-muted-3 animate-pulse' :
-        state === 'error' ? 'border-fl-error/40 text-fl-error-fg' :
-          disabled ? 'border-fl-border text-fl-muted-4 cursor-not-allowed opacity-40' :
-            'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
+    state === 'recording'
+      ? 'border-fl-error/60 text-fl-error-fg animate-pulse'
+      : state === 'transcribing'
+        ? 'border-fl-border text-fl-muted-3 animate-pulse'
+        : state === 'error'
+          ? 'border-fl-error/40 text-fl-error-fg'
+          : disabled
+            ? 'border-fl-border text-fl-muted-4 cursor-not-allowed opacity-40'
+            : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
 
   return (
     <button

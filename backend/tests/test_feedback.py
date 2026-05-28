@@ -1,8 +1,8 @@
 """Feedback endpoint tests: list, create, detail, delete, vote, status, comments."""
+
 from __future__ import annotations
 
 import pytest
-
 
 # ── GET /api/feedback — list ──────────────────────────────────────────────────
 
@@ -29,8 +29,9 @@ async def test_list_feedback_requires_auth(client):
 @pytest.mark.asyncio
 async def test_list_feedback_pagination(client, test_user, db_session):
     """Multiple entries are paginated correctly."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
 
@@ -71,14 +72,33 @@ async def test_list_feedback_pagination(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_list_feedback_filter_by_type(client, test_user, db_session):
     """Filtering by type=feature or type=bug works."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    db_session.add(FeedbackEntry(type="feature", title="F1", description="d", status="pending", author_id=user.id, created_at=now))
-    db_session.add(FeedbackEntry(type="bug", title="B1", description="d", status="pending", author_id=user.id, created_at=now))
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="F1",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="bug",
+            title="B1",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
     await db_session.commit()
 
     resp_feat = await client.get("/api/feedback?type=feature", headers=headers)
@@ -95,14 +115,33 @@ async def test_list_feedback_filter_by_type(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_list_feedback_filter_by_status(client, test_user, db_session):
     """Filtering by status works."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    db_session.add(FeedbackEntry(type="feature", title="Done", description="d", status="done", author_id=user.id, created_at=now))
-    db_session.add(FeedbackEntry(type="feature", title="Pending", description="d", status="pending", author_id=user.id, created_at=now))
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Done",
+            description="d",
+            status="done",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Pending",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
     await db_session.commit()
 
     resp = await client.get("/api/feedback?status=done", headers=headers)
@@ -115,15 +154,46 @@ async def test_list_feedback_filter_by_status(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_list_feedback_sorted_by_votes(client, test_user, db_session):
     """Default sort is by votes descending."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    db_session.add(FeedbackEntry(type="feature", title="Low", description="d", status="pending", author_id=user.id, vote_count=1, created_at=now))
-    db_session.add(FeedbackEntry(type="feature", title="High", description="d", status="pending", author_id=user.id, vote_count=5, created_at=now))
-    db_session.add(FeedbackEntry(type="feature", title="Mid", description="d", status="pending", author_id=user.id, vote_count=3, created_at=now))
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Low",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            vote_count=1,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="High",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            vote_count=5,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Mid",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            vote_count=3,
+            created_at=now,
+        )
+    )
     await db_session.commit()
 
     resp = await client.get("/api/feedback?sort=votes&order=desc", headers=headers)
@@ -136,16 +206,37 @@ async def test_list_feedback_sorted_by_votes(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_list_feedback_sorted_by_date(client, test_user, db_session):
     """Sorting by date works."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
 
     from datetime import timedelta
 
-    db_session.add(FeedbackEntry(type="feature", title="Old", description="d", status="pending", author_id=user.id, vote_count=0, created_at=now - timedelta(days=2)))
-    db_session.add(FeedbackEntry(type="feature", title="New", description="d", status="pending", author_id=user.id, vote_count=0, created_at=now))
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Old",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            vote_count=0,
+            created_at=now - timedelta(days=2),
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="New",
+            description="d",
+            status="pending",
+            author_id=user.id,
+            vote_count=0,
+            created_at=now,
+        )
+    )
     await db_session.commit()
 
     resp = await client.get("/api/feedback?sort=date&order=desc", headers=headers)
@@ -164,7 +255,11 @@ async def test_create_feature_request(client, test_user):
     resp = await client.post(
         "/api/feedback",
         headers=headers,
-        json={"type": "feature", "title": "Dark mode", "description": "Please add dark mode support."},
+        json={
+            "type": "feature",
+            "title": "Dark mode",
+            "description": "Please add dark mode support.",
+        },
     )
     assert resp.status_code == 201
     data = resp.json()
@@ -184,7 +279,11 @@ async def test_create_bug_report(client, test_user):
     resp = await client.post(
         "/api/feedback",
         headers=headers,
-        json={"type": "bug", "title": "Crash on login", "description": "App crashes when I click login."},
+        json={
+            "type": "bug",
+            "title": "Crash on login",
+            "description": "App crashes when I click login.",
+        },
     )
     assert resp.status_code == 201
     assert resp.json()["type"] == "bug"
@@ -242,13 +341,17 @@ async def test_create_feedback_empty_description(client, test_user):
 @pytest.mark.asyncio
 async def test_get_feedback_detail(client, test_user, db_session):
     """Detail returns the entry with empty comments list."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
     entry = FeedbackEntry(
-        type="feature", title="Detail test", description="Full desc",
-        status="pending", author_id=user.id,
+        type="feature",
+        title="Detail test",
+        description="Full desc",
+        status="pending",
+        author_id=user.id,
         created_at=datetime.now(timezone.utc).replace(tzinfo=None),
     )
     db_session.add(entry)
@@ -284,13 +387,17 @@ async def test_get_feedback_requires_auth(client):
 @pytest.mark.asyncio
 async def test_delete_own_entry(client, test_user, db_session):
     """Author can delete their own entry."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
     entry = FeedbackEntry(
-        type="feature", title="To delete", description="d",
-        status="pending", author_id=user.id,
+        type="feature",
+        title="To delete",
+        description="d",
+        status="pending",
+        author_id=user.id,
         created_at=datetime.now(timezone.utc).replace(tzinfo=None),
     )
     db_session.add(entry)
@@ -304,14 +411,18 @@ async def test_delete_own_entry(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_delete_entry_by_admin(client, admin_user, test_user, db_session):
     """Admin can delete any entry."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, _ = test_user
     _, admin_headers = admin_user
     entry = FeedbackEntry(
-        type="bug", title="Admin delete", description="d",
-        status="pending", author_id=user.id,
+        type="bug",
+        title="Admin delete",
+        description="d",
+        status="pending",
+        author_id=user.id,
         created_at=datetime.now(timezone.utc).replace(tzinfo=None),
     )
     db_session.add(entry)
@@ -325,21 +436,36 @@ async def test_delete_entry_by_admin(client, admin_user, test_user, db_session):
 @pytest.mark.asyncio
 async def test_delete_entry_not_author(client, test_user, db_session):
     """A non-author, non-admin user cannot delete another user's entry."""
+    from datetime import datetime, timezone
+
+    from app.core.security import hash_password
     from app.models.feedback import FeedbackEntry
     from app.models.user import User
-    from app.core.security import hash_password
-    from datetime import datetime, timezone
 
     _, headers = test_user
 
-    other = User(username="otheruser", email="other@test.com", display_name="Other",
-                 hashed_password=hash_password("pass"), role="user", native_language="en", is_active=True)
+    other = User(
+        username="otheruser",
+        email="other@test.com",
+        display_name="Other",
+        hashed_password=hash_password("pass"),
+        role="user",
+        native_language="en",
+        is_active=True,
+    )
     db_session.add(other)
     await db_session.commit()
     await db_session.refresh(other)
 
     now = datetime.now(timezone.utc).replace(tzinfo=None)
-    entry = FeedbackEntry(type="feature", title="Not mine", description="d", status="pending", author_id=other.id, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="Not mine",
+        description="d",
+        status="pending",
+        author_id=other.id,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -359,13 +485,22 @@ async def test_delete_entry_not_found(client, test_user):
 @pytest.mark.asyncio
 async def test_delete_entry_cascades_votes_and_comments(client, test_user, db_session):
     """Deleting an entry removes its votes and comments."""
-    from app.models.feedback import FeedbackEntry, FeedbackVote, FeedbackComment
     from datetime import datetime, timezone
+
     from sqlalchemy import func, select
+
+    from app.models.feedback import FeedbackComment, FeedbackEntry, FeedbackVote
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
-    entry = FeedbackEntry(type="feature", title="Cascade", description="d", status="pending", author_id=user.id, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="Cascade",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -385,7 +520,9 @@ async def test_delete_entry_cascades_votes_and_comments(client, test_user, db_se
     assert vote_count == 0
 
     comment_count = await db_session.scalar(
-        select(func.count()).select_from(FeedbackComment).where(FeedbackComment.entry_id == entry.id)
+        select(func.count())
+        .select_from(FeedbackComment)
+        .where(FeedbackComment.entry_id == entry.id)
     )
     assert comment_count == 0
 
@@ -396,11 +533,20 @@ async def test_delete_entry_cascades_votes_and_comments(client, test_user, db_se
 @pytest.mark.asyncio
 async def test_add_vote(client, test_user, db_session):
     """Voting on a feature adds the vote and increments the counter."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
 
+    from app.models.feedback import FeedbackEntry
+
     user, headers = test_user
-    entry = FeedbackEntry(type="feature", title="Votable", description="d", status="pending", author_id=user.id, vote_count=0, created_at=datetime.now(timezone.utc).replace(tzinfo=None))
+    entry = FeedbackEntry(
+        type="feature",
+        title="Votable",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        vote_count=0,
+        created_at=datetime.now(timezone.utc).replace(tzinfo=None),
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -415,12 +561,21 @@ async def test_add_vote(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_remove_vote_toggle(client, test_user, db_session):
     """Voting twice toggles the vote off."""
-    from app.models.feedback import FeedbackEntry, FeedbackVote
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry, FeedbackVote
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
-    entry = FeedbackEntry(type="feature", title="Toggle", description="d", status="pending", author_id=user.id, vote_count=1, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="Toggle",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        vote_count=1,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -438,11 +593,19 @@ async def test_remove_vote_toggle(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_vote_on_bug_rejected(client, test_user, db_session):
     """Voting on a bug report returns 400."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
 
+    from app.models.feedback import FeedbackEntry
+
     user, headers = test_user
-    entry = FeedbackEntry(type="bug", title="Not votable", description="d", status="pending", author_id=user.id, created_at=datetime.now(timezone.utc).replace(tzinfo=None))
+    entry = FeedbackEntry(
+        type="bug",
+        title="Not votable",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=datetime.now(timezone.utc).replace(tzinfo=None),
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -465,12 +628,20 @@ async def test_vote_requires_auth(client):
 @pytest.mark.asyncio
 async def test_admin_updates_status(client, admin_user, test_user, db_session):
     """Admin can change an entry's status."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, _ = test_user
     _, admin_headers = admin_user
-    entry = FeedbackEntry(type="feature", title="Status change", description="d", status="pending", author_id=user.id, created_at=datetime.now(timezone.utc).replace(tzinfo=None))
+    entry = FeedbackEntry(
+        type="feature",
+        title="Status change",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=datetime.now(timezone.utc).replace(tzinfo=None),
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -487,11 +658,19 @@ async def test_admin_updates_status(client, admin_user, test_user, db_session):
 @pytest.mark.asyncio
 async def test_non_admin_cannot_update_status(client, test_user, db_session):
     """Regular user cannot change status."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
 
+    from app.models.feedback import FeedbackEntry
+
     user, headers = test_user
-    entry = FeedbackEntry(type="feature", title="No status", description="d", status="pending", author_id=user.id, created_at=datetime.now(timezone.utc).replace(tzinfo=None))
+    entry = FeedbackEntry(
+        type="feature",
+        title="No status",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=datetime.now(timezone.utc).replace(tzinfo=None),
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -507,12 +686,20 @@ async def test_non_admin_cannot_update_status(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_update_status_invalid_value(client, admin_user, test_user, db_session):
     """Invalid status value returns 422."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
 
     user, _ = test_user
     _, admin_headers = admin_user
-    entry = FeedbackEntry(type="feature", title="Bad status", description="d", status="pending", author_id=user.id, created_at=datetime.now(timezone.utc).replace(tzinfo=None))
+    entry = FeedbackEntry(
+        type="feature",
+        title="Bad status",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=datetime.now(timezone.utc).replace(tzinfo=None),
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -531,11 +718,19 @@ async def test_update_status_invalid_value(client, admin_user, test_user, db_ses
 @pytest.mark.asyncio
 async def test_add_comment(client, test_user, db_session):
     """A comment can be added to an entry."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
 
+    from app.models.feedback import FeedbackEntry
+
     user, headers = test_user
-    entry = FeedbackEntry(type="feature", title="Commentable", description="d", status="pending", author_id=user.id, created_at=datetime.now(timezone.utc).replace(tzinfo=None))
+    entry = FeedbackEntry(
+        type="feature",
+        title="Commentable",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=datetime.now(timezone.utc).replace(tzinfo=None),
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
@@ -555,18 +750,30 @@ async def test_add_comment(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_list_comments(client, test_user, db_session):
     """Comments are listed in chronological order."""
-    from app.models.feedback import FeedbackEntry, FeedbackComment
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackComment, FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
-    entry = FeedbackEntry(type="feature", title="Thread", description="d", status="pending", author_id=user.id, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="Thread",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
 
-    db_session.add(FeedbackComment(entry_id=entry.id, author_id=user.id, body="First", created_at=now))
-    db_session.add(FeedbackComment(entry_id=entry.id, author_id=user.id, body="Second", created_at=now))
+    db_session.add(
+        FeedbackComment(entry_id=entry.id, author_id=user.id, body="First", created_at=now)
+    )
+    db_session.add(
+        FeedbackComment(entry_id=entry.id, author_id=user.id, body="Second", created_at=now)
+    )
     await db_session.commit()
 
     resp = await client.get(f"/api/feedback/{entry.id}/comments", headers=headers)
@@ -579,17 +786,27 @@ async def test_list_comments(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_delete_own_comment(client, test_user, db_session):
     """Author can delete their own comment."""
-    from app.models.feedback import FeedbackEntry, FeedbackComment
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackComment, FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
-    entry = FeedbackEntry(type="feature", title="Del comment", description="d", status="pending", author_id=user.id, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="Del comment",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
 
-    comment = FeedbackComment(entry_id=entry.id, author_id=user.id, body="Delete me", created_at=now)
+    comment = FeedbackComment(
+        entry_id=entry.id, author_id=user.id, body="Delete me", created_at=now
+    )
     db_session.add(comment)
     await db_session.commit()
     await db_session.refresh(comment)
@@ -601,49 +818,78 @@ async def test_delete_own_comment(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_admin_can_delete_any_comment(client, admin_user, test_user, db_session):
     """Admin can delete any user's comment."""
-    from app.models.feedback import FeedbackEntry, FeedbackComment
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackComment, FeedbackEntry
 
     user, _ = test_user
     _, admin_headers = admin_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
-    entry = FeedbackEntry(type="feature", title="Admin del", description="d", status="pending", author_id=user.id, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="Admin del",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
 
-    comment = FeedbackComment(entry_id=entry.id, author_id=user.id, body="Admin can", created_at=now)
+    comment = FeedbackComment(
+        entry_id=entry.id, author_id=user.id, body="Admin can", created_at=now
+    )
     db_session.add(comment)
     await db_session.commit()
     await db_session.refresh(comment)
 
-    resp = await client.delete(f"/api/feedback/{entry.id}/comments/{comment.id}", headers=admin_headers)
+    resp = await client.delete(
+        f"/api/feedback/{entry.id}/comments/{comment.id}", headers=admin_headers
+    )
     assert resp.status_code == 204
 
 
 @pytest.mark.asyncio
 async def test_delete_comment_not_author(client, test_user, db_session):
     """Non-author, non-admin cannot delete another user's comment."""
-    from app.models.feedback import FeedbackEntry, FeedbackComment
-    from app.models.user import User
-    from app.core.security import hash_password
     from datetime import datetime, timezone
+
+    from app.core.security import hash_password
+    from app.models.feedback import FeedbackComment, FeedbackEntry
+    from app.models.user import User
 
     _, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    other = User(username="otherc", email="otherc@test.com", display_name="Other",
-                 hashed_password=hash_password("pass"), role="user", native_language="en", is_active=True)
+    other = User(
+        username="otherc",
+        email="otherc@test.com",
+        display_name="Other",
+        hashed_password=hash_password("pass"),
+        role="user",
+        native_language="en",
+        is_active=True,
+    )
     db_session.add(other)
     await db_session.commit()
     await db_session.refresh(other)
 
-    entry = FeedbackEntry(type="feature", title="Comment guard", description="d", status="pending", author_id=other.id, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="Comment guard",
+        description="d",
+        status="pending",
+        author_id=other.id,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
 
-    comment = FeedbackComment(entry_id=entry.id, author_id=other.id, body="Other user", created_at=now)
+    comment = FeedbackComment(
+        entry_id=entry.id, author_id=other.id, body="Other user", created_at=now
+    )
     db_session.add(comment)
     await db_session.commit()
     await db_session.refresh(comment)
@@ -655,14 +901,24 @@ async def test_delete_comment_not_author(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_delete_comment_wrong_entry(client, test_user, db_session):
     """Deleting a comment with a mismatched entry_id returns 404."""
-    from app.models.feedback import FeedbackEntry, FeedbackComment
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackComment, FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
 
-    e1 = FeedbackEntry(type="feature", title="E1", description="d", status="pending", author_id=user.id, created_at=now)
-    e2 = FeedbackEntry(type="bug", title="E2", description="d", status="pending", author_id=user.id, created_at=now)
+    e1 = FeedbackEntry(
+        type="feature",
+        title="E1",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=now,
+    )
+    e2 = FeedbackEntry(
+        type="bug", title="E2", description="d", status="pending", author_id=user.id, created_at=now
+    )
     db_session.add_all([e1, e2])
     await db_session.commit()
     await db_session.refresh(e1)
@@ -706,12 +962,19 @@ async def test_add_comment_not_found(client, test_user):
 @pytest.mark.asyncio
 async def test_feedback_entry_out_shape(client, test_user, db_session):
     """FeedbackEntryOut contains all expected fields."""
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
 
+    from app.models.feedback import FeedbackEntry
+
     user, headers = test_user
-    entry = FeedbackEntry(type="feature", title="Shape test", description="Check the schema",
-                          status="pending", author_id=user.id, created_at=datetime.now(timezone.utc).replace(tzinfo=None))
+    entry = FeedbackEntry(
+        type="feature",
+        title="Shape test",
+        description="Check the schema",
+        status="pending",
+        author_id=user.id,
+        created_at=datetime.now(timezone.utc).replace(tzinfo=None),
+    )
     db_session.add(entry)
     await db_session.commit()
 
@@ -737,17 +1000,27 @@ async def test_feedback_entry_out_shape(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_feedback_entry_detail_includes_comments(client, test_user, db_session):
     """Detail endpoint embeds the comment list."""
-    from app.models.feedback import FeedbackEntry, FeedbackComment
     from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackComment, FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
-    entry = FeedbackEntry(type="feature", title="With comments", description="d", status="pending", author_id=user.id, created_at=now)
+    entry = FeedbackEntry(
+        type="feature",
+        title="With comments",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=now,
+    )
     db_session.add(entry)
     await db_session.commit()
     await db_session.refresh(entry)
 
-    db_session.add(FeedbackComment(entry_id=entry.id, author_id=user.id, body="Hello", created_at=now))
+    db_session.add(
+        FeedbackComment(entry_id=entry.id, author_id=user.id, body="Hello", created_at=now)
+    )
     await db_session.commit()
 
     resp = await client.get(f"/api/feedback/{entry.id}", headers=headers)
@@ -774,7 +1047,11 @@ async def test_create_feedback_sends_admin_email(client, test_user):
         resp = await client.post(
             "/api/feedback",
             headers=headers,
-            json={"type": "feature", "title": "Admin notif test", "description": "Should email admin."},
+            json={
+                "type": "feature",
+                "title": "Admin notif test",
+                "description": "Should email admin.",
+            },
         )
     assert resp.status_code == 201
     mock_notify.assert_awaited_once()
@@ -807,15 +1084,20 @@ async def test_create_bug_sends_admin_email(client, test_user):
 @pytest.mark.asyncio
 async def test_add_comment_does_not_send_admin_email(client, test_user, db_session):
     """Adding a comment does NOT trigger any admin notification email."""
-    from unittest.mock import AsyncMock, patch
-    from app.models.feedback import FeedbackEntry
     from datetime import datetime, timezone
+    from unittest.mock import AsyncMock, patch
+
+    from app.models.feedback import FeedbackEntry
 
     user, headers = test_user
     now = datetime.now(timezone.utc).replace(tzinfo=None)
     entry = FeedbackEntry(
-        type="feature", title="No email on comment", description="d",
-        status="pending", author_id=user.id, created_at=now,
+        type="feature",
+        title="No email on comment",
+        description="d",
+        status="pending",
+        author_id=user.id,
+        created_at=now,
     )
     db_session.add(entry)
     await db_session.commit()

@@ -1,6 +1,6 @@
 """Tests for avatar upload, replacement, and deletion (POST/DELETE /api/auth/me/avatar)."""
+
 import io
-import os
 from unittest.mock import patch
 
 import pytest
@@ -11,8 +11,8 @@ import pytest
 
 # Minimal bytes that satisfy the backend's content-type check (the backend does
 # NOT validate the actual image bytes, only content_type and size).
-FAKE_JPEG = b"\xff\xd8\xff" + b"\x00" * 16   # starts with JPEG magic bytes
-FAKE_PNG  = b"\x89PNG\r\n\x1a\n" + b"\x00" * 16
+FAKE_JPEG = b"\xff\xd8\xff" + b"\x00" * 16  # starts with JPEG magic bytes
+FAKE_PNG = b"\x89PNG\r\n\x1a\n" + b"\x00" * 16
 
 
 def _jpeg_file(data: bytes = FAKE_JPEG) -> tuple:
@@ -28,6 +28,7 @@ def _png_file(data: bytes = FAKE_PNG) -> tuple:
 # Fixture: redirect _AVATARS_DIR to a temp directory for each test
 # ---------------------------------------------------------------------------
 
+
 @pytest.fixture
 def avatars_dir(tmp_path):
     """Patch the module-level _AVATARS_DIR constant to a temporary directory."""
@@ -40,6 +41,7 @@ def avatars_dir(tmp_path):
 # ---------------------------------------------------------------------------
 # Upload tests
 # ---------------------------------------------------------------------------
+
 
 class TestAvatarUpload:
     @pytest.mark.asyncio
@@ -163,15 +165,15 @@ class TestAvatarUpload:
         await client.post(
             "/api/auth/me/avatar",
             headers=headers,
-            files={"file": _jpeg_file(b"\xff\xd8\xff" + b"\xAA" * 16)},
+            files={"file": _jpeg_file(b"\xff\xd8\xff" + b"\xaa" * 16)},
         )
         await client.post(
             "/api/auth/me/avatar",
             headers=headers,
-            files={"file": _jpeg_file(b"\xff\xd8\xff" + b"\xBB" * 16)},
+            files={"file": _jpeg_file(b"\xff\xd8\xff" + b"\xbb" * 16)},
         )
         saved = (avatars_dir / f"{user.id}.jpg").read_bytes()
-        assert saved == b"\xff\xd8\xff" + b"\xBB" * 16
+        assert saved == b"\xff\xd8\xff" + b"\xbb" * 16
 
     @pytest.mark.asyncio
     async def test_reupload_different_format_deletes_old_file(self, client, test_user, avatars_dir):
@@ -197,7 +199,7 @@ class TestAvatarUpload:
     @pytest.mark.asyncio
     async def test_reupload_returns_new_url(self, client, test_user, avatars_dir):
         user, headers = test_user
-        resp1 = await client.post(
+        await client.post(
             "/api/auth/me/avatar",
             headers=headers,
             files={"file": _jpeg_file()},
@@ -211,7 +213,9 @@ class TestAvatarUpload:
         assert resp2.json()["avatar"].startswith(f"/api/avatars/{user.id}.jpg")
 
     @pytest.mark.asyncio
-    async def test_upload_over_legacy_base64_avatar(self, client, test_user, db_session, avatars_dir):
+    async def test_upload_over_legacy_base64_avatar(
+        self, client, test_user, db_session, avatars_dir
+    ):
         """Uploading when the existing avatar is a legacy base64 data URI should not crash."""
         user, headers = test_user
         # Inject a legacy base64 avatar directly into the DB
@@ -231,6 +235,7 @@ class TestAvatarUpload:
 # ---------------------------------------------------------------------------
 # Delete tests
 # ---------------------------------------------------------------------------
+
 
 class TestAvatarDelete:
     @pytest.mark.asyncio
@@ -279,7 +284,9 @@ class TestAvatarDelete:
         assert resp.json()["avatar"] is None
 
     @pytest.mark.asyncio
-    async def test_delete_legacy_base64_does_not_crash(self, client, test_user, db_session, avatars_dir):
+    async def test_delete_legacy_base64_does_not_crash(
+        self, client, test_user, db_session, avatars_dir
+    ):
         """Deleting a legacy base64 avatar should succeed without touching the filesystem."""
         user, headers = test_user
         user.avatar = "data:image/jpeg;base64,/9j/fakebase64=="

@@ -217,7 +217,7 @@ export default function ChatPage() {
         <div className="flex h-[calc(100dvh-56px)] w-full overflow-hidden md:h-screen">
           {/* Memory updated toast */}
           {memoryToast && (
-            <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 font-mono text-xs tracking-widest uppercase px-4 py-2 border border-fl-border bg-fl-surface text-fl-muted-1 shadow-lg animate-in fade-in slide-in-from-top-2">
+            <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 fixed top-16 left-1/2 z-50 -translate-x-1/2 border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
               {t('memoryUpdated')}
             </div>
           )}
@@ -258,10 +258,11 @@ export default function ChatPage() {
                     <div
                       key={c.id}
                       onClick={() => selectConversation(c.id)}
-                      className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${activeId === c.id
-                        ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
-                        : 'hover:bg-fl-surface border-l-2 border-l-transparent'
-                        }`}
+                      className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${
+                        activeId === c.id
+                          ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
+                          : 'hover:bg-fl-surface border-l-2 border-l-transparent'
+                      }`}
                     >
                       <span
                         className={`text-fl-label truncate pr-1 font-mono leading-tight ${activeId === c.id ? 'text-fl-fg' : 'text-fl-muted-1'}`}
@@ -379,10 +380,11 @@ export default function ChatPage() {
                     </div>
                     <div className={`max-w-[75%] text-left`}>
                       <div
-                        className={`border px-4 py-3 font-mono text-sm leading-relaxed ${msg.role === 'user'
-                          ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
-                          : 'bg-fl-surface text-fl-fg-2 border-fl-border'
-                          }`}
+                        className={`border px-4 py-3 font-mono text-sm leading-relaxed ${
+                          msg.role === 'user'
+                            ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
+                            : 'bg-fl-surface text-fl-fg-2 border-fl-border'
+                        }`}
                       >
                         {msg.content ||
                           (sending && i === messages.length - 1 ? (

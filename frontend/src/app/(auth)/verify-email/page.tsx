@@ -10,7 +10,9 @@ function VerifyEmailContent() {
   const t = useTranslations('auth.verifyEmail')
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
-  const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
+  const [status, setStatus] = useState<'loading' | 'success' | 'error'>(
+    'loading'
+  )
 
   useEffect(() => {
     if (!token) {
@@ -24,29 +26,39 @@ function VerifyEmailContent() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-fl-bg px-4"
-      style={{ backgroundImage: 'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
+      style={{
+        backgroundImage:
+          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
+        backgroundSize: '24px 24px',
+      }}
     >
       <div className="w-full max-w-sm">
-        <div className="flex flex-col items-center mb-10">
-          <h1 className="font-mono text-xl font-bold tracking-widest text-fl-fg uppercase">FreeLingo</h1>
+        <div className="mb-10 flex flex-col items-center">
+          <h1 className="text-fl-fg font-mono text-xl font-bold tracking-widest uppercase">
+            FreeLingo
+          </h1>
         </div>
-        <div className="border border-fl-border bg-fl-surface p-8 text-center space-y-6">
-          <div className="flex items-center gap-2 justify-center">
+        <div className="border-fl-border bg-fl-surface space-y-6 border p-8 text-center">
+          <div className="flex items-center justify-center gap-2">
             <span className="text-fl-label text-fl-muted-2">●</span>
-            <span className="font-mono text-fl-caption tracking-widest text-fl-muted-2 uppercase">{t('title')}</span>
+            <span className="text-fl-caption text-fl-muted-2 font-mono tracking-widest uppercase">
+              {t('title')}
+            </span>
           </div>
 
           {status === 'loading' && (
-            <p className="font-mono text-xs text-fl-muted-2 animate-pulse">{t('loading')}</p>
+            <p className="text-fl-muted-2 animate-pulse font-mono text-xs">
+              {t('loading')}
+            </p>
           )}
 
           {status === 'success' && (
             <>
-              <p className="font-mono text-sm text-fl-fg">{t('success')}</p>
+              <p className="text-fl-fg font-mono text-sm">{t('success')}</p>
               <Link
                 href="/login"
-                className="block w-full bg-fl-accent text-fl-accent-fg font-mono text-xs font-bold tracking-widest uppercase py-3 text-center hover:bg-fl-accent/90 transition-colors"
+                className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 block w-full py-3 text-center font-mono text-xs font-bold tracking-widest uppercase transition-colors"
               >
                 {t('goToLogin')}
               </Link>
@@ -55,10 +67,10 @@ function VerifyEmailContent() {
 
           {status === 'error' && (
             <>
-              <p className="font-mono text-xs text-fl-error">{t('error')}</p>
+              <p className="text-fl-error font-mono text-xs">{t('error')}</p>
               <Link
                 href="/login"
-                className="block font-mono text-xs text-fl-muted-2 hover:text-fl-fg transition-colors underline"
+                className="text-fl-muted-2 hover:text-fl-fg block font-mono text-xs underline transition-colors"
               >
                 {t('goToLogin')}
               </Link>

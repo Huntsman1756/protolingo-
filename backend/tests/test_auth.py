@@ -146,8 +146,8 @@ async def test_login_invalid_credentials(client):
 
 @pytest.mark.asyncio
 async def test_login_inactive_user(client, db_session):
-    from app.models.user import User
     from app.core.security import hash_password
+    from app.models.user import User
 
     user = User(
         username="inactive",
@@ -283,8 +283,8 @@ async def test_patch_me(client, test_user):
 @pytest.mark.asyncio
 async def test_patch_me_duplicate_email(client, db_session):
     """M-03: PATCH /me should reject an email already used by another user."""
+    from app.core.security import create_access_token, hash_password
     from app.models.user import User
-    from app.core.security import hash_password, create_access_token
 
     user_a = User(
         username="user_a",
@@ -337,12 +337,14 @@ async def test_patch_me_same_email_allowed(client, test_user):
 # Email verification
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_verify_email_valid_token(client, db_session, mock_redis):
     """Valid verify-email token marks user as verified."""
-    from app.models.user import User
-    from app.core.security import hash_password
     import uuid
+
+    from app.core.security import hash_password
+    from app.models.user import User
 
     user = User(
         username="verifyme",
@@ -378,6 +380,7 @@ async def test_verify_email_invalid_token(client):
 # Password reset
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_forgot_password_always_200(client):
     """forgot-password always returns 200 regardless of whether the email exists."""
@@ -390,9 +393,10 @@ async def test_forgot_password_always_200(client):
 
 @pytest.mark.asyncio
 async def test_reset_password_valid_token(client, db_session, mock_redis):
-    from app.models.user import User
-    from app.core.security import hash_password, verify_password
     import uuid
+
+    from app.core.security import hash_password, verify_password
+    from app.models.user import User
 
     user = User(
         username="resetme",
@@ -431,8 +435,8 @@ async def test_reset_password_invalid_token(client):
 
 @pytest.mark.asyncio
 async def test_resend_verification_already_verified(client, db_session):
+    from app.core.security import create_access_token, hash_password
     from app.models.user import User
-    from app.core.security import hash_password, create_access_token
 
     user = User(
         username="alreadyverified",
@@ -459,8 +463,8 @@ async def test_resend_verification_already_verified(client, db_session):
 @pytest.mark.asyncio
 async def test_resend_verification_no_email(client, db_session):
     """resend-verification returns 400 when user has no email address."""
+    from app.core.security import create_access_token, hash_password
     from app.models.user import User
-    from app.core.security import hash_password, create_access_token
 
     user = User(
         username="noemailuser",
@@ -486,9 +490,9 @@ async def test_resend_verification_no_email(client, db_session):
 @pytest.mark.asyncio
 async def test_resend_verification_email_disabled(client, db_session):
     """resend-verification returns 503 when EMAIL_ENABLED=false."""
-    from app.models.user import User
-    from app.core.security import hash_password, create_access_token
     from app.core.config import settings
+    from app.core.security import create_access_token, hash_password
+    from app.models.user import User
 
     user = User(
         username="emaildisabled",
@@ -519,9 +523,10 @@ async def test_resend_verification_email_disabled(client, db_session):
 @pytest.mark.asyncio
 async def test_verify_email_token_consumed_after_use(client, db_session, mock_redis):
     """verify-email token cannot be reused after successful verification."""
-    from app.models.user import User
-    from app.core.security import hash_password
     import uuid
+
+    from app.core.security import hash_password
+    from app.models.user import User
 
     user = User(
         username="oncetoken",
@@ -552,9 +557,10 @@ async def test_verify_email_token_consumed_after_use(client, db_session, mock_re
 @pytest.mark.asyncio
 async def test_reset_password_token_consumed_after_use(client, db_session, mock_redis):
     """reset-password token cannot be reused after successful reset."""
-    from app.models.user import User
-    from app.core.security import hash_password
     import uuid
+
+    from app.core.security import hash_password
+    from app.models.user import User
 
     user = User(
         username="oncereset",

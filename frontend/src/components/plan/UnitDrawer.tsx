@@ -20,7 +20,12 @@ interface Props {
   onStartLesson: (lessonId: number) => void
 }
 
-export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Props) {
+export default function UnitDrawer({
+  unit,
+  lessons,
+  onClose,
+  onStartLesson,
+}: Props) {
   const t = useTranslations('plan')
   const tCommon = useTranslations('common')
   const ref = useRef<HTMLDivElement>(null)
@@ -54,22 +59,24 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-fl-bg/80 backdrop-blur-sm p-0 sm:p-4">
+    <div className="bg-fl-bg/80 fixed inset-0 z-50 flex items-end justify-center p-0 backdrop-blur-sm sm:items-center sm:p-4">
       <div
         ref={ref}
-        className="w-full sm:max-w-lg max-h-[80vh] overflow-y-auto border border-fl-border bg-fl-surface"
+        className="border-fl-border bg-fl-surface max-h-[80vh] w-full overflow-y-auto border sm:max-w-lg"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-fl-border sticky top-0 bg-fl-surface z-10">
+        <div className="border-fl-border bg-fl-surface sticky top-0 z-10 flex items-center justify-between border-b px-6 py-4">
           <div>
-            <span className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase">
+            <span className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
               {unit.level} · {t('unitLabel')}
             </span>
-            <p className="font-mono text-fl-body text-fl-fg mt-0.5">{unit.title}</p>
+            <p className="text-fl-body text-fl-fg mt-0.5 font-mono">
+              {unit.title}
+            </p>
           </div>
           <button
             onClick={onClose}
-            className="font-mono text-fl-muted-3 hover:text-fl-fg transition-colors text-lg leading-none"
+            className="text-fl-muted-3 hover:text-fl-fg font-mono text-lg leading-none transition-colors"
             aria-label={tCommon('close')}
           >
             ✕
@@ -78,15 +85,15 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
 
         {/* Grammar points */}
         {unit.grammar_points.length > 0 && (
-          <div className="px-6 py-4 border-b border-fl-border">
-            <p className="font-mono text-fl-hint tracking-widest text-fl-muted-3 uppercase mb-2">
+          <div className="border-fl-border border-b px-6 py-4">
+            <p className="text-fl-hint text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
               {t('grammarCovered')}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {unit.grammar_points.map((gp) => (
                 <span
                   key={gp}
-                  className="font-mono text-fl-hint border border-fl-border px-2 py-1 text-fl-muted-1"
+                  className="text-fl-hint border-fl-border text-fl-muted-1 border px-2 py-1 font-mono"
                 >
                   {gp}
                 </span>
@@ -96,10 +103,10 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
         )}
 
         {/* Lessons */}
-        <div className="divide-y divide-fl-border">
+        <div className="divide-fl-border divide-y">
           {lessons.length === 0 ? (
             <div className="px-6 py-6">
-              <p className="font-mono text-fl-label text-fl-muted-3">
+              <p className="text-fl-label text-fl-muted-3 font-mono">
                 {t('noLessons')}
               </p>
             </div>
@@ -109,14 +116,18 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
                 key={lesson.id ?? i}
                 className="flex items-center gap-3 px-6 py-3"
               >
-                <span className={`font-mono text-base w-4 shrink-0 ${lesson.completed ? 'text-fl-fg' : 'text-fl-muted-3'}`}>
+                <span
+                  className={`w-4 shrink-0 font-mono text-base ${lesson.completed ? 'text-fl-fg' : 'text-fl-muted-3'}`}
+                >
                   {lesson.completed ? '✓' : '○'}
                 </span>
-                <div className="flex-1 min-w-0">
-                  <p className={`font-mono text-fl-label ${lesson.completed ? 'text-fl-muted-2 line-through' : 'text-fl-muted-1'}`}>
+                <div className="min-w-0 flex-1">
+                  <p
+                    className={`text-fl-label font-mono ${lesson.completed ? 'text-fl-muted-2 line-through' : 'text-fl-muted-1'}`}
+                  >
                     {lesson.title}
                   </p>
-                  <p className="font-mono text-fl-hint text-fl-muted-3">
+                  <p className="text-fl-hint text-fl-muted-3 font-mono">
                     {t('weekDay', { week: lesson.week, day: lesson.day })} ·{' '}
                     {lessonTypeLabel[lesson.lesson_type] ?? lesson.lesson_type}
                   </p>
@@ -124,7 +135,7 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
                 {lesson.id != null && !lesson.completed && (
                   <button
                     onClick={() => onStartLesson(lesson.id!)}
-                    className="font-mono text-fl-hint tracking-widest text-fl-muted-2 uppercase border border-fl-border px-3 py-1.5 hover:border-fl-border-2 hover:text-fl-fg transition-colors shrink-0"
+                    className="text-fl-hint text-fl-muted-2 border-fl-border hover:border-fl-border-2 hover:text-fl-fg shrink-0 border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors"
                   >
                     {tCommon('start')}
                   </button>
@@ -135,10 +146,10 @@ export default function UnitDrawer({ unit, lessons, onClose, onStartLesson }: Pr
         </div>
 
         {/* Close */}
-        <div className="px-6 py-4 border-t border-fl-border">
+        <div className="border-fl-border border-t px-6 py-4">
           <button
             onClick={onClose}
-            className="w-full border border-fl-border text-fl-muted-2 font-mono text-xs tracking-widest uppercase py-3 hover:border-fl-border-2 hover:text-fl-fg transition-colors"
+            className="border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg w-full border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
           >
             {tCommon('close')}
           </button>

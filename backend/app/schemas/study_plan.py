@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, field_serializer
 
@@ -57,8 +56,8 @@ class StudyPlanResponse(BaseModel):
     generated_plan: dict
     is_active: bool
     completion_test_taken: bool
-    completion_test_score: Optional[float]
-    completion_test_recommendation: Optional[str]
+    completion_test_score: float | None
+    completion_test_recommendation: str | None
     created_at: datetime
 
     model_config = {"from_attributes": True}
@@ -69,7 +68,7 @@ class StudyPlanResponse(BaseModel):
 
 
 class TodayLesson(BaseModel):
-    id: Optional[int] = None
+    id: int | None = None
     title: str
     lesson_type: str
     week: int
@@ -97,4 +96,3 @@ class PendingLessonResponse(BaseModel):
     day_number: int
 
     model_config = {"from_attributes": True}
-

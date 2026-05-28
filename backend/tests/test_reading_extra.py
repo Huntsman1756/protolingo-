@@ -1,7 +1,8 @@
 """Extra reading tests: lock contention, long-poll, not-found, pagination, paywall."""
+
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, patch
+from unittest.mock import patch
 
 import pytest
 import pytest_asyncio
@@ -18,6 +19,7 @@ from app.models.user import User
 # ---------------------------------------------------------------------------
 # Redis mock
 # ---------------------------------------------------------------------------
+
 
 class _MockRedis:
     def __init__(self) -> None:
@@ -52,11 +54,12 @@ class _MockRedis:
 # Fixtures
 # ---------------------------------------------------------------------------
 
+
 @pytest_asyncio.fixture
 async def reading_client(db_session):
-    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.admin import get_redis as admin_get_redis
     from app.routers.assessment import get_redis as assessment_get_redis
+    from app.routers.auth import get_redis as auth_get_redis
     from app.routers.reading import get_redis as reading_get_redis
 
     mock_redis = _MockRedis()
@@ -133,6 +136,7 @@ _ALL_CORRECT = {str(i): "B" for i in range(5)}
 # 1. Lock already held → /generate returns generating without spawning task
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_generate_locked(reading_client) -> None:
     """When lock is held, generate returns 202 without acquiring it again."""
@@ -152,6 +156,7 @@ async def test_generate_locked(reading_client) -> None:
 # ---------------------------------------------------------------------------
 # 2. Long-poll: /next?wait=true returns exercise once it appears
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_next_wait_returns_exercise(reading_client) -> None:
@@ -187,6 +192,7 @@ async def test_next_wait_returns_exercise(reading_client) -> None:
 # 3. /attempt with non-existent exercise → 404
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_submit_not_found(reading_client) -> None:
     ac, _, db = reading_client
@@ -206,6 +212,7 @@ async def test_submit_not_found(reading_client) -> None:
 # ---------------------------------------------------------------------------
 # 4. History pagination (skip / limit)
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_history_pagination(reading_client) -> None:
@@ -227,6 +234,7 @@ async def test_history_pagination(reading_client) -> None:
 # ---------------------------------------------------------------------------
 # 5. Paywall — unauthenticated user is blocked
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.asyncio
 async def test_paywall_blocked(reading_client) -> None:

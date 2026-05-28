@@ -3,9 +3,8 @@ from __future__ import annotations
 import json
 import re
 from datetime import datetime
-from typing import Optional
 
-PASSWORD_PATTERN = re.compile(r'^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{10,25}$')
+PASSWORD_PATTERN = re.compile(r"^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{10,25}$")
 
 
 def validate_password_strength(v: str) -> str:
@@ -20,13 +19,33 @@ def validate_password_strength(v: str) -> str:
 from pydantic import BaseModel, EmailStr, Field, field_serializer, field_validator
 
 SUPPORTED_LANGUAGES = {
-    "en", "es", "fr", "pt", "de", "it", "zh", "ja", "ko", "ar", "ru", "nl", "pl", "ro",
+    "en",
+    "es",
+    "fr",
+    "pt",
+    "de",
+    "it",
+    "zh",
+    "ja",
+    "ko",
+    "ar",
+    "ru",
+    "nl",
+    "pl",
+    "ro",
 }
 
 SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}
 
 VALID_LEARNING_GOALS: set[str] = {
-    "travel", "work", "academic", "daily", "media", "emigration", "exams", "social",
+    "travel",
+    "work",
+    "academic",
+    "daily",
+    "media",
+    "emigration",
+    "exams",
+    "social",
 }
 
 
@@ -34,10 +53,10 @@ class RegisterRequest(BaseModel):
     username: str = Field(min_length=3, max_length=50, pattern=r"^[\w.-]+$")
     email: EmailStr
     password: str = Field(min_length=10, max_length=25)
-    display_name: Optional[str] = Field(default=None, max_length=100)
+    display_name: str | None = Field(default=None, max_length=100)
     native_language: str = Field(min_length=2, max_length=5)
     target_language: str = "en-US"
-    invite_token: Optional[str] = None
+    invite_token: str | None = None
 
     @field_validator("password")
     @classmethod
@@ -55,7 +74,9 @@ class RegisterRequest(BaseModel):
     @classmethod
     def validate_target_language(cls, v: str) -> str:
         if v not in SUPPORTED_TARGET_LANGUAGES:
-            raise ValueError(f"Unsupported target language. Choose from: {SUPPORTED_TARGET_LANGUAGES}")
+            raise ValueError(
+                f"Unsupported target language. Choose from: {SUPPORTED_TARGET_LANGUAGES}"
+            )
         return v
 
 
@@ -79,7 +100,7 @@ class RegisterResponse(BaseModel):
 class UserResponse(BaseModel):
     id: int
     username: str
-    email: Optional[str]
+    email: str | None
     display_name: str
     role: str
     native_language: str
@@ -88,18 +109,18 @@ class UserResponse(BaseModel):
     is_verified: bool
     conversation_max_duration: int
     conversation_inactivity_timeout: int
-    avatar: Optional[str] = None
-    bio: Optional[str] = None
-    learning_goals: Optional[list[str]] = None
+    avatar: str | None = None
+    bio: str | None = None
+    learning_goals: list[str] | None = None
     subscription_status: str = "none"
-    subscription_ends_at: Optional[datetime] = None
+    subscription_ends_at: datetime | None = None
     created_at: datetime
 
     model_config = {"from_attributes": True}
 
     @field_validator("learning_goals", mode="before")
     @classmethod
-    def parse_learning_goals(cls, v: object) -> Optional[list[str]]:
+    def parse_learning_goals(cls, v: object) -> list[str] | None:
         if v is None:
             return None
         if isinstance(v, list):
@@ -109,57 +130,59 @@ class UserResponse(BaseModel):
                 parsed = json.loads(v)
                 if isinstance(parsed, list):
                     return parsed
-            except (json.JSONDecodeError, ValueError):
+            except json.JSONDecodeError, ValueError:
                 pass
         return None
 
     @field_serializer("created_at", "subscription_ends_at")
-    def serialize_datetime(self, v: Optional[datetime], _info):
+    def serialize_datetime(self, v: datetime | None, _info):
         return v.isoformat() if v else None
 
 
 class UserUpdateRequest(BaseModel):
-    display_name: Optional[str] = Field(default=None, max_length=100)
-    email: Optional[EmailStr] = None
-    password: Optional[str] = Field(default=None, min_length=10, max_length=25)
-    native_language: Optional[str] = Field(default=None, min_length=2, max_length=5)
-    target_language: Optional[str] = None
-    conversation_max_duration: Optional[int] = None
-    conversation_inactivity_timeout: Optional[int] = None
-    bio: Optional[str] = Field(default=None, max_length=500)
-    learning_goals: Optional[list[str]] = None
+    display_name: str | None = Field(default=None, max_length=100)
+    email: EmailStr | None = None
+    password: str | None = Field(default=None, min_length=10, max_length=25)
+    native_language: str | None = Field(default=None, min_length=2, max_length=5)
+    target_language: str | None = None
+    conversation_max_duration: int | None = None
+    conversation_inactivity_timeout: int | None = None
+    bio: str | None = Field(default=None, max_length=500)
+    learning_goals: list[str] | None = None
 
     @field_validator("password")
     @classmethod
-    def check_password(cls, v: Optional[str]) -> Optional[str]:
+    def check_password(cls, v: str | None) -> str | None:
         if v is not None:
             return validate_password_strength(v)
         return v
 
     @field_validator("target_language")
     @classmethod
-    def validate_target_language(cls, v: Optional[str]) -> Optional[str]:
+    def validate_target_language(cls, v: str | None) -> str | None:
         if v is not None and v not in SUPPORTED_TARGET_LANGUAGES:
-            raise ValueError(f"Unsupported target language. Choose from: {SUPPORTED_TARGET_LANGUAGES}")
+            raise ValueError(
+                f"Unsupported target language. Choose from: {SUPPORTED_TARGET_LANGUAGES}"
+            )
         return v
 
     @field_validator("conversation_max_duration")
     @classmethod
-    def validate_max_duration(cls, v: Optional[int]) -> Optional[int]:
+    def validate_max_duration(cls, v: int | None) -> int | None:
         if v is not None and v not in (900, 1800):
             raise ValueError("conversation_max_duration must be 900 or 1800")
         return v
 
     @field_validator("conversation_inactivity_timeout")
     @classmethod
-    def validate_inactivity_timeout(cls, v: Optional[int]) -> Optional[int]:
+    def validate_inactivity_timeout(cls, v: int | None) -> int | None:
         if v is not None and v not in (60, 180, 300):
             raise ValueError("conversation_inactivity_timeout must be 60, 180, or 300")
         return v
 
     @field_validator("learning_goals")
     @classmethod
-    def validate_learning_goals(cls, v: Optional[list[str]]) -> Optional[list[str]]:
+    def validate_learning_goals(cls, v: list[str] | None) -> list[str] | None:
         if v is not None:
             for g in v:
                 if g not in VALID_LEARNING_GOALS:
