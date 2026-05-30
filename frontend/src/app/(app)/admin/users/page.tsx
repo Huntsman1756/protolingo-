@@ -115,6 +115,10 @@ export default function AdminUsersPage() {
   async function createUser(e: React.FormEvent) {
     e.preventDefault()
     setError('')
+    if (!/^[a-zA-Z0-9._\s-]+$/.test(form.username)) {
+      setError(t('invalidUsernameChars'))
+      return
+    }
     try {
       const sanitizedUsername = form.username.replace(/\s+/g, '_').toLowerCase()
       const res = await apiFetch('/api/admin/users', {

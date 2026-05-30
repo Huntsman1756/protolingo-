@@ -125,7 +125,8 @@
       "andWord": "și",
       "privacyLink": "Politica de confidențialitate",
       "termsRequired": "Trebuie să accepți termenii pentru a continua",
-      "invalidPassword": "Parola trebuie să aibă între 10 şi 25 de caractere şi să includă cel puțin o majusculă, o cifră şi un simbol"
+      "invalidPassword": "Parola trebuie să aibă între 10 şi 25 de caractere şi să includă cel puțin o majusculă, o cifră şi un simbol",
+      "invalidUsernameChars": "Numele de utilizator poate conține doar litere, cifre, cratime, underscore și puncte"
     },
     "verifyEmail": {
       "title": "Verificare e-mail",
@@ -671,6 +672,7 @@
     "roleUser": "Utilizator",
     "roleAdmin": "Admin",
     "fieldUsername": "Nume de utilizator",
+    "invalidUsernameChars": "Numele de utilizator poate conține doar litere, cifre, cratime, underscore și puncte",
     "fieldEmail": "E-mail (opțional)",
     "fieldPassword": "Parolă",
     "fieldDisplayName": "Nume afișat",

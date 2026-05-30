@@ -125,7 +125,8 @@
       "andWord": "en de",
       "privacyLink": "Privacybeleid",
       "termsRequired": "Je moet de voorwaarden accepteren om door te gaan",
-      "invalidPassword": "Het wachtwoord moet 10-25 tekens lang zijn en minimaal één hoofdletter, één cijfer en één symbool bevatten"
+      "invalidPassword": "Het wachtwoord moet 10-25 tekens lang zijn en minimaal één hoofdletter, één cijfer en één symbool bevatten",
+      "invalidUsernameChars": "Gebruikersnaam mag alleen letters, cijfers, koppeltekens, underscores en punten bevatten"
     },
     "verifyEmail": {
       "title": "E-mailverificatie",
@@ -671,6 +672,7 @@
     "roleUser": "Gebruiker",
     "roleAdmin": "Admin",
     "fieldUsername": "Gebruikersnaam",
+    "invalidUsernameChars": "Gebruikersnaam mag alleen letters, cijfers, koppeltekens, underscores en punten bevatten",
     "fieldEmail": "E-mail (optioneel)",
     "fieldPassword": "Wachtwoord",
     "fieldDisplayName": "Weergavenaam",

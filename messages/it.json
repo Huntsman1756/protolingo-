@@ -125,7 +125,8 @@
       "andWord": "e l'informatica sulla",
       "privacyLink": "Privacy",
       "termsRequired": "Devi accettare i termini per continuare",
-      "invalidPassword": "La password deve avere tra 10 e 25 caratteri e includere almeno una maiuscola, un numero e un simbolo"
+      "invalidPassword": "La password deve avere tra 10 e 25 caratteri e includere almeno una maiuscola, un numero e un simbolo",
+      "invalidUsernameChars": "Il nome utente può contenere solo lettere, numeri, trattini, underscore e punti"
     },
     "verifyEmail": {
       "title": "Verifica e-mail",
@@ -671,6 +672,7 @@
     "roleUser": "Utente",
     "roleAdmin": "Admin",
     "fieldUsername": "Nome utente",
+    "invalidUsernameChars": "Il nome utente può contenere solo lettere, numeri, trattini, underscore e punti",
     "fieldEmail": "Email (opzionale)",
     "fieldPassword": "Password",
     "fieldDisplayName": "Nome visualizzato",

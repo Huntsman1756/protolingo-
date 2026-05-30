@@ -56,6 +56,10 @@ function RegisterForm() {
         setError(t('termsRequired'))
         return
       }
+      if (!/^[a-zA-Z0-9._\s-]+$/.test(username)) {
+        setError(t('invalidUsernameChars'))
+        return
+      }
       setLoading(true)
       try {
         const sanitizedUsername = username.replace(/\s+/g, '_').toLowerCase()

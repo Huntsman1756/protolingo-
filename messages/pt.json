@@ -125,7 +125,8 @@
       "andWord": "e a",
       "privacyLink": "Política de Privacidade",
       "termsRequired": "Você deve aceitar os termos para continuar",
-      "invalidPassword": "A senha deve ter entre 10 e 25 caracteres e incluir pelo menos uma maiúscula, um número e um símbolo"
+      "invalidPassword": "A senha deve ter entre 10 e 25 caracteres e incluir pelo menos uma maiúscula, um número e um símbolo",
+      "invalidUsernameChars": "O nome de usuário só pode conter letras, números, hífens, underscores e pontos"
     },
     "verifyEmail": {
       "title": "Verificação de e-mail",
@@ -671,6 +672,7 @@
     "roleUser": "Usuário",
     "roleAdmin": "Admin",
     "fieldUsername": "Nome de usuário",
+    "invalidUsernameChars": "O nome de usuário só pode conter letras, números, hífens, underscores e pontos",
     "fieldEmail": "Email (opcional)",
     "fieldPassword": "Senha",
     "fieldDisplayName": "Nome de exibição",

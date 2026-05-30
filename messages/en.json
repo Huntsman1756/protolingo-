@@ -125,7 +125,8 @@
       "andWord": "and the",
       "privacyLink": "Privacy Policy",
       "termsRequired": "You must accept the terms to continue",
-      "invalidPassword": "Password must be 10-25 characters and include at least one uppercase letter, one number, and one symbol"
+      "invalidPassword": "Password must be 10-25 characters and include at least one uppercase letter, one number, and one symbol",
+      "invalidUsernameChars": "Username can only contain letters, numbers, hyphens, underscores and dots"
     },
     "verifyEmail": {
       "title": "Email verification",
@@ -671,6 +672,7 @@
     "roleUser": "User",
     "roleAdmin": "Admin",
     "fieldUsername": "Username",
+    "invalidUsernameChars": "Username can only contain letters, numbers, hyphens, underscores and dots",
     "fieldEmail": "Email (optional)",
     "fieldPassword": "Password",
     "fieldDisplayName": "Display Name",

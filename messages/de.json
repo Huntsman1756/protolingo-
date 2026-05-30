@@ -125,7 +125,8 @@
       "andWord": "und die",
       "privacyLink": "Datenschutzerklärung",
       "termsRequired": "Du musst die Bedingungen akzeptieren, um fortzufahren",
-      "invalidPassword": "Das Passwort muss 10-25 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl und ein Symbol enthalten"
+      "invalidPassword": "Das Passwort muss 10-25 Zeichen lang sein und mindestens einen Großbuchstaben, eine Zahl und ein Symbol enthalten",
+      "invalidUsernameChars": "Benutzername darf nur Buchstaben, Zahlen, Bindestriche, Unterstriche und Punkte enthalten"
     },
     "verifyEmail": {
       "title": "E-Mail-Verifizierung",
@@ -671,6 +672,7 @@
     "roleUser": "Benutzer",
     "roleAdmin": "Admin",
     "fieldUsername": "Benutzername",
+    "invalidUsernameChars": "Benutzername darf nur Buchstaben, Zahlen, Bindestriche, Unterstriche und Punkte enthalten",
     "fieldEmail": "E-Mail (optional)",
     "fieldPassword": "Passwort",
     "fieldDisplayName": "Anzeigename",
