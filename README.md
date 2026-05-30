@@ -156,6 +156,19 @@ The first registered user becomes admin automatically.
 - `TTS_PROVIDER` and `STT_PROVIDER` are independent: `local` (Kokoro / faster-whisper) or `openai` (OpenAI API).
 - The target language is always **English** (`en-US` American English or `en-GB` British English). The variant is chosen on the `/onboarding` screen immediately after registration. The user's native language is asked during registration and is used only for flashcard translations and tutor feedback.
 
+## Linux host: Redis memory overcommit
+
+Redis requires `vm.overcommit_memory=1` on the host to safely perform background saves (RDB snapshots). Without it, a `fork()` under low memory can fail and Redis may lose data on restart.
+
+Run once on the server:
+
+```bash
+sudo sysctl vm.overcommit_memory=1
+echo "vm.overcommit_memory = 1" | sudo tee -a /etc/sysctl.conf
+```
+
+The first command applies the setting immediately (no reboot needed); the second persists it across reboots. This is a host-level setting — it cannot be applied from within the container without elevated privileges.
+
 ## Reverse proxy requirement (real-time conversation)
 
 The real-time voice conversation feature uses a WebSocket connection (`/ws/conversation`). Next.js does not proxy WebSocket upgrades natively, so **a reverse proxy is required in any production deployment** to route `/ws/*` traffic to the backend container.
@@ -252,6 +265,10 @@ OPENAI_API_KEY=sk-...
 ```
 
 Uses the same `OPENAI_API_KEY` as the LLM if `LLM_PROVIDER=openai`. No extra services needed.
+
+## Development
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for instructions on running the project locally for development on macOS.
 
 ## Contributing
 
