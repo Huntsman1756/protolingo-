@@ -111,6 +111,8 @@
       "error": "Rejestracja nie powiodła się",
       "passwordMismatch": "Hasła nie są zgodne",
       "confirmPassword": "Potwierdź hasło",
+      "showPassword": "Pokaż hasło",
+      "hidePassword": "Ukryj hasło",
       "displayNamePlaceholder": "Taka sama jak nazwa użytkownika, jeśli puste",
       "inviteActive": "Zaproszenie aktywne",
       "creatingAccount": "Tworzenie...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Ulepszenia planu nauki",

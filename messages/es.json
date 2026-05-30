@@ -111,6 +111,8 @@
       "error": "Error al registrarse",
       "passwordMismatch": "Las contraseñas no coinciden",
       "confirmPassword": "Confirmar contraseña",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
       "displayNamePlaceholder": "Igual que el nombre de usuario si está vacío",
       "inviteActive": "Invitación activa",
       "creatingAccount": "Creando...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Entendido",
     "entry1": {
       "label": "Mejoras en el plan de estudio",

@@ -111,6 +111,8 @@
       "error": "Înregistrare eșuată",
       "passwordMismatch": "Parolele nu coincid",
       "confirmPassword": "Confirmă parola",
+      "showPassword": "Afișează parola",
+      "hidePassword": "Ascunde parola",
       "displayNamePlaceholder": "Același ca numele de utilizator dacă e gol",
       "inviteActive": "Invitație activă",
       "creatingAccount": "Se creează...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Îmbunătățiri la planul de studiu",

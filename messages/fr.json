@@ -111,6 +111,8 @@
       "error": "Échec de l'inscription",
       "passwordMismatch": "Les mots de passe ne correspondent pas",
       "confirmPassword": "Confirmer le mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
       "displayNamePlaceholder": "Même que le nom d'utilisateur si vide",
       "inviteActive": "Invitation active",
       "creatingAccount": "Création en cours...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Compris",
     "entry1": {
       "label": "Améliorations du plan d'étude",

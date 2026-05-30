@@ -111,6 +111,8 @@
       "error": "Falha no cadastro",
       "passwordMismatch": "As senhas não coincidem",
       "confirmPassword": "Confirmar senha",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha",
       "displayNamePlaceholder": "Mesmo que o nome de usuário se vazio",
       "inviteActive": "Convite ativo",
       "creatingAccount": "Criando...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Entendido",
     "entry1": {
       "label": "Melhorias no plano de estudos",

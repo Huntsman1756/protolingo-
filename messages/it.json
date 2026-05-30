@@ -111,6 +111,8 @@
       "error": "Registrazione non riuscita",
       "passwordMismatch": "Le password non corrispondono",
       "confirmPassword": "Conferma password",
+      "showPassword": "Mostra password",
+      "hidePassword": "Nascondi password",
       "displayNamePlaceholder": "Uguale al nome utente se vuoto",
       "inviteActive": "Invito attivo",
       "creatingAccount": "Creazione in corso...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Capito",
     "entry1": {
       "label": "Miglioramenti al piano di studio",

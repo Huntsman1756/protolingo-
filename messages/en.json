@@ -111,6 +111,8 @@
       "error": "Registration failed",
       "passwordMismatch": "Passwords do not match",
       "confirmPassword": "Confirm Password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
       "displayNamePlaceholder": "Same as username if empty",
       "inviteActive": "Invite active",
       "creatingAccount": "Creating...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Got it",
     "entry1": {
       "label": "Study plan improvements",

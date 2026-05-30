@@ -111,6 +111,8 @@
       "error": "Registratie mislukt",
       "passwordMismatch": "Wachtwoorden komen niet overeen",
       "confirmPassword": "Wachtwoord bevestigen",
+      "showPassword": "Wachtwoord tonen",
+      "hidePassword": "Wachtwoord verbergen",
       "displayNamePlaceholder": "Zelfde als gebruikersnaam indien leeg",
       "inviteActive": "Uitnodiging actief",
       "creatingAccount": "Aanmaken...",
@@ -976,7 +978,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Begrepen",
     "entry1": {
       "label": "Verbeteringen aan het studieplan",
