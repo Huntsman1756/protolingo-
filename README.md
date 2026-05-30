@@ -266,6 +266,10 @@ OPENAI_API_KEY=sk-...
 
 Uses the same `OPENAI_API_KEY` as the LLM if `LLM_PROVIDER=openai`. No extra services needed.
 
+## Development
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for instructions on running the project locally for development on macOS.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting bugs and suggesting features. By opening a pull request you accept the [Contributor License Agreement](CONTRIBUTOR_LICENSE_AGREEMENT.md).
