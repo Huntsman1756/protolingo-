@@ -111,6 +111,8 @@
       "error": "Échec de l'inscription",
       "passwordMismatch": "Les mots de passe ne correspondent pas",
       "confirmPassword": "Confirmer le mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
       "displayNamePlaceholder": "Même que le nom d'utilisateur si vide",
       "inviteActive": "Invitation active",
       "creatingAccount": "Création en cours...",
@@ -123,7 +125,8 @@
       "andWord": "et la",
       "privacyLink": "Politique de confidentialité",
       "termsRequired": "Vous devez accepter les conditions pour continuer",
-      "invalidPassword": "Le mot de passe doit comporter entre 10 et 25 caractères et inclure au moins une majuscule, un chiffre et un symbole"
+      "invalidPassword": "Le mot de passe doit comporter entre 10 et 25 caractères et inclure au moins une majuscule, un chiffre et un symbole",
+      "invalidUsernameChars": "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des tirets, des tirets bas et des points"
     },
     "verifyEmail": {
       "title": "Vérification de l'e-mail",
@@ -669,6 +672,7 @@
     "roleUser": "Utilisateur",
     "roleAdmin": "Admin",
     "fieldUsername": "Nom d'utilisateur",
+    "invalidUsernameChars": "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des tirets, des tirets bas et des points",
     "fieldEmail": "Email (optionnel)",
     "fieldPassword": "Mot de passe",
     "fieldDisplayName": "Nom d'affichage",
@@ -976,7 +980,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Compris",
     "entry1": {
       "label": "Améliorations du plan d'étude",

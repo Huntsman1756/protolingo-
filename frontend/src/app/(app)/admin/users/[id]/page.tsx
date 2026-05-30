@@ -261,7 +261,10 @@ export default function AdminUserStatsPage() {
       {/* Identity */}
       <Section title={t('statsTitle')}>
         <StatRow label="ID" value={`#${user.id}`} />
-        <StatRow label={t('fieldUsername')} value={user.username} />
+        <StatRow
+          label={t('fieldUsername')}
+          value={user.username.toLowerCase()}
+        />
         {user.email && <StatRow label={t('fieldEmail')} value={user.email} />}
         {user.email && (
           <div className="border-fl-border flex items-center justify-between border-b py-3">
