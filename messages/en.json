@@ -111,6 +111,8 @@
       "error": "Registration failed",
       "passwordMismatch": "Passwords do not match",
       "confirmPassword": "Confirm Password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
       "displayNamePlaceholder": "Same as username if empty",
       "inviteActive": "Invite active",
       "creatingAccount": "Creating...",
@@ -123,7 +125,8 @@
       "andWord": "and the",
       "privacyLink": "Privacy Policy",
       "termsRequired": "You must accept the terms to continue",
-      "invalidPassword": "Password must be 10-25 characters and include at least one uppercase letter, one number, and one symbol"
+      "invalidPassword": "Password must be 10-25 characters and include at least one uppercase letter, one number, and one symbol",
+      "invalidUsernameChars": "Username can only contain letters, numbers, hyphens, underscores and dots"
     },
     "verifyEmail": {
       "title": "Email verification",
@@ -669,6 +672,7 @@
     "roleUser": "User",
     "roleAdmin": "Admin",
     "fieldUsername": "Username",
+    "invalidUsernameChars": "Username can only contain letters, numbers, hyphens, underscores and dots",
     "fieldEmail": "Email (optional)",
     "fieldPassword": "Password",
     "fieldDisplayName": "Display Name",
@@ -976,7 +980,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Got it",
     "entry1": {
       "label": "Study plan improvements",

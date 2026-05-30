@@ -32,6 +32,8 @@ function RegisterForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [displayName, setDisplayName] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
   const [termsAccepted, setTermsAccepted] = useState(false)
@@ -54,10 +56,15 @@ function RegisterForm() {
         setError(t('termsRequired'))
         return
       }
+      if (!/^[a-zA-Z0-9._\s-]+$/.test(username)) {
+        setError(t('invalidUsernameChars'))
+        return
+      }
       setLoading(true)
       try {
+        const sanitizedUsername = username.replace(/\s+/g, '_').toLowerCase()
         const body: Record<string, string | null> = {
-          username,
+          username: sanitizedUsername,
           email,
           password,
           display_name: displayName || username,
@@ -191,20 +198,6 @@ function RegisterForm() {
                 type: 'email',
                 required: true,
               },
-              {
-                label: t('password'),
-                value: password,
-                onChange: setPassword,
-                type: 'password',
-                required: true,
-              },
-              {
-                label: t('confirmPassword'),
-                value: confirmPassword,
-                onChange: setConfirmPassword,
-                type: 'password',
-                required: true,
-              },
             ].map((field) => (
               <div key={field.label}>
                 <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
@@ -218,25 +211,131 @@ function RegisterForm() {
                   placeholder={
                     'placeholder' in field ? field.placeholder : undefined
                   }
-                  autoCorrect={
-                    field.type === 'email' || field.type === 'password'
-                      ? 'off'
-                      : undefined
-                  }
-                  autoCapitalize={
-                    field.type === 'email' || field.type === 'password'
-                      ? 'none'
-                      : undefined
-                  }
-                  spellCheck={
-                    field.type === 'email' || field.type === 'password'
-                      ? false
-                      : undefined
-                  }
+                  autoCorrect={field.type === 'email' ? 'off' : undefined}
+                  autoCapitalize={field.type === 'email' ? 'none' : undefined}
+                  spellCheck={field.type === 'email' ? false : undefined}
                   className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
                 />
               </div>
             ))}
+
+            <div>
+              <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+                {t('password')}
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoCorrect="off"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full border px-4 py-3 pr-11 font-mono text-sm transition-colors focus:outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="text-fl-muted-4 hover:text-fl-muted-0 absolute inset-y-0 right-0 flex items-center px-3 transition-colors"
+                  aria-label={
+                    showPassword ? t('hidePassword') : t('showPassword')
+                  }
+                >
+                  {showPassword ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+                {t('confirmPassword')}
+              </label>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  autoCorrect="off"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full border px-4 py-3 pr-11 font-mono text-sm transition-colors focus:outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword((v) => !v)}
+                  className="text-fl-muted-4 hover:text-fl-muted-0 absolute inset-y-0 right-0 flex items-center px-3 transition-colors"
+                  aria-label={
+                    showConfirmPassword ? t('hidePassword') : t('showPassword')
+                  }
+                >
+                  {showConfirmPassword ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
 
             {/* Legal acceptance */}
             <div className="flex items-start gap-3 py-1">

@@ -111,6 +111,8 @@
       "error": "Error al registrarse",
       "passwordMismatch": "Las contraseñas no coinciden",
       "confirmPassword": "Confirmar contraseña",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña",
       "displayNamePlaceholder": "Igual que el nombre de usuario si está vacío",
       "inviteActive": "Invitación activa",
       "creatingAccount": "Creando...",
@@ -123,7 +125,8 @@
       "andWord": "y la",
       "privacyLink": "Política de Privacidad",
       "termsRequired": "Debes aceptar los términos para continuar",
-      "invalidPassword": "La contraseña debe tener entre 10 y 25 caracteres e incluir al menos una mayúscula, un número y un símbolo"
+      "invalidPassword": "La contraseña debe tener entre 10 y 25 caracteres e incluir al menos una mayúscula, un número y un símbolo",
+      "invalidUsernameChars": "El nombre de usuario solo puede contener letras, números, guiones, guiones bajos y puntos"
     },
     "verifyEmail": {
       "title": "Verificación de correo",
@@ -669,6 +672,7 @@
     "roleUser": "Usuario",
     "roleAdmin": "Admin",
     "fieldUsername": "Nombre de usuario",
+    "invalidUsernameChars": "El nombre de usuario solo puede contener letras, números, guiones, guiones bajos y puntos",
     "fieldEmail": "Email (opcional)",
     "fieldPassword": "Contraseña",
     "fieldDisplayName": "Nombre visible",
@@ -976,7 +980,7 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Entendido",
     "entry1": {
       "label": "Mejoras en el plan de estudio",

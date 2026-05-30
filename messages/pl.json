@@ -111,6 +111,8 @@
       "error": "Rejestracja nie powiodła się",
       "passwordMismatch": "Hasła nie są zgodne",
       "confirmPassword": "Potwierdź hasło",
+      "showPassword": "Pokaż hasło",
+      "hidePassword": "Ukryj hasło",
       "displayNamePlaceholder": "Taka sama jak nazwa użytkownika, jeśli puste",
       "inviteActive": "Zaproszenie aktywne",
       "creatingAccount": "Tworzenie...",
@@ -123,7 +125,8 @@
       "andWord": "oraz",
       "privacyLink": "Politykę prywatności",
       "termsRequired": "Musisz zaakceptować regulamin, aby kontynuować",
-      "invalidPassword": "Hasło musi mieć od 10 do 25 znaków i zawierać co najmniej jedną wielką literę, cyfrę i symbol"
+      "invalidPassword": "Hasło musi mieć od 10 do 25 znaków i zawierać co najmniej jedną wielką literę, cyfrę i symbol",
+      "invalidUsernameChars": "Nazwa użytkownika może zawierać tylko litery, cyfry, myślniki, podkreślenia i kropki"
     },
     "verifyEmail": {
       "title": "Weryfikacja e-mail",
@@ -669,6 +672,7 @@
     "roleUser": "Użytkownik",
     "roleAdmin": "Admin",
     "fieldUsername": "Nazwa użytkownika",
+    "invalidUsernameChars": "Nazwa użytkownika może zawierać tylko litery, cyfry, myślniki, podkreślenia i kropki",
     "fieldEmail": "E-mail (opcjonalny)",
     "fieldPassword": "Hasło",
     "fieldDisplayName": "Wyświetlana nazwa",
@@ -976,7 +980,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.6.5",
+    "version": "v1.6.6",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Ulepszenia planu nauki",
