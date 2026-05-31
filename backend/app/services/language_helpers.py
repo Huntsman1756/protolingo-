@@ -6,7 +6,7 @@ the format expected by LLM prompts (english_variant) and STT APIs (ISO 639-1).
 
 from __future__ import annotations
 
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 
 _ENGLISH_VARIANTS: dict[str, str] = {
     "en-US": "american",

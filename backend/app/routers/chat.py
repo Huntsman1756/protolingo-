@@ -1,5 +1,5 @@
 import json
-from datetime import date, datetime, UTC
+from datetime import UTC, date, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import StreamingResponse

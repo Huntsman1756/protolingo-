@@ -4,7 +4,7 @@ import asyncio
 import json
 import re
 import time
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
 from app.core.app_logger import get_logger

@@ -34,7 +34,7 @@ interface LessonData {
 export default function LessonPage() {
   const t = useTranslations('lesson')
   const tCommon = useTranslations('common')
-  const tPlan = useTranslations('dashboard')
+  const tPlan = useTranslations('plan')
   const tError = useTranslations('error')
   const params = useParams()
   const router = useRouter()
