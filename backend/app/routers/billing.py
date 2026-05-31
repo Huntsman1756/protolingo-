@@ -97,6 +97,7 @@ async def create_checkout_session(
         mode="subscription",
         locale="auto",
         allow_promotion_codes=True,
+        metadata={"user_id": str(current_user.id)},
         subscription_data=subscription_data,
         success_url=f"{settings.STRIPE_BASE_URL}/billing/success",
         cancel_url=f"{settings.STRIPE_BASE_URL}/billing/canceled",
@@ -186,7 +187,7 @@ def _subscription_period_end(sub: object) -> datetime | None:
             if data:
                 period_end = _sget(data[0], "current_period_end")
     if period_end is not None:
-        return datetime.fromtimestamp(int(period_end), UTC)
+        return datetime.fromtimestamp(int(period_end), UTC).replace(tzinfo=None)
     return None
 
 

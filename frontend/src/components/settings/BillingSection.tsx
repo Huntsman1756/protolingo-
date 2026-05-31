@@ -12,8 +12,27 @@ export function BillingSection() {
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
   const [portalLoading, setPortalLoading] = useState(false)
   const [portalError, setPortalError] = useState<string | null>(null)
+  const [checkoutLoading, setCheckoutLoading] = useState(false)
 
   if (!stripeEnabled) return null
+
+  async function handleCheckout() {
+    setCheckoutLoading(true)
+    setPortalError(null)
+    try {
+      const res = await apiFetch('/api/billing/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan: 'monthly' }),
+      })
+      if (!res.ok) throw new Error(tBilling('checkoutError'))
+      const { url } = await res.json()
+      window.location.href = url
+    } catch (err) {
+      setPortalError(err instanceof Error ? err.message : tBilling('checkoutError'))
+      setCheckoutLoading(false)
+    }
+  }
 
   async function handleManageSubscription() {
     setPortalLoading(true)
@@ -46,15 +65,14 @@ export function BillingSection() {
             {tBilling('status')}
           </span>
           <span
-            className={`border px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase ${
-              user?.subscription_status === 'active'
+            className={`border px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase ${user?.subscription_status === 'active'
                 ? 'border-green-600/40 text-green-500'
                 : user?.subscription_status === 'trialing'
                   ? 'border-fl-accent/40 text-fl-accent'
                   : user?.subscription_status === 'past_due'
                     ? 'border-yellow-500/40 text-yellow-500'
                     : 'border-fl-border text-fl-muted-3'
-            }`}
+              }`}
           >
             {user?.subscription_status === 'active' && tBilling('statusActive')}
             {user?.subscription_status === 'trialing' &&
@@ -92,12 +110,13 @@ export function BillingSection() {
             {portalLoading ? '...' : `— ${tBilling('manage')}`}
           </button>
         ) : (
-          <a
-            href="/dashboard"
-            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 block w-full py-2.5 text-center font-mono text-xs tracking-widest uppercase transition-colors"
+          <button
+            onClick={handleCheckout}
+            disabled={checkoutLoading}
+            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-2.5 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-50"
           >
-            — {tBilling('subscribe')}
-          </a>
+            {checkoutLoading ? '...' : `— ${tBilling('subscribe')}`}
+          </button>
         )}
 
         {portalError && (
