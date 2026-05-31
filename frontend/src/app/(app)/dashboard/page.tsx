@@ -24,6 +24,7 @@ export default function DashboardPage() {
   const t = useTranslations('dashboard')
   const tNav = useTranslations('nav')
   const tPlan = useTranslations('plan')
+  const tError = useTranslations('error')
   const user = useAuthStore((s) => s.user)
   const {
     streak,
@@ -35,12 +36,14 @@ export default function DashboardPage() {
     setTodayLessons,
   } = useProgressStore()
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(false)
   const [hasPlan, setHasPlan] = useState(false)
   const [cefrLevel, setCefrLevel] = useState<string | null>(null)
   const [progressDay, setProgressDay] = useState(0)
   const [totalDays, setTotalDays] = useState(0)
   const [pendingCount, setPendingCount] = useState(0)
   const [skipping, setSkipping] = useState(false)
+  const [skipError, setSkipError] = useState(false)
 
   const loadData = useCallback(async () => {
     try {
@@ -77,7 +80,7 @@ export default function DashboardPage() {
         setHasPlan(true)
       }
     } catch {
-      /* ignore */
+      setLoadError(true)
     } finally {
       setLoading(false)
     }
@@ -94,7 +97,7 @@ export default function DashboardPage() {
       await apiFetch('/api/study-plan/skip-day', { method: 'POST' })
       await loadData()
     } catch {
-      /* ignore */
+      setSkipError(true)
     } finally {
       setSkipping(false)
     }
@@ -106,6 +109,24 @@ export default function DashboardPage() {
         <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           {t('loadingProgress')}
         </span>
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4">
+        <p className="text-fl-muted-2 font-mono text-sm">{tError('body')}</p>
+        <button
+          onClick={() => {
+            setLoadError(false)
+            setLoading(true)
+            loadData()
+          }}
+          className="text-fl-accent font-mono text-xs tracking-widest uppercase underline"
+        >
+          {tError('retry')}
+        </button>
       </div>
     )
   }
@@ -255,6 +276,11 @@ export default function DashboardPage() {
                   >
                     {skipping ? '…' : t('skipDay')}
                   </button>
+                  {skipError && (
+                    <p className="text-fl-error mt-1 font-mono text-xs">
+                      {tError('title')}
+                    </p>
+                  )}
                 </div>
               </div>
             ) : (

@@ -69,14 +69,7 @@ function LoginForm() {
   )
 
   return (
-    <div
-      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
-      style={{
-        backgroundImage:
-          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
-        backgroundSize: '24px 24px',
-      }}
-    >
+    <div className="bg-fl-bg bg-dot-grid flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-sm">
         {/* Brand */}
         <div className="mb-10 flex flex-col items-center">

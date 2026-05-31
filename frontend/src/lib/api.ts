@@ -1,5 +1,3 @@
-'use client'
-
 import { useAuthStore } from '@/store/auth'
 import { useLoadingStore } from '@/store/loading'
 

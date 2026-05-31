@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { type QuotaStatus } from '@/types/api'
 
 interface UserStats {
   user_id: number
@@ -40,18 +41,6 @@ interface AdminUser {
   conversation_daily_minutes: number
   conversation_weekly_minutes: number
   monthly_tokens_limit: number
-}
-
-interface QuotaStatus {
-  sessions_this_week: number
-  sessions_limit: number
-  sessions_unlimited: boolean
-  minutes_today: number
-  minutes_limit: number
-  time_unlimited: boolean
-  minutes_this_week: number
-  weekly_minutes_limit: number
-  weekly_minutes_unlimited: boolean
 }
 
 function StatRow({ label, value }: { label: string; value: React.ReactNode }) {

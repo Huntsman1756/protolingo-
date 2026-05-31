@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
-import { useAuthStore } from '@/store/auth'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -75,7 +74,6 @@ export default function LevelTestPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const planId = searchParams.get('plan')
-  const user = useAuthStore((s) => s.user)
 
   // Bug #6 fix: gate loadQuestions until user confirms the start warning
   const [startConfirmed, setStartConfirmed] = useState(false)
@@ -138,7 +136,7 @@ export default function LevelTestPage() {
       )
       setStep('error')
     }
-  }, [planId, startConfirmed, user])
+  }, [planId, startConfirmed])
 
   useEffect(() => {
     void loadQuestions()

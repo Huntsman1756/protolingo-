@@ -7,6 +7,8 @@ import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { useConfigStore } from '@/store/config'
 import { apiFetch } from '@/lib/api'
+import { mapUser } from '@/lib/mappers'
+import { useLogout } from '@/hooks/useLogout'
 import Image from 'next/image'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { ContactFormModal } from '@/components/ui/contact-form-modal'
@@ -47,6 +49,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const setTokens = useAuthStore((s) => s.setTokens)
   const setUser = useAuthStore((s) => s.setUser)
   const logout = useAuthStore((s) => s.logout)
+  const handleLogout = useLogout()
   const [initializing, setInitializing] = useState(true)
   const loadConfig = useConfigStore((s) => s.load)
   const [logoutConfirm, setLogoutConfirm] = useState(false)
@@ -90,23 +93,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           return
         }
         const me = await meRes.json()
-        setUser({
-          id: me.id,
-          username: me.username,
-          displayName: me.display_name,
-          email: me.email,
-          native_language: me.native_language,
-          target_language: me.target_language,
-          role: me.role,
-          conversation_max_duration: me.conversation_max_duration,
-          conversation_inactivity_timeout: me.conversation_inactivity_timeout,
-          avatar: me.avatar ?? null,
-          is_verified: me.is_verified ?? true,
-          bio: me.bio ?? null,
-          learning_goals: me.learning_goals ?? [],
-          subscription_status: me.subscription_status ?? 'none',
-          subscription_ends_at: me.subscription_ends_at ?? null,
-        })
+        setUser(mapUser(me))
       } catch {
         logout()
         router.push('/login')
@@ -118,22 +105,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  async function handleLogout() {
-    await apiFetch('/api/auth/logout', { method: 'POST' })
-    logout()
-    router.push('/login')
-  }
-
   if (initializing) {
     return (
-      <div
-        className="bg-fl-bg flex min-h-screen items-center justify-center"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-        }}
-      >
+      <div className="bg-fl-bg bg-dot-grid flex min-h-screen items-center justify-center">
         <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           ● {tCommon('initializing')}
         </span>
@@ -287,7 +261,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-            v1.6.6
+            v1.6.7
           </p>
           <button
             onClick={() => setContactOpen(true)}
@@ -452,7 +426,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </p>
               </div>
               <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-                v1.6.6
+                v1.6.7
               </p>
               <button
                 onClick={() => {

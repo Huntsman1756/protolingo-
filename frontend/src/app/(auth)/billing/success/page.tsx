@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { mapUser } from '@/lib/mappers'
 import { useAuthStore } from '@/store/auth'
 
 export default function BillingSuccessPage() {
@@ -20,23 +21,7 @@ export default function BillingSuccessPage() {
         const res = await apiFetch('/api/auth/me')
         if (res.ok) {
           const me = await res.json()
-          setUser({
-            id: me.id,
-            username: me.username,
-            displayName: me.display_name,
-            email: me.email,
-            native_language: me.native_language,
-            target_language: me.target_language,
-            role: me.role,
-            conversation_max_duration: me.conversation_max_duration,
-            conversation_inactivity_timeout: me.conversation_inactivity_timeout,
-            avatar: me.avatar ?? null,
-            is_verified: me.is_verified ?? true,
-            bio: me.bio ?? null,
-            learning_goals: me.learning_goals ?? [],
-            subscription_status: me.subscription_status ?? 'none',
-            subscription_ends_at: me.subscription_ends_at ?? null,
-          })
+          setUser(mapUser(me))
         }
       } catch {
         /* non-fatal */
@@ -56,14 +41,7 @@ export default function BillingSuccessPage() {
   }, [countdown, router])
 
   return (
-    <div
-      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
-      style={{
-        backgroundImage:
-          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
-        backgroundSize: '24px 24px',
-      }}
-    >
+    <div className="bg-fl-bg bg-dot-grid flex min-h-screen items-center justify-center px-4">
       <div className="border-fl-border bg-fl-surface w-full max-w-sm space-y-5 border p-8 text-center">
         <div className="text-fl-accent text-2xl">◎</div>
         <p className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
