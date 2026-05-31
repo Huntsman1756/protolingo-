@@ -1,6 +1,6 @@
 ---
 name: run-tests
-description: Use when the user asks to run tests, ejecutar tests, lanzar tests, pytest, check types, typecheck, lint, or verify the codebase. Covers backend pytest (with venv), frontend tsc --noEmit, and ruff/black/eslint/prettier checks.
+description: Use when the user asks to run tests, ejecutar tests, lanzar tests, pytest, vitest, check types, typecheck, lint, or verify the codebase. Runs backend pytest, frontend vitest, frontend tsc/eslint/prettier, and backend ruff/black.
 ---
 
 # Run Tests — FreeLingo
@@ -31,6 +31,24 @@ Options:
 - Single file: `pytest tests/test_auth.py -v`
 - Single test: `pytest tests/test_flashcards.py::test_quality_3_basic_progression -v`
 - Coverage HTML: `pytest --cov-report=html`
+
+## Frontend tests (vitest)
+
+```bash
+cd frontend && npm run test:run
+```
+
+54 tests covering critical logic:
+- `lib/api.ts` — auth interceptor, 401 refresh, retry
+- `store/auth.ts` — isSubscribed(), logout
+- `lib/audio.ts` — float32ToWav WAV encoding
+- `lib/conversation-ws.ts` — WebSocket URL builder
+- `middleware.ts` — route protection, locale detection
+- `store/config.ts` — config loading, idempotency
+
+Options:
+- Watch mode: `npm run test`
+- Single file: `npx vitest run tests/lib/api.test.ts`
 
 ## Frontend checks
 
