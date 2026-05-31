@@ -73,3 +73,6 @@ jobs:
 
       - name: Run frontend type check
         run: npx tsc --noEmit
+
+      - name: Run frontend tests
+        run: npm run test:run

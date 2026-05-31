@@ -69,18 +69,25 @@ the frontend never calls them directly.
 
 ```
 freelingo/
-├── assets/             # Logos and static assets
-├── backend/            # FastAPI (Python)
-├── docs/               # GitHub Pages landing site
-├── frontend/           # Next.js (React)
-├── messages/           # i18n translation files (de, en, es, fr, it, nl, pl, pt, ro, ru)
-├── specs/              # Specification files
-├── AGENTS.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-└── docker-compose.yml
+├── assets/                          # Logos and static assets
+├── backend/                         # FastAPI (Python)
+├── data/                            # Shared data files
+├── docs/                            # GitHub Pages landing site
+├── frontend/                        # Next.js (React)
+├── messages/                        # i18n translation files (de, en, es, fr, it, nl, pl, pt, ro, ru)
+├── specs/                           # Specification files
+├── AGENTS.md                        # AI assistant instructions
+├── CHANGELOG.md                     # Version history
+├── CODE_OF_CONDUCT.md               # Community guidelines
+├── COMMERCIAL_LICENSE.md            # Commercial licence terms
+├── CONTRIBUTING.md                  # Contribution guidelines
+├── CONTRIBUTOR_LICENSE_AGREEMENT.md # CLA for contributors
+├── DEVELOPMENT.md                   # Local development setup
+├── docker-compose.yml               # Production deployment
+├── docker-compose.dev.yml           # Development deployment
+├── LICENSE                          # AGPL-3.0 licence
+├── README.md                        # This file
+└── run-dev.sh                       # Development helper script
 ```
 
 ## Stack
