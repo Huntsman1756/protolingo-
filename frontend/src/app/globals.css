@@ -129,13 +129,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono;
-    background-image: radial-gradient(
-      circle,
-      var(--fl-dot) 1px,
-      transparent 1px
-    );
-    background-size: 24px 24px;
+    @apply bg-background text-foreground bg-dot-grid font-mono;
   }
 
   html {
@@ -150,6 +144,12 @@
   h6 {
     letter-spacing: -0.02em;
   }
+}
+
+/* Reusable dot-grid background pattern — applies the same dots used on body */
+@utility bg-dot-grid {
+  background-image: radial-gradient(circle, var(--fl-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 ::-webkit-scrollbar {

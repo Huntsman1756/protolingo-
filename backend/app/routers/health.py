@@ -1,0 +1,55 @@
+from __future__ import annotations
+
+from fastapi import APIRouter, Request
+from fastapi.responses import JSONResponse
+from sqlalchemy import text
+
+from app.core.database import engine
+from app.utils.redis import redis_client as _redis_client
+
+router = APIRouter(tags=["health"])
+
+
+@router.get("/health")
+async def health(request: Request) -> JSONResponse:
+    checks: dict[str, str] = {}
+    ok = True
+
+    try:
+        async with engine.connect() as conn:
+            await conn.execute(text("SELECT 1"))
+        checks["db"] = "ok"
+    except Exception as exc:
+        checks["db"] = f"error: {exc}"
+        ok = False
+
+    try:
+        async with _redis_client() as redis:
+            await redis.ping()
+        checks["redis"] = "ok"
+    except Exception as exc:
+        checks["redis"] = f"error: {exc}"
+        ok = False
+
+    try:
+        tts = getattr(request.app.state, "tts_service", None)
+        if tts is not None:
+            await tts.health()
+        checks["tts"] = "ok"
+    except Exception as exc:
+        checks["tts"] = f"error: {exc}"
+        ok = False
+
+    try:
+        stt = getattr(request.app.state, "stt_service", None)
+        if stt is not None:
+            await stt.health()
+        checks["stt"] = "ok"
+    except Exception as exc:
+        checks["stt"] = f"error: {exc}"
+        ok = False
+
+    status_code = 200 if ok else 503
+    return JSONResponse(
+        {"status": "ok" if ok else "degraded", "checks": checks}, status_code=status_code
+    )

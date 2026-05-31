@@ -3,15 +3,14 @@ from __future__ import annotations
 import json
 from uuid import uuid4
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 from redis.asyncio import Redis
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.config import settings
 from app.core.database import get_db
-from app.core.deps import get_current_user
+from app.core.deps import get_current_user, get_redis
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.assessment import (
@@ -54,14 +53,6 @@ def _strip_answers(quiz: dict) -> dict:
         {k: v for k, v in q.items() if k not in _ANSWER_FIELDS} for q in quiz.get("questions", [])
     ]
     return {**quiz, "questions": questions}
-
-
-async def get_redis():
-    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-    try:
-        yield redis
-    finally:
-        await redis.aclose()
 
 
 class LegacyAnswerItem(BaseModel):
@@ -115,11 +106,18 @@ async def start_assessment(
             LegacyQuizResponse,
         )
     except LLMTimeoutError:
-        raise HTTPException(status_code=504, detail="LLM timed out generating assessment quiz.")
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+            detail="LLM timed out generating assessment quiz.",
+        )
     except LLMUnavailableError as e:
-        raise HTTPException(status_code=503, detail=f"AI service unavailable: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+        )
     except LLMError as e:
-        raise HTTPException(status_code=502, detail=f"Assessment generation failed: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Assessment generation failed: {e}"
+        )
 
     quiz = quiz_payload.model_dump() if isinstance(quiz_payload, BaseModel) else quiz_payload
     session_id = str(uuid4())
@@ -139,7 +137,9 @@ async def submit_assessment(
 ):
     session_raw = await redis.get(f"assessment:{current_user.id}")
     if not session_raw:
-        raise HTTPException(status_code=404, detail="No active assessment session.")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="No active assessment session."
+        )
     session = json.loads(session_raw)
 
     try:
@@ -161,11 +161,18 @@ async def submit_assessment(
             LegacyEvalResponse,
         )
     except LLMTimeoutError:
-        raise HTTPException(status_code=504, detail="LLM timed out evaluating assessment.")
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+            detail="LLM timed out evaluating assessment.",
+        )
     except LLMUnavailableError as e:
-        raise HTTPException(status_code=503, detail=f"AI service unavailable: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+        )
     except LLMError as e:
-        raise HTTPException(status_code=502, detail=f"Assessment evaluation failed: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Assessment evaluation failed: {e}"
+        )
     finally:
         await redis.delete(f"assessment:{current_user.id}")
 
@@ -201,11 +208,18 @@ async def evaluate_free_write_endpoint(
     try:
         return await evaluate_free_write(data)
     except LLMTimeoutError:
-        raise HTTPException(status_code=504, detail="LLM timed out evaluating free-write.")
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+            detail="LLM timed out evaluating free-write.",
+        )
     except LLMUnavailableError as e:
-        raise HTTPException(status_code=503, detail=f"AI service unavailable: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+        )
     except LLMError as e:
-        raise HTTPException(status_code=502, detail=f"Free-write evaluation failed: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Free-write evaluation failed: {e}"
+        )
 
 
 @router.post("/complete", response_model=dict)
@@ -277,7 +291,7 @@ async def get_level_test_questions(
     )
     plan = result.scalar_one_or_none()
     if not plan:
-        raise HTTPException(status_code=404, detail="Study plan not found.")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Study plan not found.")
 
     # Collect all grammar points and vocabulary sets from the curriculum
     from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
@@ -296,11 +310,18 @@ async def get_level_test_questions(
             vocabulary_sets_studied=list(dict.fromkeys(vocab_sets)),
         )
     except LLMTimeoutError:
-        raise HTTPException(status_code=504, detail="LLM timed out generating level test.")
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+            detail="LLM timed out generating level test.",
+        )
     except LLMUnavailableError as e:
-        raise HTTPException(status_code=503, detail=f"AI service unavailable: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+        )
     except LLMError as e:
-        raise HTTPException(status_code=502, detail=f"Level test generation failed: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Level test generation failed: {e}"
+        )
 
     return {"plan_id": plan_id, "cefr_level": plan.cefr_level, "questions": questions}
 
@@ -320,7 +341,7 @@ async def submit_level_test(
     )
     plan = result.scalar_one_or_none()
     if not plan:
-        raise HTTPException(status_code=404, detail="Study plan not found.")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Study plan not found.")
 
     # Use the same deterministic evaluator — treat all answers as one skill bucket
     assessment = evaluate_adaptive_quiz(data.answers)
@@ -365,7 +386,9 @@ async def get_level_test_result(
     )
     plan = result.scalar_one_or_none()
     if not plan or not plan.completion_test_taken:
-        raise HTTPException(status_code=404, detail="Level test result not found.")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Level test result not found."
+        )
 
     from app.data.curriculum import CEFR_LEVELS  # noqa: PLC0415
 

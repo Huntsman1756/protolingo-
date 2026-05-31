@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, UTC
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -98,7 +98,7 @@ async def upsert_unit_competency(
     if not unit_id or not competency_texts:
         return
 
-    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    now = datetime.now(UTC).replace(tzinfo=None)
 
     for text in competency_texts:
         result = await db.execute(

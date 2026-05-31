@@ -4,7 +4,7 @@ import asyncio
 import json
 import re
 import time
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 from typing import TYPE_CHECKING
 
 from app.core.app_logger import get_logger
@@ -18,6 +18,7 @@ from app.services.memory_service import (
     strip_memory_marker,
 )
 from app.services.quota_service import record_session_seconds
+from app.utils.db import db_session
 
 if TYPE_CHECKING:
     from fastapi import WebSocket
@@ -137,18 +138,28 @@ class ConversationPipeline:
         self._timer_tasks: list[asyncio.Task] = []
         self._inactivity_warning_sent = False
 
-    async def _greet(self, ws: WebSocket) -> None:
-        """Generate and stream an opening greeting from the assistant."""
-        # Inject a hidden trigger so the LLM produces a natural opening line.
-        # This message is NOT added to self.history so it doesn't pollute context.
-        trigger = {
-            "role": "user",
-            "content": "[Session started. Greet the student warmly and naturally — one or two sentences max — and invite them to speak.]",
-        }
-        messages = (
-            [{"role": "system", "content": self.system_prompt}] + self.history[-20:] + [trigger]
-        )
+    @staticmethod
+    def _clean_sentence(raw_sentence: str) -> str:
+        marker = "<<MEMORY>>"
+        if marker in raw_sentence:
+            return raw_sentence[: raw_sentence.find(marker)].strip()
+        clean = raw_sentence
+        for pi in range(len(marker), 0, -1):
+            if clean.endswith(marker[:pi]):
+                clean = clean[:-pi].strip()
+                break
+        return clean
 
+    def _create_tts_queue(
+        self,
+        ws: WebSocket,
+        stats: dict | None = None,
+    ) -> tuple[
+        asyncio.Queue[asyncio.Future[bytes] | None],
+        list[asyncio.Future[bytes]],
+        asyncio.Task,
+        object,
+    ]:
         tts_queue: asyncio.Queue[asyncio.Future[bytes] | None] = asyncio.Queue()
         tts_futures: list[asyncio.Future[bytes]] = []
 
@@ -159,11 +170,16 @@ class ConversationPipeline:
                     break
                 try:
                     audio = await item
+                    if stats is not None:
+                        stats["chunks"] += 1
+                        stats["bytes"] += len(audio)
+                    logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
                     await ws.send_bytes(audio)
                 except asyncio.CancelledError:
                     raise
                 except Exception as exc:
-                    logger.error("[pipeline] TTS greeting failed: %s", exc)
+                    logger.error("[pipeline] TTS failed: %s", exc)
+                    await ws.send_json({"type": "error", "code": "tts_failed", "message": str(exc)})
 
         sender_task = asyncio.create_task(_tts_sender())
 
@@ -173,6 +189,20 @@ class ConversationPipeline:
             )
             tts_futures.append(future)
             tts_queue.put_nowait(future)
+
+        return tts_queue, tts_futures, sender_task, _enqueue_tts
+
+    async def _greet(self, ws: WebSocket) -> None:
+        """Generate and stream an opening greeting from the assistant."""
+        trigger = {
+            "role": "user",
+            "content": "[Session started. Greet the student warmly and naturally — one or two sentences max — and invite them to speak.]",
+        }
+        messages = (
+            [{"role": "system", "content": self.system_prompt}] + self.history[-20:] + [trigger]
+        )
+
+        tts_queue, tts_futures, sender_task, _enqueue_tts = self._create_tts_queue(ws)
 
         try:
             full_response = ""
@@ -186,17 +216,8 @@ class ConversationPipeline:
                     SENTENCE_END.search(sentence_buffer.strip())
                     or len(sentence_buffer) > MAX_BUFFER_CHARS
                 ):
-                    raw_sentence = sentence_buffer.strip()
+                    clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
-                    _marker = "<<MEMORY>>"
-                    if _marker in raw_sentence:
-                        clean_sentence = raw_sentence[: raw_sentence.find(_marker)].strip()
-                    else:
-                        clean_sentence = raw_sentence
-                        for _pi in range(len(_marker), 0, -1):
-                            if clean_sentence.endswith(_marker[:_pi]):
-                                clean_sentence = clean_sentence[:-_pi].strip()
-                                break
                     clean_display = strip_memory_marker(full_response).strip()
                     await ws.send_json(
                         {
@@ -208,16 +229,8 @@ class ConversationPipeline:
                     )
                     if clean_sentence:
                         _enqueue_tts(clean_sentence)
-            # Flush remaining buffer — strip any memory marker prefix first
-            _marker = "<<MEMORY>>"
-            clean_buffer = sentence_buffer.strip()
-            if _marker in clean_buffer:
-                clean_buffer = clean_buffer[: clean_buffer.find(_marker)].strip()
-            else:
-                for _pi in range(len(_marker), 0, -1):
-                    if clean_buffer.endswith(_marker[:_pi]):
-                        clean_buffer = clean_buffer[:-_pi].strip()
-                        break
+
+            clean_buffer = self._clean_sentence(sentence_buffer.strip())
             clean_full_response = strip_memory_marker(full_response).strip()
             if clean_buffer:
                 await ws.send_json(
@@ -299,8 +312,7 @@ class ConversationPipeline:
         stt_ms: float | None = None
         llm_ms: float | None = None
         tts_send_ms: float | None = None
-        tts_chunks_sent = 0
-        tts_audio_bytes = 0
+        tts_stats: dict = {"chunks": 0, "bytes": 0}
 
         # 1. STT
         try:
@@ -338,36 +350,9 @@ class ConversationPipeline:
 
         # Pipeline: TTS futures fire immediately as each sentence is ready;
         # a dedicated sender task awaits them in order so audio arrives gapless.
-        tts_queue: asyncio.Queue[asyncio.Future[bytes] | None] = asyncio.Queue()
-        tts_futures: list[asyncio.Future[bytes]] = []
-
-        async def _tts_sender() -> None:
-            nonlocal tts_chunks_sent, tts_audio_bytes
-            while True:
-                item = await tts_queue.get()
-                if item is None:  # sentinel — all sentences dispatched
-                    break
-                try:
-                    audio = await item
-                    tts_chunks_sent += 1
-                    tts_audio_bytes += len(audio)
-                    logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
-                    await ws.send_bytes(audio)
-                except asyncio.CancelledError:
-                    raise
-                except Exception as exc:
-                    logger.error("[pipeline] TTS failed: %s", exc)
-                    await ws.send_json({"type": "error", "code": "tts_failed", "message": str(exc)})
-
-        sender_task = asyncio.create_task(_tts_sender())
-
-        def _enqueue_tts(text: str) -> None:
-            """Start TTS synthesis immediately and enqueue the future in order."""
-            future: asyncio.Future[bytes] = asyncio.ensure_future(
-                self.tts.synthesize(text, self._voice or None)
-            )
-            tts_futures.append(future)
-            tts_queue.put_nowait(future)
+        tts_queue, tts_futures, sender_task, _enqueue_tts = self._create_tts_queue(
+            ws, stats=tts_stats
+        )
 
         try:
             await ws.send_json({"type": "status", "value": "thinking"})
@@ -386,20 +371,8 @@ class ConversationPipeline:
                     SENTENCE_END.search(sentence_buffer.strip())
                     or len(sentence_buffer) > MAX_BUFFER_CHARS
                 ):
-                    raw_sentence = sentence_buffer.strip()
+                    clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
-                    # Strip any memory marker (complete or starting) before sending to TTS/transcript
-                    _marker = "<<MEMORY>>"
-                    if _marker in raw_sentence:
-                        # Memory block has started — cut everything from <<MEMORY>> onward
-                        clean_sentence = raw_sentence[: raw_sentence.find(_marker)].strip()
-                    else:
-                        # Check for a partial marker prefix at the end of the buffer
-                        clean_sentence = raw_sentence
-                        for _pi in range(len(_marker), 0, -1):
-                            if clean_sentence.endswith(_marker[:_pi]):
-                                clean_sentence = clean_sentence[:-_pi].strip()
-                                break
                     clean_display = strip_memory_marker(full_response).strip()
                     await ws.send_json(
                         {
@@ -412,23 +385,12 @@ class ConversationPipeline:
                     if clean_sentence:
                         _enqueue_tts(clean_sentence)
 
-            # Flush remaining buffer — strip any memory marker first
             clean_full_response = strip_memory_marker(full_response)
             if "<<MEMORY>>" in full_response:
-                # Only trim sentence_buffer when the marker genuinely appeared.
-                # Using the explicit string check avoids a false positive caused by
-                # strip_memory_marker's .rstrip(), which would otherwise trigger
-                # even on responses that simply end with trailing whitespace.
                 sentence_buffer = sentence_buffer[
                     : len(sentence_buffer) - (len(full_response) - len(clean_full_response))
-                ]
-                sentence_buffer = sentence_buffer.strip()
-                # Also remove any partial <<MEMORY>> prefix left at the end of the buffer
-                _marker = "<<MEMORY>>"
-                for _pi in range(len(_marker), 0, -1):
-                    if sentence_buffer.endswith(_marker[:_pi]):
-                        sentence_buffer = sentence_buffer[:-_pi].strip()
-                        break
+                ].strip()
+                sentence_buffer = self._clean_sentence(sentence_buffer)
             if sentence_buffer.strip():
                 await ws.send_json(
                     {
@@ -467,8 +429,8 @@ class ConversationPipeline:
                 stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
                 llm_ms=round(llm_ms, 1) if llm_ms is not None else None,
                 tts_send_ms=round(tts_send_ms, 1) if tts_send_ms is not None else None,
-                tts_chunks_sent=tts_chunks_sent,
-                tts_audio_bytes=tts_audio_bytes,
+                tts_chunks_sent=tts_stats["chunks"],
+                tts_audio_bytes=tts_stats["bytes"],
                 turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
             )
             await ws.send_json({"type": "error", "code": "llm_failed", "message": str(exc)})
@@ -486,9 +448,7 @@ class ConversationPipeline:
         memory_updated = False
         if memory_items and self._user_id:
             try:
-                from app.core.database import AsyncSessionLocal  # noqa: PLC0415
-
-                async with AsyncSessionLocal() as db_mem:
+                async with db_session() as db_mem:
                     saved = await save_memories(db_mem, self._user_id, memory_items, "voice")
                     if saved:
                         memory_updated = True
@@ -502,8 +462,8 @@ class ConversationPipeline:
             stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
             llm_ms=round(llm_ms, 1) if llm_ms is not None else None,
             tts_send_ms=round(tts_send_ms, 1) if tts_send_ms is not None else None,
-            tts_chunks_sent=tts_chunks_sent,
-            tts_audio_bytes=tts_audio_bytes,
+            tts_chunks_sent=tts_stats["chunks"],
+            tts_audio_bytes=tts_stats["bytes"],
             turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
         )
         await ws.send_json(
@@ -531,10 +491,9 @@ class ConversationPipeline:
             if stream.prompt_tokens is None and stream.completion_tokens is None:
                 return
             # Lazy import to avoid circular imports
-            from app.core.database import AsyncSessionLocal  # noqa: PLC0415
             from app.models.llm_usage import LLMUsage  # noqa: PLC0415
 
-            async with AsyncSessionLocal() as db:
+            async with db_session() as db:
                 db.add(
                     LLMUsage(
                         user_id=self._user_id,
@@ -560,11 +519,10 @@ class ConversationPipeline:
         try:
             from sqlalchemy import update  # noqa: PLC0415
 
-            from app.core.database import AsyncSessionLocal  # noqa: PLC0415
             from app.models.chat_history import ChatHistory  # noqa: PLC0415
             from app.models.conversation import Conversation  # noqa: PLC0415
 
-            async with AsyncSessionLocal() as db:
+            async with db_session() as db:
                 db.add(
                     ChatHistory(
                         user_id=self._user_id,
@@ -576,7 +534,7 @@ class ConversationPipeline:
                 await db.execute(
                     update(Conversation)
                     .where(Conversation.id == self._conversation_id)
-                    .values(updated_at=datetime.now(timezone.utc).replace(tzinfo=None))
+                    .values(updated_at=datetime.now(UTC).replace(tzinfo=None))
                 )
                 await db.commit()
         except Exception:

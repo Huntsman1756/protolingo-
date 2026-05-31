@@ -6,7 +6,7 @@ the format expected by LLM prompts (english_variant) and STT APIs (ISO 639-1).
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 
 _ENGLISH_VARIANTS: dict[str, str] = {
     "en-US": "american",
@@ -171,7 +171,7 @@ def voice_session_title(native_language: str) -> str:
     Falls back to English if the native language is not supported.
     """
     label = _VOICE_SESSION_TITLES.get(native_language, "Voice session")
-    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    now = datetime.now(UTC).replace(tzinfo=None)
     months = _MONTH_NAMES.get(native_language)
     if months:
         month_name = months[now.month - 1]

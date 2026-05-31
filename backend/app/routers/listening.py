@@ -4,15 +4,15 @@ import asyncio
 import logging
 import os
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Request
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Request, status
 from fastapi.responses import FileResponse
 from redis.asyncio import Redis
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
-from app.core.database import AsyncSessionLocal, get_db
-from app.core.deps import get_current_user, require_subscription
+from app.core.database import get_db
+from app.core.deps import get_current_user, get_redis, require_subscription
 from app.core.limiter import limiter
 from app.models.listening import ListeningExercise
 from app.models.study_plan import StudyPlan
@@ -34,22 +34,11 @@ from app.services.listening_service import (
     get_user_history,
     submit_attempt,
 )
+from app.utils.db import db_session
+from app.utils.redis import redis_client as _redis_client
 
 router = APIRouter(prefix="/api/listening", tags=["listening"])
 logger = logging.getLogger(__name__)
-
-
-# ---------------------------------------------------------------------------
-# Local Redis dependency (same pattern as other routers)
-# ---------------------------------------------------------------------------
-
-
-async def get_redis():  # noqa: ANN201
-    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-    try:
-        yield redis
-    finally:
-        await redis.aclose()
 
 
 # ---------------------------------------------------------------------------
@@ -87,7 +76,7 @@ async def _get_user_level(user_id: int, db: AsyncSession) -> tuple[str, str]:
     )
     plan = result.scalar_one_or_none()
     if plan is None:
-        raise HTTPException(status_code=404, detail="no_study_plan")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="no_study_plan")
     return plan.cefr_level, plan.target_language
 
 
@@ -109,17 +98,18 @@ async def _background_generate(
     Creates its own DB session and Redis client (request resources are already closed).
     Releases the Redis lock in all cases (success or failure).
     """
-    redis_client = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-    try:
-        async with AsyncSessionLocal() as db:
-            await generate_and_save_exercise(
-                level, target_language, db, tts_service, storage_path, voice
+    async with _redis_client() as redis_conn:
+        try:
+            async with db_session() as db:
+                await generate_and_save_exercise(
+                    level, target_language, db, tts_service, storage_path, voice
+                )
+        except Exception:
+            logger.exception(
+                "listening: generation failed level=%s lang=%s", level, target_language
             )
-    except Exception:
-        logger.exception("listening: generation failed level=%s lang=%s", level, target_language)
-    finally:
-        await redis_client.delete(lock_key)
-        await redis_client.aclose()
+        finally:
+            await redis_conn.delete(lock_key)
 
 
 # ---------------------------------------------------------------------------
@@ -171,7 +161,9 @@ async def get_next_exercise(
     return ListeningNextResponse(available=False)
 
 
-@router.post("/generate", response_model=ListeningGeneratingResponse, status_code=202)
+@router.post(
+    "/generate", response_model=ListeningGeneratingResponse, status_code=status.HTTP_202_ACCEPTED
+)
 @limiter.limit("5/minute")
 async def generate_exercise(
     request: Request,
@@ -226,11 +218,11 @@ async def get_audio(
     """
     exercise = await db.get(ListeningExercise, exercise_id)
     if exercise is None:
-        raise HTTPException(status_code=404, detail="exercise_not_found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="exercise_not_found")
 
     audio_path = os.path.join(settings.AUDIO_STORAGE_PATH, "listening", f"{exercise_id}.mp3")
     if not os.path.isfile(audio_path):
-        raise HTTPException(status_code=404, detail="audio_not_found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="audio_not_found")
 
     return FileResponse(
         path=audio_path,
@@ -255,10 +247,14 @@ async def submit_listening_attempt(
     except ValueError as exc:
         detail = str(exc)
         if detail == "exercise_not_found":
-            raise HTTPException(status_code=404, detail="exercise_not_found") from exc
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="exercise_not_found"
+            ) from exc
         if detail == "already_attempted":
-            raise HTTPException(status_code=409, detail="already_attempted") from exc
-        raise HTTPException(status_code=400, detail=detail) from exc
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT, detail="already_attempted"
+            ) from exc
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=detail) from exc
 
     correct_answers = [
         CorrectAnswerOut(index=q["index"], correct=q["correct"]) for q in exercise.questions

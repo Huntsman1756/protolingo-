@@ -5,26 +5,11 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
+import { type ListeningExercise } from '@/types/api'
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-
-interface Question {
-  index: number
-  question: string
-  options: Record<string, string>
-}
-
-interface Exercise {
-  id: number
-  level: string
-  target_language: string
-  exercise_type: string
-  topic: string
-  duration_seconds: number
-  questions: Question[]
-}
 
 interface CorrectAnswer {
   index: number
@@ -43,7 +28,7 @@ interface AttemptItem {
   score: number
   xp_earned: number
   completed_at: string
-  exercise: Exercise
+  exercise: ListeningExercise
   text: string
   answers: Record<string, string>
 }
@@ -201,7 +186,7 @@ function ListeningPage() {
   const tCommon = useTranslations('common')
 
   const [pageState, setPageState] = useState<PageState>('loading')
-  const [exercise, setExercise] = useState<Exercise | null>(null)
+  const [exercise, setExercise] = useState<ListeningExercise | null>(null)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [history, setHistory] = useState<AttemptItem[]>([])
@@ -229,7 +214,7 @@ function ListeningPage() {
       }
       const data = (await res.json()) as {
         available: boolean
-        exercise?: Exercise
+        exercise?: ListeningExercise
       }
       if (data.available && data.exercise) {
         setExercise(data.exercise)
@@ -273,7 +258,7 @@ function ListeningPage() {
         if (nextRes.ok) {
           const data = (await nextRes.json()) as {
             available: boolean
-            exercise?: Exercise
+            exercise?: ListeningExercise
           }
           if (data.available && data.exercise) {
             setExercise(data.exercise)

@@ -375,6 +375,20 @@ def _render_template(name: str, context: dict) -> str:
     return html
 
 
+async def _dispatch(subject: str, recipients: list[str], html: str) -> None:
+    message = MessageSchema(
+        subject=subject,
+        recipients=recipients,
+        body=html,
+        subtype=MessageType.html,
+    )
+    try:
+        fm = FastMail(_get_mail_config())
+        await fm.send_message(message)
+    except Exception:
+        logger.exception("Failed to send email to %s", recipients)
+
+
 async def send_verification_email(
     to: str, display_name: str, token: str, locale: str = "en"
 ) -> None:
@@ -395,17 +409,7 @@ async def send_verification_email(
             "base_url": settings.APP_BASE_URL,
         },
     )
-    message = MessageSchema(
-        subject=strings["subject"],
-        recipients=[to],
-        body=html,
-        subtype=MessageType.html,
-    )
-    try:
-        fm = FastMail(_get_mail_config())
-        await fm.send_message(message)
-    except Exception:
-        logger.exception("Failed to send verification email to %s", to)
+    await _dispatch(strings["subject"], [to], html)
 
 
 async def send_reset_password_email(
@@ -428,17 +432,7 @@ async def send_reset_password_email(
             "base_url": settings.APP_BASE_URL,
         },
     )
-    message = MessageSchema(
-        subject=strings["subject"],
-        recipients=[to],
-        body=html,
-        subtype=MessageType.html,
-    )
-    try:
-        fm = FastMail(_get_mail_config())
-        await fm.send_message(message)
-    except Exception:
-        logger.exception("Failed to send reset password email to %s", to)
+    await _dispatch(strings["subject"], [to], html)
 
 
 async def send_welcome_email(to: str, display_name: str, locale: str = "en") -> None:
@@ -461,17 +455,7 @@ async def send_welcome_email(to: str, display_name: str, locale: str = "en") -> 
             "base_url": settings.APP_BASE_URL,
         },
     )
-    message = MessageSchema(
-        subject=strings["subject"],
-        recipients=[to],
-        body=html,
-        subtype=MessageType.html,
-    )
-    try:
-        fm = FastMail(_get_mail_config())
-        await fm.send_message(message)
-    except Exception:
-        logger.exception("Failed to send welcome email to %s", to)
+    await _dispatch(strings["subject"], [to], html)
 
 
 async def send_contact_email(sender_email: str, subject: str, description: str) -> None:
@@ -519,17 +503,7 @@ async def send_account_deleted_email(to: str, display_name: str, locale: str = "
             "base_url": settings.APP_BASE_URL,
         },
     )
-    message = MessageSchema(
-        subject=strings["subject"],
-        recipients=[to],
-        body=html,
-        subtype=MessageType.html,
-    )
-    try:
-        fm = FastMail(_get_mail_config())
-        await fm.send_message(message)
-    except Exception:
-        logger.exception("Failed to send account deleted email to %s", to)
+    await _dispatch(strings["subject"], [to], html)
 
 
 async def send_feedback_notification(
@@ -565,14 +539,4 @@ async def send_feedback_notification(
         },
     )
     subject_prefix = "[Feature Request]" if entry_type == "feature" else "[Bug Report]"
-    message = MessageSchema(
-        subject=f"{subject_prefix} {title}",
-        recipients=[settings.CONTACT_EMAIL],
-        body=html,
-        subtype=MessageType.html,
-    )
-    try:
-        fm = FastMail(_get_mail_config())
-        await fm.send_message(message)
-    except Exception:
-        logger.exception("Failed to send feedback notification for entry #%d", entry_id)
+    await _dispatch(f"{subject_prefix} {title}", [settings.CONTACT_EMAIL], html)

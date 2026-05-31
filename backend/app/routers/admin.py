@@ -2,14 +2,14 @@ import secrets
 import uuid
 from typing import Literal
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from redis.asyncio import Redis
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.core.deps import MAINTENANCE_KEY, require_admin
+from app.core.deps import MAINTENANCE_KEY, get_redis, require_admin
 from app.core.security import hash_password
 from app.models.chat_history import ChatHistory
 from app.models.lesson import Lesson
@@ -26,16 +26,9 @@ from app.schemas.admin import (
     PaginatedAdminUsersResponse,
 )
 from app.services import email_service
+from app.utils.pagination import paginate
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
-
-
-async def get_redis():
-    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-    try:
-        yield redis
-    finally:
-        await redis.aclose()
 
 
 @router.get("/users", response_model=PaginatedAdminUsersResponse)
@@ -55,14 +48,8 @@ async def list_users(
         base = base.where(User.username.ilike(pattern) | User.email.ilike(pattern))
     if subscription:
         base = base.where(User.subscription_status == subscription)
-    total = await db.scalar(select(func.count()).select_from(base.subquery()))
-    result = await db.execute(base.order_by(User.username.asc()).offset(skip).limit(limit))
-    return PaginatedAdminUsersResponse(
-        items=result.scalars().all(),
-        total=total or 0,
-        skip=skip,
-        limit=limit,
-    )
+    users, total = await paginate(db, base.order_by(User.username.asc()), skip, limit)
+    return PaginatedAdminUsersResponse(items=users, total=total, skip=skip, limit=limit)
 
 
 @router.post("/users", response_model=AdminUserResponse)
@@ -74,7 +61,12 @@ async def create_user(
 ):
     existing = await db.execute(select(User).where(User.username == data.username))
     if existing.scalar_one_or_none():
-        raise HTTPException(status_code=409, detail="Username already taken")
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Username already taken")
+
+    if data.email:
+        email_check = await db.execute(select(User).where(User.email == data.email))
+        if email_check.scalar_one_or_none():
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already taken")
 
     user = User(
         username=data.username,
@@ -107,7 +99,7 @@ async def get_user_stats(
 ):
     user = await db.get(User, user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 
     # Active study plan
     plan_result = await db.execute(
@@ -188,7 +180,7 @@ async def get_user(
 ):
     user = await db.get(User, user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return user
 
 
@@ -201,7 +193,7 @@ async def update_user(
 ):
     user = await db.get(User, user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 
     if data.display_name is not None:
         user.display_name = data.display_name
@@ -209,7 +201,9 @@ async def update_user(
         user.role = data.role
     if data.is_active is not None:
         if not data.is_active and user.id == admin.id:
-            raise HTTPException(status_code=400, detail="Cannot deactivate yourself")
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="Cannot deactivate yourself"
+            )
         user.is_active = data.is_active
     if data.is_verified is not None:
         user.is_verified = data.is_verified
@@ -241,7 +235,7 @@ async def get_user_quota(
     """Return live quota status (Redis) for a user."""
     user = await db.get(User, user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     from app.services.quota_service import get_quota_status  # noqa: PLC0415
 
     return await get_quota_status(
@@ -258,12 +252,27 @@ async def delete_user(
     user_id: int,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
 ):
     user = await db.get(User, user_id)
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     if user.id == admin.id:
-        raise HTTPException(status_code=400, detail="Cannot delete yourself")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Cannot delete yourself"
+        )
+
+    # Invalidate all active refresh tokens for this user in Redis
+    uid_str = str(user_id)
+    cursor: int = 0
+    while True:
+        cursor, keys = await redis.scan(cursor, match="refresh:*", count=100)
+        for key in keys:
+            val = await redis.get(key)
+            if val == uid_str:
+                await redis.delete(key)
+        if cursor == 0:
+            break
 
     await db.delete(user)
     await db.commit()

@@ -1,19 +1,6 @@
 import { getRequestConfig } from 'next-intl/server'
 import { cookies, headers } from 'next/headers'
-
-const SUPPORTED_LOCALES = [
-  'en',
-  'es',
-  'fr',
-  'pt',
-  'de',
-  'it',
-  'pl',
-  'nl',
-  'ro',
-  'ru',
-] as const
-type Locale = (typeof SUPPORTED_LOCALES)[number]
+import { SUPPORTED_LOCALES, type Locale } from '@/lib/locales'
 
 function resolveLocale(raw: string | undefined): Locale {
   if (raw && (SUPPORTED_LOCALES as readonly string[]).includes(raw)) {
