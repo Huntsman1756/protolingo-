@@ -7,6 +7,8 @@ from app.core.deps import get_current_user
 from app.models.flashcard import Flashcard
 from app.models.user import User
 from app.schemas.flashcards import (
+    FlashcardBulkCreate,
+    FlashcardBulkResponse,
     FlashcardCreate,
     FlashcardGenerateRequest,
     FlashcardGenerateResponse,
@@ -80,6 +82,35 @@ async def create_flashcard(
     await db.commit()
     await db.refresh(card)
     return card
+
+
+@router.post("/bulk", response_model=FlashcardBulkResponse)
+async def create_flashcards_bulk(
+    data: FlashcardBulkCreate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    existing = await db.execute(
+        select(Flashcard.word).where(Flashcard.user_id == current_user.id)
+    )
+    existing_words = set(existing.scalars().all())
+
+    created = 0
+    for item in data.flashcards:
+        if item.word not in existing_words:
+            card = Flashcard(
+                user_id=current_user.id,
+                word=item.word,
+                definition=item.definition,
+                example_sentence=item.example_sentence,
+                translation=item.translation,
+            )
+            db.add(card)
+            existing_words.add(item.word)
+            created += 1
+
+    await db.commit()
+    return FlashcardBulkResponse(created=created)
 
 
 @router.post("/{card_id}/review", response_model=FlashcardResponse)
