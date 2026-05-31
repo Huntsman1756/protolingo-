@@ -350,7 +350,10 @@ async def delete_me(
     user_locale = current_user.native_language
     await db.delete(current_user)
     await db.commit()
-    await email_service.send_account_deleted_email(user_email, user_display_name, user_locale)
+    try:
+        await email_service.send_account_deleted_email(user_email, user_display_name, user_locale)
+    except Exception:
+        logger.warning("Failed to send account-deleted email to %s", user_email)
 
 
 @router.get("/quota")

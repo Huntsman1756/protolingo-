@@ -71,6 +71,14 @@ def mock_redis():
         async def getex(self, key):
             return store.get(key)
 
+        async def scan(self, cursor, match=None, count=None):
+            import fnmatch  # noqa: PLC0415
+
+            keys = list(store.keys())
+            if match:
+                keys = [k for k in keys if fnmatch.fnmatch(k, match)]
+            return (0, keys)
+
     return MockRedis()
 
 

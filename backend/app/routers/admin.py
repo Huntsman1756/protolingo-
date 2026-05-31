@@ -63,6 +63,11 @@ async def create_user(
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Username already taken")
 
+    if data.email:
+        email_check = await db.execute(select(User).where(User.email == data.email))
+        if email_check.scalar_one_or_none():
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already taken")
+
     user = User(
         username=data.username,
         email=data.email,
@@ -247,6 +252,7 @@ async def delete_user(
     user_id: int,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
 ):
     user = await db.get(User, user_id)
     if not user:
@@ -255,6 +261,18 @@ async def delete_user(
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Cannot delete yourself"
         )
+
+    # Invalidate all active refresh tokens for this user in Redis
+    uid_str = str(user_id)
+    cursor: int = 0
+    while True:
+        cursor, keys = await redis.scan(cursor, match="refresh:*", count=100)
+        for key in keys:
+            val = await redis.get(key)
+            if val == uid_str:
+                await redis.delete(key)
+        if cursor == 0:
+            break
 
     await db.delete(user)
     await db.commit()

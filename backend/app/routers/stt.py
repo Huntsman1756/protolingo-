@@ -24,5 +24,9 @@ async def speech_to_text(
     audio_bytes = await audio.read()
     if len(audio_bytes) > 50 * 1024 * 1024:  # 50 MB
         raise HTTPException(status_code=413, detail="Audio file too large (max 50 MB)")
-    text = await stt_service.transcribe(audio_bytes, audio.filename or "audio.webm")
+    text = await stt_service.transcribe(
+        audio_bytes,
+        audio.filename or "audio.webm",
+        mime_type=audio.content_type or "audio/webm",
+    )
     return STTResponse(text=text)
