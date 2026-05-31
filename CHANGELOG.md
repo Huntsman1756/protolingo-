@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.9] - 2026-05-31
+
+### Added
+- **Flashcards bulk endpoint**: new `POST /api/flashcards/bulk` endpoint to create multiple flashcards in a single request; duplicates (by word) are silently skipped.
+
+### Fixed
+- Billing section no longer shows a stale next-billing date for subscriptions that have already expired after cancellation.
+- Flashcard bulk import correctly skips duplicate words within the same request payload.
+
 ## [1.6.8] - 2026-05-31
 
 ### Fixed

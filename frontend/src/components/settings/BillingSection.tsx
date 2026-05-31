@@ -87,18 +87,23 @@ export function BillingSection() {
         </div>
 
         {/* Next billing / end date */}
-        {user?.subscription_ends_at && (
-          <div className="flex items-center justify-between">
-            <span className="text-fl-muted-1 font-mono text-xs tracking-widest uppercase">
-              {user.subscription_status === 'canceled'
-                ? tBilling('accessUntil')
-                : tBilling('nextBilling')}
-            </span>
-            <span className="text-fl-muted-1 font-mono text-xs">
-              {new Date(user.subscription_ends_at).toLocaleDateString()}
-            </span>
-          </div>
-        )}
+        {user?.subscription_ends_at &&
+          (user.subscription_status === 'active' ||
+            user.subscription_status === 'trialing' ||
+            user.subscription_status === 'past_due' ||
+            (user.subscription_status === 'canceled' &&
+              new Date(user.subscription_ends_at) > new Date())) && (
+            <div className="flex items-center justify-between">
+              <span className="text-fl-muted-1 font-mono text-xs tracking-widest uppercase">
+                {user.subscription_status === 'canceled'
+                  ? tBilling('accessUntil')
+                  : tBilling('nextBilling')}
+              </span>
+              <span className="text-fl-muted-1 font-mono text-xs">
+                {new Date(user.subscription_ends_at).toLocaleDateString()}
+              </span>
+            </div>
+          )}
 
         {/* Manage or subscribe button */}
         {isSubscribed(user, stripeEnabled) ? (
