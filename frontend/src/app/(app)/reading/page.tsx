@@ -5,26 +5,11 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
+import { type ReadingExercise } from '@/types/api'
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-
-interface Question {
-  index: number
-  question: string
-  options: Record<string, string>
-}
-
-interface Exercise {
-  id: number
-  level: string
-  target_language: string
-  exercise_type: string
-  topic: string
-  text: string
-  questions: Question[]
-}
 
 interface CorrectAnswer {
   index: number
@@ -42,7 +27,7 @@ interface AttemptItem {
   score: number
   xp_earned: number
   completed_at: string
-  exercise: Exercise
+  exercise: ReadingExercise
   answers: Record<string, string>
   correct_answers: CorrectAnswer[]
 }
@@ -64,7 +49,7 @@ function ReadingPage() {
   const tCommon = useTranslations('common')
 
   const [pageState, setPageState] = useState<PageState>('loading')
-  const [exercise, setExercise] = useState<Exercise | null>(null)
+  const [exercise, setExercise] = useState<ReadingExercise | null>(null)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [result, setResult] = useState<SubmitResult | null>(null)
   const [history, setHistory] = useState<AttemptItem[]>([])
@@ -92,7 +77,7 @@ function ReadingPage() {
       }
       const data = (await res.json()) as {
         available: boolean
-        exercise?: Exercise
+        exercise?: ReadingExercise
       }
       if (data.available && data.exercise) {
         setExercise(data.exercise)
@@ -127,7 +112,7 @@ function ReadingPage() {
         if (nextRes.ok) {
           const data = (await nextRes.json()) as {
             available: boolean
-            exercise?: Exercise
+            exercise?: ReadingExercise
           }
           if (data.available && data.exercise) {
             setExercise(data.exercise)
@@ -192,7 +177,7 @@ function ReadingPage() {
         setHistoryTotal(data.total)
       }
     } catch {
-      /* ignore */
+      setError(t('errorLoading'))
     }
   }
 

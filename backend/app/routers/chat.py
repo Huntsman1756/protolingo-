@@ -1,7 +1,7 @@
 import json
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import StreamingResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -124,7 +124,7 @@ async def create_conversation(
     return conv
 
 
-@router.delete("/conversations/{conversation_id}", status_code=204)
+@router.delete("/conversations/{conversation_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_conversation(
     conversation_id: int,
     current_user: User = Depends(require_subscription),
@@ -132,7 +132,7 @@ async def delete_conversation(
 ):
     conv = await db.get(Conversation, conversation_id)
     if not conv or conv.user_id != current_user.id:
-        raise HTTPException(status_code=404, detail="Conversation not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
     await db.delete(conv)
     await db.commit()
 
@@ -145,7 +145,7 @@ async def get_conversation_messages(
 ):
     conv = await db.get(Conversation, conversation_id)
     if not conv or conv.user_id != current_user.id:
-        raise HTTPException(status_code=404, detail="Conversation not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
     result = await db.execute(
         select(ChatHistory)
         .where(
@@ -177,7 +177,7 @@ async def chat(
         )
         if not allowed:
             raise HTTPException(
-                status_code=429,
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
                 detail=f"Monthly token limit reached ({tokens_used}/{token_limit} tokens). Chat is unavailable until next month.",
             )
 
@@ -185,7 +185,9 @@ async def chat(
     if request.conversation_id:
         conv = await db.get(Conversation, request.conversation_id)
         if not conv or conv.user_id != current_user.id:
-            raise HTTPException(status_code=404, detail="Conversation not found")
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found"
+            )
     else:
         # Auto-create a conversation titled with the first 60 chars of the message
         title = request.message[:60].strip()
@@ -333,7 +335,7 @@ async def chat(
                     content=clean_response,
                 )
             )
-            conv.updated_at = datetime.now(timezone.utc).replace(tzinfo=None)
+            conv.updated_at = datetime.now(UTC).replace(tzinfo=None)
             await db.commit()
 
             # Extract and persist memories (best-effort, non-blocking)

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from sqlalchemy import func, select
@@ -27,6 +27,7 @@ from app.schemas.feedback import (
     PaginatedFeedbackResponse,
 )
 from app.services import email_service
+from app.utils.pagination import paginate
 
 router = APIRouter(prefix="/api/feedback", tags=["feedback"])
 
@@ -37,7 +38,7 @@ router = APIRouter(prefix="/api/feedback", tags=["feedback"])
 
 
 def _utcnow() -> datetime:
-    return datetime.now(timezone.utc).replace(tzinfo=None)
+    return datetime.now(UTC).replace(tzinfo=None)
 
 
 async def _get_entry_or_404(entry_id: int, db: AsyncSession) -> FeedbackEntry:
@@ -52,7 +53,11 @@ async def _build_entry_out(
     current_user: User,
     db: AsyncSession,
 ) -> FeedbackEntryOut:
-    """Enrich a FeedbackEntry ORM object with author info, vote status, and comment count."""
+    """Enrich a single FeedbackEntry with author info, vote status, and comment count.
+
+    Used for single-entry responses (create, vote, status update).
+    For lists use _build_entries_out which batches all DB round-trips.
+    """
     author = await db.get(User, entry.author_id)
     voted = await db.scalar(
         select(FeedbackVote).where(
@@ -81,6 +86,116 @@ async def _build_entry_out(
         comment_count=comment_count or 0,
         created_at=entry.created_at,
     )
+
+
+async def _build_entries_out(
+    entries: list[FeedbackEntry],
+    current_user: User,
+    db: AsyncSession,
+) -> list[FeedbackEntryOut]:
+    """Build FeedbackEntryOut objects for a list of entries using batch queries.
+
+    Replaces N×3 individual queries with 4 queries total regardless of list size:
+      1. (already done by caller) paginate()
+      2. SELECT users WHERE id IN (author_ids)
+      3. SELECT entry_id FROM feedback_votes WHERE entry_id IN (...) AND user_id = me
+      4. SELECT entry_id, count(*) FROM feedback_comments WHERE entry_id IN (...) GROUP BY entry_id
+    """
+    if not entries:
+        return []
+
+    entry_ids = [e.id for e in entries]
+    author_ids = list({e.author_id for e in entries})
+
+    # Batch fetch all unique authors
+    author_rows = (await db.execute(select(User).where(User.id.in_(author_ids)))).scalars().all()
+    authors: dict[int, User] = {u.id: u for u in author_rows}
+
+    # Batch fetch which entries the current user has voted for
+    voted_ids: set[int] = set(
+        (
+            await db.execute(
+                select(FeedbackVote.entry_id).where(
+                    FeedbackVote.entry_id.in_(entry_ids),
+                    FeedbackVote.user_id == current_user.id,
+                )
+            )
+        )
+        .scalars()
+        .all()
+    )
+
+    # Batch fetch comment counts grouped by entry
+    count_rows = (
+        await db.execute(
+            select(FeedbackComment.entry_id, func.count().label("cnt"))
+            .where(FeedbackComment.entry_id.in_(entry_ids))
+            .group_by(FeedbackComment.entry_id)
+        )
+    ).all()
+    comment_counts: dict[int, int] = {row.entry_id: row.cnt for row in count_rows}
+
+    result: list[FeedbackEntryOut] = []
+    for entry in entries:
+        author = authors.get(entry.author_id)
+        if author is None:
+            # Author was deleted; skip to avoid AttributeError on orphaned entries
+            continue
+        result.append(
+            FeedbackEntryOut(
+                id=entry.id,
+                type=entry.type,
+                title=entry.title,
+                description=entry.description,
+                status=entry.status,
+                author=FeedbackAuthor(
+                    id=author.id,
+                    username=author.username,
+                    display_name=author.display_name,
+                ),
+                vote_count=entry.vote_count,
+                voted_by_me=entry.id in voted_ids,
+                comment_count=comment_counts.get(entry.id, 0),
+                created_at=entry.created_at,
+            )
+        )
+    return result
+
+
+async def _build_comments_out(
+    comments: list[FeedbackComment],
+    db: AsyncSession,
+) -> list[FeedbackCommentOut]:
+    """Build FeedbackCommentOut objects for a list of comments using a single batch query.
+
+    Replaces one db.get(User) per comment with a single IN query for all unique authors.
+    """
+    if not comments:
+        return []
+
+    author_ids = list({c.author_id for c in comments})
+    author_rows = (await db.execute(select(User).where(User.id.in_(author_ids)))).scalars().all()
+    authors: dict[int, User] = {u.id: u for u in author_rows}
+
+    result: list[FeedbackCommentOut] = []
+    for c in comments:
+        author = authors.get(c.author_id)
+        if author is None:
+            continue
+        result.append(
+            FeedbackCommentOut(
+                id=c.id,
+                entry_id=c.entry_id,
+                author=FeedbackAuthor(
+                    id=author.id,
+                    username=author.username,
+                    display_name=author.display_name,
+                ),
+                body=c.body,
+                created_at=c.created_at,
+            )
+        )
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -120,18 +235,11 @@ async def list_feedback(
 
     stmt = stmt.order_by(sort_col.desc() if order == "desc" else sort_col.asc())
 
-    total = await db.scalar(select(func.count()).select_from(stmt.subquery()))
-    result = await db.execute(stmt.offset(skip).limit(limit))
-    entries = result.scalars().all()
+    entries, total = await paginate(db, stmt, skip, limit)
 
-    items = [await _build_entry_out(e, current_user, db) for e in entries]
+    items = await _build_entries_out(entries, current_user, db)
 
-    return PaginatedFeedbackResponse(
-        items=items,
-        total=total or 0,
-        skip=skip,
-        limit=limit,
-    )
+    return PaginatedFeedbackResponse(items=items, total=total, skip=skip, limit=limit)
 
 
 # ---------------------------------------------------------------------------
@@ -196,23 +304,7 @@ async def get_feedback(
         .order_by(FeedbackComment.created_at.asc())
     )
     comments_raw = result.scalars().all()
-
-    comments: list[FeedbackCommentOut] = []
-    for c in comments_raw:
-        author = await db.get(User, c.author_id)
-        comments.append(
-            FeedbackCommentOut(
-                id=c.id,
-                entry_id=c.entry_id,
-                author=FeedbackAuthor(
-                    id=author.id,
-                    username=author.username,
-                    display_name=author.display_name,
-                ),
-                body=c.body,
-                created_at=c.created_at,
-            )
-        )
+    comments = await _build_comments_out(list(comments_raw), db)
 
     return FeedbackEntryDetail(**base.model_dump(), comments=comments)
 
@@ -323,23 +415,7 @@ async def list_comments(
         .order_by(FeedbackComment.created_at.asc())
     )
     comments_raw = result.scalars().all()
-
-    items: list[FeedbackCommentOut] = []
-    for c in comments_raw:
-        author = await db.get(User, c.author_id)
-        items.append(
-            FeedbackCommentOut(
-                id=c.id,
-                entry_id=c.entry_id,
-                author=FeedbackAuthor(
-                    id=author.id,
-                    username=author.username,
-                    display_name=author.display_name,
-                ),
-                body=c.body,
-                created_at=c.created_at,
-            )
-        )
+    items = await _build_comments_out(list(comments_raw), db)
 
     return FeedbackCommentsResponse(items=items, total=len(items))
 

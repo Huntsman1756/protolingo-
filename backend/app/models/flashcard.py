@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from sqlalchemy import Date, DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
@@ -24,5 +24,5 @@ class Flashcard(Base):
     repetitions: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     next_review: Mapped[date] = mapped_column(Date, nullable=False, default=date.today)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
+        DateTime, nullable=False, default=lambda: datetime.now(UTC).replace(tzinfo=None)
     )

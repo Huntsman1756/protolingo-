@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import JSON
@@ -29,5 +29,5 @@ class StudyPlan(Base):
     completion_test_score: Mapped[float | None] = mapped_column(Float, nullable=True)
     completion_test_recommendation: Mapped[str | None] = mapped_column(String(20), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
+        DateTime, nullable=False, default=lambda: datetime.now(UTC).replace(tzinfo=None)
     )

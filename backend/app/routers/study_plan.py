@@ -1,7 +1,7 @@
 from collections import defaultdict
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -95,7 +95,9 @@ async def get_today_lessons(
     )
     plan = result.scalar_one_or_none()
     if not plan:
-        raise HTTPException(status_code=404, detail="No active study plan found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="No active study plan found"
+        )
 
     total_days = plan.duration_weeks * plan.days_per_week
 
@@ -149,7 +151,9 @@ async def get_today_lessons(
         else getattr(plan.generated_plan, "weekly_plan", None)
     )
     if not weekly_plan:
-        raise HTTPException(status_code=500, detail="Study plan data is malformed")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Study plan data is malformed"
+        )
 
     week = None
     for w in weekly_plan:
@@ -306,7 +310,9 @@ async def skip_today(
     )
     plan = result.scalar_one_or_none()
     if not plan:
-        raise HTTPException(status_code=404, detail="No active study plan found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="No active study plan found"
+        )
 
     total_days = plan.duration_weeks * plan.days_per_week
     plan.progress_day = min(plan.progress_day + 1, total_days)
@@ -327,7 +333,9 @@ async def get_pending_lessons(
     )
     plan = result.scalar_one_or_none()
     if not plan:
-        raise HTTPException(status_code=404, detail="No active study plan found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="No active study plan found"
+        )
 
     incomplete_result = await db.execute(
         select(Lesson).where(

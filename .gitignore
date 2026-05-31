@@ -1,6 +1,18 @@
+# Ignore environment variables
 .env
 .env.local
 .env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Local development files
+/data/
+
+# OS
+.DS_Store
 
 # Python
 __pycache__/
@@ -8,11 +20,3 @@ __pycache__/
 *.egg-info/
 .venv/
 dist/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-
-# OS
-.DS_Store

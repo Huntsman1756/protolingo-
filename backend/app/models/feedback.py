@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
@@ -27,7 +27,7 @@ class FeedbackEntry(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,
-        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+        default=lambda: datetime.now(UTC).replace(tzinfo=None),
         index=True,
     )
 
@@ -48,7 +48,7 @@ class FeedbackVote(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,
-        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+        default=lambda: datetime.now(UTC).replace(tzinfo=None),
     )
 
 
@@ -68,5 +68,5 @@ class FeedbackComment(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         nullable=False,
-        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+        default=lambda: datetime.now(UTC).replace(tzinfo=None),
     )

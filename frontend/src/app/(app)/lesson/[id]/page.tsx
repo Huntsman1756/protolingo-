@@ -34,7 +34,8 @@ interface LessonData {
 export default function LessonPage() {
   const t = useTranslations('lesson')
   const tCommon = useTranslations('common')
-  const tPlan = useTranslations('dashboard')
+  const tPlan = useTranslations('plan')
+  const tError = useTranslations('error')
   const params = useParams()
   const router = useRouter()
   const id = params.id as string
@@ -49,6 +50,8 @@ export default function LessonPage() {
   const [dayComplete, setDayComplete] = useState(false)
   const [progressDayAtStart, setProgressDayAtStart] = useState(-1)
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
   const [showExitConfirm, setShowExitConfirm] = useState(false)
 
   const loadLesson = useCallback(async () => {
@@ -59,7 +62,7 @@ export default function LessonPage() {
       setLesson(data.lesson)
       setExercises(data.exercises)
     } catch {
-      /* ignore */
+      setLoadError(true)
     } finally {
       setLoading(false)
     }
@@ -116,8 +119,9 @@ export default function LessonPage() {
         return copy
       })
       if (overrideAnswer !== undefined) setAnswer(overrideAnswer)
+      setSubmitError(false)
     } catch {
-      /* ignore */
+      setSubmitError(true)
     } finally {
       setEvaluating(false)
     }
@@ -142,7 +146,7 @@ export default function LessonPage() {
         }
       }
     } catch {
-      /* ignore */
+      // Non-fatal: failing to detect day-advance does not prevent lesson completion
     }
     setCompleted(true)
   }
@@ -153,6 +157,29 @@ export default function LessonPage() {
         <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
           {t('loading')}
         </span>
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 p-6">
+        <p className="text-fl-muted-2 font-mono text-sm">{tError('body')}</p>
+        <button
+          onClick={() => {
+            setLoadError(false)
+            loadLesson()
+          }}
+          className="text-fl-accent font-mono text-xs tracking-widest uppercase underline"
+        >
+          {tError('retry')}
+        </button>
+        <Link
+          href="/dashboard"
+          className="text-fl-muted-3 font-mono text-xs tracking-widest uppercase underline"
+        >
+          {t('backToPlan')}
+        </Link>
       </div>
     )
   }
@@ -387,15 +414,22 @@ export default function LessonPage() {
 
               {!isEvaluated ? (
                 exercise.exercise_type !== 'pronunciation' ? (
-                  <button
-                    onClick={() => submitAnswer()}
-                    disabled={evaluating || !answer.trim()}
-                    className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
-                  >
-                    {evaluating
-                      ? `— ${tCommon('checking')}`
-                      : `— ${t('submitAnswer')}`}
-                  </button>
+                  <>
+                    <button
+                      onClick={() => submitAnswer()}
+                      disabled={evaluating || !answer.trim()}
+                      className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
+                    >
+                      {evaluating
+                        ? `— ${tCommon('checking')}`
+                        : `— ${t('submitAnswer')}`}
+                    </button>
+                    {submitError && (
+                      <p className="text-fl-error font-mono text-xs">
+                        {tError('title')}
+                      </p>
+                    )}
+                  </>
                 ) : null
               ) : (
                 <div className="space-y-4">

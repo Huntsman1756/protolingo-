@@ -1,9 +1,9 @@
 import json
 import os
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
-from fastapi import APIRouter, Depends, File, HTTPException, Request, Response, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, Request, Response, UploadFile, status
 from redis.asyncio import Redis
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.app_logger import get_logger
 from app.core.config import settings
 from app.core.database import get_db
-from app.core.deps import get_current_user
+from app.core.deps import get_current_user, get_redis
 from app.core.limiter import limiter
 from app.core.security import (
     create_access_token,
@@ -38,14 +38,6 @@ logger = get_logger(__name__)
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 
-async def get_redis():
-    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-    try:
-        yield redis
-    finally:
-        await redis.aclose()
-
-
 @router.post("/register", response_model=RegisterResponse)
 @limiter.limit("5/minute")
 async def register(
@@ -59,25 +51,31 @@ async def register(
         if data.invite_token:
             valid = await redis.get(f"invite:{data.invite_token}")
             if not valid:
-                raise HTTPException(status_code=403, detail="Invalid or expired invite")
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN, detail="Invalid or expired invite"
+                )
             await redis.delete(f"invite:{data.invite_token}")
         else:
-            raise HTTPException(status_code=403, detail="Registration is closed")
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="Registration is closed"
+            )
     else:
         pass
 
     if settings.BLOCKED_EMAIL_DOMAINS:
         email_domain = data.email.split("@")[-1].lower()
         if email_domain in [d.lower() for d in settings.BLOCKED_EMAIL_DOMAINS]:
-            raise HTTPException(status_code=422, detail="Email domain not allowed")
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Email domain not allowed"
+            )
 
     existing = await db.execute(select(User).where(User.username == data.username))
     if existing.scalar_one_or_none():
-        raise HTTPException(status_code=409, detail="Username already taken")
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Username already taken")
 
     email_check = await db.execute(select(User).where(User.email == data.email))
     if email_check.scalar_one_or_none():
-        raise HTTPException(status_code=409, detail="Email already taken")
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already taken")
 
     user_count = await db.scalar(select(func.count(User.id)))
     role = "admin" if (user_count == 0 and settings.FIRST_USER_IS_ADMIN) else "user"
@@ -151,9 +149,9 @@ async def login(
         password_ok = False
 
     if not password_ok or not user or not user.is_active:
-        raise HTTPException(status_code=401, detail="Invalid credentials")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
 
-    user.last_login = datetime.now(timezone.utc).replace(tzinfo=None)
+    user.last_login = datetime.now(UTC).replace(tzinfo=None)
     await db.commit()
 
     access_token = create_access_token(user.id, user.role)
@@ -183,11 +181,15 @@ async def refresh(
 ):
     token = request.cookies.get("refresh_token")
     if not token:
-        raise HTTPException(status_code=401, detail="Missing refresh token")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing refresh token"
+        )
 
     user_id = await redis.get(f"refresh:{token}")
     if not user_id:
-        raise HTTPException(status_code=401, detail="Invalid or expired refresh token")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid or expired refresh token"
+        )
 
     await redis.delete(f"refresh:{token}")
 
@@ -206,7 +208,7 @@ async def refresh(
 
     user = await db.get(User, int(user_id))
     if not user:
-        raise HTTPException(status_code=401, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
 
     return {"access_token": create_access_token(user.id, user.role), "token_type": "bearer"}
 
@@ -240,7 +242,7 @@ async def update_me(
     if data.email is not None and data.email != current_user.email:
         dup = await db.execute(select(User).where(User.email == data.email))
         if dup.scalar_one_or_none():
-            raise HTTPException(status_code=409, detail="Email already taken")
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already taken")
         current_user.email = data.email
     if data.password is not None:
         current_user.hashed_password = hash_password(data.password)
@@ -274,10 +276,14 @@ async def upload_avatar(
     db: AsyncSession = Depends(get_db),
 ):
     if file.content_type not in _ALLOWED_AVATAR_TYPES:
-        raise HTTPException(status_code=400, detail="Only JPEG and PNG images are allowed")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Only JPEG and PNG images are allowed"
+        )
     data = await file.read(_MAX_AVATAR_BYTES + 1)
     if len(data) > _MAX_AVATAR_BYTES:
-        raise HTTPException(status_code=400, detail="Image too large (max 2 MB)")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Image too large (max 2 MB)"
+        )
 
     # Delete the existing file if it was previously stored on disk
     if current_user.avatar and current_user.avatar.startswith("/api/avatars/"):
@@ -294,7 +300,7 @@ async def upload_avatar(
         f.write(data)
 
     # Append a timestamp to bust the browser cache on re-upload
-    ts = int(datetime.now(timezone.utc).timestamp())
+    ts = int(datetime.now(UTC).timestamp())
     current_user.avatar = f"/api/avatars/{filename}?v={ts}"
     await db.commit()
     await db.refresh(current_user)
@@ -317,7 +323,7 @@ async def delete_avatar(
     return current_user
 
 
-@router.delete("/me", status_code=204)
+@router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_me(
     request: Request,
     response: Response,
@@ -326,7 +332,9 @@ async def delete_me(
     redis: Redis = Depends(get_redis),
 ):
     if current_user.role == "admin":
-        raise HTTPException(status_code=403, detail="Admin accounts cannot be self-deleted")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Admin accounts cannot be self-deleted"
+        )
     token = request.cookies.get("refresh_token")
     if token:
         await redis.delete(f"refresh:{token}")
@@ -342,7 +350,10 @@ async def delete_me(
     user_locale = current_user.native_language
     await db.delete(current_user)
     await db.commit()
-    await email_service.send_account_deleted_email(user_email, user_display_name, user_locale)
+    try:
+        await email_service.send_account_deleted_email(user_email, user_display_name, user_locale)
+    except Exception:
+        logger.warning("Failed to send account-deleted email to %s", user_email)
 
 
 @router.get("/quota")
@@ -386,10 +397,12 @@ async def verify_email(
 ):
     user_id_str = await redis.get(f"verify_email:{token}")
     if not user_id_str:
-        raise HTTPException(status_code=400, detail="Invalid or expired verification token")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid or expired verification token"
+        )
     user = await db.get(User, int(user_id_str))
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     user.is_verified = True
     await db.commit()
     await redis.delete(f"verify_email:{token}")
@@ -406,9 +419,13 @@ async def resend_verification(
     if current_user.is_verified:
         return {"detail": "Already verified"}
     if not current_user.email:
-        raise HTTPException(status_code=400, detail="No email address on file")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="No email address on file"
+        )
     if not settings.EMAIL_ENABLED:
-        raise HTTPException(status_code=503, detail="Email not configured")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Email not configured"
+        )
     verify_token = str(uuid.uuid4())
     await redis.setex(f"verify_email:{verify_token}", 86400, str(current_user.id))
     await email_service.send_verification_email(
@@ -455,10 +472,12 @@ async def reset_password(
 ):
     user_id_str = await redis.get(f"reset_password:{data.token}")
     if not user_id_str:
-        raise HTTPException(status_code=400, detail="Invalid or expired reset token")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid or expired reset token"
+        )
     user = await db.get(User, int(user_id_str))
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     user.hashed_password = hash_password(data.new_password)
     await db.commit()
     await redis.delete(f"reset_password:{data.token}")

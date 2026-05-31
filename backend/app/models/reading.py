@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.dialects.postgresql import JSON
@@ -27,7 +27,7 @@ class ReadingExercise(Base):
     # [{"index": 0, "question": "...", "options": {"A":...,"B":...,"C":...,"D":...}, "correct": "B"}, ...]
     view_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
+        DateTime, nullable=False, default=lambda: datetime.now(UTC).replace(tzinfo=None)
     )
 
 
@@ -51,5 +51,5 @@ class ReadingAttempt(Base):
     score: Mapped[int] = mapped_column(Integer, nullable=False)  # 0–5
     xp_earned: Mapped[int] = mapped_column(Integer, nullable=False)
     completed_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
+        DateTime, nullable=False, default=lambda: datetime.now(UTC).replace(tzinfo=None)
     )

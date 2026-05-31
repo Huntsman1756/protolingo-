@@ -80,26 +80,29 @@ export function AudioPlayer({
       const proxyTotalMs = res.headers.get('X-TTS-Proxy-Total-Ms')
       const responseTraceId = res.headers.get('X-TTS-Trace-ID') || traceId
 
-      console.info('[tts-metrics]', {
-        traceId: responseTraceId,
-        textLength: text.length,
-        blobBytes: blob.size,
-        client: {
-          fetchMs: Number(fetchMs.toFixed(1)),
-          blobMs: Number(blobMs.toFixed(1)),
-          playMs: Number(playMs.toFixed(1)),
-          totalMs: Number(totalMs.toFixed(1)),
-        },
-        proxy: {
-          fetchMs: proxyFetchMs ? Number(proxyFetchMs) : null,
-          bufferMs: proxyBufferMs ? Number(proxyBufferMs) : null,
-          totalMs: proxyTotalMs ? Number(proxyTotalMs) : null,
-        },
-        backend: {
-          synthMs: backendSynthMs ? Number(backendSynthMs) : null,
-          totalMs: backendTotalMs ? Number(backendTotalMs) : null,
-        },
-      })
+      // TTS latency metrics — only logged in development
+      if (process.env.NODE_ENV === 'development') {
+        console.info('[tts-metrics]', {
+          traceId: responseTraceId,
+          textLength: text.length,
+          blobBytes: blob.size,
+          client: {
+            fetchMs: Number(fetchMs.toFixed(1)),
+            blobMs: Number(blobMs.toFixed(1)),
+            playMs: Number(playMs.toFixed(1)),
+            totalMs: Number(totalMs.toFixed(1)),
+          },
+          proxy: {
+            fetchMs: proxyFetchMs ? Number(proxyFetchMs) : null,
+            bufferMs: proxyBufferMs ? Number(proxyBufferMs) : null,
+            totalMs: proxyTotalMs ? Number(proxyTotalMs) : null,
+          },
+          backend: {
+            synthMs: backendSynthMs ? Number(backendSynthMs) : null,
+            totalMs: backendTotalMs ? Number(backendTotalMs) : null,
+          },
+        })
+      }
 
       audio.onended = () => {
         URL.revokeObjectURL(url)

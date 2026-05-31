@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { SUPPORTED_LOCALES, type Locale } from '@/lib/locales'
 
 // Routes that require authentication — anything else passes through so unknown
 // URLs reach Next.js's 404 handler instead of being redirected to /login.
@@ -15,6 +16,7 @@ const PROTECTED_ROUTES = [
   '/flashcards',
   '/grammar',
   '/lesson',
+  '/listening',
   '/onboarding',
   '/phrasebook',
   '/plan',
@@ -22,19 +24,6 @@ const PROTECTED_ROUTES = [
   '/settings',
   '/vocabulary',
 ]
-const SUPPORTED_LOCALES = [
-  'en',
-  'es',
-  'fr',
-  'pt',
-  'de',
-  'it',
-  'pl',
-  'nl',
-  'ro',
-  'ru',
-] as const
-type Locale = (typeof SUPPORTED_LOCALES)[number]
 
 function detectLocale(req: NextRequest): Locale {
   // 1. Cookie already set — respect user choice

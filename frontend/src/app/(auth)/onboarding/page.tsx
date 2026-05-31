@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { mapUser } from '@/lib/mappers'
 import { useAuthStore } from '@/store/auth'
 import TargetLanguageSelector from '@/components/TargetLanguageSelector'
 import { DEFAULT_TARGET_LANGUAGE } from '@/lib/target-languages'
@@ -27,6 +28,7 @@ export default function OnboardingPage() {
   const tCommon = useTranslations('common')
   const router = useRouter()
   const setUser = useAuthStore((s) => s.setUser)
+  const user = useAuthStore((s) => s.user)
 
   const [step, setStep] = useState<1 | 2>(1)
   const [targetLanguage, setTargetLanguage] = useState(DEFAULT_TARGET_LANGUAGE)
@@ -58,19 +60,7 @@ export default function OnboardingPage() {
       })
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
-      setUser({
-        id: updated.id,
-        username: updated.username,
-        displayName: updated.display_name,
-        email: updated.email,
-        role: updated.role,
-        native_language: updated.native_language,
-        target_language: updated.target_language,
-        conversation_max_duration: updated.conversation_max_duration,
-        conversation_inactivity_timeout:
-          updated.conversation_inactivity_timeout,
-        learning_goals: updated.learning_goals ?? [],
-      })
+      setUser(mapUser(updated, user))
       router.push('/assessment')
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : t('saveFailed'))
@@ -80,14 +70,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div
-      className="bg-fl-bg flex min-h-screen items-center justify-center px-4"
-      style={{
-        backgroundImage:
-          'radial-gradient(circle, var(--fl-dot) 1px, transparent 1px)',
-        backgroundSize: '24px 24px',
-      }}
-    >
+    <div className="bg-fl-bg bg-dot-grid flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="mb-10 flex flex-col items-center">
           <Image

@@ -15,23 +15,12 @@ import StatusIndicator, { type ConvStatus } from './StatusIndicator'
 import TranscriptBubble from './TranscriptBubble'
 import SessionTimeoutBanner from './SessionTimeoutBanner'
 import MicButton from './MicButton'
+import { type QuotaStatus } from '@/types/api'
 
 interface TranscriptEntry {
   id: number
   role: 'user' | 'assistant'
   text: string
-}
-
-interface QuotaStatus {
-  sessions_this_week: number
-  sessions_limit: number
-  sessions_unlimited: boolean
-  minutes_today: number
-  minutes_limit: number
-  time_unlimited: boolean
-  tokens_this_month: number
-  tokens_monthly_limit: number
-  tokens_unlimited: boolean
 }
 
 function QuotaBar({
@@ -94,47 +83,15 @@ function quotaPillSummary(quota: QuotaStatus): {
   }
 
   if (!quota.tokens_unlimited) {
-    const kUsed = Math.round(quota.tokens_this_month / 1000)
-    const kLimit = Math.round(quota.tokens_monthly_limit / 1000)
+    const kUsed = Math.round((quota.tokens_this_month ?? 0) / 1000)
+    const kLimit = Math.round((quota.tokens_monthly_limit ?? 0) / 1000)
     parts.push(`${kUsed}k/${kLimit}k tok`)
-    if (quota.tokens_this_month >= quota.tokens_monthly_limit) alert = true
+    if ((quota.tokens_this_month ?? 0) >= (quota.tokens_monthly_limit ?? 0))
+      alert = true
   }
 
   return { text: parts.length ? parts.join(' · ') : '∞', alert }
 }
-
-const CONVERSATION_STARTERS = [
-  'Art & creativity',
-  'Books & reading',
-  'Childhood memories',
-  'City vs. countryside',
-  'Cooking & recipes',
-  'Dreams & ambitions',
-  'Family & relationships',
-  'Fashion & style',
-  'Favourite films',
-  'Festivals & traditions',
-  'Food from around the world',
-  'Health & wellbeing',
-  'Hobbies & crafts',
-  'Language learning',
-  'Learning new skills',
-  'Money & budgeting',
-  'Music & concerts',
-  'Pets & animals',
-  'Public transport',
-  'Science & space',
-  'Shopping habits',
-  'Social media',
-  'Sports & fitness',
-  'Technology & gadgets',
-  'The environment',
-  'Travel destinations',
-  'TV shows & series',
-  'Weekend plans',
-  'Work & career goals',
-  'Working from home',
-] as const
 
 function QuotaPill({
   quota,
@@ -177,8 +134,8 @@ function QuotaPill({
           {!quota.tokens_unlimited && (
             <QuotaBar
               label={t('quotaTokens')}
-              used={quota.tokens_this_month}
-              limit={quota.tokens_monthly_limit}
+              used={quota.tokens_this_month ?? 0}
+              limit={quota.tokens_monthly_limit ?? 0}
               unlimited={false}
             />
           )}
@@ -226,10 +183,11 @@ export default function ConversationMode({
   // 6 random starters picked once per component mount, shown alphabetically
   const visibleStarters = useMemo(
     () =>
-      ([...CONVERSATION_STARTERS] as string[])
+      (t.raw('starters') as string[])
         .sort(() => Math.random() - 0.5)
         .slice(0, 6)
         .sort((a, b) => a.localeCompare(b)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
 

@@ -1,5 +1,5 @@
 import secrets
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import bcrypt
 import jwt
@@ -25,7 +25,7 @@ def dummy_verify() -> None:
 
 
 def create_access_token(user_id: int, role: str) -> str:
-    expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now(UTC) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     return jwt.encode(
         {"sub": str(user_id), "role": role, "exp": expire},
         settings.SECRET_KEY,
