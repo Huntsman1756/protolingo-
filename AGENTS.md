@@ -2,7 +2,7 @@
 
 ## Project state
 
-**v1.6.7 — Phase 9 (LLM Memory) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), and Phase 9 (LLM Memory) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
+**v1.6.8 — Phase 9 (LLM Memory) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), and Phase 9 (LLM Memory) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Architecture at a glance
 
