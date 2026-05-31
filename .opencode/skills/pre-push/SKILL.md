@@ -19,30 +19,18 @@ source .venv/bin/activate && cd backend && ruff check --fix . && black . && cd .
 
 Fixes what can be fixed automatically: Python lint + format, JS/TS lint + format.
 
-### 1. Backend lint & format check
+### 1. Backend tests
 
 ```bash
-source .venv/bin/activate && cd backend && ruff check --select E,W,F . && black --check .
-```
-
-### 2. Backend tests
-
-```bash
-source .venv/bin/activate && cd backend && pytest
+source .venv/bin/activate && cd backend && pytest -v
 ```
 
 341 tests, >= 60% coverage required. SQLite in-memory, no Docker needed.
 
-### 3. Frontend lint & format check
+### 2. Frontend lint + typecheck + tests
 
 ```bash
-cd frontend && npx eslint src/ --ext .ts,.tsx && npx prettier --check src/
-```
-
-### 4. Frontend typecheck
-
-```bash
-cd frontend && npx tsc --noEmit
+cd frontend && npm run lint && npx tsc --noEmit && npm run test:run
 ```
 
 ## What each step does
@@ -53,12 +41,12 @@ cd frontend && npx tsc --noEmit
 | 0 | black | Auto-format Python code |
 | 0 | eslint --fix | Auto-fix JS/TS lint issues |
 | 0 | prettier --write | Auto-format JS/TS/CSS code |
-| 1 | ruff --check | Verify no remaining Python errors |
-| 1 | black --check | Verify Python formatting is clean |
-| 2 | pytest | 341 backend tests, SQLite in-memory |
-| 3 | eslint | Verify no remaining JS/TS errors |
-| 3 | prettier --check | Verify frontend formatting is clean |
-| 4 | tsc --noEmit | TypeScript type checking |
+| 1 | pytest | 341 backend tests, SQLite in-memory |
+| 2 | eslint | Verify no remaining JS/TS errors |
+| 2 | tsc --noEmit | TypeScript type checking |
+| 2 | vitest | 54 frontend tests |
+
+**Note:** CI does not run ruff/black checks — only pytest, eslint, tsc, and vitest. Backend lint (ruff/black) is kept in step 0 as auto-format only.
 
 ## Requirements
 
@@ -68,6 +56,6 @@ cd frontend && npx tsc --noEmit
 ## If something fails
 
 1. If step 0 fails, fix manually — it means auto-fix couldn't handle something
-2. If steps 1-4 fail after step 0 passed, the issue needs manual fix
+2. If steps 1-2 fail after step 0 passed, the issue needs manual fix
 3. Re-run **only the failing step** (no need to restart from step 0)
 4. Once all pass, the branch is safe to push

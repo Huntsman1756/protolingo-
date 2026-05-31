@@ -2,7 +2,7 @@
 
 ## Project state
 
-**v1.6.7 — Phase 9 (LLM Memory) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), and Phase 9 (LLM Memory) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
+**v1.6.8 — Phase 9 (LLM Memory) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), and Phase 9 (LLM Memory) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Architecture at a glance
 
@@ -31,8 +31,8 @@ Files most commonly affected by code changes:
 | Change type | Files to update |
 |-------------|----------------|
 | New/modified endpoint | `specs/api-endpoints.instructions.md`, `specs/rate-limiting.instructions.md` |
-| New/modified model or migration | `specs/architecture.instructions.md` |
-| New/modified service or env var | `specs/architecture.instructions.md`, `specs/docker.instructions.md`, `README.md` |
+| New/modified model or migration | `specs/database-models.instructions.md`, `specs/architecture.instructions.md` |
+| New/modified service or env var | `specs/services.instructions.md`, `specs/architecture.instructions.md`, `specs/docker.instructions.md`, `README.md` |
 | New/modified auth flow | `specs/architecture.instructions.md`, `AGENTS.md` (Auth design section) |
 | Study plan / lesson / progress change | `specs/study-plan.instructions.md`, `specs/api-endpoints.instructions.md`, `specs/architecture.instructions.md` |
 | New phase or major feature | `specs/phase-*.instructions.md` (create if needed), `README.md`, `AGENTS.md`, `CHANGELOG.md`, `specs/version.md` |
@@ -48,7 +48,9 @@ These describe what was built — they are the reference documentation:
 
 | File | Covers |
 |------|--------|
-| `specs/architecture.instructions.md` | DB models, service layer, LLM adapter, auth design, data flow, code standards, test config |
+| `specs/architecture.instructions.md` | Repository structure, data flows, auth design, code standards, environment variables |
+| `specs/database-models.instructions.md` | **18 SQLAlchemy ORM models**: full schema details, relationships, constraints, business rules |
+| `specs/services.instructions.md` | **16 backend services**: LLM, TTS/STT, study plan, lessons, flashcards, listening, reading, memory, progress, quotas, subscriptions, voice conversation pipeline |
 | `specs/api-endpoints.instructions.md` | All REST endpoints and WebSocket — paths, methods, rate limits, descriptions |
 | `specs/study-plan.instructions.md` | **Current-state reference** for the study plan & lesson system: data model, `progress_day` semantics, auto-advance, skip day, pending lessons, lesson lifecycle, frontend integration |
 | `specs/docker.instructions.md` | docker-compose.yml (all phases), `.env.example`, DB migrations, operational notes |

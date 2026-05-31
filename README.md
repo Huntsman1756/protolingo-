@@ -5,7 +5,7 @@
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.14-blue?style=flat-square)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
-![Version](https://img.shields.io/badge/version-1.6.7-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.6.8-brightgreen?style=flat-square)
 
 <p align="left">
   <img src="assets/logo.png" alt="FreeLingo logo" width="225" />
@@ -69,18 +69,25 @@ the frontend never calls them directly.
 
 ```
 freelingo/
-├── assets/             # Logos and static assets
-├── backend/            # FastAPI (Python)
-├── docs/               # GitHub Pages landing site
-├── frontend/           # Next.js (React)
-├── messages/           # i18n translation files (de, en, es, fr, it, nl, pl, pt, ro, ru)
-├── specs/              # Specification files
-├── AGENTS.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-└── docker-compose.yml
+├── assets/                          # Logos and static assets
+├── backend/                         # FastAPI (Python)
+├── data/                            # Shared data files
+├── docs/                            # GitHub Pages landing site
+├── frontend/                        # Next.js (React)
+├── messages/                        # i18n translation files (de, en, es, fr, it, nl, pl, pt, ro, ru)
+├── specs/                           # Specification files
+├── AGENTS.md                        # AI assistant instructions
+├── CHANGELOG.md                     # Version history
+├── CODE_OF_CONDUCT.md               # Community guidelines
+├── COMMERCIAL_LICENSE.md            # Commercial licence terms
+├── CONTRIBUTING.md                  # Contribution guidelines
+├── CONTRIBUTOR_LICENSE_AGREEMENT.md # CLA for contributors
+├── DEVELOPMENT.md                   # Local development setup
+├── docker-compose.yml               # Production deployment
+├── docker-compose.dev.yml           # Development deployment
+├── LICENSE                          # AGPL-3.0 licence
+├── README.md                        # This file
+└── run-dev.sh                       # Development helper script
 ```
 
 ## Stack

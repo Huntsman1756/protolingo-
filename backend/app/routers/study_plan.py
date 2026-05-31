@@ -208,6 +208,7 @@ async def get_today_lessons(
                     break
 
         # Auto-generate the lesson if it doesn't exist yet
+        plan_id = plan.id  # cache before any rollback that would expire the ORM object
         if lesson_id is None:
             try:
                 content = await generate_lesson(
@@ -259,7 +260,7 @@ async def get_today_lessons(
                 await db.rollback()
                 dup = await db.execute(
                     select(Lesson).where(
-                        Lesson.study_plan_id == plan.id,
+                        Lesson.study_plan_id == plan_id,
                         Lesson.week_number == current_week,
                         Lesson.day_number == current_day,
                         Lesson.title == d_title,
@@ -270,7 +271,7 @@ async def get_today_lessons(
                     lesson_id = existing.id
                     lesson_completed = existing.is_completed
             except Exception:
-                logger.exception("Failed to generate or persist lesson for plan %s", plan.id)
+                logger.exception("Failed to generate or persist lesson for plan %s", plan_id)
 
         if lesson_id is not None:
             today_lessons.append(
