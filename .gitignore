@@ -9,7 +9,7 @@
 *.swp
 
 # Local development files
-data/
+/data/
 
 # OS
 .DS_Store

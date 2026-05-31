@@ -192,3 +192,60 @@ async def check_monthly_tokens(
     if monthly_limit == 0:
         return True, tokens_used, 0
     return tokens_used < monthly_limit, tokens_used, monthly_limit
+
+
+async def check_all_quotas(
+    redis: object,
+    user_id: int,
+    monthly_tokens_limit: int,
+    daily_minutes_limit: int,
+    weekly_minutes_limit: int,
+    weekly_sessions_limit: int,
+    max_duration: int,
+) -> tuple[int, str | None, str | None, int | None]:
+    """Run all conversation quota checks in order.
+
+    Always returns (capped_max_duration, error_code, error_message, close_code).
+    On success: error_code, error_message, and close_code are all None.
+    On failure: max_duration is the original (uncapped) value.
+    """
+    if monthly_tokens_limit > 0:
+        from app.utils.db import db_session  # noqa: PLC0415
+
+        async with db_session() as db_quota:
+            tokens_ok, tokens_used, tokens_limit = await check_monthly_tokens(
+                db_quota, user_id, monthly_tokens_limit
+            )
+        if not tokens_ok:
+            msg = f"Monthly token limit reached ({tokens_used}/{tokens_limit} tokens). Voice is unavailable until next month."
+            return (max_duration, "quota_exceeded_tokens", msg, 1008)
+
+    daily_ok, minutes_used, minutes_limit = await check_daily_minutes(
+        redis, user_id, daily_minutes_limit
+    )
+    if not daily_ok:
+        msg = f"Daily time limit reached ({minutes_used}/{minutes_limit} min)."
+        return (max_duration, "quota_exceeded_time", msg, 1008)
+
+    weekly_min_ok, weekly_min_used, weekly_min_limit = await check_weekly_minutes(
+        redis, user_id, weekly_minutes_limit
+    )
+    if not weekly_min_ok:
+        msg = f"Weekly time limit reached ({weekly_min_used}/{weekly_min_limit} min)."
+        return (max_duration, "quota_exceeded_weekly_minutes", msg, 1008)
+
+    sessions_ok, sessions_used, sessions_limit = await check_and_increment_sessions(
+        redis, user_id, weekly_sessions_limit
+    )
+    if not sessions_ok:
+        msg = f"Weekly session limit reached ({sessions_used}/{sessions_limit})."
+        return (max_duration, "quota_exceeded_sessions", msg, 1008)
+
+    if daily_minutes_limit > 0:
+        remaining = (daily_minutes_limit - minutes_used) * 60
+        max_duration = min(max_duration, remaining)
+    if weekly_minutes_limit > 0:
+        remaining = (weekly_minutes_limit - weekly_min_used) * 60
+        max_duration = min(max_duration, remaining)
+
+    return (max_duration, None, None, None)

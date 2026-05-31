@@ -1,7 +1,7 @@
 import re
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -41,7 +41,7 @@ async def _get_lesson_for_user(lesson_id: int, user_id: int, db: AsyncSession) -
     )
     lesson = result.scalar_one_or_none()
     if not lesson:
-        raise HTTPException(status_code=404, detail="Lesson not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Lesson not found")
     return lesson
 
 
@@ -160,12 +160,14 @@ async def answer_exercise(
 ):
     exercise = await db.get(Exercise, exercise_id)
     if not exercise:
-        raise HTTPException(status_code=404, detail="Exercise not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Exercise not found")
 
     lesson = await _get_lesson_for_user(exercise.lesson_id, current_user.id, db)
 
     if exercise.answered_at is not None:
-        raise HTTPException(status_code=409, detail="Exercise already answered")
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail="Exercise already answered"
+        )
 
     if exercise.exercise_type == "free_write":
         prompt = exercise.question

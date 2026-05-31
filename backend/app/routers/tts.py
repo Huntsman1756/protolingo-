@@ -2,7 +2,7 @@ import os
 import time
 import uuid
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import FileResponse, Response
 
 from app.core.app_logger import get_logger
@@ -35,7 +35,9 @@ async def text_to_speech(
 
     tts_service = getattr(request.app.state, "tts_service", None)
     if tts_service is None:
-        raise HTTPException(status_code=503, detail="TTS service is not enabled")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="TTS service is not enabled"
+        )
 
     synth_t0 = time.perf_counter()
     # For local Kokoro TTS, ignore the client voice param — only OpenAI voices
@@ -83,15 +85,18 @@ async def voice_preview(
     """
     if settings.TTS_PROVIDER != "openai":
         raise HTTPException(
-            status_code=404, detail="Voice preview is only available with OpenAI TTS"
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Voice preview is only available with OpenAI TTS",
         )
 
     if voice not in _OPENAI_VOICES:
-        raise HTTPException(status_code=400, detail="Invalid voice name")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid voice name")
 
     tts_service = getattr(request.app.state, "tts_service", None)
     if tts_service is None:
-        raise HTTPException(status_code=503, detail="TTS service is not enabled")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="TTS service is not enabled"
+        )
 
     cache_path = os.path.join(_PREVIEW_DIR, f"{voice}.mp3")
 

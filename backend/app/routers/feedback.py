@@ -27,6 +27,7 @@ from app.schemas.feedback import (
     PaginatedFeedbackResponse,
 )
 from app.services import email_service
+from app.utils.pagination import paginate
 
 router = APIRouter(prefix="/api/feedback", tags=["feedback"])
 
@@ -120,18 +121,11 @@ async def list_feedback(
 
     stmt = stmt.order_by(sort_col.desc() if order == "desc" else sort_col.asc())
 
-    total = await db.scalar(select(func.count()).select_from(stmt.subquery()))
-    result = await db.execute(stmt.offset(skip).limit(limit))
-    entries = result.scalars().all()
+    entries, total = await paginate(db, stmt, skip, limit)
 
     items = [await _build_entry_out(e, current_user, db) for e in entries]
 
-    return PaginatedFeedbackResponse(
-        items=items,
-        total=total or 0,
-        skip=skip,
-        limit=limit,
-    )
+    return PaginatedFeedbackResponse(items=items, total=total, skip=skip, limit=limit)
 
 
 # ---------------------------------------------------------------------------

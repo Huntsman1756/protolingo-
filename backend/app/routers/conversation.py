@@ -6,12 +6,10 @@ import struct
 from fastapi import APIRouter, Depends, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
 from jwt.exceptions import PyJWTError
-from redis.asyncio import Redis
 from sqlalchemy import select
 
 from app.core.app_logger import get_logger
 from app.core.config import settings
-from app.core.database import AsyncSessionLocal
 from app.core.deps import MAINTENANCE_KEY, require_subscription
 from app.core.security import decode_access_token
 from app.models.conversation import Conversation as ConversationModel
@@ -21,13 +19,10 @@ from app.services.conversation_pipeline import ConversationPipeline
 from app.services.language_helpers import voice_session_title
 from app.services.llm_adapter import llm_adapter
 from app.services.memory_service import get_user_memories
-from app.services.quota_service import (
-    check_and_increment_sessions,
-    check_daily_minutes,
-    check_monthly_tokens,
-    check_weekly_minutes,
-)
+from app.services.quota_service import check_all_quotas
 from app.services.subscription_service import is_subscribed
+from app.utils.db import db_session
+from app.utils.redis import redis_client as _redis_client
 
 logger = get_logger(__name__)
 
@@ -134,7 +129,7 @@ async def conversation_ws(
         await websocket.close(code=1008)
         return
 
-    async with AsyncSessionLocal() as db:
+    async with db_session() as db:
         user = await db.get(User, user_id)
         if not user or not user.is_active:
             logger.warning(
@@ -145,9 +140,8 @@ async def conversation_ws(
 
         # Check maintenance mode
         try:
-            redis_check = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-            maintenance = await redis_check.get(MAINTENANCE_KEY)
-            await redis_check.aclose()
+            async with _redis_client() as redis_check:
+                maintenance = await redis_check.get(MAINTENANCE_KEY)
             if maintenance == "1":
                 logger.info(
                     "[conversation] Maintenance mode active — closing WS for user %s", user_id
@@ -242,186 +236,104 @@ async def conversation_ws(
     # (already accepted at the top)
 
     # --- Quota checks ---
-    redis = Redis.from_url(settings.REDIS_URL, decode_responses=True)
-    try:
-        # Check monthly token quota (DB-backed) — blocks both chat and voice
-        if monthly_tokens_limit > 0:
-            async with AsyncSessionLocal() as db_quota:
-                tokens_ok, tokens_used, tokens_limit = await check_monthly_tokens(
-                    db_quota, user_id, monthly_tokens_limit
-                )
-            if not tokens_ok:
+    async with _redis_client() as redis:
+        try:
+            max_duration, err_code, err_msg, close_code = await check_all_quotas(
+                redis,
+                user_id,
+                monthly_tokens_limit,
+                daily_minutes_limit,
+                weekly_minutes_limit,
+                weekly_sessions_limit,
+                max_duration,
+            )
+            if err_code is not None:
                 logger.info(
-                    "[conversation] Monthly token quota exceeded — user=%s used=%s limit=%s",
+                    "[conversation] Quota exceeded — user=%s code=%s msg=%s",
                     user_id,
-                    tokens_used,
-                    tokens_limit,
+                    err_code,
+                    err_msg,
                 )
-                await websocket.send_json(
-                    {
-                        "type": "error",
-                        "code": "quota_exceeded_tokens",
-                        "message": f"Monthly token limit reached ({tokens_used}/{tokens_limit} tokens). Voice is unavailable until next month.",
-                    }
-                )
-                await websocket.close(code=1008)
-                await redis.aclose()
+                await websocket.send_json({"type": "error", "code": err_code, "message": err_msg})
+                await websocket.close(code=close_code)  # type: ignore[arg-type]
                 return
+        except Exception as exc:
+            logger.error("[conversation] Quota check failed: %s", exc)
+            raise
 
-        # Check daily minutes first (read-only) so we never waste a weekly session slot
-        daily_ok, minutes_used, minutes_limit = await check_daily_minutes(
-            redis, user_id, daily_minutes_limit
-        )
-        if not daily_ok:
-            logger.info(
-                "[conversation] Daily minutes quota exceeded — user=%s used=%s limit=%s",
-                user_id,
-                minutes_used,
-                minutes_limit,
-            )
+        # Create or reuse a Conversation record so the full transcript is persisted
+        # to the same chat_history table used by text chats — this makes voice
+        # sessions visible & reviewable in the tutor chat sidebar.
+        # The frontend currently never sends conversation_id, so a new record is
+        # always created. The reuse path is kept for future API flexibility.
+        conversation_id: int | None = None
+        try:
+            async with db_session() as db_conv:
+                # Reuse path: if a caller explicitly passes a valid conversation_id
+                # that belongs to this user, append to that conversation.
+                if (
+                    isinstance(client_conversation_id_raw, (int, float))
+                    and int(client_conversation_id_raw) > 0
+                ):
+                    existing = await db_conv.get(ConversationModel, int(client_conversation_id_raw))
+                    if existing and existing.user_id == user_id:
+                        conversation_id = existing.id
+                if conversation_id is None:
+                    conv = ConversationModel(
+                        user_id=user_id,
+                        title=voice_session_title(native_language),
+                        source="voice",
+                    )
+                    db_conv.add(conv)
+                    await db_conv.commit()
+                    await db_conv.refresh(conv)
+                    conversation_id = conv.id
+        except Exception as exc:
+            logger.error("[conversation] Failed to create conversation record: %s", exc)
             await websocket.send_json(
                 {
                     "type": "error",
-                    "code": "quota_exceeded_time",
-                    "message": f"Daily time limit reached ({minutes_used}/{minutes_limit} min).",
+                    "code": "internal_error",
+                    "message": "Failed to initialise conversation session.",
                 }
             )
-            await websocket.close(code=1008)
-            await redis.aclose()
+            await websocket.close(code=1011)
             return
 
-        # Check weekly minutes (read-only)
-        weekly_min_ok, weekly_min_used, weekly_min_limit = await check_weekly_minutes(
-            redis, user_id, weekly_minutes_limit
+        # Fetch user memories for context injection
+        memories = []
+        try:
+            async with db_session() as db_mem:
+                memories = await get_user_memories(db_mem, user_id)
+        except Exception:
+            pass
+
+        pipeline = ConversationPipeline(
+            llm=llm_adapter,
+            tts=tts_service,
+            stt=stt_service,
+            cefr_level=cefr_level,
+            native_language=native_language,
+            target_language=target_language,
+            student_name=student_name,
+            max_duration=max_duration,
+            inactivity_timeout=inactivity_timeout,
+            initial_context=valid_context,
+            user_id=user_id,
+            conversation_id=conversation_id,
+            bio=user_bio,
+            learning_goals=user_learning_goals,
+            memories=memories,
+            voice=voice_pref,
         )
-        if not weekly_min_ok:
-            logger.info(
-                "[conversation] Weekly minutes quota exceeded — user=%s used=%s limit=%s",
-                user_id,
-                weekly_min_used,
-                weekly_min_limit,
-            )
-            await websocket.send_json(
-                {
-                    "type": "error",
-                    "code": "quota_exceeded_weekly_minutes",
-                    "message": f"Weekly time limit reached ({weekly_min_used}/{weekly_min_limit} min).",
-                }
-            )
-            await websocket.close(code=1008)
-            await redis.aclose()
-            return
+        pipeline._redis = redis
 
-        # Then check + increment weekly sessions
-        sessions_ok, sessions_used, sessions_limit = await check_and_increment_sessions(
-            redis, user_id, weekly_sessions_limit
-        )
-        if not sessions_ok:
-            logger.info(
-                "[conversation] Weekly session quota exceeded — user=%s used=%s limit=%s",
-                user_id,
-                sessions_used,
-                sessions_limit,
-            )
-            await websocket.send_json(
-                {
-                    "type": "error",
-                    "code": "quota_exceeded_sessions",
-                    "message": f"Weekly session limit reached ({sessions_used}/{sessions_limit}).",
-                }
-            )
-            await websocket.close(code=1008)
-            await redis.aclose()
-            return
-
-        # Cap session max_duration to remaining daily minutes if limited
-        if daily_minutes_limit > 0:
-            remaining_seconds = (daily_minutes_limit - minutes_used) * 60
-            max_duration = min(max_duration, remaining_seconds)
-        # Cap session max_duration to remaining weekly minutes if limited
-        if weekly_minutes_limit > 0:
-            remaining_weekly_seconds = (weekly_minutes_limit - weekly_min_used) * 60
-            max_duration = min(max_duration, remaining_weekly_seconds)
-    except Exception as exc:
-        logger.error("[conversation] Quota check failed: %s", exc)
-        await redis.aclose()
-        raise
-
-    # Create or reuse a Conversation record so the full transcript is persisted
-    # to the same chat_history table used by text chats — this makes voice
-    # sessions visible & reviewable in the tutor chat sidebar.
-    # The frontend currently never sends conversation_id, so a new record is
-    # always created. The reuse path is kept for future API flexibility.
-    conversation_id: int | None = None
-    try:
-        async with AsyncSessionLocal() as db_conv:
-            # Reuse path: if a caller explicitly passes a valid conversation_id
-            # that belongs to this user, append to that conversation.
-            if (
-                isinstance(client_conversation_id_raw, (int, float))
-                and int(client_conversation_id_raw) > 0
-            ):
-                existing = await db_conv.get(ConversationModel, int(client_conversation_id_raw))
-                if existing and existing.user_id == user_id:
-                    conversation_id = existing.id
-            if conversation_id is None:
-                conv = ConversationModel(
-                    user_id=user_id,
-                    title=voice_session_title(native_language),
-                    source="voice",
-                )
-                db_conv.add(conv)
-                await db_conv.commit()
-                await db_conv.refresh(conv)
-                conversation_id = conv.id
-    except Exception as exc:
-        logger.error("[conversation] Failed to create conversation record: %s", exc)
-        await websocket.send_json(
-            {
-                "type": "error",
-                "code": "internal_error",
-                "message": "Failed to initialise conversation session.",
-            }
-        )
-        await websocket.close(code=1011)
-        await redis.aclose()
-        return
-
-    # Fetch user memories for context injection
-    memories = []
-    try:
-        async with AsyncSessionLocal() as db_mem:
-            memories = await get_user_memories(db_mem, user_id)
-    except Exception:
-        pass
-
-    pipeline = ConversationPipeline(
-        llm=llm_adapter,
-        tts=tts_service,
-        stt=stt_service,
-        cefr_level=cefr_level,
-        native_language=native_language,
-        target_language=target_language,
-        student_name=student_name,
-        max_duration=max_duration,
-        inactivity_timeout=inactivity_timeout,
-        initial_context=valid_context,
-        user_id=user_id,
-        conversation_id=conversation_id,
-        bio=user_bio,
-        learning_goals=user_learning_goals,
-        memories=memories,
-        voice=voice_pref,
-    )
-    pipeline._redis = redis
-
-    try:
-        await pipeline.run(websocket)
-    except WebSocketDisconnect:
-        logger.info("[conversation] WebSocketDisconnect — user=%s", user_id)
-    except asyncio.CancelledError:
-        logger.info("[conversation] CancelledError — user=%s", user_id)
-    finally:
-        await pipeline.cleanup()
-        await redis.aclose()
-        logger.info("[conversation] Session ended — user=%s", user_id)
+        try:
+            await pipeline.run(websocket)
+        except WebSocketDisconnect:
+            logger.info("[conversation] WebSocketDisconnect — user=%s", user_id)
+        except asyncio.CancelledError:
+            logger.info("[conversation] CancelledError — user=%s", user_id)
+        finally:
+            await pipeline.cleanup()
+            logger.info("[conversation] Session ended — user=%s", user_id)

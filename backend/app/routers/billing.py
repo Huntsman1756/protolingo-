@@ -6,11 +6,11 @@ The webhook endpoint verifies the Stripe signature before processing any event.
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Literal
 
 import stripe
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -71,7 +71,9 @@ async def create_checkout_session(
         settings.STRIPE_PRICE_MONTHLY if body.plan == "monthly" else settings.STRIPE_PRICE_YEARLY
     )
     if not price_id:
-        raise HTTPException(status_code=503, detail="Stripe prices not configured")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Stripe prices not configured"
+        )
 
     # Get or create Stripe Customer
     customer_id = current_user.stripe_customer_id
@@ -110,7 +112,9 @@ async def create_portal_session(
 ) -> dict:
     """Create a Stripe Customer Portal session for subscription management."""
     if not current_user.stripe_customer_id:
-        raise HTTPException(status_code=400, detail="No active subscription found")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="No active subscription found"
+        )
 
     session = stripe.billing_portal.Session.create(
         customer=current_user.stripe_customer_id,
@@ -137,10 +141,10 @@ async def stripe_webhook(
         event = stripe.Webhook.construct_event(payload, sig_header, settings.STRIPE_WEBHOOK_SECRET)
     except ValueError:
         logger.warning("[billing] Webhook invalid payload")
-        raise HTTPException(status_code=400, detail="Invalid payload")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid payload")
     except stripe.SignatureVerificationError:
         logger.warning("[billing] Webhook invalid signature")
-        raise HTTPException(status_code=400, detail="Invalid signature")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid signature")
 
     event_type: str = event["type"]
     logger.info("[billing] Stripe event received: %s", event_type)
@@ -182,7 +186,7 @@ def _subscription_period_end(sub: object) -> datetime | None:
             if data:
                 period_end = _sget(data[0], "current_period_end")
     if period_end is not None:
-        return datetime.utcfromtimestamp(int(period_end))
+        return datetime.fromtimestamp(int(period_end), UTC)
     return None
 
 

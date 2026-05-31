@@ -1,7 +1,7 @@
 import os
 
 os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///:memory:"
-os.environ["SECRET_KEY"] = "test-secret-key-for-pytest"
+os.environ["SECRET_KEY"] = "test-secret-key-for-pytest-ci-32b"
 os.environ["RATE_LIMIT_ENABLED"] = "false"
 
 import pytest

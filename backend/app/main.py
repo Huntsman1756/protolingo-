@@ -6,14 +6,13 @@ from contextlib import asynccontextmanager
 from alembic.config import Config
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from alembic import command
 from app.core.config import settings
-from app.core.database import engine
 from app.core.limiter import limiter
 
 logging.basicConfig(
@@ -43,6 +42,7 @@ from app.routers import (
     tts,
 )
 from app.routers import config as config_router
+from app.routers import health as health_router
 from app.services.stt_service import OpenAISTTService, WhisperSTTService
 from app.services.tts_service import KokoroTTSService, OpenAITTSService
 
@@ -139,6 +139,7 @@ app.include_router(config_router.router)
 app.include_router(contact.router)
 app.include_router(feedback.router)
 app.include_router(memories.router)
+app.include_router(health_router.router)
 
 if settings.STRIPE_ENABLED:
     import stripe as _stripe
@@ -153,55 +154,3 @@ if settings.STRIPE_ENABLED:
 # check_dir=False avoids a startup error in environments where the directory does
 # not exist yet (e.g. local dev without Docker); the dir is created in lifespan.
 app.mount("/api/avatars", StaticFiles(directory=_AVATARS_DIR, check_dir=False), name="avatars")
-
-
-@app.get("/health")
-async def health(request: Request) -> JSONResponse:
-    checks: dict[str, str] = {}
-    ok = True
-
-    # Database
-    try:
-        async with engine.connect() as conn:
-            await conn.execute(__import__("sqlalchemy", fromlist=["text"]).text("SELECT 1"))
-        checks["db"] = "ok"
-    except Exception as exc:
-        checks["db"] = f"error: {exc}"
-        ok = False
-
-    # Redis
-    try:
-        from redis.asyncio import Redis as AioRedis
-
-        redis = AioRedis.from_url(settings.REDIS_URL, decode_responses=True)
-        await redis.ping()
-        await redis.aclose()
-        checks["redis"] = "ok"
-    except Exception as exc:
-        checks["redis"] = f"error: {exc}"
-        ok = False
-
-    # TTS
-    try:
-        tts = getattr(request.app.state, "tts_service", None)
-        if tts is not None:
-            await tts.health()
-        checks["tts"] = "ok"
-    except Exception as exc:
-        checks["tts"] = f"error: {exc}"
-        ok = False
-
-    # STT
-    try:
-        stt = getattr(request.app.state, "stt_service", None)
-        if stt is not None:
-            await stt.health()
-        checks["stt"] = "ok"
-    except Exception as exc:
-        checks["stt"] = f"error: {exc}"
-        ok = False
-
-    status_code = 200 if ok else 503
-    return JSONResponse(
-        {"status": "ok" if ok else "degraded", "checks": checks}, status_code=status_code
-    )

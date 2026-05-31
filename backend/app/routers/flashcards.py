@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -91,7 +91,7 @@ async def review_flashcard(
 ):
     card = await db.get(Flashcard, card_id)
     if not card or card.user_id != current_user.id:
-        raise HTTPException(status_code=404, detail="Flashcard not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Flashcard not found")
 
     card = sm2_update(card, data.quality)
     await db.commit()
@@ -134,8 +134,16 @@ async def generate_flashcards_endpoint(
         await db.commit()
         return result
     except LLMTimeoutError:
-        raise HTTPException(status_code=504, detail="The AI model took too long.")
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT, detail="The AI model took too long."
+        )
     except LLMUnavailableError as e:
-        raise HTTPException(status_code=503, detail=f"AI service unavailable: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"AI service unavailable: {str(e)}",
+        )
     except LLMError as e:
-        raise HTTPException(status_code=502, detail=f"Failed to generate flashcards: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"Failed to generate flashcards: {str(e)}",
+        )
