@@ -1,5 +1,5 @@
 import re
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
@@ -105,7 +105,7 @@ async def complete_lesson(
     lesson = await _get_lesson_for_user(lesson_id, current_user.id, db)
 
     lesson.is_completed = True
-    lesson.completed_at = datetime.now(timezone.utc).replace(tzinfo=None)
+    lesson.completed_at = datetime.now(UTC).replace(tzinfo=None)
     await db.commit()
     await db.refresh(lesson)
 
@@ -255,7 +255,7 @@ async def answer_exercise(
         )
 
     exercise.user_answer = data.answer
-    exercise.answered_at = datetime.now(timezone.utc).replace(tzinfo=None)
+    exercise.answered_at = datetime.now(UTC).replace(tzinfo=None)
     await db.commit()
     await db.refresh(exercise)
 

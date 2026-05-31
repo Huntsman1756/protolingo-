@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 
 from sqlalchemy import Boolean, DateTime, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
@@ -46,6 +46,6 @@ class User(Base):
     bio: Mapped[str | None] = mapped_column(Text, nullable=True)
     learning_goals: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON array string
     created_at: Mapped[datetime] = mapped_column(
-        DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None)
+        DateTime, nullable=False, default=lambda: datetime.now(UTC).replace(tzinfo=None)
     )
     last_login: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)

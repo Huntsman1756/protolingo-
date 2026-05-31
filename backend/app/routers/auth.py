@@ -1,7 +1,7 @@
 import json
 import os
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 
 from fastapi import APIRouter, Depends, File, HTTPException, Request, Response, UploadFile, status
 from redis.asyncio import Redis
@@ -151,7 +151,7 @@ async def login(
     if not password_ok or not user or not user.is_active:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
 
-    user.last_login = datetime.now(timezone.utc).replace(tzinfo=None)
+    user.last_login = datetime.now(UTC).replace(tzinfo=None)
     await db.commit()
 
     access_token = create_access_token(user.id, user.role)
@@ -300,7 +300,7 @@ async def upload_avatar(
         f.write(data)
 
     # Append a timestamp to bust the browser cache on re-upload
-    ts = int(datetime.now(timezone.utc).timestamp())
+    ts = int(datetime.now(UTC).timestamp())
     current_user.avatar = f"/api/avatars/{filename}?v={ts}"
     await db.commit()
     await db.refresh(current_user)

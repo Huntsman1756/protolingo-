@@ -4,7 +4,7 @@ import asyncio
 import json
 import re
 import time
-from datetime import datetime, timezone
+from datetime import datetime, UTC
 from typing import TYPE_CHECKING
 
 from app.core.app_logger import get_logger
@@ -534,7 +534,7 @@ class ConversationPipeline:
                 await db.execute(
                     update(Conversation)
                     .where(Conversation.id == self._conversation_id)
-                    .values(updated_at=datetime.now(timezone.utc).replace(tzinfo=None))
+                    .values(updated_at=datetime.now(UTC).replace(tzinfo=None))
                 )
                 await db.commit()
         except Exception:

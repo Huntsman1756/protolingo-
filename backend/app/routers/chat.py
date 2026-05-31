@@ -1,5 +1,5 @@
 import json
-from datetime import date, datetime, timezone
+from datetime import date, datetime, UTC
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import StreamingResponse
@@ -335,7 +335,7 @@ async def chat(
                     content=clean_response,
                 )
             )
-            conv.updated_at = datetime.now(timezone.utc).replace(tzinfo=None)
+            conv.updated_at = datetime.now(UTC).replace(tzinfo=None)
             await db.commit()
 
             # Extract and persist memories (best-effort, non-blocking)

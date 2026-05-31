@@ -13,30 +13,30 @@ A limit of 0 means unlimited.
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, UTC
 
 # ── Key helpers ──────────────────────────────────────────────────────────────
 
 
 def _week_key(user_id: int) -> str:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     year, week, _ = now.isocalendar()
     return f"conv_sessions:{user_id}:{year}-W{week:02d}"
 
 
 def _day_key(user_id: int) -> str:
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
     return f"conv_seconds:{user_id}:{today}"
 
 
 def _weekly_seconds_key(user_id: int) -> str:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     year, week, _ = now.isocalendar()
     return f"conv_weekly_seconds:{user_id}:{year}-W{week:02d}"
 
 
 def _seconds_until_monday() -> int:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     days_ahead = 7 - now.weekday()  # weekday: 0=Mon ... 6=Sun
     next_monday = (now + timedelta(days=days_ahead)).replace(
         hour=0, minute=0, second=0, microsecond=0
@@ -45,7 +45,7 @@ def _seconds_until_monday() -> int:
 
 
 def _seconds_until_midnight() -> int:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     tomorrow = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
     return max(int((tomorrow - now).total_seconds()), 1)
 
@@ -167,7 +167,7 @@ async def get_monthly_tokens_used(db: object, user_id: int) -> int:
 
     from app.models.llm_usage import LLMUsage  # noqa: PLC0415
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
     result = await db.scalar(  # type: ignore[attr-defined]
         select(func.coalesce(func.sum(LLMUsage.total_tokens), 0)).where(
