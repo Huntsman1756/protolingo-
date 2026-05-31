@@ -12,6 +12,14 @@ class FlashcardCreate(BaseModel):
     translation: str
 
 
+class FlashcardBulkCreate(BaseModel):
+    flashcards: list[FlashcardCreate]
+
+
+class FlashcardBulkResponse(BaseModel):
+    created: int
+
+
 class FlashcardReview(BaseModel):
     quality: int
 

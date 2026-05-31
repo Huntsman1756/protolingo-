@@ -96,6 +96,7 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 | GET | `/due` | Cards pending review today (SM-2 ordering) |
 | GET | `/all` | All user's flashcards |
 | POST | `/` | Creates flashcard manually |
+| POST | `/bulk` | Creates multiple flashcards at once; skips duplicates (by word) for the user |
 | POST | `/{card_id}/review` | Records SM-2 review (quality 0–5) |
 | POST | `/generate` | Generates N flashcards via LLM with native-language translations |
 
