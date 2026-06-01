@@ -177,6 +177,13 @@ class UserUpdateRequest(BaseModel):
             )
         return v
 
+    @field_validator("ui_locale", mode="before")
+    @classmethod
+    def empty_string_to_none(cls, v: str | None) -> str | None:
+        if v == "":
+            return None
+        return v
+
     @field_validator("ui_locale")
     @classmethod
     def validate_ui_locale(cls, v: str | None) -> str | None:
