@@ -249,7 +249,7 @@ async def get_vocabulary_flashcards(
     items_res = await db.execute(
         select(Flashcard)
         .where(*filters)
-        .order_by(Flashcard.word)
+        .order_by(func.lower(Flashcard.word))
         .offset((page - 1) * limit)
         .limit(limit)
     )
