@@ -68,6 +68,13 @@ class FlashcardListResponse(BaseModel):
     total: int
 
 
+class VocabularyListResponse(BaseModel):
+    items: list[FlashcardResponse]
+    total: int
+    page: int
+    pages: int
+
+
 class GeneratedFlashcard(BaseModel):
     word: str
     definition: str

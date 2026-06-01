@@ -76,10 +76,11 @@ export function ConversationSection() {
                 key={val}
                 type="button"
                 onClick={() => setConvMaxDuration(val)}
-                className={`flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors ${convMaxDuration === val
+                className={`flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors ${
+                  convMaxDuration === val
                     ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                     : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
+                }`}
               >
                 {val === 900 ? t('min15') : t('min30')}
               </button>
@@ -97,10 +98,11 @@ export function ConversationSection() {
                 key={val}
                 type="button"
                 onClick={() => setConvInactivityTimeout(val)}
-                className={`flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors ${convInactivityTimeout === val
+                className={`flex-1 border py-3 font-mono text-xs tracking-widest uppercase transition-colors ${
+                  convInactivityTimeout === val
                     ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                     : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                  }`}
+                }`}
               >
                 {val === 60 ? t('min1') : val === 180 ? t('min3') : t('min5')}
               </button>

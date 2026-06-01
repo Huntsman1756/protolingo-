@@ -30,7 +30,14 @@ export default function ChatPage() {
   const tCommon = useTranslations('common')
   const router = useRouter()
   const user = useAuthStore((s) => s.user)
-  const { selectedWord, tooltipPos, saveState, handleTextMouseUp, handleSaveWord, dismissTooltip } = useWordSave()
+  const {
+    selectedWord,
+    tooltipPos,
+    saveState,
+    handleTextMouseUp,
+    handleSaveWord,
+    dismissTooltip,
+  } = useWordSave()
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeId, setActiveId] = useState<number | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
@@ -262,10 +269,11 @@ export default function ChatPage() {
                     <div
                       key={c.id}
                       onClick={() => selectConversation(c.id)}
-                      className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${activeId === c.id
-                        ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
-                        : 'hover:bg-fl-surface border-l-2 border-l-transparent'
-                        }`}
+                      className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${
+                        activeId === c.id
+                          ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
+                          : 'hover:bg-fl-surface border-l-2 border-l-transparent'
+                      }`}
                     >
                       <span
                         className={`text-fl-label truncate pr-1 font-mono leading-tight ${activeId === c.id ? 'text-fl-fg' : 'text-fl-muted-1'}`}
@@ -383,10 +391,11 @@ export default function ChatPage() {
                     </div>
                     <div className={`max-w-[75%] text-left`}>
                       <div
-                        className={`border px-4 py-3 font-mono text-sm leading-relaxed ${msg.role === 'user'
-                          ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
-                          : 'bg-fl-surface text-fl-fg-2 border-fl-border'
-                          }`}
+                        className={`word-selectable max-w-[75%] border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
+                          msg.role === 'user'
+                            ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
+                            : 'bg-fl-surface text-fl-fg-2 border-fl-border'
+                        }`}
                         onMouseUp={
                           msg.role === 'assistant'
                             ? () => handleTextMouseUp(msg.content)

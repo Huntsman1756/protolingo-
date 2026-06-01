@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -18,15 +19,6 @@ interface CardData {
   interval: number
   repetitions: number
   source?: string | null
-}
-
-interface VocabCard {
-  id: number
-  word: string
-  definition: string
-  example_sentence: string
-  translation: string
-  source: string
 }
 
 const QUALITY_BUTTONS = [
@@ -47,10 +39,6 @@ export default function FlashcardsPage() {
   const [loading, setLoading] = useState(true)
   const [total, setTotal] = useState(0)
   const [showGenerate, setShowGenerate] = useState(false)
-  const [showVocabulary, setShowVocabulary] = useState(false)
-  const [vocabCards, setVocabCards] = useState<VocabCard[]>([])
-  const [vocabLoading, setVocabLoading] = useState(false)
-  const [deletingId, setDeletingId] = useState<number | null>(null)
   const [genTopic, setGenTopic] = useState('')
   const [genCount, setGenCount] = useState(10)
   const [genCefr, setGenCefr] = useState('B1')
@@ -138,42 +126,6 @@ export default function FlashcardsPage() {
     }
   }
 
-  async function loadVocabulary() {
-    setVocabLoading(true)
-    try {
-      const res = await apiFetch('/api/flashcards/vocabulary')
-      if (res.ok) {
-        const data = await res.json()
-        setVocabCards(data)
-      }
-    } catch {
-      /* ignore */
-    } finally {
-      setVocabLoading(false)
-    }
-  }
-
-  function toggleVocabulary() {
-    const next = !showVocabulary
-    setShowVocabulary(next)
-    if (next) {
-      setShowGenerate(false)
-      loadVocabulary()
-    }
-  }
-
-  async function deleteVocabCard(id: number) {
-    setDeletingId(id)
-    try {
-      await apiFetch(`/api/flashcards/${id}`, { method: 'DELETE' })
-      setVocabCards((prev) => prev.filter((c) => c.id !== id))
-    } catch {
-      /* ignore */
-    } finally {
-      setDeletingId(null)
-    }
-  }
-
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -198,82 +150,26 @@ export default function FlashcardsPage() {
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            onClick={toggleVocabulary}
-            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showVocabulary
-              ? 'border-fl-border-2 text-fl-fg'
-              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-              }`}
+          <Link
+            href="/flashcards/vocabulary"
+            className="text-fl-label border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors"
           >
             {t('myVocabularyBtn')}
-          </button>
+          </Link>
           <button
             onClick={() => {
               setShowGenerate(!showGenerate)
-              setShowVocabulary(false)
             }}
-            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showGenerate
-              ? 'border-fl-border-2 text-fl-fg'
-              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-              }`}
+            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
+              showGenerate
+                ? 'border-fl-border-2 text-fl-fg'
+                : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
+            }`}
           >
             + {t('generateBtn')}
           </button>
         </div>
       </div>
-
-      {/* Vocabulary panel */}
-      {showVocabulary && (
-        <div className="border-fl-border bg-fl-surface border">
-          <div className="border-fl-border flex items-center gap-2 border-b px-5 py-4">
-            <span className="text-fl-label text-fl-muted-3">●</span>
-            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
-              {t('myVocabulary')}
-            </span>
-          </div>
-          {vocabLoading ? (
-            <p className="text-fl-muted-3 animate-pulse p-5 font-mono text-xs tracking-widest uppercase">
-              {tCommon('loading')}
-            </p>
-          ) : vocabCards.length === 0 ? (
-            <p className="text-fl-muted-3 p-5 font-mono text-xs tracking-widest uppercase">
-              {t('myVocabularyEmpty')}
-            </p>
-          ) : (
-            <div className="divide-fl-border divide-y">
-              {vocabCards.map((card) => (
-                <div
-                  key={card.id}
-                  className="flex items-start justify-between gap-4 px-5 py-3"
-                >
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <p className="text-fl-fg font-mono text-xs font-bold">
-                        {card.word}
-                      </p>
-                      <AudioPlayer text={card.word} size="sm" />
-                    </div>
-                    <p className="text-fl-muted-2 mt-0.5 font-mono text-xs leading-relaxed">
-                      {card.definition}
-                    </p>
-                    <p className="text-fl-muted-3 text-fl-label mt-1 font-mono tracking-widest uppercase">
-                      {card.translation}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => deleteVocabCard(card.id)}
-                    disabled={deletingId === card.id}
-                    className="text-fl-muted-3 shrink-0 font-mono text-xs transition-colors hover:text-red-400 disabled:opacity-40"
-                    aria-label="Delete"
-                  >
-                    ✕
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
 
       {/* Generate panel */}
       {showGenerate && (

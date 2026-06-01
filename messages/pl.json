@@ -549,7 +549,12 @@
     "cards": "karty",
     "myVocabularyBtn": "Mój słownik",
     "myVocabulary": "Mój słownik",
-    "myVocabularyEmpty": "Nie zapisano jeszcze żadnych słów. Zaznacz słowo podczas czytania, aby je tutaj zapisać."
+    "myVocabularyEmpty": "Nie zapisano jeszcze żadnych słów. Zaznacz słowo podczas czytania, aby je tutaj zapisać.",
+    "vocabularySearch": "Szukaj słów...",
+    "vocabularyPageInfo": "Strona {page} z {pages}",
+    "vocabularyPrev": "Poprz.",
+    "vocabularyNext": "Nast.",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "Korepetytor AI",

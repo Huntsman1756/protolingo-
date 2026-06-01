@@ -549,7 +549,12 @@
     "cards": "kaarten",
     "myVocabularyBtn": "Mijn woordenschat",
     "myVocabulary": "Mijn woordenschat",
-    "myVocabularyEmpty": "Nog geen woorden opgeslagen. Selecteer een woord tijdens het lezen om het hier op te slaan."
+    "myVocabularyEmpty": "Nog geen woorden opgeslagen. Selecteer een woord tijdens het lezen om het hier op te slaan.",
+    "vocabularySearch": "Woorden zoeken...",
+    "vocabularyPageInfo": "Pagina {page} van {pages}",
+    "vocabularyPrev": "Vorige",
+    "vocabularyNext": "Volgende",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "AI-tutor",

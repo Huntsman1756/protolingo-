@@ -79,28 +79,31 @@ export default function DurationSelector({
                 <button
                   key={opt.weeks}
                   onClick={() => onSelectDuration(opt)}
-                  className={`border px-4 py-3 text-left transition-colors ${selectedWeeks === opt.weeks
+                  className={`border px-4 py-3 text-left transition-colors ${
+                    selectedWeeks === opt.weeks
                       ? 'bg-fl-fg text-fl-bg border-fl-fg'
                       : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  }`}
                 >
                   <p className="font-mono text-xs font-bold tracking-widest uppercase">
                     {t('nWeeks', { count: opt.weeks })}
                   </p>
                   <p
-                    className={`text-fl-hint mt-0.5 font-mono ${selectedWeeks === opt.weeks
+                    className={`text-fl-hint mt-0.5 font-mono ${
+                      selectedWeeks === opt.weeks
                         ? 'opacity-70'
                         : 'text-fl-muted-3'
-                      }`}
+                    }`}
                   >
                     {intensityMap[opt.intensity]} ·{' '}
                     {t('approxLessons', { count: opt.weeks * opt.daysPerWeek })}
                   </p>
                   <p
-                    className={`text-fl-hint mt-0.5 font-mono ${selectedWeeks === opt.weeks
+                    className={`text-fl-hint mt-0.5 font-mono ${
+                      selectedWeeks === opt.weeks
                         ? 'opacity-60'
                         : 'text-fl-muted-3'
-                      }`}
+                    }`}
                   >
                     {t('daysPerWeek', { count: opt.daysPerWeek })}
                   </p>
@@ -119,10 +122,11 @@ export default function DurationSelector({
                 <button
                   key={g.id}
                   onClick={() => onToggleGoal(g.id)}
-                  className={`border px-3 py-1.5 font-mono text-xs tracking-widest uppercase transition-colors ${selectedGoals.includes(g.id)
+                  className={`border px-3 py-1.5 font-mono text-xs tracking-widest uppercase transition-colors ${
+                    selectedGoals.includes(g.id)
                       ? 'bg-fl-fg text-fl-bg border-fl-fg'
                       : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                    }`}
+                  }`}
                 >
                   {selectedGoals.includes(g.id) ? '✓ ' : ''}
                   {t(
@@ -154,12 +158,12 @@ export default function DurationSelector({
               <span className="text-fl-fg">
                 {selectedGoals.length > 0
                   ? selectedGoals
-                    .map((g) =>
-                      t(
-                        `goals.${g as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`
+                      .map((g) =>
+                        t(
+                          `goals.${g as 'grammar' | 'vocabulary' | 'reading' | 'writing' | 'conversation' | 'listening'}`
+                        )
                       )
-                    )
-                    .join(', ')
+                      .join(', ')
                   : t('noneSelected')}
               </span>
             </p>

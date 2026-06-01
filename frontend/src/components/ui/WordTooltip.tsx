@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { apiFetch } from '@/lib/api'
 
 // ---------------------------------------------------------------------------
@@ -88,11 +88,11 @@ export function useWordSave() {
   const [tooltipPos, setTooltipPos] = useState<TooltipPos>({ x: 0, y: 0 })
   const [saveState, setSaveState] = useState<SaveState>('idle')
 
-  function dismissTooltip() {
+  const dismissTooltip = useCallback(() => {
     setSelectedWord(null)
     setSaveState('idle')
     window.getSelection()?.removeAllRanges()
-  }
+  }, [])
 
   function handleTextMouseUp(context: string, cefrLevel = 'B1') {
     const selection = window.getSelection()

@@ -166,9 +166,10 @@ async def test_get_vocabulary_flashcards(client, test_user, db_session):
     response = await client.get("/api/flashcards/vocabulary", headers=headers)
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 1
-    assert data[0]["word"] == "ephemeral"
-    assert data[0]["source"] == "from_text"
+    assert data["total"] == 1
+    assert len(data["items"]) == 1
+    assert data["items"][0]["word"] == "ephemeral"
+    assert data["items"][0]["source"] == "from_text"
 
 
 @pytest.mark.asyncio
@@ -194,7 +195,8 @@ async def test_delete_flashcard(client, test_user, db_session):
     # Confirm deletion
     response = await client.get("/api/flashcards/vocabulary", headers=headers)
     assert response.status_code == 200
-    assert response.json() == []
+    assert response.json()["total"] == 0
+    assert response.json()["items"] == []
 
 
 @pytest.mark.asyncio

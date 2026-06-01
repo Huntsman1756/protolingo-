@@ -350,10 +350,10 @@ async def chat(
                     await db.rollback()
                     logger.debug("Failed to save memories — ignored")
 
-            yield f"data: {json.dumps({'done': True})}\n\n"
-
             if memory_updated:
                 yield f"data: {json.dumps({'memory_updated': True})}\n\n"
+
+            yield f"data: {json.dumps({'done': True})}\n\n"
 
             # Persist token usage best-effort in a separate transaction
             if isinstance(stream, LLMStream) and (

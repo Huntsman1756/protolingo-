@@ -549,7 +549,12 @@
     "cards": "карточек",
     "myVocabularyBtn": "Мой словарь",
     "myVocabulary": "Мой словарь",
-    "myVocabularyEmpty": "Слов ещё нет. Выдели слово во время чтения, чтобы сохранить его здесь."
+    "myVocabularyEmpty": "Слов ещё нет. Выдели слово во время чтения, чтобы сохранить его здесь.",
+    "vocabularySearch": "Поиск слов...",
+    "vocabularyPageInfo": "Страница {page} из {pages}",
+    "vocabularyPrev": "Назад",
+    "vocabularyNext": "Вперёд",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "ИИ-репетитор",

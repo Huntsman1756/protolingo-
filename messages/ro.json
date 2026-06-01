@@ -549,7 +549,12 @@
     "cards": "carduri",
     "myVocabularyBtn": "Vocabularul meu",
     "myVocabulary": "Vocabularul meu",
-    "myVocabularyEmpty": "Niciun cuvânt salvat încă. Selectează un cuvânt în timp ce citeşti pentru a-l salva aici."
+    "myVocabularyEmpty": "Niciun cuvânt salvat încă. Selectează un cuvânt în timp ce citeşti pentru a-l salva aici.",
+    "vocabularySearch": "Caută cuvinte...",
+    "vocabularyPageInfo": "Pagina {page} din {pages}",
+    "vocabularyPrev": "Prec.",
+    "vocabularyNext": "Urm.",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "Tutore AI",

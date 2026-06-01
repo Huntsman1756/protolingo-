@@ -549,7 +549,12 @@
     "cards": "cartas",
     "myVocabularyBtn": "Meu vocabulário",
     "myVocabulary": "Meu vocabulário",
-    "myVocabularyEmpty": "Nenhuma palavra guardada ainda. Seleciona uma palavra ao ler para guardá-la aqui."
+    "myVocabularyEmpty": "Nenhuma palavra guardada ainda. Seleciona uma palavra ao ler para guardá-la aqui.",
+    "vocabularySearch": "Pesquisar palavras...",
+    "vocabularyPageInfo": "Página {page} de {pages}",
+    "vocabularyPrev": "Ant.",
+    "vocabularyNext": "Seg.",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "Tutor IA",

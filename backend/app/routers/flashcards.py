@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -17,6 +17,7 @@ from app.schemas.flashcards import (
     FlashcardListResponse,
     FlashcardResponse,
     FlashcardReview,
+    VocabularyListResponse,
 )
 from app.services.flashcard_sm2 import generate_flashcards, lookup_word, sm2_update
 from app.services.llm_adapter import (
@@ -227,20 +228,35 @@ async def create_flashcard_from_word(
     return card
 
 
-@router.get("/vocabulary", response_model=list[FlashcardResponse])
+@router.get("/vocabulary", response_model=VocabularyListResponse)
 async def get_vocabulary_flashcards(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    page: int = Query(1, ge=1),
+    limit: int = Query(10, ge=1, le=100),
+    search: str = Query(""),
 ):
-    result = await db.execute(
+    filters = [
+        Flashcard.user_id == current_user.id,
+        Flashcard.source == "from_text",
+    ]
+    if search:
+        filters.append(Flashcard.word.ilike(f"%{search}%"))
+
+    total_res = await db.execute(select(func.count(Flashcard.id)).where(*filters))
+    total = total_res.scalar() or 0
+
+    items_res = await db.execute(
         select(Flashcard)
-        .where(
-            Flashcard.user_id == current_user.id,
-            Flashcard.source == "from_text",
-        )
-        .order_by(Flashcard.created_at.desc())
+        .where(*filters)
+        .order_by(Flashcard.word)
+        .offset((page - 1) * limit)
+        .limit(limit)
     )
-    return result.scalars().all()
+    items = items_res.scalars().all()
+
+    pages = max(1, (total + limit - 1) // limit)
+    return VocabularyListResponse(items=items, total=total, page=page, pages=pages)
 
 
 @router.delete("/{card_id}", status_code=status.HTTP_204_NO_CONTENT)

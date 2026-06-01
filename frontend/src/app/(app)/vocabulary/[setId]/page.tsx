@@ -127,9 +127,7 @@ export default function VocabularySetPage({
                 disabled={adding}
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-5 py-2.5 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
               >
-                {adding
-                  ? '...'
-                  : t('addAll', { count: vocabSet.words.length })}
+                {adding ? '...' : t('addAll', { count: vocabSet.words.length })}
               </button>
             </div>
           )}
