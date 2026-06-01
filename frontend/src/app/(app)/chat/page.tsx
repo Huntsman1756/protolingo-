@@ -383,7 +383,7 @@ export default function ChatPage() {
                     </div>
                     <div className={`max-w-[75%] text-left`}>
                       <div
-                        className={`border px-4 py-3 font-mono text-sm leading-relaxed ${msg.role === 'user'
+                        className={`max-w-[75%] text-left word-selectable border px-4 py-3 font-mono text-sm leading-relaxed ${msg.role === 'user'
                           ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                           : 'bg-fl-surface text-fl-fg-2 border-fl-border'
                           }`}

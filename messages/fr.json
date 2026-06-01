@@ -549,7 +549,12 @@
     "cards": "cartes",
     "myVocabularyBtn": "Mon vocabulaire",
     "myVocabulary": "Mon vocabulaire",
-    "myVocabularyEmpty": "Aucun mot enregistré pour l’instant. Sélectionne un mot en lisant pour le sauvegarder ici."
+    "myVocabularyEmpty": "Aucun mot enregistré pour l’instant. Sélectionne un mot en lisant pour le sauvegarder ici.",
+    "vocabularySearch": "Rechercher des mots...",
+    "vocabularyPageInfo": "Page {page} sur {pages}",
+    "vocabularyPrev": "Préc.",
+    "vocabularyNext": "Suiv.",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "Tuteur IA",

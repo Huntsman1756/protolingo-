@@ -549,7 +549,12 @@
     "cards": "cards",
     "myVocabularyBtn": "My Vocabulary",
     "myVocabulary": "My Vocabulary",
-    "myVocabularyEmpty": "No saved words yet. Select a word while reading to save it here."
+    "myVocabularyEmpty": "No saved words yet. Select a word while reading to save it here.",
+    "vocabularySearch": "Search words...",
+    "vocabularyPageInfo": "Page {page} of {pages}",
+    "vocabularyPrev": "Prev",
+    "vocabularyNext": "Next",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "AI Tutor",

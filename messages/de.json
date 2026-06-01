@@ -549,7 +549,12 @@
     "cards": "Karten",
     "myVocabularyBtn": "Mein Vokabular",
     "myVocabulary": "Mein Vokabular",
-    "myVocabularyEmpty": "Noch keine Wörter gespeichert. Wähle beim Lesen ein Wort aus, um es hier zu speichern."
+    "myVocabularyEmpty": "Noch keine Wörter gespeichert. Wähle beim Lesen ein Wort aus, um es hier zu speichern.",
+    "vocabularySearch": "Wörter suchen...",
+    "vocabularyPageInfo": "Seite {page} von {pages}",
+    "vocabularyPrev": "Zurück",
+    "vocabularyNext": "Weiter",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "KI-Tutor",

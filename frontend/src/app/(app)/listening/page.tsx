@@ -407,7 +407,7 @@ function ListeningPage() {
                   </div>
                 </div>
                 <p
-                  className="text-fl-label text-fl-muted-2 border-fl-border mb-3 cursor-text border-t pt-3 font-mono leading-relaxed select-text"
+                  className="text-fl-label text-fl-muted-2 border-fl-border mb-3 cursor-text border-t pt-3 font-mono leading-relaxed select-text word-selectable"
                   onMouseUp={() => handleTextMouseUp(item.text, item.exercise.level ?? 'B1')}
                 >
                   {item.text}
@@ -492,7 +492,7 @@ function ListeningPage() {
           </p>
           <div className="border-fl-border bg-fl-surface border p-4">
             <p
-              className="text-fl-fg cursor-text font-mono text-xs leading-relaxed select-text"
+              className="text-fl-fg cursor-text font-mono text-xs leading-relaxed select-text word-selectable"
               onMouseUp={() => handleTextMouseUp(result.text, exercise?.level ?? 'B1')}
             >
               {result.text}

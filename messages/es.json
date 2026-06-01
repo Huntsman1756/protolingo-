@@ -549,7 +549,12 @@
     "cards": "tarjetas",
     "myVocabularyBtn": "Mi vocabulario",
     "myVocabulary": "Mi vocabulario",
-    "myVocabularyEmpty": "Aún no has guardado palabras. Selecciona una palabra al leer para guardarla aquí."
+    "myVocabularyEmpty": "Aún no has guardado palabras. Selecciona una palabra al leer para guardarla aquí.",
+    "vocabularySearch": "Buscar palabras...",
+    "vocabularyPageInfo": "Página {page} de {pages}",
+    "vocabularyPrev": "Ant.",
+    "vocabularyNext": "Sig.",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "Tutor IA",

@@ -270,7 +270,7 @@ export default function LessonPage() {
               <div className="mt-4 space-y-3">
                 {explanation.text != null && (
                   <p
-                    className="text-fl-muted-1 cursor-text font-mono text-xs leading-relaxed select-text"
+                    className="text-fl-muted-1 cursor-text font-mono text-xs leading-relaxed select-text word-selectable"
                     onMouseUp={() => handleTextMouseUp(String(explanation.text), lesson?.cefr_level ?? 'B1')}
                   >
                     {String(explanation.text)}
