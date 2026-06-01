@@ -134,3 +134,138 @@ async def test_review_flashcard(client, test_user, db_session):
     data = response.json()
     assert data["repetitions"] == 1
     assert data["interval"] == 1
+
+
+@pytest.mark.asyncio
+async def test_get_vocabulary_flashcards(client, test_user, db_session):
+    user, headers = test_user
+
+    from app.models.flashcard import Flashcard
+
+    # from_text card
+    card_vocab = Flashcard(
+        user_id=user.id,
+        word="ephemeral",
+        definition="lasting a very short time",
+        example_sentence="The joy was ephemeral.",
+        translation="efímero",
+        source="from_text",
+    )
+    # regular card (should not appear in vocabulary endpoint)
+    card_regular = Flashcard(
+        user_id=user.id,
+        word="run",
+        definition="to move fast",
+        example_sentence="I run every day.",
+        translation="correr",
+    )
+    db_session.add(card_vocab)
+    db_session.add(card_regular)
+    await db_session.commit()
+
+    response = await client.get("/api/flashcards/vocabulary", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total"] == 1
+    assert len(data["items"]) == 1
+    assert data["items"][0]["word"] == "ephemeral"
+    assert data["items"][0]["source"] == "from_text"
+
+
+@pytest.mark.asyncio
+async def test_delete_flashcard(client, test_user, db_session):
+    user, headers = test_user
+
+    from app.models.flashcard import Flashcard
+
+    card = Flashcard(
+        user_id=user.id,
+        word="obsolete",
+        definition="no longer in use",
+        example_sentence="This word is obsolete.",
+        translation="obsoleto",
+        source="from_text",
+    )
+    db_session.add(card)
+    await db_session.commit()
+
+    response = await client.delete(f"/api/flashcards/{card.id}", headers=headers)
+    assert response.status_code == 204
+
+    # Confirm deletion
+    response = await client.get("/api/flashcards/vocabulary", headers=headers)
+    assert response.status_code == 200
+    assert response.json()["total"] == 0
+    assert response.json()["items"] == []
+
+
+@pytest.mark.asyncio
+async def test_delete_flashcard_not_found(client, test_user):
+    _, headers = test_user
+    response = await client.delete("/api/flashcards/99999", headers=headers)
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_delete_flashcard_other_user(client, test_user, db_session):
+    user, headers = test_user
+
+    from app.core.security import hash_password
+    from app.models.flashcard import Flashcard
+    from app.models.user import User
+
+    other_user = User(
+        username="other",
+        email="other@example.com",
+        display_name="Other",
+        hashed_password=hash_password("pass"),
+        role="user",
+        native_language="es",
+        is_active=True,
+    )
+    db_session.add(other_user)
+    await db_session.commit()
+    await db_session.refresh(other_user)
+
+    card = Flashcard(
+        user_id=other_user.id,
+        word="word",
+        definition="def",
+        example_sentence="example",
+        translation="traducción",
+    )
+    db_session.add(card)
+    await db_session.commit()
+
+    response = await client.delete(f"/api/flashcards/{card.id}", headers=headers)
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_create_flashcard_from_word(client, test_user, monkeypatch):
+    _, headers = test_user
+
+    from app.schemas.flashcards import FlashcardCreate
+
+    async def mock_lookup_word(**kwargs):  # noqa: ANN002
+        return FlashcardCreate(
+            word=kwargs["word"],
+            definition="lasting a very short time",
+            example_sentence="The fame was fleeting.",
+            translation="efímero",
+        )
+
+    import app.routers.flashcards as fc_router
+
+    monkeypatch.setattr(fc_router, "lookup_word", mock_lookup_word)
+
+    response = await client.post(
+        "/api/flashcards/from-word",
+        headers=headers,
+        json={"word": "fleeting", "context": "The fame was fleeting.", "cefr_level": "B2"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["word"] == "fleeting"
+    assert data["source"] == "from_text"
+    assert data["definition"] == "lasting a very short time"

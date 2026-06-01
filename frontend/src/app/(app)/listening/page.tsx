@@ -6,6 +6,7 @@ import { apiFetch } from '@/lib/api'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { type ListeningExercise } from '@/types/api'
+import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -184,6 +185,14 @@ function ExerciseAudioPlayer({
 function ListeningPage() {
   const t = useTranslations('listening')
   const tCommon = useTranslations('common')
+  const {
+    selectedWord,
+    tooltipPos,
+    saveState,
+    handleTextMouseUp,
+    handleSaveWord,
+    dismissTooltip,
+  } = useWordSave()
 
   const [pageState, setPageState] = useState<PageState>('loading')
   const [exercise, setExercise] = useState<ListeningExercise | null>(null)
@@ -206,6 +215,7 @@ function ListeningPage() {
   const loadNext = useCallback(async () => {
     setPageState('loading')
     setError('')
+    dismissTooltip()
     try {
       const res = await apiFetch('/api/listening/next')
       if (!res.ok) {
@@ -229,7 +239,7 @@ function ListeningPage() {
       setError(t('errorLoading'))
       setPageState('idle')
     }
-  }, [t])
+  }, [t, dismissTooltip])
 
   useEffect(() => {
     loadNext()
@@ -403,7 +413,12 @@ function ListeningPage() {
                     </p>
                   </div>
                 </div>
-                <p className="text-fl-label text-fl-muted-2 border-fl-border mb-3 border-t pt-3 font-mono leading-relaxed">
+                <p
+                  className="text-fl-label text-fl-muted-2 border-fl-border word-selectable mb-3 cursor-text border-t pt-3 font-mono leading-relaxed select-text"
+                  onMouseUp={() =>
+                    handleTextMouseUp(item.text, item.exercise.level ?? 'B1')
+                  }
+                >
                   {item.text}
                 </p>
                 <button
@@ -426,6 +441,22 @@ function ListeningPage() {
               </p>
             )}
           </div>
+        )}
+
+        {/* Word-save tooltip */}
+        {selectedWord && (
+          <WordTooltip
+            word={selectedWord}
+            pos={tooltipPos}
+            saveState={saveState}
+            onSave={() => handleSaveWord()}
+            onDismiss={dismissTooltip}
+            labels={{
+              saveWord: tCommon('saveWord'),
+              wordSaved: tCommon('wordSaved'),
+              wordSaveError: tCommon('wordSaveError'),
+            }}
+          />
         )}
       </div>
     )
@@ -469,7 +500,12 @@ function ListeningPage() {
             {t('transcript')}
           </p>
           <div className="border-fl-border bg-fl-surface border p-4">
-            <p className="text-fl-fg font-mono text-xs leading-relaxed">
+            <p
+              className="text-fl-fg word-selectable cursor-text font-mono text-xs leading-relaxed select-text"
+              onMouseUp={() =>
+                handleTextMouseUp(result.text, exercise?.level ?? 'B1')
+              }
+            >
               {result.text}
             </p>
           </div>
@@ -534,6 +570,22 @@ function ListeningPage() {
             {t('viewHistory')}
           </button>
         </div>
+
+        {/* Word-save tooltip */}
+        {selectedWord && (
+          <WordTooltip
+            word={selectedWord}
+            pos={tooltipPos}
+            saveState={saveState}
+            onSave={() => handleSaveWord()}
+            onDismiss={dismissTooltip}
+            labels={{
+              saveWord: tCommon('saveWord'),
+              wordSaved: tCommon('wordSaved'),
+              wordSaveError: tCommon('wordSaveError'),
+            }}
+          />
+        )}
       </div>
     )
   }

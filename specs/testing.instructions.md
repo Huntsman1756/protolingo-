@@ -217,7 +217,7 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 
 | Job | Steps | Threshold |
 |-----|-------|-----------|
-| Backend lint | `ruff check --select E,W,F` | Zero errors |
+| Backend lint | `ruff check` | Zero errors |
 | Backend format | `black --check .` | Clean diff |
 | Backend tests | `pytest --cov-fail-under=70` | >= 60% coverage |
 | Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |

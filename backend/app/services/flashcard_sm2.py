@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 
 from app.models.flashcard import Flashcard
-from app.schemas.flashcards import FlashcardGenerateResponse
+from app.schemas.flashcards import FlashcardCreate, FlashcardGenerateResponse
 from app.services.language_helpers import get_english_variant
 from app.services.llm_adapter import llm_adapter
 
@@ -60,5 +60,43 @@ async def generate_flashcards(
     result = await llm_adapter.structured_output(
         [{"role": "system", "content": prompt}],
         FlashcardGenerateResponse,
+    )
+    return result
+
+
+WORD_LOOKUP_PROMPT = """
+A {cefr_level} English student selected the word "{word}" while reading.
+Context sentence: "{context}"
+
+Generate a flashcard for this word. Use {english_variant} English spelling.
+
+Return JSON:
+{{
+  "word": "{word}",
+  "definition": "Simple English definition (max 20 words)",
+  "example_sentence": "A natural example sentence using the word",
+  "translation": "Translation in the student's native language ({native_language})"
+}}
+"""
+
+
+async def lookup_word(
+    word: str,
+    context: str,
+    cefr_level: str,
+    native_language: str,
+    target_language: str = "en-US",
+) -> FlashcardCreate:
+    english_variant = get_english_variant(target_language)
+    prompt = WORD_LOOKUP_PROMPT.format(
+        word=word,
+        context=context or word,
+        cefr_level=cefr_level,
+        native_language=native_language,
+        english_variant=english_variant,
+    )
+    result = await llm_adapter.structured_output(
+        [{"role": "system", "content": prompt}],
+        FlashcardCreate,
     )
     return result

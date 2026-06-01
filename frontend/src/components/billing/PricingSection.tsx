@@ -208,7 +208,7 @@ export default function PricingSection({
           href={hasSession ? '/dashboard' : '/register'}
           className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 inline-block px-10 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
         >
-          — {tBilling('ctaRegister')}
+          {tBilling('ctaRegister')}
         </Link>
       </div>
 
@@ -244,7 +244,7 @@ export default function PricingSection({
           rel="noopener noreferrer"
           className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-6 py-2.5 font-mono text-xs font-bold tracking-widest whitespace-nowrap uppercase transition-colors"
         >
-          — {tBilling('openSourceCta')}
+          {tBilling('openSourceCta')}
         </a>
       </div>
     </section>

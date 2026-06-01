@@ -245,3 +245,8 @@ html[data-theme='light'] {
     transform: scale(1.14);
   }
 }
+
+.word-selectable::selection,
+.word-selectable *::selection {
+  background: rgba(217, 119, 6, 0.35);
+}

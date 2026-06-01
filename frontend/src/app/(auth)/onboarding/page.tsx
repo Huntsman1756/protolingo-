@@ -127,7 +127,7 @@ export default function OnboardingPage() {
                 type="submit"
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
               >
-                — {tCommon('next')}
+                {tCommon('next')}
               </button>
             </form>
           )}
@@ -163,7 +163,7 @@ export default function OnboardingPage() {
                 onClick={() => handleStep2(false)}
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
               >
-                {loading ? `— ${tCommon('saving')}` : `— ${t('continue')}`}
+                {loading ? tCommon('saving') : t('continue')}
               </button>
               <button
                 type="button"

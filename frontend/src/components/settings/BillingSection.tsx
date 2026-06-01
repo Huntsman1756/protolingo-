@@ -29,7 +29,9 @@ export function BillingSection() {
       const { url } = await res.json()
       window.location.href = url
     } catch (err) {
-      setPortalError(err instanceof Error ? err.message : tBilling('checkoutError'))
+      setPortalError(
+        err instanceof Error ? err.message : tBilling('checkoutError')
+      )
       setCheckoutLoading(false)
     }
   }
@@ -65,14 +67,15 @@ export function BillingSection() {
             {tBilling('status')}
           </span>
           <span
-            className={`border px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase ${user?.subscription_status === 'active'
+            className={`border px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase ${
+              user?.subscription_status === 'active'
                 ? 'border-green-600/40 text-green-500'
                 : user?.subscription_status === 'trialing'
                   ? 'border-fl-accent/40 text-fl-accent'
                   : user?.subscription_status === 'past_due'
                     ? 'border-yellow-500/40 text-yellow-500'
                     : 'border-fl-border text-fl-muted-3'
-              }`}
+            }`}
           >
             {user?.subscription_status === 'active' && tBilling('statusActive')}
             {user?.subscription_status === 'trialing' &&
@@ -112,7 +115,7 @@ export function BillingSection() {
             disabled={portalLoading}
             className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 w-full border py-2.5 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-50"
           >
-            {portalLoading ? '...' : `— ${tBilling('manage')}`}
+            {portalLoading ? '...' : tBilling('manage')}
           </button>
         ) : (
           <button
@@ -120,7 +123,7 @@ export function BillingSection() {
             disabled={checkoutLoading}
             className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-2.5 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-50"
           >
-            {checkoutLoading ? '...' : `— ${tBilling('subscribe')}`}
+            {checkoutLoading ? '...' : tBilling('subscribe')}
           </button>
         )}
 

@@ -51,8 +51,12 @@
     "tagline": "Educație lingvistică AI",
     "close": "Închide",
     "verifyEmailBanner": "Vă rugăm să vă verificați adresa de e-mail pentru a finaliza configurarea contului.",
-    "verifyEmailSent": "E-mail trimis — verificați inbox-ul.",
-    "resendVerification": "Retrimite e-mail de verificare"
+    "verifyEmailSent": "E-mail trimis. Verificați inbox-ul.",
+    "resendVerification": "Retrimite e-mail de verificare",
+    "saveWord": "Salvează",
+    "wordSaved": "Salvat",
+    "wordSaveError": "A apărut o problemă",
+    "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău"
   },
   "nav": {
     "home": "Acasă",
@@ -90,7 +94,7 @@
       "signingIn": "Se conectează...",
       "showPassword": "Afișează parola",
       "hidePassword": "Ascunde parola",
-      "accountCreated": "Cont creat — te poți conecta acum",
+      "accountCreated": "Cont creat. Te poți conecta acum",
       "invalidEmail": "Introdu o adresă de e-mail validă",
       "forgotPassword": "Ați uitat parola?"
     },
@@ -171,6 +175,8 @@
     "displayName": "Nume afișat",
     "email": "E-mail",
     "nativeLanguage": "Limbă maternă",
+    "uiLocale": "Limba interfeței",
+    "uiLocaleHint": "Schimbă limba meniurilor și butoanelor. Necesită reîncărcarea paginii.",
     "newPassword": "Parolă nouă",
     "newPasswordPlaceholder": "Lasă gol pentru a păstra",
     "confirmPassword": "Confirmă parola",
@@ -384,14 +390,14 @@
         "back": "Înapoi la plan"
       }
     },
-    "suggestedLevel": "Sugerat {aiLevel} — planul folosește {selectedLevel}",
-    "step1": "Pasul 1 / 3 — Nivelul tău",
-    "step2": "Pasul 2 / 3 — Întrebarea {questionNumber} / {totalQuestions}",
-    "step3": "Pasul 3 / 3 — Programul tău",
+    "suggestedLevel": "Sugerat {aiLevel}; planul folosește {selectedLevel}",
+    "step1": "Pasul 1 / 3: Nivelul tău",
+    "step2": "Pasul 2 / 3: Întrebarea {questionNumber} / {totalQuestions}",
+    "step3": "Pasul 3 / 3: Programul tău",
     "studiedBefore": "Ai studiat engleza înainte?",
     "studiedBeforeHint": "Aceasta ne ajută să pornim quiz-ul la nivelul potrivit.",
     "beginnerOption": "Sunt un începător complet",
-    "beginnerOptionHint": "Încep de la A1 — fără quiz.",
+    "beginnerOptionHint": "Încep de la A1, fără quiz.",
     "hasExperienceOption": "Da, am ceva experiență",
     "hasExperienceOptionHint": "Voi face un scurt quiz adaptiv (±12 întrebări).",
     "skills": {
@@ -461,7 +467,7 @@
       "review": "Recapitulare",
       "level_test": "Test de nivel"
     },
-    "levelComplete": "Nivelul {level} finalizat — fă testul de nivel",
+    "levelComplete": "Nivelul {level} finalizat. Fă testul de nivel",
     "levelCompleteDesc": "Ai finalizat toate unitățile pentru nivelul {level}. Fă testul de finalizare a nivelului pentru a confirma progresul și a debloca nivelul următor.",
     "levelCompleteHint": "Testul durează aproximativ 20 de minute și acoperă gramatică, vocabular și lectură.",
     "beginLevelTest": "Începe testul de nivel",
@@ -540,7 +546,15 @@
     "sayWord": "Spune cuvântul cu voce tare",
     "refresh": "Reîmprospătează",
     "generateBtn": "Generează",
-    "cards": "carduri"
+    "cards": "carduri",
+    "myVocabularyBtn": "Vocabularul meu",
+    "myVocabulary": "Vocabularul meu",
+    "myVocabularyEmpty": "Niciun cuvânt salvat încă. Selectează un cuvânt în timp ce citeşti pentru a-l salva aici.",
+    "vocabularySearch": "Caută cuvinte...",
+    "vocabularyPageInfo": "Pagina {page} din {pages}",
+    "vocabularyPrev": "Prec.",
+    "vocabularyNext": "Urm.",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "Tutore AI",
@@ -691,8 +705,8 @@
     "statsExercises": "Exerciții corecte",
     "statsMessages": "Mesaje trimise",
     "statsTokensTotal": "Tokenuri consumate (total)",
-    "statsTokensChat": "Tokenuri — tutore",
-    "statsTokensConversation": "Tokenuri — conversație",
+    "statsTokensChat": "Tokenuri tutore",
+    "statsTokensConversation": "Tokenuri conversație",
     "statsTokensNote": "Disponibil numai când furnizorul AI returnează aceste informații",
     "statsNoData": "Nu există date de progres",
     "viewStats": "Vezi statistici",
@@ -952,7 +966,7 @@
   "billing": {
     "paywallLabel": "Premium necesar",
     "paywallTitle": "Deblochează FreeLingo Premium",
-    "paywallDesc": "Încearcă gratuit {days} zile — fără taxe azi. Anulează oricând.",
+    "paywallDesc": "Încearcă gratuit {days} zile, fără taxe azi. Anulează oricând.",
     "paywallNoCharge": "Card necesar · Nicio taxă până la sfârșitul perioadei de probă · Anulează oricând",
     "planMonthly": "— Începe la {price}€/lună →",
     "planYearly": "— Începe la {price}€/an →",
@@ -1012,25 +1026,17 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Îmbunătățiri la planul de studiu",
-      "desc": "Progresul tău în planul de studiu este acum urmărit zi de zi, independent de datele calendaristice. Zilele finalizate avansează automat, poți sări ziua curentă și recupera lecțiile restante oricând. Tabloul de bord afișează o bară de progres și un contor de zile dintr-o privire."
+      "label": "Salvează cuvinte în timp ce citești",
+      "desc": "Selectează orice cuvânt dintr-un exercițiu de lectură pentru a-l salva instant ca flashcard. IA generează definiție, exemplu și traducere — găsești toate cuvintele salvate în noul panou Vocabularul meu din secțiunea Flashcards."
     },
     "entry2": {
-      "label": "Panou de feedback",
-      "desc": "Acum poți sugera funcționalități noi și raporta erori direct din aplicație. Votează sugestiile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri până la finalizare."
+      "label": "Limba platformei",
+      "desc": "Acum poți alege limba interfeței aplicației — meniuri, butoane și etichete — din pagina Setări, independent de limba ta nativă."
     },
     "entry3": {
-      "label": "Istoric vocal",
-      "desc": "Conversațiile vocale apar acum în istoricul chatului. Fiecare cuvânt este salvat ca text, revizuiește sesiunile anterioare sau continuă-le din fila Tutor."
-    },
-    "entry4": {
-      "label": "Memorie",
-      "desc": "Tutorele AI îți reține acum informații importante despre tine între conversații — interesele, obiectivele, profesia și dificultățile tale de învățare. Amintirile sunt salvate automat și le poți consulta sau șterge oricând din Setări."
-    },
-    "entry5": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }
@@ -1073,7 +1079,7 @@
     "practiceMore": "Practică",
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
-    "replayNoXp": "Repetare — fără XP"
+    "replayNoXp": "Repetare (fără XP)"
   },
   "reading": {
     "title": "Lectură",
@@ -1098,7 +1104,8 @@
     "practiceMore": "Exersează",
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
-    "replayNoXp": "Reluare — fără XP"
+    "replayNoXp": "Reluare (fără XP)",
+    "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău"
   },
   "feedback": {
     "title": "Feedback",

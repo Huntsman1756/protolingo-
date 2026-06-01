@@ -51,8 +51,12 @@
     "tagline": "AI-taalonderwijs",
     "close": "Sluiten",
     "verifyEmailBanner": "Verifieer je e-mailadres om je accountinstellingen te voltooien.",
-    "verifyEmailSent": "E-mail verzonden — controleer je inbox.",
-    "resendVerification": "Verificatie-e-mail opnieuw verzenden"
+    "verifyEmailSent": "E-mail verzonden. Controleer je inbox.",
+    "resendVerification": "Verificatie-e-mail opnieuw verzenden",
+    "saveWord": "Opslaan",
+    "wordSaved": "Opgeslagen",
+    "wordSaveError": "Er is een probleem opgetreden",
+    "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat"
   },
   "nav": {
     "home": "Home",
@@ -90,7 +94,7 @@
       "signingIn": "Inloggen...",
       "showPassword": "Wachtwoord tonen",
       "hidePassword": "Wachtwoord verbergen",
-      "accountCreated": "Account aangemaakt — je kunt nu inloggen",
+      "accountCreated": "Account aangemaakt. Je kunt nu inloggen",
       "invalidEmail": "Voer een geldig e-mailadres in",
       "forgotPassword": "Wachtwoord vergeten?"
     },
@@ -171,6 +175,8 @@
     "displayName": "Weergavenaam",
     "email": "E-mail",
     "nativeLanguage": "Moedertaal",
+    "uiLocale": "Interfacetaal",
+    "uiLocaleHint": "Wijzigt de taal van menu's en knoppen. Vereist pagina herladen.",
     "newPassword": "Nieuw wachtwoord",
     "newPasswordPlaceholder": "Leeg laten om te behouden",
     "confirmPassword": "Wachtwoord bevestigen",
@@ -384,14 +390,14 @@
         "back": "Terug naar plan"
       }
     },
-    "suggestedLevel": "Voorgesteld {aiLevel} — plan gebruikt {selectedLevel}",
-    "step1": "Stap 1 / 3 — Jouw niveau",
-    "step2": "Stap 2 / 3 — Vraag {questionNumber} / {totalQuestions}",
-    "step3": "Stap 3 / 3 — Jouw programma",
+    "suggestedLevel": "Voorgesteld {aiLevel}; plan gebruikt {selectedLevel}",
+    "step1": "Stap 1 / 3: Jouw niveau",
+    "step2": "Stap 2 / 3: Vraag {questionNumber} / {totalQuestions}",
+    "step3": "Stap 3 / 3: Jouw programma",
     "studiedBefore": "Heb je eerder Engels gestudeerd?",
     "studiedBeforeHint": "Dit helpt ons de quiz op het juiste niveau te starten.",
     "beginnerOption": "Ik ben een complete beginner",
-    "beginnerOptionHint": "Ik begin bij A1 — geen quiz nodig.",
+    "beginnerOptionHint": "Ik begin bij A1, geen quiz nodig.",
     "hasExperienceOption": "Ja, ik heb enige ervaring",
     "hasExperienceOptionHint": "Ik doe een korte adaptieve quiz (±12 vragen).",
     "skills": {
@@ -461,7 +467,7 @@
       "review": "Herhaling",
       "level_test": "Niveautest"
     },
-    "levelComplete": "Niveau {level} voltooid — doe de niveautest",
+    "levelComplete": "Niveau {level} voltooid. Doe de niveautest",
     "levelCompleteDesc": "Je hebt alle eenheden voor niveau {level} voltooid. Doe de niveauafsluitingstest om je voortgang te bevestigen en het volgende niveau te ontgrendelen.",
     "levelCompleteHint": "De test duurt ongeveer 20 minuten en behandelt grammatica, woordenschat en lezen.",
     "beginLevelTest": "Niveautest starten",
@@ -540,7 +546,15 @@
     "sayWord": "Zeg het woord hardop",
     "refresh": "Vernieuwen",
     "generateBtn": "Genereren",
-    "cards": "kaarten"
+    "cards": "kaarten",
+    "myVocabularyBtn": "Mijn woordenschat",
+    "myVocabulary": "Mijn woordenschat",
+    "myVocabularyEmpty": "Nog geen woorden opgeslagen. Selecteer een woord tijdens het lezen om het hier op te slaan.",
+    "vocabularySearch": "Woorden zoeken...",
+    "vocabularyPageInfo": "Pagina {page} van {pages}",
+    "vocabularyPrev": "Vorige",
+    "vocabularyNext": "Volgende",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "AI-tutor",
@@ -691,8 +705,8 @@
     "statsExercises": "Correcte oefeningen",
     "statsMessages": "Verzonden berichten",
     "statsTokensTotal": "Verbruikte tokens (totaal)",
-    "statsTokensChat": "Tokens — tutor",
-    "statsTokensConversation": "Tokens — spraak",
+    "statsTokensChat": "Tokens van tutor",
+    "statsTokensConversation": "Tokens van spraak",
     "statsTokensNote": "Alleen beschikbaar wanneer de AI-provider deze informatie teruggeeft",
     "statsNoData": "Geen voortgangsgegevens",
     "viewStats": "Statistieken bekijken",
@@ -952,7 +966,7 @@
   "billing": {
     "paywallLabel": "Premium vereist",
     "paywallTitle": "Ontgrendel FreeLingo Premium",
-    "paywallDesc": "Start je gratis proefperiode van {days} dagen — vandaag geen kosten. Altijd opzegbaar.",
+    "paywallDesc": "Start je gratis proefperiode van {days} dagen, vandaag geen kosten. Altijd opzegbaar.",
     "paywallNoCharge": "Kaart vereist · Geen kosten tot einde proefperiode · Altijd opzegbaar",
     "planMonthly": "— Starten voor €{price}/maand →",
     "planYearly": "— Starten voor €{price}/jaar →",
@@ -1012,25 +1026,17 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Verbeteringen aan het studieplan",
-      "desc": "Je voortgang in het studieplan wordt nu dag voor dag bijgehouden, onafhankelijk van kalenderdatums. Voltooide dagen schuiven automatisch op, je kunt de huidige dag overslaan en achterstallige lessen op elk moment inhalen. Het dashboard toont een voortgangsbalk en een dagenteller in één oogopslag."
+      "label": "Woorden opslaan tijdens het lezen",
+      "desc": "Selecteer een woord in een leesoefening om het direct op te slaan als flashcard. De AI genereert een definitie, voorbeeldzin en vertaling — vind al je opgeslagen woorden in het nieuwe Mijn woordenschat-paneel in de Flashcards-sectie."
     },
     "entry2": {
-      "label": "Feedbackbord",
-      "desc": "Je kunt nu direct vanuit de app nieuwe functies voorstellen en bugs melden. Stem op suggesties van andere gebruikers, laat reacties achter en volg de status van elke aanvraag tot aan de afronding."
+      "label": "Platformtaal",
+      "desc": "Je kunt nu de taal van de app-interface — menu's, knoppen en labels — kiezen via de pagina Instellingen, onafhankelijk van je moedertaal."
     },
     "entry3": {
-      "label": "Spraakgeschiedenis",
-      "desc": "Je spraakgesprekken verschijnen nu in de chatgeschiedenis. Elk woord wordt opgeslagen als tekst, bekijk eerdere sessies of ga verder waar je was, direct vanuit het Tutor-tabblad."
-    },
-    "entry4": {
-      "label": "Geheugen",
-      "desc": "De AI-tutor onthoudt nu belangrijke dingen over jou tussen gesprekken — je interesses, doelen, beroep en leerproblemen. Herinneringen worden automatisch opgeslagen en je kunt ze altijd bekijken of verwijderen via Instellingen."
-    },
-    "entry5": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
     }
@@ -1073,7 +1079,7 @@
     "practiceMore": "Oefenen",
     "moreInHistory": "+{count} meer",
     "practiceAgain": "Opnieuw oefenen",
-    "replayNoXp": "Herhaling — geen XP"
+    "replayNoXp": "Herhaling (geen XP)"
   },
   "reading": {
     "title": "Lezen",
@@ -1098,7 +1104,8 @@
     "practiceMore": "Oefenen",
     "moreInHistory": "+{count} meer",
     "practiceAgain": "Opnieuw oefenen",
-    "replayNoXp": "Herhaling — geen XP"
+    "replayNoXp": "Herhaling (geen XP)",
+    "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat"
   },
   "feedback": {
     "title": "Feedback",

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
@@ -17,6 +18,7 @@ interface CardData {
   ease_factor: number
   interval: number
   repetitions: number
+  source?: string | null
 }
 
 const QUALITY_BUTTONS = [
@@ -137,26 +139,36 @@ export default function FlashcardsPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-4 p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('title')}
           </span>
           <span className="text-fl-hint text-fl-muted-2 font-mono tracking-widest">
-            — {total} {t('total')} · {cards.length} {t('due')}
+            {total} {t('total')} · {cards.length} {t('due')}
           </span>
         </div>
-        <button
-          onClick={() => setShowGenerate(!showGenerate)}
-          className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
-            showGenerate
-              ? 'border-fl-border-2 text-fl-fg'
-              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-          }`}
-        >
-          + {t('generateBtn')}
-        </button>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/flashcards/vocabulary"
+            className="text-fl-label border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors"
+          >
+            {t('myVocabularyBtn')}
+          </Link>
+          <button
+            onClick={() => {
+              setShowGenerate(!showGenerate)
+            }}
+            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
+              showGenerate
+                ? 'border-fl-border-2 text-fl-fg'
+                : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
+            }`}
+          >
+            + {t('generateBtn')}
+          </button>
+        </div>
       </div>
 
       {/* Generate panel */}
@@ -226,7 +238,7 @@ export default function FlashcardsPage() {
               disabled={generating || !genTopic.trim()}
               className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
             >
-              {generating ? `— ${t('generating')}` : `— ${t('submit')}`}
+              {generating ? t('generating') : t('submit')}
             </button>
           </form>
         </div>
@@ -246,7 +258,7 @@ export default function FlashcardsPage() {
             onClick={loadDue}
             className="border-fl-border text-fl-label text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 mt-6 border px-6 py-2 font-mono tracking-widest uppercase transition-colors"
           >
-            — {t('refresh')}
+            {t('refresh')}
           </button>
         </div>
       )}

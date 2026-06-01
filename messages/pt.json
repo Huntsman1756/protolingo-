@@ -51,8 +51,12 @@
     "tagline": "aprendizado de idiomas com IA",
     "close": "Fechar",
     "verifyEmailBanner": "Por favor, verifique o seu endereço de e-mail para concluir a configuração da conta.",
-    "verifyEmailSent": "E-mail enviado — verifique a sua caixa de entrada.",
-    "resendVerification": "Reenviar e-mail de verificação"
+    "verifyEmailSent": "E-mail enviado. Verifique a sua caixa de entrada.",
+    "resendVerification": "Reenviar e-mail de verificação",
+    "saveWord": "Guardar",
+    "wordSaved": "Guardado",
+    "wordSaveError": "Ocorreu um problema",
+    "selectWordHint": "Seleciona uma palavra para a guardar no teu vocabulário"
   },
   "nav": {
     "home": "Início",
@@ -90,7 +94,7 @@
       "signingIn": "Entrando...",
       "showPassword": "Mostrar senha",
       "hidePassword": "Ocultar senha",
-      "accountCreated": "Conta criada — você já pode entrar",
+      "accountCreated": "Conta criada. Você já pode entrar",
       "invalidEmail": "Por favor, insira um endereço de e-mail válido",
       "forgotPassword": "Esqueceu a senha?"
     },
@@ -171,6 +175,8 @@
     "displayName": "Nome de exibição",
     "email": "E-mail",
     "nativeLanguage": "Idioma nativo",
+    "uiLocale": "Idioma da interface",
+    "uiLocaleHint": "Altera o idioma dos menus e botões. Requer recarregar a página.",
     "newPassword": "Nova senha",
     "newPasswordPlaceholder": "Deixe em branco para manter",
     "confirmPassword": "Confirmar senha",
@@ -384,14 +390,14 @@
         "back": "Voltar ao plano"
       }
     },
-    "suggestedLevel": "Sugerido {aiLevel} — o plano usará {selectedLevel}",
-    "step1": "Passo 1 / 3 — Seu nível",
-    "step2": "Passo 2 / 3 — Pergunta {questionNumber} / {totalQuestions}",
-    "step3": "Passo 3 / 3 — Seu programa",
+    "suggestedLevel": "Sugerido {aiLevel}; o plano usará {selectedLevel}",
+    "step1": "Passo 1 / 3: Seu nível",
+    "step2": "Passo 2 / 3: Pergunta {questionNumber} / {totalQuestions}",
+    "step3": "Passo 3 / 3: Seu programa",
     "studiedBefore": "Você já estudou inglês antes?",
     "studiedBeforeHint": "Isso nos ajuda a iniciar o questionário no nível adequado.",
     "beginnerOption": "Sou um iniciante completo",
-    "beginnerOptionHint": "Começarei no A1 — sem questionário.",
+    "beginnerOptionHint": "Começarei no A1, sem questionário.",
     "hasExperienceOption": "Sim, tenho alguma experiência",
     "hasExperienceOptionHint": "Farei um breve questionário adaptativo (≈12 perguntas).",
     "skills": {
@@ -461,7 +467,7 @@
       "review": "Revisão",
       "level_test": "Teste de nível"
     },
-    "levelComplete": "Nível {level} completo — Faça o teste de nível",
+    "levelComplete": "Nível {level} completo. Faça o teste de nível",
     "levelCompleteDesc": "Concluiu todas as unidades do nível {level}. Faça o teste de conclusão de nível para confirmar o seu progresso e desbloquear o próximo nível.",
     "levelCompleteHint": "O teste demora cerca de 20 minutos e abrange gramática, vocabulário e leitura.",
     "beginLevelTest": "Começar o teste de nível",
@@ -540,7 +546,15 @@
     "sayWord": "Diga a palavra em voz alta",
     "refresh": "Atualizar",
     "generateBtn": "Gerar",
-    "cards": "cartas"
+    "cards": "cartas",
+    "myVocabularyBtn": "Meu vocabulário",
+    "myVocabulary": "Meu vocabulário",
+    "myVocabularyEmpty": "Nenhuma palavra guardada ainda. Seleciona uma palavra ao ler para guardá-la aqui.",
+    "vocabularySearch": "Pesquisar palavras...",
+    "vocabularyPageInfo": "Página {page} de {pages}",
+    "vocabularyPrev": "Ant.",
+    "vocabularyNext": "Seg.",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "Tutor IA",
@@ -691,8 +705,8 @@
     "statsExercises": "Exercícios corretos",
     "statsMessages": "Mensagens enviadas",
     "statsTokensTotal": "Tokens consumidos (total)",
-    "statsTokensChat": "Tokens — tutor",
-    "statsTokensConversation": "Tokens — voz",
+    "statsTokensChat": "Tokens do tutor",
+    "statsTokensConversation": "Tokens de voz",
     "statsTokensNote": "Disponível apenas se o provedor de IA retornar esta informação",
     "statsNoData": "Sem dados de progresso",
     "viewStats": "Ver stats",
@@ -952,7 +966,7 @@
   "billing": {
     "paywallLabel": "Premium necessário",
     "paywallTitle": "Desbloquear FreeLingo Premium",
-    "paywallDesc": "Inicie o seu período de avaliação gratuito de {days} dias — sem cobranças hoje. Cancele a qualquer momento.",
+    "paywallDesc": "Inicie o seu período de avaliação gratuito de {days} dias, sem cobranças hoje. Cancele a qualquer momento.",
     "paywallNoCharge": "Cartão obrigatório · Sem cobrança até o fim da avaliação · Cancele a qualquer momento",
     "planMonthly": "— Iniciar por €{price}/mês →",
     "planYearly": "— Iniciar por €{price}/ano →",
@@ -1012,25 +1026,17 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Entendido",
     "entry1": {
-      "label": "Melhorias no plano de estudos",
-      "desc": "O teu progresso no plano de estudos é agora acompanhado dia a dia, independentemente das datas do calendário. Os dias concluídos avançam automaticamente, podes saltar o dia atual e recuperar as lições pendentes a qualquer momento. O painel mostra uma barra de progresso e um contador de dias de relance."
+      "label": "Guarda palavras ao ler",
+      "desc": "Seleciona qualquer palavra num exercício de leitura para a guardar instantaneamente como flashcard. A IA gera definição, exemplo e tradução — encontra todas as palavras guardadas no novo painel Meu vocabulário na secção Flashcards."
     },
     "entry2": {
-      "label": "Quadro de feedback",
-      "desc": "Já podes sugerir novas funcionalidades e reportar erros diretamente na app. Vota nas sugestões de outros utilizadores, deixa comentários e acompanha o estado de cada pedido até à conclusão."
+      "label": "Idioma da plataforma",
+      "desc": "Já podes escolher o idioma da interface da app — menus, botões e etiquetas — na página de Definições, independentemente do teu idioma nativo."
     },
     "entry3": {
-      "label": "Histórico de voz",
-      "desc": "As tuas conversas por voz agora aparecem no histórico do chat. Cada palavra é guardada como transcrição de texto, revê sessões passadas ou continua onde ficaste, diretamente do separador Tutor."
-    },
-    "entry4": {
-      "label": "Memória",
-      "desc": "O tutor de IA agora lembra de coisas importantes sobre você entre as conversas — seus interesses, objetivos, profissão e dificuldades de aprendizado. As memórias são salvas automaticamente e você pode revisá-las ou excluí-las a qualquer momento em Configurações."
-    },
-    "entry5": {
       "label": "Correções",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }
@@ -1073,7 +1079,7 @@
     "practiceMore": "Praticar",
     "moreInHistory": "+{count} mais",
     "practiceAgain": "Praticar novamente",
-    "replayNoXp": "Repetição — sem XP"
+    "replayNoXp": "Repetição (sem XP)"
   },
   "reading": {
     "title": "Leitura",
@@ -1098,7 +1104,8 @@
     "practiceMore": "Praticar",
     "moreInHistory": "+{count} mais",
     "practiceAgain": "Praticar novamente",
-    "replayNoXp": "Repetição — sem XP"
+    "replayNoXp": "Repetição (sem XP)",
+    "selectWordHint": "Seleciona uma palavra para a guardar no teu vocabulário"
   },
   "feedback": {
     "title": "Feedback",

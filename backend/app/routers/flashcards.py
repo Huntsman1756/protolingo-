@@ -1,22 +1,25 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.models.flashcard import Flashcard
 from app.models.user import User
 from app.schemas.flashcards import (
     FlashcardBulkCreate,
     FlashcardBulkResponse,
     FlashcardCreate,
+    FlashcardFromWordRequest,
     FlashcardGenerateRequest,
     FlashcardGenerateResponse,
     FlashcardListResponse,
     FlashcardResponse,
     FlashcardReview,
+    VocabularyListResponse,
 )
-from app.services.flashcard_sm2 import generate_flashcards, sm2_update
+from app.services.flashcard_sm2 import generate_flashcards, lookup_word, sm2_update
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -90,9 +93,7 @@ async def create_flashcards_bulk(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    existing = await db.execute(
-        select(Flashcard.word).where(Flashcard.user_id == current_user.id)
-    )
+    existing = await db.execute(select(Flashcard.word).where(Flashcard.user_id == current_user.id))
     existing_words = set(existing.scalars().all())
 
     created = 0
@@ -139,7 +140,9 @@ async def review_flashcard(
 
 
 @router.post("/generate", response_model=FlashcardGenerateResponse)
+@limiter.limit("20/minute")
 async def generate_flashcards_endpoint(
+    request: Request,
     data: FlashcardGenerateRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -178,3 +181,92 @@ async def generate_flashcards_endpoint(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail=f"Failed to generate flashcards: {str(e)}",
         )
+
+
+@router.post("/from-word", response_model=FlashcardResponse)
+@limiter.limit("30/minute")
+async def create_flashcard_from_word(
+    request: Request,
+    data: FlashcardFromWordRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    try:
+        card_data = await lookup_word(
+            word=data.word.strip(),
+            context=data.context,
+            cefr_level=data.cefr_level,
+            native_language=current_user.native_language,
+            target_language=current_user.target_language,
+        )
+    except LLMTimeoutError:
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT, detail="The AI model took too long."
+        )
+    except LLMUnavailableError as e:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"AI service unavailable: {str(e)}",
+        )
+    except LLMError as e:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"Failed to look up word: {str(e)}",
+        )
+
+    card = Flashcard(
+        user_id=current_user.id,
+        word=card_data.word,
+        definition=card_data.definition,
+        example_sentence=card_data.example_sentence,
+        translation=card_data.translation,
+        source="from_text",
+    )
+    db.add(card)
+    await db.commit()
+    await db.refresh(card)
+    return card
+
+
+@router.get("/vocabulary", response_model=VocabularyListResponse)
+async def get_vocabulary_flashcards(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+    page: int = Query(1, ge=1),
+    limit: int = Query(10, ge=1, le=100),
+    search: str = Query(""),
+):
+    filters = [
+        Flashcard.user_id == current_user.id,
+        Flashcard.source == "from_text",
+    ]
+    if search:
+        filters.append(Flashcard.word.ilike(f"%{search}%"))
+
+    total_res = await db.execute(select(func.count(Flashcard.id)).where(*filters))
+    total = total_res.scalar() or 0
+
+    items_res = await db.execute(
+        select(Flashcard)
+        .where(*filters)
+        .order_by(func.lower(Flashcard.word))
+        .offset((page - 1) * limit)
+        .limit(limit)
+    )
+    items = items_res.scalars().all()
+
+    pages = max(1, (total + limit - 1) // limit)
+    return VocabularyListResponse(items=items, total=total, page=page, pages=pages)
+
+
+@router.delete("/{card_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_flashcard(
+    card_id: int,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    card = await db.get(Flashcard, card_id)
+    if not card or card.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Flashcard not found")
+    await db.delete(card)
+    await db.commit()

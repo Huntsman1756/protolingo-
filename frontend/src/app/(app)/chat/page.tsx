@@ -10,6 +10,7 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
+import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -29,6 +30,14 @@ export default function ChatPage() {
   const tCommon = useTranslations('common')
   const router = useRouter()
   const user = useAuthStore((s) => s.user)
+  const {
+    selectedWord,
+    tooltipPos,
+    saveState,
+    handleTextMouseUp,
+    handleSaveWord,
+    dismissTooltip,
+  } = useWordSave()
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeId, setActiveId] = useState<number | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
@@ -85,6 +94,7 @@ export default function ChatPage() {
   }, [])
 
   async function selectConversation(id: number) {
+    dismissTooltip()
     setActiveId(id)
     setMessages([])
     setError('')
@@ -104,6 +114,7 @@ export default function ChatPage() {
 
   async function newChat() {
     // Don't create — let the first message auto-create the conversation
+    dismissTooltip()
     setActiveId(null)
     setMessages([])
     setError('')
@@ -380,11 +391,16 @@ export default function ChatPage() {
                     </div>
                     <div className={`max-w-[75%] text-left`}>
                       <div
-                        className={`border px-4 py-3 font-mono text-sm leading-relaxed ${
+                        className={`word-selectable max-w-[75%] border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
                           msg.role === 'user'
                             ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                             : 'bg-fl-surface text-fl-fg-2 border-fl-border'
                         }`}
+                        onMouseUp={
+                          msg.role === 'assistant'
+                            ? () => handleTextMouseUp(msg.content)
+                            : undefined
+                        }
                       >
                         {msg.content ||
                           (sending && i === messages.length - 1 ? (
@@ -452,6 +468,22 @@ export default function ChatPage() {
             }
             onCancel={() => setDeletePending(null)}
           />
+
+          {/* Word-save tooltip */}
+          {selectedWord && (
+            <WordTooltip
+              word={selectedWord}
+              pos={tooltipPos}
+              saveState={saveState}
+              onSave={() => handleSaveWord()}
+              onDismiss={dismissTooltip}
+              labels={{
+                saveWord: tCommon('saveWord'),
+                wordSaved: tCommon('wordSaved'),
+                wordSaveError: tCommon('wordSaveError'),
+              }}
+            />
+          )}
         </div>
       </PaywallGate>
     </MaintenanceGate>

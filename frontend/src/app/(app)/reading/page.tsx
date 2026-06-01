@@ -6,6 +6,7 @@ import { apiFetch } from '@/lib/api'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { type ReadingExercise } from '@/types/api'
+import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -47,6 +48,14 @@ type PageState =
 function ReadingPage() {
   const t = useTranslations('reading')
   const tCommon = useTranslations('common')
+  const {
+    selectedWord,
+    tooltipPos,
+    saveState,
+    handleTextMouseUp,
+    handleSaveWord,
+    dismissTooltip,
+  } = useWordSave()
 
   const [pageState, setPageState] = useState<PageState>('loading')
   const [exercise, setExercise] = useState<ReadingExercise | null>(null)
@@ -56,6 +65,8 @@ function ReadingPage() {
   const [historyTotal, setHistoryTotal] = useState(0)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+
+  const textRef = useRef<HTMLDivElement>(null)
   const [isReplay, setIsReplay] = useState(false)
   const generateAbortRef = useRef<AbortController | null>(null)
 
@@ -69,6 +80,7 @@ function ReadingPage() {
   const loadNext = useCallback(async () => {
     setPageState('loading')
     setError('')
+    dismissTooltip()
     try {
       const res = await apiFetch('/api/reading/next')
       if (!res.ok) {
@@ -92,7 +104,7 @@ function ReadingPage() {
       setError(t('errorLoading'))
       setPageState('idle')
     }
-  }, [t])
+  }, [t, dismissTooltip])
 
   useEffect(() => {
     loadNext()
@@ -156,6 +168,7 @@ function ReadingPage() {
       }
       const data = (await res.json()) as SubmitResult
       setResult(data)
+      dismissTooltip()
       setPageState('results')
     } catch {
       setError(t('errorSubmit'))
@@ -445,11 +458,21 @@ function ReadingPage() {
           <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
             {t('textLabel')}
           </p>
-          <div className="border-fl-border bg-fl-surface border p-5">
-            <p className="text-fl-fg font-mono text-xs leading-relaxed whitespace-pre-wrap">
-              {exercise.text}
-            </p>
+          <div className="border-fl-border bg-fl-surface relative border p-5">
+            <div
+              ref={textRef}
+              onMouseUp={() =>
+                handleTextMouseUp(exercise?.text ?? '', exercise?.level ?? 'B1')
+              }
+            >
+              <p className="reading-text text-fl-fg word-selectable cursor-text font-mono text-xs leading-relaxed whitespace-pre-wrap select-text">
+                {exercise.text}
+              </p>
+            </div>
           </div>
+          <p className="text-fl-label text-fl-muted-4 mt-2 text-center font-mono tracking-widest uppercase">
+            {t('selectWordHint')}
+          </p>
         </div>
 
         {/* Right: questions */}
@@ -506,6 +529,22 @@ function ReadingPage() {
           </button>
         </div>
       </div>
+
+      {/* Word-save tooltip */}
+      {selectedWord && (
+        <WordTooltip
+          word={selectedWord}
+          pos={tooltipPos}
+          saveState={saveState}
+          onSave={() => handleSaveWord()}
+          onDismiss={dismissTooltip}
+          labels={{
+            saveWord: tCommon('saveWord'),
+            wordSaved: tCommon('wordSaved'),
+            wordSaveError: tCommon('wordSaveError'),
+          }}
+        />
+      )}
     </div>
   )
 }

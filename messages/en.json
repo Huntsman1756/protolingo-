@@ -51,8 +51,12 @@
     "tagline": "AI language learning",
     "close": "Close",
     "verifyEmailBanner": "Please verify your email address to complete your account setup.",
-    "verifyEmailSent": "Email sent — check your inbox.",
-    "resendVerification": "Resend verification email"
+    "verifyEmailSent": "Email sent. Check your inbox.",
+    "resendVerification": "Resend verification email",
+    "saveWord": "Save",
+    "wordSaved": "Saved",
+    "wordSaveError": "Something went wrong",
+    "selectWordHint": "Select a word to save it to your vocabulary"
   },
   "nav": {
     "home": "Home",
@@ -90,7 +94,7 @@
       "signingIn": "Signing in...",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
-      "accountCreated": "Account created — you can now sign in",
+      "accountCreated": "Account created. You can now sign in",
       "invalidEmail": "Please enter a valid email address",
       "forgotPassword": "Forgot your password?"
     },
@@ -171,6 +175,8 @@
     "displayName": "Display Name",
     "email": "Email",
     "nativeLanguage": "Native Language",
+    "uiLocale": "Interface Language",
+    "uiLocaleHint": "Changes the language of menus and buttons. Requires page reload.",
     "newPassword": "New Password",
     "newPasswordPlaceholder": "Leave empty to keep",
     "confirmPassword": "Confirm Password",
@@ -384,14 +390,14 @@
         "back": "Back to Plan"
       }
     },
-    "suggestedLevel": "Suggested {aiLevel} — plan will use {selectedLevel}",
-    "step1": "Step 1 / 3 — Your level",
-    "step2": "Step 2 / 3 — Question {questionNumber} / {totalQuestions}",
-    "step3": "Step 3 / 3 — Your programme",
+    "suggestedLevel": "Suggested {aiLevel}; plan will use {selectedLevel}",
+    "step1": "Step 1 / 3: Your level",
+    "step2": "Step 2 / 3: Question {questionNumber} / {totalQuestions}",
+    "step3": "Step 3 / 3: Your programme",
     "studiedBefore": "Have you studied English before?",
     "studiedBeforeHint": "This helps us start the quiz at the right level.",
     "beginnerOption": "I am a complete beginner",
-    "beginnerOptionHint": "I will start at A1 — no quiz needed.",
+    "beginnerOptionHint": "I will start at A1, no quiz needed.",
     "hasExperienceOption": "Yes, I have some experience",
     "hasExperienceOptionHint": "I will take a short adaptive quiz (≈12 questions).",
     "skills": {
@@ -461,7 +467,7 @@
       "review": "Review",
       "level_test": "Level Test"
     },
-    "levelComplete": "Level {level} Complete — Take the Level Test",
+    "levelComplete": "Level {level} Complete. Take the Level Test",
     "levelCompleteDesc": "You have finished all units for level {level}. Take the level completion test to confirm your progress and unlock the next level.",
     "levelCompleteHint": "The test takes approximately 20 minutes and covers grammar, vocabulary, and reading.",
     "beginLevelTest": "Begin Level Test",
@@ -540,7 +546,15 @@
     "sayWord": "Say the word aloud",
     "refresh": "Refresh",
     "generateBtn": "Generate",
-    "cards": "cards"
+    "cards": "cards",
+    "myVocabularyBtn": "My Vocabulary",
+    "myVocabulary": "My Vocabulary",
+    "myVocabularyEmpty": "No saved words yet. Select a word while reading to save it here.",
+    "vocabularySearch": "Search words...",
+    "vocabularyPageInfo": "Page {page} of {pages}",
+    "vocabularyPrev": "Prev",
+    "vocabularyNext": "Next",
+    "backToFlashcards": "Flashcards"
   },
   "chat": {
     "title": "AI Tutor",
@@ -691,8 +705,8 @@
     "statsExercises": "Exercises correct",
     "statsMessages": "Messages sent",
     "statsTokensTotal": "Tokens consumed (total)",
-    "statsTokensChat": "Tokens — tutor",
-    "statsTokensConversation": "Tokens — voice",
+    "statsTokensChat": "Tutor tokens",
+    "statsTokensConversation": "Voice tokens",
     "statsTokensNote": "Only available when the AI provider returns this information",
     "statsNoData": "No progress data",
     "viewStats": "View stats",
@@ -952,7 +966,7 @@
   "billing": {
     "paywallLabel": "Premium required",
     "paywallTitle": "Unlock FreeLingo Premium",
-    "paywallDesc": "Start your {days}-day free trial — no charge today. Cancel anytime.",
+    "paywallDesc": "Start your {days}-day free trial, no charge today. Cancel anytime.",
     "paywallNoCharge": "Card required · No charge until trial ends · Cancel anytime",
     "planMonthly": "— Start for €{price}/month →",
     "planYearly": "— Start for €{price}/year →",
@@ -1012,25 +1026,17 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Got it",
     "entry1": {
-      "label": "Study plan improvements",
-      "desc": "Your progress is now tracked day by day, independently of calendar dates. Completed days advance automatically, you can skip the current day and catch up on pending lessons at any time, and the dashboard shows a progress bar and day counter at a glance."
+      "label": "Save words from reading",
+      "desc": "Select any word in a reading exercise to instantly save it as a flashcard. The AI generates a definition, example sentence, and translation — find all your saved words in the new My Vocabulary panel in the Flashcards section."
     },
     "entry2": {
-      "label": "Feedback board",
-      "desc": "You can now suggest new features and report bugs directly from the app. Vote on suggestions from other users, leave comments, and track the status of each request as it moves from Pending to Done."
+      "label": "Platform language",
+      "desc": "You can now choose the language of the app interface — menus, buttons, and labels — from the Settings page, independently of your native language."
     },
     "entry3": {
-      "label": "Voice history",
-      "desc": "Voice conversations now appear in your chat history. Every word spoken is saved as a text transcript, review past sessions or pick up where you left off, right from the Tutor tab."
-    },
-    "entry4": {
-      "label": "Memory",
-      "desc": "The AI tutor now remembers important things about you across conversations — your interests, goals, profession, and learning struggles. Memories are saved automatically and you can review or delete them anytime from Settings."
-    },
-    "entry5": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }
@@ -1073,7 +1079,7 @@
     "practiceMore": "Practice",
     "moreInHistory": "+{count} more",
     "practiceAgain": "Practice again",
-    "replayNoXp": "Replay — no XP"
+    "replayNoXp": "Replay (no XP)"
   },
   "reading": {
     "title": "Reading",
@@ -1098,7 +1104,8 @@
     "practiceMore": "Practice",
     "moreInHistory": "+{count} more",
     "practiceAgain": "Practice again",
-    "replayNoXp": "Replay — no XP"
+    "replayNoXp": "Replay (no XP)",
+    "selectWordHint": "Select a word to save it to your vocabulary"
   },
   "feedback": {
     "title": "Feedback",

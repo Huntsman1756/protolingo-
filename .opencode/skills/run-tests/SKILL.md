@@ -61,5 +61,5 @@ npx prettier --check src/        # Format check
 ## Backend lint
 
 ```bash
-cd backend && ruff check --select E,W,F . && black --check .
+cd backend && ruff check . && black --check .
 ```

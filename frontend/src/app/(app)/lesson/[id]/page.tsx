@@ -10,6 +10,7 @@ import { grammarTopics } from '@/data/grammar'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
 
 interface ExerciseItem {
   id: number
@@ -40,6 +41,14 @@ export default function LessonPage() {
   const router = useRouter()
   const id = params.id as string
   const completeLesson = useProgressStore((s) => s.completeLesson)
+  const {
+    selectedWord,
+    tooltipPos,
+    saveState,
+    handleTextMouseUp,
+    handleSaveWord,
+    dismissTooltip,
+  } = useWordSave()
 
   const [lesson, setLesson] = useState<LessonData | null>(null)
   const [exercises, setExercises] = useState<ExerciseItem[]>([])
@@ -208,7 +217,7 @@ export default function LessonPage() {
             onClick={() => router.push('/dashboard')}
             className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 mt-8 px-8 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
           >
-            — {tCommon('backToDashboard')}
+            {tCommon('backToDashboard')}
           </button>
         </div>
       </div>
@@ -267,7 +276,15 @@ export default function LessonPage() {
             {explanation && (
               <div className="mt-4 space-y-3">
                 {explanation.text != null && (
-                  <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                  <p
+                    className="text-fl-muted-1 word-selectable cursor-text font-mono text-xs leading-relaxed select-text"
+                    onMouseUp={() =>
+                      handleTextMouseUp(
+                        String(explanation.text),
+                        lesson?.cefr_level ?? 'B1'
+                      )
+                    }
+                  >
                     {String(explanation.text)}
                   </p>
                 )}
@@ -420,9 +437,7 @@ export default function LessonPage() {
                       disabled={evaluating || !answer.trim()}
                       className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
                     >
-                      {evaluating
-                        ? `— ${tCommon('checking')}`
-                        : `— ${t('submitAnswer')}`}
+                      {evaluating ? tCommon('checking') : t('submitAnswer')}
                     </button>
                     {submitError && (
                       <p className="text-fl-error font-mono text-xs">
@@ -476,7 +491,7 @@ export default function LessonPage() {
                         onClick={completeLessonHandler}
                         className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-6 py-2 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
                       >
-                        — {t('completeLesson')}
+                        {t('completeLesson')}
                       </button>
                     )}
                   </div>
@@ -558,6 +573,22 @@ export default function LessonPage() {
         onConfirm={() => router.push('/dashboard')}
         onCancel={() => setShowExitConfirm(false)}
       />
+
+      {/* Word-save tooltip */}
+      {selectedWord && (
+        <WordTooltip
+          word={selectedWord}
+          pos={tooltipPos}
+          saveState={saveState}
+          onSave={() => handleSaveWord()}
+          onDismiss={dismissTooltip}
+          labels={{
+            saveWord: tCommon('saveWord'),
+            wordSaved: tCommon('wordSaved'),
+            wordSaveError: tCommon('wordSaveError'),
+          }}
+        />
+      )}
     </>
   )
 }

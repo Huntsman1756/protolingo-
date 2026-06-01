@@ -6,6 +6,7 @@ import { apiFetch } from '@/lib/api'
 import { mapUser } from '@/lib/mappers'
 import { useAuthStore } from '@/store/auth'
 import NextImage from 'next/image'
+import { SUPPORTED_LOCALES } from '@/lib/locales'
 
 const LANGUAGES = [
   'es',
@@ -59,6 +60,7 @@ export function ProfileSection() {
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
+  const [uiLocale, setUiLocale] = useState('en')
   const [bio, setBio] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -77,6 +79,7 @@ export function ProfileSection() {
       setDisplayName(user.displayName || '')
       setEmail(user.email || '')
       setNativeLanguage(user.native_language || 'es')
+      setUiLocale(user.ui_locale || 'en')
       setBio(user.bio || '')
     }
   }, [user])
@@ -143,6 +146,7 @@ export function ProfileSection() {
           display_name: displayName,
           email: email || null,
           native_language: nativeLanguage,
+          ui_locale: uiLocale,
           bio: bio || null,
           ...(password ? { password } : {}),
         }),
@@ -153,6 +157,11 @@ export function ProfileSection() {
       setMessage({ type: 'ok', text: t('saved') })
       setPassword('')
       setConfirmPassword('')
+
+      if (uiLocale !== user?.ui_locale) {
+        document.cookie = `NEXT_LOCALE=${uiLocale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`
+        window.location.reload()
+      }
     } catch (err: unknown) {
       setMessage({
         type: 'err',
@@ -211,7 +220,7 @@ export function ProfileSection() {
             disabled={avatarUploading}
             className="text-fl-label text-fl-muted-2 hover:text-fl-fg block font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
           >
-            — {avatarUploading ? t('avatarUploading') : t('avatarChange')}
+            {avatarUploading ? t('avatarUploading') : t('avatarChange')}
           </button>
           {user?.avatar && !avatarUploading && (
             <button
@@ -219,7 +228,7 @@ export function ProfileSection() {
               onClick={handleAvatarRemove}
               className="text-fl-label text-fl-muted-4 hover:text-fl-error block font-mono tracking-widest uppercase transition-colors"
             >
-              — {t('avatarRemove')}
+              {t('avatarRemove')}
             </button>
           )}
         </div>
@@ -300,6 +309,28 @@ export function ProfileSection() {
 
       <div>
         <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
+          {t('uiLocale')}
+        </label>
+        <select
+          value={uiLocale}
+          onChange={(e) => setUiLocale(e.target.value)}
+          className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 w-full appearance-none border px-4 py-3 font-mono text-sm transition-colors focus:outline-none"
+        >
+          {[...SUPPORTED_LOCALES]
+            .sort((a, b) => tLang(a).localeCompare(tLang(b)))
+            .map((code) => (
+              <option key={code} value={code}>
+                {tLang(code)}
+              </option>
+            ))}
+        </select>
+        <p className="text-fl-hint text-fl-muted-4 mt-1 font-mono">
+          {t('uiLocaleHint')}
+        </p>
+      </div>
+
+      <div>
+        <label className="text-fl-label text-fl-muted-2 mb-2 block font-mono tracking-widest uppercase">
           {t('newPassword')}
         </label>
         <input
@@ -345,7 +376,7 @@ export function ProfileSection() {
         disabled={saving}
         className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
       >
-        {saving ? `— ${t('saving')}` : `— ${t('saveChanges')}`}
+        {saving ? t('saving') : t('saveChanges')}
       </button>
     </div>
   )

@@ -124,7 +124,7 @@ export function ConversationSection() {
           disabled={savingConv}
           className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
         >
-          {savingConv ? `— ${t('saving')}` : `— ${t('saveConversation')}`}
+          {savingConv ? t('saving') : t('saveConversation')}
         </button>
       </div>
     </div>
