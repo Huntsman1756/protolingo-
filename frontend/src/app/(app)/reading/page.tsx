@@ -190,6 +190,8 @@ function ReadingPage() {
   const loadNext = useCallback(async () => {
     setPageState('loading')
     setError('')
+    setSelectedWord(null)
+    setSaveState('idle')
     try {
       const res = await apiFetch('/api/reading/next')
       if (!res.ok) {
@@ -277,6 +279,7 @@ function ReadingPage() {
       }
       const data = (await res.json()) as SubmitResult
       setResult(data)
+      dismissTooltip()
       setPageState('results')
     } catch {
       setError(t('errorSubmit'))
@@ -452,11 +455,10 @@ function ReadingPage() {
             return (
               <div
                 key={q.index}
-                className={`border p-4 ${
-                  isCorrect
+                className={`border p-4 ${isCorrect
                     ? 'border-green-600/50 bg-green-950/30'
                     : 'border-red-600/50 bg-red-950/30'
-                }`}
+                  }`}
               >
                 <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
@@ -465,13 +467,12 @@ function ReadingPage() {
                   {Object.entries(q.options).map(([k, v]) => (
                     <div
                       key={k}
-                      className={`text-fl-label px-3 py-1.5 font-mono ${
-                        k === correctKey
+                      className={`text-fl-label px-3 py-1.5 font-mono ${k === correctKey
                           ? 'font-bold text-green-400'
                           : k === userAnswer && !isCorrect
                             ? 'text-red-400 line-through opacity-70'
                             : 'text-fl-muted-3'
-                      }`}
+                        }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </div>
@@ -608,11 +609,10 @@ function ReadingPage() {
                             [String(q.index)]: k,
                           }))
                         }
-                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${
-                          selected
+                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${selected
                             ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
                             : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
-                        }`}
+                          }`}
                       >
                         <span className="font-bold">{k}.</span> {v}
                       </button>
