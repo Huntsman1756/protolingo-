@@ -160,10 +160,11 @@ export default function FlashcardsPage() {
             onClick={() => {
               setShowGenerate(!showGenerate)
             }}
-            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showGenerate
-              ? 'border-fl-border-2 text-fl-fg'
-              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-              }`}
+            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
+              showGenerate
+                ? 'border-fl-border-2 text-fl-fg'
+                : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
+            }`}
           >
             + {t('generateBtn')}
           </button>

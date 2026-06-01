@@ -48,7 +48,14 @@ type PageState =
 function ReadingPage() {
   const t = useTranslations('reading')
   const tCommon = useTranslations('common')
-  const { selectedWord, tooltipPos, saveState, handleTextMouseUp, handleSaveWord, dismissTooltip } = useWordSave()
+  const {
+    selectedWord,
+    tooltipPos,
+    saveState,
+    handleTextMouseUp,
+    handleSaveWord,
+    dismissTooltip,
+  } = useWordSave()
 
   const [pageState, setPageState] = useState<PageState>('loading')
   const [exercise, setExercise] = useState<ReadingExercise | null>(null)
@@ -97,7 +104,7 @@ function ReadingPage() {
       setError(t('errorLoading'))
       setPageState('idle')
     }
-  }, [t])
+  }, [t, dismissTooltip])
 
   useEffect(() => {
     loadNext()
@@ -337,10 +344,11 @@ function ReadingPage() {
             return (
               <div
                 key={q.index}
-                className={`border p-4 ${isCorrect
-                  ? 'border-green-600/50 bg-green-950/30'
-                  : 'border-red-600/50 bg-red-950/30'
-                  }`}
+                className={`border p-4 ${
+                  isCorrect
+                    ? 'border-green-600/50 bg-green-950/30'
+                    : 'border-red-600/50 bg-red-950/30'
+                }`}
               >
                 <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
@@ -349,12 +357,13 @@ function ReadingPage() {
                   {Object.entries(q.options).map(([k, v]) => (
                     <div
                       key={k}
-                      className={`text-fl-label px-3 py-1.5 font-mono ${k === correctKey
-                        ? 'font-bold text-green-400'
-                        : k === userAnswer && !isCorrect
-                          ? 'text-red-400 line-through opacity-70'
-                          : 'text-fl-muted-3'
-                        }`}
+                      className={`text-fl-label px-3 py-1.5 font-mono ${
+                        k === correctKey
+                          ? 'font-bold text-green-400'
+                          : k === userAnswer && !isCorrect
+                            ? 'text-red-400 line-through opacity-70'
+                            : 'text-fl-muted-3'
+                      }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </div>
@@ -450,8 +459,13 @@ function ReadingPage() {
             {t('textLabel')}
           </p>
           <div className="border-fl-border bg-fl-surface relative border p-5">
-            <div ref={textRef} onMouseUp={() => handleTextMouseUp(exercise?.text ?? '', exercise?.level ?? 'B1')}>
-              <p className="reading-text text-fl-fg cursor-text font-mono text-xs leading-relaxed whitespace-pre-wrap select-text word-selectable">
+            <div
+              ref={textRef}
+              onMouseUp={() =>
+                handleTextMouseUp(exercise?.text ?? '', exercise?.level ?? 'B1')
+              }
+            >
+              <p className="reading-text text-fl-fg word-selectable cursor-text font-mono text-xs leading-relaxed whitespace-pre-wrap select-text">
                 {exercise.text}
               </p>
             </div>
@@ -487,10 +501,11 @@ function ReadingPage() {
                             [String(q.index)]: k,
                           }))
                         }
-                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${selected
-                          ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
-                          : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
-                          }`}
+                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${
+                          selected
+                            ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
+                            : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
+                        }`}
                       >
                         <span className="font-bold">{k}.</span> {v}
                       </button>

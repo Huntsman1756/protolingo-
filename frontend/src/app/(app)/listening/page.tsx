@@ -185,7 +185,14 @@ function ExerciseAudioPlayer({
 function ListeningPage() {
   const t = useTranslations('listening')
   const tCommon = useTranslations('common')
-  const { selectedWord, tooltipPos, saveState, handleTextMouseUp, handleSaveWord, dismissTooltip } = useWordSave()
+  const {
+    selectedWord,
+    tooltipPos,
+    saveState,
+    handleTextMouseUp,
+    handleSaveWord,
+    dismissTooltip,
+  } = useWordSave()
 
   const [pageState, setPageState] = useState<PageState>('loading')
   const [exercise, setExercise] = useState<ListeningExercise | null>(null)
@@ -232,7 +239,7 @@ function ListeningPage() {
       setError(t('errorLoading'))
       setPageState('idle')
     }
-  }, [t])
+  }, [t, dismissTooltip])
 
   useEffect(() => {
     loadNext()
@@ -407,8 +414,10 @@ function ListeningPage() {
                   </div>
                 </div>
                 <p
-                  className="text-fl-label text-fl-muted-2 border-fl-border mb-3 cursor-text border-t pt-3 font-mono leading-relaxed select-text word-selectable"
-                  onMouseUp={() => handleTextMouseUp(item.text, item.exercise.level ?? 'B1')}
+                  className="text-fl-label text-fl-muted-2 border-fl-border word-selectable mb-3 cursor-text border-t pt-3 font-mono leading-relaxed select-text"
+                  onMouseUp={() =>
+                    handleTextMouseUp(item.text, item.exercise.level ?? 'B1')
+                  }
                 >
                   {item.text}
                 </p>
@@ -492,8 +501,10 @@ function ListeningPage() {
           </p>
           <div className="border-fl-border bg-fl-surface border p-4">
             <p
-              className="text-fl-fg cursor-text font-mono text-xs leading-relaxed select-text word-selectable"
-              onMouseUp={() => handleTextMouseUp(result.text, exercise?.level ?? 'B1')}
+              className="text-fl-fg word-selectable cursor-text font-mono text-xs leading-relaxed select-text"
+              onMouseUp={() =>
+                handleTextMouseUp(result.text, exercise?.level ?? 'B1')
+              }
             >
               {result.text}
             </p>
@@ -514,10 +525,11 @@ function ListeningPage() {
             return (
               <div
                 key={q.index}
-                className={`border p-4 ${isCorrect
-                  ? 'border-green-600/50 bg-green-950/30'
-                  : 'border-red-600/50 bg-red-950/30'
-                  }`}
+                className={`border p-4 ${
+                  isCorrect
+                    ? 'border-green-600/50 bg-green-950/30'
+                    : 'border-red-600/50 bg-red-950/30'
+                }`}
               >
                 <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
@@ -526,12 +538,13 @@ function ListeningPage() {
                   {Object.entries(q.options).map(([k, v]) => (
                     <div
                       key={k}
-                      className={`text-fl-label px-3 py-1.5 font-mono ${k === correctKey
-                        ? 'font-bold text-green-400'
-                        : k === userAnswer && !isCorrect
-                          ? 'text-red-400 line-through opacity-70'
-                          : 'text-fl-muted-3'
-                        }`}
+                      className={`text-fl-label px-3 py-1.5 font-mono ${
+                        k === correctKey
+                          ? 'font-bold text-green-400'
+                          : k === userAnswer && !isCorrect
+                            ? 'text-red-400 line-through opacity-70'
+                            : 'text-fl-muted-3'
+                      }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </div>
@@ -679,10 +692,11 @@ function ListeningPage() {
                           [String(q.index)]: k,
                         }))
                       }
-                      className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${selected
-                        ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
-                        : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
-                        }`}
+                      className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${
+                        selected
+                          ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
+                          : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
+                      }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </button>
