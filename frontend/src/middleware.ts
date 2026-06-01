@@ -32,10 +32,20 @@ function detectLocale(req: NextRequest): Locale {
     return cookie as Locale
   }
 
-  // 2. Parse Accept-Language header (e.g. "es-ES,es;q=0.9,en;q=0.8")
+  // 2. Parse Accept-Language header with q-weight sorting
   const accept = req.headers.get('accept-language') ?? ''
-  for (const part of accept.split(',')) {
-    const lang = part.split(';')[0].trim().split(/[-_]/)[0].toLowerCase()
+  const parsed = accept
+    .split(',')
+    .map((part) => {
+      const [langTag, ...params] = part.trim().split(';')
+      const qParam = params.find((p) => p.trim().startsWith('q='))
+      const q = qParam ? parseFloat(qParam.split('=')[1]) : 1.0
+      const lang = langTag.trim().split(/[-_]/)[0].toLowerCase()
+      return { lang, q: isNaN(q) ? 0 : q }
+    })
+    .sort((a, b) => b.q - a.q)
+
+  for (const { lang } of parsed) {
     if ((SUPPORTED_LOCALES as readonly string[]).includes(lang)) {
       return lang as Locale
     }
@@ -62,6 +72,7 @@ export function middleware(req: NextRequest) {
       response.cookies.set('NEXT_LOCALE', locale, {
         path: '/',
         sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 60 * 60 * 24 * 365,
       })
     }
@@ -80,6 +91,7 @@ export function middleware(req: NextRequest) {
     response.cookies.set('NEXT_LOCALE', locale, {
       path: '/',
       sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
       maxAge: 60 * 60 * 24 * 365,
     })
   }

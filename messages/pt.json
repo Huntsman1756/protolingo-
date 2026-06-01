@@ -171,6 +171,8 @@
     "displayName": "Nome de exibição",
     "email": "E-mail",
     "nativeLanguage": "Idioma nativo",
+    "uiLocale": "Idioma da interface",
+    "uiLocaleHint": "Altera o idioma dos menus e botões. Requer recarregar a página.",
     "newPassword": "Nova senha",
     "newPasswordPlaceholder": "Deixe em branco para manter",
     "confirmPassword": "Confirmar senha",
@@ -1012,7 +1014,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Entendido",
     "entry1": {
       "label": "Melhorias no plano de estudos",

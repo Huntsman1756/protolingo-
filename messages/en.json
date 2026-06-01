@@ -171,6 +171,8 @@
     "displayName": "Display Name",
     "email": "Email",
     "nativeLanguage": "Native Language",
+    "uiLocale": "Interface Language",
+    "uiLocaleHint": "Changes the language of menus and buttons. Requires page reload.",
     "newPassword": "New Password",
     "newPasswordPlaceholder": "Leave empty to keep",
     "confirmPassword": "Confirm Password",
@@ -1012,7 +1014,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Got it",
     "entry1": {
       "label": "Study plan improvements",

@@ -171,6 +171,8 @@
     "displayName": "Wyświetlana nazwa",
     "email": "E-mail",
     "nativeLanguage": "Język ojczysty",
+    "uiLocale": "Język interfejsu",
+    "uiLocaleHint": "Zmienia język menu i przycisków. Wymaga przeładowania strony.",
     "newPassword": "Nowe hasło",
     "newPasswordPlaceholder": "Zostaw puste, aby zachować",
     "confirmPassword": "Potwierdź hasło",
@@ -1012,7 +1014,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Ulepszenia planu nauki",

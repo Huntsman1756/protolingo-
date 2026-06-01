@@ -25,10 +25,6 @@ SUPPORTED_LANGUAGES = {
     "pt",
     "de",
     "it",
-    "zh",
-    "ja",
-    "ko",
-    "ar",
     "ru",
     "nl",
     "pl",
@@ -36,6 +32,19 @@ SUPPORTED_LANGUAGES = {
 }
 
 SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}
+
+SUPPORTED_UI_LOCALES: set[str] = {
+    "en",
+    "es",
+    "fr",
+    "pt",
+    "de",
+    "it",
+    "pl",
+    "nl",
+    "ro",
+    "ru",
+}
 
 VALID_LEARNING_GOALS: set[str] = {
     "travel",
@@ -105,6 +114,7 @@ class UserResponse(BaseModel):
     role: str
     native_language: str
     target_language: str
+    ui_locale: str | None = None
     is_active: bool
     is_verified: bool
     conversation_max_duration: int
@@ -145,6 +155,7 @@ class UserUpdateRequest(BaseModel):
     password: str | None = Field(default=None, min_length=10, max_length=25)
     native_language: str | None = Field(default=None, min_length=2, max_length=5)
     target_language: str | None = None
+    ui_locale: str | None = Field(default=None, min_length=2, max_length=5)
     conversation_max_duration: int | None = None
     conversation_inactivity_timeout: int | None = None
     bio: str | None = Field(default=None, max_length=500)
@@ -164,6 +175,13 @@ class UserUpdateRequest(BaseModel):
             raise ValueError(
                 f"Unsupported target language. Choose from: {SUPPORTED_TARGET_LANGUAGES}"
             )
+        return v
+
+    @field_validator("ui_locale")
+    @classmethod
+    def validate_ui_locale(cls, v: str | None) -> str | None:
+        if v is not None and v not in SUPPORTED_UI_LOCALES:
+            raise ValueError(f"Unsupported UI locale. Choose from: {SUPPORTED_UI_LOCALES}")
         return v
 
     @field_validator("conversation_max_duration")

@@ -171,6 +171,8 @@
     "displayName": "Nome visualizzato",
     "email": "E-mail",
     "nativeLanguage": "Lingua madre",
+    "uiLocale": "Lingua dell'interfaccia",
+    "uiLocaleHint": "Cambia la lingua dei menu e dei pulsanti. Richiede il ricaricamento della pagina.",
     "newPassword": "Nuova password",
     "newPasswordPlaceholder": "Lascia vuoto per mantenere",
     "confirmPassword": "Conferma password",
@@ -1012,7 +1014,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Capito",
     "entry1": {
       "label": "Miglioramenti al piano di studio",

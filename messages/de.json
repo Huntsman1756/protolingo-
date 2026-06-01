@@ -171,6 +171,8 @@
     "displayName": "Anzeigename",
     "email": "E-Mail",
     "nativeLanguage": "Muttersprache",
+    "uiLocale": "Oberflächensprache",
+    "uiLocaleHint": "Ändert die Sprache der Menüs und Schaltflächen. Erfordert Seitenneuladen.",
     "newPassword": "Neues Passwort",
     "newPasswordPlaceholder": "Leer lassen zum Beibehalten",
     "confirmPassword": "Passwort bestätigen",
@@ -1012,7 +1014,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Verstanden",
     "entry1": {
       "label": "Verbesserungen am Lernplan",

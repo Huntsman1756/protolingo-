@@ -14,6 +14,7 @@ export interface User {
   email?: string
   native_language?: string
   target_language?: string
+  ui_locale?: string | null
   role: 'admin' | 'user'
   conversation_max_duration: number
   conversation_inactivity_timeout: number
