@@ -91,9 +91,7 @@ async def create_flashcards_bulk(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    existing = await db.execute(
-        select(Flashcard.word).where(Flashcard.user_id == current_user.id)
-    )
+    existing = await db.execute(select(Flashcard.word).where(Flashcard.user_id == current_user.id))
     existing_words = set(existing.scalars().all())
 
     created = 0

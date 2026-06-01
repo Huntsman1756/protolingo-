@@ -146,8 +146,11 @@ export default function FlashcardsPage() {
         const data = await res.json()
         setVocabCards(data)
       }
-    } catch { /* ignore */ }
-    finally { setVocabLoading(false) }
+    } catch {
+      /* ignore */
+    } finally {
+      setVocabLoading(false)
+    }
   }
 
   function toggleVocabulary() {
@@ -164,8 +167,11 @@ export default function FlashcardsPage() {
     try {
       await apiFetch(`/api/flashcards/${id}`, { method: 'DELETE' })
       setVocabCards((prev) => prev.filter((c) => c.id !== id))
-    } catch { /* ignore */ }
-    finally { setDeletingId(null) }
+    } catch {
+      /* ignore */
+    } finally {
+      setDeletingId(null)
+    }
   }
 
   if (loading) {
@@ -181,7 +187,7 @@ export default function FlashcardsPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-4 p-6">
       {/* Header */}
-      <div className="flex items-center justify-between gap-2 flex-wrap">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-3">●</span>
           <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
@@ -194,19 +200,24 @@ export default function FlashcardsPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggleVocabulary}
-            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showVocabulary
+            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
+              showVocabulary
                 ? 'border-fl-border-2 text-fl-fg'
                 : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-              }`}
+            }`}
           >
             {t('myVocabularyBtn')}
           </button>
           <button
-            onClick={() => { setShowGenerate(!showGenerate); setShowVocabulary(false) }}
-            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showGenerate
+            onClick={() => {
+              setShowGenerate(!showGenerate)
+              setShowVocabulary(false)
+            }}
+            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
+              showGenerate
                 ? 'border-fl-border-2 text-fl-fg'
                 : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-              }`}
+            }`}
           >
             + {t('generateBtn')}
           </button>
@@ -223,7 +234,7 @@ export default function FlashcardsPage() {
             </span>
           </div>
           {vocabLoading ? (
-            <p className="text-fl-muted-3 p-5 font-mono text-xs animate-pulse tracking-widest uppercase">
+            <p className="text-fl-muted-3 animate-pulse p-5 font-mono text-xs tracking-widest uppercase">
               {tCommon('loading')}
             </p>
           ) : vocabCards.length === 0 ? (
@@ -233,16 +244,25 @@ export default function FlashcardsPage() {
           ) : (
             <div className="divide-fl-border divide-y">
               {vocabCards.map((card) => (
-                <div key={card.id} className="flex items-start justify-between gap-4 px-5 py-3">
+                <div
+                  key={card.id}
+                  className="flex items-start justify-between gap-4 px-5 py-3"
+                >
                   <div className="min-w-0 flex-1">
-                    <p className="text-fl-fg font-mono text-xs font-bold">{card.word}</p>
-                    <p className="text-fl-muted-2 font-mono text-xs mt-0.5 leading-relaxed">{card.definition}</p>
-                    <p className="text-fl-muted-3 font-mono text-fl-label tracking-widest uppercase mt-1">{card.translation}</p>
+                    <p className="text-fl-fg font-mono text-xs font-bold">
+                      {card.word}
+                    </p>
+                    <p className="text-fl-muted-2 mt-0.5 font-mono text-xs leading-relaxed">
+                      {card.definition}
+                    </p>
+                    <p className="text-fl-muted-3 text-fl-label mt-1 font-mono tracking-widest uppercase">
+                      {card.translation}
+                    </p>
                   </div>
                   <button
                     onClick={() => deleteVocabCard(card.id)}
                     disabled={deletingId === card.id}
-                    className="text-fl-muted-3 hover:text-red-400 font-mono text-xs transition-colors shrink-0 disabled:opacity-40"
+                    className="text-fl-muted-3 shrink-0 font-mono text-xs transition-colors hover:text-red-400 disabled:opacity-40"
                     aria-label="Delete"
                   >
                     ✕

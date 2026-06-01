@@ -157,7 +157,7 @@ export function ProfileSection() {
       setMessage({ type: 'ok', text: t('saved') })
       setPassword('')
       setConfirmPassword('')
-      
+
       if (uiLocale !== user?.ui_locale) {
         document.cookie = `NEXT_LOCALE=${uiLocale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`
         window.location.reload()

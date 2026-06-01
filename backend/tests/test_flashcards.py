@@ -254,6 +254,7 @@ async def test_create_flashcard_from_word(client, test_user, monkeypatch):
         )
 
     import app.routers.flashcards as fc_router
+
     monkeypatch.setattr(fc_router, "lookup_word", mock_lookup_word)
 
     response = await client.post(
@@ -266,4 +267,3 @@ async def test_create_flashcard_from_word(client, test_user, monkeypatch):
     assert data["word"] == "fleeting"
     assert data["source"] == "from_text"
     assert data["definition"] == "lasting a very short time"
-

@@ -29,7 +29,9 @@ export function BillingSection() {
       const { url } = await res.json()
       window.location.href = url
     } catch (err) {
-      setPortalError(err instanceof Error ? err.message : tBilling('checkoutError'))
+      setPortalError(
+        err instanceof Error ? err.message : tBilling('checkoutError')
+      )
       setCheckoutLoading(false)
     }
   }
@@ -65,14 +67,15 @@ export function BillingSection() {
             {tBilling('status')}
           </span>
           <span
-            className={`border px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase ${user?.subscription_status === 'active'
+            className={`border px-2.5 py-1 font-mono text-xs font-bold tracking-widest uppercase ${
+              user?.subscription_status === 'active'
                 ? 'border-green-600/40 text-green-500'
                 : user?.subscription_status === 'trialing'
                   ? 'border-fl-accent/40 text-fl-accent'
                   : user?.subscription_status === 'past_due'
                     ? 'border-yellow-500/40 text-yellow-500'
                     : 'border-fl-border text-fl-muted-3'
-              }`}
+            }`}
           >
             {user?.subscription_status === 'active' && tBilling('statusActive')}
             {user?.subscription_status === 'trialing' &&

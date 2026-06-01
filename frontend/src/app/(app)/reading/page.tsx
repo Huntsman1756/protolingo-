@@ -46,7 +46,10 @@ type SaveState = 'idle' | 'saving' | 'saved' | 'error'
 // WordTooltip component
 // ---------------------------------------------------------------------------
 
-interface TooltipPos { x: number; y: number }
+interface TooltipPos {
+  x: number
+  y: number
+}
 
 function WordTooltip({
   word,
@@ -68,7 +71,7 @@ function WordTooltip({
       style={{ left: pos.x, top: pos.y }}
       className="pointer-events-auto fixed z-50 -translate-x-1/2 -translate-y-full"
     >
-      <div className="border-fl-border bg-fl-surface shadow-lg border px-3 py-2 flex items-center gap-3 font-mono text-xs">
+      <div className="border-fl-border bg-fl-surface flex items-center gap-3 border px-3 py-2 font-mono text-xs shadow-lg">
         <span className="text-fl-fg font-bold">{word}</span>
         {saveState === 'idle' && (
           <button
@@ -84,12 +87,12 @@ function WordTooltip({
           </span>
         )}
         {saveState === 'saved' && (
-          <span className="text-green-400 tracking-widest uppercase">
+          <span className="tracking-widest text-green-400 uppercase">
             ✓ {t('wordSaved')}
           </span>
         )}
         {saveState === 'error' && (
-          <span className="text-red-400 tracking-widest uppercase">
+          <span className="tracking-widest text-red-400 uppercase">
             {t('wordSaveError')}
           </span>
         )}
@@ -102,7 +105,7 @@ function WordTooltip({
         </button>
       </div>
       {/* Arrow */}
-      <div className="mx-auto mt-px w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-fl-border" />
+      <div className="border-t-fl-border mx-auto mt-px h-0 w-0 border-x-4 border-t-4 border-x-transparent" />
     </div>
   )
 }
@@ -449,10 +452,11 @@ function ReadingPage() {
             return (
               <div
                 key={q.index}
-                className={`border p-4 ${isCorrect
+                className={`border p-4 ${
+                  isCorrect
                     ? 'border-green-600/50 bg-green-950/30'
                     : 'border-red-600/50 bg-red-950/30'
-                  }`}
+                }`}
               >
                 <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
@@ -461,12 +465,13 @@ function ReadingPage() {
                   {Object.entries(q.options).map(([k, v]) => (
                     <div
                       key={k}
-                      className={`text-fl-label px-3 py-1.5 font-mono ${k === correctKey
+                      className={`text-fl-label px-3 py-1.5 font-mono ${
+                        k === correctKey
                           ? 'font-bold text-green-400'
                           : k === userAnswer && !isCorrect
                             ? 'text-red-400 line-through opacity-70'
                             : 'text-fl-muted-3'
-                        }`}
+                      }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </div>
@@ -561,18 +566,18 @@ function ReadingPage() {
           <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
             {t('textLabel')}
           </p>
-          <div className="border-fl-border bg-fl-surface border p-5 relative">
+          <div className="border-fl-border bg-fl-surface relative border p-5">
             <style>{`
               .reading-text::selection { background: rgba(217,119,6,0.35); }
               .reading-text *::selection { background: rgba(217,119,6,0.35); }
             `}</style>
             <div ref={textRef} onMouseUp={handleTextMouseUp}>
-              <p className="reading-text text-fl-fg font-mono text-xs leading-relaxed whitespace-pre-wrap select-text cursor-text">
+              <p className="reading-text text-fl-fg cursor-text font-mono text-xs leading-relaxed whitespace-pre-wrap select-text">
                 {exercise.text}
               </p>
             </div>
           </div>
-          <p className="text-fl-label text-fl-muted-4 mt-2 font-mono tracking-widest uppercase text-center">
+          <p className="text-fl-label text-fl-muted-4 mt-2 text-center font-mono tracking-widest uppercase">
             {t('selectWordHint')}
           </p>
         </div>
@@ -603,10 +608,11 @@ function ReadingPage() {
                             [String(q.index)]: k,
                           }))
                         }
-                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${selected
+                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${
+                          selected
                             ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
                             : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
-                          }`}
+                        }`}
                       >
                         <span className="font-bold">{k}.</span> {v}
                       </button>
