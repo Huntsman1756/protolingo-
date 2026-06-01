@@ -9,6 +9,7 @@ import NextImage from 'next/image'
 import { SUPPORTED_LOCALES } from '@/lib/locales'
 
 const LANGUAGES = [
+  'en',
   'es',
   'fr',
   'pt',

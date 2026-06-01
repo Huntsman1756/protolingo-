@@ -8,6 +8,7 @@ import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 
 const LANGUAGES = [
+  'en',
   'es',
   'fr',
   'pt',

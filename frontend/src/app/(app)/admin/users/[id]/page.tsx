@@ -272,6 +272,7 @@ export default function AdminUserStatsPage() {
           label={t('fieldNativeLanguage')}
           value={tLang(
             user.native_language as
+              | 'en'
               | 'es'
               | 'fr'
               | 'pt'
