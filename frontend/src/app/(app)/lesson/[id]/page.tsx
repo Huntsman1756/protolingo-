@@ -210,7 +210,7 @@ export default function LessonPage() {
             onClick={() => router.push('/dashboard')}
             className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 mt-8 px-8 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
           >
-            — {tCommon('backToDashboard')}
+            {tCommon('backToDashboard')}
           </button>
         </div>
       </div>
@@ -425,8 +425,8 @@ export default function LessonPage() {
                       className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
                     >
                       {evaluating
-                        ? `— ${tCommon('checking')}`
-                        : `— ${t('submitAnswer')}`}
+                        ? tCommon('checking')
+                        : t('submitAnswer')}
                     </button>
                     {submitError && (
                       <p className="text-fl-error font-mono text-xs">
@@ -480,7 +480,7 @@ export default function LessonPage() {
                         onClick={completeLessonHandler}
                         className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-6 py-2 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
                       >
-                        — {t('completeLesson')}
+                        {t('completeLesson')}
                       </button>
                     )}
                   </div>

@@ -384,7 +384,7 @@ function RegisterForm() {
               disabled={loading}
               className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 mt-2 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
             >
-              {loading ? `— ${t('creatingAccount')}` : `— ${t('submit')}`}
+              {loading ? t('creatingAccount') : t('submit')}
             </button>
           </form>
 

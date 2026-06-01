@@ -220,7 +220,7 @@ export function ProfileSection() {
             disabled={avatarUploading}
             className="text-fl-label text-fl-muted-2 hover:text-fl-fg block font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
           >
-            — {avatarUploading ? t('avatarUploading') : t('avatarChange')}
+            {avatarUploading ? t('avatarUploading') : t('avatarChange')}
           </button>
           {user?.avatar && !avatarUploading && (
             <button
@@ -228,7 +228,7 @@ export function ProfileSection() {
               onClick={handleAvatarRemove}
               className="text-fl-label text-fl-muted-4 hover:text-fl-error block font-mono tracking-widest uppercase transition-colors"
             >
-              — {t('avatarRemove')}
+              {t('avatarRemove')}
             </button>
           )}
         </div>
@@ -376,7 +376,7 @@ export function ProfileSection() {
         disabled={saving}
         className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
       >
-        {saving ? `— ${t('saving')}` : `— ${t('saveChanges')}`}
+        {saving ? t('saving') : t('saveChanges')}
       </button>
     </div>
   )

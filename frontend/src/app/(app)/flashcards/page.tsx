@@ -194,15 +194,15 @@ export default function FlashcardsPage() {
             {t('title')}
           </span>
           <span className="text-fl-hint text-fl-muted-2 font-mono tracking-widest">
-            — {total} {t('total')} · {cards.length} {t('due')}
+            {total} {t('total')} · {cards.length} {t('due')}
           </span>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={toggleVocabulary}
             className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showVocabulary
-                ? 'border-fl-border-2 text-fl-fg'
-                : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
+              ? 'border-fl-border-2 text-fl-fg'
+              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
               }`}
           >
             {t('myVocabularyBtn')}
@@ -213,8 +213,8 @@ export default function FlashcardsPage() {
               setShowVocabulary(false)
             }}
             className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showGenerate
-                ? 'border-fl-border-2 text-fl-fg'
-                : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
+              ? 'border-fl-border-2 text-fl-fg'
+              : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
               }`}
           >
             + {t('generateBtn')}
@@ -342,7 +342,7 @@ export default function FlashcardsPage() {
               disabled={generating || !genTopic.trim()}
               className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
             >
-              {generating ? `— ${t('generating')}` : `— ${t('submit')}`}
+              {generating ? t('generating') : t('submit')}
             </button>
           </form>
         </div>
@@ -362,7 +362,7 @@ export default function FlashcardsPage() {
             onClick={loadDue}
             className="border-fl-border text-fl-label text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 mt-6 border px-6 py-2 font-mono tracking-widest uppercase transition-colors"
           >
-            — {t('refresh')}
+            {t('refresh')}
           </button>
         </div>
       )}

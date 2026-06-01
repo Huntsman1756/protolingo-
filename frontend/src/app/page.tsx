@@ -100,7 +100,7 @@ export default async function Home() {
             href={hasSession ? '/dashboard' : '/login'}
             className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-5 py-2 font-mono text-xs tracking-widest uppercase transition-colors"
           >
-            {hasSession ? `— ${t('dashboard')}` : `— ${t('signIn')}`}
+            {hasSession ? t('dashboard') : t('signIn')}
           </Link>
         </div>
       </nav>
@@ -129,7 +129,7 @@ export default async function Home() {
           href={hasSession ? '/dashboard' : '/login'}
           className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-8 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
         >
-          {hasSession ? `— ${t('dashboard')}` : `— ${t('signIn')}`}
+          {hasSession ? t('dashboard') : t('signIn')}
         </Link>
       </section>
 

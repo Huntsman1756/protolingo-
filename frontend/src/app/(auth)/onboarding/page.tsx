@@ -127,7 +127,7 @@ export default function OnboardingPage() {
                 type="submit"
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
               >
-                — {tCommon('next')}
+                {tCommon('next')}
               </button>
             </form>
           )}
@@ -146,11 +146,10 @@ export default function OnboardingPage() {
                       key={goal}
                       type="button"
                       onClick={() => toggleGoal(goal)}
-                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${
-                        active
+                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${active
                           ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                           : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                      }`}
+                        }`}
                     >
                       {t(`goals.${goal}`)}
                     </button>
@@ -163,7 +162,7 @@ export default function OnboardingPage() {
                 onClick={() => handleStep2(false)}
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
               >
-                {loading ? `— ${tCommon('saving')}` : `— ${t('continue')}`}
+                {loading ? tCommon('saving') : t('continue')}
               </button>
               <button
                 type="button"
