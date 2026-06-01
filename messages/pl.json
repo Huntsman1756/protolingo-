@@ -542,7 +542,10 @@
     "sayWord": "Powiedz słowo na głos",
     "refresh": "Odśwież",
     "generateBtn": "Generuj",
-    "cards": "karty"
+    "cards": "karty",
+    "myVocabularyBtn": "Mój słownik",
+    "myVocabulary": "Mój słownik",
+    "myVocabularyEmpty": "Nie zapisano jeszcze żadnych słów. Zaznacz słowo podczas czytania, aby je tutaj zapisać."
   },
   "chat": {
     "title": "Korepetytor AI",
@@ -1017,22 +1020,14 @@
     "version": "v1.6.10",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Ulepszenia planu nauki",
-      "desc": "Twój postęp w planie nauki jest teraz śledzony dzień po dniu, niezależnie od dat w kalendarzu. Ukończone dni przechodzą automatycznie, możesz pominąć bieżący dzień i nadrobić zaległe lekcje w dowolnym momencie. Panel wyświetla pasek postępu i licznik dni na pierwszy rzut oka."
+      "label": "Zapisuj słowa podczas czytania",
+      "desc": "Zaznacz dowolne słowo w ćwiczeniu czytania, aby natychmiast zapisać je jako kartę. AI generuje definicję, przykład i tłumaczenie — wszystkie zapisane słowa znajdziesz w nowym panelu Mój słownik w sekcji Fiszki."
     },
     "entry2": {
-      "label": "Tablica opinii",
-      "desc": "Teraz możesz zgłaszać pomysły na nowe funkcje i błędy bezpośrednio z aplikacji. Głosuj na propozycje innych użytkowników, zostawiaj komentarze i śledź status każdego zgłoszenia aż do realizacji."
+      "label": "Język platformy",
+      "desc": "Możesz teraz wybrać język interfejsu aplikacji — menu, przyciski i etykiety — na stronie Ustawień, niezależnie od swojego języka ojczystego."
     },
     "entry3": {
-      "label": "Historia głosowa",
-      "desc": "Rozmowy głosowe pojawiają się teraz w historii czatu. Każde słowo jest zapisywane jako tekst, przeglądaj poprzednie sesje lub kontynuuj je z poziomu zakładki Tutor."
-    },
-    "entry4": {
-      "label": "Pamięć",
-      "desc": "Korepetytor AI zapamiętuje teraz ważne rzeczy o Tobie między rozmowami — Twoje zainteresowania, cele, zawód i trudności w nauce. Wspomnienia są zapisywane automatycznie i możesz je przeglądać lub usuwać w dowolnym momencie w Ustawieniach."
-    },
-    "entry5": {
       "label": "Poprawki",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }
@@ -1100,7 +1095,11 @@
     "practiceMore": "Ćwicz",
     "moreInHistory": "+{count} więcej",
     "practiceAgain": "Ćwicz ponownie",
-    "replayNoXp": "Powtórka — brak XP"
+    "replayNoXp": "Powtórka — brak XP",
+    "saveWord": "Zapisz",
+    "wordSaved": "Zapisano",
+    "wordSaveError": "Wystąpił problem",
+    "selectWordHint": "Zaznacz słowo, aby zapisać je w swoim słowniku"
   },
   "feedback": {
     "title": "Feedback",

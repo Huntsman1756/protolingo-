@@ -40,6 +40,73 @@ type PageState =
   | 'results'
   | 'history'
 
+type SaveState = 'idle' | 'saving' | 'saved' | 'error'
+
+// ---------------------------------------------------------------------------
+// WordTooltip component
+// ---------------------------------------------------------------------------
+
+interface TooltipPos { x: number; y: number }
+
+function WordTooltip({
+  word,
+  pos,
+  saveState,
+  onSave,
+  onDismiss,
+  t,
+}: {
+  word: string
+  pos: TooltipPos
+  saveState: SaveState
+  onSave: () => void
+  onDismiss: () => void
+  t: ReturnType<typeof useTranslations>
+}) {
+  return (
+    <div
+      style={{ left: pos.x, top: pos.y }}
+      className="pointer-events-auto fixed z-50 -translate-x-1/2 -translate-y-full"
+    >
+      <div className="border-fl-border bg-fl-surface shadow-lg border px-3 py-2 flex items-center gap-3 font-mono text-xs">
+        <span className="text-fl-fg font-bold">{word}</span>
+        {saveState === 'idle' && (
+          <button
+            onClick={onSave}
+            className="text-fl-muted-2 hover:text-fl-fg border-fl-border border px-2 py-0.5 tracking-widest uppercase transition-colors"
+          >
+            {t('saveWord')}
+          </button>
+        )}
+        {saveState === 'saving' && (
+          <span className="text-fl-muted-3 animate-pulse tracking-widest uppercase">
+            ...
+          </span>
+        )}
+        {saveState === 'saved' && (
+          <span className="text-green-400 tracking-widest uppercase">
+            ✓ {t('wordSaved')}
+          </span>
+        )}
+        {saveState === 'error' && (
+          <span className="text-red-400 tracking-widest uppercase">
+            {t('wordSaveError')}
+          </span>
+        )}
+        <button
+          onClick={onDismiss}
+          className="text-fl-muted-3 hover:text-fl-fg ml-1 transition-colors"
+          aria-label="dismiss"
+        >
+          ✕
+        </button>
+      </div>
+      {/* Arrow */}
+      <div className="mx-auto mt-px w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-fl-border" />
+    </div>
+  )
+}
+
 // ---------------------------------------------------------------------------
 // Main page logic
 // ---------------------------------------------------------------------------
@@ -56,8 +123,59 @@ function ReadingPage() {
   const [historyTotal, setHistoryTotal] = useState(0)
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
+
+  // Word-save tooltip state
+  const [selectedWord, setSelectedWord] = useState<string | null>(null)
+  const [selectedContext, setSelectedContext] = useState<string>('')
+  const [tooltipPos, setTooltipPos] = useState<TooltipPos>({ x: 0, y: 0 })
+  const [saveState, setSaveState] = useState<SaveState>('idle')
+  const textRef = useRef<HTMLDivElement>(null)
   const [isReplay, setIsReplay] = useState(false)
   const generateAbortRef = useRef<AbortController | null>(null)
+
+  function dismissTooltip() {
+    setSelectedWord(null)
+    setSaveState('idle')
+    window.getSelection()?.removeAllRanges()
+  }
+
+  function handleTextMouseUp() {
+    const selection = window.getSelection()
+    if (!selection || selection.isCollapsed) return
+    const raw = selection.toString().trim()
+    // Accept only a single word (no spaces)
+    if (!raw || /\s/.test(raw)) return
+    const range = selection.getRangeAt(0)
+    const rect = range.getBoundingClientRect()
+    setSelectedContext(exercise?.text ?? '')
+    setSelectedWord(raw)
+    setSaveState('idle')
+    setTooltipPos({
+      x: rect.left + rect.width / 2,
+      y: rect.top - 8,
+    })
+  }
+
+  async function handleSaveWord() {
+    if (!selectedWord || !exercise) return
+    setSaveState('saving')
+    try {
+      const res = await apiFetch('/api/flashcards/from-word', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          word: selectedWord,
+          context: selectedContext,
+          cefr_level: exercise.level,
+        }),
+      })
+      if (!res.ok) throw new Error()
+      setSaveState('saved')
+      setTimeout(() => dismissTooltip(), 1500)
+    } catch {
+      setSaveState('error')
+    }
+  }
 
   // Cancel in-flight long-poll on unmount
   useEffect(() => {
@@ -331,11 +449,10 @@ function ReadingPage() {
             return (
               <div
                 key={q.index}
-                className={`border p-4 ${
-                  isCorrect
+                className={`border p-4 ${isCorrect
                     ? 'border-green-600/50 bg-green-950/30'
                     : 'border-red-600/50 bg-red-950/30'
-                }`}
+                  }`}
               >
                 <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
                   {q.index + 1}. {q.question}
@@ -344,13 +461,12 @@ function ReadingPage() {
                   {Object.entries(q.options).map(([k, v]) => (
                     <div
                       key={k}
-                      className={`text-fl-label px-3 py-1.5 font-mono ${
-                        k === correctKey
+                      className={`text-fl-label px-3 py-1.5 font-mono ${k === correctKey
                           ? 'font-bold text-green-400'
                           : k === userAnswer && !isCorrect
                             ? 'text-red-400 line-through opacity-70'
                             : 'text-fl-muted-3'
-                      }`}
+                        }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
                     </div>
@@ -445,11 +561,20 @@ function ReadingPage() {
           <p className="text-fl-label text-fl-muted-3 mb-2 font-mono tracking-widest uppercase">
             {t('textLabel')}
           </p>
-          <div className="border-fl-border bg-fl-surface border p-5">
-            <p className="text-fl-fg font-mono text-xs leading-relaxed whitespace-pre-wrap">
-              {exercise.text}
-            </p>
+          <div className="border-fl-border bg-fl-surface border p-5 relative">
+            <style>{`
+              .reading-text::selection { background: rgba(217,119,6,0.35); }
+              .reading-text *::selection { background: rgba(217,119,6,0.35); }
+            `}</style>
+            <div ref={textRef} onMouseUp={handleTextMouseUp}>
+              <p className="reading-text text-fl-fg font-mono text-xs leading-relaxed whitespace-pre-wrap select-text cursor-text">
+                {exercise.text}
+              </p>
+            </div>
           </div>
+          <p className="text-fl-label text-fl-muted-4 mt-2 font-mono tracking-widest uppercase text-center">
+            {t('selectWordHint')}
+          </p>
         </div>
 
         {/* Right: questions */}
@@ -478,11 +603,10 @@ function ReadingPage() {
                             [String(q.index)]: k,
                           }))
                         }
-                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${
-                          selected
+                        className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${selected
                             ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
                             : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
-                        }`}
+                          }`}
                       >
                         <span className="font-bold">{k}.</span> {v}
                       </button>
@@ -506,6 +630,18 @@ function ReadingPage() {
           </button>
         </div>
       </div>
+
+      {/* Word-save tooltip */}
+      {selectedWord && (
+        <WordTooltip
+          word={selectedWord}
+          pos={tooltipPos}
+          saveState={saveState}
+          onSave={handleSaveWord}
+          onDismiss={dismissTooltip}
+          t={t}
+        />
+      )}
     </div>
   )
 }

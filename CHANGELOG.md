@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Interface language selector**: users can now choose their preferred platform language (menus, buttons, labels) independently of their native language, from the Settings page. The preference is persisted in the database and applied immediately on save.
+- **Save word to vocabulary** (reading exercises): selecting a single word in a reading text shows a floating tooltip; clicking "Save" uses AI to generate a definition, example sentence, and translation, then saves the card with `source="from_text"`. A new **My Vocabulary** panel on the Flashcards page lists all saved words with delete support. Saved words flow into the normal SM-2 review queue.
 
 ### Fixed
 - Minor bug fixes and improvements.

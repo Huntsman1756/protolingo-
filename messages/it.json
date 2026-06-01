@@ -542,7 +542,10 @@
     "sayWord": "Di' la parola ad alta voce",
     "refresh": "Aggiorna",
     "generateBtn": "Genera",
-    "cards": "carte"
+    "cards": "carte",
+    "myVocabularyBtn": "Il mio vocabolario",
+    "myVocabulary": "Il mio vocabolario",
+    "myVocabularyEmpty": "Nessuna parola salvata. Seleziona una parola durante la lettura per salvarla qui."
   },
   "chat": {
     "title": "Tutor IA",
@@ -1017,22 +1020,14 @@
     "version": "v1.6.10",
     "cta": "Capito",
     "entry1": {
-      "label": "Miglioramenti al piano di studio",
-      "desc": "Il tuo avanzamento nel piano di studio è ora tracciato giorno per giorno, indipendentemente dalle date del calendario. I giorni completati avanzano automaticamente, puoi saltare il giorno corrente e recuperare le lezioni in sospeso in qualsiasi momento. La dashboard mostra una barra di avanzamento e un contatore di giorni a colpo d'occhio."
+      "label": "Salva parole durante la lettura",
+      "desc": "Seleziona qualsiasi parola in un esercizio di lettura per salvarla immediatamente come flashcard. L'IA genera definizione, esempio e traduzione — trovi tutte le parole salvate nel nuovo pannello Il mio vocabolario nella sezione Flashcard."
     },
     "entry2": {
-      "label": "Bacheca feedback",
-      "desc": "Ora puoi suggerire nuove funzionalità e segnalare bug direttamente dall'app. Vota i suggerimenti degli altri utenti, lascia commenti e segui lo stato di ogni richiesta fino al completamento."
+      "label": "Lingua della piattaforma",
+      "desc": "Ora puoi scegliere la lingua dell'interfaccia dell'app — menu, pulsanti ed etichette — dalla pagina Impostazioni, indipendentemente dalla tua lingua madre."
     },
     "entry3": {
-      "label": "Cronologia vocale",
-      "desc": "Le conversazioni vocali ora appaiono nella cronologia della chat. Ogni parola viene salvata come testo, rivedi le sessioni passate o riprendile dal tab Tutor."
-    },
-    "entry4": {
-      "label": "Memoria",
-      "desc": "Il tutor IA ora ricorda le cose importanti su di te tra una conversazione e l'altra — i tuoi interessi, obiettivi, professione e difficoltà di apprendimento. I ricordi vengono salvati automaticamente e puoi rivederli o eliminarli in qualsiasi momento dalle Impostazioni."
-    },
-    "entry5": {
       "label": "Correzioni",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }
@@ -1100,7 +1095,11 @@
     "practiceMore": "Pratica",
     "moreInHistory": "+{count} altri",
     "practiceAgain": "Esercitarsi di nuovo",
-    "replayNoXp": "Ripetizione — senza XP"
+    "replayNoXp": "Ripetizione — senza XP",
+    "saveWord": "Salva",
+    "wordSaved": "Salvato",
+    "wordSaveError": "Si è verificato un problema",
+    "selectWordHint": "Seleziona una parola per salvarla nel tuo vocabolario"
   },
   "feedback": {
     "title": "Feedback",

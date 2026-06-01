@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import UTC, date, datetime
+from typing import Optional
 
 from sqlalchemy import Date, DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
@@ -19,6 +20,7 @@ class Flashcard(Base):
     definition: Mapped[str] = mapped_column(Text, nullable=False)
     example_sentence: Mapped[str] = mapped_column(Text, nullable=False)
     translation: Mapped[str] = mapped_column(String(255), nullable=False)
+    source: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)
     ease_factor: Mapped[float] = mapped_column(Float, nullable=False, default=2.5)
     interval: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     repetitions: Mapped[int] = mapped_column(Integer, nullable=False, default=0)

@@ -10,13 +10,14 @@ from app.schemas.flashcards import (
     FlashcardBulkCreate,
     FlashcardBulkResponse,
     FlashcardCreate,
+    FlashcardFromWordRequest,
     FlashcardGenerateRequest,
     FlashcardGenerateResponse,
     FlashcardListResponse,
     FlashcardResponse,
     FlashcardReview,
 )
-from app.services.flashcard_sm2 import generate_flashcards, sm2_update
+from app.services.flashcard_sm2 import generate_flashcards, lookup_word, sm2_update
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -178,3 +179,75 @@ async def generate_flashcards_endpoint(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail=f"Failed to generate flashcards: {str(e)}",
         )
+
+
+@router.post("/from-word", response_model=FlashcardResponse)
+async def create_flashcard_from_word(
+    data: FlashcardFromWordRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    try:
+        card_data = await lookup_word(
+            word=data.word.strip(),
+            context=data.context,
+            cefr_level=data.cefr_level,
+            native_language=current_user.native_language,
+            target_language=current_user.target_language,
+        )
+    except LLMTimeoutError:
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT, detail="The AI model took too long."
+        )
+    except LLMUnavailableError as e:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"AI service unavailable: {str(e)}",
+        )
+    except LLMError as e:
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=f"Failed to look up word: {str(e)}",
+        )
+
+    card = Flashcard(
+        user_id=current_user.id,
+        word=card_data.word,
+        definition=card_data.definition,
+        example_sentence=card_data.example_sentence,
+        translation=card_data.translation,
+        source="from_text",
+    )
+    db.add(card)
+    await db.commit()
+    await db.refresh(card)
+    return card
+
+
+@router.get("/vocabulary", response_model=list[FlashcardResponse])
+async def get_vocabulary_flashcards(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    result = await db.execute(
+        select(Flashcard)
+        .where(
+            Flashcard.user_id == current_user.id,
+            Flashcard.source == "from_text",
+        )
+        .order_by(Flashcard.created_at.desc())
+    )
+    return result.scalars().all()
+
+
+@router.delete("/{card_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_flashcard(
+    card_id: int,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    card = await db.get(Flashcard, card_id)
+    if not card or card.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Flashcard not found")
+    await db.delete(card)
+    await db.commit()

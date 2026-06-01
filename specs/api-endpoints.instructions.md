@@ -99,6 +99,9 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 | POST | `/bulk` | Creates multiple flashcards at once; skips duplicates (by word) for the user |
 | POST | `/{card_id}/review` | Records SM-2 review (quality 0–5) |
 | POST | `/generate` | Generates N flashcards via LLM with native-language translations |
+| POST | `/from-word` | Saves a single word as a flashcard: body `{word, context, cefr_level}`; AI generates definition/example/translation; sets `source="from_text"`; returns `FlashcardResponse` |
+| GET | `/vocabulary` | Returns user's saved-from-text flashcards (`source="from_text"`), ordered by `created_at` desc |
+| DELETE | `/{card_id}` | Permanently deletes a flashcard owned by the user; 204 No Content |
 
 ---
 

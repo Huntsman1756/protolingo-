@@ -542,7 +542,10 @@
     "sayWord": "Spune cuvântul cu voce tare",
     "refresh": "Reîmprospătează",
     "generateBtn": "Generează",
-    "cards": "carduri"
+    "cards": "carduri",
+    "myVocabularyBtn": "Vocabularul meu",
+    "myVocabulary": "Vocabularul meu",
+    "myVocabularyEmpty": "Niciun cuvânt salvat încă. Selectează un cuvânt în timp ce citeşti pentru a-l salva aici."
   },
   "chat": {
     "title": "Tutore AI",
@@ -1017,22 +1020,14 @@
     "version": "v1.6.10",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Îmbunătățiri la planul de studiu",
-      "desc": "Progresul tău în planul de studiu este acum urmărit zi de zi, independent de datele calendaristice. Zilele finalizate avansează automat, poți sări ziua curentă și recupera lecțiile restante oricând. Tabloul de bord afișează o bară de progres și un contor de zile dintr-o privire."
+      "label": "Salvează cuvinte în timp ce citești",
+      "desc": "Selectează orice cuvânt dintr-un exercițiu de lectură pentru a-l salva instant ca flashcard. IA generează definiție, exemplu și traducere — găsești toate cuvintele salvate în noul panou Vocabularul meu din secțiunea Flashcards."
     },
     "entry2": {
-      "label": "Panou de feedback",
-      "desc": "Acum poți sugera funcționalități noi și raporta erori direct din aplicație. Votează sugestiile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri până la finalizare."
+      "label": "Limba platformei",
+      "desc": "Acum poți alege limba interfeței aplicației — meniuri, butoane și etichete — din pagina Setări, independent de limba ta nativă."
     },
     "entry3": {
-      "label": "Istoric vocal",
-      "desc": "Conversațiile vocale apar acum în istoricul chatului. Fiecare cuvânt este salvat ca text, revizuiește sesiunile anterioare sau continuă-le din fila Tutor."
-    },
-    "entry4": {
-      "label": "Memorie",
-      "desc": "Tutorele AI îți reține acum informații importante despre tine între conversații — interesele, obiectivele, profesia și dificultățile tale de învățare. Amintirile sunt salvate automat și le poți consulta sau șterge oricând din Setări."
-    },
-    "entry5": {
       "label": "Corecții",
       "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
     }
@@ -1100,7 +1095,11 @@
     "practiceMore": "Exersează",
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
-    "replayNoXp": "Reluare — fără XP"
+    "replayNoXp": "Reluare — fără XP",
+    "saveWord": "Salvează",
+    "wordSaved": "Salvat",
+    "wordSaveError": "A apărut o problemă",
+    "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău"
   },
   "feedback": {
     "title": "Feedback",
