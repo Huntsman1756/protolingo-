@@ -171,6 +171,8 @@
     "displayName": "Nom affiché",
     "email": "E-mail",
     "nativeLanguage": "Langue maternelle",
+    "uiLocale": "Langue de l'interface",
+    "uiLocaleHint": "Change la langue des menus et boutons. Nécessite un rechargement.",
     "newPassword": "Nouveau mot de passe",
     "newPasswordPlaceholder": "Laisser vide pour conserver",
     "confirmPassword": "Confirmer le mot de passe",
@@ -540,7 +542,10 @@
     "sayWord": "Dites le mot à voix haute",
     "refresh": "Actualiser",
     "generateBtn": "Générer",
-    "cards": "cartes"
+    "cards": "cartes",
+    "myVocabularyBtn": "Mon vocabulaire",
+    "myVocabulary": "Mon vocabulaire",
+    "myVocabularyEmpty": "Aucun mot enregistré pour l’instant. Sélectionne un mot en lisant pour le sauvegarder ici."
   },
   "chat": {
     "title": "Tuteur IA",
@@ -1012,25 +1017,17 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Compris",
     "entry1": {
-      "label": "Améliorations du plan d'étude",
-      "desc": "Ta progression dans le plan d'étude est désormais suivie jour par jour, indépendamment des dates du calendrier. Les jours complétés avancent automatiquement, tu peux passer le jour actuel et rattraper les leçons en retard à tout moment. Le tableau de bord affiche une barre de progression et un compteur de jours en un coup d'œil."
+      "label": "Sauvegarder des mots en lisant",
+      "desc": "Sélectionne n'importe quel mot dans un exercice de lecture pour l'enregistrer instantanément comme flashcard. L'IA génère une définition, un exemple et une traduction — retrouve tous tes mots enregistrés dans le nouveau panneau Mon vocabulaire dans la section Flashcards."
     },
     "entry2": {
-      "label": "Tableau de feedback",
-      "desc": "Vous pouvez maintenant suggérer de nouvelles fonctionnalités et signaler des bugs directement depuis l'application. Votez pour les suggestions d'autres utilisateurs, laissez des commentaires et suivez l'avancement de chaque demande."
+      "label": "Langue de la plateforme",
+      "desc": "Tu peux désormais choisir la langue de l'interface de l'application — menus, boutons et étiquettes — depuis la page Paramètres, indépendamment de ta langue maternelle."
     },
     "entry3": {
-      "label": "Historique vocal",
-      "desc": "Vos conversations vocales apparaissent désormais dans l'historique du chat. Chaque mot prononcé est sauvegardé comme transcription texte, révisez vos sessions passées ou reprenez-les depuis l'onglet Tuteur."
-    },
-    "entry4": {
-      "label": "Mémoire",
-      "desc": "Le tuteur IA se souvient désormais des informations importantes te concernant d'une conversation à l'autre — tes centres d'intérêt, tes objectifs, ta profession et tes difficultés d'apprentissage. Les souvenirs sont enregistrés automatiquement et tu peux les consulter ou les supprimer à tout moment dans les Paramètres."
-    },
-    "entry5": {
       "label": "Corrections",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }
@@ -1098,7 +1095,11 @@
     "practiceMore": "Pratiquer",
     "moreInHistory": "+{count} de plus",
     "practiceAgain": "Pratiquer à nouveau",
-    "replayNoXp": "Répétition — sans XP"
+    "replayNoXp": "Répétition — sans XP",
+    "saveWord": "Sauvegarder",
+    "wordSaved": "Sauvegardé",
+    "wordSaveError": "Un problème est survenu",
+    "selectWordHint": "Sélectionne un mot pour l’enregistrer dans ton vocabulaire"
   },
   "feedback": {
     "title": "Feedback",

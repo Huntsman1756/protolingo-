@@ -171,6 +171,8 @@
     "displayName": "Anzeigename",
     "email": "E-Mail",
     "nativeLanguage": "Muttersprache",
+    "uiLocale": "Oberflächensprache",
+    "uiLocaleHint": "Ändert die Sprache der Menüs und Schaltflächen. Erfordert Seitenneuladen.",
     "newPassword": "Neues Passwort",
     "newPasswordPlaceholder": "Leer lassen zum Beibehalten",
     "confirmPassword": "Passwort bestätigen",
@@ -540,7 +542,10 @@
     "sayWord": "Sag das Wort laut",
     "refresh": "Aktualisieren",
     "generateBtn": "Generieren",
-    "cards": "Karten"
+    "cards": "Karten",
+    "myVocabularyBtn": "Mein Vokabular",
+    "myVocabulary": "Mein Vokabular",
+    "myVocabularyEmpty": "Noch keine Wörter gespeichert. Wähle beim Lesen ein Wort aus, um es hier zu speichern."
   },
   "chat": {
     "title": "KI-Tutor",
@@ -1012,25 +1017,17 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Verbesserungen am Lernplan",
-      "desc": "Dein Fortschritt im Lernplan wird jetzt täglich unabhängig vom Kalenderdatum erfasst. Abgeschlossene Tage rücken automatisch weiter, du kannst den aktuellen Tag überspringen und ausstehende Lektionen jederzeit nachholen. Das Dashboard zeigt einen Fortschrittsbalken und einen Tageszähler auf einen Blick."
+      "label": "Wörter beim Lesen speichern",
+      "desc": "Markiere ein beliebiges Wort in einer Leseübung, um es sofort als Karteikarte zu speichern. Die KI generiert Definition, Beispielsatz und Übersetzung — alle gespeicherten Wörter findest du im neuen Panel Mein Vokabular im Bereich Karteikarten."
     },
     "entry2": {
-      "label": "Feedback-Board",
-      "desc": "Du kannst jetzt direkt in der App neue Funktionen vorschlagen und Fehler melden. Stimme für Vorschläge anderer Nutzer ab, hinterlasse Kommentare und verfolge den Status jeder Anfrage bis zur Umsetzung."
+      "label": "Plattformsprache",
+      "desc": "Du kannst nun die Sprache der App-Oberfläche — Menüs, Schaltflächen und Beschriftungen — unabhängig von deiner Muttersprache in den Einstellungen auswählen."
     },
     "entry3": {
-      "label": "Sprachverlauf",
-      "desc": "Deine Sprachkonversationen erscheinen jetzt im Chat-Verlauf. Jedes gesprochene Wort wird als Text gespeichert, vergangene Sitzungen lassen sich durchsehen oder direkt vom Tutor-Tab aus fortsetzen."
-    },
-    "entry4": {
-      "label": "Erinnerungen",
-      "desc": "Der KI-Tutor merkt sich nun wichtige Dinge über dich über Gespräche hinweg — deine Interessen, Ziele, deinen Beruf und deine Lernschwierigkeiten. Erinnerungen werden automatisch gespeichert und können jederzeit in den Einstellungen eingesehen oder gelöscht werden."
-    },
-    "entry5": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
     }
@@ -1098,7 +1095,11 @@
     "practiceMore": "Üben",
     "moreInHistory": "+{count} weitere",
     "practiceAgain": "Erneut üben",
-    "replayNoXp": "Wiederholung — kein XP"
+    "replayNoXp": "Wiederholung — kein XP",
+    "saveWord": "Speichern",
+    "wordSaved": "Gespeichert",
+    "wordSaveError": "Es ist ein Problem aufgetreten",
+    "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern"
   },
   "feedback": {
     "title": "Feedback",

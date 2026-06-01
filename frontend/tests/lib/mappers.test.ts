@@ -40,6 +40,7 @@ describe('mapUser', () => {
       learning_goals: ['travel', 'work'],
       subscription_status: 'active',
       subscription_ends_at: '2025-12-31',
+      ui_locale: null,
     })
   })
 

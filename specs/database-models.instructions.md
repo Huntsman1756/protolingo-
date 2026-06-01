@@ -123,6 +123,7 @@ SM-2 spaced repetition cards, per user.
 | definition | text | English definition |
 | example_sentence | text | Usage example |
 | translation | text | Translation to user's native language |
+| source | varchar(20) | Origin of the card: `NULL` (generated), `"from_text"` (saved from reading exercise) |
 | ease_factor | float | SM-2 ease factor (default 2.5) |
 | interval | integer | Days until next review (default 0) |
 | repetitions | integer | Consecutive correct reviews (default 0) |

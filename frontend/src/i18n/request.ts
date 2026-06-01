@@ -19,8 +19,17 @@ export default getRequestConfig(async () => {
     headerStore.get('x-next-locale') ?? cookieStore.get('NEXT_LOCALE')?.value
   )
 
+  let messages
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default
+  } catch {
+    // Fallback to English if locale file is missing
+    const defaultLocale = 'en'
+    messages = (await import(`../../messages/${defaultLocale}.json`)).default
+  }
+
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
+    messages,
   }
 })

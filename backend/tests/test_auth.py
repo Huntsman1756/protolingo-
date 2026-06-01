@@ -591,3 +591,64 @@ async def test_reset_password_token_consumed_after_use(client, db_session, mock_
         json={"token": token, "new_password": "AnotherP1!"},
     )
     assert r2.status_code == 400
+
+
+# ---------------------------------------------------------------------------
+# UI locale
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.asyncio
+async def test_patch_me_ui_locale_valid(client, test_user):
+    """Setting a supported ui_locale persists and is returned in the response."""
+    _, headers = test_user
+
+    response = await client.patch(
+        "/api/auth/me",
+        headers=headers,
+        json={"ui_locale": "fr"},
+    )
+    assert response.status_code == 200
+    assert response.json()["ui_locale"] == "fr"
+
+
+@pytest.mark.asyncio
+async def test_patch_me_ui_locale_unsupported(client, test_user):
+    """An unsupported ui_locale code must be rejected with 422."""
+    _, headers = test_user
+
+    response = await client.patch(
+        "/api/auth/me",
+        headers=headers,
+        json={"ui_locale": "zh"},
+    )
+    assert response.status_code == 422
+
+
+@pytest.mark.asyncio
+async def test_patch_me_ui_locale_empty_string_clears(client, test_user):
+    """Sending an empty string for ui_locale stores NULL (auto-detect)."""
+    _, headers = test_user
+
+    response = await client.patch(
+        "/api/auth/me",
+        headers=headers,
+        json={"ui_locale": ""},
+    )
+    assert response.status_code == 200
+    assert response.json()["ui_locale"] is None
+
+
+@pytest.mark.asyncio
+async def test_register_unsupported_native_language(client):
+    """Registration must reject native_language codes outside SUPPORTED_LANGUAGES."""
+    response = await client.post(
+        "/api/auth/register",
+        json={
+            "username": "testuser_zh",
+            "email": "testuser_zh@example.com",
+            "password": "ValidPass1!",
+            "native_language": "zh",
+        },
+    )
+    assert response.status_code == 422

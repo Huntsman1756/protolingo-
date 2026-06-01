@@ -19,6 +19,7 @@ class User(Base):
     role: Mapped[str] = mapped_column(String(10), nullable=False, default="user")
     native_language: Mapped[str] = mapped_column(String(10), nullable=False)
     target_language: Mapped[str] = mapped_column(String(10), nullable=False, default="en-US")
+    ui_locale: Mapped[str | None] = mapped_column(String(10), nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     is_verified: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     conversation_max_duration: Mapped[int] = mapped_column(

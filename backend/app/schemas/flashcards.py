@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import date, datetime
+from typing import Optional
 
 from pydantic import BaseModel, field_serializer
 
@@ -24,6 +25,12 @@ class FlashcardReview(BaseModel):
     quality: int
 
 
+class FlashcardFromWordRequest(BaseModel):
+    word: str
+    context: str = ""
+    cefr_level: str = "B1"
+
+
 class FlashcardGenerateRequest(BaseModel):
     topic: str
     count: int = 5
@@ -38,6 +45,7 @@ class FlashcardResponse(BaseModel):
     definition: str
     example_sentence: str
     translation: str
+    source: Optional[str] = None
     ease_factor: float
     interval: int
     repetitions: int

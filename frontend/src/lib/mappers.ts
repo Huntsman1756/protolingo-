@@ -19,6 +19,7 @@ export function mapUser(
     email: data.email,
     native_language: data.native_language,
     target_language: data.target_language,
+    ui_locale: data.ui_locale ?? current?.ui_locale ?? null,
     role: data.role,
     conversation_max_duration: data.conversation_max_duration,
     conversation_inactivity_timeout: data.conversation_inactivity_timeout,

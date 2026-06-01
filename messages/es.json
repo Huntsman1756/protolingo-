@@ -171,6 +171,8 @@
     "displayName": "Nombre para mostrar",
     "email": "Correo electrónico",
     "nativeLanguage": "Idioma nativo",
+    "uiLocale": "Idioma de la interfaz",
+    "uiLocaleHint": "Cambia el idioma de menús y botones. Requiere recargar la página.",
     "newPassword": "Nueva contraseña",
     "newPasswordPlaceholder": "Dejar vacío para no cambiar",
     "confirmPassword": "Confirmar contraseña",
@@ -540,7 +542,10 @@
     "sayWord": "Di la palabra en voz alta",
     "refresh": "Actualizar",
     "generateBtn": "Generar",
-    "cards": "tarjetas"
+    "cards": "tarjetas",
+    "myVocabularyBtn": "Mi vocabulario",
+    "myVocabulary": "Mi vocabulario",
+    "myVocabularyEmpty": "Aún no has guardado palabras. Selecciona una palabra al leer para guardarla aquí."
   },
   "chat": {
     "title": "Tutor IA",
@@ -1012,25 +1017,17 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.6.9",
+    "version": "v1.6.10",
     "cta": "Entendido",
     "entry1": {
-      "label": "Mejoras en el plan de estudio",
-      "desc": "Tu avance en el plan de estudio ahora se rastrea día a día sin depender de fechas de calendario. Los días completados avanzan automáticamente, puedes saltar el día actual y recuperar las lecciones pendientes en cualquier momento. El panel muestra una barra de progreso y el contador de días de un vistazo."
+      "label": "Guarda palabras al leer",
+      "desc": "Selecciona cualquier palabra en un ejercicio de lectura para guardarla al instante como flashcard. La IA genera la definición, un ejemplo y la traducción — encuentra todas tus palabras guardadas en el nuevo panel Mi Vocabulario de la sección Flashcards."
     },
     "entry2": {
-      "label": "Tablón de feedback",
-      "desc": "Ya puedes sugerir nuevas funcionalidades y reportar errores directamente desde la app. Vota las sugerencias de otros usuarios, deja comentarios y sigue el estado de cada solicitud hasta que esté completada."
+      "label": "Idioma de la plataforma",
+      "desc": "Ahora puedes elegir el idioma de la interfaz de la app — menús, botones y etiquetas — desde la página de Ajustes, de forma independiente a tu idioma nativo."
     },
     "entry3": {
-      "label": "Historial de voz",
-      "desc": "Tus conversaciones por voz ahora aparecen en el historial del chat. Cada palabra se guarda como texto, repasa sesiones pasadas o retómalas desde la sección Tutor."
-    },
-    "entry4": {
-      "label": "Memoria",
-      "desc": "El tutor de IA ahora recuerda cosas importantes sobre ti entre conversaciones — tus intereses, objetivos, profesión y dificultades de aprendizaje. Los recuerdos se guardan automáticamente y puedes consultarlos o eliminarlos cuando quieras desde Ajustes."
-    },
-    "entry5": {
       "label": "Correcciones",
       "desc": "Correcciones de errores menores y mejoras de estabilidad en toda la plataforma."
     }
@@ -1098,7 +1095,11 @@
     "practiceMore": "Practicar",
     "moreInHistory": "+{count} más",
     "practiceAgain": "Practicar de nuevo",
-    "replayNoXp": "Repetición — sin XP"
+    "replayNoXp": "Repetición — sin XP",
+    "saveWord": "Guardar",
+    "wordSaved": "Guardado",
+    "wordSaveError": "Ha ocurrido un problema",
+    "selectWordHint": "Selecciona una palabra para guardarla en tu vocabulario"
   },
   "feedback": {
     "title": "Feedback",

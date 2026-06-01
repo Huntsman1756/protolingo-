@@ -250,6 +250,8 @@ async def update_me(
         current_user.native_language = data.native_language
     if data.target_language is not None:
         current_user.target_language = data.target_language
+    if data.ui_locale is not None:
+        current_user.ui_locale = data.ui_locale if data.ui_locale.strip() else None
     if data.conversation_max_duration is not None:
         current_user.conversation_max_duration = data.conversation_max_duration
     if data.conversation_inactivity_timeout is not None:
