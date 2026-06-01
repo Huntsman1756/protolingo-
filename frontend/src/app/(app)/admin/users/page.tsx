@@ -20,6 +20,7 @@ interface AdminUserItem {
 }
 
 const LANGUAGES = [
+  'en',
   'es',
   'fr',
   'pt',
