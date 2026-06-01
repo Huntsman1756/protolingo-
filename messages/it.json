@@ -52,7 +52,11 @@
     "close": "Chiudi",
     "verifyEmailBanner": "Verifica il tuo indirizzo e-mail per completare la configurazione dell'account.",
     "verifyEmailSent": "E-mail inviata — controlla la tua casella di posta.",
-    "resendVerification": "Reinvia e-mail di verifica"
+    "resendVerification": "Reinvia e-mail di verifica",
+    "saveWord": "Salva",
+    "wordSaved": "Salvato",
+    "wordSaveError": "Si è verificato un problema",
+    "selectWordHint": "Seleziona una parola per salvarla nel tuo vocabolario"
   },
   "nav": {
     "home": "Home",
@@ -1096,9 +1100,6 @@
     "moreInHistory": "+{count} altri",
     "practiceAgain": "Esercitarsi di nuovo",
     "replayNoXp": "Ripetizione — senza XP",
-    "saveWord": "Salva",
-    "wordSaved": "Salvato",
-    "wordSaveError": "Si è verificato un problema",
     "selectWordHint": "Seleziona una parola per salvarla nel tuo vocabolario"
   },
   "feedback": {

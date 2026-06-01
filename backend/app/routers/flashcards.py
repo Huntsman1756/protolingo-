@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.models.flashcard import Flashcard
 from app.models.user import User
 from app.schemas.flashcards import (
@@ -138,7 +139,9 @@ async def review_flashcard(
 
 
 @router.post("/generate", response_model=FlashcardGenerateResponse)
+@limiter.limit("20/minute")
 async def generate_flashcards_endpoint(
+    request: Request,
     data: FlashcardGenerateRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -180,7 +183,9 @@ async def generate_flashcards_endpoint(
 
 
 @router.post("/from-word", response_model=FlashcardResponse)
+@limiter.limit("30/minute")
 async def create_flashcard_from_word(
+    request: Request,
     data: FlashcardFromWordRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),

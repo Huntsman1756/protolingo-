@@ -200,11 +200,10 @@ export default function FlashcardsPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggleVocabulary}
-            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
-              showVocabulary
+            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showVocabulary
                 ? 'border-fl-border-2 text-fl-fg'
                 : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-            }`}
+              }`}
           >
             {t('myVocabularyBtn')}
           </button>
@@ -213,11 +212,10 @@ export default function FlashcardsPage() {
               setShowGenerate(!showGenerate)
               setShowVocabulary(false)
             }}
-            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${
-              showGenerate
+            className={`text-fl-label border px-4 py-2 font-mono tracking-widest uppercase transition-colors ${showGenerate
                 ? 'border-fl-border-2 text-fl-fg'
                 : 'border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2'
-            }`}
+              }`}
           >
             + {t('generateBtn')}
           </button>
@@ -249,9 +247,12 @@ export default function FlashcardsPage() {
                   className="flex items-start justify-between gap-4 px-5 py-3"
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="text-fl-fg font-mono text-xs font-bold">
-                      {card.word}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-fl-fg font-mono text-xs font-bold">
+                        {card.word}
+                      </p>
+                      <AudioPlayer text={card.word} size="sm" />
+                    </div>
                     <p className="text-fl-muted-2 mt-0.5 font-mono text-xs leading-relaxed">
                       {card.definition}
                     </p>

@@ -10,6 +10,7 @@ import { grammarTopics } from '@/data/grammar'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
 
 interface ExerciseItem {
   id: number
@@ -40,6 +41,7 @@ export default function LessonPage() {
   const router = useRouter()
   const id = params.id as string
   const completeLesson = useProgressStore((s) => s.completeLesson)
+  const { selectedWord, tooltipPos, saveState, handleTextMouseUp, handleSaveWord, dismissTooltip } = useWordSave()
 
   const [lesson, setLesson] = useState<LessonData | null>(null)
   const [exercises, setExercises] = useState<ExerciseItem[]>([])
@@ -79,7 +81,7 @@ export default function LessonPage() {
       .then((d) => {
         if (d?.progress_day !== undefined) setProgressDayAtStart(d.progress_day)
       })
-      .catch(() => {})
+      .catch(() => { })
   }, [])
 
   // Restore the answer field whenever the active exercise changes
@@ -240,15 +242,15 @@ export default function LessonPage() {
               <span className="text-fl-hint text-fl-muted-2 border-fl-border border px-2 py-1 font-mono tracking-widest uppercase">
                 {lesson?.lesson_type
                   ? ((
-                      {
-                        grammar: tPlan('lessonTypes.grammar'),
-                        vocabulary: tPlan('lessonTypes.vocabulary'),
-                        reading: tPlan('lessonTypes.reading'),
-                        writing: tPlan('lessonTypes.writing'),
-                        review: tPlan('lessonTypes.review'),
-                        level_test: tPlan('lessonTypes.level_test'),
-                      } as Record<string, string>
-                    )[lesson.lesson_type] ?? lesson.lesson_type)
+                    {
+                      grammar: tPlan('lessonTypes.grammar'),
+                      vocabulary: tPlan('lessonTypes.vocabulary'),
+                      reading: tPlan('lessonTypes.reading'),
+                      writing: tPlan('lessonTypes.writing'),
+                      review: tPlan('lessonTypes.review'),
+                      level_test: tPlan('lessonTypes.level_test'),
+                    } as Record<string, string>
+                  )[lesson.lesson_type] ?? lesson.lesson_type)
                   : ''}
               </span>
               <button
@@ -267,7 +269,10 @@ export default function LessonPage() {
             {explanation && (
               <div className="mt-4 space-y-3">
                 {explanation.text != null && (
-                  <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                  <p
+                    className="text-fl-muted-1 cursor-text font-mono text-xs leading-relaxed select-text"
+                    onMouseUp={() => handleTextMouseUp(String(explanation.text), lesson?.cefr_level ?? 'B1')}
+                  >
                     {String(explanation.text)}
                   </p>
                 )}
@@ -283,35 +288,35 @@ export default function LessonPage() {
                 )}
                 {(explanation.examples as { sentence: string; note: string }[])
                   ?.length > 0 && (
-                  <div className="border-fl-border space-y-2 border-t pt-3">
-                    <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
-                      {t('examples')}
-                    </p>
-                    {(
-                      explanation.examples as {
-                        sentence: string
-                        note: string
-                      }[]
-                    ).map((ex, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <span className="text-fl-muted-3 mt-0.5">·</span>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="text-fl-muted-1 font-mono text-xs italic">
-                              {ex.sentence}
-                            </span>
-                            <AudioPlayer text={ex.sentence} size="sm" />
+                    <div className="border-fl-border space-y-2 border-t pt-3">
+                      <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+                        {t('examples')}
+                      </p>
+                      {(
+                        explanation.examples as {
+                          sentence: string
+                          note: string
+                        }[]
+                      ).map((ex, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <span className="text-fl-muted-3 mt-0.5">·</span>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="text-fl-muted-1 font-mono text-xs italic">
+                                {ex.sentence}
+                              </span>
+                              <AudioPlayer text={ex.sentence} size="sm" />
+                            </div>
+                            {ex.note && (
+                              <p className="text-fl-hint text-fl-muted-3 mt-0.5 font-mono">
+                                {ex.note}
+                              </p>
+                            )}
                           </div>
-                          {ex.note && (
-                            <p className="text-fl-hint text-fl-muted-3 mt-0.5 font-mono">
-                              {ex.note}
-                            </p>
-                          )}
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                      ))}
+                    </div>
+                  )}
               </div>
             )}
           </div>
@@ -355,7 +360,7 @@ export default function LessonPage() {
               </p>
 
               {exercise.exercise_type === 'multiple_choice' &&
-              exercise.options ? (
+                exercise.options ? (
                 <div className="space-y-2">
                   {exercise.options.map((opt) => {
                     const isSelected = answer === opt
@@ -364,11 +369,10 @@ export default function LessonPage() {
                         key={opt}
                         disabled={isEvaluated}
                         onClick={() => setAnswer(opt)}
-                        className={`w-full border px-4 py-3 text-left font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${
-                          isSelected
-                            ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
-                            : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
-                        }`}
+                        className={`w-full border px-4 py-3 text-left font-mono text-xs tracking-wide transition-colors disabled:opacity-60 ${isSelected
+                          ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
+                          : 'border-fl-border text-fl-muted-1 hover:border-fl-border-2 hover:text-fl-fg'
+                          }`}
                       >
                         {opt}
                       </button>
@@ -558,6 +562,22 @@ export default function LessonPage() {
         onConfirm={() => router.push('/dashboard')}
         onCancel={() => setShowExitConfirm(false)}
       />
+
+      {/* Word-save tooltip */}
+      {selectedWord && (
+        <WordTooltip
+          word={selectedWord}
+          pos={tooltipPos}
+          saveState={saveState}
+          onSave={() => handleSaveWord()}
+          onDismiss={dismissTooltip}
+          labels={{
+            saveWord: tCommon('saveWord'),
+            wordSaved: tCommon('wordSaved'),
+            wordSaveError: tCommon('wordSaveError'),
+          }}
+        />
+      )}
     </>
   )
 }

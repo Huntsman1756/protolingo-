@@ -52,7 +52,11 @@
     "close": "Închide",
     "verifyEmailBanner": "Vă rugăm să vă verificați adresa de e-mail pentru a finaliza configurarea contului.",
     "verifyEmailSent": "E-mail trimis — verificați inbox-ul.",
-    "resendVerification": "Retrimite e-mail de verificare"
+    "resendVerification": "Retrimite e-mail de verificare",
+    "saveWord": "Salvează",
+    "wordSaved": "Salvat",
+    "wordSaveError": "A apărut o problemă",
+    "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău"
   },
   "nav": {
     "home": "Acasă",
@@ -1096,9 +1100,6 @@
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
     "replayNoXp": "Reluare — fără XP",
-    "saveWord": "Salvează",
-    "wordSaved": "Salvat",
-    "wordSaveError": "A apărut o problemă",
     "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău"
   },
   "feedback": {

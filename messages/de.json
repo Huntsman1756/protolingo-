@@ -52,7 +52,11 @@
     "close": "Schließen",
     "verifyEmailBanner": "Bitte bestätige deine E-Mail-Adresse, um dein Konto einzurichten.",
     "verifyEmailSent": "E-Mail gesendet — prüfe deinen Posteingang.",
-    "resendVerification": "Bestätigungs-E-Mail erneut senden"
+    "resendVerification": "Bestätigungs-E-Mail erneut senden",
+    "saveWord": "Speichern",
+    "wordSaved": "Gespeichert",
+    "wordSaveError": "Es ist ein Problem aufgetreten",
+    "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern"
   },
   "nav": {
     "home": "Startseite",
@@ -1096,9 +1100,6 @@
     "moreInHistory": "+{count} weitere",
     "practiceAgain": "Erneut üben",
     "replayNoXp": "Wiederholung — kein XP",
-    "saveWord": "Speichern",
-    "wordSaved": "Gespeichert",
-    "wordSaveError": "Es ist ein Problem aufgetreten",
     "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern"
   },
   "feedback": {

@@ -52,7 +52,11 @@
     "close": "Close",
     "verifyEmailBanner": "Please verify your email address to complete your account setup.",
     "verifyEmailSent": "Email sent — check your inbox.",
-    "resendVerification": "Resend verification email"
+    "resendVerification": "Resend verification email",
+    "saveWord": "Save",
+    "wordSaved": "Saved",
+    "wordSaveError": "Something went wrong",
+    "selectWordHint": "Select a word to save it to your vocabulary"
   },
   "nav": {
     "home": "Home",
@@ -1096,9 +1100,6 @@
     "moreInHistory": "+{count} more",
     "practiceAgain": "Practice again",
     "replayNoXp": "Replay — no XP",
-    "saveWord": "Save",
-    "wordSaved": "Saved",
-    "wordSaveError": "Something went wrong",
     "selectWordHint": "Select a word to save it to your vocabulary"
   },
   "feedback": {

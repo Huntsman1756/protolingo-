@@ -6,6 +6,7 @@ import { apiFetch } from '@/lib/api'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { type ReadingExercise } from '@/types/api'
+import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -40,76 +41,6 @@ type PageState =
   | 'results'
   | 'history'
 
-type SaveState = 'idle' | 'saving' | 'saved' | 'error'
-
-// ---------------------------------------------------------------------------
-// WordTooltip component
-// ---------------------------------------------------------------------------
-
-interface TooltipPos {
-  x: number
-  y: number
-}
-
-function WordTooltip({
-  word,
-  pos,
-  saveState,
-  onSave,
-  onDismiss,
-  t,
-}: {
-  word: string
-  pos: TooltipPos
-  saveState: SaveState
-  onSave: () => void
-  onDismiss: () => void
-  t: ReturnType<typeof useTranslations>
-}) {
-  return (
-    <div
-      style={{ left: pos.x, top: pos.y }}
-      className="pointer-events-auto fixed z-50 -translate-x-1/2 -translate-y-full"
-    >
-      <div className="border-fl-border bg-fl-surface flex items-center gap-3 border px-3 py-2 font-mono text-xs shadow-lg">
-        <span className="text-fl-fg font-bold">{word}</span>
-        {saveState === 'idle' && (
-          <button
-            onClick={onSave}
-            className="text-fl-muted-2 hover:text-fl-fg border-fl-border border px-2 py-0.5 tracking-widest uppercase transition-colors"
-          >
-            {t('saveWord')}
-          </button>
-        )}
-        {saveState === 'saving' && (
-          <span className="text-fl-muted-3 animate-pulse tracking-widest uppercase">
-            ...
-          </span>
-        )}
-        {saveState === 'saved' && (
-          <span className="tracking-widest text-green-400 uppercase">
-            ✓ {t('wordSaved')}
-          </span>
-        )}
-        {saveState === 'error' && (
-          <span className="tracking-widest text-red-400 uppercase">
-            {t('wordSaveError')}
-          </span>
-        )}
-        <button
-          onClick={onDismiss}
-          className="text-fl-muted-3 hover:text-fl-fg ml-1 transition-colors"
-          aria-label="dismiss"
-        >
-          ✕
-        </button>
-      </div>
-      {/* Arrow */}
-      <div className="border-t-fl-border mx-auto mt-px h-0 w-0 border-x-4 border-t-4 border-x-transparent" />
-    </div>
-  )
-}
-
 // ---------------------------------------------------------------------------
 // Main page logic
 // ---------------------------------------------------------------------------
@@ -117,6 +48,7 @@ function WordTooltip({
 function ReadingPage() {
   const t = useTranslations('reading')
   const tCommon = useTranslations('common')
+  const { selectedWord, tooltipPos, saveState, handleTextMouseUp, handleSaveWord, dismissTooltip } = useWordSave()
 
   const [pageState, setPageState] = useState<PageState>('loading')
   const [exercise, setExercise] = useState<ReadingExercise | null>(null)
@@ -127,58 +59,9 @@ function ReadingPage() {
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  // Word-save tooltip state
-  const [selectedWord, setSelectedWord] = useState<string | null>(null)
-  const [selectedContext, setSelectedContext] = useState<string>('')
-  const [tooltipPos, setTooltipPos] = useState<TooltipPos>({ x: 0, y: 0 })
-  const [saveState, setSaveState] = useState<SaveState>('idle')
   const textRef = useRef<HTMLDivElement>(null)
   const [isReplay, setIsReplay] = useState(false)
   const generateAbortRef = useRef<AbortController | null>(null)
-
-  function dismissTooltip() {
-    setSelectedWord(null)
-    setSaveState('idle')
-    window.getSelection()?.removeAllRanges()
-  }
-
-  function handleTextMouseUp() {
-    const selection = window.getSelection()
-    if (!selection || selection.isCollapsed) return
-    const raw = selection.toString().trim()
-    // Accept only a single word (no spaces)
-    if (!raw || /\s/.test(raw)) return
-    const range = selection.getRangeAt(0)
-    const rect = range.getBoundingClientRect()
-    setSelectedContext(exercise?.text ?? '')
-    setSelectedWord(raw)
-    setSaveState('idle')
-    setTooltipPos({
-      x: rect.left + rect.width / 2,
-      y: rect.top - 8,
-    })
-  }
-
-  async function handleSaveWord() {
-    if (!selectedWord || !exercise) return
-    setSaveState('saving')
-    try {
-      const res = await apiFetch('/api/flashcards/from-word', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          word: selectedWord,
-          context: selectedContext,
-          cefr_level: exercise.level,
-        }),
-      })
-      if (!res.ok) throw new Error()
-      setSaveState('saved')
-      setTimeout(() => dismissTooltip(), 1500)
-    } catch {
-      setSaveState('error')
-    }
-  }
 
   // Cancel in-flight long-poll on unmount
   useEffect(() => {
@@ -190,8 +73,7 @@ function ReadingPage() {
   const loadNext = useCallback(async () => {
     setPageState('loading')
     setError('')
-    setSelectedWord(null)
-    setSaveState('idle')
+    dismissTooltip()
     try {
       const res = await apiFetch('/api/reading/next')
       if (!res.ok) {
@@ -456,8 +338,8 @@ function ReadingPage() {
               <div
                 key={q.index}
                 className={`border p-4 ${isCorrect
-                    ? 'border-green-600/50 bg-green-950/30'
-                    : 'border-red-600/50 bg-red-950/30'
+                  ? 'border-green-600/50 bg-green-950/30'
+                  : 'border-red-600/50 bg-red-950/30'
                   }`}
               >
                 <p className="text-fl-fg mb-3 font-mono text-xs leading-relaxed">
@@ -468,10 +350,10 @@ function ReadingPage() {
                     <div
                       key={k}
                       className={`text-fl-label px-3 py-1.5 font-mono ${k === correctKey
-                          ? 'font-bold text-green-400'
-                          : k === userAnswer && !isCorrect
-                            ? 'text-red-400 line-through opacity-70'
-                            : 'text-fl-muted-3'
+                        ? 'font-bold text-green-400'
+                        : k === userAnswer && !isCorrect
+                          ? 'text-red-400 line-through opacity-70'
+                          : 'text-fl-muted-3'
                         }`}
                     >
                       <span className="font-bold">{k}.</span> {v}
@@ -572,7 +454,7 @@ function ReadingPage() {
               .reading-text::selection { background: rgba(217,119,6,0.35); }
               .reading-text *::selection { background: rgba(217,119,6,0.35); }
             `}</style>
-            <div ref={textRef} onMouseUp={handleTextMouseUp}>
+            <div ref={textRef} onMouseUp={() => handleTextMouseUp(exercise?.text ?? '', exercise?.level ?? 'B1')}>
               <p className="reading-text text-fl-fg cursor-text font-mono text-xs leading-relaxed whitespace-pre-wrap select-text">
                 {exercise.text}
               </p>
@@ -610,8 +492,8 @@ function ReadingPage() {
                           }))
                         }
                         className={`text-fl-label w-full border px-3 py-2 text-left font-mono transition-colors ${selected
-                            ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
-                            : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
+                          ? 'border-fl-accent text-fl-fg bg-fl-surface-2'
+                          : 'border-fl-border text-fl-muted-2 hover:border-fl-muted-2 hover:text-fl-fg'
                           }`}
                       >
                         <span className="font-bold">{k}.</span> {v}
@@ -643,9 +525,13 @@ function ReadingPage() {
           word={selectedWord}
           pos={tooltipPos}
           saveState={saveState}
-          onSave={handleSaveWord}
+          onSave={() => handleSaveWord()}
           onDismiss={dismissTooltip}
-          t={t}
+          labels={{
+            saveWord: tCommon('saveWord'),
+            wordSaved: tCommon('wordSaved'),
+            wordSaveError: tCommon('wordSaveError'),
+          }}
         />
       )}
     </div>

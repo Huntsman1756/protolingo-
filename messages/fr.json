@@ -52,7 +52,11 @@
     "close": "Fermer",
     "verifyEmailBanner": "Veuillez vérifier votre adresse e-mail pour finaliser la configuration de votre compte.",
     "verifyEmailSent": "E-mail envoyé — vérifiez votre boîte de réception.",
-    "resendVerification": "Renvoyer l'e-mail de vérification"
+    "resendVerification": "Renvoyer l'e-mail de vérification",
+    "saveWord": "Sauvegarder",
+    "wordSaved": "Sauvegardé",
+    "wordSaveError": "Un problème est survenu",
+    "selectWordHint": "Sélectionne un mot pour l'enregistrer dans ton vocabulaire"
   },
   "nav": {
     "home": "Accueil",
@@ -1096,9 +1100,6 @@
     "moreInHistory": "+{count} de plus",
     "practiceAgain": "Pratiquer à nouveau",
     "replayNoXp": "Répétition — sans XP",
-    "saveWord": "Sauvegarder",
-    "wordSaved": "Sauvegardé",
-    "wordSaveError": "Un problème est survenu",
     "selectWordHint": "Sélectionne un mot pour l’enregistrer dans ton vocabulaire"
   },
   "feedback": {

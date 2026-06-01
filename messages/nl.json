@@ -52,7 +52,11 @@
     "close": "Sluiten",
     "verifyEmailBanner": "Verifieer je e-mailadres om je accountinstellingen te voltooien.",
     "verifyEmailSent": "E-mail verzonden — controleer je inbox.",
-    "resendVerification": "Verificatie-e-mail opnieuw verzenden"
+    "resendVerification": "Verificatie-e-mail opnieuw verzenden",
+    "saveWord": "Opslaan",
+    "wordSaved": "Opgeslagen",
+    "wordSaveError": "Er is een probleem opgetreden",
+    "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat"
   },
   "nav": {
     "home": "Home",
@@ -1096,9 +1100,6 @@
     "moreInHistory": "+{count} meer",
     "practiceAgain": "Opnieuw oefenen",
     "replayNoXp": "Herhaling — geen XP",
-    "saveWord": "Opslaan",
-    "wordSaved": "Opgeslagen",
-    "wordSaveError": "Er is een probleem opgetreden",
     "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat"
   },
   "feedback": {
