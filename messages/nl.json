@@ -51,7 +51,7 @@
     "tagline": "AI-taalonderwijs",
     "close": "Sluiten",
     "verifyEmailBanner": "Verifieer je e-mailadres om je accountinstellingen te voltooien.",
-    "verifyEmailSent": "E-mail verzonden — controleer je inbox.",
+    "verifyEmailSent": "E-mail verzonden. Controleer je inbox.",
     "resendVerification": "Verificatie-e-mail opnieuw verzenden",
     "saveWord": "Opslaan",
     "wordSaved": "Opgeslagen",
@@ -94,7 +94,7 @@
       "signingIn": "Inloggen...",
       "showPassword": "Wachtwoord tonen",
       "hidePassword": "Wachtwoord verbergen",
-      "accountCreated": "Account aangemaakt — je kunt nu inloggen",
+      "accountCreated": "Account aangemaakt. Je kunt nu inloggen",
       "invalidEmail": "Voer een geldig e-mailadres in",
       "forgotPassword": "Wachtwoord vergeten?"
     },
@@ -390,14 +390,14 @@
         "back": "Terug naar plan"
       }
     },
-    "suggestedLevel": "Voorgesteld {aiLevel} — plan gebruikt {selectedLevel}",
-    "step1": "Stap 1 / 3 — Jouw niveau",
-    "step2": "Stap 2 / 3 — Vraag {questionNumber} / {totalQuestions}",
-    "step3": "Stap 3 / 3 — Jouw programma",
+    "suggestedLevel": "Voorgesteld {aiLevel}; plan gebruikt {selectedLevel}",
+    "step1": "Stap 1 / 3: Jouw niveau",
+    "step2": "Stap 2 / 3: Vraag {questionNumber} / {totalQuestions}",
+    "step3": "Stap 3 / 3: Jouw programma",
     "studiedBefore": "Heb je eerder Engels gestudeerd?",
     "studiedBeforeHint": "Dit helpt ons de quiz op het juiste niveau te starten.",
     "beginnerOption": "Ik ben een complete beginner",
-    "beginnerOptionHint": "Ik begin bij A1 — geen quiz nodig.",
+    "beginnerOptionHint": "Ik begin bij A1, geen quiz nodig.",
     "hasExperienceOption": "Ja, ik heb enige ervaring",
     "hasExperienceOptionHint": "Ik doe een korte adaptieve quiz (±12 vragen).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Herhaling",
       "level_test": "Niveautest"
     },
-    "levelComplete": "Niveau {level} voltooid — doe de niveautest",
+    "levelComplete": "Niveau {level} voltooid. Doe de niveautest",
     "levelCompleteDesc": "Je hebt alle eenheden voor niveau {level} voltooid. Doe de niveauafsluitingstest om je voortgang te bevestigen en het volgende niveau te ontgrendelen.",
     "levelCompleteHint": "De test duurt ongeveer 20 minuten en behandelt grammatica, woordenschat en lezen.",
     "beginLevelTest": "Niveautest starten",
@@ -700,8 +700,8 @@
     "statsExercises": "Correcte oefeningen",
     "statsMessages": "Verzonden berichten",
     "statsTokensTotal": "Verbruikte tokens (totaal)",
-    "statsTokensChat": "Tokens — tutor",
-    "statsTokensConversation": "Tokens — spraak",
+    "statsTokensChat": "Tokens van tutor",
+    "statsTokensConversation": "Tokens van spraak",
     "statsTokensNote": "Alleen beschikbaar wanneer de AI-provider deze informatie teruggeeft",
     "statsNoData": "Geen voortgangsgegevens",
     "viewStats": "Statistieken bekijken",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium vereist",
     "paywallTitle": "Ontgrendel FreeLingo Premium",
-    "paywallDesc": "Start je gratis proefperiode van {days} dagen — vandaag geen kosten. Altijd opzegbaar.",
+    "paywallDesc": "Start je gratis proefperiode van {days} dagen, vandaag geen kosten. Altijd opzegbaar.",
     "paywallNoCharge": "Kaart vereist · Geen kosten tot einde proefperiode · Altijd opzegbaar",
     "planMonthly": "— Starten voor €{price}/maand →",
     "planYearly": "— Starten voor €{price}/jaar →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Oefenen",
     "moreInHistory": "+{count} meer",
     "practiceAgain": "Opnieuw oefenen",
-    "replayNoXp": "Herhaling — geen XP"
+    "replayNoXp": "Herhaling (geen XP)"
   },
   "reading": {
     "title": "Lezen",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Oefenen",
     "moreInHistory": "+{count} meer",
     "practiceAgain": "Opnieuw oefenen",
-    "replayNoXp": "Herhaling — geen XP",
+    "replayNoXp": "Herhaling (geen XP)",
     "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat"
   },
   "feedback": {

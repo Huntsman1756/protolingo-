@@ -51,7 +51,7 @@
     "tagline": "KI-gestütztes Sprachenlernen",
     "close": "Schließen",
     "verifyEmailBanner": "Bitte bestätige deine E-Mail-Adresse, um dein Konto einzurichten.",
-    "verifyEmailSent": "E-Mail gesendet — prüfe deinen Posteingang.",
+    "verifyEmailSent": "E-Mail gesendet. Prüfe deinen Posteingang.",
     "resendVerification": "Bestätigungs-E-Mail erneut senden",
     "saveWord": "Speichern",
     "wordSaved": "Gespeichert",
@@ -94,7 +94,7 @@
       "signingIn": "Wird angemeldet...",
       "showPassword": "Passwort anzeigen",
       "hidePassword": "Passwort verbergen",
-      "accountCreated": "Konto erstellt — du kannst dich jetzt anmelden",
+      "accountCreated": "Konto erstellt. Du kannst dich jetzt anmelden",
       "invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein",
       "forgotPassword": "Passwort vergessen?"
     },
@@ -390,14 +390,14 @@
         "back": "Zurück zum Plan"
       }
     },
-    "suggestedLevel": "Vorgeschlagen {aiLevel} — Plan verwendet {selectedLevel}",
-    "step1": "Schritt 1 / 3 — Dein Niveau",
-    "step2": "Schritt 2 / 3 — Frage {questionNumber} / {totalQuestions}",
-    "step3": "Schritt 3 / 3 — Dein Programm",
+    "suggestedLevel": "Vorgeschlagen {aiLevel}; Plan verwendet {selectedLevel}",
+    "step1": "Schritt 1 / 3: Dein Niveau",
+    "step2": "Schritt 2 / 3: Frage {questionNumber} / {totalQuestions}",
+    "step3": "Schritt 3 / 3: Dein Programm",
     "studiedBefore": "Hast du schon Englisch gelernt?",
     "studiedBeforeHint": "Das hilft uns, das Quiz auf dem richtigen Niveau zu beginnen.",
     "beginnerOption": "Ich bin ein kompletter Anfänger",
-    "beginnerOptionHint": "Ich beginne bei A1 — kein Quiz nötig.",
+    "beginnerOptionHint": "Ich beginne bei A1, kein Quiz nötig.",
     "hasExperienceOption": "Ja, ich habe etwas Erfahrung",
     "hasExperienceOptionHint": "Ich mache ein kurzes adaptives Quiz (≈12 Fragen).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Wiederholung",
       "level_test": "Stufentest"
     },
-    "levelComplete": "Niveau {level} abgeschlossen — Mache den Stufentest",
+    "levelComplete": "Niveau {level} abgeschlossen. Mache den Stufentest",
     "levelCompleteDesc": "Du hast alle Einheiten für Niveau {level} abgeschlossen. Mache den Stufentest, um deinen Fortschritt zu bestätigen und das nächste Niveau freizuschalten.",
     "levelCompleteHint": "Der Test dauert etwa 20 Minuten und umfasst Grammatik, Vokabular und Lesen.",
     "beginLevelTest": "Stufentest starten",
@@ -700,8 +700,8 @@
     "statsExercises": "Richtige Übungen",
     "statsMessages": "Gesendete Nachrichten",
     "statsTokensTotal": "Verbrauchte Tokens (gesamt)",
-    "statsTokensChat": "Tokens — Tutor",
-    "statsTokensConversation": "Tokens — Sprache",
+    "statsTokensChat": "Tutor-Tokens",
+    "statsTokensConversation": "Sprach-Tokens",
     "statsTokensNote": "Nur verfügbar, wenn der KI-Anbieter diese Informationen zurückgibt",
     "statsNoData": "Keine Fortschrittsdaten",
     "viewStats": "Stats anzeigen",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium erforderlich",
     "paywallTitle": "FreeLingo Premium freischalten",
-    "paywallDesc": "Starte deine {days}-tägige kostenlose Testversion — heute keine Kosten. Jederzeit kündbar.",
+    "paywallDesc": "Starte deine {days}-tägige kostenlose Testversion, heute ohne Kosten. Jederzeit kündbar.",
     "paywallNoCharge": "Karte erforderlich · Keine Abbuchung bis Testende · Jederzeit kündbar",
     "planMonthly": "— Starten für {price}€/Monat →",
     "planYearly": "— Starten für {price}€/Jahr →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Üben",
     "moreInHistory": "+{count} weitere",
     "practiceAgain": "Erneut üben",
-    "replayNoXp": "Wiederholung — kein XP"
+    "replayNoXp": "Wiederholung (kein XP)"
   },
   "reading": {
     "title": "Lesen",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Üben",
     "moreInHistory": "+{count} weitere",
     "practiceAgain": "Erneut üben",
-    "replayNoXp": "Wiederholung — kein XP",
+    "replayNoXp": "Wiederholung (kein XP)",
     "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern"
   },
   "feedback": {

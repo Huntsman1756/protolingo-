@@ -51,7 +51,7 @@
     "tagline": "aprendizaje de idiomas con IA",
     "close": "Cerrar",
     "verifyEmailBanner": "Por favor, verifica tu dirección de correo para completar la configuración de tu cuenta.",
-    "verifyEmailSent": "Correo enviado — revisa tu bandeja de entrada.",
+    "verifyEmailSent": "Correo enviado. Revisa tu bandeja de entrada.",
     "resendVerification": "Reenviar correo de verificación",
     "saveWord": "Guardar",
     "wordSaved": "Guardado",
@@ -94,7 +94,7 @@
       "signingIn": "Iniciando sesión...",
       "showPassword": "Mostrar contraseña",
       "hidePassword": "Ocultar contraseña",
-      "accountCreated": "Cuenta creada — ya puedes iniciar sesión",
+      "accountCreated": "Cuenta creada. Ya puedes iniciar sesión",
       "invalidEmail": "Por favor, introduce una dirección de correo válida",
       "forgotPassword": "¿Olvidaste tu contraseña?"
     },
@@ -390,14 +390,14 @@
         "back": "Volver al plan"
       }
     },
-    "suggestedLevel": "Sugerido {aiLevel} — el plan usará {selectedLevel}",
-    "step1": "Paso 1 / 3 — Tu nivel",
-    "step2": "Paso 2 / 3 — Pregunta {questionNumber} / {totalQuestions}",
-    "step3": "Paso 3 / 3 — Tu programa",
+    "suggestedLevel": "Sugerido {aiLevel}; el plan usará {selectedLevel}",
+    "step1": "Paso 1 / 3: Tu nivel",
+    "step2": "Paso 2 / 3: Pregunta {questionNumber} / {totalQuestions}",
+    "step3": "Paso 3 / 3: Tu programa",
     "studiedBefore": "¿Has estudiado inglés antes?",
     "studiedBeforeHint": "Esto nos ayuda a empezar el cuestionario en el nivel adecuado.",
     "beginnerOption": "Soy principiante absoluto",
-    "beginnerOptionHint": "Empezaré en A1 — sin cuestionario.",
+    "beginnerOptionHint": "Empezaré en A1, sin cuestionario.",
     "hasExperienceOption": "Sí, tengo algo de experiencia",
     "hasExperienceOptionHint": "Haré un breve cuestionario adaptativo (≈12 preguntas).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Repaso",
       "level_test": "Test de nivel"
     },
-    "levelComplete": "Nivel {level} completado — Haz el test de nivel",
+    "levelComplete": "Nivel {level} completado. Haz el test de nivel",
     "levelCompleteDesc": "Has completado todas las unidades del nivel {level}. Haz el test de finalización de nivel para confirmar tu progreso y desbloquear el siguiente.",
     "levelCompleteHint": "El test dura aproximadamente 20 minutos y cubre gramática, vocabulario y lectura.",
     "beginLevelTest": "Empezar el test de nivel",
@@ -700,8 +700,8 @@
     "statsExercises": "Ejercicios correctos",
     "statsMessages": "Mensajes enviados",
     "statsTokensTotal": "Tokens consumidos (total)",
-    "statsTokensChat": "Tokens — tutor",
-    "statsTokensConversation": "Tokens — voz",
+    "statsTokensChat": "Tokens del tutor",
+    "statsTokensConversation": "Tokens de voz",
     "statsTokensNote": "Solo disponible si el proveedor de IA devuelve esta información",
     "statsNoData": "Sin datos de progreso",
     "viewStats": "Ver stats",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium requerido",
     "paywallTitle": "Desbloquea FreeLingo Premium",
-    "paywallDesc": "Empieza tu prueba gratuita de {days} días — sin cargo hoy. Cancela cuando quieras.",
+    "paywallDesc": "Empieza tu prueba gratuita de {days} días, sin cargo hoy. Cancela cuando quieras.",
     "paywallNoCharge": "Se requiere tarjeta · Sin cobro hasta que termine la prueba · Cancela cuando quieras",
     "planMonthly": "— Empezar por €{price}/mes →",
     "planYearly": "— Empezar por €{price}/año →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Practicar",
     "moreInHistory": "+{count} más",
     "practiceAgain": "Practicar de nuevo",
-    "replayNoXp": "Repetición — sin XP"
+    "replayNoXp": "Repetición (sin XP)"
   },
   "reading": {
     "title": "Lectura",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Practicar",
     "moreInHistory": "+{count} más",
     "practiceAgain": "Practicar de nuevo",
-    "replayNoXp": "Repetición — sin XP",
+    "replayNoXp": "Repetición (sin XP)",
     "selectWordHint": "Selecciona una palabra para guardarla en tu vocabulario"
   },
   "feedback": {

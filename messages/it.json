@@ -51,7 +51,7 @@
     "tagline": "apprendimento linguistico con IA",
     "close": "Chiudi",
     "verifyEmailBanner": "Verifica il tuo indirizzo e-mail per completare la configurazione dell'account.",
-    "verifyEmailSent": "E-mail inviata — controlla la tua casella di posta.",
+    "verifyEmailSent": "E-mail inviata. Controlla la tua casella di posta.",
     "resendVerification": "Reinvia e-mail di verifica",
     "saveWord": "Salva",
     "wordSaved": "Salvato",
@@ -94,7 +94,7 @@
       "signingIn": "Accesso in corso...",
       "showPassword": "Mostra password",
       "hidePassword": "Nascondi password",
-      "accountCreated": "Account creato — puoi ora accedere",
+      "accountCreated": "Account creato. Puoi ora accedere",
       "invalidEmail": "Inserisci un indirizzo e-mail valido",
       "forgotPassword": "Hai dimenticato la password?"
     },
@@ -390,14 +390,14 @@
         "back": "Torna al piano"
       }
     },
-    "suggestedLevel": "Suggerito {aiLevel} — il piano utilizzerà {selectedLevel}",
-    "step1": "Passo 1 / 3 — Il tuo livello",
-    "step2": "Passo 2 / 3 — Domanda {questionNumber} / {totalQuestions}",
-    "step3": "Passo 3 / 3 — Il tuo programma",
+    "suggestedLevel": "Suggerito {aiLevel}; il piano utilizzerà {selectedLevel}",
+    "step1": "Passo 1 / 3: Il tuo livello",
+    "step2": "Passo 2 / 3: Domanda {questionNumber} / {totalQuestions}",
+    "step3": "Passo 3 / 3: Il tuo programma",
     "studiedBefore": "Hai studiato inglese in precedenza?",
     "studiedBeforeHint": "Questo ci aiuta a iniziare il quiz al livello giusto.",
     "beginnerOption": "Sono un principiante assoluto",
-    "beginnerOptionHint": "Inizierò da A1 — nessun quiz necessario.",
+    "beginnerOptionHint": "Inizierò da A1, nessun quiz necessario.",
     "hasExperienceOption": "Sì, ho un po' di esperienza",
     "hasExperienceOptionHint": "Farò un breve quiz adattivo (≈12 domande).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Ripasso",
       "level_test": "Test di livello"
     },
-    "levelComplete": "Livello {level} completato — Fai il test di livello",
+    "levelComplete": "Livello {level} completato. Fai il test di livello",
     "levelCompleteDesc": "Hai completato tutte le unità del livello {level}. Fai il test di completamento del livello per confermare i tuoi progressi e sbloccare il livello successivo.",
     "levelCompleteHint": "Il test dura circa 20 minuti e copre grammatica, vocabolario e lettura.",
     "beginLevelTest": "Inizia il test di livello",
@@ -700,8 +700,8 @@
     "statsExercises": "Esercizi corretti",
     "statsMessages": "Messaggi inviati",
     "statsTokensTotal": "Token consumati (totale)",
-    "statsTokensChat": "Token — tutor",
-    "statsTokensConversation": "Token — voce",
+    "statsTokensChat": "Token del tutor",
+    "statsTokensConversation": "Token vocali",
     "statsTokensNote": "Disponibile solo se il provider AI restituisce queste informazioni",
     "statsNoData": "Nessun dato di progresso",
     "viewStats": "Vedi stats",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium richiesto",
     "paywallTitle": "Sblocca FreeLingo Premium",
-    "paywallDesc": "Inizia la tua prova gratuita di {days} giorni — nessun addebito oggi. Annulla quando vuoi.",
+    "paywallDesc": "Inizia la tua prova gratuita di {days} giorni, nessun addebito oggi. Annulla quando vuoi.",
     "paywallNoCharge": "Carta richiesta · Nessun addebito fino alla fine della prova · Annulla quando vuoi",
     "planMonthly": "— Inizia a {price}€/mese →",
     "planYearly": "— Inizia a {price}€/anno →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Pratica",
     "moreInHistory": "+{count} altri",
     "practiceAgain": "Esercitarsi di nuovo",
-    "replayNoXp": "Ripetizione — senza XP"
+    "replayNoXp": "Ripetizione (senza XP)"
   },
   "reading": {
     "title": "Lettura",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Pratica",
     "moreInHistory": "+{count} altri",
     "practiceAgain": "Esercitarsi di nuovo",
-    "replayNoXp": "Ripetizione — senza XP",
+    "replayNoXp": "Ripetizione (senza XP)",
     "selectWordHint": "Seleziona una parola per salvarla nel tuo vocabolario"
   },
   "feedback": {

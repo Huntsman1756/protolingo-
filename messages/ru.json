@@ -51,7 +51,7 @@
     "tagline": "ИИ-обучение языкам",
     "close": "Закрыть",
     "verifyEmailBanner": "Пожалуйста, подтвердите свой адрес электронной почты для завершения настройки аккаунта.",
-    "verifyEmailSent": "Письмо отправлено — проверьте входящие.",
+    "verifyEmailSent": "Письмо отправлено. Проверьте входящие.",
     "resendVerification": "Повторно отправить письмо для подтверждения",
     "saveWord": "Сохранить",
     "wordSaved": "Сохранено",
@@ -94,7 +94,7 @@
       "signingIn": "Вход...",
       "showPassword": "Показать пароль",
       "hidePassword": "Скрыть пароль",
-      "accountCreated": "Аккаунт создан — теперь вы можете войти",
+      "accountCreated": "Аккаунт создан. Теперь вы можете войти",
       "invalidEmail": "Введите корректный адрес электронной почты",
       "forgotPassword": "Забыли пароль?"
     },
@@ -390,14 +390,14 @@
         "back": "Назад к плану"
       }
     },
-    "suggestedLevel": "Предложено {aiLevel} — план использует {selectedLevel}",
-    "step1": "Шаг 1 / 3 — Ваш уровень",
-    "step2": "Шаг 2 / 3 — Вопрос {questionNumber} / {totalQuestions}",
-    "step3": "Шаг 3 / 3 — Ваша программа",
+    "suggestedLevel": "Предложено {aiLevel}; план использует {selectedLevel}",
+    "step1": "Шаг 1 / 3: Ваш уровень",
+    "step2": "Шаг 2 / 3: Вопрос {questionNumber} / {totalQuestions}",
+    "step3": "Шаг 3 / 3: Ваша программа",
     "studiedBefore": "Вы изучали английский раньше?",
     "studiedBeforeHint": "Это помогает нам начать тест с правильного уровня.",
     "beginnerOption": "Я полный новичок",
-    "beginnerOptionHint": "Начинаю с A1 — тест не нужен.",
+    "beginnerOptionHint": "Начинаю с A1, тест не нужен.",
     "hasExperienceOption": "Да, у меня есть некоторый опыт",
     "hasExperienceOptionHint": "Пройду короткий адаптивный тест (±12 вопросов).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Повторение",
       "level_test": "Тест уровня"
     },
-    "levelComplete": "Уровень {level} завершён — пройдите тест уровня",
+    "levelComplete": "Уровень {level} завершён. Пройдите тест уровня",
     "levelCompleteDesc": "Вы завершили все модули для уровня {level}. Пройдите тест завершения уровня, чтобы подтвердить прогресс и открыть следующий уровень.",
     "levelCompleteHint": "Тест занимает около 20 минут и охватывает грамматику, словарный запас и чтение.",
     "beginLevelTest": "Начать тест уровня",
@@ -700,8 +700,8 @@
     "statsExercises": "Верных упражнений",
     "statsMessages": "Отправленных сообщений",
     "statsTokensTotal": "Потраченных токенов (всего)",
-    "statsTokensChat": "Токены — репетитор",
-    "statsTokensConversation": "Токены — разговор",
+    "statsTokensChat": "Токены репетитора",
+    "statsTokensConversation": "Токены разговора",
     "statsTokensNote": "Доступно только если ИИ-провайдер возвращает эту информацию",
     "statsNoData": "Данных о прогрессе нет",
     "viewStats": "Просмотреть статистику",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Требуется Premium",
     "paywallTitle": "Разблокировать FreeLingo Premium",
-    "paywallDesc": "Начните бесплатный пробный период {days} дней — сегодня без списаний. Отмените когда угодно.",
+    "paywallDesc": "Начните бесплатный пробный период {days} дней, сегодня без списаний. Отмените когда угодно.",
     "paywallNoCharge": "Карта обязательна · Списаний не будет до конца пробного периода · Отмените когда угодно",
     "planMonthly": "— Начать за {price}€/месяц →",
     "planYearly": "— Начать за {price}€/год →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Практиковать",
     "moreInHistory": "+{count} ещё",
     "practiceAgain": "Практиковаться снова",
-    "replayNoXp": "Повтор — без XP"
+    "replayNoXp": "Повтор (без XP)"
   },
   "reading": {
     "title": "Чтение",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Практиковать",
     "moreInHistory": "+{count} ещё",
     "practiceAgain": "Практиковать снова",
-    "replayNoXp": "Повтор — без XP",
+    "replayNoXp": "Повтор (без XP)",
     "selectWordHint": "Выдели слово, чтобы сохранить его в своём словаре"
   },
   "feedback": {

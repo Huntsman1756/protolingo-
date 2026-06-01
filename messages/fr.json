@@ -51,7 +51,7 @@
     "tagline": "apprentissage des langues par IA",
     "close": "Fermer",
     "verifyEmailBanner": "Veuillez vérifier votre adresse e-mail pour finaliser la configuration de votre compte.",
-    "verifyEmailSent": "E-mail envoyé — vérifiez votre boîte de réception.",
+    "verifyEmailSent": "E-mail envoyé. Vérifiez votre boîte de réception.",
     "resendVerification": "Renvoyer l'e-mail de vérification",
     "saveWord": "Sauvegarder",
     "wordSaved": "Sauvegardé",
@@ -94,7 +94,7 @@
       "signingIn": "Connexion en cours...",
       "showPassword": "Afficher le mot de passe",
       "hidePassword": "Masquer le mot de passe",
-      "accountCreated": "Compte créé — vous pouvez maintenant vous connecter",
+      "accountCreated": "Compte créé. Vous pouvez maintenant vous connecter",
       "invalidEmail": "Veuillez entrer une adresse e-mail valide",
       "forgotPassword": "Mot de passe oublié ?"
     },
@@ -390,14 +390,14 @@
         "back": "Retour au plan"
       }
     },
-    "suggestedLevel": "Suggéré {aiLevel} — le plan utilisera {selectedLevel}",
-    "step1": "Étape 1 / 3 — Votre niveau",
-    "step2": "Étape 2 / 3 — Question {questionNumber} / {totalQuestions}",
-    "step3": "Étape 3 / 3 — Votre programme",
+    "suggestedLevel": "Suggéré {aiLevel} ; le plan utilisera {selectedLevel}",
+    "step1": "Étape 1 / 3 : Votre niveau",
+    "step2": "Étape 2 / 3 : Question {questionNumber} / {totalQuestions}",
+    "step3": "Étape 3 / 3 : Votre programme",
     "studiedBefore": "Avez-vous déjà étudié l'anglais ?",
     "studiedBeforeHint": "Cela nous aide à commencer le quiz au bon niveau.",
     "beginnerOption": "Je suis débutant complet",
-    "beginnerOptionHint": "Je commencerai à A1 — pas de quiz nécessaire.",
+    "beginnerOptionHint": "Je commencerai à A1, pas de quiz nécessaire.",
     "hasExperienceOption": "Oui, j'ai un peu d'expérience",
     "hasExperienceOptionHint": "Je passerai un court quiz adaptatif (≈12 questions).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Révision",
       "level_test": "Test de niveau"
     },
-    "levelComplete": "Niveau {level} terminé — Passez le test de niveau",
+    "levelComplete": "Niveau {level} terminé. Passez le test de niveau",
     "levelCompleteDesc": "Vous avez terminé toutes les unités du niveau {level}. Passez le test de fin de niveau pour confirmer vos progrès et débloquer le niveau suivant.",
     "levelCompleteHint": "Le test dure environ 20 minutes et couvre la grammaire, le vocabulaire et la lecture.",
     "beginLevelTest": "Commencer le test de niveau",
@@ -700,8 +700,8 @@
     "statsExercises": "Exercices corrects",
     "statsMessages": "Messages envoyés",
     "statsTokensTotal": "Tokens consommés (total)",
-    "statsTokensChat": "Tokens — tuteur",
-    "statsTokensConversation": "Tokens — voix",
+    "statsTokensChat": "Tokens du tuteur",
+    "statsTokensConversation": "Tokens de voix",
     "statsTokensNote": "Disponible uniquement si le fournisseur IA renvoie cette information",
     "statsNoData": "Aucune donnée de progression",
     "viewStats": "Voir les stats",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium requis",
     "paywallTitle": "Débloquer FreeLingo Premium",
-    "paywallDesc": "Commencez votre essai gratuit de {days} jours — sans frais aujourd'hui. Annulez à tout moment.",
+    "paywallDesc": "Commencez votre essai gratuit de {days} jours, sans frais aujourd'hui. Annulez à tout moment.",
     "paywallNoCharge": "Carte requise · Aucun débit avant la fin de l'essai · Annulez à tout moment",
     "planMonthly": "— Démarrer pour {price}€/mois →",
     "planYearly": "— Démarrer pour {price}€/an →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Pratiquer",
     "moreInHistory": "+{count} de plus",
     "practiceAgain": "Pratiquer à nouveau",
-    "replayNoXp": "Répétition — sans XP"
+    "replayNoXp": "Répétition (sans XP)"
   },
   "reading": {
     "title": "Lecture",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Pratiquer",
     "moreInHistory": "+{count} de plus",
     "practiceAgain": "Pratiquer à nouveau",
-    "replayNoXp": "Répétition — sans XP",
+    "replayNoXp": "Répétition (sans XP)",
     "selectWordHint": "Sélectionne un mot pour l’enregistrer dans ton vocabulaire"
   },
   "feedback": {

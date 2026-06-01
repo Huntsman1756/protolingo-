@@ -51,7 +51,7 @@
     "tagline": "Educație lingvistică AI",
     "close": "Închide",
     "verifyEmailBanner": "Vă rugăm să vă verificați adresa de e-mail pentru a finaliza configurarea contului.",
-    "verifyEmailSent": "E-mail trimis — verificați inbox-ul.",
+    "verifyEmailSent": "E-mail trimis. Verificați inbox-ul.",
     "resendVerification": "Retrimite e-mail de verificare",
     "saveWord": "Salvează",
     "wordSaved": "Salvat",
@@ -94,7 +94,7 @@
       "signingIn": "Se conectează...",
       "showPassword": "Afișează parola",
       "hidePassword": "Ascunde parola",
-      "accountCreated": "Cont creat — te poți conecta acum",
+      "accountCreated": "Cont creat. Te poți conecta acum",
       "invalidEmail": "Introdu o adresă de e-mail validă",
       "forgotPassword": "Ați uitat parola?"
     },
@@ -390,14 +390,14 @@
         "back": "Înapoi la plan"
       }
     },
-    "suggestedLevel": "Sugerat {aiLevel} — planul folosește {selectedLevel}",
-    "step1": "Pasul 1 / 3 — Nivelul tău",
-    "step2": "Pasul 2 / 3 — Întrebarea {questionNumber} / {totalQuestions}",
-    "step3": "Pasul 3 / 3 — Programul tău",
+    "suggestedLevel": "Sugerat {aiLevel}; planul folosește {selectedLevel}",
+    "step1": "Pasul 1 / 3: Nivelul tău",
+    "step2": "Pasul 2 / 3: Întrebarea {questionNumber} / {totalQuestions}",
+    "step3": "Pasul 3 / 3: Programul tău",
     "studiedBefore": "Ai studiat engleza înainte?",
     "studiedBeforeHint": "Aceasta ne ajută să pornim quiz-ul la nivelul potrivit.",
     "beginnerOption": "Sunt un începător complet",
-    "beginnerOptionHint": "Încep de la A1 — fără quiz.",
+    "beginnerOptionHint": "Încep de la A1, fără quiz.",
     "hasExperienceOption": "Da, am ceva experiență",
     "hasExperienceOptionHint": "Voi face un scurt quiz adaptiv (±12 întrebări).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Recapitulare",
       "level_test": "Test de nivel"
     },
-    "levelComplete": "Nivelul {level} finalizat — fă testul de nivel",
+    "levelComplete": "Nivelul {level} finalizat. Fă testul de nivel",
     "levelCompleteDesc": "Ai finalizat toate unitățile pentru nivelul {level}. Fă testul de finalizare a nivelului pentru a confirma progresul și a debloca nivelul următor.",
     "levelCompleteHint": "Testul durează aproximativ 20 de minute și acoperă gramatică, vocabular și lectură.",
     "beginLevelTest": "Începe testul de nivel",
@@ -700,8 +700,8 @@
     "statsExercises": "Exerciții corecte",
     "statsMessages": "Mesaje trimise",
     "statsTokensTotal": "Tokenuri consumate (total)",
-    "statsTokensChat": "Tokenuri — tutore",
-    "statsTokensConversation": "Tokenuri — conversație",
+    "statsTokensChat": "Tokenuri tutore",
+    "statsTokensConversation": "Tokenuri conversație",
     "statsTokensNote": "Disponibil numai când furnizorul AI returnează aceste informații",
     "statsNoData": "Nu există date de progres",
     "viewStats": "Vezi statistici",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium necesar",
     "paywallTitle": "Deblochează FreeLingo Premium",
-    "paywallDesc": "Încearcă gratuit {days} zile — fără taxe azi. Anulează oricând.",
+    "paywallDesc": "Încearcă gratuit {days} zile, fără taxe azi. Anulează oricând.",
     "paywallNoCharge": "Card necesar · Nicio taxă până la sfârșitul perioadei de probă · Anulează oricând",
     "planMonthly": "— Începe la {price}€/lună →",
     "planYearly": "— Începe la {price}€/an →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Practică",
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
-    "replayNoXp": "Repetare — fără XP"
+    "replayNoXp": "Repetare (fără XP)"
   },
   "reading": {
     "title": "Lectură",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Exersează",
     "moreInHistory": "+{count} mai multe",
     "practiceAgain": "Exersează din nou",
-    "replayNoXp": "Reluare — fără XP",
+    "replayNoXp": "Reluare (fără XP)",
     "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău"
   },
   "feedback": {

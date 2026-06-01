@@ -51,7 +51,7 @@
     "tagline": "AI language learning",
     "close": "Close",
     "verifyEmailBanner": "Please verify your email address to complete your account setup.",
-    "verifyEmailSent": "Email sent — check your inbox.",
+    "verifyEmailSent": "Email sent. Check your inbox.",
     "resendVerification": "Resend verification email",
     "saveWord": "Save",
     "wordSaved": "Saved",
@@ -94,7 +94,7 @@
       "signingIn": "Signing in...",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
-      "accountCreated": "Account created — you can now sign in",
+      "accountCreated": "Account created. You can now sign in",
       "invalidEmail": "Please enter a valid email address",
       "forgotPassword": "Forgot your password?"
     },
@@ -390,14 +390,14 @@
         "back": "Back to Plan"
       }
     },
-    "suggestedLevel": "Suggested {aiLevel} — plan will use {selectedLevel}",
-    "step1": "Step 1 / 3 — Your level",
-    "step2": "Step 2 / 3 — Question {questionNumber} / {totalQuestions}",
-    "step3": "Step 3 / 3 — Your programme",
+    "suggestedLevel": "Suggested {aiLevel}; plan will use {selectedLevel}",
+    "step1": "Step 1 / 3: Your level",
+    "step2": "Step 2 / 3: Question {questionNumber} / {totalQuestions}",
+    "step3": "Step 3 / 3: Your programme",
     "studiedBefore": "Have you studied English before?",
     "studiedBeforeHint": "This helps us start the quiz at the right level.",
     "beginnerOption": "I am a complete beginner",
-    "beginnerOptionHint": "I will start at A1 — no quiz needed.",
+    "beginnerOptionHint": "I will start at A1, no quiz needed.",
     "hasExperienceOption": "Yes, I have some experience",
     "hasExperienceOptionHint": "I will take a short adaptive quiz (≈12 questions).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Review",
       "level_test": "Level Test"
     },
-    "levelComplete": "Level {level} Complete — Take the Level Test",
+    "levelComplete": "Level {level} Complete. Take the Level Test",
     "levelCompleteDesc": "You have finished all units for level {level}. Take the level completion test to confirm your progress and unlock the next level.",
     "levelCompleteHint": "The test takes approximately 20 minutes and covers grammar, vocabulary, and reading.",
     "beginLevelTest": "Begin Level Test",
@@ -700,8 +700,8 @@
     "statsExercises": "Exercises correct",
     "statsMessages": "Messages sent",
     "statsTokensTotal": "Tokens consumed (total)",
-    "statsTokensChat": "Tokens — tutor",
-    "statsTokensConversation": "Tokens — voice",
+    "statsTokensChat": "Tutor tokens",
+    "statsTokensConversation": "Voice tokens",
     "statsTokensNote": "Only available when the AI provider returns this information",
     "statsNoData": "No progress data",
     "viewStats": "View stats",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium required",
     "paywallTitle": "Unlock FreeLingo Premium",
-    "paywallDesc": "Start your {days}-day free trial — no charge today. Cancel anytime.",
+    "paywallDesc": "Start your {days}-day free trial, no charge today. Cancel anytime.",
     "paywallNoCharge": "Card required · No charge until trial ends · Cancel anytime",
     "planMonthly": "— Start for €{price}/month →",
     "planYearly": "— Start for €{price}/year →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Practice",
     "moreInHistory": "+{count} more",
     "practiceAgain": "Practice again",
-    "replayNoXp": "Replay — no XP"
+    "replayNoXp": "Replay (no XP)"
   },
   "reading": {
     "title": "Reading",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Practice",
     "moreInHistory": "+{count} more",
     "practiceAgain": "Practice again",
-    "replayNoXp": "Replay — no XP",
+    "replayNoXp": "Replay (no XP)",
     "selectWordHint": "Select a word to save it to your vocabulary"
   },
   "feedback": {

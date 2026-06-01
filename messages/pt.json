@@ -51,7 +51,7 @@
     "tagline": "aprendizado de idiomas com IA",
     "close": "Fechar",
     "verifyEmailBanner": "Por favor, verifique o seu endereço de e-mail para concluir a configuração da conta.",
-    "verifyEmailSent": "E-mail enviado — verifique a sua caixa de entrada.",
+    "verifyEmailSent": "E-mail enviado. Verifique a sua caixa de entrada.",
     "resendVerification": "Reenviar e-mail de verificação",
     "saveWord": "Guardar",
     "wordSaved": "Guardado",
@@ -94,7 +94,7 @@
       "signingIn": "Entrando...",
       "showPassword": "Mostrar senha",
       "hidePassword": "Ocultar senha",
-      "accountCreated": "Conta criada — você já pode entrar",
+      "accountCreated": "Conta criada. Você já pode entrar",
       "invalidEmail": "Por favor, insira um endereço de e-mail válido",
       "forgotPassword": "Esqueceu a senha?"
     },
@@ -390,14 +390,14 @@
         "back": "Voltar ao plano"
       }
     },
-    "suggestedLevel": "Sugerido {aiLevel} — o plano usará {selectedLevel}",
-    "step1": "Passo 1 / 3 — Seu nível",
-    "step2": "Passo 2 / 3 — Pergunta {questionNumber} / {totalQuestions}",
-    "step3": "Passo 3 / 3 — Seu programa",
+    "suggestedLevel": "Sugerido {aiLevel}; o plano usará {selectedLevel}",
+    "step1": "Passo 1 / 3: Seu nível",
+    "step2": "Passo 2 / 3: Pergunta {questionNumber} / {totalQuestions}",
+    "step3": "Passo 3 / 3: Seu programa",
     "studiedBefore": "Você já estudou inglês antes?",
     "studiedBeforeHint": "Isso nos ajuda a iniciar o questionário no nível adequado.",
     "beginnerOption": "Sou um iniciante completo",
-    "beginnerOptionHint": "Começarei no A1 — sem questionário.",
+    "beginnerOptionHint": "Começarei no A1, sem questionário.",
     "hasExperienceOption": "Sim, tenho alguma experiência",
     "hasExperienceOptionHint": "Farei um breve questionário adaptativo (≈12 perguntas).",
     "skills": {
@@ -467,7 +467,7 @@
       "review": "Revisão",
       "level_test": "Teste de nível"
     },
-    "levelComplete": "Nível {level} completo — Faça o teste de nível",
+    "levelComplete": "Nível {level} completo. Faça o teste de nível",
     "levelCompleteDesc": "Concluiu todas as unidades do nível {level}. Faça o teste de conclusão de nível para confirmar o seu progresso e desbloquear o próximo nível.",
     "levelCompleteHint": "O teste demora cerca de 20 minutos e abrange gramática, vocabulário e leitura.",
     "beginLevelTest": "Começar o teste de nível",
@@ -700,8 +700,8 @@
     "statsExercises": "Exercícios corretos",
     "statsMessages": "Mensagens enviadas",
     "statsTokensTotal": "Tokens consumidos (total)",
-    "statsTokensChat": "Tokens — tutor",
-    "statsTokensConversation": "Tokens — voz",
+    "statsTokensChat": "Tokens do tutor",
+    "statsTokensConversation": "Tokens de voz",
     "statsTokensNote": "Disponível apenas se o provedor de IA retornar esta informação",
     "statsNoData": "Sem dados de progresso",
     "viewStats": "Ver stats",
@@ -961,7 +961,7 @@
   "billing": {
     "paywallLabel": "Premium necessário",
     "paywallTitle": "Desbloquear FreeLingo Premium",
-    "paywallDesc": "Inicie o seu período de avaliação gratuito de {days} dias — sem cobranças hoje. Cancele a qualquer momento.",
+    "paywallDesc": "Inicie o seu período de avaliação gratuito de {days} dias, sem cobranças hoje. Cancele a qualquer momento.",
     "paywallNoCharge": "Cartão obrigatório · Sem cobrança até o fim da avaliação · Cancele a qualquer momento",
     "planMonthly": "— Iniciar por €{price}/mês →",
     "planYearly": "— Iniciar por €{price}/ano →",
@@ -1074,7 +1074,7 @@
     "practiceMore": "Praticar",
     "moreInHistory": "+{count} mais",
     "practiceAgain": "Praticar novamente",
-    "replayNoXp": "Repetição — sem XP"
+    "replayNoXp": "Repetição (sem XP)"
   },
   "reading": {
     "title": "Leitura",
@@ -1099,7 +1099,7 @@
     "practiceMore": "Praticar",
     "moreInHistory": "+{count} mais",
     "practiceAgain": "Praticar novamente",
-    "replayNoXp": "Repetição — sem XP",
+    "replayNoXp": "Repetição (sem XP)",
     "selectWordHint": "Seleciona uma palavra para a guardar no teu vocabulário"
   },
   "feedback": {
