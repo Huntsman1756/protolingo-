@@ -2,11 +2,13 @@ from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import PyJWTError as JWTError
 from redis.asyncio import Redis
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import get_db
 from app.core.security import decode_access_token
+from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.services.subscription_service import is_subscribed
 
@@ -73,3 +75,26 @@ async def require_subscription(
     if not is_subscribed(current_user, settings.STRIPE_ENABLED):
         raise HTTPException(status_code=402, detail="subscription_required")
     return current_user
+
+
+async def get_active_study_plan(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+) -> StudyPlan:
+    """Return the active study plan for the user's active language."""
+    from app.services.user_language_service import get_active_language
+
+    active_lang = await get_active_language(db, current_user.id)
+    if not active_lang:
+        raise HTTPException(status_code=404, detail="No active language set")
+    result = await db.execute(
+        select(StudyPlan).where(
+            StudyPlan.user_id == current_user.id,
+            StudyPlan.target_language == active_lang.target_language,
+            StudyPlan.is_active == True,  # noqa: E712
+        )
+    )
+    plan = result.scalar_one_or_none()
+    if not plan:
+        raise HTTPException(status_code=404, detail="No active study plan found")
+    return plan

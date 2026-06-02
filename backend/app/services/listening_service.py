@@ -10,6 +10,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.listening import ListeningAttempt, ListeningExercise
+from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import LLMResponseError, llm_adapter, parse_llm_json
 from app.services.progress_service import update_daily_progress
 
@@ -48,13 +49,13 @@ _TYPE_DESCRIPTIONS: dict[str, str] = {
 }
 
 _GENERATION_PROMPT = """\
-You are an English language content creator. Generate a listening comprehension exercise \
-for a {level} learner. Target language variant: {target_language}.
+You are a {target_language_name} language content creator. Generate a listening comprehension exercise \
+for a {level} learner. Target language: {target_language_name}.
 
 Requirements:
 - Exercise type: {exercise_type} ({exercise_type_desc})
 - Length: approximately {word_count} words
-- Use {target_language} vocabulary and spelling conventions
+- Use {target_language_name} vocabulary and spelling conventions
 - Write naturally, as if it will be read aloud
 - Do not use headers, markdown, lists, or formatting — plain flowing prose only
 
@@ -122,7 +123,7 @@ async def generate_and_save_exercise(
 
     prompt = _GENERATION_PROMPT.format(
         level=level,
-        target_language=target_language,
+        target_language_name=get_language_name(target_language),
         exercise_type=exercise_type,
         exercise_type_desc=_TYPE_DESCRIPTIONS[exercise_type],
         word_count=word_count,

@@ -2,14 +2,19 @@ from __future__ import annotations
 
 from app.data.curriculum import distribute_units, get_curriculum_units
 from app.schemas.study_plan import DayPlan, GeneratedPlan, GenerateStudyPlanRequest, WeekPlan
+from app.services.language_helpers import get_language_name
 
 
-async def generate_study_plan(request: GenerateStudyPlanRequest) -> GeneratedPlan:
+async def generate_study_plan(
+    request: GenerateStudyPlanRequest,
+    target_language: str = "en-US",
+) -> GeneratedPlan:
     """
     Build a curriculum-driven study plan skeleton.
     No LLM call — purely deterministic from the static curriculum.
     LLM is called separately per-lesson when the user opens one for the first time.
     """
+    lang_name = get_language_name(target_language)
     units = get_curriculum_units(request.cefr_level)
     lesson_slots = distribute_units(
         units=units,
@@ -17,7 +22,6 @@ async def generate_study_plan(request: GenerateStudyPlanRequest) -> GeneratedPla
         days_per_week=request.days_per_week,
     )
 
-    # Group slots into weekly buckets
     weeks_map: dict[int, list[dict]] = {}
     for slot in lesson_slots:
         w = slot["week"]
@@ -26,7 +30,6 @@ async def generate_study_plan(request: GenerateStudyPlanRequest) -> GeneratedPla
     weekly_plan: list[WeekPlan] = []
     for week_num in sorted(weeks_map):
         slots_in_week = weeks_map[week_num]
-        # Use the first unit title of the week as theme
         theme = slots_in_week[0]["unit_title"] if slots_in_week else ""
         days = [
             DayPlan(
@@ -44,7 +47,7 @@ async def generate_study_plan(request: GenerateStudyPlanRequest) -> GeneratedPla
         weekly_plan.append(WeekPlan(week=week_num, theme=theme, days=days))
 
     return GeneratedPlan(
-        title=f"English {request.cefr_level} — {request.duration_weeks}-week programme",
+        title=f"{lang_name} {request.cefr_level} — {request.duration_weeks}-week programme",
         cefr_level=request.cefr_level,
         duration_weeks=request.duration_weeks,
         days_per_week=request.days_per_week,

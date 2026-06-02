@@ -5,23 +5,22 @@ from app.schemas.lessons import (
     LessonContent,
     PronunciationEvaluation,
 )
-from app.services.language_helpers import get_english_variant
+from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import llm_adapter
 
-# Derived from the canonical curriculum — never edit this manually.
-# Any slug added to curriculum.py is automatically recognised here.
-VALID_GRAMMAR_SLUGS: set[str] = {
-    slug for units in CURRICULUM.values() for unit in units for slug in unit.grammar_points
-}
 
-_VALID_SLUGS_STR: str = ", ".join(sorted(VALID_GRAMMAR_SLUGS))
+def get_valid_grammar_slugs(target_language: str = "en-US") -> set[str]:
+    """Return the set of valid grammar slugs for a given target language."""
+    curriculum = CURRICULUM.get(target_language, CURRICULUM.get("en-US", {}))
+    return {slug for units in curriculum.values() for unit in units for slug in unit.grammar_points}
+
 
 LESSON_GENERATION_PROMPT = """
-You are an expert English teacher creating a structured lesson.
+You are an expert {target_language_name} teacher creating a structured lesson.
 
 Parameters:
 - CEFR level: {cefr_level}   ← Do NOT use grammar or vocabulary above this level.
-- English variant: {english_variant} English  ← Use {english_variant} English spelling and vocabulary throughout.
+- Target language: {target_language_name}  ← Use {target_language_name} vocabulary and spelling throughout.
 - Lesson type: {lesson_type}
 - Topic / unit title: {topic}
 - Curriculum unit id: {unit_id}
@@ -197,10 +196,12 @@ async def generate_lesson(
 ) -> LessonContent:
     gp_str = ", ".join(grammar_points) if grammar_points else "none specified"
     vs_str = ", ".join(vocabulary_set_ids) if vocabulary_set_ids else "general"
-    english_variant = get_english_variant(target_language)
+    target_language_name = get_language_name(target_language)
+    valid_slugs = get_valid_grammar_slugs(target_language)
+    valid_slugs_str = ", ".join(sorted(valid_slugs))
     prompt = LESSON_GENERATION_PROMPT.format(
         cefr_level=cefr_level,
-        english_variant=english_variant,
+        target_language_name=target_language_name,
         lesson_type=lesson_type,
         topic=topic,
         unit_id=unit_id or "—",
@@ -208,15 +209,14 @@ async def generate_lesson(
         vocabulary_set_ids=vs_str,
         week=week,
         day=day,
-        valid_slugs=_VALID_SLUGS_STR,
+        valid_slugs=valid_slugs_str,
     )
 
     lesson = await llm_adapter.structured_output(
         [{"role": "system", "content": prompt}],
         LessonContent,
     )
-    # Validate grammar_refs — strip any slugs not in the known set
-    lesson.grammar_refs = [s for s in lesson.grammar_refs if s in VALID_GRAMMAR_SLUGS]
+    lesson.grammar_refs = [s for s in lesson.grammar_refs if s in valid_slugs]
     # Sanitize fill_blank exercises: question MUST contain ___ (the gapped sentence).
     # If the LLM put the instruction in question and the actual sentence in explanation,
     # swap them so the user always sees the gapped sentence in the UI.

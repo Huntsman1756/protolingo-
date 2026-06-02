@@ -6,6 +6,7 @@ from app.schemas.assessment import (
     AssessmentResult,
     FreeWriteEvalRequest,
 )
+from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import (
     LLMError,
     LLMResponseError,
@@ -13,7 +14,7 @@ from app.services.llm_adapter import (
 )
 
 FREE_WRITE_ASSESSMENT_PROMPT = """
-You are evaluating a short English writing sample for CEFR placement.
+You are evaluating a short {target_language_name} writing sample for CEFR placement.
 The student's apparent level based on grammar/vocabulary questions: {preliminary_level}
 
 Writing prompt given to student: "{prompt}"
@@ -112,12 +113,17 @@ def evaluate_adaptive_quiz(answers: list[AnswerRecord]) -> AssessmentResult:
     )
 
 
-async def evaluate_free_write(req: FreeWriteEvalRequest) -> dict:
+async def evaluate_free_write(
+    req: FreeWriteEvalRequest,
+    target_language: str = "en-US",
+) -> dict:
     """Optional LLM call for the single free-write question at the end of the quiz."""
+    target_language_name = get_language_name(target_language)
     prompt = FREE_WRITE_ASSESSMENT_PROMPT.format(
         preliminary_level=req.preliminary_level,
         prompt=req.writing_prompt,
         answer=req.student_answer,
+        target_language_name=target_language_name,
     )
     try:
         raw = await llm_adapter.chat(
