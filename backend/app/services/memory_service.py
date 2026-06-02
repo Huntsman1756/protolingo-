@@ -21,12 +21,12 @@ MAX_MEMORY_CHARS = 200
 # a comfortable buffer for manual deletions without wasting storage.
 MAX_MEMORIES_PER_USER = 50
 
-MEMORY_SYSTEM_INSTRUCTION = """
+MEMORY_SYSTEM_INSTRUCTION_BASE = """
 Memory capability: if during the conversation you learn something noteworthy
 about the student (personal details, preferences, tastes, hobbies, profession,
-plans, goals, struggles with English, or anything that would help personalise
-future lessons), you may persist it by appending a memory block at the very end
-of your response. Format exactly:
+plans, goals, struggles with {target_language_name}, or anything that would help
+personalise future lessons), you may persist it by appending a memory block at
+the very end of your response. Format exactly:
 
 <<MEMORY>>{{"items":["short fact about the student"]}}<<ENDMEMORY>>
 
@@ -39,6 +39,11 @@ Rules for the memory block:
 - It will be stripped before the student sees your reply, so it won't confuse them.
 - If there is nothing new to remember, simply omit the block entirely.
 """
+
+
+def get_memory_system_instruction(target_language_name: str) -> str:
+    """Return the memory system instruction parameterised with the target language name."""
+    return MEMORY_SYSTEM_INSTRUCTION_BASE.format(target_language_name=target_language_name)
 
 
 def parse_memory_marker(text: str) -> list[str]:
@@ -88,6 +93,8 @@ async def save_memories(
     user_id: int,
     items: list[str],
     source: str = "chat",
+    *,
+    study_plan_id: int | None = None,
 ) -> int:
     """Persist new memory items for a user, skipping exact duplicates.
 
@@ -134,18 +141,24 @@ async def save_memories(
         )
 
     for item in new_items:
-        db.add(Memory(user_id=user_id, content=item, source=source))
+        db.add(Memory(user_id=user_id, content=item, source=source, study_plan_id=study_plan_id))
 
     await db.commit()
     logger.info("Saved %d new memories for user %d", len(new_items), user_id)
     return len(new_items)
 
 
-async def get_user_memories(db: AsyncSession, user_id: int) -> list[Memory]:
-    """Return all memories for a user, ordered by creation date (oldest first)."""
-    result = await db.execute(
-        select(Memory).where(Memory.user_id == user_id).order_by(Memory.created_at.asc())
-    )
+async def get_user_memories(
+    db: AsyncSession,
+    user_id: int,
+    *,
+    study_plan_id: int | None = None,
+) -> list[Memory]:
+    """Return all memories for a user, optionally filtered by study plan."""
+    query = select(Memory).where(Memory.user_id == user_id)
+    if study_plan_id is not None:
+        query = query.where(Memory.study_plan_id == study_plan_id)
+    result = await db.execute(query.order_by(Memory.created_at.asc()))
     return list(result.scalars().all())
 
 

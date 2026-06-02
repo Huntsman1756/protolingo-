@@ -370,7 +370,7 @@ This document records what was built and the completion criteria met.
 | Sub-phase | Title | Status |
 |-----------|-------|--------|
 | **10.1** | Database: `user_languages` table, `study_plan_id` columns, partial unique index, Alembic migration `0029`, test fixes | ✅ |
-| **10.2** | Backend: `user_language_service`, `get_active_study_plan` dependency, multi-language LLM prompts, migration `0030` (NOT NULL) | ⬜ |
+| **10.2** | Backend: `user_language_service`, `get_active_study_plan` dependency, multi-language LLM prompts, migration `0030` (placeholder — NOT NULL moved to 10.3) | ✅ |
 | **10.3** | API: new `/api/languages` router, refactor assessment + study-plan endpoints, Pydantic schemas | ⬜ |
 | **10.4** | Frontend core: `target-languages.ts` config, language Zustand store, `LanguageSwitcher` component, sidebar integration | ⬜ |
 | **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted | ⬜ |
@@ -388,7 +388,7 @@ This document records what was built and the completion criteria met.
 - [ ] Spanish (`es-ES`), Italian (`it-IT`), and Portuguese (`pt-PT`) curriculum data is complete and correct
 - [ ] All LLM prompts are language-agnostic (no hardcoded "English")
 - [ ] Migration `0029` runs cleanly; `downgrade` fully reverses it
-- [ ] Migration `0030` (NOT NULL) runs cleanly after 10.2 services are deployed
+- [ ] Migration `0031` (NOT NULL on `progress`, `flashcards`, `user_competencies`) runs cleanly after 10.3 callers are deployed
 - [ ] Existing English-only users are unaffected after migration
 - [ ] `tsc --noEmit` and `python3 -m compileall` pass clean
 - [ ] No regressions in Phases 1–9

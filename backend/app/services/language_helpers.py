@@ -1,16 +1,19 @@
-"""Helpers for converting BCP-47 target_language codes to legacy strings.
+"""Helpers for BCP-47 target_language codes.
 
 Used by service layer to translate the generic target_language field into
-the format expected by LLM prompts (english_variant) and STT APIs (ISO 639-1).
+human-readable names, self-names, ISO 639-1 codes, and flag emojis.
 """
 
 from __future__ import annotations
 
 from datetime import UTC, datetime
 
-_ENGLISH_VARIANTS: dict[str, str] = {
-    "en-US": "american",
-    "en-GB": "british",
+_LANGUAGE_INFO: dict[str, dict[str, str]] = {
+    "en-US": {"name": "English (US)", "self_name": "English (US)", "iso639": "en", "flag": "🇺🇸"},
+    "en-GB": {"name": "English (UK)", "self_name": "English (UK)", "iso639": "en", "flag": "🇬🇧"},
+    "es-ES": {"name": "Spanish", "self_name": "Español", "iso639": "es", "flag": "🇪🇸"},
+    "it-IT": {"name": "Italian", "self_name": "Italiano", "iso639": "it", "flag": "🇮🇹"},
+    "pt-PT": {"name": "Portuguese", "self_name": "Português", "iso639": "pt", "flag": "🇵🇹"},
 }
 
 _VOICE_SESSION_TITLES: dict[str, str] = {
@@ -155,14 +158,28 @@ _MONTH_NAMES: dict[str, list[str]] = {
 }
 
 
-def get_english_variant(target_language: str) -> str:
-    """Return 'american' or 'british' for English variants; empty string otherwise."""
-    return _ENGLISH_VARIANTS.get(target_language, "")
+def get_language_name(target_language: str) -> str:
+    """'it-IT' → 'Italian', 'en-US' → 'English (US)'"""
+    info = _LANGUAGE_INFO.get(target_language)
+    return info["name"] if info else target_language
+
+
+def get_language_self_name(target_language: str) -> str:
+    """'it-IT' → 'Italiano', 'es-ES' → 'Español'"""
+    info = _LANGUAGE_INFO.get(target_language)
+    return info["self_name"] if info else target_language
 
 
 def get_iso639(target_language: str) -> str:
     """'en-US' → 'en', 'it-IT' → 'it'"""
-    return target_language.split("-")[0].lower()
+    info = _LANGUAGE_INFO.get(target_language)
+    return info["iso639"] if info else target_language.split("-")[0].lower()
+
+
+def get_language_flag(target_language: str) -> str:
+    """'es-ES' → '🇪🇸', 'it-IT' → '🇮🇹'"""
+    info = _LANGUAGE_INFO.get(target_language)
+    return info["flag"] if info else ""
 
 
 def voice_session_title(native_language: str) -> str:

@@ -13,6 +13,31 @@ Expose the multi-language functionality via REST endpoints and wire the existing
 
 ---
 
+## 10.3.0 Migration: apply NOT NULL to `study_plan_id`
+
+**File:** `backend/alembic/versions/0031_not_null_study_plan_id.py`  
+**Revision ID:** `0031_not_null_study_plan_id`  
+**Down revision:** `0030_not_null_study_plan_id`
+
+Now that Phase 10.3 wires `get_active_study_plan` into all callers (`routers/lessons.py`, `routers/flashcards.py`, `listening_service.py`, `reading_service.py`), every INSERT into `progress`, `flashcards`, and `user_competencies` always provides a `study_plan_id`. The constraint is therefore safe to enforce.
+
+> **Deploy order for 10.3:** code changes first (all callers updated), then `alembic upgrade head`. Do NOT run the migration before the code.
+
+```python
+def upgrade() -> None:
+    op.alter_column("progress", "study_plan_id", nullable=False)
+    op.alter_column("flashcards", "study_plan_id", nullable=False)
+    op.alter_column("user_competencies", "study_plan_id", nullable=False)
+
+
+def downgrade() -> None:
+    op.alter_column("user_competencies", "study_plan_id", nullable=True)
+    op.alter_column("flashcards", "study_plan_id", nullable=True)
+    op.alter_column("progress", "study_plan_id", nullable=True)
+```
+
+---
+
 ## 10.3.1 Language validation
 
 **File:** `backend/app/schemas/auth.py`

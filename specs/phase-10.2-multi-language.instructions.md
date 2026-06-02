@@ -13,30 +13,24 @@ Adapt all backend services to be language-agnostic and introduce the `user_langu
 
 ---
 
-## 10.2.0 Migration: apply NOT NULL to `study_plan_id`
+## 10.2.0 Migration: placeholder (NOT NULL moved to Phase 10.3)
 
 **File:** `backend/alembic/versions/0030_not_null_study_plan_id.py`  
 **Revision ID:** `0030_not_null_study_plan_id`  
 **Down revision:** `0029_multi_language`
 
-Phase 10.1 left `study_plan_id` nullable on `progress`, `flashcards`, and `user_competencies` so that the unmodified services could keep running without errors. Now that the services in this phase always populate `study_plan_id` on every INSERT, we can apply the constraint.
+This migration is a **no-op placeholder** that keeps the revision chain intact. The `ALTER COLUMN … NOT NULL` statements originally planned here were moved to Phase 10.3.
 
-**This migration is deployed together with the Phase 10.2 service changes** — not before.
+**Reason:** The services modified in Phase 10.2 (`progress_service.py`, `memory_service.py`, etc.) accept `study_plan_id` as an optional parameter, but the *callers* that must supply it — `routers/lessons.py`, `routers/flashcards.py`, `listening_service.py`, and `reading_service.py` — are not updated until Phase 10.3 when `get_active_study_plan` is wired into those endpoints. Enforcing `NOT NULL` before those callers are updated would break every lesson completion, flashcard review, and listening/reading exercise.
 
 ```python
 def upgrade() -> None:
-    op.alter_column("progress", "study_plan_id", nullable=False)
-    op.alter_column("flashcards", "study_plan_id", nullable=False)
-    op.alter_column("user_competencies", "study_plan_id", nullable=False)
+    pass  # NOT NULL enforced in Phase 10.3 migration
 
 
 def downgrade() -> None:
-    op.alter_column("user_competencies", "study_plan_id", nullable=True)
-    op.alter_column("flashcards", "study_plan_id", nullable=True)
-    op.alter_column("progress", "study_plan_id", nullable=True)
+    pass  # nothing to revert
 ```
-
-> **Deploy order for 10.2:** code changes first (services updated), then `alembic upgrade head`. Do NOT run the migration before the code — the services must populate `study_plan_id` before the column becomes NOT NULL.
 
 ---
 
