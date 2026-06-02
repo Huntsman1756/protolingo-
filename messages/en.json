@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Delete comment",
     "deleteCommentConfirmMessage": "Delete this comment?",
     "deleteCommentConfirm": "Delete",
+    "loading": "Loading...",
     "backToList": "← Back",
     "errorLoad": "Failed to load. Please try again.",
     "errorSubmit": "Failed to submit. Please try again.",

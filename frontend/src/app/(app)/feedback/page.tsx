@@ -685,7 +685,7 @@ export default function FeedbackPage() {
       <div className="border-fl-border bg-fl-surface border">
         {loading ? (
           <p className="text-fl-muted-2 animate-pulse px-6 py-10 text-center font-mono text-xs tracking-widest uppercase">
-            {t('title')}...
+            {t('loading')}
           </p>
         ) : entries.length === 0 ? (
           <p className="text-fl-muted-2 px-6 py-10 text-center font-mono text-xs">

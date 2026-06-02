@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Șterge comentariul",
     "deleteCommentConfirmMessage": "Ștergi acest comentariu?",
     "deleteCommentConfirm": "Șterge",
+    "loading": "Se încarcă...",
     "backToList": "← Înapoi",
     "errorLoad": "Încărcare eșuată. Încearcă din nou.",
     "errorSubmit": "Trimitere eșuată. Încearcă din nou.",

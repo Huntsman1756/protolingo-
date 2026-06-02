@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Usuń komentarz",
     "deleteCommentConfirmMessage": "Usunąć ten komentarz?",
     "deleteCommentConfirm": "Usuń",
+    "loading": "Ładowanie...",
     "backToList": "← Wróć",
     "errorLoad": "Ładowanie nie powiodło się. Spróbuj ponownie.",
     "errorSubmit": "Wysyłanie nie powiodło się. Spróbuj ponownie.",

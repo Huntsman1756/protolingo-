@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Verwijder reactie",
     "deleteCommentConfirmMessage": "Deze reactie verwijderen?",
     "deleteCommentConfirm": "Verwijderen",
+    "loading": "Laden...",
     "backToList": "← Terug",
     "errorLoad": "Laden mislukt. Probeer opnieuw.",
     "errorSubmit": "Versturen mislukt. Probeer opnieuw.",

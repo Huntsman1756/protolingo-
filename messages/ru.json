@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Удалить комментарий",
     "deleteCommentConfirmMessage": "Удалить этот комментарий?",
     "deleteCommentConfirm": "Удалить",
+    "loading": "Загрузка...",
     "backToList": "← Назад",
     "errorLoad": "Ошибка загрузки. Попробуйте снова.",
     "errorSubmit": "Ошибка отправки. Попробуйте снова.",

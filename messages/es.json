@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Eliminar comentario",
     "deleteCommentConfirmMessage": "¿Eliminar este comentario?",
     "deleteCommentConfirm": "Eliminar",
+    "loading": "Cargando...",
     "backToList": "← Volver",
     "errorLoad": "Error al cargar. Inténtalo de nuevo.",
     "errorSubmit": "Error al enviar. Inténtalo de nuevo.",

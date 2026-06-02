@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Supprimer le commentaire",
     "deleteCommentConfirmMessage": "Supprimer ce commentaire ?",
     "deleteCommentConfirm": "Supprimer",
+    "loading": "Chargement...",
     "backToList": "← Retour",
     "errorLoad": "Échec du chargement. Réessayez.",
     "errorSubmit": "Échec de l'envoi. Réessayez.",
