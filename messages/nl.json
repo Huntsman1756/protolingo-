@@ -1027,7 +1027,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.6.10",
+    "version": "v1.6.11",
     "cta": "Begrepen",
     "entry1": {
       "label": "Woorden opslaan tijdens het lezen",
@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Verwijder reactie",
     "deleteCommentConfirmMessage": "Deze reactie verwijderen?",
     "deleteCommentConfirm": "Verwijderen",
+    "loading": "Laden...",
     "backToList": "← Terug",
     "errorLoad": "Laden mislukt. Probeer opnieuw.",
     "errorSubmit": "Versturen mislukt. Probeer opnieuw.",
