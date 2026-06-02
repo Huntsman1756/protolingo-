@@ -118,6 +118,7 @@ freelingo/
 | 7     | Reading                | ✅ Complete         |
 | 8     | Feedback board         | ✅ Complete         |
 | 9     | Memory                 | ✅ Complete         |
+| 10    | Multi-Language Learning| 🔄 In Progress      |
 
 ## Quick start
 
