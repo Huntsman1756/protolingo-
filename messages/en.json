@@ -1027,7 +1027,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.10",
+    "version": "v1.6.11",
     "cta": "Got it",
     "entry1": {
       "label": "Save words from reading",
@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Delete comment",
     "deleteCommentConfirmMessage": "Delete this comment?",
     "deleteCommentConfirm": "Delete",
+    "loading": "Loading...",
     "backToList": "← Back",
     "errorLoad": "Failed to load. Please try again.",
     "errorSubmit": "Failed to submit. Please try again.",

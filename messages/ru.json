@@ -1027,7 +1027,7 @@
   },
   "whatsNew": {
     "title": "Что нового",
-    "version": "v1.6.10",
+    "version": "v1.6.11",
     "cta": "Понятно",
     "entry1": {
       "label": "Сохраняйте слова при чтении",
@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Удалить комментарий",
     "deleteCommentConfirmMessage": "Удалить этот комментарий?",
     "deleteCommentConfirm": "Удалить",
+    "loading": "Загрузка...",
     "backToList": "← Назад",
     "errorLoad": "Ошибка загрузки. Попробуйте снова.",
     "errorSubmit": "Ошибка отправки. Попробуйте снова.",

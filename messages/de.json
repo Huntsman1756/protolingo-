@@ -1027,7 +1027,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.6.10",
+    "version": "v1.6.11",
     "cta": "Verstanden",
     "entry1": {
       "label": "Wörter beim Lesen speichern",
@@ -1154,6 +1154,7 @@
     "deleteCommentConfirmTitle": "Kommentar löschen",
     "deleteCommentConfirmMessage": "Diesen Kommentar löschen?",
     "deleteCommentConfirm": "Löschen",
+    "loading": "Laden...",
     "backToList": "← Zurück",
     "errorLoad": "Laden fehlgeschlagen. Bitte erneut versuchen.",
     "errorSubmit": "Senden fehlgeschlagen. Bitte erneut versuchen.",
