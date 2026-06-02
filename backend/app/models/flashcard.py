@@ -28,3 +28,6 @@ class Flashcard(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime, nullable=False, default=lambda: datetime.now(UTC).replace(tzinfo=None)
     )
+    study_plan_id: Mapped[int | None] = mapped_column(
+        Integer, ForeignKey("study_plans.id", ondelete="CASCADE"), nullable=True, index=True
+    )
