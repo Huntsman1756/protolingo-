@@ -11,9 +11,9 @@
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-geist-mono);
   /* FreeLingo semantic font-size tokens */
-  --text-fl-hint: 9px;
-  --text-fl-label: 10px;
-  --text-fl-caption: 11px;
+  --text-fl-hint: 10px;
+  --text-fl-label: 11px;
+  --text-fl-caption: 12px;
   /* FreeLingo semantic color tokens */
   --color-fl-bg: var(--fl-bg);
   --color-fl-bg-alt: var(--fl-bg-alt);
