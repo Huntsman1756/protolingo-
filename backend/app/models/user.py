@@ -43,6 +43,7 @@ class User(Base):
         # Values: "none" | "trialing" | "active" | "past_due" | "canceled"
     )
     subscription_ends_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    trial_used: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     avatar: Mapped[str | None] = mapped_column(Text, nullable=True)
     bio: Mapped[str | None] = mapped_column(Text, nullable=True)
     learning_goals: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON array string

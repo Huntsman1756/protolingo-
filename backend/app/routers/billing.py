@@ -88,7 +88,7 @@ async def create_checkout_session(
         await db.commit()
 
     subscription_data: dict = {"metadata": {"user_id": str(current_user.id)}}
-    if settings.STRIPE_TRIAL_DAYS > 0:
+    if settings.STRIPE_TRIAL_DAYS > 0 and not current_user.trial_used:
         subscription_data["trial_period_days"] = settings.STRIPE_TRIAL_DAYS
 
     session = stripe.checkout.Session.create(
@@ -231,6 +231,8 @@ async def _handle_checkout_completed(db: AsyncSession, session: object) -> None:
 
     user.subscription_status = status
     user.subscription_ends_at = ends_at
+    if status == "trialing":
+        user.trial_used = True
     await apply_subscription_quotas(user, db)
     logger.info("[billing] User %s subscription activated — status=%s", user.id, status)
 
