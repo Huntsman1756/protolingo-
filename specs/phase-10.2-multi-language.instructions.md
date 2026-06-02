@@ -13,6 +13,33 @@ Adapt all backend services to be language-agnostic and introduce the `user_langu
 
 ---
 
+## 10.2.0 Migration: apply NOT NULL to `study_plan_id`
+
+**File:** `backend/alembic/versions/0030_not_null_study_plan_id.py`  
+**Revision ID:** `0030_not_null_study_plan_id`  
+**Down revision:** `0029_multi_language`
+
+Phase 10.1 left `study_plan_id` nullable on `progress`, `flashcards`, and `user_competencies` so that the unmodified services could keep running without errors. Now that the services in this phase always populate `study_plan_id` on every INSERT, we can apply the constraint.
+
+**This migration is deployed together with the Phase 10.2 service changes** — not before.
+
+```python
+def upgrade() -> None:
+    op.alter_column("progress", "study_plan_id", nullable=False)
+    op.alter_column("flashcards", "study_plan_id", nullable=False)
+    op.alter_column("user_competencies", "study_plan_id", nullable=False)
+
+
+def downgrade() -> None:
+    op.alter_column("user_competencies", "study_plan_id", nullable=True)
+    op.alter_column("flashcards", "study_plan_id", nullable=True)
+    op.alter_column("progress", "study_plan_id", nullable=True)
+```
+
+> **Deploy order for 10.2:** code changes first (services updated), then `alembic upgrade head`. Do NOT run the migration before the code — the services must populate `study_plan_id` before the column becomes NOT NULL.
+
+---
+
 ## 10.2.1 Refactor of `language_helpers.py`
 
 **File:** `backend/app/services/language_helpers.py`
@@ -228,3 +255,4 @@ async def get_active_study_plan(
 | File | Type |
 |------|------|
 | `backend/app/services/user_language_service.py` | New service |
+| `backend/alembic/versions/0030_not_null_study_plan_id.py` | Alembic migration (NOT NULL) |

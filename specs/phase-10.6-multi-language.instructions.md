@@ -130,6 +130,27 @@ No action needed.
 
 ---
 
+## 10.6.6 i18n keys (add in this phase)
+
+**Files:** all 10 locale files under `messages/`
+
+Add entries for the 3 new languages to the existing `targetLanguages` namespace (do not remove the existing `en-US` and `en-GB` entries):
+
+```json
+"targetLanguages": {
+  "es-ES": "Spanish (Spain)",
+  "es-ES-description": "Spanish spoken in Spain, one of the most widely spoken languages in the world.",
+  "it-IT": "Italian",
+  "it-IT-description": "Standard Italian, the language of culture, art and gastronomy.",
+  "pt-PT": "Portuguese (Portugal)",
+  "pt-PT-description": "European Portuguese, official language of Portugal."
+}
+```
+
+The English values above are the reference. Add the equivalent translations in all 10 locale files.
+
+---
+
 ## New files in this phase
 
 | File | Type |

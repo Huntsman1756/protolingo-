@@ -52,28 +52,28 @@ This replaces "one active plan per user" with "one active plan per user per lang
 
 | Change | Detail |
 |--------|--------|
-| Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable** initially, with index |
+| Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable**, with index |
 | Backfill | Assign `study_plan_id` from each user's active plan (`is_active=true`) |
 | Purge orphans | Delete rows where `study_plan_id` is still NULL after backfill (user had no plan) |
-| Make NOT NULL | After purge |
+| NOT NULL | **Applied in Phase 10.2** once services reliably populate this column |
 
 ### Table `flashcards`
 
 | Change | Detail |
 |--------|--------|
-| Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable** initially, with index |
+| Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable**, with index |
 | Backfill | Assign `study_plan_id` from each user's active plan |
 | Purge orphans | Delete rows where `study_plan_id` is still NULL after backfill |
-| Make NOT NULL | After purge |
+| NOT NULL | **Applied in Phase 10.2** once services reliably populate this column |
 
 ### Table `user_competencies`
 
 | Change | Detail |
 |--------|--------|
-| Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable** initially, with index |
+| Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable**, with index |
 | Backfill | Assign `study_plan_id` from each user's active plan |
 | Purge orphans | Delete rows where `study_plan_id` is still NULL after backfill |
-| Make NOT NULL | After purge |
+| NOT NULL | **Applied in Phase 10.2** once services reliably populate this column |
 
 ### Table `conversations`
 
@@ -353,13 +353,7 @@ op.execute("DELETE FROM flashcards WHERE study_plan_id IS NULL")
 op.execute("DELETE FROM user_competencies WHERE study_plan_id IS NULL")
 ```
 
-### Step 4 — Apply NOT NULL
-
-```python
-op.alter_column("progress", "study_plan_id", nullable=False)
-op.alter_column("flashcards", "study_plan_id", nullable=False)
-op.alter_column("user_competencies", "study_plan_id", nullable=False)
-```
+> **Note — NOT NULL deferred to Phase 10.2:** The columns are left nullable after the backfill+purge. The NOT NULL constraint is added in Phase 10.2's migration (`0030_not_null_study_plan_id.py`), once the services that INSERT into these tables have been updated to always populate `study_plan_id`. Applying NOT NULL here would cause every new INSERT by the still-unmodified services to fail until 10.2 is deployed.
 
 ### `downgrade()`
 
@@ -370,12 +364,8 @@ def downgrade() -> None:
     # 1. Drop partial unique index on study_plans
     op.drop_index("uq_active_plan_per_lang", table_name="study_plans")
 
-    # 2. Drop NOT NULL on the 3 backfilled columns
-    op.alter_column("progress", "study_plan_id", nullable=True)
-    op.alter_column("flashcards", "study_plan_id", nullable=True)
-    op.alter_column("user_competencies", "study_plan_id", nullable=True)
-
-    # 3. Drop study_plan_id columns from all 7 tables
+    # 2. Drop study_plan_id columns from all 7 tables
+    #    (columns are nullable — no NOT NULL reversal needed here; that is in 0030)
     op.drop_column("progress", "study_plan_id")
     op.drop_column("flashcards", "study_plan_id")
     op.drop_column("conversations", "study_plan_id")
@@ -384,7 +374,7 @@ def downgrade() -> None:
     op.drop_column("memories", "study_plan_id")
     op.drop_column("llm_usage", "study_plan_id")
 
-    # 4. Drop user_languages table (CASCADE handles the unique constraint and indexes)
+    # 3. Drop user_languages table (CASCADE handles the unique constraint and indexes)
     op.drop_table("user_languages")
 ```
 

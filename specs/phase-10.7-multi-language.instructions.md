@@ -1,127 +1,57 @@
 ---
-description: "Phase 10.7 spec — Multi-language: i18n translation keys for all 10 locale files."
+description: "Phase 10.7 spec — Multi-language: i18n audit — verify all translation keys added in phases 10.4–10.6 are correct and complete in all 10 locales."
 applyTo: "messages/**"
 ---
 
-# Phase 10.7 — i18n: new translation keys
+# Phase 10.7 — i18n audit
 
 ## Goal
 
-Add all translation keys required by the new multi-language UI to all 10 locale files.
+All i18n keys were added incrementally alongside the features that use them:
 
-**Prerequisite:** Phase 10.5 must be merged before starting this phase (the pages that use these keys must exist).
+| Phase | Keys added | Namespace(s) |
+|-------|-----------|--------------|
+| 10.4 | `nav.switchLanguage` | `nav` |
+| 10.5 | Full `languages.*` namespace, `onboarding.newLanguageHeadline`, `onboarding.newLanguageSubtitle` | `languages`, `onboarding` |
+| 10.6 | `targetLanguages.es-ES`, `targetLanguages.it-IT`, `targetLanguages.pt-PT` + descriptions | `targetLanguages` |
 
----
+This phase is a **review pass** — no new keys are introduced. The goal is to ensure all values are correctly translated in all 10 locale files.
 
-## Files to update
-
-All 10 locale files under `messages/`:
-
-```
-messages/de.json
-messages/en.json
-messages/es.json
-messages/fr.json
-messages/it.json
-messages/nl.json
-messages/pl.json
-messages/pt.json
-messages/ro.json
-messages/ru.json
-```
-
-Each key below must be added to **all 10 files**, translated into the respective interface language.
+**Prerequisite:** Phases 10.4, 10.5 and 10.6 must be merged.
 
 ---
 
-## 10.7.1 New namespace: `languages`
+## 10.7.1 Checklist per locale file
 
-```json
-"languages": {
-  "myLanguages": "My Languages",
-  "addLanguage": "Add new language",
-  "selectLanguage": "Select the language you want to learn",
-  "activeLanguage": "Active",
-  "switchTo": "Switch to this",
-  "switching": "Switching to {language}...",
-  "switched": "Switched to {language} ({level})",
-  "removeLanguage": "Remove language",
-  "removeConfirmTitle": "Remove {language}?",
-  "removeConfirmMessage": "All progress, lessons, flashcards and data associated with this language will be permanently deleted. This action cannot be undone.",
-  "removeConfirmButton": "Remove",
-  "noLanguages": "You have no languages configured.",
-  "progressLabel": "Progress",
-  "levelLabel": "Level",
-  "xpLabel": "Total XP",
-  "streakLabel": "Streak",
-  "lessonsLabel": "Lessons",
-  "flashcardsLabel": "Flashcards",
-  "viewDetails": "View details",
-  "supportedLanguages": "Available languages"
-}
-```
+For each of the 10 locale files (`messages/de.json`, `en.json`, `es.json`, `fr.json`, `it.json`, `nl.json`, `pl.json`, `pt.json`, `ro.json`, `ru.json`):
 
-The English values above are the reference. Each other locale file must have equivalent translations in the respective language.
+- [ ] `nav.switchLanguage` — present and translated (not copied from English)
+- [ ] All 18 keys under `languages.*` — present and translated
+- [ ] `onboarding.newLanguageHeadline` — present and translated
+- [ ] `onboarding.newLanguageSubtitle` — present and translated
+- [ ] `targetLanguages.es-ES` and `targetLanguages.es-ES-description` — present and translated
+- [ ] `targetLanguages.it-IT` and `targetLanguages.it-IT-description` — present and translated
+- [ ] `targetLanguages.pt-PT` and `targetLanguages.pt-PT-description` — present and translated
 
 ---
 
-## 10.7.2 Update `onboarding` namespace
+## 10.7.2 Interpolation variables
 
-Add these keys to the existing `onboarding` object (do not remove existing keys):
+Verify the following keys use the correct interpolation variable names (must match what the components pass):
 
-```json
-"onboarding": {
-  "newLanguageHeadline": "What new language do you want to learn?",
-  "newLanguageSubtitle": "A new study plan will be created for this language."
-}
-```
-
----
-
-## 10.7.3 Update `nav` namespace
-
-Add to the existing `nav` object:
-
-```json
-"nav": {
-  "switchLanguage": "Switch language"
-}
-```
-
----
-
-## 10.7.4 Update `targetLanguages` namespace
-
-Add entries for the 3 new languages (do not remove existing entries for `en-US` and `en-GB`):
-
-```json
-"targetLanguages": {
-  "es-ES": "Spanish (Spain)",
-  "es-ES-description": "Spanish spoken in Spain, one of the most widely spoken languages in the world.",
-  "it-IT": "Italian",
-  "it-IT-description": "Standard Italian, the language of culture, art and gastronomy.",
-  "pt-PT": "Portuguese (Portugal)",
-  "pt-PT-description": "European Portuguese, official language of Portugal."
-}
-```
-
-The English values above are the reference. Each locale file must have equivalent translations.
+| Key | Variable |
+|-----|----------|
+| `languages.switching` | `{language}` |
+| `languages.switched` | `{language}`, `{level}` |
+| `languages.removeConfirmTitle` | `{language}` |
+| `languages.removeConfirmMessage` | (no variables) |
 
 ---
 
 ## Modified files in this phase
 
-All 10 locale files:
+Only if corrections are needed during the audit:
 
 | File | Change |
 |------|--------|
-| `messages/en.json` | Add `languages` namespace, update `onboarding`, `nav`, `targetLanguages` |
-| `messages/es.json` | Same (translated to Spanish) |
-| `messages/fr.json` | Same (translated to French) |
-| `messages/de.json` | Same (translated to German) |
-| `messages/it.json` | Same (translated to Italian) |
-| `messages/pt.json` | Same (translated to Portuguese) |
-| `messages/nl.json` | Same (translated to Dutch) |
-| `messages/pl.json` | Same (translated to Polish) |
-| `messages/ro.json` | Same (translated to Romanian) |
-| `messages/ru.json` | Same (translated to Russian) |
+| `messages/*.json` (any of the 10) | Fix missing or incorrect translations found during review |

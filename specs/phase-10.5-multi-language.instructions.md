@@ -153,6 +153,52 @@ Opens a modal with the language selector showing only languages the user has **n
 
 ---
 
+## 10.5.9 i18n keys (add in this phase)
+
+**Files:** all 10 locale files under `messages/`
+
+### New namespace `languages`
+
+```json
+"languages": {
+  "myLanguages": "My Languages",
+  "addLanguage": "Add new language",
+  "selectLanguage": "Select the language you want to learn",
+  "activeLanguage": "Active",
+  "switchTo": "Switch to this",
+  "switching": "Switching to {language}...",
+  "switched": "Switched to {language} ({level})",
+  "removeLanguage": "Remove language",
+  "removeConfirmTitle": "Remove {language}?",
+  "removeConfirmMessage": "All progress, lessons, flashcards and data associated with this language will be permanently deleted. This action cannot be undone.",
+  "removeConfirmButton": "Remove",
+  "noLanguages": "You have no languages configured.",
+  "progressLabel": "Progress",
+  "levelLabel": "Level",
+  "xpLabel": "Total XP",
+  "streakLabel": "Streak",
+  "lessonsLabel": "Lessons",
+  "flashcardsLabel": "Flashcards",
+  "viewDetails": "View details",
+  "supportedLanguages": "Available languages"
+}
+```
+
+### Update `onboarding` namespace
+
+Add to the existing `onboarding` object:
+
+```json
+"onboarding": {
+  "newLanguageHeadline": "What new language do you want to learn?",
+  "newLanguageSubtitle": "A new study plan will be created for this language."
+}
+```
+
+The English values above are the reference. Add the equivalent translations in all 10 locale files.
+
+---
+
 ## New files in this phase
 
 | File | Type |
@@ -170,3 +216,4 @@ Opens a modal with the language selector showing only languages the user has **n
 | `frontend/src/components/conversation/ConversationMode.tsx` | Language-filtered conversations |
 | `frontend/src/app/(app)/flashcards/page.tsx` | Language-filtered flashcards |
 | `frontend/src/app/(app)/progress/page.tsx` | Language-filtered progress, language name in header |
+| `messages/*.json` (all 10) | Add `languages` namespace, update `onboarding` |

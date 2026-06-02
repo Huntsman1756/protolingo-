@@ -127,6 +127,22 @@ Add a mapper for `UserLanguageInfo` from the API response to the frontend type, 
 
 ---
 
+## 10.4.5 i18n keys (add in this phase)
+
+**Files:** all 10 locale files under `messages/`
+
+Add to the existing `nav` namespace:
+
+```json
+"nav": {
+  "switchLanguage": "Switch language"
+}
+```
+
+The English value above is the reference. Add the equivalent translation in each locale file.
+
+---
+
 ## New files in this phase
 
 | File | Type |
@@ -141,3 +157,4 @@ Add a mapper for `UserLanguageInfo` from the API response to the frontend type, 
 |------|--------|
 | `frontend/src/app/(app)/layout.tsx` | Add `LanguageSwitcher` to sidebar |
 | `frontend/src/lib/mappers.ts` | Add `UserLanguageInfo` mapper |
+| `messages/*.json` (all 10) | Add `nav.switchLanguage` |
