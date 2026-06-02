@@ -118,6 +118,7 @@ freelingo/
 | 7     | Reading                | ✅ Complete         |
 | 8     | Feedback board         | ✅ Complete         |
 | 9     | Memory                 | ✅ Complete         |
+| 10    | Multi-Language Learning| 🔄 In Progress      |
 
 ## Quick start
 
@@ -243,6 +244,8 @@ All voices are for English. Grades reflect training data quality and quantity.
 | `bm_george` | M | British | C |
 
 Set with `TTS_VOICE=<voice>` in `.env`. Default: `af_heart`.
+
+See the [full list of available voices](https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md) on HuggingFace.
 
 #### STT model options (Whisper)
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Index, Integer, String, text
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -11,6 +11,16 @@ from app.core.database import Base
 
 class StudyPlan(Base):
     __tablename__ = "study_plans"
+
+    __table_args__ = (
+        Index(
+            "uq_active_plan_per_lang",
+            "user_id",
+            "target_language",
+            unique=True,
+            postgresql_where=text("is_active = true"),
+        ),
+    )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(

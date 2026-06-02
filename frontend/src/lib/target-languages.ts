@@ -5,7 +5,7 @@ export interface TargetLanguage {
 }
 
 export const TARGET_LANGUAGES: TargetLanguage[] = [
-  { code: 'en-US', labelKey: 'en-US', flag: '/flags/eeuu.jpg' },
+  { code: 'en-US', labelKey: 'en-US', flag: '/flags/usa.jpg' },
   { code: 'en-GB', labelKey: 'en-GB', flag: '/flags/uk.jpg' },
 ]
 

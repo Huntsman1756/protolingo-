@@ -151,3 +151,25 @@ async def admin_user(db_session):
 
     token = create_access_token(user.id, user.role)
     return user, {"Authorization": f"Bearer {token}"}
+
+
+async def deactivate_active_plans(db_session, user_id: int, target_language: str = "en-US") -> None:
+    """Deactivate any active study plan for the given user and language.
+
+    Required before directly inserting a new active plan in tests —
+    the partial unique index uq_active_plan_per_lang prevents two active
+    plans for the same (user_id, target_language).
+    """
+    from sqlalchemy import update
+
+    from app.models.study_plan import StudyPlan
+
+    await db_session.execute(
+        update(StudyPlan)
+        .where(
+            StudyPlan.user_id == user_id,
+            StudyPlan.target_language == target_language,
+            StudyPlan.is_active.is_(True),
+        )
+        .values(is_active=False)
+    )
