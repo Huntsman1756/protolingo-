@@ -1,71 +1,71 @@
 ---
-description: "Phase 10 spec — Soporte multi-idioma: el usuario puede aprender varios idiomas, cada uno con su propio plan de estudios, progreso, flashcards, conversaciones y recuerdos independientes."
+description: "Phase 10 spec — Multi-language support: users can learn multiple languages, each with its own independent study plan, progress, flashcards, conversations, and memories."
 applyTo: "backend/**, frontend/**, messages/**, specs/**"
 ---
 
-# Phase 10 — Soporte Multi-Idioma
+# Phase 10 — Multi-Language Support
 
-## Visión general
+## Overview
 
-FreeLingo pasa de "un usuario = un idioma = un plan de estudios" a una arquitectura donde **cada usuario puede tener múltiples planes de estudio activos, uno por idioma**, con progreso, flashcards, conversaciones, recuerdos y competencias completamente aislados por idioma.
+FreeLingo moves from "one user = one language = one study plan" to an architecture where **each user can have multiple active study plans, one per language**, with progress, flashcards, conversations, memories, and competencies completely isolated by language.
 
-### Flujo de usuario
+### User flow
 
-1. **Registro**: el usuario elige su idioma objetivo (`target_language`) durante el onboarding (igual que ahora).
-2. **Uso normal**: toda la interfaz (dashboard, plan, lecciones, flashcards, chat, ejercicios, etc) corresponde al plan activo.
-3. **Cambiar de idioma**: un selector rápido en el sidebar (bandera + nombre del idioma) permite cambiar entre los idiomas que el usuario está aprendiendo con un solo clic. Al cambiar, toda la experiencia pivota al plan de ese idioma. Si solo tiene un idioma, no se muestra el selector.
-4. **Añadir nuevo idioma**: desde Ajustes → "Mis Idiomas", el usuario ve una página dedicada con tarjetas por idioma (progreso resumido) y un botón "Añadir nuevo idioma" que inicia el flujo de selección de idioma para crear un nuevo plan de estudios, si acepta ese nuevo idioma el flujo continúa con el assessment para ese idioma como se hace ahora. Si cancela la selección, no se crea el nuevo plan y vuelve a la página de idiomas.
-5. **Gestión en ajustes**: la página "Mis Idiomas" muestra todos los idiomas del usuario con su nivel CEFR, racha, % completado, y permite cambiar el idioma activo. También permite eliminar un idioma (con confirmación) lo que borra todo el progreso asociado a ese idioma. No se puede eliminar el idioma activo actual (primero hay que cambiar a otro). No se puede eliminar el último idioma (si solo tiene uno, no muestra botón de eliminar).
-6. **Confirmación al cambiar**: toast "Cambiando a Italiano (A2)..." porque toda la UI cambia y el usuario debe saber qué ha pasado.
-7. **Datos independientes por idioma**: cada idioma tiene su propio progreso, flashcards, conversaciones, recuerdos, competencias, etc. No hay solapamiento entre idiomas.
-8. **Currículum específico por idioma**: el currículum de cada idioma es diferente y adaptado a ese idioma (no solo traducción literal del inglés).
-9. **Prompts adaptados**: los prompts del sistema (generación de lecciones, flashcards, conversaciones, ejercicios) se adaptan al idioma objetivo usando su nombre en inglés y en su propio idioma.
-10. **Idiomas soportados**: inicialmente se añaden 3 idiomas nuevos (español, italiano, portugués de Portugal) además de las variantes de inglés ya existentes.
+1. **Registration**: the user chooses their target language (`target_language`) during onboarding (same as now).
+2. **Normal use**: the entire interface (dashboard, plan, lessons, flashcards, chat, exercises, etc.) corresponds to the active plan.
+3. **Switch language**: a quick selector in the sidebar (flag + language name) allows switching between the languages the user is learning with a single click. When switching, the entire experience pivots to that language's plan. If the user only has one language, the selector is not shown.
+4. **Add new language**: from Settings → "My Languages", the user sees a dedicated page with per-language cards (summarised progress) and an "Add new language" button that starts the language selection flow to create a new study plan. If the user accepts the new language, the flow continues with the assessment for that language as it works now. If they cancel, no new plan is created and they return to the languages page.
+5. **Settings management**: the "My Languages" page shows all the user's languages with their CEFR level, streak, % completed, and allows switching the active language. It also allows deleting a language (with confirmation), which removes all progress associated with that language. The current active language cannot be deleted (the user must switch to another first). The last language cannot be deleted (if the user has only one, no delete button is shown).
+6. **Change confirmation**: toast "Switching to Italian (A2)..." because the entire UI changes and the user must know what happened.
+7. **Language-isolated data**: each language has its own progress, flashcards, conversations, memories, competencies, etc. There is no overlap between languages.
+8. **Language-specific curriculum**: the curriculum for each language is different and adapted to that language (not just a literal translation of English).
+9. **Adapted prompts**: system prompts (lesson generation, flashcards, conversations, exercises) are adapted to the target language using its name in English and in its own language.
+10. **Supported languages**: initially 3 new languages are added (Spanish, Italian, Portuguese from Portugal) in addition to the existing English variants.
 
-### Idiomas soportados inicialmente
+### Initially supported languages
 
-Se añaden **3 idiomas nuevos** y se muestran ordenados alfabéticamente en el selector según el idioma de la interfaz:
+**3 new languages** are added and displayed alphabetically in the selector according to the interface language:
 
-| Código BCP-47 | Idioma |
-|---------------|--------|
-| `en-US` | Inglés (americano) — ya existe |
-| `en-GB` | Inglés (británico) — ya existe |
-| `es-ES` | Español (España) — **nuevo** |
-| `it-IT` | Italiano — **nuevo** |
-| `pt-PT` | Portugués (Portugal) — **nuevo** |
+| BCP-47 Code | Language |
+|-------------|----------|
+| `en-US` | English (American) — already exists |
+| `en-GB` | English (British) — already exists |
+| `es-ES` | Spanish (Spain) — **new** |
+| `it-IT` | Italian — **new** |
+| `pt-PT` | Portuguese (Portugal) — **new** |
 
-Total de códigos BCP-47 soportados: 5 (`en-US`, `en-GB`, `es-ES`, `it-IT`, `pt-PT`).
+Total supported BCP-47 codes: 5 (`en-US`, `en-GB`, `es-ES`, `it-IT`, `pt-PT`).
 
 ---
 
-## Fase 10.1 — Base de datos: migraciones y nuevos modelos
+## Phase 10.1 — Database: migrations and new models
 
-### 10.1.1 Nueva tabla: `user_languages`
+### 10.1.1 New table: `user_languages`
 
-Relaciona usuarios con los idiomas que están aprendiendo. Cada fila representa "el usuario X está aprendiendo el idioma Y".
+Relates users to the languages they are learning. Each row represents "user X is learning language Y".
 
-| Columna | Tipo | Notas |
-|---------|------|-------|
+| Column | Type | Notes |
+|--------|------|-------|
 | id | integer | PK, autoincrement |
 | user_id | integer | FK → users (CASCADE), NOT NULL |
 | target_language | string(10) | BCP-47, NOT NULL |
-| is_active | boolean | `true` = idioma activo actual. Solo uno `true` por usuario. Default `true`. |
+| is_active | boolean | `true` = current active language. Only one `true` per user. Default `true`. |
 | created_at | datetime | Auto-set |
 
 **Constraints:**
-- `UNIQUE(user_id, target_language)` — un usuario no puede tener duplicado el mismo idioma.
-- Índice en `(user_id, is_active)` para consultas rápidas del idioma activo.
-- Al insertar un nuevo `user_language` con `is_active=true`, se debe desactivar (`is_active=false`) cualquier otro idioma activo del mismo usuario (lógica en el servicio).
+- `UNIQUE(user_id, target_language)` — a user cannot have the same language duplicated.
+- Index on `(user_id, is_active)` for fast active language lookups.
+- When inserting a new `user_language` with `is_active=true`, any other active language for that user must be deactivated (`is_active=false`) — logic in the service.
 
-### 10.1.2 Migración en modelos existentes
+### 10.1.2 Migration of existing models
 
-La migración `00XX_multi_language.py` modifica las siguientes tablas existentes añadiendo la columna `target_language` (o `study_plan_id`):
+The migration `00XX_multi_language.py` modifies the following existing tables by adding the `target_language` (or `study_plan_id`) column:
 
-#### Tabla `study_plans`
+#### Table `study_plans`
 
-**Ya tiene** `target_language` (añadida en Phase 4). Sin cambios estructurales.
+**Already has** `target_language` (added in Phase 4). No structural changes.
 
-**Nueva constraint:** `UNIQUE(user_id, target_language, is_active)` parcial — solo un plan activo por usuario por idioma. Implementado como índice único parcial en PostgreSQL:
+**New constraint:** partial `UNIQUE(user_id, target_language, is_active)` — only one active plan per user per language. Implemented as a partial unique index in PostgreSQL:
 
 ```sql
 CREATE UNIQUE INDEX uq_active_plan_per_lang
@@ -73,71 +73,71 @@ ON study_plans (user_id, target_language)
 WHERE is_active = true;
 ```
 
-Esto reemplaza la lógica actual de "un plan activo por usuario" por "un plan activo por usuario por idioma".
+This replaces the current logic of "one active plan per user" with "one active plan per user per language".
 
-#### Tabla `progress`
+#### Table `progress`
 
-| Cambio | Detalle |
-|--------|---------|
-| Añadir `study_plan_id` | integer, FK → study_plans (CASCADE), nullable inicialmente, con índice |
-| Backfill | Asignar `study_plan_id` a partir del plan activo de cada usuario (el que tenga `is_active=true`) |
-| Hacer NOT NULL | Tras el backfill |
+| Change | Detail |
+|--------|--------|
+| Add `study_plan_id` | integer, FK → study_plans (CASCADE), initially nullable, with index |
+| Backfill | Assign `study_plan_id` from each user's active plan (the one with `is_active=true`) |
+| Make NOT NULL | After backfill |
 
-#### Tabla `flashcards`
+#### Table `flashcards`
 
-| Cambio | Detalle |
-|--------|---------|
-| Añadir `study_plan_id` | integer, FK → study_plans (CASCADE), nullable inicialmente, con índice |
-| Backfill | Asignar `study_plan_id` a partir del plan activo de cada usuario |
-| Hacer NOT NULL | Tras el backfill |
+| Change | Detail |
+|--------|--------|
+| Add `study_plan_id` | integer, FK → study_plans (CASCADE), initially nullable, with index |
+| Backfill | Assign `study_plan_id` from each user's active plan |
+| Make NOT NULL | After backfill |
 
-#### Tabla `conversations`
+#### Table `conversations`
 
-| Cambio | Detalle |
-|--------|---------|
-| Añadir `study_plan_id` | integer, FK → study_plans (SET NULL), nullable (las conversaciones antiguas quedan sin plan) |
-| Sin backfill | Las conversaciones existentes quedan con `study_plan_id=NULL` |
+| Change | Detail |
+|--------|--------|
+| Add `study_plan_id` | integer, FK → study_plans (SET NULL), nullable (old conversations remain without a plan) |
+| No backfill | Existing conversations remain with `study_plan_id=NULL` |
 
-#### Tabla `chat_history`
+#### Table `chat_history`
 
-| Cambio | Detalle |
-|--------|---------|
-| Añadir `study_plan_id` | integer, FK → study_plans (SET NULL), nullable |
-| Sin backfill | Las filas existentes quedan con `study_plan_id=NULL` |
+| Change | Detail |
+|--------|--------|
+| Add `study_plan_id` | integer, FK → study_plans (SET NULL), nullable |
+| No backfill | Existing rows remain with `study_plan_id=NULL` |
 
-#### Tabla `user_competencies`
+#### Table `user_competencies`
 
-| Cambio | Detalle |
-|--------|---------|
-| Añadir `study_plan_id` | integer, FK → study_plans (CASCADE), nullable inicialmente |
-| Backfill | Asignar `study_plan_id` a partir del plan activo de cada usuario |
-| Hacer NOT NULL | Tras el backfill |
+| Change | Detail |
+|--------|--------|
+| Add `study_plan_id` | integer, FK → study_plans (CASCADE), initially nullable |
+| Backfill | Assign `study_plan_id` from each user's active plan |
+| Make NOT NULL | After backfill |
 
-#### Tabla `memories`
+#### Table `memories`
 
-| Cambio | Detalle |
-|--------|---------|
-| Añadir `study_plan_id` | integer, FK → study_plans (SET NULL), nullable |
-| Sin backfill | Los recuerdos existentes quedan sin plan asignado (compartidos entre idiomas) |
+| Change | Detail |
+|--------|--------|
+| Add `study_plan_id` | integer, FK → study_plans (SET NULL), nullable |
+| No backfill | Existing memories remain without an assigned plan (shared across languages) |
 
-#### Tabla `llm_usage`
+#### Table `llm_usage`
 
-| Cambio | Detalle |
-|--------|---------|
-| Añadir `study_plan_id` | integer, FK → study_plans (SET NULL), nullable |
-| Sin backfill | Los registros de uso quedan sin plan asignado |
+| Change | Detail |
+|--------|--------|
+| Add `study_plan_id` | integer, FK → study_plans (SET NULL), nullable |
+| No backfill | Existing usage records remain without an assigned plan |
 
-### 10.1.3 Columna `target_language` en `User`
+### 10.1.3 `target_language` column in `User`
 
-**Se mantiene** la columna `target_language` en `users` como **idioma preferido/default**. Su propósito cambia:
+The `target_language` column in `users` is **kept** as the **preferred/default language**. Its purpose changes:
 
-- Durante el registro/onboarding: se establece al primer idioma elegido.
-- Al cambiar de idioma activo: se actualiza automáticamente al idioma del nuevo plan activo.
-- No es la fuente de verdad para el idioma activo — `user_languages.is_active=true` lo es. Existe por retrocompatibilidad y como fallback.
+- During registration/onboarding: set to the first language chosen.
+- When switching the active language: automatically updated to the new active plan's language.
+- It is NOT the source of truth for the active language — `user_languages.is_active=true` is. It exists for backward compatibility and as a fallback.
 
-### 10.1.4 Modelo SQLAlchemy: `UserLanguage`
+### 10.1.4 SQLAlchemy model: `UserLanguage`
 
-**Archivo:** `backend/app/models/user_language.py`
+**File:** `backend/app/models/user_language.py`
 
 ```python
 from __future__ import annotations
@@ -164,41 +164,41 @@ class UserLanguage(Base):
     )
 ```
 
-### 10.1.5 Cambios en modelos SQLAlchemy existentes
+### 10.1.5 Changes to existing SQLAlchemy models
 
-Cada modelo listado en 10.1.2 recibe la nueva columna correspondiente. Ejemplo para `Progress`:
+Each model listed in 10.1.2 receives the corresponding new column. Example for `Progress`:
 
 ```python
-# Progress — añadir:
+# Progress — add:
 study_plan_id: Mapped[int] = mapped_column(
     Integer, ForeignKey("study_plans.id", ondelete="CASCADE"), nullable=False, index=True
 )
 ```
 
-Mismo patrón para `Flashcard`, `Conversation`, `ChatHistory`, `UserCompetency`, `Memory`, `LLMUsage`.
+Same pattern for `Flashcard`, `Conversation`, `ChatHistory`, `UserCompetency`, `Memory`, `LLMUsage`.
 
-### 10.1.6 Migración Alembic
+### 10.1.6 Alembic migration
 
-**Archivo:** `backend/alembic/versions/00XX_multi_language.py`
+**File:** `backend/alembic/versions/00XX_multi_language.py`
 
-Revision ID secuencial. Down revision: la última migración existente (actualmente `0028_trial_used`).
+Sequential revision ID. Down revision: the latest existing migration (currently `0028_trial_used`).
 
-La migración:
-1. Crea la tabla `user_languages`.
-2. Añade columnas `study_plan_id` a las 7 tablas listadas.
-3. Backfill de `study_plan_id` usando el plan activo de cada usuario.
-4. Añade `NOT NULL` donde corresponda.
-5. Crea el índice parcial `uq_active_plan_per_lang`.
+The migration:
+1. Creates the `user_languages` table.
+2. Adds `study_plan_id` columns to the 7 listed tables.
+3. Backfills `study_plan_id` using each user's active plan.
+4. Adds `NOT NULL` where applicable.
+5. Creates the partial index `uq_active_plan_per_lang`.
 
 ---
 
-## Fase 10.2 — Backend: servicios y prompts multi-idioma
+## Phase 10.2 — Backend: services and multi-language prompts
 
-### 10.2.1 Refactor de `language_helpers.py`
+### 10.2.1 Refactor of `language_helpers.py`
 
-**Archivo:** `backend/app/services/language_helpers.py`
+**File:** `backend/app/services/language_helpers.py`
 
-Se expande para soportar cualquier idioma, no solo inglés:
+Expanded to support any language, not just English:
 
 ```python
 # Diccionario de idioma BCP-47 → nombre en el propio idioma + nombre en inglés
@@ -211,136 +211,136 @@ _LANGUAGE_INFO: dict[str, dict[str, str]] = {
 }
 ```
 
-**Nuevas funciones:**
+**New functions:**
 
-| Función | Firma | Descripción |
-|---------|-------|-------------|
-| `get_language_name(target_language)` | `str → str` | Devuelve `"Italian"`, `"Spanish"`, etc. |
-| `get_language_self_name(target_language)` | `str → str` | Devuelve `"Italiano"`, `"Español"`, etc. |
-| `get_iso639(target_language)` | `str → str` | `"it-IT" → "it"` (sin cambios) |
-| `get_language_flag(target_language)` | `str → str` | Emoji bandera |
+| Function | Signature | Description |
+|----------|-----------|-------------|
+| `get_language_name(target_language)` | `str → str` | Returns `"Italian"`, `"Spanish"`, etc. |
+| `get_language_self_name(target_language)` | `str → str` | Returns `"Italiano"`, `"Español"`, etc. |
+| `get_iso639(target_language)` | `str → str` | `"it-IT" → "it"` (unchanged) |
+| `get_language_flag(target_language)` | `str → str` | Flag emoji |
 
-Se elimina `get_english_variant()` (obsoleto). Los prompts usarán `get_language_name()` y `get_language_self_name()`.
+`get_english_variant()` is removed (obsolete). Prompts will use `get_language_name()` and `get_language_self_name()`.
 
-### 10.2.2 Prompts LLM multi-idioma
+### 10.2.2 Multi-language LLM prompts
 
-Todos los prompts del sistema se parametrizan para ser language-agnostic. Se usa `{target_language_name}` (ej: "Italian", "Spanish") y `{target_language_self_name}` (ej: "Italiano", "Español").
+All system prompts are parameterised to be language-agnostic. `{target_language_name}` (e.g. "Italian", "Spanish") and `{target_language_self_name}` (e.g. "Italiano", "Español") are used.
 
 #### `lesson_generator.py`
 
 ```
-ANTES: "You are an expert English teacher..."
-AHORA:  "You are an expert {target_language_name} teacher..."
+BEFORE: "You are an expert English teacher..."
+NOW:    "You are an expert {target_language_name} teacher..."
 ```
 
-La lección se genera completamente en el idioma objetivo. El prompt recibe `target_language_name` y `iso639`.
+The lesson is generated entirely in the target language. The prompt receives `target_language_name` and `iso639`.
 
-**Atención — `VALID_GRAMMAR_SLUGS`**: esta constante se construye en tiempo de importación a partir del currículum inglés y se pasa al prompt como lista de slugs válidos. Con idiomas distintos, los grammar slugs del currículum serán diferentes. Debe calcularse dinámicamente por idioma al invocar la generación: `get_valid_grammar_slugs(target_language)` en lugar de la constante global, usando `get_curriculum(target_language)`.
+**Note — `VALID_GRAMMAR_SLUGS`**: this constant is built at import time from the English curriculum and passed to the prompt as a list of valid slugs. With different languages, the grammar slugs in the curriculum will differ. It must be computed dynamically per language when invoking generation: `get_valid_grammar_slugs(target_language)` instead of the global constant, using `get_curriculum(target_language)`.
 
 #### `flashcard_sm2.py`
 
 ```
-ANTES: "Generate {count} English vocabulary flashcards..."
-AHORA:  "Generate {count} {target_language_name} vocabulary flashcards..."
+BEFORE: "Generate {count} English vocabulary flashcards..."
+NOW:    "Generate {count} {target_language_name} vocabulary flashcards..."
 ```
 
-Las flashcards tienen la palabra en el idioma objetivo y la traducción al `native_language` del usuario.
+Flashcards contain the word in the target language and the translation in the user's `native_language`.
 
 #### `conversation_pipeline.py`
 
 ```
-ANTES: "You are an encouraging and patient English conversation partner named FreeLingo..."
-       "ALWAYS respond in English, regardless of the language the student uses..."
-AHORA: "You are an encouraging and patient {target_language_name} conversation partner named FreeLingo..."
-       "ALWAYS respond in {target_language_name}, regardless of the language the student uses..."
+BEFORE: "You are an encouraging and patient English conversation partner named FreeLingo..."
+        "ALWAYS respond in English, regardless of the language the student uses..."
+NOW:    "You are an encouraging and patient {target_language_name} conversation partner named FreeLingo..."
+        "ALWAYS respond in {target_language_name}, regardless of the language the student uses..."
 ```
 
-La conversación ocurre en el idioma objetivo. **Importante**: la regla `ALWAYS respond in English` que aparece hardcodeada en el prompt debe generalizarse a `ALWAYS respond in {target_language_name}`.
+The conversation takes place in the target language. **Important**: the `ALWAYS respond in English` rule hardcoded in the prompt must be generalised to `ALWAYS respond in {target_language_name}`.
 
 #### `chat.py` (TUTOR_SYSTEM_PROMPT)
 
 ```
-ANTES: "You are an encouraging and patient English language tutor named FreeLingo..."
-       "ALWAYS respond in English, regardless of the language the student writes in..."
-AHORA: "You are an encouraging and patient {target_language_name} language tutor named FreeLingo..."
-       "ALWAYS respond in {target_language_name}, regardless of the language the student writes in..."
+BEFORE: "You are an encouraging and patient English language tutor named FreeLingo..."
+        "ALWAYS respond in English, regardless of the language the student writes in..."
+NOW:    "You are an encouraging and patient {target_language_name} language tutor named FreeLingo..."
+        "ALWAYS respond in {target_language_name}, regardless of the language the student writes in..."
 ```
 
-El tutor de chat adapta el idioma al plan activo. Sin este cambio, el tutor respondería siempre en inglés aunque el idioma activo fuera español o italiano. El `target_language_name` se obtiene del plan activo vía `get_language_name(plan.target_language)` y se pasa al construir el prompt.
+The chat tutor adapts the language to the active plan. Without this change, the tutor would always respond in English even if the active language were Spanish or Italian. `target_language_name` is obtained from the active plan via `get_language_name(plan.target_language)` and passed when building the prompt.
 
 #### `listening_service.py` / `reading_service.py`
 
 ```
-ANTES: "You are an English language content creator..."
-AHORA:  "You are a {target_language_name} language content creator..."
+BEFORE: "You are an English language content creator..."
+NOW:    "You are a {target_language_name} language content creator..."
 ```
 
-El contenido (textos, preguntas) se genera en el idioma objetivo.
+Content (texts, questions) is generated in the target language.
 
 ### 10.2.3 `study_plan_generator.py`
 
-El título del plan se vuelve dinámico:
+The plan title becomes dynamic:
 
 ```python
-# ANTES
+# BEFORE
 title = f"English {cefr_level} — {duration_weeks}-week programme"
 
-# AHORA
+# NOW
 title = f"{get_language_name(target_language)} {cefr_level} — {duration_weeks}-week programme"
 ```
 
-El generador acepta un nuevo parámetro `target_language: str` en `generate_study_plan()`.
+The generator accepts a new `target_language: str` parameter in `generate_study_plan()`.
 
 ### 10.2.4 `progress_service.py`
 
-Todas las funciones aceptan `study_plan_id: int` como parámetro. Se filtra por plan en lugar de por usuario global:
+All functions accept `study_plan_id: int` as a parameter. Filtering is done by plan instead of by global user:
 
 ```python
-# ANTES
+# BEFORE
 async def update_daily_progress(db: AsyncSession, user_id: int, ...)
 
-# AHORA
+# NOW
 async def update_daily_progress(db: AsyncSession, user_id: int, study_plan_id: int, ...)
 ```
 
-**Atención — `upsert_unit_competency`**: esta función también opera sobre `user_competencies`, que ahora tiene `study_plan_id`. Debe aceptar y usar ese parámetro para evitar mezclar competencias de distintos idiomas:
+**Note — `upsert_unit_competency`**: this function also operates on `user_competencies`, which now has `study_plan_id`. It must accept and use that parameter to avoid mixing competencies from different languages:
 
 ```python
-# ANTES
+# BEFORE
 async def upsert_unit_competency(db, user_id, unit_id, ...)
 
-# AHORA
+# NOW
 async def upsert_unit_competency(db, user_id, study_plan_id, unit_id, ...)
 ```
 
 ### 10.2.5 `memory_service.py`
 
-`get_user_memories()` acepta `study_plan_id` opcional. Si es `None`, devuelve todos los recuerdos del usuario (compatibilidad hacia atrás). Si se proporciona, filtra por plan.
+`get_user_memories()` accepts an optional `study_plan_id`. If `None`, returns all user memories (backward compatibility). If provided, filters by plan.
 
-`MEMORY_SYSTEM_INSTRUCTION` contiene actualmente la frase `"struggles with English, or anything that would help personalise future lessons"`. Debe actualizarse para ser language-agnostic: `"struggles with {target_language_name}, or anything that would help personalise future lessons"`. El texto de instrucción se convierte en una función que acepta `target_language_name` al construirse el prompt del sistema, en lugar de ser una constante de módulo.
+`MEMORY_SYSTEM_INSTRUCTION` currently contains `"struggles with English, or anything that would help personalise future lessons"`. It must be updated to be language-agnostic: `"struggles with {target_language_name}, or anything that would help personalise future lessons"`. The instruction text becomes a function that accepts `target_language_name` when building the system prompt, instead of being a module-level constant.
 
-### 10.2.6 Nuevo servicio: `user_language_service.py`
+### 10.2.6 New service: `user_language_service.py`
 
-**Archivo:** `backend/app/services/user_language_service.py`
+**File:** `backend/app/services/user_language_service.py`
 
-| Función | Descripción |
-|---------|-------------|
-| `get_active_language(db, user_id) → UserLanguage \| None` | Devuelve el idioma activo del usuario |
-| `get_user_languages(db, user_id) → list[UserLanguage]` | Todos los idiomas del usuario |
-| `add_language(db, user_id, target_language) → UserLanguage` | Añade un nuevo idioma (crea `UserLanguage` + desactiva los demás) |
-| `switch_language(db, user_id, target_language) → UserLanguage` | Cambia el idioma activo |
-| `remove_language(db, user_id, target_language) → bool` | Elimina un idioma (y sus planes asociados en cascada) |
+| Function | Description |
+|----------|-------------|
+| `get_active_language(db, user_id) → UserLanguage \| None` | Returns the user's active language |
+| `get_user_languages(db, user_id) → list[UserLanguage]` | All user languages |
+| `add_language(db, user_id, target_language) → UserLanguage` | Adds a new language (creates `UserLanguage` + deactivates others) |
+| `switch_language(db, user_id, target_language) → UserLanguage` | Switches the active language |
+| `remove_language(db, user_id, target_language) → bool` | Removes a language (and its associated plans in cascade) |
 
-### 10.2.7 Nueva dependencia FastAPI: `get_active_study_plan`
+### 10.2.7 New FastAPI dependency: `get_active_study_plan`
 
-**Archivo:** `backend/app/core/deps.py` (añadir junto a las dependencias existentes de ese módulo; **no** crear `dependencies.py` nuevo)
+**File:** `backend/app/core/deps.py` (add alongside existing dependencies in that module; do **not** create a new `dependencies.py`)
 
 ```python
 async def get_active_study_plan(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> StudyPlan:
-    """Obtiene el plan de estudios activo según el idioma activo del usuario."""
+    """Returns the active study plan according to the user's active language."""
     active_lang = await get_active_language(db, current_user.id)
     if not active_lang:
         raise HTTPException(status_code=404, detail="No active language set")
@@ -359,13 +359,13 @@ async def get_active_study_plan(
 
 ---
 
-## Fase 10.3 — API: nuevos endpoints y refactor de existentes
+## Phase 10.3 — API: new endpoints and refactor of existing ones
 
-### 10.3.1 Validación de idiomas
+### 10.3.1 Language validation
 
-**Archivo:** `backend/app/schemas/auth.py`
+**File:** `backend/app/schemas/auth.py`
 
-Se expande `SUPPORTED_TARGET_LANGUAGES`:
+Expand `SUPPORTED_TARGET_LANGUAGES`:
 
 ```python
 SUPPORTED_TARGET_LANGUAGES: set[str] = {
@@ -376,22 +376,22 @@ SUPPORTED_TARGET_LANGUAGES: set[str] = {
 }
 ```
 
-### 10.3.2 Nuevo router: `languages.py`
+### 10.3.2 New router: `languages.py`
 
-**Archivo:** `backend/app/routers/languages.py`  
-**Prefijo:** `/api/languages`  
+**File:** `backend/app/routers/languages.py`  
+**Prefix:** `/api/languages`  
 **Tag:** `languages`  
-**Auth:** todos requieren `require_subscription`.
+**Auth:** all endpoints require `require_subscription`.
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| GET | `/api/languages` | Lista los idiomas que el usuario está aprendiendo, con progreso resumido |
-| GET | `/api/languages/active` | Devuelve el idioma activo actual del usuario |
-| POST | `/api/languages` | Añade un nuevo idioma (`{ target_language: "it-IT" }`) y crea entrada en `user_languages` |
-| PUT | `/api/languages/active` | Cambia el idioma activo (`{ target_language: "it-IT" }`) |
-| DELETE | `/api/languages/{target_language}` | Elimina un idioma y sus planes asociados |
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/api/languages` | Lists the languages the user is learning, with summarised progress |
+| GET | `/api/languages/active` | Returns the user's current active language |
+| POST | `/api/languages` | Adds a new language (`{ target_language: "it-IT" }`) and creates a `user_languages` entry |
+| PUT | `/api/languages/active` | Switches the active language (`{ target_language: "it-IT" }`) |
+| DELETE | `/api/languages/{target_language}` | Removes a language and its associated plans |
 
-**Schema de respuesta `GET /api/languages`:**
+**`GET /api/languages` response schema:**
 
 ```json
 {
@@ -422,72 +422,72 @@ SUPPORTED_TARGET_LANGUAGES: set[str] = {
 }
 ```
 
-`all_supported_languages` devuelve siempre los 5 idiomas que el sistema soporta, independientemente de cuáles tenga ya el usuario. El frontend filtra los que ya están en `languages[]` para el modal de "Añadir nuevo idioma".
+`all_supported_languages` always returns all 5 system-supported languages, regardless of which ones the user already has. The frontend filters out those already in `languages[]` for the "Add new language" modal.
 
-### 10.3.3 Refactor de endpoints existentes
+### 10.3.3 Refactor of existing endpoints
 
 #### `GET /api/study-plan/current`
 
-Ahora usa `get_active_study_plan` en lugar de buscar el primer plan activo. Devuelve el plan del idioma activo.
+Now uses `get_active_study_plan` instead of looking up the first active plan. Returns the active language's plan.
 
-Acepta query param opcional `?language=it-IT` para obtener el plan de un idioma específico (usado por el frontend para previsualizar antes de cambiar).
+Accepts optional query param `?language=it-IT` to retrieve a specific language's plan (used by the frontend to preview before switching).
 
 #### `POST /api/study-plan/generate`
 
-**Bug fix incluido**: ahora guarda `target_language` correctamente.
+**Bug fix included**: now correctly saves `target_language`.
 
-Acepta `target_language` en el body. Si no se proporciona, usa el `target_language` del idioma activo.
+Accepts `target_language` in the body. If not provided, uses the active language's `target_language`.
 
 #### `GET /api/study-plan/today`
 
-Usa `get_active_study_plan` en lugar de leer `current_user.target_language`.
+Uses `get_active_study_plan` instead of reading `current_user.target_language`.
 
 #### `GET /api/flashcards/*`
 
-Filtra por `study_plan_id` del plan activo en lugar de solo `user_id`.
+Filters by `study_plan_id` of the active plan instead of just `user_id`.
 
 #### `POST /api/flashcards/generate`
 
-Asigna `study_plan_id` del plan activo a las flashcards generadas.
+Assigns the active plan's `study_plan_id` to generated flashcards.
 
 #### `GET /api/progress/*`
 
-Filtra por `study_plan_id` del plan activo. El progreso es por idioma.
+Filters by `study_plan_id` of the active plan. Progress is per language.
 
 #### `GET /api/progress/competencies`
 
-Filtra por `study_plan_id`.
+Filters by `study_plan_id`.
 
 #### `GET/POST /api/chat`, `/ws/conversation`
 
-Usan `study_plan_id` del plan activo para:
-- Determinar `target_language` para el prompt del sistema
-- Almacenar `study_plan_id` en `conversations` y `chat_history`
-- Filtrar `memories` por `study_plan_id`
+Use the active plan's `study_plan_id` to:
+- Determine `target_language` for the system prompt
+- Store `study_plan_id` in `conversations` and `chat_history`
+- Filter `memories` by `study_plan_id`
 
 #### `GET /api/listening/*`, `GET /api/reading/*`
 
-Ya usaban `target_language` del plan. Se actualizan para obtenerlo del plan activo.
+Already used `target_language` from the plan. Updated to retrieve it from the active plan.
 
 #### `PATCH /api/auth/me`
 
-Al actualizar `target_language`, también se actualiza `user_languages`:
-- Si el usuario ya tiene ese idioma, se activa (sin crear plan nuevo).
-- Si no lo tiene, se añade entrada en `user_languages` pero **no se crea `StudyPlan`** — el usuario debe pasar por el flujo de assessment para ese idioma. Esto evita crear planes vacíos desde edición de perfil.
+When updating `target_language`, `user_languages` is also updated:
+- If the user already has that language, it is activated (without creating a new plan).
+- If not, an entry is added to `user_languages` but **no `StudyPlan` is created** — the user must go through the assessment flow for that language. This avoids creating empty plans from profile editing.
 
-#### `POST /api/assessment/complete` y `POST /api/study-plan/generate` — deactivación acotada por idioma
+#### `POST /api/assessment/complete` and `POST /api/study-plan/generate` — deactivation scoped by language
 
-Ambos endpoints actualmente desactivan **todos** los planes activos del usuario antes de crear uno nuevo. Con multi-idioma esto destruiría el plan de inglés al crear el plan de español. Debe acotarse al idioma específico:
+Both endpoints currently deactivate **all** active plans for the user before creating a new one. With multi-language support, this would destroy the English plan when creating a Spanish plan. It must be scoped to the specific language:
 
 ```python
-# CÓDIGO ACTUAL — ROMPE MULTI-IDIOMA
+# CURRENT CODE — BREAKS MULTI-LANGUAGE
 old_result = await db.execute(
     select(StudyPlan).where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
 )
 for old in old_result.scalars().all():
     old.is_active = False
 
-# CORRECTO — filtrar también por target_language
+# CORRECT — also filter by target_language
 old_result = await db.execute(
     select(StudyPlan).where(
         StudyPlan.user_id == current_user.id,
@@ -499,25 +499,25 @@ for old in old_result.scalars().all():
     old.is_active = False
 ```
 
-#### `GET /api/assessment/start` y `POST /api/assessment/submit` — idioma del assessment
+#### `GET /api/assessment/start` and `POST /api/assessment/submit` — assessment language
 
-Actualmente el assessment genera preguntas en inglés sin importar el idioma objetivo. Con multi-idioma:
+Currently the assessment generates questions in English regardless of the target language. With multi-language support:
 
-- `GET /api/assessment/start` debe aceptar un query param `?language=es-ES` (default `en-US`) para saber en qué idioma evaluar al usuario.
-- El LLM prompt debe especificar el idioma: `"Generate an adaptive CEFR quiz with 20 questions for {target_language_name} language proficiency."`.
-- La clave Redis debe incluir el idioma para evitar colisiones si el usuario tiene dos assessments en curso simultáneos: `assessment:{user_id}:{target_language}` (en lugar de `assessment:{user_id}`).
+- `GET /api/assessment/start` must accept a `?language=es-ES` query param (default `en-US`) to know which language to evaluate the user in.
+- The LLM prompt must specify the language: `"Generate an adaptive CEFR quiz with 20 questions for {target_language_name} language proficiency."`.
+- The Redis key must include the language to avoid collisions if the user has two assessments in progress simultaneously: `assessment:{user_id}:{target_language}` (instead of `assessment:{user_id}`).
 
-#### `GET /api/assessment/level-test/questions/{plan_id}` — currículum por idioma
+#### `GET /api/assessment/level-test/questions/{plan_id}` — curriculum per language
 
-Este endpoint llama a `get_curriculum_units(plan.cefr_level)` para obtener grammar points y vocabulary sets del plan activo. Debe usar `get_curriculum(plan.target_language)` en su lugar, para obtener el currículum del idioma correcto y no siempre el inglés.
+This endpoint calls `get_curriculum_units(plan.cefr_level)` to obtain grammar points and vocabulary sets for the active plan. It must use `get_curriculum(plan.target_language)` instead, to retrieve the correct language's curriculum and not always English.
 
 ---
 
-## Fase 10.4 — Frontend: infraestructura core
+## Phase 10.4 — Frontend: core infrastructure
 
-### 10.4.1 Configuración de idiomas soportados
+### 10.4.1 Supported languages configuration
 
-**Archivo:** `frontend/src/lib/target-languages.ts`
+**File:** `frontend/src/lib/target-languages.ts`
 
 ```typescript
 export interface TargetLanguage {
@@ -542,12 +542,12 @@ export function getLanguageByCode(code: string): TargetLanguage | undefined {
 }
 ```
 
-### 10.4.2 Auth store y Language store
+### 10.4.2 Auth store and Language store
 
-**Archivo:** `frontend/src/store/auth.ts`
+**File:** `frontend/src/store/auth.ts`
 
-- Se mantiene `target_language?: string` en `User` (idioma activo actual).
-- Se añade al store:
+- `target_language?: string` is kept in `User` (current active language).
+- Added to the store:
   ```typescript
   activeLanguage: TargetLanguage | null
   userLanguages: UserLanguageInfo[]
@@ -557,16 +557,16 @@ export function getLanguageByCode(code: string): TargetLanguage | undefined {
   switchLanguage: (code: string) => Promise<void>
   ```
 
-**Archivo:** `frontend/src/store/language.ts` (nuevo)
+**File:** `frontend/src/store/language.ts` (new)
 
-Alternativamente, store separado para la lógica de idiomas. Contiene:
+Alternatively, a separate store for language logic. Contains:
 
 ```typescript
 interface LanguageStore {
-  activeLanguage: TargetLanguage | null       // Idioma activo actual
-  userLanguages: UserLanguageInfo[]           // Idiomas del usuario con progreso
-  supportedLanguages: TargetLanguage[]        // Idiomas que el sistema soporta
-  isSwitching: boolean                        // Animación de cambio
+  activeLanguage: TargetLanguage | null       // Current active language
+  userLanguages: UserLanguageInfo[]           // User's languages with progress
+  supportedLanguages: TargetLanguage[]        // System-supported languages
+  isSwitching: boolean                        // Switch animation
   fetchLanguages: () => Promise<void>
   switchLanguage: (code: string) => Promise<void>
   addLanguage: (code: string) => Promise<void>
@@ -574,47 +574,47 @@ interface LanguageStore {
 }
 ```
 
-### 10.4.3 Language Switcher en sidebar
+### 10.4.3 Language Switcher in sidebar
 
-**Archivo:** `frontend/src/app/(app)/layout.tsx`
+**File:** `frontend/src/app/(app)/layout.tsx`
 
-Se añade un componente `LanguageSwitcher` en la parte superior del sidebar (debajo del logo/nombre de la app, antes de los items de navegación).
+A `LanguageSwitcher` component is added at the top of the sidebar (below the app logo/name, before the navigation items).
 
-**Componente:** `frontend/src/components/LanguageSwitcher.tsx`
+**Component:** `frontend/src/components/LanguageSwitcher.tsx`
 
 ```tsx
-// Comportamiento:
-// - Muestra la bandera (emoji) + nombre del idioma activo
-// - Dropdown con todos los idiomas del usuario
-// - Al cambiar: llama PUT /api/languages/active → refresca la página actual
-// - Toast de confirmación: "Cambiando a Italiano (A2)..."
-// - Si solo hay 1 idioma: no muestra dropdown, solo indicador
-// - Loading spinner durante el cambio
+// Behaviour:
+// - Shows the flag (emoji) + name of the active language
+// - Dropdown with all user languages
+// - On switch: calls PUT /api/languages/active → refreshes current page
+// - Confirmation toast: "Switching to Italian (A2)..."
+// - If only 1 language: no dropdown shown, only an indicator
+// - Loading spinner during the switch
 ```
 
-Diseño visual:
-- Botón compacto con bandera + código (`🇮🇹 Italiano`) y un chevron.
-- Estilo: `text-fl-muted hover:text-fl-fg`, con fondo sutil al hacer hover.
-- Dropdown: lista de idiomas con indicador de nivel CEFR y check en el activo.
+Visual design:
+- Compact button with flag + name (`🇮🇹 Italiano`) and a chevron.
+- Style: `text-fl-muted hover:text-fl-fg`, with a subtle hover background.
+- Dropdown: list of languages with CEFR level indicator and a checkmark on the active one.
 
-### 10.4.4 Mappers actualizados
+### 10.4.4 Updated mappers
 
-**Archivo:** `frontend/src/lib/mappers.ts`
+**File:** `frontend/src/lib/mappers.ts`
 
-Se añade mapping de `UserLanguage` de la API al tipo de frontend, incluyendo la información de progreso resumida.
+Adds mapping of `UserLanguage` from the API to the frontend type, including summarised progress information.
 
 ---
 
-## Fase 10.5 — Frontend: páginas
+## Phase 10.5 — Frontend: pages
 
-### 10.5.1 Onboarding (actualización)
+### 10.5.1 Onboarding (update)
 
-**Archivo:** `frontend/src/app/(auth)/onboarding/page.tsx`
+**File:** `frontend/src/app/(auth)/onboarding/page.tsx`
 
-Se actualiza el `TargetLanguageSelector` para mostrar **todos los idiomas** (no solo variantes de inglés):
+The `TargetLanguageSelector` is updated to show **all languages** (not just English variants):
 
 ```
-Selecciona qué idioma quieres aprender
+Select the language you want to learn
 ┌──────────┐ ┌──────────┐ ┌──────────┐
 │ �🇸       │ │ 🇬🇧       │ │ 🇪🇸       │
 │ English  │ │ English  │ │ Español  │
@@ -627,108 +627,108 @@ Selecciona qué idioma quieres aprender
 └──────────┘ └──────────┘
 ```
 
-Grid de tarjetas (3 columnas en desktop, 2 en tablet, 1 en móvil). Cada tarjeta muestra:
-- Bandera (imagen JPG del directorio `/flags/`)
-- Nombre del idioma (en el propio idioma + en inglés debajo)
-- Descripción breve
+Card grid (3 columns on desktop, 2 on tablet, 1 on mobile). Each card shows:
+- Flag (JPG image from the `/flags/` directory)
+- Language name (in its own language + in English below)
+- Brief description
 
-**Cambio en `TargetLanguageSelector`**: recibe la lista completa de `SUPPORTED_TARGET_LANGUAGES` como prop o la importa directamente.
+**Change in `TargetLanguageSelector`**: receives the full `SUPPORTED_TARGET_LANGUAGES` list as a prop or imports it directly.
 
-### 10.5.2 Página "Mis Idiomas" en Ajustes
+### 10.5.2 "My Languages" Settings page
 
-**Archivo:** `frontend/src/app/(app)/settings/languages/page.tsx`
+**File:** `frontend/src/app/(app)/settings/languages/page.tsx`
 
-Nueva subpágina de ajustes accesible desde `/settings/languages`. Misma estructura que `/settings/memories` (breadcrumb a `/settings`).
+New settings sub-page accessible from `/settings/languages`. Same structure as `/settings/memories` (breadcrumb to `/settings`).
 
-**Contenido:**
+**Content:**
 
 ```
-← Volver a Ajustes
+← Back to Settings
 
-MIS IDIOMAS                    [+ Añadir nuevo idioma]
+MY LANGUAGES                   [+ Add new language]
 
 ┌─────────────────────────────────────────────┐
-│ 🇺🇸 English (US)                    [ACTIVO] │
-│ Nivel: B1 · 87% completado                  │
-│ XP total: 12,500 · Racha: 23 días           │
-│ Lecciones: 38/48 · Flashcards: 156          │
-│                               [Ver detalles]│
+│ 🇺🇸 English (US)                   [ACTIVE]  │
+│ Level: B1 · 87% completed                   │
+│ Total XP: 12,500 · Streak: 23 days          │
+│ Lessons: 38/48 · Flashcards: 156            │
+│                              [View details] │
 └─────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────┐
 │ 🇮🇹 Italiano                         A1      │
-│ Nivel: A1 · 12% completado                  │
-│ XP total: 850 · Racha: 3 días               │
-│ Lecciones: 3/40 · Flashcards: 24            │
-│                [Cambiar a este] [Eliminar]  │
+│ Level: A1 · 12% completed                   │
+│ Total XP: 850 · Streak: 3 days              │
+│ Lessons: 3/40 · Flashcards: 24              │
+│             [Switch to this] [Delete]       │
 └─────────────────────────────────────────────┘
 ```
 
-**Botón "Añadir nuevo idioma"**: abre un modal con el selector de idiomas (mismo componente que el onboarding) mostrando solo los idiomas que el usuario aún no ha añadido. Al seleccionar uno:
-1. `POST /api/languages` → crea el `UserLanguage`
-2. Redirige al flujo de assessment para ese idioma (`/onboarding?language=it-IT&new=true`)
-3. El assessment crea el `StudyPlan` con el `target_language` adecuado.
+**"Add new language" button**: opens a modal with the language selector (same component as onboarding) showing only languages the user has not yet added. When one is selected:
+1. `POST /api/languages` → creates the `UserLanguage`
+2. Redirects to the assessment flow for that language (`/onboarding?language=it-IT&new=true`)
+3. The assessment creates the `StudyPlan` with the appropriate `target_language`.
 
-**Botón "Cambiar a este"**: 
-1. `PUT /api/languages/active` con `{ target_language }`
-2. Refresca el store y redirige al dashboard del nuevo idioma.
-3. Toast: "Cambiado a Italiano (A2)".
+**"Switch to this" button**:
+1. `PUT /api/languages/active` with `{ target_language }`
+2. Refreshes the store and redirects to the new language's dashboard.
+3. Toast: "Switched to Italian (A2)".
 
-**Botón "Eliminar"**: confirmación modal → `DELETE /api/languages/{code}` → elimina en cascada el plan, lecciones, flashcards, progreso, etc.
+**"Delete" button**: confirmation modal → `DELETE /api/languages/{code}` → deletes in cascade: plan, lessons, flashcards, progress, etc.
 
-### 10.5.3 Plan page (actualización)
+### 10.5.3 Plan page (update)
 
-**Archivo:** `frontend/src/app/(app)/plan/page.tsx`
+**File:** `frontend/src/app/(app)/plan/page.tsx`
 
-- Muestra el nombre del idioma y nivel CEFR en el encabezado: "Italiano — B1".
-- Todos los endpoints llamados ya filtran por `study_plan_id` del plan activo (transparente).
+- Shows the language name and CEFR level in the header: "Italian — B1".
+- All called endpoints already filter by the active plan's `study_plan_id` (transparent).
 
-### 10.5.4 Dashboard (actualización)
+### 10.5.4 Dashboard (update)
 
-**Archivo:** `frontend/src/app/(app)/dashboard/page.tsx`
+**File:** `frontend/src/app/(app)/dashboard/page.tsx`
 
-- El encabezado incluye el idioma activo: "Hola, María — estás aprendiendo Italiano (B1)".
-- Las stats (XP, racha, progreso) corresponden al idioma activo.
-- Si el usuario tiene varios idiomas y el progreso del actual es 0 (acaba de cambiar), se muestra un estado normal con datos del nuevo idioma.
+- The header includes the active language: "Hello, Maria — you are learning Italian (B1)".
+- Stats (XP, streak, progress) correspond to the active language.
+- If the user has multiple languages and the current one has 0 progress (just switched), a normal state with the new language's data is shown.
 
-### 10.5.5 Chat page (actualización)
+### 10.5.5 Chat page (update)
 
-**Archivo:** `frontend/src/app/(app)/chat/page.tsx`
+**File:** `frontend/src/app/(app)/chat/page.tsx`
 
-- Las conversaciones se filtran por `study_plan_id` del plan activo.
-- El historial muestra solo conversaciones del idioma activo.
-- El prompt del sistema incluye el nombre del idioma.
+- Conversations are filtered by the active plan's `study_plan_id`.
+- The history shows only conversations from the active language.
+- The system prompt includes the language name.
 
-### 10.5.6 Conversation page (actualización)
+### 10.5.6 Conversation page (update)
 
-**Archivo:** `frontend/src/components/conversation/ConversationMode.tsx`
+**File:** `frontend/src/components/conversation/ConversationMode.tsx`
 
-- Igual que chat: filtrado por idioma activo.
+- Same as chat: filtered by active language.
 
-### 10.5.7 Flashcard page (actualización)
+### 10.5.7 Flashcard page (update)
 
-**Archivo:** `frontend/src/app/(app)/flashcards/page.tsx`
+**File:** `frontend/src/app/(app)/flashcards/page.tsx`
 
-- Las flashcards mostradas son solo las del `study_plan_id` activo.
-- La generación asigna automáticamente el `study_plan_id` correcto.
+- Flashcards shown are only those from the active `study_plan_id`.
+- Generation automatically assigns the correct `study_plan_id`.
 
-### 10.5.8 Progress page (actualización)
+### 10.5.8 Progress page (update)
 
-**Archivo:** `frontend/src/app/(app)/progress/page.tsx`
+**File:** `frontend/src/app/(app)/progress/page.tsx`
 
-- Competencias y stats filtradas por `study_plan_id` del idioma activo.
-- Muestra el nombre del idioma en el encabezado.
+- Competencies and stats filtered by the active language's `study_plan_id`.
+- Shows the language name in the header.
 
 ---
 
-## Fase 10.6 — Currículum y datos por idioma
+## Phase 10.6 — Curriculum and language data
 
-### 10.6.1 Backend: datos de currículum
+### 10.6.1 Backend: curriculum data
 
-**Archivo:** `backend/app/data/curriculum.py` (actualización)
+**File:** `backend/app/data/curriculum.py` (update)
 
 ```python
-# Importa el currículum del idioma según target_language
+# Imports the curriculum for the given target_language
 def get_curriculum(target_language: str) -> list[CurriculumUnit]:
     iso = get_iso639(target_language)
     if iso == "en":
@@ -748,35 +748,35 @@ def get_curriculum(target_language: str) -> list[CurriculumUnit]:
     return CURRICULUM
 ```
 
-### 10.6.2 Nuevos directorios de currículum
+### 10.6.2 New curriculum directories
 
-Para cada idioma nuevo se crea un directorio con la misma estructura que `backend/app/data/en/`:
+A directory with the same structure as `backend/app/data/en/` is created for each new language:
 
-- `backend/app/data/es/` — Currículum de español
-- `backend/app/data/it/` — Currículum de italiano
-- `backend/app/data/pt/` — Currículum de portugués
+- `backend/app/data/es/` — Spanish curriculum
+- `backend/app/data/it/` — Italian curriculum
+- `backend/app/data/pt/` — Portuguese curriculum
 
-Cada directorio contiene exactamente los mismos archivos que `en/`:
+Each directory contains exactly the same files as `en/`:
 
-| Archivo | Descripción |
-|---------|-------------|
-| `__init__.py` | Paquete Python |
-| `_types.py` | Tipos compartidos (puede re-exportar desde `en/_types.py` si son idénticos) |
-| `curriculum.py` | Punto de entrada: importa y re-exporta `CURRICULUM` ensamblado |
-| `curriculum_a1.py` | Unidades CEFR A1 en el idioma objetivo |
-| `curriculum_a2.py` | Unidades CEFR A2 en el idioma objetivo |
-| `curriculum_b1.py` | Unidades CEFR B1 en el idioma objetivo |
-| `curriculum_b2.py` | Unidades CEFR B2 en el idioma objetivo |
-| `curriculum_c1.py` | Unidades CEFR C1 en el idioma objetivo |
-| `curriculum_c2.py` | Unidades CEFR C2 en el idioma objetivo |
+| File | Description |
+|------|-------------|
+| `__init__.py` | Python package |
+| `_types.py` | Shared types (can re-export from `en/_types.py` if identical) |
+| `curriculum.py` | Entry point: imports and re-exports the assembled `CURRICULUM` |
+| `curriculum_a1.py` | CEFR A1 units in the target language |
+| `curriculum_a2.py` | CEFR A2 units in the target language |
+| `curriculum_b1.py` | CEFR B1 units in the target language |
+| `curriculum_b2.py` | CEFR B2 units in the target language |
+| `curriculum_c1.py` | CEFR C1 units in the target language |
+| `curriculum_c2.py` | CEFR C2 units in the target language |
 
-El currículum de inglés (`backend/app/data/en/`) ya existe y no se modifica.
+The English curriculum (`backend/app/data/en/`) already exists and is not modified.
 
-### 10.6.3 Frontend: datos estáticos por idioma
+### 10.6.3 Frontend: static data per language
 
-**Archivo:** `frontend/src/data/curriculum.ts` (actualización)
+**File:** `frontend/src/data/curriculum.ts` (update)
 
-Se convierte en un punto de entrada dinámico que carga los datos según el idioma activo:
+Becomes a dynamic entry point that loads data according to the active language:
 
 ```typescript
 export function getCurriculum(targetLanguage: string): CurriculumData {
@@ -791,31 +791,31 @@ export function getCurriculum(targetLanguage: string): CurriculumData {
 }
 ```
 
-Se crean directorios paralelos:
+Parallel directories are created:
 - `frontend/src/data/es/curriculum.ts`
 - `frontend/src/data/es/grammar.ts`
 - `frontend/src/data/es/vocabulary.ts`
 - `frontend/src/data/es/phrasebook.ts`
 - `frontend/src/data/es/assessment-bank.ts`
 
-(Ídem para `it/` y `pt/`)
+(Same for `it/` and `pt/`)
 
-### 10.6.4 Banderas
+### 10.6.4 Flags
 
-Ya añadidas a `frontend/public/flags/`:
+Already added to `frontend/public/flags/`:
 - `spain.jpeg`
 - `italy.jpeg`
 - `portugal.jpeg`
 
-(Las de `usa.jpg` y `uk.jpg` ya existían.)
+(`usa.jpg` and `uk.jpg` already existed.)
 
 ---
 
-## Fase 10.7 — i18n: nuevos keys de traducción
+## Phase 10.7 — i18n: new translation keys
 
-### 10.7.1 Namespace `languages`
+### 10.7.1 `languages` namespace
 
-Añadir a los 10 archivos de locale (`messages/*.json`):
+Add to all 10 locale files (`messages/*.json`):
 
 ```json
 "languages": {
@@ -842,7 +842,7 @@ Añadir a los 10 archivos de locale (`messages/*.json`):
 }
 ```
 
-### 10.7.2 Actualización de `onboarding`
+### 10.7.2 Update `onboarding`
 
 ```json
 "onboarding": {
@@ -854,7 +854,7 @@ Añadir a los 10 archivos de locale (`messages/*.json`):
 }
 ```
 
-### 10.7.3 Actualización de `nav` / sidebar
+### 10.7.3 Update `nav` / sidebar
 
 ```json
 "nav": {
@@ -862,9 +862,9 @@ Añadir a los 10 archivos de locale (`messages/*.json`):
 }
 ```
 
-### 10.7.4 Actualización de `targetLanguages`
+### 10.7.4 Update `targetLanguages`
 
-Se añaden entradas para los nuevos idiomas:
+Add entries for the new languages:
 
 ```json
 "targetLanguages": {
@@ -883,9 +883,9 @@ Se añaden entradas para los nuevos idiomas:
 
 ---
 
-## Fase 10.8 — Schemas Pydantic
+## Phase 10.8 — Pydantic Schemas
 
-**Archivo:** `backend/app/schemas/language.py` (nuevo)
+**File:** `backend/app/schemas/language.py` (new)
 
 ```python
 from pydantic import BaseModel, field_validator
@@ -941,11 +941,11 @@ class UserLanguageListResponse(BaseModel):
     all_supported_languages: list[str]
 ```
 
-### Actualización de `GenerateStudyPlanRequest`
+### Update `GenerateStudyPlanRequest`
 
-**Archivo:** `backend/app/schemas/study_plan.py`
+**File:** `backend/app/schemas/study_plan.py`
 
-Se añade campo opcional `target_language`:
+Add optional `target_language` field:
 
 ```python
 class GenerateStudyPlanRequest(BaseModel):
@@ -953,45 +953,45 @@ class GenerateStudyPlanRequest(BaseModel):
     goals: list[str]
     duration_weeks: int
     days_per_week: int
-    target_language: str | None = None  # NUEVO: si no se proporciona, usa el idioma activo
+    target_language: str | None = None  # NEW: if not provided, uses the active language
 ```
 
 ---
 
-## Fase 10.9 — Tests
+## Phase 10.9 — Tests
 
 ### 10.9.1 Backend tests
 
-**Archivo:** `backend/tests/test_multi_language.py` (nuevo)
+**File:** `backend/tests/test_multi_language.py` (new)
 
-Casos de prueba:
+Test cases:
 
-| Test | Descripción |
+| Test | Description |
 |------|-------------|
-| `test_add_new_language` | POST /api/languages crea UserLanguage y lo marca activo |
-| `test_add_duplicate_language` | POST con un idioma ya existente → 409 |
-| `test_switch_language` | PUT /api/languages/active cambia el idioma activo |
-| `test_list_languages` | GET /api/languages devuelve todos los idiomas con progreso |
-| `test_remove_language_cascades` | DELETE /api/languages/{code} elimina plan, lecciones, etc. |
-| `test_active_plan_per_language` | Dos idiomas activos simultáneos con sus planes independientes |
-| `test_progress_isolated_by_language` | XP y racha son independientes por idioma |
-| `test_flashcards_isolated_by_language` | Flashcards filtradas por study_plan_id |
-| `test_conversations_isolated_by_language` | Conversaciones filtradas por idioma activo |
-| `test_memories_isolated_by_language` | Recuerdos filtrados por study_plan_id |
-| `test_curriculum_per_language` | get_curriculum() devuelve datos del idioma correcto |
-| `test_prompt_language_agnostic` | Los prompts incluyen el nombre correcto del idioma |
-| `test_onboarding_creates_user_language` | El registro + onboarding crea automáticamente UserLanguage |
-| `test_supported_languages_validation` | POST con idioma no soportado → 422 |
-| `test_assessment_language_param` | GET /assessment/start?language=es-ES genera preguntas en español |
-| `test_assessment_redis_key_isolation` | Dos assessments en curso (idiomas distintos) no se sobreescriben |
-| `test_plan_deactivation_scoped_by_language` | Crear plan de español no desactiva el plan de inglés activo |
-| `test_chat_prompt_uses_target_language` | El TUTOR_SYSTEM_PROMPT usa el idioma activo del plan |
+| `test_add_new_language` | POST /api/languages creates UserLanguage and marks it active |
+| `test_add_duplicate_language` | POST with an existing language → 409 |
+| `test_switch_language` | PUT /api/languages/active switches the active language |
+| `test_list_languages` | GET /api/languages returns all languages with progress |
+| `test_remove_language_cascades` | DELETE /api/languages/{code} removes plan, lessons, etc. |
+| `test_active_plan_per_language` | Two simultaneously active languages with independent plans |
+| `test_progress_isolated_by_language` | XP and streak are independent per language |
+| `test_flashcards_isolated_by_language` | Flashcards filtered by study_plan_id |
+| `test_conversations_isolated_by_language` | Conversations filtered by active language |
+| `test_memories_isolated_by_language` | Memories filtered by study_plan_id |
+| `test_curriculum_per_language` | get_curriculum() returns data for the correct language |
+| `test_prompt_language_agnostic` | Prompts include the correct language name |
+| `test_onboarding_creates_user_language` | Registration + onboarding automatically creates UserLanguage |
+| `test_supported_languages_validation` | POST with unsupported language → 422 |
+| `test_assessment_language_param` | GET /assessment/start?language=es-ES generates questions in Spanish |
+| `test_assessment_redis_key_isolation` | Two ongoing assessments (different languages) do not overwrite each other |
+| `test_plan_deactivation_scoped_by_language` | Creating a Spanish plan does not deactivate the active English plan |
+| `test_chat_prompt_uses_target_language` | TUTOR_SYSTEM_PROMPT uses the plan's active language |
 
-### 10.9.2 Actualización de tests existentes
+### 10.9.2 Update to existing tests
 
-Todos los tests que crean usuarios, planes de estudio, flashcards, progreso, etc. deben actualizarse para incluir `study_plan_id` donde corresponda y crear el `UserLanguage` asociado.
+All tests that create users, study plans, flashcards, progress, etc. must be updated to include `study_plan_id` where applicable and create the associated `UserLanguage`.
 
-**Archivos afectados:**
+**Affected files:**
 - `backend/tests/test_auth.py`
 - `backend/tests/test_study_plan.py`
 - `backend/tests/test_flashcards.py`
@@ -1006,59 +1006,59 @@ Todos los tests que crean usuarios, planes de estudio, flashcards, progreso, etc
 
 ---
 
-## Fase 10.10 — Finalización
+## Phase 10.10 — Finalisation
 
-### 10.10.1 Actualización de documentación
+### 10.10.1 Documentation update
 
-| Archivo | Cambio |
-|---------|--------|
-| `specs/database-models.instructions.md` | Añadir `user_languages`, documentar nuevas columnas `study_plan_id` |
-| `specs/api-endpoints.instructions.md` | Documentar nuevo router `/api/languages` (5 endpoints) y cambios en endpoints existentes |
-| `specs/services.instructions.md` | Documentar `user_language_service.py`, cambios en `language_helpers.py` y `progress_service.py` |
-| `specs/architecture.instructions.md` | Actualizar flujo de datos: multi-plan, idioma activo, dependencia `get_active_study_plan` |
-| `specs/study-plan.instructions.md` | Actualizar: múltiples planes activos (uno por idioma), constraint `uq_active_plan_per_lang` |
-| `specs/phase-4-target-language.instructions.md` | Añadir nota: "Phase 10 extiende esto a multi-idioma por usuario" |
-| `AGENTS.md` | Actualizar versión, añadir referencia a Phase 10 |
+| File | Change |
+|------|--------|
+| `specs/database-models.instructions.md` | Add `user_languages`, document new `study_plan_id` columns |
+| `specs/api-endpoints.instructions.md` | Document new `/api/languages` router (5 endpoints) and changes to existing endpoints |
+| `specs/services.instructions.md` | Document `user_language_service.py`, changes to `language_helpers.py` and `progress_service.py` |
+| `specs/architecture.instructions.md` | Update data flow: multi-plan, active language, `get_active_study_plan` dependency |
+| `specs/study-plan.instructions.md` | Update: multiple active plans (one per language), `uq_active_plan_per_lang` constraint |
+| `specs/phase-4-target-language.instructions.md` | Add note: "Phase 10 extends this to multi-language per user" |
+| `AGENTS.md` | Update version, add reference to Phase 10 |
 
-### 10.10.2 CHANGELOG y versión
+### 10.10.2 CHANGELOG and version
 
-- **Versión:** `1.7.0` (minor bump — nueva funcionalidad mayor)
-- **CHANGELOG:** entrada completa documentando la fase
+- **Version:** `1.7.0` (minor bump — major new feature)
+- **CHANGELOG:** full entry documenting the phase
 
-### 10.10.3 Actualización del roadmap
+### 10.10.3 Roadmap update
 
-**Archivo:** `specs/roadmap.instructions.md`
+**File:** `specs/roadmap.instructions.md`
 
-Se añade la sección Phase 10 con milestones y criterios de completado.
+Add the Phase 10 section with milestones and completion criteria.
 
 ---
 
-## Resumen de archivos nuevos
+## New files summary
 
-| Archivo | Tipo |
-|---------|------|
-| `backend/app/models/user_language.py` | Modelo SQLAlchemy |
-| `backend/app/services/user_language_service.py` | Servicio |
+| File | Type |
+|------|------|
+| `backend/app/models/user_language.py` | SQLAlchemy model |
+| `backend/app/services/user_language_service.py` | Service |
 | `backend/app/routers/languages.py` | Router (5 endpoints) |
-| `backend/app/schemas/language.py` | Schemas Pydantic |
-| `backend/alembic/versions/00XX_multi_language.py` | Migración Alembic |
+| `backend/app/schemas/language.py` | Pydantic schemas |
+| `backend/alembic/versions/00XX_multi_language.py` | Alembic migration |
 | `backend/tests/test_multi_language.py` | Tests |
-| `backend/app/data/es/__init__.py` | Paquete Python |
-| `backend/app/data/es/_types.py` | Tipos (puede re-exportar desde `en/`) |
-| `backend/app/data/es/curriculum.py` | Punto de entrada currículum ES |
-| `backend/app/data/es/curriculum_a1.py` … `curriculum_c2.py` | Unidades CEFR A1–C2 en español (6 archivos) |
-| `backend/app/data/it/` | Ídem para italiano (8 archivos) |
-| `backend/app/data/pt/` | Ídem para portugués (8 archivos) |
+| `backend/app/data/es/__init__.py` | Python package |
+| `backend/app/data/es/_types.py` | Types (can re-export from `en/`) |
+| `backend/app/data/es/curriculum.py` | ES curriculum entry point |
+| `backend/app/data/es/curriculum_a1.py` … `curriculum_c2.py` | CEFR A1–C2 units in Spanish (6 files) |
+| `backend/app/data/it/` | Same for Italian (8 files) |
+| `backend/app/data/pt/` | Same for Portuguese (8 files) |
 | `frontend/src/store/language.ts` | Zustand store |
-| `frontend/src/components/LanguageSwitcher.tsx` | Selector sidebar |
-| `frontend/src/app/(app)/settings/languages/page.tsx` | Página Mis Idiomas |
-| `frontend/src/data/es/curriculum.ts` | Currículum frontend ES |
-| `frontend/src/data/es/grammar.ts` | Gramática frontend ES |
-| `frontend/src/data/es/vocabulary.ts` | Vocabulario frontend ES |
-| `frontend/src/data/es/phrasebook.ts` | Phrasebook frontend ES |
-| `frontend/src/data/es/assessment-bank.ts` | Assessment bank frontend ES |
-| `frontend/src/data/it/` | Ídem para italiano (5 archivos) |
-| `frontend/src/data/pt/` | Ídem para portugués (5 archivos) |
-| `frontend/public/flags/spain.jpeg` | Bandera España ✅ |
-| `frontend/public/flags/italy.jpeg` | Bandera Italia ✅ |
-| `frontend/public/flags/portugal.jpeg` | Bandera Portugal ✅ |
+| `frontend/src/components/LanguageSwitcher.tsx` | Sidebar selector |
+| `frontend/src/app/(app)/settings/languages/page.tsx` | My Languages page |
+| `frontend/src/data/es/curriculum.ts` | ES frontend curriculum |
+| `frontend/src/data/es/grammar.ts` | ES frontend grammar |
+| `frontend/src/data/es/vocabulary.ts` | ES frontend vocabulary |
+| `frontend/src/data/es/phrasebook.ts` | ES frontend phrasebook |
+| `frontend/src/data/es/assessment-bank.ts` | ES frontend assessment bank |
+| `frontend/src/data/it/` | Same for Italian (5 files) |
+| `frontend/src/data/pt/` | Same for Portuguese (5 files) |
+| `frontend/public/flags/spain.jpeg` | Spain flag ✅ |
+| `frontend/public/flags/italy.jpeg` | Italy flag ✅ |
+| `frontend/public/flags/portugal.jpeg` | Portugal flag ✅ |
