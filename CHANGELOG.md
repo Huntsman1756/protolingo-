@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.12] - 2026-06-02
+
+### Fixed
+- **Critical — Stripe trial abuse**: users who canceled a subscription could re-subscribe and receive another free 7-day trial indefinitely. Added `trial_used` boolean field to `User` model; the Stripe Checkout session only includes `trial_period_days` when `trial_used = False`. The field is set to `True` when a `trialing` subscription is first activated and is never reset. Migration `0028_trial_used` backfills existing subscribers to `trial_used = True`.
+
 ## [1.6.11] - 2026-06-02
 
 ### Fixed
