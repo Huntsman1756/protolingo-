@@ -187,7 +187,7 @@ No sensitive keys exposed. Rate limit: 60/minute.
 - Creates or retrieves Stripe Customer for the user.
 - Creates Stripe Checkout Session with:
   - `mode: "subscription"`
-  - `trial_period_days: settings.STRIPE_TRIAL_DAYS`
+  - `trial_period_days: settings.STRIPE_TRIAL_DAYS` — **only included when `STRIPE_TRIAL_DAYS > 0` AND `user.trial_used == False`**. Once a user has trialed, subsequent subscriptions start immediately at full price.
   - `success_url: {FRONTEND_URL}/billing/success`
   - `cancel_url: {FRONTEND_URL}/billing/canceled`
 - Returns `{ "url": "https://checkout.stripe.com/..." }`.
@@ -207,7 +207,7 @@ No sensitive keys exposed. Rate limit: 60/minute.
 
 | Event | Action |
 |---|---|
-| `checkout.session.completed` | Set `stripe_customer_id`, `subscription_status = "trialing"` or `"active"`, apply quotas |
+| `checkout.session.completed` | Set `stripe_customer_id`, `subscription_status = "trialing"` or `"active"`, apply quotas; set `trial_used = True` when status is `trialing` |
 | `customer.subscription.updated` | Sync `subscription_status` and `subscription_ends_at` |
 | `customer.subscription.deleted` | Set `subscription_status = "canceled"` |
 | `invoice.payment_failed` | Set `subscription_status = "past_due"` |
