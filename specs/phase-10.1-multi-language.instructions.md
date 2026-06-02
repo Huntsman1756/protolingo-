@@ -347,6 +347,18 @@ op.execute(
 
 Rows where the user never completed onboarding (no active plan). These rows are semantically meaningless without a plan and would prevent the NOT NULL constraint from applying.
 
+> **⚠️ Before running on production:** execute the following queries to quantify how many rows will be deleted. If the counts are unexpectedly high, investigate before proceeding.
+>
+> ```sql
+> -- Count orphaned rows per table (should be 0 on a healthy DB):
+> SELECT 'progress' AS tbl, COUNT(*) FROM progress p
+>   WHERE NOT EXISTS (SELECT 1 FROM study_plans sp WHERE sp.user_id = p.user_id AND sp.is_active = true);
+> SELECT 'flashcards' AS tbl, COUNT(*) FROM flashcards f
+>   WHERE NOT EXISTS (SELECT 1 FROM study_plans sp WHERE sp.user_id = f.user_id AND sp.is_active = true);
+> SELECT 'user_competencies' AS tbl, COUNT(*) FROM user_competencies uc
+>   WHERE NOT EXISTS (SELECT 1 FROM study_plans sp WHERE sp.user_id = uc.user_id AND sp.is_active = true);
+> ```
+
 ```python
 op.execute("DELETE FROM progress WHERE study_plan_id IS NULL")
 op.execute("DELETE FROM flashcards WHERE study_plan_id IS NULL")
@@ -414,3 +426,6 @@ The partial unique index `uq_active_plan_per_lang` (`UNIQUE(user_id, target_lang
 | `backend/app/models/llm_usage.py` | Add `study_plan_id` column |
 | `backend/app/models/__init__.py` | Add `UserLanguage`, fix missing `ReadingExercise` |
 | `backend/alembic/env.py` | Replace individual imports with `import app.models` |
+| `backend/tests/conftest.py` | Deactivate existing active plan before creating a new one (see 10.1.8) |
+| `backend/tests/test_assessment.py` | Deactivate existing active plan before creating a new one (see 10.1.8) |
+| `backend/tests/test_study_plan.py` | Deactivate existing active plan before creating a new one (see 10.1.8) |

@@ -92,7 +92,7 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | `backend/app/models/flashcard.py` | 10.1 |
 | `backend/app/models/conversation.py` | 10.1 |
 | `backend/app/models/chat_history.py` | 10.1 |
-| `backend/app/models/user_competency.py` | 10.1 |
+| `backend/app/models/competency.py` | 10.1 |
 | `backend/app/models/memory.py` | 10.1 |
 | `backend/app/models/llm_usage.py` | 10.1 |
 | `backend/app/services/llm_service.py` | 10.2 |
@@ -113,11 +113,11 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | `frontend/src/app/(app)/flashcards/page.tsx` | 10.5 |
 | `frontend/src/app/(app)/progress/page.tsx` | 10.5 |
 | `messages/*.json` (all 10 locale files) | 10.7 |
-| `backend/tests/conftest.py` | 10.9 |
+| `backend/tests/conftest.py` | **10.1**, 10.9 |
 | `backend/tests/test_auth.py` | 10.9 |
-| `backend/tests/test_study_plan.py` | 10.9 |
+| `backend/tests/test_study_plan.py` | **10.1**, 10.9 |
 | `backend/tests/test_flashcards.py` | 10.9 |
-| `backend/tests/test_assessment.py` | 10.9 |
+| `backend/tests/test_assessment.py` | **10.1**, 10.9 |
 | `specs/database-models.instructions.md` | 10.10 |
 | `specs/api-endpoints.instructions.md` | 10.10 |
 | `specs/services.instructions.md` | 10.10 |
