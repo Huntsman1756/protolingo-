@@ -762,6 +762,8 @@
     "a_studyPlan": "Na de Beoordeling ga je naar het dashboard en klik je op <strong>Studieplan genereren</strong>. Er wordt automatisch een week-voor-week plan met dagelijkse lessen op maat van je CEFR-niveau en doelen aangemaakt.",
     "q_flashcards": "Waarvoor zijn Flashcards?",
     "a_flashcards": "Een woordenschattrainingssysteem dat gebruik maakt van het <strong>SM-2</strong> spaced repetition-algoritme. Genereer kaarten over elk onderwerp met een definitie, voorbeeldzin en vertaling in je moedertaal.",
+    "q_vocabulary": "Hoe voeg ik woorden toe aan mijn woordenschat?",
+    "a_vocabulary": "Je kunt woorden op twee manieren opslaan: (1) Tijdens het lezen van een les, een luisteroefening of het chatten met de tutor, selecteer een woord met je muis en klik op <strong>Opslaan</strong> in de tooltip die verschijnt — de AI genereert een definitie, voorbeeldzin en vertaling in je moedertaal. (2) Ga naar <strong>Woordenschat</strong>, open een woordenschatset voor jouw niveau en klik op <strong>Alle toevoegen</strong> om de hele set in één keer te importeren. Je opgeslagen woorden verschijnen in <strong>Mijn woordenschat</strong> onder het Flashcards-gedeelte.",
     "q_tutor": "Hoe werkt de AI-tutor?",
     "a_tutor": "Een vrij-formaat streamingchat. De tutor kent je CEFR-niveau en zwakke punten om zijn antwoorden af te stemmen. Stel grammaticavragen, vraag uitleg, oefen schrijven in het Engels of voer gewoon een gesprek.",
     "q_voice": "Hoe werkt de spraakconversatie?",
@@ -780,6 +782,8 @@
     "a_invite": "Ja. Via <adminLink>Admin → Gebruikers</adminLink> kan de beheerder gebruikers direct aanmaken of eenmalige uitnodigingslinks genereren die na 48 uur verlopen.",
     "q_password": "Hoe verander ik mijn wachtwoord of moedertaal?",
     "a_password": "Ga naar <settingsLink>Instellingen</settingsLink>. Daar kun je je weergavenaam, moedertaal en wachtwoord bijwerken.",
+    "q_uiLanguage": "Hoe verander ik de taal van het platform?",
+    "a_uiLanguage": "Ga naar <settingsLink>Instellingen</settingsLink> en zoek de <strong>Platformtaal</strong> dropdown in het Profielgedeelte. Selecteer je voorkeurstaal en de hele interface schakelt direct om.",
     "q_feedback": "Hoe kan ik een nieuwe functie voorstellen of een bug melden?",
     "a_feedback": "Gebruik de <feedbackLink>Feedback</feedbackLink> sectie in de zijbalk. Je kunt suggesties voor nieuwe functies indienen of bugs melden. Stem op ideeën van andere gebruikers, laat reacties achter en volg de status van elk verzoek. Alle inzendingen zijn openbaar en worden beoordeeld door de beheerder."
   },

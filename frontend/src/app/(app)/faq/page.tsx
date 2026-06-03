@@ -78,12 +78,14 @@ export default function FAQPage() {
       { q: t('q_assessment'), a: t('a_assessment') },
       { q: t('q_studyPlan'), a: t.rich('a_studyPlan', { strong }) },
       { q: t('q_flashcards'), a: t.rich('a_flashcards', { strong }) },
+      { q: t('q_vocabulary'), a: t.rich('a_vocabulary', { strong }) },
       { q: t('q_tutor'), a: t('a_tutor') },
       { q: t('q_voice'), a: t.rich('a_voice', { strong }) },
       { q: t('q_listening'), a: t.rich('a_listening', { strong }) },
       { q: t('q_reading'), a: t.rich('a_reading', { strong }) },
       { q: t('q_feedback'), a: t.rich('a_feedback', { feedbackLink }) },
       { q: t('q_password'), a: t.rich('a_password', { settingsLink }) },
+      { q: t('q_uiLanguage'), a: t.rich('a_uiLanguage', { settingsLink, strong }) },
     ]
 
     if (isAdmin) {

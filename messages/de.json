@@ -762,6 +762,8 @@
     "a_studyPlan": "Gehen Sie nach der Einstufung zum Dashboard und klicken Sie auf <strong>Lernplan erstellen</strong>. Ein wöchentlicher Plan mit täglichen Lektionen, die auf Ihr GER-Niveau und Ihre Ziele zugeschnitten sind, wird automatisch erstellt. Jede Lektion umfasst Multiple-Choice- und Freischreib-Übungen, die von KI bewertet werden.",
     "q_flashcards": "Wofür sind die Karteikarten?",
     "a_flashcards": "Ein Vokabeltrainingssystem, das den Spaced-Repetition-Algorithmus <strong>SM-2</strong> verwendet. Generieren Sie Karten zu jedem Thema (z. B. „Business“, „Phrasal Verbs“, „Essen“) mit Definition, Beispielsatz und Übersetzung in Ihre Muttersprache. Das System berechnet, wann jede Karte kurz vor dem Vergessen wieder angezeigt werden soll. Vollständig unabhängig vom Lernplan.",
+    "q_vocabulary": "Wie füge ich Wörter zu meinem Wortschatz hinzu?",
+    "a_vocabulary": "Sie können Wörter auf zwei Arten speichern: (1) Markieren Sie beim Lesen einer Lektion, einer Hörübung oder beim Chatten mit dem Tutor ein Wort mit der Maus und klicken Sie im erscheinenden Tooltip auf <strong>Speichern</strong> — die KI generiert Definition, Beispielsatz und Übersetzung in Ihre Muttersprache. (2) Gehen Sie zu <strong>Vokabular</strong>, öffnen Sie ein Vokabelset für Ihr Niveau und klicken Sie auf <strong>Alle hinzufügen</strong>, um das ganze Set auf einmal zu importieren. Ihre gespeicherten Wörter erscheinen unter <strong>Mein Vokabular</strong> im Karteikarten-Bereich.",
     "q_tutor": "Wie funktioniert der KI-Tutor?",
     "a_tutor": "Ein freier Streaming-Chat. Der Tutor kennt Ihr GER-Niveau und Ihre Schwachstellen, um seine Antworten anzupassen. Stellen Sie Grammatikfragen, bitten Sie um Erklärungen, üben Sie das Schreiben auf Englisch oder führen Sie einfach ein Gespräch. Gespräche werden gespeichert und sind in der Seitenleiste sitzungsübergreifend zugänglich.",
     "q_voice": "Wie funktioniert die Sprachkonversation?",
@@ -780,6 +782,8 @@
     "a_invite": "Ja. Über <adminLink>Admin → Benutzer</adminLink> kann der Administrator Benutzer direkt erstellen oder Einladungslinks zur einmaligen Verwendung generieren, die nach 48 Stunden ablaufen. Die öffentliche Registrierung ist standardmäßig deaktiviert (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "Wie ändere ich mein Passwort oder meine Muttersprache?",
     "a_password": "Gehen Sie zu <settingsLink>Einstellungen</settingsLink>. Dort können Sie Ihren Anzeigenamen, Ihre Muttersprache und Ihr Passwort aktualisieren.",
+    "q_uiLanguage": "Wie ändere ich die Plattformsprache?",
+    "a_uiLanguage": "Gehen Sie zu <settingsLink>Einstellungen</settingsLink> und finden Sie das Dropdown <strong>Plattformsprache</strong> im Profilbereich. Wählen Sie Ihre bevorzugte Sprache und die gesamte Oberfläche wechselt sofort.",
     "q_feedback": "Wie kann ich eine neue Funktion vorschlagen oder einen Fehler melden?",
     "a_feedback": "Nutzen Sie den Bereich <feedbackLink>Feedback</feedbackLink> in der Seitenleiste. Sie können Vorschläge für neue Funktionen einreichen oder Fehler melden. Stimmen Sie für Ideen anderer Nutzer ab, hinterlassen Sie Kommentare und verfolgen Sie den Status jeder Anfrage. Alle Einreichungen sind öffentlich und werden vom Administrator geprüft."
   },

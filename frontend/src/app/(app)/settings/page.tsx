@@ -145,7 +145,7 @@ export default function SettingsPage() {
         <button
           onClick={() => setDeleteConfirm(true)}
           disabled={deleting}
-          className="text-fl-label text-fl-muted-2 border-fl-border hover:text-fl-error hover:border-fl-error/40 mt-2 w-full border py-3 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
+          className="text-fl-label text-fl-error border-fl-error/40 hover:border-fl-error/70 mt-2 w-full border py-3 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
         >
           — {t('deleteAccount')}
         </button>
