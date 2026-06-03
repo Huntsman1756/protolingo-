@@ -762,6 +762,8 @@
     "a_studyPlan": "Dopo la Valutazione, vai al Dashboard e clicca su <strong>Genera Piano di Studio</strong>. Verrà creato automaticamente un piano settimana per settimana con lezioni quotidiane personalizzate per il tuo livello QCER e i tuoi obiettivi. Ogni lezione include esercizi a scelta multipla e di scrittura libera valutati dall'IA.",
     "q_flashcards": "A cosa servono le Flashcard?",
     "a_flashcards": "Un sistema di allenamento del vocabolario che usa l'algoritmo di ripetizione spaziata <strong>SM-2</strong>. Genera carte su qualsiasi argomento (es. \"business\", \"phrasal verbs\", \"cibo\") con definizione, frase d'esempio e traduzione nella tua lingua madre. Il sistema calcola quando rimostrare ogni carta appena prima che tu la dimentichi. Completamente indipendente dal Piano di Studio.",
+    "q_vocabulary": "Come aggiungo parole al mio vocabolario?",
+    "a_vocabulary": "Puoi salvare le parole in due modi: (1) Mentre leggi una lezione, un esercizio di ascolto o chatti con il tutor, seleziona una parola con il mouse e clicca su <strong>Salva</strong> nel tooltip che appare — l'IA genererà una definizione, una frase di esempio e una traduzione nella tua lingua madre. (2) Vai su <strong>Vocabolario</strong>, apri un set di vocabolario per il tuo livello e clicca su <strong>Aggiungi tutte</strong> per importare l'intero set in una volta. Le parole salvate appaiono ne <strong>Il mio vocabolario</strong> nella sezione Flashcard.",
     "q_tutor": "Come funziona il Tutor IA?",
     "a_tutor": "Una chat libera con streaming. Il tutor conosce il tuo livello QCER e i tuoi punti deboli per adattare le risposte. Fai domande di grammatica, chiedi spiegazioni, esercitati a scrivere in inglese o fai semplicemente una conversazione. Le conversazioni vengono salvate e sono accessibili dalla barra laterale tra una sessione e l'altra.",
     "q_voice": "Come funziona la conversazione vocale?",
@@ -780,6 +782,8 @@
     "a_invite": "Sì. Da <adminLink>Admin → Utenti</adminLink> l'amministratore può creare utenti direttamente o generare link di invito monouso che scadono in 48 ore. La registrazione pubblica è disabilitata per impostazione predefinita (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "Come cambio la mia password o lingua madre?",
     "a_password": "Vai su <settingsLink>Impostazioni</settingsLink>. Da lì puoi aggiornare il tuo nome visualizzato, la lingua madre e la password.",
+    "q_uiLanguage": "Come cambio la lingua della piattaforma?",
+    "a_uiLanguage": "Vai su <settingsLink>Impostazioni</settingsLink> e trova il menu a discesa <strong>Lingua della piattaforma</strong> nella sezione Profilo. Seleziona la tua lingua preferita e l'intera interfaccia cambierà immediatamente.",
     "q_feedback": "Come posso suggerire una nuova funzionalità o segnalare un bug?",
     "a_feedback": "Usa la sezione <feedbackLink>Feedback</feedbackLink> nella barra laterale. Puoi creare suggerimenti per nuove funzionalità o segnalare bug. Vota le idee degli altri utenti, lascia commenti e segui lo stato di ogni richiesta. Tutti gli invii sono pubblici e vengono esaminati dall'amministratore."
   },

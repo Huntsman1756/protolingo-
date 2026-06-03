@@ -762,6 +762,8 @@
     "a_studyPlan": "După Evaluare, mergi la tabloul de bord și apasă <strong>Generează plan de studiu</strong>. Va fi creat automat un plan săptămânal cu lecții zilnice adaptate nivelului și obiectivelor tale CEFR.",
     "q_flashcards": "La ce folosesc Cardurile flash?",
     "a_flashcards": "Un sistem de antrenament al vocabularului care folosește algoritmul de repetiție spațiată <strong>SM-2</strong>. Generează carduri pe orice subiect cu o definiție, propoziție exemplu și traducere în limba ta maternă.",
+    "q_vocabulary": "Cum adaug cuvinte în vocabularul meu?",
+    "a_vocabulary": "Poți salva cuvinte în două moduri: (1) În timp ce citești o lecție, un exercițiu de ascultare sau discuți cu tutorele, selectează orice cuvânt cu mouse-ul și dă clic pe <strong>Salvează</strong> în tooltip-ul care apare — IA va genera o definiție, o propoziție exemplu și o traducere în limba ta maternă. (2) Mergi la <strong>Vocabular</strong>, deschide un set de vocabular pentru nivelul tău și dă clic pe <strong>Adaugă toate</strong> pentru a importa întregul set dintr-o dată. Cuvintele tale salvate apar în <strong>Vocabularul meu</strong> în secțiunea Carduri flash.",
     "q_tutor": "Cum funcționează tutorele AI?",
     "a_tutor": "Un chat în format liber cu streaming. Tutorele cunoaște nivelul tău CEFR și punctele slabe pentru a-și adapta răspunsurile. Pune întrebări de gramatică, cere explicații, exersează scrierea în engleză sau pur și simplu poartă o conversație.",
     "q_voice": "Cum funcționează conversația vocală?",
@@ -780,6 +782,8 @@
     "a_invite": "Da. Prin <adminLink>Admin → Utilizatori</adminLink>, administratorul poate crea utilizatori direct sau poate genera linkuri de invitație de unică folosință care expiră după 48 de ore.",
     "q_password": "Cum îmi schimb parola sau limba maternă?",
     "a_password": "Mergi la <settingsLink>Setări</settingsLink>. Acolo poți actualiza numele afișat, limba maternă și parola.",
+    "q_uiLanguage": "Cum schimb limba platformei?",
+    "a_uiLanguage": "Mergi la <settingsLink>Setări</settingsLink> și găsește meniul derulant <strong>Limba platformei</strong> în secțiunea Profil. Selectează limba preferată și întreaga interfață se va schimba imediat.",
     "q_feedback": "Cum pot sugera o funcționalitate nouă sau raporta o eroare?",
     "a_feedback": "Folosește secțiunea <feedbackLink>Feedback</feedbackLink> din bara laterală. Poți crea sugestii pentru funcționalități noi sau raporta erori. Votează ideile altor utilizatori, lasă comentarii și urmărește statusul fiecărei cereri. Toate trimiterile sunt publice și sunt revizuite de administrator."
   },

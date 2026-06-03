@@ -762,6 +762,8 @@
     "a_studyPlan": "After the Assessment, go to the Dashboard and click <strong>Generate Study Plan</strong>. A week-by-week plan with daily lessons tailored to your CEFR level and goals will be created automatically. Each lesson includes multiple-choice and free-writing exercises evaluated by AI.",
     "q_flashcards": "What are Flashcards for?",
     "a_flashcards": "A vocabulary training system using the <strong>SM-2</strong> spaced repetition algorithm. Generate cards on any topic (e.g. \"business\", \"phrasal verbs\", \"food\") with a definition, example sentence, and translation into your native language. The system calculates when to show each card again just before you forget it. Completely independent from the Study Plan.",
+    "q_vocabulary": "How do I add words to my vocabulary?",
+    "a_vocabulary": "You can save words in two ways: (1) While reading a lesson, listening exercise, or chatting with the tutor, highlight any word with your mouse and click <strong>Save</strong> in the tooltip that appears — the AI will generate a definition, example sentence, and translation into your native language. (2) Go to <strong>Vocabulary</strong>, open a vocabulary set for your level, and click <strong>Add All</strong> to import the whole set at once. Your saved words appear in <strong>My Vocabulary</strong> under the Flashcards section.",
     "q_tutor": "How does the AI Tutor work?",
     "a_tutor": "A free-form streaming chat. The tutor knows your CEFR level and weak points to tailor its responses. Ask grammar questions, request explanations, practice writing in English, or just have a conversation. Conversations are saved and accessible from the sidebar across sessions.",
     "q_voice": "How does the voice conversation work?",
@@ -780,6 +782,8 @@
     "a_invite": "Yes. From <adminLink>Admin → Users</adminLink> the admin can create users directly or generate single-use invite links that expire in 48 hours. Public registration is disabled by default (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "How do I change my password or native language?",
     "a_password": "Go to <settingsLink>Settings</settingsLink>. You can update your display name, native language, and password from there.",
+    "q_uiLanguage": "How do I change the platform language?",
+    "a_uiLanguage": "Go to <settingsLink>Settings</settingsLink> and find the <strong>Platform language</strong> dropdown in the Profile section. Select your preferred language and the entire interface will switch immediately.",
     "q_feedback": "How do I suggest a new feature or report a bug?",
     "a_feedback": "Use the <feedbackLink>Feedback</feedbackLink> section in the sidebar. You can create suggestions for new features or report bugs. Vote on other users' ideas, leave comments, and track the status of each request. All submissions are public and are reviewed by the admin."
   },

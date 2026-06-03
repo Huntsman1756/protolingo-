@@ -762,6 +762,8 @@
     "a_studyPlan": "Après l'Évaluation, allez au tableau de bord et cliquez sur <strong>Générer le Plan d'Étude</strong>. Un plan semaine par semaine avec des leçons quotidiennes adaptées à votre niveau CECR et vos objectifs sera créé automatiquement. Chaque leçon comprend des exercices à choix multiples et d'écriture libre évalués par IA.",
     "q_flashcards": "À quoi servent les Fiches ?",
     "a_flashcards": "Un système d’entraînement au vocabulaire utilisant l’algorithme de répétition espacée <strong>SM-2</strong>. Générez des fiches sur n’importe quel sujet (ex. « business », « phrasal verbs », « nourriture ») avec une définition, une phrase d’exemple et une traduction dans votre langue maternelle. Le système calcule quand réafficher chaque fiche juste avant que vous l’oubliiez. Complètement indépendant du Plan d’Étude.",
+    "q_vocabulary": "Comment ajouter des mots à mon vocabulaire ?",
+    "a_vocabulary": "Vous pouvez enregistrer des mots de deux façons : (1) Pendant que vous lisez une leçon, un exercice d'écoute ou discutez avec le tuteur, sélectionnez un mot avec la souris et cliquez sur <strong>Sauvegarder</strong> dans l'infobulle qui apparaît — l'IA générera une définition, une phrase d'exemple et une traduction dans votre langue maternelle. (2) Allez dans <strong>Vocabulaire</strong>, ouvrez un ensemble de vocabulaire pour votre niveau et cliquez sur <strong>Ajouter</strong> pour importer tout l'ensemble d'un coup. Vos mots enregistrés apparaissent dans <strong>Mon vocabulaire</strong> sous la section Fiches.",
     "q_tutor": "Comment fonctionne le Tuteur IA ?",
     "a_tutor": "Un chat libre avec streaming. Le tuteur connaît votre niveau CECR et vos points faibles pour adapter ses réponses. Posez des questions de grammaire, demandez des explications, entraînez-vous à écrire en anglais ou discutez simplement. Les conversations sont sauvegardées et accessibles depuis la barre latérale entre sessions.",
     "q_voice": "Comment fonctionne la conversation vocale ?",
@@ -780,6 +782,8 @@
     "a_invite": "Oui. Depuis <adminLink>Admin → Utilisateurs</adminLink>, l’administrateur peut créer des utilisateurs directement ou générer des liens d’invitation à usage unique qui expirent dans 48 heures. L’inscription publique est désactivée par défaut (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "Comment modifier mon mot de passe ou ma langue maternelle ?",
     "a_password": "Allez dans <settingsLink>Paramètres</settingsLink>. Vous pouvez y mettre à jour votre nom d’affichage, votre langue maternelle et votre mot de passe.",
+    "q_uiLanguage": "Comment changer la langue de la plateforme ?",
+    "a_uiLanguage": "Allez dans <settingsLink>Paramètres</settingsLink> et trouvez le menu déroulant <strong>Langue de la plateforme</strong> dans la section Profil. Sélectionnez votre langue préférée et toute l'interface changera immédiatement.",
     "q_feedback": "Comment suggérer une nouvelle fonctionnalité ou signaler un bug ?",
     "a_feedback": "Utilisez la section <feedbackLink>Feedback</feedbackLink> dans la barre latérale. Vous pouvez proposer de nouvelles fonctionnalités ou signaler des bugs. Votez pour les idées des autres utilisateurs, laissez des commentaires et suivez l’état de chaque demande. Toutes les soumissions sont publiques et examinées par l’administrateur."
   },
