@@ -5,7 +5,6 @@ import logging
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, status
 from redis.asyncio import Redis
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
@@ -174,13 +173,15 @@ async def generate_exercise(
 async def submit_reading_attempt(
     request: Request,
     body: ReadingSubmitRequest,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> ReadingSubmitResponse:
     """Submit answers and receive score, XP, and correct answers."""
     try:
         attempt, exercise = await submit_attempt(
-            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay
+            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay,
+            study_plan_id=plan.id,
         )
     except ValueError as exc:
         detail = str(exc)

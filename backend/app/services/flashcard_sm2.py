@@ -36,7 +36,7 @@ Return JSON:
   "flashcards": [
     {{
       "word": "...",
-      "definition": "Simple definition in English",
+      "definition": "Simple definition in {native_language}",
       "example_sentence": "Natural example sentence",
       "translation": "Translation in the student's native language ({native_language})"
     }}
@@ -73,7 +73,7 @@ Generate a flashcard for this word. Use {target_language_name} vocabulary and sp
 Return JSON:
 {{
   "word": "{word}",
-  "definition": "Simple English definition (max 20 words)",
+  "definition": "Simple definition in {native_language} (max 20 words)",
   "example_sentence": "A natural example sentence using the word",
   "translation": "Translation in the student's native language ({native_language})"
 }}

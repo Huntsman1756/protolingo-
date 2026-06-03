@@ -169,6 +169,4 @@ async def delete_language(
     )
     await db.flush()
 
-    removed = await remove_language(db, current_user.id, target_language)
-    if not removed:
-        raise HTTPException(status_code=404, detail="Language not found")
+    await remove_language(db, current_user.id, target_language)

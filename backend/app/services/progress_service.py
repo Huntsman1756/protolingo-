@@ -140,9 +140,13 @@ async def upsert_unit_competency(
 async def get_unit_competencies(
     db: AsyncSession,
     user_id: int,
+    study_plan_id: int | None = None,
 ) -> list[dict]:
     """Return aggregated competency scores per unit for the given user."""
-    result = await db.execute(select(UserCompetency).where(UserCompetency.user_id == user_id))
+    conditions = [UserCompetency.user_id == user_id]
+    if study_plan_id is not None:
+        conditions.append(UserCompetency.study_plan_id == study_plan_id)
+    result = await db.execute(select(UserCompetency).where(*conditions))
     rows = result.scalars().all()
 
     # Aggregate per unit: average score across all competency rows

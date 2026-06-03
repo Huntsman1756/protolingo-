@@ -82,7 +82,7 @@ async def remove_language(db: AsyncSession, user_id: int, target_language: str) 
 
     target = next((r for r in rows if r.target_language == target_language), None)
     if not target:
-        return False
+        raise HTTPException(status_code=404, detail="Language not found for user")
 
     if target.is_active:
         raise HTTPException(status_code=400, detail="Cannot delete the active language")

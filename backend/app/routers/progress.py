@@ -19,8 +19,6 @@ async def _get_active_plan_or_none(db: AsyncSession, user_id: int) -> StudyPlan 
     active_lang = await get_active_language(db, user_id)
     if not active_lang:
         return None
-    from sqlalchemy import select
-
     result = await db.execute(
         select(StudyPlan).where(
             StudyPlan.user_id == user_id,
@@ -107,4 +105,7 @@ async def get_competencies(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    return await get_unit_competencies(db, current_user.id)
+    plan = await _get_active_plan_or_none(db, current_user.id)
+    if plan is None:
+        return []
+    return await get_unit_competencies(db, current_user.id, study_plan_id=plan.id)

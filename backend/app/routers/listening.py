@@ -7,7 +7,6 @@ import os
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Request, status
 from fastapi.responses import FileResponse
 from redis.asyncio import Redis
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
@@ -224,13 +223,15 @@ async def get_audio(
 async def submit_listening_attempt(
     request: Request,
     body: ListeningSubmitRequest,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> ListeningSubmitResponse:
     """Submit answers and receive score, XP, correct answers, and transcript."""
     try:
         attempt, exercise = await submit_attempt(
-            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay
+            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay,
+            study_plan_id=plan.id,
         )
     except ValueError as exc:
         detail = str(exc)

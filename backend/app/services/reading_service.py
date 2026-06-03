@@ -186,6 +186,7 @@ async def submit_attempt(
     answers: dict[str, str],
     db: AsyncSession,
     is_replay: bool = False,
+    study_plan_id: int | None = None,
 ) -> tuple[ReadingAttempt, ReadingExercise]:
     """
     Score answers, persist attempt, increment view_count, award XP.
@@ -231,7 +232,7 @@ async def submit_attempt(
 
     # Award XP via the shared progress service (creates today's row if missing)
     if xp_earned > 0:
-        await update_daily_progress(db, user_id, xp=xp_earned)
+        await update_daily_progress(db, user_id, xp=xp_earned, study_plan_id=study_plan_id)
 
     return attempt, exercise
 

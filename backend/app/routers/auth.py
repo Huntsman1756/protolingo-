@@ -21,6 +21,7 @@ from app.core.security import (
     verify_password,
 )
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.schemas.auth import (
     ForgotPasswordRequest,
     LoginRequest,
@@ -93,6 +94,15 @@ async def register(
     db.add(user)
     await db.commit()
     await db.refresh(user)
+
+    # Create the UserLanguage row so get_active_study_plan works for this new user
+    user_lang = UserLanguage(
+        user_id=user.id,
+        target_language=data.target_language,
+        is_active=True,
+    )
+    db.add(user_lang)
+    await db.commit()
 
     # Auto-login: issue tokens so the frontend can redirect to /onboarding
     access_token = create_access_token(user.id, user.role)
