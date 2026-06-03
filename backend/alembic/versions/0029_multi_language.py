@@ -167,10 +167,82 @@ def upgrade() -> None:
         )
         """)
 
-    # 4c. Purge orphan rows (user had no active plan → semantically meaningless)
-    op.execute("DELETE FROM progress WHERE study_plan_id IS NULL")
-    op.execute("DELETE FROM flashcards WHERE study_plan_id IS NULL")
-    op.execute("DELETE FROM user_competencies WHERE study_plan_id IS NULL")
+    # 4c. Create a fallback study plan for orphan rows that have no active plan.
+    # Instead of deleting the rows, we create a minimal plan so data is preserved.
+    op.execute("""
+        INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
+            duration_weeks, days_per_week, current_unit, progress_day,
+            generated_plan, is_active, created_at)
+        SELECT DISTINCT ON (p.user_id)
+            p.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
+            12, 4, '', 0, '{}'::json, true, NOW()
+        FROM progress p
+        JOIN users u ON u.id = p.user_id
+        WHERE p.study_plan_id IS NULL
+          AND NOT EXISTS (
+            SELECT 1 FROM study_plans sp
+            WHERE sp.user_id = p.user_id AND sp.is_active = true
+          )
+        """)
+    op.execute("""
+        INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
+            duration_weeks, days_per_week, current_unit, progress_day,
+            generated_plan, is_active, created_at)
+        SELECT DISTINCT ON (f.user_id)
+            f.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
+            12, 4, '', 0, '{}'::json, true, NOW()
+        FROM flashcards f
+        JOIN users u ON u.id = f.user_id
+        WHERE f.study_plan_id IS NULL
+          AND NOT EXISTS (
+            SELECT 1 FROM study_plans sp
+            WHERE sp.user_id = f.user_id AND sp.is_active = true
+          )
+        """)
+    op.execute("""
+        INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
+            duration_weeks, days_per_week, current_unit, progress_day,
+            generated_plan, is_active, created_at)
+        SELECT DISTINCT ON (uc.user_id)
+            uc.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
+            12, 4, '', 0, '{}'::json, true, NOW()
+        FROM user_competencies uc
+        JOIN users u ON u.id = uc.user_id
+        WHERE uc.study_plan_id IS NULL
+          AND NOT EXISTS (
+            SELECT 1 FROM study_plans sp
+            WHERE sp.user_id = uc.user_id AND sp.is_active = true
+          )
+        """)
+
+    # 4d. Re-run backfill for any rows that now have a plan after fallback creation
+    op.execute("""
+        UPDATE progress p
+        SET study_plan_id = (
+            SELECT id FROM study_plans sp
+            WHERE sp.user_id = p.user_id AND sp.is_active = true
+            LIMIT 1
+        )
+        WHERE p.study_plan_id IS NULL
+        """)
+    op.execute("""
+        UPDATE flashcards f
+        SET study_plan_id = (
+            SELECT id FROM study_plans sp
+            WHERE sp.user_id = f.user_id AND sp.is_active = true
+            LIMIT 1
+        )
+        WHERE f.study_plan_id IS NULL
+        """)
+    op.execute("""
+        UPDATE user_competencies uc
+        SET study_plan_id = (
+            SELECT id FROM study_plans sp
+            WHERE sp.user_id = uc.user_id AND sp.is_active = true
+            LIMIT 1
+        )
+        WHERE uc.study_plan_id IS NULL
+        """)
 
 
 def downgrade() -> None:

@@ -90,6 +90,7 @@ class ConversationPipeline:
         learning_goals: str | None = None,
         memories: list | None = None,
         voice: str = "",
+        study_plan_id: int | None = None,
     ) -> None:
         self.llm = llm
         self.tts = tts
@@ -98,6 +99,7 @@ class ConversationPipeline:
         self._stt_language = get_iso639(target_language)
         self._user_id = user_id
         self._conversation_id = conversation_id
+        self._study_plan_id = study_plan_id
         # Build user context section
         _ctx_parts: list[str] = []
         if learning_goals:
@@ -460,7 +462,13 @@ class ConversationPipeline:
         if memory_items and self._user_id:
             try:
                 async with db_session() as db_mem:
-                    saved = await save_memories(db_mem, self._user_id, memory_items, "voice")
+                    saved = await save_memories(
+                        db_mem,
+                        self._user_id,
+                        memory_items,
+                        "voice",
+                        study_plan_id=self._study_plan_id,
+                    )
                     if saved:
                         memory_updated = True
             except Exception:
@@ -512,6 +520,7 @@ class ConversationPipeline:
                         prompt_tokens=stream.prompt_tokens,
                         completion_tokens=stream.completion_tokens,
                         total_tokens=stream.total_tokens,
+                        study_plan_id=self._study_plan_id,
                     )
                 )
                 await db.commit()
@@ -540,6 +549,7 @@ class ConversationPipeline:
                         conversation_id=self._conversation_id,
                         role=role,
                         content=content,
+                        study_plan_id=self._study_plan_id,
                     )
                 )
                 await db.execute(

@@ -113,6 +113,7 @@ async def client(db_session, mock_redis):
 async def test_user(db_session):
     from app.core.security import hash_password
     from app.models.user import User
+    from app.models.user_language import UserLanguage
 
     user = User(
         username="testuser",
@@ -121,9 +122,13 @@ async def test_user(db_session):
         hashed_password=hash_password("testpass"),
         role="user",
         native_language="es",
+        target_language="en-US",
         is_active=True,
     )
     db_session.add(user)
+    await db_session.flush()
+
+    db_session.add(UserLanguage(user_id=user.id, target_language="en-US", is_active=True))
     await db_session.commit()
     await db_session.refresh(user)
 
@@ -135,6 +140,7 @@ async def test_user(db_session):
 async def admin_user(db_session):
     from app.core.security import hash_password
     from app.models.user import User
+    from app.models.user_language import UserLanguage
 
     user = User(
         username="admin",
@@ -143,9 +149,13 @@ async def admin_user(db_session):
         hashed_password=hash_password("adminpass"),
         role="admin",
         native_language="en",
+        target_language="en-US",
         is_active=True,
     )
     db_session.add(user)
+    await db_session.flush()
+
+    db_session.add(UserLanguage(user_id=user.id, target_language="en-US", is_active=True))
     await db_session.commit()
     await db_session.refresh(user)
 
@@ -173,3 +183,27 @@ async def deactivate_active_plans(db_session, user_id: int, target_language: str
         )
         .values(is_active=False)
     )
+
+
+@pytest_asyncio.fixture
+async def test_user_with_plan(test_user, db_session):
+    """Like test_user but with an active A1 study plan pre-created."""
+    from app.models.study_plan import StudyPlan
+
+    user, headers = test_user
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.commit()
+
+    return user, headers

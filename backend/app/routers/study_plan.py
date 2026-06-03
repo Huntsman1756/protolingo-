@@ -1,14 +1,14 @@
 from collections import defaultdict
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
 from app.core.database import get_db
-from app.core.deps import get_current_user
+from app.core.deps import get_active_study_plan, get_current_user
 from app.models.lesson import Exercise, Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -20,7 +20,6 @@ from app.schemas.study_plan import (
     TodayResponse,
 )
 from app.services.lesson_generator import generate_lesson
-from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError  # noqa: F401
 from app.services.study_plan_generator import generate_study_plan
 
 logger = get_logger(__name__)
@@ -30,16 +29,27 @@ router = APIRouter(prefix="/api/study-plan", tags=["study-plan"])
 
 @router.get("/current", response_model=Optional[StudyPlanResponse])
 async def get_current_plan(
+    language: str | None = Query(None),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(
-        select(StudyPlan)
-        .where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
+    if language:
+        result = await db.execute(
+            select(StudyPlan)
+            .where(
+                StudyPlan.user_id == current_user.id,
+                StudyPlan.is_active.is_(True),
+                StudyPlan.target_language == language,
+            )
+            .order_by(StudyPlan.created_at.desc())
+            .limit(1)
+        )
+        plan = result.scalar_one_or_none()
+    else:
+        try:
+            plan = await get_active_study_plan(current_user, db)
+        except HTTPException:
+            return None
     if not plan:
         return None
     return plan
@@ -51,14 +61,28 @@ async def create_study_plan(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    # Deactivate old plans
+    resolved_language = data.target_language
+    if not resolved_language:
+        # Fall back to active language
+        from app.services.user_language_service import get_active_language
+
+        active_lang = await get_active_language(db, current_user.id)
+        resolved_language = (
+            active_lang.target_language if active_lang else current_user.target_language
+        )
+
+    # Deactivate old plans — scoped to this language only
     old_plans = await db.execute(
-        select(StudyPlan).where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
+        select(StudyPlan).where(
+            StudyPlan.user_id == current_user.id,
+            StudyPlan.is_active.is_(True),
+            StudyPlan.target_language == resolved_language,
+        )
     )
     for old in old_plans.scalars().all():
         old.is_active = False
 
-    generated = await generate_study_plan(data)
+    generated = await generate_study_plan(data, target_language=resolved_language)
 
     from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
 
@@ -69,6 +93,7 @@ async def create_study_plan(
     plan = StudyPlan(
         user_id=current_user.id,
         cefr_level=data.cefr_level,
+        target_language=resolved_language,
         goals=data.goals,
         duration_weeks=data.duration_weeks,
         days_per_week=data.days_per_week,
@@ -84,21 +109,10 @@ async def create_study_plan(
 
 @router.get("/today", response_model=TodayResponse)
 async def get_today_lessons(
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(
-        select(StudyPlan)
-        .where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
-    if not plan:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="No active study plan found"
-        )
-
     total_days = plan.duration_weeks * plan.days_per_week
 
     # Load all existing lessons for this plan at once
@@ -220,7 +234,7 @@ async def get_today_lessons(
                     unit_id=d_unit_id,
                     grammar_points=grammar_points,
                     vocabulary_set_ids=vocabulary_set_ids,
-                    target_language=current_user.target_language,
+                    target_language=plan.target_language,
                 )
                 content_dict = content.model_dump() if hasattr(content, "model_dump") else content
 
@@ -300,21 +314,9 @@ async def get_today_lessons(
 
 @router.post("/skip-day")
 async def skip_today(
-    current_user: User = Depends(get_current_user),
+    plan: StudyPlan = Depends(get_active_study_plan),
     db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(
-        select(StudyPlan)
-        .where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
-    if not plan:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="No active study plan found"
-        )
-
     total_days = plan.duration_weeks * plan.days_per_week
     plan.progress_day = min(plan.progress_day + 1, total_days)
     await db.commit()
@@ -323,21 +325,9 @@ async def skip_today(
 
 @router.get("/pending-lessons", response_model=list[PendingLessonResponse])
 async def get_pending_lessons(
-    current_user: User = Depends(get_current_user),
+    plan: StudyPlan = Depends(get_active_study_plan),
     db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(
-        select(StudyPlan)
-        .where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
-    if not plan:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="No active study plan found"
-        )
-
     incomplete_result = await db.execute(
         select(Lesson).where(
             Lesson.study_plan_id == plan.id,

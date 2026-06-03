@@ -31,7 +31,23 @@ SUPPORTED_LANGUAGES = {
     "ro",
 }
 
-SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}
+SUPPORTED_TARGET_LANGUAGES: set[str] = {
+    "en-US",
+    "en-GB",
+    "es-ES",
+    "it-IT",
+    "pt-PT",
+}
+
+
+def get_available_languages() -> list[str]:
+    """Return the operator-configured subset, filtered to known languages."""
+    from app.core.config import settings  # noqa: PLC0415
+
+    return [
+        lang for lang in settings.AVAILABLE_TARGET_LANGUAGES if lang in SUPPORTED_TARGET_LANGUAGES
+    ]
+
 
 SUPPORTED_UI_LOCALES: set[str] = {
     "en",

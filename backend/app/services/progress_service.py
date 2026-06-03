@@ -28,15 +28,17 @@ async def update_daily_progress(
 ) -> Progress:
     today = date.today()
 
-    result = await db.execute(
-        select(Progress).where(Progress.user_id == user_id, Progress.date == today)
-    )
+    base_filter = [Progress.user_id == user_id]
+    if study_plan_id is not None:
+        base_filter.append(Progress.study_plan_id == study_plan_id)
+
+    result = await db.execute(select(Progress).where(*base_filter, Progress.date == today))
     entry = result.scalar_one_or_none()
 
     if not entry:
         yesterday = today - timedelta(days=1)
         yest_result = await db.execute(
-            select(Progress).where(Progress.user_id == user_id, Progress.date == yesterday)
+            select(Progress).where(*base_filter, Progress.date == yesterday)
         )
         yest = yest_result.scalar_one_or_none()
         streak = (yest.streak_day + 1) if yest else 1
@@ -110,6 +112,7 @@ async def upsert_unit_competency(
                 UserCompetency.user_id == user_id,
                 UserCompetency.unit_id == unit_id,
                 UserCompetency.competency_text == text,
+                UserCompetency.study_plan_id == study_plan_id,
             )
         )
         row: UserCompetency | None = result.scalar_one_or_none()
@@ -136,9 +139,13 @@ async def upsert_unit_competency(
 async def get_unit_competencies(
     db: AsyncSession,
     user_id: int,
+    study_plan_id: int | None = None,
 ) -> list[dict]:
     """Return aggregated competency scores per unit for the given user."""
-    result = await db.execute(select(UserCompetency).where(UserCompetency.user_id == user_id))
+    conditions = [UserCompetency.user_id == user_id]
+    if study_plan_id is not None:
+        conditions.append(UserCompetency.study_plan_id == study_plan_id)
+    result = await db.execute(select(UserCompetency).where(*conditions))
     rows = result.scalars().all()
 
     # Aggregate per unit: average score across all competency rows

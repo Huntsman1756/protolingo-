@@ -7,12 +7,11 @@ import os
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Request, status
 from fastapi.responses import FileResponse
 from redis.asyncio import Redis
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.core.deps import get_current_user, get_redis, require_subscription
+from app.core.deps import get_active_study_plan, get_current_user, get_redis, require_subscription
 from app.core.limiter import limiter
 from app.models.listening import ListeningExercise
 from app.models.study_plan import StudyPlan
@@ -66,20 +65,6 @@ def _build_exercise_out(exercise: ListeningExercise) -> ListeningExerciseOut:
     )
 
 
-async def _get_user_level(user_id: int, db: AsyncSession) -> tuple[str, str]:
-    """Return (cefr_level, target_language) from the user's active study plan."""
-    result = await db.execute(
-        select(StudyPlan)
-        .where(StudyPlan.user_id == user_id, StudyPlan.is_active.is_(True))
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
-    if plan is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="no_study_plan")
-    return plan.cefr_level, plan.target_language
-
-
 # ---------------------------------------------------------------------------
 # Background task for exercise generation
 # ---------------------------------------------------------------------------
@@ -122,6 +107,7 @@ async def _background_generate(
 async def get_next_exercise(
     request: Request,
     wait: bool = False,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
@@ -133,7 +119,7 @@ async def get_next_exercise(
     available or the generation lock disappears (max 90 s). This eliminates the
     need for client-side polling.
     """
-    level, target_language = await _get_user_level(current_user.id, db)
+    level, target_language = plan.cefr_level, plan.target_language
     exercise = await get_available_exercise(level, target_language, current_user.id, db)
     if exercise is not None:
         return ListeningNextResponse(available=True, exercise=_build_exercise_out(exercise))
@@ -169,6 +155,7 @@ async def generate_exercise(
     request: Request,
     background_tasks: BackgroundTasks,
     voice: str = Query(default=""),
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
@@ -181,7 +168,7 @@ async def generate_exercise(
     - Otherwise, starts generation as a FastAPI BackgroundTask and returns 202.
     - Frontend calls GET /next?wait=true once and awaits the response (long poll).
     """
-    level, target_language = await _get_user_level(current_user.id, db)
+    level, target_language = plan.cefr_level, plan.target_language
     lock_key = f"listening:generating:{level}:{target_language}"
 
     acquired = await redis.set(lock_key, "1", nx=True, ex=60)
@@ -236,13 +223,19 @@ async def get_audio(
 async def submit_listening_attempt(
     request: Request,
     body: ListeningSubmitRequest,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> ListeningSubmitResponse:
     """Submit answers and receive score, XP, correct answers, and transcript."""
     try:
         attempt, exercise = await submit_attempt(
-            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay
+            body.exercise_id,
+            current_user.id,
+            body.answers,
+            db,
+            is_replay=body.replay,
+            study_plan_id=plan.id,
         )
     except ValueError as exc:
         detail = str(exc)
@@ -273,13 +266,16 @@ async def get_listening_history(
     request: Request,
     skip: int = 0,
     limit: int = 10,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> ListeningHistoryResponse:
     """Return paginated list of the user's past listening attempts."""
     limit = min(limit, 50)  # hard cap
 
-    rows, total = await get_user_history(current_user.id, db, skip=skip, limit=limit)
+    rows, total = await get_user_history(
+        current_user.id, db, skip=skip, limit=limit, target_language=plan.target_language
+    )
     items = [
         ListeningAttemptOut(
             id=attempt.id,

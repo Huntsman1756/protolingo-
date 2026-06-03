@@ -87,6 +87,8 @@ async def _make_user(
     email: str = "rexuser@example.com",
     subscription_status: str = "none",
 ) -> tuple[User, dict[str, str]]:
+    from app.models.user_language import UserLanguage
+
     user = User(
         username=username,
         email=email,
@@ -94,10 +96,13 @@ async def _make_user(
         hashed_password=hash_password("testpass"),
         role="user",
         native_language="es",
+        target_language="en-US",
         is_active=True,
         subscription_status=subscription_status,
     )
     db.add(user)
+    await db.flush()
+    db.add(UserLanguage(user_id=user.id, target_language="en-US", is_active=True))
     await db.flush()
     token = create_access_token(user.id, user.role)
     return user, {"Authorization": f"Bearer {token}"}
