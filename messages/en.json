@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Page {page} of {pages}",
     "vocabularyPrev": "Prev",
     "vocabularyNext": "Next",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Flashcards",
+    "noCardsHint": "Use + Generate to create your first cards with AI"
   },
   "chat": {
     "title": "AI Tutor",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Got it",
     "entry1": {
       "label": "Save words from reading",

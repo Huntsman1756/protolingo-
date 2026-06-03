@@ -57,6 +57,9 @@ class Settings(BaseSettings):
     # Listening — path where generated MP3 files are stored (Docker volume)
     AUDIO_STORAGE_PATH: str = "/data/audio"
 
+    # Multi-language — operator-configured subset of supported target languages
+    AVAILABLE_TARGET_LANGUAGES: list[str] = ["en-US", "en-GB", "es-ES", "it-IT", "pt-PT"]
+
     model_config = {"env_file": ".env"}
 
 

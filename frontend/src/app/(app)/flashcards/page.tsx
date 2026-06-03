@@ -250,8 +250,7 @@ export default function FlashcardsPage() {
           <p className="text-fl-muted-1 font-mono text-sm">{t('noDue')}</p>
           {total === 0 && (
             <p className="text-fl-muted-2 mt-2 font-mono text-xs">
-              Use <span className="text-fl-muted-1">+ Generate</span> to create
-              your first cards with AI
+              {t('noCardsHint')}
             </p>
           )}
           <button

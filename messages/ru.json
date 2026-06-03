@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Страница {page} из {pages}",
     "vocabularyPrev": "Назад",
     "vocabularyNext": "Вперёд",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Карточки",
+    "noCardsHint": "Используй + Создать, чтобы создать первые карточки с ИИ"
   },
   "chat": {
     "title": "ИИ-репетитор",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "Что нового",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Понятно",
     "entry1": {
       "label": "Сохраняйте слова при чтении",

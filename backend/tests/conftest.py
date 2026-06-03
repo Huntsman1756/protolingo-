@@ -113,6 +113,7 @@ async def client(db_session, mock_redis):
 async def test_user(db_session):
     from app.core.security import hash_password
     from app.models.user import User
+    from app.models.user_language import UserLanguage
 
     user = User(
         username="testuser",
@@ -121,9 +122,13 @@ async def test_user(db_session):
         hashed_password=hash_password("testpass"),
         role="user",
         native_language="es",
+        target_language="en-US",
         is_active=True,
     )
     db_session.add(user)
+    await db_session.flush()
+
+    db_session.add(UserLanguage(user_id=user.id, target_language="en-US", is_active=True))
     await db_session.commit()
     await db_session.refresh(user)
 
@@ -135,6 +140,7 @@ async def test_user(db_session):
 async def admin_user(db_session):
     from app.core.security import hash_password
     from app.models.user import User
+    from app.models.user_language import UserLanguage
 
     user = User(
         username="admin",
@@ -143,11 +149,61 @@ async def admin_user(db_session):
         hashed_password=hash_password("adminpass"),
         role="admin",
         native_language="en",
+        target_language="en-US",
         is_active=True,
     )
     db_session.add(user)
+    await db_session.flush()
+
+    db_session.add(UserLanguage(user_id=user.id, target_language="en-US", is_active=True))
     await db_session.commit()
     await db_session.refresh(user)
 
     token = create_access_token(user.id, user.role)
     return user, {"Authorization": f"Bearer {token}"}
+
+
+async def deactivate_active_plans(db_session, user_id: int, target_language: str = "en-US") -> None:
+    """Deactivate any active study plan for the given user and language.
+
+    Required before directly inserting a new active plan in tests —
+    the partial unique index uq_active_plan_per_lang prevents two active
+    plans for the same (user_id, target_language).
+    """
+    from sqlalchemy import update
+
+    from app.models.study_plan import StudyPlan
+
+    await db_session.execute(
+        update(StudyPlan)
+        .where(
+            StudyPlan.user_id == user_id,
+            StudyPlan.target_language == target_language,
+            StudyPlan.is_active.is_(True),
+        )
+        .values(is_active=False)
+    )
+
+
+@pytest_asyncio.fixture
+async def test_user_with_plan(test_user, db_session):
+    """Like test_user but with an active A1 study plan pre-created."""
+    from app.models.study_plan import StudyPlan
+
+    user, headers = test_user
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.commit()
+
+    return user, headers

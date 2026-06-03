@@ -114,9 +114,8 @@ async def complete_lesson(
         current_user.id,
         lesson_completed=True,
         skill=lesson.lesson_type,
+        study_plan_id=lesson.study_plan_id,
     )
-
-    # Update per-unit competency if lesson belongs to a curriculum unit
     if lesson.unit_id:
         from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
         from app.models.study_plan import StudyPlan  # noqa: PLC0415
@@ -144,6 +143,7 @@ async def complete_lesson(
                         unit_id=lesson.unit_id,
                         competency_texts=u.competency_checklist,
                         lesson_score=lesson_score,
+                        study_plan_id=lesson.study_plan_id,
                     )
                     await db.commit()
                     break
@@ -224,15 +224,15 @@ async def answer_exercise(
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
         except LLMTimeoutError, LLMUnavailableError, LLMError:
-            # Fallback: simple normalised comparison
-            norm_target = exercise.correct_answer.strip().lower()
-            norm_answer = transcription.strip().lower()
+            # Fallback: normalised comparison stripping punctuation
+            norm_target = re.sub(r"[^\w\s]", "", exercise.correct_answer).strip().lower()
+            norm_answer = re.sub(r"[^\w\s]", "", transcription).strip().lower()
             is_close = (
                 norm_target == norm_answer
                 or norm_target in norm_answer
                 or norm_answer in norm_target
             )
-            exercise.score = 1.0 if is_close else 0.3
+            exercise.score = 1.0 if is_close else 0.0
             exercise.feedback = (
                 "Good pronunciation!"
                 if is_close
@@ -265,6 +265,7 @@ async def answer_exercise(
         exercise_correct=exercise.score >= 0.5,
         skill=lesson.lesson_type,
         skill_score=exercise.score,
+        study_plan_id=lesson.study_plan_id,
     )
 
     return ExerciseAnswerResponse(

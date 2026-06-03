@@ -9,6 +9,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.reading import ReadingAttempt, ReadingExercise
+from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import LLMResponseError, llm_adapter, parse_llm_json
 from app.services.progress_service import update_daily_progress
 
@@ -55,14 +56,14 @@ _TOPICS_BY_LEVEL: dict[str, list[str]] = {
 }
 
 _GENERATION_PROMPT = """\
-You are an English language content creator. Generate a reading comprehension exercise \
-for a {level} learner. Target language variant: {target_language}.
+You are a {target_language_name} language content creator. Generate a reading comprehension exercise \
+for a {level} learner. Target language: {target_language_name}.
 
 Requirements:
 - Exercise type: {exercise_type} ({exercise_type_desc})
 - Topic area: {topic}
 - Length: approximately {word_count} words
-- Use {target_language} vocabulary and spelling conventions
+- Use {target_language_name} vocabulary and spelling conventions
 - Write in the natural register appropriate for the exercise type
 - Do not use headers, markdown, or lists — plain flowing prose only
   (exception: emails may include a greeting and sign-off)
@@ -128,7 +129,7 @@ async def generate_and_save_exercise(
 
     prompt = _GENERATION_PROMPT.format(
         level=level,
-        target_language=target_language,
+        target_language_name=get_language_name(target_language),
         exercise_type=exercise_type,
         exercise_type_desc=_TYPE_DESCRIPTIONS[exercise_type],
         topic=topic_area,
@@ -185,6 +186,7 @@ async def submit_attempt(
     answers: dict[str, str],
     db: AsyncSession,
     is_replay: bool = False,
+    study_plan_id: int | None = None,
 ) -> tuple[ReadingAttempt, ReadingExercise]:
     """
     Score answers, persist attempt, increment view_count, award XP.
@@ -230,7 +232,7 @@ async def submit_attempt(
 
     # Award XP via the shared progress service (creates today's row if missing)
     if xp_earned > 0:
-        await update_daily_progress(db, user_id, xp=xp_earned)
+        await update_daily_progress(db, user_id, xp=xp_earned, study_plan_id=study_plan_id)
 
     return attempt, exercise
 
@@ -240,17 +242,25 @@ async def get_user_history(
     db: AsyncSession,
     skip: int = 0,
     limit: int = 10,
+    *,
+    target_language: str | None = None,
 ) -> tuple[list[tuple[ReadingAttempt, ReadingExercise]], int]:
     """Return (rows, total) for paginated attempt history, newest first."""
+    base_where = [ReadingAttempt.user_id == user_id]
+    if target_language is not None:
+        base_where.append(ReadingExercise.target_language == target_language)
+
     total_result = await db.execute(
-        select(func.count(ReadingAttempt.id)).where(ReadingAttempt.user_id == user_id)
+        select(func.count(ReadingAttempt.id))
+        .join(ReadingExercise, ReadingAttempt.exercise_id == ReadingExercise.id)
+        .where(*base_where)
     )
     total: int = total_result.scalar_one()
 
     rows_result = await db.execute(
         select(ReadingAttempt, ReadingExercise)
         .join(ReadingExercise, ReadingAttempt.exercise_id == ReadingExercise.id)
-        .where(ReadingAttempt.user_id == user_id)
+        .where(*base_where)
         .order_by(ReadingAttempt.completed_at.desc())
         .offset(skip)
         .limit(limit)

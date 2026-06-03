@@ -2,14 +2,7 @@ import asyncio
 
 from sqlalchemy.ext.asyncio import create_async_engine
 
-import app.models.chat_history  # noqa: F401
-import app.models.flashcard  # noqa: F401
-import app.models.lesson  # noqa: F401
-import app.models.progress  # noqa: F401
-import app.models.study_plan  # noqa: F401
-
-# Import all models so Base.metadata includes them for autogenerate
-import app.models.user  # noqa: F401
+import app.models  # noqa: F401  — registers all models in Base.metadata via __init__.py
 from alembic import context
 from app.core.config import settings
 from app.core.database import Base

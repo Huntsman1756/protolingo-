@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Pagina {page} van {pages}",
     "vocabularyPrev": "Vorige",
     "vocabularyNext": "Volgende",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Flashcards",
+    "noCardsHint": "Gebruik + Genereer om je eerste flashcards met AI te maken"
   },
   "chat": {
     "title": "AI-tutor",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Begrepen",
     "entry1": {
       "label": "Woorden opslaan tijdens het lezen",

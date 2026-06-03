@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from uuid import uuid4
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel
 from redis.asyncio import Redis
 from sqlalchemy import select
@@ -28,6 +28,7 @@ from app.services.assessment import (
     evaluate_free_write,
     generate_level_test_questions,
 )
+from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -92,15 +93,33 @@ _sessions = None  # kept as sentinel so conftest import doesn't break
 
 @router.get("/start", response_model=dict)
 async def start_assessment(
+    language: str | None = Query(None),
     current_user: User = Depends(get_current_user),
     redis: Redis = Depends(get_redis),
+    db: AsyncSession = Depends(get_db),
 ):
+    # Resolve the target language for this assessment
+    if language:
+        target_language = language
+        target_language_name = get_language_name(target_language)
+    else:
+        from app.services.user_language_service import get_active_language  # noqa: PLC0415
+
+        active_lang = await get_active_language(db, current_user.id)
+        target_language = (
+            active_lang.target_language if active_lang else current_user.target_language
+        )
+        target_language_name = get_language_name(target_language)
+
     try:
         quiz_payload = await llm_adapter.structured_output(
             [
                 {
                     "role": "system",
-                    "content": "Generate an adaptive CEFR quiz with 20 questions.",
+                    "content": (
+                        f"Generate an adaptive CEFR quiz with 20 questions "
+                        f"for {target_language_name} language proficiency."
+                    ),
                 }
             ],
             LegacyQuizResponse,
@@ -124,7 +143,7 @@ async def start_assessment(
     await redis.setex(
         f"assessment:{current_user.id}",
         _ASSESSMENT_TTL,
-        json.dumps({"session_id": session_id, "quiz": quiz}),
+        json.dumps({"session_id": session_id, "quiz": quiz, "target_language": target_language}),
     )
     return {"quiz": _strip_answers(quiz), "session_id": session_id}
 
@@ -206,7 +225,7 @@ async def evaluate_free_write_endpoint(
 ):
     """Optional LLM evaluation of the single free-write question."""
     try:
-        return await evaluate_free_write(data)
+        return await evaluate_free_write(data, target_language=_current_user.target_language)
     except LLMTimeoutError:
         raise HTTPException(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT,
@@ -227,14 +246,27 @@ async def complete_assessment(
     data: AssessmentCompleteRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
 ):
     """
     Persist the assessment result and generate the initial study plan.
     Called after Step 3 (duration selector) is submitted.
     """
-    # Deactivate any existing active plans
+    # Read target_language from the Redis session (stored by /start)
+    session_raw = await redis.get(f"assessment:{current_user.id}")
+    if session_raw:
+        session = json.loads(session_raw)
+        target_language = session.get("target_language", current_user.target_language)
+    else:
+        target_language = current_user.target_language
+
+    # Deactivate existing active plans — scoped to this language only
     old_result = await db.execute(
-        select(StudyPlan).where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
+        select(StudyPlan).where(
+            StudyPlan.user_id == current_user.id,
+            StudyPlan.is_active.is_(True),
+            StudyPlan.target_language == target_language,
+        )
     )
     for old in old_result.scalars().all():
         old.is_active = False
@@ -248,7 +280,7 @@ async def complete_assessment(
         weaknesses=data.weaknesses,
         strengths=data.strengths,
     )
-    generated = await generate_study_plan(plan_request)
+    generated = await generate_study_plan(plan_request, target_language=target_language)
     plan_dict = generated.model_dump()
 
     from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
@@ -259,7 +291,7 @@ async def complete_assessment(
     plan = StudyPlan(
         user_id=current_user.id,
         cefr_level=data.cefr_level,
-        target_language=current_user.target_language,
+        target_language=target_language,
         goals=data.goals,
         duration_weeks=data.duration_weeks,
         days_per_week=data.days_per_week,

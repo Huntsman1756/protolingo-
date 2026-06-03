@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Strona {page} z {pages}",
     "vocabularyPrev": "Poprz.",
     "vocabularyNext": "Nast.",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Fiszki",
+    "noCardsHint": "Użyj + Wygeneruj, aby stworzyć pierwsze fiszki z AI"
   },
   "chat": {
     "title": "Korepetytor AI",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Zapisuj słowa podczas czytania",

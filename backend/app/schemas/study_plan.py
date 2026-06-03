@@ -16,6 +16,7 @@ class GenerateStudyPlanRequest(BaseModel):
     days_per_week: int = 4
     weaknesses: list[str] = []
     strengths: list[str] = []
+    target_language: str | None = None
 
 
 class DayPlan(BaseModel):

@@ -6,6 +6,7 @@ from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.core.limiter import limiter
 from app.models.flashcard import Flashcard
+from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.flashcards import (
     FlashcardBulkCreate,
@@ -26,8 +27,27 @@ from app.services.llm_adapter import (
     LLMUnavailableError,
 )
 from app.services.progress_service import update_daily_progress
+from app.services.user_language_service import get_active_language
 
 router = APIRouter(prefix="/api/flashcards", tags=["flashcards"])
+
+
+async def _get_active_plan_or_404(db: AsyncSession, user_id: int) -> StudyPlan:
+    """Return the active study plan, raising 404 if none."""
+    active_lang = await get_active_language(db, user_id)
+    if not active_lang:
+        raise HTTPException(status_code=404, detail="No active language set")
+    result = await db.execute(
+        select(StudyPlan).where(
+            StudyPlan.user_id == user_id,
+            StudyPlan.is_active.is_(True),
+            StudyPlan.target_language == active_lang.target_language,
+        )
+    )
+    plan = result.scalar_one_or_none()
+    if not plan:
+        raise HTTPException(status_code=404, detail="No active study plan found")
+    return plan
 
 
 @router.get("/due", response_model=FlashcardListResponse)
@@ -35,12 +55,14 @@ async def get_due_flashcards(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await _get_active_plan_or_404(db, current_user.id)
     from datetime import date as date_type
 
     result = await db.execute(
         select(Flashcard)
         .where(
             Flashcard.user_id == current_user.id,
+            Flashcard.study_plan_id == plan.id,
             Flashcard.next_review <= date_type.today(),
         )
         .order_by(Flashcard.next_review)
@@ -48,7 +70,10 @@ async def get_due_flashcards(
     due = result.scalars().all()
 
     count_result = await db.execute(
-        select(func.count(Flashcard.id)).where(Flashcard.user_id == current_user.id)
+        select(func.count(Flashcard.id)).where(
+            Flashcard.user_id == current_user.id,
+            Flashcard.study_plan_id == plan.id,
+        )
     )
     total = count_result.scalar()
 
@@ -60,9 +85,13 @@ async def get_all_flashcards(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await _get_active_plan_or_404(db, current_user.id)
     result = await db.execute(
         select(Flashcard)
-        .where(Flashcard.user_id == current_user.id)
+        .where(
+            Flashcard.user_id == current_user.id,
+            Flashcard.study_plan_id == plan.id,
+        )
         .order_by(Flashcard.created_at.desc())
     )
     return result.scalars().all()
@@ -74,8 +103,10 @@ async def create_flashcard(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await _get_active_plan_or_404(db, current_user.id)
     card = Flashcard(
         user_id=current_user.id,
+        study_plan_id=plan.id,
         word=data.word,
         definition=data.definition,
         example_sentence=data.example_sentence,
@@ -93,7 +124,13 @@ async def create_flashcards_bulk(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    existing = await db.execute(select(Flashcard.word).where(Flashcard.user_id == current_user.id))
+    plan = await _get_active_plan_or_404(db, current_user.id)
+    existing = await db.execute(
+        select(Flashcard.word).where(
+            Flashcard.user_id == current_user.id,
+            Flashcard.study_plan_id == plan.id,
+        )
+    )
     existing_words = set(existing.scalars().all())
 
     created = 0
@@ -101,6 +138,7 @@ async def create_flashcards_bulk(
         if item.word not in existing_words:
             card = Flashcard(
                 user_id=current_user.id,
+                study_plan_id=plan.id,
                 word=item.word,
                 definition=item.definition,
                 example_sentence=item.example_sentence,
@@ -121,6 +159,7 @@ async def review_flashcard(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await _get_active_plan_or_404(db, current_user.id)
     card = await db.get(Flashcard, card_id)
     if not card or card.user_id != current_user.id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Flashcard not found")
@@ -135,6 +174,7 @@ async def review_flashcard(
         flashcard_reviewed=True,
         skill="vocabulary",
         skill_score=min(data.quality / 5.0, 1.0),
+        study_plan_id=plan.id,
     )
     return card
 
@@ -147,18 +187,20 @@ async def generate_flashcards_endpoint(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await _get_active_plan_or_404(db, current_user.id)
     try:
         result = await generate_flashcards(
             topic=data.topic,
             count=data.count,
             cefr_level=data.cefr_level,
             native_language=data.native_language,
-            target_language=current_user.target_language,
+            target_language=plan.target_language,
         )
         # Persist generated cards
         for card_data in result.flashcards:
             card = Flashcard(
                 user_id=current_user.id,
+                study_plan_id=plan.id,
                 word=card_data.word,
                 definition=card_data.definition,
                 example_sentence=card_data.example_sentence,
@@ -191,13 +233,14 @@ async def create_flashcard_from_word(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await _get_active_plan_or_404(db, current_user.id)
     try:
         card_data = await lookup_word(
             word=data.word.strip(),
             context=data.context,
             cefr_level=data.cefr_level,
             native_language=current_user.native_language,
-            target_language=current_user.target_language,
+            target_language=plan.target_language,
         )
     except LLMTimeoutError:
         raise HTTPException(
@@ -216,6 +259,7 @@ async def create_flashcard_from_word(
 
     card = Flashcard(
         user_id=current_user.id,
+        study_plan_id=plan.id,
         word=card_data.word,
         definition=card_data.definition,
         example_sentence=card_data.example_sentence,
@@ -236,8 +280,10 @@ async def get_vocabulary_flashcards(
     limit: int = Query(10, ge=1, le=100),
     search: str = Query(""),
 ):
+    plan = await _get_active_plan_or_404(db, current_user.id)
     filters = [
         Flashcard.user_id == current_user.id,
+        Flashcard.study_plan_id == plan.id,
         Flashcard.source == "from_text",
     ]
     if search:

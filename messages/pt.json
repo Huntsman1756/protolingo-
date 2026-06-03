@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Página {page} de {pages}",
     "vocabularyPrev": "Ant.",
     "vocabularyNext": "Seg.",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Cartões",
+    "noCardsHint": "Usa + Gerar para criar os teus primeiros cartões com IA"
   },
   "chat": {
     "title": "Tutor IA",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Entendido",
     "entry1": {
       "label": "Guarda palavras ao ler",

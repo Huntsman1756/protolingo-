@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Pagina {page} di {pages}",
     "vocabularyPrev": "Prec.",
     "vocabularyNext": "Succ.",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Schede",
+    "noCardsHint": "Usa + Genera per creare le tue prime schede con l'IA"
   },
   "chat": {
     "title": "Tutor IA",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Capito",
     "entry1": {
       "label": "Salva parole durante la lettura",

@@ -23,6 +23,7 @@ from app.schemas.admin import (
     AdminUserStatsResponse,
     AdminUserUpdate,
     InviteResponse,
+    LanguageStats,
     PaginatedAdminUsersResponse,
 )
 from app.services import email_service
@@ -153,6 +154,36 @@ async def get_user_stats(
     )
     tokens_by_source: dict[str, int] = {row.source: row.total for row in token_rows}
 
+    # Per-language breakdown
+    plans_result = await db.execute(select(StudyPlan).where(StudyPlan.user_id == user_id))
+    all_plans = plans_result.scalars().all()
+
+    per_language: list[LanguageStats] = []
+    for sp in all_plans:
+        lang_prog = await db.execute(
+            select(
+                func.coalesce(func.sum(Progress.xp_earned), 0).label("xp"),
+                func.coalesce(func.max(Progress.streak_day), 0).label("streak"),
+                func.count(Progress.id).label("days"),
+                func.coalesce(func.sum(Progress.lessons_completed), 0).label("lessons"),
+                func.coalesce(func.sum(Progress.exercises_correct), 0).label("ex_correct"),
+                func.coalesce(func.sum(Progress.exercises_total), 0).label("ex_total"),
+            ).where(Progress.study_plan_id == sp.id)
+        )
+        lp = lang_prog.one()
+        per_language.append(
+            LanguageStats(
+                target_language=sp.target_language,
+                cefr_level=sp.cefr_level if sp.is_active else None,
+                xp_total=lp.xp,
+                streak_current=lp.streak,
+                active_days=lp.days,
+                lessons_completed=lp.lessons,
+                exercises_correct=lp.ex_correct,
+                exercises_total=lp.ex_total,
+            )
+        )
+
     return AdminUserStatsResponse(
         user_id=user_id,
         current_cefr=plan.cefr_level if plan else None,
@@ -165,6 +196,7 @@ async def get_user_stats(
         lessons_completed=lessons_done,
         exercises_correct=prog.ex_correct,
         exercises_total=prog.ex_total,
+        per_language=per_language,
         chat_messages_sent=chat_count,
         tokens_total=sum(tokens_by_source.values()),
         tokens_chat=tokens_by_source.get("chat", 0),

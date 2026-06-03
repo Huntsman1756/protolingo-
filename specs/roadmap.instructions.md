@@ -352,3 +352,43 @@ This document records what was built and the completion criteria met.
 - [x] `/settings/memories` subpage lists all memories with individual delete and clear-all
 - [x] `tsc --noEmit` and `python3 -m compileall` pass clean
 - [x] No regressions in Phases 1–8
+
+---
+
+## Phase 10 — Multi-Language Support (Multiple Simultaneous Languages)
+
+🔄 Status: In progress
+
+> Each user can learn multiple languages simultaneously. Every language gets its own
+> isolated study plan, progress, flashcards, conversations, memories, and competencies.
+> A sidebar language switcher lets the user pivot the entire experience to any of their
+> active plans with one click. Phase 4 added `target_language` as a single value per
+> user — Phase 10 extends it to a full per-language data model.
+>
+> See [`phase-10-multi-language.instructions.md`](phase-10-multi-language.instructions.md) for the sub-phase index and full spec.
+
+| Sub-phase | Title | Status |
+|-----------|-------|--------|
+| **10.1** | Database: `user_languages` table, `study_plan_id` columns, partial unique index, Alembic migration `0029`, test fixes | ✅ |
+| **10.2** | Backend: `user_language_service`, `get_active_study_plan` dependency, multi-language LLM prompts, migration `0030` (placeholder — NOT NULL moved to 10.3) | ✅ |
+| **10.3** | API: new `/api/languages` router, refactor assessment + study-plan endpoints, Pydantic schemas | ✅ |
+| **10.4** | Frontend core: `target-languages.ts` config, language Zustand store, `LanguageSwitcher` component, sidebar integration | ⬜ |
+| **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted | ⬜ |
+| **10.6** | Curriculum and language data: Spanish, Italian, Portuguese curriculum files (backend + frontend) | ⬜ |
+| **10.7** | i18n: new translation keys in all 10 locale files | ⬜ |
+| **10.8** | Pydantic schemas (companion to 10.3) | ⬜ |
+| **10.9** | Tests: `test_multi_language.py` + update existing test suite | ⬜ |
+| **10.10** | Finalisation: docs update, version bump, CHANGELOG | ⬜ |
+
+**Completion criteria:**
+- [ ] A user can add a second language from Settings → My Languages
+- [ ] Language switcher appears in sidebar only when the user has ≥ 2 languages
+- [ ] Switching language pivots the entire experience (plan, flashcards, chat, progress) to that language's plan
+- [ ] Flashcards, progress, memories, and competencies are fully isolated per `study_plan_id`
+- [ ] Spanish (`es-ES`), Italian (`it-IT`), and Portuguese (`pt-PT`) curriculum data is complete and correct
+- [ ] All LLM prompts are language-agnostic (no hardcoded "English")
+- [ ] Migration `0029` runs cleanly; `downgrade` fully reverses it
+- [ ] Migration `0031` (NOT NULL on `progress`, `flashcards`, `user_competencies`) runs cleanly after 10.3 callers are deployed
+- [ ] Existing English-only users are unaffected after migration
+- [ ] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [ ] No regressions in Phases 1–9

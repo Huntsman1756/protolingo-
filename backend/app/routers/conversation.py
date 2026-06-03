@@ -188,21 +188,39 @@ async def conversation_ws(
             await websocket.close(code=1011)
             return
 
-        # --- CEFR level from active StudyPlan, fallback B1 ---
-        result = await db.execute(
-            select(StudyPlan)
-            .where(StudyPlan.user_id == user_id, StudyPlan.is_active == True)  # noqa: E712
-            .order_by(StudyPlan.created_at.desc())
-            .limit(1)
-        )
+        # --- CEFR level and target language from active StudyPlan ---
+        from app.services.user_language_service import get_active_language
+
+        active_lang = await get_active_language(db, user_id)
+        if active_lang:
+            result = await db.execute(
+                select(StudyPlan)
+                .where(
+                    StudyPlan.user_id == user_id,
+                    StudyPlan.is_active == True,  # noqa: E712
+                    StudyPlan.target_language == active_lang.target_language,
+                )
+                .limit(1)
+            )
+        else:
+            result = await db.execute(
+                select(StudyPlan)
+                .where(
+                    StudyPlan.user_id == user_id,
+                    StudyPlan.is_active == True,  # noqa: E712
+                )
+                .order_by(StudyPlan.created_at.desc())
+                .limit(1)
+            )
         plan = result.scalar_one_or_none()
         cefr_level = plan.cefr_level if plan else "B1"
+        target_language = plan.target_language if plan else user.target_language
+        study_plan_id_for_conv = plan.id if plan else None
 
         # Read user settings before session closes to avoid DetachedInstanceError
         max_duration = user.conversation_max_duration
         inactivity_timeout = user.conversation_inactivity_timeout
         native_language = user.native_language
-        target_language = user.target_language
         student_name = user.display_name
         user_bio = user.bio
         user_learning_goals = user.learning_goals
@@ -283,6 +301,7 @@ async def conversation_ws(
                         user_id=user_id,
                         title=voice_session_title(native_language),
                         source="voice",
+                        study_plan_id=study_plan_id_for_conv,
                     )
                     db_conv.add(conv)
                     await db_conv.commit()
@@ -300,11 +319,13 @@ async def conversation_ws(
             await websocket.close(code=1011)
             return
 
-        # Fetch user memories for context injection
+        # Fetch user memories filtered by study plan
         memories = []
         try:
             async with db_session() as db_mem:
-                memories = await get_user_memories(db_mem, user_id)
+                memories = await get_user_memories(
+                    db_mem, user_id, study_plan_id=study_plan_id_for_conv
+                )
         except Exception:
             pass
 
@@ -325,6 +346,7 @@ async def conversation_ws(
             learning_goals=user_learning_goals,
             memories=memories,
             voice=voice_pref,
+            study_plan_id=study_plan_id_for_conv,
         )
         pipeline._redis = redis
 

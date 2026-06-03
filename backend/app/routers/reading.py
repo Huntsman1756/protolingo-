@@ -5,11 +5,10 @@ import logging
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, status
 from redis.asyncio import Redis
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
-from app.core.deps import get_current_user, get_redis, require_subscription
+from app.core.deps import get_active_study_plan, get_current_user, get_redis, require_subscription
 from app.core.limiter import limiter
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -62,20 +61,6 @@ def _build_exercise_out(exercise) -> ReadingExerciseOut:  # noqa: ANN001
     )
 
 
-async def _get_user_level(user_id: int, db: AsyncSession) -> tuple[str, str]:
-    """Return (cefr_level, target_language) from the user's active study plan."""
-    result = await db.execute(
-        select(StudyPlan)
-        .where(StudyPlan.user_id == user_id, StudyPlan.is_active.is_(True))
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
-    if plan is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="no_study_plan")
-    return plan.cefr_level, plan.target_language
-
-
 # ---------------------------------------------------------------------------
 # Background task for exercise generation (no TTS)
 # ---------------------------------------------------------------------------
@@ -111,6 +96,7 @@ async def _background_generate(
 async def get_next_exercise(
     request: Request,
     wait: bool = False,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
@@ -121,7 +107,7 @@ async def get_next_exercise(
     When ``wait=true`` the endpoint blocks (async) until an exercise becomes
     available or the generation lock disappears (max 90 s).
     """
-    level, target_language = await _get_user_level(current_user.id, db)
+    level, target_language = plan.cefr_level, plan.target_language
     exercise = await get_available_exercise(level, target_language, current_user.id, db)
     if exercise is not None:
         return ReadingNextResponse(available=True, exercise=_build_exercise_out(exercise))
@@ -154,6 +140,7 @@ async def get_next_exercise(
 async def generate_exercise(
     request: Request,
     background_tasks: BackgroundTasks,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
@@ -165,7 +152,7 @@ async def generate_exercise(
     If the lock is already held, returns 202 immediately.
     Frontend calls GET /next?wait=true once and awaits the long-poll response.
     """
-    level, target_language = await _get_user_level(current_user.id, db)
+    level, target_language = plan.cefr_level, plan.target_language
     lock_key = f"reading:generating:{level}:{target_language}"
 
     acquired = await redis.set(lock_key, "1", nx=True, ex=60)
@@ -186,13 +173,19 @@ async def generate_exercise(
 async def submit_reading_attempt(
     request: Request,
     body: ReadingSubmitRequest,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> ReadingSubmitResponse:
     """Submit answers and receive score, XP, and correct answers."""
     try:
         attempt, exercise = await submit_attempt(
-            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay
+            body.exercise_id,
+            current_user.id,
+            body.answers,
+            db,
+            is_replay=body.replay,
+            study_plan_id=plan.id,
         )
     except ValueError as exc:
         detail = str(exc)
@@ -222,13 +215,16 @@ async def get_reading_history(
     request: Request,
     skip: int = 0,
     limit: int = 10,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> ReadingHistoryResponse:
     """Return paginated list of the user's past reading attempts."""
     limit = min(limit, 50)  # hard cap
 
-    rows, total = await get_user_history(current_user.id, db, skip=skip, limit=limit)
+    rows, total = await get_user_history(
+        current_user.id, db, skip=skip, limit=limit, target_language=plan.target_language
+    )
     items = [
         ReadingAttemptOut(
             id=attempt.id,

@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Pagina {page} din {pages}",
     "vocabularyPrev": "Prec.",
     "vocabularyNext": "Urm.",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Carduri flash",
+    "noCardsHint": "Folosește + Generează pentru a crea primele carduri flash cu AI"
   },
   "chat": {
     "title": "Tutore AI",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Salvează cuvinte în timp ce citești",

@@ -252,7 +252,7 @@ interface TargetLanguageSelectorProps {
 ```
 
 Renders one card per supported language. Each card shows:
-- Flag image (`/flags/eeuu.jpg` for `en-US`, `/flags/uk.jpg` for `en-GB`)
+- Flag image (`/flags/usa.jpg` for `en-US`, `/flags/uk.jpg` for `en-GB`)
 - Language display name from i18n: `t('targetLanguages.en-US')`, `t('targetLanguages.en-GB')`
 - Short description: `t('targetLanguages.en-US-description')`, `t('targetLanguages.en-GB-description')`
 - Selected state (accent border + background, same visual style as the existing variant buttons in Settings)
@@ -268,7 +268,7 @@ export interface TargetLanguage {
 }
 
 export const SUPPORTED_TARGET_LANGUAGES: TargetLanguage[] = [
-  { code: 'en-US', flagPath: '/flags/eeuu.jpg' },
+  { code: 'en-US', flagPath: '/flags/usa.jpg' },
   { code: 'en-GB', flagPath: '/flags/uk.jpg' },
 ]
 ```

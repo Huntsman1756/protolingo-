@@ -104,8 +104,8 @@ class TestBuildMemoryContext:
 
 
 @pytest.mark.asyncio
-async def test_list_memories_empty(client, test_user):
-    _user, headers = test_user
+async def test_list_memories_empty(client, test_user_with_plan):
+    _user, headers = test_user_with_plan
     response = await client.get("/api/memories", headers=headers)
     assert response.status_code == 200
     data = response.json()
@@ -113,10 +113,10 @@ async def test_list_memories_empty(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_list_memories_with_items(client, test_user, db_session):
-    user, headers = test_user
-    db_session.add(Memory(user_id=user.id, content="Fact 1", source="chat"))
-    db_session.add(Memory(user_id=user.id, content="Fact 2", source="voice"))
+async def test_list_memories_with_items(client, test_user_with_plan, db_session):
+    user, headers = test_user_with_plan
+    db_session.add(Memory(user_id=user.id, content="Fact 1", source="chat", study_plan_id=1))
+    db_session.add(Memory(user_id=user.id, content="Fact 2", source="voice", study_plan_id=1))
     await db_session.commit()
 
     response = await client.get("/api/memories", headers=headers)
@@ -166,10 +166,10 @@ async def test_delete_memory_wrong_user(client, test_user, admin_user, db_sessio
 
 
 @pytest.mark.asyncio
-async def test_clear_all_memories(client, test_user, db_session):
-    user, headers = test_user
-    db_session.add(Memory(user_id=user.id, content="Fact 1", source="chat"))
-    db_session.add(Memory(user_id=user.id, content="Fact 2", source="voice"))
+async def test_clear_all_memories(client, test_user_with_plan, db_session):
+    user, headers = test_user_with_plan
+    db_session.add(Memory(user_id=user.id, content="Fact 1", source="chat", study_plan_id=1))
+    db_session.add(Memory(user_id=user.id, content="Fact 2", source="voice", study_plan_id=1))
     await db_session.commit()
 
     response = await client.delete("/api/memories", headers=headers)
@@ -183,23 +183,25 @@ async def test_clear_all_memories(client, test_user, db_session):
 
 
 @pytest.mark.asyncio
-async def test_memories_require_subscription(client, test_user):
+async def test_memories_require_subscription(client, test_user_with_plan):
     """Memories endpoint is accessible in self-hosted mode (STRIPE_ENABLED=false)."""
     # In the test environment STRIPE_ENABLED defaults to false, so require_subscription
     # lets every authenticated user through. The endpoint must return 200.
-    _user, headers = test_user
+    _user, headers = test_user_with_plan
     response = await client.get("/api/memories", headers=headers)
     assert response.status_code == 200
     assert "memories" in response.json()
 
 
 @pytest.mark.asyncio
-async def test_memories_blocked_without_stripe_subscription(client, test_user, monkeypatch):
+async def test_memories_blocked_without_stripe_subscription(
+    client, test_user_with_plan, monkeypatch
+):
     """With STRIPE_ENABLED=true and no subscription the endpoint returns 402."""
     from app.core import config as _cfg
 
     monkeypatch.setattr(_cfg.settings, "STRIPE_ENABLED", True)
-    _user, headers = test_user
+    _user, headers = test_user_with_plan
     response = await client.get("/api/memories", headers=headers)
     assert response.status_code == 402
 
@@ -317,8 +319,24 @@ async def test_clear_all_memories_service(db_session, memory_user):
 
 
 @pytest.mark.asyncio
-async def test_chat_strips_memory_marker_from_response(client, test_user):
+async def test_chat_strips_memory_marker_from_response(client, test_user, db_session):
     user, headers = test_user
+
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.commit()
 
     class FakeChunk:
         class Choice:

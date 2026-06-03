@@ -1,5 +1,7 @@
 import pytest
 
+from tests.conftest import deactivate_active_plans
+
 
 @pytest.mark.asyncio
 async def test_get_current_plan_empty(client, test_user):
@@ -149,6 +151,8 @@ async def test_skip_day_does_not_exceed_total(client, test_user, db_session):
 
     user, headers = test_user
 
+    await deactivate_active_plans(db_session, user.id)
+
     plan = StudyPlan(
         user_id=user.id,
         cefr_level="A1",
@@ -197,6 +201,8 @@ async def test_pending_lessons_returns_incomplete_past_lessons(client, test_user
     from app.models.study_plan import StudyPlan
 
     user, headers = test_user
+
+    await deactivate_active_plans(db_session, user.id)
 
     plan = StudyPlan(
         user_id=user.id,
@@ -266,6 +272,8 @@ async def test_today_auto_advances_when_day_complete(client, test_user, db_sessi
     from app.models.study_plan import StudyPlan
 
     user, headers = test_user
+
+    await deactivate_active_plans(db_session, user.id)
 
     plan = StudyPlan(
         user_id=user.id,
@@ -347,6 +355,9 @@ async def test_today_returns_empty_when_plan_complete(client, test_user, db_sess
     user, headers = test_user
 
     total = 2  # 1 week × 2 days
+
+    await deactivate_active_plans(db_session, user.id)
+
     plan = StudyPlan(
         user_id=user.id,
         cefr_level="A1",

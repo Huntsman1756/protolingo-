@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Page {page} sur {pages}",
     "vocabularyPrev": "Préc.",
     "vocabularyNext": "Suiv.",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Fiches",
+    "noCardsHint": "Utilisez + Générer pour créer vos premières fiches avec l'IA"
   },
   "chat": {
     "title": "Tuteur IA",
@@ -1027,7 +1028,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.6.12",
+    "version": "v1.6.13",
     "cta": "Compris",
     "entry1": {
       "label": "Sauvegarder des mots en lisant",

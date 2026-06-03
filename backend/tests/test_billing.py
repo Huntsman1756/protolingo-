@@ -97,9 +97,9 @@ async def test_config_stripe_enabled(client):
 
 
 @pytest.mark.asyncio
-async def test_require_subscription_blocks_when_stripe_enabled(client, test_user):
+async def test_require_subscription_blocks_when_stripe_enabled(client, test_user_with_plan):
     """Unsubscribed user gets HTTP 402 when STRIPE_ENABLED=true."""
-    user, headers = test_user
+    user, headers = test_user_with_plan
     with patch.object(settings, "STRIPE_ENABLED", True):
         res = await client.get("/api/chat/conversations", headers=headers)
     assert res.status_code == 402
@@ -107,9 +107,9 @@ async def test_require_subscription_blocks_when_stripe_enabled(client, test_user
 
 
 @pytest.mark.asyncio
-async def test_require_subscription_passes_when_stripe_disabled(client, test_user):
+async def test_require_subscription_passes_when_stripe_disabled(client, test_user_with_plan):
     """All users pass when STRIPE_ENABLED=false (self-hosted)."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     with patch.object(settings, "STRIPE_ENABLED", False):
         res = await client.get("/api/chat/conversations", headers=headers)
     # Any non-402 response means the paywall was bypassed

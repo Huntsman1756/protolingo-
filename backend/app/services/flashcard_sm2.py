@@ -2,7 +2,7 @@ from datetime import date, timedelta
 
 from app.models.flashcard import Flashcard
 from app.schemas.flashcards import FlashcardCreate, FlashcardGenerateResponse
-from app.services.language_helpers import get_english_variant
+from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import llm_adapter
 
 
@@ -28,15 +28,15 @@ def sm2_update(card: Flashcard, quality: int) -> Flashcard:
 
 
 FLASHCARD_GEN_PROMPT = """
-Generate {count} English vocabulary flashcards for a {cefr_level} student
-about the topic: "{topic}". Use {english_variant} English spelling and vocabulary.
+Generate {count} {target_language_name} vocabulary flashcards for a {cefr_level} student
+about the topic: "{topic}". Use {target_language_name} vocabulary and spelling.
 
 Return JSON:
 {{
   "flashcards": [
     {{
       "word": "...",
-      "definition": "Simple definition in English",
+      "definition": "Simple definition in {native_language}",
       "example_sentence": "Natural example sentence",
       "translation": "Translation in the student's native language ({native_language})"
     }}
@@ -48,13 +48,13 @@ Return JSON:
 async def generate_flashcards(
     topic: str, count: int, cefr_level: str, native_language: str, target_language: str = "en-US"
 ) -> FlashcardGenerateResponse:
-    english_variant = get_english_variant(target_language)
+    target_language_name = get_language_name(target_language)
     prompt = FLASHCARD_GEN_PROMPT.format(
         topic=topic,
         count=count,
         cefr_level=cefr_level,
         native_language=native_language,
-        english_variant=english_variant,
+        target_language_name=target_language_name,
     )
 
     result = await llm_adapter.structured_output(
@@ -65,15 +65,15 @@ async def generate_flashcards(
 
 
 WORD_LOOKUP_PROMPT = """
-A {cefr_level} English student selected the word "{word}" while reading.
+A {cefr_level} {target_language_name} student selected the word "{word}" while reading.
 Context sentence: "{context}"
 
-Generate a flashcard for this word. Use {english_variant} English spelling.
+Generate a flashcard for this word. Use {target_language_name} vocabulary and spelling.
 
 Return JSON:
 {{
   "word": "{word}",
-  "definition": "Simple English definition (max 20 words)",
+  "definition": "Simple definition in {native_language} (max 20 words)",
   "example_sentence": "A natural example sentence using the word",
   "translation": "Translation in the student's native language ({native_language})"
 }}
@@ -87,13 +87,13 @@ async def lookup_word(
     native_language: str,
     target_language: str = "en-US",
 ) -> FlashcardCreate:
-    english_variant = get_english_variant(target_language)
+    target_language_name = get_language_name(target_language)
     prompt = WORD_LOOKUP_PROMPT.format(
         word=word,
         context=context or word,
         cefr_level=cefr_level,
         native_language=native_language,
-        english_variant=english_variant,
+        target_language_name=target_language_name,
     )
     result = await llm_adapter.structured_output(
         [{"role": "system", "content": prompt}],

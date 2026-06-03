@@ -23,3 +23,6 @@ class Progress(Base):
     exercises_total: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     streak_day: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     skills: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    study_plan_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("study_plans.id", ondelete="CASCADE"), nullable=False, index=True
+    )

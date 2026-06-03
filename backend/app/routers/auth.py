@@ -21,6 +21,7 @@ from app.core.security import (
     verify_password,
 )
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.schemas.auth import (
     ForgotPasswordRequest,
     LoginRequest,
@@ -93,6 +94,15 @@ async def register(
     db.add(user)
     await db.commit()
     await db.refresh(user)
+
+    # Create the UserLanguage row so get_active_study_plan works for this new user
+    user_lang = UserLanguage(
+        user_id=user.id,
+        target_language=data.target_language,
+        is_active=True,
+    )
+    db.add(user_lang)
+    await db.commit()
 
     # Auto-login: issue tokens so the frontend can redirect to /onboarding
     access_token = create_access_token(user.id, user.role)
@@ -250,6 +260,21 @@ async def update_me(
         current_user.native_language = data.native_language
     if data.target_language is not None:
         current_user.target_language = data.target_language
+        # Sync with user_languages: if the user already has this language, activate it.
+        from app.services.user_language_service import get_user_languages  # noqa: PLC0415
+
+        user_langs = await get_user_languages(db, current_user.id)
+        existing = next(
+            (ul for ul in user_langs if ul.target_language == data.target_language), None
+        )
+        if existing:
+            from app.services.user_language_service import switch_language  # noqa: PLC0415
+
+            await switch_language(db, current_user.id, data.target_language)
+        else:
+            from app.services.user_language_service import add_language  # noqa: PLC0415
+
+            await add_language(db, current_user.id, data.target_language)
     if data.ui_locale is not None:
         current_user.ui_locale = data.ui_locale if data.ui_locale.strip() else None
     if data.conversation_max_duration is not None:
