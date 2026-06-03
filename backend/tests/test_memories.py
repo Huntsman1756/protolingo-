@@ -194,7 +194,9 @@ async def test_memories_require_subscription(client, test_user_with_plan):
 
 
 @pytest.mark.asyncio
-async def test_memories_blocked_without_stripe_subscription(client, test_user_with_plan, monkeypatch):
+async def test_memories_blocked_without_stripe_subscription(
+    client, test_user_with_plan, monkeypatch
+):
     """With STRIPE_ENABLED=true and no subscription the endpoint returns 402."""
     from app.core import config as _cfg
 
