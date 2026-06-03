@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Page {page} sur {pages}",
     "vocabularyPrev": "Préc.",
     "vocabularyNext": "Suiv.",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Fiches",
+    "noCardsHint": "Utilisez + Générer pour créer vos premières fiches avec l'IA"
   },
   "chat": {
     "title": "Tuteur IA",

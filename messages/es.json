@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Página {page} de {pages}",
     "vocabularyPrev": "Ant.",
     "vocabularyNext": "Sig.",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Tarjetas",
+    "noCardsHint": "Usa + Generar para crear tus primeras tarjetas con IA"
   },
   "chat": {
     "title": "Tutor IA",

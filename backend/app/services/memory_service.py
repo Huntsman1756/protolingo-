@@ -17,9 +17,9 @@ MAX_MEMORY_CHARS = 200
 # Hard cap on stored memories per user. When adding new items would exceed this
 # limit, the oldest entries are evicted first (FIFO) to make room. This prevents
 # unbounded growth while keeping memories current.
-# Only MAX_MEMORIES_CONTEXT (20) are ever injected into the prompt, so 50 gives
-# a comfortable buffer for manual deletions without wasting storage.
-MAX_MEMORIES_PER_USER = 50
+# Only MAX_MEMORIES_CONTEXT (20) are ever injected into the prompt, so 150 gives
+# a comfortable buffer across all languages without wasting storage.
+MAX_MEMORIES_PER_USER = 150
 
 MEMORY_SYSTEM_INSTRUCTION_BASE = """
 Memory capability: if during the conversation you learn something noteworthy

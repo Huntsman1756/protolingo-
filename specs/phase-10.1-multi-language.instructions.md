@@ -54,8 +54,8 @@ This replaces "one active plan per user" with "one active plan per user per lang
 |--------|--------|
 | Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable**, with index |
 | Backfill | Assign `study_plan_id` from each user's active plan (`is_active=true`) |
-| Purge orphans | Delete rows where `study_plan_id` is still NULL after backfill (user had no plan) |
-| NOT NULL | **Applied in Phase 10.2** once services reliably populate this column |
+| Fallback | Create a minimal study plan for orphan rows (user has progress but no active plan), then re-backfill |
+| NOT NULL | **Applied in Phase 10.3** (`0031_not_null_study_plan_id.py`) once services reliably populate this column |
 
 ### Table `flashcards`
 
@@ -63,8 +63,8 @@ This replaces "one active plan per user" with "one active plan per user per lang
 |--------|--------|
 | Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable**, with index |
 | Backfill | Assign `study_plan_id` from each user's active plan |
-| Purge orphans | Delete rows where `study_plan_id` is still NULL after backfill |
-| NOT NULL | **Applied in Phase 10.2** once services reliably populate this column |
+| Fallback | Create a minimal study plan for orphan rows, then re-backfill |
+| NOT NULL | **Applied in Phase 10.3** (`0031_not_null_study_plan_id.py`) once services reliably populate this column |
 
 ### Table `user_competencies`
 
@@ -72,8 +72,8 @@ This replaces "one active plan per user" with "one active plan per user per lang
 |--------|--------|
 | Add `study_plan_id` | integer, FK → study_plans (CASCADE), **nullable**, with index |
 | Backfill | Assign `study_plan_id` from each user's active plan |
-| Purge orphans | Delete rows where `study_plan_id` is still NULL after backfill |
-| NOT NULL | **Applied in Phase 10.2** once services reliably populate this column |
+| Fallback | Create a minimal study plan for orphan rows, then re-backfill |
+| NOT NULL | **Applied in Phase 10.3** (`0031_not_null_study_plan_id.py`) once services reliably populate this column |
 
 ### Table `conversations`
 
@@ -187,12 +187,12 @@ class StudyPlan(Base):
 
 ### Remaining models — add `study_plan_id` column
 
-**Tables with CASCADE** (`progress`, `flashcards`, `user_competencies`) — declare as **nullable** in the model. The NOT NULL constraint is enforced by the migration after the backfill+purge. This is intentional: if the column were declared `nullable=False` in the ORM before the application code (10.2/10.3) learns to pass `study_plan_id`, every INSERT would break at runtime.
+**Tables with CASCADE** (`progress`, `flashcards`, `user_competencies`) — declared as **NOT NULL** with `ondelete="CASCADE"`. The database migration makes them nullable initially, then enforces NOT NULL in 0031. By the time the app code runs (after all migrations), the column is NOT NULL in both the ORM and the database:
 
 ```python
 # Progress, Flashcard, UserCompetency — add:
-study_plan_id: Mapped[int | None] = mapped_column(
-    Integer, ForeignKey("study_plans.id", ondelete="CASCADE"), nullable=True, index=True
+study_plan_id: Mapped[int] = mapped_column(
+    Integer, ForeignKey("study_plans.id", ondelete="CASCADE"), nullable=False, index=True
 )
 ```
 
@@ -343,29 +343,45 @@ op.execute(
 )
 ```
 
-### Step 3 — Purge orphan rows
+### Step 3 — Create fallback study plans for orphan rows
 
-Rows where the user never completed onboarding (no active plan). These rows are semantically meaningless without a plan and would prevent the NOT NULL constraint from applying.
+Rows where the user has progress/flashcards/competencies but no active study plan (e.g. the user never completed onboarding, or their plan was manually deleted). Instead of deleting this data, a minimal fallback study plan is created so the data is preserved. A re-backfill then populates `study_plan_id` from the newly created plans.
 
-> **⚠️ Before running on production:** execute the following queries to quantify how many rows will be deleted. If the counts are unexpectedly high, investigate before proceeding.
->
-> ```sql
-> -- Count orphaned rows per table (should be 0 on a healthy DB):
-> SELECT 'progress' AS tbl, COUNT(*) FROM progress p
->   WHERE NOT EXISTS (SELECT 1 FROM study_plans sp WHERE sp.user_id = p.user_id AND sp.is_active = true);
-> SELECT 'flashcards' AS tbl, COUNT(*) FROM flashcards f
->   WHERE NOT EXISTS (SELECT 1 FROM study_plans sp WHERE sp.user_id = f.user_id AND sp.is_active = true);
-> SELECT 'user_competencies' AS tbl, COUNT(*) FROM user_competencies uc
->   WHERE NOT EXISTS (SELECT 1 FROM study_plans sp WHERE sp.user_id = uc.user_id AND sp.is_active = true);
-> ```
+> **Implementation note:** This is a data-preserving alternative to purging orphans. The fallback plan is created with sensible defaults: `cefr_level='A1'`, `duration_weeks=12`, `days_per_week=4`, `target_language` from the user's `users.target_language` (default `en-US`). The `NOT EXISTS` guard prevents duplicate fallback plans when multiple orphan tables belong to the same user.
 
 ```python
-op.execute("DELETE FROM progress WHERE study_plan_id IS NULL")
-op.execute("DELETE FROM flashcards WHERE study_plan_id IS NULL")
-op.execute("DELETE FROM user_competencies WHERE study_plan_id IS NULL")
+# Create fallback plans for each orphan table (with dedup via NOT EXISTS)
+op.execute("""
+    INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
+        duration_weeks, days_per_week, current_unit, progress_day,
+        generated_plan, is_active, created_at)
+    SELECT DISTINCT ON (p.user_id)
+        p.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
+        12, 4, '', 0, '{}'::json, true, NOW()
+    FROM progress p
+    JOIN users u ON u.id = p.user_id
+    WHERE p.study_plan_id IS NULL
+      AND NOT EXISTS (
+        SELECT 1 FROM study_plans sp
+        WHERE sp.user_id = p.user_id AND sp.is_active = true
+      )
+    """)
+# (repeat for flashcards and user_competencies)
+
+# Re-run backfill now that fallback plans exist for previously-orphaned rows
+op.execute("""
+    UPDATE progress p
+    SET study_plan_id = (
+        SELECT id FROM study_plans sp
+        WHERE sp.user_id = p.user_id AND sp.is_active = true
+        LIMIT 1
+    )
+    WHERE p.study_plan_id IS NULL
+    """)
+# (repeat for flashcards and user_competencies)
 ```
 
-> **Note — NOT NULL deferred to Phase 10.2:** The columns are left nullable after the backfill+purge. The NOT NULL constraint is added in Phase 10.2's migration (`0030_not_null_study_plan_id.py`), once the services that INSERT into these tables have been updated to always populate `study_plan_id`. Applying NOT NULL here would cause every new INSERT by the still-unmodified services to fail until 10.2 is deployed.
+> **Note — NOT NULL deferred to Phase 10.3:** The columns are left nullable after the backfill+fallback. The NOT NULL constraint is added in Phase 10.3's migration (`0031_not_null_study_plan_id.py`), once the services that INSERT into these tables have been updated to always populate `study_plan_id`. Applying NOT NULL here would cause every new INSERT by the still-unmodified services to fail until 10.3 is deployed. Migration `0030_not_null_study_plan_id.py` is a placeholder (no-op) that reserves the revision number between 0029 and 0031.
 
 ### `downgrade()`
 
