@@ -56,7 +56,8 @@
     "saveWord": "Guardar",
     "wordSaved": "Guardado",
     "wordSaveError": "Ha ocurrido un problema",
-    "selectWordHint": "Selecciona una palabra para guardarla en tu vocabulario"
+    "selectWordHint": "Selecciona una palabra para guardarla en tu vocabulario",
+    "noActivePlan": "No se encontró un plan de estudio activo"
   },
   "nav": {
     "home": "Inicio",

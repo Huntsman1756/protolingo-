@@ -56,7 +56,8 @@
     "saveWord": "Opslaan",
     "wordSaved": "Opgeslagen",
     "wordSaveError": "Er is een probleem opgetreden",
-    "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat"
+    "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat",
+    "noActivePlan": "Geen actief studieplan gevonden"
   },
   "nav": {
     "home": "Home",

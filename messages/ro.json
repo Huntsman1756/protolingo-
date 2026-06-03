@@ -56,7 +56,8 @@
     "saveWord": "Salvează",
     "wordSaved": "Salvat",
     "wordSaveError": "A apărut o problemă",
-    "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău"
+    "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău",
+    "noActivePlan": "Nu a fost găsit niciun plan de studiu activ"
   },
   "nav": {
     "home": "Acasă",
