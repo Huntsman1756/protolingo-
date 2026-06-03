@@ -347,17 +347,17 @@ op.execute(
 
 Rows where the user has progress/flashcards/competencies but no active study plan (e.g. the user never completed onboarding, or their plan was manually deleted). Instead of deleting this data, a minimal fallback study plan is created so the data is preserved. A re-backfill then populates `study_plan_id` from the newly created plans.
 
-> **Implementation note:** This is a data-preserving alternative to purging orphans. The fallback plan is created with sensible defaults: `cefr_level='A1'`, `duration_weeks=12`, `days_per_week=4`, `target_language` from the user's `users.target_language` (default `en-US`). The `NOT EXISTS` guard prevents duplicate fallback plans when multiple orphan tables belong to the same user.
+> **Implementation note:** This is a data-preserving alternative to purging orphans. The fallback plan is created with sensible defaults: `cefr_level='A1'`, `duration_weeks=12`, `days_per_week=4`, `target_language` from the user's `users.target_language` (default `en-US`), `completion_test_taken=false`. The `NOT EXISTS` guard prevents duplicate fallback plans when multiple orphan tables belong to the same user.
 
 ```python
 # Create fallback plans for each orphan table (with dedup via NOT EXISTS)
 op.execute("""
     INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
         duration_weeks, days_per_week, current_unit, progress_day,
-        generated_plan, is_active, created_at)
+        generated_plan, is_active, completion_test_taken, created_at)
     SELECT DISTINCT ON (p.user_id)
         p.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
-        12, 4, '', 0, '{}'::json, true, NOW()
+        12, 4, '', 0, '{}'::json, true, false, NOW()
     FROM progress p
     JOIN users u ON u.id = p.user_id
     WHERE p.study_plan_id IS NULL
