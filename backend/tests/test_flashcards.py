@@ -2,6 +2,27 @@ from datetime import date, timedelta
 
 import pytest
 
+
+async def _seed_plan(db_session, user_id: int):
+    """Create a minimal active A1 plan so flashcard endpoints have a study_plan_id."""
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user_id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.commit()
+    return plan
+
+
 from app.services.flashcard_sm2 import sm2_update
 
 
@@ -66,8 +87,9 @@ def test_sm2_next_review_is_future():
 
 
 @pytest.mark.asyncio
-async def test_create_flashcard(client, test_user):
+async def test_create_flashcard(client, test_user, db_session):
     user, headers = test_user
+    await _seed_plan(db_session, user.id)
 
     response = await client.post(
         "/api/flashcards",
@@ -92,8 +114,11 @@ async def test_get_due_flashcards(client, test_user, db_session):
 
     from app.models.flashcard import Flashcard
 
+    plan = await _seed_plan(db_session, user.id)
+
     card = Flashcard(
         user_id=user.id,
+        study_plan_id=plan.id,
         word="test",
         definition="a test",
         example_sentence="This is a test.",
@@ -115,8 +140,11 @@ async def test_review_flashcard(client, test_user, db_session):
 
     from app.models.flashcard import Flashcard
 
+    plan = await _seed_plan(db_session, user.id)
+
     card = Flashcard(
         user_id=user.id,
+        study_plan_id=plan.id,
         word="test",
         definition="a test",
         example_sentence="Test.",
@@ -139,12 +167,14 @@ async def test_review_flashcard(client, test_user, db_session):
 @pytest.mark.asyncio
 async def test_get_vocabulary_flashcards(client, test_user, db_session):
     user, headers = test_user
+    plan = await _seed_plan(db_session, user.id)
 
     from app.models.flashcard import Flashcard
 
     # from_text card
     card_vocab = Flashcard(
         user_id=user.id,
+        study_plan_id=plan.id,
         word="ephemeral",
         definition="lasting a very short time",
         example_sentence="The joy was ephemeral.",
@@ -154,6 +184,7 @@ async def test_get_vocabulary_flashcards(client, test_user, db_session):
     # regular card (should not appear in vocabulary endpoint)
     card_regular = Flashcard(
         user_id=user.id,
+        study_plan_id=plan.id,
         word="run",
         definition="to move fast",
         example_sentence="I run every day.",
@@ -178,8 +209,11 @@ async def test_delete_flashcard(client, test_user, db_session):
 
     from app.models.flashcard import Flashcard
 
+    plan = await _seed_plan(db_session, user.id)
+
     card = Flashcard(
         user_id=user.id,
+        study_plan_id=plan.id,
         word="obsolete",
         definition="no longer in use",
         example_sentence="This word is obsolete.",
@@ -242,8 +276,9 @@ async def test_delete_flashcard_other_user(client, test_user, db_session):
 
 
 @pytest.mark.asyncio
-async def test_create_flashcard_from_word(client, test_user, monkeypatch):
+async def test_create_flashcard_from_word(client, test_user, db_session, monkeypatch):
     _, headers = test_user
+    await _seed_plan(db_session, test_user[0].id)
 
     from app.schemas.flashcards import FlashcardCreate
 

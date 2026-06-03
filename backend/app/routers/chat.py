@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
 from app.core.database import get_db
-from app.core.deps import require_subscription
+from app.core.deps import get_active_study_plan, require_subscription
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
 from app.models.llm_usage import LLMUsage
@@ -180,10 +180,10 @@ async def get_conversation_messages(
 @router.post("")
 async def chat(
     request: ChatRequest,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
-    # ── Monthly token quota check ────────────────────────────────────────────
     if current_user.monthly_tokens_limit > 0:
         from app.services.quota_service import check_monthly_tokens  # noqa: PLC0415
 
@@ -208,32 +208,23 @@ async def chat(
         title = request.message[:60].strip()
         if len(request.message) > 60:
             title += "..."
-        conv = Conversation(user_id=current_user.id, title=title)
+        conv = Conversation(user_id=current_user.id, title=title, study_plan_id=plan.id)
         db.add(conv)
         await db.commit()
         await db.refresh(conv)
 
     conversation_id = conv.id
 
-    cefr_level = "B1"
-    result = await db.execute(
-        select(StudyPlan)
-        .where(StudyPlan.user_id == current_user.id, StudyPlan.is_active.is_(True))
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
-    if plan:
-        cefr_level = plan.cefr_level
+    cefr_level = plan.cefr_level
 
     prog_result = await db.execute(
         select(Progress).where(
-            Progress.user_id == current_user.id,
+            Progress.study_plan_id == plan.id,
             Progress.date == date.today(),
         )
     )
     prog = prog_result.scalar_one_or_none()
-    total_xp_result = await db.execute(select(Progress).where(Progress.user_id == current_user.id))
+    total_xp_result = await db.execute(select(Progress).where(Progress.study_plan_id == plan.id))
     total_xp = sum(p.xp_earned for p in total_xp_result.scalars().all())
     skills_str = (
         ", ".join(f"{k}: {round(v * 100)}%" for k, v in (prog.skills or {}).items())
@@ -260,12 +251,10 @@ async def chat(
         else ""
     )
 
-    memories = await get_user_memories(db, current_user.id)
+    memories = await get_user_memories(db, current_user.id, study_plan_id=plan.id)
     memory_context = build_memory_context(memories)
 
-    target_language_name = get_language_name(
-        plan.target_language if plan else current_user.target_language
-    )
+    target_language_name = get_language_name(plan.target_language)
 
     system_prompt = _build_tutor_system_prompt(
         student_name=current_user.display_name,
@@ -286,6 +275,7 @@ async def chat(
             conversation_id=conversation_id,
             role="user",
             content=request.message,
+            study_plan_id=plan.id,
         )
     )
     await db.commit()
@@ -352,17 +342,19 @@ async def chat(
                     conversation_id=conversation_id,
                     role="assistant",
                     content=clean_response,
+                    study_plan_id=plan.id,
                 )
             )
             conv.updated_at = datetime.now(UTC).replace(tzinfo=None)
             await db.commit()
 
-            # Extract and persist memories (best-effort, non-blocking)
             memory_items = parse_memory_marker(full_response)
             memory_updated = False
             if memory_items:
                 try:
-                    saved = await save_memories(db, current_user.id, memory_items, "chat")
+                    saved = await save_memories(
+                        db, current_user.id, memory_items, "chat", study_plan_id=plan.id
+                    )
                     if saved:
                         memory_updated = True
                 except Exception:

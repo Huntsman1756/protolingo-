@@ -4,8 +4,24 @@ import pytest
 
 
 @pytest.mark.asyncio
-async def test_chat_returns_sse_stream(client, test_user):
+async def test_chat_returns_sse_stream(client, test_user, db_session):
     user, headers = test_user
+
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.commit()
 
     class FakeChunk:
         class Choice:

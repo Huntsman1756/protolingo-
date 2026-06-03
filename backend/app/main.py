@@ -32,6 +32,7 @@ from app.routers import (
     conversation,
     feedback,
     flashcards,
+    languages,
     lessons,
     listening,
     memories,
@@ -139,6 +140,7 @@ app.include_router(config_router.router)
 app.include_router(contact.router)
 app.include_router(feedback.router)
 app.include_router(memories.router)
+app.include_router(languages.router)
 app.include_router(health_router.router)
 
 if settings.STRIPE_ENABLED:

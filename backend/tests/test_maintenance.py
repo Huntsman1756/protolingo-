@@ -53,13 +53,30 @@ async def test_maintenance_unauthenticated_gets_401(client):
 
 
 @pytest.mark.asyncio
-async def test_maintenance_mode_returns_503_on_subscription_endpoint(client, admin_user, test_user):
+async def test_maintenance_mode_returns_503_on_subscription_endpoint(
+    client, admin_user, test_user, db_session
+):
     """When maintenance mode is ON, subscription-gated endpoints return 503."""
+    from app.models.study_plan import StudyPlan
+
+    user, user_headers = test_user
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.commit()
+
     # Turn maintenance on
     admin, admin_headers = admin_user
     await client.patch("/api/admin/maintenance", headers=admin_headers)
-
-    user, user_headers = test_user
 
     # Chat — require_subscription
     r = await client.get("/api/chat/conversations", headers=user_headers)

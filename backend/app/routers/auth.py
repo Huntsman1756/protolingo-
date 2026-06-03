@@ -250,6 +250,21 @@ async def update_me(
         current_user.native_language = data.native_language
     if data.target_language is not None:
         current_user.target_language = data.target_language
+        # Sync with user_languages: if the user already has this language, activate it.
+        from app.services.user_language_service import get_user_languages  # noqa: PLC0415
+
+        user_langs = await get_user_languages(db, current_user.id)
+        existing = next(
+            (ul for ul in user_langs if ul.target_language == data.target_language), None
+        )
+        if existing:
+            from app.services.user_language_service import switch_language  # noqa: PLC0415
+
+            await switch_language(db, current_user.id, data.target_language)
+        else:
+            from app.services.user_language_service import add_language  # noqa: PLC0415
+
+            await add_language(db, current_user.id, data.target_language)
     if data.ui_locale is not None:
         current_user.ui_locale = data.ui_locale if data.ui_locale.strip() else None
     if data.conversation_max_duration is not None:

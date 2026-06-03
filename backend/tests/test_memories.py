@@ -317,8 +317,24 @@ async def test_clear_all_memories_service(db_session, memory_user):
 
 
 @pytest.mark.asyncio
-async def test_chat_strips_memory_marker_from_response(client, test_user):
+async def test_chat_strips_memory_marker_from_response(client, test_user, db_session):
     user, headers = test_user
+
+    from app.models.study_plan import StudyPlan
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
+    await db_session.commit()
 
     class FakeChunk:
         class Choice:
