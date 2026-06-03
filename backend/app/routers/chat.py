@@ -112,12 +112,16 @@ MAX_HISTORY = 30
 
 @router.get("/conversations", response_model=list[ConversationResponse])
 async def list_conversations(
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(
         select(Conversation)
-        .where(Conversation.user_id == current_user.id)
+        .where(
+            Conversation.user_id == current_user.id,
+            Conversation.study_plan_id == plan.id,
+        )
         .order_by(Conversation.updated_at.desc())
     )
     return result.scalars().all()
@@ -126,12 +130,14 @@ async def list_conversations(
 @router.post("/conversations", response_model=ConversationResponse)
 async def create_conversation(
     data: ConversationCreate,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     conv = Conversation(
         user_id=current_user.id,
         title=data.title or "New conversation",
+        study_plan_id=plan.id,
     )
     db.add(conv)
     await db.commit()
@@ -155,6 +161,7 @@ async def delete_conversation(
 @router.get("/conversations/{conversation_id}/messages", response_model=ChatHistoryResponse)
 async def get_conversation_messages(
     conversation_id: int,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
@@ -166,6 +173,7 @@ async def get_conversation_messages(
         .where(
             ChatHistory.conversation_id == conversation_id,
             ChatHistory.user_id == current_user.id,
+            ChatHistory.study_plan_id == plan.id,
         )
         .order_by(ChatHistory.created_at.asc())
         .limit(MAX_HISTORY)
@@ -378,6 +386,7 @@ async def chat(
                             prompt_tokens=stream.prompt_tokens,
                             completion_tokens=stream.completion_tokens,
                             total_tokens=stream.total_tokens,
+                            study_plan_id=plan.id,
                         )
                     )
                     await db.commit()
@@ -410,12 +419,16 @@ async def chat(
 
 @router.get("/history", response_model=ChatHistoryResponse)
 async def get_history(
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(
         select(ChatHistory)
-        .where(ChatHistory.user_id == current_user.id)
+        .where(
+            ChatHistory.user_id == current_user.id,
+            ChatHistory.study_plan_id == plan.id,
+        )
         .order_by(ChatHistory.created_at.asc())
         .limit(MAX_HISTORY)
     )

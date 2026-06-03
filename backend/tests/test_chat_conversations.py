@@ -33,9 +33,9 @@ async def other_user(db_session):
 
 
 @pytest.mark.asyncio
-async def test_list_conversations_empty(client, test_user):
+async def test_list_conversations_empty(client, test_user_with_plan):
     """A new user has no conversations."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     response = await client.get("/api/chat/conversations", headers=headers)
     assert response.status_code == 200
     assert response.json() == []
@@ -54,9 +54,9 @@ async def test_list_conversations_requires_auth(client):
 
 
 @pytest.mark.asyncio
-async def test_create_conversation_with_title(client, test_user):
+async def test_create_conversation_with_title(client, test_user_with_plan):
     """POST creates a conversation with the given title."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     response = await client.post(
         "/api/chat/conversations",
         headers=headers,
@@ -69,9 +69,9 @@ async def test_create_conversation_with_title(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_create_conversation_default_title(client, test_user):
+async def test_create_conversation_default_title(client, test_user_with_plan):
     """POST without a title falls back to 'New conversation'."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     response = await client.post(
         "/api/chat/conversations",
         headers=headers,
@@ -83,9 +83,9 @@ async def test_create_conversation_default_title(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_create_conversation_source_defaults_to_chat(client, test_user):
+async def test_create_conversation_source_defaults_to_chat(client, test_user_with_plan):
     """Conversations created via the API always have source='chat'."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     response = await client.post(
         "/api/chat/conversations",
         headers=headers,
@@ -97,9 +97,9 @@ async def test_create_conversation_source_defaults_to_chat(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_list_conversations_includes_source_field(client, test_user):
+async def test_list_conversations_includes_source_field(client, test_user_with_plan):
     """The list endpoint returns the 'source' field for every conversation."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     await client.post(
         "/api/chat/conversations",
         headers=headers,
@@ -112,16 +112,25 @@ async def test_list_conversations_includes_source_field(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_voice_conversation_visible_in_list(client, test_user, db_session):
+async def test_voice_conversation_visible_in_list(client, test_user_with_plan, db_session):
     """A voice-sourced conversation inserted directly in the DB appears in the
     chat list with source='voice', making it reviewable from the tutor sidebar."""
-    user, headers = test_user
+    user, headers = test_user_with_plan
+    from sqlalchemy import select
+
     from app.models.conversation import Conversation
+    from app.models.study_plan import StudyPlan
+
+    plan_result = await db_session.execute(
+        select(StudyPlan).where(StudyPlan.user_id == user.id, StudyPlan.is_active.is_(True))
+    )
+    plan = plan_result.scalar_one()
 
     conv = Conversation(
         user_id=user.id,
         title="Voice session — 23 de mayo de 2026",
         source="voice",
+        study_plan_id=plan.id,
     )
     db_session.add(conv)
     await db_session.commit()
@@ -134,9 +143,9 @@ async def test_voice_conversation_visible_in_list(client, test_user, db_session)
 
 
 @pytest.mark.asyncio
-async def test_list_conversations_after_create(client, test_user):
+async def test_list_conversations_after_create(client, test_user_with_plan):
     """Created conversation appears in the list."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     await client.post(
         "/api/chat/conversations",
         headers=headers,
@@ -152,9 +161,9 @@ async def test_list_conversations_after_create(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_delete_conversation_removes_it(client, test_user):
+async def test_delete_conversation_removes_it(client, test_user_with_plan):
     """DELETE removes the conversation; subsequent list is empty."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     create_resp = await client.post(
         "/api/chat/conversations",
         headers=headers,
@@ -179,9 +188,9 @@ async def test_delete_conversation_not_found(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_delete_other_users_conversation(client, test_user, other_user, db_session):
+async def test_delete_other_users_conversation(client, test_user_with_plan, other_user, db_session):
     """A user cannot delete a conversation that belongs to someone else."""
-    _, headers_owner = test_user
+    _, headers_owner = test_user_with_plan
     _, headers_other = other_user
 
     # Owner creates a conversation
@@ -204,9 +213,9 @@ async def test_delete_other_users_conversation(client, test_user, other_user, db
 
 
 @pytest.mark.asyncio
-async def test_get_conversation_messages_empty(client, test_user):
+async def test_get_conversation_messages_empty(client, test_user_with_plan):
     """Messages endpoint returns empty list for a new conversation."""
-    _, headers = test_user
+    _, headers = test_user_with_plan
     create_resp = await client.post(
         "/api/chat/conversations",
         headers=headers,
@@ -235,9 +244,9 @@ async def test_get_conversation_messages_not_found(client, test_user):
 
 
 @pytest.mark.asyncio
-async def test_get_other_users_conversation_messages(client, test_user, other_user):
+async def test_get_other_users_conversation_messages(client, test_user_with_plan, other_user):
     """A user cannot read messages from another user's conversation."""
-    _, headers_owner = test_user
+    _, headers_owner = test_user_with_plan
     _, headers_other = other_user
 
     create_resp = await client.post(

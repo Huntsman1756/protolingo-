@@ -112,6 +112,7 @@ async def upsert_unit_competency(
                 UserCompetency.user_id == user_id,
                 UserCompetency.unit_id == unit_id,
                 UserCompetency.competency_text == text,
+                UserCompetency.study_plan_id == study_plan_id,
             )
         )
         row: UserCompetency | None = result.scalar_one_or_none()

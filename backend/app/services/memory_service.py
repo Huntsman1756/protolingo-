@@ -172,8 +172,16 @@ async def delete_memory(db: AsyncSession, memory_id: int, user_id: int) -> bool:
     return True
 
 
-async def clear_all_memories(db: AsyncSession, user_id: int) -> int:
-    """Delete all memories for a user. Returns the number deleted."""
-    result = await db.execute(delete(Memory).where(Memory.user_id == user_id))
+async def clear_all_memories(
+    db: AsyncSession, user_id: int, *, study_plan_id: int | None = None
+) -> int:
+    """Delete all memories for a user, optionally scoped to a study plan.
+
+    Returns the number deleted.
+    """
+    stmt = delete(Memory).where(Memory.user_id == user_id)
+    if study_plan_id is not None:
+        stmt = stmt.where(Memory.study_plan_id == study_plan_id)
+    result = await db.execute(stmt)
     await db.commit()
     return result.rowcount or 0

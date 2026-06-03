@@ -346,6 +346,7 @@ async def conversation_ws(
             learning_goals=user_learning_goals,
             memories=memories,
             voice=voice_pref,
+            study_plan_id=study_plan_id_for_conv,
         )
         pipeline._redis = redis
 

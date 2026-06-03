@@ -242,17 +242,25 @@ async def get_user_history(
     db: AsyncSession,
     skip: int = 0,
     limit: int = 10,
+    *,
+    target_language: str | None = None,
 ) -> tuple[list[tuple[ReadingAttempt, ReadingExercise]], int]:
     """Return (rows, total) for paginated attempt history, newest first."""
+    base_where = [ReadingAttempt.user_id == user_id]
+    if target_language is not None:
+        base_where.append(ReadingExercise.target_language == target_language)
+
     total_result = await db.execute(
-        select(func.count(ReadingAttempt.id)).where(ReadingAttempt.user_id == user_id)
+        select(func.count(ReadingAttempt.id))
+        .join(ReadingExercise, ReadingAttempt.exercise_id == ReadingExercise.id)
+        .where(*base_where)
     )
     total: int = total_result.scalar_one()
 
     rows_result = await db.execute(
         select(ReadingAttempt, ReadingExercise)
         .join(ReadingExercise, ReadingAttempt.exercise_id == ReadingExercise.id)
-        .where(ReadingAttempt.user_id == user_id)
+        .where(*base_where)
         .order_by(ReadingAttempt.completed_at.desc())
         .offset(skip)
         .limit(limit)

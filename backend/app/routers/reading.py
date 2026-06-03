@@ -215,13 +215,16 @@ async def get_reading_history(
     request: Request,
     skip: int = 0,
     limit: int = 10,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> ReadingHistoryResponse:
     """Return paginated list of the user's past reading attempts."""
     limit = min(limit, 50)  # hard cap
 
-    rows, total = await get_user_history(current_user.id, db, skip=skip, limit=limit)
+    rows, total = await get_user_history(
+        current_user.id, db, skip=skip, limit=limit, target_language=plan.target_language
+    )
     items = [
         ReadingAttemptOut(
             id=attempt.id,

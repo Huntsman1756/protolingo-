@@ -103,6 +103,19 @@ class PaginatedAdminUsersResponse(BaseModel):
     limit: int
 
 
+class LanguageStats(BaseModel):
+    """Per-language statistics for a user."""
+
+    target_language: str
+    cefr_level: str | None = None
+    xp_total: int = 0
+    streak_current: int = 0
+    active_days: int = 0
+    lessons_completed: int = 0
+    exercises_correct: int = 0
+    exercises_total: int = 0
+
+
 class AdminUserStatsResponse(BaseModel):
     """Aggregated stats for a single user, shown in the admin panel."""
 
@@ -114,13 +127,16 @@ class AdminUserStatsResponse(BaseModel):
     plan_duration_weeks: int | None = None
     completion_test_score: float | None = None
 
-    # Progress aggregates
+    # Progress aggregates (all languages combined)
     xp_total: int = 0
     streak_current: int = 0
     active_days: int = 0
     lessons_completed: int = 0
     exercises_correct: int = 0
     exercises_total: int = 0
+
+    # Per-language breakdown
+    per_language: list[LanguageStats] = []
 
     # Tutor chat
     chat_messages_sent: int = 0

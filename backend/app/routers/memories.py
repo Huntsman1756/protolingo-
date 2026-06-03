@@ -7,8 +7,9 @@ from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
-from app.core.deps import require_subscription
+from app.core.deps import get_active_study_plan, require_subscription
 from app.core.limiter import limiter
+from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.services.memory_service import (
     clear_all_memories,
@@ -40,10 +41,11 @@ class ClearAllResponse(BaseModel):
 @limiter.limit("30/minute")
 async def list_memories(
     request: Request,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
-    memories = await get_user_memories(db, current_user.id)
+    memories = await get_user_memories(db, current_user.id, study_plan_id=plan.id)
     return MemoryListResponse(
         memories=[
             MemoryOut(
@@ -74,8 +76,9 @@ async def delete_one_memory(
 @limiter.limit("10/minute")
 async def clear_memories(
     request: Request,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
-    count = await clear_all_memories(db, current_user.id)
+    count = await clear_all_memories(db, current_user.id, study_plan_id=plan.id)
     return ClearAllResponse(deleted=count)

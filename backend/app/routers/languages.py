@@ -2,8 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.app_logger import get_logger
 from app.core.database import get_db
 from app.core.deps import require_subscription
+from app.models.chat_history import ChatHistory
+from app.models.conversation import Conversation
+from app.models.llm_usage import LLMUsage
+from app.models.memory import Memory
 from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -22,6 +27,8 @@ from app.services.user_language_service import (
     remove_language,
     switch_language,
 )
+
+logger = get_logger(__name__)
 
 router = APIRouter(prefix="/api/languages", tags=["languages"])
 
@@ -158,7 +165,25 @@ async def delete_language(
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
-    # Delete all study plans for this language first (cascade handles progress etc.)
+    # Collect plan IDs before deletion so we can clean up SET NULL rows
+    plan_result = await db.execute(
+        select(StudyPlan.id).where(
+            StudyPlan.user_id == current_user.id,
+            StudyPlan.target_language == target_language,
+        )
+    )
+    plan_ids = [row[0] for row in plan_result.fetchall()]
+
+    if plan_ids:
+        # Clean up rows that use SET NULL FK — delete them before the plans
+        # so they don't become orphaned with NULL study_plan_id
+        await db.execute(delete(ChatHistory).where(ChatHistory.study_plan_id.in_(plan_ids)))
+        await db.execute(delete(Conversation).where(Conversation.study_plan_id.in_(plan_ids)))
+        await db.execute(delete(Memory).where(Memory.study_plan_id.in_(plan_ids)))
+        await db.execute(delete(LLMUsage).where(LLMUsage.study_plan_id.in_(plan_ids)))
+
+    # Delete all study plans for this language (CASCADE handles progress, flashcards,
+    # and user_competencies)
     await db.execute(
         delete(StudyPlan).where(
             StudyPlan.user_id == current_user.id,

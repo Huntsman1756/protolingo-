@@ -96,7 +96,7 @@ async def test_maintenance_mode_returns_503_on_subscription_endpoint(
 
 
 @pytest.mark.asyncio
-async def test_maintenance_off_endpoints_work(client, admin_user, test_user):
+async def test_maintenance_off_endpoints_work(client, admin_user, test_user_with_plan):
     """When maintenance mode is OFF, subscription endpoints behave normally."""
     # Ensure off
     admin, admin_headers = admin_user
@@ -105,7 +105,7 @@ async def test_maintenance_off_endpoints_work(client, admin_user, test_user):
     if current.json()["maintenance_mode"]:
         await client.patch("/api/admin/maintenance", headers=admin_headers)
 
-    _, headers = test_user
+    _, headers = test_user_with_plan
 
     r = await client.get("/api/chat/conversations", headers=headers)
     # Without STRIPE_ENABLED, subscription check never fires → 200 OK

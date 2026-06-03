@@ -27,6 +27,9 @@ async def get_user_languages(db: AsyncSession, user_id: int) -> list[UserLanguag
 
 
 async def add_language(db: AsyncSession, user_id: int, target_language: str) -> UserLanguage:
+    # Lock existing rows to serialise concurrent add/switch calls
+    await db.execute(select(UserLanguage).where(UserLanguage.user_id == user_id).with_for_update())
+
     existing = await db.execute(
         select(UserLanguage).where(
             UserLanguage.user_id == user_id,
@@ -50,6 +53,9 @@ async def add_language(db: AsyncSession, user_id: int, target_language: str) -> 
 
 
 async def switch_language(db: AsyncSession, user_id: int, target_language: str) -> UserLanguage:
+    # Lock existing rows to serialise concurrent add/switch calls
+    await db.execute(select(UserLanguage).where(UserLanguage.user_id == user_id).with_for_update())
+
     target = await db.execute(
         select(UserLanguage).where(
             UserLanguage.user_id == user_id,

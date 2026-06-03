@@ -77,6 +77,9 @@ async def listening_client(db_session):
 
 @pytest_asyncio.fixture
 async def listening_user(db_session):
+    from app.models.study_plan import StudyPlan
+    from app.models.user_language import UserLanguage
+
     user = User(
         username="luser",
         email="luser@example.com",
@@ -87,6 +90,23 @@ async def listening_user(db_session):
         is_active=True,
     )
     db_session.add(user)
+    await db_session.flush()
+
+    db_session.add(UserLanguage(user_id=user.id, target_language="en-US", is_active=True))
+    await db_session.flush()
+
+    plan = StudyPlan(
+        user_id=user.id,
+        cefr_level="A1",
+        target_language="en-US",
+        goals=["grammar"],
+        duration_weeks=4,
+        days_per_week=4,
+        current_unit="",
+        generated_plan={},
+        is_active=True,
+    )
+    db_session.add(plan)
     await db_session.commit()
     await db_session.refresh(user)
     token = create_access_token(user.id, user.role)

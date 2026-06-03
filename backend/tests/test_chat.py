@@ -61,8 +61,8 @@ async def test_chat_requires_auth(client):
 
 
 @pytest.mark.asyncio
-async def test_chat_history_empty(client, test_user):
-    user, headers = test_user
+async def test_chat_history_empty(client, test_user_with_plan):
+    user, headers = test_user_with_plan
 
     response = await client.get("/api/chat/history", headers=headers)
     assert response.status_code == 200
