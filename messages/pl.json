@@ -762,6 +762,8 @@
     "a_studyPlan": "Po ocenie poziomu przejdź do panelu i kliknij <strong>Wygeneruj plan nauki</strong>. Automatycznie zostanie utworzony tygodniowy plan z codziennymi lekcjami dostosowanymi do Twojego poziomu CEFR i celów.",
     "q_flashcards": "Do czego służą fiszki?",
     "a_flashcards": "System trenowania słownictwa wykorzystujący algorytm powtórek rozłożonych w czasie <strong>SM-2</strong>. Generuj karty na dowolny temat z definicją, przykładowym zdaniem i tłumaczeniem na język ojczysty.",
+    "q_vocabulary": "Jak dodać słowa do mojego słownictwa?",
+    "a_vocabulary": "Możesz zapisywać słowa na dwa sposoby: (1) Podczas czytania lekcji, ćwiczenia ze słuchu lub rozmowy z tutorem zaznacz myszką dowolne słowo i kliknij <strong>Zapisz</strong> w dymku, który się pojawi — AI wygeneruje definicję, przykładowe zdanie i tłumaczenie na Twój język ojczysty. (2) Przejdź do <strong>Słownictwo</strong>, otwórz zestaw słownictwa dla swojego poziomu i kliknij <strong>Dodaj wszystkie</strong>, aby zaimportować cały zestaw naraz. Zapisane słowa pojawiają się w <strong>Mój słownik</strong> w sekcji Fiszki.",
     "q_tutor": "Jak działa korepetytor AI?",
     "a_tutor": "Swobodny czat strumieniowy. Korepetytor zna Twój poziom CEFR i słabe punkty, aby dostosować odpowiedzi. Zadawaj pytania gramatyczne, proś o wyjaśnienia, ćwicz pisanie po angielsku lub po prostu rozmawiaj.",
     "q_voice": "Jak działa rozmowa głosowa?",
@@ -780,6 +782,8 @@
     "a_invite": "Tak. Z <adminLink>Admin → Użytkownicy</adminLink> administrator może tworzyć użytkowników bezpośrednio lub generować jednorazowe linki zaproszenia wygasające po 48 godzinach.",
     "q_password": "Jak zmienić hasło lub język ojczysty?",
     "a_password": "Przejdź do <settingsLink>Ustawień</settingsLink>. Możesz tam zaktualizować wyświetlaną nazwę, język ojczysty i hasło.",
+    "q_uiLanguage": "Jak zmienić język platformy?",
+    "a_uiLanguage": "Przejdź do <settingsLink>Ustawień</settingsLink> i znajdź menu rozwijane <strong>Język platformy</strong> w sekcji Profil. Wybierz preferowany język, a cały interfejs zmieni się natychmiast.",
     "q_feedback": "Jak mogę zaproponować nową funkcję lub zgłosić błąd?",
     "a_feedback": "Skorzystaj z sekcji <feedbackLink>Feedback</feedbackLink> na pasku bocznym. Możesz zgłaszać pomysły na nowe funkcje lub błędy. Głosuj na pomysły innych użytkowników, zostawiaj komentarze i śledź status każdego zgłoszenia. Wszystkie zgłoszenia są publiczne i sprawdzane przez administratora."
   },

@@ -123,6 +123,22 @@ def upgrade() -> None:
     )
     op.create_index("ix_llm_usage_study_plan_id", "llm_usage", ["study_plan_id"])
 
+    # ── 2.5. Deduplicate active plans before creating the unique index ─────
+    # If a race condition ever left two is_active=true rows for the same
+    # (user_id, target_language), the CREATE UNIQUE INDEX below would fail.
+    # Keep only the most recent plan per group and deactivate the rest.
+    op.execute("""
+        UPDATE study_plans
+        SET is_active = false
+        WHERE is_active = true
+          AND id NOT IN (
+            SELECT DISTINCT ON (user_id, target_language) id
+            FROM study_plans
+            WHERE is_active = true
+            ORDER BY user_id, target_language, created_at DESC
+          )
+        """)
+
     # ── 3. Partial unique index on study_plans ──────────────────────────────
     op.create_index(
         "uq_active_plan_per_lang",
@@ -172,10 +188,10 @@ def upgrade() -> None:
     op.execute("""
         INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
             duration_weeks, days_per_week, current_unit, progress_day,
-            generated_plan, is_active, created_at)
+            generated_plan, is_active, completion_test_taken, created_at)
         SELECT DISTINCT ON (p.user_id)
             p.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
-            12, 4, '', 0, '{}'::json, true, NOW()
+            12, 4, '', 0, '{}'::json, true, false, NOW()
         FROM progress p
         JOIN users u ON u.id = p.user_id
         WHERE p.study_plan_id IS NULL
@@ -187,10 +203,10 @@ def upgrade() -> None:
     op.execute("""
         INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
             duration_weeks, days_per_week, current_unit, progress_day,
-            generated_plan, is_active, created_at)
+            generated_plan, is_active, completion_test_taken, created_at)
         SELECT DISTINCT ON (f.user_id)
             f.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
-            12, 4, '', 0, '{}'::json, true, NOW()
+            12, 4, '', 0, '{}'::json, true, false, NOW()
         FROM flashcards f
         JOIN users u ON u.id = f.user_id
         WHERE f.study_plan_id IS NULL
@@ -202,10 +218,10 @@ def upgrade() -> None:
     op.execute("""
         INSERT INTO study_plans (user_id, cefr_level, target_language, goals,
             duration_weeks, days_per_week, current_unit, progress_day,
-            generated_plan, is_active, created_at)
+            generated_plan, is_active, completion_test_taken, created_at)
         SELECT DISTINCT ON (uc.user_id)
             uc.user_id, 'A1', COALESCE(u.target_language, 'en-US'), '[]'::json,
-            12, 4, '', 0, '{}'::json, true, NOW()
+            12, 4, '', 0, '{}'::json, true, false, NOW()
         FROM user_competencies uc
         JOIN users u ON u.id = uc.user_id
         WHERE uc.study_plan_id IS NULL

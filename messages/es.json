@@ -762,6 +762,8 @@
     "a_studyPlan": "Tras la Evaluación, ve al Panel y haz clic en <strong>Generar Plan de Estudio</strong>. Se creará automáticamente un plan semana a semana con lecciones diarias adaptadas a tu nivel MCER y objetivos. Cada lección incluye ejercicios de opción múltiple y escritura libre evaluados por IA.",
     "q_flashcards": "¿Para qué sirven las Tarjetas?",
     "a_flashcards": "Un sistema de entrenamiento de vocabulario que usa el algoritmo de repetición espaciada <strong>SM-2</strong>. Genera tarjetas sobre cualquier tema (p. ej. \"negocios\", \"phrasal verbs\", \"comida\") con definición, oración de ejemplo y traducción a tu idioma nativo. El sistema calcula cuándo volver a mostrar cada tarjeta justo antes de que la olvides. Completamente independiente del Plan de Estudio.",
+    "q_vocabulary": "¿Cómo añado palabras a mi vocabulario?",
+    "a_vocabulary": "Puedes guardar palabras de dos formas: (1) Mientras lees una lección, un ejercicio de listening o hablas con el tutor, selecciona cualquier palabra con el ratón y haz clic en <strong>Guardar</strong> en el tooltip que aparece — la IA generará una definición, frase de ejemplo y traducción a tu idioma nativo. (2) Ve a <strong>Vocabulario</strong>, abre un conjunto de vocabulario para tu nivel y haz clic en <strong>Añadir todas</strong> para importar todo el conjunto de una vez. Tus palabras guardadas aparecen en <strong>Mi vocabulario</strong> dentro de la sección de Tarjetas.",
     "q_tutor": "¿Cómo funciona el Tutor IA?",
     "a_tutor": "Un chat de formato libre con streaming. El tutor conoce tu nivel MCER y tus puntos débiles para adaptar sus respuestas. Haz preguntas de gramática, pide explicaciones, practica la escritura en inglés o simplemente mantén una conversación. Las conversaciones se guardan y son accesibles desde la barra lateral entre sesiones.",
     "q_voice": "¿Cómo funciona la conversación por voz?",
@@ -780,6 +782,8 @@
     "a_invite": "Sí. Desde <adminLink>Admin → Usuarios</adminLink> el administrador puede crear usuarios directamente o generar enlaces de invitación de un solo uso que expiran en 48 horas. El registro público está desactivado por defecto (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "¿Cómo cambio mi contraseña o idioma nativo?",
     "a_password": "Ve a <settingsLink>Ajustes</settingsLink>. Desde allí puedes actualizar tu nombre de visualización, idioma nativo y contraseña.",
+    "q_uiLanguage": "¿Cómo cambio el idioma de la plataforma?",
+    "a_uiLanguage": "Ve a <settingsLink>Ajustes</settingsLink> y busca el desplegable <strong>Idioma de la plataforma</strong> en la sección de Perfil. Selecciona tu idioma preferido y toda la interfaz cambiará inmediatamente.",
     "q_feedback": "¿Cómo puedo sugerir una nueva funcionalidad o reportar un error?",
     "a_feedback": "Usa la sección de <feedbackLink>Feedback</feedbackLink> en la barra lateral. Puedes crear sugerencias de nuevas funcionalidades o reportar errores. Vota las ideas de otros usuarios, deja comentarios y sigue el estado de cada solicitud. Todos los envíos son públicos y los revisa el administrador."
   },

@@ -762,6 +762,8 @@
     "a_studyPlan": "Após a Avaliação, vá ao Painel e clique em <strong>Gerar Plano de Estudo</strong>. Um plano semana a semana com lições diárias adaptadas ao seu nível QECR e objetivos será criado automaticamente. Cada lição inclui exercícios de escolha múltipla e escrita livre avaliados por IA.",
     "q_flashcards": "Para que servem os Cartões?",
     "a_flashcards": "Um sistema de treino de vocabulário usando o algoritmo de repetição espaçada <strong>SM-2</strong>. Gere cartões sobre qualquer tema (ex. \"negócios\", \"phrasal verbs\", \"comida\") com definição, frase de exemplo e tradução para o seu idioma nativo. O sistema calcula quando voltar a mostrar cada cartão antes que o esqueça. Completamente independente do Plano de Estudo.",
+    "q_vocabulary": "Como adiciono palavras ao meu vocabulário?",
+    "a_vocabulary": "Podes guardar palavras de duas formas: (1) Enquanto lês uma lição, um exercício de listening ou falas com o tutor, seleciona uma palavra com o rato e clica em <strong>Guardar</strong> no tooltip que aparece — a IA vai gerar uma definição, frase de exemplo e tradução para a tua língua nativa. (2) Vai a <strong>Vocabulário</strong>, abre um conjunto de vocabulário para o teu nível e clica em <strong>Adicionar todas</strong> para importar o conjunto completo de uma vez. As palavras guardadas aparecem em <strong>Meu vocabulário</strong> na secção de Cartões.",
     "q_tutor": "Como funciona o Tutor IA?",
     "a_tutor": "Um chat livre com streaming. O tutor conhece o seu nível QECR e pontos fracos para adaptar as respostas. Faça perguntas de gramática, peça explicações, pratique escrita em inglês ou simplesmente converse. As conversas são guardadas e acessíveis na barra lateral entre sessões.",
     "q_voice": "Como funciona a conversa por voz?",
@@ -780,6 +782,8 @@
     "a_invite": "Sim. Em <adminLink>Admin → Utilizadores</adminLink> o administrador pode criar utilizadores diretamente ou gerar links de convite de uso único que expiram em 48 horas. O registo público está desativado por padrão (<code>ALLOW_REGISTRATION=false</code>).",
     "q_password": "Como altero a minha senha ou idioma nativo?",
     "a_password": "Vá a <settingsLink>Definições</settingsLink>. Pode atualizar o seu nome de exibição, idioma nativo e senha a partir daí.",
+    "q_uiLanguage": "Como altero o idioma da plataforma?",
+    "a_uiLanguage": "Vá a <settingsLink>Definições</settingsLink> e encontre o menu <strong>Idioma da plataforma</strong> na secção de Perfil. Selecione o seu idioma preferido e toda a interface muda imediatamente.",
     "q_feedback": "Como posso sugerir uma nova funcionalidade ou reportar um bug?",
     "a_feedback": "Use a secção de <feedbackLink>Feedback</feedbackLink> na barra lateral. Pode criar sugestões de novas funcionalidades ou reportar bugs. Vote nas ideias de outros utilizadores, deixe comentários e acompanhe o estado de cada pedido. Todos os envios são públicos e são revistos pelo administrador."
   },
