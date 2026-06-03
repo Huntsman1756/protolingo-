@@ -554,7 +554,8 @@
     "vocabularyPageInfo": "Seite {page} von {pages}",
     "vocabularyPrev": "Zurück",
     "vocabularyNext": "Weiter",
-    "backToFlashcards": "Flashcards"
+    "backToFlashcards": "Karteikarten",
+    "noCardsHint": "Nutze + Erstellen, um deine ersten Karteikarten mit KI zu erstellen"
   },
   "chat": {
     "title": "KI-Tutor",
