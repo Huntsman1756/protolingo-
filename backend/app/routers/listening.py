@@ -230,7 +230,11 @@ async def submit_listening_attempt(
     """Submit answers and receive score, XP, correct answers, and transcript."""
     try:
         attempt, exercise = await submit_attempt(
-            body.exercise_id, current_user.id, body.answers, db, is_replay=body.replay,
+            body.exercise_id,
+            current_user.id,
+            body.answers,
+            db,
+            is_replay=body.replay,
             study_plan_id=plan.id,
         )
     except ValueError as exc:

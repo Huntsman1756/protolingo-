@@ -97,9 +97,12 @@ async def test_get_all_excludes_other_users_cards(client, test_user, db_session)
     db_session.add(other)
     await db_session.flush()
 
+    other_plan = await _seed_plan(db_session, other.id)
+
     db_session.add(
         Flashcard(
             user_id=other.id,
+            study_plan_id=other_plan.id,
             word="foreignword",
             definition="def",
             example_sentence="ex.",

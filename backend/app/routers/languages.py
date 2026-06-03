@@ -73,9 +73,7 @@ async def _build_progress_info(
     plan_id = plan_row[0]
 
     entries_res = await db.execute(
-        select(Progress)
-        .where(Progress.study_plan_id == plan_id)
-        .order_by(Progress.date.desc())
+        select(Progress).where(Progress.study_plan_id == plan_id).order_by(Progress.date.desc())
     )
     entries = entries_res.scalars().all()
 

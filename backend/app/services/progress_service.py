@@ -32,9 +32,7 @@ async def update_daily_progress(
     if study_plan_id is not None:
         base_filter.append(Progress.study_plan_id == study_plan_id)
 
-    result = await db.execute(
-        select(Progress).where(*base_filter, Progress.date == today)
-    )
+    result = await db.execute(select(Progress).where(*base_filter, Progress.date == today))
     entry = result.scalar_one_or_none()
 
     if not entry:

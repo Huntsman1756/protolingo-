@@ -261,8 +261,11 @@ async def test_delete_flashcard_other_user(client, test_user, db_session):
     await db_session.commit()
     await db_session.refresh(other_user)
 
+    other_plan = await _seed_plan(db_session, other_user.id)
+
     card = Flashcard(
         user_id=other_user.id,
+        study_plan_id=other_plan.id,
         word="word",
         definition="def",
         example_sentence="example",
