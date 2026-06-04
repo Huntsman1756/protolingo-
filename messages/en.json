@@ -56,7 +56,8 @@
     "saveWord": "Save",
     "wordSaved": "Saved",
     "wordSaveError": "Something went wrong",
-    "selectWordHint": "Select a word to save it to your vocabulary"
+    "selectWordHint": "Select a word to save it to your vocabulary",
+    "noActivePlan": "No active study plan found"
   },
   "nav": {
     "home": "Home",

@@ -56,7 +56,8 @@
     "saveWord": "Zapisz",
     "wordSaved": "Zapisano",
     "wordSaveError": "Wystąpił problem",
-    "selectWordHint": "Zaznacz słowo, aby zapisać je w swoim słowniku"
+    "selectWordHint": "Zaznacz słowo, aby zapisać je w swoim słowniku",
+    "noActivePlan": "Nie znaleziono aktywnego planu nauki"
   },
   "nav": {
     "home": "Strona główna",

@@ -215,7 +215,7 @@ export default function ChatPage() {
         }
       }
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      setError(t('errorMessage'))
     } finally {
       setSending(false)
       inputRef.current?.focus()
@@ -358,7 +358,7 @@ export default function ChatPage() {
                 messages.map((msg, i) => (
                   <div
                     key={i}
-                    className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+                    className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse ml-auto max-w-[75%]' : 'flex-row'}`}
                   >
                     {/* Avatar */}
                     <div className="border-fl-border mb-0.5 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border">
@@ -389,9 +389,8 @@ export default function ChatPage() {
                         </div>
                       )}
                     </div>
-                    <div className={`max-w-[75%] text-left`}>
-                      <div
-                        className={`word-selectable max-w-[75%] border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
+                    <div className={`min-w-[10rem] max-w-[75%] text-left`}>                      <div
+                        className={`word-selectable border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
                           msg.role === 'user'
                             ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                             : 'bg-fl-surface text-fl-fg-2 border-fl-border'
@@ -422,7 +421,7 @@ export default function ChatPage() {
               )}
               {error && (
                 <div className="text-fl-label text-fl-error-fg border-fl-error/30 border px-4 py-2 font-mono">
-                  ✕ {error}
+                  ✕ {error === 'No active study plan found' ? tCommon('noActivePlan') : t('errorMessage')}
                 </div>
               )}
               <div ref={bottomRef} />

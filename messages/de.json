@@ -56,7 +56,8 @@
     "saveWord": "Speichern",
     "wordSaved": "Gespeichert",
     "wordSaveError": "Es ist ein Problem aufgetreten",
-    "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern"
+    "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern",
+    "noActivePlan": "Kein aktiver Lernplan gefunden"
   },
   "nav": {
     "home": "Startseite",
