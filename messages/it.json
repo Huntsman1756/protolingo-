@@ -57,7 +57,10 @@
     "wordSaved": "Salvato",
     "wordSaveError": "Si è verificato un problema",
     "selectWordHint": "Seleziona una parola per salvarla nel tuo vocabolario",
-    "noActivePlan": "Nessun piano di studio attivo trovato"
+    "noActivePlan": "Nessun piano di studio attivo trovato",
+    "removeLanguageConfirmTitle": "Rimuovi lingua",
+    "removeLanguageConfirmMessage": "Tutti i dati per questa lingua (piano di studio, progressi, flashcard, conversazioni e ricordi) verranno eliminati definitivamente. Questa azione non può essere annullata.",
+    "removeLanguageConfirmLabel": "Rimuovi"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contatto",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Cambia lingua"
   },
   "auth": {
     "login": {
@@ -907,7 +911,10 @@
   },
   "targetLanguages": {
     "en-US": "Inglese americano",
-    "en-GB": "Inglese britannico"
+    "en-GB": "Inglese britannico",
+    "es-ES": "Spagnolo",
+    "it-IT": "Italiano",
+    "pt-PT": "Portoghese"
   },
   "onboarding": {
     "title": "Scegli il tuo inglese",

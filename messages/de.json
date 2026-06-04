@@ -57,7 +57,10 @@
     "wordSaved": "Gespeichert",
     "wordSaveError": "Es ist ein Problem aufgetreten",
     "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern",
-    "noActivePlan": "Kein aktiver Lernplan gefunden"
+    "noActivePlan": "Kein aktiver Lernplan gefunden",
+    "removeLanguageConfirmTitle": "Sprache entfernen",
+    "removeLanguageConfirmMessage": "Alle Daten für diese Sprache (Studienplan, Fortschritt, Karteikarten, Konversationen und Erinnerungen) werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "removeLanguageConfirmLabel": "Entfernen"
   },
   "nav": {
     "home": "Startseite",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Kontakt",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Sprache wechseln"
   },
   "auth": {
     "login": {
@@ -907,7 +911,10 @@
   },
   "targetLanguages": {
     "en-US": "Amerikanisches Englisch",
-    "en-GB": "Britisches Englisch"
+    "en-GB": "Britisches Englisch",
+    "es-ES": "Spanisch",
+    "it-IT": "Italienisch",
+    "pt-PT": "Portugiesisch"
   },
   "onboarding": {
     "title": "Wähle dein Englisch",

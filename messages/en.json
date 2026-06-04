@@ -57,7 +57,10 @@
     "wordSaved": "Saved",
     "wordSaveError": "Something went wrong",
     "selectWordHint": "Select a word to save it to your vocabulary",
-    "noActivePlan": "No active study plan found"
+    "noActivePlan": "No active study plan found",
+    "removeLanguageConfirmTitle": "Remove language",
+    "removeLanguageConfirmMessage": "All data for this language (study plan, progress, flashcards, conversations, and memories) will be permanently deleted. This action cannot be undone.",
+    "removeLanguageConfirmLabel": "Remove"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Switch language"
   },
   "auth": {
     "login": {
@@ -907,7 +911,10 @@
   },
   "targetLanguages": {
     "en-US": "American English",
-    "en-GB": "British English"
+    "en-GB": "British English",
+    "es-ES": "Spanish",
+    "it-IT": "Italian",
+    "pt-PT": "Portuguese"
   },
   "onboarding": {
     "title": "Choose Your English",

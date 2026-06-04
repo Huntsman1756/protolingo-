@@ -2,19 +2,28 @@
 
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { TARGET_LANGUAGES } from '@/lib/target-languages'
+import { SUPPORTED_TARGET_LANGUAGES } from '@/lib/target-languages'
 
 interface Props {
   value: string
   onChange: (code: string) => void
+  availableCodes: string[]
 }
 
-export default function TargetLanguageSelector({ value, onChange }: Props) {
+export default function TargetLanguageSelector({
+  value,
+  onChange,
+  availableCodes,
+}: Props) {
   const t = useTranslations('targetLanguages')
+
+  const filtered = SUPPORTED_TARGET_LANGUAGES.filter((lang) =>
+    availableCodes.includes(lang.code)
+  )
 
   return (
     <div className="flex gap-2">
-      {TARGET_LANGUAGES.map((lang) => (
+      {filtered.map((lang) => (
         <button
           key={lang.code}
           type="button"
@@ -26,13 +35,13 @@ export default function TargetLanguageSelector({ value, onChange }: Props) {
           }`}
         >
           <Image
-            src={lang.flag}
+            src={lang.flagPath}
             alt={lang.code}
             width={20}
             height={16}
             className="object-cover"
           />
-          {t(lang.labelKey)}
+          {t(lang.code)}
         </button>
       ))}
     </div>

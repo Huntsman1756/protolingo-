@@ -57,7 +57,10 @@
     "wordSaved": "Сохранено",
     "wordSaveError": "Что-то пошло не так",
     "selectWordHint": "Выдели слово, чтобы сохранить его в своём словаре",
-    "noActivePlan": "Активный учебный план не найден"
+    "noActivePlan": "Активный учебный план не найден",
+    "removeLanguageConfirmTitle": "Удалить язык",
+    "removeLanguageConfirmMessage": "Все данные для этого языка (план обучения, прогресс, карточки, разговоры и воспоминания) будут безвозвратно удалены. Это действие нельзя отменить.",
+    "removeLanguageConfirmLabel": "Удалить"
   },
   "nav": {
     "home": "Главная",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Контакт",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Сменить язык"
   },
   "auth": {
     "login": {
@@ -907,7 +911,10 @@
   },
   "targetLanguages": {
     "en-US": "Американский английский",
-    "en-GB": "Британский английский"
+    "en-GB": "Британский английский",
+    "es-ES": "Испанский",
+    "it-IT": "Итальянский",
+    "pt-PT": "Португальский"
   },
   "onboarding": {
     "title": "Выберите свой английский",

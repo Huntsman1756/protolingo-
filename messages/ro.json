@@ -57,7 +57,10 @@
     "wordSaved": "Salvat",
     "wordSaveError": "A apărut o problemă",
     "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău",
-    "noActivePlan": "Nu a fost găsit niciun plan de studiu activ"
+    "noActivePlan": "Nu a fost găsit niciun plan de studiu activ",
+    "removeLanguageConfirmTitle": "Elimină limba",
+    "removeLanguageConfirmMessage": "Toate datele pentru această limbă (plan de studiu, progres, flashcards, conversații și amintiri) vor fi șterse permanent. Această acțiune nu poate fi anulată.",
+    "removeLanguageConfirmLabel": "Elimină"
   },
   "nav": {
     "home": "Acasă",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Schimbă limba"
   },
   "auth": {
     "login": {
@@ -907,7 +911,10 @@
   },
   "targetLanguages": {
     "en-US": "Engleză americană",
-    "en-GB": "Engleză britanică"
+    "en-GB": "Engleză britanică",
+    "es-ES": "Spaniolă",
+    "it-IT": "Italiană",
+    "pt-PT": "Portugheză"
   },
   "onboarding": {
     "title": "Alege engleza ta",

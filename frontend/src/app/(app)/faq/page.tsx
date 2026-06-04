@@ -85,7 +85,10 @@ export default function FAQPage() {
       { q: t('q_reading'), a: t.rich('a_reading', { strong }) },
       { q: t('q_feedback'), a: t.rich('a_feedback', { feedbackLink }) },
       { q: t('q_password'), a: t.rich('a_password', { settingsLink }) },
-      { q: t('q_uiLanguage'), a: t.rich('a_uiLanguage', { settingsLink, strong }) },
+      {
+        q: t('q_uiLanguage'),
+        a: t.rich('a_uiLanguage', { settingsLink, strong }),
+      },
     ]
 
     if (isAdmin) {

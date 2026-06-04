@@ -57,7 +57,10 @@
     "wordSaved": "Opgeslagen",
     "wordSaveError": "Er is een probleem opgetreden",
     "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat",
-    "noActivePlan": "Geen actief studieplan gevonden"
+    "noActivePlan": "Geen actief studieplan gevonden",
+    "removeLanguageConfirmTitle": "Taal verwijderen",
+    "removeLanguageConfirmMessage": "Alle gegevens voor deze taal (studieplan, voortgang, flashcards, gesprekken en herinneringen) worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "removeLanguageConfirmLabel": "Verwijderen"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Taal wijzigen"
   },
   "auth": {
     "login": {
@@ -907,7 +911,10 @@
   },
   "targetLanguages": {
     "en-US": "Amerikaans Engels",
-    "en-GB": "Brits Engels"
+    "en-GB": "Brits Engels",
+    "es-ES": "Spaans",
+    "it-IT": "Italiaans",
+    "pt-PT": "Portugees"
   },
   "onboarding": {
     "title": "Kies jouw Engels",

@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { mapUser } from '@/lib/mappers'
 import { useAuthStore } from '@/store/auth'
+import { useLanguageStore } from '@/store/language'
 import TargetLanguageSelector from '@/components/TargetLanguageSelector'
 import { DEFAULT_TARGET_LANGUAGE } from '@/lib/target-languages'
 
@@ -29,12 +30,25 @@ export default function OnboardingPage() {
   const router = useRouter()
   const setUser = useAuthStore((s) => s.setUser)
   const user = useAuthStore((s) => s.user)
+  const fetchLanguages = useLanguageStore((s) => s.fetchLanguages)
+  const availableLanguageCodes = useLanguageStore(
+    (s) => s.availableLanguageCodes
+  )
 
   const [step, setStep] = useState<1 | 2>(1)
   const [targetLanguage, setTargetLanguage] = useState(DEFAULT_TARGET_LANGUAGE)
   const [selectedGoals, setSelectedGoals] = useState<LearningGoal[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    fetchLanguages().then(() => {
+      const codes = useLanguageStore.getState().availableLanguageCodes
+      if (codes.length > 0 && !codes.includes(targetLanguage)) {
+        setTargetLanguage(codes[0])
+      }
+    })
+  }, [fetchLanguages])
 
   function toggleGoal(goal: LearningGoal) {
     setSelectedGoals((prev) =>
@@ -118,10 +132,17 @@ export default function OnboardingPage() {
                 <label className="text-fl-label text-fl-muted-2 mb-3 block font-mono tracking-widest uppercase">
                   {t('chooseVariant')}
                 </label>
-                <TargetLanguageSelector
-                  value={targetLanguage}
-                  onChange={setTargetLanguage}
-                />
+                {availableLanguageCodes.length > 0 ? (
+                  <TargetLanguageSelector
+                    value={targetLanguage}
+                    onChange={setTargetLanguage}
+                    availableCodes={availableLanguageCodes}
+                  />
+                ) : (
+                  <div className="border-fl-border border px-4 py-3 font-mono text-xs tracking-widest text-fl-muted-2">
+                    …
+                  </div>
+                )}
               </div>
               <button
                 type="submit"
@@ -146,11 +167,10 @@ export default function OnboardingPage() {
                       key={goal}
                       type="button"
                       onClick={() => toggleGoal(goal)}
-                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${
-                        active
+                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${active
                           ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                           : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                      }`}
+                        }`}
                     >
                       {t(`goals.${goal}`)}
                     </button>

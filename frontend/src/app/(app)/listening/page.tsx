@@ -282,7 +282,11 @@ function ListeningPage() {
         setPageState('idle')
       } else {
         const d = (await res.json().catch(() => ({}))) as { detail?: string }
-        setError(d.detail === 'No active study plan found' ? tCommon('noActivePlan') : t('errorLoading'))
+        setError(
+          d.detail === 'No active study plan found'
+            ? tCommon('noActivePlan')
+            : t('errorLoading')
+        )
       }
     } catch (err) {
       if (err instanceof Error && err.name === 'AbortError') return
