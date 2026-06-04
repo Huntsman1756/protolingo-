@@ -214,7 +214,7 @@ export default function ChatPage() {
           }
         }
       }
-    } catch (err: unknown) {
+    } catch {
       setError(t('errorMessage'))
     } finally {
       setSending(false)

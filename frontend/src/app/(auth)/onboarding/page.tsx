@@ -48,6 +48,7 @@ export default function OnboardingPage() {
         setTargetLanguage(codes[0])
       }
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchLanguages])
 
   function toggleGoal(goal: LearningGoal) {
@@ -139,7 +140,7 @@ export default function OnboardingPage() {
                     availableCodes={availableLanguageCodes}
                   />
                 ) : (
-                  <div className="border-fl-border border px-4 py-3 font-mono text-xs tracking-widest text-fl-muted-2">
+                  <div className="border-fl-border text-fl-muted-2 border px-4 py-3 font-mono text-xs tracking-widest">
                     …
                   </div>
                 )}
@@ -167,10 +168,11 @@ export default function OnboardingPage() {
                       key={goal}
                       type="button"
                       onClick={() => toggleGoal(goal)}
-                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${active
+                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${
+                        active
                           ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                           : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                        }`}
+                      }`}
                     >
                       {t(`goals.${goal}`)}
                     </button>

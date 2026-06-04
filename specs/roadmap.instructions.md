@@ -372,7 +372,7 @@ This document records what was built and the completion criteria met.
 | **10.1** | Database: `user_languages` table, `study_plan_id` columns, partial unique index, Alembic migration `0029`, test fixes | ✅ |
 | **10.2** | Backend: `user_language_service`, `get_active_study_plan` dependency, multi-language LLM prompts, migration `0030` (placeholder — NOT NULL moved to 10.3) | ✅ |
 | **10.3** | API: new `/api/languages` router, refactor assessment + study-plan endpoints, Pydantic schemas | ✅ |
-| **10.4** | Frontend core: `target-languages.ts` config, language Zustand store, `LanguageSwitcher` component, sidebar integration | ⬜ |
+| **10.4** | Frontend core: `target-languages.ts` config, language Zustand store, `LanguageSwitcher` component, sidebar integration | ✅ |
 | **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted | ⬜ |
 | **10.6** | Curriculum and language data: Spanish, Italian, Portuguese curriculum files (backend + frontend) | ⬜ |
 | **10.7** | i18n: new translation keys in all 10 locale files | ⬜ |

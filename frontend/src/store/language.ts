@@ -45,19 +45,19 @@ function mapUserLanguageInfo(data: Record<string, any>): UserLanguageInfo {
     is_active: data.is_active,
     plan: data.plan
       ? {
-        id: data.plan.id,
-        cefr_level: data.plan.cefr_level ?? null,
-        progress_day: data.plan.progress_day,
-        total_days: data.plan.total_days,
-        completion_pct: data.plan.completion_pct,
-      }
+          id: data.plan.id,
+          cefr_level: data.plan.cefr_level ?? null,
+          progress_day: data.plan.progress_day,
+          total_days: data.plan.total_days,
+          completion_pct: data.plan.completion_pct,
+        }
       : null,
     progress: data.progress
       ? {
-        total_xp: data.progress.total_xp,
-        current_streak: data.progress.current_streak,
-        lessons_completed: data.progress.lessons_completed,
-      }
+          total_xp: data.progress.total_xp,
+          current_streak: data.progress.current_streak,
+          lessons_completed: data.progress.lessons_completed,
+        }
       : null,
   }
 }
