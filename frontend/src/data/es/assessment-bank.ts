@@ -12,7 +12,1054 @@ export interface AssessmentQuestion {
   grammar_slug?: string
 }
 
-export const assessmentBank: AssessmentQuestion[] = []
+// ── Grammar — A1 (10 questions) ────────────────────────────────────────────────
+const grammarA1: AssessmentQuestion[] = [
+  {
+    id: 'g-a1-001',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Elige la forma correcta: Yo ___ de Madrid.',
+    options: ['soy', 'eres', 'es', 'son'],
+    correct: 'soy',
+    grammar_slug: 'ser',
+  },
+  {
+    id: 'g-a1-002',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Completa: ¿Cómo ___ llamas?',
+    options: ['te', 'se', 'me', 'le'],
+    correct: 'te',
+    grammar_slug: 'pronombres-sujeto',
+  },
+  {
+    id: 'g-a1-003',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Elige el artículo correcto: ___ casa es grande.',
+    options: ['El', 'La', 'Los', 'Las'],
+    correct: 'La',
+    grammar_slug: 'articulos-definidos',
+  },
+  {
+    id: 'g-a1-004',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Completa: María ___ italiana.',
+    options: ['soy', 'eres', 'es', 'somos'],
+    correct: 'es',
+    grammar_slug: 'ser-nacionalidad',
+  },
+  {
+    id: 'g-a1-005',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Elige el indefinido correcto: ___ libro está en la mesa.',
+    options: ['Un', 'Una', 'Unos', 'Unas'],
+    correct: 'Un',
+    grammar_slug: 'articulos-indefinidos',
+  },
+  {
+    id: 'g-a1-006',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Completa: Yo ___ dos hermanos.',
+    options: ['tengo', 'tienes', 'tiene', 'tenemos'],
+    correct: 'tengo',
+    grammar_slug: 'tener',
+  },
+  {
+    id: 'g-a1-007',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Elige el posesivo correcto: ___ madre se llama Carmen.',
+    options: ['Mi', 'Tu', 'Su', 'Nuestro'],
+    correct: 'Mi',
+    grammar_slug: 'adjetivos-posesivos',
+  },
+  {
+    id: 'g-a1-008',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Completa: Ella ___ todos los días a las siete.',
+    options: ['levanta', 'levanto', 'se levanta', 'te levantas'],
+    correct: 'se levanta',
+    grammar_slug: 'verbos-reflexivos',
+  },
+  {
+    id: 'g-a1-009',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: '¿Cuál es correcta? A mí ___ el chocolate.',
+    options: ['gusta', 'gusto', 'me gusta', 'me gusto'],
+    correct: 'me gusta',
+    grammar_slug: 'gustar',
+  },
+  {
+    id: 'g-a1-010',
+    skill: 'grammar',
+    difficulty: 'A1',
+    question: 'Elige la forma correcta: ___ las tres de la tarde.',
+    options: ['Es', 'Son', 'Está', 'Están'],
+    correct: 'Son',
+    grammar_slug: 'horas',
+  },
+]
+
+// ── Grammar — A2 (10 questions) ────────────────────────────────────────────────
+const grammarA2: AssessmentQuestion[] = [
+  {
+    id: 'g-a2-001',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Completa: Ayer ___ al cine con mis amigos.',
+    options: ['voy', 'iba', 'fui', 'iré'],
+    correct: 'fui',
+    grammar_slug: 'preterito-indefinido-regular',
+  },
+  {
+    id: 'g-a2-002',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Elige la forma correcta: Ellos no ___ venir a la fiesta.',
+    options: ['pudieron', 'podían', 'pueden', 'podrán'],
+    correct: 'pudieron',
+    grammar_slug: 'preterito-irregular',
+  },
+  {
+    id: 'g-a2-003',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Cuando era pequeño, siempre ___ al parque.',
+    options: ['iba', 'fui', 'voy', 'iré'],
+    correct: 'iba',
+    grammar_slug: 'imperfecto',
+  },
+  {
+    id: 'g-a2-004',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Completa: ¿Dónde está mi móvil? No ___ encuentro.',
+    options: ['le', 'lo', 'la', 'se'],
+    correct: 'lo',
+    grammar_slug: 'pronombres-objeto-directo',
+  },
+  {
+    id: 'g-a2-005',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Elige la correcta: ___ di un regalo a María.',
+    options: ['La', 'Le', 'Lo', 'Se'],
+    correct: 'Le',
+    grammar_slug: 'pronombres-objeto-indirecto',
+  },
+  {
+    id: 'g-a2-006',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Madrid es ___ grande ___ Barcelona.',
+    options: ['más / que', 'menos / como', 'tan / que', 'más / de'],
+    correct: 'más / que',
+    grammar_slug: 'comparativos',
+  },
+  {
+    id: 'g-a2-007',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Es el mejor restaurante ___ la ciudad.',
+    options: ['de', 'en', 'que', 'a'],
+    correct: 'de',
+    grammar_slug: 'superlativos',
+  },
+  {
+    id: 'g-a2-008',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Completa con imperativo: ¡___ la puerta, por favor!',
+    options: ['Abres', 'Abre', 'Abra', 'Abran'],
+    correct: 'Abre',
+    grammar_slug: 'imperativo-afirmativo',
+  },
+  {
+    id: 'g-a2-009',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: 'Elige la correcta: Mañana ___ al médico.',
+    options: ['voy', 'iré', 'iba', 'fui'],
+    correct: 'iré',
+    grammar_slug: 'futuro-simple',
+  },
+  {
+    id: 'g-a2-010',
+    skill: 'grammar',
+    difficulty: 'A2',
+    question: '¿___ ayudarme con esto, por favor?',
+    options: ['Podrías', 'Puedes', 'Pudiste', 'Podías'],
+    correct: 'Podrías',
+    grammar_slug: 'condicional-simple',
+  },
+]
+
+// ── Grammar — B1 (10 questions) ────────────────────────────────────────────────
+const grammarB1: AssessmentQuestion[] = [
+  {
+    id: 'g-b1-001',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Completa: Espero que ___ a la reunión.',
+    options: ['vienes', 'vengas', 'vienas', 'viene'],
+    correct: 'vengas',
+    grammar_slug: 'subjuntivo-presente',
+  },
+  {
+    id: 'g-b1-002',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Elige la correcta: ¡Ojalá ___ mañana!',
+    options: ['llueve', 'llueva', 'llovía', 'lloverá'],
+    correct: 'llueva',
+    grammar_slug: 'ojala',
+  },
+  {
+    id: 'g-b1-003',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'No creo que eso ___ verdad.',
+    options: ['es', 'sea', 'será', 'era'],
+    correct: 'sea',
+    grammar_slug: 'subjuntivo-duda',
+  },
+  {
+    id: 'g-b1-004',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Hoy ___ muy bien en el trabajo.',
+    options: ['he comido', 'comí', 'comía', 'como'],
+    correct: 'he comido',
+    grammar_slug: 'preterito-perfecto',
+  },
+  {
+    id: 'g-b1-005',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Cuando llegué, ya ___ la película.',
+    options: ['empezaba', 'ha empezado', 'había empezado', 'empezó'],
+    correct: 'había empezado',
+    grammar_slug: 'pluscuamperfecto',
+  },
+  {
+    id: 'g-b1-006',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Transforma en pasiva: Cervantes escribió el Quijote.',
+    options: [
+      'El Quijote fue escrito por Cervantes.',
+      'El Quijote escribió Cervantes.',
+      'El Quijote ha escrito Cervantes.',
+      'El Quijote es escribido por Cervantes.',
+    ],
+    correct: 'El Quijote fue escrito por Cervantes.',
+    grammar_slug: 'voz-pasiva',
+  },
+  {
+    id: 'g-b1-007',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Elige la impersonal correcta: En España ___ mucha fruta.',
+    options: ['se come', 'se comen', 'comes', 'comen'],
+    correct: 'se come',
+    grammar_slug: 'se-impersonal',
+  },
+  {
+    id: 'g-b1-008',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Completa: La chica ___ conocí ayer es italiana.',
+    options: ['que', 'quien', 'cuyo', 'cual'],
+    correct: 'que',
+    grammar_slug: 'que-relativo',
+  },
+  {
+    id: 'g-b1-009',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Si ___ dinero, me compraría un coche.',
+    options: ['tengo', 'tuviera', 'tenía', 'tendría'],
+    correct: 'tuviera',
+    grammar_slug: 'si-imperfecto-subjuntivo',
+  },
+  {
+    id: 'g-b1-010',
+    skill: 'grammar',
+    difficulty: 'B1',
+    question: 'Me dijo que ___ a las ocho.',
+    options: ['llega', 'llegaba', 'llegó', 'ha llegado'],
+    correct: 'llegaba',
+    grammar_slug: 'estilo-indirecto-pasado',
+  },
+]
+
+// ── Grammar — B2 (4 questions) ─────────────────────────────────────────────────
+const grammarB2: AssessmentQuestion[] = [
+  {
+    id: 'g-b2-001',
+    skill: 'grammar',
+    difficulty: 'B2',
+    question: 'Si ___ antes, no habríamos perdido el tren.',
+    options: ['salíamos', 'hubiéramos salido', 'saldríamos', 'hemos salido'],
+    correct: 'hubiéramos salido',
+    grammar_slug: 'subjuntivo-pluscuamperfecto',
+  },
+  {
+    id: 'g-b2-002',
+    skill: 'grammar',
+    difficulty: 'B2',
+    question: 'Completa: Llevo tres meses ___ español.',
+    options: ['estudio', 'estudiando', 'estudiaba', 'he estudiado'],
+    correct: 'estudiando',
+    grammar_slug: 'perifrasis-aspectuales',
+  },
+  {
+    id: 'g-b2-003',
+    skill: 'grammar',
+    difficulty: 'B2',
+    question: '___ llueva, saldré a correr.',
+    options: ['Aunque', 'A pesar de', 'Sin embargo', 'Porque'],
+    correct: 'Aunque',
+    grammar_slug: 'conectores-avanzados',
+  },
+  {
+    id: 'g-b2-004',
+    skill: 'grammar',
+    difficulty: 'B2',
+    question: '¿Qué significa "ponerse las pilas"?',
+    options: [
+      'Ponerse a trabajar con energía',
+      'Cambiar las baterías',
+      'Hacer ejercicio',
+      'Irse a dormir',
+    ],
+    correct: 'Ponerse a trabajar con energía',
+    grammar_slug: 'modismos-comunes',
+  },
+]
+
+// ── Grammar — C1 (4 questions) ─────────────────────────────────────────────────
+const grammarC1: AssessmentQuestion[] = [
+  {
+    id: 'g-c1-001',
+    skill: 'grammar',
+    difficulty: 'C1',
+    question: '___ que lo intentes, no lo conseguirás sin ayuda.',
+    options: ['Aunque', 'Por más', 'A pesar', 'No obstante'],
+    correct: 'Por más',
+    grammar_slug: 'subjuntivo-concesivo',
+  },
+  {
+    id: 'g-c1-002',
+    skill: 'grammar',
+    difficulty: 'C1',
+    question:
+      'Transforma en pasiva refleja: La empresa desarrolló el producto.',
+    options: [
+      'Se desarrolló el producto.',
+      'Se ha desarrollado el producto.',
+      'La empresa se desarrolló.',
+      'El producto fue desarrollado.',
+    ],
+    correct: 'Se desarrolló el producto.',
+    grammar_slug: 'pasiva-refleja',
+  },
+  {
+    id: 'g-c1-003',
+    skill: 'grammar',
+    difficulty: 'C1',
+    question:
+      'En Argentina se usa "vos" en lugar de "tú". ¿Cuál es la forma correcta de "tú tienes"?',
+    options: ['vos tienes', 'vos tenés', 'vos tiene', 'vos tengas'],
+    correct: 'vos tenés',
+    grammar_slug: 'voseo',
+  },
+  {
+    id: 'g-c1-004',
+    skill: 'grammar',
+    difficulty: 'C1',
+    question:
+      'Elige el conector correcto: ___ a las evidencias, el cambio climático se está acelerando.',
+    options: ['Conforme', 'Frente', 'A pesar', 'En relación'],
+    correct: 'Conforme',
+    grammar_slug: 'conectores-avanzados',
+  },
+]
+
+// ── Grammar — C2 (4 questions) ─────────────────────────────────────────────────
+const grammarC2: AssessmentQuestion[] = [
+  {
+    id: 'g-c2-001',
+    skill: 'grammar',
+    difficulty: 'C2',
+    question:
+      '¿Cuál es el matiz correcto entre sinónimos? "El presidente ___ que la situación era grave."',
+    options: ['dijo', 'señaló', 'habló', 'comentó'],
+    correct: 'señaló',
+    grammar_slug: 'expresion-matizada',
+  },
+  {
+    id: 'g-c2-002',
+    skill: 'grammar',
+    difficulty: 'C2',
+    question: 'Reconoce el arabismo: ¿Cuál de estas palabras viene del árabe?',
+    options: ['almohada', 'televisión', 'bicicleta', 'teléfono'],
+    correct: 'almohada',
+    grammar_slug: 'arabismos',
+  },
+  {
+    id: 'g-c2-003',
+    skill: 'grammar',
+    difficulty: 'C2',
+    question: '¿Qué recurso estilístico usa esta frase? "Vine, vi, vencí."',
+    options: ['Asíndeton', 'Anáfora', 'Polisíndeton', 'Metáfora'],
+    correct: 'Asíndeton',
+    grammar_slug: 'recursos-estilisticos',
+  },
+  {
+    id: 'g-c2-004',
+    skill: 'grammar',
+    difficulty: 'C2',
+    question: '"Actualmente" en español significa...',
+    options: [
+      'En realidad',
+      'En el momento presente',
+      'De manera actual',
+      'Verdaderamente',
+    ],
+    correct: 'En el momento presente',
+    grammar_slug: 'falsos-amigos',
+  },
+]
+
+// ── Vocabulary — A1 (10 questions) ─────────────────────────────────────────────
+const vocabularyA1: AssessmentQuestion[] = [
+  {
+    id: 'v-a1-001',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿Cómo se dice "good morning" en español?',
+    options: ['Buenas noches', 'Buenos días', 'Buenas tardes', 'Hola'],
+    correct: 'Buenos días',
+  },
+  {
+    id: 'v-a1-002',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿Qué significa "hermano"?',
+    options: ['Brother', 'Sister', 'Father', 'Son'],
+    correct: 'Brother',
+  },
+  {
+    id: 'v-a1-003',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿Cuál es el número "cinco"?',
+    options: ['4', '5', '6', '7'],
+    correct: '5',
+  },
+  {
+    id: 'v-a1-004',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿De qué color es "rojo"?',
+    options: ['Red', 'Blue', 'Green', 'Yellow'],
+    correct: 'Red',
+  },
+  {
+    id: 'v-a1-005',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿Qué profesión es "médico"?',
+    options: ['Teacher', 'Doctor', 'Lawyer', 'Engineer'],
+    correct: 'Doctor',
+  },
+  {
+    id: 'v-a1-006',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿Cómo se dice "water" en español?',
+    options: ['Vino', 'Agua', 'Leche', 'Zumo'],
+    correct: 'Agua',
+  },
+  {
+    id: 'v-a1-007',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '"Lunes" es...',
+    options: ['Monday', 'Tuesday', 'Wednesday', 'Sunday'],
+    correct: 'Monday',
+  },
+  {
+    id: 'v-a1-008',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿Qué parte del cuerpo es "mano"?',
+    options: ['Head', 'Hand', 'Foot', 'Arm'],
+    correct: 'Hand',
+  },
+  {
+    id: 'v-a1-009',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '"Desayuno" significa...',
+    options: ['Dinner', 'Lunch', 'Breakfast', 'Snack'],
+    correct: 'Breakfast',
+  },
+  {
+    id: 'v-a1-010',
+    skill: 'vocabulary',
+    difficulty: 'A1',
+    question: '¿Qué animal es "perro"?',
+    options: ['Cat', 'Dog', 'Bird', 'Fish'],
+    correct: 'Dog',
+  },
+]
+
+// ── Vocabulary — A2 (10 questions) ─────────────────────────────────────────────
+const vocabularyA2: AssessmentQuestion[] = [
+  {
+    id: 'v-a2-001',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '"Ayer" significa...',
+    options: ['Today', 'Tomorrow', 'Yesterday', 'Now'],
+    correct: 'Yesterday',
+  },
+  {
+    id: 'v-a2-002',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '¿Qué significa "hacer la maleta"?',
+    options: [
+      'To pack a suitcase',
+      'To make a table',
+      'To do homework',
+      'To clean the house',
+    ],
+    correct: 'To pack a suitcase',
+  },
+  {
+    id: 'v-a2-003',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '¿Cómo se dice "cheap" en español?',
+    options: ['Caro', 'Barato', 'Bonito', 'Feo'],
+    correct: 'Barato',
+  },
+  {
+    id: 'v-a2-004',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '"Estación de tren" significa...',
+    options: ['Bus stop', 'Airport', 'Train station', 'Metro'],
+    correct: 'Train station',
+  },
+  {
+    id: 'v-a2-005',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '¿Qué tiempo hace si decimos "está nublado"?',
+    options: ['It is sunny', 'It is rainy', 'It is cloudy', 'It is windy'],
+    correct: 'It is cloudy',
+  },
+  {
+    id: 'v-a2-006',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '"Camarero" es...',
+    options: ['Cook', 'Waiter', 'Manager', 'Customer'],
+    correct: 'Waiter',
+  },
+  {
+    id: 'v-a2-007',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '¿Qué verbo significa "to drive"?',
+    options: ['Caminar', 'Correr', 'Conducir', 'Nadar'],
+    correct: 'Conducir',
+  },
+  {
+    id: 'v-a2-008',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '"Receta médica" se refiere a...',
+    options: ['Cooking recipe', 'Prescription', 'Medical book', 'Hospital'],
+    correct: 'Prescription',
+  },
+  {
+    id: 'v-a2-009',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '¿Dónde compras "carne"?',
+    options: [
+      'En la farmacia',
+      'En la carnicería',
+      'En la panadería',
+      'En la ferretería',
+    ],
+    correct: 'En la carnicería',
+  },
+  {
+    id: 'v-a2-010',
+    skill: 'vocabulary',
+    difficulty: 'A2',
+    question: '"A menudo" significa...',
+    options: ['Never', 'Always', 'Often', 'Rarely'],
+    correct: 'Often',
+  },
+]
+
+// ── Vocabulary — B1 (10 questions) ─────────────────────────────────────────────
+const vocabularyB1: AssessmentQuestion[] = [
+  {
+    id: 'v-b1-001',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '¿Qué significa "desarrollar"?',
+    options: ['To develop', 'To destroy', 'To describe', 'To discover'],
+    correct: 'To develop',
+  },
+  {
+    id: 'v-b1-002',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '"Medio ambiente" se refiere a...',
+    options: ['Social media', 'Environment', 'Middle age', 'Average'],
+    correct: 'Environment',
+  },
+  {
+    id: 'v-b1-003',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '¿Qué es una "ventaja"?',
+    options: ['Disadvantage', 'Window', 'Advantage', 'Sale'],
+    correct: 'Advantage',
+  },
+  {
+    id: 'v-b1-004',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '"A pesar de" significa...',
+    options: ['Because of', 'In addition to', 'In spite of', 'According to'],
+    correct: 'In spite of',
+  },
+  {
+    id: 'v-b1-005',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '¿Cómo se dice "to achieve a goal"?',
+    options: [
+      'Alcanzar una meta',
+      'Perder un objetivo',
+      'Encontrar un gol',
+      'Realizar un sueño',
+    ],
+    correct: 'Alcanzar una meta',
+  },
+  {
+    id: 'v-b1-006',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '"Solicitar" es sinónimo de...',
+    options: ['Pedir', 'Dar', 'Recibir', 'Negar'],
+    correct: 'Pedir',
+  },
+  {
+    id: 'v-b1-007',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '"Noticia" significa...',
+    options: ['Notice', 'News', 'Note', 'Novel'],
+    correct: 'News',
+  },
+  {
+    id: 'v-b1-008',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '¿Qué es "el paro"?',
+    options: ['The stop', 'Unemployment', 'The parade', 'The couple'],
+    correct: 'Unemployment',
+  },
+  {
+    id: 'v-b1-009',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '"Además" se usa para...',
+    options: ['Contrastar', 'Añadir información', 'Concluir', 'Expresar causa'],
+    correct: 'Añadir información',
+  },
+  {
+    id: 'v-b1-010',
+    skill: 'vocabulary',
+    difficulty: 'B1',
+    question: '¿Qué significa "tener éxito"?',
+    options: [
+      'To be successful',
+      'To have an exit',
+      'To be excited',
+      'To exit quickly',
+    ],
+    correct: 'To be successful',
+  },
+]
+
+// ── Vocabulary — B2 (4 questions) ──────────────────────────────────────────────
+const vocabularyB2: AssessmentQuestion[] = [
+  {
+    id: 'v-b2-001',
+    skill: 'vocabulary',
+    difficulty: 'B2',
+    question: '¿Qué significa "poner en entredicho"?',
+    options: [
+      'To question / cast doubt on',
+      'To put between sayings',
+      'To say something clearly',
+      'To interrupt',
+    ],
+    correct: 'To question / cast doubt on',
+  },
+  {
+    id: 'v-b2-002',
+    skill: 'vocabulary',
+    difficulty: 'B2',
+    question: '"No obstante" equivale a...',
+    options: ['Por lo tanto', 'Sin embargo', 'Además', 'Porque'],
+    correct: 'Sin embargo',
+  },
+  {
+    id: 'v-b2-003',
+    skill: 'vocabulary',
+    difficulty: 'B2',
+    question: '¿Qué es un "hito"?',
+    options: ['Milestone', 'Thread', 'Son', 'Hymn'],
+    correct: 'Milestone',
+  },
+  {
+    id: 'v-b2-004',
+    skill: 'vocabulary',
+    difficulty: 'B2',
+    question: '"Indicios" significa...',
+    options: ['Indices', 'Signs / clues', 'Judgments', 'Indians'],
+    correct: 'Signs / clues',
+  },
+]
+
+// ── Vocabulary — C1 (4 questions) ──────────────────────────────────────────────
+const vocabularyC1: AssessmentQuestion[] = [
+  {
+    id: 'v-c1-001',
+    skill: 'vocabulary',
+    difficulty: 'C1',
+    question: '¿Qué significa "efímero"?',
+    options: [
+      'Eternal',
+      'Ephemeral / short-lived',
+      'Efficacious',
+      'Effeminate',
+    ],
+    correct: 'Ephemeral / short-lived',
+  },
+  {
+    id: 'v-c1-002',
+    skill: 'vocabulary',
+    difficulty: 'C1',
+    question: '"Soslayar" un problema significa...',
+    options: [
+      'Resolverlo',
+      'Evitarlo o esquivarlo',
+      'Enfrentarlo',
+      'Analizarlo',
+    ],
+    correct: 'Evitarlo o esquivarlo',
+  },
+  {
+    id: 'v-c1-003',
+    skill: 'vocabulary',
+    difficulty: 'C1',
+    question: '"Perplejo" describe a alguien...',
+    options: [
+      'Muy contento',
+      'Confundido o desconcertado',
+      'Muy enfadado',
+      'Aburrido',
+    ],
+    correct: 'Confundido o desconcertado',
+  },
+  {
+    id: 'v-c1-004',
+    skill: 'vocabulary',
+    difficulty: 'C1',
+    question: '¿Qué es "la índole" de algo?',
+    options: ['Su precio', 'Su naturaleza o carácter', 'Su índice', 'Su final'],
+    correct: 'Su naturaleza o carácter',
+  },
+]
+
+// ── Vocabulary — C2 (4 questions) ──────────────────────────────────────────────
+const vocabularyC2: AssessmentQuestion[] = [
+  {
+    id: 'v-c2-001',
+    skill: 'vocabulary',
+    difficulty: 'C2',
+    question: '¿Qué significa "acendrado"?',
+    options: ['Ascended', 'Pure / refined', 'Centred', 'Burnt'],
+    correct: 'Pure / refined',
+  },
+  {
+    id: 'v-c2-002',
+    skill: 'vocabulary',
+    difficulty: 'C2',
+    question: '"Displicente" describe una actitud...',
+    options: [
+      'Entusiasta',
+      'De indiferencia o desdén',
+      'Muy disciplinada',
+      'Agresiva',
+    ],
+    correct: 'De indiferencia o desdén',
+  },
+  {
+    id: 'v-c2-003',
+    skill: 'vocabulary',
+    difficulty: 'C2',
+    question: '"Denuedo" significa...',
+    options: ['Negación', 'Esfuerzo y valentía', 'Desnudo', 'Demora'],
+    correct: 'Esfuerzo y valentía',
+  },
+  {
+    id: 'v-c2-004',
+    skill: 'vocabulary',
+    difficulty: 'C2',
+    question: '¿Qué es un "palimpsesto"?',
+    options: [
+      'Un manuscrito reutilizado',
+      'Un palíndromo',
+      'Un texto muy breve',
+      'Un tipo de imprenta',
+    ],
+    correct: 'Un manuscrito reutilizado',
+  },
+]
+
+// ── Reading — A1/A2 (6 questions) ──────────────────────────────────────────────
+const readingA1A2: AssessmentQuestion[] = [
+  {
+    id: 'r-a1-001',
+    skill: 'reading',
+    difficulty: 'A1',
+    question:
+      'Lee el texto: "Me llamo Ana. Soy de Barcelona. Tengo 25 años y soy profesora."\n\n¿Cuál es la profesión de Ana?',
+    options: ['Médica', 'Profesora', 'Estudiante', 'Abogada'],
+    correct: 'Profesora',
+  },
+  {
+    id: 'r-a1-002',
+    skill: 'reading',
+    difficulty: 'A1',
+    question:
+      'Lee: "Los lunes voy al gimnasio y los miércoles estudio inglés."\n\n¿Qué hace los lunes?',
+    options: ['Estudia inglés', 'Va al gimnasio', 'Va al cine', 'Trabaja'],
+    correct: 'Va al gimnasio',
+  },
+  {
+    id: 'r-a2-001',
+    skill: 'reading',
+    difficulty: 'A2',
+    question:
+      'Lee: "El fin de semana pasado fuimos a la playa. Hacía buen tiempo y el agua estaba caliente. Comimos paella en un chiringuito."\n\n¿Dónde comieron?',
+    options: [
+      'En casa',
+      'En un restaurante',
+      'En un chiringuito',
+      'En el hotel',
+    ],
+    correct: 'En un chiringuito',
+  },
+  {
+    id: 'r-a2-002',
+    skill: 'reading',
+    difficulty: 'A2',
+    question:
+      'Lee: "Ayer no pude ir al trabajo porque estaba enfermo. Llamé a mi jefe por teléfono y le expliqué la situación."\n\n¿Por qué no fue al trabajo?',
+    options: [
+      'Porque estaba de vacaciones',
+      'Porque estaba enfermo',
+      'Porque llegó tarde',
+      'Porque no tenía coche',
+    ],
+    correct: 'Porque estaba enfermo',
+  },
+  {
+    id: 'r-a1-003',
+    skill: 'reading',
+    difficulty: 'A1',
+    question:
+      'Lee: "Tengo dos hermanos: Pablo y Lucía. Pablo tiene 20 años y Lucía tiene 15."\n\n¿Cuántos años tiene Pablo?',
+    options: ['15', '20', '25', '10'],
+    correct: '20',
+  },
+  {
+    id: 'r-a2-003',
+    skill: 'reading',
+    difficulty: 'A2',
+    question:
+      'Lee: "Para llegar al museo, sigue todo recto, cruza la plaza y gira a la izquierda. El museo está al lado de la catedral."\n\n¿Dónde está el museo?',
+    options: [
+      'Enfrente de la catedral',
+      'Al lado de la catedral',
+      'Detrás de la catedral',
+      'Lejos de la catedral',
+    ],
+    correct: 'Al lado de la catedral',
+  },
+]
+
+// ── Reading — B1/B2 (4 questions) ──────────────────────────────────────────────
+const readingB1B2: AssessmentQuestion[] = [
+  {
+    id: 'r-b1-001',
+    skill: 'reading',
+    difficulty: 'B1',
+    question:
+      'Lee: "Cada vez más personas deciden teletrabajar. Aunque tiene ventajas como la flexibilidad horaria, algunos expertos advierten que puede provocar aislamiento social."\n\nSegún el texto, una desventaja del teletrabajo es...',
+    options: [
+      'La flexibilidad horaria',
+      'El aislamiento social',
+      'El ahorro de tiempo',
+      'La productividad',
+    ],
+    correct: 'El aislamiento social',
+  },
+  {
+    id: 'r-b1-002',
+    skill: 'reading',
+    difficulty: 'B1',
+    question:
+      'Lee: "El gobierno ha anunciado nuevas medidas para combatir el cambio climático. Entre ellas destaca la reducción de emisiones y el fomento de las energías renovables."\n\n¿Qué se quiere fomentar según el texto?',
+    options: [
+      'Las emisiones',
+      'El cambio climático',
+      'Las energías renovables',
+      'El gobierno',
+    ],
+    correct: 'Las energías renovables',
+  },
+  {
+    id: 'r-b2-001',
+    skill: 'reading',
+    difficulty: 'B2',
+    question:
+      'Lee: "Si bien las cifras macroeconómicas reflejan una recuperación, no cabe duda de que la economía doméstica sigue sufriendo las consecuencias de la crisis. La brecha entre ricos y pobres se ha ampliado."\n\n¿Qué significa "la brecha se ha ampliado"?',
+    options: [
+      'La diferencia ha aumentado',
+      'La economía ha mejorado',
+      'Los ricos han bajado',
+      'La crisis ha terminado',
+    ],
+    correct: 'La diferencia ha aumentado',
+  },
+  {
+    id: 'r-b2-002',
+    skill: 'reading',
+    difficulty: 'B2',
+    question:
+      'Lee: "El autor sostiene que la educación es la base del progreso, pero lamenta que los recortes presupuestarios hayan mermado su calidad."\n\n¿Cuál es la postura del autor?',
+    options: [
+      'Cree que la educación no importa',
+      'Apoya la educación pero critica los recortes',
+      'Rechaza el progreso',
+      'Defiende los recortes',
+    ],
+    correct: 'Apoya la educación pero critica los recortes',
+  },
+]
+
+// ── Reading — C1/C2 (6 questions) ──────────────────────────────────────────────
+const readingC1C2: AssessmentQuestion[] = [
+  {
+    id: 'r-c1-001',
+    skill: 'reading',
+    difficulty: 'C1',
+    question:
+      'Lee: "La posverdad, entendida como la distorsión deliberada de una realidad en la que priman las emociones sobre los hechos, constituye una amenaza para el debate democrático."\n\nSegún el texto, la posverdad...',
+    options: [
+      'Favorece el debate democrático',
+      'Da prioridad a las emociones sobre los hechos',
+      'Es una forma de verdad objetiva',
+      'Defiende los hechos frente a las emociones',
+    ],
+    correct: 'Da prioridad a las emociones sobre los hechos',
+  },
+  {
+    id: 'r-c1-002',
+    skill: 'reading',
+    difficulty: 'C1',
+    question:
+      'Lee: "A fuerza de repetir ciertos mantras económicos, hemos naturalizado la precariedad. Ya ni siquiera aspiramos a lo que antes era un derecho."\n\n¿Qué tono predomina en el texto?',
+    options: [
+      'Optimista',
+      'Crítico y reivindicativo',
+      'Neutral e informativo',
+      'Humorístico',
+    ],
+    correct: 'Crítico y reivindicativo',
+  },
+  {
+    id: 'r-c2-001',
+    skill: 'reading',
+    difficulty: 'C2',
+    question:
+      'Lee: "No es baladí señalar que la actual encrucijada geopolítica dista de ser un mero avatar histórico; antes bien, hunde sus raíces en tensiones que han ido larvándose durante décadas."\n\n¿Qué significa "no es baladí"?',
+    options: [
+      'No es importante',
+      'No es bala',
+      'No es trivial o insignificante',
+      'No es cierto',
+    ],
+    correct: 'No es trivial o insignificante',
+  },
+  {
+    id: 'r-c2-002',
+    skill: 'reading',
+    difficulty: 'C2',
+    question:
+      'Lee: "El fenómeno migratorio, lejos de ser una crisis, constituye una constante antropológica. La historia de la humanidad es, en esencia, la historia de sus desplazamientos."\n\n¿Qué idea defiende el autor?',
+    options: [
+      'Que la migración es una crisis moderna',
+      'Que la migración es un fenómeno inherente a la humanidad',
+      'Que hay que frenar los desplazamientos',
+      'Que la historia no tiene que ver con la migración',
+    ],
+    correct: 'Que la migración es un fenómeno inherente a la humanidad',
+  },
+]
+
+// ── Export ─────────────────────────────────────────────────────────────────────
+
+export const assessmentBank: AssessmentQuestion[] = [
+  ...grammarA1,
+  ...grammarA2,
+  ...grammarB1,
+  ...grammarB2,
+  ...grammarC1,
+  ...grammarC2,
+  ...vocabularyA1,
+  ...vocabularyA2,
+  ...vocabularyB1,
+  ...vocabularyB2,
+  ...vocabularyC1,
+  ...vocabularyC2,
+  ...readingA1A2,
+  ...readingB1B2,
+  ...readingC1C2,
+]
 
 export function pickNextQuestion(
   usedIds: Set<string>,

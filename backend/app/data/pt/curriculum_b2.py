@@ -32,7 +32,12 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=2,
         title="Perífrases Verbais e Infinitivo Pessoal",
-        grammar_points=["perífrases-aspetuais", "perífrases-modais", "andar-a-estar-a", "infinitivo-pessoal"],
+        grammar_points=[
+            "perífrases-aspetuais",
+            "perífrases-modais",
+            "andar-a-estar-a",
+            "infinitivo-pessoal",
+        ],
         vocabulary_set_ids=["hábitos_b2", "mudanças_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
