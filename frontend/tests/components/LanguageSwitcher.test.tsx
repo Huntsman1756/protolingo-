@@ -40,8 +40,8 @@ function seedStore(overrides: Partial<ReturnType<typeof useLanguageStore.getStat
     isSwitching: false,
     fetchLanguages: vi.fn().mockResolvedValue(undefined),
     switchLanguage: vi.fn().mockResolvedValue(true),
-    addLanguage: vi.fn().mockResolvedValue(undefined),
-    removeLanguage: vi.fn().mockResolvedValue(undefined),
+    addLanguage: vi.fn().mockResolvedValue(true),
+    removeLanguage: vi.fn().mockResolvedValue(true),
     ...overrides,
   })
 }
@@ -57,10 +57,10 @@ describe('LanguageSwitcher', () => {
     expect(screen.getByText('English (US)')).toBeDefined()
   })
 
-  it('renders null when no active language', () => {
+  it('renders a loading skeleton when no active language', () => {
     useLanguageStore.setState({ activeLanguage: null })
     const { container } = render(<LanguageSwitcher />)
-    expect(container.innerHTML).toBe('')
+    expect(container.querySelector('.animate-pulse')).toBeTruthy()
   })
 
   it('does not open dropdown when only one language', () => {

@@ -88,9 +88,10 @@ describe('getLanguageByCode', () => {
     expect(getLanguageByCode('')).toBeUndefined()
   })
 
-  it('returns undefined for case-mismatched code', () => {
-    expect(getLanguageByCode('ES-ES')).toBeUndefined()
-    expect(getLanguageByCode('es-es')).toBeUndefined()
+  it('matches codes case-insensitively', () => {
+    expect(getLanguageByCode('ES-ES')?.code).toBe('es-ES')
+    expect(getLanguageByCode('es-es')?.code).toBe('es-ES')
+    expect(getLanguageByCode('EN-US')?.code).toBe('en-US')
   })
 })
 

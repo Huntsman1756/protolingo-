@@ -45,7 +45,8 @@ export const SUPPORTED_TARGET_LANGUAGES: TargetLanguage[] = [
 ]
 
 export function getLanguageByCode(code: string): TargetLanguage | undefined {
-  return SUPPORTED_TARGET_LANGUAGES.find((l) => l.code === code)
+  const upper = code.toUpperCase()
+  return SUPPORTED_TARGET_LANGUAGES.find((l) => l.code.toUpperCase() === upper)
 }
 
 export const DEFAULT_TARGET_LANGUAGE = 'en-GB'

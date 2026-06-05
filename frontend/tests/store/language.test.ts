@@ -375,9 +375,9 @@ describe('useLanguageStore — addLanguage', () => {
   it('handles network error silently', async () => {
     mockApiFetch.mockRejectedValueOnce(new Error('network error'))
 
-    await expect(
-      useLanguageStore.getState().addLanguage('pt-PT')
-    ).resolves.toBeUndefined()
+    const result = await useLanguageStore.getState().addLanguage('pt-PT')
+
+    expect(result).toBe(false)
   })
 })
 
@@ -444,8 +444,8 @@ describe('useLanguageStore — removeLanguage', () => {
   it('handles network error silently', async () => {
     mockApiFetch.mockRejectedValueOnce(new Error('network error'))
 
-    await expect(
-      useLanguageStore.getState().removeLanguage('es-ES')
-    ).resolves.toBeUndefined()
+    const result = await useLanguageStore.getState().removeLanguage('es-ES')
+
+    expect(result).toBe(false)
   })
 })

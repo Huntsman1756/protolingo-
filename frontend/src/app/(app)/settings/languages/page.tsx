@@ -66,13 +66,15 @@ export default function MyLanguagesPage() {
 
   async function handleDelete() {
     if (!deleteTarget) return
-    await removeLanguage(deleteTarget.target_language)
+    const ok = await removeLanguage(deleteTarget.target_language)
+    if (!ok) return
     setDeleteTarget(null)
   }
 
   async function handleAdd() {
     if (!addingCode) return
-    await addLanguage(addingCode)
+    const ok = await addLanguage(addingCode)
+    if (!ok) return
     setAddModalOpen(false)
     setAddingCode('')
     router.push(`/onboarding?language=${addingCode}&new=true`)

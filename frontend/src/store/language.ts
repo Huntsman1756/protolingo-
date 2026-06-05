@@ -5,6 +5,7 @@ import {
 } from '@/lib/target-languages'
 import type { TargetLanguage } from '@/lib/target-languages'
 import { apiFetch } from '@/lib/api'
+import { mapUserLanguageInfo } from '@/lib/mappers'
 
 export interface UserLanguagePlan {
   id: number
@@ -35,31 +36,8 @@ interface LanguageStore {
   isSwitching: boolean
   fetchLanguages: () => Promise<void>
   switchLanguage: (code: string) => Promise<boolean>
-  addLanguage: (code: string) => Promise<void>
-  removeLanguage: (code: string) => Promise<void>
-}
-
-function mapUserLanguageInfo(data: Record<string, any>): UserLanguageInfo {
-  return {
-    target_language: data.target_language,
-    is_active: data.is_active,
-    plan: data.plan
-      ? {
-          id: data.plan.id,
-          cefr_level: data.plan.cefr_level ?? null,
-          progress_day: data.plan.progress_day,
-          total_days: data.plan.total_days,
-          completion_pct: data.plan.completion_pct,
-        }
-      : null,
-    progress: data.progress
-      ? {
-          total_xp: data.progress.total_xp,
-          current_streak: data.progress.current_streak,
-          lessons_completed: data.progress.lessons_completed,
-        }
-      : null,
-  }
+  addLanguage: (code: string) => Promise<boolean>
+  removeLanguage: (code: string) => Promise<boolean>
 }
 
 export const useLanguageStore = create<LanguageStore>((set, get) => ({
@@ -112,29 +90,31 @@ export const useLanguageStore = create<LanguageStore>((set, get) => ({
     }
   },
 
-  addLanguage: async (code: string) => {
+  addLanguage: async (code: string): Promise<boolean> => {
     try {
       const res = await apiFetch('/api/languages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ target_language: code }),
       })
-      if (!res.ok) return
+      if (!res.ok) return false
       await get().fetchLanguages()
+      return true
     } catch {
-      // silently ignore
+      return false
     }
   },
 
-  removeLanguage: async (code: string) => {
+  removeLanguage: async (code: string): Promise<boolean> => {
     try {
       const res = await apiFetch(`/api/languages/${encodeURIComponent(code)}`, {
         method: 'DELETE',
       })
-      if (!res.ok) return
+      if (!res.ok) return false
       await get().fetchLanguages()
+      return true
     } catch {
-      // silently ignore
+      return false
     }
   },
 }))

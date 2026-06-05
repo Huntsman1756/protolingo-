@@ -167,6 +167,9 @@ async def answer_exercise(
 
     lesson = await _get_lesson_for_user(exercise.lesson_id, current_user.id, db)
 
+    plan = await db.get(StudyPlan, lesson.study_plan_id)
+    target_language = plan.target_language if plan else "en-US"
+
     if exercise.answered_at is not None:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT, detail="Exercise already answered"
@@ -184,6 +187,7 @@ async def answer_exercise(
                 prompt=prompt,
                 criteria=criteria,
                 answer=data.answer,
+                target_language=target_language,
             )
             sco = eval_result.score if hasattr(eval_result, "score") else eval_result["score"]
             fb = (
@@ -203,6 +207,7 @@ async def answer_exercise(
                 question=exercise.question,
                 correct_answer=exercise.correct_answer,
                 student_answer=data.answer,
+                target_language=target_language,
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
@@ -223,6 +228,7 @@ async def answer_exercise(
                 cefr_level=lesson.cefr_level,
                 target=exercise.correct_answer,
                 transcription=transcription,
+                target_language=target_language,
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
