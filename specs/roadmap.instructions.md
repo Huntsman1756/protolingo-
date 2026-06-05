@@ -373,7 +373,7 @@ This document records what was built and the completion criteria met.
 | **10.2** | Backend: `user_language_service`, `get_active_study_plan` dependency, multi-language LLM prompts, migration `0030` (placeholder — NOT NULL moved to 10.3); prompt tests | ✅ |
 | **10.3** | API: new `/api/languages` router, refactor assessment + study-plan endpoints, Pydantic schemas; backend tests | ✅ |
 | **10.4** | Frontend core: `target-languages.ts` config, language Zustand store, `LanguageSwitcher` component, sidebar integration | ✅ |
-| **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted; i18n keys added per sub-phase; frontend tests | ⬜ |
+| **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted; i18n keys added per sub-phase; frontend tests | ✅ |
 | **10.6** | Curriculum and language data: Spanish, Italian, Portuguese curriculum files (backend + frontend); target language descriptions; curriculum tests | ⬜ |
 
 **Completion criteria:**

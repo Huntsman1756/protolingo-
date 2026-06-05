@@ -46,9 +46,11 @@ export default function OnboardingPage() {
   const [selectedGoals, setSelectedGoals] = useState<LearningGoal[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [languagesLoaded, setLanguagesLoaded] = useState(false)
 
   useEffect(() => {
     fetchLanguages().then(() => {
+      setLanguagesLoaded(true)
       const codes = useLanguageStore.getState().availableLanguageCodes
       if (codes.length > 0 && !codes.includes(targetLanguage)) {
         setTargetLanguage(codes[0])
@@ -143,15 +145,31 @@ export default function OnboardingPage() {
                 <label className="text-fl-label text-fl-muted-2 mb-3 block font-mono tracking-widest uppercase">
                   {t('chooseVariant')}
                 </label>
-                {availableLanguageCodes.length > 0 ? (
+                {!languagesLoaded ? (
+                  <div className="border-fl-border text-fl-muted-2 border px-4 py-3 font-mono text-xs tracking-widest">
+                    …
+                  </div>
+                ) : availableLanguageCodes.length > 0 ? (
                   <TargetLanguageSelector
                     value={targetLanguage}
                     onChange={setTargetLanguage}
                     availableCodes={availableLanguageCodes}
                   />
                 ) : (
-                  <div className="border-fl-border text-fl-muted-2 border px-4 py-3 font-mono text-xs tracking-widest">
-                    …
+                  <div className="space-y-3 text-center">
+                    <p className="text-fl-muted-2 font-mono text-xs">
+                      {t('saveFailed')}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setLanguagesLoaded(false)
+                        fetchLanguages()
+                      }}
+                      className="text-fl-label text-fl-accent font-mono text-xs tracking-widest uppercase underline"
+                    >
+                      {tCommon('retry')}
+                    </button>
                   </div>
                 )}
               </div>

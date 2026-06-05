@@ -32,9 +32,12 @@ export default function MyLanguagesPage() {
   const [addingCode, setAddingCode] = useState('')
   const [switchingCode, setSwitchingCode] = useState<string | null>(null)
   const [toast, setToast] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const load = useCallback(async () => {
+    setLoading(true)
     await fetchLanguages()
+    setLoading(false)
   }, [fetchLanguages])
 
   useEffect(() => {
@@ -65,7 +68,6 @@ export default function MyLanguagesPage() {
     if (!deleteTarget) return
     await removeLanguage(deleteTarget.target_language)
     setDeleteTarget(null)
-    await load()
   }
 
   async function handleAdd() {
@@ -121,7 +123,13 @@ export default function MyLanguagesPage() {
       </div>
 
       {/* Language cards */}
-      {userLanguages.length === 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center py-16">
+          <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
+            {tCommon('loading')}
+          </span>
+        </div>
+      ) : userLanguages.length === 0 ? (
         <div className="border-fl-border bg-fl-surface border px-6 py-10 text-center">
           <p className="text-fl-muted-2 font-mono text-sm">
             {t('noLanguages')}
