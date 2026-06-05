@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Alle herinneringen wissen",
     "memoryClearAllMessage": "Hiermee worden alle opgeslagen herinneringen permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
     "memoryClearAllConfirm": "Alles wissen",
-    "memoryManage": "Herinneringen beheren"
+    "memoryManage": "Herinneringen beheren",
+    "sectionLanguages": "Talen",
+    "languagesManage": "Mijn talen"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Pools",
     "nl": "Nederlands",
     "ro": "Roemeens",
-    "ru": "Russisch"
+    "ru": "Russisch",
+    "myLanguages": "Mijn talen",
+    "addLanguage": "Taal toevoegen",
+    "selectLanguage": "Kies de taal die je wilt leren",
+    "activeLanguage": "Actief",
+    "switchTo": "Wissel naar deze",
+    "switching": "Wisselen naar {language}...",
+    "switched": "Gewisseld naar {language} ({level})",
+    "removeLanguage": "Taal verwijderen",
+    "removeConfirmTitle": "{language} verwijderen?",
+    "removeConfirmMessage": "Alle voortgang, lessen, flashcards en gegevens van deze taal worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "removeConfirmButton": "Verwijderen",
+    "noLanguages": "Geen talen geconfigureerd.",
+    "progressLabel": "Voortgang",
+    "levelLabel": "Niveau",
+    "xpLabel": "Totale XP",
+    "streakLabel": "Reeks",
+    "lessonsLabel": "Lessen",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "Details bekijken",
+    "supportedLanguages": "Beschikbare talen"
   },
   "targetLanguages": {
     "en-US": "Amerikaans Engels",
@@ -934,7 +956,9 @@
       "emigration": "In het buitenland leven",
       "exams": "Examens en certificaten",
       "social": "Socialiseren"
-    }
+    },
+    "newLanguageHeadline": "Welke nieuwe taal wil je leren?",
+    "newLanguageSubtitle": "Er wordt een nieuw studieplan aangemaakt voor deze taal."
   },
   "tour": {
     "skip": "Overslaan",

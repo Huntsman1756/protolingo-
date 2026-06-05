@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { getCurriculumUnits, type CurriculumUnit } from '@/data/curriculum'
+import { useLanguageStore } from '@/store/language'
 import UnitCard from '@/components/plan/UnitCard'
 import UnitDrawer from '@/components/plan/UnitDrawer'
 import LevelTestBanner from '@/components/plan/LevelTestBanner'
@@ -92,6 +93,8 @@ export default function PlanPage() {
   const t = useTranslations('plan')
   const tCommon = useTranslations('common')
   const router = useRouter()
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
+  const langName = activeLanguage?.name ?? ''
 
   const [plan, setPlan] = useState<StudyPlan | null>(null)
   const [loading, setLoading] = useState(true)
@@ -212,7 +215,7 @@ export default function PlanPage() {
         <div className="flex flex-wrap items-center gap-4 px-6 py-4">
           <div>
             <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
-              {t('level')}
+              {langName ? `${langName} — ${t('level')}` : t('level')}
             </p>
             <p className="text-fl-fg font-mono text-2xl font-bold tracking-widest">
               {level}

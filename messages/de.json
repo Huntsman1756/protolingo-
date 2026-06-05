@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Alle Erinnerungen löschen",
     "memoryClearAllMessage": "Dadurch werden alle gespeicherten Erinnerungen dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
     "memoryClearAllConfirm": "Alles löschen",
-    "memoryManage": "Erinnerungen verwalten"
+    "memoryManage": "Erinnerungen verwalten",
+    "sectionLanguages": "Sprachen",
+    "languagesManage": "Meine Sprachen"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Polnisch",
     "nl": "Niederländisch",
     "ro": "Rumänisch",
-    "ru": "Russisch"
+    "ru": "Russisch",
+    "myLanguages": "Meine Sprachen",
+    "addLanguage": "Sprache hinzufügen",
+    "selectLanguage": "Wähle die Sprache, die du lernen möchtest",
+    "activeLanguage": "Aktiv",
+    "switchTo": "Wechseln zu",
+    "switching": "Wechsle zu {language}...",
+    "switched": "Gewechselt zu {language} ({level})",
+    "removeLanguage": "Sprache entfernen",
+    "removeConfirmTitle": "{language} entfernen?",
+    "removeConfirmMessage": "Alle Fortschritte, Lektionen, Flashcards und Daten dieser Sprache werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "removeConfirmButton": "Entfernen",
+    "noLanguages": "Keine Sprachen konfiguriert.",
+    "progressLabel": "Fortschritt",
+    "levelLabel": "Niveau",
+    "xpLabel": "Gesamt-XP",
+    "streakLabel": "Serie",
+    "lessonsLabel": "Lektionen",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "Details anzeigen",
+    "supportedLanguages": "Verfügbare Sprachen"
   },
   "targetLanguages": {
     "en-US": "Amerikanisches Englisch",
@@ -934,7 +956,9 @@
       "emigration": "Im Ausland leben",
       "exams": "Prüfungen & Zertifikate",
       "social": "Sozialleben"
-    }
+    },
+    "newLanguageHeadline": "Welche neue Sprache möchtest du lernen?",
+    "newLanguageSubtitle": "Ein neuer Studienplan wird für diese Sprache erstellt."
   },
   "tour": {
     "skip": "Überspringen",

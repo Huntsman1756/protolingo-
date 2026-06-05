@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
@@ -28,6 +28,7 @@ export default function OnboardingPage() {
   const t = useTranslations('onboarding')
   const tCommon = useTranslations('common')
   const router = useRouter()
+  const searchParams = useSearchParams()
   const setUser = useAuthStore((s) => s.setUser)
   const user = useAuthStore((s) => s.user)
   const fetchLanguages = useLanguageStore((s) => s.fetchLanguages)
@@ -35,8 +36,13 @@ export default function OnboardingPage() {
     (s) => s.availableLanguageCodes
   )
 
+  const isNewLanguage = searchParams.get('new') === 'true'
+  const queryLanguage = searchParams.get('language')
+
   const [step, setStep] = useState<1 | 2>(1)
-  const [targetLanguage, setTargetLanguage] = useState(DEFAULT_TARGET_LANGUAGE)
+  const [targetLanguage, setTargetLanguage] = useState(
+    queryLanguage ?? DEFAULT_TARGET_LANGUAGE
+  )
   const [selectedGoals, setSelectedGoals] = useState<LearningGoal[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -109,7 +115,11 @@ export default function OnboardingPage() {
             <div className="flex items-center gap-2">
               <span className="text-fl-label text-fl-muted-2">●</span>
               <span className="text-fl-muted-2 font-mono text-xs tracking-widest uppercase">
-                {step === 1 ? t('title') : t('goals.title')}
+                {step === 1
+                  ? isNewLanguage
+                    ? t('newLanguageHeadline')
+                    : t('title')
+                  : t('goals.title')}
               </span>
             </div>
             <span className="text-fl-hint text-fl-muted-4 font-mono tabular-nums">
@@ -127,7 +137,7 @@ export default function OnboardingPage() {
           {step === 1 && (
             <form onSubmit={handleStep1} className="space-y-6">
               <p className="text-fl-fg mb-4 font-mono text-sm">
-                {t('subtitle')}
+                {isNewLanguage ? t('newLanguageSubtitle') : t('subtitle')}
               </p>
               <div>
                 <label className="text-fl-label text-fl-muted-2 mb-3 block font-mono tracking-widest uppercase">

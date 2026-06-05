@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Очистить все воспоминания",
     "memoryClearAllMessage": "Это навсегда удалит все сохранённые воспоминания. Это действие нельзя отменить.",
     "memoryClearAllConfirm": "Очистить всё",
-    "memoryManage": "Управление воспоминаниями"
+    "memoryManage": "Управление воспоминаниями",
+    "sectionLanguages": "Языки",
+    "languagesManage": "Мои языки"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Польский",
     "nl": "Нидерландский",
     "ro": "Румынский",
-    "ru": "Русский"
+    "ru": "Русский",
+    "myLanguages": "Мои языки",
+    "addLanguage": "Добавить язык",
+    "selectLanguage": "Выберите язык, который хотите изучать",
+    "activeLanguage": "Активный",
+    "switchTo": "Переключиться на этот",
+    "switching": "Переключение на {language}...",
+    "switched": "Переключено на {language} ({level})",
+    "removeLanguage": "Удалить язык",
+    "removeConfirmTitle": "Удалить {language}?",
+    "removeConfirmMessage": "Весь прогресс, уроки, карточки и данные, связанные с этим языком, будут удалены навсегда. Это действие нельзя отменить.",
+    "removeConfirmButton": "Удалить",
+    "noLanguages": "Нет настроенных языков.",
+    "progressLabel": "Прогресс",
+    "levelLabel": "Уровень",
+    "xpLabel": "Всего XP",
+    "streakLabel": "Серия",
+    "lessonsLabel": "Уроки",
+    "flashcardsLabel": "Карточки",
+    "viewDetails": "Подробнее",
+    "supportedLanguages": "Доступные языки"
   },
   "targetLanguages": {
     "en-US": "Американский английский",
@@ -934,7 +956,9 @@
       "emigration": "Жизнь за рубежом",
       "exams": "Экзамены и сертификаты",
       "social": "Общение и отношения"
-    }
+    },
+    "newLanguageHeadline": "Какой новый язык вы хотите изучать?",
+    "newLanguageSubtitle": "Для этого языка будет создан новый учебный план."
   },
   "tour": {
     "skip": "Пропустить",

@@ -17,33 +17,13 @@ Update all frontend pages to reflect the active language and build the "My Langu
 
 **File:** `frontend/src/app/(auth)/onboarding/page.tsx`
 
-The `TargetLanguageSelector` is updated to show **all 5 supported languages** (not just English variants):
-
-```
-Select the language you want to learn
-┌──────────┐ ┌──────────┐ ┌──────────┐
-│ 🇺🇸       │ │ 🇬🇧       │ │ 🇪🇸       │
-│ English  │ │ English  │ │ Español  │
-│ (US)     │ │ (UK)     │ │          │
-└──────────┘ └──────────┘ └──────────┘
-┌──────────┐ ┌──────────┐
-│ 🇮🇹       │ │ 🇵🇹       │
-│ Italiano │ │ Português│
-└──────────┘ └──────────┘
-```
-
-Card grid: 3 columns desktop, 2 tablet, 1 mobile. Each card shows:
-- Flag image (JPG from `/public/flags/`)
-- Language name in its own language
-- Language name in English below (smaller)
-- Brief description (from i18n `targetLanguages` namespace)
-
-`TargetLanguageSelector` receives or imports `SUPPORTED_TARGET_LANGUAGES` directly.
+The `TargetLanguageSelector` already shows all 5 supported languages (via `availableLanguageCodes` from the backend). No UI changes needed to the selector itself.
 
 When onboarding is triggered for a new language (`?language=it-IT&new=true`):
 - The headline changes to `newLanguageHeadline` translation key.
 - The subtitle changes to `newLanguageSubtitle`.
 - The pre-selected language is the one from the query param.
+- The selector still uses `availableLanguageCodes` — for a new language flow, the backend returns only languages not yet added.
 
 ---
 

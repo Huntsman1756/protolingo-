@@ -21,10 +21,8 @@ export default function LanguageSwitcher() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (userLanguages.length === 0) {
-      fetchLanguages()
-    }
-  }, [userLanguages.length, fetchLanguages])
+    fetchLanguages()
+  }, [fetchLanguages])
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {

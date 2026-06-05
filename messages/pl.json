@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Wyczyść wszystkie wspomnienia",
     "memoryClearAllMessage": "Spowoduje to trwałe usunięcie wszystkich zapisanych wspomnień. Tej akcji nie można cofnąć.",
     "memoryClearAllConfirm": "Wyczyść wszystko",
-    "memoryManage": "Zarządzaj wspomnieniami"
+    "memoryManage": "Zarządzaj wspomnieniami",
+    "sectionLanguages": "Języki",
+    "languagesManage": "Moje języki"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Polski",
     "nl": "Niderlandzki",
     "ro": "Rumuński",
-    "ru": "Rosyjski"
+    "ru": "Rosyjski",
+    "myLanguages": "Moje języki",
+    "addLanguage": "Dodaj język",
+    "selectLanguage": "Wybierz język, którego chcesz się uczyć",
+    "activeLanguage": "Aktywny",
+    "switchTo": "Przełącz na ten",
+    "switching": "Przełączanie na {language}...",
+    "switched": "Przełączono na {language} ({level})",
+    "removeLanguage": "Usuń język",
+    "removeConfirmTitle": "Usunąć {language}?",
+    "removeConfirmMessage": "Wszystkie postępy, lekcje, fiszki i dane związane z tym językiem zostaną trwale usunięte. Tej akcji nie można cofnąć.",
+    "removeConfirmButton": "Usuń",
+    "noLanguages": "Brak skonfigurowanych języków.",
+    "progressLabel": "Postęp",
+    "levelLabel": "Poziom",
+    "xpLabel": "Łączne XP",
+    "streakLabel": "Seria",
+    "lessonsLabel": "Lekcje",
+    "flashcardsLabel": "Fiszki",
+    "viewDetails": "Zobacz szczegóły",
+    "supportedLanguages": "Dostępne języki"
   },
   "targetLanguages": {
     "en-US": "Angielski amerykański",
@@ -934,7 +956,9 @@
       "emigration": "Życie za granicą",
       "exams": "Egzaminy i certyfikaty",
       "social": "Towarzystwo"
-    }
+    },
+    "newLanguageHeadline": "Jakiego nowego języka chcesz się uczyć?",
+    "newLanguageSubtitle": "Nowy plan nauki zostanie utworzony dla tego języka."
   },
   "tour": {
     "skip": "Pomiń",

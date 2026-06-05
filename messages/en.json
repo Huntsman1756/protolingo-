@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Clear All Memories",
     "memoryClearAllMessage": "This will permanently delete all saved memories. This action cannot be undone.",
     "memoryClearAllConfirm": "Clear All",
-    "memoryManage": "Manage memories"
+    "memoryManage": "Manage memories",
+    "sectionLanguages": "Languages",
+    "languagesManage": "My languages"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Polish",
     "nl": "Dutch",
     "ro": "Romanian",
-    "ru": "Russian"
+    "ru": "Russian",
+    "myLanguages": "My Languages",
+    "addLanguage": "Add new language",
+    "selectLanguage": "Select the language you want to learn",
+    "activeLanguage": "Active",
+    "switchTo": "Switch to this",
+    "switching": "Switching to {language}...",
+    "switched": "Switched to {language} ({level})",
+    "removeLanguage": "Remove language",
+    "removeConfirmTitle": "Remove {language}?",
+    "removeConfirmMessage": "All progress, lessons, flashcards and data associated with this language will be permanently deleted. This action cannot be undone.",
+    "removeConfirmButton": "Remove",
+    "noLanguages": "You have no languages configured.",
+    "progressLabel": "Progress",
+    "levelLabel": "Level",
+    "xpLabel": "Total XP",
+    "streakLabel": "Streak",
+    "lessonsLabel": "Lessons",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "View details",
+    "supportedLanguages": "Available languages"
   },
   "targetLanguages": {
     "en-US": "American English",
@@ -934,7 +956,9 @@
       "emigration": "Living Abroad",
       "exams": "Exams & Certifications",
       "social": "Socializing"
-    }
+    },
+    "newLanguageHeadline": "What new language do you want to learn?",
+    "newLanguageSubtitle": "A new study plan will be created for this language."
   },
   "tour": {
     "skip": "Skip",

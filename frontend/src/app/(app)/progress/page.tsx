@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useLanguageStore } from '@/store/language'
 import {
   getCurriculumUnits,
   CEFR_LEVELS,
@@ -146,6 +147,7 @@ function UnitCompetencyBlock({
 
 export default function ProgressPage() {
   const t = useTranslations('progress')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [summary, setSummary] = useState<ProgressSummary | null>(null)
   const [competencies, setCompetencies] = useState<CompetencyRecord[]>([])
   const [plan, setPlan] = useState<StudyPlan | null>(null)
@@ -203,9 +205,9 @@ export default function ProgressPage() {
           <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('subtitle')}
           </span>
-          {cefrLevel && (
+          {activeLanguage && cefrLevel && (
             <span className="border-fl-border text-fl-label text-fl-muted-3 ml-auto border px-2 py-0.5 font-mono tracking-widest uppercase">
-              {cefrLevel} Programme
+              {activeLanguage.name} · {cefrLevel}
             </span>
           )}
         </div>

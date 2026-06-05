@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Effacer tous les souvenirs",
     "memoryClearAllMessage": "Cela supprimera définitivement tous les souvenirs enregistrés. Cette action est irréversible.",
     "memoryClearAllConfirm": "Tout effacer",
-    "memoryManage": "Gérer les souvenirs"
+    "memoryManage": "Gérer les souvenirs",
+    "sectionLanguages": "Langues",
+    "languagesManage": "Mes langues"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Polonais",
     "nl": "Néerlandais",
     "ro": "Roumain",
-    "ru": "Russe"
+    "ru": "Russe",
+    "myLanguages": "Mes langues",
+    "addLanguage": "Ajouter une langue",
+    "selectLanguage": "Choisissez la langue que vous voulez apprendre",
+    "activeLanguage": "Actif",
+    "switchTo": "Basculer vers",
+    "switching": "Basculement vers {language}...",
+    "switched": "Basculé vers {language} ({level})",
+    "removeLanguage": "Supprimer la langue",
+    "removeConfirmTitle": "Supprimer {language} ?",
+    "removeConfirmMessage": "Toute la progression, les leçons, les flashcards et les données associées à cette langue seront définitivement supprimées. Cette action est irréversible.",
+    "removeConfirmButton": "Supprimer",
+    "noLanguages": "Aucune langue configurée.",
+    "progressLabel": "Progression",
+    "levelLabel": "Niveau",
+    "xpLabel": "XP total",
+    "streakLabel": "Série",
+    "lessonsLabel": "Leçons",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "Voir les détails",
+    "supportedLanguages": "Langues disponibles"
   },
   "targetLanguages": {
     "en-US": "Anglais américain",
@@ -934,7 +956,9 @@
       "emigration": "Vivre à l'étranger",
       "exams": "Examens et certifications",
       "social": "Socialisation"
-    }
+    },
+    "newLanguageHeadline": "Quelle nouvelle langue voulez-vous apprendre ?",
+    "newLanguageSubtitle": "Un nouveau plan d'étude sera créé pour cette langue."
   },
   "tour": {
     "skip": "Passer",

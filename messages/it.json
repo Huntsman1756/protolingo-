@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Cancella tutti i ricordi",
     "memoryClearAllMessage": "Questo eliminerà definitivamente tutti i ricordi salvati. Questa azione non può essere annullata.",
     "memoryClearAllConfirm": "Cancella tutto",
-    "memoryManage": "Gestisci memorie"
+    "memoryManage": "Gestisci memorie",
+    "sectionLanguages": "Lingue",
+    "languagesManage": "Le mie lingue"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Polacco",
     "nl": "Olandese",
     "ro": "Rumeno",
-    "ru": "Russo"
+    "ru": "Russo",
+    "myLanguages": "Le mie lingue",
+    "addLanguage": "Aggiungi lingua",
+    "selectLanguage": "Seleziona la lingua che vuoi imparare",
+    "activeLanguage": "Attivo",
+    "switchTo": "Passa a questa",
+    "switching": "Passaggio a {language}...",
+    "switched": "Passato a {language} ({level})",
+    "removeLanguage": "Rimuovi lingua",
+    "removeConfirmTitle": "Rimuovere {language}?",
+    "removeConfirmMessage": "Tutti i progressi, lezioni, flashcard e dati associati a questa lingua saranno eliminati permanentemente. Questa azione non può essere annullata.",
+    "removeConfirmButton": "Rimuovi",
+    "noLanguages": "Nessuna lingua configurata.",
+    "progressLabel": "Progresso",
+    "levelLabel": "Livello",
+    "xpLabel": "XP totale",
+    "streakLabel": "Serie",
+    "lessonsLabel": "Lezioni",
+    "flashcardsLabel": "Flashcard",
+    "viewDetails": "Vedi dettagli",
+    "supportedLanguages": "Lingue disponibili"
   },
   "targetLanguages": {
     "en-US": "Inglese americano",
@@ -934,7 +956,9 @@
       "emigration": "Vivere all'estero",
       "exams": "Esami e certificazioni",
       "social": "Socializzare"
-    }
+    },
+    "newLanguageHeadline": "Quale nuova lingua vuoi imparare?",
+    "newLanguageSubtitle": "Verrà creato un nuovo piano di studio per questa lingua."
   },
   "tour": {
     "skip": "Salta",

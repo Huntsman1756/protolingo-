@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Apagar todas as memórias",
     "memoryClearAllMessage": "Isto irá eliminar permanentemente todas as memórias guardadas. Esta ação não pode ser desfeita.",
     "memoryClearAllConfirm": "Apagar tudo",
-    "memoryManage": "Gerenciar memórias"
+    "memoryManage": "Gerenciar memórias",
+    "sectionLanguages": "Idiomas",
+    "languagesManage": "Meus idiomas"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Polonês",
     "nl": "Neerlandês",
     "ro": "Romeno",
-    "ru": "Russo"
+    "ru": "Russo",
+    "myLanguages": "Meus idiomas",
+    "addLanguage": "Adicionar idioma",
+    "selectLanguage": "Selecione o idioma que deseja aprender",
+    "activeLanguage": "Ativo",
+    "switchTo": "Mudar para este",
+    "switching": "Mudando para {language}...",
+    "switched": "Mudado para {language} ({level})",
+    "removeLanguage": "Remover idioma",
+    "removeConfirmTitle": "Remover {language}?",
+    "removeConfirmMessage": "Todo o progresso, lições, flashcards e dados associados a este idioma serão permanentemente eliminados. Esta ação não pode ser desfeita.",
+    "removeConfirmButton": "Remover",
+    "noLanguages": "Nenhum idioma configurado.",
+    "progressLabel": "Progresso",
+    "levelLabel": "Nível",
+    "xpLabel": "XP total",
+    "streakLabel": "Sequência",
+    "lessonsLabel": "Lições",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "Ver detalhes",
+    "supportedLanguages": "Idiomas disponíveis"
   },
   "targetLanguages": {
     "en-US": "Inglês americano",
@@ -934,7 +956,9 @@
       "emigration": "Viver no exterior",
       "exams": "Exames e certificações",
       "social": "Socializar"
-    }
+    },
+    "newLanguageHeadline": "Que novo idioma você quer aprender?",
+    "newLanguageSubtitle": "Um novo plano de estudo será criado para este idioma."
   },
   "tour": {
     "skip": "Pular",

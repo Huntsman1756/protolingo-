@@ -245,7 +245,9 @@
     "memoryClearAllTitle": "Șterge toate amintirile",
     "memoryClearAllMessage": "Aceasta va șterge permanent toate amintirile salvate. Această acțiune nu poate fi anulată.",
     "memoryClearAllConfirm": "Șterge tot",
-    "memoryManage": "Gestionează amintirile"
+    "memoryManage": "Gestionează amintirile",
+    "sectionLanguages": "Limbi",
+    "languagesManage": "Limbile mele"
   },
   "legal": {
     "terms": {
@@ -907,7 +909,27 @@
     "pl": "Poloneză",
     "nl": "Olandeză",
     "ro": "Română",
-    "ru": "Rusă"
+    "ru": "Rusă",
+    "myLanguages": "Limbile mele",
+    "addLanguage": "Adaugă limbă",
+    "selectLanguage": "Alege limba pe care vrei să o înveți",
+    "activeLanguage": "Activ",
+    "switchTo": "Comută la aceasta",
+    "switching": "Se comută la {language}...",
+    "switched": "S-a comutat la {language} ({level})",
+    "removeLanguage": "Elimină limba",
+    "removeConfirmTitle": "Elimini {language}?",
+    "removeConfirmMessage": "Toate progresele, lecțiile, flashcard-urile și datele asociate acestei limbi vor fi șterse permanent. Această acțiune nu poate fi anulată.",
+    "removeConfirmButton": "Elimină",
+    "noLanguages": "Nicio limbă configurată.",
+    "progressLabel": "Progres",
+    "levelLabel": "Nivel",
+    "xpLabel": "XP total",
+    "streakLabel": "Serie",
+    "lessonsLabel": "Lecții",
+    "flashcardsLabel": "Flashcard-uri",
+    "viewDetails": "Vezi detalii",
+    "supportedLanguages": "Limbi disponibile"
   },
   "targetLanguages": {
     "en-US": "Engleză americană",
@@ -934,7 +956,9 @@
       "emigration": "A trăi în străinătate",
       "exams": "Examene și certificări",
       "social": "Socializare"
-    }
+    },
+    "newLanguageHeadline": "Ce limbă nouă vrei să înveți?",
+    "newLanguageSubtitle": "Un nou plan de studiu va fi creat pentru această limbă."
   },
   "tour": {
     "skip": "Sari peste",
