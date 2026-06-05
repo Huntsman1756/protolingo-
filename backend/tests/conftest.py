@@ -207,3 +207,9 @@ async def test_user_with_plan(test_user, db_session):
     await db_session.commit()
 
     return user, headers
+
+
+@pytest_asyncio.fixture
+async def user_language(test_user):
+    """Shortcut: returns the UserLanguage created by the test_user fixture."""
+    return test_user

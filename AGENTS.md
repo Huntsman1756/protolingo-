@@ -97,7 +97,7 @@ ruff check --fix backend/ && black backend/
 # Lint & format frontend
 npx eslint src/ --ext .ts,.tsx && npx prettier --write src/
 
-# Run all backend tests (coverage must be ≥60%)
+# Run all backend tests (coverage must be ≥70%)
 cd backend && pytest
 
 # Run single test file

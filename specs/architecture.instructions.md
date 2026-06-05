@@ -164,6 +164,6 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 Testing infrastructure and strategy are documented in [testing.instructions.md](testing.instructions.md).
 
 **Summary:**
-- **Backend**: pytest + pytest-asyncio, 25 test files, 310 tests, 73% coverage (target: 60%)
+- **Backend**: pytest + pytest-asyncio, 25 test files, 310 tests, 73% coverage (target: 70%)
 - **Frontend**: Vitest, 10 test files + setup.ts covering critical logic only
 - **E2E**: Playwright (planned, not yet implemented)
