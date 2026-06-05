@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useLanguageStore } from '@/store/language'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { type ListeningExercise } from '@/types/api'
@@ -185,6 +186,7 @@ function ExerciseAudioPlayer({
 function ListeningPage() {
   const t = useTranslations('listening')
   const tCommon = useTranslations('common')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const {
     selectedWord,
     tooltipPos,
@@ -243,7 +245,7 @@ function ListeningPage() {
 
   useEffect(() => {
     loadNext()
-  }, [loadNext])
+  }, [loadNext, activeLanguage?.code])
 
   async function handleGenerate() {
     const voice =

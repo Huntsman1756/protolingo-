@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useLanguageStore } from '@/store/language'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { type ReadingExercise } from '@/types/api'
@@ -48,6 +49,7 @@ type PageState =
 function ReadingPage() {
   const t = useTranslations('reading')
   const tCommon = useTranslations('common')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const {
     selectedWord,
     tooltipPos,
@@ -108,7 +110,7 @@ function ReadingPage() {
 
   useEffect(() => {
     loadNext()
-  }, [loadNext])
+  }, [loadNext, activeLanguage?.code])
 
   async function handleGenerate() {
     try {
