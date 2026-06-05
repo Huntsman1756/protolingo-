@@ -2,7 +2,7 @@
 
 ## Project state
 
-**v1.6.13 — Phase 9 (LLM Memory) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), and Phase 9 (LLM Memory) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
+**v1.7.0 — Phase 10 (Multi-Language) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), Phase 9 (LLM Memory), and Phase 10 (Multi-Language) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Architecture at a glance
 
@@ -10,7 +10,7 @@ Monorepo: `backend/` (Python 3.14 FastAPI) + `frontend/` (Next.js 16 App Router)
 
 ## Key constraints
 
-- **Target language is always English.** User's native language (asked at registration) is used only for flashcard translations and tutor feedback.
+- **Users can learn multiple languages simultaneously** — each language gets an isolated study plan, progress, flashcards, conversations, memories, and competencies. Supported target languages: `en-US`, `en-GB`, `es-ES`, `it-IT`, `pt-PT`. User's native language (asked at registration) is used only for flashcard translations and tutor feedback.
 - **First registered user becomes admin automatically** when `FIRST_USER_IS_ADMIN=true` (default).
 - **Registration gating**: `ALLOW_REGISTRATION=false` blocks public signups; admin creates users or generates single-use invite links (48h expiry in Redis).
 - **Ollama should run on the host for GPU access**, accessed via `host.docker.internal:11434`. On Linux, the backend service needs `extra_hosts: ["host.docker.internal:host-gateway"]`.
@@ -50,9 +50,9 @@ These describe what was built — they are the reference documentation:
 | File | Covers |
 |------|--------|
 | `specs/architecture.instructions.md` | Repository structure, data flows, auth design, test summary |
-| `specs/architecture-backend.instructions.md` | Backend architecture: models (15), services (17), routers (20), schemas (13), env vars (49), Python code standards |
-| `specs/architecture-frontend.instructions.md` | Frontend architecture: pages (26), components (15), stores (6), lib modules (7), TypeScript code standards |
-| `specs/database-models.instructions.md` | **15 SQLAlchemy ORM models**: full schema details, relationships, constraints, business rules |
+| `specs/architecture-backend.instructions.md` | Backend architecture: models (14), services (17), routers (20), schemas (13), env vars (51), Python code standards |
+| `specs/architecture-frontend.instructions.md` | Frontend architecture: pages (36), components (41), stores (6), lib modules (7), TypeScript code standards |
+| `specs/database-models.instructions.md` | **14 SQLAlchemy ORM models**: full schema details, relationships, constraints, business rules |
 | `specs/services.instructions.md` | **17 backend services**: LLM, TTS/STT, study plan, lessons, flashcards, listening, reading, memory, progress, quotas, subscriptions, voice conversation pipeline |
 | `specs/api-endpoints.instructions.md` | All REST endpoints and WebSocket — paths, methods, rate limits, descriptions |
 | `specs/study-plan.instructions.md` | **Current-state reference** for the study plan & lesson system: data model, `progress_day` semantics, auto-advance, skip day, pending lessons, lesson lifecycle, frontend integration |

@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-06-05
+
+### Added
+- **Phase 10 — Multi-Language**: users can now learn multiple languages simultaneously. Every language gets its own isolated study plan, progress, flashcards, conversations, memories, and competencies. A sidebar language switcher pivots the entire experience to any active language with one click.
+- **New supported target languages**: Spanish (`es-ES`), Italian (`it-IT`), and Portuguese (`pt-PT`) join the existing American English (`en-US`) and British English (`en-GB`).
+- **Backend**: new `user_languages` table with `study_plan_id` columns across 8 tables for full data isolation per language. New `user_language_service.py` handles plan creation, activation, and deletion. New `/api/languages` router with 4 endpoints (list, add, set active, delete).
+- **Frontend**: `LanguageSwitcher` component in sidebar (visible when ≥ 2 languages), `language` Zustand store, My Languages page in Settings, onboarding refactored for multi-language flow, all pages (dashboard, plan, chat, flashcards, progress) adapted to use the active study plan.
+- **Curriculum data**: complete Spanish, Italian, and Portuguese curriculum files (backend + frontend) with language-specific lesson content, vocabulary, and competency definitions.
+
+### Fixed
+- **Firefox iOS locale detection**: Firefox on iOS always sends `Accept-Language: en-US` regardless of device language settings (Apple WebKit restriction). Added client-side `navigator.language` fallback that detects the actual browser language and sets the correct locale on first visit.
+
 ## [1.6.13] - 2026-06-03
 
 ### Fixed

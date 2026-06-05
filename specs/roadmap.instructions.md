@@ -357,7 +357,7 @@ This document records what was built and the completion criteria met.
 
 ## Phase 10 — Multi-Language Support (Multiple Simultaneous Languages)
 
-🔄 Status: In progress
+✅ Status: Complete (v1.7.0)
 
 > Each user can learn multiple languages simultaneously. Every language gets its own
 > isolated study plan, progress, flashcards, conversations, memories, and competencies.
@@ -374,17 +374,17 @@ This document records what was built and the completion criteria met.
 | **10.3** | API: new `/api/languages` router, refactor assessment + study-plan endpoints, Pydantic schemas; backend tests | ✅ |
 | **10.4** | Frontend core: `target-languages.ts` config, language Zustand store, `LanguageSwitcher` component, sidebar integration | ✅ |
 | **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted; i18n keys added per sub-phase; frontend tests | ✅ |
-| **10.6** | Curriculum and language data: Spanish, Italian, Portuguese curriculum files (backend + frontend); target language descriptions; curriculum tests | ⬜ |
+| **10.6** | Curriculum and language data: Spanish, Italian, Portuguese curriculum files (backend + frontend); target language descriptions; curriculum tests | ✅ |
 
 **Completion criteria:**
-- [ ] A user can add a second language from Settings → My Languages
-- [ ] Language switcher appears in sidebar only when the user has ≥ 2 languages
-- [ ] Switching language pivots the entire experience (plan, flashcards, chat, progress) to that language's plan
-- [ ] Flashcards, progress, memories, and competencies are fully isolated per `study_plan_id`
-- [ ] Spanish (`es-ES`), Italian (`it-IT`), and Portuguese (`pt-PT`) curriculum data is complete and correct
-- [ ] All LLM prompts are language-agnostic (no hardcoded "English")
-- [ ] Migration `0029` runs cleanly; `downgrade` fully reverses it
-- [ ] Migration `0031` (NOT NULL on `progress`, `flashcards`, `user_competencies`) runs cleanly after 10.3 callers are deployed
-- [ ] Existing English-only users are unaffected after migration
-- [ ] `tsc --noEmit` and `python3 -m compileall` pass clean
-- [ ] No regressions in Phases 1–9
+- [x] A user can add a second language from Settings → My Languages
+- [x] Language switcher appears in sidebar only when the user has ≥ 2 languages
+- [x] Switching language pivots the entire experience (plan, flashcards, chat, progress) to that language's plan
+- [x] Flashcards, progress, memories, and competencies are fully isolated per `study_plan_id`
+- [x] Spanish (`es-ES`), Italian (`it-IT`), and Portuguese (`pt-PT`) curriculum data is complete and correct
+- [x] All LLM prompts are language-agnostic (no hardcoded "English")
+- [x] Migration `0029` runs cleanly; `downgrade` fully reverses it
+- [x] Migration `0031` (NOT NULL on `progress`, `flashcards`, `user_competencies`) runs cleanly after 10.3 callers are deployed
+- [x] Existing English-only users are unaffected after migration
+- [x] `tsc --noEmit` and `python3 -m compileall` pass clean
+- [x] No regressions in Phases 1–9
