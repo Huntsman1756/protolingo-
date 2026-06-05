@@ -10,9 +10,13 @@ from app.services.llm_adapter import llm_adapter
 
 
 def get_valid_grammar_slugs(target_language: str = "en-US") -> set[str]:
-    """Return the set of valid grammar slugs for a given target language."""
-    curriculum = CURRICULUM.get(target_language, CURRICULUM.get("en-US", {}))
-    return {slug for units in curriculum.values() for unit in units for slug in unit.grammar_points}
+    """Return the set of valid grammar slugs for a given target language.
+
+    Phase 10.6 will dispatch by language via get_curriculum(target_language).
+    Until then CURRICULUM contains only English data keyed by CEFR level, so
+    we iterate its values directly (which correctly yields all English slugs).
+    """
+    return {slug for units in CURRICULUM.values() for unit in units for slug in unit.grammar_points}
 
 
 LESSON_GENERATION_PROMPT = """
