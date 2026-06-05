@@ -519,6 +519,139 @@ class TestLanguageAPI:
         assert ul is not None
         assert ul.is_active is True
 
+    @pytest.mark.asyncio
+    async def test_assessment_language_param(self, client, db_session):
+        """GET /api/assessment/start?language=es-ES stores session under scoped Redis key."""
+        from unittest.mock import patch as mock_patch
+
+        user, headers = await _make_user(db_session)
+        await _add_language(db_session, user.id, "es-ES", active=False)
+
+        mock_quiz = {
+            "questions": [
+                {
+                    "id": 1,
+                    "type": "multiple_choice",
+                    "difficulty": "A1",
+                    "question": "¿Cuál es la capital de España?",
+                    "options": ["A. París", "B. Madrid", "C. Roma", "D. Lisboa"],
+                    "correct_answer": "B",
+                }
+            ]
+        }
+
+        with mock_patch(
+            "app.routers.assessment.llm_adapter.structured_output",
+            return_value=mock_quiz,
+        ):
+            res = await client.get(
+                "/api/assessment/start?language=es-ES",
+                headers=headers,
+            )
+
+        assert res.status_code == 200
+        data = res.json()
+        assert "quiz" in data
+        assert "session_id" in data
+
+    @pytest.mark.asyncio
+    async def test_assessment_redis_key_isolation(self, client, db_session, mock_redis):
+        """Two simultaneous assessments for different languages must not overwrite each other.
+
+        Flow:
+          1. Start English assessment   → stores at assessment:{uid}:en-US
+          2. Start Spanish assessment   → stores at assessment:{uid}:es-ES
+          3. Submit English answers with target_language=en-US → resolves en-US session, returns result
+          4. Verify Spanish session is still intact at assessment:{uid}:es-ES
+        """
+        import json as _json
+        from unittest.mock import patch as mock_patch
+
+        user, headers = await _make_user(db_session)
+        await _add_language(db_session, user.id, "es-ES", active=False)
+
+        mock_quiz_en = {
+            "questions": [
+                {
+                    "id": 1,
+                    "type": "multiple_choice",
+                    "difficulty": "B1",
+                    "question": "Choose the correct verb form.",
+                    "options": ["A. have", "B. has", "C. had", "D. having"],
+                    "correct_answer": "A",
+                }
+            ]
+        }
+        mock_quiz_es = {
+            "questions": [
+                {
+                    "id": 2,
+                    "type": "multiple_choice",
+                    "difficulty": "A1",
+                    "question": "¿Qué significa 'perro'?",
+                    "options": ["A. cat", "B. dog", "C. bird", "D. fish"],
+                    "correct_answer": "B",
+                }
+            ]
+        }
+        mock_eval = {
+            "cefr_level": "B1",
+            "score": 0.8,
+            "analysis": "Good",
+            "strengths": ["grammar"],
+            "weaknesses": [],
+        }
+
+        # Step 1: start English assessment
+        with mock_patch(
+            "app.routers.assessment.llm_adapter.structured_output",
+            return_value=mock_quiz_en,
+        ):
+            await client.get("/api/assessment/start?language=en-US", headers=headers)
+
+        # Step 2: start Spanish assessment (must NOT overwrite the English session)
+        with mock_patch(
+            "app.routers.assessment.llm_adapter.structured_output",
+            return_value=mock_quiz_es,
+        ):
+            await client.get("/api/assessment/start?language=es-ES", headers=headers)
+
+        # Verify both sessions are stored under separate keys
+        en_session_raw = await mock_redis.get(f"assessment:{user.id}:en-US")
+        es_session_raw = await mock_redis.get(f"assessment:{user.id}:es-ES")
+        assert en_session_raw is not None, "English session must still exist"
+        assert es_session_raw is not None, "Spanish session must exist"
+
+        en_session = _json.loads(en_session_raw)
+        es_session = _json.loads(es_session_raw)
+        assert en_session["target_language"] == "en-US"
+        assert es_session["target_language"] == "es-ES"
+
+        # Step 3: submit English answers — must evaluate the English session
+        with mock_patch(
+            "app.routers.assessment.llm_adapter.structured_output",
+            return_value=mock_eval,
+        ):
+            submit_res = await client.post(
+                "/api/assessment/submit",
+                headers=headers,
+                json={
+                    "answers": [{"question_id": 1, "answer": "A"}],
+                    "target_language": "en-US",
+                },
+            )
+        assert submit_res.status_code == 200
+        assert submit_res.json()["cefr_level"] == "B1"
+
+        # Step 4: Spanish session must be untouched after English submission
+        es_session_after = await mock_redis.get(f"assessment:{user.id}:es-ES")
+        assert es_session_after is not None, "Spanish session must survive English submission"
+        assert _json.loads(es_session_after)["target_language"] == "es-ES"
+
+        # English session must have been deleted by /submit
+        en_session_after = await mock_redis.get(f"assessment:{user.id}:en-US")
+        assert en_session_after is None, "English session must be deleted after submission"
+
 
 # ═════════════════════════════════════════════════════════════════════════════
 # 10.6 — Curriculum per language

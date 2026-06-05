@@ -63,6 +63,7 @@ class LegacyAnswerItem(BaseModel):
 
 class LegacyAssessmentSubmitRequest(BaseModel):
     answers: list[LegacyAnswerItem]
+    target_language: str | None = None  # Phase 10: used to resolve the scoped Redis key
 
 
 class LegacyQuizQuestion(BaseModel):
@@ -140,8 +141,12 @@ async def start_assessment(
 
     quiz = quiz_payload.model_dump() if isinstance(quiz_payload, BaseModel) else quiz_payload
     session_id = str(uuid4())
+    redis_key = f"assessment:{current_user.id}:{target_language}"
+    # Remove any legacy single-key session so old clients that call /submit
+    # without target_language don't accidentally pick up a stale session.
+    await redis.delete(f"assessment:{current_user.id}")
     await redis.setex(
-        f"assessment:{current_user.id}",
+        redis_key,
         _ASSESSMENT_TTL,
         json.dumps({"session_id": session_id, "quiz": quiz, "target_language": target_language}),
     )
@@ -153,9 +158,40 @@ async def submit_assessment(
     data: LegacyAssessmentSubmitRequest,
     current_user: User = Depends(get_current_user),
     redis: Redis = Depends(get_redis),
+    db: AsyncSession = Depends(get_db),
 ):
-    session_raw = await redis.get(f"assessment:{current_user.id}")
+    # Resolve the Redis key in priority order:
+    # 1. Scoped key built from the target_language in the request body (new clients)
+    # 2. Scoped key built from the user's active language (fallback for new-format sessions)
+    # 3. Legacy single key assessment:{user_id} (backward compat for in-flight sessions)
+    redis_key: str | None = None
+    session_raw: str | bytes | None = None
+
+    if data.target_language:
+        candidate = f"assessment:{current_user.id}:{data.target_language}"
+        session_raw = await redis.get(candidate)
+        if session_raw:
+            redis_key = candidate
+
     if not session_raw:
+        # Try scoped key using active language
+        from app.services.user_language_service import get_active_language  # noqa: PLC0415
+
+        active_lang = await get_active_language(db, current_user.id)
+        if active_lang:
+            candidate = f"assessment:{current_user.id}:{active_lang.target_language}"
+            session_raw = await redis.get(candidate)
+            if session_raw:
+                redis_key = candidate
+
+    if not session_raw:
+        # Legacy fallback — sessions created before the scoped-key migration
+        candidate = f"assessment:{current_user.id}"
+        session_raw = await redis.get(candidate)
+        if session_raw:
+            redis_key = candidate
+
+    if not session_raw or not redis_key:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="No active assessment session."
         )
@@ -193,7 +229,7 @@ async def submit_assessment(
             status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Assessment evaluation failed: {e}"
         )
     finally:
-        await redis.delete(f"assessment:{current_user.id}")
+        await redis.delete(redis_key)
 
     result = eval_payload.model_dump() if isinstance(eval_payload, BaseModel) else eval_payload
     return AssessmentResult(
@@ -226,21 +262,35 @@ async def evaluate_free_write_endpoint(
     db: AsyncSession = Depends(get_db),
 ):
     """Optional LLM evaluation of the single free-write question."""
-    # Resolve the target language in priority order:
-    # 1. The active Redis assessment session (set by /start, most accurate for new-language flow)
-    # 2. The user's active language from user_languages
-    # 3. Fallback to users.target_language (backward-compatible)
-    target_language = current_user.target_language
-    session_raw = await redis.get(f"assessment:{current_user.id}")
+    # Resolve target_language in priority order:
+    # 1. Scoped Redis session keyed by active language (new format, most accurate)
+    # 2. Scoped Redis session keyed by users.target_language (covers same-language retakes)
+    # 3. Legacy Redis session assessment:{user_id} (backward compat for in-flight sessions)
+    # 4. Active language from user_languages table
+    # 5. users.target_language (final fallback)
+    target_language: str = current_user.target_language
+
+    from app.services.user_language_service import get_active_language  # noqa: PLC0415
+
+    active_lang = await get_active_language(db, current_user.id)
+    if active_lang:
+        target_language = active_lang.target_language
+
+    # Try to get the authoritative language from the active Redis session
+    session_raw: str | bytes | None = None
+    for candidate_key in [
+        f"assessment:{current_user.id}:{target_language}",
+        f"assessment:{current_user.id}:{current_user.target_language}",
+        f"assessment:{current_user.id}",  # legacy key
+    ]:
+        session_raw = await redis.get(candidate_key)
+        if session_raw:
+            break
+
     if session_raw:
         session = json.loads(session_raw)
         target_language = session.get("target_language", target_language)
-    else:
-        from app.services.user_language_service import get_active_language  # noqa: PLC0415
 
-        active_lang = await get_active_language(db, current_user.id)
-        if active_lang:
-            target_language = active_lang.target_language
     try:
         return await evaluate_free_write(data, target_language=target_language)
     except LLMTimeoutError:
@@ -269,13 +319,29 @@ async def complete_assessment(
     Persist the assessment result and generate the initial study plan.
     Called after Step 3 (duration selector) is submitted.
     """
-    # Read target_language from the Redis session (stored by /start)
-    session_raw = await redis.get(f"assessment:{current_user.id}")
+    # Resolve target_language in priority order:
+    # 1. Explicit field in the request body (new frontend always sends this)
+    # 2. Scoped Redis session: assessment:{user_id}:{body_lang}
+    # 3. Scoped Redis session: assessment:{user_id}:{users.target_language}
+    # 4. Legacy Redis session: assessment:{user_id}
+    # 5. users.target_language (final fallback — always safe for the normal frontend flow)
+    target_language: str = data.target_language or current_user.target_language
+
+    # Try to find a Redis session that confirms the language
+    session_raw: str | bytes | None = None
+    for candidate_key in [
+        f"assessment:{current_user.id}:{target_language}",
+        f"assessment:{current_user.id}:{current_user.target_language}",
+        f"assessment:{current_user.id}",  # legacy key
+    ]:
+        session_raw = await redis.get(candidate_key)
+        if session_raw:
+            break
+
     if session_raw:
         session = json.loads(session_raw)
-        target_language = session.get("target_language", current_user.target_language)
-    else:
-        target_language = current_user.target_language
+        # The session's target_language is the most authoritative source when present
+        target_language = session.get("target_language", target_language)
 
     # Deactivate existing active plans — scoped to this language only
     old_result = await db.execute(

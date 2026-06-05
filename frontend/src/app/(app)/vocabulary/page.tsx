@@ -11,13 +11,7 @@ import { useLanguageStore } from '@/store/language'
 
 // ── Set card ──────────────────────────────────────────────────────────────────
 
-function SetCard({
-  s,
-  wordsLabel,
-}: {
-  s: VocabularySet
-  wordsLabel: string
-}) {
+function SetCard({ s, wordsLabel }: { s: VocabularySet; wordsLabel: string }) {
   return (
     <Link
       href={`/vocabulary/${s.id}`}
@@ -67,9 +61,7 @@ export default function VocabularyIndexPage() {
   }, [vocabSets, activeLevel, search])
 
   const totalWords = vocabSets.reduce((acc, s) => acc + s.words.length, 0)
-  const usedLevels = [
-    ...new Set(vocabSets.map((s) => s.level)),
-  ] as CEFRLevel[]
+  const usedLevels = [...new Set(vocabSets.map((s) => s.level))] as CEFRLevel[]
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">

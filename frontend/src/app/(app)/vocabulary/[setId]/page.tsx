@@ -30,7 +30,7 @@ export default function VocabularySetPage({
   const t = useTranslations('vocabulary')
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const vocabSet = getVocabularySets(activeLanguage?.code ?? 'en-US').find(
-    (s) => s.id === setId,
+    (s) => s.id === setId
   )
   if (!vocabSet) notFound()
 

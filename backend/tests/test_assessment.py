@@ -87,6 +87,7 @@ async def test_submit_assessment_returns_cefr_level(client, test_user):
             headers=headers,
             json={
                 "answers": [{"question_id": 1, "answer": "B"}],
+                "target_language": "en-US",
             },
         )
         assert submit_resp.status_code == 200

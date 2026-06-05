@@ -48,9 +48,7 @@ export default function LanguageSwitcher() {
       const langName = targetLang?.name ?? code
       const level = targetInfo?.plan?.cefr_level
       setToastMsg(
-        level
-          ? tLang('switched', { language: langName, level })
-          : langName,
+        level ? tLang('switched', { language: langName, level }) : langName
       )
       setToast(true)
       setTimeout(() => setToast(false), 2500)
