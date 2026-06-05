@@ -944,8 +944,8 @@
     "en-GB-description": "Englisch, wie es im Vereinigten Königreich gesprochen wird."
   },
   "onboarding": {
-    "title": "Wähle dein Englisch",
-    "subtitle": "Welches Englisch möchtest du lernen?",
+    "title": "Wähle deine Sprache",
+    "subtitle": "Welche Sprache möchtest du lernen?",
     "chooseVariant": "Variante auswählen",
     "continue": "Weiter",
     "saveFailed": "Einstellungen konnten nicht gespeichert werden",

@@ -221,11 +221,28 @@ async def evaluate_quiz(
 @router.post("/free-write", response_model=dict)
 async def evaluate_free_write_endpoint(
     data: FreeWriteEvalRequest,
-    _current_user: User = Depends(get_current_user),
+    current_user: User = Depends(get_current_user),
+    redis: Redis = Depends(get_redis),
+    db: AsyncSession = Depends(get_db),
 ):
     """Optional LLM evaluation of the single free-write question."""
+    # Resolve the target language in priority order:
+    # 1. The active Redis assessment session (set by /start, most accurate for new-language flow)
+    # 2. The user's active language from user_languages
+    # 3. Fallback to users.target_language (backward-compatible)
+    target_language = current_user.target_language
+    session_raw = await redis.get(f"assessment:{current_user.id}")
+    if session_raw:
+        session = json.loads(session_raw)
+        target_language = session.get("target_language", target_language)
+    else:
+        from app.services.user_language_service import get_active_language  # noqa: PLC0415
+
+        active_lang = await get_active_language(db, current_user.id)
+        if active_lang:
+            target_language = active_lang.target_language
     try:
-        return await evaluate_free_write(data, target_language=_current_user.target_language)
+        return await evaluate_free_write(data, target_language=target_language)
     except LLMTimeoutError:
         raise HTTPException(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT,

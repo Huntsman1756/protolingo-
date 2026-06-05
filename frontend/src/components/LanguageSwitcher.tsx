@@ -8,7 +8,7 @@ import { useLanguageStore } from '@/store/language'
 import { getLanguageByCode } from '@/lib/target-languages'
 
 export default function LanguageSwitcher() {
-  const t = useTranslations('nav')
+  const tLang = useTranslations('languages')
   const router = useRouter()
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const userLanguages = useLanguageStore((s) => s.userLanguages)
@@ -18,6 +18,7 @@ export default function LanguageSwitcher() {
 
   const [open, setOpen] = useState(false)
   const [toast, setToast] = useState(false)
+  const [toastMsg, setToastMsg] = useState('')
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -39,8 +40,18 @@ export default function LanguageSwitcher() {
   async function handleSwitch(code: string) {
     setOpen(false)
     if (code === activeLanguage?.code) return
+    // Capture target language info before switching (store will update after)
+    const targetLang = getLanguageByCode(code)
+    const targetInfo = userLanguages.find((l) => l.target_language === code)
     const ok = await switchLanguage(code)
     if (ok) {
+      const langName = targetLang?.name ?? code
+      const level = targetInfo?.plan?.cefr_level
+      setToastMsg(
+        level
+          ? tLang('switched', { language: langName, level })
+          : langName,
+      )
       setToast(true)
       setTimeout(() => setToast(false), 2500)
       router.refresh()
@@ -55,7 +66,7 @@ export default function LanguageSwitcher() {
     <div ref={ref} className="relative w-full">
       {toast && (
         <div className="animate-in fade-in slide-in-from-top-2 border-fl-border bg-fl-surface text-fl-muted-1 fixed top-16 left-1/2 z-50 -translate-x-1/2 border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
-          {t('switchLanguage')}
+          {toastMsg}
         </div>
       )}
 

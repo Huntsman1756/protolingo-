@@ -109,7 +109,7 @@ export default function FlashcardsPage() {
           topic: genTopic.trim(),
           count: genCount,
           cefr_level: genCefr,
-          native_language: user?.native_language ?? 'es',
+          native_language: user?.native_language ?? 'en',
         }),
       })
       if (!res.ok) {

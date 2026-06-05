@@ -944,8 +944,8 @@
     "en-GB-description": "English as spoken in the United Kingdom."
   },
   "onboarding": {
-    "title": "Choose Your English",
-    "subtitle": "Which English do you want to learn?",
+    "title": "Choose your language",
+    "subtitle": "Which language do you want to learn?",
     "chooseVariant": "Select variant",
     "continue": "Continue",
     "saveFailed": "Failed to save preferences",

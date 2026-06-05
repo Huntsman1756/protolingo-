@@ -194,7 +194,7 @@ export default function PlanPage() {
   }
 
   const level = plan.cefr_level as CEFRLevel
-  const units = getCurriculumUnits(level)
+  const units = getCurriculumUnits(level, activeLanguage?.code)
   const allLessons = flattenLessons(plan)
   const byUnit = lessonsByUnit(allLessons)
   const currentUnitId = plan.current_unit

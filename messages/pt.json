@@ -944,8 +944,8 @@
     "en-GB-description": "Inglês falado no Reino Unido."
   },
   "onboarding": {
-    "title": "Escolha o seu inglês",
-    "subtitle": "Que inglês você quer aprender?",
+    "title": "Escolha o seu idioma",
+    "subtitle": "Que idioma você quer aprender?",
     "chooseVariant": "Selecionar variante",
     "continue": "Continuar",
     "saveFailed": "Falha ao salvar as preferências",

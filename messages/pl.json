@@ -944,8 +944,8 @@
     "en-GB-description": "Angielski używany w Wielkiej Brytanii."
   },
   "onboarding": {
-    "title": "Wybierz swój angielski",
-    "subtitle": "Którego angielskiego chcesz się uczyć?",
+    "title": "Wybierz swój język",
+    "subtitle": "Którego języka chcesz się uczyć?",
     "chooseVariant": "Wybierz wariant",
     "continue": "Kontynuuj",
     "saveFailed": "Nie udało się zapisać preferencji",
