@@ -362,7 +362,7 @@ stripe trigger checkout.session.completed
 ### 6.3 Docs
 - `CHANGELOG.md` + `specs/version.md`: version bump
 - `specs/api-endpoints.instructions.md`: add 3 new billing endpoints
-- `specs/architecture.instructions.md`: add subscription fields to User model section
+- `specs/architecture-backend.instructions.md`: add subscription fields to User model section
 - `specs/docker.instructions.md`: add Stripe env vars
 - `README.md`: add Stripe configuration section
 - `AGENTS.md`: update architecture section

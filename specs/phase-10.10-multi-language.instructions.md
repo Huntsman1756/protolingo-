@@ -20,7 +20,8 @@ Bring all spec files, AGENTS.md, README, and CHANGELOG in sync with everything i
 | `specs/database-models.instructions.md` | Add `UserLanguage` model documentation; document new `study_plan_id` columns in all 7 tables |
 | `specs/api-endpoints.instructions.md` | Document new `/api/languages` router (5 endpoints) and all changes to existing endpoints from Phase 10.3 |
 | `specs/services.instructions.md` | Document `user_language_service.py`; update `language_helpers.py`, `progress_service.py`, `memory_service.py` entries |
-| `specs/architecture.instructions.md` | Update data flow to reflect multi-plan architecture; document `get_active_study_plan` dependency; update env vars if any were added |
+| `specs/architecture.instructions.md` | Update data flow to reflect multi-plan architecture |
+| `specs/architecture-backend.instructions.md` | Document `get_active_study_plan` dependency; update env vars if any were added |
 | `specs/study-plan.instructions.md` | Update: one active plan per user per language (not one per user); document `uq_active_plan_per_lang` constraint |
 | `specs/phase-4-target-language.instructions.md` | Add note: "Phase 10 extends this to multi-language per user — see phase-10-multi-language.instructions.md" |
 | `specs/rate-limiting.instructions.md` | Add rate limits for the 5 new `/api/languages` endpoints if applicable |
@@ -99,6 +100,7 @@ Add Phase 10 section with milestones and mark it complete.
 | `specs/api-endpoints.instructions.md` | Document new and updated endpoints |
 | `specs/services.instructions.md` | Document new and updated services |
 | `specs/architecture.instructions.md` | Update data flow |
+| `specs/architecture-backend.instructions.md` | Update service and env var docs |
 | `specs/study-plan.instructions.md` | Update plan semantics |
 | `specs/phase-4-target-language.instructions.md` | Add Phase 10 reference note |
 | `specs/rate-limiting.instructions.md` | Add limits for new endpoints |

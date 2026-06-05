@@ -121,7 +121,7 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | `specs/database-models.instructions.md` | 10.10 |
 | `specs/api-endpoints.instructions.md` | 10.10 |
 | `specs/services.instructions.md` | 10.10 |
-| `specs/architecture.instructions.md` | 10.10 |
+| `specs/architecture-backend.instructions.md` | 10.10 |
 | `specs/study-plan.instructions.md` | 10.10 |
 | `specs/phase-4-target-language.instructions.md` | 10.10 |
 | `specs/version.md` | 10.10 |
