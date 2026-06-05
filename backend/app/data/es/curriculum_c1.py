@@ -1,12 +1,10 @@
-"""
-CEFR C1 curriculum units.
-"""
+"""C1 curriculum units — Spanish (es-ES)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-C1_UNITS = [
+C1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="c1-unit-1",
         level="C1",
@@ -16,9 +14,11 @@ C1_UNITS = [
         vocabulary_set_ids=["matices_c1", "formalidad_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Master concessive subjunctive",
-            "Use purpose clauses accurately",
-            "Apply subjunctive in relative clauses",
+            "Uses aunque + subjunctive vs aunque + indicative with full awareness of the semantic difference: aunque llueva (if it rains, even if) vs aunque llueve (even though it is raining — acknowledged fact)",
+            "Uses purpose conjunctions correctly: para que + subjunctive with change of subject (Te lo explico para que lo entiendas) vs para + infinitive with same subject (Estudio para aprender)",
+            "Applies subjunctive in restrictive relative clauses with indefinite or negated antecedents: No conozco a nadie que hable chino, Busco un apartamento que tenga terraza (vs one that definitely exists → indicative)",
+            "Uses time conjunctions with future reference + subjunctive: cuando llegues, en cuanto lo sepa, después de que terminen, antes de que empiece",
+            "Controls the full sequence of tenses across multi-clause sentences with subjunctive (Si me pide que lo haga, lo haré / Si me hubiera pedido que lo hiciera, lo habría hecho)",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +32,11 @@ C1_UNITS = [
         vocabulary_set_ids=["académico_c1", "investigación_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Write academic texts",
-            "Use nominalisation effectively",
-            "Maintain formal register",
+            "Uses the pasiva refleja (se + third person) fluently in formal and technical writing as the natural Spanish alternative to the passive voice with ser",
+            "Converts verb and adjective phrases into noun phrases through nominalisation (aumentar → el aumento, desarrollar → el desarrollo, eficaz → la eficacia) to achieve the dense impersonal style of academic Spanish",
+            "Constructs impersonal academic sentences using: se considera que, se ha demostrado que, cabe señalar que, es preciso destacar que, conviene subrayar que",
+            "Maintains consistent formal register throughout a 400+ word academic text, avoiding colloquial vocabulary and informal contractions",
+            "Identifies and corrects register violations in student academic texts (colloquial vocabulary, first-person overuse, informal connectors)",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-1",
@@ -48,9 +50,11 @@ C1_UNITS = [
         vocabulary_set_ids=["profesional_c1", "técnico_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use specialised vocabulary",
-            "Apply word formation patterns",
-            "Choose precise terminology",
+            "Derives new words systematically using productive Spanish suffixes (-ción/-sión, -dad/-tad, -eza, -ura, -oso, -able, -mente) and prefixes (des-, re-, ante-, post-, sub-)",
+            "Identifies semantic field relationships and common collocations in specialised registers: cometer un error (not *hacer), tomar una decisión (not *hacer), plantear un problema (not *decir)",
+            "Chooses the precise synonym over the imprecise near-equivalent in professional writing (indicar vs decir, emplear vs usar, obtener vs conseguir in formal contexts)",
+            "Explains the meaning of specialised terms in plain Spanish without resorting to the target language (paraphrase as a communication strategy)",
+            "Demonstrates awareness of false cognates within Spanish (e.g., actualmente = currently not actually; realizar = to carry out not to realise) and frequent learner interference errors",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-2",
@@ -64,9 +68,11 @@ C1_UNITS = [
         vocabulary_set_ids=["humor_c1", "cultura_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Recognise irony and sarcasm",
-            "Understand double meanings",
-            "Use humour appropriately",
+            "Recognises verbal irony and sarcasm in Spanish by attending to intonation, context, and lexical incongruity: ¡Qué lista eres! (said to someone who has done something foolish)",
+            "Understands wordplay (juegos de palabras), puns (calambures), and double meanings commonly found in Spanish advertising, headlines, and everyday speech",
+            "Interprets humour grounded in Spanish cultural references (Las rebajas, la siesta, la sobremesa, Semana Santa) without requiring explanation",
+            "Produces a short satirical or ironic text on a social topic using appropriate tone, register, and devices without causing unintended offence",
+            "Distinguishes irony from lying, and sarcasm from insult, in terms of shared pragmatic knowledge between interlocutors",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-3",
@@ -80,9 +86,11 @@ C1_UNITS = [
         vocabulary_set_ids=["oratoria_c1", "presentaciones_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Deliver persuasive speeches",
-            "Use rhetorical devices",
-            "Engage an audience effectively",
+            "Uses rhetorical repetition (anáfora, epífora), tricolon, and rhetorical questions (¿Acaso no tenemos derecho a...?) to increase the persuasive force of a speech or essay",
+            "Uses concessive patterns for sophisticated argumentation: por más que + subjunctive (Por más que lo intentes, no lo conseguirás), a pesar de que + subjunctive/indicative, aun cuando + subjunctive",
+            "Opens and closes formal speeches with appropriate conventions: Señoras y señores…, querido público…; En definitiva…, En conclusión…, Para terminar…",
+            "Integrates data, quotations, and expert opinion into a written argument with correct attribution and source-indicating phrases: según un estudio de…, como afirma…, tal como señala…",
+            "Delivers a 3-minute spoken argument on a complex social or ethical issue with coherent structure, rhetorical devices, and minimal hesitation",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-4",
@@ -96,9 +104,11 @@ C1_UNITS = [
         vocabulary_set_ids=["variedades_c1", "dialectos_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Recognise regional variations",
-            "Adapt to different Spanish varieties",
-            "Understand major dialectal differences",
+            "Identifies the key phonological differences between Peninsular Spanish (ceceo/distinción s/z, leísmo) and the major Latin American varieties (seseo, yeísmo)",
+            "Understands and responds to voseo (vos + specific verb forms: vos tenés, vos querés, vos sos) as used in Argentina, Uruguay, and Central America",
+            "Recognises significant lexical differences between Peninsular and Latin American Spanish in everyday domains: coche/carro, ordenador/computadora, móvil/celular, conducir/manejar",
+            "Uses the distinction vosotros/ustedes (Peninsular) vs ustedes for all contexts (Latin America) correctly for the variety being learned",
+            "Discusses the sociolinguistic status of Spanish varieties without applying a value hierarchy, understanding that all are equally valid and rule-governed",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-5",
@@ -112,9 +122,11 @@ C1_UNITS = [
         vocabulary_set_ids=["análisis_c1", "síntesis_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Synthesise complex information",
-            "Provide constructive criticism",
-            "Reformulate ideas precisely",
+            "Synthesises information from two or three sources into a coherent attributed summary without distorting the original meaning: Según X…, Por su parte, Y afirma que…",
+            "Evaluates the reliability, internal consistency, and potential bias of an argument encountered in a Spanish text",
+            "Reformulates a complex idea in different words (paráfrasis) without losing precision, using Spanish-specific reformulation expressions: es decir, o sea, en otras palabras, dicho de otra manera",
+            "Writes a structured critical analysis (300–400 words) with clearly marked thesis, evidence, counter-evidence, and a conclusion that synthesises the argument",
+            "Distinguishes between summarising (reporting what the author says) and evaluating (assessing the quality of the argument)",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-6",
@@ -126,6 +138,8 @@ C1_UNITS = [
         title="C1 Consolidación",
         grammar_points=[
             "subjuntivo-concesivo",
+            "subjuntivo-final",
+            "subjuntivo-relativo",
             "pasiva-refleja",
             "nominalizacion",
             "recursos-retóricos",
@@ -135,9 +149,11 @@ C1_UNITS = [
         vocabulary_set_ids=["repaso_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Express ideas fluently and spontaneously",
-            "Use language flexibly for social and professional purposes",
-            "Produce well-structured detailed text on complex subjects",
+            "Produces a formal 400-word text integrating all C1 grammar structures with evident control and natural fluency",
+            "Expresses complex, nuanced ideas spontaneously without visibly searching for words or structures",
+            "Demonstrates full control of the subjunctive across all its C1 contexts: concessive, purposive, restrictive relative, and temporal",
+            "Reads and critically evaluates a 400-word text on an abstract or specialist topic, identifying argument structure and implicit assumptions",
+            "Performs at a level consistent with DELE C1 in a simulated examination task covering all four skills",
         ],
         default_weeks=1,
         prerequisite_unit="c1-unit-7",

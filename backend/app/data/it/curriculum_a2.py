@@ -1,12 +1,10 @@
-"""
-CEFR A2 curriculum units.
-"""
+"""A2 curriculum units — Italian (it-IT)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-A2_UNITS = [
+A2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="a2-unit-1",
         level="A2",
@@ -20,9 +18,10 @@ A2_UNITS = [
         vocabulary_set_ids=["viaggi_a2", "esperienze_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form passato prossimo with avere",
-            "Form passato prossimo with essere",
-            "Use common irregular past participles",
+            "Forms the passato prossimo with avere for transitive verbs: ho mangiato, hai letto, ha scritto — and knows that the past participle does NOT change with avere unless a preceding direct object pronoun is used (Li ho visti)",
+            "Forms the passato prossimo with essere for intransitive verbs of motion and state change, making the past participle agree in gender and number with the subject: sono andato/andata, siamo partiti/partite",
+            "Identifies which common verbs take essere (andare, venire, partire, arrivare, nascere, morire, restare, diventare, essere, stare) vs avere — this is a uniquely Italian grammatical challenge",
+            "Uses 20+ common irregular past participles: fatto, detto, scritto, letto, aperto, chiuso, messo, preso, visto, venuto, stato, rimasto, risposto",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -36,9 +35,10 @@ A2_UNITS = [
         vocabulary_set_ids=["infanzia_a2", "storie_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form the imperfect tense",
-            "Distinguish passato prossimo and imperfetto",
-            "Narrate past events",
+            "Conjugates the imperfetto for all persons: regular -are (parlavo), -ere (leggevo), -ire (dormivo) and the irregular essere (ero/eri/era/eravamo/eravate/erano)",
+            "Uses the imperfetto for ongoing past states, descriptions of scenes, habitual past actions, and age (Da bambino, avevo i capelli biondi; Di solito mangiavo alle otto)",
+            "Distinguishes passato prossimo (completed, foreground action) from imperfetto (background, ongoing state/habit): Quando sono arrivato, mangiava già",
+            "Writes a childhood memory or a simple story (60–80 words) combining both tenses with time markers: mentre, quando, di solito, spesso, sempre, una volta",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-1",
@@ -52,9 +52,10 @@ A2_UNITS = [
         vocabulary_set_ids=["acquisti_a2", "regali_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use direct object pronouns",
-            "Use indirect object pronouns",
-            "Combine pronouns",
+            "Replaces a direct object with lo/la/li/le placed before the conjugated verb: Compro il libro → Lo compro; ho visto le ragazze → Le ho viste — including the obligatory past participle agreement with li/la/le/lo",
+            "Uses indirect object pronouns mi/ti/gli/le/ci/vi/gli (loro) placed before the verb: Gli scrivo una lettera (= to him/her), Ti mando un messaggio",
+            "Combines direct and indirect pronouns, applying the transformation to me lo, te lo, glielo, ce lo, ve lo, glielo — noting that Italian collapses the distinction between gli (him) and le (her) to gli in combined forms",
+            "Places pronouns correctly: before a conjugated verb, attached to infinitive or gerund, or attached to imperative (Dimmi! Dammelo!) in each case",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-2",
@@ -67,7 +68,12 @@ A2_UNITS = [
         grammar_points=["comparativi", "superlativi", "così-come"],
         vocabulary_set_ids=["città_a2", "cultura_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
-        competency_checklist=["Make comparisons", "Form superlatives", "Express equality"],
+        competency_checklist=[
+            "Forms comparatives of inequality using più/meno + adjective + di (before a noun/pronoun) or che (before two adjectives, two nouns compared directly, or before infinitives): Roma è più grande di Milano; È più bello che utile",
+            "Expresses equality with così...come or tanto...quanto: È così bravo come me, Mangia tanto quanto me",
+            "Forms the relative superlative with il/la + più/meno + adjective + di: È il film più bello dell'anno",
+            "Uses irregular comparatives and superlatives: buono → migliore/il migliore, cattivo → peggiore/il peggiore, grande → maggiore/il maggiore, piccolo → minore/il minore",
+        ],
         default_weeks=2,
         prerequisite_unit="a2-unit-3",
     ),
@@ -80,9 +86,10 @@ A2_UNITS = [
         vocabulary_set_ids=["salute_a2", "consigli_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Give commands and instructions",
-            "Offer advice",
-            "Use imperative with pronouns",
+            "Forms the affirmative imperative for tu (identical to present indicative for -are verbs: parla!, -ere: prendi!, -ire: dormi!), voi (same as present indicative: parlate!, prendete!), and Lei formal (same as congiuntivo presente: parli!, prenda!)",
+            "Note the irregular tu imperatives: va'/vai, da'/dai, fa'/fai, sta'/stai, di' — and uses them in practical contexts (Va' a dormire!, Di' la verità!)",
+            "Forms the negative imperative for tu with non + infinitive: non parlare!, non prendere!, non dormire! — all other persons use non + affirmative imperative",
+            "Attaches pronouns to affirmative imperatives (Dimmi!, Prendilo!, Alzati!) and doubles consonant with short forms: dammi, fallo, vacci, stammi",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-4",
@@ -96,9 +103,10 @@ A2_UNITS = [
         vocabulary_set_ids=["lavoro_a2", "richieste_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form present conditional",
-            "Make polite requests",
-            "Express desires with vorrei",
+            "Conjugates the present conditional for all persons, noting the shared stem with the future: parlerei, parleresti, parlerebbe, parleremmo, parlereste, parlerebbero — and irregular stems: sarei, avrei, farei, andrei, verrei, dovrei, potrei, vorrei",
+            "Uses vorrei (I would like) as the standard polite form for requests and ordering in Italian: Vorrei un caffè, Vorrei prenotare un tavolo — understanding this as more natural than voglio in service situations",
+            "Makes polite requests and suggestions using potrebbe, dovrebbe, sarebbe meglio: Potrebbe aiutarmi? Sarebbe possibile...?",
+            "Uses the conditional for hypothetical statements and expressing wishes: Mangerei volentieri una pizza, Vivrei in Italia se potessi",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-5",
@@ -112,9 +120,10 @@ A2_UNITS = [
         vocabulary_set_ids=["storie_a2", "aneddoti_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Tell stories using past tenses",
-            "Use narrative connectors",
-            "Report speech",
+            "Links events using narrative connectors: prima, poi, dopo, quindi, allora, alla fine, nel frattempo, improvvisamente, a quel punto",
+            "Forms the trapassato prossimo (aveva + participio / era + participio) to express an action that happened before another past event: Quando sono arrivato, aveva già mangiato",
+            "Reports what someone said applying the required tense shift: dice → ha detto che; present → imperfect: Ha detto che era stanco; future → conditional: Ha detto che sarebbe venuto",
+            "Writes a personal anecdote of 80–100 words combining passato prossimo, imperfetto, trapassato prossimo, and narrative connectors",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-6",
@@ -125,19 +134,23 @@ A2_UNITS = [
         unit_number=8,
         title="A2 Consolidamento",
         grammar_points=[
-            "passato-prossimo",
+            "passato-prossimo-avere",
+            "passato-prossimo-essere",
             "imperfetto",
             "pronomi-diretti",
+            "pronomi-indiretti",
             "comparativi",
             "condizionale-presente",
             "imperativo-affermativo",
+            "trapassato-prossimo",
         ],
         vocabulary_set_ids=["ripasso_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Handle routine social situations",
-            "Express past, present and future",
-            "Use basic connectors fluently",
+            "Handles routine social situations (shopping, booking, asking for information) using the correct past tenses and polite conditional forms",
+            "Uses object pronouns — direct, indirect, and combined — accurately in short exchanges without systematic error",
+            "Produces a connected text of 80–100 words using passato prossimo, imperfetto, and conditional tenses",
+            "Reads and understands a factual text of 150–200 words on a familiar topic and answers comprehension questions",
         ],
         default_weeks=1,
         prerequisite_unit="a2-unit-7",

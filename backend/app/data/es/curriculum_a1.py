@@ -1,12 +1,10 @@
-"""
-CEFR A1 curriculum units.
-"""
+"""A1 curriculum units — Spanish (es-ES)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-A1_UNITS = [
+A1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="a1-unit-1",
         level="A1",
@@ -16,9 +14,10 @@ A1_UNITS = [
         vocabulary_set_ids=["saludos_a1", "presentaciones_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Greet and introduce yourself in Spanish",
-            "Use ser with basic adjectives",
-            "Recognise definite articles",
+            "Introduces themselves using ser: name, age, and nationality (Soy María, tengo 25 años, soy española)",
+            "Greets and farewells with correct register: hola, buenos días, buenas tardes, hasta luego",
+            "Uses definite articles el/la/los/las with familiar nouns and checks gender agreement",
+            "Asks and answers ¿Cómo te llamas? / ¿De dónde eres? in a short spoken exchange",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +31,10 @@ A1_UNITS = [
         vocabulary_set_ids=["nacionalidades_a1", "profesiones_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "State nationality and profession",
-            "Match gender of nouns and adjectives",
-            "Use indefinite articles",
+            "States nationality and profession using ser with correct masculine/feminine form: soy inglés/inglesa, soy médico/médica",
+            "Applies gender agreement between noun and adjective: una profesora española, un alumno inglés",
+            "Uses un/una/unos/unas correctly with professions and objects in simple sentences",
+            "Distinguishes ser (identity, nationality, profession) from estar (not yet taught) in A1 contexts",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-1",
@@ -48,9 +48,10 @@ A1_UNITS = [
         vocabulary_set_ids=["familia_a1", "descripciones_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Describe family members",
-            "Use possessive adjectives",
-            "Use tener for age and possession",
+            "Names family members and uses tener for age and kinship: Tengo dos hermanos, Mi madre tiene 50 años",
+            "Uses possessive adjectives mi/tu/su/nuestro with singular and plural nouns correctly",
+            "Describes physical appearance and personality with adjectives in gender/number agreement: alto/alta, simpático/simpática",
+            "Writes a short paragraph (40–50 words) describing a family member using ser, tener, and adjectives",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-2",
@@ -64,9 +65,10 @@ A1_UNITS = [
         vocabulary_set_ids=["rutina_a1", "horas_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Conjugate regular -ar/-er/-ir verbs",
-            "Describe daily routine",
-            "Tell the time",
+            "Conjugates regular -ar (hablar), -er (comer), and -ir (vivir) verbs in present tense for all six persons",
+            "Uses reflexive verbs correctly: me levanto, me ducho, me acuesto with the matching pronoun",
+            "Tells the time using Es la una, Son las tres y media, a las ocho menos cuarto",
+            "Describes own daily routine in a connected sequence of 5–6 sentences",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-3",
@@ -80,9 +82,10 @@ A1_UNITS = [
         vocabulary_set_ids=["comida_a1", "actividades_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Express likes and dislikes with gustar",
-            "Agree and disagree",
-            "Use quantifiers",
+            "Uses gustar correctly with singular/plural nouns and infinitives: me gusta el café, me gustan los libros, me gusta leer",
+            "Applies the indirect object pronouns me/te/le/nos/os/les before gusta/gustan",
+            "Expresses degree with mucho, bastante, un poco, nada: Me gusta mucho el fútbol, No me gusta nada el ruido",
+            "Agrees and disagrees using a mí también/a mí tampoco and a mí sí/a mí no",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-4",
@@ -96,9 +99,10 @@ A1_UNITS = [
         vocabulary_set_ids=["lugares_a1", "direcciones_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Ask for and give directions",
-            "Describe location with estar",
-            "Use hay for existence",
+            "Distinguishes estar (location of specific things/people) from hay (existence of unspecified things): La farmacia está en la calle Mayor vs Hay una farmacia cerca",
+            "Locates places and objects using: en, al lado de, enfrente de, cerca de, lejos de, entre",
+            "Gives simple directions using: gira a la derecha/izquierda, sigue todo recto, cruza la calle",
+            "Names essential city places and understands a simple written map description",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-5",
@@ -112,9 +116,10 @@ A1_UNITS = [
         vocabulary_set_ids=["transporte_a1", "clima_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Talk about future plans with ir a",
-            "Express ability and desire",
-            "Discuss days and weather",
+            "Forms ir a + infinitive correctly for all persons to express planned actions: Voy a estudiar el lunes, ¿Qué vas a hacer mañana?",
+            "Uses querer + infinitive for desires and poder + infinitive for ability or permission: Quiero ir al cine, No puedo venir",
+            "Names days of the week and uses el + day (habitual) vs este + day (specific): los lunes trabajo, este viernes salgo",
+            "Talks about the weather using: hace sol/frío/calor/viento, llueve, nieva, está nublado",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-6",
@@ -129,6 +134,7 @@ A1_UNITS = [
             "estar",
             "tener",
             "presente-regular",
+            "verbos-reflexivos",
             "gustar",
             "ir-a-futuro",
             "articulos-definidos",
@@ -137,9 +143,10 @@ A1_UNITS = [
         vocabulary_set_ids=["repaso_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Sustain a basic conversation on familiar topics",
-            "Use present tense accurately",
-            "Distinguish ser and estar uses",
+            "Sustains a simple spoken or written exchange on familiar topics without major breakdowns",
+            "Distinguishes the key uses of ser (identity, profession, nationality) and estar (location, state) in context",
+            "Switches between present tense, ir a + infinitive, and hay/estar as needed in a short text",
+            "Reads and understands a simple everyday text of 60–80 words and answers factual questions",
         ],
         default_weeks=1,
         prerequisite_unit="a1-unit-7",

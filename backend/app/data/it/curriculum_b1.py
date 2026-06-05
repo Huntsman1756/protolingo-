@@ -1,12 +1,10 @@
-"""
-CEFR B1 curriculum units.
-"""
+"""B1 curriculum units — Italian (it-IT)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-B1_UNITS = [
+B1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="b1-unit-1",
         level="B1",
@@ -16,9 +14,11 @@ B1_UNITS = [
         vocabulary_set_ids=["emozioni_b1", "opinioni_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form present subjunctive",
-            "Use subjunctive after opinion verbs",
-            "Use impersonal expressions with subjunctive",
+            "Forms the present congiuntivo for regular verbs and essential irregulars: sia, abbia, faccia, vada, venga, dica, esca, possa, voglia, sappia, tenga — noting that the congiuntivo has fewer distinct forms than the indicative (io/tu/lui/lei are identical)",
+            "Uses the congiuntivo after opinion and mental state verbs with a change of subject: pensare che, credere che, sperare che, temere che, dubitare che: Penso che venga domani",
+            "Uses the congiuntivo after impersonal expressions: è importante che, è necessario che, bisogna che, è possibile che, è strano che, è un peccato che + congiuntivo",
+            "Distinguishes when the congiuntivo is required (change of subject, subjective judgement) from when the infinitive is used (same subject): Spero di venire (same subject) vs Spero che tu venga (different subject)",
+            "Notes that in informal spoken Italian the congiuntivo is often replaced by the indicative by native speakers — but understands that formal writing requires it",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +32,11 @@ B1_UNITS = [
         vocabulary_set_ids=["lavoro_b1", "studio_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use subjunctive for wishes",
-            "Express emotions with subjunctive",
-            "Apply subjunctive in doubt contexts",
+            "Uses the congiuntivo after verbs of will and desire: volere che, desiderare che, preferire che, chiedere che, insistere che — Voglio che tu mi dica la verità",
+            "Uses the congiuntivo after emotional expressions: sono contento/a che, mi dispiace che, ho paura che, è un peccato che, mi stupisce che — Mi dispiace che tu non possa venire",
+            "Uses the congiuntivo after expressions of doubt, denial, and uncertainty: non credere che, non pensare che, negare che, non essere sicuro/a che — Non sono sicura che abbia capito",
+            "Uses the congiuntivo after indefinite and negative pronouns: non c'è nessuno che, non conosco niente che, cerco qualcuno che — in restrictive relative clauses with indefinite antecedents",
+            "Produces a paragraph giving advice and expressing opinions about a work or study situation using congiuntivo correctly in contrast with indicative",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-1",
@@ -47,7 +49,12 @@ B1_UNITS = [
         grammar_points=["trapassato-prossimo", "futuro-anteriore", "concordanza-tempi"],
         vocabulary_set_ids=["esperienze_b1", "progetti_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
-        competency_checklist=["Form past perfect", "Use future perfect", "Apply tense agreement"],
+        competency_checklist=[
+            "Forms the trapassato prossimo (avevo/ero + past participle) with correct auxiliary choice and past participle agreement — the same essere/avere rule applies as in passato prossimo: era già partita, avevo già mangiato",
+            "Uses the trapassato prossimo to sequence two past events: the trapassato for the earlier event, passato prossimo or imperfetto for the later one: Quando ho chiamato, era già uscito",
+            "Forms the futuro anteriore (avrò/sarò + past participle) and uses it for: a completed future action before another future event (Quando avrò finito, uscirò) and for probability about a past action (Avrà già mangiato = He has probably already eaten)",
+            "Applies the key principle of Italian tense agreement: when the main verb is in a future tense, a subordinate temporal clause uses futuro anteriore or presente, not passato prossimo",
+        ],
         default_weeks=2,
         prerequisite_unit="b1-unit-2",
     ),
@@ -59,7 +66,13 @@ B1_UNITS = [
         grammar_points=["forma-passiva", "si-impersonale", "si-passivante"],
         vocabulary_set_ids=["notizie_b1", "società_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
-        competency_checklist=["Form passive voice", "Use impersonal si", "Discuss societal topics"],
+        competency_checklist=[
+            "Forms the passive voice with essere + past participle in all tenses, making the past participle agree with the subject in gender and number: Il libro è stato scritto da Calvino, Le case vengono costruite velocemente",
+            "Uses venire + past participle as an alternative passive in simple tenses (not compound tenses) for dynamic processes: La pizza viene preparata con ingredienti freschi — and andare + past participle to express obligation or necessity: La legge va rispettata",
+            "Uses si impersonale for actions with an unspecified human agent: Si mangia bene in Italia, Si dice che sia difficile — noting the verb is always third person singular",
+            "Uses si passivante (si + third person singular/plural depending on the noun): Si vendono appartamenti, Si cerca un collaboratore — and distinguishes this from si impersonale by the verb number agreement",
+            "Reads a news article and identifies passive, si passivante, and impersonal constructions; writes a short report or process description using these forms",
+        ],
         default_weeks=2,
         prerequisite_unit="b1-unit-3",
     ),
@@ -72,9 +85,10 @@ B1_UNITS = [
         vocabulary_set_ids=["descrizioni_b1", "persone_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use relative che",
-            "Apply cui in context",
-            "Use il quale for precision",
+            "Uses che as the default relative pronoun for both subject and direct object relative clauses in Italian: il libro che ho comprato, la persona che è arrivata",
+            "Uses cui after all prepositions to form relative clauses: il libro di cui ti ho parlato, la città in cui vivo, la persona a cui ho scritto, il motivo per cui sono venuto — never using che after a preposition",
+            "Uses il quale/la quale/i quali/le quali as an alternative to che or cui for precision and to avoid ambiguity when the antecedent is unclear: Ho parlato con la figlia del direttore, la quale lavora in banca",
+            "Uses dove as a relative adverb for places (equivalent to in cui): la città dove vivo, il ristorante dove abbiamo mangiato",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-4",
@@ -88,9 +102,10 @@ B1_UNITS = [
         vocabulary_set_ids=["situazioni_b1", "ipotesi_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form type 1 and 2 conditionals",
-            "Make hypotheses about present",
-            "Express real and unreal conditions",
+            "Forms and uses the tipo 1 (real) conditional: se + present indicative + future indicative for conditions that are likely to be met: Se studia, passerà l'esame",
+            "Forms and uses the tipo 2 (unreal present) conditional: se + congiuntivo imperfetto + condizionale presente for unreal or unlikely present/future conditions: Se avessi i soldi, viaggerei di più",
+            "Uses the futuro semplice for probability and predictions: Sarà in casa (He is probably at home); Avrà trent'anni (She must be about thirty) — a very common Italian usage",
+            "Understands that in Italian the se-clause never takes the condizionale (unlike some learner errors): *Se avrei → WRONG; Se avessi → CORRECT",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-5",
@@ -108,9 +123,10 @@ B1_UNITS = [
         vocabulary_set_ids=["opinioni_b1", "dibattiti_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Report past conversations",
-            "Use argumentative connectors",
-            "Express and defend opinions",
+            "Reports speech with the required tense shift when the reporting verb is in the past: present → imperfect (Dice che è stanco → Ha detto che era stanco), future → conditional (Dice che verrà → Ha detto che sarebbe venuto)",
+            "Reports questions correctly using se for yes/no questions (Mi ha chiesto se ero stanco) and question words with non-inverted word order for wh-questions (Mi ha chiesto dove abitassi)",
+            "Applies time expression shifts in reported speech: oggi → quel giorno, domani → il giorno dopo/l'indomani, ieri → il giorno prima, qui → lì",
+            "Uses argumentative connectors: tuttavia, però, invece (contrast); inoltre, anche, perfino (addition); quindi, perciò, di conseguenza (consequence); poiché, siccome, dato che (cause) — correctly positioned in the sentence",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-6",
@@ -123,6 +139,7 @@ B1_UNITS = [
         grammar_points=[
             "congiuntivo-presente",
             "trapassato-prossimo",
+            "futuro-anteriore",
             "forma-passiva",
             "cui",
             "periodo-ipotetico-2",
@@ -131,9 +148,10 @@ B1_UNITS = [
         vocabulary_set_ids=["ripasso_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Handle most everyday situations",
-            "Express opinions with nuance",
-            "Understand main ideas of complex texts",
+            "Handles most everyday situations (travel, work, social interaction) with relative ease and expresses opinions with nuance",
+            "Uses congiuntivo presente correctly in its core B1 contexts: subjective judgement, doubt, will, emotion — and applies it after impersonal expressions",
+            "Produces a connected piece of writing (100–150 words) integrating congiuntivo, passive, relative clauses with cui, and argumentative connectors",
+            "Reads and extracts the main ideas from an article of 200–250 words on a familiar topic",
         ],
         default_weeks=1,
         prerequisite_unit="b1-unit-7",

@@ -1,24 +1,24 @@
-"""
-CEFR C2 curriculum units.
-"""
+"""C2 curriculum units — Spanish (es-ES)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-C2_UNITS = [
+C2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="c2-unit-1",
         level="C2",
         unit_number=1,
         title="Dominio de la Gramática Avanzada",
-        grammar_points=["repaso-subjuntivo", "repaso-condicional", "concordancia-avanzada"],
+        grammar_points=["repaso-subjuntivo", "repaso-condicional", "concordancia-de-tiempos"],
         vocabulary_set_ids=["excelencia_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Demonstrate mastery of all subjunctive forms",
-            "Use conditional constructions flawlessly",
-            "Apply advanced agreement rules",
+            "Controls all subjunctive tenses and their sequence without systematic error: present, imperfect, perfect, and pluperfect subjunctive across all trigger categories",
+            "Forms and interprets mixed conditional structures combining different time frames: Si hubiera estudiado más, tendría ahora un mejor trabajo (past hypothesis → present consequence)",
+            "Applies the full concordancia de tiempos correctly in extended multi-clause sentences with subjunctive, maintaining logical and temporal coherence",
+            "Identifies and corrects subtle grammatical errors characteristic of advanced non-native speakers: incorrect sequence of tenses, overuse of indicative, misplaced object pronouns",
+            "Demonstrates grammatical range and precision comparable to an educated native speaker in formal written and spoken registers",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +32,11 @@ C2_UNITS = [
         vocabulary_set_ids=["literatura_c2", "estilo_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Write with literary style",
-            "Control narrative voice",
-            "Deploy advanced stylistic devices",
+            "Controls narrative point of view (primera, tercera omnisciente, tercera limitada) in original creative writing, making conscious and consistent choices",
+            "Uses asyndeton (polisíndeton and asíndeton) and other syntactic devices for deliberate stylistic effect: rhythmic accumulation, abrupt pause, emphatic contrast",
+            "Deploys anáfora, epífora, quiasmo, and other rhetorical figures as stylistic tools in essays, speeches, and literary prose",
+            "Reads a literary passage from contemporary or classic Spanish literature (Cervantes, Galdós, Borges, García Márquez) and analyses style, tone, narrative technique, and language",
+            "Writes a 300-word literary prose piece or essay demonstrating conscious control of stylistic register, narrative voice, and literary devices",
         ],
         default_weeks=2,
         prerequisite_unit="c2-unit-1",
@@ -48,9 +50,11 @@ C2_UNITS = [
         vocabulary_set_ids=["traducción_c2", "mediación_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Translate nuanced texts",
-            "Mediate between languages",
-            "Navigate false friends",
+            "Identifies and avoids Spanish-English false cognates that mislead advanced learners: actualmente (currently, not actually), embarazada (pregnant, not embarrassed), realizar (to carry out, not to realise), sensible (sensitive, not sensible)",
+            "Mediates between two interlocutors with different language backgrounds by rephrasing, summarising, and clarifying without distorting meaning",
+            "Produces a fluent paraphrase of a complex Spanish text in simpler Spanish, maintaining the register and intention of the original",
+            "Explains the cultural and pragmatic dimensions of Spanish expressions that resist direct translation: el madrugón, la sobremesa, la vergüenza ajena, la confianza",
+            "Translates a complex paragraph from Spanish to the learner's L1 and vice versa, resolving idiomatic expressions through functional equivalents rather than literal renderings",
         ],
         default_weeks=2,
         prerequisite_unit="c2-unit-2",
@@ -60,13 +64,15 @@ C2_UNITS = [
         level="C2",
         unit_number=4,
         title="Cultura e Historia del Español",
-        grammar_points=["evolución-lingüística", "arabismos", "indigenismos"],
+        grammar_points=["lexicon-historico", "arabismos", "indigenismos"],
         vocabulary_set_ids=["historia_c2", "cultura_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Understand historical language evolution",
-            "Recognise Arabic influences in Spanish",
-            "Identify indigenous loanwords",
+            "Recognises Arabic loanwords (arabismos) integrated into everyday Spanish vocabulary — ojalá, almohada, alcohol, azúcar, aceite, cifra, alcalde — and explains their origin and historical context",
+            "Identifies indigenous loanwords (indigenismos) from Nahuatl, Quechua, and Taíno that entered Spanish through colonisation: chocolate, tomate, patata, canoa, cacao, aguacate, maíz",
+            "Traces broad stages of the historical development of Spanish from Vulgar Latin through medieval Castilian to the modern standard, identifying archaic forms still present in the language",
+            "Reads a 16th-century Spanish text (e.g., a fragment of El Quijote or Lazarillo de Tormes) and identifies archaisms, recognising the continuity with modern Spanish",
+            "Discusses the role of language institutions (Real Academia Española, Instituto Cervantes) and debates around linguistic prescription and the global status of Spanish",
         ],
         default_weeks=2,
         prerequisite_unit="c2-unit-3",
@@ -80,9 +86,11 @@ C2_UNITS = [
         vocabulary_set_ids=["creación_c2", "publicación_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Create content across genres",
-            "Demonstrate linguistic creativity",
-            "Edit and refine complex texts",
+            "Produces a 500-word piece across different text genres — opinion column, personal essay, short story, formal report — adapting vocabulary, tone, and structure to the genre conventions of each",
+            "Edits a draft text at the level of a skilled copy-editor: restructuring for clarity, eliminating redundancy, elevating register, and correcting subtle grammatical and stylistic flaws",
+            "Employs metalinguistic awareness to explain and justify stylistic choices in own writing, demonstrating critical self-reflection on the craft of writing in Spanish",
+            "Creates concise, impactful public discourse copy (a political speech opening, a marketing tagline, a social media campaign text) using linguistic economy and rhetorical precision",
+            "Demonstrates linguistic creativity through wordplay, neologism, deliberate register mixing, and original metaphor, while maintaining communicative clarity",
         ],
         default_weeks=2,
         prerequisite_unit="c2-unit-4",
@@ -92,13 +100,15 @@ C2_UNITS = [
         level="C2",
         unit_number=6,
         title="C2 Consolidación y Maestría",
-        grammar_points=["todos-los-temas", "integración", "fluidez-nativa"],
+        grammar_points=["expresion-matizada", "integracion-gramatical", "fluidez-nativa"],
         vocabulary_set_ids=["maestría_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Reconstruct arguments coherently",
-            "Express yourself spontaneously at native level",
-            "Differentiate finer shades of meaning",
+            "Expresses subtle nuances of meaning — doubt, irony, tentativeness, emphasis — through precise selection of grammatical structure and vocabulary rather than explicit hedging",
+            "Reconstructs a complex argument from a different ideological or cultural perspective, demonstrating flexible control of point of view and register",
+            "Demonstrates near-native grammatical accuracy in spontaneous extended writing and speech, with only occasional non-systematic errors that do not impede communication",
+            "Differentiates fine shades of meaning between near-synonymous words and register variants: propósito/objetivo/finalidad/meta, aunque/a pesar de que/no obstante, señalar/indicar/apuntar/subrayar",
+            "Achieves a score consistent with DELE C2 / Certificado de Maestría proficiency across reading, writing, listening, and spoken interaction tasks",
         ],
         default_weeks=1,
         prerequisite_unit="c2-unit-5",

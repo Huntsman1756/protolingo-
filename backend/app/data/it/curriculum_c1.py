@@ -1,12 +1,10 @@
-"""
-CEFR C1 curriculum units.
-"""
+"""C1 curriculum units — Italian (it-IT)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-C1_UNITS = [
+C1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="c1-unit-1",
         level="C1",
@@ -16,9 +14,11 @@ C1_UNITS = [
         vocabulary_set_ids=["sfumature_c1", "formalità_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Master concessive subjunctive",
-            "Use purpose clauses accurately",
-            "Apply subjunctive in relative clauses",
+            "Uses concessive conjunctions with congiuntivo: sebbene, benché, nonostante, malgrado + congiuntivo in all four tenses — understanding that although their English equivalents (although, even though) use indicative, Italian requires subjunctive",
+            "Uses final conjunctions: affinché, perché (in order that), a patto che, purché (provided that), a condizione che + congiuntivo — and distinguishes them from perché + indicative (because/reason)",
+            "Uses congiuntivo in restrictive relative clauses with negative, indefinite, and superlative antecedents: Non c'è nessuno che sappia rispondere, È la persona più intelligente che conosca, Cerco un appartamento che abbia il giardino",
+            "Uses congiuntivo after come se (as if) in all appropriate tenses: Parla come se fosse italiano, Si è comportato come se non fosse successo niente",
+            "Controls the full concordanza dei tempi across complex multi-clause sentences mixing indicative and congiuntivo in formal written Italian",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +32,11 @@ C1_UNITS = [
         vocabulary_set_ids=["accademico_c1", "ricerca_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Write academic texts",
-            "Use nominalisation effectively",
-            "Maintain formal register",
+            "Converts verb phrases into noun phrases through nominalizzazione — a fundamental feature of Italian academic style: analizzare → l'analisi, sviluppare → lo sviluppo, crescere → la crescita, approfondire → l'approfondimento",
+            "Constructs impersonal academic sentences using: si ritiene che + congiuntivo, si è dimostrato che, è stato osservato che, risulta evidente che, appare necessario, va sottolineato che",
+            "Uses the passive voice with essere, venire, and andare for different nuances (stato/processo/obligation) and in all compound tenses in academic prose: è stato analizzato, viene considerato, va rispettata la norma",
+            "Maintains consistent formal register throughout a 400+ word academic text: avoids colloquial vocabulary, overuse of fare, direct address to the reader, and informal connectors like invece di at sentence start without a subject",
+            "Produces a structured academic paragraph with nominalised subject, impersonal predicate, and formal connectors typical of Italian academic writing",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-1",
@@ -48,9 +50,11 @@ C1_UNITS = [
         vocabulary_set_ids=["professionale_c1", "tecnico_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use specialised vocabulary",
-            "Apply word formation patterns",
-            "Choose precise terminology",
+            "Derives new words systematically using productive Italian suffixes: -zione/-sione (produzione), -ità/-tà (qualità, libertà), -ezza/-ura (bellezza, scrittura), -oso (prezioso), -bile (realizzabile), -mente — and prefixes: in-/im-, ri-, sub-, inter-, pre-, post-",
+            "Uses Italian alterations (alterazioni): diminutivi (-ino/-etto: libretto, casetta), accrescitivi (-one: librone, donnona), peggiorativi (-accio: ragazzaccio, tempaccio), and vezzegiativi (-uccio/-uzzo: amoruccio) — a morphological system far richer than in Spanish or English",
+            "Identifies semantic field relationships and collocations: commettere un errore (not *fare), prendere una decisione (not *fare), sostenere una tesi, condurre una ricerca — and distinguishes formal from informal collocations",
+            "Chooses the precise synonym in professional writing: indicare vs dire, impiegare vs usare, ottenere vs avere, effettuare vs fare in formal contexts",
+            "Explains specialised terms in plain Italian, demonstrating both comprehension and the ability to mediate between expert and non-expert registers",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-2",
@@ -64,9 +68,11 @@ C1_UNITS = [
         vocabulary_set_ids=["umorismo_c1", "cultura_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Recognise Italian irony",
-            "Understand double meanings",
-            "Use humour appropriately",
+            "Recognises verbal irony and sarcasm in Italian by attending to intonation, context, and lexical incongruity: Che bella giornata! (said during a storm); Sei proprio in gamba! (said sarcastically)",
+            "Understands wordplay (giochi di parole), doppi sensi, and culturally specific humour encountered in Italian TV, advertising, and everyday speech — including references to commedia dell'arte, Bel Paese stereotypes, and regional culture",
+            "Interprets humour grounded in Italian cultural phenomena: il campanilismo (local rivalry), la mamma italiana, la burocrazia, la passione per il calcio — without requiring external explanation",
+            "Produces a short satirical or ironic text on a social topic using appropriate devices: sottinteso, litote (understatement), hyperbole — while avoiding unintended offence by calibrating register",
+            "Distinguishes the pragmatic conditions under which irony and sarcasm function (shared knowledge between interlocutors) from literal statements",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-3",
@@ -80,9 +86,11 @@ C1_UNITS = [
         vocabulary_set_ids=["oratoria_c1", "presentazioni_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Deliver persuasive speeches",
-            "Use rhetorical devices",
-            "Engage an audience effectively",
+            "Uses anafora, epifora, chiasmo, and other rhetorical figures to increase the persuasive force of a speech or essay in Italian",
+            "Uses concessive patterns for sophisticated argumentation: pur ammettendo che + congiuntivo, anche se + congiuntivo, per quanto + congiuntivo: Per quanto si sforzi, non riesce a convincermi",
+            "Opens and closes formal Italian speeches with appropriate conventions: Signore e signori…, gentile pubblico…; In conclusione…, In definitiva…, Per riassumere…, Vorrei chiudere con…",
+            "Integrates data, citations, and expert opinion into a written argument with correct attribution: secondo uno studio di…, come afferma X nella sua ricerca del…, stando ai dati forniti da…",
+            "Delivers a 3-minute spoken argument on a complex social or ethical issue with coherent structure, rhetorical devices, and minimal hesitation in Italian",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-4",
@@ -96,9 +104,11 @@ C1_UNITS = [
         vocabulary_set_ids=["varietà_c1", "dialetti_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Recognise regional variations",
-            "Understand major dialectal differences",
-            "Navigate standard vs regional Italian",
+            "Identifies the major phonological features of the main Italian regional varieties: the gorgia toscana (fricativisation of intervocalic stops), Romanesco vowel lowering, northern Italian devoicing, and southern Italian double consonant lengthening",
+            "Understands key lexical differences between northern and southern Italian: dialecto words integrated into regional varieties (bagagli/roba, formaggio/cacio), and the use of diminutives and alterations varying by region",
+            "Recognises that Italian has a large number of active dialects (dialetti) — Neapolitan, Sicilian, Venetian, Romanesco, Milanese — that are distinct linguistic systems, not simply corrupted Italian, and understands their sociolinguistic status",
+            "Distinguishes standard Italian (italiano standard, used in formal media, education, and literature) from italiano parlato informale, italiano regionale, and dialetto on a sociolinguistic continuum",
+            "Discusses the historical role of literary Tuscan (Dante, Petrarch, Boccaccio) and the Manzoniana unification in establishing modern standard Italian",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-5",
@@ -112,9 +122,11 @@ C1_UNITS = [
         vocabulary_set_ids=["analisi_c1", "sintesi_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Synthesise complex information",
-            "Provide constructive criticism",
-            "Reformulate ideas precisely",
+            "Synthesises information from two or three sources into a coherent, attributed summary: Secondo X…, D'altra parte, Y sostiene che…, È necessario però considerare che…",
+            "Evaluates the internal consistency, reliability, and potential bias of an argument in an Italian text, using critical vocabulary: presuppone che, si basa sull'ipotesi che, manca di evidenze concrete, è privo di fondamento",
+            "Reformulates a complex idea in different words (riformulazione) without losing precision, using Italian reformulation expressions: vale a dire, ovvero, in altri termini, con ciò si intende che",
+            "Writes a structured critical analysis (300–400 words) with a clearly marked thesis, supporting evidence, counter-evidence, and a synthesis conclusion",
+            "Distinguishes between summarising (reporting what the author says) and critically evaluating (assessing the quality, logic, and evidence of the argument)",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-6",
@@ -126,6 +138,8 @@ C1_UNITS = [
         title="C1 Consolidamento",
         grammar_points=[
             "congiuntivo-concessivo",
+            "congiuntivo-finale",
+            "congiuntivo-relativo",
             "nominalizzazione",
             "figure-retoriche",
             "italiano-regionale",
@@ -134,9 +148,11 @@ C1_UNITS = [
         vocabulary_set_ids=["ripasso_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Express ideas fluently and spontaneously",
-            "Use language flexibly for social and professional purposes",
-            "Produce well-structured detailed text",
+            "Produces a formal 400-word text integrating all C1 grammar structures — congiuntivo in all its contexts, nominalisation, passive variants — with evident control and natural fluency",
+            "Expresses complex, nuanced ideas spontaneously without visibly searching for structures or vocabulary",
+            "Demonstrates full control of the congiuntivo across all its C1 contexts: concessive, final, relative, and come se constructions — in both spoken and written production",
+            "Reads and critically evaluates a 400-word text on an abstract or specialist topic, identifying argument structure, rhetorical strategies, and implicit assumptions",
+            "Performs at a level consistent with CILS C1 or PLIDA C1 in a simulated examination task covering all four skills",
         ],
         default_weeks=1,
         prerequisite_unit="c1-unit-7",

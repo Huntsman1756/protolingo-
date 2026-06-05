@@ -1,12 +1,10 @@
-"""
-CEFR B1 curriculum units.
-"""
+"""B1 curriculum units — Spanish (es-ES)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-B1_UNITS = [
+B1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="b1-unit-1",
         level="B1",
@@ -16,9 +14,11 @@ B1_UNITS = [
         vocabulary_set_ids=["emociones_b1", "deseos_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form present subjunctive",
-            "Express wishes and emotions",
-            "Use ojalá + subjunctive",
+            "Forms the present subjunctive for regular verbs and the most common irregulars: sea, esté, tenga, haya, vaya, quiera, pueda, sepa",
+            "Uses the subjunctive after verbs of desire with change of subject: quiero que vengas, espero que llegue a tiempo (not *quiero que viene)",
+            "Uses the subjunctive after emotional expressions: me alegra que estés aquí, tengo miedo de que llueva, es una pena que no puedas venir",
+            "Uses ojalá + present subjunctive for wishes about the present or future: ojalá llegue pronto, ojalá tengas suerte",
+            "Distinguishes when the subjunctive is required (change of subject, emotional or volitional verb) from when it is not (same subject → infinitive: quiero ir)",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +32,11 @@ B1_UNITS = [
         vocabulary_set_ids=["trabajo_b1", "estudios_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use subjunctive with recommendations",
-            "Express doubt and uncertainty",
-            "Evaluate situations with subjunctive",
+            "Uses the subjunctive after recommendation verbs: te recomiendo que pruebes, te aconsejo que estudies, sugiero que vayas",
+            "Uses the subjunctive after expressions of doubt and uncertainty: no creo que sea verdad, dudo que lleguen a tiempo, no estoy seguro de que pueda",
+            "Uses the subjunctive after impersonal value judgements: es importante que estudies, es mejor que descanses, es posible que llueva",
+            "Contrasts: creo que tiene razón (certainty → indicative) vs no creo que tenga razón (doubt → subjunctive)",
+            "Writes a paragraph giving advice and expressing opinions about a study or work situation using both indicative and subjunctive correctly",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-1",
@@ -48,9 +50,11 @@ B1_UNITS = [
         vocabulary_set_ids=["experiencias_b1", "logros_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Talk about life experiences",
-            "Describe events before other past events",
-            "Use time expressions with perfect tenses",
+            "Forms the pretérito perfecto with haber + past participle and uses it for events connected to the present moment in Spain: hoy he comido, esta semana he estudiado, nunca he estado en Japón",
+            "Uses pretérito perfecto with its key markers: hoy, esta semana/mañana/tarde, este mes/año, ya, todavía no, alguna vez, nunca, últimamente, recientemente",
+            "Forms the pluscuamperfecto (había + participio) to express an action completed before a specific past moment: Cuando llegué, ya habían salido",
+            "Applies the Spain-specific contrast between perfecto (today / recent connection to present) and indefinido (completed past without present connection): Esta mañana he ido vs Ayer fui",
+            "Narrates a life experience using pretérito perfecto and sequences events using the pluscuamperfecto",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-2",
@@ -64,9 +68,11 @@ B1_UNITS = [
         vocabulary_set_ids=["noticias_b1", "sociedad_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form passive voice",
-            "Use impersonal se",
-            "Read and discuss news articles",
+            "Forms the passive voice with ser + past participle in present and past tenses, adjusting the participle for gender and number: La novela fue escrita por Cervantes",
+            "Uses se pasivo (pasiva refleja) to describe processes or give information about rules and services: Se venden pisos, Se hablan cinco idiomas, Se prohíbe fumar",
+            "Uses se impersonal for actions with an unspecified human agent: Se come muy bien en esta ciudad, Se trabaja mucho en España",
+            "Distinguishes true passive with ser (focus on the action/agent) from se pasivo (no agent, more natural in everyday Spanish)",
+            "Reads a news article and identifies passive and impersonal constructions; writes a short report using them",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-3",
@@ -80,9 +86,10 @@ B1_UNITS = [
         vocabulary_set_ids=["descripciones_b1", "gente_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use relative clauses with que",
-            "Describe places and times",
-            "Use cuyo for possession",
+            "Forms defining relative clauses with que for both people and things: el libro que leí, la persona que vino ayer",
+            "Uses donde to refer to places and cuando to refer to time in relative clauses: el café donde nos conocimos, el día cuando llegaste",
+            "Uses cuyo/cuya/cuyos/cuyas for possession in relative clauses, making it agree with the noun that follows: el autor cuya novela leí, la empresa cuyos empleados protestaron",
+            "Understands the difference between a defining relative clause (no commas, restricts meaning) and a non-defining one (with commas, adds information)",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-4",
@@ -96,9 +103,10 @@ B1_UNITS = [
         vocabulary_set_ids=["viajes_b1", "situaciones_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Form conditional sentences type 2",
-            "Make assumptions about the future",
-            "Hypothesise about present situations",
+            "Forms and uses the type-1 conditional: si + present indicative + future for real, likely conditions: Si tienes tiempo, llámame",
+            "Forms and uses the type-2 conditional: si + imperfect subjunctive + conditional for unreal or unlikely present situations: Si tuviera dinero, viajaría por el mundo",
+            "Uses the future tense to express probability about a present situation: ¿Qué hora será? Serán las tres (= it must be / I suppose it's three)",
+            "Uses the conditional tense to express probability about a past situation: ¿Dónde estaba? Estaría en casa (= she was probably at home)",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-5",
@@ -116,9 +124,10 @@ B1_UNITS = [
         vocabulary_set_ids=["opiniones_b1", "debates_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Report past conversations",
-            "Use argumentative connectors",
-            "Express and defend opinions",
+            "Reports what someone said applying the required tense shift: dijo que + imperfect for original present (Dijo que tenía hambre), dijo que + pluperfect for original past (Dijo que había salido)",
+            "Reports questions correctly using preguntó si for yes/no questions and preguntó + question word for wh-questions with non-inverted word order",
+            "Uses argumentative connectors correctly: sin embargo (contrast), además (addition), por lo tanto (consequence), aunque + indicative (fact), es decir (clarification)",
+            "Expresses and defends an opinion using: en mi opinión, creo que, desde mi punto de vista, a mi juicio, and responds to a counter-argument",
         ],
         default_weeks=2,
         prerequisite_unit="b1-unit-6",
@@ -133,15 +142,17 @@ B1_UNITS = [
             "preterito-perfecto",
             "pluscuamperfecto",
             "voz-pasiva",
+            "se-impersonal",
             "si-imperfecto-subjuntivo",
             "estilo-indirecto-pasado",
         ],
         vocabulary_set_ids=["repaso_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Handle most everyday situations",
-            "Express opinions with nuance",
-            "Understand main ideas of complex texts",
+            "Handles most everyday situations (travel, work, social events) with confidence, expressing opinions and reacting to others",
+            "Uses present subjunctive correctly in its core B1 contexts: desire, emotion, doubt, recommendation, and impersonal value judgements",
+            "Produces a connected piece of writing (100–150 words) integrating all B1 grammar: past tenses, subjunctive, reported speech, and connectors",
+            "Reads and extracts the main ideas and key details from a 200–250 word text on a familiar non-specialist topic",
         ],
         default_weeks=1,
         prerequisite_unit="b1-unit-7",

@@ -1,12 +1,10 @@
-"""
-CEFR A1 curriculum units.
-"""
+"""A1 curriculum units — Italian (it-IT)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-A1_UNITS = [
+A1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="a1-unit-1",
         level="A1",
@@ -16,9 +14,10 @@ A1_UNITS = [
         vocabulary_set_ids=["saluti_a1", "presentazioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Greet and introduce yourself in Italian",
-            "Use essere and avere correctly",
-            "Recognise definite articles",
+            "Introduces themselves using essere and avere: name, age, nationality — Sono Marco, ho 25 anni, sono italiano",
+            "Greets and takes leave with correct register: ciao, buongiorno, buonasera, arrivederci, a presto",
+            "Uses definite articles il/lo/la/i/gli/le correctly, including the lo/gli rule before s+consonant, z, gn, ps, x: lo studente, gli zaini",
+            "Asks and answers ¿Come ti chiami? / Di dove sei? in a short spoken exchange",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +31,10 @@ A1_UNITS = [
         vocabulary_set_ids=["nazionalità_a1", "professioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "State nationality and profession",
-            "Match gender of nouns and adjectives",
-            "Use indefinite articles",
+            "States nationality and profession using essere with correct masculine/feminine form: sono inglese/inglesa, sono medico/medichessa",
+            "Applies gender agreement: Italian nouns ending in -o are typically masculine, -a typically feminine, and -e can be either — verifies noun gender with the article",
+            "Uses un/uno/una/un' correctly, including uno before s+consonant and z: uno studente, un amico, una pizza, un'amica",
+            "Produces a short self-introduction (4–5 sentences) combining essere, avere, nationality, and profession",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-1",
@@ -48,9 +48,10 @@ A1_UNITS = [
         vocabulary_set_ids=["famiglia_a1", "descrizioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Describe family members",
-            "Use possessive adjectives",
-            "Describe people and things",
+            "Uses possessive adjectives (mio, tuo, suo, nostro, vostro, loro) with the article in most cases: la mia famiglia, il mio cane — but omits the article with singular unmodified family terms: mia madre, tuo fratello, sua sorella",
+            "Describes physical appearance and personality using adjectives that agree in gender and number: alto/alta/alti/alte, simpatico/simpatica",
+            "Uses c'è (there is) and ci sono (there are) to describe what exists: C'è un parco vicino a casa, Ci sono due bambini",
+            "Writes a short paragraph (40–50 words) describing family members using essere, avere, c'è/ci sono, and descriptive adjectives",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-2",
@@ -64,9 +65,10 @@ A1_UNITS = [
         vocabulary_set_ids=["routine_a1", "orari_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Conjugate regular -are/-ere/-ire verbs",
-            "Describe daily routine",
-            "Tell the time",
+            "Conjugates regular -are (parlare), -ere (leggere), and -ire verbs in both patterns: dormire (dormo/dormi/dorme) and capire — which takes -isco in singular and third plural: capisco, capisci, capisce, capiamo, capite, capiscono",
+            "Uses reflexive verbs with the correct pronoun: mi alzo, ti lavi, si veste, ci svegliamo — and forms them in sequence to describe a morning routine",
+            "Tells the time: Sono le tre, È l'una, Sono le tre e mezza, Sono le quattro meno un quarto",
+            "Describes a daily routine in a connected paragraph of 5–6 sentences using time expressions: di mattina, a mezzogiorno, nel pomeriggio, di sera",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-3",
@@ -80,9 +82,10 @@ A1_UNITS = [
         vocabulary_set_ids=["cibo_a1", "attività_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Express likes with piacere",
-            "Use modal verbs dovere/potere/volere",
-            "Agree and disagree",
+            "Uses piacere correctly: mi piace + singular noun/infinitive (Mi piace la pizza, Mi piace leggere) vs mi piacciono + plural noun (Mi piacciono i libri) — inverting the subject/object roles compared to English",
+            "Uses dovere, potere, volere as modal verbs followed by infinitive, conjugated for all persons: devo studiare, puoi venire?, vuole mangiare",
+            "Agrees and disagrees using anche io (me too), neanche io (me neither), (a me) sì/(a me) no for direct contradiction",
+            "Expresses preferences with preferire + noun/infinitive and piace di più/di meno in short conversational exchanges",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-4",
@@ -96,9 +99,10 @@ A1_UNITS = [
         vocabulary_set_ids=["luoghi_a1", "indicazioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Ask for and give directions",
-            "Use prepositions of place",
-            "Use ordinal numbers",
+            "Uses articulated prepositions (preposizioni articolate) correctly: nel, nello, nella, nei, negli, nelle; al, allo, alla, ai, agli, alle — these fuse article and preposition in a way that has no English equivalent",
+            "Gives directions using the informal imperative of key verbs: vai/va', gira, prendi, continua, attraversa, segui — and combines with prepositions: gira a destra/sinistra, va' sempre dritto",
+            "Uses ordinal numbers primo, secondo, terzo… to indicate floors and order: al primo piano, la seconda strada a sinistra",
+            "Understands and follows a simple set of written directions for a familiar route in a city",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-5",
@@ -112,9 +116,10 @@ A1_UNITS = [
         vocabulary_set_ids=["trasporti_a1", "meteo_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Talk about future plans",
-            "Use stare per + infinitive",
-            "Discuss days and weather",
+            "Conjugates the simple future (futuro semplice) for regular verbs: parlerò, leggerai, partirà — and common irregular stems: sar-, avrò, farò, andrò, verrò, dovrò, potrò, vorrò",
+            "Uses stare per + infinitive to express an action that is about to happen: Sto per uscire (I'm about to leave) — a uniquely Italian construction with no direct English equivalent",
+            "Names days of the week and uses lunedì/martedì... without an article for a specific day (Arrivo lunedì) vs il/la + day for a habitual one (Il lunedì vado in palestra)",
+            "Talks about the weather: c'è il sole, fa caldo/freddo, piove, nevica, è nuvoloso, c'è vento — and uses the future for forecasts",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-6",
@@ -131,15 +136,18 @@ A1_UNITS = [
             "presente-ere",
             "presente-ire",
             "piacere",
+            "verbi-modali",
             "futuro-semplice",
             "articoli-determinativi",
+            "preposizioni-articolate",
         ],
         vocabulary_set_ids=["ripasso_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Sustain a basic conversation on familiar topics",
-            "Use present tense accurately",
-            "Form the simple future",
+            "Sustains a short spoken or written exchange on familiar topics using essere, avere, and present tense without major breakdowns",
+            "Uses articulated prepositions and the lo/gli article rule consistently without systematic error",
+            "Combines piacere, modal verbs, and the simple future in a short connected text about plans and preferences",
+            "Reads and understands a simple text of 60–80 words on an everyday topic and answers factual questions",
         ],
         default_weeks=1,
         prerequisite_unit="a1-unit-7",

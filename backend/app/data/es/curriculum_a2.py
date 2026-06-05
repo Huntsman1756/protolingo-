@@ -1,12 +1,10 @@
-"""
-CEFR A2 curriculum units.
-"""
+"""A2 curriculum units — Spanish (es-ES)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-A2_UNITS = [
+A2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="a2-unit-1",
         level="A2",
@@ -20,9 +18,10 @@ A2_UNITS = [
         vocabulary_set_ids=["viajes_a2", "experiencias_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Conjugate regular preterite verbs",
-            "Use time markers with past events",
-            "Recognise common irregular preterites",
+            "Conjugates regular -ar/-er/-ir verbs in the preterite for all six persons (hablé, comiste, vivió)",
+            "Uses the most common irregular preterites: ser/ir (fui/fuiste), estar (estuve), tener (tuve), hacer (hice), venir (vine), poder (pude)",
+            "Places past actions in time using ayer, el lunes pasado, en 2020, hace tres días, el año pasado",
+            "Narrates a short sequence of completed past events in logical order using a paragraph of 60–80 words",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -36,9 +35,10 @@ A2_UNITS = [
         vocabulary_set_ids=["infancia_a2", "descripciones_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Describe past habits and states",
-            "Distinguish preterite and imperfect",
-            "Talk about childhood memories",
+            "Conjugates the imperfect for all persons: regular -aba/-ía pattern and the three irregular verbs ser (era), ir (iba), ver (veía)",
+            "Uses the imperfect for ongoing past states, descriptions of scenes, and habitual past actions (de niño, siempre comía...)",
+            "Distinguishes preterite (completed foreground event) from imperfect (background, state, habit): Cuando llegué, llovía",
+            "Writes a short childhood memory (60–80 words) combining both tenses naturally",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-1",
@@ -47,14 +47,15 @@ A2_UNITS = [
         id="a2-unit-3",
         level="A2",
         unit_number=3,
-        title="Objetos Directos e Indirectos",
+        title="Pronombres de Objeto Directo e Indirecto",
         grammar_points=["pronombres-objeto-directo", "pronombres-objeto-indirecto", "doble-objeto"],
         vocabulary_set_ids=["compras_a2", "regalos_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use direct object pronouns",
-            "Use indirect object pronouns",
-            "Combine both in context",
+            "Replaces a direct object noun with lo/la/los/las in the correct sentence position: ¿El libro? Lo tengo en casa",
+            "Uses indirect object pronouns le/les and understands that le replaces both 'a él' and 'a ella'",
+            "Combines direct and indirect object pronouns, applying the le → se rule before lo/la: Se lo di (I gave it to him/her)",
+            "Places object pronouns correctly: before a conjugated verb or attached to an infinitive/gerund",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-2",
@@ -68,9 +69,10 @@ A2_UNITS = [
         vocabulary_set_ids=["ciudades_a2", "cultura_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Make comparisons",
-            "Form superlatives",
-            "Express equality with tan...como",
+            "Compares using más/menos + adjective/adverb + que and distinguishes from más de + number: Es más caro que el otro, Cuesta más de 10 euros",
+            "Expresses equality with tan + adjective/adverb + como and tanto/a/os/as + noun + como",
+            "Forms superlatives with el/la/los/las + más/menos + adjective + de: Es el más caro de la ciudad",
+            "Uses irregular comparatives and superlatives: mejor/peor, mayor/menor, superior/inferior without adding más",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-3",
@@ -84,9 +86,10 @@ A2_UNITS = [
         vocabulary_set_ids=["salud_a2", "consejos_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Give commands and instructions",
-            "Offer advice",
-            "Use negative commands",
+            "Forms affirmative tú commands for regular verbs (¡Habla! ¡Come! ¡Escribe!) and the eight irregular tú forms: ten, pon, ven, sal, haz, di, ve, sé",
+            "Forms negative tú commands using the present subjunctive stem: ¡No hables! ¡No comas! ¡No salgas!",
+            "Forms usted/ustedes commands (formal) for regular and common irregular verbs",
+            "Attaches reflexive and object pronouns to affirmative commands: ¡Siéntate! ¡Dámelo! and places them before negative commands: ¡No te sientes! ¡No me lo des!",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-4",
@@ -100,9 +103,10 @@ A2_UNITS = [
         vocabulary_set_ids=["trabajo_a2", "planes_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Talk about future events",
-            "Express hypothetical situations",
-            "Make polite requests with conditional",
+            "Conjugates the simple future for all persons using the infinitive as the stem (hablaré, comerás, vivirá) and irregular stems: habr-, querr-, podr-, tendr-, vendr-, saldr-, pondr-, dir-, har-",
+            "Uses the future tense for predictions and for expressing probability in the present (¿Dónde estará Juan? = I wonder where Juan is)",
+            "Conjugates the conditional for all persons (hablaría, comerías) and uses it for polite requests (¿Podría ayudarme?) and hypothetical situations",
+            "Forms a real conditional using si + present indicative + future: Si estudias, aprobarás el examen",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-5",
@@ -116,9 +120,10 @@ A2_UNITS = [
         vocabulary_set_ids=["historias_a2", "anécdotas_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Tell a story in the past",
-            "Use narrative connectors",
-            "Report what someone said",
+            "Links events in sequence using: primero, luego, después, más tarde, entonces, finalmente, al final",
+            "Combines preterite (foreground completed actions) and imperfect (background descriptions) in a sustained narrative paragraph",
+            "Reports what someone said using decir que + clause with correct tense: Dijo que tenía hambre (not *Dijo que tiene hambre)",
+            "Writes a personal anecdote of 80–100 words using narrative connectors and both past tenses",
         ],
         default_weeks=2,
         prerequisite_unit="a2-unit-6",
@@ -132,6 +137,7 @@ A2_UNITS = [
             "preterito-indefinido-regular",
             "imperfecto",
             "pronombres-objeto-directo",
+            "pronombres-objeto-indirecto",
             "imperativo-afirmativo",
             "futuro-simple",
             "condicional-simple",
@@ -139,9 +145,10 @@ A2_UNITS = [
         vocabulary_set_ids=["repaso_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Handle routine social situations",
-            "Express past, present and future",
-            "Use basic connectors fluently",
+            "Handles routine social situations (shopping, making appointments, giving directions) using correct tenses",
+            "Uses object pronouns and imperative forms accurately in short functional exchanges",
+            "Produces a connected text of 80–100 words using preterite, imperfect, and future tenses",
+            "Reads and understands a factual text of 150–200 words on a familiar topic and answers comprehension questions",
         ],
         default_weeks=1,
         prerequisite_unit="a2-unit-7",

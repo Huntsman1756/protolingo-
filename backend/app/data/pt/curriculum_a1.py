@@ -1,12 +1,10 @@
-"""
-CEFR A1 curriculum units.
-"""
+"""A1 curriculum units — Portuguese (pt-PT)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-A1_UNITS = [
+A1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="a1-unit-1",
         level="A1",
@@ -16,9 +14,10 @@ A1_UNITS = [
         vocabulary_set_ids=["saudações_a1", "apresentações_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Greet and introduce yourself in Portuguese",
-            "Use ser and estar",
-            "Recognise definite articles",
+            "Introduces themselves using ser and estar: Chamo-me Inês, sou portuguesa, tenho 28 anos, estou bem — and uses tú/você address appropriately for pt-PT (tu for informal, o senhor/a senhora for formal)",
+            "Greets and takes leave with correct register: olá, bom dia, boa tarde, boa noite, adeus, até logo, tchau (informal)",
+            "Uses definite articles o/a/os/as correctly with nouns, applying gender agreement: o livro, a casa, os alunos, as aulas",
+            "Distinguishes ser (identity, origin, profession, inherent quality) from estar (state, location, progressive) from the very start — a distinction fundamental to Portuguese: Sou de Lisboa vs Estou em Lisboa",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +31,10 @@ A1_UNITS = [
         vocabulary_set_ids=["nacionalidades_a1", "profissões_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "State nationality and profession",
-            "Match gender of nouns and adjectives",
-            "Use indefinite articles",
+            "States nationality and profession using ser with correct masculine/feminine form: sou inglês/inglesa, sou médico/médica",
+            "Applies gender agreement: Portuguese nouns in -o are typically masculine, -a typically feminine, -e or consonant can be either — and verifies with the article",
+            "Uses um/uma/uns/umas correctly: um médico, uma professora, uns amigos, umas casas",
+            "Produces a short self-introduction (4–5 sentences) combining ser, estar, nationality, profession, and age (with ter: tenho X anos)",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-1",
@@ -48,9 +48,10 @@ A1_UNITS = [
         vocabulary_set_ids=["família_a1", "descrições_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Describe family members",
-            "Use possessive adjectives",
-            "Use ter for age and possession",
+            "Names family members and uses ter for possession and age: Tenho dois irmãos, A minha mãe tem 55 anos",
+            "Uses possessive adjectives (meu/minha/meus/minhas, teu/tua, seu/sua, nosso/nossa) which in Portuguese agree with the noun possessed, not the possessor — and always take the article: o meu carro, a minha família",
+            "Describes physical appearance and personality with adjectives in gender/number agreement: alto/alta/altos/altas, simpático/simpática",
+            "Writes a short paragraph (40–50 words) describing a family member using ser, estar, ter, and descriptive adjectives",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-2",
@@ -64,9 +65,10 @@ A1_UNITS = [
         vocabulary_set_ids=["rotina_a1", "horas_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Conjugate regular -ar/-er/-ir verbs",
-            "Describe daily routine",
-            "Tell the time",
+            "Conjugates regular -ar (falar), -er (comer), and -ir (partir) verbs in present tense for all six persons — noting that Portuguese uses the same tu form that Spanish lacks (falas, comes, partes)",
+            "Uses reflexive verbs with the correct pronoun, applying EP ênclise (after the verb) as default in affirmative statements: levanto-me, lavo-me, deito-me — and notes this differs from Brazilian Portuguese word order",
+            "Tells the time: São duas horas, É uma hora, São três e meia, São quatro menos um quarto — and uses de manhã, de tarde, de noite, à noite",
+            "Describes a daily routine in 5–6 connected sentences using time expressions: primeiro, depois, a seguir, por fim",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-3",
@@ -80,9 +82,10 @@ A1_UNITS = [
         vocabulary_set_ids=["comida_a1", "atividades_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Express likes with gostar de",
-            "Agree and disagree",
-            "Use quantifiers",
+            "Uses gostar de correctly: gostar takes a regular subject-verb structure (Eu gosto de pizza) — unlike Spanish gustar or Italian piacere, there is no inversion of subject and object in Portuguese",
+            "Uses gostar de + infinitive for activities (Gosto de ler, Não gosto de acordar cedo) and gostar de + noun with the obligatory de + article contraction: Gosto do café, Gosto da música",
+            "Expresses degree: gosto muito de, gosto bastante de, gosto um pouco de, não gosto nada de",
+            "Agrees and disagrees: Eu também (me too), Eu também não (me neither), Eu sim (I do), Eu não (I don't) — in EP the response forms are more direct than in some other Romance languages",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-4",
@@ -92,13 +95,14 @@ A1_UNITS = [
         level="A1",
         unit_number=6,
         title="Lugares e Direções",
-        grammar_points=["estar", "haver", "preposições-lugar"],
+        grammar_points=["estar", "haver", "preposições-lugar", "contrações-preposicionais"],
         vocabulary_set_ids=["lugares_a1", "direções_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Ask for and give directions",
-            "Describe location with estar",
-            "Use há for existence",
+            "Uses the mandatory Portuguese preposition contractions: de+o=do, de+a=da, de+os=dos, de+as=das; em+o=no, em+a=na; a+o=ao, a+à=à; por+o=pelo, por+a=pela — these contractions are obligatory and cannot be avoided unlike in French",
+            "Distinguishes há (impersonal haver) for existence from estar for location: Há um banco aqui perto vs O banco está na esquina",
+            "Uses há in time expressions unique to Portuguese: Há três anos que estudo português (= I have been studying Portuguese for three years) — a construction with no direct Spanish equivalent",
+            "Gives simple directions: vire à direita/à esquerda, siga em frente, atravesse a rua, tome a primeira rua — using the formal imperative since directions to strangers in EP use você/the formal imperative",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-5",
@@ -108,13 +112,14 @@ A1_UNITS = [
         level="A1",
         unit_number=7,
         title="Planos e Futuro Próximo",
-        grammar_points=["ir-futuro", "querer-poder", "dias-semana"],
+        grammar_points=["ir-futuro", "querer-poder", "dias-semana", "estar-a-infinitivo"],
         vocabulary_set_ids=["transporte_a1", "clima_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Talk about future plans with ir + infinitive",
-            "Express ability and desire",
-            "Discuss days and weather",
+            "Forms ir a + infinitive for planned actions (Vou estudiar amanhã, O que vais fazer?) — and understands this is the most common future expression in informal speech",
+            "Uses querer + infinitive for desires and poder + infinitive for ability/permission: Quero ir ao cinema, Não posso vir hoje",
+            "Uses estar a + infinitive for an action in progress — the European Portuguese progressive: Estou a trabalhar, Estás a ouvir música — noting this contrasts with Brazilian Portuguese, which uses the gerund (estou trabalhando)",
+            "Names days of the week (segunda-feira, terça-feira, quarta-feira, quinta-feira, sexta-feira, sábado, domingo) and uses them with prepositions: na segunda-feira, ao sábado, aos domingos",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-6",
@@ -129,17 +134,20 @@ A1_UNITS = [
             "estar",
             "ter",
             "presente-regular",
+            "verbos-reflexivos",
             "gostar-de",
             "ir-futuro",
+            "estar-a-infinitivo",
             "artigos-definidos",
-            "pronomes-sujeito",
+            "contrações-preposicionais",
         ],
         vocabulary_set_ids=["revisão_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Sustain a basic conversation on familiar topics",
-            "Use present tense accurately",
-            "Distinguish ser and estar uses",
+            "Sustains a simple spoken or written exchange on familiar topics using ser, estar, and present tense without major breakdowns",
+            "Uses mandatory preposition contractions correctly and applies the EP ênclise pronoun order in affirmative statements",
+            "Distinguishes ser from estar in their key A1 contexts, and uses estar a + infinitivo for actions in progress",
+            "Reads and understands a simple everyday text of 60–80 words and answers factual questions",
         ],
         default_weeks=1,
         prerequisite_unit="a1-unit-7",

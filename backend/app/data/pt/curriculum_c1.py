@@ -1,12 +1,10 @@
-"""
-CEFR C1 curriculum units.
-"""
+"""C1 curriculum units — Portuguese (pt-PT)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-C1_UNITS = [
+C1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="c1-unit-1",
         level="C1",
@@ -16,9 +14,11 @@ C1_UNITS = [
         vocabulary_set_ids=["nuances_c1", "formalidade_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Master concessive subjunctive",
-            "Use purpose clauses accurately",
-            "Apply subjunctive in relative clauses",
+            "Uses concessive conjunctions with conjuntivo across all four tenses: embora, ainda que, mesmo que, por mais que, por muito que + conjuntivo — understanding that in Portuguese these ALWAYS require the conjuntivo, unlike the embora + indicativo option found in some non-standard or Brazilian usage",
+            "Uses final conjunctions: para que + conjuntivo (change of subject) vs para + infinitivo pessoal (often preferred in formal EP), a fim de que, de modo a que, de forma a que + conjuntivo",
+            "Applies conjuntivo in restrictive relative clauses with negative, indefinite, and superlative antecedents: Não há ninguém que saiba responder, Procuro alguém que fale mandarim, É o melhor livro que já tenha lido",
+            "Uses conjuntivo after como se (as if): Fala como se soubesse tudo, Comportou-se como se não tivesse acontecido nada",
+            "Controls the full concordância de tempos of the conjuntivo across multi-clause sentences with mixed indicative and conjuntivo in formal written Portuguese",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -32,9 +32,11 @@ C1_UNITS = [
         vocabulary_set_ids=["académico_c1", "investigação_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Write academic texts",
-            "Use nominalisation effectively",
-            "Maintain formal register",
+            "Uses the passiva reflexa (se + 3rd person) fluently in formal and academic Portuguese: considera-se que, verifica-se que, observa-se que, comprova-se que — as the natural alternative to the passive voice with ser in formal registers",
+            "Converts verb phrases into noun phrases through nominalização — central to Portuguese academic style: desenvolver → o desenvolvimento, analisar → a análise, aumentar → o aumento, recorrer → o recurso, realizar → a realização",
+            "Constructs impersonal academic sentences: considera-se que, importa referir que, cabe salientar que, torna-se necessário, é de notar que, constata-se que",
+            "Maintains consistent formal register throughout a 400+ word academic text: avoids colloquial vocabulary, excessive use of fazer, direct address, and informal connectors such as então at the start of a sentence in formal writing",
+            "Identifies and corrects register violations in student academic texts: inappropriate vocabulary, loss of impersonality, informal connectors",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-1",
@@ -48,9 +50,11 @@ C1_UNITS = [
         vocabulary_set_ids=["profissional_c1", "técnico_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use specialised vocabulary",
-            "Apply word formation patterns",
-            "Choose precise terminology",
+            "Derives new words systematically using productive Portuguese suffixes: -ção/-são (produção, expansão), -dade/-tade/-idade (qualidade, liberdade, capacidade), -eza/-ura/-ice (beleza, leitura, tolice), -vel (realizável), -mente — and prefixes: in-/im-, re-, sub-, inter-, ante-, pré-, pós-",
+            "Identifies semantic field relationships and formal collocations in Portuguese: cometer um erro (not *fazer), tomar uma decisão (not *fazer), formular uma hipótese, apresentar uma proposta, exercer uma função — and distinguishes formal from informal collocations",
+            "Chooses the precise synonym in professional writing: indicar vs dizer, empregar vs usar, obter vs conseguir, efetuar vs fazer, proceder a vs fazer — in contexts requiring formal register",
+            "Recognises the Acordo Ortográfico de 1990 (implemented in Portugal from 2009) changes: removal of silent consonants (facto → fato, ativo → ativo, directamente → diretamente) and the new rules for the use of accent marks, and applies current European Portuguese orthographic conventions consistently",
+            "Explains specialised terms in plain Portuguese, demonstrating both comprehension and the ability to mediate between expert and non-expert registers",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-2",
@@ -64,9 +68,11 @@ C1_UNITS = [
         vocabulary_set_ids=["humor_c1", "cultura_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Recognise irony",
-            "Understand double meanings",
-            "Use humour appropriately",
+            "Recognises verbal irony and sarcasm in Portuguese by attending to intonation, context, and lexical incongruity: Que bela ideia! (said when something has gone wrong); Muito bem! (sarcastically)",
+            "Understands the Portuguese sense of humour — characterised by saudade, self-deprecation, and understatement — and interprets humour grounded in Portuguese cultural phenomena: o desenrascanço (improvised problem-solving), o fado, o futebol, a burocracia",
+            "Interprets wordplay, trocadilhos (puns), and double meanings encountered in Portuguese advertising, TV, and everyday speech — including expressions that rely on phonetic similarity or ambiguity",
+            "Understands the concept of saudade as both a cultural theme and a linguistic-pragmatic element in ironic or nostalgic discourse — including how it's referenced in humour and literature",
+            "Produces a short satirical or ironic text on a social topic using appropriate Portuguese devices without causing unintended offence",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-3",
@@ -80,9 +86,11 @@ C1_UNITS = [
         vocabulary_set_ids=["oratória_c1", "apresentações_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Deliver persuasive speeches",
-            "Use rhetorical devices",
-            "Engage an audience effectively",
+            "Uses anáfora, epífora, quiasmo, and rhetorical questions (Não temos o direito de…? Será que…?) to enhance the persuasive force of a speech or essay in Portuguese",
+            "Uses concessive patterns: por mais que + conjuntivo, ainda que + conjuntivo, mesmo admitindo que + conjuntivo — integrating them naturally into extended argumentation",
+            "Opens and closes formal Portuguese speeches with appropriate conventions: Exmo./Exma. Senhor/a…, estimada audiência…; Em jeito de conclusão…, Para terminar…, Em suma…",
+            "Integrates data, citations, and expert opinion into a written argument with correct attribution: segundo um estudo de…, como afirma X na sua obra…, de acordo com dados fornecidos por…",
+            "Delivers a 3-minute spoken argument on a complex social, ethical, or political issue with coherent structure, rhetorical devices, and minimal hesitation in formal European Portuguese",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-4",
@@ -96,9 +104,11 @@ C1_UNITS = [
         vocabulary_set_ids=["variedades_c1", "dialetos_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Recognise regional variations",
-            "Adapt to different Portuguese varieties",
-            "Understand major dialectal differences",
+            "Identifies the major phonological differences between European Portuguese (EP) and Brazilian Portuguese (BP): EP reduces unstressed vowels dramatically (leite sounds like 'LAYT', fazer sounds like 'fzER') vs BP which pronounces all vowels clearly; EP has dark l and final unstressed e/o reduction; BP uses the open vowels more",
+            "Distinguishes the key grammatical differences: EP uses estar a + infinitivo for the progressive (Estou a trabalhar), BP uses estar + gerúndio (Estou trabalhando); EP places pronouns after the verb (ênclise) as default, BP places them before (próclise); EP uses tu as 2nd person informal, BP widely uses você",
+            "Recognises significant lexical differences between EP and BP: autocarro/ônibus, casa de banho/banheiro, telemóvel/celular, comboio/trem, frigorífico/geladeira, sumo/suco, pequeno-almoço/café da manhã",
+            "Understands the sociolinguistic significance of the CPLP (Comunidade dos Países de Língua Portuguesa) — Angola, Moçambique, Cabo Verde, Guiné-Bissau, São Tomé e Príncipe, Timor-Leste, Macau — and recognises that Portuguese African varieties (PALOP) have their own features distinct from both EP and BP",
+            "Discusses the Acordo Ortográfico and its uneven adoption in the Portuguese-speaking world, and the ongoing political and cultural debate around linguistic standardisation vs diversity",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-5",
@@ -112,9 +122,11 @@ C1_UNITS = [
         vocabulary_set_ids=["análise_c1", "síntese_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Synthesise complex information",
-            "Provide constructive criticism",
-            "Reformulate ideas precisely",
+            "Synthesises information from two or three sources into a coherent attributed summary: Segundo X…, Por seu turno, Y argumenta que…, No entanto, é necessário considerar que…",
+            "Evaluates the internal consistency, reliability, and potential bias of an argument in a Portuguese text, using critical vocabulary: parte do pressuposto de que, baseia-se na hipótese de que, carece de evidências concretas, é destituído de fundamento, apresenta uma perspetiva parcial",
+            "Reformulates a complex idea in different words (reformulação/paráfrase) without loss of precision, using Portuguese reformulation expressions: isto é, ou seja, por outras palavras, o que equivale a dizer, dito de outra forma",
+            "Writes a structured critical analysis (300–400 words) with a clearly marked thesis, supporting evidence, counter-evidence, and a synthesis conclusion",
+            "Distinguishes between summarising (reporting what the author says) and critically evaluating (assessing the quality, logic, and evidence of the argument)",
         ],
         default_weeks=2,
         prerequisite_unit="c1-unit-6",
@@ -126,6 +138,8 @@ C1_UNITS = [
         title="C1 Consolidação",
         grammar_points=[
             "subjuntivo-concessivo",
+            "subjuntivo-final",
+            "subjuntivo-relativo",
             "passiva-reflexa",
             "nominalização",
             "recursos-retóricos",
@@ -135,9 +149,11 @@ C1_UNITS = [
         vocabulary_set_ids=["revisão_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Express ideas fluently and spontaneously",
-            "Use language flexibly for social and professional purposes",
-            "Produce well-structured detailed text on complex subjects",
+            "Produces a formal 400-word text integrating all C1 grammar structures — conjuntivo in all its contexts, nominalisation, passive constructions — with evident control and natural fluency",
+            "Expresses complex, nuanced ideas spontaneously without visibly searching for structures or vocabulary",
+            "Demonstrates full control of the conjuntivo across all C1 contexts: concessive, final, relative, and como se constructions",
+            "Reads and critically evaluates a 400-word text on an abstract or specialist topic, identifying argument structure, rhetorical strategies, and implicit assumptions",
+            "Performs at a level consistent with CAPLE C1 (Centro de Avaliação de Português Língua Estrangeira, Universidade de Lisboa) in a simulated examination task covering all four skills",
         ],
         default_weeks=1,
         prerequisite_unit="c1-unit-7",

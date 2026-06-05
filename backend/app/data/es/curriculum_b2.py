@@ -1,12 +1,10 @@
-"""
-CEFR B2 curriculum units.
-"""
+"""B2 curriculum units — Spanish (es-ES)."""
 
 from __future__ import annotations
 
 from app.data._types import CurriculumUnit
 
-B2_UNITS = [
+B2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
         id="b2-unit-1",
         level="B2",
@@ -20,9 +18,11 @@ B2_UNITS = [
         vocabulary_set_ids=["sentimientos_b2", "hipótesis_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use imperfect subjunctive",
-            "Apply tense agreement in subjunctive",
-            "Express past hypotheses",
+            "Forms the imperfect subjunctive in both -ra and -se variants for regular and irregular verbs (hablara/hablase, tuviera/tuviese, fuera/fuese) and uses either form interchangeably",
+            "Applies the imperfect subjunctive in type-2 conditional clauses (Si tuviera tiempo, lo haría) and after main-clause verbs in the past (Me pidió que viniera, Quería que lo supiera)",
+            "Forms the pluperfect subjunctive (hubiera/hubiese + past participle) and uses it in type-3 conditionals: Si hubiera estudiado más, habría aprobado",
+            "Applies the sequence of tenses correctly: present/future in main clause → present subjunctive; past/conditional in main clause → imperfect subjunctive",
+            "Expresses reproach and regret using ojalá + imperfect/pluperfect subjunctive: ojalá estuviera aquí, ojalá hubiera dicho la verdad",
         ],
         default_weeks=2,
         prerequisite_unit=None,
@@ -36,9 +36,11 @@ B2_UNITS = [
         vocabulary_set_ids=["hábitos_b2", "cambios_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Use aspectual periphrases",
-            "Express modal nuances",
-            "Describe changes and habits",
+            "Uses estar + gerundio for an action in progress at a specific moment and llevar + time expression + gerundio for duration: Llevo tres horas estudiando",
+            "Uses ir + gerundio for gradual progressive change (El proyecto va mejorando) and acabar de + infinitive for a very recent action (Acabo de llegar)",
+            "Uses dejar de + infinitive (to stop doing) vs seguir/continuar + gerundio (to continue doing) to describe changes or continuity in habits",
+            "Distinguishes degrees of obligation: tener que (personal obligation), deber (moral obligation), haber de (formal/written), hay que (impersonal general obligation)",
+            "Selects the most appropriate periphrasis to convey aspect (inceptive, progressive, terminative) or modality (obligation, probability) in a given context",
         ],
         default_weeks=2,
         prerequisite_unit="b2-unit-1",
@@ -52,9 +54,11 @@ B2_UNITS = [
         vocabulary_set_ids=["ensayos_b2", "académico_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Write coherent essays",
-            "Use advanced discourse connectors",
-            "Adapt register to context",
+            "Uses aunque + indicative to state an acknowledged fact (Aunque llueve, salgo) vs aunque + subjunctive to present a hypothesis (Aunque llueva, saldré), and recognises this as a uniquely Spanish distinction",
+            "Uses causal and consecutive connectors appropriately: ya que/puesto que/dado que (cause, formal) vs porque (direct cause); por lo tanto/de ahí que (consequence, the latter requires subjunctive)",
+            "Maintains textual cohesion through pronoun reference, ellipsis, and lexical substitution to avoid unnecessary repetition across a multi-paragraph text",
+            "Adapts register between formal academic writing (nominalised structures, impersonal constructions) and semi-formal expository prose",
+            "Produces a structured essay of 200+ words with introduction, developed body paragraphs, and a conclusion using a range of discourse connectors",
         ],
         default_weeks=2,
         prerequisite_unit="b2-unit-2",
@@ -68,9 +72,11 @@ B2_UNITS = [
         vocabulary_set_ids=["modismos_b2", "cultura_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Understand and use idioms",
-            "Recognise colloquial expressions",
-            "Interpret proverbs and sayings",
+            "Understands and uses 20+ high-frequency idiomatic expressions in context: no hay mal que por bien no venga, a las duras y a las maduras, no dar pie con bola, ponerse las pilas, no tener pelos en la lengua",
+            "Interprets figurative expressions in authentic Spanish texts without resorting to literal translation: estar en las nubes, meter la pata, costar un ojo de la cara",
+            "Recognises that many Spanish idioms cannot be translated literally and explains the implied meaning and cultural background of common proverbs (refranes)",
+            "Identifies when idiomatic language is inappropriate in formal written contexts and chooses a neutral equivalent",
+            "Distinguishes between Peninsular idiomatic expressions and those used in Latin American Spanish where differences are significant",
         ],
         default_weeks=2,
         prerequisite_unit="b2-unit-3",
@@ -84,9 +90,11 @@ B2_UNITS = [
         vocabulary_set_ids=["debates_b2", "temas-sociales_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Structure a persuasive argument",
-            "Counter-argue effectively",
-            "Use hedging and softening expressions",
+            "Presents a clear thesis and develops it with supporting points, examples, and evidence using connecting expressions: en primer lugar, cabe destacar que, a modo de ejemplo",
+            "Introduces a counter-argument and refutes it: es cierto que..., pero / si bien es verdad que..., no obstante / aunque reconozco que..., considero que",
+            "Uses hedging and qualifying expressions to calibrate assertion strength: es posible que + subjunctive, puede que, cabría preguntarse si, según algunos expertos",
+            "Engages in a structured debate using turn-taking phrases: si me permite, retomando lo que ha dicho, me gustaría añadir que, discrepo en que",
+            "Writes a 200-word argumentative text with a clear position, a concession to the opposing view, and a conclusion",
         ],
         default_weeks=2,
         prerequisite_unit="b2-unit-4",
@@ -100,9 +108,11 @@ B2_UNITS = [
         vocabulary_set_ids=["literatura_b2", "lectura_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Analyse short literary texts",
-            "Use narrative tenses flexibly",
-            "Recognise figurative language",
+            "Uses preterite, imperfect, and pluperfect together in a literary narrative to distinguish foreground actions, background descriptions, and events prior to the story time",
+            "Identifies and names the most common literary devices in Spanish: metáfora, símil, hipérbole, metonimia, ironía, and recognises them in short passages",
+            "Reads a short literary excerpt (representative of contemporary Spanish literature) and identifies the narrator's point of view, register, and tone",
+            "Writes a descriptive literary paragraph (80–100 words) using narrative tenses, at least one literary device, and varied sentence structures",
+            "Discusses the style and content of a short text using appropriate Spanish metalanguage: el narrador, el protagonista, el desenlace, el punto de vista",
         ],
         default_weeks=2,
         prerequisite_unit="b2-unit-5",
@@ -116,9 +126,11 @@ B2_UNITS = [
         vocabulary_set_ids=["noticias_b2", "actualidad_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Understand news articles",
-            "Summarise current events",
-            "Use journalistic language",
+            "Identifies features of Spanish journalistic language: nominalised structures, passive voice, impersonal constructions, and formal connectors used in press writing",
+            "Interprets headline grammar: truncated verb phrases, infinitives for immediate future, ellipsis of articles, and present tense for recent past events",
+            "Summarises a 250-word news article accurately using reported speech with correct tense shifts and neutral attribution verbs: afirmar, señalar, indicar, subrayar",
+            "Expresses agreement, partial agreement, and disagreement with a news opinion piece using B2-level nuance: comparto la opinión de que..., no me convence del todo el argumento de que...",
+            "Writes a structured 150-word commentary on a current affairs topic incorporating journalistic language features",
         ],
         default_weeks=2,
         prerequisite_unit="b2-unit-6",
@@ -130,18 +142,21 @@ B2_UNITS = [
         title="B2 Consolidación",
         grammar_points=[
             "subjuntivo-imperfecto",
+            "subjuntivo-pluscuamperfecto",
             "perifrasis-aspectuales",
             "conectores-avanzados",
-            "modismos-comunes",
             "estructura-argumentativa",
             "tiempos-narrativos",
+            "discurso-reportado",
         ],
         vocabulary_set_ids=["repaso_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Interact fluently with native speakers",
-            "Produce clear detailed text on complex subjects",
-            "Understand implicit meaning",
+            "Writes a 200-word formal essay integrating imperfect subjunctive, advanced connectors, and a clear argumentative structure",
+            "Produces a narrative text (150 words) with correct use of preterite, imperfect, and pluperfect, and at least one literary device",
+            "Reports a conversation or article using reported speech with correct sequence of tenses and varied attribution verbs",
+            "Reads a 300-word text on a complex social or cultural topic and correctly answers inferential comprehension questions",
+            "Converses spontaneously on abstract or controversial topics with evident command of B2 vocabulary, structures, and discourse strategies",
         ],
         default_weeks=1,
         prerequisite_unit="b2-unit-7",
