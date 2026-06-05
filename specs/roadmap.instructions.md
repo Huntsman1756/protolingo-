@@ -369,16 +369,12 @@ This document records what was built and the completion criteria met.
 
 | Sub-phase | Title | Status |
 |-----------|-------|--------|
-| **10.1** | Database: `user_languages` table, `study_plan_id` columns, partial unique index, Alembic migration `0029`, test fixes | ✅ |
-| **10.2** | Backend: `user_language_service`, `get_active_study_plan` dependency, multi-language LLM prompts, migration `0030` (placeholder — NOT NULL moved to 10.3) | ✅ |
-| **10.3** | API: new `/api/languages` router, refactor assessment + study-plan endpoints, Pydantic schemas | ✅ |
+| **10.1** | Database: `user_languages` table, `study_plan_id` columns, partial unique index, Alembic migration `0029`, conftest fixtures, isolation tests | ✅ |
+| **10.2** | Backend: `user_language_service`, `get_active_study_plan` dependency, multi-language LLM prompts, migration `0030` (placeholder — NOT NULL moved to 10.3); prompt tests | ✅ |
+| **10.3** | API: new `/api/languages` router, refactor assessment + study-plan endpoints, Pydantic schemas; backend tests | ✅ |
 | **10.4** | Frontend core: `target-languages.ts` config, language Zustand store, `LanguageSwitcher` component, sidebar integration | ✅ |
-| **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted | ⬜ |
-| **10.6** | Curriculum and language data: Spanish, Italian, Portuguese curriculum files (backend + frontend) | ⬜ |
-| **10.7** | i18n: new translation keys in all 10 locale files | ⬜ |
-| **10.8** | Pydantic schemas (companion to 10.3) | ⬜ |
-| **10.9** | Tests: `test_multi_language.py` + update existing test suite | ⬜ |
-| **10.10** | Finalisation: docs update, version bump, CHANGELOG | ⬜ |
+| **10.5** | Frontend pages: Settings → My Languages, onboarding flow, dashboard, plan, chat, flashcards, progress adapted; i18n keys added per sub-phase; frontend tests | ⬜ |
+| **10.6** | Curriculum and language data: Spanish, Italian, Portuguese curriculum files (backend + frontend); target language descriptions; curriculum tests | ⬜ |
 
 **Completion criteria:**
 - [ ] A user can add a second language from Settings → My Languages

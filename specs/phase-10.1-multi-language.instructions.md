@@ -421,6 +421,26 @@ The partial unique index `uq_active_plan_per_lang` (`UNIQUE(user_id, target_lang
 
 ---
 
+## Tests
+
+### New tests (`backend/tests/test_multi_language.py`)
+
+| Test | Description |
+|------|-------------|
+| `test_active_plan_per_language` | Two simultaneously active languages with fully independent plans |
+| `test_progress_isolated_by_language` | XP and streak are independent per language |
+| `test_flashcards_isolated_by_language` | Flashcards filtered by `study_plan_id` — no cross-language leakage |
+| `test_conversations_isolated_by_language` | Conversations filtered by active language |
+| `test_memories_isolated_by_language` | Memories filtered by `study_plan_id` |
+| `test_unique_index_prevents_duplicate_active_plans` | Partial unique index enforces one active plan per user+language |
+
+### Existing test updates
+
+| File | Change |
+|------|--------|
+| `backend/tests/conftest.py` | Add shared `user_language` fixture; scope `StudyPlan` fixtures to avoid duplicate active plans per language |
+| `backend/tests/test_study_plan.py` | Create `UserLanguage` rows; scope plan deactivation |
+
 ## New files in this phase
 
 | File | Type |

@@ -272,6 +272,15 @@ async def get_active_study_plan(
 | `backend/app/services/progress_service.py` | Add `study_plan_id: int \| None = None` to all functions (callers updated in Phase 10.3) |
 | `backend/app/core/deps.py` | Add `get_active_study_plan` dependency |
 
+## Tests
+
+### New tests (`backend/tests/test_multi_language.py`)
+
+| Test | Description |
+|------|-------------|
+| `test_prompt_language_agnostic` | System prompts include the correct language name (not hardcoded "English") |
+| `test_chat_prompt_uses_target_language` | `TUTOR_SYSTEM_PROMPT` uses the active plan's language |
+
 ## New files in this phase
 
 | File | Type |

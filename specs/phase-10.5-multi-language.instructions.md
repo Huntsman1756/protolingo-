@@ -199,6 +199,15 @@ The English values above are the reference. Add the equivalent translations in a
 
 ---
 
+## Tests
+
+### Frontend tests (Vitest)
+
+| File | What to test |
+|------|-------------|
+| `frontend/tests/components/LanguageSwitcher.test.tsx` | Renders when multiple languages exist; hidden when only 1 language; switch triggers API call and toast |
+| `frontend/tests/store/language.test.ts` | Extend 10.4 tests: language switching triggers page redirect; `isSwitching` state during transition |
+
 ## New files in this phase
 
 | File | Type |

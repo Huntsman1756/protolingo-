@@ -206,6 +206,15 @@ The English values above are the reference. Add the equivalent translation in ea
 
 ---
 
+## Tests
+
+### Frontend tests (Vitest)
+
+| File | What to test |
+|------|-------------|
+| `frontend/tests/lib/target-languages.test.ts` | `getLanguageByCode` returns correct language for all 5 codes; `SUPPORTED_TARGET_LANGUAGES` has expected structure; `DEFAULT_TARGET_LANGUAGE` is valid |
+| `frontend/tests/store/language.test.ts` | `fetchLanguages` populates store; `switchLanguage` calls API and updates active language; `addLanguage`/`removeLanguage` call correct endpoints |
+
 ## New files in this phase
 
 | File | Type |
