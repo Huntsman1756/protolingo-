@@ -76,6 +76,9 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    # Drop the user_language_id-based partial unique index BEFORE dropping the column
+    op.drop_index("uq_active_plan_per_lang", table_name="study_plans")
+
     op.drop_index("ix_study_plans_user_language_id", table_name="study_plans")
     op.drop_constraint("fk_study_plans_user_language", "study_plans", type_="foreignkey")
     op.drop_column("study_plans", "user_language_id")

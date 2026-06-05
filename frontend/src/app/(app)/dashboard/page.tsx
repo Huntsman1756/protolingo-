@@ -86,7 +86,8 @@ export default function DashboardPage() {
     } finally {
       setLoading(false)
     }
-  }, [setProgress, setTodayLessons])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-fetch when active language changes
+  }, [setProgress, setTodayLessons, activeLanguage?.code])
 
   useEffect(() => {
     loadData()

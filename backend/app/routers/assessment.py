@@ -430,6 +430,7 @@ async def get_level_test_questions(
             cefr_level=plan.cefr_level,
             grammar_points_studied=list(dict.fromkeys(grammar_points)),  # dedup, preserve order
             vocabulary_sets_studied=list(dict.fromkeys(vocab_sets)),
+            target_language=plan.target_language,
         )
     except LLMTimeoutError:
         raise HTTPException(

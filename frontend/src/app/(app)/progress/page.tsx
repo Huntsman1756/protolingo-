@@ -172,10 +172,10 @@ export default function ProgressPage() {
       }
     }
     void load()
-  }, [])
+  }, [activeLanguage?.code])
 
   const cefrLevel = plan?.cefr_level as CEFRLevel | undefined
-  const targetLanguageCode = activeLanguage?.code
+  const targetLanguageCode = activeLanguage?.code ?? 'en-US'
   const levelUnits = cefrLevel
     ? getCurriculumUnits(cefrLevel, targetLanguageCode)
     : CEFR_LEVELS.flatMap((l) => getCurriculumUnits(l, targetLanguageCode))

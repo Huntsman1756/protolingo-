@@ -159,7 +159,8 @@ export default function PlanPage() {
     } finally {
       setLoading(false)
     }
-  }, [router])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-fetch when active language changes
+  }, [router, activeLanguage?.code])
 
   useEffect(() => {
     void loadPlan()

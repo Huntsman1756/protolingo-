@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
+import { useLanguageStore } from '@/store/language'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
@@ -30,6 +31,7 @@ export default function ChatPage() {
   const tCommon = useTranslations('common')
   const router = useRouter()
   const user = useAuthStore((s) => s.user)
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const {
     selectedWord,
     tooltipPos,
@@ -91,7 +93,7 @@ export default function ChatPage() {
     }
     init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [activeLanguage?.code])
 
   async function selectConversation(id: number) {
     dismissTooltip()
