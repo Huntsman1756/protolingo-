@@ -921,6 +921,7 @@
     "removeConfirmTitle": "{language} verwijderen?",
     "removeConfirmMessage": "Alle voortgang, lessen, flashcards en gegevens van deze taal worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
     "removeConfirmButton": "Verwijderen",
+    "deleteError": "Kan {language} niet verwijderen. Probeer het opnieuw.",
     "noLanguages": "Geen talen geconfigureerd.",
     "progressLabel": "Voortgang",
     "levelLabel": "Niveau",

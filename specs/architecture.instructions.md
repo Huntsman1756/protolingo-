@@ -16,7 +16,7 @@ freelingo/
 ├── backend/                     # Python 3.14 FastAPI
 │   ├── app/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter (7 modules)
-│   │   ├── models/              # SQLAlchemy 2.0 ORM models (15 model classes)
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (19 model classes)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas (13 modules)
 │   │   ├── routers/             # 20 routers (19 REST + 1 WebSocket)
 │   │   ├── services/            # Business logic + external service clients (17 modules)

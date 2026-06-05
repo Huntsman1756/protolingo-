@@ -921,6 +921,7 @@
     "removeConfirmTitle": "Remove {language}?",
     "removeConfirmMessage": "All progress, lessons, flashcards and data associated with this language will be permanently deleted. This action cannot be undone.",
     "removeConfirmButton": "Remove",
+    "deleteError": "Could not delete {language}. Please try again.",
     "noLanguages": "You have no languages configured.",
     "progressLabel": "Progress",
     "levelLabel": "Level",

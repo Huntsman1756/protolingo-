@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
+import { useLanguageStore } from '@/store/language'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 import { CEFR_LEVELS } from '@/data/curriculum'
@@ -33,6 +34,7 @@ export default function FlashcardsPage() {
   const t = useTranslations('flashcards')
   const tCommon = useTranslations('common')
   const user = useAuthStore((s) => s.user)
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [cards, setCards] = useState<CardData[]>([])
   const [current, setCurrent] = useState(0)
   const [flipped, setFlipped] = useState(false)
@@ -64,9 +66,11 @@ export default function FlashcardsPage() {
     }
   }, [])
 
+  const activeLangCode = activeLanguage?.code
+
   useEffect(() => {
     loadDue()
-  }, [loadDue])
+  }, [loadDue, activeLangCode])
 
   async function reviewCard(quality: number) {
     if (cards.length === 0) return

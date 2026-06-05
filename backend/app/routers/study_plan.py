@@ -120,10 +120,21 @@ async def create_study_plan(
 
 @router.get("/today", response_model=TodayResponse)
 async def get_today_lessons(
-    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
+    active_lang = await get_active_language(db, current_user.id)
+    if not active_lang:
+        raise HTTPException(status_code=404, detail="No active language set")
+    plan_result = await db.execute(
+        select(StudyPlan).where(
+            StudyPlan.user_language_id == active_lang.id,
+            StudyPlan.is_active.is_(True),
+        )
+    )
+    plan = plan_result.scalar_one_or_none()
+    if not plan:
+        raise HTTPException(status_code=404, detail="No active study plan found")
     total_days = plan.duration_weeks * plan.days_per_week
 
     # Load all existing lessons for this plan at once

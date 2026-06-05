@@ -921,6 +921,7 @@
     "removeConfirmTitle": "Usunąć {language}?",
     "removeConfirmMessage": "Wszystkie postępy, lekcje, fiszki i dane związane z tym językiem zostaną trwale usunięte. Tej akcji nie można cofnąć.",
     "removeConfirmButton": "Usuń",
+    "deleteError": "Nie można usunąć języka {language}. Spróbuj ponownie.",
     "noLanguages": "Brak skonfigurowanych języków.",
     "progressLabel": "Postęp",
     "levelLabel": "Poziom",

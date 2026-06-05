@@ -921,6 +921,7 @@
     "removeConfirmTitle": "Удалить {language}?",
     "removeConfirmMessage": "Весь прогресс, уроки, карточки и данные, связанные с этим языком, будут удалены навсегда. Это действие нельзя отменить.",
     "removeConfirmButton": "Удалить",
+    "deleteError": "Не удалось удалить {language}. Попробуйте снова.",
     "noLanguages": "Нет настроенных языков.",
     "progressLabel": "Прогресс",
     "levelLabel": "Уровень",

@@ -921,6 +921,7 @@
     "removeConfirmTitle": "Rimuovere {language}?",
     "removeConfirmMessage": "Tutti i progressi, lezioni, flashcard e dati associati a questa lingua saranno eliminati permanentemente. Questa azione non può essere annullata.",
     "removeConfirmButton": "Rimuovi",
+    "deleteError": "Impossibile eliminare {language}. Riprova.",
     "noLanguages": "Nessuna lingua configurata.",
     "progressLabel": "Progresso",
     "levelLabel": "Livello",

@@ -25,7 +25,7 @@ backend/
 │   │   ├── app_logger.py        # Structured logging (structlog)
 │   │   └── limiter.py           # slowapi rate limiter setup
 │   │
-│   ├── models/                  # SQLAlchemy 2.0 ORM models (15 model classes)
+│   ├── models/                  # SQLAlchemy 2.0 ORM models (19 model classes)
 │   │   ├── __init__.py
 │   │   ├── user.py              # User, UserPreferences, user quotas, avatar
 │   │   ├── user_language.py     # UserLanguage (phase 10: multi-language learning)
@@ -118,7 +118,7 @@ backend/
 
 ## Database models
 
-The application uses 15 SQLAlchemy ORM models organized into 5 domains:
+The application uses 19 SQLAlchemy ORM models organized into 5 domains:
 
 - **Core**: User (authentication, preferences, quotas), Progress (daily XP/streak/skills)
 - **Study plan**: StudyPlan, Lesson, Exercise, UserCompetency (curriculum tracking)

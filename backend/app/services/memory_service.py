@@ -33,7 +33,7 @@ the very end of your response. Format exactly:
 Rules for the memory block:
 - Only include it when you genuinely learn something new and worth remembering.
   Do NOT include it in every response — most replies should have no memory block.
-- Each item must be at most 200 characters, in English, and self-contained.
+- Each item must be at most 200 characters, in {target_language_name}, and self-contained.
 - Do NOT repeat facts already captured in the existing memories shown above.
 - The block must be the LAST thing in your response, after all visible text.
 - It will be stripped before the student sees your reply, so it won't confuse them.

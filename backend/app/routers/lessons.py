@@ -168,7 +168,12 @@ async def answer_exercise(
     lesson = await _get_lesson_for_user(exercise.lesson_id, current_user.id, db)
 
     plan = await db.get(StudyPlan, lesson.study_plan_id)
-    target_language = plan.target_language if plan else "en-US"
+    if not plan:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Study plan not found for lesson",
+        )
+    target_language = plan.target_language
 
     if exercise.answered_at is not None:
         raise HTTPException(

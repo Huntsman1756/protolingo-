@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import DateTime, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -13,6 +13,8 @@ class ListeningExercise(Base):
     """One row per generated exercise — shared across all users at the same level."""
 
     __tablename__ = "listening_exercises"
+
+    __table_args__ = (Index("ix_listening_exercises_level_lang", "level", "target_language"),)
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     level: Mapped[str] = mapped_column(String(2), nullable=False, index=True)

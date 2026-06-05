@@ -67,7 +67,16 @@ export default function MyLanguagesPage() {
   async function handleDelete() {
     if (!deleteTarget) return
     const ok = await removeLanguage(deleteTarget.target_language)
-    if (!ok) return
+    if (!ok) {
+      const lang = getLanguageByCode(deleteTarget.target_language)
+      setToast(
+        t('deleteError', {
+          language: lang?.name ?? deleteTarget.target_language,
+        })
+      )
+      setDeleteTarget(null)
+      return
+    }
     setDeleteTarget(null)
   }
 

@@ -149,9 +149,10 @@ export default function DashboardPage() {
           <h1 className="text-fl-fg font-mono text-2xl font-bold tracking-tight">
             {user?.displayName || user?.username}
           </h1>
-          {activeLanguage && cefrLevel && (
+          {activeLanguage && (
             <p className="text-fl-muted-1 mt-2 font-mono text-sm">
-              {activeLanguage.name} ({cefrLevel})
+              {activeLanguage.name}
+              {cefrLevel ? ` (${cefrLevel})` : ''}
             </p>
           )}
         </div>
