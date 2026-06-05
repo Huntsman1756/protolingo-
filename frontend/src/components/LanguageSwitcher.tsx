@@ -58,7 +58,7 @@ export default function LanguageSwitcher() {
 
   if (!activeLanguage) {
     return (
-      <div className="animate-pulse flex items-center gap-2 px-5 py-2.5">
+      <div className="flex animate-pulse items-center gap-2 px-5 py-2.5">
         <div className="bg-fl-border h-3.5 w-5 rounded-sm" />
         <div className="bg-fl-border h-3 w-20 rounded" />
       </div>

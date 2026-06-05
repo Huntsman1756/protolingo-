@@ -90,10 +90,12 @@ async def ensure_user_language(
     from whichever language the user is currently studying.
     """
     result = await db.execute(
-        select(UserLanguage).where(
+        select(UserLanguage)
+        .where(
             UserLanguage.user_id == user_id,
             UserLanguage.target_language == target_language,
         )
+        .with_for_update()
     )
     row = result.scalar_one_or_none()
     if row:
