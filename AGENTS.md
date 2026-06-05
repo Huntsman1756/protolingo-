@@ -10,7 +10,8 @@ Monorepo: `backend/` (Python 3.14 FastAPI) + `frontend/` (Next.js 16 App Router)
 
 ## Key constraints
 
-- **Users can learn multiple languages simultaneously** — each language gets an isolated study plan, progress, flashcards, conversations, memories, and competencies. Supported target languages: `en-US`, `en-GB`, `es-ES`, `it-IT`, `pt-PT`. User's native language (asked at registration) is used only for flashcard translations and tutor feedback.
+- **Users can learn multiple languages simultaneously** — each language gets an isolated study plan, progress, flashcards, conversations, and competencies. Supported target languages: `en-US`, `en-GB`, `es-ES`, `it-IT`, `pt-PT`. User's native language (asked at registration) is used only for flashcard translations and tutor feedback.
+- **User settings and memories are global (per user), not per language.** Profile (avatar, bio, display name, email, password, native language, UI locale), conversation limits (max duration, inactivity timeout, daily/weekly minutes, weekly sessions), token quota, subscription, and LLM memories are stored on the `users` table or keyed by `user_id` only — they do not change when switching the active study language. The `study_plan_id` column on `memories` tags each memory with the plan it was created in, but the settings page (`GET /api/memories`) lists all memories regardless of language. In chat/conversation context, memories are optionally filtered by `study_plan_id` to inject language-relevant context into the LLM prompt.
 - **First registered user becomes admin automatically** when `FIRST_USER_IS_ADMIN=true` (default).
 - **Registration gating**: `ALLOW_REGISTRATION=false` blocks public signups; admin creates users or generates single-use invite links (48h expiry in Redis).
 - **Ollama should run on the host for GPU access**, accessed via `host.docker.internal:11434`. On Linux, the backend service needs `extra_hosts: ["host.docker.internal:host-gateway"]`.

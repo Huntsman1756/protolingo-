@@ -23,10 +23,11 @@ MAX_MEMORIES_PER_USER = 150
 
 MEMORY_SYSTEM_INSTRUCTION_BASE = """
 Memory capability: if during the conversation you learn something noteworthy
-about the student (personal details, preferences, tastes, hobbies, profession,
-plans, goals, struggles with {target_language_name}, or anything that would help
-personalise future lessons), you may persist it by appending a memory block at
-the very end of your response. Format exactly:
+about the student as a person — personal details, preferences, tastes, hobbies,
+profession, plans, goals, other languages they are studying, learning style,
+motivations, or anything that would help personalise future interactions — you
+may persist it by appending a memory block at the very end of your response.
+Format exactly:
 
 <<MEMORY>>{{"items":["short fact about the student"]}}<<ENDMEMORY>>
 
