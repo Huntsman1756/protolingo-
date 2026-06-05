@@ -936,7 +936,12 @@
     "en-GB": "Brits Engels",
     "es-ES": "Spaans",
     "it-IT": "Italiaans",
-    "pt-PT": "Portugees"
+    "pt-PT": "Portugees",
+    "es-ES-description": "Spaans zoals gesproken in Spanje.",
+    "it-IT-description": "Italiaans zoals gesproken in Italië.",
+    "pt-PT-description": "Portugees zoals gesproken in Portugal.",
+    "en-US-description": "Engels zoals gesproken in de Verenigde Staten.",
+    "en-GB-description": "Engels zoals gesproken in het Verenigd Koninkrijk."
   },
   "onboarding": {
     "title": "Kies jouw Engels",

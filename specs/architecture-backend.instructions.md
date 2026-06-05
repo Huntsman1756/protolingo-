@@ -101,24 +101,19 @@ backend/
 │   │   ├── tts_service.py       # Text-to-speech abstraction (local Kokoro / OpenAI)
 │   │   └── user_language_service.py # Multi-language study plan management (phase 10)
 │   │
-│   └── data/                    # Static curriculum content
+│   └── data/                    # Static curriculum content (4 languages)
 │       ├── __init__.py
-│       ├── curriculum.py        # Master curriculum definitions
-│       └── en/                  # English curriculum
-│           ├── __init__.py
-│           ├── _types.py
-│           ├── curriculum.py
-│           ├── curriculum_a1.py
-│           ├── curriculum_a2.py
-│           ├── curriculum_b1.py
-│           ├── curriculum_b2.py
-│           ├── curriculum_c1.py
-│           └── curriculum_c2.py
+│       ├── _types.py             # Shared types (CEFRLevel, CurriculumUnit)
+│       ├── curriculum.py         # Language-aware dispatcher
+│       ├── en/                   # English curriculum (46 units, A1–C2)
+│       ├── es/                   # Spanish curriculum (46 units, A1–C2)
+│       ├── it/                   # Italian curriculum (46 units, A1–C2)
+│       └── pt/                   # Portuguese curriculum (46 units, A1–C2)
 │
 ├── alembic/
 │   └── versions/                # DB migrations (31 migrations)
 │
-└── tests/                       # pytest suite (25 test files, 310 tests)
+└── tests/                       # pytest suite (25 test files, 375 tests)
 ```
 
 ## Database models
@@ -181,9 +176,9 @@ Testing infrastructure and strategy are documented in [testing.instructions.md](
 **Summary:**
 - **Framework**: pytest + pytest-asyncio + httpx AsyncClient
 - **Test files**: 25 (plus conftest.py for shared fixtures)
-- **Tests**: 310
-- **Coverage**: 73% (target: ≥60%)
-- **Key fixtures**: async database session, test client with auth headers, Redis mock
+- **Tests**: 375
+- **Coverage**: 73% (target: ≥70%)
+- **Key fixtures**: async database session, test client with auth headers, Redis mock, user_language fixture
 
 ---
 

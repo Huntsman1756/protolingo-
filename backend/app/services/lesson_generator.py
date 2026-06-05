@@ -1,4 +1,4 @@
-from app.data.curriculum import CURRICULUM
+from app.data.curriculum import get_curriculum
 from app.schemas.lessons import (
     FillBlankEvaluation,
     FreeWriteEvaluation,
@@ -10,13 +10,9 @@ from app.services.llm_adapter import llm_adapter
 
 
 def get_valid_grammar_slugs(target_language: str = "en-US") -> set[str]:
-    """Return the set of valid grammar slugs for a given target language.
-
-    Phase 10.6 will dispatch by language via get_curriculum(target_language).
-    Until then CURRICULUM contains only English data keyed by CEFR level, so
-    we iterate its values directly (which correctly yields all English slugs).
-    """
-    return {slug for units in CURRICULUM.values() for unit in units for slug in unit.grammar_points}
+    """Return the set of valid grammar slugs for a given target language."""
+    curriculum = get_curriculum(target_language)
+    return {slug for units in curriculum.values() for unit in units for slug in unit.grammar_points}
 
 
 LESSON_GENERATION_PROMPT = """
@@ -70,7 +66,7 @@ For pronunciation exercises use this exact structure:
   "type": "pronunciation",
   "question": "Listen and repeat:",
   "options": ["Hint: focus on the specific sound or pattern"],
-  "correct": "The exact English phrase the student must pronounce.",
+  "correct": "The exact {target_language_name} phrase the student must pronounce.",
   "explanation": "What phonetic aspect this practices (e.g. -ing endings, linking sounds)"
 }}
 

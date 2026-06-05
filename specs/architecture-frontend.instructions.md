@@ -71,13 +71,17 @@ frontend/
 │   │   ├── TargetLanguageSelector.tsx
 │   │   └── ThemeProvider.tsx
 │   │
-│   ├── data/                    # Static content and curriculum data
-│   │   ├── assessment-bank.ts   # Adaptive quiz question bank (by CEFR level)
-│   │   ├── curriculum.ts        # Frontend curriculum definitions
-│   │   ├── grammar.ts           # Grammar reference content
-│   │   ├── phrasebook.ts        # Phrasebook content by category
-│   │   ├── vocabulary.ts        # Vocabulary sets by topic
-│   │   └── en/                  # English-specific data
+│   ├── data/                    # Static content and curriculum data (4 languages)
+│   │   ├── types.ts              # Shared TypeScript types (CEFRLevel, GrammarCategory, etc.)
+│   │   ├── assessment-bank.ts    # Adaptive quiz question bank — language-aware dispatcher
+│   │   ├── curriculum.ts         # Curriculum definitions — language-aware dispatcher
+│   │   ├── grammar.ts            # Grammar reference — language-aware dispatcher
+│   │   ├── phrasebook.ts         # Phrasebook — language-aware dispatcher
+│   │   ├── vocabulary.ts         # Vocabulary sets — language-aware dispatcher
+│   │   ├── en/                   # English curriculum (5 files: curriculum, grammar, vocab, phrasebook, assessment)
+│   │   ├── es/                   # Spanish curriculum (5 files)
+│   │   ├── it/                   # Italian curriculum (5 files)
+│   │   └── pt/                   # Portuguese curriculum (5 files)
 │   │
 │   ├── store/                   # Zustand stores (6)
 │   │   ├── auth.ts              # Access token, user info, login/refresh/logout
@@ -105,7 +109,10 @@ frontend/
 │   ├── setup.ts                 # Global mocks: localStorage, next/navigation, next-intl
 │   ├── middleware.test.ts
 │   ├── components/
+│   │   ├── LanguageSwitcher.test.tsx
 │   │   └── TargetLanguageSelector.test.tsx
+│   ├── data/
+│   │   └── curriculum.test.ts
 │   ├── lib/
 │   │   ├── api.test.ts
 │   │   ├── audio.test.ts
@@ -328,6 +335,6 @@ Testing infrastructure and strategy are documented in [testing.instructions.md](
 
 **Summary:**
 - **Framework**: Vitest with jsdom environment
-- **Test files**: 10 (plus setup.ts) covering critical logic only
+- **Test files**: 12 (plus setup.ts) covering critical logic only
 - **Setup**: Global mocks for `localStorage`, `next/navigation`, `next-intl`
 - **Coverage areas**: API fetch interceptor, auth store, audio queue, conversation WebSocket, target language utilities, mapper functions, middleware, component rendering

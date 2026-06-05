@@ -936,7 +936,12 @@
     "en-GB": "Inglese britannico",
     "es-ES": "Spagnolo",
     "it-IT": "Italiano",
-    "pt-PT": "Portoghese"
+    "pt-PT": "Portoghese",
+    "es-ES-description": "Spagnolo parlato in Spagna.",
+    "it-IT-description": "Italiano parlato in Italia.",
+    "pt-PT-description": "Portoghese parlato in Portogallo.",
+    "en-US-description": "Inglese parlato negli Stati Uniti.",
+    "en-GB-description": "Inglese parlato nel Regno Unito."
   },
   "onboarding": {
     "title": "Scegli il tuo inglese",

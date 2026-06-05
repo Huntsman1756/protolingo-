@@ -122,7 +122,7 @@ async def complete_lesson(
 
         plan = await db.get(StudyPlan, lesson.study_plan_id)
         if plan:
-            for u in get_curriculum_units(plan.cefr_level):
+            for u in get_curriculum_units(plan.cefr_level, plan.target_language):
                 if u.id == lesson.unit_id:
                     # Score this lesson: average of answered exercises
                     result_ex = await db.execute(

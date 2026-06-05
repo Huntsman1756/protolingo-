@@ -86,7 +86,7 @@ async def create_study_plan(
 
     from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
 
-    units = get_curriculum_units(data.cefr_level)
+    units = get_curriculum_units(data.cefr_level, resolved_language)
     first_unit_id = units[0].id if units else ""
 
     plan_dict = generated.model_dump() if hasattr(generated, "model_dump") else generated
@@ -215,7 +215,7 @@ async def get_today_lessons(
         if d_unit_id:
             from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
 
-            for cu in get_curriculum_units(plan.cefr_level):
+            for cu in get_curriculum_units(plan.cefr_level, plan.target_language):
                 if cu.id == d_unit_id:
                     grammar_points = cu.grammar_points
                     vocabulary_set_ids = cu.vocabulary_set_ids

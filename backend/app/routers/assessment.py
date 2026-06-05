@@ -285,7 +285,7 @@ async def complete_assessment(
 
     from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
 
-    units = get_curriculum_units(data.cefr_level)
+    units = get_curriculum_units(data.cefr_level, target_language)
     first_unit_id = units[0].id if units else ""
 
     plan = StudyPlan(
@@ -328,7 +328,7 @@ async def get_level_test_questions(
     # Collect all grammar points and vocabulary sets from the curriculum
     from app.data.curriculum import get_curriculum_units  # noqa: PLC0415
 
-    units = get_curriculum_units(plan.cefr_level)
+    units = get_curriculum_units(plan.cefr_level, plan.target_language)
     grammar_points: list[str] = []
     vocab_sets: list[str] = []
     for u in units:

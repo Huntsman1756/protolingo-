@@ -936,7 +936,12 @@
     "en-GB": "Engleză britanică",
     "es-ES": "Spaniolă",
     "it-IT": "Italiană",
-    "pt-PT": "Portugheză"
+    "pt-PT": "Portugheză",
+    "es-ES-description": "Spaniola vorbită în Spania.",
+    "it-IT-description": "Italiana vorbită în Italia.",
+    "pt-PT-description": "Portugheza vorbită în Portugalia.",
+    "en-US-description": "Engleza vorbită în Statele Unite.",
+    "en-GB-description": "Engleza vorbită în Regatul Unit."
   },
   "onboarding": {
     "title": "Alege engleza ta",

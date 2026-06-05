@@ -78,12 +78,15 @@ export default function MyLanguagesPage() {
     router.push(`/onboarding?language=${addingCode}&new=true`)
   }
 
-  const availableLanguageCodes = useLanguageStore((s) => s.availableLanguageCodes)
+  const availableLanguageCodes = useLanguageStore(
+    (s) => s.availableLanguageCodes
+  )
   const addedCodes = userLanguages.map((ul) => ul.target_language)
   // Only show operator-enabled languages that the user hasn't added yet
   const unusedCodes = SUPPORTED_TARGET_LANGUAGES.filter(
     (l) =>
-      (availableLanguageCodes.length === 0 || availableLanguageCodes.includes(l.code)) &&
+      (availableLanguageCodes.length === 0 ||
+        availableLanguageCodes.includes(l.code)) &&
       !addedCodes.includes(l.code)
   ).map((l) => l.code)
   const hasMultiple = userLanguages.length > 1
@@ -150,8 +153,9 @@ export default function MyLanguagesPage() {
             return (
               <div
                 key={ulang.target_language}
-                className={`bg-fl-surface border p-5 ${isActive ? 'border-fl-accent/50' : 'border-fl-border'
-                  }`}
+                className={`bg-fl-surface border p-5 ${
+                  isActive ? 'border-fl-accent/50' : 'border-fl-border'
+                }`}
               >
                 {/* Top row: flag + name + status */}
                 <div className="mb-3 flex items-center gap-3">

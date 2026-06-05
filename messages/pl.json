@@ -936,7 +936,12 @@
     "en-GB": "Angielski brytyjski",
     "es-ES": "Hiszpański",
     "it-IT": "Włoski",
-    "pt-PT": "Portugalski"
+    "pt-PT": "Portugalski",
+    "es-ES-description": "Hiszpański używany w Hiszpanii.",
+    "it-IT-description": "Włoski używany we Włoszech.",
+    "pt-PT-description": "Portugalski używany w Portugalii.",
+    "en-US-description": "Angielski używany w Stanach Zjednoczonych.",
+    "en-GB-description": "Angielski używany w Wielkiej Brytanii."
   },
   "onboarding": {
     "title": "Wybierz swój angielski",
