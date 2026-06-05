@@ -39,9 +39,8 @@ async def _get_active_plan_or_404(db: AsyncSession, user_id: int) -> StudyPlan:
         raise HTTPException(status_code=404, detail="No active language set")
     result = await db.execute(
         select(StudyPlan).where(
-            StudyPlan.user_id == user_id,
+            StudyPlan.user_language_id == active_lang.id,
             StudyPlan.is_active.is_(True),
-            StudyPlan.target_language == active_lang.target_language,
         )
     )
     plan = result.scalar_one_or_none()

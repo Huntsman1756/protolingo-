@@ -7,9 +7,10 @@ import pytest
 async def test_chat_returns_sse_stream(client, test_user, db_session):
     user, headers = test_user
 
-    from app.models.study_plan import StudyPlan
+    from tests.conftest import make_study_plan
 
-    plan = StudyPlan(
+    _ = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         target_language="en-US",
@@ -20,8 +21,6 @@ async def test_chat_returns_sse_stream(client, test_user, db_session):
         generated_plan={},
         is_active=True,
     )
-    db_session.add(plan)
-    await db_session.commit()
 
     class FakeChunk:
         class Choice:

@@ -46,6 +46,12 @@ class ReadingAttempt(Base):
         nullable=False,
         index=True,
     )
+    study_plan_id: Mapped[int] = mapped_column(
+        Integer,
+        ForeignKey("study_plans.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
     answers: Mapped[dict] = mapped_column(JSON, nullable=False)
     # {"0": "B", "1": "A", "2": "C", "3": "D", "4": "A"}
     score: Mapped[int] = mapped_column(Integer, nullable=False)  # 0–5

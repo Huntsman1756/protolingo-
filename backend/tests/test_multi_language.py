@@ -62,7 +62,10 @@ async def _add_language(db, user_id: int, code: str, *, active: bool = False):
 
 
 async def _make_plan(db, user_id: int, *, cefr="A1", language="en-US", active=True):
-    plan = StudyPlan(
+    from tests.conftest import make_study_plan
+
+    return await make_study_plan(
+        db,
         user_id=user_id,
         cefr_level=cefr,
         target_language=language,
@@ -73,9 +76,6 @@ async def _make_plan(db, user_id: int, *, cefr="A1", language="en-US", active=Tr
         generated_plan={},
         is_active=active,
     )
-    db.add(plan)
-    await db.commit()
-    return plan
 
 
 # ═════════════════════════════════════════════════════════════════════════════

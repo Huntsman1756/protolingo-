@@ -196,17 +196,19 @@ async def conversation_ws(
             result = await db.execute(
                 select(StudyPlan)
                 .where(
-                    StudyPlan.user_id == user_id,
+                    StudyPlan.user_language_id == active_lang.id,
                     StudyPlan.is_active == True,  # noqa: E712
-                    StudyPlan.target_language == active_lang.target_language,
                 )
                 .limit(1)
             )
         else:
+            from app.models.user_language import UserLanguage
+
             result = await db.execute(
                 select(StudyPlan)
+                .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
                 .where(
-                    StudyPlan.user_id == user_id,
+                    UserLanguage.user_id == user_id,
                     StudyPlan.is_active == True,  # noqa: E712
                 )
                 .order_by(StudyPlan.created_at.desc())

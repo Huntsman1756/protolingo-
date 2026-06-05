@@ -7,6 +7,7 @@ from unittest.mock import AsyncMock, patch
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy import select
 
 from app.core.database import get_db
 from app.core.security import create_access_token, hash_password
@@ -99,8 +100,19 @@ async def _make_user(
 
 
 async def _make_plan(db, user_id: int, level: str = "B1") -> StudyPlan:
+    from app.models.user_language import UserLanguage
+
+    ul = (
+        await db.execute(
+            select(UserLanguage).where(
+                UserLanguage.user_id == user_id,
+                UserLanguage.target_language == "en-US",
+            )
+        )
+    ).scalar_one()
     plan = StudyPlan(
         user_id=user_id,
+        user_language_id=ul.id,
         cefr_level=level,
         target_language="en-US",
         goals=[],
@@ -269,11 +281,15 @@ async def test_next_returns_exercise(user_with_plan) -> None:
 @pytest.mark.asyncio
 async def test_next_skips_completed_exercises(user_with_plan) -> None:
     ac, _, headers, user, db = user_with_plan
+    plan = (
+        await db.execute(select(StudyPlan).where(StudyPlan.user_id == user.id, StudyPlan.is_active))
+    ).scalar_one()
     ex = await _make_exercise(db)
     db.add(
         ListeningAttempt(
             user_id=user.id,
             exercise_id=ex.id,
+            study_plan_id=plan.id,
             answers=_ALL_CORRECT,
             score=5,
             xp_earned=50,
@@ -464,11 +480,15 @@ async def test_history_empty(user_with_plan) -> None:
 @pytest.mark.asyncio
 async def test_history_returns_attempts(user_with_plan) -> None:
     ac, _, headers, user, db = user_with_plan
+    plan = (
+        await db.execute(select(StudyPlan).where(StudyPlan.user_id == user.id, StudyPlan.is_active))
+    ).scalar_one()
     ex = await _make_exercise(db)
     db.add(
         ListeningAttempt(
             user_id=user.id,
             exercise_id=ex.id,
+            study_plan_id=plan.id,
             answers=_ALL_CORRECT,
             score=5,
             xp_earned=50,

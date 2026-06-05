@@ -13,6 +13,7 @@ from app.core.database import get_db
 from app.core.deps import get_current_user, get_redis
 from app.models.study_plan import StudyPlan
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.schemas.assessment import (
     AssessmentCompleteRequest,
     AssessmentResult,
@@ -36,6 +37,7 @@ from app.services.llm_adapter import (
     llm_adapter,
 )
 from app.services.study_plan_generator import generate_study_plan
+from app.services.user_language_service import ensure_user_language
 
 router = APIRouter(prefix="/api/assessment", tags=["assessment"])
 
@@ -343,12 +345,14 @@ async def complete_assessment(
         # The session's target_language is the most authoritative source when present
         target_language = session.get("target_language", target_language)
 
+    # Ensure a UserLanguage row exists for this language
+    user_lang = await ensure_user_language(db, current_user.id, target_language)
+
     # Deactivate existing active plans — scoped to this language only
     old_result = await db.execute(
         select(StudyPlan).where(
-            StudyPlan.user_id == current_user.id,
+            StudyPlan.user_language_id == user_lang.id,
             StudyPlan.is_active.is_(True),
-            StudyPlan.target_language == target_language,
         )
     )
     for old in old_result.scalars().all():
@@ -373,6 +377,7 @@ async def complete_assessment(
 
     plan = StudyPlan(
         user_id=current_user.id,
+        user_language_id=user_lang.id,
         cefr_level=data.cefr_level,
         target_language=target_language,
         goals=data.goals,
@@ -399,9 +404,11 @@ async def get_level_test_questions(
     Questions are constrained to grammar/vocabulary studied in the plan's CEFR level.
     """
     result = await db.execute(
-        select(StudyPlan).where(
+        select(StudyPlan)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(
             StudyPlan.id == plan_id,
-            StudyPlan.user_id == current_user.id,
+            UserLanguage.user_id == current_user.id,
         )
     )
     plan = result.scalar_one_or_none()
@@ -449,9 +456,11 @@ async def submit_level_test(
 ):
     """Evaluate the end-of-level test and save the result to the study plan."""
     result = await db.execute(
-        select(StudyPlan).where(
+        select(StudyPlan)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(
             StudyPlan.id == data.plan_id,
-            StudyPlan.user_id == current_user.id,
+            UserLanguage.user_id == current_user.id,
         )
     )
     plan = result.scalar_one_or_none()
@@ -494,9 +503,11 @@ async def get_level_test_result(
     db: AsyncSession = Depends(get_db),
 ):
     result = await db.execute(
-        select(StudyPlan).where(
+        select(StudyPlan)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(
             StudyPlan.id == plan_id,
-            StudyPlan.user_id == current_user.id,
+            UserLanguage.user_id == current_user.id,
         )
     )
     plan = result.scalar_one_or_none()

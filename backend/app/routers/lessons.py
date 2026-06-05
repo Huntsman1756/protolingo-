@@ -34,10 +34,13 @@ router = APIRouter(prefix="/api/lessons", tags=["lessons"])
 
 async def _get_lesson_for_user(lesson_id: int, user_id: int, db: AsyncSession) -> Lesson:
     """Fetch a lesson and verify it belongs to the requesting user via its study plan."""
+    from app.models.user_language import UserLanguage
+
     result = await db.execute(
         select(Lesson)
         .join(StudyPlan, Lesson.study_plan_id == StudyPlan.id)
-        .where(Lesson.id == lesson_id, StudyPlan.user_id == user_id)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(Lesson.id == lesson_id, UserLanguage.user_id == user_id)
     )
     lesson = result.scalar_one_or_none()
     if not lesson:

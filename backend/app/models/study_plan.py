@@ -15,8 +15,7 @@ class StudyPlan(Base):
     __table_args__ = (
         Index(
             "uq_active_plan_per_lang",
-            "user_id",
-            "target_language",
+            "user_language_id",
             unique=True,
             postgresql_where=text("is_active = true"),
         ),
@@ -25,6 +24,9 @@ class StudyPlan(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    user_language_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("user_languages.id", ondelete="CASCADE"), nullable=False, index=True
     )
     cefr_level: Mapped[str] = mapped_column(String(10), nullable=False)
     target_language: Mapped[str] = mapped_column(String(10), nullable=False, default="en-US")

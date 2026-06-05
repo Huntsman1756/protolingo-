@@ -12,6 +12,7 @@ from app.core.deps import get_active_study_plan, get_current_user
 from app.models.lesson import Exercise, Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.schemas.study_plan import (
     GenerateStudyPlanRequest,
     PendingLessonResponse,
@@ -21,6 +22,7 @@ from app.schemas.study_plan import (
 )
 from app.services.lesson_generator import generate_lesson
 from app.services.study_plan_generator import generate_study_plan
+from app.services.user_language_service import ensure_user_language, get_active_language
 
 logger = get_logger(__name__)
 
@@ -34,12 +36,20 @@ async def get_current_plan(
     db: AsyncSession = Depends(get_db),
 ):
     if language:
+        ul_result = await db.execute(
+            select(UserLanguage).where(
+                UserLanguage.user_id == current_user.id,
+                UserLanguage.target_language == language,
+            )
+        )
+        ul = ul_result.scalar_one_or_none()
+        if ul is None:
+            return None
         result = await db.execute(
             select(StudyPlan)
             .where(
-                StudyPlan.user_id == current_user.id,
+                StudyPlan.user_language_id == ul.id,
                 StudyPlan.is_active.is_(True),
-                StudyPlan.target_language == language,
             )
             .order_by(StudyPlan.created_at.desc())
             .limit(1)
@@ -64,19 +74,19 @@ async def create_study_plan(
     resolved_language = data.target_language
     if not resolved_language:
         # Fall back to active language
-        from app.services.user_language_service import get_active_language
-
         active_lang = await get_active_language(db, current_user.id)
         resolved_language = (
             active_lang.target_language if active_lang else current_user.target_language
         )
 
+    # Ensure a UserLanguage row exists for this language (creates one inactive if missing)
+    user_lang = await ensure_user_language(db, current_user.id, resolved_language)
+
     # Deactivate old plans — scoped to this language only
     old_plans = await db.execute(
         select(StudyPlan).where(
-            StudyPlan.user_id == current_user.id,
+            StudyPlan.user_language_id == user_lang.id,
             StudyPlan.is_active.is_(True),
-            StudyPlan.target_language == resolved_language,
         )
     )
     for old in old_plans.scalars().all():
@@ -92,6 +102,7 @@ async def create_study_plan(
     plan_dict = generated.model_dump() if hasattr(generated, "model_dump") else generated
     plan = StudyPlan(
         user_id=current_user.id,
+        user_language_id=user_lang.id,
         cefr_level=data.cefr_level,
         target_language=resolved_language,
         goals=data.goals,
