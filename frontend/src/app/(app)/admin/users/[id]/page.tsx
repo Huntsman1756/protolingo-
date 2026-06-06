@@ -3,9 +3,22 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { getLanguageByCode } from '@/lib/target-languages'
 import { type QuotaStatus } from '@/types/api'
+
+interface LanguageStats {
+  target_language: string
+  cefr_level: string | null
+  xp_total: number
+  streak_current: number
+  active_days: number
+  lessons_completed: number
+  exercises_correct: number
+  exercises_total: number
+}
 
 interface UserStats {
   user_id: number
@@ -23,6 +36,7 @@ interface UserStats {
   tokens_total: number
   tokens_chat: number
   tokens_conversation: number
+  per_language: LanguageStats[]
 }
 
 interface AdminUser {
@@ -323,6 +337,60 @@ export default function AdminUserStatsPage() {
           />
         )}
       </Section>
+
+      {/* Languages */}
+      {stats.per_language.length > 0 && (
+        <Section title={t('sectionLanguages')}>
+          <div className="space-y-3 py-3">
+            {stats.per_language.map((pl) => {
+              const lang = getLanguageByCode(pl.target_language)
+              const pct =
+                pl.exercises_total > 0
+                  ? Math.round(
+                      (pl.exercises_correct / pl.exercises_total) * 100
+                    )
+                  : null
+              return (
+                <div
+                  key={pl.target_language}
+                  className="border-fl-border bg-fl-bg flex items-center gap-3 border px-4 py-3"
+                >
+                  {lang && (
+                    <Image
+                      src={lang.flagPath}
+                      alt={lang.code}
+                      width={24}
+                      height={17}
+                      className="shrink-0 object-cover"
+                    />
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-fl-fg truncate font-mono text-sm font-bold">
+                        {lang?.name ?? pl.target_language}
+                      </span>
+                      {pl.cefr_level && (
+                        <span className="text-fl-label text-fl-accent shrink-0 font-mono tracking-widest uppercase">
+                          {pl.cefr_level}
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-fl-muted-2 mt-0.5 flex flex-wrap gap-x-3 gap-y-0 font-mono text-xs">
+                      <span>XP: {pl.xp_total.toLocaleString()}</span>
+                      <span>Racha: {pl.streak_current}d</span>
+                      <span>Lecciones: {pl.lessons_completed}</span>
+                      <span>
+                        Ejer: {pl.exercises_correct}/{pl.exercises_total}
+                        {pct != null && ` (${pct}%)`}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </Section>
+      )}
 
       {/* Study plan */}
       <Section title={t('statsCefr')}>

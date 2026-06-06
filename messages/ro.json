@@ -762,7 +762,7 @@
     "workflowStep5": "Folosește carduri flash pentru a antrena vocabularul în paralel",
     "workflowStep6": "Exersează conversația liberă cu tutorele AI",
     "q_language": "Ce limbă voi învăța?",
-    "a_language": "Doar engleza, deocamdată. Limba maternă pe care o alegi la înregistrare este folosită exclusiv pentru traducerile cardurilor flash și feedback-ul tutorului.",
+    "a_language": "FreeLingo acceptă în prezent mai multe limbi și vom adăuga altele noi în timp. Când o limbă nouă devine disponibilă, o vei găsi în Setări → Limbile mele — adaug-o și începe să înveți imediat.",
     "q_assessment": "Ce este Evaluarea?",
     "a_assessment": "Un test generat de AI cu 15 de întrebări despre gramatică, vocabular, înțelegerea lecturii și transformarea propozițiilor, cu dificultate de la A1 la C1.",
     "q_studyPlan": "Ce este Planul de studiu și cum îl generez?",
@@ -1081,8 +1081,12 @@
       "desc": "Acum poți alege limba interfeței aplicației — meniuri, butoane și etichete — din pagina Setări, independent de limba ta nativă."
     },
     "entry3": {
-      "label": "Corecții",
-      "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
+      "label": "Învață mai multe limbi",
+      "desc": "Acum poți învăța mai mult de o limbă în același timp. Schimbă limba din bara laterală și adaugă altele noi din Setări → Limbile mele. Vom continua să adăugăm mai multe limbi — le vei găsi acolo."
+    },
+    "entry4": {
+      "label": "Corectări de bug-uri",
+      "desc": "Diverse corectări minore de bug-uri și îmbunătățiri de stabilitate pe întreaga platformă."
     }
   },
   "contact": {

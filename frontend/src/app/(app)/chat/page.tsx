@@ -230,7 +230,7 @@ export default function ChatPage() {
         <div className="flex h-[calc(100dvh-56px)] w-full overflow-hidden md:h-screen">
           {/* Memory updated toast */}
           {memoryToast && (
-            <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 fixed top-16 left-1/2 z-50 -translate-x-1/2 border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
+            <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 fixed top-16 right-0 left-0 z-50 mx-auto w-fit border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
               {t('memoryUpdated')}
             </div>
           )}

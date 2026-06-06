@@ -762,7 +762,7 @@
     "workflowStep5": "Use os Cartões para treinar vocabulário em paralelo",
     "workflowStep6": "Pratique a conversação livre com o Tutor IA",
     "q_language": "Que idioma vou aprender?",
-    "a_language": "Apenas inglês, por agora. O idioma nativo escolhido no registo é usado exclusivamente para traduções de cartões e feedback do tutor — não altera o idioma alvo.",
+    "a_language": "Atualmente o FreeLingo inclui vários idiomas e vamos continuar a adicionar mais ao longo do tempo. Quando um novo idioma estiver disponível, vais encontrá-lo em Definições → Os meus idiomas — adiciona-o e começa a aprender de imediato.",
     "q_assessment": "O que é a Avaliação?",
     "a_assessment": "Um teste de 15 perguntas gerado por IA que abrange gramática, vocabulário, compreensão de leitura e transformação de frases, com dificuldade de A1 a C1. No final, obtém o seu nível QECR, uma pontuação e uma análise dos seus pontos fortes e fracos. Este resultado alimenta o Plano de Estudo e os Cartões gerados.",
     "q_studyPlan": "O que é o Plano de Estudo e como o gero?",
@@ -1081,7 +1081,11 @@
       "desc": "Já podes escolher o idioma da interface da app — menus, botões e etiquetas — na página de Definições, independentemente do teu idioma nativo."
     },
     "entry3": {
-      "label": "Correções",
+      "label": "Aprende vários idiomas",
+      "desc": "Agora podes aprender mais do que um idioma ao mesmo tempo. Alterna entre idiomas na barra lateral e adiciona novos em Definições → Os meus idiomas. Vamos continuar a adicionar mais idiomas — quando o fizermos, vais encontrá-los lá."
+    },
+    "entry4": {
+      "label": "Correções de bugs",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }
   },

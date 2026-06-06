@@ -762,7 +762,7 @@
     "workflowStep5": "Use Flashcards to train vocabulary in parallel",
     "workflowStep6": "Practice free conversation with the AI Tutor",
     "q_language": "What language will I learn?",
-    "a_language": "English only, for now. The native language you choose at registration is used exclusively for flashcard translations and tutor feedback — it does not change the target language.",
+    "a_language": "FreeLingo currently supports several languages, and we will keep adding more over time. When a new language becomes available, you will find it in Settings → My Languages — add it and start learning right away.",
     "q_assessment": "What is the Assessment?",
     "a_assessment": "A 15-question AI-generated test covering grammar, vocabulary, reading comprehension, and sentence transformation, with difficulty ranging from A1 to C1. When you finish, you get your CEFR level, a score, and an analysis of your strengths and weaknesses. This result feeds into the Study Plan and generated Flashcards.",
     "q_studyPlan": "What is the Study Plan and how do I generate one?",
@@ -1081,6 +1081,10 @@
       "desc": "You can now choose the language of the app interface — menus, buttons, and labels — from the Settings page, independently of your native language."
     },
     "entry3": {
+      "label": "Learn multiple languages",
+      "desc": "You can now learn more than one language at the same time. Switch between languages from the sidebar and add new ones from Settings → My Languages. We'll keep adding more languages — when we do, you'll find them there."
+    },
+    "entry4": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }

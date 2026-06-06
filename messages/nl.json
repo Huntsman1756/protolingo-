@@ -762,7 +762,7 @@
     "workflowStep5": "Gebruik flashcards om woordenschat parallel te trainen",
     "workflowStep6": "Oefen vrij gesprek met de AI-tutor",
     "q_language": "Welke taal leer ik?",
-    "a_language": "Alleen Engels, voor nu. De moedertaal die je kiest bij registratie wordt uitsluitend gebruikt voor flashcard-vertalingen en tutorfeedback.",
+    "a_language": "FreeLingo ondersteunt momenteel meerdere talen en we zullen er in de loop van de tijd meer toevoegen. Wanneer een nieuwe taal beschikbaar komt, vind je die onder Instellingen → Mijn talen — voeg hem toe en begin meteen met leren.",
     "q_assessment": "Wat is de Beoordeling?",
     "a_assessment": "Een door AI gegenereerde test van 15 vragen over grammatica, woordenschat, leesbegrip en zinnen transformeren, met moeilijkheidsgraad van A1 tot C1.",
     "q_studyPlan": "Wat is het Studieplan en hoe genereer ik er een?",
@@ -1081,8 +1081,12 @@
       "desc": "Je kunt nu de taal van de app-interface — menu's, knoppen en labels — kiezen via de pagina Instellingen, onafhankelijk van je moedertaal."
     },
     "entry3": {
+      "label": "Leer meerdere talen",
+      "desc": "Je kunt nu meer dan één taal tegelijk leren. Wissel van taal via de zijbalk en voeg nieuwe talen toe via Instellingen → Mijn talen. We blijven meer talen toevoegen — je vindt ze daar."
+    },
+    "entry4": {
       "label": "Bugfixes",
-      "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
+      "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen in het hele platform."
     }
   },
   "contact": {

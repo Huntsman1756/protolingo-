@@ -81,37 +81,18 @@ async def get_active_study_plan(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> StudyPlan:
-    """Return the active study plan for the user's active language.
-
-    Falls back to any active plan if the active-language lookup fails (e.g.
-    a legacy user whose user_languages row is temporarily missing).
-    """
+    """Return the active study plan for the user's active language."""
     from app.services.user_language_service import get_active_language
 
     active_lang = await get_active_language(db, current_user.id)
-    if active_lang:
-        result = await db.execute(
-            select(StudyPlan).where(
-                StudyPlan.user_language_id == active_lang.id,
-                StudyPlan.is_active == True,  # noqa: E712
-            )
-        )
-        plan = result.scalar_one_or_none()
-        if plan:
-            return plan
-
-    # Fallback: any active plan for the user (join through user_languages)
-    from app.models.user_language import UserLanguage
+    if not active_lang:
+        raise HTTPException(status_code=404, detail="No active language set")
 
     result = await db.execute(
-        select(StudyPlan)
-        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
-        .where(
-            UserLanguage.user_id == current_user.id,
+        select(StudyPlan).where(
+            StudyPlan.user_language_id == active_lang.id,
             StudyPlan.is_active == True,  # noqa: E712
         )
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
     )
     plan = result.scalar_one_or_none()
     if not plan:

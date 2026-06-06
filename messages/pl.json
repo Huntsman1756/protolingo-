@@ -762,7 +762,7 @@
     "workflowStep5": "Używaj fiszek do trenowania słownictwa równolegle",
     "workflowStep6": "Ćwicz swobodną rozmowę z korepetytorem AI",
     "q_language": "Jakiego języka będę się uczyć?",
-    "a_language": "Na razie tylko angielskiego. Język ojczysty wybrany podczas rejestracji jest używany wyłącznie do tłumaczeń fiszek i informacji zwrotnych od korepetytora.",
+    "a_language": "FreeLingo obecnie obsługuje kilka języków i z czasem będziemy dodawać kolejne. Gdy nowy język stanie się dostępny, znajdziesz go w Ustawienia → Moje języki — dodaj go i zacznij naukę od razu.",
     "q_assessment": "Czym jest ocena poziomu?",
     "a_assessment": "Test z 15 pytaniami generowanych przez AI, obejmujący gramatykę, słownictwo, czytanie ze zrozumieniem i transformację zdań, z poziomem trudności od A1 do C1.",
     "q_studyPlan": "Czym jest plan nauki i jak go wygenerować?",
@@ -1081,7 +1081,11 @@
       "desc": "Możesz teraz wybrać język interfejsu aplikacji — menu, przyciski i etykiety — na stronie Ustawień, niezależnie od swojego języka ojczystego."
     },
     "entry3": {
-      "label": "Poprawki",
+      "label": "Ucz się wielu języków",
+      "desc": "Możesz teraz uczyć się więcej niż jednego języka jednocześnie. Przełączaj języki z paska bocznego i dodawaj nowe w Ustawienia → Moje języki. Będziemy dodawać kolejne języki — znajdziesz je właśnie tam."
+    },
+    "entry4": {
+      "label": "Poprawki błędów",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }
   },

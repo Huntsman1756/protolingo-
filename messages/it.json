@@ -762,7 +762,7 @@
     "workflowStep5": "Usa le Flashcard per allenare il vocabolario in parallelo",
     "workflowStep6": "Pratica la conversazione libera con il Tutor IA",
     "q_language": "Che lingua imparerò?",
-    "a_language": "Solo inglese, per ora. La lingua madre scelta alla registrazione è usata esclusivamente per le traduzioni delle flashcard e il feedback del tutor — non cambia la lingua obiettivo.",
+    "a_language": "FreeLingo attualmente supporta diverse lingue e ne aggiungeremo altre nel tempo. Quando una nuova lingua sarà disponibile, la troverai in Impostazioni → Le mie lingue — aggiungila e inizia subito a imparare.",
     "q_assessment": "Cos'è la Valutazione?",
     "a_assessment": "Un test di 15 domande generato dall'IA che copre grammatica, vocabolario, comprensione della lettura e trasformazione di frasi, con difficoltà da A1 a C1. Al termine, ottieni il tuo livello QCER, un punteggio e un'analisi dei tuoi punti di forza e di debolezza. Questo risultato alimenta il Piano di Studio e le Flashcard generate.",
     "q_studyPlan": "Cos'è il Piano di Studio e come ne genero uno?",
@@ -1081,7 +1081,11 @@
       "desc": "Ora puoi scegliere la lingua dell'interfaccia dell'app — menu, pulsanti ed etichette — dalla pagina Impostazioni, indipendentemente dalla tua lingua madre."
     },
     "entry3": {
-      "label": "Correzioni",
+      "label": "Impara più lingue",
+      "desc": "Ora puoi imparare più di una lingua alla volta. Cambia lingua dalla barra laterale e aggiungine di nuove da Impostazioni → Le mie lingue. Continueremo ad aggiungere altre lingue — le troverai lì."
+    },
+    "entry4": {
+      "label": "Correzioni di bug",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }
   },

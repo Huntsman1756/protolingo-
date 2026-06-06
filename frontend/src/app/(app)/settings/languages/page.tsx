@@ -86,7 +86,7 @@ export default function MyLanguagesPage() {
     if (!ok) return
     setAddModalOpen(false)
     setAddingCode('')
-    router.push(`/onboarding?language=${addingCode}&new=true`)
+    router.push(`/assessment`)
   }
 
   const availableLanguageCodes = useLanguageStore(
@@ -96,8 +96,7 @@ export default function MyLanguagesPage() {
   // Only show operator-enabled languages that the user hasn't added yet
   const unusedCodes = SUPPORTED_TARGET_LANGUAGES.filter(
     (l) =>
-      availableLanguageCodes.includes(l.code) &&
-      !addedCodes.includes(l.code)
+      availableLanguageCodes.includes(l.code) && !addedCodes.includes(l.code)
   ).map((l) => l.code)
   const hasMultiple = userLanguages.length > 1
 
@@ -105,7 +104,7 @@ export default function MyLanguagesPage() {
     <div className="mx-auto max-w-2xl p-6">
       {/* Toast */}
       {toast && (
-        <div className="animate-in fade-in slide-in-from-top-2 border-fl-border bg-fl-surface text-fl-muted-1 fixed top-16 left-1/2 z-50 -translate-x-1/2 border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
+        <div className="animate-in fade-in slide-in-from-top-2 border-fl-border bg-fl-surface text-fl-muted-1 fixed top-16 right-0 left-0 z-50 mx-auto w-fit border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
           {toast}
         </div>
       )}

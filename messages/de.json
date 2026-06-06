@@ -762,7 +762,7 @@
     "workflowStep5": "Nutzen Sie Karteikarten, um parallel Vokabular zu üben",
     "workflowStep6": "Üben Sie freies Gespräch mit dem KI-Tutor",
     "q_language": "Welche Sprache werde ich lernen?",
-    "a_language": "Vorerst nur Englisch. Die Muttersprache, die Sie bei der Registrierung wählen, wird ausschließlich für Karteikarten-Übersetzungen und Tutor-Feedback verwendet — sie ändert nicht die Zielsprache.",
+    "a_language": "FreeLingo unterstützt derzeit mehrere Sprachen, und wir werden im Laufe der Zeit weitere hinzufügen. Wenn eine neue Sprache verfügbar ist, findest du sie unter Einstellungen → Meine Sprachen — füge sie hinzu und lerne sofort los.",
     "q_assessment": "Was ist die Einstufung?",
     "a_assessment": "Ein von KI generierter Test mit 15 Fragen, der Grammatik, Vokabular, Leseverständnis und Satztransformation abdeckt, mit Schwierigkeiten von A1 bis C1. Am Ende erhalten Sie Ihr GER-Niveau, eine Punktzahl und eine Analyse Ihrer Stärken und Schwächen. Dieses Ergebnis fließt in den Lernplan und die generierten Karteikarten ein.",
     "q_studyPlan": "Was ist der Lernplan und wie erstelle ich einen?",
@@ -1081,8 +1081,12 @@
       "desc": "Du kannst nun die Sprache der App-Oberfläche — Menüs, Schaltflächen und Beschriftungen — unabhängig von deiner Muttersprache in den Einstellungen auswählen."
     },
     "entry3": {
+      "label": "Mehrere Sprachen lernen",
+      "desc": "Du kannst jetzt mehrere Sprachen gleichzeitig lernen. Wechsle die Sprache über die Seitenleiste und füge neue Sprachen unter Einstellungen → Meine Sprachen hinzu. Wir werden weitere Sprachen hinzufügen — du findest sie dann dort."
+    },
+    "entry4": {
       "label": "Fehlerbehebungen",
-      "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen auf der gesamten Plattform."
+      "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen in der gesamten Plattform."
     }
   },
   "contact": {

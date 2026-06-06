@@ -762,7 +762,7 @@
     "workflowStep5": "Utilisez les Fiches pour entraîner le vocabulaire en parallèle",
     "workflowStep6": "Pratiquez la conversation libre avec le Tuteur IA",
     "q_language": "Quelle langue vais-je apprendre ?",
-    "a_language": "L’anglais uniquement, pour l’instant. La langue maternelle choisie à l’inscription est utilisée exclusivement pour les traductions de fiches et les retours du tuteur — elle ne change pas la langue cible.",
+    "a_language": "FreeLingo propose actuellement plusieurs langues, et nous en ajouterons d'autres au fil du temps. Lorsqu'une nouvelle langue sera disponible, vous la trouverez dans Paramètres → Mes langues — ajoutez-la et commencez à apprendre.",
     "q_assessment": "Qu’est-ce que l’Évaluation ?",
     "a_assessment": "Un test de 15 questions généré par IA couvrant la grammaire, le vocabulaire, la compréhension écrite et la transformation de phrases, avec une difficulté allant de A1 à C1. À la fin, vous obtenez votre niveau CECR, un score et une analyse de vos forces et faiblesses. Ce résultat alimente le Plan d’Étude et les Fiches générées.",
     "q_studyPlan": "Qu’est-ce que le Plan d’Étude et comment en générer un ?",
@@ -1081,7 +1081,11 @@
       "desc": "Tu peux désormais choisir la langue de l'interface de l'application — menus, boutons et étiquettes — depuis la page Paramètres, indépendamment de ta langue maternelle."
     },
     "entry3": {
-      "label": "Corrections",
+      "label": "Apprendre plusieurs langues",
+      "desc": "Vous pouvez désormais apprendre plusieurs langues en même temps. Changez de langue depuis la barre latérale et ajoutez-en de nouvelles depuis Paramètres → Mes langues. Nous ajouterons d'autres langues — vous les trouverez là-bas."
+    },
+    "entry4": {
+      "label": "Corrections de bugs",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }
   },
