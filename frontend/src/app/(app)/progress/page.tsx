@@ -73,6 +73,8 @@ function UnitCompetencyBlock({
   unit: CurriculumUnit
   record: CompetencyRecord | undefined
 }) {
+  const t = useTranslations('progress')
+  const tPlan = useTranslations('plan')
   const masteredCount = record?.mastered_count ?? 0
   const totalCount = unit.competency_checklist.length
   const score = record?.score ?? 0
@@ -85,7 +87,7 @@ function UnitCompetencyBlock({
       <div className="border-fl-border flex items-center justify-between border-b px-5 py-4">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
-            Unit {unit.unit_number}
+            {tPlan('unitLabel')} {unit.unit_number}
           </span>
           <span className="text-fl-fg font-mono text-xs font-bold">
             {unit.title}
@@ -93,7 +95,7 @@ function UnitCompetencyBlock({
         </div>
         <div className="flex items-center gap-3">
           <span className="text-fl-label text-fl-muted-3 font-mono">
-            {masteredCount}/{totalCount} mastered
+            {masteredCount}/{totalCount} {t('mastered')}
           </span>
           {record && (
             <span className="text-fl-label text-fl-muted-2 font-mono">
@@ -148,6 +150,7 @@ function UnitCompetencyBlock({
 export default function ProgressPage() {
   const t = useTranslations('progress')
   const tPlan = useTranslations('plan')
+  const tVocab = useTranslations('vocabulary')
   const tCommon = useTranslations('common')
   const router = useRouter()
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
@@ -303,7 +306,7 @@ export default function ProgressPage() {
             </span>
             <div className="bg-fl-border h-px flex-1" />
             <span className="text-fl-label text-fl-muted-3 font-mono">
-              {totalLevelWords} words
+              {totalLevelWords} {tVocab('words')}
             </span>
           </div>
 
@@ -324,7 +327,7 @@ export default function ProgressPage() {
                     />
                   </div>
                   <span className="text-fl-label text-fl-muted-3 w-12 text-right font-mono">
-                    {s.words.length}w
+                    {s.words.length} {tVocab('words')}
                   </span>
                 </div>
               </div>

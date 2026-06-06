@@ -20,6 +20,7 @@ async def generate_study_plan(
         units=units,
         total_weeks=request.duration_weeks,
         days_per_week=request.days_per_week,
+        target_language=target_language,
     )
 
     weeks_map: dict[int, list[dict]] = {}
