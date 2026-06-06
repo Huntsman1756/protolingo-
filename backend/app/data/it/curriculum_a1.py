@@ -101,7 +101,7 @@ A1_UNITS: list[CurriculumUnit] = [
         competency_checklist=[
             "Uses articulated prepositions (preposizioni articolate) correctly: nel, nello, nella, nei, negli, nelle; al, allo, alla, ai, agli, alle — these fuse article and preposition in a way that has no English equivalent",
             "Gives directions using the informal imperative of key verbs: vai/va', gira, prendi, continua, attraversa, segui — and combines with prepositions: gira a destra/sinistra, va' sempre dritto",
-            "Uses ordinal numbers primo, secondo, terzo… to indicate floors and order: al primo piano, la seconda strada a sinistra",
+            "Uses ordinal numbers primo, secondo, terzo... to indicate floors and order: al primo piano, la seconda strada a sinistra",
             "Understands and follows a simple set of written directions for a familiar route in a city",
         ],
         default_weeks=2,

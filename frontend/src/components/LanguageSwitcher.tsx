@@ -90,7 +90,7 @@ export default function LanguageSwitcher() {
           className="shrink-0 object-cover"
         />
         <span className="truncate">
-          {isSwitching ? '…' : activeLanguage.name}
+          {isSwitching ? '...' : activeLanguage.name}
         </span>
         {multiple && (
           <span className="text-fl-label text-fl-muted-4 ml-auto">

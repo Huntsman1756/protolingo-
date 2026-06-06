@@ -112,10 +112,10 @@ export default function AssessmentPage() {
       setStep('beginner-gate')
     }
     void check()
-  }, [])
+  }, [activeLanguage?.code])
 
   function loadNextQuestion(level: CEFRLevel, usedSet: Set<string>) {
-    const q = pickNextQuestion(usedSet, level)
+    const q = pickNextQuestion(usedSet, level, undefined, activeLanguage?.code ?? 'en-US')
     if (q) {
       usedSet.add(q.id)
       setCurrentQuestion(q)
@@ -130,7 +130,7 @@ export default function AssessmentPage() {
     setCurrentLevel(START_LEVEL)
     setCorrectStreak(0)
     setWrongStreak(0)
-    const q = pickNextQuestion(usedIds, START_LEVEL)
+    const q = pickNextQuestion(usedIds, START_LEVEL, undefined, activeLanguage?.code ?? 'en-US')
     if (q) {
       usedIds.add(q.id)
       setCurrentQuestion(q)
@@ -324,6 +324,7 @@ export default function AssessmentPage() {
     return (
       <>
         <BeginnerGate
+          languageName={activeLanguage?.name ?? ''}
           onBeginner={() => {
             setResult({
               cefr_level: 'A1',

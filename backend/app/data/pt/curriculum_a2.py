@@ -57,7 +57,7 @@ A2_UNITS: list[CurriculumUnit] = [
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Uses direct object pronouns o/a/os/as (him/her/it/them) and indirect object pronouns me/te/lhe/nos/vos/lhes — noting that Portuguese lhe is used for both masculine and feminine third person, unlike Spanish le/la",
-            "Applies the fundamental EP pronoun placement rule (colocação pronominal): ênclise (after verb, hyphen required) is the default in affirmative main clauses (Vi-o, Deram-me o livro), but próclise (before verb) is used after negation (Não o vi), in subordinate clauses (Quando o encontrei…), and after certain adverbs (Sempre me disseram…)",
+            "Applies the fundamental EP pronoun placement rule (colocação pronominal): ênclise (after verb, hyphen required) is the default in affirmative main clauses (Vi-o, Deram-me o livro), but próclise (before verb) is used after negation (Não o vi), in subordinate clauses (Quando o encontrei...), and after certain adverbs (Sempre me disseram...)",
             "Applies the phonological changes to the direct object pronouns after verb forms ending in -r, -s, or nasal: comprar → comprá-lo, compramos → comprámo-lo, compram → compram-no",
             "Uses the combined indirect + direct pronoun: mo (me + o), ta (te + a), lho (lhe + o), no-lo (nos + o) — a combination that differs from Spanish (se lo) and Italian (me lo)",
         ],

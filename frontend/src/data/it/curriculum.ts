@@ -196,7 +196,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         competency_checklist: [
           'Usa le preposizioni articolate correttamente: nel, nello, nella, nei, negli, nelle; al, allo, alla, ai, agli, alle — queste fondono articolo e preposizione in un modo che non ha equivalente inglese',
           "Dà indicazioni usando l'imperativo informale dei verbi chiave: vai/va', gira, prendi, continua, attraversa, segui — e li combina con le preposizioni: gira a destra/sinistra, va' sempre dritto",
-          'Usa i numeri ordinali primo, secondo, terzo… per indicare piani e ordine: al primo piano, la seconda strada a sinistra',
+          'Usa i numeri ordinali primo, secondo, terzo... per indicare piani e ordine: al primo piano, la seconda strada a sinistra',
           'Comprende e segue un semplice insieme di indicazioni scritte per un percorso familiare in città',
         ],
       },
@@ -901,8 +901,8 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         competency_checklist: [
           'Usa anafora, epifora, chiasmo e altre figure retoriche per aumentare la forza persuasiva di un discorso o saggio in italiano',
           "Usa i modelli concessivi per un'argomentazione sofisticata: pur ammettendo che + congiuntivo, anche se + congiuntivo, per quanto + congiuntivo: Per quanto si sforzi, non riesce a convincermi",
-          'Apre e chiude i discorsi formali italiani con convenzioni appropriate: Signore e signori…, gentile pubblico…; In conclusione…, In definitiva…, Per riassumere…, Vorrei chiudere con…',
-          'Integra dati, citazioni e opinioni di esperti in un argomento scritto con corretta attribuzione: secondo uno studio di…, come afferma X nella sua ricerca del…, stando ai dati forniti da…',
+          'Apre e chiude i discorsi formali italiani con convenzioni appropriate: Signore e signori..., gentile pubblico...; In conclusione..., In definitiva..., Per riassumere..., Vorrei chiudere con...',
+          'Integra dati, citazioni e opinioni di esperti in un argomento scritto con corretta attribuzione: secondo uno studio di..., come afferma X nella sua ricerca del..., stando ai dati forniti da...',
           'Pronuncia un argomento orale di 3 minuti su una questione sociale o etica complessa con struttura coerente, espedienti retorici e minima esitazione in italiano',
         ],
       },
@@ -939,7 +939,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c1-unit-6',
         competency_checklist: [
-          "Sintetizza informazioni da due o tre fonti in un riassunto coerente e attribuito: Secondo X…, D'altra parte, Y sostiene che…, È necessario però considerare che…",
+          "Sintetizza informazioni da due o tre fonti in un riassunto coerente e attribuito: Secondo X..., D'altra parte, Y sostiene che..., È necessario però considerare che...",
           "Valuta la coerenza interna, l'affidabilità e i potenziali pregiudizi di un argomento in un testo italiano, usando un vocabolario critico: presuppone che, si basa sull'ipotesi che, manca di evidenze concrete, è privo di fondamento",
           "Riformula un'idea complessa con parole diverse (riformulazione) senza perdere precisione, usando espressioni di riformulazione italiane: vale a dire, ovvero, in altri termini, con ciò si intende che",
           "Scrive un'analisi critica strutturata (300–400 parole) con una tesi chiaramente segnalata, prove a supporto, contro-prove e una conclusione di sintesi",

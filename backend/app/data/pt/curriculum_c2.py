@@ -14,7 +14,7 @@ C2_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["excelência_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Controls all conjuntivo tenses and their concordância without systematic error: presente, imperfeito, perfeito, and mais-que-perfeito do conjuntivo — including autonomous conjuntivo uses (Que venha! Deus queira que…, Oxalá fosse assim!)",
+            "Controls all conjuntivo tenses and their concordância without systematic error: presente, imperfeito, perfeito, and mais-que-perfeito do conjuntivo — including autonomous conjuntivo uses (Que venha! Deus queira que..., Oxalá fosse assim!)",
             "Forms and interprets mixed conditional structures: Se tivesse estudado, teria passado (past hypothesis → past consequence) and Se tivesse estudado, seria melhor aluno agora (past hypothesis → present consequence)",
             "Recognises and correctly uses mesóclise — the distinctively Portuguese middle position of object pronouns in the future and conditional: dar-te-ei, fá-lo-ia, trazê-lo-emos — understanding this as a formal/literary register feature not used in everyday speech but present in official documents, legal texts, and formal correspondence",
             "Identifies and corrects subtle advanced learner errors: incorrect conjuntivo after que when indicative is required (Sei que ele está — not *Sei que ele esteja), misuse of the pretérito perfeito composto vs simples, and incorrect pronoun placement in EP",

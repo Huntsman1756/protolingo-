@@ -34,9 +34,11 @@ export const assessmentBank = enBank as AssessmentQuestion[]
 export function pickNextQuestion(
   usedIds: Set<string>,
   currentLevel: CEFRLevel,
-  preferSkill?: Skill
+  preferSkill?: Skill,
+  targetLanguage: string = 'en-US'
 ): AssessmentQuestion | null {
-  const available = assessmentBank.filter(
+  const bank = getAssessmentBank(targetLanguage)
+  const available = bank.filter(
     (q) => !usedIds.has(q.id) && q.difficulty === currentLevel
   )
   if (available.length === 0) return null

@@ -272,8 +272,8 @@ export default function DashboardPage() {
                       </p>
                     </div>
                     {lesson.id &&
-                    (completedToday.includes(lesson.id) ||
-                      lesson.isCompleted) ? (
+                      (completedToday.includes(lesson.id) ||
+                        lesson.isCompleted) ? (
                       <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
                         ✓ {t('lessonDone')}
                       </span>
@@ -292,7 +292,7 @@ export default function DashboardPage() {
                     disabled={skipping}
                     className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
                   >
-                    {skipping ? '…' : t('skipDay')}
+                    {skipping ? '...' : t('skipDay')}
                   </button>
                   {skipError && (
                     <p className="text-fl-error mt-1 font-mono text-xs">

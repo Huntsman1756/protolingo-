@@ -401,7 +401,7 @@
     "step1": "Paso 1 / 3: Tu nivel",
     "step2": "Paso 2 / 3: Pregunta {questionNumber} / {totalQuestions}",
     "step3": "Paso 3 / 3: Tu programa",
-    "studiedBefore": "¿Has estudiado inglés antes?",
+    "studiedBefore": "¿Has estudiado {language} antes?",
     "studiedBeforeHint": "Esto nos ayuda a empezar el cuestionario en el nivel adecuado.",
     "beginnerOption": "Soy principiante absoluto",
     "beginnerOptionHint": "Empezaré en A1, sin cuestionario.",

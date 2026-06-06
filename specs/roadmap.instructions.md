@@ -341,7 +341,7 @@ This document records what was built and the completion criteria met.
 | 10 | Tests — `test_memories.py` with 18 test cases (unit + integration, IDOR guard, dedup, eviction, subscription gate) | ✅ |
 
 **Completion criteria:**
-- [x] LLM marker `<<MEMORY>>…<<ENDMEMORY>>` never reaches the frontend (stripped in both chat SSE and voice WebSocket)
+- [x] LLM marker `<<MEMORY>>...<<ENDMEMORY>>` never reaches the frontend (stripped in both chat SSE and voice WebSocket)
 - [x] New memories saved after each turn that contains the marker block
 - [x] Exact-duplicate items skipped; FIFO eviction when `MAX_MEMORIES_PER_USER` (50) is exceeded
 - [x] Up to `MAX_MEMORIES_CONTEXT` (20) most recent memories injected into system prompt per request

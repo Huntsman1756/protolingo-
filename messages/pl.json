@@ -401,7 +401,7 @@
     "step1": "Krok 1 / 3: Twój poziom",
     "step2": "Krok 2 / 3: Pytanie {questionNumber} / {totalQuestions}",
     "step3": "Krok 3 / 3: Twój program",
-    "studiedBefore": "Czy uczyłeś(-aś) się wcześniej angielskiego?",
+    "studiedBefore": "Czy uczyłeś(-aś) się wcześniej {language}?",
     "studiedBeforeHint": "To pomaga nam dopasować quiz do odpowiedniego poziomu.",
     "beginnerOption": "Jestem kompletnym początkującym",
     "beginnerOptionHint": "Zacznę od A1, quiz nie jest potrzebny.",

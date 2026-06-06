@@ -313,7 +313,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         prerequisite_unit: 'a2-unit-2',
         competency_checklist: [
           'Usa os pronomes de objeto direto o/a/os/as e os pronomes de objeto indireto me/te/lhe/nos/vos/lhes',
-          'Aplica a regra fundamental da colocação pronominal do PE: ênclise (depois do verbo) é o padrão nas orações principais afirmativas (Vi-o, Deram-me o livro), mas a próclise (antes do verbo) é usada após negação (Não o vi), em orações subordinadas (Quando o encontrei…) e após certos advérbios (Sempre me disseram…)',
+          'Aplica a regra fundamental da colocação pronominal do PE: ênclise (depois do verbo) é o padrão nas orações principais afirmativas (Vi-o, Deram-me o livro), mas a próclise (antes do verbo) é usada após negação (Não o vi), em orações subordinadas (Quando o encontrei...) e após certos advérbios (Sempre me disseram...)',
           'Aplica as alterações fonológicas aos pronomes de objeto direto após formas verbais terminadas em -r, -s ou nasal: comprar → comprá-lo, compramos → comprámo-lo, compram → compram-no',
           'Usa os pronomes combinados indireto+direto: mo (me+o), ta (te+a), lho (lhe+o), no-lo (nos+o)',
         ],
@@ -888,10 +888,10 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c1-unit-4',
         competency_checklist: [
-          'Usa anáfora, epífora, quiasmo e perguntas retóricas (Não temos o direito de…? Será que…?) para aumentar a força persuasiva de um discurso ou ensaio em português',
+          'Usa anáfora, epífora, quiasmo e perguntas retóricas (Não temos o direito de...? Será que...?) para aumentar a força persuasiva de um discurso ou ensaio em português',
           'Usa padrões concessivos: por mais que + conjuntivo, ainda que + conjuntivo, mesmo admitindo que + conjuntivo — integrando-os naturalmente numa argumentação alargada',
-          'Abre e fecha discursos formais portugueses com as convenções apropriadas: Exmo./Exma. Senhor/a…, estimada audiência…; Em jeito de conclusão…, Para terminar…, Em suma…',
-          'Integra dados, citações e opiniões de especialistas num argumento escrito com atribuição correta: segundo um estudo de…, como afirma X na sua obra…, de acordo com dados fornecidos por…',
+          'Abre e fecha discursos formais portugueses com as convenções apropriadas: Exmo./Exma. Senhor/a..., estimada audiência...; Em jeito de conclusão..., Para terminar..., Em suma...',
+          'Integra dados, citações e opiniões de especialistas num argumento escrito com atribuição correta: segundo um estudo de..., como afirma X na sua obra..., de acordo com dados fornecidos por...',
           'Profere um argumento oral de 3 minutos sobre uma questão social, ética ou política complexa com estrutura coerente, recursos retóricos e hesitação mínima em português europeu formal',
         ],
       },
@@ -932,7 +932,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c1-unit-6',
         competency_checklist: [
-          'Sintetiza informação de duas ou três fontes num resumo coerente e atribuído: Segundo X…, Por seu turno, Y argumenta que…, No entanto, é necessário considerar que…',
+          'Sintetiza informação de duas ou três fontes num resumo coerente e atribuído: Segundo X..., Por seu turno, Y argumenta que..., No entanto, é necessário considerar que...',
           'Avalia a consistência interna, a fiabilidade e os potenciais vieses de um argumento num texto português, usando vocabulário crítico: parte do pressuposto de que, baseia-se na hipótese de que, carece de evidências concretas',
           'Reformula uma ideia complexa com palavras diferentes (reformulação/paráfrase) sem perda de precisão, usando expressões de reformulação portuguesas: isto é, ou seja, por outras palavras, o que equivale a dizer, dito de outra forma',
           'Escreve uma análise crítica estruturada (300–400 palavras) com tese claramente assinalada, provas de apoio, contra-provas e uma conclusão de síntese',
@@ -989,7 +989,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: undefined,
         competency_checklist: [
-          'Controla todos os tempos do conjuntivo e a sua concordância sem erro sistemático: presente, imperfeito, perfeito e mais-que-perfeito do conjuntivo — incluindo usos autónomos do conjuntivo (Que venha! Deus queira que…, Oxalá fosse assim!)',
+          'Controla todos os tempos do conjuntivo e a sua concordância sem erro sistemático: presente, imperfeito, perfeito e mais-que-perfeito do conjuntivo — incluindo usos autónomos do conjuntivo (Que venha! Deus queira que..., Oxalá fosse assim!)',
           'Forma e interpreta estruturas condicionais mistas: Se tivesse estudado, teria passado (hipótese passada → consequência passada) e Se tivesse estudado, seria melhor aluno agora (hipótese passada → consequência presente)',
           'Reconhece e usa corretamente a mesóclise — a posição intermédia distintivamente portuguesa dos pronomes de objeto no futuro e condicional: dar-te-ei, fá-lo-ia, trazê-lo-emos — compreendendo que é uma característica de registo formal/literário não usada na fala quotidiana mas presente em documentos oficiais, textos jurídicos e correspondência formal',
           'Identifica e corrige erros subtis de aprendentes avançados: conjuntivo incorreto após que quando é necessário o indicativo (Sei que ele está — não *Sei que ele esteja), uso incorreto do pretérito perfeito composto vs simples e colocação pronominal incorreta no PE',

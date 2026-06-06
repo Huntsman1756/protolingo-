@@ -231,7 +231,7 @@ describe('LanguageSwitcher', () => {
     })
 
     render(<LanguageSwitcher />)
-    expect(screen.getByText('…')).toBeDefined()
+    expect(screen.getByText('...')).toBeDefined()
   })
 
   it('calls fetchLanguages on mount', () => {

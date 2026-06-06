@@ -88,8 +88,8 @@ C1_UNITS: list[CurriculumUnit] = [
         competency_checklist=[
             "Uses rhetorical repetition (anáfora, epífora), tricolon, and rhetorical questions (¿Acaso no tenemos derecho a...?) to increase the persuasive force of a speech or essay",
             "Uses concessive patterns for sophisticated argumentation: por más que + subjunctive (Por más que lo intentes, no lo conseguirás), a pesar de que + subjunctive/indicative, aun cuando + subjunctive",
-            "Opens and closes formal speeches with appropriate conventions: Señoras y señores…, querido público…; En definitiva…, En conclusión…, Para terminar…",
-            "Integrates data, quotations, and expert opinion into a written argument with correct attribution and source-indicating phrases: según un estudio de…, como afirma…, tal como señala…",
+            "Opens and closes formal speeches with appropriate conventions: Señoras y señores..., querido público...; En definitiva..., En conclusión..., Para terminar...",
+            "Integrates data, quotations, and expert opinion into a written argument with correct attribution and source-indicating phrases: según un estudio de..., como afirma..., tal como señala...",
             "Delivers a 3-minute spoken argument on a complex social or ethical issue with coherent structure, rhetorical devices, and minimal hesitation",
         ],
         default_weeks=2,
@@ -122,7 +122,7 @@ C1_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["análisis_c1", "síntesis_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Synthesises information from two or three sources into a coherent attributed summary without distorting the original meaning: Según X…, Por su parte, Y afirma que…",
+            "Synthesises information from two or three sources into a coherent attributed summary without distorting the original meaning: Según X..., Por su parte, Y afirma que...",
             "Evaluates the reliability, internal consistency, and potential bias of an argument encountered in a Spanish text",
             "Reformulates a complex idea in different words (paráfrasis) without losing precision, using Spanish-specific reformulation expressions: es decir, o sea, en otras palabras, dicho de otra manera",
             "Writes a structured critical analysis (300–400 words) with clearly marked thesis, evidence, counter-evidence, and a conclusion that synthesises the argument",

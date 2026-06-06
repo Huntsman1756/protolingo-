@@ -172,7 +172,7 @@ The English values above are the reference. Add the equivalent translations in a
 | `backend/app/data/es/__init__.py` | Package |
 | `backend/app/data/es/_types.py` | Types |
 | `backend/app/data/es/curriculum.py` | Entry point |
-| `backend/app/data/es/curriculum_a1.py` … `curriculum_c2.py` | 6 CEFR files |
+| `backend/app/data/es/curriculum_a1.py` ... `curriculum_c2.py` | 6 CEFR files |
 | `backend/app/data/it/` | Same structure (8 files) |
 | `backend/app/data/pt/` | Same structure (8 files) |
 | `frontend/src/data/es/curriculum.ts` | ES curriculum |

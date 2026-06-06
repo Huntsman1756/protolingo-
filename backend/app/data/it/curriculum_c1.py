@@ -88,8 +88,8 @@ C1_UNITS: list[CurriculumUnit] = [
         competency_checklist=[
             "Uses anafora, epifora, chiasmo, and other rhetorical figures to increase the persuasive force of a speech or essay in Italian",
             "Uses concessive patterns for sophisticated argumentation: pur ammettendo che + congiuntivo, anche se + congiuntivo, per quanto + congiuntivo: Per quanto si sforzi, non riesce a convincermi",
-            "Opens and closes formal Italian speeches with appropriate conventions: Signore e signori…, gentile pubblico…; In conclusione…, In definitiva…, Per riassumere…, Vorrei chiudere con…",
-            "Integrates data, citations, and expert opinion into a written argument with correct attribution: secondo uno studio di…, come afferma X nella sua ricerca del…, stando ai dati forniti da…",
+            "Opens and closes formal Italian speeches with appropriate conventions: Signore e signori..., gentile pubblico...; In conclusione..., In definitiva..., Per riassumere..., Vorrei chiudere con...",
+            "Integrates data, citations, and expert opinion into a written argument with correct attribution: secondo uno studio di..., come afferma X nella sua ricerca del..., stando ai dati forniti da...",
             "Delivers a 3-minute spoken argument on a complex social or ethical issue with coherent structure, rhetorical devices, and minimal hesitation in Italian",
         ],
         default_weeks=2,
@@ -122,7 +122,7 @@ C1_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["analisi_c1", "sintesi_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Synthesises information from two or three sources into a coherent, attributed summary: Secondo X…, D'altra parte, Y sostiene che…, È necessario però considerare che…",
+            "Synthesises information from two or three sources into a coherent, attributed summary: Secondo X..., D'altra parte, Y sostiene che..., È necessario però considerare che...",
             "Evaluates the internal consistency, reliability, and potential bias of an argument in an Italian text, using critical vocabulary: presuppone che, si basa sull'ipotesi che, manca di evidenze concrete, è privo di fondamento",
             "Reformulates a complex idea in different words (riformulazione) without losing precision, using Italian reformulation expressions: vale a dire, ovvero, in altri termini, con ciò si intende che",
             "Writes a structured critical analysis (300–400 words) with a clearly marked thesis, supporting evidence, counter-evidence, and a synthesis conclusion",

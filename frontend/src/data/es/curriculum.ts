@@ -819,8 +819,8 @@ const C1_UNITS: CurriculumUnit[] = [
     competency_checklist: [
       'Usa la repetición retórica (anáfora, epífora), el tricolon y las preguntas retóricas (¿Acaso no tenemos derecho a...?) para aumentar la fuerza persuasiva de un discurso o ensayo',
       'Usa patrones concesivos para argumentación sofisticada: por más que + subjuntivo (Por más que lo intentes, no lo conseguirás), a pesar de que + subjuntivo/indicativo, aun cuando + subjuntivo',
-      'Abre y cierra discursos formales con las convenciones apropiadas: Señoras y señores…, querido público…; En definitiva…, En conclusión…, Para terminar…',
-      'Integra datos, citas y opiniones de expertos en un argumento escrito con atribución correcta y frases de indicación de fuente: según un estudio de…, como afirma…, tal como señala…',
+      'Abre y cierra discursos formales con las convenciones apropiadas: Señoras y señores..., querido público...; En definitiva..., En conclusión..., Para terminar...',
+      'Integra datos, citas y opiniones de expertos en un argumento escrito con atribución correcta y frases de indicación de fuente: según un estudio de..., como afirma..., tal como señala...',
       'Pronuncia un argumento oral de 3 minutos sobre un tema social o ético complejo con estructura coherente, recursos retóricos y mínima vacilación',
     ],
   },
@@ -861,7 +861,7 @@ const C1_UNITS: CurriculumUnit[] = [
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'c1-unit-6',
     competency_checklist: [
-      'Sintetiza información de dos o tres fuentes en un resumen coherente y atribuido sin distorsionar el significado original: Según X…, Por su parte, Y afirma que…',
+      'Sintetiza información de dos o tres fuentes en un resumen coherente y atribuido sin distorsionar el significado original: Según X..., Por su parte, Y afirma que...',
       'Evalúa la fiabilidad, consistencia interna y posibles sesgos de un argumento encontrado en un texto en español',
       'Reformula una idea compleja con otras palabras (paráfrasis) sin perder precisión, usando expresiones de reformulación españolas: es decir, o sea, en otras palabras, dicho de otra manera',
       'Escribe un análisis crítico estructurado (300–400 palabras) con tesis claramente señalada, evidencia, contraevidencia y una conclusión que sintetiza el argumento',

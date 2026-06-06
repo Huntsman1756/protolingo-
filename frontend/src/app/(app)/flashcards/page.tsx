@@ -124,7 +124,12 @@ export default function FlashcardsPage() {
       setGenTopic('')
       await loadDue()
     } catch (err: unknown) {
-      setGenError(err instanceof Error ? err.message : 'Generation failed')
+      const msg = err instanceof Error ? err.message : ''
+      setGenError(
+        msg === 'No active study plan found'
+          ? tCommon('noActivePlan')
+          : tCommon('errorMessage')
+      )
     } finally {
       setGenerating(false)
     }

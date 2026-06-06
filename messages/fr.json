@@ -401,7 +401,7 @@
     "step1": "Étape 1 / 3 : Votre niveau",
     "step2": "Étape 2 / 3 : Question {questionNumber} / {totalQuestions}",
     "step3": "Étape 3 / 3 : Votre programme",
-    "studiedBefore": "Avez-vous déjà étudié l'anglais ?",
+    "studiedBefore": "Avez-vous déjà étudié {language} ?",
     "studiedBeforeHint": "Cela nous aide à commencer le quiz au bon niveau.",
     "beginnerOption": "Je suis débutant complet",
     "beginnerOptionHint": "Je commencerai à A1, pas de quiz nécessaire.",

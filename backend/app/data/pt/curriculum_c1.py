@@ -86,10 +86,10 @@ C1_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["oratória_c1", "apresentações_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Uses anáfora, epífora, quiasmo, and rhetorical questions (Não temos o direito de…? Será que…?) to enhance the persuasive force of a speech or essay in Portuguese",
+            "Uses anáfora, epífora, quiasmo, and rhetorical questions (Não temos o direito de...? Será que...?) to enhance the persuasive force of a speech or essay in Portuguese",
             "Uses concessive patterns: por mais que + conjuntivo, ainda que + conjuntivo, mesmo admitindo que + conjuntivo — integrating them naturally into extended argumentation",
-            "Opens and closes formal Portuguese speeches with appropriate conventions: Exmo./Exma. Senhor/a…, estimada audiência…; Em jeito de conclusão…, Para terminar…, Em suma…",
-            "Integrates data, citations, and expert opinion into a written argument with correct attribution: segundo um estudo de…, como afirma X na sua obra…, de acordo com dados fornecidos por…",
+            "Opens and closes formal Portuguese speeches with appropriate conventions: Exmo./Exma. Senhor/a..., estimada audiência...; Em jeito de conclusão..., Para terminar..., Em suma...",
+            "Integrates data, citations, and expert opinion into a written argument with correct attribution: segundo um estudo de..., como afirma X na sua obra..., de acordo com dados fornecidos por...",
             "Delivers a 3-minute spoken argument on a complex social, ethical, or political issue with coherent structure, rhetorical devices, and minimal hesitation in formal European Portuguese",
         ],
         default_weeks=2,
@@ -122,7 +122,7 @@ C1_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["análise_c1", "síntese_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Synthesises information from two or three sources into a coherent attributed summary: Segundo X…, Por seu turno, Y argumenta que…, No entanto, é necessário considerar que…",
+            "Synthesises information from two or three sources into a coherent attributed summary: Segundo X..., Por seu turno, Y argumenta que..., No entanto, é necessário considerar que...",
             "Evaluates the internal consistency, reliability, and potential bias of an argument in a Portuguese text, using critical vocabulary: parte do pressuposto de que, baseia-se na hipótese de que, carece de evidências concretas, é destituído de fundamento, apresenta uma perspetiva parcial",
             "Reformulates a complex idea in different words (reformulação/paráfrase) without loss of precision, using Portuguese reformulation expressions: isto é, ou seja, por outras palavras, o que equivale a dizer, dito de outra forma",
             "Writes a structured critical analysis (300–400 words) with a clearly marked thesis, supporting evidence, counter-evidence, and a synthesis conclusion",

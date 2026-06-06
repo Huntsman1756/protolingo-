@@ -247,7 +247,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Reglas básicas para saber si un sustantivo es masculino o femenino.',
     structure:
-      'sustantivo masculino (-o, -or, -aje…) · sustantivo femenino (-a, -ción, -dad…)',
+      'sustantivo masculino (-o, -or, -aje...) · sustantivo femenino (-a, -ción, -dad...)',
     explanation:
       'En español todos los sustantivos tienen **género gramatical**: masculino o femenino. No existe el género neutro para sustantivos.\n\n**Generalmente son masculinos**:\n- Palabras terminadas en **-o**: *el libro, el perro*.\n- Palabras terminadas en **-or**: *el amor, el dolor* (excepción: *la flor*).\n- Palabras terminadas en **-aje**: *el viaje, el coraje*.\n- Días de la semana, colores usados como sustantivos, ríos, mares.\n\n**Generalmente son femeninos**:\n- Palabras terminadas en **-a**: *la casa, la mesa*.\n- Palabras terminadas en **-ción, -sión, -dad, -tad, -tud**: *la canción, la actitud*.\n- Letras del alfabeto: *la a, la be*.\n\nExisten muchas excepciones: *el día, el mapa, la mano, la radio*. Conviene aprender el artículo junto con el sustantivo.',
     rules: [
@@ -561,9 +561,9 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'A1',
     category: 'Sustantivos',
     summary: 'Preguntar y decir la hora en español.',
-    structure: '¿Qué hora es? · Es la una / Son las dos, tres… · a las + hora',
+    structure: '¿Qué hora es? · Es la una / Son las dos, tres... · a las + hora',
     explanation:
-      'Para preguntar la hora se usa: **¿Qué hora es?** (más frecuente) o **¿Qué horas son?** (Latinoamérica).\n\nPara responder:\n- **Es la una** (singular, solo para la 1:00).\n- **Son las dos/tres/cuatro…** (plural).\n\nPara los minutos:\n- *y cinco, y diez, y cuarto, y veinte, y veinticinco, y media*\n- *menos cinco, menos diez, menos cuarto, menos veinte, menos veinticinco*\n\nEn muchos países de América y en usos formales se prefiere el formato digital: *Son las tres y quince / Son las tres quince.*',
+      'Para preguntar la hora se usa: **¿Qué hora es?** (más frecuente) o **¿Qué horas son?** (Latinoamérica).\n\nPara responder:\n- **Es la una** (singular, solo para la 1:00).\n- **Son las dos/tres/cuatro...** (plural).\n\nPara los minutos:\n- *y cinco, y diez, y cuarto, y veinte, y veinticinco, y media*\n- *menos cinco, menos diez, menos cuarto, menos veinte, menos veinticinco*\n\nEn muchos países de América y en usos formales se prefiere el formato digital: *Son las tres y quince / Son las tres quince.*',
     rules: [
       'Usar "es" solo para la una; "son" para el resto.',
       '"A la una" (singular), "a las dos" (plural) para indicar a qué hora ocurre algo.',
@@ -988,7 +988,7 @@ export const grammarTopics: GrammarTopic[] = [
     structure:
       'el + día · los + día en plural (días de la semana) · en + mes/estación',
     explanation:
-      'Los **días de la semana** en español son masculinos:\n\n*lunes, martes, miércoles, jueves, viernes, sábado, domingo.*\n\n- Se escriben con **minúscula**.\n- Llevan artículo definido: *El lunes tengo clase.*\n- El plural de lunes a viernes es invariable: *los lunes* (no ~~los luneses~~).\n- *Los lunes* significa "todos los lunes".\n\nLos **meses** también van en minúscula: *enero, febrero, marzo…*\n\nExpresiones temporales:\n- *Por la mañana / la tarde / la noche.*\n- *Hoy, ayer, mañana, pasado mañana.*\n- *Esta semana / el mes que viene / el año pasado.*',
+      'Los **días de la semana** en español son masculinos:\n\n*lunes, martes, miércoles, jueves, viernes, sábado, domingo.*\n\n- Se escriben con **minúscula**.\n- Llevan artículo definido: *El lunes tengo clase.*\n- El plural de lunes a viernes es invariable: *los lunes* (no ~~los luneses~~).\n- *Los lunes* significa "todos los lunes".\n\nLos **meses** también van en minúscula: *enero, febrero, marzo...*\n\nExpresiones temporales:\n- *Por la mañana / la tarde / la noche.*\n- *Hoy, ayer, mañana, pasado mañana.*\n- *Esta semana / el mes que viene / el año pasado.*',
     rules: [
       'Días de la semana y meses en minúscula en español.',
       '"El + día" para un día concreto: "El lunes voy al médico".',
@@ -1090,7 +1090,7 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'A2',
     category: 'Adjetivos y Adverbios',
     summary:
-      'Ayer, la semana pasada, hace dos días, en 2020… palabras que señalan cuándo ocurrió algo.',
+      'Ayer, la semana pasada, hace dos días, en 2020... palabras que señalan cuándo ocurrió algo.',
     structure:
       'ayer · anoche · la semana pasada · el mes/año pasado · hace + tiempo · en + año',
     explanation:
@@ -1443,7 +1443,7 @@ export const grammarTopics: GrammarTopic[] = [
     title: 'Combinación de pronombres OD y OI',
     level: 'A2',
     category: 'Pronombres',
-    summary: 'Usar juntos los pronombres de OD y OI: se lo, me lo, te la…',
+    summary: 'Usar juntos los pronombres de OD y OI: se lo, me lo, te la...',
     structure: 'OI + OD + verbo · se + lo/la/los/las (cuando OI es le/les)',
     explanation:
       'Cuando en una misma oración aparecen pronombres de **objeto indirecto y objeto directo**, el OI va **siempre antes** del OD.\n\nLa regla más importante: cuando el OI es **le o les** y va seguido de un OD de tercera persona (**lo, la, los, las**), el OI se transforma en **se**:\n- *Le di el libro.* → *Se lo di.* (NO ~~Le lo di~~)\n- *Les mandé las cartas.* → *Se las mandé.*\n\nOrden: **OI + OD + verbo**.\n\nCon infinitivo o gerundio, ambos se colocan detrás: *Voy a decírtelo. / Estoy explicándoselo.*\n\nLa duplicación del OI es posible y frecuente: "Se lo di a ella".',
@@ -1495,9 +1495,9 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'A2',
     category: 'Adjetivos y Adverbios',
     summary:
-      'Comparar personas, objetos y acciones: más… que, menos… que, tan… como.',
+      'Comparar personas, objetos y acciones: más... que, menos... que, tan... como.',
     structure:
-      'más + adjetivo/sustantivo/adverbio + que · menos + … + que · tan + adjetivo + como',
+      'más + adjetivo/sustantivo/adverbio + que · menos + ... + que · tan + adjetivo + como',
     explanation:
       'En español hay tres tipos de **comparación**:\n\n**Comparativo de superioridad**: *más + adjetivo/sustantivo/adverbio + que*\n- *Ella es más alta que yo. / Tengo más trabajo que antes.*\n\n**Comparativo de inferioridad**: *menos + adjetivo/sustantivo/adverbio + que*\n- *Este coche es menos caro que aquel.*\n\n**Comparativo de igualdad**: *tan + adjetivo/adverbio + como* / *tanto/a/os/as + sustantivo + como*\n- *Es tan inteligente como su hermano. / Tengo tantos libros como tú.*\n\n**Comparativos irregulares**:\n- bueno → mejor · malo → peor · grande → mayor · pequeño → menor\n- *Mejor/peor que*, nunca ~~más mejor~~.',
     rules: [
@@ -1533,7 +1533,7 @@ export const grammarTopics: GrammarTopic[] = [
       {
         wrong: 'Es tan alto que su padre.',
         correct: 'Es tan alto como su padre.',
-        note: 'Las comparaciones de igualdad usan "tan… como", no "tan… que".',
+        note: 'Las comparaciones de igualdad usan "tan... como", no "tan... que".',
       },
     ],
     related: ['superlativos', 'tan-como', 'adjetivos-descriptivos'],
@@ -1544,7 +1544,7 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'A2',
     category: 'Adjetivos y Adverbios',
     summary:
-      'Expresar el grado máximo de una cualidad: el más…, el mejor, -ísimo.',
+      'Expresar el grado máximo de una cualidad: el más..., el mejor, -ísimo.',
     structure:
       'el/la/los/las + más/menos + adjetivo + de · adjetivo + -ísimo/a/os/as',
     explanation:
@@ -1589,7 +1589,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'tan-como',
-    title: 'Tan y tanto… como',
+    title: 'Tan y tanto... como',
     level: 'A2',
     category: 'Adjetivos y Adverbios',
     summary:
@@ -1597,12 +1597,12 @@ export const grammarTopics: GrammarTopic[] = [
     structure:
       'tan + adjetivo/adverbio + como · tanto/a/os/as + sustantivo + como · verbo + tanto como',
     explanation:
-      '**Tan** y **tanto** expresan **igualdad** en la comparación. La forma correcta depende de qué se compara:\n\n- **Tan + adjetivo + como**: *Eres tan alto como tu hermano.*\n- **Tan + adverbio + como**: *Corre tan rápido como un profesional.*\n- **Tanto/a/os/as + sustantivo + como**: concuerda en género y número. *Tengo tanto dinero como tú. / Hay tantas chicas como chicos.*\n- **Verbo + tanto como**: *Estudio tanto como puedo.*\n\nEn oraciones consecutivas se usa **tan/tanto… que**: *Es tan gracioso que todos se ríen. / Habla tanto que me cansa.*',
+      '**Tan** y **tanto** expresan **igualdad** en la comparación. La forma correcta depende de qué se compara:\n\n- **Tan + adjetivo + como**: *Eres tan alto como tu hermano.*\n- **Tan + adverbio + como**: *Corre tan rápido como un profesional.*\n- **Tanto/a/os/as + sustantivo + como**: concuerda en género y número. *Tengo tanto dinero como tú. / Hay tantas chicas como chicos.*\n- **Verbo + tanto como**: *Estudio tanto como puedo.*\n\nEn oraciones consecutivas se usa **tan/tanto... que**: *Es tan gracioso que todos se ríen. / Habla tanto que me cansa.*',
     rules: [
       '"Tan" es invariable: siempre igual, con adjetivos y adverbios.',
       '"Tanto" concuerda en género y número con el sustantivo.',
       '"Tanto como" con verbos (invariable).',
-      '"Tan… que" y "tanto… que" para consecuencias, no comparación.',
+      '"Tan... que" y "tanto... que" para consecuencias, no comparación.',
     ],
     examples: [
       {
@@ -1747,7 +1747,7 @@ export const grammarTopics: GrammarTopic[] = [
       'Los imperativos irregulares de tú: ven, di, sal, haz, ten, ve, pon, sé.',
     structure: 'ocho formas irregulares de tú',
     explanation:
-      'El imperativo afirmativo de **tú** tiene **ocho formas irregulares** muy frecuentes:\n\n| Infinitivo | Imperativo tú |\n|-----------|--------------|\n| decir | **di** |\n| hacer | **haz** |\n| ir | **ve** |\n| poner | **pon** |\n| salir | **sal** |\n| ser | **sé** |\n| tener | **ten** |\n| venir | **ven** |\n\nEstas formas irregulares mantienen los pronombres soldados detrás: *dime, hazlo, ponte, vete, tenlo, ven aquí*.\n\nPara **vosotros**, el imperativo es siempre regular (salvo ir → id).\n\nEl imperativo negativo usa el subjuntivo y sigue las irregularidades del presente de subjuntivo: *no digas, no hagas, no vayas, no pongas…*',
+      'El imperativo afirmativo de **tú** tiene **ocho formas irregulares** muy frecuentes:\n\n| Infinitivo | Imperativo tú |\n|-----------|--------------|\n| decir | **di** |\n| hacer | **haz** |\n| ir | **ve** |\n| poner | **pon** |\n| salir | **sal** |\n| ser | **sé** |\n| tener | **ten** |\n| venir | **ven** |\n\nEstas formas irregulares mantienen los pronombres soldados detrás: *dime, hazlo, ponte, vete, tenlo, ven aquí*.\n\nPara **vosotros**, el imperativo es siempre regular (salvo ir → id).\n\nEl imperativo negativo usa el subjuntivo y sigue las irregularidades del presente de subjuntivo: *no digas, no hagas, no vayas, no pongas...*',
     rules: [
       'Solo ocho verbos tienen imperativo de tú irregular.',
       'Las formas de vosotros son siempre regulares (infinitivo -r + d).',
@@ -1941,7 +1941,7 @@ export const grammarTopics: GrammarTopic[] = [
       '"Entonces" introduce un acontecimiento puntual o una consecuencia lógica.',
       '"De repente" marca una acción inesperada; suele ir con indefinido.',
       '"Al final" ≠ "finalmente": al final indica un desenlace que puede ser sorprendente; finalmente es neutro.',
-      'Los conectores pueden ir al inicio, en medio o precedidos de "y": "y entonces…".',
+      'Los conectores pueden ir al inicio, en medio o precedidos de "y": "y entonces...".',
     ],
     examples: [
       {
@@ -2199,7 +2199,7 @@ export const grammarTopics: GrammarTopic[] = [
     structure:
       'raíz de 1ª pers. sing. presente indicativo + vocal opuesta (-ar → -e; -er/-ir → -a)',
     explanation:
-      'El **presente de subjuntivo** expresa acciones no factuales: deseos, dudas, emociones, mandatos negativos, opiniones negadas y finalidad. Se forma a partir de la primera persona singular del presente de indicativo, cambiando la **vocal temática**:\n\n| | -ar (hablar) | -er (comer) | -ir (vivir) |\n|---|-------------|-------------|-------------|\n| yo | hable | coma | viva |\n| tú | hables | comas | vivas |\n| él/ella/usted | hable | coma | viva |\n| nosotros | hablemos | comamos | vivamos |\n| vosotros | habléis | comáis | viváis |\n| ellos/ellas/uds. | hablen | coman | vivan |\n\n**Irregulares**: los verbos que son irregulares en la primera persona del presente de indicativo mantienen la irregularidad en el subjuntivo:\n- tener → tengo → tenga, tengas…\n- hacer → hago → haga, hagas…\n- decir → digo → diga, digas…\n- conocer → conozco → conozca, conozcas…\n- salir → salgo → salga, salgas…\n\nLos verbos con cambio vocálico (e→ie, o→ue) tienen el mismo cambio en las formas tónicas, y además en -ir cambian también e→i o o→u en nosotros/vosotros: *dormir → durmamos, pedir → pidamos*.',
+      'El **presente de subjuntivo** expresa acciones no factuales: deseos, dudas, emociones, mandatos negativos, opiniones negadas y finalidad. Se forma a partir de la primera persona singular del presente de indicativo, cambiando la **vocal temática**:\n\n| | -ar (hablar) | -er (comer) | -ir (vivir) |\n|---|-------------|-------------|-------------|\n| yo | hable | coma | viva |\n| tú | hables | comas | vivas |\n| él/ella/usted | hable | coma | viva |\n| nosotros | hablemos | comamos | vivamos |\n| vosotros | habléis | comáis | viváis |\n| ellos/ellas/uds. | hablen | coman | vivan |\n\n**Irregulares**: los verbos que son irregulares en la primera persona del presente de indicativo mantienen la irregularidad en el subjuntivo:\n- tener → tengo → tenga, tengas...\n- hacer → hago → haga, hagas...\n- decir → digo → diga, digas...\n- conocer → conozco → conozca, conozcas...\n- salir → salgo → salga, salgas...\n\nLos verbos con cambio vocálico (e→ie, o→ue) tienen el mismo cambio en las formas tónicas, y además en -ir cambian también e→i o o→u en nosotros/vosotros: *dormir → durmamos, pedir → pidamos*.',
     rules: [
       '-ar toma vocal -e; -er/-ir toman vocal -a (principio de "vocal opuesta").',
       'La raíz se toma de la 1ª persona singular del presente de indicativo.',
@@ -2406,7 +2406,7 @@ export const grammarTopics: GrammarTopic[] = [
       'Usar el subjuntivo para expresar duda, probabilidad baja o negación.',
     structure: 'dudar que / no creer que / es posible que + subjuntivo',
     explanation:
-      'Las **expresiones de duda o incertidumbre** llevan el verbo subordinado en **subjuntivo**. La regla fundamental es:\n\n**Afirmación** (certeza) → **indicativo**\n**Negación de la afirmación** (duda) → **subjuntivo**\n\n| Certeza (indicativo) | Duda (subjuntivo) |\n|---------------------|-------------------|\n| Creo que viene | No creo que venga |\n| Pienso que es cierto | No pienso que sea cierto |\n| Estoy seguro de que sabe | No estoy seguro de que sepa |\n| Es verdad que llueve | No es verdad que llueva |\n\nExpresiones que siempre llevan subjuntivo:\n- *Dudo que…, Es posible que…, Puede (ser) que…, Quizá(s)…, Tal vez…* (cuando el hablante expresa verdadera duda).',
+      'Las **expresiones de duda o incertidumbre** llevan el verbo subordinado en **subjuntivo**. La regla fundamental es:\n\n**Afirmación** (certeza) → **indicativo**\n**Negación de la afirmación** (duda) → **subjuntivo**\n\n| Certeza (indicativo) | Duda (subjuntivo) |\n|---------------------|-------------------|\n| Creo que viene | No creo que venga |\n| Pienso que es cierto | No pienso que sea cierto |\n| Estoy seguro de que sabe | No estoy seguro de que sepa |\n| Es verdad que llueve | No es verdad que llueva |\n\nExpresiones que siempre llevan subjuntivo:\n- *Dudo que..., Es posible que..., Puede (ser) que..., Quizá(s)..., Tal vez...* (cuando el hablante expresa verdadera duda).',
     rules: [
       'Con verbos de opinión en negativo rigen subjuntivo: "No creo que venga".',
       'Los verbos de duda siempre rigen subjuntivo: "Dudo que sepas".',
@@ -2557,7 +2557,7 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'B1',
     category: 'Tiempos Verbales',
     summary:
-      'Había hablado, habías comido… — acción pasada anterior a otra pasada.',
+      'Había hablado, habías comido... — acción pasada anterior a otra pasada.',
     structure:
       'haber (imperfecto: había/habías/había/habíamos/habíais/habían) + participio',
     explanation:
@@ -2614,7 +2614,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Hoy, esta semana, ya, todavía no, nunca, alguna vez — marcadores del pretérito perfecto.',
     explanation:
-      'Los **marcadores temporales** ayudan a decidir entre pretérito perfecto e indefinido. Cada tiempo tiene sus marcadores característicos:\n\n**Pretérito perfecto** (periodo no terminado o experiencia):\n- *hoy, esta mañana/tarde/noche, esta semana, este mes, este año, este verano…*\n- *ya, todavía no / aún no*\n- *alguna vez, nunca, siempre*\n- *últimamente, en los últimos días*\n- *hace un rato, hace poco*\n\n**Pretérito indefinido** (periodo terminado):\n- *ayer, anoche, anteayer*\n- *la semana pasada, el mes pasado, el año pasado*\n- *hace dos días / tres meses / mucho tiempo*\n- *en 2015, en julio*\n- *aquel día, entonces*\n\nLa clave es si el periodo de tiempo **incluye o no el presente**.',
+      'Los **marcadores temporales** ayudan a decidir entre pretérito perfecto e indefinido. Cada tiempo tiene sus marcadores característicos:\n\n**Pretérito perfecto** (periodo no terminado o experiencia):\n- *hoy, esta mañana/tarde/noche, esta semana, este mes, este año, este verano...*\n- *ya, todavía no / aún no*\n- *alguna vez, nunca, siempre*\n- *últimamente, en los últimos días*\n- *hace un rato, hace poco*\n\n**Pretérito indefinido** (periodo terminado):\n- *ayer, anoche, anteayer*\n- *la semana pasada, el mes pasado, el año pasado*\n- *hace dos días / tres meses / mucho tiempo*\n- *en 2015, en julio*\n- *aquel día, entonces*\n\nLa clave es si el periodo de tiempo **incluye o no el presente**.',
     rules: [
       'Periodo no terminado (hoy, esta semana) → pretérito perfecto.',
       'Periodo terminado (ayer, la semana pasada) → pretérito indefinido.',
@@ -2888,7 +2888,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary: 'El pronombre relativo de posesión: cuyo, cuya, cuyos, cuyas.',
     structure: 'antecedente + cuyo/a/os/as + sustantivo + oración',
     explanation:
-      '**Cuyo** es el único pronombre relativo que expresa **posesión**. Tiene cuatro formas que **concuerdan en género y número con el sustantivo que sigue** (la cosa poseída), no con el antecedente.\n\n- *cuyo* (masc. sing.) · *cuya* (fem. sing.) · *cuyos* (masc. pl.) · *cuyas* (fem. pl.)\n\nEjemplos:\n- *El escritor **cuya** novela ganó el premio es colombiano.* → La novela (fem. sing.) del escritor.\n- *La empresa **cuyos** empleados están en huelga.* → Los empleados (masc. pl.) de la empresa.\n\nCuyo equivale a "whose" en inglés, pero concuerda con lo poseído, no con el poseedor. Es propio del registro formal; en lenguaje coloquial se evita con construcciones como "que su": *El escritor que su novela ganó…* (coloquial pero frecuente).',
+      '**Cuyo** es el único pronombre relativo que expresa **posesión**. Tiene cuatro formas que **concuerdan en género y número con el sustantivo que sigue** (la cosa poseída), no con el antecedente.\n\n- *cuyo* (masc. sing.) · *cuya* (fem. sing.) · *cuyos* (masc. pl.) · *cuyas* (fem. pl.)\n\nEjemplos:\n- *El escritor **cuya** novela ganó el premio es colombiano.* → La novela (fem. sing.) del escritor.\n- *La empresa **cuyos** empleados están en huelga.* → Los empleados (masc. pl.) de la empresa.\n\nCuyo equivale a "whose" en inglés, pero concuerda con lo poseído, no con el poseedor. Es propio del registro formal; en lenguaje coloquial se evita con construcciones como "que su": *El escritor que su novela ganó...* (coloquial pero frecuente).',
     rules: [
       'Concuerda en género y número con el sustantivo que lo sigue (la cosa poseída).',
       'No concuerda con el antecedente (el poseedor).',
@@ -3198,7 +3198,7 @@ export const grammarTopics: GrammarTopic[] = [
       'Hubiera/hubiese + participio: condiciones irreales de pasado, reproches, deseos incumplidos.',
     structure: 'hubiera/hubiese + participio',
     explanation:
-      'El **pluscuamperfecto de subjuntivo** se forma con el imperfecto de subjuntivo de **haber** (*hubiera* o *hubiese*) + **participio**. Expresa acciones irreales referidas al pasado.\n\nUsos:\n- **Condiciones irreales de pasado**: *Si **hubiera estudiado**, habría aprobado.*\n- **Deseos sobre un pasado incumplido**: *Ojalá **hubiera ido** al concierto.*\n- **Reproches y lamentos**: *¡Ojalá me **hubieras avisado**!*\n- **Estilo indirecto con anterioridad al verbo en pasado**: *Dijo que cuando llegó ya **hubieran terminado**.* (menos frecuente, se prefiere pluscuamperfecto de indicativo).\n\nEn oraciones condicionales irreales de pasado, la apódosis puede ir en condicional compuesto o también en pluscuamperfecto de subjuntivo:\n- *Si hubiera estudiado, habría aprobado. / … hubiera aprobado.*',
+      'El **pluscuamperfecto de subjuntivo** se forma con el imperfecto de subjuntivo de **haber** (*hubiera* o *hubiese*) + **participio**. Expresa acciones irreales referidas al pasado.\n\nUsos:\n- **Condiciones irreales de pasado**: *Si **hubiera estudiado**, habría aprobado.*\n- **Deseos sobre un pasado incumplido**: *Ojalá **hubiera ido** al concierto.*\n- **Reproches y lamentos**: *¡Ojalá me **hubieras avisado**!*\n- **Estilo indirecto con anterioridad al verbo en pasado**: *Dijo que cuando llegó ya **hubieran terminado**.* (menos frecuente, se prefiere pluscuamperfecto de indicativo).\n\nEn oraciones condicionales irreales de pasado, la apódosis puede ir en condicional compuesto o también en pluscuamperfecto de subjuntivo:\n- *Si hubiera estudiado, habría aprobado. / ... hubiera aprobado.*',
     rules: [
       'Hubiera/hubiese + participio invariable.',
       'Expresa acción anterior a un punto pasado, con matiz irreal o hipotético.',
@@ -3571,7 +3571,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Diferencias entre el español formal e informal: vocabulario, tratamiento, estructuras.',
     explanation:
-      "El **registro** es la adaptación del lenguaje a la situación comunicativa. En español se distinguen varios niveles:\n\n**Registro formal**:\n- Uso de *usted/ustedes* en lugar de *tú/vosotros*.\n- Evitar contracciones coloquiales (*pa'* en lugar de *para*).\n- Vocabulario preciso y técnico.\n- Oraciones más largas y complejas.\n- Uso de pasiva refleja y estructuras impersonales.\n- Conectores formales (*no obstante, por consiguiente*).\n- *¿Podría decirme la hora?* en lugar de *¿Qué hora es?*\n\n**Registro coloquial**:\n- Uso de *tú/vos* y *vosotros/ustedes*.\n- Muletillas: *bueno, pues, o sea, ¿vale?, en plan, tipo…*\n- Frases hechas y expresiones idiomáticas.\n- Elipsis y frases inacabadas.\n- Diminutivos: *cafecito, momentito*.\n\nLa elección del registro depende del contexto, la relación entre interlocutores y la situación.",
+      "El **registro** es la adaptación del lenguaje a la situación comunicativa. En español se distinguen varios niveles:\n\n**Registro formal**:\n- Uso de *usted/ustedes* en lugar de *tú/vosotros*.\n- Evitar contracciones coloquiales (*pa'* en lugar de *para*).\n- Vocabulario preciso y técnico.\n- Oraciones más largas y complejas.\n- Uso de pasiva refleja y estructuras impersonales.\n- Conectores formales (*no obstante, por consiguiente*).\n- *¿Podría decirme la hora?* en lugar de *¿Qué hora es?*\n\n**Registro coloquial**:\n- Uso de *tú/vos* y *vosotros/ustedes*.\n- Muletillas: *bueno, pues, o sea, ¿vale?, en plan, tipo...*\n- Frases hechas y expresiones idiomáticas.\n- Elipsis y frases inacabadas.\n- Diminutivos: *cafecito, momentito*.\n\nLa elección del registro depende del contexto, la relación entre interlocutores y la situación.",
     rules: [
       '"Usted" marca formalidad; "tú" marca cercanía. El uso varía por país.',
       'El registro formal evita muletillas y coloquialismos.',
@@ -3668,7 +3668,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Muletillas, coletillas y expresiones del español cotidiano: pues, o sea, en plan, vale, venga.',
     explanation:
-      'Las **expresiones coloquiales** son palabras y frases propias de la conversación informal. Dan fluidez, cercanía y naturalidad al discurso.\n\n**Muletillas conversacionales**:\n- *Pues… / Bueno…* → para ganar tiempo o suavizar.\n- *O sea… / Es decir…* → reformular.\n- *¿Vale? / ¿Sabes? / ¿No?* → buscar confirmación.\n- *En plan…* → introducir explicación (muy coloquial, especialmente en España).\n- *Venga / Vamos* → ánimo o cierre de conversación.\n\n**Coletillas y expresiones de reacción**:\n- *¡Qué fuerte! / ¡Qué barbaridad!* → sorpresa.\n- *¡Anda! / ¡Vaya!* → sorpresa o decepción.\n- *¡Qué guay! / ¡Qué chulo!* → aprobación (España).\n- *¡Qué padre! / ¡Qué chévere!* → aprobación (México / varios países).\n- *¡Qué rollo!* → aburrimiento o fastidio (España).',
+      'Las **expresiones coloquiales** son palabras y frases propias de la conversación informal. Dan fluidez, cercanía y naturalidad al discurso.\n\n**Muletillas conversacionales**:\n- *Pues... / Bueno...* → para ganar tiempo o suavizar.\n- *O sea... / Es decir...* → reformular.\n- *¿Vale? / ¿Sabes? / ¿No?* → buscar confirmación.\n- *En plan...* → introducir explicación (muy coloquial, especialmente en España).\n- *Venga / Vamos* → ánimo o cierre de conversación.\n\n**Coletillas y expresiones de reacción**:\n- *¡Qué fuerte! / ¡Qué barbaridad!* → sorpresa.\n- *¡Anda! / ¡Vaya!* → sorpresa o decepción.\n- *¡Qué guay! / ¡Qué chulo!* → aprobación (España).\n- *¡Qué padre! / ¡Qué chévere!* → aprobación (México / varios países).\n- *¡Qué rollo!* → aburrimiento o fastidio (España).',
     rules: [
       'Las muletillas son propias del registro oral e informal.',
       'Varían mucho entre países; "guay" es típico de España, "chévere" de Latinoamérica.',
@@ -3677,8 +3677,8 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     examples: [
       {
-        english: 'Pues… no sé qué decirte.',
-        translation: "Well… I don't know what to tell you.",
+        english: 'Pues... no sé qué decirte.',
+        translation: "Well... I don't know what to tell you.",
       },
       {
         english: 'O sea, que al final no vienes.',
@@ -3755,7 +3755,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Construir argumentos sólidos: tesis, argumentos, contraargumentos y conclusión.',
     explanation:
-      'Un **texto argumentativo** bien estructurado sigue una organización lógica:\n\n**1. Introducción – Tesis**:\n  Presenta el tema y la postura del autor de forma clara.\n  *En mi opinión, el teletrabajo debería ser una opción permanente.*\n\n**2. Desarrollo – Argumentos**:\n  Cada párrafo desarrolla una idea a favor con datos, ejemplos o razonamientos.\n  *En primer lugar, el teletrabajo reduce los desplazamientos…*\n  *Además, permite una mayor conciliación familiar…*\n\n**3. Contraargumentación**:\n  Se anticipan y refutan objeciones.\n  *Algunos sostienen que afecta a la productividad; sin embargo, los estudios demuestran…*\n\n**4. Conclusión**:\n  Resume la postura y refuerza la tesis.\n  *En conclusión, los beneficios del teletrabajo superan sus inconvenientes.*\n\nConectores: *en primer lugar, asimismo, por otra parte, sin embargo, en conclusión*.',
+      'Un **texto argumentativo** bien estructurado sigue una organización lógica:\n\n**1. Introducción – Tesis**:\n  Presenta el tema y la postura del autor de forma clara.\n  *En mi opinión, el teletrabajo debería ser una opción permanente.*\n\n**2. Desarrollo – Argumentos**:\n  Cada párrafo desarrolla una idea a favor con datos, ejemplos o razonamientos.\n  *En primer lugar, el teletrabajo reduce los desplazamientos...*\n  *Además, permite una mayor conciliación familiar...*\n\n**3. Contraargumentación**:\n  Se anticipan y refutan objeciones.\n  *Algunos sostienen que afecta a la productividad; sin embargo, los estudios demuestran...*\n\n**4. Conclusión**:\n  Resume la postura y refuerza la tesis.\n  *En conclusión, los beneficios del teletrabajo superan sus inconvenientes.*\n\nConectores: *en primer lugar, asimismo, por otra parte, sin embargo, en conclusión*.',
     rules: [
       'Toda argumentación parte de una tesis clara.',
       'Los argumentos deben estar respaldados por evidencia o razonamiento lógico.',
@@ -3786,7 +3786,7 @@ export const grammarTopics: GrammarTopic[] = [
     category: 'Oraciones',
     summary: 'Técnicas para refutar ideas: concesión, objeción y refutación.',
     explanation:
-      'La **contraargumentación** anticipa y responde a objeciones a la tesis defendida. Fortalece la argumentación al demostrar que se han considerado otros puntos de vista.\n\n**Estructura de la contraargumentación**:\n\n1. **Concesión** (reconocer parte de razón):\n   - *Es cierto que… / Admito que… / Reconozco que…*\n   - *Es cierto que el cambio climático tiene causas naturales, pero…*\n\n2. **Objeción** (presentar el argumento contrario):\n   - *Sin embargo, hay que tener en cuenta que…*\n   - *No obstante, esta visión olvida que…*\n\n3. **Refutación** (desmontar el argumento contrario):\n   - *Pero la evidencia demuestra que…*\n   - *Con todo, los datos indican lo contrario.*\n\nConectores útiles: *si bien, a pesar de que, aunque, con todo, aun así, pese a que, por más que, ahora bien*.',
+      'La **contraargumentación** anticipa y responde a objeciones a la tesis defendida. Fortalece la argumentación al demostrar que se han considerado otros puntos de vista.\n\n**Estructura de la contraargumentación**:\n\n1. **Concesión** (reconocer parte de razón):\n   - *Es cierto que... / Admito que... / Reconozco que...*\n   - *Es cierto que el cambio climático tiene causas naturales, pero...*\n\n2. **Objeción** (presentar el argumento contrario):\n   - *Sin embargo, hay que tener en cuenta que...*\n   - *No obstante, esta visión olvida que...*\n\n3. **Refutación** (desmontar el argumento contrario):\n   - *Pero la evidencia demuestra que...*\n   - *Con todo, los datos indican lo contrario.*\n\nConectores útiles: *si bien, a pesar de que, aunque, con todo, aun así, pese a que, por más que, ahora bien*.',
     rules: [
       'La concesión muestra respeto por la opinión contraria.',
       'La refutación debe basarse en hechos, no en descalificaciones.',
@@ -3981,7 +3981,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Características del español de los medios: objetividad, concisión, titulares, voz pasiva.',
     explanation:
-      'El **lenguaje periodístico** tiene rasgos propios que lo distinguen:\n\n**Características**:\n- **Concisión y claridad**: frases cortas, una idea por párrafo.\n- **Objetividad aparente**: uso de tercera persona, voz pasiva, se impersonal.\n- **Estructura de pirámide invertida**: lo más importante al principio.\n\n**Titulares**:\n- Suprimen artículos y verbos auxiliares: *Detenido el presunto ladrón.*\n- Uso frecuente de participios y nominalizaciones.\n- Prefieren el presente para dar inmediatez: *El presidente **viaja** hoy a Bruselas.*\n\n**Fórmulas periodísticas**:\n- *Según fuentes… / De acuerdo con… / Al parecer…*\n- *Se ha producido un… / Ha tenido lugar…*\n- *En declaraciones a este medio…*\n\n**Géneros**: noticia, reportaje, crónica, entrevista, editorial, columna de opinión. Cada uno tiene convenciones propias.',
+      'El **lenguaje periodístico** tiene rasgos propios que lo distinguen:\n\n**Características**:\n- **Concisión y claridad**: frases cortas, una idea por párrafo.\n- **Objetividad aparente**: uso de tercera persona, voz pasiva, se impersonal.\n- **Estructura de pirámide invertida**: lo más importante al principio.\n\n**Titulares**:\n- Suprimen artículos y verbos auxiliares: *Detenido el presunto ladrón.*\n- Uso frecuente de participios y nominalizaciones.\n- Prefieren el presente para dar inmediatez: *El presidente **viaja** hoy a Bruselas.*\n\n**Fórmulas periodísticas**:\n- *Según fuentes... / De acuerdo con... / Al parecer...*\n- *Se ha producido un... / Ha tenido lugar...*\n- *En declaraciones a este medio...*\n\n**Géneros**: noticia, reportaje, crónica, entrevista, editorial, columna de opinión. Cada uno tiene convenciones propias.',
     rules: [
       'Los titulares omiten artículos y usan presente por pasado.',
       'La voz pasiva y el "se" impersonal son frecuentes para mantener objetividad.',
@@ -4013,7 +4013,7 @@ export const grammarTopics: GrammarTopic[] = [
     category: 'Avanzado',
     summary: 'Cómo leer y entender los titulares de prensa en español.',
     explanation:
-      'Los **titulares** en español tienen una gramática peculiar, diseñada para la brevedad y el impacto:\n\n**Omisión de artículos**:\n- *Gobierno anuncia nuevas medidas.* (no "El gobierno…")\n- *Policía detiene a tres sospechosos.*\n\n**Participio sin auxiliar**:\n- *Hallado el cuerpo de un montañero desaparecido.* (= Ha sido hallado)\n- *Heridas dos personas en un accidente de tráfico.*\n\n**Presente por pasado o futuro**:\n- *Fallece el actor a los 85 años.* (por falleció)\n- *La ONU debate hoy la crisis climática.*\n\n**Infinitivo para acciones futuras**:\n- *Abrir un nuevo hospital en la zona norte.* (= Se abrirá / Van a abrir)\n\n**Estilo nominal**:\n- *Protestas masivas en el centro de la capital.* (sin verbo)\n\n**Dos puntos** para separar tema y comentario:\n- *Crisis energética: el gobierno busca soluciones urgentes.*',
+      'Los **titulares** en español tienen una gramática peculiar, diseñada para la brevedad y el impacto:\n\n**Omisión de artículos**:\n- *Gobierno anuncia nuevas medidas.* (no "El gobierno...")\n- *Policía detiene a tres sospechosos.*\n\n**Participio sin auxiliar**:\n- *Hallado el cuerpo de un montañero desaparecido.* (= Ha sido hallado)\n- *Heridas dos personas en un accidente de tráfico.*\n\n**Presente por pasado o futuro**:\n- *Fallece el actor a los 85 años.* (por falleció)\n- *La ONU debate hoy la crisis climática.*\n\n**Infinitivo para acciones futuras**:\n- *Abrir un nuevo hospital en la zona norte.* (= Se abrirá / Van a abrir)\n\n**Estilo nominal**:\n- *Protestas masivas en el centro de la capital.* (sin verbo)\n\n**Dos puntos** para separar tema y comentario:\n- *Crisis energética: el gobierno busca soluciones urgentes.*',
     rules: [
       'En titulares se omiten artículos y auxiliares.',
       'El participio suelto equivale a pasiva.',
@@ -4052,7 +4052,7 @@ export const grammarTopics: GrammarTopic[] = [
     explanation:
       'El **discurso reportado en prensa** combina verbos de habla con citas directas e indirectas para atribuir información a fuentes.\n\n**Verbos de habla periodísticos**:\n- Neutros: *decir, declarar, manifestar, señalar, indicar, afirmar*\n- De énfasis: *recalcar, subrayar, insistir en, hacer hincapié en*\n- De matiz: *apuntar, sugerir, insinuar, dar a entender*\n- De contraste: *replicar, rebatir, objetar, contradecir*\n\n**Citas textuales**:\n- Con verbo antepuesto: *El presidente afirmó: "La economía crecerá".*\n- Con verbo pospuesto o interpolado: *"La economía crecerá", afirmó el presidente.*\n\n**Citas indirectas**:\n- *El presidente afirmó que la economía crecería.* (estilo indirecto con cambio de tiempos.)\n- *Según el presidente, la economía crecerá.* (estructura con "según".)',
     rules: [
-      'Variar los verbos de habla evita la monotonía de "dijo que… dijo que…".',
+      'Variar los verbos de habla evita la monotonía de "dijo que... dijo que...".',
       'Citas textuales van entre comillas con verbo en pasado o presente.',
       'Citas indirectas requieren correlación de tiempos.',
       '"Según + fuente" es fórmula estándar para atribución.',
@@ -4290,7 +4290,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Transformar verbos y adjetivos en sustantivos para crear textos más densos y formales.',
     structure:
-      'verbo/adjetivo → sustantivo abstracto (-ción, -miento, -dad, -eza, -ancia…)',
+      'verbo/adjetivo → sustantivo abstracto (-ción, -miento, -dad, -eza, -ancia...)',
     explanation:
       'La **nominalización** consiste en convertir verbos o adjetivos en sustantivos, lo que permite condensar información y dar un tono más formal y abstracto al discurso.\n\n**Sufijos de nominalización**:\n- *-ción/-sión*: construir → construcción, decidir → decisión\n- *-miento*: pensar → pensamiento, conocer → conocimiento\n- *-dad/-tad*: libre → libertad, bueno → bondad\n- *-eza*: triste → tristeza, rico → riqueza\n- *-ancia/-encia*: tolerar → tolerancia, creer → creencia\n- *-ismo*: optimista → optimismo\n\n**Ventajas de la nominalización**:\n- Economía lingüística: *La construcción del puente se retrasó* (en lugar de *Construir el puente se retrasó*).\n- Impersonalidad: *Se procedió a la revisión de los documentos.*\n\n**Abuso de la nominalización**: en exceso produce textos farragosos. *Proceder a la realización de un estudio* en lugar de *Estudiar*.',
     rules: [
@@ -4592,7 +4592,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Técnicas para convencer: apelación a la razón (logos), a la emoción (pathos) y a la credibilidad (ethos).',
     explanation:
-      'La **persuasión** es el arte de convencer. Según la retórica clásica (Aristóteles), se apoya en tres pilares:\n\n**Logos (razón)**:\n- Argumentos lógicos, datos, estadísticas, hechos comprobables.\n- *Según un estudio de la OMS, el 80% de los casos…*\n\n**Pathos (emoción)**:\n- Apelar a sentimientos: empatía, miedo, esperanza, indignación.\n- *Imagina que fueras tú el que necesita ayuda…*\n\n**Ethos (credibilidad del emisor)**:\n- Construir confianza mostrando conocimiento, experiencia o valores.\n- *Como médico con veinte años de experiencia, puedo afirmar que…*\n\n**Estrategias lingüísticas persuasivas**:\n- Primera persona plural inclusiva: *Todos sabemos que… / Nos afecta a todos.*\n- Verbos de opinión atenuados o reforzados.\n- Uso de ejemplos concretos y cercanos.\n- Anticipar y refutar objeciones.',
+      'La **persuasión** es el arte de convencer. Según la retórica clásica (Aristóteles), se apoya en tres pilares:\n\n**Logos (razón)**:\n- Argumentos lógicos, datos, estadísticas, hechos comprobables.\n- *Según un estudio de la OMS, el 80% de los casos...*\n\n**Pathos (emoción)**:\n- Apelar a sentimientos: empatía, miedo, esperanza, indignación.\n- *Imagina que fueras tú el que necesita ayuda...*\n\n**Ethos (credibilidad del emisor)**:\n- Construir confianza mostrando conocimiento, experiencia o valores.\n- *Como médico con veinte años de experiencia, puedo afirmar que...*\n\n**Estrategias lingüísticas persuasivas**:\n- Primera persona plural inclusiva: *Todos sabemos que... / Nos afecta a todos.*\n- Verbos de opinión atenuados o reforzados.\n- Uso de ejemplos concretos y cercanos.\n- Anticipar y refutar objeciones.',
     rules: [
       'Combinar logos, pathos y ethos para una argumentación completa.',
       'El pathos solo es efectivo si se equilibra con argumentos sólidos.',
@@ -4628,7 +4628,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Principales figuras retóricas: metáfora, metonimia, sinécdoque, hipérbaton, asíndeton, polisíndeton.',
     explanation:
-      'Las **figuras literarias** o **tropos** enriquecen el lenguaje más allá de su uso literal.\n\n**Figuras de significado (tropos)**:\n- **Metáfora**: identificación de dos realidades. *La vida es un río.*\n- **Metonimia**: sustitución por relación. *Bebió una copa.* (continente por contenido).\n- **Sinécdoque**: la parte por el todo o viceversa. *Quedan tres almas en el pueblo.* (alma por persona).\n- **Sinestesia**: mezcla de sensaciones. *Un silencio amargo.*\n\n**Figuras de orden**:\n- **Hipérbaton**: alterar el orden lógico. *Del salón en el ángulo oscuro…* (Bécquer).\n- **Anáfora**: repetición al inicio de versos o frases.\n\n**Figuras de repetición**:\n- **Aliteración**: repetición de sonidos. *El ruido con que rueda la ronca tempestad.*\n- **Polisíndeton**: multiplicación de conjunciones. *Y llegó, y miró, y venció.*\n- **Asíndeton**: omisión de conjunciones. *Llegué, vi, vencí.*\n\nEn niveles C1 se espera reconocer estas figuras y usarlas puntualmente.',
+      'Las **figuras literarias** o **tropos** enriquecen el lenguaje más allá de su uso literal.\n\n**Figuras de significado (tropos)**:\n- **Metáfora**: identificación de dos realidades. *La vida es un río.*\n- **Metonimia**: sustitución por relación. *Bebió una copa.* (continente por contenido).\n- **Sinécdoque**: la parte por el todo o viceversa. *Quedan tres almas en el pueblo.* (alma por persona).\n- **Sinestesia**: mezcla de sensaciones. *Un silencio amargo.*\n\n**Figuras de orden**:\n- **Hipérbaton**: alterar el orden lógico. *Del salón en el ángulo oscuro...* (Bécquer).\n- **Anáfora**: repetición al inicio de versos o frases.\n\n**Figuras de repetición**:\n- **Aliteración**: repetición de sonidos. *El ruido con que rueda la ronca tempestad.*\n- **Polisíndeton**: multiplicación de conjunciones. *Y llegó, y miró, y venció.*\n- **Asíndeton**: omisión de conjunciones. *Llegué, vi, vencí.*\n\nEn niveles C1 se espera reconocer estas figuras y usarlas puntualmente.',
     rules: [
       'La metáfora es la figura más común y versátil.',
       'Metonimia y sinécdoque son frecuentes incluso en la lengua coloquial.',
@@ -4736,7 +4736,7 @@ export const grammarTopics: GrammarTopic[] = [
     structure:
       'vos + verbo con acento en la última sílaba (vos tenés, vos querés, vos sos)',
     explanation:
-      'El **voseo** es el uso del pronombre **vos** en lugar de **tú** para la segunda persona del singular. Es normativo y culto en Argentina, Uruguay y Paraguay, y frecuente en partes de Centroamérica.\n\n**Conjugación del voseo (rioplatense)**:\n\n| Verbo | Presente | Imperativo |\n|-------|----------|------------|\n| tener | vos tenés | tené |\n| querer | vos querés | queré |\n| poder | vos podés | podé |\n| ser | vos sos | sé |\n| ir | vos vas | andá (irregular) |\n| haber | vos has | — |\n\n**Patrón**: se acentúa la última sílaba; se pierde la -d final del imperativo.\n\n**Variantes regionales**:\n- *Voseo pronominal y verbal* (Argentina): *vos tenés*.\n- *Voseo solo verbal* (Chile, zonas de Colombia): *tú tenís*.\n\nEl voseo se combina con el pronombre *te* y el posesivo *tu/tuyo*: *Vos te llamás… y tu casa…*',
+      'El **voseo** es el uso del pronombre **vos** en lugar de **tú** para la segunda persona del singular. Es normativo y culto en Argentina, Uruguay y Paraguay, y frecuente en partes de Centroamérica.\n\n**Conjugación del voseo (rioplatense)**:\n\n| Verbo | Presente | Imperativo |\n|-------|----------|------------|\n| tener | vos tenés | tené |\n| querer | vos querés | queré |\n| poder | vos podés | podé |\n| ser | vos sos | sé |\n| ir | vos vas | andá (irregular) |\n| haber | vos has | — |\n\n**Patrón**: se acentúa la última sílaba; se pierde la -d final del imperativo.\n\n**Variantes regionales**:\n- *Voseo pronominal y verbal* (Argentina): *vos tenés*.\n- *Voseo solo verbal* (Chile, zonas de Colombia): *tú tenís*.\n\nEl voseo se combina con el pronombre *te* y el posesivo *tu/tuyo*: *Vos te llamás... y tu casa...*',
     rules: [
       'El voseo es normativo y culto en las regiones donde se usa.',
       'La conjugación difiere de la de tú: se pierde el diptongo (tú tienes → vos tenés).',
@@ -4801,7 +4801,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Expresar desacuerdo u objeciones de forma respetuosa y productiva.',
     explanation:
-      'La **crítica constructiva** señala aspectos mejorables de una idea o trabajo sin descalificar, ofreciendo alternativas y manteniendo un tono respetuoso.\n\n**Estrategias lingüísticas**:\n\n**Atenuar la crítica**:\n- *Quizás se podría considerar…*\n- *Me pregunto si no sería mejor…*\n- *Entiendo tu punto, pero…*\n\n**Enfocar en el problema, no en la persona**:\n- *El informe contiene algunos errores.* (no *Eres descuidado.*)\n- *La propuesta necesita más desarrollo.* (no *Es una mala propuesta.*)\n\n**Ofrecer alternativas o soluciones**:\n- *Tal vez podríamos probar con…*\n- *¿Has considerado la posibilidad de…?*\n- *Una alternativa sería…*\n\n**Usar condicional y subjuntivo para atenuar**:\n- *Convendría revisar esta sección.*\n- *Sería recomendable que incluyeras datos más recientes.*\n\nEn español la crítica suele ser más indirecta que en inglés por razones culturales de cortesía.',
+      'La **crítica constructiva** señala aspectos mejorables de una idea o trabajo sin descalificar, ofreciendo alternativas y manteniendo un tono respetuoso.\n\n**Estrategias lingüísticas**:\n\n**Atenuar la crítica**:\n- *Quizás se podría considerar...*\n- *Me pregunto si no sería mejor...*\n- *Entiendo tu punto, pero...*\n\n**Enfocar en el problema, no en la persona**:\n- *El informe contiene algunos errores.* (no *Eres descuidado.*)\n- *La propuesta necesita más desarrollo.* (no *Es una mala propuesta.*)\n\n**Ofrecer alternativas o soluciones**:\n- *Tal vez podríamos probar con...*\n- *¿Has considerado la posibilidad de...?*\n- *Una alternativa sería...*\n\n**Usar condicional y subjuntivo para atenuar**:\n- *Convendría revisar esta sección.*\n- *Sería recomendable que incluyeras datos más recientes.*\n\nEn español la crítica suele ser más indirecta que en inglés por razones culturales de cortesía.',
     rules: [
       'Atenuar con condicional y subjuntivo.',
       'Separar a la persona del problema.',
@@ -4882,7 +4882,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Integración de todos los usos del subjuntivo en contextos complejos.',
     explanation:
-      'En nivel C2 se domina la alternancia indicativo/subjuntivo en todos los contextos, incluidos aquellos en los que la elección refleja un **matiz significativo sutil**.\n\n**Casos de alternancia con cambio de significado**:\n\n- *No creo que **venga*** (subjuntivo: duda real). vs. *No creo que **viene*** (indicativo: se niega una creencia ajena).\n- *Aunque **llueve**, saldré* (sé que llueve). vs. *Aunque **llueva**, saldré* (no sé si lloverá).\n- *Quizás **tiene** razón* (probabilidad alta). vs. *Quizás **tenga** razón* (probabilidad baja).\n\n**Dominio de la concordancia temporal en discursos complejos**:\n- *No pensé que **fuera a llover**.* (Imperfecto subj. con valor de futuro del pasado.)\n- *Me molestó que no me **hubieras avisado**.* (Pluscuamperfecto subj. para anterioridad.)\n\n**Subjuntivo en contextos formales y literarios**:\n- *Quien **osare** desafiar la ley…* (subjuntivo arcaizante con valor eventual).\n- *Sea como fuere…* (fórmula concesiva lexicalizada).',
+      'En nivel C2 se domina la alternancia indicativo/subjuntivo en todos los contextos, incluidos aquellos en los que la elección refleja un **matiz significativo sutil**.\n\n**Casos de alternancia con cambio de significado**:\n\n- *No creo que **venga*** (subjuntivo: duda real). vs. *No creo que **viene*** (indicativo: se niega una creencia ajena).\n- *Aunque **llueve**, saldré* (sé que llueve). vs. *Aunque **llueva**, saldré* (no sé si lloverá).\n- *Quizás **tiene** razón* (probabilidad alta). vs. *Quizás **tenga** razón* (probabilidad baja).\n\n**Dominio de la concordancia temporal en discursos complejos**:\n- *No pensé que **fuera a llover**.* (Imperfecto subj. con valor de futuro del pasado.)\n- *Me molestó que no me **hubieras avisado**.* (Pluscuamperfecto subj. para anterioridad.)\n\n**Subjuntivo en contextos formales y literarios**:\n- *Quien **osare** desafiar la ley...* (subjuntivo arcaizante con valor eventual).\n- *Sea como fuere...* (fórmula concesiva lexicalizada).',
     rules: [
       'La alternancia indicativo/subjuntivo puede reflejar matices semánticos muy sutiles.',
       'El dominio C2 implica usar el subjuntivo de forma natural, sin pensarlo.',
@@ -4961,7 +4961,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Dominio de la consecutio temporum en narraciones y discursos con múltiples niveles temporales.',
     explanation:
-      'En textos con múltiples planos temporales (narraciones con flashbacks y flashforwards, discursos hipotéticos, estilo indirecto encadenado), la **concordancia temporal** es compleja.\n\n**Narración con tres planos temporales**:\n- Plano base: imperfecto (*Era 1995*).\n- Flashback: pluscuamperfecto (*Ya había terminado la guerra*).\n- Anterior al flashback: pluscuamperfecto con valor de anterioridad reforzada (*Para entonces ya la habían declarado varias veces*).\n\n**Estilo indirecto encadenado (dos niveles de pasado)**:\n- *Dijo que le habían contado que andaban buscando a alguien que hubiera vivido en el extranjero.*\n\n**Uso de formas en -ra con valor de indicativo**:\n- En registro culto/literario: *El que fuera presidente…* (= El que fue presidente).\n\n**Dominio de la correlación subjuntivo-indicativo**:\n- *Espero que cuando **llegues** (pres. subj.) todavía **esté** (pres. subj.) despierto.*\n- *Esperaba que cuando **llegaras** (imp. subj.) todavía **estuviera** (imp. subj.) despierto.*',
+      'En textos con múltiples planos temporales (narraciones con flashbacks y flashforwards, discursos hipotéticos, estilo indirecto encadenado), la **concordancia temporal** es compleja.\n\n**Narración con tres planos temporales**:\n- Plano base: imperfecto (*Era 1995*).\n- Flashback: pluscuamperfecto (*Ya había terminado la guerra*).\n- Anterior al flashback: pluscuamperfecto con valor de anterioridad reforzada (*Para entonces ya la habían declarado varias veces*).\n\n**Estilo indirecto encadenado (dos niveles de pasado)**:\n- *Dijo que le habían contado que andaban buscando a alguien que hubiera vivido en el extranjero.*\n\n**Uso de formas en -ra con valor de indicativo**:\n- En registro culto/literario: *El que fuera presidente...* (= El que fue presidente).\n\n**Dominio de la correlación subjuntivo-indicativo**:\n- *Espero que cuando **llegues** (pres. subj.) todavía **esté** (pres. subj.) despierto.*\n- *Esperaba que cuando **llegaras** (imp. subj.) todavía **estuviera** (imp. subj.) despierto.*',
     rules: [
       'Cada salto temporal hacia atrás requiere pluscuamperfecto.',
       'En estilo indirecto encadenado se aplican las reglas en cascada.',
@@ -5398,7 +5398,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Revisar y corregir textos propios y ajenos con criterio profesional.',
     explanation:
-      'La **edición y corrección de textos** requiere aplicar criterios de corrección ortotipográfica, gramatical y de estilo.\n\n**Niveles de corrección**:\n\n**Corrección ortotipográfica**:\n- Ortografía: tildes, puntuación, uso de mayúsculas.\n- Abreviaturas, siglas, símbolos.\n- Comillas (españolas « », inglesas " ", simples \' \').\n\n**Corrección gramatical**:\n- Concordancia, régimen preposicional, orden de palabras.\n- Queísmo/Dequeísmo: *Me alegro de que vengas* (deque correcto) vs. *~~Pienso de que…~~* (dequeísmo).\n- Leísmo/Laísmo/Loísmo.\n\n**Corrección de estilo**:\n- Claridad: frases excesivamente largas, ambigüedades.\n- Precisión léxica: evitar palabras comodín.\n- Cohesión: conectores, referencias.\n- Adecuación al registro y al género textual.\n\n**Corrección de contenido**:\n- Verificar datos, fechas, nombres, citas.\n\nLos signos de corrección tipográfica son estándar (aunque con variantes).',
+      'La **edición y corrección de textos** requiere aplicar criterios de corrección ortotipográfica, gramatical y de estilo.\n\n**Niveles de corrección**:\n\n**Corrección ortotipográfica**:\n- Ortografía: tildes, puntuación, uso de mayúsculas.\n- Abreviaturas, siglas, símbolos.\n- Comillas (españolas « », inglesas " ", simples \' \').\n\n**Corrección gramatical**:\n- Concordancia, régimen preposicional, orden de palabras.\n- Queísmo/Dequeísmo: *Me alegro de que vengas* (deque correcto) vs. *~~Pienso de que...~~* (dequeísmo).\n- Leísmo/Laísmo/Loísmo.\n\n**Corrección de estilo**:\n- Claridad: frases excesivamente largas, ambigüedades.\n- Precisión léxica: evitar palabras comodín.\n- Cohesión: conectores, referencias.\n- Adecuación al registro y al género textual.\n\n**Corrección de contenido**:\n- Verificar datos, fechas, nombres, citas.\n\nLos signos de corrección tipográfica son estándar (aunque con variantes).',
     rules: [
       'Revisar primero la estructura general, luego párrafos, luego frases, luego palabras.',
       'La corrección ortotipográfica incluye el uso correcto de los signos de puntuación españoles.',
@@ -5439,7 +5439,7 @@ export const grammarTopics: GrammarTopic[] = [
     summary:
       'Expresar ideas con matices de certeza, duda, probabilidad y compromiso.',
     explanation:
-      'En C2 se espera la capacidad de modular el grado de compromiso con lo dicho mediante **mecanismos de atenuación e intensificación**.\n\n**Escala de certeza (de menor a mayor)**:\n- *Es improbable que… / Dudo mucho que…*\n- *No estoy seguro de que…*\n- *Puede que… / Cabe la posibilidad de que…*\n- *Es posible que… / Quizás…*\n- *Probablemente / Seguramente…* (+ indicativo).\n- *Sin duda / Desde luego que / Está claro que…* (+ indicativo).\n\n**Recursos de atenuación pragmática**:\n- Futuro de conjetura: *Serán las tres.*\n- Condicional de modestia: *Yo diría que no es buena idea.*\n- Imperfecto de cortesía: *Quería pedirle un favor.*\n- Preguntas negativas: *¿No crees que deberíamos esperar?*\n\n**Recursos de refuerzo**:\n- Adverbios: *indudablemente, rotundamente, categóricamente*.\n- Estructuras enfáticas: *Lo que está claro es que… / De lo que no cabe duda es de que…*',
+      'En C2 se espera la capacidad de modular el grado de compromiso con lo dicho mediante **mecanismos de atenuación e intensificación**.\n\n**Escala de certeza (de menor a mayor)**:\n- *Es improbable que... / Dudo mucho que...*\n- *No estoy seguro de que...*\n- *Puede que... / Cabe la posibilidad de que...*\n- *Es posible que... / Quizás...*\n- *Probablemente / Seguramente...* (+ indicativo).\n- *Sin duda / Desde luego que / Está claro que...* (+ indicativo).\n\n**Recursos de atenuación pragmática**:\n- Futuro de conjetura: *Serán las tres.*\n- Condicional de modestia: *Yo diría que no es buena idea.*\n- Imperfecto de cortesía: *Quería pedirle un favor.*\n- Preguntas negativas: *¿No crees que deberíamos esperar?*\n\n**Recursos de refuerzo**:\n- Adverbios: *indudablemente, rotundamente, categóricamente*.\n- Estructuras enfáticas: *Lo que está claro es que... / De lo que no cabe duda es de que...*',
     rules: [
       'La escala de certeza se expresa con indicativo (certeza) o subjuntivo (duda).',
       'El futuro de conjetura y el condicional de modestia son marcas de habla culta coloquial.',
@@ -5514,9 +5514,9 @@ export const grammarTopics: GrammarTopic[] = [
     examples: [
       {
         english:
-          'O sea, que al final no vienes… pues nada, otro día será, no pasa nada.',
+          'O sea, que al final no vienes... pues nada, otro día será, no pasa nada.',
         translation:
-          "So, in the end you're not coming… well, another time then, no worries.",
+          "So, in the end you're not coming... well, another time then, no worries.",
         note: 'muletillas y gestión de turno',
       },
       {

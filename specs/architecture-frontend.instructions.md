@@ -58,13 +58,13 @@ frontend/
 │   │   ├── assessment/          # AdaptiveQuizCard, BeginnerGate, DurationSelector
 │   │   ├── billing/             # Stripe subscription UI components
 │   │   ├── chat/                # Chat message components
-│   │   ├── conversation/        # ConversationMode, MicButton, StatusIndicator, TranscriptBubble…
+│   │   ├── conversation/        # ConversationMode, MicButton, StatusIndicator, TranscriptBubble...
 │   │   ├── flashcard/           # Flashcard review components
 │   │   ├── lesson/              # Lesson exercise components
 │   │   ├── plan/                # LevelTestBanner, UnitCard, UnitDrawer
 │   │   ├── settings/            # Settings form components
 │   │   ├── tour/                # OnboardingTour components
-│   │   ├── ui/                  # shadcn/ui + custom: AudioPlayer, VoiceRecorder, confirm-dialog…
+│   │   ├── ui/                  # shadcn/ui + custom: AudioPlayer, VoiceRecorder, confirm-dialog...
 │   │   ├── whats-new/           # What's New changelog modal
 │   │   ├── CookieBanner.tsx
 │   │   ├── LanguageSwitcher.tsx
