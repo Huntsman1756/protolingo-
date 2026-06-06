@@ -32,9 +32,10 @@ async def test_competencies_returns_list_shape(client, test_user, db_session):
     user, headers = test_user
 
     from app.models.lesson import Exercise, Lesson
-    from app.models.study_plan import StudyPlan
+    from tests.conftest import make_study_plan
 
-    plan = StudyPlan(
+    plan = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         goals=["grammar"],
@@ -44,8 +45,6 @@ async def test_competencies_returns_list_shape(client, test_user, db_session):
         generated_plan={},
         is_active=True,
     )
-    db_session.add(plan)
-    await db_session.flush()
 
     lesson = Lesson(
         study_plan_id=plan.id,

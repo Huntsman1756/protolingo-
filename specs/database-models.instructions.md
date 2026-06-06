@@ -1,5 +1,5 @@
 ---
-description: "Database models reference for FreeLingo: 18 SQLAlchemy ORM models with full schema details, relationships, constraints, and business rules."
+description: "Database models reference for FreeLingo: 19 SQLAlchemy ORM models with full schema details, relationships, constraints, and business rules."
 applyTo: "backend/app/models/**, backend/alembic/**"
 ---
 
@@ -46,14 +46,31 @@ Registration, authentication, and user preferences.
 - `POST /register` returns an `access_token` + sets the refresh token cookie so the frontend can redirect directly to `/onboarding` without an intermediate login.
 - On `/onboarding` the user chooses their `target_language`; the choice is saved via `PATCH /me` before accessing the app.
 
+## UserLanguage (`user_languages`)
+
+Relates users to the languages they are learning. One row per user per language. Added in Phase 10.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | integer | Primary key, autoincrement |
+| user_id | integer | FK → users (CASCADE), NOT NULL |
+| target_language | string(10) | BCP-47 tag, NOT NULL |
+| is_active | boolean | `true` = current active language. Only one `true` per user. Default `true`. |
+| created_at | datetime | Auto-set |
+
+**Constraints:**
+- `UNIQUE(user_id, target_language)` — a user cannot have the same language duplicated.
+- Composite index `ix_user_language_user_active` on `(user_id, is_active)` for fast active language lookups.
+
 ## StudyPlan (`study_plans`)
 
-One active plan per user. Generated after CEFR assessment.
+One active plan per user per language. Generated after CEFR assessment. Added in Phase 4 (`target_language`), updated in Phase 10 (`user_language_id`, partial unique index).
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users |
+| user_language_id | integer | FK → user_languages (CASCADE). Added in Phase 10. |
 | cefr_level | string | A1, A2, B1, B2, C1, C2 |
 | goals | JSON | List of goal strings (grammar, vocabulary, reading, writing, conversation) |
 | duration_weeks | integer | 4, 8, 12, or 16 (maps to intensity) |
@@ -65,8 +82,11 @@ One active plan per user. Generated after CEFR assessment.
 | completion_test_taken | boolean | Whether end-of-level test was completed |
 | completion_test_score | float (nullable) | 0.0 – 1.0 |
 | completion_test_recommendation | string (nullable) | `"advance"`, `"extend"`, or `"repeat"` |
-| target_language | string | BCP-47 tag copied from user at plan creation (e.g. `"en-US"`) |
+| target_language | string | BCP-47 tag at plan creation (e.g. `"en-US"`). Denormalised from `user_languages`. |
 | created_at | datetime | Auto-set |
+
+**Constraints:**
+- Partial unique index `uq_active_plan_per_lang` on `(user_language_id)` WHERE `is_active = true` — enforces one active plan per user per language.
 
 **Intensity / duration mapping:**
 
@@ -114,13 +134,14 @@ Exercises belong to a lesson (1 lesson → many exercises).
 
 ## Flashcard (`flashcards`)
 
-SM-2 spaced repetition cards, per user.
+SM-2 spaced repetition cards, per user per language.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users |
-| word | string | English word/phrase |
+| study_plan_id | integer | FK → study_plans (CASCADE), NOT NULL, indexed. Added in Phase 10. |
+| word | string | Target language word/phrase |
 | definition | text | English definition |
 | example_sentence | text | Usage example |
 | translation | text | Translation to user's native language |
@@ -133,12 +154,13 @@ SM-2 spaced repetition cards, per user.
 
 ## Progress (`progress`)
 
-Daily progress record, one row per user per day.
+Daily progress record, one row per user per day per plan. Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users |
+| study_plan_id | integer | FK → study_plans (CASCADE), NOT NULL, indexed |
 | date | date | |
 | xp_earned | integer | XP gained that day |
 | lessons_completed | integer | |
@@ -147,14 +169,17 @@ Daily progress record, one row per user per day.
 | streak_day | integer | Consecutive day count |
 | skills | JSON | Skill scores: `{"grammar": 0.6, "vocabulary": 0.4, ...}` |
 
+**Constraint:** `UNIQUE(user_id, study_plan_id, date)` — one progress row per user per plan per day.
+
 ## Conversation (`conversations`)
 
-Grouping of chat messages (text and voice) into named conversations.
+Grouping of chat messages (text and voice) into named conversations. Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users (CASCADE) |
+| study_plan_id | integer (nullable) | FK → study_plans (SET NULL), indexed |
 | title | string | Auto-generated or user-set |
 | source | string | `'chat'` or `'voice'` (default `'chat'`) |
 | created_at | datetime | |
@@ -162,30 +187,34 @@ Grouping of chat messages (text and voice) into named conversations.
 
 ## ChatHistory (`chat_history`)
 
-Individual messages within text chat and voice conversations.
+Individual messages within text chat and voice conversations. Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users |
 | conversation_id | integer (nullable) | FK → conversations (CASCADE) |
+| study_plan_id | integer (nullable) | FK → study_plans (SET NULL), indexed |
 | role | string | `"user"` or `"assistant"` |
 | content | text | Message body |
 | created_at | datetime | |
 
 ## UserCompetency (`user_competencies`)
 
-Per-unit competency tracking (Phase 1+).
+Per-unit competency tracking (Phase 1+). Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users (CASCADE) |
+| study_plan_id | integer | FK → study_plans (CASCADE), NOT NULL, indexed |
 | unit_id | string | Curriculum unit ID (indexed) |
 | competency_text | text | Name of the competency |
 | score | float | 0.0 – 1.0, exponential moving average |
 | mastered | boolean | True when score >= 0.80 |
 | updated_at | datetime | |
+
+**Constraint:** `UNIQUE(user_id, study_plan_id, unit_id, competency_text)`.
 
 ## ListeningExercise (`listening_exercises`)
 
@@ -209,13 +238,14 @@ Composite index: `ix_listening_exercises_level_lang` on `(level, target_language
 
 ## ListeningAttempt (`listening_attempts`)
 
-Records each user submission for a listening exercise.
+Records each user submission for a listening exercise. Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users (CASCADE DELETE) |
 | exercise_id | integer | FK → listening_exercises (CASCADE DELETE) |
+| study_plan_id | integer | FK → study_plans (CASCADE), NOT NULL, indexed |
 | answers | JSON | List of strings — the user's selected option per question |
 | score | integer | 0–5 (number of correct answers) |
 | xp_earned | integer | 0–50 (10 per correct answer) |
@@ -243,13 +273,14 @@ Composite index: `ix_reading_exercises_level_lang` on `(level, target_language)`
 
 ## ReadingAttempt (`reading_attempts`)
 
-Records each user submission for a reading exercise.
+Records each user submission for a reading exercise. Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users (CASCADE DELETE) |
 | exercise_id | integer | FK → reading_exercises (CASCADE DELETE) |
+| study_plan_id | integer | FK → study_plans (CASCADE), NOT NULL, indexed |
 | answers | JSON | `{ "0": "B", "1": "A", ... }` — the user's selected option per question |
 | score | integer | 0–5 (number of correct answers) |
 | xp_earned | integer | 0–50 (10 per correct answer) |
@@ -301,24 +332,26 @@ A flat comment on a feedback entry. No nesting.
 
 ## Memory (`memories`)
 
-User-specific context persisted by the LLM during conversations. The AI tutor autonomously decides what to remember.
+User-specific context persisted by the LLM during conversations. The AI tutor autonomously decides what to remember. Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users (CASCADE DELETE) |
+| study_plan_id | integer (nullable) | FK → study_plans (SET NULL), indexed |
 | content | text | Memory text, max 200 chars enforced at service layer |
 | source | varchar(10) | `"chat"` or `"voice"` |
 | created_at | datetime | Auto-set on creation |
 
 ## LLMUsage (`llm_usage`)
 
-Token-usage audit trail, one row per LLM call. Used to track consumption against `monthly_tokens_limit`.
+Token-usage audit trail, one row per LLM call. Used to track consumption against `monthly_tokens_limit`. Added `study_plan_id` in Phase 10.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | integer | Primary key |
 | user_id | integer | FK → users (CASCADE DELETE), indexed |
+| study_plan_id | integer (nullable) | FK → study_plans (SET NULL), indexed |
 | source | varchar(20) | Feature that triggered the call: `"chat"`, `"lesson"`, `"assessment"`, etc. |
 | prompt_tokens | integer (nullable) | Input token count |
 | completion_tokens | integer (nullable) | Output token count |

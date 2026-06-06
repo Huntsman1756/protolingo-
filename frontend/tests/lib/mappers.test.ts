@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { mapUser } from '@/lib/mappers'
+import { mapUser, mapUserLanguageInfo } from '@/lib/mappers'
 import type { User } from '@/store/auth'
 
 describe('mapUser', () => {
@@ -134,5 +134,130 @@ describe('mapUser', () => {
     expect(user.bio).toBe('new bio')
     expect(user.learning_goals).toEqual(['new'])
     expect(user.subscription_status).toBe('active')
+  })
+})
+
+describe('mapUserLanguageInfo', () => {
+  it('maps full API response with plan and progress', () => {
+    const raw = {
+      target_language: 'es-ES',
+      is_active: true,
+      plan: {
+        id: 1,
+        cefr_level: 'B1',
+        progress_day: 42,
+        total_days: 48,
+        completion_pct: 87.5,
+      },
+      progress: {
+        total_xp: 12500,
+        current_streak: 23,
+        lessons_completed: 38,
+      },
+    }
+
+    const result = mapUserLanguageInfo(raw)
+
+    expect(result).toEqual({
+      target_language: 'es-ES',
+      is_active: true,
+      plan: {
+        id: 1,
+        cefr_level: 'B1',
+        progress_day: 42,
+        total_days: 48,
+        completion_pct: 87.5,
+      },
+      progress: {
+        total_xp: 12500,
+        current_streak: 23,
+        lessons_completed: 38,
+      },
+    })
+  })
+
+  it('maps null plan to null', () => {
+    const raw = {
+      target_language: 'it-IT',
+      is_active: false,
+      plan: null,
+      progress: null,
+    }
+
+    const result = mapUserLanguageInfo(raw)
+
+    expect(result).toEqual({
+      target_language: 'it-IT',
+      is_active: false,
+      plan: null,
+      progress: null,
+    })
+  })
+
+  it('maps null cefr_level to null', () => {
+    const raw = {
+      target_language: 'pt-PT',
+      is_active: true,
+      plan: {
+        id: 3,
+        cefr_level: null,
+        progress_day: 0,
+        total_days: 60,
+        completion_pct: 0,
+      },
+      progress: null,
+    }
+
+    const result = mapUserLanguageInfo(raw)
+
+    expect(result.plan).toBeDefined()
+    expect(result.plan!.cefr_level).toBeNull()
+    expect(result.progress).toBeNull()
+  })
+
+  it('maps missing plan to null', () => {
+    const raw = {
+      target_language: 'en-US',
+      is_active: false,
+    }
+
+    const result = mapUserLanguageInfo(raw)
+
+    expect(result.plan).toBeNull()
+    expect(result.progress).toBeNull()
+  })
+
+  it('maps plan with progress but null cefr_level', () => {
+    const raw = {
+      target_language: 'en-GB',
+      is_active: true,
+      plan: {
+        id: 2,
+        cefr_level: null,
+        progress_day: 10,
+        total_days: 60,
+        completion_pct: 16.7,
+      },
+      progress: {
+        total_xp: 500,
+        current_streak: 3,
+        lessons_completed: 4,
+      },
+    }
+
+    const result = mapUserLanguageInfo(raw)
+
+    expect(result.plan).toEqual({
+      id: 2,
+      cefr_level: null,
+      progress_day: 10,
+      total_days: 60,
+      completion_pct: 16.7,
+    })
+    expect(result.progress).toEqual({
+      total_xp: 500,
+      current_streak: 3,
+      lessons_completed: 4,
+    })
   })
 })

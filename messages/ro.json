@@ -57,7 +57,10 @@
     "wordSaved": "Salvat",
     "wordSaveError": "A apărut o problemă",
     "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău",
-    "noActivePlan": "Nu a fost găsit niciun plan de studiu activ"
+    "noActivePlan": "Nu a fost găsit niciun plan de studiu activ",
+    "removeLanguageConfirmTitle": "Elimină limba",
+    "removeLanguageConfirmMessage": "Toate datele pentru această limbă (plan de studiu, progres, flashcards, conversații și amintiri) vor fi șterse permanent. Această acțiune nu poate fi anulată.",
+    "removeLanguageConfirmLabel": "Elimină"
   },
   "nav": {
     "home": "Acasă",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Schimbă limba"
   },
   "auth": {
     "login": {
@@ -241,7 +245,9 @@
     "memoryClearAllTitle": "Șterge toate amintirile",
     "memoryClearAllMessage": "Aceasta va șterge permanent toate amintirile salvate. Această acțiune nu poate fi anulată.",
     "memoryClearAllConfirm": "Șterge tot",
-    "memoryManage": "Gestionează amintirile"
+    "memoryManage": "Gestionează amintirile",
+    "sectionLanguages": "Limbi",
+    "languagesManage": "Limbile mele"
   },
   "legal": {
     "terms": {
@@ -903,15 +909,44 @@
     "pl": "Poloneză",
     "nl": "Olandeză",
     "ro": "Română",
-    "ru": "Rusă"
+    "ru": "Rusă",
+    "myLanguages": "Limbile mele",
+    "addLanguage": "Adaugă limbă",
+    "selectLanguage": "Alege limba pe care vrei să o înveți",
+    "activeLanguage": "Activ",
+    "switchTo": "Comută la aceasta",
+    "switching": "Se comută la {language}...",
+    "switched": "S-a comutat la {language} ({level})",
+    "removeLanguage": "Elimină limba",
+    "removeConfirmTitle": "Elimini {language}?",
+    "removeConfirmMessage": "Toate progresele, lecțiile, flashcard-urile și datele asociate acestei limbi vor fi șterse permanent. Această acțiune nu poate fi anulată.",
+    "removeConfirmButton": "Elimină",
+    "deleteError": "Nu s-a putut șterge {language}. Încearcă din nou.",
+    "noLanguages": "Nicio limbă configurată.",
+    "progressLabel": "Progres",
+    "levelLabel": "Nivel",
+    "xpLabel": "XP total",
+    "streakLabel": "Serie",
+    "lessonsLabel": "Lecții",
+    "flashcardsLabel": "Flashcard-uri",
+    "viewDetails": "Vezi detalii",
+    "supportedLanguages": "Limbi disponibile"
   },
   "targetLanguages": {
     "en-US": "Engleză americană",
-    "en-GB": "Engleză britanică"
+    "en-GB": "Engleză britanică",
+    "es-ES": "Spaniolă",
+    "it-IT": "Italiană",
+    "pt-PT": "Portugheză",
+    "es-ES-description": "Spaniola vorbită în Spania.",
+    "it-IT-description": "Italiana vorbită în Italia.",
+    "pt-PT-description": "Portugheza vorbită în Portugalia.",
+    "en-US-description": "Engleza vorbită în Statele Unite.",
+    "en-GB-description": "Engleza vorbită în Regatul Unit."
   },
   "onboarding": {
-    "title": "Alege engleza ta",
-    "subtitle": "Ce engleză vrei să înveți?",
+    "title": "Alege-ți limba",
+    "subtitle": "Ce limbă vrei să înveți?",
     "chooseVariant": "Selectează varianta",
     "continue": "Continuă",
     "saveFailed": "Salvarea preferințelor a eșuat",
@@ -927,7 +962,9 @@
       "emigration": "A trăi în străinătate",
       "exams": "Examene și certificări",
       "social": "Socializare"
-    }
+    },
+    "newLanguageHeadline": "Ce limbă nouă vrei să înveți?",
+    "newLanguageSubtitle": "Un nou plan de studiu va fi creat pentru această limbă."
   },
   "tour": {
     "skip": "Sari peste",
@@ -1033,7 +1070,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.6.13",
+    "version": "v1.7.0",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Salvează cuvinte în timp ce citești",

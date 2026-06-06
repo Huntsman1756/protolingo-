@@ -13,6 +13,7 @@ import type { ChatContextItem } from '@/lib/conversation-ws'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { apiFetch } from '@/lib/api'
+import { useLanguageStore } from '@/store/language'
 
 const ConversationMode = dynamic(
   () => import('@/components/conversation/ConversationMode'),
@@ -29,6 +30,7 @@ const ConversationMode = dynamic(
 )
 
 export default function ConversationPage() {
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [initialContext, setInitialContext] = useState<
     ChatContextItem[] | undefined
   >(undefined)
@@ -60,6 +62,7 @@ export default function ConversationPage() {
         // malformed — ignore
       }
     }
+    setPlanReady(false)
     apiFetch('/api/plan/today')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -69,7 +72,7 @@ export default function ConversationPage() {
         /* sin plan — usa default 1500ms */
       })
       .finally(() => setPlanReady(true))
-  }, [])
+  }, [activeLanguage?.code])
 
   if (!planReady) return null
 

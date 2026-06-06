@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy import delete, select
+from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
@@ -12,6 +12,7 @@ from app.models.memory import Memory
 from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.schemas.language import (
     LanguageAddRequest,
     LanguagePlanInfo,
@@ -24,7 +25,6 @@ from app.services.user_language_service import (
     add_language,
     get_active_language,
     get_user_languages,
-    remove_language,
     switch_language,
 )
 
@@ -36,11 +36,19 @@ router = APIRouter(prefix="/api/languages", tags=["languages"])
 async def _build_plan_info(
     db: AsyncSession, user_id: int, target_language: str
 ) -> LanguagePlanInfo | None:
+    ul_result = await db.execute(
+        select(UserLanguage.id).where(
+            UserLanguage.user_id == user_id,
+            UserLanguage.target_language == target_language,
+        )
+    )
+    ul_id = ul_result.scalar_one_or_none()
+    if ul_id is None:
+        return None
     result = await db.execute(
         select(StudyPlan)
         .where(
-            StudyPlan.user_id == user_id,
-            StudyPlan.target_language == target_language,
+            StudyPlan.user_language_id == ul_id,
             StudyPlan.is_active.is_(True),
         )
         .order_by(StudyPlan.created_at.desc())
@@ -65,11 +73,14 @@ async def _build_plan_info(
 async def _build_progress_info(
     db: AsyncSession, user_id: int, target_language: str
 ) -> LanguageProgressInfo | None:
-    # Find the active plan for this language to filter progress
+    # Find the active plan for this language via UserLanguage
     plan_res = await db.execute(
-        select(StudyPlan.id).where(
-            StudyPlan.user_id == user_id,
-            StudyPlan.target_language == target_language,
+        select(StudyPlan.id)
+        .select_from(StudyPlan)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(
+            UserLanguage.user_id == user_id,
+            UserLanguage.target_language == target_language,
             StudyPlan.is_active.is_(True),
         )
     )
@@ -165,31 +176,45 @@ async def delete_language(
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
-    # Collect plan IDs before deletion so we can clean up SET NULL rows
-    plan_result = await db.execute(
-        select(StudyPlan.id).where(
-            StudyPlan.user_id == current_user.id,
-            StudyPlan.target_language == target_language,
+    # ── Find the UserLanguage row ────────────────────────────────────────
+    ul_result = await db.execute(
+        select(UserLanguage).where(
+            UserLanguage.user_id == current_user.id,
+            UserLanguage.target_language == target_language,
         )
     )
-    plan_ids = [row[0] for row in plan_result.fetchall()]
+    ul = ul_result.scalar_one_or_none()
+    if not ul:
+        raise HTTPException(status_code=404, detail="Language not found")
 
+    # ── Validation (same rules as remove_language) ───────────────────────
+    count_result = await db.execute(
+        select(func.count())
+        .select_from(UserLanguage)
+        .where(UserLanguage.user_id == current_user.id)
+    )
+    if count_result.scalar() <= 1:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot delete the only language",
+        )
+    if ul.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot delete the active language",
+        )
+
+    # ── Clean up SET NULL tables before cascading delete ─────────────────
+    plan_result = await db.execute(select(StudyPlan.id).where(StudyPlan.user_language_id == ul.id))
+    plan_ids = [row[0] for row in plan_result.fetchall()]
     if plan_ids:
-        # Clean up rows that use SET NULL FK — delete them before the plans
-        # so they don't become orphaned with NULL study_plan_id
         await db.execute(delete(ChatHistory).where(ChatHistory.study_plan_id.in_(plan_ids)))
         await db.execute(delete(Conversation).where(Conversation.study_plan_id.in_(plan_ids)))
         await db.execute(delete(Memory).where(Memory.study_plan_id.in_(plan_ids)))
         await db.execute(delete(LLMUsage).where(LLMUsage.study_plan_id.in_(plan_ids)))
 
-    # Delete all study plans for this language (CASCADE handles progress, flashcards,
-    # and user_competencies)
-    await db.execute(
-        delete(StudyPlan).where(
-            StudyPlan.user_id == current_user.id,
-            StudyPlan.target_language == target_language,
-        )
-    )
-    await db.flush()
-
-    await remove_language(db, current_user.id, target_language)
+    # ── Delete UserLanguage → CASCADE deletes StudyPlan →
+    #     CASCADE deletes progress, flashcards, user_competencies,
+    #     listening_attempts, reading_attempts ─────────────────────────────
+    await db.delete(ul)
+    await db.commit()

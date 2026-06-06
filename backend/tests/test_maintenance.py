@@ -57,10 +57,11 @@ async def test_maintenance_mode_returns_503_on_subscription_endpoint(
     client, admin_user, test_user, db_session
 ):
     """When maintenance mode is ON, subscription-gated endpoints return 503."""
-    from app.models.study_plan import StudyPlan
+    from tests.conftest import make_study_plan
 
     user, user_headers = test_user
-    plan = StudyPlan(
+    _ = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         target_language="en-US",
@@ -71,8 +72,6 @@ async def test_maintenance_mode_returns_503_on_subscription_endpoint(
         generated_plan={},
         is_active=True,
     )
-    db_session.add(plan)
-    await db_session.commit()
 
     # Turn maintenance on
     admin, admin_headers = admin_user

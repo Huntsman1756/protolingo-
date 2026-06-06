@@ -9,7 +9,7 @@ applyTo: "**/*.test.*, **/*.spec.*, **/tests/**, **/__tests__/**"
 
 | Layer | Framework | Scope | Coverage | Status |
 |-------|-----------|-------|----------|--------|
-| Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | 73% (target: 60%) | Implemented |
+| Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | 73% (target: 70%) | Implemented |
 | Frontend critical logic | Vitest | Stores, utils, apiFetch interceptor, middleware, audio | — | Implemented |
 | E2E | Playwright | Critical user flows | Smoke | Pending |
 
@@ -62,7 +62,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 
 ### Coverage
 
-- **Current coverage**: 44% (below 60% target)
+- **Current coverage**: 73% (above 70% target)
 - **Configured threshold**: 70% (enforced via `pytest --cov-fail-under=70`)
 - **Note**: Coverage is below target. Consider adding tests for uncovered modules or adjusting threshold.
 
@@ -219,7 +219,7 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 |-----|-------|-----------|
 | Backend lint | `ruff check` | Zero errors |
 | Backend format | `black --check .` | Clean diff |
-| Backend tests | `pytest --cov-fail-under=70` | >= 60% coverage |
+| Backend tests | `pytest --cov-fail-under=70` | >= 70% coverage |
 | Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |
 | Frontend format | `prettier --check src/` | Clean diff |
 | Frontend typecheck | `npx tsc --noEmit` | Clean output |

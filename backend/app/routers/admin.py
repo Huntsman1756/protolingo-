@@ -17,6 +17,7 @@ from app.models.llm_usage import LLMUsage
 from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.schemas.admin import (
     AdminUserCreate,
     AdminUserResponse,
@@ -105,7 +106,8 @@ async def get_user_stats(
     # Active study plan
     plan_result = await db.execute(
         select(StudyPlan)
-        .where(StudyPlan.user_id == user_id, StudyPlan.is_active.is_(True))
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(UserLanguage.user_id == user_id, StudyPlan.is_active.is_(True))
         .order_by(StudyPlan.created_at.desc())
         .limit(1)
     )
@@ -116,7 +118,8 @@ async def get_user_stats(
         await db.scalar(
             select(func.count(Lesson.id))
             .join(StudyPlan, Lesson.study_plan_id == StudyPlan.id)
-            .where(StudyPlan.user_id == user_id, Lesson.is_completed.is_(True))
+            .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+            .where(UserLanguage.user_id == user_id, Lesson.is_completed.is_(True))
         )
         or 0
     )
@@ -155,7 +158,11 @@ async def get_user_stats(
     tokens_by_source: dict[str, int] = {row.source: row.total for row in token_rows}
 
     # Per-language breakdown
-    plans_result = await db.execute(select(StudyPlan).where(StudyPlan.user_id == user_id))
+    plans_result = await db.execute(
+        select(StudyPlan)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(UserLanguage.user_id == user_id)
+    )
     all_plans = plans_result.scalars().all()
 
     per_language: list[LanguageStats] = []

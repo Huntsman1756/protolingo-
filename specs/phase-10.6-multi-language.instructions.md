@@ -138,11 +138,11 @@ Add entries for the 3 new languages to the existing `targetLanguages` namespace 
 
 ```json
 "targetLanguages": {
-  "es-ES": "Spanish (Spain)",
+  "es-ES": "Spanish",
   "es-ES-description": "Spanish spoken in Spain, one of the most widely spoken languages in the world.",
   "it-IT": "Italian",
   "it-IT-description": "Standard Italian, the language of culture, art and gastronomy.",
-  "pt-PT": "Portuguese (Portugal)",
+  "pt-PT": "Portuguese",
   "pt-PT-description": "European Portuguese, official language of Portugal."
 }
 ```
@@ -150,6 +150,20 @@ Add entries for the 3 new languages to the existing `targetLanguages` namespace 
 The English values above are the reference. Add the equivalent translations in all 10 locale files.
 
 ---
+
+## Tests
+
+### New tests (`backend/tests/test_multi_language.py`)
+
+| Test | Description |
+|------|-------------|
+| `test_curriculum_per_language` | `get_curriculum()` returns the correct curriculum for each language (en, es, it, pt) |
+
+### Frontend tests (Vitest)
+
+| File | What to test |
+|------|-------------|
+| `frontend/tests/data/curriculum.test.ts` | `getCurriculum('es-ES')` returns Spanish curriculum; all 5 languages have complete data; dispatcher falls back for unsupported languages |
 
 ## New files in this phase
 

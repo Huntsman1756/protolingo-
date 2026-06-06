@@ -72,6 +72,27 @@ export default function SettingsPage() {
         </Link>
       </div>
 
+      {/* Languages */}
+      <div className="border-fl-border bg-fl-surface mt-4 border p-6">
+        <div className="border-fl-border mb-4 flex items-center gap-2 border-b pb-4">
+          <span className="text-fl-label text-fl-muted-2">●</span>
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('sectionLanguages')}
+          </span>
+        </div>
+        <Link
+          href="/settings/languages"
+          className="text-fl-muted-1 hover:text-fl-fg group flex items-center justify-between font-mono text-xs transition-colors"
+        >
+          <span className="tracking-widest uppercase">
+            {t('languagesManage')}
+          </span>
+          <span className="text-fl-muted-3 group-hover:text-fl-fg transition-colors">
+            ›
+          </span>
+        </Link>
+      </div>
+
       <ConversationSection />
       <VoiceSection />
       <UsageLimitsSection />

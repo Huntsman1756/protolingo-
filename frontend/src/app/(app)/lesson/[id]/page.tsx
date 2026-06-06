@@ -1,11 +1,12 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useProgressStore } from '@/store/progress'
+import { useLanguageStore } from '@/store/language'
 import { grammarTopics } from '@/data/grammar'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
@@ -41,6 +42,8 @@ export default function LessonPage() {
   const router = useRouter()
   const id = params.id as string
   const completeLesson = useProgressStore((s) => s.completeLesson)
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
+  const langAtLoad = useRef(activeLanguage?.code ?? null)
   const {
     selectedWord,
     tooltipPos,
@@ -90,6 +93,14 @@ export default function LessonPage() {
       })
       .catch(() => {})
   }, [])
+
+  // Redirect to plan page if the user switches language while viewing a lesson
+  useEffect(() => {
+    const current = activeLanguage?.code ?? null
+    if (langAtLoad.current && current && current !== langAtLoad.current) {
+      router.replace('/plan')
+    }
+  }, [activeLanguage?.code, router])
 
   // Restore the answer field whenever the active exercise changes
   // (seeds previous user_answer for already-answered exercises, clears for fresh ones)

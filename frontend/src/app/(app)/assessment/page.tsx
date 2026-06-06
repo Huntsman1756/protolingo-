@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useLanguageStore } from '@/store/language'
 import BeginnerGate from '@/components/assessment/BeginnerGate'
 import AdaptiveQuizCard from '@/components/assessment/AdaptiveQuizCard'
 import DurationSelector, {
@@ -62,6 +63,7 @@ export default function AssessmentPage() {
   const t = useTranslations('assessment')
   const tCommon = useTranslations('common')
   const router = useRouter()
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
 
   const [step, setStep] = useState<FlowStep>('checking')
   const [existingPlan, setExistingPlan] = useState<ExistingPlan | null>(null)
@@ -225,6 +227,10 @@ export default function AssessmentPage() {
           duration_weeks: durationOption.weeks,
           days_per_week: durationOption.daysPerWeek,
           goals: selectedGoals,
+          // Explicit target_language prevents /complete from relying on the
+          // potentially-stale users.target_language column when the user is
+          // completing assessment for a newly added language.
+          target_language: activeLanguage?.code ?? undefined,
         }),
       })
       if (!res.ok) {

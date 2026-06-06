@@ -57,7 +57,10 @@
     "wordSaved": "Opgeslagen",
     "wordSaveError": "Er is een probleem opgetreden",
     "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat",
-    "noActivePlan": "Geen actief studieplan gevonden"
+    "noActivePlan": "Geen actief studieplan gevonden",
+    "removeLanguageConfirmTitle": "Taal verwijderen",
+    "removeLanguageConfirmMessage": "Alle gegevens voor deze taal (studieplan, voortgang, flashcards, gesprekken en herinneringen) worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "removeLanguageConfirmLabel": "Verwijderen"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Taal wijzigen"
   },
   "auth": {
     "login": {
@@ -241,7 +245,9 @@
     "memoryClearAllTitle": "Alle herinneringen wissen",
     "memoryClearAllMessage": "Hiermee worden alle opgeslagen herinneringen permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
     "memoryClearAllConfirm": "Alles wissen",
-    "memoryManage": "Herinneringen beheren"
+    "memoryManage": "Herinneringen beheren",
+    "sectionLanguages": "Talen",
+    "languagesManage": "Mijn talen"
   },
   "legal": {
     "terms": {
@@ -903,15 +909,44 @@
     "pl": "Pools",
     "nl": "Nederlands",
     "ro": "Roemeens",
-    "ru": "Russisch"
+    "ru": "Russisch",
+    "myLanguages": "Mijn talen",
+    "addLanguage": "Taal toevoegen",
+    "selectLanguage": "Kies de taal die je wilt leren",
+    "activeLanguage": "Actief",
+    "switchTo": "Wissel naar deze",
+    "switching": "Wisselen naar {language}...",
+    "switched": "Gewisseld naar {language} ({level})",
+    "removeLanguage": "Taal verwijderen",
+    "removeConfirmTitle": "{language} verwijderen?",
+    "removeConfirmMessage": "Alle voortgang, lessen, flashcards en gegevens van deze taal worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "removeConfirmButton": "Verwijderen",
+    "deleteError": "Kan {language} niet verwijderen. Probeer het opnieuw.",
+    "noLanguages": "Geen talen geconfigureerd.",
+    "progressLabel": "Voortgang",
+    "levelLabel": "Niveau",
+    "xpLabel": "Totale XP",
+    "streakLabel": "Reeks",
+    "lessonsLabel": "Lessen",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "Details bekijken",
+    "supportedLanguages": "Beschikbare talen"
   },
   "targetLanguages": {
     "en-US": "Amerikaans Engels",
-    "en-GB": "Brits Engels"
+    "en-GB": "Brits Engels",
+    "es-ES": "Spaans",
+    "it-IT": "Italiaans",
+    "pt-PT": "Portugees",
+    "es-ES-description": "Spaans zoals gesproken in Spanje.",
+    "it-IT-description": "Italiaans zoals gesproken in Italië.",
+    "pt-PT-description": "Portugees zoals gesproken in Portugal.",
+    "en-US-description": "Engels zoals gesproken in de Verenigde Staten.",
+    "en-GB-description": "Engels zoals gesproken in het Verenigd Koninkrijk."
   },
   "onboarding": {
-    "title": "Kies jouw Engels",
-    "subtitle": "Welk Engels wil je leren?",
+    "title": "Kies jouw taal",
+    "subtitle": "Welke taal wil je leren?",
     "chooseVariant": "Selecteer variant",
     "continue": "Doorgaan",
     "saveFailed": "Opslaan van voorkeuren mislukt",
@@ -927,7 +962,9 @@
       "emigration": "In het buitenland leven",
       "exams": "Examens en certificaten",
       "social": "Socialiseren"
-    }
+    },
+    "newLanguageHeadline": "Welke nieuwe taal wil je leren?",
+    "newLanguageSubtitle": "Er wordt een nieuw studieplan aangemaakt voor deze taal."
   },
   "tour": {
     "skip": "Overslaan",
@@ -1033,7 +1070,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.6.13",
+    "version": "v1.7.0",
     "cta": "Begrepen",
     "entry1": {
       "label": "Woorden opslaan tijdens het lezen",

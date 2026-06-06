@@ -21,9 +21,8 @@ async def _get_active_plan_or_none(db: AsyncSession, user_id: int) -> StudyPlan 
         return None
     result = await db.execute(
         select(StudyPlan).where(
-            StudyPlan.user_id == user_id,
+            StudyPlan.user_language_id == active_lang.id,
             StudyPlan.is_active.is_(True),
-            StudyPlan.target_language == active_lang.target_language,
         )
     )
     return result.scalar_one_or_none()

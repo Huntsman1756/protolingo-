@@ -3,31 +3,10 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import {
-  grammarTopics,
-  type GrammarCategory,
-  type GrammarTopic,
-} from '@/data/grammar'
+import { getGrammarTopics, type GrammarTopic } from '@/data/grammar'
+import type { GrammarCategory } from '@/data/types'
 import { CEFR_LEVELS } from '@/data/curriculum'
-
-// ── Constants ─────────────────────────────────────────────────────────────────
-
-const ALL_CATEGORIES: GrammarCategory[] = [
-  'Tenses',
-  'Questions',
-  'Nouns',
-  'Pronouns',
-  'Adjectives & Adverbs',
-  'Modals',
-  'Conditionals',
-  'Passive Voice',
-  'Reported Speech',
-  'Clauses',
-  'Articles',
-  'Prepositions',
-  'Phrasal Verbs',
-  'Advanced',
-]
+import { useLanguageStore } from '@/store/language'
 
 // ── Topic card ────────────────────────────────────────────────────────────────
 
@@ -62,9 +41,23 @@ function TopicCard({ topic }: { topic: GrammarTopic }) {
 export default function GrammarIndexPage() {
   const t = useTranslations('grammar')
   const tCommon = useTranslations('common')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [search, setSearch] = useState('')
   const [activeCategory, setActiveCategory] = useState<GrammarCategory | 'All'>(
     'All'
+  )
+
+  const grammarTopics = useMemo(
+    () => getGrammarTopics(activeLanguage?.code),
+    [activeLanguage?.code]
+  )
+
+  const allCategories: GrammarCategory[] = useMemo(
+    () =>
+      Array.from(
+        new Set(grammarTopics.map((t) => t.category))
+      ).sort() as GrammarCategory[],
+    [grammarTopics]
   )
 
   const filtered = useMemo(() => {
@@ -79,12 +72,12 @@ export default function GrammarIndexPage() {
         activeCategory === 'All' || t.category === activeCategory
       return matchesSearch && matchesCategory
     })
-  }, [search, activeCategory])
+  }, [search, activeCategory, grammarTopics])
 
   const usedCategories = useMemo(() => {
     const cats = new Set(grammarTopics.map((t) => t.category))
-    return ALL_CATEGORIES.filter((c) => cats.has(c))
-  }, [])
+    return allCategories.filter((c) => cats.has(c))
+  }, [grammarTopics, allCategories])
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">

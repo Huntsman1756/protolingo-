@@ -57,7 +57,10 @@
     "wordSaved": "Gespeichert",
     "wordSaveError": "Es ist ein Problem aufgetreten",
     "selectWordHint": "Wähle ein Wort aus, um es in dein Vokabular zu speichern",
-    "noActivePlan": "Kein aktiver Lernplan gefunden"
+    "noActivePlan": "Kein aktiver Lernplan gefunden",
+    "removeLanguageConfirmTitle": "Sprache entfernen",
+    "removeLanguageConfirmMessage": "Alle Daten für diese Sprache (Studienplan, Fortschritt, Karteikarten, Konversationen und Erinnerungen) werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "removeLanguageConfirmLabel": "Entfernen"
   },
   "nav": {
     "home": "Startseite",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Kontakt",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Sprache wechseln"
   },
   "auth": {
     "login": {
@@ -241,7 +245,9 @@
     "memoryClearAllTitle": "Alle Erinnerungen löschen",
     "memoryClearAllMessage": "Dadurch werden alle gespeicherten Erinnerungen dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
     "memoryClearAllConfirm": "Alles löschen",
-    "memoryManage": "Erinnerungen verwalten"
+    "memoryManage": "Erinnerungen verwalten",
+    "sectionLanguages": "Sprachen",
+    "languagesManage": "Meine Sprachen"
   },
   "legal": {
     "terms": {
@@ -903,15 +909,44 @@
     "pl": "Polnisch",
     "nl": "Niederländisch",
     "ro": "Rumänisch",
-    "ru": "Russisch"
+    "ru": "Russisch",
+    "myLanguages": "Meine Sprachen",
+    "addLanguage": "Sprache hinzufügen",
+    "selectLanguage": "Wähle die Sprache, die du lernen möchtest",
+    "activeLanguage": "Aktiv",
+    "switchTo": "Wechseln zu",
+    "switching": "Wechsle zu {language}...",
+    "switched": "Gewechselt zu {language} ({level})",
+    "removeLanguage": "Sprache entfernen",
+    "removeConfirmTitle": "{language} entfernen?",
+    "removeConfirmMessage": "Alle Fortschritte, Lektionen, Flashcards und Daten dieser Sprache werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "removeConfirmButton": "Entfernen",
+    "deleteError": "Konnte {language} nicht löschen. Bitte versuche es erneut.",
+    "noLanguages": "Keine Sprachen konfiguriert.",
+    "progressLabel": "Fortschritt",
+    "levelLabel": "Niveau",
+    "xpLabel": "Gesamt-XP",
+    "streakLabel": "Serie",
+    "lessonsLabel": "Lektionen",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "Details anzeigen",
+    "supportedLanguages": "Verfügbare Sprachen"
   },
   "targetLanguages": {
     "en-US": "Amerikanisches Englisch",
-    "en-GB": "Britisches Englisch"
+    "en-GB": "Britisches Englisch",
+    "es-ES": "Spanisch",
+    "it-IT": "Italienisch",
+    "pt-PT": "Portugiesisch",
+    "es-ES-description": "Spanisch, wie es in Spanien gesprochen wird.",
+    "it-IT-description": "Italienisch, wie es in Italien gesprochen wird.",
+    "pt-PT-description": "Portugiesisch, wie es in Portugal gesprochen wird.",
+    "en-US-description": "Englisch, wie es in den USA gesprochen wird.",
+    "en-GB-description": "Englisch, wie es im Vereinigten Königreich gesprochen wird."
   },
   "onboarding": {
-    "title": "Wähle dein Englisch",
-    "subtitle": "Welches Englisch möchtest du lernen?",
+    "title": "Wähle deine Sprache",
+    "subtitle": "Welche Sprache möchtest du lernen?",
     "chooseVariant": "Variante auswählen",
     "continue": "Weiter",
     "saveFailed": "Einstellungen konnten nicht gespeichert werden",
@@ -927,7 +962,9 @@
       "emigration": "Im Ausland leben",
       "exams": "Prüfungen & Zertifikate",
       "social": "Sozialleben"
-    }
+    },
+    "newLanguageHeadline": "Welche neue Sprache möchtest du lernen?",
+    "newLanguageSubtitle": "Ein neuer Studienplan wird für diese Sprache erstellt."
   },
   "tour": {
     "skip": "Überspringen",
@@ -1033,7 +1070,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.6.13",
+    "version": "v1.7.0",
     "cta": "Verstanden",
     "entry1": {
       "label": "Wörter beim Lesen speichern",

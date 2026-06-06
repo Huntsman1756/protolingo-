@@ -57,7 +57,10 @@
     "wordSaved": "Saved",
     "wordSaveError": "Something went wrong",
     "selectWordHint": "Select a word to save it to your vocabulary",
-    "noActivePlan": "No active study plan found"
+    "noActivePlan": "No active study plan found",
+    "removeLanguageConfirmTitle": "Remove language",
+    "removeLanguageConfirmMessage": "All data for this language (study plan, progress, flashcards, conversations, and memories) will be permanently deleted. This action cannot be undone.",
+    "removeLanguageConfirmLabel": "Remove"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Switch language"
   },
   "auth": {
     "login": {
@@ -241,7 +245,9 @@
     "memoryClearAllTitle": "Clear All Memories",
     "memoryClearAllMessage": "This will permanently delete all saved memories. This action cannot be undone.",
     "memoryClearAllConfirm": "Clear All",
-    "memoryManage": "Manage memories"
+    "memoryManage": "Manage memories",
+    "sectionLanguages": "Languages",
+    "languagesManage": "My languages"
   },
   "legal": {
     "terms": {
@@ -903,15 +909,44 @@
     "pl": "Polish",
     "nl": "Dutch",
     "ro": "Romanian",
-    "ru": "Russian"
+    "ru": "Russian",
+    "myLanguages": "My Languages",
+    "addLanguage": "Add new language",
+    "selectLanguage": "Select the language you want to learn",
+    "activeLanguage": "Active",
+    "switchTo": "Switch to this",
+    "switching": "Switching to {language}...",
+    "switched": "Switched to {language} ({level})",
+    "removeLanguage": "Remove language",
+    "removeConfirmTitle": "Remove {language}?",
+    "removeConfirmMessage": "All progress, lessons, flashcards and data associated with this language will be permanently deleted. This action cannot be undone.",
+    "removeConfirmButton": "Remove",
+    "deleteError": "Could not delete {language}. Please try again.",
+    "noLanguages": "You have no languages configured.",
+    "progressLabel": "Progress",
+    "levelLabel": "Level",
+    "xpLabel": "Total XP",
+    "streakLabel": "Streak",
+    "lessonsLabel": "Lessons",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "View details",
+    "supportedLanguages": "Available languages"
   },
   "targetLanguages": {
     "en-US": "American English",
-    "en-GB": "British English"
+    "en-GB": "British English",
+    "es-ES": "Spanish",
+    "it-IT": "Italian",
+    "pt-PT": "Portuguese",
+    "es-ES-description": "Spanish as spoken in Spain.",
+    "it-IT-description": "Italian as spoken in Italy.",
+    "pt-PT-description": "Portuguese as spoken in Portugal.",
+    "en-US-description": "English as spoken in the United States.",
+    "en-GB-description": "English as spoken in the United Kingdom."
   },
   "onboarding": {
-    "title": "Choose Your English",
-    "subtitle": "Which English do you want to learn?",
+    "title": "Choose your language",
+    "subtitle": "Which language do you want to learn?",
     "chooseVariant": "Select variant",
     "continue": "Continue",
     "saveFailed": "Failed to save preferences",
@@ -927,7 +962,9 @@
       "emigration": "Living Abroad",
       "exams": "Exams & Certifications",
       "social": "Socializing"
-    }
+    },
+    "newLanguageHeadline": "What new language do you want to learn?",
+    "newLanguageSubtitle": "A new study plan will be created for this language."
   },
   "tour": {
     "skip": "Skip",
@@ -1033,7 +1070,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.6.13",
+    "version": "v1.7.0",
     "cta": "Got it",
     "entry1": {
       "label": "Save words from reading",

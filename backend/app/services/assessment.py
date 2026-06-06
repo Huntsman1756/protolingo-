@@ -32,10 +32,12 @@ Return JSON:
 """
 
 END_OF_LEVEL_TEST_PROMPT = """
-You are assessing whether a student has mastered CEFR level {cefr_level}.
+You are assessing whether a student has mastered CEFR level {cefr_level} in {target_language_name}.
 
-Generate a 20-question test covering ALL grammar points and vocabulary sets
-studied during {cefr_level}. Questions must come exclusively from:
+Generate a 20-question test completely in {target_language_name} covering ALL grammar
+points and vocabulary sets studied during {cefr_level}. Write every question, every
+answer option, and every piece of content exclusively in {target_language_name}.
+Questions must come exclusively from:
 Grammar: {grammar_points_studied}
 Vocabulary: {vocabulary_sets_studied}
 
@@ -147,18 +149,22 @@ async def generate_level_test_questions(
     cefr_level: str,
     grammar_points_studied: list[str],
     vocabulary_sets_studied: list[str],
+    target_language: str = "en-US",
 ) -> list[dict]:
     """
-    LLM-generated 20-question level completion test.
+    LLM-generated 20-question level completion test in the target language.
     Questions are exclusive to the studied grammar/vocabulary at cefr_level.
     """
     import json  # noqa: PLC0415
+
+    target_language_name = get_language_name(target_language)
 
     idx = CEFR_LEVELS.index(cefr_level) if cefr_level in CEFR_LEVELS else 0
     next_level = CEFR_LEVELS[idx + 1] if idx + 1 < len(CEFR_LEVELS) else "higher levels"
 
     prompt = END_OF_LEVEL_TEST_PROMPT.format(
         cefr_level=cefr_level,
+        target_language_name=target_language_name,
         grammar_points_studied=", ".join(grammar_points_studied) or "all grammar for this level",
         vocabulary_sets_studied=", ".join(vocabulary_sets_studied)
         or "all vocabulary for this level",

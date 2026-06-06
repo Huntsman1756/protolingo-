@@ -81,6 +81,31 @@ async def switch_language(db: AsyncSession, user_id: int, target_language: str) 
     return row
 
 
+async def ensure_user_language(
+    db: AsyncSession, user_id: int, target_language: str
+) -> UserLanguage:
+    """Return the UserLanguage row for (user_id, target_language), creating it if missing.
+
+    New rows are created with is_active=False so they don't steal the active status
+    from whichever language the user is currently studying.
+    """
+    result = await db.execute(
+        select(UserLanguage)
+        .where(
+            UserLanguage.user_id == user_id,
+            UserLanguage.target_language == target_language,
+        )
+        .with_for_update()
+    )
+    row = result.scalar_one_or_none()
+    if row:
+        return row
+    row = UserLanguage(user_id=user_id, target_language=target_language, is_active=False)
+    db.add(row)
+    await db.flush()
+    return row
+
+
 async def remove_language(db: AsyncSession, user_id: int, target_language: str) -> bool:
     rows = await get_user_languages(db, user_id)
     if len(rows) <= 1:

@@ -5,7 +5,7 @@
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.14-blue?style=flat-square)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
-![Version](https://img.shields.io/badge/version-1.6.13-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.7.0-brightgreen?style=flat-square)
 
 <p align="left">
   <img src="assets/logo.png" alt="FreeLingo logo" width="225" />
@@ -118,7 +118,7 @@ freelingo/
 | 7     | Reading                | ✅ Complete         |
 | 8     | Feedback board         | ✅ Complete         |
 | 9     | Memory                 | ✅ Complete         |
-| 10    | Multi-Language Learning| 🔄 In Progress      |
+| 10    | Multi-Language Learning| ✅ Complete         |
 
 ## Quick start
 

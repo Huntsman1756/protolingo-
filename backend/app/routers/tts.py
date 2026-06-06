@@ -19,7 +19,7 @@ _PREVIEW_DIR = "/app/tts_previews"
 _OPENAI_VOICES = frozenset(
     {"alloy", "ash", "coral", "echo", "fable", "nova", "onyx", "sage", "shimmer"}
 )
-_PREVIEW_TEXT = "Hello! I'm your English tutor. This is how I sound — warm, clear, and ready to help you practise every day. Let's get started!"
+_PREVIEW_TEXT = "Hello! I'm your FreeLingo tutor. This is how I sound — warm, clear, and ready to help you practise every day. Let's get started!"
 
 
 @router.post("/tts")

@@ -7,7 +7,7 @@ os.environ["RATE_LIMIT_ENABLED"] = "false"
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
-from sqlalchemy import event
+from sqlalchemy import event, select
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 from app.core.database import Base, get_db
@@ -163,37 +163,96 @@ async def admin_user(db_session):
     return user, {"Authorization": f"Bearer {token}"}
 
 
+async def make_study_plan(db_session, *, user_id: int, target_language: str = "en-US", **kwargs):
+    """Create a StudyPlan with proper user_language_id FK.
+
+    Queries the existing UserLanguage row or creates one (inactive) if missing.
+    """
+    from app.models.study_plan import StudyPlan
+    from app.models.user_language import UserLanguage
+
+    ul = (
+        await db_session.execute(
+            select(UserLanguage).where(
+                UserLanguage.user_id == user_id,
+                UserLanguage.target_language == target_language,
+            )
+        )
+    ).scalar_one_or_none()
+    if ul is None:
+        ul = UserLanguage(user_id=user_id, target_language=target_language, is_active=False)
+        db_session.add(ul)
+        await db_session.flush()
+
+    plan = StudyPlan(
+        user_id=user_id,
+        user_language_id=ul.id,
+        target_language=target_language,
+        **kwargs,
+    )
+    db_session.add(plan)
+    await db_session.flush()
+    return plan
+
+
 async def deactivate_active_plans(db_session, user_id: int, target_language: str = "en-US") -> None:
     """Deactivate any active study plan for the given user and language.
 
     Required before directly inserting a new active plan in tests —
-    the partial unique index uq_active_plan_per_lang prevents two active
-    plans for the same (user_id, target_language).
+    the partial unique index uq_active_plan_per_lang on user_language_id
+    prevents two active plans for the same language.
     """
-    from sqlalchemy import update
-
     from app.models.study_plan import StudyPlan
+    from app.models.user_language import UserLanguage
 
-    await db_session.execute(
-        update(StudyPlan)
-        .where(
-            StudyPlan.user_id == user_id,
-            StudyPlan.target_language == target_language,
-            StudyPlan.is_active.is_(True),
+    ul = (
+        await db_session.execute(
+            select(UserLanguage).where(
+                UserLanguage.user_id == user_id,
+                UserLanguage.target_language == target_language,
+            )
         )
-        .values(is_active=False)
+    ).scalar_one_or_none()
+    if ul is None:
+        return
+
+    plans = (
+        (
+            await db_session.execute(
+                select(StudyPlan).where(
+                    StudyPlan.user_language_id == ul.id,
+                    StudyPlan.is_active.is_(True),
+                )
+            )
+        )
+        .scalars()
+        .all()
     )
+    for plan in plans:
+        plan.is_active = False
+    await db_session.flush()
 
 
 @pytest_asyncio.fixture
 async def test_user_with_plan(test_user, db_session):
     """Like test_user but with an active A1 study plan pre-created."""
     from app.models.study_plan import StudyPlan
+    from app.models.user_language import UserLanguage
 
     user, headers = test_user
 
+    ul = (
+        await db_session.execute(
+            select(UserLanguage).where(
+                UserLanguage.user_id == user.id,
+                UserLanguage.target_language == "en-US",
+            )
+        )
+    ).scalar_one()
+
     plan = StudyPlan(
         user_id=user.id,
+        user_language_id=ul.id,
         cefr_level="A1",
         target_language="en-US",
         goals=["grammar"],
@@ -207,3 +266,9 @@ async def test_user_with_plan(test_user, db_session):
     await db_session.commit()
 
     return user, headers
+
+
+@pytest_asyncio.fixture
+async def user_language(test_user):
+    """Shortcut: returns the UserLanguage created by the test_user fixture."""
+    return test_user

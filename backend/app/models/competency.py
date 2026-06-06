@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
@@ -10,6 +10,15 @@ from app.core.database import Base
 
 class UserCompetency(Base):
     __tablename__ = "user_competencies"
+    __table_args__ = (
+        UniqueConstraint(
+            "user_id",
+            "study_plan_id",
+            "unit_id",
+            "competency_text",
+            name="uq_competency_user_plan_unit_text",
+        ),
+    )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(

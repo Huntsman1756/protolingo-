@@ -160,7 +160,9 @@ export function ProfileSection() {
       setConfirmPassword('')
 
       if (uiLocale !== user?.ui_locale) {
-        document.cookie = `NEXT_LOCALE=${uiLocale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`
+        const opts = `path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax${window.location.protocol === 'https:' ? '; Secure' : ''}`
+        document.cookie = `NEXT_LOCALE=${uiLocale}; ${opts}`
+        document.cookie = `LOCALE_DETECTED=1; ${opts}`
         window.location.reload()
       }
     } catch (err: unknown) {

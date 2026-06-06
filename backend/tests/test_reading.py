@@ -100,7 +100,10 @@ async def _make_user(
 
 
 async def _make_plan(db, user_id: int, level: str = "B1") -> StudyPlan:
-    plan = StudyPlan(
+    from tests.conftest import make_study_plan
+
+    return await make_study_plan(
+        db,
         user_id=user_id,
         cefr_level=level,
         target_language="en-US",
@@ -111,9 +114,6 @@ async def _make_plan(db, user_id: int, level: str = "B1") -> StudyPlan:
         generated_plan={},
         is_active=True,
     )
-    db.add(plan)
-    await db.flush()
-    return plan
 
 
 async def _make_exercise(db, level: str = "B1") -> ReadingExercise:

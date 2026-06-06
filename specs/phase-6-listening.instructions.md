@@ -629,7 +629,7 @@ Status: **pending implementation**, consistent with the rest of frontend tests.
 | Modify | `messages/*.json` (all 10) — add `nav.listening` + `listening.*` keys |
 | Modify | `specs/phase-5-stripe-subscriptions.instructions.md` — add Listening to access rules |
 | Modify | `specs/api-endpoints.instructions.md` — add Listening endpoints |
-| Modify | `specs/architecture.instructions.md` — add new models and service |
+| Modify | `specs/architecture-backend.instructions.md` — add new models and service |
 | Modify | `specs/rate-limiting.instructions.md` — add Listening rate limits |
 | Modify | `AGENTS.md` — update phase table |
 | Modify | `CHANGELOG.md` + `specs/version.md` — version bump |

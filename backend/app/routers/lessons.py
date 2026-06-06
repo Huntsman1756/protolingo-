@@ -34,10 +34,13 @@ router = APIRouter(prefix="/api/lessons", tags=["lessons"])
 
 async def _get_lesson_for_user(lesson_id: int, user_id: int, db: AsyncSession) -> Lesson:
     """Fetch a lesson and verify it belongs to the requesting user via its study plan."""
+    from app.models.user_language import UserLanguage
+
     result = await db.execute(
         select(Lesson)
         .join(StudyPlan, Lesson.study_plan_id == StudyPlan.id)
-        .where(Lesson.id == lesson_id, StudyPlan.user_id == user_id)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(Lesson.id == lesson_id, UserLanguage.user_id == user_id)
     )
     lesson = result.scalar_one_or_none()
     if not lesson:
@@ -122,7 +125,7 @@ async def complete_lesson(
 
         plan = await db.get(StudyPlan, lesson.study_plan_id)
         if plan:
-            for u in get_curriculum_units(plan.cefr_level):
+            for u in get_curriculum_units(plan.cefr_level, plan.target_language):
                 if u.id == lesson.unit_id:
                     # Score this lesson: average of answered exercises
                     result_ex = await db.execute(
@@ -164,6 +167,14 @@ async def answer_exercise(
 
     lesson = await _get_lesson_for_user(exercise.lesson_id, current_user.id, db)
 
+    plan = await db.get(StudyPlan, lesson.study_plan_id)
+    if not plan:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Study plan not found for lesson",
+        )
+    target_language = plan.target_language
+
     if exercise.answered_at is not None:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT, detail="Exercise already answered"
@@ -181,6 +192,7 @@ async def answer_exercise(
                 prompt=prompt,
                 criteria=criteria,
                 answer=data.answer,
+                target_language=target_language,
             )
             sco = eval_result.score if hasattr(eval_result, "score") else eval_result["score"]
             fb = (
@@ -200,6 +212,7 @@ async def answer_exercise(
                 question=exercise.question,
                 correct_answer=exercise.correct_answer,
                 student_answer=data.answer,
+                target_language=target_language,
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
@@ -220,6 +233,7 @@ async def answer_exercise(
                 cefr_level=lesson.cefr_level,
                 target=exercise.correct_answer,
                 transcription=transcription,
+                target_language=target_language,
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback

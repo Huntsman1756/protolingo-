@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
+import { useLanguageStore } from '@/store/language'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
@@ -30,6 +31,7 @@ export default function ChatPage() {
   const tCommon = useTranslations('common')
   const router = useRouter()
   const user = useAuthStore((s) => s.user)
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const {
     selectedWord,
     tooltipPos,
@@ -91,7 +93,7 @@ export default function ChatPage() {
     }
     init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [activeLanguage?.code])
 
   async function selectConversation(id: number) {
     dismissTooltip()
@@ -214,7 +216,7 @@ export default function ChatPage() {
           }
         }
       }
-    } catch (err: unknown) {
+    } catch {
       setError(t('errorMessage'))
     } finally {
       setSending(false)
@@ -358,7 +360,7 @@ export default function ChatPage() {
                 messages.map((msg, i) => (
                   <div
                     key={i}
-                    className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse ml-auto max-w-[75%]' : 'flex-row'}`}
+                    className={`flex items-end gap-2 ${msg.role === 'user' ? 'ml-auto max-w-[75%] flex-row-reverse' : 'flex-row'}`}
                   >
                     {/* Avatar */}
                     <div className="border-fl-border mb-0.5 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border">
@@ -389,7 +391,9 @@ export default function ChatPage() {
                         </div>
                       )}
                     </div>
-                    <div className={`min-w-[10rem] max-w-[75%] text-left`}>                      <div
+                    <div className={`max-w-[75%] min-w-[10rem] text-left`}>
+                      {' '}
+                      <div
                         className={`word-selectable border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
                           msg.role === 'user'
                             ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
@@ -421,7 +425,10 @@ export default function ChatPage() {
               )}
               {error && (
                 <div className="text-fl-label text-fl-error-fg border-fl-error/30 border px-4 py-2 font-mono">
-                  ✕ {error === 'No active study plan found' ? tCommon('noActivePlan') : t('errorMessage')}
+                  ✕{' '}
+                  {error === 'No active study plan found'
+                    ? tCommon('noActivePlan')
+                    : t('errorMessage')}
                 </div>
               )}
               <div ref={bottomRef} />

@@ -1,4 +1,5 @@
 import type { User } from '@/store/auth'
+import type { UserLanguageInfo } from '@/store/language'
 
 /**
  * Map a raw API response (snake_case) to the front-end User shape.
@@ -31,5 +32,30 @@ export function mapUser(
       data.subscription_status ?? current?.subscription_status ?? 'none',
     subscription_ends_at:
       data.subscription_ends_at ?? current?.subscription_ends_at ?? null,
+  }
+}
+
+export function mapUserLanguageInfo(
+  data: Record<string, any>
+): UserLanguageInfo {
+  return {
+    target_language: data.target_language,
+    is_active: data.is_active,
+    plan: data.plan
+      ? {
+          id: data.plan.id,
+          cefr_level: data.plan.cefr_level ?? null,
+          progress_day: data.plan.progress_day,
+          total_days: data.plan.total_days,
+          completion_pct: data.plan.completion_pct,
+        }
+      : null,
+    progress: data.progress
+      ? {
+          total_xp: data.progress.total_xp,
+          current_streak: data.progress.current_streak,
+          lessons_completed: data.progress.lessons_completed,
+        }
+      : null,
   }
 }
