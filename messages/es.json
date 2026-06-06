@@ -942,8 +942,8 @@
     "supportedLanguages": "Idiomas disponibles"
   },
   "targetLanguages": {
-    "en-US": "Inglés americano",
-    "en-GB": "Inglés británico",
+    "en-US": "Inglés (EEUU)",
+    "en-GB": "Inglés (UK)",
     "es-ES": "Español",
     "it-IT": "Italiano",
     "pt-PT": "Portugués",
