@@ -22,16 +22,16 @@ export interface TargetLanguage {
   code: string      // BCP-47, e.g. "it-IT"
   name: string      // In its own language: "Italiano", "Español"
   nameEn: string    // In English: "Italian", "Spanish"
-  flagPath: string  // Path under /public/flags/: "/flags/italy.jpeg"
+  flagPath: string  // Path under /public/flags/: "/flags/italy.jpg"
   iso639: string    // ISO 639-1: "it", "es"
 }
 
 export const SUPPORTED_TARGET_LANGUAGES: TargetLanguage[] = [
   { code: 'en-US', name: 'English (US)', nameEn: 'English (US)', flagPath: '/flags/usa.jpg',      iso639: 'en' },
   { code: 'en-GB', name: 'English (UK)', nameEn: 'English (UK)', flagPath: '/flags/uk.jpg',       iso639: 'en' },
-  { code: 'es-ES', name: 'Español',      nameEn: 'Spanish',      flagPath: '/flags/spain.jpeg',   iso639: 'es' },
-  { code: 'it-IT', name: 'Italiano',     nameEn: 'Italian',      flagPath: '/flags/italy.jpeg',   iso639: 'it' },
-  { code: 'pt-PT', name: 'Português',    nameEn: 'Portuguese',   flagPath: '/flags/portugal.jpeg', iso639: 'pt' },
+  { code: 'es-ES', name: 'Español',      nameEn: 'Spanish',      flagPath: '/flags/spain.jpg',   iso639: 'es' },
+  { code: 'it-IT', name: 'Italiano',     nameEn: 'Italian',      flagPath: '/flags/italy.jpg',   iso639: 'it' },
+  { code: 'pt-PT', name: 'Português',    nameEn: 'Portuguese',   flagPath: '/flags/portugal.jpg', iso639: 'pt' },
 ]
 
 export function getLanguageByCode(code: string): TargetLanguage | undefined {

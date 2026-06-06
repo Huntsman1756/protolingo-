@@ -71,9 +71,9 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | `frontend/src/data/es/` (5 files) | 10.6 |
 | `frontend/src/data/it/` (5 files) | 10.6 |
 | `frontend/src/data/pt/` (5 files) | 10.6 |
-| `frontend/public/flags/spain.jpeg` | 10.6 (already exists ✅) |
-| `frontend/public/flags/italy.jpeg` | 10.6 (already exists ✅) |
-| `frontend/public/flags/portugal.jpeg` | 10.6 (already exists ✅) |
+| `frontend/public/flags/spain.jpg` | 10.6 (already exists ✅) |
+| `frontend/public/flags/italy.jpg` | 10.6 (already exists ✅) |
+| `frontend/public/flags/portugal.jpg` | 10.6 (already exists ✅) |
 
 ---
 

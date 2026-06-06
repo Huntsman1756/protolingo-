@@ -32,7 +32,7 @@ describe('TargetLanguageSelector', () => {
     render(
       <TargetLanguageSelector
         value="en-GB"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={['en-US', 'en-GB']}
       />
     )
@@ -45,7 +45,7 @@ describe('TargetLanguageSelector', () => {
     render(
       <TargetLanguageSelector
         value="en-GB"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={allCodes}
       />
     )
@@ -58,7 +58,7 @@ describe('TargetLanguageSelector', () => {
     const { container } = render(
       <TargetLanguageSelector
         value="en-GB"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={[]}
       />
     )
@@ -72,7 +72,7 @@ describe('TargetLanguageSelector', () => {
     const { container } = render(
       <TargetLanguageSelector
         value="en-GB"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={['fr-FR', 'de-DE']}
       />
     )
@@ -86,7 +86,7 @@ describe('TargetLanguageSelector', () => {
     render(
       <TargetLanguageSelector
         value="es-ES"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={allCodes}
       />
     )
@@ -147,7 +147,7 @@ describe('TargetLanguageSelector', () => {
     render(
       <TargetLanguageSelector
         value="en-US"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={allCodes}
       />
     )
@@ -157,16 +157,16 @@ describe('TargetLanguageSelector', () => {
 
     expect(srcs).toContain('/flags/usa.jpg')
     expect(srcs).toContain('/flags/uk.jpg')
-    expect(srcs).toContain('/flags/spain.jpeg')
-    expect(srcs).toContain('/flags/italy.jpeg')
-    expect(srcs).toContain('/flags/portugal.jpeg')
+    expect(srcs).toContain('/flags/spain.jpg')
+    expect(srcs).toContain('/flags/italy.jpg')
+    expect(srcs).toContain('/flags/portugal.jpg')
   })
 
   it('displays translated names from targetLanguages namespace', () => {
     render(
       <TargetLanguageSelector
         value="en-GB"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={allCodes}
       />
     )
@@ -185,7 +185,7 @@ describe('TargetLanguageSelector', () => {
     const { rerender } = render(
       <TargetLanguageSelector
         value="en-GB"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={['en-GB', 'en-US']}
       />
     )
@@ -193,7 +193,7 @@ describe('TargetLanguageSelector', () => {
     rerender(
       <TargetLanguageSelector
         value="en-GB"
-        onChange={() => {}}
+        onChange={() => { }}
         availableCodes={['en-GB', 'en-US']}
       />
     )

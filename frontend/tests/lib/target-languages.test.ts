@@ -31,9 +31,9 @@ describe('SUPPORTED_TARGET_LANGUAGES', () => {
     const paths = SUPPORTED_TARGET_LANGUAGES.map((l) => l.flagPath)
     expect(paths).toContain('/flags/usa.jpg')
     expect(paths).toContain('/flags/uk.jpg')
-    expect(paths).toContain('/flags/spain.jpeg')
-    expect(paths).toContain('/flags/italy.jpeg')
-    expect(paths).toContain('/flags/portugal.jpeg')
+    expect(paths).toContain('/flags/spain.jpg')
+    expect(paths).toContain('/flags/italy.jpg')
+    expect(paths).toContain('/flags/portugal.jpg')
   })
 
   it('iso639 codes map to correct languages', () => {
