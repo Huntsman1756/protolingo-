@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
 from app.core.database import get_db
-from app.core.deps import require_subscription
+from app.core.deps import get_current_user
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
 from app.models.llm_usage import LLMUsage
@@ -108,7 +108,7 @@ async def _build_progress_info(
 
 @router.get("", response_model=UserLanguageListResponse)
 async def list_languages(
-    current_user: User = Depends(require_subscription),
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     from app.schemas.auth import get_available_languages
@@ -138,7 +138,7 @@ async def list_languages(
 
 @router.get("/active")
 async def get_active(
-    current_user: User = Depends(require_subscription),
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     active = await get_active_language(db, current_user.id)
@@ -150,7 +150,7 @@ async def get_active(
 @router.post("", status_code=status.HTTP_201_CREATED)
 async def add_new_language(
     data: LanguageAddRequest,
-    current_user: User = Depends(require_subscription),
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     entry = await add_language(db, current_user.id, data.target_language)
@@ -160,7 +160,7 @@ async def add_new_language(
 @router.put("/active")
 async def switch_active_language(
     data: LanguageSwitchRequest,
-    current_user: User = Depends(require_subscription),
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     entry = await switch_language(db, current_user.id, data.target_language)
@@ -173,7 +173,7 @@ async def switch_active_language(
 @router.delete("/{target_language}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_language(
     target_language: str,
-    current_user: User = Depends(require_subscription),
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
     # ── Find the UserLanguage row ────────────────────────────────────────
