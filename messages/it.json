@@ -562,7 +562,11 @@
     "vocabularyPrev": "Prec.",
     "vocabularyNext": "Succ.",
     "backToFlashcards": "Schede",
-    "noCardsHint": "Usa + Genera per creare le tue prime schede con l'IA"
+    "noCardsHint": "Usa + Genera per creare le tue prime schede con l'IA",
+    "tapToHide": "tocca per nascondere",
+    "tapToReveal": "tocca per mostrare",
+    "interval": "Intervallo",
+    "repetitions": "Rip"
   },
   "chat": {
     "title": "Tutor IA",

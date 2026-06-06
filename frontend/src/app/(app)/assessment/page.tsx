@@ -217,7 +217,12 @@ export default function AssessmentPage() {
       setSelectedLevel(data.cefr_level as CEFRLevel)
       setStep('result')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Evaluation failed')
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        msg === 'ai_service_error' || msg === 'ai_service_unavailable'
+          ? tCommon('errorMessage')
+          : msg || 'Evaluation failed'
+      )
     } finally {
       setEvaluating(false)
     }
@@ -253,7 +258,12 @@ export default function AssessmentPage() {
       }
       router.push('/plan')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create plan')
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        msg === 'ai_service_error' || msg === 'ai_service_unavailable'
+          ? tCommon('errorMessage')
+          : msg || 'Failed to create plan'
+      )
       setSubmitting(false)
     }
   }

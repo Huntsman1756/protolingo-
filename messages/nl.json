@@ -562,7 +562,11 @@
     "vocabularyPrev": "Vorige",
     "vocabularyNext": "Volgende",
     "backToFlashcards": "Flashcards",
-    "noCardsHint": "Gebruik + Genereer om je eerste flashcards met AI te maken"
+    "noCardsHint": "Gebruik + Genereer om je eerste flashcards met AI te maken",
+    "tapToHide": "tik om te verbergen",
+    "tapToReveal": "tik om te tonen",
+    "interval": "Interval",
+    "repetitions": "Herh"
   },
   "chat": {
     "title": "AI-tutor",

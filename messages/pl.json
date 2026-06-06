@@ -562,7 +562,11 @@
     "vocabularyPrev": "Poprz.",
     "vocabularyNext": "Nast.",
     "backToFlashcards": "Fiszki",
-    "noCardsHint": "Użyj + Wygeneruj, aby stworzyć pierwsze fiszki z AI"
+    "noCardsHint": "Użyj + Wygeneruj, aby stworzyć pierwsze fiszki z AI",
+    "tapToHide": "dotknij aby ukryć",
+    "tapToReveal": "dotknij aby pokazać",
+    "interval": "Interwał",
+    "repetitions": "Powt"
   },
   "chat": {
     "title": "Korepetytor AI",

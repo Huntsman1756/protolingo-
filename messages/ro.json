@@ -562,7 +562,11 @@
     "vocabularyPrev": "Prec.",
     "vocabularyNext": "Urm.",
     "backToFlashcards": "Carduri flash",
-    "noCardsHint": "Folosește + Generează pentru a crea primele carduri flash cu AI"
+    "noCardsHint": "Folosește + Generează pentru a crea primele carduri flash cu AI",
+    "tapToHide": "atinge pentru a ascunde",
+    "tapToReveal": "atinge pentru a dezvălui",
+    "interval": "Interval",
+    "repetitions": "Rep"
   },
   "chat": {
     "title": "Tutore AI",

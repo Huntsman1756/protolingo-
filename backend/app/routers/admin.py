@@ -76,12 +76,24 @@ async def create_user(
         display_name=data.display_name,
         hashed_password=hash_password(data.password),
         native_language=data.native_language,
+        target_language=data.target_language,
         role=data.role,
         is_active=True,
     )
     db.add(user)
     await db.commit()
     await db.refresh(user)
+
+    from app.models.user_language import UserLanguage
+
+    db.add(
+        UserLanguage(
+            user_id=user.id,
+            target_language=data.target_language,
+            is_active=True,
+        )
+    )
+    await db.commit()
 
     if user.email and settings.EMAIL_ENABLED:
         verify_token = str(uuid.uuid4())

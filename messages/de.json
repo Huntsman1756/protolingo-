@@ -562,7 +562,11 @@
     "vocabularyPrev": "Zurück",
     "vocabularyNext": "Weiter",
     "backToFlashcards": "Karteikarten",
-    "noCardsHint": "Nutze + Erstellen, um deine ersten Karteikarten mit KI zu erstellen"
+    "noCardsHint": "Nutze + Erstellen, um deine ersten Karteikarten mit KI zu erstellen",
+    "tapToHide": "tippen zum ausblenden",
+    "tapToReveal": "tippen zum einblenden",
+    "interval": "Intervall",
+    "repetitions": "Whlg"
   },
   "chat": {
     "title": "KI-Tutor",

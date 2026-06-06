@@ -562,7 +562,11 @@
     "vocabularyPrev": "Назад",
     "vocabularyNext": "Вперёд",
     "backToFlashcards": "Карточки",
-    "noCardsHint": "Используй + Создать, чтобы создать первые карточки с ИИ"
+    "noCardsHint": "Используй + Создать, чтобы создать первые карточки с ИИ",
+    "tapToHide": "нажми чтобы скрыть",
+    "tapToReveal": "нажми чтобы показать",
+    "interval": "Интервал",
+    "repetitions": "Повт"
   },
   "chat": {
     "title": "ИИ-репетитор",

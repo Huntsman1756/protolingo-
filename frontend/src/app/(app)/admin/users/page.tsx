@@ -6,6 +6,8 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { useConfigStore } from '@/store/config'
+import { useLanguageStore } from '@/store/language'
+import { SUPPORTED_TARGET_LANGUAGES } from '@/lib/target-languages'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 interface AdminUserItem {
@@ -54,11 +56,13 @@ export default function AdminUsersPage() {
     password: '',
     display_name: '',
     native_language: 'es',
+    target_language: 'en-US',
     role: 'user',
   })
   const [error, setError] = useState('')
   const [deletePending, setDeletePending] = useState<AdminUserItem | null>(null)
   const currentUserId = useAuthStore((s) => s.user?.id)
+  const availableLanguageCodes = useLanguageStore((s) => s.availableLanguageCodes)
   const maintenanceMode = useConfigStore((s) => s.maintenanceMode)
   const [maintenanceLoading, setMaintenanceLoading] = useState(false)
 
@@ -135,6 +139,7 @@ export default function AdminUsersPage() {
         password: '',
         display_name: '',
         native_language: 'es',
+        target_language: 'en-US',
         role: 'user',
       })
       await loadUsers(page, searchTerm, subscriptionFilter)
@@ -379,6 +384,21 @@ export default function AdminUsersPage() {
                     {tLang(code)}
                   </option>
                 ))}
+            </select>
+            <select
+              value={form.target_language}
+              onChange={(e) =>
+                setForm({ ...form, target_language: e.target.value })
+              }
+              className={inputCls + ' appearance-none'}
+            >
+              {SUPPORTED_TARGET_LANGUAGES.filter((l) =>
+                availableLanguageCodes.includes(l.code)
+              ).map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {lang.name}
+                </option>
+              ))}
             </select>
             <select
               value={form.role}

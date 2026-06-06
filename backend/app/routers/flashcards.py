@@ -216,12 +216,12 @@ async def generate_flashcards_endpoint(
     except LLMUnavailableError as e:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"AI service unavailable: {str(e)}",
+            detail="ai_service_unavailable",
         )
     except LLMError as e:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Failed to generate flashcards: {str(e)}",
+            detail="ai_service_error",
         )
 
 
@@ -249,12 +249,12 @@ async def create_flashcard_from_word(
     except LLMUnavailableError as e:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"AI service unavailable: {str(e)}",
+            detail="ai_service_unavailable",
         )
     except LLMError as e:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Failed to look up word: {str(e)}",
+            detail="ai_service_error",
         )
 
     card = Flashcard(

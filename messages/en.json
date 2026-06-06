@@ -562,7 +562,11 @@
     "vocabularyPrev": "Prev",
     "vocabularyNext": "Next",
     "backToFlashcards": "Flashcards",
-    "noCardsHint": "Use + Generate to create your first cards with AI"
+    "noCardsHint": "Use + Generate to create your first cards with AI",
+    "tapToHide": "tap to hide",
+    "tapToReveal": "tap to reveal",
+    "interval": "Interval",
+    "repetitions": "Rep"
   },
   "chat": {
     "title": "AI Tutor",

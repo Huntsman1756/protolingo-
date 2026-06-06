@@ -22,14 +22,6 @@ interface CardData {
   source?: string | null
 }
 
-const QUALITY_BUTTONS = [
-  { label: 'BLACKOUT', q: 0, color: '#ff5555' },
-  { label: 'WRONG', q: 1, color: '#ff8855' },
-  { label: 'HARD', q: 3, color: 'var(--fl-muted-1)' },
-  { label: 'GOOD', q: 4, color: 'var(--fl-muted-0)' },
-  { label: 'PERFECT', q: 5, color: 'var(--fl-fg)' },
-]
-
 export default function FlashcardsPage() {
   const t = useTranslations('flashcards')
   const tCommon = useTranslations('common')
@@ -313,11 +305,11 @@ export default function FlashcardsPage() {
                   <div className="flex items-center gap-2">
                     <span className="text-fl-label text-fl-muted-3">●</span>
                     <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
-                      {flipped ? 'Definition' : 'Word'}
+                      {flipped ? t('back') : t('front')}
                     </span>
                   </div>
                   <span className="text-fl-hint text-fl-border-2 font-mono tracking-widest uppercase">
-                    tap to {flipped ? 'hide' : 'reveal'}
+                    {flipped ? t('tapToHide') : t('tapToReveal')}
                   </span>
                 </div>
 
@@ -353,14 +345,19 @@ export default function FlashcardsPage() {
 
               {flipped && (
                 <div className="flex flex-wrap gap-2">
-                  {QUALITY_BUTTONS.map(({ label, q, color }) => (
+                  {[
+                    { key: 'again', q: 0, color: '#ff5555' },
+                    { key: 'hard', q: 3, color: 'var(--fl-muted-1)' },
+                    { key: 'good', q: 4, color: 'var(--fl-muted-0)' },
+                    { key: 'easy', q: 5, color: 'var(--fl-fg)' },
+                  ].map(({ key, q, color }) => (
                     <button
                       key={q}
                       onClick={() => reviewCard(q)}
                       className="border-fl-border text-fl-label hover:border-fl-border-2 min-w-[80px] flex-1 border py-3 font-mono tracking-widest uppercase transition-all"
                       style={{ color }}
                     >
-                      {label}
+                      {t(key)}
                     </button>
                   ))}
                 </div>
@@ -375,7 +372,7 @@ export default function FlashcardsPage() {
                 <div className="flex items-center gap-2">
                   <span className="text-fl-label text-fl-muted-3">●</span>
                   <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
-                    Speaking
+                    {t('speakingMode')}
                   </span>
                 </div>
                 <span className="text-fl-hint text-fl-border-2 font-mono tracking-widest uppercase">
@@ -407,8 +404,9 @@ export default function FlashcardsPage() {
           )}
 
           <p className="text-fl-hint text-fl-border-2 text-center font-mono tracking-widest uppercase">
-            EF {cards[current].ease_factor.toFixed(2)} · Interval{' '}
-            {cards[current].interval}d · Rep {cards[current].repetitions}
+            EF {cards[current].ease_factor.toFixed(2)} · {t('interval')}{' '}
+            {cards[current].interval}d · {t('repetitions')}{' '}
+            {cards[current].repetitions}
           </p>
         </>
       )}

@@ -194,6 +194,7 @@ async def generate_exercise(
 async def get_audio(
     request: Request,
     exercise_id: int,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> FileResponse:
@@ -205,6 +206,8 @@ async def get_audio(
     """
     exercise = await db.get(ListeningExercise, exercise_id)
     if exercise is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="exercise_not_found")
+    if exercise.target_language != plan.target_language:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="exercise_not_found")
 
     audio_path = os.path.join(settings.AUDIO_STORAGE_PATH, "listening", f"{exercise_id}.mp3")

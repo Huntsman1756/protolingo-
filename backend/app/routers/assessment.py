@@ -134,11 +134,11 @@ async def start_assessment(
         )
     except LLMUnavailableError as e:
         raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
     except LLMError as e:
         raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Assessment generation failed: {e}"
+            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
         )
 
     quiz = quiz_payload.model_dump() if isinstance(quiz_payload, BaseModel) else quiz_payload
@@ -224,11 +224,11 @@ async def submit_assessment(
         )
     except LLMUnavailableError as e:
         raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
     except LLMError as e:
         raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Assessment evaluation failed: {e}"
+            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
         )
     finally:
         await redis.delete(redis_key)
@@ -302,11 +302,11 @@ async def evaluate_free_write_endpoint(
         )
     except LLMUnavailableError as e:
         raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
     except LLMError as e:
         raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Free-write evaluation failed: {e}"
+            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
         )
 
 
@@ -439,11 +439,11 @@ async def get_level_test_questions(
         )
     except LLMUnavailableError as e:
         raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"AI service unavailable: {e}"
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
     except LLMError as e:
         raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Level test generation failed: {e}"
+            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
         )
 
     return {"plan_id": plan_id, "cefr_level": plan.cefr_level, "questions": questions}

@@ -562,7 +562,11 @@
     "vocabularyPrev": "Ant.",
     "vocabularyNext": "Sig.",
     "backToFlashcards": "Tarjetas",
-    "noCardsHint": "Usa + Generar para crear tus primeras tarjetas con IA"
+    "noCardsHint": "Usa + Generar para crear tus primeras tarjetas con IA",
+    "tapToHide": "toca para ocultar",
+    "tapToReveal": "toca para mostrar",
+    "interval": "Intervalo",
+    "repetitions": "Rep"
   },
   "chat": {
     "title": "Tutor IA",

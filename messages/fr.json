@@ -562,7 +562,11 @@
     "vocabularyPrev": "Préc.",
     "vocabularyNext": "Suiv.",
     "backToFlashcards": "Fiches",
-    "noCardsHint": "Utilisez + Générer pour créer vos premières fiches avec l'IA"
+    "noCardsHint": "Utilisez + Générer pour créer vos premières fiches avec l'IA",
+    "tapToHide": "appuyez pour masquer",
+    "tapToReveal": "appuyez pour afficher",
+    "interval": "Intervalle",
+    "repetitions": "Rép"
   },
   "chat": {
     "title": "Tuteur IA",
