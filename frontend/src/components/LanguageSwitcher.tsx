@@ -9,6 +9,7 @@ import { getLanguageByCode } from '@/lib/target-languages'
 
 export default function LanguageSwitcher() {
   const tLang = useTranslations('languages')
+  const tTarget = useTranslations('targetLanguages')
   const router = useRouter()
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const userLanguages = useLanguageStore((s) => s.userLanguages)
@@ -41,11 +42,10 @@ export default function LanguageSwitcher() {
     setOpen(false)
     if (code === activeLanguage?.code) return
     // Capture target language info before switching (store will update after)
-    const targetLang = getLanguageByCode(code)
     const targetInfo = userLanguages.find((l) => l.target_language === code)
     const ok = await switchLanguage(code)
     if (ok) {
-      const langName = targetLang?.name ?? code
+      const langName = tTarget(code)
       const level = targetInfo?.plan?.cefr_level
       setToastMsg(
         level ? tLang('switched', { language: langName, level }) : langName
@@ -80,7 +80,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => multiple && setOpen(!open)}
         disabled={!multiple}
-        className="text-fl-muted hover:text-fl-fg hover:bg-fl-surface flex w-full items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-widest uppercase transition-colors"
+        className="text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface flex w-full items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-widest uppercase transition-colors"
       >
         <Image
           src={activeLanguage.flagPath}
@@ -90,7 +90,7 @@ export default function LanguageSwitcher() {
           className="shrink-0 object-cover"
         />
         <span className="truncate">
-          {isSwitching ? '...' : activeLanguage.name}
+          {isSwitching ? '...' : tTarget(activeLanguage.code)}
         </span>
         {multiple && (
           <span className="text-fl-label text-fl-muted-4 ml-auto">
@@ -108,7 +108,11 @@ export default function LanguageSwitcher() {
               <button
                 key={ulang.target_language}
                 onClick={() => handleSwitch(ulang.target_language)}
-                className="text-fl-muted hover:text-fl-fg hover:bg-fl-surface flex w-full items-center gap-2 px-5 py-2.5 text-left font-mono text-xs tracking-widest uppercase transition-colors"
+                className={`flex w-full items-center gap-2 px-5 py-2.5 text-left font-mono text-xs tracking-widest uppercase transition-colors ${
+                  ulang.is_active
+                    ? 'text-fl-fg bg-fl-surface'
+                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface'
+                }`}
               >
                 <Image
                   src={lang.flagPath}
@@ -117,7 +121,7 @@ export default function LanguageSwitcher() {
                   height={14}
                   className="shrink-0 object-cover"
                 />
-                <span className="truncate">{lang.name}</span>
+                <span className="truncate">{tTarget(lang.code)}</span>
                 {ulang.plan?.cefr_level && (
                   <span className="text-fl-label text-fl-accent ml-1 font-mono">
                     {ulang.plan.cefr_level}

@@ -54,7 +54,7 @@ describe('LanguageSwitcher', () => {
 
   it('renders the active language name', () => {
     render(<LanguageSwitcher />)
-    expect(screen.getByText('English (US)')).toBeDefined()
+    expect(screen.getByText('en-US')).toBeDefined()
   })
 
   it('renders a loading skeleton when no active language', () => {
@@ -68,7 +68,7 @@ describe('LanguageSwitcher', () => {
     const button = screen.getByRole('button')
     fireEvent.click(button)
     // Dropdown shouldn't appear — only 1 language
-    expect(screen.queryByText('English (UK)')).toBeNull()
+    expect(screen.queryByText('en-GB')).toBeNull()
   })
 
   it('opens dropdown when multiple languages exist', () => {
@@ -93,7 +93,7 @@ describe('LanguageSwitcher', () => {
     const button = screen.getByRole('button')
     fireEvent.click(button)
 
-    expect(screen.getByText('Español')).toBeDefined()
+    expect(screen.getByText('es-ES')).toBeDefined()
   })
 
   it('shows CEFR level in dropdown items', () => {
@@ -170,7 +170,7 @@ describe('LanguageSwitcher', () => {
     const button = screen.getByRole('button')
     fireEvent.click(button)
 
-    const spanishBtn = screen.getByText('Español')
+    const spanishBtn = screen.getByText('es-ES')
     fireEvent.click(spanishBtn)
 
     await waitFor(() => {
@@ -203,7 +203,7 @@ describe('LanguageSwitcher', () => {
     const button = screen.getByRole('button')
     fireEvent.click(button)
 
-    const spanishBtn = screen.getByText('Español')
+    const spanishBtn = screen.getByText('es-ES')
     fireEvent.click(spanishBtn)
 
     await waitFor(() => {

@@ -16,6 +16,7 @@ import type { UserLanguageInfo } from '@/store/language'
 
 export default function MyLanguagesPage() {
   const t = useTranslations('languages')
+  const tTarget = useTranslations('targetLanguages')
   const tSettings = useTranslations('settings')
   const tCommon = useTranslations('common')
   const router = useRouter()
@@ -54,10 +55,9 @@ export default function MyLanguagesPage() {
     const ok = await switchLanguage(info.target_language)
     setSwitchingCode(null)
     if (ok) {
-      const lang = getLangInfo(info.target_language)
       const level = info.plan?.cefr_level ?? ''
       setToast(
-        t('switched', { language: lang?.name ?? info.target_language, level })
+        t('switched', { language: tTarget(info.target_language), level })
       )
       setTimeout(() => setToast(''), 2500)
       router.refresh()
@@ -68,10 +68,9 @@ export default function MyLanguagesPage() {
     if (!deleteTarget) return
     const ok = await removeLanguage(deleteTarget.target_language)
     if (!ok) {
-      const lang = getLanguageByCode(deleteTarget.target_language)
       setToast(
         t('deleteError', {
-          language: lang?.name ?? deleteTarget.target_language,
+          language: tTarget(deleteTarget.target_language),
         })
       )
       setDeleteTarget(null)
@@ -180,7 +179,7 @@ export default function MyLanguagesPage() {
                     />
                   )}
                   <span className="text-fl-fg flex-1 font-mono text-sm font-bold">
-                    {lang?.name ?? ulang.target_language}
+                    {tTarget(ulang.target_language)}
                   </span>
                   {isActive ? (
                     <span className="text-fl-label bg-fl-accent/20 text-fl-accent px-2 py-0.5 font-mono text-xs tracking-widest uppercase">
@@ -290,10 +289,7 @@ export default function MyLanguagesPage() {
       <ConfirmDialog
         open={deleteTarget !== null}
         title={t('removeConfirmTitle', {
-          language:
-            getLangInfo(deleteTarget?.target_language ?? '')?.name ??
-            deleteTarget?.target_language ??
-            '',
+          language: deleteTarget ? tTarget(deleteTarget.target_language) : '',
         })}
         message={t('removeConfirmMessage')}
         confirmLabel={t('removeConfirmButton')}
