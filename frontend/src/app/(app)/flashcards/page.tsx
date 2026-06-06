@@ -114,6 +114,7 @@ export default function FlashcardsPage() {
           count: genCount,
           cefr_level: genCefr,
           native_language: user?.native_language ?? 'en',
+          target_language: activeLanguage?.code,
         }),
       })
       if (!res.ok) {

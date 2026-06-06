@@ -29,7 +29,9 @@ export default function VocabularySetPage({
   const router = useRouter()
   const t = useTranslations('vocabulary')
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
-  const vocabSet = getVocabularySets(activeLanguage?.code ?? 'en-US').find(
+  const langFromId = setId.match(/_(en|es|it|pt)_/)?.[1]
+  const targetLang = activeLanguage?.code ?? langFromId ?? 'en-US'
+  const vocabSet = getVocabularySets(targetLang).find(
     (s) => s.id === setId
   )
   if (!vocabSet) notFound()

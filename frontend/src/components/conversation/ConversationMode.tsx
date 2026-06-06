@@ -387,7 +387,9 @@ export default function ConversationMode({
                       ? t('quotaExceededTime')
                       : msg.code === 'quota_exceeded_tokens'
                         ? t('quotaExceededTokens')
-                        : (msg.message ?? t('errorConnection'))
+                        : msg.code === 'no_active_plan'
+                          ? tCommon('noActivePlan')
+                          : (msg.message ?? t('errorConnection'))
               )
               setStatus('error')
               ws.close()

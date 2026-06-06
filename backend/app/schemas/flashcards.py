@@ -36,6 +36,7 @@ class FlashcardGenerateRequest(BaseModel):
     count: int = 5
     cefr_level: str = "B1"
     native_language: str = "es"
+    target_language: str | None = None
 
 
 class FlashcardResponse(BaseModel):

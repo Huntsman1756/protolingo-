@@ -187,13 +187,14 @@ async def generate_flashcards_endpoint(
     db: AsyncSession = Depends(get_db),
 ):
     plan = await _get_active_plan_or_404(db, current_user.id)
+    target_lang = data.target_language or plan.target_language
     try:
         result = await generate_flashcards(
             topic=data.topic,
             count=data.count,
             cefr_level=data.cefr_level,
             native_language=data.native_language,
-            target_language=plan.target_language,
+            target_language=target_lang,
         )
         # Persist generated cards
         for card_data in result.flashcards:
