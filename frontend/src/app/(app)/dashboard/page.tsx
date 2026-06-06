@@ -60,6 +60,8 @@ export default function DashboardPage() {
           xp: prog.total_xp ?? 0,
           skills: prog.skills ?? {},
         })
+      } else {
+        setProgress({ streak: 0, xp: 0, skills: {} })
       }
       if (planRes.ok) {
         const plan = await planRes.json()
@@ -80,6 +82,13 @@ export default function DashboardPage() {
           }))
         )
         setHasPlan(true)
+      } else {
+        setCefrLevel(null)
+        setProgressDay(0)
+        setTotalDays(0)
+        setPendingCount(0)
+        setTodayLessons([])
+        setHasPlan(false)
       }
     } catch {
       setLoadError(true)

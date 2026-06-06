@@ -216,8 +216,8 @@ export default function ChatPage() {
           }
         }
       }
-    } catch {
-      setError(t('errorMessage'))
+    } catch (e) {
+      setError(e instanceof Error ? e.message : t('errorMessage'))
     } finally {
       setSending(false)
       inputRef.current?.focus()
