@@ -38,13 +38,24 @@ Options:
 cd frontend && npm run test:run
 ```
 
-54 tests covering critical logic:
+332 tests covering stores, components, lib, middleware, and API interceptor:
 - `lib/api.ts` — auth interceptor, 401 refresh, retry
 - `store/auth.ts` — isSubscribed(), logout
 - `lib/audio.ts` — float32ToWav WAV encoding
 - `lib/conversation-ws.ts` — WebSocket URL builder
 - `middleware.ts` — route protection, locale detection
 - `store/config.ts` — config loading, idempotency
+- `store/language.ts` — language CRUD, switching
+- `store/progress.ts` — XP, streak, unit progress, level test
+- `lib/mappers.ts` — mapUser transformation
+- `lib/target-languages.ts` — language code resolution
+- `data/curriculum.ts` — curriculum data integrity
+- `components/LanguageSwitcher.tsx` — sidebar dropdown
+- `components/TargetLanguageSelector.tsx` — language grid
+- `components/VoiceRecorder.tsx` — STT recorder states
+- `components/AudioPlayer.tsx` — TTS player states
+- `components/ProfileSection.tsx` — profile CRUD, avatar
+- `components/UnitCard.tsx` + `UnitDrawer.tsx` — plan units
 
 Options:
 - Watch mode: `npm run test`

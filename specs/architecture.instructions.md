@@ -27,7 +27,7 @@ freelingo/
 │   │       └── pt/              # Portuguese curriculum (A1–C2)
 │   ├── alembic/
 │   │   └── versions/            # DB migrations (31)
-│   └── tests/                   # pytest suite (25 test files, 375 tests)
+│   └── tests/                   # pytest suite (31 test files, 677 tests)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
@@ -60,7 +60,7 @@ freelingo/
 │   │   ├── lib/                 # Utilities: api, audio, conversation-ws, locales, mappers, target-languages, utils (7)
 │   │   ├── i18n/                # next-intl locale resolver
 │   │   └── middleware.ts        # Auth guard + locale detection
-│   ├── tests/                   # Vitest suite (12 test files, 135 tests)
+│   ├── tests/                   # Vitest suite (17 test files, 332 tests)
 │   ├── public/                  # Static assets (flags/, vad/ WASM models)
 │   └── scripts/                 # Postinstall helpers (copy-vad-models.js)
 │
@@ -167,6 +167,6 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 Testing infrastructure and strategy are documented in [testing.instructions.md](testing.instructions.md).
 
 **Summary:**
-- **Backend**: pytest + pytest-asyncio, 25 test files, 375 tests, 73% coverage (target: 70%)
-- **Frontend**: Vitest, 12 test files, 135 tests covering critical logic only
+- **Backend**: pytest + pytest-asyncio, 31 test files, 677 tests, 83% coverage (target: 70%)
+- **Frontend**: Vitest, 17 test files, 332 tests covering stores, components, lib, and middleware
 - **E2E**: Playwright (planned, not yet implemented)

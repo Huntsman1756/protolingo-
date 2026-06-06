@@ -1,5 +1,5 @@
 ---
-description: "Testing strategy for FreeLingo: backend pytest suite (26 test files with SQLite in-memory DB and Redis mocking), frontend Vitest suite (7 test files covering critical logic), E2E plan (Playwright, pending), CI integration, and coverage requirements."
+description: "Testing strategy for FreeLingo: backend pytest suite (31 test files with SQLite in-memory DB and Redis mocking), frontend Vitest suite (17 test files covering stores, components, lib, and middleware), E2E plan (Playwright, pending), CI integration, and coverage requirements."
 applyTo: "**/*.test.*, **/*.spec.*, **/tests/**, **/__tests__/**"
 ---
 
@@ -9,11 +9,11 @@ applyTo: "**/*.test.*, **/*.spec.*, **/tests/**, **/__tests__/**"
 
 | Layer | Framework | Scope | Coverage | Status |
 |-------|-----------|-------|----------|--------|
-| Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | 73% (target: 70%) | Implemented |
-| Frontend critical logic | Vitest | Stores, utils, apiFetch interceptor, middleware, audio | — | Implemented |
+| Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | 83% (target: 70%) | Implemented |
+| Frontend unit | Vitest | Stores, components, lib, middleware, API interceptor | — | Implemented |
 | E2E | Playwright | Critical user flows | Smoke | Pending |
 
-All tests pass on every push. Backend coverage threshold configured at 70%, currently at 73%. Frontend tests cover critical logic only (no component/E2E tests).
+All tests pass on every push. Backend coverage threshold configured at 70%, currently at 83%. Frontend tests cover stores, critical components (VoiceRecorder, AudioPlayer, ProfileSection, UnitCard/UnitDrawer, LanguageSwitcher, TargetLanguageSelector), lib modules, and middleware.
 
 ---
 
@@ -38,9 +38,11 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 | `test_admin_extra.py` | 149 | Additional admin operations and permission checks |
 | `test_avatar.py` | 327 | Avatar upload, validation, storage, retrieval |
 | `test_assessment.py` | 165 | Quiz start (mocked LLM), submit and deterministic evaluation, legacy endpoints, LLM error handling |
+| `test_assessment_router.py` | — | Full assessment router: start, submit, evaluate, free-write, complete, level-test questions/submit/result (54 tests, 51%→98% coverage) |
 | `test_study_plan.py` | 376 | Plan generation, today's lessons, auto-generation on access, unit progression |
 | `test_lessons.py` | 235 | Lesson CRUD, exercise answering (multiple_choice, free_write, pronunciation), completion flow, progress update on complete |
 | `test_lessons_extra.py` | 106 | Additional lesson scenarios and edge cases |
+| `test_lessons_router.py` | — | Lesson router: get lesson with exercises, complete lesson, answer exercises (all 4 types), lifecycle, fill-blank sanitization (36 tests, 58%→99% coverage) |
 | `test_flashcards.py` | 136 | SM-2 algorithm (all quality levels 0–5, interval and ease_factor transitions, edge cases), card CRUD |
 | `test_flashcards_extra.py` | 201 | Additional flashcard scenarios and SM-2 edge cases |
 | `test_chat.py` | 54 | SSE streaming chunks, conversation creation and messaging |
@@ -48,6 +50,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 | `test_progress.py` | 48 | Progress summary and history with empty and populated data |
 | `test_progress_extra.py` | 83 | Additional progress tracking scenarios |
 | `test_conversation.py` | 555 | WebSocket authentication, TTS/STT disabled rejection, pipeline lifecycle, session management |
+| `test_conversation_pipeline_service.py` | — | Conversation pipeline service: system prompt, sentence cleaning, TTS queue, greet, audio processing, barge-in, usage tracking, inactivity watcher, max-duration watcher, full lifecycle (76 tests, 50%→97% coverage) |
 | `test_frontend_data_integrity.py` | 196 | Cross-reference validation: curriculum.ts vs grammar.ts, vocabulary.ts — ensures all referenced slugs and IDs exist |
 | `test_listening.py` | 503 | Exercise pool (next / generate), generation lock, audio serving, answer evaluation (score + XP), attempt deduplication, history |
 | `test_listening_extra.py` | 208 | Additional listening exercise scenarios |
@@ -57,14 +60,15 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 | `test_billing.py` | 381 | Stripe subscriptions, webhooks, payment status, subscription lifecycle |
 | `test_maintenance.py` | 153 | Maintenance mode toggle, API behavior during maintenance |
 | `test_memories.py` | 362 | LLM memory (Phase 9): memory creation, retrieval, update, deletion |
+| `test_llm_adapter.py` | — | LLM adapter: JSON parsing, streaming, 5 exception classes, 4 provider init paths, chat (streaming + non-streaming), Anthropic error mapping, structured output with retry, DeepSeek provider, edge cases (63 tests, 38%→100% coverage) |
+| `test_quota_service.py` | — | Quota service: key helpers, quota status, session tracking, daily/weekly minute checks, monthly token tracking, combined quota validation, full session lifecycle (71 tests, 37%→100% coverage) |
 
-**Total: 26 test files, 341 tests, ~7,300 lines of test code.**
+**Total: 31 test files, 677 tests, ~12,000 lines of test code.**
 
 ### Coverage
 
-- **Current coverage**: 73% (above 70% target)
+- **Current coverage**: 83% (above 70% target)
 - **Configured threshold**: 70% (enforced via `pytest --cov-fail-under=70`)
-- **Note**: Coverage is below target. Consider adding tests for uncovered modules or adjusting threshold.
 
 ### Test patterns
 
@@ -154,16 +158,18 @@ pytest --cov-report=html
 | `tests/middleware.test.ts` | 12 | Route protection: redirect to `/login` without `refresh_token`, allow with token, public routes pass through. Locale detection: cookie > Accept-Language > default `en`, cookie persistence, header injection |
 | `tests/store/config.test.ts` | 5 | `load()`: fetches `/api/config`, idempotency (no double-fetch), keeps defaults on network error, keeps defaults on non-ok response, uses defaults for missing fields |
 | `tests/lib/mappers.test.ts` | 4 | `mapUser`: snake_case→camelCase mapping, fallback to `current` user for PATCH responses, safe defaults when no current user, API data preferred over current |
+| `tests/lib/target-languages.test.ts` | 16 | `getLanguageByCode`: case-insensitive lookup, undefined for unknown codes. `formatLanguageName`: capitalization rules per locale |
+| `tests/store/language.test.ts` | 17 | Language store: fetchLanguages, switchLanguage, addLanguage, removeLanguage, active language tracking |
+| `tests/data/curriculum.test.ts` | 12 | Curriculum data: unit retrieval by level and language, fallback behavior |
+| `tests/components/LanguageSwitcher.test.tsx` | 10 | LanguageSwitcher: rendering, dropdown open/close, CEFR badges, active checkmark, language switch, toast, router refresh |
+| `tests/components/TargetLanguageSelector.test.tsx` | 8 | TargetLanguageSelector: grid rendering, active/inactive states, onChange callback, flag images |
+| `tests/components/VoiceRecorder.test.tsx` | 24 | VoiceRecorder: idle/recording/transcribing/error states, getUserMedia mock, AudioContext lifecycle, STT API call, auto-stop, mic denied error, resampling |
+| `tests/components/AudioPlayer.test.tsx` | 36 | AudioPlayer: idle/loading/playing/error states, TTS API call, play/pause/stop, voice resolution (prop > localStorage > default), audio queue, unmount safety |
+| `tests/components/ProfileSection.test.tsx` | 48 | ProfileSection: form fields, save flow, avatar upload/remove (File/FileReader mock), password change (validation, mismatch), locale change with reload, API error states |
+| `tests/components/UnitCard.test.tsx` | 41 | UnitCard: all 5 status states (completed/active/locked/level-test/default), progress bar, click interactions. UnitDrawer: grammar points, lesson list, completion states, escape/outside-click dismiss |
+| `tests/store/progress.test.ts` | 48 | Progress store: 10 initial state fields, setProgress/setTodayLessons/completeLesson/setCurrentUnit/setPlanDuration/updateUnitProgress/unlockLevelTest/setLevelTestResult, state transition isolation |
 
-**Total: 54 tests across 7 files.**
-
-### Design decisions
-
-- **Vitest** chosen over Jest: native ESM support, faster execution, Vite-based
-- **jsdom** environment for browser API simulation (`localStorage`, `window`)
-- **Critical logic only** — no component rendering tests, no UI snapshot tests. Component tests are fragile and low-value for this project
-- **Not tested** (by design): `store/progress.ts` (plain setters), `store/theme.ts`/`store/loading.ts` (trivial), `hooks/useLogout.ts` (orchestration only), `lib/utils.ts` (`cn()` is a thin wrapper), static data files
-- Tests live in `frontend/tests/` mirroring the backend `tests/` convention — not co-located with source files
+**Total: 332 tests across 17 files.**
 
 ### Running tests
 
@@ -223,7 +229,7 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 | Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |
 | Frontend format | `prettier --check src/` | Clean diff |
 | Frontend typecheck | `npx tsc --noEmit` | Clean output |
-| Frontend tests | `npm run test:run` | All 54 tests pass |
+| Frontend tests | `npm run test:run` | All 332 tests pass |
 
 **Note**: The backend test job uses SQLite (same as local tests), not PostgreSQL. No Docker services are required for the backend test job.
 
@@ -252,6 +258,7 @@ The `pre-push` opencode skill mirrors the CI workflow locally. Run order:
 - **Coverage thresholds enforced** — backend >= 70% (enforced)
 - **No `docker compose` in test configs** — the development environment does not have Docker locally; E2E tests target a remote deployment
 - **Data integrity tests validate cross-file references** — ensures curriculum, grammar, and vocabulary data files stay consistent
-- **Frontend: critical logic only** — test stores, utils, API client, middleware. No component rendering tests, no UI snapshots tests
+- **Frontend: test critical logic + components** — test stores, utils, API client, middleware, and key components (VoiceRecorder, AudioPlayer, ProfileSection, UnitCard/UnitDrawer, LanguageSwitcher)
 - **Frontend: mock `localStorage` and `next/navigation` globally** in `tests/setup.ts` — individual test files should not re-mock these
 - **Frontend: tests live in `frontend/tests/`** — not co-located with source files, mirroring the backend `tests/` convention
+- **Frontend: Component tests use vitest + @testing-library/react** — mock browser APIs (AudioContext, getUserMedia, FileReader) and external dependencies (next-intl, next/image, next/navigation)
