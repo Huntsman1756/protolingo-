@@ -703,6 +703,8 @@
     "fieldPassword": "Hasło",
     "fieldDisplayName": "Wyświetlana nazwa",
     "fieldNativeLanguage": "Język ojczysty",
+    "fieldTargetLanguage": "Język do nauki",
+    "fieldRole": "Typ konta",
     "submitCreate": "Utwórz",
     "searchPlaceholder": "Szukaj po nazwie użytkownika lub e-mailu...",
     "statsTitle": "Statystyki użytkowania",

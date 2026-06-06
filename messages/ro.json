@@ -703,6 +703,8 @@
     "fieldPassword": "Parolă",
     "fieldDisplayName": "Nume afișat",
     "fieldNativeLanguage": "Limbă maternă",
+    "fieldTargetLanguage": "Limbă de învățat",
+    "fieldRole": "Tip cont",
     "submitCreate": "Creează",
     "searchPlaceholder": "Caută după nume de utilizator sau e-mail...",
     "statsTitle": "Statistici de utilizare",

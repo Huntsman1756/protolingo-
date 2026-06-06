@@ -28,6 +28,7 @@ export default function VocabularySetPage({
   const { setId } = use(params)
   const router = useRouter()
   const t = useTranslations('vocabulary')
+  const tCommon = useTranslations('common')
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const langFromId = setId.match(/_(en|es|it|pt)_/)?.[1]
   const targetLang = activeLanguage?.code ?? langFromId ?? 'en-US'
@@ -65,7 +66,12 @@ export default function VocabularySetPage({
       const data = (await res.json()) as { created: number }
       setAddedCount(data.created)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to add flashcards.')
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        msg === 'No active study plan found'
+          ? tCommon('noActivePlan')
+          : msg || 'Failed to add flashcards.'
+      )
     } finally {
       setAdding(false)
     }

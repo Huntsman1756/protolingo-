@@ -703,6 +703,8 @@
     "fieldPassword": "Wachtwoord",
     "fieldDisplayName": "Weergavenaam",
     "fieldNativeLanguage": "Moedertaal",
+    "fieldTargetLanguage": "Te leren taal",
+    "fieldRole": "Accounttype",
     "submitCreate": "Aanmaken",
     "searchPlaceholder": "Zoek op gebruikersnaam of e-mail...",
     "statsTitle": "Gebruiksstatistieken",

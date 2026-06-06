@@ -78,6 +78,7 @@ export default function ChatPage() {
     } catch {
       /* ignore */
     }
+    setConversations([])
     return []
   }, [])
 
@@ -88,6 +89,9 @@ export default function ChatPage() {
       const data = await loadConversations()
       if (data.length > 0) {
         selectConversation(data[0].id)
+      } else {
+        setActiveId(null)
+        setMessages([])
       }
       setLoadingConvs(false)
     }

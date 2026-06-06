@@ -703,6 +703,8 @@
     "fieldPassword": "Password",
     "fieldDisplayName": "Display Name",
     "fieldNativeLanguage": "Native Language",
+    "fieldTargetLanguage": "Language to learn",
+    "fieldRole": "Account type",
     "submitCreate": "Create",
     "searchPlaceholder": "Search by username or email...",
     "statsTitle": "Usage statistics",

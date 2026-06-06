@@ -703,6 +703,8 @@
     "fieldPassword": "Mot de passe",
     "fieldDisplayName": "Nom d'affichage",
     "fieldNativeLanguage": "Langue maternelle",
+    "fieldTargetLanguage": "Langue à apprendre",
+    "fieldRole": "Type de compte",
     "submitCreate": "Créer",
     "searchPlaceholder": "Rechercher par nom d'utilisateur ou email...",
     "statsTitle": "Statistiques d'utilisation",

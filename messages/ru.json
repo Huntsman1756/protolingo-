@@ -703,6 +703,8 @@
     "fieldPassword": "Пароль",
     "fieldDisplayName": "Отображаемое имя",
     "fieldNativeLanguage": "Родной язык",
+    "fieldTargetLanguage": "Язык для изучения",
+    "fieldRole": "Тип аккаунта",
     "submitCreate": "Создать",
     "searchPlaceholder": "Поиск по имени пользователя или e-mail...",
     "statsTitle": "Статистика использования",

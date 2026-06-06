@@ -703,6 +703,8 @@
     "fieldPassword": "Passwort",
     "fieldDisplayName": "Anzeigename",
     "fieldNativeLanguage": "Muttersprache",
+    "fieldTargetLanguage": "Zu lernende Sprache",
+    "fieldRole": "Kontotyp",
     "submitCreate": "Erstellen",
     "searchPlaceholder": "Nach Benutzername oder E-Mail suchen...",
     "statsTitle": "Nutzungsstatistiken",

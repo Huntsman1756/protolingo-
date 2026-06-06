@@ -703,6 +703,8 @@
     "fieldPassword": "Senha",
     "fieldDisplayName": "Nome de exibição",
     "fieldNativeLanguage": "Língua nativa",
+    "fieldTargetLanguage": "Língua a aprender",
+    "fieldRole": "Tipo de conta",
     "submitCreate": "Criar",
     "searchPlaceholder": "Pesquisar por nome de utilizador ou email...",
     "statsTitle": "Estatísticas de uso",
