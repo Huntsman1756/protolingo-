@@ -1,14 +1,14 @@
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 
 export type GrammarCategory =
-  | 'Tiempos Verbales'
+  | 'Tiempos verbales'
   | 'Sustantivos'
   | 'Pronombres'
-  | 'Adjetivos y Adverbios'
+  | 'Adjetivos y adverbios'
   | 'Verbos'
   | 'Condicionales'
-  | 'Voz Pasiva'
-  | 'Estilo Indirecto'
+  | 'Voz pasiva'
+  | 'Estilo indirecto'
   | 'Oraciones'
   | 'Artículos'
   | 'Preposiciones'
@@ -48,7 +48,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'ser',
     title: 'El verbo ser',
     level: 'A1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Usos básicos del verbo ser: identidad, origen, características permanentes.',
     structure:
@@ -207,7 +207,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'ser-nacionalidad',
     title: 'Ser + nacionalidad y origen',
     level: 'A1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary: 'Expresar procedencia, nacionalidad y origen con el verbo ser.',
     structure: 'ser + de + lugar · ser + adjetivo de nacionalidad',
     explanation:
@@ -341,7 +341,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'tener',
     title: 'El verbo tener',
     level: 'A1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary: 'Expresar posesión, edad y sensaciones con el verbo tener.',
     structure:
       'yo tengo · tú tienes · él tiene · nosotros tenemos · vosotros tenéis · ellos tienen',
@@ -425,7 +425,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'adjetivos-descriptivos',
     title: 'Adjetivos descriptivos',
     level: 'A1',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary:
       'Cómo describir personas, objetos y lugares con adjetivos que concuerdan en género y número.',
     structure:
@@ -470,7 +470,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'presente-regular',
     title: 'Presente de indicativo regular',
     level: 'A1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary: 'Conjugación de los verbos regulares en presente: -ar, -er, -ir.',
     structure:
       'raíz + -o/-as/-a/-amos/-áis/-an (AR) · -o/-es/-e/-emos/-éis/-en (ER) · -o/-es/-e/-imos/-ís/-en (IR)',
@@ -655,7 +655,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'tambien-tampoco',
     title: 'También y tampoco',
     level: 'A1',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary: 'Expresar acuerdo o coincidencia con también y tampoco.',
     structure: 'también (afirmativo) · tampoco (negativo)',
     explanation:
@@ -703,7 +703,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'muy-mucho',
     title: 'Muy y mucho',
     level: 'A1',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary:
       'Diferenciar el uso de muy (con adjetivos y adverbios) y mucho (con sustantivos y verbos).',
     structure:
@@ -751,7 +751,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'estar',
     title: 'El verbo estar',
     level: 'A1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Usos de estar: ubicación, estados temporales, el presente continuo.',
     structure:
@@ -798,7 +798,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'hay',
     title: 'Hay (haber impersonal)',
     level: 'A1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary: 'Expresar existencia con la forma impersonal "hay".',
     structure: 'hay + sustantivo (singular o plural) — es invariable',
     explanation:
@@ -890,7 +890,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'ir-a-futuro',
     title: 'Ir a + infinitivo (futuro próximo)',
     level: 'A1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Expresar planes e intenciones futuras con la perífrasis ir a + infinitivo.',
     structure: 'ir (conjugado) + a + infinitivo',
@@ -1035,7 +1035,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'preterito-indefinido-regular',
     title: 'Pretérito indefinido regular',
     level: 'A2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'El pasado simple para acciones terminadas: conjugación regular de -ar, -er, -ir.',
     structure:
@@ -1089,7 +1089,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'marcadores-temporales',
     title: 'Marcadores temporales del pasado',
     level: 'A2',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary:
       'Ayer, la semana pasada, hace dos días, en 2020... palabras que señalan cuándo ocurrió algo.',
     structure:
@@ -1142,7 +1142,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'preterito-irregular',
     title: 'Pretérito indefinido irregular',
     level: 'A2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary: 'Los principales verbos irregulares en pretérito indefinido.',
     structure: 'raíz irregular + -e/-iste/-o/-imos/-isteis/-ieron (sin tilde)',
     explanation:
@@ -1194,7 +1194,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'imperfecto',
     title: 'Pretérito imperfecto',
     level: 'A2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Describir hábitos pasados, escenas y acciones en desarrollo en el pasado.',
     structure:
@@ -1243,7 +1243,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'preterito-vs-imperfecto',
     title: 'Contraste: pretérito indefinido vs. imperfecto',
     level: 'A2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Cuándo usar cada pasado: acción puntual vs. descripción o hábito.',
     explanation:
@@ -1297,7 +1297,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'solia',
     title: 'Soler + infinitivo',
     level: 'A2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Expresar acciones habituales en pasado y presente con el verbo soler.',
     structure: 'soler (conjugado) + infinitivo',
@@ -1494,7 +1494,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'comparativos',
     title: 'Comparativos',
     level: 'A2',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary:
       'Comparar personas, objetos y acciones: más... que, menos... que, tan... como.',
     structure:
@@ -1543,7 +1543,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'superlativos',
     title: 'Superlativos',
     level: 'A2',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary:
       'Expresar el grado máximo de una cualidad: el más..., el mejor, -ísimo.',
     structure:
@@ -1592,7 +1592,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'tan-como',
     title: 'Tan y tanto... como',
     level: 'A2',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary:
       'Expresar igualdad: tan + adjetivo + como; tanto/a/os/as + sustantivo + como.',
     structure:
@@ -1789,7 +1789,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'futuro-simple',
     title: 'Futuro simple',
     level: 'A2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary: 'Hablar de acciones futuras: hablaré, comerás, vivirán.',
     structure: 'infinitivo completo + -é/-ás/-á/-emos/-éis/-án',
     explanation:
@@ -2036,7 +2036,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'estilo-indirecto',
     title: 'Estilo indirecto (presente → pasado)',
     level: 'A2',
-    category: 'Estilo Indirecto',
+    category: 'Estilo indirecto',
     summary: 'Contar lo que alguien dijo adaptando los tiempos verbales.',
     explanation:
       'El **estilo indirecto** consiste en reproducir lo que alguien ha dicho sin usar una cita textual. Cuando el verbo introductor está en **pasado** (dijo que, comentó que), los tiempos verbales y otras referencias se desplazan hacia el pasado:\n\n| Estilo directo | Estilo indirecto |\n|---------------|-----------------|\n| Presente: "Estoy cansado" | Imperfecto: Dijo que **estaba** cansado |\n| Pret. perfecto: "He comido" | Pluscuamperfecto: Dijo que **había comido** |\n| Indefinido: "Llegué ayer" | Pluscuamperfecto: Dijo que **había llegado** el día anterior |\n| Futuro: "Iré mañana" | Condicional: Dijo que **iría** al día siguiente |\n\nTambién cambian:\n- *hoy → aquel día*\n- *ayer → el día anterior*\n- *mañana → el día siguiente*\n- *aquí → allí*',
@@ -2137,7 +2137,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'cambios-temporales',
     title: 'Cambios temporales en el estilo indirecto',
     level: 'A2',
-    category: 'Estilo Indirecto',
+    category: 'Estilo indirecto',
     summary:
       'Cómo cambian las referencias de tiempo y lugar al pasar al estilo indirecto.',
     explanation:
@@ -2503,7 +2503,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'preterito-perfecto',
     title: 'Pretérito perfecto compuesto',
     level: 'B1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'He hablado, has comido, han vivido — acciones pasadas conectadas con el presente.',
     structure:
@@ -2556,7 +2556,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'pluscuamperfecto',
     title: 'Pretérito pluscuamperfecto',
     level: 'B1',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Había hablado, habías comido... — acción pasada anterior a otra pasada.',
     structure:
@@ -2611,7 +2611,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'marcadores-perfecto',
     title: 'Marcadores temporales del perfecto',
     level: 'B1',
-    category: 'Adjetivos y Adverbios',
+    category: 'Adjetivos y adverbios',
     summary:
       'Hoy, esta semana, ya, todavía no, nunca, alguna vez — marcadores del pretérito perfecto.',
     explanation:
@@ -2657,7 +2657,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'voz-pasiva',
     title: 'Voz pasiva con ser + participio',
     level: 'B1',
-    category: 'Voz Pasiva',
+    category: 'Voz pasiva',
     summary: 'Construir oraciones pasivas: ser + participio (+ por + agente).',
     structure:
       'sujeto paciente + ser (conjugado) + participio (concuerda) + (por + agente)',
@@ -2705,7 +2705,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'se-impersonal',
     title: 'Se impersonal',
     level: 'B1',
-    category: 'Voz Pasiva',
+    category: 'Voz pasiva',
     summary:
       'Construcciones impersonales con "se": Se habla español. Se vive bien aquí.',
     structure: 'se + verbo en 3ª persona singular',
@@ -2750,7 +2750,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'se-pasivo',
     title: 'Pasiva refleja (se + verbo)',
     level: 'B1',
-    category: 'Voz Pasiva',
+    category: 'Voz pasiva',
     summary:
       'Se venden pisos, se alquilan coches — la pasiva con "se" más natural del español.',
     structure: 'se + verbo en 3ª persona (concuerda con el sujeto paciente)',
@@ -3086,7 +3086,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'estilo-indirecto-pasado',
     title: 'Estilo indirecto en pasado',
     level: 'B1',
-    category: 'Estilo Indirecto',
+    category: 'Estilo indirecto',
     summary:
       'Transformaciones avanzadas del estilo indirecto con verbos en pretérito.',
     explanation:
@@ -3864,7 +3864,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'tiempos-narrativos',
     title: 'Tiempos narrativos',
     level: 'B2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Dominar la narración: alternancia de imperfecto, indefinido y pluscuamperfecto.',
     explanation:
@@ -4047,7 +4047,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'discurso-reportado',
     title: 'Discurso reportado en prensa',
     level: 'B2',
-    category: 'Estilo Indirecto',
+    category: 'Estilo indirecto',
     summary:
       'Cómo la prensa cita a las fuentes: verbos de habla, citas textuales e indirectas.',
     explanation:
@@ -4253,7 +4253,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'pasiva-refleja',
     title: 'Pasiva refleja avanzada',
     level: 'C1',
-    category: 'Voz Pasiva',
+    category: 'Voz pasiva',
     summary:
       'Usos avanzados de la pasiva refleja en registros formales y académicos.',
     explanation:
@@ -4660,7 +4660,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'espanol-latinoamerica',
-    title: 'Español de América Latina',
+    title: 'Español de américa latina',
     level: 'C1',
     category: 'Avanzado',
     summary:
@@ -4958,7 +4958,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'concordancia-de-tiempos',
     title: 'Concordancia de tiempos en discursos complejos',
     level: 'C2',
-    category: 'Tiempos Verbales',
+    category: 'Tiempos verbales',
     summary:
       'Dominio de la consecutio temporum en narraciones y discursos con múltiples niveles temporales.',
     explanation:

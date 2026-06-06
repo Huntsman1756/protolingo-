@@ -360,7 +360,11 @@ export default function ChatPage() {
                     {t('title')}
                   </p>
                   <p className="text-fl-muted-2 max-w-xs font-mono text-xs leading-relaxed">
-                    {t('subtitle', { language: activeLanguage ? tLang(activeLanguage.code) : tLang('en-GB') })}
+                    {t('subtitle', {
+                      language: activeLanguage
+                        ? tLang(activeLanguage.code)
+                        : tLang('en-GB'),
+                    })}
                   </p>
                 </div>
               ) : (

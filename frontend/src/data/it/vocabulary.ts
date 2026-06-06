@@ -33,7 +33,7 @@ export interface VocabularySet {
 const saluti_a1: VocabularySet = {
   id: 'saluti_a1',
   level: 'A1',
-  topic: 'Saluti e Cortesia',
+  topic: 'Saluti e cortesia',
   unit_ref: 'a1-unit-1',
   words: [
     {
@@ -149,7 +149,7 @@ const saluti_a1: VocabularySet = {
 const presentazioni_a1: VocabularySet = {
   id: 'presentazioni_a1',
   level: 'A1',
-  topic: 'Presentazioni Personali',
+  topic: 'Presentazioni personali',
   unit_ref: 'a1-unit-1',
   words: [
     {
@@ -359,7 +359,7 @@ const nazionalità_a1: VocabularySet = {
 const professioni_a1: VocabularySet = {
   id: 'professioni_a1',
   level: 'A1',
-  topic: 'Professioni e Mestieri',
+  topic: 'Professioni e mestieri',
   unit_ref: 'a1-unit-2',
   words: [
     {
@@ -465,7 +465,7 @@ const professioni_a1: VocabularySet = {
 const famiglia_a1: VocabularySet = {
   id: 'famiglia_a1',
   level: 'A1',
-  topic: 'La Famiglia',
+  topic: 'La famiglia',
   unit_ref: 'a1-unit-3',
   words: [
     {
@@ -594,7 +594,7 @@ const famiglia_a1: VocabularySet = {
 const descrizioni_a1: VocabularySet = {
   id: 'descrizioni_a1',
   level: 'A1',
-  topic: 'Descrizioni Fisiche e Carattere',
+  topic: 'Descrizioni fisiche e carattere',
   unit_ref: 'a1-unit-3',
   words: [
     {
@@ -715,7 +715,7 @@ const descrizioni_a1: VocabularySet = {
 const routine_a1: VocabularySet = {
   id: 'routine_a1',
   level: 'A1',
-  topic: 'Routine Quotidiana',
+  topic: 'Routine quotidiana',
   unit_ref: 'a1-unit-4',
   words: [
     {
@@ -820,7 +820,7 @@ const routine_a1: VocabularySet = {
 const orari_a1: VocabularySet = {
   id: 'orari_a1',
   level: 'A1',
-  topic: 'L Ora e il Tempo',
+  topic: 'L ora e il tempo',
   unit_ref: 'a1-unit-4',
   words: [
     {
@@ -950,7 +950,7 @@ const orari_a1: VocabularySet = {
 const cibo_a1: VocabularySet = {
   id: 'cibo_a1',
   level: 'A1',
-  topic: 'Cibo e Bevande',
+  topic: 'Cibo e bevande',
   unit_ref: 'a1-unit-5',
   words: [
     {
@@ -1083,7 +1083,7 @@ const cibo_a1: VocabularySet = {
 const attività_a1: VocabularySet = {
   id: 'attività_a1',
   level: 'A1',
-  topic: 'Attività del Tempo Libero',
+  topic: 'Attività del tempo libero',
   unit_ref: 'a1-unit-5',
   words: [
     {
@@ -1188,7 +1188,7 @@ const attività_a1: VocabularySet = {
 const luoghi_a1: VocabularySet = {
   id: 'luoghi_a1',
   level: 'A1',
-  topic: 'Luoghi della Città',
+  topic: 'Luoghi della città',
   unit_ref: 'a1-unit-6',
   words: [
     {
@@ -1295,7 +1295,7 @@ const luoghi_a1: VocabularySet = {
 const indicazioni_a1: VocabularySet = {
   id: 'indicazioni_a1',
   level: 'A1',
-  topic: 'Indicazioni e Direzioni',
+  topic: 'Indicazioni e direzioni',
   unit_ref: 'a1-unit-6',
   words: [
     {
@@ -1400,7 +1400,7 @@ const indicazioni_a1: VocabularySet = {
 const trasporti_a1: VocabularySet = {
   id: 'trasporti_a1',
   level: 'A1',
-  topic: 'Mezzi di Trasporto',
+  topic: 'Mezzi di trasporto',
   unit_ref: 'a1-unit-7',
   words: [
     {
@@ -1507,7 +1507,7 @@ const trasporti_a1: VocabularySet = {
 const meteo_a1: VocabularySet = {
   id: 'meteo_a1',
   level: 'A1',
-  topic: 'Tempo Meteorologico e Stagioni',
+  topic: 'Tempo meteorologico e stagioni',
   unit_ref: 'a1-unit-7',
   words: [
     {
@@ -1728,7 +1728,7 @@ const ripasso_a1: VocabularySet = {
 const viaggi_a2: VocabularySet = {
   id: 'viaggi_a2',
   level: 'A2',
-  topic: 'Viaggi e Spostamenti',
+  topic: 'Viaggi e spostamenti',
   unit_ref: 'a2-unit-1',
   words: [
     {
@@ -1834,7 +1834,7 @@ const viaggi_a2: VocabularySet = {
 const esperienze_a2: VocabularySet = {
   id: 'esperienze_a2',
   level: 'A2',
-  topic: 'Esperienze di Vita',
+  topic: 'Esperienze di vita',
   unit_ref: 'a2-unit-1',
   words: [
     {
@@ -1939,7 +1939,7 @@ const esperienze_a2: VocabularySet = {
 const infanzia_a2: VocabularySet = {
   id: 'infanzia_a2',
   level: 'A2',
-  topic: 'Infanzia e Ricordi',
+  topic: 'Infanzia e ricordi',
   unit_ref: 'a2-unit-2',
   words: [
     {
@@ -2044,7 +2044,7 @@ const infanzia_a2: VocabularySet = {
 const storie_a2: VocabularySet = {
   id: 'storie_a2',
   level: 'A2',
-  topic: 'Storie e Racconti',
+  topic: 'Storie e racconti',
   unit_ref: 'a2-unit-2',
   words: [
     {
@@ -2149,7 +2149,7 @@ const storie_a2: VocabularySet = {
 const acquisti_a2: VocabularySet = {
   id: 'acquisti_a2',
   level: 'A2',
-  topic: 'Fare Acquisti',
+  topic: 'Fare acquisti',
   unit_ref: 'a2-unit-3',
   words: [
     {
@@ -2254,7 +2254,7 @@ const acquisti_a2: VocabularySet = {
 const regali_a2: VocabularySet = {
   id: 'regali_a2',
   level: 'A2',
-  topic: 'Regali e Occasioni Speciali',
+  topic: 'Regali e occasioni speciali',
   unit_ref: 'a2-unit-3',
   words: [
     {
@@ -2359,7 +2359,7 @@ const regali_a2: VocabularySet = {
 const città_a2: VocabularySet = {
   id: 'città_a2',
   level: 'A2',
-  topic: 'La Città e i Suoi Luoghi',
+  topic: 'La città e i suoi luoghi',
   unit_ref: 'a2-unit-4',
   words: [
     {
@@ -2464,7 +2464,7 @@ const città_a2: VocabularySet = {
 const cultura_a2: VocabularySet = {
   id: 'cultura_a2',
   level: 'A2',
-  topic: 'Cultura e Tradizioni',
+  topic: 'Cultura e tradizioni',
   unit_ref: 'a2-unit-4',
   words: [
     {
@@ -2569,7 +2569,7 @@ const cultura_a2: VocabularySet = {
 const salute_a2: VocabularySet = {
   id: 'salute_a2',
   level: 'A2',
-  topic: 'Salute e Benessere',
+  topic: 'Salute e benessere',
   unit_ref: 'a2-unit-5',
   words: [
     {
@@ -2675,7 +2675,7 @@ const salute_a2: VocabularySet = {
 const consigli_a2: VocabularySet = {
   id: 'consigli_a2',
   level: 'A2',
-  topic: 'Consigli e Suggerimenti',
+  topic: 'Consigli e suggerimenti',
   unit_ref: 'a2-unit-5',
   words: [
     {
@@ -2782,7 +2782,7 @@ const consigli_a2: VocabularySet = {
 const lavoro_a2: VocabularySet = {
   id: 'lavoro_a2',
   level: 'A2',
-  topic: 'Mondo del Lavoro',
+  topic: 'Mondo del lavoro',
   unit_ref: 'a2-unit-6',
   words: [
     {
@@ -2888,7 +2888,7 @@ const lavoro_a2: VocabularySet = {
 const richieste_a2: VocabularySet = {
   id: 'richieste_a2',
   level: 'A2',
-  topic: 'Richieste e Moduli',
+  topic: 'Richieste e moduli',
   unit_ref: 'a2-unit-6',
   words: [
     {
@@ -2993,7 +2993,7 @@ const richieste_a2: VocabularySet = {
 const aneddoti_a2: VocabularySet = {
   id: 'aneddoti_a2',
   level: 'A2',
-  topic: 'Aneddoti e Racconti Personali',
+  topic: 'Aneddoti e racconti personali',
   unit_ref: 'a2-unit-7',
   words: [
     {
@@ -3206,7 +3206,7 @@ const ripasso_a2: VocabularySet = {
 const emozioni_b1: VocabularySet = {
   id: 'emozioni_b1',
   level: 'B1',
-  topic: "Emozioni e Stati d'Animo",
+  topic: "Emozioni e stati d'animo",
   unit_ref: 'b1-unit-1',
   words: [
     {
@@ -3319,7 +3319,7 @@ const emozioni_b1: VocabularySet = {
 const opinioni_b1: VocabularySet = {
   id: 'opinioni_b1',
   level: 'B1',
-  topic: 'Opinioni e Giudizi',
+  topic: 'Opinioni e giudizi',
   unit_ref: 'b1-unit-1',
   words: [
     {
@@ -3424,7 +3424,7 @@ const opinioni_b1: VocabularySet = {
 const lavoro_b1: VocabularySet = {
   id: 'lavoro_b1',
   level: 'B1',
-  topic: 'Lavoro e Carriera',
+  topic: 'Lavoro e carriera',
   unit_ref: 'b1-unit-2',
   words: [
     {
@@ -3529,7 +3529,7 @@ const lavoro_b1: VocabularySet = {
 const studio_b1: VocabularySet = {
   id: 'studio_b1',
   level: 'B1',
-  topic: 'Studio e Apprendimento',
+  topic: 'Studio e apprendimento',
   unit_ref: 'b1-unit-2',
   words: [
     {
@@ -3634,7 +3634,7 @@ const studio_b1: VocabularySet = {
 const esperienze_b1: VocabularySet = {
   id: 'esperienze_b1',
   level: 'B1',
-  topic: 'Esperienze Significative',
+  topic: 'Esperienze significative',
   unit_ref: 'b1-unit-3',
   words: [
     {
@@ -3739,7 +3739,7 @@ const esperienze_b1: VocabularySet = {
 const progetti_b1: VocabularySet = {
   id: 'progetti_b1',
   level: 'B1',
-  topic: 'Progetti e Piani',
+  topic: 'Progetti e piani',
   unit_ref: 'b1-unit-3',
   words: [
     {
@@ -3844,7 +3844,7 @@ const progetti_b1: VocabularySet = {
 const notizie_b1: VocabularySet = {
   id: 'notizie_b1',
   level: 'B1',
-  topic: 'Notizie e Informazione',
+  topic: 'Notizie e informazione',
   unit_ref: 'b1-unit-4',
   words: [
     {
@@ -3949,7 +3949,7 @@ const notizie_b1: VocabularySet = {
 const società_b1: VocabularySet = {
   id: 'società_b1',
   level: 'B1',
-  topic: 'Società e Attualità',
+  topic: 'Società e attualità',
   unit_ref: 'b1-unit-4',
   words: [
     {
@@ -4054,7 +4054,7 @@ const società_b1: VocabularySet = {
 const descrizioni_b1: VocabularySet = {
   id: 'descrizioni_b1',
   level: 'B1',
-  topic: 'Descrizioni Dettagliate',
+  topic: 'Descrizioni dettagliate',
   unit_ref: 'b1-unit-5',
   words: [
     {
@@ -4159,7 +4159,7 @@ const descrizioni_b1: VocabularySet = {
 const persone_b1: VocabularySet = {
   id: 'persone_b1',
   level: 'B1',
-  topic: 'Persone e Relazioni',
+  topic: 'Persone e relazioni',
   unit_ref: 'b1-unit-5',
   words: [
     {
@@ -4264,7 +4264,7 @@ const persone_b1: VocabularySet = {
 const situazioni_b1: VocabularySet = {
   id: 'situazioni_b1',
   level: 'B1',
-  topic: 'Situazioni e Circostanze',
+  topic: 'Situazioni e circostanze',
   unit_ref: 'b1-unit-6',
   words: [
     {
@@ -4369,7 +4369,7 @@ const situazioni_b1: VocabularySet = {
 const ipotesi_b1: VocabularySet = {
   id: 'ipotesi_b1',
   level: 'B1',
-  topic: 'Ipotesi e Possibilità',
+  topic: 'Ipotesi e possibilità',
   unit_ref: 'b1-unit-6',
   words: [
     {
@@ -4474,7 +4474,7 @@ const ipotesi_b1: VocabularySet = {
 const dibattiti_b1: VocabularySet = {
   id: 'dibattiti_b1',
   level: 'B1',
-  topic: 'Dibattiti e Argomentazioni',
+  topic: 'Dibattiti e argomentazioni',
   unit_ref: 'b1-unit-7',
   words: [
     {
@@ -4686,7 +4686,7 @@ const ripasso_b1: VocabularySet = {
 const sentimenti_b2: VocabularySet = {
   id: 'sentimenti_b2',
   level: 'B2',
-  topic: "Sentimenti e Stati d'Animo Avanzati",
+  topic: "Sentimenti e stati d'animo avanzati",
   unit_ref: 'b2-unit-1',
   words: [
     {
@@ -4800,7 +4800,7 @@ const sentimenti_b2: VocabularySet = {
 const ipotesi_b2: VocabularySet = {
   id: 'ipotesi_b2',
   level: 'B2',
-  topic: 'Ipotesi Complesse e Congetture',
+  topic: 'Ipotesi complesse e congetture',
   unit_ref: 'b2-unit-1',
   words: [
     {
@@ -4905,7 +4905,7 @@ const ipotesi_b2: VocabularySet = {
 const abitudini_b2: VocabularySet = {
   id: 'abitudini_b2',
   level: 'B2',
-  topic: 'Abitudini e Comportamenti',
+  topic: 'Abitudini e comportamenti',
   unit_ref: 'b2-unit-2',
   words: [
     {
@@ -5010,7 +5010,7 @@ const abitudini_b2: VocabularySet = {
 const cambiamenti_b2: VocabularySet = {
   id: 'cambiamenti_b2',
   level: 'B2',
-  topic: 'Cambiamenti e Trasformazioni',
+  topic: 'Cambiamenti e trasformazioni',
   unit_ref: 'b2-unit-2',
   words: [
     {
@@ -5115,7 +5115,7 @@ const cambiamenti_b2: VocabularySet = {
 const saggi_b2: VocabularySet = {
   id: 'saggi_b2',
   level: 'B2',
-  topic: 'Saggi e Scrittura Accademica',
+  topic: 'Saggi e scrittura accademica',
   unit_ref: 'b2-unit-3',
   words: [
     {
@@ -5220,7 +5220,7 @@ const saggi_b2: VocabularySet = {
 const accademico_b2: VocabularySet = {
   id: 'accademico_b2',
   level: 'B2',
-  topic: 'Linguaggio Accademico e Formale',
+  topic: 'Linguaggio accademico e formale',
   unit_ref: 'b2-unit-3',
   words: [
     {
@@ -5325,7 +5325,7 @@ const accademico_b2: VocabularySet = {
 const idiomi_b2: VocabularySet = {
   id: 'idiomi_b2',
   level: 'B2',
-  topic: 'Espressioni Idiomatiche Italiane',
+  topic: 'Espressioni idiomatiche italiane',
   unit_ref: 'b2-unit-4',
   words: [
     {
@@ -5430,7 +5430,7 @@ const idiomi_b2: VocabularySet = {
 const cultura_b2: VocabularySet = {
   id: 'cultura_b2',
   level: 'B2',
-  topic: 'Cultura e Patrimonio Italiano',
+  topic: 'Cultura e patrimonio italiano',
   unit_ref: 'b2-unit-4',
   words: [
     {
@@ -5536,7 +5536,7 @@ const cultura_b2: VocabularySet = {
 const dibattiti_b2: VocabularySet = {
   id: 'dibattiti_b2',
   level: 'B2',
-  topic: 'Dibattiti e Argomentazioni Avanzate',
+  topic: 'Dibattiti e argomentazioni avanzate',
   unit_ref: 'b2-unit-5',
   words: [
     {
@@ -5641,7 +5641,7 @@ const dibattiti_b2: VocabularySet = {
 const temi_sociali_b2: VocabularySet = {
   id: 'temi-sociali_b2',
   level: 'B2',
-  topic: 'Temi Sociali Contemporanei',
+  topic: 'Temi sociali contemporanei',
   unit_ref: 'b2-unit-5',
   words: [
     {
@@ -5747,7 +5747,7 @@ const temi_sociali_b2: VocabularySet = {
 const letteratura_b2: VocabularySet = {
   id: 'letteratura_b2',
   level: 'B2',
-  topic: 'Letteratura e Narrazione',
+  topic: 'Letteratura e narrazione',
   unit_ref: 'b2-unit-6',
   words: [
     {
@@ -5852,7 +5852,7 @@ const letteratura_b2: VocabularySet = {
 const lettura_b2: VocabularySet = {
   id: 'lettura_b2',
   level: 'B2',
-  topic: 'Lettura e Analisi del Testo',
+  topic: 'Lettura e analisi del testo',
   unit_ref: 'b2-unit-6',
   words: [
     {
@@ -5958,7 +5958,7 @@ const lettura_b2: VocabularySet = {
 const notizie_b2: VocabularySet = {
   id: 'notizie_b2',
   level: 'B2',
-  topic: 'Giornalismo e Informazione',
+  topic: 'Giornalismo e informazione',
   unit_ref: 'b2-unit-7',
   words: [
     {
@@ -6063,7 +6063,7 @@ const notizie_b2: VocabularySet = {
 const attualità_b2: VocabularySet = {
   id: 'attualità_b2',
   level: 'B2',
-  topic: 'Attualità e Società Contemporanea',
+  topic: 'Attualità e società contemporanea',
   unit_ref: 'b2-unit-7',
   words: [
     {
@@ -6275,7 +6275,7 @@ const ripasso_b2: VocabularySet = {
 const sfumature_c1: VocabularySet = {
   id: 'sfumature_c1',
   level: 'C1',
-  topic: 'Sfumature di Significato',
+  topic: 'Sfumature di significato',
   unit_ref: 'c1-unit-1',
   words: [
     {
@@ -6380,7 +6380,7 @@ const sfumature_c1: VocabularySet = {
 const formalità_c1: VocabularySet = {
   id: 'formalità_c1',
   level: 'C1',
-  topic: 'Formalità e Registri Linguistici',
+  topic: 'Formalità e registri linguistici',
   unit_ref: 'c1-unit-1',
   words: [
     {
@@ -6487,7 +6487,7 @@ const formalità_c1: VocabularySet = {
 const accademico_c1: VocabularySet = {
   id: 'accademico_c1',
   level: 'C1',
-  topic: 'Scrittura Accademica Avanzata',
+  topic: 'Scrittura accademica avanzata',
   unit_ref: 'c1-unit-2',
   words: [
     {
@@ -6592,7 +6592,7 @@ const accademico_c1: VocabularySet = {
 const ricerca_c1: VocabularySet = {
   id: 'ricerca_c1',
   level: 'C1',
-  topic: 'Ricerca e Metodologia',
+  topic: 'Ricerca e metodologia',
   unit_ref: 'c1-unit-2',
   words: [
     {
@@ -6697,7 +6697,7 @@ const ricerca_c1: VocabularySet = {
 const professionale_c1: VocabularySet = {
   id: 'professionale_c1',
   level: 'C1',
-  topic: 'Lessico Professionale',
+  topic: 'Lessico professionale',
   unit_ref: 'c1-unit-3',
   words: [
     {
@@ -6802,7 +6802,7 @@ const professionale_c1: VocabularySet = {
 const tecnico_c1: VocabularySet = {
   id: 'tecnico_c1',
   level: 'C1',
-  topic: 'Lessico Tecnico e Specialistico',
+  topic: 'Lessico tecnico e specialistico',
   unit_ref: 'c1-unit-3',
   words: [
     {
@@ -6908,7 +6908,7 @@ const tecnico_c1: VocabularySet = {
 const umorismo_c1: VocabularySet = {
   id: 'umorismo_c1',
   level: 'C1',
-  topic: 'Umorismo e Ironia',
+  topic: 'Umorismo e ironia',
   unit_ref: 'c1-unit-4',
   words: [
     {
@@ -7014,7 +7014,7 @@ const umorismo_c1: VocabularySet = {
 const cultura_c1: VocabularySet = {
   id: 'cultura_c1',
   level: 'C1',
-  topic: 'Cultura Italiana Approfondita',
+  topic: 'Cultura italiana approfondita',
   unit_ref: 'c1-unit-4',
   words: [
     {
@@ -7120,7 +7120,7 @@ const cultura_c1: VocabularySet = {
 const oratoria_c1: VocabularySet = {
   id: 'oratoria_c1',
   level: 'C1',
-  topic: 'Oratoria e Discorso Pubblico',
+  topic: 'Oratoria e discorso pubblico',
   unit_ref: 'c1-unit-5',
   words: [
     {
@@ -7225,7 +7225,7 @@ const oratoria_c1: VocabularySet = {
 const presentazioni_c1: VocabularySet = {
   id: 'presentazioni_c1',
   level: 'C1',
-  topic: 'Presentazioni e Public Speaking',
+  topic: 'Presentazioni e public speaking',
   unit_ref: 'c1-unit-5',
   words: [
     {
@@ -7330,7 +7330,7 @@ const presentazioni_c1: VocabularySet = {
 const varietà_c1: VocabularySet = {
   id: 'varietà_c1',
   level: 'C1',
-  topic: 'Varietà Linguistiche Italiane',
+  topic: 'Varietà linguistiche italiane',
   unit_ref: 'c1-unit-6',
   words: [
     {
@@ -7437,7 +7437,7 @@ const varietà_c1: VocabularySet = {
 const dialetti_c1: VocabularySet = {
   id: 'dialetti_c1',
   level: 'C1',
-  topic: 'Dialetti Italiani',
+  topic: 'Dialetti italiani',
   unit_ref: 'c1-unit-6',
   words: [
     {
@@ -7542,7 +7542,7 @@ const dialetti_c1: VocabularySet = {
 const analisi_c1: VocabularySet = {
   id: 'analisi_c1',
   level: 'C1',
-  topic: 'Analisi Critica',
+  topic: 'Analisi critica',
   unit_ref: 'c1-unit-7',
   words: [
     {
@@ -7647,7 +7647,7 @@ const analisi_c1: VocabularySet = {
 const sintesi_c1: VocabularySet = {
   id: 'sintesi_c1',
   level: 'C1',
-  topic: 'Sintesi e Rielaborazione',
+  topic: 'Sintesi e rielaborazione',
   unit_ref: 'c1-unit-7',
   words: [
     {
@@ -7859,7 +7859,7 @@ const ripasso_c1: VocabularySet = {
 const eccellenza_c2: VocabularySet = {
   id: 'eccellenza_c2',
   level: 'C2',
-  topic: 'Eccellenza e Maestria Linguistica',
+  topic: 'Eccellenza e maestria linguistica',
   unit_ref: 'c2-unit-1',
   words: [
     {
@@ -7965,7 +7965,7 @@ const eccellenza_c2: VocabularySet = {
 const letteratura_c2: VocabularySet = {
   id: 'letteratura_c2',
   level: 'C2',
-  topic: 'Letteratura Italiana Avanzata',
+  topic: 'Letteratura italiana avanzata',
   unit_ref: 'c2-unit-2',
   words: [
     {
@@ -8074,7 +8074,7 @@ const letteratura_c2: VocabularySet = {
 const stile_c2: VocabularySet = {
   id: 'stile_c2',
   level: 'C2',
-  topic: 'Stile e Tecniche Narrative',
+  topic: 'Stile e tecniche narrative',
   unit_ref: 'c2-unit-2',
   words: [
     {
@@ -8171,7 +8171,7 @@ const stile_c2: VocabularySet = {
 const traduzione_c2: VocabularySet = {
   id: 'traduzione_c2',
   level: 'C2',
-  topic: 'Traduzione e Equivalenza',
+  topic: 'Traduzione e equivalenza',
   unit_ref: 'c2-unit-3',
   words: [
     {
@@ -8280,7 +8280,7 @@ const traduzione_c2: VocabularySet = {
 const mediazione_c2: VocabularySet = {
   id: 'mediazione_c2',
   level: 'C2',
-  topic: 'Mediazione Linguistica e Interculturale',
+  topic: 'Mediazione linguistica e interculturale',
   unit_ref: 'c2-unit-3',
   words: [
     {
@@ -8390,7 +8390,7 @@ const mediazione_c2: VocabularySet = {
 const storia_c2: VocabularySet = {
   id: 'storia_c2',
   level: 'C2',
-  topic: 'Storia della Lingua Italiana',
+  topic: 'Storia della lingua italiana',
   unit_ref: 'c2-unit-4',
   words: [
     {
@@ -8497,7 +8497,7 @@ const storia_c2: VocabularySet = {
 const cultura_c2: VocabularySet = {
   id: 'cultura_c2',
   level: 'C2',
-  topic: 'Cultura Italiana: Radici e Identità',
+  topic: 'Cultura italiana: radici e identità',
   unit_ref: 'c2-unit-4',
   words: [
     {
@@ -8606,7 +8606,7 @@ const cultura_c2: VocabularySet = {
 const creazione_c2: VocabularySet = {
   id: 'creazione_c2',
   level: 'C2',
-  topic: 'Creazione e Scrittura Creativa',
+  topic: 'Creazione e scrittura creativa',
   unit_ref: 'c2-unit-5',
   words: [
     {
@@ -8711,7 +8711,7 @@ const creazione_c2: VocabularySet = {
 const pubblicazione_c2: VocabularySet = {
   id: 'pubblicazione_c2',
   level: 'C2',
-  topic: 'Pubblicazione e Revisione Editoriale',
+  topic: 'Pubblicazione e revisione editoriale',
   unit_ref: 'c2-unit-5',
   words: [
     {
@@ -8818,7 +8818,7 @@ const pubblicazione_c2: VocabularySet = {
 const maestria_c2: VocabularySet = {
   id: 'maestria_c2',
   level: 'C2',
-  topic: 'Maestria e Consolidamento C2',
+  topic: 'Maestria e consolidamento C2',
   unit_ref: 'c2-unit-6',
   words: [
     {

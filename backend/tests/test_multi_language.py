@@ -681,7 +681,7 @@ class TestCurriculumPerLanguage:
         assert len(c["A1"]) == 8
         assert len(c["C2"]) == 6
         # Verify it's Spanish content
-        assert c["A1"][0].title == "Saludos y Presentaciones"
+        assert c["A1"][0].title == "Saludos y presentaciones"
 
     @pytest.mark.asyncio
     async def test_curriculum_italian(self, client):
@@ -692,7 +692,7 @@ class TestCurriculumPerLanguage:
         assert "A1" in c
         assert "C2" in c
         assert len(c["A1"]) == 8
-        assert c["A1"][0].title == "Saluti e Presentazioni"
+        assert c["A1"][0].title == "Saluti e presentazioni"
 
     @pytest.mark.asyncio
     async def test_curriculum_portuguese(self, client):
@@ -703,7 +703,7 @@ class TestCurriculumPerLanguage:
         assert "A1" in c
         assert "C2" in c
         assert len(c["A1"]) == 8
-        assert c["A1"][0].title == "Saudações e Apresentações"
+        assert c["A1"][0].title == "Saudações e apresentações"
 
     @pytest.mark.asyncio
     async def test_curriculum_fallback(self, client):

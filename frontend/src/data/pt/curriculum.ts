@@ -80,7 +80,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-1',
         level: 'A1',
         unit_number: 1,
-        title: 'Saudações e Apresentações',
+        title: 'Saudações e apresentações',
         default_weeks: [1, 2],
         grammar_points: [
           'ser',
@@ -102,7 +102,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-2',
         level: 'A1',
         unit_number: 2,
-        title: 'Nacionalidades e Profissões',
+        title: 'Nacionalidades e profissões',
         default_weeks: [1, 2],
         grammar_points: [
           'ser-nacionalidade',
@@ -123,7 +123,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-3',
         level: 'A1',
         unit_number: 3,
-        title: 'A Família e Descrições',
+        title: 'A família e descrições',
         default_weeks: [1, 2],
         grammar_points: [
           'ter',
@@ -144,7 +144,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-4',
         level: 'A1',
         unit_number: 4,
-        title: 'Rotina Diária e Verbos Presente',
+        title: 'Rotina diária e verbos presente',
         default_weeks: [1, 2],
         grammar_points: ['presente-regular', 'verbos-reflexivos', 'horas'],
         vocabulary_set_ids: ['rotina_pt_a1', 'horas_pt_a1'],
@@ -161,7 +161,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-5',
         level: 'A1',
         unit_number: 5,
-        title: 'Gostos e Preferências',
+        title: 'Gostos e preferências',
         default_weeks: [1, 2],
         grammar_points: ['gostar-de', 'também-tampouco', 'muito-pouco'],
         vocabulary_set_ids: ['comida_pt_a1', 'atividades_pt_a1'],
@@ -178,7 +178,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-6',
         level: 'A1',
         unit_number: 6,
-        title: 'Lugares e Direções',
+        title: 'Lugares e direções',
         default_weeks: [1, 2],
         grammar_points: [
           'estar',
@@ -200,7 +200,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-7',
         level: 'A1',
         unit_number: 7,
-        title: 'Planos e Futuro Próximo',
+        title: 'Planos e futuro próximo',
         default_weeks: [1, 2],
         grammar_points: [
           'ir-futuro',
@@ -222,7 +222,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a1-unit-8',
         level: 'A1',
         unit_number: 8,
-        title: 'A1 Consolidação',
+        title: 'A1 consolidação',
         default_weeks: [1, 1],
         grammar_points: [
           'ser',
@@ -259,7 +259,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-1',
         level: 'A2',
         unit_number: 1,
-        title: 'Pretérito Perfeito Simples',
+        title: 'Pretérito perfeito simples',
         default_weeks: [1, 2],
         grammar_points: [
           'pretérito-perfeito-regular',
@@ -280,7 +280,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-2',
         level: 'A2',
         unit_number: 2,
-        title: 'Pretérito Imperfeito e Narração',
+        title: 'Pretérito imperfeito e narração',
         default_weeks: [1, 2],
         grammar_points: [
           'pretérito-imperfeito',
@@ -301,7 +301,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-3',
         level: 'A2',
         unit_number: 3,
-        title: 'Pronomes de Objeto Direto e Indireto',
+        title: 'Pronomes de objeto direto e indireto',
         default_weeks: [1, 2],
         grammar_points: [
           'pronomes-objeto-direto',
@@ -322,7 +322,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-4',
         level: 'A2',
         unit_number: 4,
-        title: 'Comparações e Superlativos',
+        title: 'Comparações e superlativos',
         default_weeks: [1, 2],
         grammar_points: ['comparativos', 'superlativos', 'tão-como'],
         vocabulary_set_ids: ['cidades_pt_a2', 'cultura_pt_a2'],
@@ -339,7 +339,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-5',
         level: 'A2',
         unit_number: 5,
-        title: 'Imperativo e Conselhos',
+        title: 'Imperativo e conselhos',
         default_weeks: [1, 2],
         grammar_points: [
           'imperativo-afirmativo',
@@ -360,7 +360,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-6',
         level: 'A2',
         unit_number: 6,
-        title: 'Futuro do Presente e Condicional',
+        title: 'Futuro do presente e condicional',
         default_weeks: [1, 2],
         grammar_points: [
           'futuro-do-presente',
@@ -381,7 +381,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-7',
         level: 'A2',
         unit_number: 7,
-        title: 'Histórias e Narrações',
+        title: 'Histórias e narrações',
         default_weeks: [1, 2],
         grammar_points: [
           'conectores-narrativos',
@@ -402,7 +402,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'a2-unit-8',
         level: 'A2',
         unit_number: 8,
-        title: 'A2 Consolidação',
+        title: 'A2 consolidação',
         default_weeks: [1, 1],
         grammar_points: [
           'pretérito-perfeito-regular',
@@ -437,7 +437,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-1',
         level: 'B1',
         unit_number: 1,
-        title: 'Presente do Conjuntivo',
+        title: 'Presente do conjuntivo',
         default_weeks: [1, 2],
         grammar_points: ['presente-conjuntivo', 'expressões-desejo', 'talvez'],
         vocabulary_set_ids: ['emoções_pt_b1', 'desejos_pt_b1'],
@@ -455,7 +455,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-2',
         level: 'B1',
         unit_number: 2,
-        title: 'Subjuntivo em Contexto',
+        title: 'Subjuntivo em contexto',
         default_weeks: [1, 2],
         grammar_points: [
           'subjuntivo-recomendação',
@@ -477,7 +477,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-3',
         level: 'B1',
         unit_number: 3,
-        title: 'Pretérito Perfeito Composto e Mais-que-perfeito',
+        title: 'Pretérito perfeito composto e mais-que-perfeito',
         default_weeks: [1, 2],
         grammar_points: [
           'pretérito-perfeito-composto',
@@ -499,7 +499,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-4',
         level: 'B1',
         unit_number: 4,
-        title: 'Voz Passiva e Construções Impessoais',
+        title: 'Voz passiva e construções impessoais',
         default_weeks: [1, 2],
         grammar_points: ['voz-passiva', 'se-impessoal', 'se-passivo'],
         vocabulary_set_ids: ['notícias_pt_b1', 'sociedade_pt_b1'],
@@ -517,7 +517,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-5',
         level: 'B1',
         unit_number: 5,
-        title: 'Orações Relativas',
+        title: 'Orações relativas',
         default_weeks: [1, 2],
         grammar_points: ['que-relativo', 'onde-quando-relativo', 'cujo'],
         vocabulary_set_ids: ['descrições_pt_b1', 'pessoas_pt_b1'],
@@ -534,7 +534,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-6',
         level: 'B1',
         unit_number: 6,
-        title: 'Condicionais, Futuro do Conjuntivo e Suposições',
+        title: 'Condicionais, futuro do conjuntivo e suposições',
         default_weeks: [1, 2],
         grammar_points: [
           'condicional-composto',
@@ -555,7 +555,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-7',
         level: 'B1',
         unit_number: 7,
-        title: 'Discurso Indireto e Conectores',
+        title: 'Discurso indireto e conectores',
         default_weeks: [1, 2],
         grammar_points: [
           'discurso-indireto-passado',
@@ -576,7 +576,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b1-unit-8',
         level: 'B1',
         unit_number: 8,
-        title: 'B1 Consolidação',
+        title: 'B1 consolidação',
         default_weeks: [1, 1],
         grammar_points: [
           'presente-conjuntivo',
@@ -610,7 +610,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-1',
         level: 'B2',
         unit_number: 1,
-        title: 'Subjuntivo Avançado',
+        title: 'Subjuntivo avançado',
         default_weeks: [1, 2],
         grammar_points: [
           'imperfeito-conjuntivo',
@@ -632,7 +632,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-2',
         level: 'B2',
         unit_number: 2,
-        title: 'Perífrases Verbais e Infinitivo Pessoal',
+        title: 'Perífrases verbais e infinitivo pessoal',
         default_weeks: [1, 2],
         grammar_points: [
           'perífrases-aspetuais',
@@ -655,7 +655,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-3',
         level: 'B2',
         unit_number: 3,
-        title: 'Conectores e Coerência Textual',
+        title: 'Conectores e coerência textual',
         default_weeks: [1, 2],
         grammar_points: [
           'conectores-avançados',
@@ -677,7 +677,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-4',
         level: 'B2',
         unit_number: 4,
-        title: 'Expressões Idiomáticas Portuguesas',
+        title: 'Expressões idiomáticas portuguesas',
         default_weeks: [1, 2],
         grammar_points: [
           'expressões-idiomáticas',
@@ -699,7 +699,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-5',
         level: 'B2',
         unit_number: 5,
-        title: 'Argumentação e Debate',
+        title: 'Argumentação e debate',
         default_weeks: [1, 2],
         grammar_points: [
           'estrutura-argumentativa',
@@ -721,7 +721,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-6',
         level: 'B2',
         unit_number: 6,
-        title: 'Literatura Portuguesa e Textos Narrativos',
+        title: 'Literatura portuguesa e textos narrativos',
         default_weeks: [1, 2],
         grammar_points: [
           'tempos-narrativos',
@@ -743,7 +743,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-7',
         level: 'B2',
         unit_number: 7,
-        title: 'Média e Atualidade',
+        title: 'Média e atualidade',
         default_weeks: [1, 2],
         grammar_points: [
           'linguagem-jornalística',
@@ -765,7 +765,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'b2-unit-8',
         level: 'B2',
         unit_number: 8,
-        title: 'B2 Consolidação',
+        title: 'B2 consolidação',
         default_weeks: [1, 1],
         grammar_points: [
           'imperfeito-conjuntivo',
@@ -801,7 +801,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-1',
         level: 'C1',
         unit_number: 1,
-        title: 'Nuances do Subjuntivo',
+        title: 'Nuances do subjuntivo',
         default_weeks: [1, 2],
         grammar_points: [
           'subjuntivo-concessivo',
@@ -823,7 +823,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-2',
         level: 'C1',
         unit_number: 2,
-        title: 'Registo Formal e Académico',
+        title: 'Registo formal e académico',
         default_weeks: [1, 2],
         grammar_points: ['passiva-reflexa', 'nominalização', 'impessoalidade'],
         vocabulary_set_ids: ['académico_pt_c1', 'investigação_pt_c1'],
@@ -841,7 +841,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-3',
         level: 'C1',
         unit_number: 3,
-        title: 'Léxico Especializado',
+        title: 'Léxico especializado',
         default_weeks: [1, 2],
         grammar_points: ['campos-semânticos', 'derivação', 'precisão-léxica'],
         vocabulary_set_ids: ['profissional_pt_c1', 'técnico_pt_c1'],
@@ -859,7 +859,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-4',
         level: 'C1',
         unit_number: 4,
-        title: 'Ironia, Humor e Duplo Sentido',
+        title: 'Ironia, humor e duplo sentido',
         default_weeks: [1, 2],
         grammar_points: ['ironia', 'humor-português', 'duplo-sentido'],
         vocabulary_set_ids: ['humor_pt_c1', 'cultura_pt_c1'],
@@ -877,7 +877,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-5',
         level: 'C1',
         unit_number: 5,
-        title: 'Discurso Persuasivo e Retórica',
+        title: 'Discurso persuasivo e retórica',
         default_weeks: [1, 2],
         grammar_points: [
           'recursos-retóricos',
@@ -899,7 +899,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-6',
         level: 'C1',
         unit_number: 6,
-        title: 'Variedades do Português',
+        title: 'Variedades do português',
         default_weeks: [1, 2],
         grammar_points: [
           'português-brasileiro',
@@ -921,7 +921,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-7',
         level: 'C1',
         unit_number: 7,
-        title: 'Análise Crítica e Síntese',
+        title: 'Análise crítica e síntese',
         default_weeks: [1, 2],
         grammar_points: [
           'síntese-textual',
@@ -943,7 +943,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c1-unit-8',
         level: 'C1',
         unit_number: 8,
-        title: 'C1 Consolidação',
+        title: 'C1 consolidação',
         default_weeks: [1, 1],
         grammar_points: [
           'subjuntivo-concessivo',
@@ -978,7 +978,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c2-unit-1',
         level: 'C2',
         unit_number: 1,
-        title: 'Domínio da Gramática Avançada',
+        title: 'Domínio da gramática avançada',
         default_weeks: [1, 2],
         grammar_points: [
           'revisão-conjuntivo',
@@ -1000,7 +1000,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c2-unit-2',
         level: 'C2',
         unit_number: 2,
-        title: 'Estilística e Registo Literário',
+        title: 'Estilística e registo literário',
         default_weeks: [1, 2],
         grammar_points: [
           'estilo-literário',
@@ -1022,7 +1022,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c2-unit-3',
         level: 'C2',
         unit_number: 3,
-        title: 'Tradução e Mediação Linguística',
+        title: 'Tradução e mediação linguística',
         default_weeks: [1, 2],
         grammar_points: ['equivalência', 'matizes-tradução', 'falsos-amigos'],
         vocabulary_set_ids: ['tradução_pt_c2', 'mediação_pt_c2'],
@@ -1040,7 +1040,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c2-unit-4',
         level: 'C2',
         unit_number: 4,
-        title: 'Cultura e História da Língua Portuguesa',
+        title: 'Cultura e história da língua portuguesa',
         default_weeks: [1, 2],
         grammar_points: [
           'evolução-linguística',
@@ -1062,7 +1062,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c2-unit-5',
         level: 'C2',
         unit_number: 5,
-        title: 'Criação de Conteúdos Avançados',
+        title: 'Criação de conteúdos avançados',
         default_weeks: [1, 2],
         grammar_points: [
           'géneros-textuais',
@@ -1084,7 +1084,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         id: 'c2-unit-6',
         level: 'C2',
         unit_number: 6,
-        title: 'C2 Consolidação e Maestria',
+        title: 'C2 consolidação e maestria',
         default_weeks: [1, 1],
         grammar_points: [
           'expressão-matizada',

@@ -22,7 +22,7 @@ export interface PhrasebookCategory {
 const greetings: PhrasebookCategory = {
   id: 'greetings',
   level: 'A1',
-  situation: 'Saudações e Apresentações',
+  situation: 'Saudações e apresentações',
   icon: '👋',
   phrases: [
     { english: 'Olá!', context: 'Saudação informal', register: 'informal' },
@@ -98,7 +98,7 @@ const greetings: PhrasebookCategory = {
 const basicRequests: PhrasebookCategory = {
   id: 'basic_requests',
   level: 'A1',
-  situation: 'Pedidos Básicos e Cortesia',
+  situation: 'Pedidos básicos e cortesia',
   icon: '🙏',
   phrases: [
     {
@@ -163,7 +163,7 @@ const basicRequests: PhrasebookCategory = {
 const numbersTimeA1: PhrasebookCategory = {
   id: 'numbers_time_a1',
   level: 'A1',
-  situation: 'Números e Horas',
+  situation: 'Números e horas',
   icon: '🕒',
   phrases: [
     {
@@ -217,7 +217,7 @@ const numbersTimeA1: PhrasebookCategory = {
 const shoppingBasicA1: PhrasebookCategory = {
   id: 'shopping_basic_a1',
   level: 'A1',
-  situation: 'Fazer Compras',
+  situation: 'Fazer compras',
   icon: '🛍️',
   phrases: [
     {
@@ -276,7 +276,7 @@ const shoppingBasicA1: PhrasebookCategory = {
 const askingDirectionsA1: PhrasebookCategory = {
   id: 'asking_directions_a1',
   level: 'A1',
-  situation: 'Pedir Informações',
+  situation: 'Pedir informações',
   icon: '🗺️',
   phrases: [
     {
@@ -337,7 +337,7 @@ const askingDirectionsA1: PhrasebookCategory = {
 const restaurantA2: PhrasebookCategory = {
   id: 'restaurant_a2',
   level: 'A2',
-  situation: 'No Restaurante',
+  situation: 'No restaurante',
   icon: '🍽️',
   phrases: [
     {
@@ -411,7 +411,7 @@ const restaurantA2: PhrasebookCategory = {
 const transportBookingA2: PhrasebookCategory = {
   id: 'transport_booking_a2',
   level: 'A2',
-  situation: 'Viagens e Transportes',
+  situation: 'Viagens e transportes',
   icon: '🚆',
   phrases: [
     {
@@ -475,7 +475,7 @@ const transportBookingA2: PhrasebookCategory = {
 const weatherTalkA2: PhrasebookCategory = {
   id: 'weather_talk_a2',
   level: 'A2',
-  situation: 'Falar do Tempo',
+  situation: 'Falar do tempo',
   icon: '🌤️',
   phrases: [
     {
@@ -529,7 +529,7 @@ const weatherTalkA2: PhrasebookCategory = {
 const makingPlansA2: PhrasebookCategory = {
   id: 'making_plans_a2',
   level: 'A2',
-  situation: 'Fazer Planos',
+  situation: 'Fazer planos',
   icon: '📅',
   phrases: [
     {
@@ -593,7 +593,7 @@ const makingPlansA2: PhrasebookCategory = {
 const feelingsA2: PhrasebookCategory = {
   id: 'feelings_a2',
   level: 'A2',
-  situation: 'Exprimir Emoções',
+  situation: 'Exprimir emoções',
   icon: '😊',
   phrases: [
     {
@@ -647,7 +647,7 @@ const feelingsA2: PhrasebookCategory = {
 const phoneCallsB1: PhrasebookCategory = {
   id: 'phone_calls_b1',
   level: 'B1',
-  situation: 'Chamadas Telefónicas',
+  situation: 'Chamadas telefónicas',
   icon: '📞',
   phrases: [
     {
@@ -711,7 +711,7 @@ const phoneCallsB1: PhrasebookCategory = {
 const jobInterviewB1: PhrasebookCategory = {
   id: 'job_interview_b1',
   level: 'B1',
-  situation: 'Entrevistas de Emprego',
+  situation: 'Entrevistas de emprego',
   icon: '💼',
   phrases: [
     {
@@ -770,7 +770,7 @@ const jobInterviewB1: PhrasebookCategory = {
 const givingOpinionsB1: PhrasebookCategory = {
   id: 'giving_opinions_b1',
   level: 'B1',
-  situation: 'Dar Opiniões',
+  situation: 'Dar opiniões',
   icon: '💬',
   phrases: [
     {
@@ -839,7 +839,7 @@ const givingOpinionsB1: PhrasebookCategory = {
 const healthAppointmentsB1: PhrasebookCategory = {
   id: 'health_appointments_b1',
   level: 'B1',
-  situation: 'Saúde e Consultas Médicas',
+  situation: 'Saúde e consultas médicas',
   icon: '🏥',
   phrases: [
     {
@@ -896,7 +896,7 @@ const healthAppointmentsB1: PhrasebookCategory = {
 const formalEmailsB2: PhrasebookCategory = {
   id: 'formal_emails_b2',
   level: 'B2',
-  situation: 'Emails Formais e Correspondência',
+  situation: 'Emails formais e correspondência',
   icon: '📧',
   phrases: [
     {
@@ -960,7 +960,7 @@ const formalEmailsB2: PhrasebookCategory = {
 const negotiationsB2: PhrasebookCategory = {
   id: 'negotiations_b2',
   level: 'B2',
-  situation: 'Discussões e Negociações',
+  situation: 'Discussões e negociações',
   icon: '🤝',
   phrases: [
     {
@@ -1019,7 +1019,7 @@ const negotiationsB2: PhrasebookCategory = {
 const academicDiscussionB2: PhrasebookCategory = {
   id: 'academic_discussion_b2',
   level: 'B2',
-  situation: 'Discussões Académicas',
+  situation: 'Discussões académicas',
   icon: '🎓',
   phrases: [
     {
@@ -1080,7 +1080,7 @@ const academicDiscussionB2: PhrasebookCategory = {
 const presentationsC1: PhrasebookCategory = {
   id: 'presentations_c1',
   level: 'C1',
-  situation: 'Apresentações e Public Speaking',
+  situation: 'Apresentações e public speaking',
   icon: '🎤',
   phrases: [
     {
@@ -1154,7 +1154,7 @@ const presentationsC1: PhrasebookCategory = {
 const complexArgumentsC1: PhrasebookCategory = {
   id: 'complex_arguments_c1',
   level: 'C1',
-  situation: 'Argumentações Complexas',
+  situation: 'Argumentações complexas',
   icon: '🧠',
   phrases: [
     {
@@ -1228,7 +1228,7 @@ const complexArgumentsC1: PhrasebookCategory = {
 const professionalNetworkingC1: PhrasebookCategory = {
   id: 'professional_networking_c1',
   level: 'C1',
-  situation: 'Networking Profissional',
+  situation: 'Networking profissional',
   icon: '🤝',
   phrases: [
     {
@@ -1289,7 +1289,7 @@ const professionalNetworkingC1: PhrasebookCategory = {
 const conflictResolutionC1: PhrasebookCategory = {
   id: 'conflict_resolution_c1',
   level: 'C1',
-  situation: 'Resolução de Conflitos',
+  situation: 'Resolução de conflitos',
   icon: '🕊️',
   phrases: [
     {
@@ -1355,7 +1355,7 @@ const conflictResolutionC1: PhrasebookCategory = {
 const rhetoricC2: PhrasebookCategory = {
   id: 'rhetoric_c2',
   level: 'C2',
-  situation: 'Retórica e Persuasão',
+  situation: 'Retórica e persuasão',
   icon: '⚖️',
   phrases: [
     {
@@ -1429,7 +1429,7 @@ const rhetoricC2: PhrasebookCategory = {
 const nuancedDiscourseC2: PhrasebookCategory = {
   id: 'nuanced_discourse_c2',
   level: 'C2',
-  situation: 'Discurso Matizado e Hedging',
+  situation: 'Discurso matizado e hedging',
   icon: '🔬',
   phrases: [
     {
@@ -1508,7 +1508,7 @@ const nuancedDiscourseC2: PhrasebookCategory = {
 const legalContractualC2: PhrasebookCategory = {
   id: 'legal_contractual_c2',
   level: 'C2',
-  situation: 'Linguagem Jurídica e Contratual',
+  situation: 'Linguagem jurídica e contratual',
   icon: '📜',
   phrases: [
     {
@@ -1577,7 +1577,7 @@ const legalContractualC2: PhrasebookCategory = {
 const socialCommentaryC2: PhrasebookCategory = {
   id: 'social_commentary_c2',
   level: 'C2',
-  situation: 'Comentário Social e Debate',
+  situation: 'Comentário social e debate',
   icon: '🗞️',
   phrases: [
     {

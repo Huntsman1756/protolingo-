@@ -1,14 +1,14 @@
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 
 export type GrammarCategory =
-  | 'Tempi Verbali'
+  | 'Tempi verbali'
   | 'Sostantivi'
   | 'Pronomi'
-  | 'Aggettivi e Avverbi'
-  | 'Verbi Modali'
+  | 'Aggettivi e avverbi'
+  | 'Verbi modali'
   | 'Condizionali'
-  | 'Voce Passiva'
-  | 'Discorso Indiretto'
+  | 'Voce passiva'
+  | 'Discorso indiretto'
   | 'Proposizioni'
   | 'Articoli'
   | 'Preposizioni'
@@ -46,7 +46,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'essere',
     title: 'Il verbo essere',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Il verbo più fondamentale della lingua italiana.',
     structure:
       'io sono · tu sei · lui/lei è · noi siamo · voi siete · loro sono',
@@ -81,7 +81,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'avere',
     title: 'Il verbo avere',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Esprime possesso e funge da ausiliare per i tempi composti.',
     structure:
       'io ho · tu hai · lui/lei ha · noi abbiamo · voi avete · loro hanno',
@@ -213,7 +213,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'essere-nazionalita',
     title: 'Essere + nazionalità',
     level: 'A1',
-    category: 'Aggettivi e Avverbi',
+    category: 'Aggettivi e avverbi',
     summary: 'Come esprimere la propria provenienza e nazionalità.',
     explanation:
       "Per esprimere la nazionalità si usa il verbo **essere** seguito dall'aggettivo di nazionalità, che concorda in genere e numero con il soggetto.\n\nIn italiano **non** si usa l'articolo indeterminativo prima della nazionalità.\n\nAggettivi comuni: *italiano/a, spagnolo/a, francese, inglese, tedesco/a, americano/a, cinese, giapponese.*",
@@ -336,7 +336,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'aggettivi-possessivi',
     title: 'Aggettivi possessivi',
     level: 'A1',
-    category: 'Aggettivi e Avverbi',
+    category: 'Aggettivi e avverbi',
     summary: 'Mio, tuo, suo, nostro, vostro, loro — esprimere appartenenza.',
     explanation:
       "Gli aggettivi possessivi indicano a chi appartiene qualcosa. Concordano in genere e numero con il nome, non con il possessore.\n\n- **mio, tuo, suo, nostro, vostro**: quattro forme ciascuno.\n- **loro**: invariabile.\n\nNormalmente preceduti dall'articolo: *la mia casa*. L'articolo si omette con i nomi di parentela al singolare: *mio padre, tua madre*.",
@@ -377,7 +377,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'aggettivi-descrittivi',
     title: 'Aggettivi descrittivi',
     level: 'A1',
-    category: 'Aggettivi e Avverbi',
+    category: 'Aggettivi e avverbi',
     summary:
       'Descrivere persone, luoghi e cose con gli aggettivi qualificativi.',
     explanation:
@@ -421,7 +421,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'ce-ci-sono',
     title: "C'è / Ci sono",
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: "Esprimere esistenza e presenza con c'è e ci sono.",
     structure: "c'è + singolare · ci sono + plurale",
     explanation:
@@ -461,7 +461,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'presente-are',
     title: 'Presente indicativo: verbi in -are',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Coniugare i verbi regolari che finiscono in -are.',
     structure: 'io -o · tu -i · lui/lei -a · noi -iamo · voi -ate · loro -ano',
     explanation:
@@ -495,7 +495,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'presente-ere',
     title: 'Presente indicativo: verbi in -ere',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Coniugare i verbi regolari che finiscono in -ere.',
     structure: 'io -o · tu -i · lui/lei -e · noi -iamo · voi -ete · loro -ono',
     explanation:
@@ -535,7 +535,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'presente-ire',
     title: 'Presente indicativo: verbi in -ire',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Coniugare i verbi regolari in -ire, compresi quelli che prendono -isc-.',
     explanation:
@@ -572,7 +572,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'verbi-riflessivi',
     title: 'Verbi riflessivi',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Azioni che il soggetto compie su sé stesso.',
     structure: 'mi · ti · si · ci · vi · si + verbo',
     explanation:
@@ -609,7 +609,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'piacere',
     title: 'Il verbo piacere',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Esprimere gusti e preferenze con la costruzione particolare di piacere.',
     explanation:
@@ -646,7 +646,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'verbi-modali',
     title: 'Verbi modali: dovere, potere, volere',
     level: 'A1',
-    category: 'Verbi Modali',
+    category: 'Verbi modali',
     summary: 'Esprimere necessità, possibilità e desiderio.',
     structure: 'dovere/potere/volere + infinito',
     explanation:
@@ -684,7 +684,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'anche-neanche',
-    title: 'Anche / Neanche',
+    title: 'Anche / neanche',
     level: 'A1',
     category: 'Avanzato',
     summary: 'Esprimere accordo o disaccordo in italiano.',
@@ -767,7 +767,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'imperativo-informale',
     title: 'Imperativo informale',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Dare ordini e istruzioni in modo informale (tu).',
     structure:
       'Tu: -a (-are) / -i (-ere, -ire) · Noi: -iamo · Voi: -ate/ete/ite',
@@ -813,7 +813,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'numeri-ordinali',
     title: 'Numeri ordinali',
     level: 'A1',
-    category: 'Aggettivi e Avverbi',
+    category: 'Aggettivi e avverbi',
     summary: 'Primo, secondo, terzo — ordinare e classificare in italiano.',
     explanation:
       "I numeri ordinali concordano in genere e numero con il nome.\n\n- primo/a, secondo/a, terzo/a, quarto/a, quinto/a, sesto/a, settimo/a, ottavo/a, nono/a, decimo/a.\n- Dall'11: undicesimo, dodicesimo, ventesimo, centesimo.\n\nAbbreviazioni: 1º (m), 1ª (f).\n\nUso: *il primo libro, la seconda porta a destra, il terzo piano.*",
@@ -859,7 +859,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'futuro-semplice',
     title: 'Il futuro semplice',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Parlare di eventi futuri e fare previsioni.',
     explanation:
       'Il futuro semplice si usa per eventi futuri, previsioni, promesse e ipotesi.\n\n**Formazione:**\n- -are: la A diventa E: parlerò, parlerai, parlerà, parleremo, parlerete, parleranno.\n- -ere: leggerò, leggerai...\n- -ire: dormirò, dormirai...\n\n**Irregolari principali:** essere (sarò), avere (avrò), andare (andrò), fare (farò), venire (verrò), volere (vorrò), potere (potrò), dovere (dovrò), sapere (saprò), vedere (vedrò), vivere (vivrò).',
@@ -902,7 +902,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'stare-per',
     title: 'Stare per + infinito',
     level: 'A1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: "Esprimere un'azione imminente, sul punto di accadere.",
     structure: 'stare (coniugato) + per + infinito',
     explanation:
@@ -988,7 +988,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'passato-prossimo-avere',
     title: 'Passato prossimo con avere',
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: "Esprimere azioni passate con l'ausiliare avere.",
     structure:
       'avere (presente) + participio passato\nho / hai / ha / abbiamo / avete / hanno + participio',
@@ -1032,7 +1032,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'passato-prossimo-essere',
     title: 'Passato prossimo con essere',
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       "Esprimere azioni passate con l'ausiliare essere e la concordanza del participio.",
     structure:
@@ -1079,7 +1079,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'participi-irregolari',
     title: 'Participi passati irregolari',
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'I principali participi passati irregolari da memorizzare.',
     explanation:
       'Molti verbi italiani hanno il participio passato irregolare:\n\n- aprire → aperto\n- bere → bevuto\n- chiedere → chiesto\n- chiudere → chiuso\n- correre → corso\n- decidere → deciso\n- dire → detto\n- fare → fatto\n- leggere → letto\n- mettere → messo\n- morire → morto\n- nascere → nato\n- prendere → preso\n- ridere → riso\n- rimanere → rimasto\n- rispondere → risposto\n- rompere → rotto\n- scegliere → scelto\n- scendere → sceso\n- scrivere → scritto\n- vedere → visto (o veduto)\n- venire → venuto\n- vincere → vinto\n- vivere → vissuto',
@@ -1119,7 +1119,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'imperfetto',
     title: "L'imperfetto",
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Descrivere azioni abituali, descrizioni e contesti nel passato.',
     structure:
       '-are → -avo/-avi/-ava/-avamo/-avate/-avano\n-ere → -evo/-evi/-eva/-evamo/-evate/-evano\n-ire → -ivo/-ivi/-iva/-ivamo/-ivate/-ivano',
@@ -1165,9 +1165,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'passato-prossimo-vs-imperfetto',
-    title: 'Passato prossimo vs Imperfetto',
+    title: 'Passato prossimo vs imperfetto',
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: "Capire quando usare il passato prossimo e quando l'imperfetto.",
     explanation:
       "Una delle distinzioni più difficili dell'italiano.\n\n**Passato prossimo:** azione puntuale, conclusa: *Ieri ho comprato un libro.*\n\n**Imperfetto:** azione abituale, descrizione, contesto: *Da bambino compravo caramelle.*\n\nEsempio classico:\n*Mentre **leggevo** (imperfetto — contesto), **è entrato** (passato prossimo — azione) mio padre.*",
@@ -1396,7 +1396,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'comparativi',
     title: 'Comparativi',
     level: 'A2',
-    category: 'Aggettivi e Avverbi',
+    category: 'Aggettivi e avverbi',
     summary: 'Confrontare persone, cose e azioni in italiano.',
     structure: 'più/meno + aggettivo + di/che',
     explanation:
@@ -1436,7 +1436,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'superlativi',
     title: 'Superlativi',
     level: 'A2',
-    category: 'Aggettivi e Avverbi',
+    category: 'Aggettivi e avverbi',
     summary: 'Esprimere il massimo o minimo grado di una qualità.',
     structure:
       'Articolo + più/meno + aggettivo (+ di + gruppo)\nAggettivo + -issimo/a/i/e',
@@ -1478,9 +1478,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'cosi-come',
-    title: 'Così... come / Tanto... quanto',
+    title: 'Così... come / tanto... quanto',
     level: 'A2',
-    category: 'Aggettivi e Avverbi',
+    category: 'Aggettivi e avverbi',
     summary: 'Costruzioni comparative di uguaglianza in italiano.',
     structure:
       '(così) + aggettivo/avverbio + come\n(tanto) + aggettivo/avverbio + quanto\n(tanto) + nome + quanto',
@@ -1524,7 +1524,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'imperativo-affermativo',
     title: 'Imperativo affermativo',
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Dare comandi, istruzioni e consigli in modo diretto e affermativo.',
     structure:
@@ -1568,7 +1568,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'imperativo-negativo',
     title: 'Imperativo negativo',
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Vietare o sconsigliare qualcosa: non + infinito per il tu.',
     structure: 'Tu: non + infinito\nLei/Noi/Voi/Loro: non + imperativo',
     explanation:
@@ -1837,7 +1837,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'trapassato-prossimo',
     title: 'Trapassato prossimo',
     level: 'A2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       "Esprimere un'azione passata precedente a un'altra azione passata.",
     structure: 'imperfetto di avere/essere + participio passato',
@@ -1886,7 +1886,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'discorso-indiretto',
     title: 'Discorso indiretto al presente',
     level: 'A2',
-    category: 'Discorso Indiretto',
+    category: 'Discorso indiretto',
     summary:
       'Riferire ciò che qualcuno ha detto adattando i pronomi e i tempi verbali.',
     explanation:
@@ -2211,7 +2211,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'trapassato-prossimo-b1',
     title: 'Trapassato prossimo (B1)',
     level: 'B1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Approfondimento del trapassato prossimo con congiuntivo e concordanza.',
     explanation:
@@ -2258,7 +2258,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'futuro-anteriore',
     title: 'Futuro anteriore',
     level: 'B1',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       "Esprimere un'azione futura che sarà completata prima di un'altra.",
     structure: 'futuro di avere/essere + participio passato',
@@ -2348,7 +2348,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'forma-passiva',
     title: 'La forma passiva',
     level: 'B1',
-    category: 'Voce Passiva',
+    category: 'Voce passiva',
     summary: 'Costruire la forma passiva con essere, venire e andare.',
     structure: 'essere/venire + participio passato (+ da + agente)',
     explanation:
@@ -2435,7 +2435,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'si-passivante',
     title: 'Si passivante',
     level: 'B1',
-    category: 'Voce Passiva',
+    category: 'Voce passiva',
     summary: 'Il si usato per formare la voce passiva impersonale.',
     structure: 'si + verbo (3ª singolare o plurale) + soggetto',
     explanation:
@@ -2744,7 +2744,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'discorso-indiretto-passato',
     title: 'Discorso indiretto al passato',
     level: 'B1',
-    category: 'Discorso Indiretto',
+    category: 'Discorso indiretto',
     summary:
       'Riferire al passato: trasformazione dei tempi verbali e indicatori.',
     explanation:
@@ -2839,7 +2839,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'trasformazioni-temporali',
     title: 'Trasformazioni temporali nel discorso indiretto',
     level: 'B1',
-    category: 'Discorso Indiretto',
+    category: 'Discorso indiretto',
     summary:
       'Come cambiano oggi, domani, qui e altri indicatori nel discorso indiretto.',
     explanation:
@@ -3036,7 +3036,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'stare-gerundio',
     title: 'Stare + gerundio',
     level: 'B2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Esprimere azioni in corso con la perifrasi progressiva stare + gerundio.',
     structure: 'stare + gerundio',
@@ -3077,7 +3077,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'andare-gerundio',
     title: 'Andare + gerundio',
     level: 'B2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary: 'Esprimere azioni graduali e progressive con andare + gerundio.',
     structure: 'andare + gerundio',
     explanation:
@@ -3111,7 +3111,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'venire-gerundio',
     title: 'Venire + gerundio',
     level: 'B2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Esprimere azioni progressive con enfasi tramite venire + gerundio.',
     structure: 'venire + gerundio',
@@ -3489,7 +3489,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'tempi-narrativi',
     title: 'Tempi narrativi',
     level: 'B2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Usare imperfetto, passato remoto e trapassato per narrare eventi.',
     explanation:
@@ -3560,7 +3560,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'passato-remoto',
     title: 'Passato remoto',
     level: 'B2',
-    category: 'Tempi Verbali',
+    category: 'Tempi verbali',
     summary:
       'Il passato remoto: formazione e uso nella narrazione e nel Sud Italia.',
     structure:
@@ -3681,7 +3681,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'discorso-riportato',
     title: 'Discorso riportato nei media',
     level: 'B2',
-    category: 'Discorso Indiretto',
+    category: 'Discorso indiretto',
     summary: 'Come i media italiani riportano le dichiarazioni altrui.',
     explanation:
       'Il discorso riportato nei media:\n- **Condizionale di dissociazione:** il giornalista prende le distanze. *Il ministro avrebbe dichiarato...*\n- **Virgolettato:** citazione diretta.\n- **Discorso indiretto libero:** mescola diretto e indiretto.\n\nIl condizionale di dissociazione e tipico: segnala che la notizia non e confermata.',

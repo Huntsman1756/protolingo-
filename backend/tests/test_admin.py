@@ -35,14 +35,14 @@ async def test_create_user_as_admin(client, admin_user):
     response = await client.post(
         "/api/admin/users",
         headers=headers,
-            json={
-                "username": "newadminuser",
-                "password": "Test1234!@",
-                "display_name": "New Admin User",
-                "native_language": "es",
-                "target_language": "en",
-                "role": "user",
-            },
+        json={
+            "username": "newadminuser",
+            "password": "Test1234!@",
+            "display_name": "New Admin User",
+            "native_language": "es",
+            "target_language": "en",
+            "role": "user",
+        },
     )
     assert response.status_code == 200
     data = response.json()

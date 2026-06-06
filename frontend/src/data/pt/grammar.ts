@@ -1,14 +1,14 @@
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 
 export type GrammarCategory =
-  | 'Tempos Verbais'
+  | 'Tempos verbais'
   | 'Substantivos'
   | 'Pronomes'
-  | 'Adjetivos e Adverbios'
+  | 'Adjetivos e adverbios'
   | 'Verbos'
   | 'Condicionais'
-  | 'Voz Passiva'
-  | 'Discurso Indireto'
+  | 'Voz passiva'
+  | 'Discurso indireto'
   | 'Oracoes'
   | 'Artigos'
   | 'Preposicoes'
@@ -116,7 +116,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'pronomes-sujeito',
-    title: 'Pronomes Sujeito',
+    title: 'Pronomes sujeito',
     level: 'A1',
     category: 'Pronomes',
     summary: 'Os pronomes pessoais que funcionam como sujeito da oração.',
@@ -162,7 +162,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'artigos-definidos',
-    title: 'Artigos Definidos',
+    title: 'Artigos definidos',
     level: 'A1',
     category: 'Artigos',
     summary: 'O, a, os, as — artigos que determinam substantivos específicos.',
@@ -210,7 +210,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'ser-nacionalidade',
-    title: 'Ser + Nacionalidades',
+    title: 'Ser + nacionalidades',
     level: 'A1',
     category: 'Verbos',
     summary:
@@ -252,7 +252,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'genero-substantivos',
-    title: 'Género dos Substantivos',
+    title: 'Género dos substantivos',
     level: 'A1',
     category: 'Substantivos',
     summary:
@@ -306,7 +306,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'artigos-indefinidos',
-    title: 'Artigos Indefinidos',
+    title: 'Artigos indefinidos',
     level: 'A1',
     category: 'Artigos',
     summary: 'Um, uma, uns, umas — artigos para substantivos não específicos.',
@@ -396,9 +396,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'adjetivos-possessivos',
-    title: 'Adjetivos Possessivos',
+    title: 'Adjetivos possessivos',
     level: 'A1',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Meu, teu, seu, nosso — indicam posse ou relação.',
     explanation: `Os possessivos concordam em género e número com a **coisa possuída**:\n\n**Nota EP**: possessivos são quase sempre precedidos de artigo definido: *o meu livro, a tua casa*.`,
     rules: [
@@ -447,9 +447,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'adjetivos-descritivos',
-    title: 'Adjetivos Descritivos',
+    title: 'Adjetivos descritivos',
     level: 'A1',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary:
       'Adjetivos que descrevem qualidades e concordam em género e número.',
     explanation: `Os adjetivos em português concordam em género e número com o substantivo.\n\n**Adjetivos uniformes**: terminados em **-e** (*grande, inteligente*), **-l** (*ágil*), **-ista** (*egoísta*).\n\n**Posição:** Geralmente depois; antes pode mudar o sentido (*grande amigo* vs *amigo grande*).\n\n**Bom/mau** são irregulares: bom→boa, bons, boas; mau→má, maus, más.`,
@@ -493,9 +493,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'presente-regular',
-    title: 'Presente do Indicativo (Regulares)',
+    title: 'Presente do indicativo (regulares)',
     level: 'A1',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Conjugação dos verbos regulares no presente em -ar, -er, -ir.',
     explanation: `| | fal**ar** | com**er** | abr**ir** |\n|---|-----------|-----------|----------|\n| eu | falo | como | abro |\n| tu | falas | comes | abres |\n| ele/você | fala | come | abre |\n| nós | falamos | comemos | abrimos |\n| eles/vocês | falam | comem | abrem |`,
     rules: [
@@ -538,7 +538,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'verbos-reflexivos',
-    title: 'Verbos Reflexivos',
+    title: 'Verbos reflexivos',
     level: 'A1',
     category: 'Verbos',
     summary: 'Verbos em que a ação recai sobre o próprio sujeito.',
@@ -585,7 +585,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'horas',
-    title: 'As Horas',
+    title: 'As horas',
     level: 'A1',
     category: 'Substantivos',
     summary: 'Como perguntar e dizer as horas em português europeu.',
@@ -665,9 +665,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'tambem-tampouco',
-    title: 'Também e Tampouco',
+    title: 'Também e tampouco',
     level: 'A1',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Expressar concordância e discordância.',
     explanation: `**Também** = also (frases afirmativas).\n**Tampouco** = neither (formal).\n**Também não** = neither (coloquial, mais comum).`,
     rules: [
@@ -704,9 +704,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'muito-pouco',
-    title: 'Muito e Pouco',
+    title: 'Muito e pouco',
     level: 'A1',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Quantificadores que expressam quantidade ou intensidade.',
     explanation: `**Muito** e **pouco** como adjetivos (variam): *Tenho muitos livros.* / Como advérbios (invariáveis): *Ela é muito bonita.*`,
     rules: [
@@ -796,7 +796,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'preposicoes-lugar',
-    title: 'Preposições de Lugar',
+    title: 'Preposições de lugar',
     level: 'A1',
     category: 'Preposicoes',
     summary: 'Em, no, na, a, para, de — como indicar localização.',
@@ -840,7 +840,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'contracoes-preposicionais',
-    title: 'Contrações Preposicionais',
+    title: 'Contrações preposicionais',
     level: 'A1',
     category: 'Preposicoes',
     summary: 'Combinações obrigatórias de preposições com artigos e pronomes.',
@@ -893,9 +893,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'ir-futuro',
-    title: 'Ir + Infinitivo (Futuro Próximo)',
+    title: 'Ir + infinitivo (futuro próximo)',
     level: 'A1',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Expressar planos e futuro próximo com ir + infinitivo.',
     explanation: `O futuro próximo forma-se com o verbo **ir** no presente + infinitivo.\n\nConjugação de ir: eu vou / tu vais / ele-você vai / nós vamos / eles-vocês vão.\n\nNa fala portuguesa, esta construção é MUITO mais comum que o futuro simples.`,
     rules: [
@@ -938,7 +938,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'querer-poder',
-    title: 'Querer e Poder',
+    title: 'Querer e poder',
     level: 'A1',
     category: 'Verbos',
     summary: 'Verbos irregulares que expressam desejo e capacidade.',
@@ -986,7 +986,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'dias-semana',
-    title: 'Dias da Semana',
+    title: 'Dias da semana',
     level: 'A1',
     category: 'Substantivos',
     summary: 'Os dias da semana e como usá-los com artigos e preposições.',
@@ -1033,9 +1033,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'estar-a-infinitivo',
-    title: 'Estar a + Infinitivo',
+    title: 'Estar a + infinitivo',
     level: 'A1',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'A forma perifrástica do português europeu para ações em curso.',
     explanation: `Em **Português Europeu**, a ação em curso expressa-se com **estar a + infinitivo** — diferente do gerúndio usado no Brasil.\n\n- *Estou a ler um livro.* (EP) = *Estou lendo um livro.* (BP)\n\nO gerúndio em EP usa-se apenas em contextos específicos ou registo literário.`,
     rules: [
@@ -1079,9 +1079,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'preterito-perfeito-regular',
-    title: 'Pretérito Perfeito Simples (Regulares)',
+    title: 'Pretérito perfeito simples (regulares)',
     level: 'A2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary:
       'Conjugação do pretérito perfeito para verbos regulares em -ar, -er, -ir.',
     explanation: `| | fal**ar** | com**er** | abr**ir** |\n|---|-----------|-----------|----------|\n| eu | falei | comi | abri |\n| tu | falaste | comeste | abriste |\n| ele/você | falou | comeu | abriu |\n| nós | falamos | comemos | abrimos |\n| eles/vocês | falaram | comeram | abriram |`,
@@ -1127,9 +1127,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'marcadores-temporais',
-    title: 'Marcadores Temporais',
+    title: 'Marcadores temporais',
     level: 'A2',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Palavras e expressões que situam ações no tempo.',
     explanation: `Marcadores por tempo:\n\n**Pretérito perfeito:** ontem, anteontem, a semana passada, há dois dias, já, ainda não, nunca.\n**Imperfeito:** todos os dias (no passado), antigamente, quando era criança, sempre, frequentemente.\n**Presente:** hoje, agora, atualmente, geralmente.\n**Futuro:** amanhã, na próxima semana, daqui a dois dias.`,
     rules: [
@@ -1172,9 +1172,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'preterito-perfeito-irregular',
-    title: 'Pretérito Perfeito (Irregulares)',
+    title: 'Pretérito perfeito (irregulares)',
     level: 'A2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Verbos irregulares mais comuns no pretérito perfeito.',
     explanation: `**Ser/Ir** (idênticos): fui, foste, foi, fomos, foram\n**Estar**: estive, estiveste, esteve, estivemos, estiveram\n**Ter**: tive, tiveste, teve, tivemos, tiveram\n**Fazer**: fiz, fizeste, fez, fizemos, fizeram\n**Querer**: quis, quiseste, quis, quisemos, quiseram\n**Poder**: pude, pudeste, pôde, pudemos, puderam\n**Saber**: soube, soubeste, soube, soubemos, souberam\n**Dar**: dei, deste, deu, demos, deram\n**Ver**: vi, viste, viu, vimos, viram\n**Vir**: vim, vieste, veio, viemos, vieram`,
     rules: [
@@ -1216,9 +1216,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'preterito-imperfeito',
-    title: 'Pretérito Imperfeito',
+    title: 'Pretérito imperfeito',
     level: 'A2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Descrever ações habituais, contínuas ou descritivas no passado.',
     explanation: `| | fal**ar** | com**er** | abr**ir** |\n|---|-----------|-----------|----------|\n| eu | falava | comia | abria |\n| tu | falavas | comias | abrias |\n| ele | falava | comia | abria |\n| nós | falávamos | comíamos | abríamos |\n| eles | falavam | comiam | abriam |\n\nIrregulares (poucos!): ser (era), ter (tinha), vir (vinha), pôr (punha).`,
     rules: [
@@ -1256,9 +1256,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'perfeito-vs-imperfeito',
-    title: 'Perfeito vs Imperfeito',
+    title: 'Perfeito vs imperfeito',
     level: 'A2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary:
       'Quando usar o pretérito perfeito e quando usar o pretérito imperfeito.',
     explanation: `**Perfeito:** ação concluída, pontual. *Ontem fui ao cinema.*\n**Imperfeito:** ação habitual, contínua, descritiva. *Quando era criança, ia ao cinema.*\n\nRegra prática: imperfeito = CCTV (filme); perfeito = fotografia (momento).`,
@@ -1301,9 +1301,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'costumava',
-    title: 'Costumar (Hábitos Passados)',
+    title: 'Costumar (hábitos passados)',
     level: 'A2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Expressar hábitos passados com costumar + infinitivo.',
     explanation: `**Costumar** no imperfeito + infinitivo = hábitos passados:\n\n- *Costumava ir à praia.* (= I used to go)\n- *Ele costumava fumar, mas deixou.*\n\nConjugação: costumava, costumavas, costumava, costumávamos, costumavam.`,
     rules: [
@@ -1341,7 +1341,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'pronomes-objeto-direto',
-    title: 'Pronomes de Objeto Direto',
+    title: 'Pronomes de objeto direto',
     level: 'A2',
     category: 'Pronomes',
     summary:
@@ -1383,7 +1383,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'pronomes-objeto-indireto',
-    title: 'Pronomes de Objeto Indireto',
+    title: 'Pronomes de objeto indireto',
     level: 'A2',
     category: 'Pronomes',
     summary:
@@ -1430,7 +1430,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'colocacao-pronominal',
-    title: 'Colocação Pronominal (EP)',
+    title: 'Colocação pronominal (EP)',
     level: 'A2',
     category: 'Pronomes',
     summary: 'Regras de colocação dos pronomes átonos em português europeu.',
@@ -1485,7 +1485,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'comparativos',
     title: 'Comparativos',
     level: 'A2',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Mais... do que, menos... do que — expressar comparações.',
     explanation: `**Superioridade:** *mais + adj + do que*. **Inferioridade:** *menos + adj + do que*. **Igualdade:** *tão + adj + como*.\n\nIrregulares: bom→melhor, mau→pior, grande→maior, pequeno→menor.`,
     rules: [
@@ -1526,7 +1526,7 @@ export const grammarTopics: GrammarTopic[] = [
     slug: 'superlativos',
     title: 'Superlativos',
     level: 'A2',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Expressar o grau máximo de uma qualidade.',
     explanation: `**Relativo:** *o/a mais + adj + de*. **Absoluto sintético:** adj + -íssimo (*bonitíssimo*). **Absoluto analítico:** *muito + adj*.\n\nIrregulares: bom→ótimo, mau→péssimo, grande→máximo, pequeno→mínimo.`,
     rules: [
@@ -1570,9 +1570,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'tao-como',
-    title: 'Tão... Como / Tanto... Como',
+    title: 'Tão... como / tanto... como',
     level: 'A2',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Comparativos de igualdade com tão e tanto.',
     explanation: `**Tão... como** (qualidade): *É tão alto como o pai.*\n**Tanto/a/os/as... como** (quantidade): *Tenho tanto dinheiro como ele.*\n**Tanto como** (verbos): *Estudo tanto como tu.*\n**Tão... que** (consequência): *É tão caro que ninguém compra.*`,
     rules: [
@@ -1616,7 +1616,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'imperativo-afirmativo',
-    title: 'Imperativo Afirmativo',
+    title: 'Imperativo afirmativo',
     level: 'A2',
     category: 'Verbos',
     summary: 'Dar ordens, instruções e conselhos de forma afirmativa.',
@@ -1660,7 +1660,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'imperativo-negativo',
-    title: 'Imperativo Negativo',
+    title: 'Imperativo negativo',
     level: 'A2',
     category: 'Verbos',
     summary: 'Dar ordens negativas, proibições e conselhos negativos.',
@@ -1713,7 +1713,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'imperativo-irregular',
-    title: 'Imperativo Irregular',
+    title: 'Imperativo irregular',
     level: 'A2',
     category: 'Verbos',
     summary: 'Formas irregulares do imperativo dos verbos mais comuns.',
@@ -1762,9 +1762,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'futuro-do-presente',
-    title: 'Futuro do Presente',
+    title: 'Futuro do presente',
     level: 'A2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Conjugação do futuro simples do indicativo.',
     explanation: `Infinitivo + terminações: -ei, -ás, -á, -emos, -ão.\n\nIrregulares: dizer→direi, fazer→farei, trazer→trarei.\n\nNa fala, prefere-se *ir + infinitivo*. Com pronomes: mesóclise (*dir-te-ei*).`,
     rules: [
@@ -1810,7 +1810,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'condicional',
-    title: 'Condicional Simples',
+    title: 'Condicional simples',
     level: 'A2',
     category: 'Condicionais',
     summary:
@@ -1858,9 +1858,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'futuro-composto',
-    title: 'Futuro Composto',
+    title: 'Futuro composto',
     level: 'A2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Expressar ações que estarão concluídas num ponto futuro.',
     explanation: `Ter (futuro) + particípio passado.\n\nUsos: ação concluída antes de momento futuro, suposição sobre o passado (*Ele terá chegado atrasado?* = provavelmente).`,
     rules: [
@@ -1899,7 +1899,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'conectores-narrativos',
-    title: 'Conectores Narrativos',
+    title: 'Conectores narrativos',
     level: 'A2',
     category: 'Oracoes',
     summary: 'Palavras e expressões para organizar uma narrativa no tempo.',
@@ -1935,7 +1935,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'sequencia-temporal',
-    title: 'Sequência Temporal',
+    title: 'Sequência temporal',
     level: 'A2',
     category: 'Oracoes',
     summary: 'Expressões que indicam a ordem cronológica de eventos.',
@@ -1971,9 +1971,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'discurso-indireto',
-    title: 'Discurso Indireto',
+    title: 'Discurso indireto',
     level: 'A2',
-    category: 'Discurso Indireto',
+    category: 'Discurso indireto',
     summary: 'Relatar o que alguém disse sem citar textualmente.',
     explanation: `O discurso indireto faz ajustes de pronomes, tempos e referências:\n\n- Direto: *Estou cansada*, disse ela.\n- Indireto: *Ela disse que estava cansada.*\n\nTempos recuam: presente→imperfeito, perfeito→mais-que-perfeito, futuro→condicional.`,
     rules: [
@@ -2022,9 +2022,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'mudancas-temporais',
-    title: 'Mudanças Temporais no Discurso Indireto',
+    title: 'Mudanças temporais no discurso indireto',
     level: 'A2',
-    category: 'Discurso Indireto',
+    category: 'Discurso indireto',
     summary: 'Transformações de tempo, lugar e pronomes ao relatar discurso.',
     explanation: `**Expressões temporais:** hoje→naquele dia, amanhã→no dia seguinte, ontem→no dia anterior, agora→naquele momento.\n**Lugar:** aqui→ali/lá.\n**Tempos:** presente→imperfeito, perfeito→mais-que-perfeito, futuro→condicional.`,
     rules: [
@@ -2060,7 +2060,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'presente-conjuntivo',
-    title: 'Presente do Conjuntivo',
+    title: 'Presente do conjuntivo',
     level: 'B1',
     category: 'Conjuntivo',
     summary: 'Formação e uso do presente do conjuntivo.',
@@ -2106,7 +2106,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'expressoes-desejo',
-    title: 'Expressões de Desejo',
+    title: 'Expressões de desejo',
     level: 'B1',
     category: 'Conjuntivo',
     summary:
@@ -2191,7 +2191,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'subjuntivo-recomendacao',
-    title: 'Conjuntivo com Recomendações',
+    title: 'Conjuntivo com recomendações',
     level: 'B1',
     category: 'Conjuntivo',
     summary:
@@ -2240,7 +2240,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'subjuntivo-duvida',
-    title: 'Conjuntivo com Dúvida',
+    title: 'Conjuntivo com dúvida',
     level: 'B1',
     category: 'Conjuntivo',
     summary:
@@ -2282,7 +2282,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'subjuntivo-avaliacao',
-    title: 'Conjuntivo com Avaliações',
+    title: 'Conjuntivo com avaliações',
     level: 'B1',
     category: 'Conjuntivo',
     summary: 'Usar o conjuntivo após expressões de avaliação emocional.',
@@ -2321,9 +2321,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'preterito-perfeito-composto',
-    title: 'Pretérito Perfeito Composto',
+    title: 'Pretérito perfeito composto',
     level: 'B1',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary:
       'Expressar ações repetidas ou contínuas que se prolongam até ao presente.',
     explanation: `Presente de **ter** + particípio passado.\n\n- *Tenho estudado muito.* (= I have been studying — ação repetida até agora)\n- *Ela tem trabalhado bastante.*\n\n**Diferenciação EP:** NÃO equivale ao present perfect inglês para ações únicas. *Comi ontem* (única), *Tenho comido bem* (repetida).`,
@@ -2363,9 +2363,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'mais-que-perfeito',
-    title: 'Pretérito Mais-que-perfeito Simples',
+    title: 'Pretérito mais-que-perfeito simples',
     level: 'B1',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Expressar uma ação passada anterior a outra ação passada.',
     explanation: `Forma-se da 3.ª pl. do pretérito perfeito (-ram):\n\n*Falaram → falara, falaras, falara, faláramos, falaram.*\n\nUso literário/formal. Na fala, prefere-se o composto: *tinha falado*.`,
     rules: [
@@ -2394,9 +2394,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'marcadores-composto',
-    title: 'Marcadores do Pretérito Perfeito Composto',
+    title: 'Marcadores do pretérito perfeito composto',
     level: 'B1',
-    category: 'Adjetivos e Adverbios',
+    category: 'Adjetivos e adverbios',
     summary: 'Expressões que indicam ação contínua/repetida até ao presente.',
     explanation: `Marcadores típicos:\n\n- Ultimamente: *Ultimamente tenho dormido mal.*\n- Nos últimos tempos/meses/anos: *Tenho andado ocupado.*\n- Até agora: *Até agora tenho conseguido.*\n- Desde + data: *Desde janeiro que tenho ido.*`,
     rules: [
@@ -2429,9 +2429,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'voz-passiva',
-    title: 'Voz Passiva',
+    title: 'Voz passiva',
     level: 'B1',
-    category: 'Voz Passiva',
+    category: 'Voz passiva',
     summary: 'Formação e uso da voz passiva com ser + particípio passado.',
     explanation: `**Ser** + particípio passado (concordante com sujeito):\n\n- Ativa: *O chef preparou o jantar.*\n- Passiva: *O jantar foi preparado pelo chef.*\n\nO agente é introduzido por *por*. O particípio concorda em género e número.`,
     rules: [
@@ -2465,9 +2465,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'se-impessoal',
-    title: 'Se Impessoal',
+    title: 'Se impessoal',
     level: 'B1',
-    category: 'Voz Passiva',
+    category: 'Voz passiva',
     summary: 'Usar a partícula se para expressar sujeito indeterminado.',
     explanation: `**Se** como índice de indeterminação do sujeito:\n- Verbo sempre na 3.ª singular: *Vive-se bem em Portugal.*\n- *Precisa-se de empregados.* (singular, mesmo com objeto plural)\n\nNÃO confundir com se passivo (verbo concorda com sujeito).`,
     rules: [
@@ -2497,9 +2497,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'se-passivo',
-    title: 'Se Passivo',
+    title: 'Se passivo',
     level: 'B1',
-    category: 'Voz Passiva',
+    category: 'Voz passiva',
     summary: 'Usar a partícula se para formar a voz passiva sintética.',
     explanation: `**Se passivo**: verbo concorda com o sujeito paciente.\n- *Vende-se uma casa. / Vendem-se casas.*\n\nEquivale a: *Uma casa é vendida. / Casas são vendidas.*\n\nMuito comum em anúncios.`,
     rules: [
@@ -2529,7 +2529,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'que-relativo',
-    title: 'Pronome Relativo Que',
+    title: 'Pronome relativo que',
     level: 'B1',
     category: 'Oracoes',
     summary: 'Usar que como pronome relativo para orações subordinadas.',
@@ -2565,7 +2565,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'onde-quando-relativo',
-    title: 'Pronomes Relativos Onde e Quando',
+    title: 'Pronomes relativos onde e quando',
     level: 'B1',
     category: 'Oracoes',
     summary: 'Usar onde (lugar) e quando (tempo) como pronomes relativos.',
@@ -2605,7 +2605,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'cujo',
-    title: 'Pronome Relativo Cujo',
+    title: 'Pronome relativo cujo',
     level: 'B1',
     category: 'Oracoes',
     summary: 'Usar cujo/a/os/as para expressar posse em orações relativas.',
@@ -2639,7 +2639,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'condicional-composto',
-    title: 'Condicional Composto',
+    title: 'Condicional composto',
     level: 'B1',
     category: 'Condicionais',
     summary: 'Expressar condições não realizadas no passado.',
@@ -2674,7 +2674,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'se-imperfeito-subjuntivo',
-    title: 'Se + Imperfeito do Conjuntivo',
+    title: 'Se + imperfeito do conjuntivo',
     level: 'B1',
     category: 'Condicionais',
     summary:
@@ -2707,7 +2707,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'futuro-do-conjuntivo',
-    title: 'Futuro do Conjuntivo',
+    title: 'Futuro do conjuntivo',
     level: 'B1',
     category: 'Conjuntivo',
     summary:
@@ -2752,9 +2752,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'discurso-indireto-passado',
-    title: 'Discurso Indireto no Passado',
+    title: 'Discurso indireto no passado',
     level: 'B1',
-    category: 'Discurso Indireto',
+    category: 'Discurso indireto',
     summary: 'Relatar discurso quando o verbo introdutor está no passado.',
     explanation: `Quando o verbo introdutor está no passado, os tempos recuam:\n\n| Direto | Indireto |\n|--------|----------|\n| Presente | Imperfeito |\n| Perfeito | Mais-que-perfeito |\n| Futuro | Condicional |\n| Imperativo | Imperfeito conj. |`,
     rules: [
@@ -2784,7 +2784,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'conectores-argumentativos',
-    title: 'Conectores Argumentativos',
+    title: 'Conectores argumentativos',
     level: 'B1',
     category: 'Oracoes',
     summary:
@@ -2824,7 +2824,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'imperfeito-conjuntivo',
-    title: 'Imperfeito do Conjuntivo',
+    title: 'Imperfeito do conjuntivo',
     level: 'B2',
     category: 'Conjuntivo',
     summary: 'Formação e uso do imperfeito do conjuntivo.',
@@ -2855,7 +2855,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'mais-que-perfeito-conjuntivo',
-    title: 'Mais-que-perfeito do Conjuntivo',
+    title: 'Mais-que-perfeito do conjuntivo',
     level: 'B2',
     category: 'Conjuntivo',
     summary: 'Expressar condicoes passadas nao realizadas.',
@@ -2885,9 +2885,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'concordancia-temporal',
-    title: 'Concordancia Temporal',
+    title: 'Concordancia temporal',
     level: 'B2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Regras de correspondencia entre tempos verbais.',
     explanation: `Presente/futuro -> presente conjuntivo. Preterito/condicional -> imperfeito conjuntivo.`,
     rules: [
@@ -2921,7 +2921,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'perifrases-aspetuais',
-    title: 'Perifrases Aspetuais',
+    title: 'Perifrases aspetuais',
     level: 'B2',
     category: 'Verbos',
     summary: 'Construcoes verbais que expressam aspetos da acao.',
@@ -2947,7 +2947,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'perifrases-modais',
-    title: 'Perifrases Modais',
+    title: 'Perifrases modais',
     level: 'B2',
     category: 'Verbos',
     summary: 'Construcoes verbais para obrigacao, possibilidade e intencao.',
@@ -2973,7 +2973,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'andar-a-estar-a',
-    title: 'Andar a vs Estar a',
+    title: 'Andar a vs estar a',
     level: 'B2',
     category: 'Verbos',
     summary: 'Diferenca entre andar a + infinitivo e estar a + infinitivo.',
@@ -3006,7 +3006,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'infinitivo-pessoal',
-    title: 'Infinitivo Pessoal',
+    title: 'Infinitivo pessoal',
     level: 'B2',
     category: 'Verbos',
     summary: 'O infinitivo pessoal.',
@@ -3036,7 +3036,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'conectores-avancados',
-    title: 'Conectores Avancados',
+    title: 'Conectores avancados',
     level: 'B2',
     category: 'Oracoes',
     summary: 'Conectores sofisticados para argumentacao.',
@@ -3067,7 +3067,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'coesao-textual',
-    title: 'Coesao Textual',
+    title: 'Coesao textual',
     level: 'B2',
     category: 'Avancado',
     summary: 'Mecanismos para textos coesos.',
@@ -3090,7 +3090,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'registo-formal',
-    title: 'Registo Formal',
+    title: 'Registo formal',
     level: 'B2',
     category: 'Avancado',
     summary: 'Caracteristicas do registo formal em EP.',
@@ -3120,7 +3120,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'expressoes-idiomaticas',
-    title: 'Expressoes Idiomaticas',
+    title: 'Expressoes idiomaticas',
     level: 'B2',
     category: 'Avancado',
     summary: 'Expressoes idiomaticas portuguesas.',
@@ -3141,7 +3141,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'expressoes-coloquiais',
-    title: 'Expressoes Coloquiais',
+    title: 'Expressoes coloquiais',
     level: 'B2',
     category: 'Avancado',
     summary: 'Linguagem coloquial e giria do portugues europeu.',
@@ -3165,7 +3165,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'proverbios',
-    title: 'Proverbios Portugueses',
+    title: 'Proverbios portugueses',
     level: 'B2',
     category: 'Avancado',
     summary: 'Proverbios tradicionais portugueses.',
@@ -3186,7 +3186,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'estrutura-argumentativa',
-    title: 'Estrutura Argumentativa',
+    title: 'Estrutura argumentativa',
     level: 'B2',
     category: 'Avancado',
     summary: 'Construir textos argumentativos.',
@@ -3275,9 +3275,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'tempos-narrativos',
-    title: 'Tempos Narrativos',
+    title: 'Tempos narrativos',
     level: 'B2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Articulacao dos tempos verbais na narrativa.',
     explanation: `Imperfeito (cenario), perfeito (acao principal), mais-que-perfeito (flashback).`,
     rules: ['Imperfeito = cenario.', 'Perfeito = acao.', 'MQP = flashback.'],
@@ -3302,7 +3302,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'descricao-literaria',
-    title: 'Descricao Literaria',
+    title: 'Descricao literaria',
     level: 'B2',
     category: 'Avancado',
     summary: 'Recursos para descricoes vividas.',
@@ -3334,9 +3334,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'preterito-mais-que-perfeito',
-    title: 'Preterito Mais-que-Perfeito Composto',
+    title: 'Preterito mais-que-perfeito composto',
     level: 'B2',
-    category: 'Tempos Verbais',
+    category: 'Tempos verbais',
     summary: 'Revisao do MQP composto.',
     explanation: `Ter (imperfeito) + participio. Muito mais comum que a forma simples.`,
     rules: [
@@ -3364,7 +3364,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'linguagem-jornalistica',
-    title: 'Linguagem Jornalistica',
+    title: 'Linguagem jornalistica',
     level: 'B2',
     category: 'Avancado',
     summary: 'Caracteristicas da linguagem jornalistica em EP.',
@@ -3394,7 +3394,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'titulos',
-    title: 'Titulos Jornalisticos',
+    title: 'Titulos jornalisticos',
     level: 'B2',
     category: 'Avancado',
     summary: 'Estrutura e estilo dos titulos na imprensa portuguesa.',
@@ -3415,9 +3415,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'discurso-reportado',
-    title: 'Discurso Reportado',
+    title: 'Discurso reportado',
     level: 'B2',
-    category: 'Discurso Indireto',
+    category: 'Discurso indireto',
     summary: 'Tecnicas avancadas de citacao e reportagem.',
     explanation: `Citacao direta, indireta, mista. Verbos introdutores variados: afirmar, salientar, admitir, garantir, anunciar.`,
     rules: ['Variar verbos introdutores.', 'Direta, indireta, mista.'],
@@ -3442,7 +3442,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'subjuntivo-concessivo',
-    title: 'Conjuntivo em Oracoes Concessivas',
+    title: 'Conjuntivo em oracoes concessivas',
     level: 'C1',
     category: 'Conjuntivo',
     summary: 'Uso avancado do conjuntivo em oracoes concessivas.',
@@ -3476,7 +3476,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'subjuntivo-final',
-    title: 'Conjuntivo em Oracoes Finais',
+    title: 'Conjuntivo em oracoes finais',
     level: 'C1',
     category: 'Conjuntivo',
     summary: 'Conjuntivo apos conectores finais.',
@@ -3506,7 +3506,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'subjuntivo-relativo',
-    title: 'Conjuntivo em Oracoes Relativas',
+    title: 'Conjuntivo em oracoes relativas',
     level: 'C1',
     category: 'Conjuntivo',
     summary: 'Conjuntivo com antecedente indeterminado.',
@@ -3535,9 +3535,9 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'passiva-reflexa',
-    title: 'Voz Passiva Reflexa',
+    title: 'Voz passiva reflexa',
     level: 'C1',
-    category: 'Voz Passiva',
+    category: 'Voz passiva',
     summary: 'Usos avancados da voz passiva com o pronome se.',
     explanation: `Aprecia-se, comenta-se, realizar-se-a (mesoclise), observa-se. Uso academico e jornalistico.`,
     rules: [
@@ -3609,7 +3609,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'campos-semanticos',
-    title: 'Campos Semanticos',
+    title: 'Campos semanticos',
     level: 'C1',
     category: 'Avancado',
     summary: 'Agrupamentos lexicais por dominios.',
@@ -3659,7 +3659,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'precisao-lexica',
-    title: 'Precisao Lexica',
+    title: 'Precisao lexica',
     level: 'C1',
     category: 'Avancado',
     summary: 'Escolher a palavra exata.',
@@ -3709,7 +3709,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'humor-portugues',
-    title: 'Humor a Portuguesa',
+    title: 'Humor a portuguesa',
     level: 'C1',
     category: 'Avancado',
     summary: 'Caracteristicas do humor portugues.',
@@ -3736,7 +3736,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'duplo-sentido',
-    title: 'Duplo Sentido',
+    title: 'Duplo sentido',
     level: 'C1',
     category: 'Avancado',
     summary: 'Jogos de palavras e ambiguidade.',
@@ -3760,7 +3760,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'recursos-retoricos',
-    title: 'Recursos Retoricos',
+    title: 'Recursos retoricos',
     level: 'C1',
     category: 'Avancado',
     summary: 'Catalogo de figuras de retorica.',
@@ -3808,7 +3808,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'figuras-literarias',
-    title: 'Figuras Literarias',
+    title: 'Figuras literarias',
     level: 'C1',
     category: 'Avancado',
     summary: 'Metafora, metonimia, sine doque e outras figuras.',
@@ -3835,7 +3835,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'portugues-brasileiro',
-    title: 'Portugues Brasileiro vs Europeu',
+    title: 'Portugues brasileiro vs europeu',
     level: 'C1',
     category: 'Avancado',
     summary: 'Principais diferencas entre PB e PE.',
@@ -3862,7 +3862,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'portugues-europeu',
-    title: 'Particularidades do Portugues Europeu',
+    title: 'Particularidades do portugues europeu',
     level: 'C1',
     category: 'Avancado',
     summary: 'Caracteristicas distintivas do PE.',
@@ -3898,7 +3898,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'diferencas-regionais',
-    title: 'Diferencas Regionais em Portugal',
+    title: 'Diferencas regionais em portugal',
     level: 'C1',
     category: 'Avancado',
     summary: 'Variacao dialetal dentro de Portugal.',
@@ -3926,7 +3926,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'sintese-textual',
-    title: 'Sintese Textual',
+    title: 'Sintese textual',
     level: 'C1',
     category: 'Avancado',
     summary: 'Tecnicas para resumir textos.',
@@ -3955,7 +3955,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'critica-construtiva',
-    title: 'Critica Construtiva',
+    title: 'Critica construtiva',
     level: 'C1',
     category: 'Avancado',
     summary: 'Formular criticas de forma elegante.',
@@ -4004,7 +4004,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'revisao-conjuntivo',
-    title: 'Revisao Geral do Conjuntivo',
+    title: 'Revisao geral do conjuntivo',
     level: 'C2',
     category: 'Conjuntivo',
     summary: 'Dominio completo do conjuntivo.',
@@ -4031,7 +4031,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'revisao-condicional',
-    title: 'Revisao Geral dos Condicionais',
+    title: 'Revisao geral dos condicionais',
     level: 'C2',
     category: 'Condicionais',
     summary: 'Dominio de todas as estruturas condicionais.',
@@ -4092,7 +4092,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'estilo-literario',
-    title: 'Estilo Literario',
+    title: 'Estilo literario',
     level: 'C2',
     category: 'Avancado',
     summary: 'Desenvolver uma voz literaria autentica.',
@@ -4112,7 +4112,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'voz-narrativa',
-    title: 'Voz Narrativa',
+    title: 'Voz narrativa',
     level: 'C2',
     category: 'Avancado',
     summary: 'Tipos de narrador e construcao da voz narrativa.',
@@ -4141,7 +4141,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'recursos-estilisticos',
-    title: 'Recursos Estilisticos Avancados',
+    title: 'Recursos estilisticos avancados',
     level: 'C2',
     category: 'Avancado',
     summary: 'Sinestesia, aliteracao, assonancia, quiasmo.',
@@ -4168,7 +4168,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'equivalencia',
-    title: 'Equivalencia na Traducao',
+    title: 'Equivalencia na traducao',
     level: 'C2',
     category: 'Avancado',
     summary: 'Principios de equivalencia tradutoria.',
@@ -4192,7 +4192,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'matizes-traducao',
-    title: 'Matizes de Traducao',
+    title: 'Matizes de traducao',
     level: 'C2',
     category: 'Avancado',
     summary: 'Nuances que distinguem uma boa traducao.',
@@ -4224,7 +4224,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'falsos-amigos',
-    title: 'Falsos Amigos',
+    title: 'Falsos amigos',
     level: 'C2',
     category: 'Avancado',
     summary: 'Palavras portuguesas que parecem inglesas.',
@@ -4256,7 +4256,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'evolucao-linguistica',
-    title: 'Evolucao Linguistica',
+    title: 'Evolucao linguistica',
     level: 'C2',
     category: 'Avancado',
     summary: 'Como a lingua portuguesa evoluiu do latim.',
@@ -4317,7 +4317,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'arabismos-portugueses',
-    title: 'Arabismos Portugueses',
+    title: 'Arabismos portugueses',
     level: 'C2',
     category: 'Avancado',
     summary: 'A heranca arabe no lexico portugues.',
@@ -4343,7 +4343,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'generos-textuais',
-    title: 'Generos Textuais',
+    title: 'Generos textuais',
     level: 'C2',
     category: 'Avancado',
     summary: 'Dominio de todos os generos textuais.',
@@ -4369,7 +4369,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'criatividade-linguistica',
-    title: 'Criatividade Linguistica',
+    title: 'Criatividade linguistica',
     level: 'C2',
     category: 'Avancado',
     summary: 'Brincar com a lingua: neologismos, trocadilhos.',
@@ -4396,7 +4396,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'edicao',
-    title: 'Edicao e Revisao de Textos',
+    title: 'Edicao e revisao de textos',
     level: 'C2',
     category: 'Avancado',
     summary: 'Tecnicas de edicao para clareza e elegancia.',
@@ -4419,7 +4419,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'expressao-matizada',
-    title: 'Expressao Matizada',
+    title: 'Expressao matizada',
     level: 'C2',
     category: 'Avancado',
     summary: 'Arte de matizar o discurso.',
@@ -4446,7 +4446,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'integracao-gramatical',
-    title: 'Integracao Gramatical',
+    title: 'Integracao gramatical',
     level: 'C2',
     category: 'Avancado',
     summary: 'Sintese de todos os conhecimentos gramaticais.',
@@ -4481,7 +4481,7 @@ export const grammarTopics: GrammarTopic[] = [
   },
   {
     slug: 'fluencia-nativa',
-    title: 'Fluencia Nativa',
+    title: 'Fluencia nativa',
     level: 'C2',
     category: 'Avancado',
     summary: 'Alcancar proficiencia indistinguivel de nativo.',
