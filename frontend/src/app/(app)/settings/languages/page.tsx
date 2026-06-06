@@ -96,8 +96,7 @@ export default function MyLanguagesPage() {
   // Only show operator-enabled languages that the user hasn't added yet
   const unusedCodes = SUPPORTED_TARGET_LANGUAGES.filter(
     (l) =>
-      (availableLanguageCodes.length === 0 ||
-        availableLanguageCodes.includes(l.code)) &&
+      availableLanguageCodes.includes(l.code) &&
       !addedCodes.includes(l.code)
   ).map((l) => l.code)
   const hasMultiple = userLanguages.length > 1

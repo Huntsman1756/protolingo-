@@ -22,13 +22,13 @@ export default function TargetLanguageSelector({
   )
 
   return (
-    <div className="flex gap-2">
+    <div className="grid grid-cols-2 gap-2">
       {filtered.map((lang) => (
         <button
           key={lang.code}
           type="button"
           onClick={() => onChange(lang.code)}
-          className={`flex flex-1 items-center justify-center gap-2 border px-3 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${
+          className={`flex items-center gap-2 border px-3 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${
             value === lang.code
               ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
               : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
