@@ -187,7 +187,7 @@ export default function PlanPage() {
             onClick={() => router.push('/assessment')}
             className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
           >
-            — {t('startAssessment')}
+            {t('startAssessment')}
           </button>
         </div>
       </div>

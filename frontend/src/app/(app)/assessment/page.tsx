@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useLanguageStore } from '@/store/language'
+import { formatLanguageName } from '@/lib/target-languages'
 import BeginnerGate from '@/components/assessment/BeginnerGate'
 import AdaptiveQuizCard from '@/components/assessment/AdaptiveQuizCard'
 import DurationSelector, {
@@ -62,6 +63,7 @@ const START_LEVEL: CEFRLevel = 'A2'
 export default function AssessmentPage() {
   const t = useTranslations('assessment')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
   const router = useRouter()
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
 
@@ -324,7 +326,7 @@ export default function AssessmentPage() {
     return (
       <>
         <BeginnerGate
-          languageName={activeLanguage?.name ?? ''}
+          languageName={formatLanguageName(activeLanguage?.name ?? '', locale)}
           onBeginner={() => {
             setResult({
               cefr_level: 'A1',

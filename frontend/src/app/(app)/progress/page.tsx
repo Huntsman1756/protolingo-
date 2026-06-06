@@ -147,6 +147,7 @@ function UnitCompetencyBlock({
 
 export default function ProgressPage() {
   const t = useTranslations('progress')
+  const tPlan = useTranslations('plan')
   const tCommon = useTranslations('common')
   const router = useRouter()
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
@@ -201,7 +202,7 @@ export default function ProgressPage() {
             onClick={() => router.push('/assessment')}
             className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
           >
-            — {t('startPlan')}
+            {tPlan('startAssessment')}
           </button>
         </div>
       </div>

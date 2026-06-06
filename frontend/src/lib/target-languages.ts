@@ -50,3 +50,10 @@ export function getLanguageByCode(code: string): TargetLanguage | undefined {
 }
 
 export const DEFAULT_TARGET_LANGUAGE = 'en-GB'
+
+const LOCALES_CAPITALIZE_LANGUAGE = new Set(['en', 'de', 'nl'])
+
+export function formatLanguageName(name: string, locale: string): string {
+  const lang = locale.split('-')[0]
+  return LOCALES_CAPITALIZE_LANGUAGE.has(lang) ? name : name.toLowerCase()
+}
