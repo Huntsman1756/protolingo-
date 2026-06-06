@@ -308,7 +308,7 @@
       "s5Title": "5. Cookies et jetons de session",
       "s5Body": "FreeLingo utilise deux cookies techniques strictement nécessaires au fonctionnement du service : un refresh_token (httpOnly, expiration 30 jours) pour l'authentification de session, et NEXT_LOCALE (expiration 1 an) pour mémoriser votre préférence de langue. Aucun cookie de suivi, d'analyse ou publicitaire n'est utilisé.",
       "s6Title": "6. Vos droits (RGPD)",
-      "s6Body": "Si vous résidez dans l'Espace économique européen, vous avez le droit d'accéder aux données personnelles que nous détenons sur vous ; de demander la correction de données inexactes ; de demander la suppression de votre compte et de toutes les données associées (disponible directement depuis la page Paramètres) ; de vous opposer au traitement ; et de demander la portabilité de vos données. Pour exercer ces droits, contactez-nous à l'adresse indiquée à la section 8 ou supprimez votre compte directement depuis Paramètres. Base juridique du traitement (Art. 6(1)(b) RGPD) : nous traitons vos données personnelles car cela est nécessaire à l'exécution du contrat entre vous et nous — la fourniture du service FreeLingo. Transferts internationaux : lors de l'utilisation du service hébergé, le contenu de vos conversations et vos données audio peuvent être traités par OpenAI, Inc. (États-Unis), et les données de paiement sont traitées par Stripe, Inc. (États-Unis). Ces transferts sont réalisés dans le cadre des Clauses Contractuelles Types approuvées par la Commission européenne (Art. 46 RGPD), garantissant un niveau de protection adéquat. Droit de réclamation : vous avez le droit d'introduire une réclamation auprès de la Commission nationale de l'informatique et des libertés (CNIL — cnil.fr) ou auprès de l'autorité de contrôle de votre pays de résidence.",
+      "s6Body": "Si vous résidez dans l'Espace économique européen, vous avez le droit d'accéder aux données personnelles que nous détenons sur vous ; de demander la correction de données inexactes ; de demander la suppression de votre compte et de toutes les données associées (disponible directement depuis la page Paramètres) ; de vous opposer au traitement ; et de demander la portabilité de vos données. Pour exercer ces droits, contactez-nous à l'adresse indiquée à la section 8 ou supprimez votre compte directement depuis paramètres. Base juridique du traitement (Art. 6(1)(b) RGPD) : nous traitons vos données personnelles car cela est nécessaire à l'exécution du contrat entre vous et nous — la fourniture du service FreeLingo. Transferts internationaux : lors de l'utilisation du service hébergé, le contenu de vos conversations et vos données audio peuvent être traités par OpenAI, Inc. (États-Unis), et les données de paiement sont traitées par Stripe, Inc. (États-Unis). Ces transferts sont réalisés dans le cadre des Clauses Contractuelles Types approuvées par la Commission européenne (Art. 46 RGPD), garantissant un niveau de protection adéquat. Droit de réclamation : vous avez le droit d'introduire une réclamation auprès de la Commission nationale de l'informatique et des libertés (CNIL — cnil.fr) ou auprès de l'autorité de contrôle de votre pays de résidence.",
       "s7Title": "7. Conservation et suppression des données",
       "s7Body": "Vos données sont conservées aussi longtemps que votre compte existe. Vous pouvez supprimer définitivement votre compte et toutes les données associées à tout moment depuis la page Paramètres. La suppression est immédiate et irréversible.",
       "s8Title": "8. Contact",
@@ -398,9 +398,9 @@
       }
     },
     "suggestedLevel": "Suggéré {aiLevel} ; le plan utilisera {selectedLevel}",
-    "step1": "Étape 1 / 3 : Votre niveau",
-    "step2": "Étape 2 / 3 : Question {questionNumber} / {totalQuestions}",
-    "step3": "Étape 3 / 3 : Votre programme",
+    "step1": "Étape 1 / 3 : votre niveau",
+    "step2": "Étape 2 / 3 : question {questionNumber} / {totalQuestions}",
+    "step3": "Étape 3 / 3 : votre programme",
     "studiedBefore": "Avez-vous déjà étudié {language} ?",
     "studiedBeforeHint": "Cela nous aide à commencer le quiz au bon niveau.",
     "beginnerOption": "Je suis débutant complet",
@@ -443,7 +443,7 @@
     "startMyPlan": "Démarrer mon plan"
   },
   "plan": {
-    "title": "Mon Plan",
+    "title": "Mon plan",
     "subtitle": "Plan d'étude",
     "noPlan": "Aucun plan d'étude actif trouvé.",
     "startAssessment": "Faites d'abord l'évaluation",
@@ -464,7 +464,7 @@
     "unitLabel": "Unité",
     "grammarCovered": "Grammaire couverte",
     "noLessons": "Aucune leçon programmée pour cette unité.",
-    "weekDay": "Semaine {week}, Jour {day}",
+    "weekDay": "Semaine {week}, jour {day}",
     "lessonTypes": {
       "grammar": "Grammaire",
       "vocabulary": "Vocabulaire",
@@ -711,7 +711,7 @@
     "statsCefr": "Niveau actuel",
     "statsUnit": "Unité actuelle",
     "statsPlanWeeks": "Durée du plan",
-    "sectionXpProgress": "XP & Progression",
+    "sectionXpProgress": "XP & progression",
     "statsXp": "XP total",
     "statsStreak": "Série",
     "statsActiveDays": "Jours actifs",
@@ -745,12 +745,12 @@
     "emailUnverifiedSuccess": "E-mail marqué comme non vérifié.",
     "quotaMonthlyTokens": "Limite mensuelle de tokens",
     "fieldSubscription": "Abonnement",
-    "fieldEndsRenews": "Fin / Renouvellement",
+    "fieldEndsRenews": "Fin / renouvellement",
     "fieldStripeCustomer": "Client Stripe",
-    "maintenanceTitle": "Mode Maintenance",
+    "maintenanceTitle": "Mode maintenance",
     "maintenanceOn": "ACTIF",
-    "maintenanceEnable": "Activer la Maintenance",
-    "maintenanceDisable": "Désactiver la Maintenance",
+    "maintenanceEnable": "Activer la maintenance",
+    "maintenanceDisable": "Désactiver la maintenance",
     "maintenanceDesc": "Lorsqu'il est activé, toutes les fonctionnalités réservées aux abonnés (chat, conversations vocales, exercices d'écoute et de lecture) seront indisponibles pour tous les utilisateurs.",
     "cannotDeactivateSelf": "Impossible de désactiver votre propre compte",
     "cannotDeleteSelf": "Impossible de supprimer votre propre compte",
@@ -771,7 +771,7 @@
     "workflowStep5": "Utilisez les Fiches pour entraîner le vocabulaire en parallèle",
     "workflowStep6": "Pratiquez la conversation libre avec le Tuteur IA",
     "q_language": "Quelle langue vais-je apprendre ?",
-    "a_language": "FreeLingo propose actuellement plusieurs langues, et nous en ajouterons d'autres au fil du temps. Lorsqu'une nouvelle langue sera disponible, vous la trouverez dans Paramètres → Mes langues — ajoutez-la et commencez à apprendre.",
+    "a_language": "FreeLingo propose actuellement plusieurs langues, et nous en ajouterons d'autres au fil du temps. Lorsqu'une nouvelle langue sera disponible, vous la trouverez dans paramètres → Mes langues — ajoutez-la et commencez à apprendre.",
     "q_assessment": "Qu’est-ce que l’Évaluation ?",
     "a_assessment": "Un test de 15 questions généré par IA couvrant la grammaire, le vocabulaire, la compréhension écrite et la transformation de phrases, avec une difficulté allant de A1 à C1. À la fin, vous obtenez votre niveau CECR, un score et une analyse de vos forces et faiblesses. Ce résultat alimente le Plan d’Étude et les Fiches générées.",
     "q_studyPlan": "Qu’est-ce que le Plan d’Étude et comment en générer un ?",
@@ -1020,13 +1020,13 @@
     "paywallLabel": "Premium requis",
     "paywallTitle": "Débloquer FreeLingo Premium",
     "paywallDesc": "Commencez votre essai gratuit de {days} jours, sans frais aujourd'hui. Annulez à tout moment.",
-    "paywallNoCharge": "Carte requise · Aucun débit avant la fin de l'essai · Annulez à tout moment",
+    "paywallNoCharge": "Carte requise · aucun débit avant la fin de l'essai · annulez à tout moment",
     "planMonthly": "— Démarrer pour {price}€/mois →",
     "planYearly": "— Démarrer pour {price}€/an →",
     "checkoutError": "Impossible de lancer le paiement. Veuillez réessayer.",
     "pricingLabel": "Prix",
     "pricingTitle": "Tarif simple et transparent",
-    "pricingDesc": "7 jours offerts avec ton abonnement · Résilie quand tu veux",
+    "pricingDesc": "7 jours offerts avec ton abonnement · résilie quand tu veux",
     "planMonthlyName": "Mensuel",
     "planYearlyName": "Annuel",
     "bestValue": "Meilleure offre",
@@ -1091,7 +1091,7 @@
     },
     "entry3": {
       "label": "Apprendre plusieurs langues",
-      "desc": "Vous pouvez désormais apprendre plusieurs langues en même temps. Changez de langue depuis la barre latérale et ajoutez-en de nouvelles depuis Paramètres → Mes langues. Nous ajouterons d'autres langues — vous les trouverez là-bas."
+      "desc": "Vous pouvez désormais apprendre plusieurs langues en même temps. Changez de langue depuis la barre latérale et ajoutez-en de nouvelles depuis paramètres → Mes langues. Nous ajouterons d'autres langues — vous les trouverez là-bas."
     },
     "entry4": {
       "label": "Corrections de bugs",
@@ -1219,7 +1219,7 @@
   },
   "maintenance": {
     "label": "Maintenance",
-    "title": "En Maintenance",
+    "title": "En maintenance",
     "description": "Cette section est temporairement indisponible pour cause de maintenance. Veuillez réessayer plus tard."
   }
 }

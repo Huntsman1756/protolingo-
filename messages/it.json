@@ -64,7 +64,7 @@
   },
   "nav": {
     "home": "Home",
-    "myPlan": "Il Mio Piano",
+    "myPlan": "Il mio piano",
     "progress": "Progressi",
     "flashcards": "Schede",
     "tutor": "Tutor",
@@ -130,7 +130,7 @@
       "emailTaken": "Indirizzo e-mail già registrato",
       "invalidInvite": "Codice invito non valido o scaduto",
       "termsAccept": "Ho letto e accetto i",
-      "termsLink": "Termini di Servizio",
+      "termsLink": "Termini di servizio",
       "andWord": "e l'informatica sulla",
       "privacyLink": "Privacy",
       "termsRequired": "Devi accettare i termini per continuare",
@@ -216,8 +216,8 @@
     "saveConversation": "Salva",
     "conversationSaved": "Impostazioni conversazione salvate.",
     "sectionLegal": "Legale",
-    "termsOfService": "Termini di Servizio",
-    "privacyPolicy": "Informativa sulla Privacy",
+    "termsOfService": "Termini di servizio",
+    "privacyPolicy": "Informativa sulla privacy",
     "sectionAuthor": "Autore",
     "authorDescription": "Creato da Arturo Carretero Calvo",
     "websiteLink": "Sito web",
@@ -251,10 +251,10 @@
   },
   "legal": {
     "terms": {
-      "pageTitle": "Termini di Servizio",
+      "pageTitle": "Termini di servizio",
       "updated": "Ultimo aggiornamento: maggio 2026",
       "s1Title": "1. Informazioni su FreeLingo",
-      "s1Body": "FreeLingo è una piattaforma open source per l'apprendimento delle lingue con IA, disponibile in due modalità: (1) self-hosted, dove la esegui sulla tua infrastruttura senza costi, e (2) come servizio ospitato gestito dal team FreeLingo, disponibile tramite abbonamento a pagamento. Utilizzando il servizio in entrambe le modalità, accetti questi Termini di Servizio.",
+      "s1Body": "FreeLingo è una piattaforma open source per l'apprendimento delle lingue con IA, disponibile in due modalità: (1) self-hosted, dove la esegui sulla tua infrastruttura senza costi, e (2) come servizio ospitato gestito dal team FreeLingo, disponibile tramite abbonamento a pagamento. Utilizzando il servizio in entrambe le modalità, accetti questi Termini di servizio.",
       "s2Title": "2. Utilizzo accettabile",
       "s2Intro": "Puoi utilizzare FreeLingo esclusivamente per scopi personali di apprendimento delle lingue. Accetti di non:",
       "s2i1": "Tentare di ottenere accesso non autorizzato a qualsiasi parte del sistema.",
@@ -277,12 +277,12 @@
       "s9Body": "Questi termini sono regolati dalla legge spagnola. Qualsiasi controversia derivante da questi termini sarà soggetta alla giurisdizione esclusiva dei tribunali spagnoli, salvo che la normativa di protezione dei consumatori del tuo paese di residenza disponga diversamente.",
       "s10Title": "10. Modifiche a questi termini",
       "s10Body": "Questi termini possono essere aggiornati in qualsiasi momento. Informeremo gli utenti delle modifiche sostanziali tramite l'interfaccia del servizio. Il continuo utilizzo del servizio dopo le modifiche costituisce accettazione dei termini aggiornati.",
-      "linkPrivacy": "Informativa sulla Privacy",
+      "linkPrivacy": "Informativa sulla privacy",
       "linkBack": "Torna alla registrazione",
       "linkBackSettings": "Torna alle impostazioni"
     },
     "privacy": {
-      "pageTitle": "Informativa sulla Privacy",
+      "pageTitle": "Informativa sulla privacy",
       "updated": "Ultimo aggiornamento: maggio 2026",
       "s1Title": "1. Panoramica",
       "s1Body": "FreeLingo è disponibile come applicazione self-hosted e come servizio ospitato. Per le installazioni self-hosted, tutti i dati sono memorizzati esclusivamente sul server dell'operatore e gli autori del progetto FreeLingo non vi hanno accesso. Per il servizio ospitato, il team FreeLingo agisce come titolare del trattamento dei dati e questa informativa descrive come i tuoi dati personali vengono raccolti, utilizzati e protetti.",
@@ -308,12 +308,12 @@
       "s5Title": "5. Cookie e token di sessione",
       "s5Body": "FreeLingo utilizza due cookie tecnici strettamente necessari per il funzionamento del servizio: un refresh_token (httpOnly, scadenza 30 giorni) per l'autenticazione della sessione, e NEXT_LOCALE (scadenza 1 anno) per ricordare le preferenze di lingua. Non vengono utilizzati cookie di tracciamento, analisi o pubblicità.",
       "s6Title": "6. I tuoi diritti (GDPR)",
-      "s6Body": "Se ti trovi nello Spazio Economico Europeo, hai il diritto di: accedere ai dati personali che conserviamo su di te; richiedere la correzione di dati inesatti; richiedere la cancellazione del tuo account e di tutti i dati associati (disponibile direttamente dalla pagina Impostazioni); opporti al trattamento; e richiedere la portabilità dei dati. Per esercitare questi diritti, contattaci all'indirizzo nella sezione 8 o cancella il tuo account direttamente dalle Impostazioni. Base giuridica del trattamento (Art. 6(1)(b) GDPR): trattiamo i tuoi dati personali perché è necessario per l'esecuzione del contratto tra te e noi — la fornitura del servizio FreeLingo. Trasferimenti internazionali: quando utilizzi il servizio ospitato, il contenuto delle tue conversazioni e l'audio possono essere elaborati da OpenAI, Inc. (USA), e i dati di pagamento vengono elaborati da Stripe, Inc. (USA). Questi trasferimenti vengono effettuati nell'ambito delle Clausole Contrattuali Standard approvate dalla Commissione europea (Art. 46 GDPR), garantendo un livello di protezione adeguato. Diritto di reclamo: hai il diritto di presentare un reclamo al Garante per la protezione dei dati personali (Garante — garanteprivacy.it) o all'autorità di controllo del tuo paese di residenza.",
+      "s6Body": "Se ti trovi nello Spazio Economico Europeo, hai il diritto di: accedere ai dati personali che conserviamo su di te; richiedere la correzione di dati inesatti; richiedere la cancellazione del tuo account e di tutti i dati associati (disponibile direttamente dalla pagina Impostazioni); opporti al trattamento; e richiedere la portabilità dei dati. Per esercitare questi diritti, contattaci all'indirizzo nella sezione 8 o cancella il tuo account direttamente dalle impostazioni. Base giuridica del trattamento (Art. 6(1)(b) GDPR): trattiamo i tuoi dati personali perché è necessario per l'esecuzione del contratto tra te e noi — la fornitura del servizio FreeLingo. Trasferimenti internazionali: quando utilizzi il servizio ospitato, il contenuto delle tue conversazioni e l'audio possono essere elaborati da OpenAI, Inc. (USA), e i dati di pagamento vengono elaborati da Stripe, Inc. (USA). Questi trasferimenti vengono effettuati nell'ambito delle Clausole Contrattuali Standard approvate dalla Commissione europea (Art. 46 GDPR), garantendo un livello di protezione adeguato. Diritto di reclamo: hai il diritto di presentare un reclamo al Garante per la protezione dei dati personali (Garante — garanteprivacy.it) o all'autorità di controllo del tuo paese di residenza.",
       "s7Title": "7. Conservazione ed eliminazione dei dati",
-      "s7Body": "I tuoi dati vengono conservati finché il tuo account esiste. Puoi eliminare definitivamente il tuo account e tutti i dati associati in qualsiasi momento dalla pagina Impostazioni. L'eliminazione è immediata e irreversibile.",
+      "s7Body": "I tuoi dati vengono conservati finché il tuo account esiste. Puoi eliminare definitivamente il tuo account e tutti i dati associati in qualsiasi momento dalla pagina impostazioni. L'eliminazione è immediata e irreversibile.",
       "s8Title": "8. Contatti",
       "s8Body": "Per questioni relative alla privacy nel servizio ospitato, contattaci a: contacto@arturocarreterocalvo.com. Per le installazioni self-hosted, contatta l'amministratore dell'istanza che stai utilizzando. Per domande sul progetto open source FreeLingo, visita il repository del progetto su GitHub.",
-      "linkTerms": "Termini di Servizio",
+      "linkTerms": "Termini di servizio",
       "linkBack": "Torna alla registrazione",
       "linkBackSettings": "Torna alle impostazioni"
     }
@@ -398,9 +398,9 @@
       }
     },
     "suggestedLevel": "Suggerito {aiLevel}; il piano utilizzerà {selectedLevel}",
-    "step1": "Passo 1 / 3: Il tuo livello",
-    "step2": "Passo 2 / 3: Domanda {questionNumber} / {totalQuestions}",
-    "step3": "Passo 3 / 3: Il tuo programma",
+    "step1": "Passo 1 / 3: il tuo livello",
+    "step2": "Passo 2 / 3: domanda {questionNumber} / {totalQuestions}",
+    "step3": "Passo 3 / 3: il tuo programma",
     "studiedBefore": "Hai studiato {language} in precedenza?",
     "studiedBeforeHint": "Questo ci aiuta a iniziare il quiz al livello giusto.",
     "beginnerOption": "Sono un principiante assoluto",
@@ -443,7 +443,7 @@
     "startMyPlan": "Inizia il mio piano"
   },
   "plan": {
-    "title": "Il Mio Piano",
+    "title": "Il mio piano",
     "subtitle": "Piano di studio",
     "noPlan": "Nessun piano di studio attivo trovato.",
     "startAssessment": "Prima fai la valutazione",
@@ -464,7 +464,7 @@
     "unitLabel": "Unità",
     "grammarCovered": "Grammatica trattata",
     "noLessons": "Nessuna lezione programmata per questa unità.",
-    "weekDay": "Settimana {week}, Giorno {day}",
+    "weekDay": "Settimana {week}, giorno {day}",
     "lessonTypes": {
       "grammar": "Grammatica",
       "vocabulary": "Vocabolario",
@@ -711,7 +711,7 @@
     "statsCefr": "Livello attuale",
     "statsUnit": "Unità attuale",
     "statsPlanWeeks": "Durata del piano",
-    "sectionXpProgress": "XP & Progressi",
+    "sectionXpProgress": "XP & progressi",
     "statsXp": "XP totali",
     "statsStreak": "Serie",
     "statsActiveDays": "Giorni attivi",
@@ -745,12 +745,12 @@
     "emailUnverifiedSuccess": "E-mail contrassegnata come non verificata.",
     "quotaMonthlyTokens": "Limite mensile di token",
     "fieldSubscription": "Abbonamento",
-    "fieldEndsRenews": "Fine / Rinnovo",
+    "fieldEndsRenews": "Fine / rinnovo",
     "fieldStripeCustomer": "Cliente Stripe",
-    "maintenanceTitle": "Modalità Manutenzione",
+    "maintenanceTitle": "Modalità manutenzione",
     "maintenanceOn": "ATTIVO",
-    "maintenanceEnable": "Attiva Manutenzione",
-    "maintenanceDisable": "Disattiva Manutenzione",
+    "maintenanceEnable": "Attiva manutenzione",
+    "maintenanceDisable": "Disattiva manutenzione",
     "maintenanceDesc": "Se attivato, tutte le funzionalità in abbonamento (chat, conversazioni vocali, esercizi di ascolto e lettura) non saranno disponibili per tutti gli utenti.",
     "cannotDeactivateSelf": "Non puoi disattivare il tuo account",
     "cannotDeleteSelf": "Non puoi eliminare il tuo account",
@@ -771,7 +771,7 @@
     "workflowStep5": "Usa le Flashcard per allenare il vocabolario in parallelo",
     "workflowStep6": "Pratica la conversazione libera con il Tutor IA",
     "q_language": "Che lingua imparerò?",
-    "a_language": "FreeLingo attualmente supporta diverse lingue e ne aggiungeremo altre nel tempo. Quando una nuova lingua sarà disponibile, la troverai in Impostazioni → Le mie lingue — aggiungila e inizia subito a imparare.",
+    "a_language": "FreeLingo attualmente supporta diverse lingue e ne aggiungeremo altre nel tempo. Quando una nuova lingua sarà disponibile, la troverai in impostazioni → Le mie lingue — aggiungila e inizia subito a imparare.",
     "q_assessment": "Cos'è la Valutazione?",
     "a_assessment": "Un test di 15 domande generato dall'IA che copre grammatica, vocabolario, comprensione della lettura e trasformazione di frasi, con difficoltà da A1 a C1. Al termine, ottieni il tuo livello QCER, un punteggio e un'analisi dei tuoi punti di forza e di debolezza. Questo risultato alimenta il Piano di Studio e le Flashcard generate.",
     "q_studyPlan": "Cos'è il Piano di Studio e come ne genero uno?",
@@ -1020,13 +1020,13 @@
     "paywallLabel": "Premium richiesto",
     "paywallTitle": "Sblocca FreeLingo Premium",
     "paywallDesc": "Inizia la tua prova gratuita di {days} giorni, nessun addebito oggi. Annulla quando vuoi.",
-    "paywallNoCharge": "Carta richiesta · Nessun addebito fino alla fine della prova · Annulla quando vuoi",
+    "paywallNoCharge": "Carta richiesta · nessun addebito fino alla fine della prova · annulla quando vuoi",
     "planMonthly": "— Inizia a {price}€/mese →",
     "planYearly": "— Inizia a {price}€/anno →",
     "checkoutError": "Impossibile avviare il pagamento. Riprova.",
     "pricingLabel": "Prezzo",
     "pricingTitle": "Prezzo semplice e trasparente",
-    "pricingDesc": "7 giorni gratis con il tuo abbonamento · Disdici quando vuoi",
+    "pricingDesc": "7 giorni gratis con il tuo abbonamento · disdici quando vuoi",
     "planMonthlyName": "Mensile",
     "planYearlyName": "Annuale",
     "bestValue": "Miglior offerta",
@@ -1087,11 +1087,11 @@
     },
     "entry2": {
       "label": "Lingua della piattaforma",
-      "desc": "Ora puoi scegliere la lingua dell'interfaccia dell'app — menu, pulsanti ed etichette — dalla pagina Impostazioni, indipendentemente dalla tua lingua madre."
+      "desc": "Ora puoi scegliere la lingua dell'interfaccia dell'app — menu, pulsanti ed etichette — dalla pagina impostazioni, indipendentemente dalla tua lingua madre."
     },
     "entry3": {
       "label": "Impara più lingue",
-      "desc": "Ora puoi imparare più di una lingua alla volta. Cambia lingua dalla barra laterale e aggiungine di nuove da Impostazioni → Le mie lingue. Continueremo ad aggiungere altre lingue — le troverai lì."
+      "desc": "Ora puoi imparare più di una lingua alla volta. Cambia lingua dalla barra laterale e aggiungine di nuove da impostazioni → Le mie lingue. Continueremo ad aggiungere altre lingue — le troverai lì."
     },
     "entry4": {
       "label": "Correzioni di bug",
@@ -1219,7 +1219,7 @@
   },
   "maintenance": {
     "label": "Manutenzione",
-    "title": "In Manutenzione",
+    "title": "In manutenzione",
     "description": "Questa sezione è temporaneamente non disponibile per manutenzione. Riprova più tardi."
   }
 }
