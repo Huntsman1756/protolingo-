@@ -157,7 +157,7 @@ async def get_user_stats(
     )
     tokens_by_source: dict[str, int] = {row.source: row.total for row in token_rows}
 
-    # Per-language breakdown
+    # Per-language breakdown — grouped by target_language
     plans_result = await db.execute(
         select(StudyPlan)
         .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
@@ -165,8 +165,13 @@ async def get_user_stats(
     )
     all_plans = plans_result.scalars().all()
 
-    per_language: list[LanguageStats] = []
+    lang_groups: dict[str, dict[str, int | str | None]] = {}
     for sp in all_plans:
+        key = sp.target_language
+        if key not in lang_groups:
+            lang_groups[key] = {"cefr": None, "xp": 0, "streak": 0, "days": 0, "lessons": 0, "ex_correct": 0, "ex_total": 0}
+        if sp.is_active:
+            lang_groups[key]["cefr"] = sp.cefr_level
         lang_prog = await db.execute(
             select(
                 func.coalesce(func.sum(Progress.xp_earned), 0).label("xp"),
@@ -178,18 +183,26 @@ async def get_user_stats(
             ).where(Progress.study_plan_id == sp.id)
         )
         lp = lang_prog.one()
-        per_language.append(
-            LanguageStats(
-                target_language=sp.target_language,
-                cefr_level=sp.cefr_level if sp.is_active else None,
-                xp_total=lp.xp,
-                streak_current=lp.streak,
-                active_days=lp.days,
-                lessons_completed=lp.lessons,
-                exercises_correct=lp.ex_correct,
-                exercises_total=lp.ex_total,
-            )
+        lang_groups[key]["xp"] += lp.xp
+        lang_groups[key]["streak"] = max(lang_groups[key]["streak"], lp.streak)
+        lang_groups[key]["days"] += lp.days
+        lang_groups[key]["lessons"] += lp.lessons
+        lang_groups[key]["ex_correct"] += lp.ex_correct
+        lang_groups[key]["ex_total"] += lp.ex_total
+
+    per_language: list[LanguageStats] = [
+        LanguageStats(
+            target_language=lang,
+            cefr_level=g["cefr"],
+            xp_total=g["xp"],
+            streak_current=g["streak"],
+            active_days=g["days"],
+            lessons_completed=g["lessons"],
+            exercises_correct=g["ex_correct"],
+            exercises_total=g["ex_total"],
         )
+        for lang, g in lang_groups.items()
+    ]
 
     return AdminUserStatsResponse(
         user_id=user_id,

@@ -747,7 +747,8 @@
     "maintenanceDisable": "Desactivar Mantenimiento",
     "maintenanceDesc": "Al activarse, todas las funciones de suscripción (chat, conversaciones de voz, ejercicios de listening y reading) estarán bloqueadas para todos los usuarios.",
     "cannotDeactivateSelf": "No puedes desactivar tu propia cuenta",
-    "cannotDeleteSelf": "No puedes eliminar tu propia cuenta"
+    "cannotDeleteSelf": "No puedes eliminar tu propia cuenta",
+    "sectionLanguages": "Idiomas"
   },
   "faq": {
     "title": "FAQ",

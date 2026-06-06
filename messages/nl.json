@@ -747,7 +747,8 @@
     "maintenanceDisable": "Onderhoud Uitschakelen",
     "maintenanceDesc": "Indien ingeschakeld zijn alle abonnementsfuncties (tutorchat, spraakgesprekken, luister- en leesoefeningen) niet beschikbaar voor alle gebruikers.",
     "cannotDeactivateSelf": "Je kunt je eigen account niet deactiveren",
-    "cannotDeleteSelf": "Je kunt je eigen account niet verwijderen"
+    "cannotDeleteSelf": "Je kunt je eigen account niet verwijderen",
+    "sectionLanguages": "Talen"
   },
   "faq": {
     "title": "FAQ",

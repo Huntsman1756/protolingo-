@@ -747,7 +747,8 @@
     "maintenanceDisable": "Wyłącz Konserwację",
     "maintenanceDesc": "Po włączeniu wszystkie funkcje subskrypcyjne (czat, rozmowy głosowe, ćwiczenia ze słuchu i czytania) będą niedostępne dla wszystkich użytkowników.",
     "cannotDeactivateSelf": "Nie możesz dezaktywować własnego konta",
-    "cannotDeleteSelf": "Nie możesz usunąć własnego konta"
+    "cannotDeleteSelf": "Nie możesz usunąć własnego konta",
+    "sectionLanguages": "Języki"
   },
   "faq": {
     "title": "FAQ",

@@ -523,8 +523,10 @@ export default function ConversationMode({
 
       {/* Memory updated toast */}
       {memoryToast && (
-        <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 fixed top-16 right-0 left-0 z-50 mx-auto w-fit border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
-          {t('memoryUpdated')}
+        <div className="pointer-events-none fixed inset-x-0 top-16 z-50 flex justify-center">
+          <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 pointer-events-auto border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
+            {t('memoryUpdated')}
+          </div>
         </div>
       )}
 
