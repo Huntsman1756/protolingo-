@@ -156,11 +156,13 @@ export default function ConversationMode({
   initialContext,
   autoStart,
   cefrLevel,
+  targetLanguage,
   onClose,
 }: {
   initialContext?: ChatContextItem[]
   autoStart?: boolean
   cefrLevel?: string | null
+  targetLanguage?: string
   onClose?: () => void
 }) {
   const t = useTranslations('conversation')
@@ -309,6 +311,7 @@ export default function ConversationMode({
             : null
         if (storedVoice) authPayload.voice = storedVoice
         if (context?.length) authPayload.context = context
+        if (targetLanguage) authPayload.target_language = targetLanguage
         ws.send(JSON.stringify(authPayload))
         setStatus('live')
       }
@@ -424,7 +427,7 @@ export default function ConversationMode({
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [t]
+    [t, targetLanguage]
   )
 
   // ─── Session lifecycle ────────────────────────────────────────────────────

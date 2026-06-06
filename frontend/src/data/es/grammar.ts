@@ -561,7 +561,8 @@ export const grammarTopics: GrammarTopic[] = [
     level: 'A1',
     category: 'Sustantivos',
     summary: 'Preguntar y decir la hora en español.',
-    structure: '¿Qué hora es? · Es la una / Son las dos, tres... · a las + hora',
+    structure:
+      '¿Qué hora es? · Es la una / Son las dos, tres... · a las + hora',
     explanation:
       'Para preguntar la hora se usa: **¿Qué hora es?** (más frecuente) o **¿Qué horas son?** (Latinoamérica).\n\nPara responder:\n- **Es la una** (singular, solo para la 1:00).\n- **Son las dos/tres/cuatro...** (plural).\n\nPara los minutos:\n- *y cinco, y diez, y cuarto, y veinte, y veinticinco, y media*\n- *menos cinco, menos diez, menos cuarto, menos veinte, menos veinticinco*\n\nEn muchos países de América y en usos formales se prefiere el formato digital: *Son las tres y quince / Son las tres quince.*',
     rules: [

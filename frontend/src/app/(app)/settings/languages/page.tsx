@@ -164,8 +164,9 @@ export default function MyLanguagesPage() {
             return (
               <div
                 key={ulang.target_language}
-                className={`bg-fl-surface border p-5 ${isActive ? 'border-fl-accent/50' : 'border-fl-border'
-                  }`}
+                className={`bg-fl-surface border p-5 ${
+                  isActive ? 'border-fl-accent/50' : 'border-fl-border'
+                }`}
               >
                 {/* Top row: flag + name + status */}
                 <div className="mb-3 flex items-center gap-3">

@@ -272,8 +272,8 @@ export default function DashboardPage() {
                       </p>
                     </div>
                     {lesson.id &&
-                      (completedToday.includes(lesson.id) ||
-                        lesson.isCompleted) ? (
+                    (completedToday.includes(lesson.id) ||
+                      lesson.isCompleted) ? (
                       <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
                         ✓ {t('lessonDone')}
                       </span>

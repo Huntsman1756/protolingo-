@@ -574,7 +574,12 @@ const vocabularyA2: AssessmentQuestion[] = [
     skill: 'vocabulary',
     difficulty: 'A2',
     question: '"Camarero" se refiere a...',
-    options: ['Quien sirve en un restaurante', 'Quien cocina', 'El gerente', 'El cliente'],
+    options: [
+      'Quien sirve en un restaurante',
+      'Quien cocina',
+      'El gerente',
+      'El cliente',
+    ],
     correct: 'Quien sirve en un restaurante',
   },
   {
@@ -590,7 +595,12 @@ const vocabularyA2: AssessmentQuestion[] = [
     skill: 'vocabulary',
     difficulty: 'A2',
     question: '¿Qué significa "receta médica"?',
-    options: ['Prescripción de un doctor', 'Receta de cocina', 'Libro de medicina', 'Hospital'],
+    options: [
+      'Prescripción de un doctor',
+      'Receta de cocina',
+      'Libro de medicina',
+      'Hospital',
+    ],
     correct: 'Prescripción de un doctor',
   },
   {
@@ -631,7 +641,12 @@ const vocabularyB1: AssessmentQuestion[] = [
     skill: 'vocabulary',
     difficulty: 'B1',
     question: '"Medio ambiente" se refiere a...',
-    options: ['El entorno natural', 'Las redes sociales', 'La mediana edad', 'El promedio'],
+    options: [
+      'El entorno natural',
+      'Las redes sociales',
+      'La mediana edad',
+      'El promedio',
+    ],
     correct: 'El entorno natural',
   },
   {
@@ -676,7 +691,12 @@ const vocabularyB1: AssessmentQuestion[] = [
     skill: 'vocabulary',
     difficulty: 'B1',
     question: '"Noticia" significa...',
-    options: ['Información sobre un hecho', 'Una carta personal', 'Un documento oficial', 'Una obra literaria'],
+    options: [
+      'Información sobre un hecho',
+      'Una carta personal',
+      'Un documento oficial',
+      'Una obra literaria',
+    ],
     correct: 'Información sobre un hecho',
   },
   {
@@ -684,7 +704,12 @@ const vocabularyB1: AssessmentQuestion[] = [
     skill: 'vocabulary',
     difficulty: 'B1',
     question: '"El paro" se refiere a...',
-    options: ['El desempleo', 'La parada de autobús', 'El desfile', 'La pareja'],
+    options: [
+      'El desempleo',
+      'La parada de autobús',
+      'El desfile',
+      'La pareja',
+    ],
     correct: 'El desempleo',
   },
   {

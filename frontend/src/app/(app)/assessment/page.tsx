@@ -117,7 +117,12 @@ export default function AssessmentPage() {
   }, [activeLanguage?.code])
 
   function loadNextQuestion(level: CEFRLevel, usedSet: Set<string>) {
-    const q = pickNextQuestion(usedSet, level, undefined, activeLanguage?.code ?? 'en-US')
+    const q = pickNextQuestion(
+      usedSet,
+      level,
+      undefined,
+      activeLanguage?.code ?? 'en-US'
+    )
     if (q) {
       usedSet.add(q.id)
       setCurrentQuestion(q)
@@ -132,7 +137,12 @@ export default function AssessmentPage() {
     setCurrentLevel(START_LEVEL)
     setCorrectStreak(0)
     setWrongStreak(0)
-    const q = pickNextQuestion(usedIds, START_LEVEL, undefined, activeLanguage?.code ?? 'en-US')
+    const q = pickNextQuestion(
+      usedIds,
+      START_LEVEL,
+      undefined,
+      activeLanguage?.code ?? 'en-US'
+    )
     if (q) {
       usedIds.add(q.id)
       setCurrentQuestion(q)

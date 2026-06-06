@@ -196,10 +196,11 @@ export default function OnboardingPage() {
                       key={goal}
                       type="button"
                       onClick={() => toggleGoal(goal)}
-                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${active
+                      className={`text-fl-label border px-3 py-3 text-left font-mono tracking-widest uppercase transition-colors ${
+                        active
                           ? 'border-fl-accent bg-fl-accent text-fl-accent-fg'
                           : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg'
-                        }`}
+                      }`}
                     >
                       {t(`goals.${goal}`)}
                     </button>

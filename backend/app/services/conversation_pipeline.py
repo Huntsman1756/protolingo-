@@ -97,6 +97,7 @@ class ConversationPipeline:
         self.stt = stt
         self._voice = voice
         self._stt_language = get_iso639(target_language)
+        self._target_language = target_language
         self._user_id = user_id
         self._conversation_id = conversation_id
         self._study_plan_id = study_plan_id
@@ -198,7 +199,11 @@ class ConversationPipeline:
 
         def _enqueue_tts(text: str) -> None:
             future: asyncio.Future[bytes] = asyncio.ensure_future(
-                self.tts.synthesize(text, self._voice or None)
+                self.tts.synthesize(
+                    text,
+                    self._voice or None,
+                    self._stt_language,
+                )
             )
             tts_futures.append(future)
             tts_queue.put_nowait(future)

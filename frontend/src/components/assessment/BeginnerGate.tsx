@@ -8,7 +8,11 @@ interface Props {
   languageName: string
 }
 
-export default function BeginnerGate({ onBeginner, onHasExperience, languageName }: Props) {
+export default function BeginnerGate({
+  onBeginner,
+  onHasExperience,
+  languageName,
+}: Props) {
   const t = useTranslations('assessment')
 
   return (

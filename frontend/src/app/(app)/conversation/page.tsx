@@ -83,6 +83,7 @@ export default function ConversationPage() {
           initialContext={initialContext}
           autoStart={autoStart}
           cefrLevel={cefrLevel}
+          targetLanguage={activeLanguage?.code}
         />
       </PaywallGate>
     </MaintenanceGate>
