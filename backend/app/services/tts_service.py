@@ -48,14 +48,12 @@ class OpenAITTSService:
         self, text: str, voice: str | None = None, language: str | None = None
     ) -> bytes:
         """Call OpenAI TTS API and return MP3 audio bytes."""
-        kwargs: dict = dict(
+        _ = language
+        response = await self._client.audio.speech.create(
             model=self.model,
             voice=voice or self.voice,
             input=text,
             response_format="mp3",
             speed=self.speed,
         )
-        if language:
-            kwargs["language"] = language
-        response = await self._client.audio.speech.create(**kwargs)
         return response.content
