@@ -221,6 +221,16 @@ const numbers_time_a1: PhrasebookCategory = {
       context: 'Asking for the bill at a café',
       register: 'neutral',
     },
+    {
+      english: "What's the date today?",
+      context: 'Asking for the current date',
+      register: 'neutral',
+    },
+    {
+      english: 'My birthday is on [date].',
+      context: 'Stating a date',
+      register: 'neutral',
+    },
   ],
 }
 
@@ -531,6 +541,16 @@ const weather_talk_a2: PhrasebookCategory = {
     {
       english: 'The weather is much better than yesterday.',
       context: 'Comparing weather',
+      register: 'neutral',
+    },
+    {
+      english: "There's a chance of [rain/snow] later.",
+      context: 'Talking about weather forecast',
+      register: 'neutral',
+    },
+    {
+      english: "The forecast says it'll clear up by [time].",
+      context: 'Discussing weather forecast',
       register: 'neutral',
     },
   ],

@@ -27,7 +27,7 @@ A1_UNITS: list[CurriculumUnit] = [
         unit_number=2,
         title="My World",
         grammar_points=["articles", "possessive-adjectives", "present-simple"],
-        vocabulary_set_ids=["family_a1", "colours_a1", "adjectives_basic_a1"],
+        vocabulary_set_ids=["family_a1", "colours_a1", "adjectives_basic_a1", "body_parts_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Describe family members and possessions",

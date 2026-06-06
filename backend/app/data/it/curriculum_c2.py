@@ -65,7 +65,7 @@ C2_UNITS: list[CurriculumUnit] = [
         unit_number=4,
         title="Cultura e storia della lingua italiana",
         grammar_points=["evoluzione-linguistica", "latinismi", "prestiti-linguistici"],
-        vocabulary_set_ids=["storia_c2", "cultura_c2"],
+        vocabulary_set_ids=["storia_c2", "cultura_c2", "societa_contemporanea_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Recognises Latin loanwords (latinismi) and direct Latin borrowings that remain active in modern Italian: status quo, iter, ex aequo, de facto, modus operandi, ad hoc, in extremis — and understands their frequency in Italian formal and academic registers compared to other languages",
@@ -83,7 +83,7 @@ C2_UNITS: list[CurriculumUnit] = [
         unit_number=5,
         title="Creazione di contenuti avanzati",
         grammar_points=["generi-testuali", "creatività-linguistica", "revisione"],
-        vocabulary_set_ids=["creazione_c2", "pubblicazione_c2"],
+        vocabulary_set_ids=["creazione_c2", "pubblicazione_c2", "scienza_ricerca_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Produces a 500-word piece across different Italian text genres — articolo di opinione, racconto, saggio breve, relazione formale — adapting vocabulary, tone, and structure to the genre conventions of each",

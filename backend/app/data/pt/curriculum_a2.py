@@ -52,6 +52,7 @@ A2_UNITS: list[CurriculumUnit] = [
             "pronomes-objeto-direto",
             "pronomes-objeto-indireto",
             "colocação-pronominal",
+            "combinacao-pronominal",
         ],
         vocabulary_set_ids=["compras_a2", "presentes_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],

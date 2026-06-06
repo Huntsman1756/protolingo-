@@ -65,7 +65,7 @@ B2_UNITS: list[CurriculumUnit] = [
         unit_number=4,
         title="Advanced Passive & Causative",
         grammar_points=["advanced-passive"],
-        vocabulary_set_ids=["industries_b2"],
+        vocabulary_set_ids=["industries_b2", "science_research_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             'Forms causative "have/get + object + past participle" correctly',

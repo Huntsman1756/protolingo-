@@ -120,6 +120,7 @@ B1_UNITS: list[CurriculumUnit] = [
             "estilo-indirecto-pasado",
             "conectores-argumentativos",
             "cambios-temporales",
+            "por-para",
         ],
         vocabulary_set_ids=["opiniones_b1", "debates_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],

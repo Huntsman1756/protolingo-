@@ -114,6 +114,7 @@ C2_UNITS: list[CurriculumUnit] = [
             "idiomatic_expressions_c2",
             "literary_devices_c2",
             "critical_analysis_c2",
+            "advanced_verbs_thought_c2",
         ],
         lesson_types=["grammar", "reading", "writing", "review"],
         competency_checklist=[

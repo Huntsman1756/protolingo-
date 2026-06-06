@@ -1078,6 +1078,122 @@ export const grammarTopics: GrammarTopic[] = [
     related: ['estar', 'andar-a-estar-a'],
   },
   {
+    slug: 'demonstrativos',
+    title: 'Os demonstrativos: este, esse, aquele',
+    level: 'A1',
+    category: 'Adjetivos e adverbios',
+    summary:
+      'Uso dos pronomes e adjetivos demonstrativos para indicar a posição de algo em relação às pessoas do discurso.',
+    structure:
+      'este/esta/estes/estas (perto de quem fala) · esse/essa/esses/essas (perto de quem ouve) · aquele/aquela/aqueles/aquelas (longe) · isto/isso/aquilo (neutro)',
+    explanation:
+      'Os **demonstrativos** indicam a localização espacial ou temporal de algo em relação ao falante e ao ouvinte.\n\n- **Este/esta/estes/estas** → perto de quem fala: *Este livro é meu.*\n- **Esse/essa/esses/essas** → perto de quem ouve: *Essa caneta que tens na mão é bonita.*\n- **Aquele/aquela/aqueles/aquelas** → longe de ambos: *Aquele prédio ali é o museu.*\n\nAs formas **neutras** (isto, isso, aquilo) usam-se para referir ideias ou objetos não especificados:\n- *O que é isto?*\n- *Isso que disseste não é verdade.*\n\n**Como adjetivos**, precedem o nome e concordam em género e número: *este carro, esta casa, estes livros, estas flores.*\n\n**Como pronomes**, substituem o nome: *—Qual camisola queres? —Esta.*\n\nEm português europeu, as formas contraídas com preposições são comuns: *neste* (em+este), *desse* (de+esse), *àquele* (a+aquele).',
+    rules: [
+      '"Este/esta" indica o que está perto de quem fala (aqui).',
+      '"Esse/essa" indica o que está perto de quem ouve (aí).',
+      '"Aquele/aquela" indica o que está longe de ambos (ali/acolá).',
+      'As formas neutras (isto, isso, aquilo) referem-se a ideias ou objetos não nomeados.',
+      'Contraem-se com as preposições em e de: neste, desse, naquele, desta, daquela.',
+    ],
+    examples: [
+      {
+        english: 'Este livro é muito interessante.',
+        translation: 'This book is very interesting.',
+        note: 'perto de quem fala',
+      },
+      {
+        english: 'Essa mochila que tens aí é nova?',
+        translation: 'That backpack you have there is new?',
+        note: 'perto de quem ouve',
+      },
+      {
+        english: 'Aquele senhor ali é o meu avô.',
+        translation: 'That gentleman over there is my grandfather.',
+        note: 'longe de ambos',
+      },
+      {
+        english: 'O que é isto?',
+        translation: 'What is this?',
+        note: 'forma neutra',
+      },
+      {
+        english: 'Neste momento não posso falar.',
+        translation: "At this moment I can't talk.",
+        note: 'contração em+este',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'A este casa é bonita.',
+        correct: 'Esta casa é bonita.',
+        note: 'O demonstrativo não leva artigo.',
+      },
+      {
+        wrong: 'Aquilo livro é meu.',
+        correct: 'Aquele livro é meu.',
+        note: '"Aquilo" é a forma neutra; para acompanhar "livro" usa-se "aquele".',
+      },
+    ],
+    related: [
+      'adjetivos-descritivos',
+      'adjetivos-possessivos',
+      'artigos-definidos',
+    ],
+  },
+  {
+    slug: 'numeros-ordinais',
+    title: 'Números ordinais',
+    level: 'A1',
+    category: 'Adjetivos e adverbios',
+    summary: 'Formação e uso dos números ordinais em português.',
+    structure:
+      'primeiro · segundo · terceiro · quarto · quinto · sexto · sétimo · oitavo · nono · décimo',
+    explanation:
+      'Os **números ordinais** indicam a ordem ou posição numa sequência.\n\n- 1.º — primeiro/primeira\n- 2.º — segundo/segunda\n- 3.º — terceiro/terceira\n- 4.º — quarto/quarta\n- 5.º — quinto/quinta\n- 6.º — sexto/sexta\n- 7.º — sétimo/sétima\n- 8.º — oitavo/oitava\n- 9.º — nono/nona\n- 10.º — décimo/décima\n\nUsam-se **antes do nome**: *o primeiro dia, a segunda aula.*\n\n**Abreviam-se** com ponto abreviativo e indicador de género:\n- 1.º (primeiro), 1.ª (primeira)\n- 2.º, 2.ª, etc.\n\nPara perguntar a posição: *Em que lugar ficaste? — Fiquei em terceiro.*',
+    rules: [
+      'Os ordinais concordam em género com o nome: primeiro/primeira, segundo/segunda.',
+      'Usam-se antes do nome: o terceiro andar, a quinta sinfonia.',
+      'Abreviam-se com .º (masculino) e .ª (feminino).',
+      'Em português europeu usam-se ordinais para andares e reis: D. João II (segundo).',
+    ],
+    examples: [
+      {
+        english: 'Moro no terceiro andar.',
+        translation: 'I live on the third floor.',
+        note: 'ordinal antes do nome',
+      },
+      {
+        english: 'É a primeira vez que visito Portugal.',
+        translation: "It's the first time I visit Portugal.",
+        note: 'primeira (feminino)',
+      },
+      {
+        english: 'Ficou em segundo lugar na corrida.',
+        translation: 'He came in second place in the race.',
+        note: 'posição',
+      },
+      {
+        english:
+          'O meu aniversário é a 15.ª edição? Não, é o meu 15.º aniversário.',
+        translation: 'My birthday is the 15th.',
+        note: 'abreviatura',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Moro no andar terceiro.',
+        correct: 'Moro no terceiro andar.',
+        note: 'Em português, o ordinal vem antes do nome.',
+      },
+      {
+        wrong: 'É a primeiro vez.',
+        correct: 'É a primeira vez.',
+        note: '"Vez" é feminino → primeira.',
+      },
+    ],
+    related: ['horas', 'dias-semana'],
+  },
+  {
     slug: 'preterito-perfeito-regular',
     title: 'Pretérito perfeito simples (regulares)',
     level: 'A2',
@@ -2059,6 +2175,64 @@ export const grammarTopics: GrammarTopic[] = [
     related: ['discurso-indireto', 'discurso-indireto-passado'],
   },
   {
+    slug: 'combinacao-pronominal',
+    title: 'Combinação de pronomes: mo, to, lho',
+    level: 'A2',
+    category: 'Pronomes',
+    summary:
+      'Fusão dos pronomes de complemento direto e indireto numa só forma.',
+    structure:
+      'me+o → mo · te+o → to · lhe+o → lho · nos+o → no-lo · vos+o → vo-lo · lhes+o → lho',
+    explanation:
+      'Em português europeu, quando um pronome de **complemento indireto** (me, te, lhe, nos, vos, lhes) e um de **complemento direto** (o, a, os, as) aparecem juntos, fundem-se numa só forma.\n\n**Regras de combinação:**\n- me + o/a/os/as → mo/ma/mos/mas\n- te + o/a/os/as → to/ta/tos/tas\n- lhe + o/a/os/as → lho/lha/lhos/lhas\n- nos + o/a/os/as → no-lo/no-la/no-los/no-las\n- vos + o/a/os/as → vo-lo/vo-la/vo-los/vo-las\n- lhes + o/a/os/as → lho/lha/lhos/lhas (igual a lhe)\n\n**Posição:** em frases afirmativas, o pronome combinado coloca-se depois do verbo com hífen:\n- *Ele deu-mo.* (= Ele deu isso a mim)\n- *Vou explicar-to.* (= Vou explicar isso a ti)\n\nCom negação, coloca-se antes do verbo:\n- *Não mo deu.* (= Não me deu isso)\n\nNota: no Brasil, estas formas são raras e muitas vezes evitadas.',
+    rules: [
+      'A combinação é obrigatória no português europeu quando OD e OI coocorrem.',
+      'A forma resultante concorda com o OD em género e número: mo/ma/mos/mas.',
+      'O pronome combinado une o OI (1.ª parte) ao OD (2.ª parte).',
+      'Após verbo conjugado, usa-se hífen: Deu-mo.',
+      'Com negação, próclise: Não mo deu.',
+    ],
+    examples: [
+      {
+        english: 'Ele deu-mo ontem.',
+        translation: 'He gave it to me yesterday.',
+        note: 'me + o → mo',
+      },
+      {
+        english: 'Quem te contou isso? — A Maria contou-to.',
+        translation: 'Who told you that? — Maria told it to you.',
+        note: 'te + o → to',
+      },
+      {
+        english: 'O livro? Emprestei-lho na semana passada.',
+        translation: 'The book? I lent it to him last week.',
+        note: 'lhe + o → lho',
+      },
+      {
+        english: 'Não no-lo entregaram a tempo.',
+        translation: "They didn't deliver it to us on time.",
+        note: 'nos + o → no-lo; próclise com negação',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Deu-me-o.',
+        correct: 'Deu-mo.',
+        note: 'Os pronomes devem fundir-se: me+o → mo.',
+      },
+      {
+        wrong: 'Não deu-mo.',
+        correct: 'Não mo deu.',
+        note: 'Com negação, o pronome vai antes do verbo.',
+      },
+    ],
+    related: [
+      'pronomes-objeto-direto',
+      'pronomes-objeto-indireto',
+      'colocacao-pronominal',
+    ],
+  },
+  {
     slug: 'presente-conjuntivo',
     title: 'Presente do conjuntivo',
     level: 'B1',
@@ -2821,6 +2995,65 @@ export const grammarTopics: GrammarTopic[] = [
       },
     ],
     related: ['conectores-narrativos', 'conectores-avancados'],
+  },
+  {
+    slug: 'por-para',
+    title: 'Por e para: usos e diferenças',
+    level: 'B1',
+    category: 'Preposicoes',
+    summary:
+      'Distinção entre as preposições por e para conforme expressem causa, finalidade, destinatário, meio, direção e outros contextos.',
+    structure:
+      'POR: causa/motivo · meio · duração · troca · agente da passiva · opinião\nPARA: finalidade · destinatário · direção · prazo · opinião · comparação',
+    explanation:
+      '**Por** e **para** são duas preposições que causam confusão porque em muitas línguas traduzem-se por uma só palavra.\n\n### Usos principais de POR\n\n- **Causa ou motivo:** *Cheguei tarde por causa do trânsito.*\n- **Meio:** *Falo contigo por telefone.*\n- **Duração:** *Estudei por três horas.*\n- **Troca ou preço:** *Comprei o livro por dez euros.*\n- **Agente da passiva:** *Os Lusíadas foi escrito por Camões.*\n- **Frequência:** *Vou ao ginásio duas vezes por semana.*\n- **Substituição:** *Veio o meu irmão por mim.*\n\n### Usos principais de PARA\n\n- **Finalidade:** *Estudo para aprender.*\n- **Destinatário:** *O presente é para ti.*\n- **Direção:** *Parto para Lisboa amanhã.*\n- **Prazo:** *Preciso disto para segunda-feira.*\n- **Opinião:** *Para mim, é a melhor opção.*\n- **Comparação:** *Para principiante, fala muito bem.*\n\n### Expressões fixas com POR\n\n- *por isso* (therefore), *por favor* (please), *por acaso* (by chance), *por enquanto* (for now), *por exemplo* (for example)\n\n### Expressões fixas com PARA\n\n- *para já* (for now), *para sempre* (forever), *para além de* (beyond)',
+    rules: [
+      '"Por" exprime a causa ou motivo de uma ação.',
+      '"Para" exprime a finalidade ou o propósito.',
+      '"Por" indica o meio ou canal: por correio, por telefone.',
+      '"Para" indica o destinatário: para ti, para o João.',
+      'Na voz passiva, o agente é introduzido por "por".',
+    ],
+    examples: [
+      {
+        english: 'Estudo português para viajar por Portugal.',
+        translation: 'I study Portuguese (in order) to travel around Portugal.',
+        note: 'para = finalidade; por = lugar aproximado',
+      },
+      {
+        english: 'Obrigado por tudo. O presente é para ti.',
+        translation: 'Thanks for everything. The gift is for you.',
+        note: 'por = causa do agradecimento; para = destinatário',
+      },
+      {
+        english: 'Passei por tua casa mas não estavas.',
+        translation: "I passed by your house but you weren't there.",
+        note: 'lugar',
+      },
+      {
+        english: 'Este relatório é para sexta-feira.',
+        translation: 'This report is for Friday.',
+        note: 'prazo',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Obrigado para a ajuda.',
+        correct: 'Obrigado pela ajuda.',
+        note: 'Com "obrigado" usa-se "por".',
+      },
+      {
+        wrong: 'Estudo por ser médico.',
+        correct: 'Estudo para ser médico.',
+        note: '"Para" + infinitivo indica o propósito.',
+      },
+      {
+        wrong: 'A ponte foi construída para os romanos.',
+        correct: 'A ponte foi construída pelos romanos.',
+        note: 'O agente da passiva introduz-se com "por".',
+      },
+    ],
+    related: ['preposicoes-lugar', 'voz-passiva', 'conectores-argumentativos'],
   },
   {
     slug: 'imperfeito-conjuntivo',

@@ -128,6 +128,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         grammar_points: [
           'aggettivi-possessivi',
           'aggettivi-descrittivi',
+          'dimostrativi',
           "c'è-ci-sono",
         ],
         vocabulary_set_ids: ['famiglia_it_a1', 'descrizioni_it_a1'],
@@ -1053,7 +1054,11 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
           'latinismi',
           'prestiti-linguistici',
         ],
-        vocabulary_set_ids: ['storia_it_c2', 'cultura_it_c2'],
+        vocabulary_set_ids: [
+          'storia_it_c2',
+          'cultura_it_c2',
+          'societa_contemporanea_it_c2',
+        ],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c2-unit-3',
         competency_checklist: [
@@ -1075,7 +1080,11 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
           'creatività-linguistica',
           'editing',
         ],
-        vocabulary_set_ids: ['creazione_it_c2', 'pubblicazione_it_c2'],
+        vocabulary_set_ids: [
+          'creazione_it_c2',
+          'pubblicazione_it_c2',
+          'scienza_ricerca_it_c2',
+        ],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c2-unit-4',
         competency_checklist: [

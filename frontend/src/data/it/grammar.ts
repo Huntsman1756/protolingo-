@@ -985,6 +985,74 @@ export const grammarTopics: GrammarTopic[] = [
     ],
   },
   {
+    slug: 'dimostrativi',
+    title: 'I dimostrativi: questo e quello',
+    level: 'A1',
+    category: 'Aggettivi e avverbi',
+    summary:
+      'Uso degli aggettivi e pronomi dimostrativi per indicare la distanza di ciò a cui ci si riferisce.',
+    structure:
+      'questo/questa/questi/queste (vicino) · quello/quella/quelli/quelle (lontano) · ciò (neutro)',
+    explanation:
+      "I **dimostrativi** servono a indicare la posizione nello spazio o nel tempo di ciò a cui ci si riferisce.\n\n- **Questo/questa/questi/queste** → qualcosa vicino a chi parla: *Questo libro è mio.*\n- **Quello/quella/quelli/quelle** → qualcosa lontano da chi parla e da chi ascolta: *Quella casa laggiù è antica.*\n\n**Quello** segue le stesse regole dell'articolo determinativo:\n- *quello studente* (come *lo studente*)\n- *quell'amico* (come *l'amico*)\n- *quel libro* (come *il libro*)\n- *quegli zaini* (come *gli zaini*)\n- *quei libri* (come *i libri*)\n\nLa forma neutra **ciò** si usa per riferirsi a un'idea o a qualcosa di non specificato:\n- *Ciò che dici è vero.*\n- *Non capisco ciò.*\n\n**Come aggettivi**, precedono il nome e concordano in genere e numero: *questo ragazzo, questa ragazza, questi ragazzi, queste ragazze.*\n\n**Come pronomi**, sostituiscono il nome: *—Quale maglietta vuoi? —Questa.*",
+    rules: [
+      '"Questo" indica qualcosa vicino a chi parla.',
+      '"Quello" indica qualcosa lontano da chi parla e da chi ascolta.',
+      'Le forme di "quello" seguono le stesse regole dell\'articolo determinativo.',
+      '"Ciò" è la forma neutra e si usa per idee o concetti astratti.',
+      'I dimostrativi concordano in genere e numero con il nome.',
+    ],
+    examples: [
+      {
+        english: 'Questo libro è molto interessante.',
+        translation: 'This book is very interesting.',
+        note: 'vicino a chi parla',
+      },
+      {
+        english: 'Quella casa in fondo alla strada è di mia zia.',
+        translation: "That house at the end of the street is my aunt's.",
+        note: 'lontano',
+      },
+      {
+        english: 'Ciò che mi hai detto è incredibile.',
+        translation: 'What you told me is incredible.',
+        note: 'forma neutra',
+      },
+      {
+        english: 'Quello studente è tedesco.',
+        translation: 'That student is German.',
+        note: 'quello + s+consonante',
+      },
+      {
+        english: 'Questi biscotti sono buonissimi.',
+        translation: 'These biscuits are delicious.',
+        note: 'plurale vicino',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Quello libro è interessante.',
+        correct: 'Quel libro è interessante.',
+        note: 'Davanti a consonante semplice si usa "quel", non "quello".',
+      },
+      {
+        wrong: 'Questo è bello.',
+        correct: 'Ciò è bello.',
+        note: 'Per un\'idea astratta si usa "ciò", non "questo".',
+      },
+      {
+        wrong: 'La questa casa è grande.',
+        correct: 'Questa casa è grande.',
+        note: "Il dimostrativo non vuole l'articolo davanti.",
+      },
+    ],
+    related: [
+      'aggettivi-descrittivi',
+      'aggettivi-possessivi',
+      'articoli-determinativi',
+    ],
+  },
+  {
     slug: 'passato-prossimo-avere',
     title: 'Passato prossimo con avere',
     level: 'A2',

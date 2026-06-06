@@ -211,6 +211,11 @@ const numbersTimeA1: PhrasebookCategory = {
       context: 'Perguntar a idade (informal)',
       register: 'informal',
     },
+    {
+      english: 'Que horas são? — São [hora].',
+      context: 'Perguntar e dizer as horas',
+      register: 'neutral',
+    },
   ],
 }
 
@@ -523,6 +528,11 @@ const weatherTalkA2: PhrasebookCategory = {
       context: 'Dizer que está vento',
       register: 'neutral',
     },
+    {
+      english: 'Como vai estar o tempo amanhã?',
+      context: 'Perguntar a previsão do tempo',
+      register: 'neutral',
+    },
   ],
 }
 
@@ -763,6 +773,11 @@ const jobInterviewB1: PhrasebookCategory = {
       english: 'Obrigado pela oportunidade.',
       context: 'Agradecer no final da entrevista',
       register: 'formal',
+    },
+    {
+      english: 'Como é o ambiente de trabalho aqui?',
+      context: 'Perguntar sobre a cultura da empresa',
+      register: 'neutral',
     },
   ],
 }
@@ -1070,6 +1085,11 @@ const academicDiscussionB2: PhrasebookCategory = {
     {
       english: 'Em síntese, os resultados indicam que...',
       context: 'Resumir conclusões',
+      register: 'formal',
+    },
+    {
+      english: 'Quais são as implicações deste estudo?',
+      context: 'Discutir as consequências de uma investigação',
       register: 'formal',
     },
   ],

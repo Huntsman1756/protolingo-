@@ -7728,6 +7728,454 @@ const advanced_verbs_thought_c2: VocabularySet = {
   ],
 }
 
+// ─── A1 · Body Parts ──────────────────────────────────────────────────────────
+
+const body_parts_a1: VocabularySet = {
+  id: 'body_parts_a1',
+  level: 'A1',
+  topic: 'Body Parts',
+  unit_ref: 'a1-unit-2',
+  words: [
+    {
+      word: 'head',
+      pos: 'noun',
+      definition:
+        'The top part of the body containing the brain, eyes, ears, nose, and mouth.',
+      example: 'She nodded her head in agreement.',
+      ipa: '/hɛd/',
+      frequency_rank: 131,
+    },
+    {
+      word: 'face',
+      pos: 'noun',
+      definition: 'The front part of the head.',
+      example: 'He washed his face with cold water.',
+      ipa: '/feɪs/',
+      frequency_rank: 149,
+    },
+    {
+      word: 'eye',
+      pos: 'noun',
+      definition: 'The organ used for seeing.',
+      example: 'She has beautiful blue eyes.',
+      ipa: '/aɪ/',
+      frequency_rank: 109,
+    },
+    {
+      word: 'nose',
+      pos: 'noun',
+      definition: 'The part of the face used for breathing and smelling.',
+      example: 'He broke his nose playing football.',
+      ipa: '/noʊz/',
+      frequency_rank: 394,
+    },
+    {
+      word: 'mouth',
+      pos: 'noun',
+      definition: 'The opening in the face used for eating and speaking.',
+      example: 'She opened her mouth to speak.',
+      ipa: '/maʊθ/',
+      frequency_rank: 269,
+    },
+    {
+      word: 'ear',
+      pos: 'noun',
+      definition: 'The organ used for hearing.',
+      example: 'He whispered something in her ear.',
+      ipa: '/ɪr/',
+      frequency_rank: 313,
+    },
+    {
+      word: 'hand',
+      pos: 'noun',
+      definition: 'The part of the body at the end of the arm.',
+      example: 'She raised her hand to ask a question.',
+      ipa: '/hænd/',
+      frequency_rank: 71,
+    },
+    {
+      word: 'arm',
+      pos: 'noun',
+      definition: 'The long part of the body from the shoulder to the hand.',
+      example: 'He broke his arm while skiing.',
+      ipa: '/ɑrm/',
+      frequency_rank: 133,
+    },
+    {
+      word: 'leg',
+      pos: 'noun',
+      definition: 'The long part of the body used for standing and walking.',
+      example: 'She injured her leg during the race.',
+      ipa: '/lɛɡ/',
+      frequency_rank: 176,
+    },
+    {
+      word: 'foot',
+      pos: 'noun',
+      definition: 'The part of the body at the end of the leg.',
+      example: 'He stepped on my foot by accident.',
+      ipa: '/fʊt/',
+      frequency_rank: 158,
+    },
+    {
+      word: 'finger',
+      pos: 'noun',
+      definition: 'One of the five long thin parts at the end of the hand.',
+      example: 'She pointed her finger at the map.',
+      ipa: '/ˈfɪŋɡər/',
+      frequency_rank: 309,
+    },
+    {
+      word: 'shoulder',
+      pos: 'noun',
+      definition: 'The part of the body where the arm connects to the trunk.',
+      example: 'He put his arm around her shoulder.',
+      ipa: '/ˈʃoʊldər/',
+      frequency_rank: 228,
+    },
+    {
+      word: 'knee',
+      pos: 'noun',
+      definition: 'The joint in the middle of the leg.',
+      example: 'She fell and hurt her knee.',
+      ipa: '/niː/',
+      frequency_rank: 320,
+    },
+  ],
+}
+
+// ─── A2 · Animals & Nature ────────────────────────────────────────────────────
+
+const animals_nature_a2: VocabularySet = {
+  id: 'animals_nature_a2',
+  level: 'A2',
+  topic: 'Animals & Nature',
+  unit_ref: 'a2-unit-7',
+  words: [
+    {
+      word: 'lion',
+      pos: 'noun',
+      definition:
+        'A large wild cat found in Africa, known as the king of animals.',
+      example: 'We saw a lion at the safari park.',
+      ipa: '/ˈlaɪən/',
+      frequency_rank: 250,
+    },
+    {
+      word: 'elephant',
+      pos: 'noun',
+      definition: 'A very large grey animal with a long trunk.',
+      example: 'The elephant sprayed water with its trunk.',
+      ipa: '/ˈɛlɪfənt/',
+      frequency_rank: 320,
+    },
+    {
+      word: 'insect',
+      pos: 'noun',
+      definition: 'A small animal with six legs, such as a fly or ant.',
+      example: 'An insect landed on the window.',
+      ipa: '/ˈɪnsɛkt/',
+      frequency_rank: 380,
+    },
+    {
+      word: 'whale',
+      pos: 'noun',
+      definition: 'A very large animal that lives in the sea.',
+      example: 'We spotted a whale during the boat trip.',
+      ipa: '/weɪl/',
+      frequency_rank: 350,
+    },
+    {
+      word: 'forest',
+      pos: 'noun',
+      definition: 'A large area of land covered with trees.',
+      example: 'They went hiking in the forest.',
+      ipa: '/ˈfɔrɪst/',
+      frequency_rank: 200,
+    },
+    {
+      word: 'desert',
+      pos: 'noun',
+      definition: 'A hot, dry area of land with very little rain.',
+      example: 'The Sahara is the largest hot desert in the world.',
+      ipa: '/ˈdɛzərt/',
+      frequency_rank: 280,
+    },
+    {
+      word: 'island',
+      pos: 'noun',
+      definition: 'A piece of land surrounded by water.',
+      example: 'They spent their holiday on a small island.',
+      ipa: '/ˈaɪlənd/',
+      frequency_rank: 180,
+    },
+    {
+      word: 'coast',
+      pos: 'noun',
+      definition: 'The land next to or near the sea.',
+      example: 'They drove along the coast for hours.',
+      ipa: '/koʊst/',
+      frequency_rank: 220,
+    },
+    {
+      word: 'valley',
+      pos: 'noun',
+      definition: 'A low area of land between hills or mountains.',
+      example: 'The village is nestled in a green valley.',
+      ipa: '/ˈvæli/',
+      frequency_rank: 300,
+    },
+    {
+      word: 'species',
+      pos: 'noun',
+      definition: 'A group of animals or plants that are similar.',
+      example: 'Several species of birds live in this area.',
+      ipa: '/ˈspiːʃiːz/',
+      frequency_rank: 260,
+    },
+    {
+      word: 'habitat',
+      pos: 'noun',
+      definition: 'The natural home of a plant or animal.',
+      example: 'Deforestation is destroying the habitat of many animals.',
+      ipa: '/ˈhæbɪtæt/',
+      frequency_rank: 340,
+    },
+    {
+      word: 'wildlife',
+      pos: 'noun',
+      definition: 'Animals and plants that live in natural conditions.',
+      example: 'The national park is full of amazing wildlife.',
+      ipa: '/ˈwaɪldlaɪf/',
+      frequency_rank: 310,
+    },
+  ],
+}
+
+// ─── B1 · Culture & Entertainment ─────────────────────────────────────────────
+
+const culture_entertainment_b1: VocabularySet = {
+  id: 'culture_entertainment_b1',
+  level: 'B1',
+  topic: 'Culture & Entertainment',
+  unit_ref: 'b1-unit-7',
+  words: [
+    {
+      word: 'exhibition',
+      pos: 'noun',
+      definition:
+        'A public display of works of art or other items of interest.',
+      example: 'The museum is hosting a photography exhibition this month.',
+      ipa: '/ˌɛksɪˈbɪʃən/',
+      frequency_rank: 200,
+    },
+    {
+      word: 'audience',
+      pos: 'noun',
+      definition: 'The group of people watching or listening to a performance.',
+      example: 'The audience gave the performers a standing ovation.',
+      ipa: '/ˈɔːdiəns/',
+      frequency_rank: 160,
+    },
+    {
+      word: 'sculpture',
+      pos: 'noun',
+      definition:
+        'A three-dimensional work of art made from stone, wood, or metal.',
+      example: 'A bronze sculpture stands in the centre of the square.',
+      ipa: '/ˈskʌlptʃər/',
+      frequency_rank: 350,
+    },
+    {
+      word: 'masterpiece',
+      pos: 'noun',
+      definition: 'A work of outstanding artistic skill.',
+      example: 'The Mona Lisa is considered a masterpiece of Renaissance art.',
+      ipa: '/ˈmɑːstərpiːs/',
+      frequency_rank: 300,
+    },
+    {
+      word: 'rehearsal',
+      pos: 'noun',
+      definition: 'A practice session for a performance.',
+      example: 'The actors had a final rehearsal before opening night.',
+      ipa: '/rɪˈhɜːrsəl/',
+      frequency_rank: 280,
+    },
+    {
+      word: 'genre',
+      pos: 'noun',
+      definition:
+        'A category of artistic composition characterised by a particular style.',
+      example: 'Science fiction is her favourite genre of literature.',
+      ipa: '/ˈʒɒnrə/',
+      frequency_rank: 240,
+    },
+    {
+      word: 'festival',
+      pos: 'noun',
+      definition:
+        'An organised series of events celebrating a particular activity or culture.',
+      example: 'The town holds a music festival every summer.',
+      ipa: '/ˈfɛstɪvəl/',
+      frequency_rank: 150,
+    },
+    {
+      word: 'gallery',
+      pos: 'noun',
+      definition: 'A room or building for displaying works of art.',
+      example: 'We spent the afternoon at the art gallery.',
+      ipa: '/ˈɡæləri/',
+      frequency_rank: 190,
+    },
+    {
+      word: 'orchestra',
+      pos: 'noun',
+      definition:
+        'A large group of musicians who play classical music together.',
+      example: "The orchestra performed Beethoven's Fifth Symphony.",
+      ipa: '/ˈɔːrkɪstrə/',
+      frequency_rank: 260,
+    },
+    {
+      word: 'manuscript',
+      pos: 'noun',
+      definition:
+        "An original text of an author's work, written by hand or typed.",
+      example: 'The manuscript was discovered in an old library.',
+      ipa: '/ˈmænjʊskrɪpt/',
+      frequency_rank: 330,
+    },
+    {
+      word: 'choreography',
+      pos: 'noun',
+      definition: 'The sequence of steps and movements in a dance performance.',
+      example: 'The choreography for the ballet was stunning.',
+      ipa: '/ˌkɔːriˈɒɡrəfi/',
+      frequency_rank: 400,
+    },
+    {
+      word: 'venue',
+      pos: 'noun',
+      definition: 'The place where an event is held.',
+      example: 'The concert venue can hold up to 5,000 people.',
+      ipa: '/ˈvɛnjuː/',
+      frequency_rank: 220,
+    },
+  ],
+}
+
+// ─── B2 · Science & Research ──────────────────────────────────────────────────
+
+const science_research_b2: VocabularySet = {
+  id: 'science_research_b2',
+  level: 'B2',
+  topic: 'Science & Research',
+  unit_ref: 'b2-unit-4',
+  words: [
+    {
+      word: 'hypothesis',
+      pos: 'noun',
+      definition:
+        'A proposed explanation for a phenomenon, used as a starting point for investigation.',
+      example:
+        'The scientist tested her hypothesis through a series of experiments.',
+      ipa: '/haɪˈpɒθɪsɪs/',
+      frequency_rank: 280,
+    },
+    {
+      word: 'variable',
+      pos: 'noun',
+      definition: 'A factor that can be changed or measured in an experiment.',
+      example: 'Temperature was the key variable in the study.',
+      ipa: '/ˈvɛəriəbəl/',
+      frequency_rank: 220,
+    },
+    {
+      word: 'methodology',
+      pos: 'noun',
+      definition: 'A system of methods used in a particular field of study.',
+      example: 'The research methodology was carefully reviewed by the panel.',
+      ipa: '/ˌmɛθəˈdɒlədʒi/',
+      frequency_rank: 300,
+    },
+    {
+      word: 'findings',
+      pos: 'noun',
+      definition: 'The results or conclusions of an investigation.',
+      example: 'The findings of the study were published in a leading journal.',
+      ipa: '/ˈfaɪndɪŋz/',
+      frequency_rank: 200,
+    },
+    {
+      word: 'correlation',
+      pos: 'noun',
+      definition: 'A mutual relationship between two or more things.',
+      example:
+        'There is a strong correlation between exercise and mental health.',
+      ipa: '/ˌkɒrɪˈleɪʃən/',
+      frequency_rank: 260,
+    },
+    {
+      word: 'framework',
+      pos: 'noun',
+      definition: 'A basic structure underlying a system or concept.',
+      example: 'The theoretical framework guided the entire research project.',
+      ipa: '/ˈfreɪmwɜːrk/',
+      frequency_rank: 190,
+    },
+    {
+      word: 'systematic',
+      pos: 'adjective',
+      definition: 'Done according to a fixed plan or method.',
+      example: 'A systematic approach is essential for reliable results.',
+      ipa: '/ˌsɪstɪˈmætɪk/',
+      frequency_rank: 250,
+    },
+    {
+      word: 'empirical',
+      pos: 'adjective',
+      definition: 'Based on observation or experience rather than theory.',
+      example: 'The theory is supported by empirical evidence.',
+      ipa: '/ɪmˈpɪrɪkəl/',
+      frequency_rank: 310,
+    },
+    {
+      word: 'phenomenon',
+      pos: 'noun',
+      definition: 'A fact or event that can be observed and studied.',
+      example: 'The aurora borealis is a fascinating natural phenomenon.',
+      ipa: '/fɪˈnɒmɪnən/',
+      frequency_rank: 230,
+    },
+    {
+      word: 'theoretical',
+      pos: 'adjective',
+      definition: 'Concerned with theories rather than practical applications.',
+      example:
+        'The course covers both theoretical concepts and practical skills.',
+      ipa: '/ˌθiːəˈrɛtɪkəl/',
+      frequency_rank: 240,
+    },
+    {
+      word: 'comprehensive',
+      pos: 'adjective',
+      definition: 'Covering completely or broadly; thorough.',
+      example: 'The report provides a comprehensive overview of the issue.',
+      ipa: '/ˌkɒmprɪˈhɛnsɪv/',
+      frequency_rank: 180,
+    },
+    {
+      word: 'evaluation',
+      pos: 'noun',
+      definition: 'The process of judging the quality or value of something.',
+      example: 'The project underwent a rigorous evaluation.',
+      ipa: '/ɪˌvæljuˈeɪʃən/',
+      frequency_rank: 210,
+    },
+  ],
+}
+
 // ─── Vocabulary index ─────────────────────────────────────────────────────────
 
 export const vocabularySets: VocabularySet[] = [
@@ -7754,6 +8202,7 @@ export const vocabularySets: VocabularySet[] = [
   abilities_a1,
   free_time_a1,
   food_drinks_a1,
+  body_parts_a1,
   // A2
   irregular_verbs_a2,
   past_time_a2,
@@ -7770,6 +8219,7 @@ export const vocabularySets: VocabularySet[] = [
   symptoms_a2,
   travel_a2,
   directions_a2,
+  animals_nature_a2,
   // B1
   experiences_b1,
   technology_b1,
@@ -7784,6 +8234,7 @@ export const vocabularySets: VocabularySet[] = [
   news_media_b1,
   communication_b1,
   society_b1,
+  culture_entertainment_b1,
   // B2
   academic_vocabulary_b2,
   workplace_b2,
@@ -7793,6 +8244,7 @@ export const vocabularySets: VocabularySet[] = [
   hypothetical_b2,
   industries_b2,
   news_events_b2,
+  science_research_b2,
   // C1
   abstract_concepts_c1,
   advanced_verbs_c1,

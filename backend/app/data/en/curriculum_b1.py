@@ -107,7 +107,11 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=7,
         title="Wishes & Regrets",
         grammar_points=["wish-if-only", "third-conditional"],
-        vocabulary_set_ids=["feelings_regret_b1", "hypothetical_past_b1"],
+        vocabulary_set_ids=[
+            "feelings_regret_b1",
+            "hypothetical_past_b1",
+            "culture_entertainment_b1",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Express wishes about present and past using wish/if only",

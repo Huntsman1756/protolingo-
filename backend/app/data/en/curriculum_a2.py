@@ -107,7 +107,7 @@ A2_UNITS: list[CurriculumUnit] = [
         unit_number=7,
         title="Travel & Transport",
         grammar_points=["prepositions-time", "adverbs-manner"],
-        vocabulary_set_ids=["transport_a2", "travel_a2", "directions_a2"],
+        vocabulary_set_ids=["transport_a2", "travel_a2", "directions_a2", "animals_nature_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Uses at, on, in for time expressions (at 3pm, on Monday, in June)",

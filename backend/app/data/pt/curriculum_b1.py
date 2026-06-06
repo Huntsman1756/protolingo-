@@ -119,7 +119,7 @@ B1_UNITS: list[CurriculumUnit] = [
         grammar_points=[
             "discurso-indireto-passado",
             "conectores-argumentativos",
-            "mudanças-temporais",
+            "por-para",
         ],
         vocabulary_set_ids=["opiniões_b1", "debates_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],

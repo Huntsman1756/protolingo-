@@ -893,6 +893,11 @@ const job_interview_b1: PhrasebookCategory = {
       context: 'Preguntar sobre formación',
       register: 'formal',
     },
+    {
+      english: '¿Cuál sería mi día a día en este puesto?',
+      context: 'Preguntar sobre las tareas diarias del puesto',
+      register: 'formal',
+    },
   ],
 }
 
@@ -1210,6 +1215,11 @@ const academic_discussion_b2: PhrasebookCategory = {
       context: 'Enmarcar el argumento',
       register: 'formal',
     },
+    {
+      english: '¿Hay algún estudio que respalde esa afirmación?',
+      context: 'Pedir evidencia o fuentes',
+      register: 'neutral',
+    },
   ],
 }
 
@@ -1398,6 +1408,11 @@ const professional_networking_c1: PhrasebookCategory = {
       english: 'Me interesa mucho lo que estáis haciendo en [área].',
       context: 'Mostrar interés genuino',
       register: 'neutral',
+    },
+    {
+      english: '¿Os importaría si os envío un correo para seguir en contacto?',
+      context: 'Proponer mantener el contacto',
+      register: 'formal',
     },
   ],
 }
@@ -1645,6 +1660,11 @@ const legal_contractual_c2: PhrasebookCategory = {
     {
       english: 'El incumplimiento de lo aquí estipulado dará lugar a...',
       context: 'Establecer consecuencias de incumplimiento',
+      register: 'formal',
+    },
+    {
+      english: 'A los efectos del presente acuerdo, se entenderá por...',
+      context: 'Definir un término en un contrato',
       register: 'formal',
     },
   ],

@@ -44,7 +44,12 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=3,
         title="La famiglia e descrizioni",
-        grammar_points=["aggettivi-possessivi", "aggettivi-descrittivi", "c'è-ci-sono"],
+        grammar_points=[
+            "aggettivi-possessivi",
+            "aggettivi-descrittivi",
+            "dimostrativi",
+            "c'è-ci-sono",
+        ],
         vocabulary_set_ids=["famiglia_a1", "descrizioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[

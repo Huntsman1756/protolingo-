@@ -1029,6 +1029,75 @@ export const grammarTopics: GrammarTopic[] = [
     related: ['horas', 'presente-regular', 'preposiciones-lugar'],
   },
 
+  {
+    slug: 'demostrativos',
+    title: 'Los demostrativos: este, ese, aquel',
+    level: 'A1',
+    category: 'Adjetivos y adverbios',
+    summary:
+      'Uso de adjetivos y pronombres demostrativos para señalar objetos según su distancia respecto al hablante.',
+    structure:
+      'este/esta/estos/estas (cerca) · ese/esa/esos/esas (distancia media) · aquel/aquella/aquellos/aquellas (lejos) · esto/eso/aquello (neutro)',
+    explanation:
+      'Los **demostrativos** sirven para indicar la distancia entre el hablante y aquello que señala.\n\n- **Este/esta/estos/estas** → algo cercano al hablante: *Este bolígrafo es mío.*\n- **Ese/esa/esos/esas** → algo cercano al oyente o a distancia media: *Esa silla de ahí está rota.*\n- **Aquel/aquella/aquellos/aquellas** → algo lejano para ambos: *Aquel edificio de allí es el museo.*\n\nLas formas **neutras** (esto, eso, aquello) se usan cuando no se menciona el objeto concreto o para referirse a ideas:\n- *¿Qué es esto?*\n- *Eso que dices no es cierto.*\n\n**Como adjetivos**, van delante del sustantivo y **concuerdan en género y número**: *este coche, esta casa, estos libros, estas flores.*\n\n**Como pronombres**, sustituyen al sustantivo: *—¿Qué camiseta quieres? —Esta.*\n\nDesde la reforma de la RAE de 2010, los pronombres demostrativos **no llevan tilde**, incluso en casos de ambigüedad.',
+    rules: [
+      '"Este/esta" señala lo que está cerca del hablante (aquí).',
+      '"Ese/esa" señala lo que está a distancia media o cerca del oyente (ahí).',
+      '"Aquel/aquella" señala lo que está lejos de ambos (allí).',
+      'Las formas neutras (esto, eso, aquello) se usan para ideas o cuando no se nombra el objeto.',
+      'Concuerdan en género y número con el sustantivo al que acompañan.',
+    ],
+    examples: [
+      {
+        english: 'Este libro es muy interesante.',
+        translation: 'This book is very interesting.',
+        note: 'cerca del hablante',
+      },
+      {
+        english: 'Esa casa de ahí es de mi tía.',
+        translation: "That house over there is my aunt's.",
+        note: 'distancia media',
+      },
+      {
+        english: 'Aquel edificio es el más alto de la ciudad.',
+        translation: 'That building over there is the tallest in the city.',
+        note: 'lejos de ambos',
+      },
+      {
+        english: '¿Qué es esto?',
+        translation: 'What is this?',
+        note: 'forma neutra',
+      },
+      {
+        english: 'Eso que me cuentas es increíble.',
+        translation: "What you're telling me is incredible.",
+        note: 'neutro para referirse a una idea',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'La este calle es muy ancha.',
+        correct: 'Esta calle es muy ancha.',
+        note: 'El demostrativo no lleva artículo delante.',
+      },
+      {
+        wrong: 'No me gusta este.',
+        correct: 'No me gusta esto.',
+        note: 'Usa la forma neutra "esto" para referirse a una situación o idea, no "este".',
+      },
+      {
+        wrong: 'Éste es mi coche.',
+        correct: 'Este es mi coche.',
+        note: 'Desde 2010, la RAE recomienda no tildar los pronombres demostrativos.',
+      },
+    ],
+    related: [
+      'adjetivos-descriptivos',
+      'adjetivos-posesivos',
+      'articulos-definidos',
+    ],
+  },
+
   /* ═══ A2 ═══ */
 
   {
@@ -3134,6 +3203,67 @@ export const grammarTopics: GrammarTopic[] = [
       'cambios-temporales',
       'subjuntivo-imperfecto',
     ],
+  },
+
+  {
+    slug: 'por-para',
+    title: 'Por y para: usos y diferencias',
+    level: 'B1',
+    category: 'Preposiciones',
+    summary:
+      'Distinción entre las preposiciones por y para según expresen causa, finalidad, destinatario, medio, dirección y otros contextos.',
+    structure:
+      'POR: causa/motivo · medio/canal · lugar aproximado · tiempo aproximado · intercambio · agente (voz pasiva) · opinión\nPARA: finalidad/propósito · destinatario · dirección · plazo límite · opinión · comparación',
+    explanation:
+      '**Por** y **para** son dos preposiciones que en español se confunden con frecuencia porque en muchos idiomas se traducen por una sola palabra.\n\n### Usos principales de POR\n\n- **Causa o motivo:** *Llegué tarde por el tráfico.*\n- **Medio o canal:** *Te llamo por teléfono.*\n- **Lugar aproximado:** *El libro está por aquí.*\n- **Tiempo aproximado:** *Llegaré por la tarde.*\n- **Intercambio o precio:** *Lo compré por diez euros.*\n- **Agente en voz pasiva:** *Don Quijote fue escrito por Cervantes.*\n- **Frecuencia:** *Voy al gimnasio dos veces por semana.*\n- **Sustitución:** *Vino mi hermano por mí.*\n\n### Usos principales de PARA\n\n- **Finalidad o propósito:** *Estudio para aprender.*\n- **Destinatario:** *El regalo es para ti.*\n- **Dirección:** *Salgo para Madrid.*\n- **Plazo límite:** *Lo necesito para el lunes.*\n- **Opinión:** *Para mí, es la mejor opción.*\n- **Comparación con lo esperado:** *Para ser principiante, habla muy bien.*\n\n### Truco práctico\n\nSustituye mentalmente **por** con "a causa de" o "a través de" y **para** con "con el fin de" o "destinado a".',
+    rules: [
+      '"Por" expresa la causa o el motivo de una acción: "Lo hice por necesidad, no por gusto".',
+      '"Para" expresa la finalidad o el propósito: "Ahorro para comprarme un coche".',
+      '"Por" indica el medio: "Te lo envío por correo electrónico".',
+      '"Para" indica el destinatario: "He preparado la cena para todos".',
+      'En la voz pasiva, el agente se introduce con "por": "La ley fue aprobada por el Congreso".',
+    ],
+    examples: [
+      {
+        english: 'Estudio español para viajar por Latinoamérica.',
+        translation:
+          'I study Spanish (in order) to travel around Latin America.',
+        note: 'para = finalidad; por = lugar aproximado',
+      },
+      {
+        english: 'Gracias por todo. El regalo es para ti.',
+        translation: 'Thanks for everything. The gift is for you.',
+        note: 'por = causa de agradecimiento; para = destinatario',
+      },
+      {
+        english: 'Pasé por tu oficina pero no estabas.',
+        translation: "I passed by your office but you weren't there.",
+        note: 'lugar aproximado',
+      },
+      {
+        english: 'Este informe es para el viernes.',
+        translation: 'This report is for Friday.',
+        note: 'plazo límite',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Gracias para la invitación.',
+        correct: 'Gracias por la invitación.',
+        note: 'Con "gracias" se usa "por", no "para".',
+      },
+      {
+        wrong: 'Estudio por ser médico.',
+        correct: 'Estudio para ser médico.',
+        note: '"Para" + infinitivo expresa el propósito de la acción.',
+      },
+      {
+        wrong: 'El puente fue construido para los romanos.',
+        correct: 'El puente fue construido por los romanos.',
+        note: 'El agente de la voz pasiva se introduce con "por".',
+      },
+    ],
+    related: ['preposiciones-lugar', 'voz-pasiva', 'conectores-avanzados'],
   },
 
   /* ═══ B2 ═══ */

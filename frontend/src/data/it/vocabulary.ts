@@ -8921,6 +8921,329 @@ const maestria_c2: VocabularySet = {
   ],
 }
 
+// ─── C2 · Società contemporanea ──────────────────────────────────────────────
+
+const societa_contemporanea_c2: VocabularySet = {
+  id: 'societa_contemporanea_c2',
+  level: 'C2',
+  topic: 'Società contemporanea',
+  unit_ref: 'c2-unit-4',
+  words: [
+    {
+      word: 'disuguaglianza',
+      pos: 'noun',
+      definition:
+        'Differenza ingiusta di condizioni o opportunità tra persone o gruppi.',
+      example: 'La disuguaglianza economica è in aumento in molti paesi.',
+      ipa: '/dizuɡwaʎˈʎantsa/',
+    },
+    {
+      word: 'globalizzazione',
+      pos: 'noun',
+      definition:
+        'Processo di integrazione economica e culturale su scala mondiale.',
+      example: 'La globalizzazione ha trasformato le economie locali.',
+      ipa: '/ɡlobaliddzatˈtsjone/',
+    },
+    {
+      word: 'sostenibilità',
+      pos: 'noun',
+      definition:
+        'Capacità di mantenere uno sviluppo che non comprometta le risorse future.',
+      example: 'La sostenibilità ambientale è una priorità per il governo.',
+      ipa: '/sostenibiˈlita/',
+    },
+    {
+      word: 'immigrazione',
+      pos: 'noun',
+      definition:
+        'Fenomeno di spostamento di persone verso un paese diverso dal proprio.',
+      example: "L'immigrazione ha arricchito la cultura della città.",
+      ipa: '/immiɡratˈtsjone/',
+    },
+    {
+      word: 'integrazione',
+      pos: 'noun',
+      definition:
+        'Processo di inserimento e partecipazione piena in una comunità.',
+      example: 'Le politiche di integrazione favoriscono la coesione sociale.',
+      ipa: '/inteɡratˈtsjone/',
+    },
+    {
+      word: 'emarginazione',
+      pos: 'noun',
+      definition:
+        'Esclusione di un individuo o gruppo dalla piena partecipazione sociale.',
+      example: "L'emarginazione sociale colpisce le fasce più vulnerabili.",
+      ipa: '/emarɡinatˈtsjone/',
+    },
+    {
+      word: 'polarizzazione',
+      pos: 'noun',
+      definition: 'Divisione netta in posizioni opposte e conflittuali.',
+      example: 'La polarizzazione politica rende difficile il dialogo.',
+      ipa: '/polariddzatˈtsjone/',
+    },
+    {
+      word: 'urbanizzazione',
+      pos: 'noun',
+      definition: 'Crescita e sviluppo delle aree urbane.',
+      example: "L'urbanizzazione rapida ha creato nuove sfide per le città.",
+      ipa: '/urbaniddzatˈtsjone/',
+    },
+    {
+      word: 'gentrificazione',
+      pos: 'noun',
+      definition:
+        'Trasformazione di un quartiere popolare in area residenziale di pregio.',
+      example: 'La gentrificazione ha cambiato il volto del centro storico.',
+      ipa: '/dʒentrifikatˈtsjone/',
+    },
+    {
+      word: 'precarietà',
+      pos: 'noun',
+      definition:
+        'Condizione di instabilità e insicurezza, specialmente lavorativa.',
+      example: 'La precarietà lavorativa preoccupa le nuove generazioni.',
+      ipa: '/prekarjeˈta/',
+    },
+    {
+      word: 'welfare',
+      pos: 'noun',
+      definition: 'Sistema di protezione sociale garantito dallo stato.',
+      example: 'Il welfare state è un pilastro della società europea.',
+      ipa: '/ˈwɛlfeər/',
+    },
+    {
+      word: 'cittadinanza',
+      pos: 'noun',
+      definition: 'Condizione giuridica di appartenenza a uno stato.',
+      example: 'Ha ottenuto la cittadinanza italiana dopo dieci anni.',
+      ipa: '/tʃittadiˈnantsa/',
+    },
+    {
+      word: 'attivismo',
+      pos: 'noun',
+      definition: 'Impegno attivo in cause sociali o politiche.',
+      example: "L'attivismo giovanile ha portato cambiamenti significativi.",
+      ipa: '/attiˈvizmo/',
+    },
+    {
+      word: 'parità',
+      pos: 'noun',
+      definition: 'Uguaglianza di diritti, trattamento e opportunità.',
+      example: 'La parità di genere è un obiettivo ancora da raggiungere.',
+      ipa: '/pariˈta/',
+    },
+    {
+      word: 'inclusione',
+      pos: 'noun',
+      definition:
+        'Processo che garantisce a tutti la partecipazione alla vita sociale.',
+      example: "L'inclusione scolastica è fondamentale per una società equa.",
+      ipa: '/inkluˈzjone/',
+    },
+    {
+      word: 'digitalizzazione',
+      pos: 'noun',
+      definition:
+        'Processo di conversione al formato digitale di dati e servizi.',
+      example:
+        'La digitalizzazione della pubblica amministrazione avanza lentamente.',
+      ipa: '/didʒitaliddzatˈtsjone/',
+    },
+    {
+      word: 'alfabetizzazione',
+      pos: 'noun',
+      definition:
+        'Acquisizione delle competenze fondamentali di lettura e scrittura.',
+      example: "L'alfabetizzazione digitale è essenziale nel mondo moderno.",
+      ipa: '/alfabetiddzatˈtsjone/',
+    },
+    {
+      word: 'sorveglianza',
+      pos: 'noun',
+      definition: 'Controllo e monitoraggio sistematico di persone o attività.',
+      example: 'La sorveglianza di massa solleva questioni etiche importanti.',
+      ipa: '/sorveʎˈʎantsa/',
+    },
+    {
+      word: 'censura',
+      pos: 'noun',
+      definition: 'Limitazione o soppressione della libertà di espressione.',
+      example: 'La censura sulla stampa è indice di regime autoritario.',
+      ipa: '/tʃenˈsura/',
+    },
+    {
+      word: 'populismo',
+      pos: 'noun',
+      definition: 'Movimento politico che contrappone il popolo alle élite.',
+      example: 'Il populismo ha guadagnato consenso in diversi paesi europei.',
+      ipa: '/popuˈlizmo/',
+    },
+  ],
+}
+
+// ─── C2 · Scienza e ricerca ──────────────────────────────────────────────────
+
+const scienza_ricerca_c2: VocabularySet = {
+  id: 'scienza_ricerca_c2',
+  level: 'C2',
+  topic: 'Scienza e ricerca',
+  unit_ref: 'c2-unit-5',
+  words: [
+    {
+      word: 'ipotesi',
+      pos: 'noun',
+      definition: 'Proposizione provvisoria da verificare tramite esperimenti.',
+      example: "L'ipotesi è stata confermata dai dati raccolti.",
+      ipa: '/iˈpɔtezi/',
+    },
+    {
+      word: 'variabile',
+      pos: 'noun',
+      definition:
+        'Fattore che può essere modificato o misurato in un esperimento.',
+      example: 'La temperatura era la variabile indipendente dello studio.',
+      ipa: '/vaˈrjabile/',
+    },
+    {
+      word: 'metodologia',
+      pos: 'noun',
+      definition: 'Insieme dei metodi e delle procedure di una ricerca.',
+      example: 'La metodologia adottata segue standard internazionali.',
+      ipa: '/metodoloˈdʒia/',
+    },
+    {
+      word: 'campione',
+      pos: 'noun',
+      definition:
+        'Gruppo rappresentativo selezionato per uno studio statistico.',
+      example: 'Il campione comprendeva mille partecipanti.',
+      ipa: '/kamˈpjone/',
+    },
+    {
+      word: 'correlazione',
+      pos: 'noun',
+      definition: 'Relazione reciproca tra due fenomeni o variabili.',
+      example: 'È stata trovata una forte correlazione tra i due fattori.',
+      ipa: '/korrelatˈtsjone/',
+    },
+    {
+      word: 'paradigma',
+      pos: 'noun',
+      definition: 'Modello di riferimento o quadro teorico di una disciplina.',
+      example: 'Il nuovo paradigma ha rivoluzionato la fisica teorica.',
+      ipa: '/paraˈdiɡma/',
+    },
+    {
+      word: 'empirico',
+      pos: 'adjective',
+      definition: "Basato sull'osservazione diretta e sull'esperienza.",
+      example: 'I risultati empirici confermano la teoria proposta.',
+      ipa: '/emˈpiriko/',
+    },
+    {
+      word: 'revisione',
+      pos: 'noun',
+      definition: 'Esame critico e sistematico di un lavoro scientifico.',
+      example: "L'articolo è stato sottoposto a revisione paritaria.",
+      ipa: '/reviˈzjone/',
+    },
+    {
+      word: 'pubblicazione',
+      pos: 'noun',
+      definition: 'Diffusione ufficiale di risultati scientifici.',
+      example:
+        'La pubblicazione su una rivista prestigiosa ha dato visibilità allo studio.',
+      ipa: '/pubblikatˈtsjone/',
+    },
+    {
+      word: 'citazione',
+      pos: 'noun',
+      definition: 'Riferimento esplicito a un lavoro scientifico precedente.',
+      example: "L'articolo ha ricevuto oltre cento citazioni.",
+      ipa: '/tʃitatˈtsjone/',
+    },
+    {
+      word: 'protocollo',
+      pos: 'noun',
+      definition: 'Procedura standardizzata per condurre un esperimento.',
+      example:
+        'Il protocollo sperimentale è stato approvato dal comitato etico.',
+      ipa: '/protoˈkɔllo/',
+    },
+    {
+      word: 'sperimentazione',
+      pos: 'noun',
+      definition: "Attività di verifica pratica di un'ipotesi scientifica.",
+      example: 'La sperimentazione clinica ha richiesto tre anni.',
+      ipa: '/sperimentatˈtsjone/',
+    },
+    {
+      word: 'riproducibilità',
+      pos: 'noun',
+      definition:
+        'Possibilità di ottenere gli stessi risultati ripetendo un esperimento.',
+      example: 'La riproducibilità è un pilastro del metodo scientifico.',
+      ipa: '/riprodutʃibiˈlita/',
+    },
+    {
+      word: 'validazione',
+      pos: 'noun',
+      definition: "Conferma dell'accuratezza e affidabilità di un metodo.",
+      example: 'La validazione dei dati ha richiesto diversi mesi.',
+      ipa: '/validatˈtsjone/',
+    },
+    {
+      word: 'falsificabilità',
+      pos: 'noun',
+      definition: 'Possibilità che una teoria possa essere dimostrata falsa.',
+      example:
+        'La falsificabilità distingue le teorie scientifiche da quelle non scientifiche.',
+      ipa: '/falsifikabiˈlita/',
+    },
+    {
+      word: 'consenso',
+      pos: 'noun',
+      definition: 'Accordo generale della comunità scientifica su una teoria.',
+      example:
+        'Il consenso scientifico sul cambiamento climatico è schiacciante.',
+      ipa: '/konˈsɛnso/',
+    },
+    {
+      word: 'divulgazione',
+      pos: 'noun',
+      definition: 'Diffusione della conoscenza scientifica al grande pubblico.',
+      example:
+        'La divulgazione scientifica è essenziale per una società informata.',
+      ipa: '/divulɡatˈtsjone/',
+    },
+    {
+      word: 'innovazione',
+      pos: 'noun',
+      definition: 'Introduzione di nuove idee, metodi o tecnologie.',
+      example: "L'innovazione tecnologica guida la crescita economica.",
+      ipa: '/innovatˈtsjone/',
+    },
+    {
+      word: 'brevetto',
+      pos: 'noun',
+      definition: "Diritto esclusivo concesso su un'invenzione.",
+      example: "L'università ha depositato un brevetto per la nuova scoperta.",
+      ipa: '/breˈvetto/',
+    },
+    {
+      word: 'scoperta',
+      pos: 'noun',
+      definition:
+        'Ritrovamento o rivelazione di qualcosa precedentemente ignoto.',
+      example: 'La scoperta ha aperto nuove strade nella ricerca medica.',
+      ipa: '/skoˈpɛrta/',
+    },
+  ],
+}
+
 // ─── Vocabulary index ─────────────────────────────────────────────────────────
 
 export const vocabularySets: VocabularySet[] = [
@@ -9013,6 +9336,8 @@ export const vocabularySets: VocabularySet[] = [
   creazione_c2,
   pubblicazione_c2,
   maestria_c2,
+  societa_contemporanea_c2,
+  scienza_ricerca_c2,
 ]
 
 export function getVocabularySet(id: string): VocabularySet | undefined {
