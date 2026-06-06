@@ -1,6 +1,6 @@
 """Add unique constraint on user_competencies to prevent duplicates per plan
 
-Revision ID: 0035_competency_unique_constraint
+Revision ID: 0035_competency_unique
 Revises: 0034_user_language_id_fk
 Create Date: 2026-06-05
 """
@@ -9,7 +9,7 @@ from collections.abc import Sequence
 
 from alembic import op
 
-revision: str = "0035_competency_unique_constraint"
+revision: str = "0035_competency_unique"
 down_revision: str | None = "0034_user_language_id_fk"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
