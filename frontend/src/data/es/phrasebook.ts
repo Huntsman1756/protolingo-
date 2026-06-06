@@ -113,6 +113,11 @@ const greetings: PhrasebookCategory = {
       register: 'neutral',
     },
     {
+      english: '¿De dónde eres?',
+      context: 'Preguntar el origen de alguien',
+      register: 'informal',
+    },
+    {
       english: 'Perdona, ¿cómo te llamas?',
       context: 'Preguntar el nombre a alguien',
       register: 'neutral',
@@ -195,6 +200,11 @@ const basic_requests: PhrasebookCategory = {
     {
       english: 'Gracias de antemano.',
       context: 'Agradecer por adelantado',
+      register: 'neutral',
+    },
+    {
+      english: 'Con permiso.',
+      context: 'Pasar entre personas o pedir paso',
       register: 'neutral',
     },
   ],
@@ -495,6 +505,11 @@ const restaurant_a2: PhrasebookCategory = {
       context: 'Preguntar por el servicio',
       register: 'neutral',
     },
+    {
+      english: '¿Cuál es la especialidad de la casa?',
+      context: 'Preguntar por el plato típico del restaurante',
+      register: 'neutral',
+    },
   ],
 }
 
@@ -702,6 +717,11 @@ const making_plans_a2: PhrasebookCategory = {
       english: '¿El viernes te va bien?',
       context: 'Preguntar por disponibilidad',
       register: 'neutral',
+    },
+    {
+      english: '¿Te viene bien quedar para cenar?',
+      context: 'Proponer un plan concreto para cenar',
+      register: 'informal',
     },
   ],
 }

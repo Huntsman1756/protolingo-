@@ -27,7 +27,7 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=2,
         title="Nazionalità e professioni",
-        grammar_points=["essere-nazionalità", "genere-nomi", "articoli-indeterminativi"],
+        grammar_points=["essere-nazionalita", "genere-nomi", "articoli-indeterminativi"],
         vocabulary_set_ids=["nazionalità_a1", "professioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -48,7 +48,7 @@ A1_UNITS: list[CurriculumUnit] = [
             "aggettivi-possessivi",
             "aggettivi-descrittivi",
             "dimostrativi",
-            "c'è-ci-sono",
+            "ce-ci-sono",
         ],
         vocabulary_set_ids=["famiglia_a1", "descrizioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],

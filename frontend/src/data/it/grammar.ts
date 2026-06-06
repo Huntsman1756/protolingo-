@@ -1053,6 +1053,73 @@ export const grammarTopics: GrammarTopic[] = [
     ],
   },
   {
+    slug: 'preposizioni-articolate',
+    title: 'Le preposizioni articolate',
+    level: 'A1',
+    category: 'Preposizioni',
+    summary: 'Fusione di preposizioni semplici con gli articoli determinativi.',
+    structure:
+      'di + il = del · a + il = al · da + il = dal · in + il = nel · su + il = sul · con + il = col',
+    explanation:
+      "Le **preposizioni articolate** nascono dalla fusione di una preposizione semplice con l'articolo determinativo.\n\n| Preposizione | + il | + lo | + la | + l' | + i | + gli | + le |\n|-------------|------|------|------|-----|-----|------|------|\n| **di** | del | dello | della | dell' | dei | degli | delle |\n| **a** | al | allo | alla | all' | ai | agli | alle |\n| **da** | dal | dallo | dalla | dall' | dai | dagli | dalle |\n| **in** | nel | nello | nella | nell' | nei | negli | nelle |\n| **su** | sul | sullo | sulla | sull' | sui | sugli | sulle |\n\n- *Il libro **del** professore.* (di + il)\n- *Vado **al** cinema.* (a + il)\n- *Vengo **dalla** stazione.* (da + la)\n- *Sono **nella** mia stanza.* (in + la)\n- *Il gatto è **sul** tavolo.* (su + il)\n\n**Con** è particolare: *con + il = col, con + i = coi* ma oggi sono forme meno usate.",
+    rules: [
+      'Le preposizioni articolate fondono preposizione + articolo.',
+      "Si usano obbligatoriamente davanti ai nomi che richiedono l'articolo.",
+      'Le preposizioni Di, A, Da, In, Su formano articolate.',
+      'Con forma articolate meno comuni (col, coi) oggi spesso sostituite da con + articolo separato.',
+      'La scelta della forma dipende dal genere e numero del nome che segue.',
+    ],
+    examples: [
+      {
+        english: 'Il libro è sul tavolo.',
+        translation: 'The book is on the table.',
+        note: 'su + il = sul',
+      },
+      {
+        english: 'Andiamo al ristorante stasera.',
+        translation: 'We go to the restaurant tonight.',
+        note: 'a + il = al',
+      },
+      {
+        english: 'Le chiavi sono nella borsa.',
+        translation: 'The keys are in the bag.',
+        note: 'in + la = nella',
+      },
+      {
+        english: 'Il cane dei vicini abbaia sempre.',
+        translation: "The neighbours' dog always barks.",
+        note: 'di + i = dei',
+      },
+      {
+        english: 'La macchina è degli amici di Marco.',
+        translation: "The car belongs to Marco's friends.",
+        note: 'di + gli = degli',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Vado a il cinema.',
+        correct: 'Vado al cinema.',
+        note: 'Si usa sempre la preposizione articolata, non separata.',
+      },
+      {
+        wrong: 'Il libro di il ragazzo.',
+        correct: 'Il libro del ragazzo.',
+        note: 'di + il = del',
+      },
+      {
+        wrong: 'Sono in la cucina.',
+        correct: 'Sono nella cucina.',
+        note: 'in + la = nella',
+      },
+    ],
+    related: [
+      'articoli-determinativi',
+      'preposizioni-luogo',
+      'articoli-indeterminativi',
+    ],
+  },
+  {
     slug: 'passato-prossimo-avere',
     title: 'Passato prossimo con avere',
     level: 'A2',
@@ -4565,6 +4632,60 @@ export const grammarTopics: GrammarTopic[] = [
     related: ['sintesi-testuale', 'precisione-lessicale', 'sfumature'],
   },
   {
+    slug: 'passivo-accademico',
+    title: 'Il passivo nel registro accademico e formale',
+    level: 'C1',
+    category: 'Avanzato',
+    summary:
+      'Uso della forma passiva per conferire oggettività e impersonalità alla scrittura accademica.',
+    explanation:
+      "Nel registro accademico e formale, la **forma passiva** è ampiamente utilizzata per conferire oggettività e impersonalità al discorso.\n\n- **Si passivante**: *Si analizzeranno i dati raccolti.* → equivalente a *I dati raccolti saranno analizzati.*\n- **Passivo con essere/venire**: *Il fenomeno è stato osservato / venne studiato.*\n- **Andare + participio** (obbligo): *I risultati vanno interpretati con cautela.*\n\n**Strategie di impersonalità accademica:**\n- Uso del *si* impersonale: *Si ritiene che...*\n- Costruzioni con *è/sembra/risulta + aggettivo + che*: *È evidente che..., Risulta chiaro che...*\n- Forme nominali: *L'analisi dei dati mostra...* piuttosto che *Abbiamo analizzato i dati...*\n\nIl passivo accademico permette di mettere in primo piano il contenuto della ricerca piuttosto che il ricercatore.",
+    rules: [
+      "Il passivo sposta il focus dall'agente all'azione o al risultato.",
+      'Alternare forme: si passivante, essere/venire + participio, andare + participio.',
+      'Costruzioni impersonali con si: si osserva, si nota, si evince.',
+      'Evitare la prima persona (io/noi) nella scrittura accademica formale.',
+      'Usare forme nominali per oggettività: "l\'analisi rivela" invece di "abbiamo analizzato".',
+    ],
+    examples: [
+      {
+        english: 'I dati sono stati raccolti mediante un questionario anonimo.',
+        translation: 'Data were collected through an anonymous questionnaire.',
+        note: 'passivo con essere',
+      },
+      {
+        english: 'Si è osservato un aumento significativo dei casi.',
+        translation: 'A significant increase in cases was observed.',
+        note: 'si passivante',
+      },
+      {
+        english:
+          'I risultati vanno interpretati alla luce del contesto storico.',
+        translation:
+          'The results must be interpreted in light of the historical context.',
+        note: 'andare + participio (obbligo)',
+      },
+      {
+        english: 'È emerso che la maggioranza degli intervistati preferisce...',
+        translation: 'It emerged that the majority of respondents prefer...',
+        note: 'costruzione impersonale',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Abbiamo scoperto che il fenomeno è frequente.',
+        correct: 'È emerso che il fenomeno risulta frequente.',
+        note: 'Evitare la prima persona nel registro accademico.',
+      },
+      {
+        wrong: 'Si è analizzato i dati.',
+        correct: 'Si sono analizzati i dati.',
+        note: 'Il si passivante richiede accordo col soggetto.',
+      },
+    ],
+    related: ['nominalizzazione', 'si-passivante', 'impersonalita'],
+  },
+  {
     slug: 'ripasso-congiuntivo',
     title: 'Ripasso avanzato del congiuntivo',
     level: 'C2',
@@ -5277,6 +5398,58 @@ export const grammarTopics: GrammarTopic[] = [
       'integrazione-grammaticale',
       'espressione-sfumata',
       'italiano-standard',
+    ],
+  },
+  {
+    slug: 'revisione',
+    title: 'Revisione e auto-editing avanzato',
+    level: 'C2',
+    category: 'Avanzato',
+    summary:
+      'Tecniche di revisione critica del proprio testo per raggiungere la massima qualità espressiva.',
+    explanation:
+      "La **revisione** a livello C2 va oltre la correzione di errori grammaticali: implica un'analisi critica della chiarezza, coerenza, stile e appropriatezza del testo.\n\n**Fasi della revisione:**\n1. **Contenuto**: il messaggio è chiaro? Le argomentazioni sono complete e ben strutturate?\n2. **Coesione e coerenza**: i connettori logici guidano il lettore? Ogni paragrafo ha un'unità tematica?\n3. **Registro e stile**: il tono è appropriato al contesto? Le scelte lessicali sono precise?\n4. **Grammatica e sintassi**: concordanze, consecutio temporum, preposizioni, articoli.\n5. **Leggibilità**: frasi troppo lunghe? Varietà nella struttura sintattica?\n\n**Tecniche pratiche:**\n- Leggere ad alta voce per individuare problemi di ritmo.\n- Distanziarsi dal testo (lasciarlo riposare alcune ore o giorni).\n- Chiedere un feedback esterno.\n- Revisione a strati: un passaggio per ogni aspetto (contenuto, stile, grammatica).",
+    rules: [
+      'Revisione a strati: contenuto → coesione → stile → grammatica → leggibilità.',
+      'Leggere ad alta voce per testare il ritmo del testo.',
+      'Distanziarsi dal testo prima della revisione finale.',
+      'Verificare la varietà sintattica: alternare frasi brevi e lunghe.',
+      "Controllare che ogni capoverso abbia un'unica idea principale.",
+    ],
+    examples: [
+      {
+        english:
+          'Prima della revisione: Il progetto è importante. Avrà un impatto. Dobbiamo considerare molti fattori.',
+        translation:
+          "Dopo la revisione: Il progetto riveste un'importanza strategica e avrà un impatto significativo, a condizione che si considerino attentamente i molteplici fattori in gioco.",
+        note: 'Da frasi telegrafiche a un unico periodo coeso.',
+      },
+      {
+        english:
+          'Prima: La ricerca ha dimostrato che la gente mangia troppi zuccheri.',
+        translation:
+          'Dopo: Dalla ricerca emerge un consumo eccessivo di zuccheri nella popolazione analizzata.',
+        note: 'Registro accademico e precisione lessicale.',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Revisionare tutto in un unico passaggio.',
+        correct:
+          'Fare più passaggi, ciascuno focalizzato su un aspetto specifico.',
+        note: 'La revisione è un processo stratificato.',
+      },
+      {
+        wrong: 'Non eliminare ridondanze per paura di perdere contenuto.',
+        correct: 'Ogni parola deve giustificare la propria presenza.',
+        note: 'Concisione.',
+      },
+    ],
+    related: [
+      'riformulazione',
+      'sintesi-testuale',
+      'precisione-lessicale',
+      'generi-testuali',
     ],
   },
 ]

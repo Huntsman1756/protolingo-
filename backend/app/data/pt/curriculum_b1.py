@@ -10,7 +10,7 @@ B1_UNITS: list[CurriculumUnit] = [
         level="B1",
         unit_number=1,
         title="Presente do conjuntivo",
-        grammar_points=["presente-conjuntivo", "expressões-desejo", "talvez"],
+        grammar_points=["presente-conjuntivo", "expressoes-desejo", "talvez"],
         vocabulary_set_ids=["emoções_b1", "desejos_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -28,7 +28,7 @@ B1_UNITS: list[CurriculumUnit] = [
         level="B1",
         unit_number=2,
         title="Subjuntivo em contexto",
-        grammar_points=["subjuntivo-recomendação", "subjuntivo-dúvida", "subjuntivo-avaliação"],
+        grammar_points=["subjuntivo-recomendacao", "subjuntivo-duvida", "subjuntivo-avaliacao"],
         vocabulary_set_ids=["trabalho_b1", "estudos_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -46,7 +46,7 @@ B1_UNITS: list[CurriculumUnit] = [
         level="B1",
         unit_number=3,
         title="Pretérito perfeito composto e mais-que-perfeito",
-        grammar_points=["pretérito-perfeito-composto", "mais-que-perfeito", "marcadores-composto"],
+        grammar_points=["preterito-perfeito-composto", "mais-que-perfeito", "marcadores-composto"],
         vocabulary_set_ids=["experiências_b1", "realizações_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -139,7 +139,7 @@ B1_UNITS: list[CurriculumUnit] = [
         title="B1 consolidação",
         grammar_points=[
             "presente-conjuntivo",
-            "pretérito-perfeito-composto",
+            "preterito-perfeito-composto",
             "mais-que-perfeito",
             "voz-passiva",
             "futuro-do-conjuntivo",

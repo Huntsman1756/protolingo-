@@ -46,7 +46,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=3,
         title="Léxico especializado",
-        grammar_points=["campos-semánticos", "derivacion", "precision-lexica"],
+        grammar_points=["campos-semanticos", "derivacion", "precision-lexica"],
         vocabulary_set_ids=["profesional_c1", "técnico_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -64,7 +64,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=4,
         title="Ironía, humor y doble sentido",
-        grammar_points=["ironía", "sarcasmo", "doble-sentido"],
+        grammar_points=["ironia", "sarcasmo", "doble-sentido"],
         vocabulary_set_ids=["humor_c1", "cultura_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -82,7 +82,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=5,
         title="Discurso persuasivo y retórica",
-        grammar_points=["recursos-retóricos", "persuasión", "figuras-literarias"],
+        grammar_points=["recursos-retoricos", "persuasion", "figuras-literarias"],
         vocabulary_set_ids=["oratoria_c1", "presentaciones_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -100,7 +100,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=6,
         title="Variedades del español",
-        grammar_points=["español-latinoamerica", "diferencias-regionales", "voseo"],
+        grammar_points=["espanol-latinoamerica", "diferencias-regionales", "voseo"],
         vocabulary_set_ids=["variedades_c1", "dialectos_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -142,8 +142,8 @@ C1_UNITS: list[CurriculumUnit] = [
             "subjuntivo-relativo",
             "pasiva-refleja",
             "nominalizacion",
-            "recursos-retóricos",
-            "español-latinoamerica",
+            "recursos-retoricos",
+            "espanol-latinoamerica",
             "sintesis-textual",
         ],
         vocabulary_set_ids=["repaso_c1"],

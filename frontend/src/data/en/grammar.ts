@@ -1090,6 +1090,205 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     related: ['expressing-opinions'],
   },
+  {
+    slug: 'present-perfect-continuous',
+    title: 'Present Perfect Continuous',
+    level: 'B1',
+    category: 'Tenses',
+    summary:
+      'Actions that started in the past and continue to the present, or have just finished with visible results.',
+    structure: 'have/has + been + verb(-ing)',
+    explanation:
+      'Use the **present perfect continuous** for:\n\n1. Actions that started in the past and are still continuing:\n   *I have been studying English for three years.*\n2. Actions that have recently stopped but have visible results now:\n   *She is tired because she has been working all day.*\n3. Emphasising the duration of an activity:\n   *We have been waiting for over an hour.*\n\nCompare with present perfect simple:\n- *I have read the book.* (completed action, result: I know the story)\n- *I have been reading the book.* (ongoing activity, may not be finished)',
+    rules: [
+      'Form: have/has + been + present participle (-ing).',
+      'Used for continuing actions or recently finished actions with present results.',
+      'Emphasises duration or ongoing nature of the activity.',
+      'Do not use with stative verbs: "I have been knowing him" → "I have known him".',
+    ],
+    examples: [
+      {
+        english: 'I have been learning English for two years.',
+        note: 'continuing',
+      },
+      {
+        english: 'He is out of breath because he has been running.',
+        note: 'recent result',
+      },
+      { english: 'It has been raining all day.', note: 'duration emphasis' },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'I have been knowing her since 2010.',
+        correct: 'I have known her since 2010.',
+        note: 'Stative verbs (know, like, believe) are not used in continuous form.',
+      },
+      {
+        wrong: 'I am working here for five years.',
+        correct: 'I have been working here for five years.',
+        note: 'Use present perfect continuous for past-to-present duration, not present continuous.',
+      },
+    ],
+    related: ['present-perfect', 'present-continuous', 'past-perfect'],
+  },
+  {
+    slug: 'passive-voice-perfect',
+    title: 'Passive Voice — Perfect Tenses',
+    level: 'B1',
+    category: 'Passive Voice',
+    summary:
+      'Using the passive voice with present perfect, past perfect, and future perfect.',
+    structure: 'have/has/had/will have + been + past participle',
+    explanation:
+      '**Perfect passive** forms follow the same pattern as active perfect tenses:\n\n| Active | Passive |\n|--------|---------|\n| They have completed the project. | The project has been completed. |\n| They had finished the work. | The work had been finished. |\n| They will have solved it. | It will have been solved. |\n\nUse the perfect passive when the focus is on the completion or result of an action, and the agent is unknown or unimportant.',
+    rules: [
+      'Form: have/has/had/will have + been + past participle.',
+      'Used when the completion or result of the action matters more than the agent.',
+      'Present perfect passive emphasises a completed action with present relevance.',
+      'Past perfect passive for actions completed before another past point.',
+    ],
+    examples: [
+      {
+        english: 'The report has been submitted.',
+        note: 'present perfect passive',
+      },
+      {
+        english: 'The decision had been made before the meeting.',
+        note: 'past perfect passive',
+      },
+      {
+        english: 'All tasks will have been completed by Friday.',
+        note: 'future perfect passive',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'The work has been did.',
+        correct: 'The work has been done.',
+        note: '"Been" is always followed by the past participle.',
+      },
+      {
+        wrong: 'The package has been delivered yesterday.',
+        correct: 'The package was delivered yesterday.',
+        note: 'With a specific past time, use past simple passive, not present perfect.',
+      },
+    ],
+    related: ['passive-voice-simple', 'advanced-passive'],
+  },
+  {
+    slug: 'should-ought-to',
+    title: 'Should, Ought to — Advice and Expectation',
+    level: 'B1',
+    category: 'Modals',
+    summary:
+      'Giving advice, making recommendations, and expressing obligation or expectation.',
+    structure: 'should / ought to + base verb',
+    explanation:
+      "**Should** and **ought to** are used to give advice, make recommendations, and express what is right or expected.\n\n- **Should**: more common, general advice. *You should see a doctor.*\n- **Ought to**: slightly more formal, often implies a moral duty or strong expectation. *You ought to apologise.*\n\n| Use | Example |\n|-----|---------|\n| Advice | You should study more. |\n| Expectation | The train should arrive at 3. |\n| Past regret | You should have called me. |\n\nIn negative: *should not* (shouldn't), *ought not to*.",
+    rules: [
+      '"Should" is more common in everyday English; "ought to" is more formal.',
+      'Both are followed by the base form of the verb.',
+      '"Should" + have + past participle expresses regret about the past.',
+      'Questions with "ought": Ought I to...? (rare; "should I...?" is preferred).',
+    ],
+    examples: [
+      { english: 'You should eat more vegetables.', note: 'advice' },
+      { english: 'She ought to arrive by noon.', note: 'expectation' },
+      { english: 'I should have studied harder.', note: 'past regret' },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'You should to go now.',
+        correct: 'You should go now.',
+        note: '"Should" is followed directly by the base verb, not "to".',
+      },
+      {
+        wrong: 'You ought study.',
+        correct: 'You ought to study.',
+        note: '"Ought" is always followed by "to".',
+      },
+    ],
+    related: ['modal-verbs', 'must-have-to', 'could-past-ability'],
+  },
+  {
+    slug: 'must-have-to',
+    title: 'Must, Have to — Obligation and Necessity',
+    level: 'B1',
+    category: 'Modals',
+    summary:
+      'Expressing obligation, necessity, and prohibition with must and have to.',
+    structure: 'must / have to + base verb',
+    explanation:
+      "**Must** and **have to** both express obligation, but with subtle differences:\n\n- **Must**: internal obligation (the speaker feels it is necessary). *I must call my mum.*\n- **Have to**: external obligation (rules, laws, other people). *I have to wear a uniform.*\n\n| Use | Internal | External |\n|-----|----------|----------|\n| Present | must | have to |\n| Past | had to | had to |\n| Future | must | will have to |\n\nNegative:\n- **Must not** (mustn't): prohibition. *You mustn't smoke here.*\n- **Don't have to**: no obligation. *You don't have to come.*",
+    rules: [
+      '"Must" expresses the speaker\'s personal feeling of obligation.',
+      '"Have to" expresses obligation from rules, laws, or external circumstances.',
+      '"Must not" = prohibition. "Don\'t have to" = no obligation.',
+      'Only "have to" has past and future forms (had to, will have to).',
+    ],
+    examples: [
+      {
+        english: 'I must finish this report today.',
+        note: 'internal obligation',
+      },
+      { english: 'Employees have to wear an ID badge.', note: 'external rule' },
+      {
+        english: "You mustn't touch that — it's dangerous.",
+        note: 'prohibition',
+      },
+      { english: 'I had to wait for two hours.', note: 'past obligation' },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'I musted go.',
+        correct: 'I had to go.',
+        note: '"Must" has no past form; use "had to".',
+      },
+      {
+        wrong: "You mustn't to be late.",
+        correct: "You mustn't be late.",
+        note: 'No "to" after "must".',
+      },
+    ],
+    related: ['modal-verbs', 'should-ought-to', 'can-cant'],
+  },
+  {
+    slug: 'wish-if-only',
+    title: 'Wish / If Only — Expressing Regrets and Desires',
+    level: 'B1',
+    category: 'Conditionals',
+    summary:
+      'Using wish and if only to express regrets about the present and past, and desires for the future.',
+    structure:
+      'wish / if only + past simple (present) / past perfect (past) / would (future)',
+    explanation:
+      "Use **wish** and **if only** to talk about things we would like to be different:\n\n| Situation | Structure | Example |\n|-----------|-----------|---------|\n| Present regret | wish + past simple | I wish I spoke French. |\n| Past regret | wish + past perfect | I wish I had studied harder. |\n| Future desire | wish + would | I wish it would stop raining. |\n| Annoyance | wish + would | I wish you wouldn't interrupt me. |\n\n**If only** is stronger/more emphatic than **wish**:\n- *If only I had more time.*\n- *If only I hadn't said that.*",
+    rules: [
+      'Wish + past simple → regret about the present.',
+      'Wish + past perfect → regret about the past.',
+      'Wish + would → desire or annoyance about the future/behaviour.',
+      '"If only" is more emphatic than "I wish".',
+      'Never use "wish" + present or future simple.',
+    ],
+    examples: [
+      { english: 'I wish I had more free time.', note: 'present regret' },
+      { english: 'I wish I had gone to the concert.', note: 'past regret' },
+      { english: 'If only she would listen to me.', note: 'emphatic, desire' },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'I wish I am taller.',
+        correct: 'I wish I was/were taller.',
+        note: 'Use past simple after "wish" for present regrets.',
+      },
+      {
+        wrong: 'I wish I would have known.',
+        correct: 'I wish I had known.',
+        note: 'Use past perfect for past regrets, not "would have".',
+      },
+    ],
+    related: ['wishes-regrets', 'third-conditional', 'second-conditional'],
+  },
 
   /* ── B2 ─────────────────────────────────────────────────── */
   {

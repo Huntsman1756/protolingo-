@@ -28,7 +28,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=2,
         title="Registo formal e académico",
-        grammar_points=["passiva-reflexa", "nominalização", "impessoalidade"],
+        grammar_points=["passiva-reflexa", "nominalizacao", "impessoalidade"],
         vocabulary_set_ids=["académico_c1", "investigação_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -46,7 +46,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=3,
         title="Léxico especializado",
-        grammar_points=["campos-semânticos", "derivação", "precisão-léxica"],
+        grammar_points=["campos-semanticos", "derivacao", "precisao-lexica"],
         vocabulary_set_ids=["profissional_c1", "técnico_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -64,7 +64,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=4,
         title="Ironia, humor e duplo sentido",
-        grammar_points=["ironia", "humor-português", "duplo-sentido"],
+        grammar_points=["ironia", "humor-portugues", "duplo-sentido"],
         vocabulary_set_ids=["humor_c1", "cultura_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -82,7 +82,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=5,
         title="Discurso persuasivo e retórica",
-        grammar_points=["recursos-retóricos", "persuasão", "figuras-literárias"],
+        grammar_points=["recursos-retoricos", "persuasao", "figuras-literarias"],
         vocabulary_set_ids=["oratória_c1", "apresentações_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -100,7 +100,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=6,
         title="Variedades do português",
-        grammar_points=["português-brasileiro", "português-europeu", "diferenças-regionais"],
+        grammar_points=["portugues-brasileiro", "portugues-europeu", "diferencas-regionais"],
         vocabulary_set_ids=["variedades_c1", "dialetos_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -118,7 +118,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=7,
         title="Análise crítica e síntese",
-        grammar_points=["síntese-textual", "crítica-construtiva", "reformulação"],
+        grammar_points=["sintese-textual", "critica-construtiva", "reformulacao"],
         vocabulary_set_ids=["análise_c1", "síntese_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -141,10 +141,10 @@ C1_UNITS: list[CurriculumUnit] = [
             "subjuntivo-final",
             "subjuntivo-relativo",
             "passiva-reflexa",
-            "nominalização",
-            "recursos-retóricos",
-            "português-brasileiro",
-            "síntese-textual",
+            "nominalizacao",
+            "recursos-retoricos",
+            "portugues-brasileiro",
+            "sintese-textual",
         ],
         vocabulary_set_ids=["revisão_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],

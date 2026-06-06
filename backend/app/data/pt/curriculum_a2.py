@@ -11,9 +11,9 @@ A2_UNITS: list[CurriculumUnit] = [
         unit_number=1,
         title="Pretérito perfeito simples",
         grammar_points=[
-            "pretérito-perfeito-regular",
+            "preterito-perfeito-regular",
             "marcadores-temporais",
-            "pretérito-perfeito-irregular",
+            "preterito-perfeito-irregular",
         ],
         vocabulary_set_ids=["viagens_a2", "experiências_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
@@ -31,7 +31,7 @@ A2_UNITS: list[CurriculumUnit] = [
         level="A2",
         unit_number=2,
         title="Pretérito imperfeito e narração",
-        grammar_points=["pretérito-imperfeito", "perfeito-vs-imperfeito", "costumava"],
+        grammar_points=["preterito-imperfeito", "perfeito-vs-imperfeito", "costumava"],
         vocabulary_set_ids=["infância_a2", "descrições_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -51,7 +51,7 @@ A2_UNITS: list[CurriculumUnit] = [
         grammar_points=[
             "pronomes-objeto-direto",
             "pronomes-objeto-indireto",
-            "colocação-pronominal",
+            "colocacao-pronominal",
             "combinacao-pronominal",
         ],
         vocabulary_set_ids=["compras_a2", "presentes_a2"],
@@ -70,7 +70,7 @@ A2_UNITS: list[CurriculumUnit] = [
         level="A2",
         unit_number=4,
         title="Comparações e superlativos",
-        grammar_points=["comparativos", "superlativos", "tão-como"],
+        grammar_points=["comparativos", "superlativos", "tao-como"],
         vocabulary_set_ids=["cidades_a2", "cultura_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -121,7 +121,7 @@ A2_UNITS: list[CurriculumUnit] = [
         level="A2",
         unit_number=7,
         title="Histórias e narrações",
-        grammar_points=["conectores-narrativos", "sequência-temporal", "discurso-indireto"],
+        grammar_points=["conectores-narrativos", "sequencia-temporal", "discurso-indireto"],
         vocabulary_set_ids=["histórias_a2", "anedotas_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -139,11 +139,11 @@ A2_UNITS: list[CurriculumUnit] = [
         unit_number=8,
         title="A2 consolidação",
         grammar_points=[
-            "pretérito-perfeito-regular",
-            "pretérito-imperfeito",
+            "preterito-perfeito-regular",
+            "preterito-imperfeito",
             "pronomes-objeto-direto",
             "pronomes-objeto-indireto",
-            "colocação-pronominal",
+            "colocacao-pronominal",
             "comparativos",
             "futuro-do-presente",
             "condicional",

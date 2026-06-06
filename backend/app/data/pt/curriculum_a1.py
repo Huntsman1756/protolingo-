@@ -27,7 +27,7 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=2,
         title="Nacionalidades e profissões",
-        grammar_points=["ser-nacionalidade", "género-substantivos", "artigos-indefinidos"],
+        grammar_points=["ser-nacionalidade", "genero-substantivos", "artigos-indefinidos"],
         vocabulary_set_ids=["nacionalidades_a1", "profissões_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -78,7 +78,7 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=5,
         title="Gostos e preferências",
-        grammar_points=["gostar-de", "também-tampouco", "muito-pouco"],
+        grammar_points=["gostar-de", "tambem-tampouco", "muito-pouco"],
         vocabulary_set_ids=["comida_a1", "atividades_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -95,7 +95,7 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=6,
         title="Lugares e direções",
-        grammar_points=["estar", "haver", "preposições-lugar", "contrações-preposicionais"],
+        grammar_points=["estar", "haver", "preposicoes-lugar", "contracoes-preposicionais"],
         vocabulary_set_ids=["lugares_a1", "direções_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -139,7 +139,7 @@ A1_UNITS: list[CurriculumUnit] = [
             "ir-futuro",
             "estar-a-infinitivo",
             "artigos-definidos",
-            "contrações-preposicionais",
+            "contracoes-preposicionais",
         ],
         vocabulary_set_ids=["revisão_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],

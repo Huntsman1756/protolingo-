@@ -4742,4 +4742,52 @@ export const grammarTopics: GrammarTopic[] = [
     ],
     related: ['integracao-gramatical', 'expressao-matizada'],
   },
+  {
+    slug: 'tupinismos',
+    title: 'Tupinismos — palavras de origem tupi-guarani',
+    level: 'C2',
+    category: 'Avancado',
+    summary:
+      'Reconhecer e compreender os tupinismos integrados no português brasileiro.',
+    explanation: `Os **tupinismos** são palavras de origem tupi-guarani incorporadas ao português, principalmente através do contato colonial no Brasil.\n\nMuitas designam elementos da fauna e flora brasileiras, mas também alimentos, utensílios e topónimos:\n\n- **Fauna**: jaguar, tatu, piranha, capivara, arara, tucano, sucuri, jabuti\n- **Flora**: abacaxi, mandioca, caju, capim, açaí, buriti, ipê, jacarandá\n- **Alimentação**: pipoca, tapioca, paçoca, mingau, moqueca\n- **Topónimos**: Ipanema, Copacabana, Tijuca, Curitiba, Paraná, Iguaçu\n\nEstas palavras são usadas quotidianamente no Brasil e enriquecem o léxico português com uma herança indígena viva.`,
+    rules: [
+      'Tupinismos designam maioritariamente fauna, flora e topónimos brasileiros.',
+      'Muitos tupinismos não têm equivalente em português europeu (ex: abacaxi vs ananás).',
+      'São parte integrante do vocabulário ativo brasileiro.',
+      'Reconhecer a origem tupi demonstra conhecimento avançado da cultura e história da língua.',
+    ],
+    examples: [
+      {
+        english: 'Vou comer um abacaxi com tapioca.',
+        translation: 'I am going to eat a pineapple with tapioca.',
+      },
+      {
+        english: 'O tucano e a arara são aves típicas do Brasil.',
+        translation: 'The toucan and the macaw are typical Brazilian birds.',
+      },
+      {
+        english: 'A capivara é o maior roedor do mundo.',
+        translation: 'The capybara is the largest rodent in the world.',
+      },
+    ],
+    common_mistakes: [
+      {
+        wrong: 'Achar que abacaxi e ananás são sempre sinónimos.',
+        correct:
+          'Em Portugal usa-se ananás; no Brasil, abacaxi. Designam variedades diferentes.',
+        note: 'Distinção regional.',
+      },
+      {
+        wrong: 'Confundir mandioca com batata-doce.',
+        correct:
+          'Mandioca (ou aipim/macaxeira) é uma raiz diferente, da qual se faz farinha e tapioca.',
+        note: 'Distinção botânica.',
+      },
+    ],
+    related: [
+      'arabismos-portugueses',
+      'evolucao-linguistica',
+      'portugues-brasileiro',
+    ],
+  },
 ]

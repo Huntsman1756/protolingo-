@@ -2140,6 +2140,15 @@ const sports_a1: VocabularySet = {
       ipa: '/ˈhɒbi/',
       frequency_rank: 520,
     },
+    {
+      word: 'running',
+      pos: 'noun',
+      definition:
+        'The activity of moving quickly on foot as a sport or exercise.',
+      example: 'I go running every morning.',
+      ipa: '/ˈrʌnɪŋ/',
+      frequency_rank: 370,
+    },
   ],
 }
 

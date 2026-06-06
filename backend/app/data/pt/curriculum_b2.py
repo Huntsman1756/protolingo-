@@ -13,7 +13,7 @@ B2_UNITS: list[CurriculumUnit] = [
         grammar_points=[
             "imperfeito-conjuntivo",
             "mais-que-perfeito-conjuntivo",
-            "concordância-temporal",
+            "concordancia-temporal",
         ],
         vocabulary_set_ids=["sentimentos_b2", "hipóteses_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
@@ -33,8 +33,8 @@ B2_UNITS: list[CurriculumUnit] = [
         unit_number=2,
         title="Perífrases verbais e infinitivo pessoal",
         grammar_points=[
-            "perífrases-aspetuais",
-            "perífrases-modais",
+            "perifrases-aspetuais",
+            "perifrases-modais",
             "andar-a-estar-a",
             "infinitivo-pessoal",
         ],
@@ -55,7 +55,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=3,
         title="Conectores e coerência textual",
-        grammar_points=["conectores-avançados", "coesão-textual", "registo-formal"],
+        grammar_points=["conectores-avancados", "coesao-textual", "registo-formal"],
         vocabulary_set_ids=["ensaios_b2", "académico_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -73,7 +73,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=4,
         title="Expressões idiomáticas portuguesas",
-        grammar_points=["expressões-idiomáticas", "expressões-coloquiais", "provérbios"],
+        grammar_points=["expressoes-idiomaticas", "expressoes-coloquiais", "proverbios"],
         vocabulary_set_ids=["idiomas_b2", "cultura_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -91,7 +91,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=5,
         title="Argumentação e debate",
-        grammar_points=["estrutura-argumentativa", "contra-argumentação", "matizadores"],
+        grammar_points=["estrutura-argumentativa", "contra-argumentacao", "matizadores"],
         vocabulary_set_ids=["debates_b2", "temas-sociais_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -109,7 +109,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=6,
         title="Literatura portuguesa e textos narrativos",
-        grammar_points=["tempos-narrativos", "descrição-literária", "pretérito-mais-que-perfeito"],
+        grammar_points=["tempos-narrativos", "descricao-literaria", "preterito-mais-que-perfeito"],
         vocabulary_set_ids=["literatura_b2", "leitura_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -127,7 +127,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=7,
         title="Média e atualidade",
-        grammar_points=["linguagem-jornalística", "títulos", "discurso-reportado"],
+        grammar_points=["linguagem-jornalistica", "titulos", "discurso-reportado"],
         vocabulary_set_ids=["notícias_b2", "atualidade_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -148,9 +148,9 @@ B2_UNITS: list[CurriculumUnit] = [
         grammar_points=[
             "imperfeito-conjuntivo",
             "mais-que-perfeito-conjuntivo",
-            "perífrases-aspetuais",
+            "perifrases-aspetuais",
             "infinitivo-pessoal",
-            "conectores-avançados",
+            "conectores-avancados",
             "estrutura-argumentativa",
             "tempos-narrativos",
             "discurso-reportado",
