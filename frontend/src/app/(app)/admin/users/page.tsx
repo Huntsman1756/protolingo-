@@ -63,7 +63,9 @@ export default function AdminUsersPage() {
   const [error, setError] = useState('')
   const [deletePending, setDeletePending] = useState<AdminUserItem | null>(null)
   const currentUserId = useAuthStore((s) => s.user?.id)
-  const availableLanguageCodes = useLanguageStore((s) => s.availableLanguageCodes)
+  const availableLanguageCodes = useLanguageStore(
+    (s) => s.availableLanguageCodes
+  )
   const maintenanceMode = useConfigStore((s) => s.maintenanceMode)
   const [maintenanceLoading, setMaintenanceLoading] = useState(false)
 

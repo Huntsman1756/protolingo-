@@ -29,6 +29,7 @@ interface Conversation {
 export default function ChatPage() {
   const t = useTranslations('chat')
   const tCommon = useTranslations('common')
+  const tLang = useTranslations('targetLanguages')
   const router = useRouter()
   const user = useAuthStore((s) => s.user)
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
@@ -359,7 +360,7 @@ export default function ChatPage() {
                     {t('title')}
                   </p>
                   <p className="text-fl-muted-2 max-w-xs font-mono text-xs leading-relaxed">
-                    {t('subtitle')}
+                    {t('subtitle', { language: activeLanguage ? tLang(activeLanguage.code) : tLang('en-GB') })}
                   </p>
                 </div>
               ) : (

@@ -570,7 +570,7 @@
   },
   "chat": {
     "title": "Tutore AI",
-    "subtitle": "Întreabă orice despre engleză",
+    "subtitle": "{language} — Întreabă orice",
     "placeholder": "Scrie un mesaj...",
     "send": "Trimite",
     "sending": "Se trimite...",

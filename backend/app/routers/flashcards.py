@@ -213,12 +213,12 @@ async def generate_flashcards_endpoint(
         raise HTTPException(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT, detail="The AI model took too long."
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="ai_service_unavailable",
         )
-    except LLMError as e:
+    except LLMError:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail="ai_service_error",
@@ -246,12 +246,12 @@ async def create_flashcard_from_word(
         raise HTTPException(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT, detail="The AI model took too long."
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="ai_service_unavailable",
         )
-    except LLMError as e:
+    except LLMError:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail="ai_service_error",

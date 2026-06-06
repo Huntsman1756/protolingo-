@@ -570,7 +570,7 @@
   },
   "chat": {
     "title": "Korepetytor AI",
-    "subtitle": "Zapytaj o cokolwiek po angielsku",
+    "subtitle": "{language} — Zapytaj o cokolwiek",
     "placeholder": "Napisz wiadomość...",
     "send": "Wyślij",
     "sending": "Wysyłanie...",

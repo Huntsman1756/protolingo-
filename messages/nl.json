@@ -570,7 +570,7 @@
   },
   "chat": {
     "title": "AI-tutor",
-    "subtitle": "Stel alles over Engels",
+    "subtitle": "{language} — Stel alles",
     "placeholder": "Typ een bericht...",
     "send": "Versturen",
     "sending": "Versturen...",

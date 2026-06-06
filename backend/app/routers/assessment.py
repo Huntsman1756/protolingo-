@@ -132,14 +132,12 @@ async def start_assessment(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT,
             detail="LLM timed out generating assessment quiz.",
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
-    except LLMError as e:
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
-        )
+    except LLMError:
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error")
 
     quiz = quiz_payload.model_dump() if isinstance(quiz_payload, BaseModel) else quiz_payload
     session_id = str(uuid4())
@@ -222,14 +220,12 @@ async def submit_assessment(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT,
             detail="LLM timed out evaluating assessment.",
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
-    except LLMError as e:
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
-        )
+    except LLMError:
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error")
     finally:
         await redis.delete(redis_key)
 
@@ -300,14 +296,12 @@ async def evaluate_free_write_endpoint(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT,
             detail="LLM timed out evaluating free-write.",
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
-    except LLMError as e:
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
-        )
+    except LLMError:
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error")
 
 
 @router.post("/complete", response_model=dict)
@@ -437,14 +431,12 @@ async def get_level_test_questions(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT,
             detail="LLM timed out generating level test.",
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_service_unavailable"
         )
-    except LLMError as e:
-        raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error"
-        )
+    except LLMError:
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail="ai_service_error")
 
     return {"plan_id": plan_id, "cefr_level": plan.cefr_level, "questions": questions}
 

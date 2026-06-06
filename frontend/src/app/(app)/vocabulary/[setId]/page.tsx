@@ -32,9 +32,7 @@ export default function VocabularySetPage({
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const langFromId = setId.match(/_(en|es|it|pt)_/)?.[1]
   const targetLang = activeLanguage?.code ?? langFromId ?? 'en-US'
-  const vocabSet = getVocabularySets(targetLang).find(
-    (s) => s.id === setId
-  )
+  const vocabSet = getVocabularySets(targetLang).find((s) => s.id === setId)
   if (!vocabSet) notFound()
 
   const [adding, setAdding] = useState(false)

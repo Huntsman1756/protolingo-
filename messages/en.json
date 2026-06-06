@@ -570,7 +570,7 @@
   },
   "chat": {
     "title": "AI Tutor",
-    "subtitle": "Ask anything about English",
+    "subtitle": "{language} — Ask anything",
     "placeholder": "Type a message...",
     "send": "Send",
     "sending": "Sending...",

@@ -570,7 +570,7 @@
   },
   "chat": {
     "title": "KI-Tutor",
-    "subtitle": "Stellen Sie beliebige Fragen zum Englischen",
+    "subtitle": "{language} — Stellen Sie beliebige Fragen",
     "placeholder": "Nachricht eingeben...",
     "send": "Senden",
     "sending": "Wird gesendet...",

@@ -570,7 +570,7 @@
   },
   "chat": {
     "title": "Tuteur IA",
-    "subtitle": "Posez n'importe quelle question sur l'anglais",
+    "subtitle": "{language} — Posez n'importe quelle question",
     "placeholder": "Tapez un message...",
     "send": "Envoyer",
     "sending": "Envoi...",

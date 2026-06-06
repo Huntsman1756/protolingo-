@@ -423,7 +423,8 @@ async def test_attempt_duplicate_rejected(user_with_plan) -> None:
 @pytest.mark.asyncio
 async def test_audio_exercise_not_found(listening_client) -> None:
     ac, _, db = listening_client
-    _, headers = await _make_user(db, username="audiouser", email="audio@example.com")
+    user, headers = await _make_user(db, username="audiouser", email="audio@example.com")
+    await _make_plan(db, user.id)
     await db.commit()
     r = await ac.get("/api/listening/audio/9999", headers=headers)
     assert r.status_code == 404
