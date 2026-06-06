@@ -104,7 +104,7 @@ C1_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["variedades_c1", "dialectos_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Identifies the key phonological differences between Peninsular Spanish (ceceo/distinción s/z, leísmo) and the major Latin American varieties (seseo, yeísmo)",
+            "Identifies the key phonological differences between Peninsular Spanish (distinción s/z, leísmo) and the major Latin American varieties (seseo, yeísmo), and recognises that ceceo and seseo are also present in southern Spanish dialects (Andalusia, Canary Islands)",
             "Understands and responds to voseo (vos + specific verb forms: vos tenés, vos querés, vos sos) as used in Argentina, Uruguay, and Central America",
             "Recognises significant lexical differences between Peninsular and Latin American Spanish in everyday domains: coche/carro, ordenador/computadora, móvil/celular, conducir/manejar",
             "Uses the distinction vosotros/ustedes (Peninsular) vs ustedes for all contexts (Latin America) correctly for the variety being learned",

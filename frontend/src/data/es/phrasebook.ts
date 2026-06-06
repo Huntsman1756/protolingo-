@@ -93,8 +93,13 @@ const greetings: PhrasebookCategory = {
     },
     { english: 'Adiós.', context: 'Despedida formal', register: 'formal' },
     {
-      english: '¡Chao! / ¡Nos vemos!',
-      context: 'Despedida muy informal',
+      english: '¡Chao!',
+      context: 'Despedida muy informal (común en Latinoamérica)',
+      register: 'informal',
+    },
+    {
+      english: '¡Nos vemos!',
+      context: 'Despedida informal',
       register: 'informal',
     },
     {
@@ -1392,7 +1397,7 @@ const professional_networking_c1: PhrasebookCategory = {
     {
       english: 'Ha sido un placer conocerte.',
       context: 'Despedirse cordialmente (informal)',
-      register: 'neutral',
+      register: 'informal',
     },
     {
       english: 'Estaremos en contacto.',

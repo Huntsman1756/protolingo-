@@ -354,7 +354,7 @@ const A2_UNITS: CurriculumUnit[] = [
       'secuencia-temporal',
       'estilo-indirecto',
     ],
-    vocabulary_set_ids: ['historias_es_a2', 'anécdotas_es_a2'],
+    vocabulary_set_ids: ['historias_es_a2', 'anecdotas_es_a2'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a2-unit-6',
     competency_checklist: [
@@ -545,6 +545,7 @@ const B1_UNITS: CurriculumUnit[] = [
       'se-impersonal',
       'si-imperfecto-subjuntivo',
       'estilo-indirecto-pasado',
+      'por-para',
     ],
     vocabulary_set_ids: ['repaso_es_b1'],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
@@ -845,7 +846,7 @@ const C1_UNITS: CurriculumUnit[] = [
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'c1-unit-5',
     competency_checklist: [
-      'Identifica las diferencias fonológicas clave entre el español peninsular (ceceo/distinción s/z, leísmo) y las principales variedades latinoamericanas (seseo, yeísmo)',
+      'Identifica las diferencias fonológicas clave entre el español peninsular (distinción s/z, leísmo) y las principales variedades latinoamericanas (seseo, yeísmo), y reconoce que el ceceo y el seseo también están presentes en dialectos del sur de España (Andalucía, Canarias)',
       'Comprende y responde al voseo (vos + formas verbales específicas: vos tenés, vos querés, vos sos) tal como se usa en Argentina, Uruguay y Centroamérica',
       'Reconoce diferencias léxicas significativas entre el español peninsular y latinoamericano en ámbitos cotidianos: coche/carro, ordenador/computadora, móvil/celular, conducir/manejar',
       'Usa la distinción vosotros/ustedes (peninsular) vs ustedes para todos los contextos (Latinoamérica) correctamente según la variedad que se esté aprendiendo',

@@ -386,7 +386,7 @@ const grammarC1: AssessmentQuestion[] = [
     difficulty: 'C1',
     question:
       'Elige el conector correcto: ___ a las evidencias, el cambio climático se está acelerando.',
-    options: ['Conforme', 'Frente', 'A pesar', 'En relación'],
+    options: ['Conforme', 'Frente', 'Según', 'A pesar'],
     correct: 'Conforme',
     grammar_slug: 'conectores-avanzados',
   },

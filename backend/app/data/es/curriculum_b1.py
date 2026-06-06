@@ -146,6 +146,7 @@ B1_UNITS: list[CurriculumUnit] = [
             "se-impersonal",
             "si-imperfecto-subjuntivo",
             "estilo-indirecto-pasado",
+            "por-para",
         ],
         vocabulary_set_ids=["repaso_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],

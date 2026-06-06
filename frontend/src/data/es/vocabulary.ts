@@ -2635,7 +2635,7 @@ const historias_es_a2: VocabularySet = {
 }
 
 const anecdotas_es_a2: VocabularySet = {
-  id: 'anécdotas_es_a2',
+  id: 'anecdotas_es_a2',
   level: 'A2',
   topic: 'Anécdotas',
   unit_ref: 'a2-unit-7',
@@ -3098,7 +3098,7 @@ const estudios_es_b1: VocabularySet = {
       pos: 'noun',
       definition: 'Prueba para evaluar conocimientos',
       example: 'El examen final es la semana que viene.',
-      ipa: '/eˈksamem/',
+      ipa: '/ekˈsamen/',
     },
     {
       word: 'aprobar',
