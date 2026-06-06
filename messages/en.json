@@ -748,7 +748,9 @@
     "maintenanceDesc": "When enabled, all subscription-gated features (tutor chat, voice conversations, listening & reading exercises) will be unavailable to all users.",
     "cannotDeactivateSelf": "Cannot deactivate your own account",
     "cannotDeleteSelf": "Cannot delete your own account",
-    "sectionLanguages": "Languages"
+    "sectionLanguages": "Languages",
+    "sectionActivity": "Activity",
+    "statsActive": "Active"
   },
   "faq": {
     "title": "FAQ",

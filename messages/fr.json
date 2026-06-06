@@ -748,7 +748,9 @@
     "maintenanceDesc": "Lorsqu'il est activé, toutes les fonctionnalités réservées aux abonnés (chat, conversations vocales, exercices d'écoute et de lecture) seront indisponibles pour tous les utilisateurs.",
     "cannotDeactivateSelf": "Impossible de désactiver votre propre compte",
     "cannotDeleteSelf": "Impossible de supprimer votre propre compte",
-    "sectionLanguages": "Langues"
+    "sectionLanguages": "Langues",
+    "sectionActivity": "Activité",
+    "statsActive": "Actif"
   },
   "faq": {
     "title": "FAQ",

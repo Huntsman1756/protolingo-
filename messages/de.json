@@ -748,7 +748,9 @@
     "maintenanceDesc": "Wenn aktiviert, sind alle Abonnement-Funktionen (Tutor-Chat, Sprachgespräche, Hör- und Leseübungen) für alle Benutzer nicht verfügbar.",
     "cannotDeactivateSelf": "Eigenes Konto kann nicht deaktiviert werden",
     "cannotDeleteSelf": "Eigenes Konto kann nicht gelöscht werden",
-    "sectionLanguages": "Sprachen"
+    "sectionLanguages": "Sprachen",
+    "sectionActivity": "Aktivität",
+    "statsActive": "Aktiv"
   },
   "faq": {
     "title": "FAQ",

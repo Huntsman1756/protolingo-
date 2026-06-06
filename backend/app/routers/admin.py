@@ -169,7 +169,15 @@ async def get_user_stats(
     for sp in all_plans:
         key = sp.target_language
         if key not in lang_groups:
-            lang_groups[key] = {"cefr": None, "xp": 0, "streak": 0, "days": 0, "lessons": 0, "ex_correct": 0, "ex_total": 0}
+            lang_groups[key] = {
+                "cefr": None,
+                "xp": 0,
+                "streak": 0,
+                "days": 0,
+                "lessons": 0,
+                "ex_correct": 0,
+                "ex_total": 0,
+            }
         if sp.is_active:
             lang_groups[key]["cefr"] = sp.cefr_level
         lang_prog = await db.execute(

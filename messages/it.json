@@ -748,7 +748,9 @@
     "maintenanceDesc": "Se attivato, tutte le funzionalità in abbonamento (chat, conversazioni vocali, esercizi di ascolto e lettura) non saranno disponibili per tutti gli utenti.",
     "cannotDeactivateSelf": "Non puoi disattivare il tuo account",
     "cannotDeleteSelf": "Non puoi eliminare il tuo account",
-    "sectionLanguages": "Lingue"
+    "sectionLanguages": "Lingue",
+    "sectionActivity": "Attività",
+    "statsActive": "Attivo"
   },
   "faq": {
     "title": "FAQ",
