@@ -1,6 +1,6 @@
 """Backfill study_plan_id for existing chat_history rows
 
-Revision ID: 0037_backfill_chat_history_study_plan_id
+Revision ID: 0037_backfill_chat_history_spid
 Revises: 0036_cleanup_orphan_en_variants
 Create Date: 2026-06-06
 """
@@ -9,7 +9,7 @@ from collections.abc import Sequence
 
 from alembic import op
 
-revision: str = "0037_backfill_chat_history_study_plan_id"
+revision: str = "0037_backfill_chat_history_spid"
 down_revision: str | None = "0036_cleanup_orphan_en_variants"
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
