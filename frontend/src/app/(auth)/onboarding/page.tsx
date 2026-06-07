@@ -84,7 +84,7 @@ export default function OnboardingPage() {
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
       setUser(mapUser(updated, user))
-      router.push('/assessment')
+      router.push('/dashboard')
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : t('saveFailed'))
     } finally {

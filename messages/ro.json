@@ -947,6 +947,10 @@
     "es-ES": "Spaniolă",
     "it-IT": "Italiană",
     "pt-PT": "Portugheză",
+    "en": "engleză",
+    "es": "spaniolă",
+    "it": "italiană",
+    "pt": "portugheză",
     "es-ES-description": "Spaniola vorbită în Spania.",
     "it-IT-description": "Italiana vorbită în Italia.",
     "pt-PT-description": "Portugheza vorbită în Portugalia.",
@@ -1079,7 +1083,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.7.0",
+    "version": "v1.7.1",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Salvează cuvinte în timp ce citești",

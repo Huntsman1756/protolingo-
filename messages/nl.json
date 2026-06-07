@@ -947,6 +947,10 @@
     "es-ES": "Spaans",
     "it-IT": "Italiaans",
     "pt-PT": "Portugees",
+    "en": "Engels",
+    "es": "Spaans",
+    "it": "Italiaans",
+    "pt": "Portugees",
     "es-ES-description": "Spaans zoals gesproken in Spanje.",
     "it-IT-description": "Italiaans zoals gesproken in Italië.",
     "pt-PT-description": "Portugees zoals gesproken in Portugal.",
@@ -1079,7 +1083,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.7.0",
+    "version": "v1.7.1",
     "cta": "Begrepen",
     "entry1": {
       "label": "Woorden opslaan tijdens het lezen",

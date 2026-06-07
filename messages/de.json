@@ -947,6 +947,10 @@
     "es-ES": "Spanisch",
     "it-IT": "Italienisch",
     "pt-PT": "Portugiesisch",
+    "en": "Englisch",
+    "es": "Spanisch",
+    "it": "Italienisch",
+    "pt": "Portugiesisch",
     "es-ES-description": "Spanisch, wie es in Spanien gesprochen wird.",
     "it-IT-description": "Italienisch, wie es in Italien gesprochen wird.",
     "pt-PT-description": "Portugiesisch, wie es in Portugal gesprochen wird.",
@@ -1079,7 +1083,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.7.0",
+    "version": "v1.7.1",
     "cta": "Verstanden",
     "entry1": {
       "label": "Wörter beim Lesen speichern",

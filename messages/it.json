@@ -947,6 +947,10 @@
     "es-ES": "Spagnolo",
     "it-IT": "Italiano",
     "pt-PT": "Portoghese",
+    "en": "inglese",
+    "es": "spagnolo",
+    "it": "italiano",
+    "pt": "portoghese",
     "es-ES-description": "Spagnolo parlato in Spagna.",
     "it-IT-description": "Italiano parlato in Italia.",
     "pt-PT-description": "Portoghese parlato in Portogallo.",
@@ -1079,7 +1083,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.7.0",
+    "version": "v1.7.1",
     "cta": "Capito",
     "entry1": {
       "label": "Salva parole durante la lettura",

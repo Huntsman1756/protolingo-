@@ -947,6 +947,10 @@
     "es-ES": "Hiszpański",
     "it-IT": "Włoski",
     "pt-PT": "Portugalski",
+    "en": "angielski",
+    "es": "hiszpański",
+    "it": "włoski",
+    "pt": "portugalski",
     "es-ES-description": "Hiszpański używany w Hiszpanii.",
     "it-IT-description": "Włoski używany we Włoszech.",
     "pt-PT-description": "Portugalski używany w Portugalii.",
@@ -1079,7 +1083,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.7.0",
+    "version": "v1.7.1",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Zapisuj słowa podczas czytania",

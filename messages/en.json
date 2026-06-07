@@ -947,6 +947,10 @@
     "es-ES": "Spanish",
     "it-IT": "Italian",
     "pt-PT": "Portuguese",
+    "en": "English",
+    "es": "Spanish",
+    "it": "Italian",
+    "pt": "Portuguese",
     "es-ES-description": "Spanish as spoken in Spain.",
     "it-IT-description": "Italian as spoken in Italy.",
     "pt-PT-description": "Portuguese as spoken in Portugal.",
@@ -1079,7 +1083,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.7.0",
+    "version": "v1.7.1",
     "cta": "Got it",
     "entry1": {
       "label": "Save words from reading",

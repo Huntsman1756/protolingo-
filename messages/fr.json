@@ -947,6 +947,10 @@
     "es-ES": "Espagnol",
     "it-IT": "Italien",
     "pt-PT": "Portugais",
+    "en": "anglais",
+    "es": "espagnol",
+    "it": "italien",
+    "pt": "portugais",
     "es-ES-description": "Espagnol parlé en Espagne.",
     "it-IT-description": "Italien parlé en Italie.",
     "pt-PT-description": "Portugais parlé au Portugal.",
@@ -1079,7 +1083,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.7.0",
+    "version": "v1.7.1",
     "cta": "Compris",
     "entry1": {
       "label": "Sauvegarder des mots en lisant",
