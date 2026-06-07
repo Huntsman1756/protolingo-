@@ -391,6 +391,41 @@ old_result = await db.execute(
 
 ---
 
+## Tests
+
+### New tests (`backend/tests/test_multi_language.py`)
+
+| Test | Description |
+|------|-------------|
+| `test_add_new_language` | `POST /api/languages` creates `UserLanguage` row and marks it active |
+| `test_add_duplicate_language` | `POST` with an already-existing language → 409 |
+| `test_switch_language` | `PUT /api/languages/active` switches the active language correctly |
+| `test_list_languages` | `GET /api/languages` returns all languages with summarised progress |
+| `test_remove_language_cascades` | `DELETE /api/languages/{code}` removes plan, lessons, flashcards, progress, etc. in cascade |
+| `test_cannot_remove_last_language` | `DELETE` when user has only 1 language → 400 |
+| `test_cannot_remove_active_language` | `DELETE` on the currently active language → 400 |
+| `test_onboarding_creates_user_language` | Registration + completing assessment automatically creates `UserLanguage` row |
+| `test_supported_languages_validation` | `POST /api/languages` with unsupported language → 422 |
+| `test_assessment_language_param` | `GET /api/assessment/start?language=es-ES` generates questions in Spanish |
+| `test_assessment_redis_key_isolation` | Two simultaneous assessments in different languages do not overwrite each other in Redis |
+| `test_plan_deactivation_scoped_by_language` | Creating a Spanish plan does not deactivate the active English plan |
+
+### Existing test updates
+
+| File | Change |
+|------|--------|
+| `backend/tests/test_auth.py` | Add `UserLanguage` creation to user setup |
+| `backend/tests/test_study_plan.py` | Scope plan deactivation by language |
+| `backend/tests/test_flashcards.py` | Set `study_plan_id` on created flashcards |
+| `backend/tests/test_lessons.py` | Set `study_plan_id` on progress/competency rows |
+| `backend/tests/test_chat.py` | Set `study_plan_id` on conversations/chat_history rows |
+| `backend/tests/test_conversation.py` | Set `study_plan_id` on conversation rows |
+| `backend/tests/test_listening.py` | Use `get_active_study_plan` (remove `_get_user_level`) |
+| `backend/tests/test_reading.py` | Use `get_active_study_plan` (remove `_get_user_level`) |
+| `backend/tests/test_progress.py` | Set `study_plan_id`; verify language isolation |
+| `backend/tests/test_memories.py` | Set `study_plan_id`; verify filtering |
+| `backend/tests/test_assessment.py` | Scope plan deactivation; add `UserLanguage` fixture; test Redis key isolation |
+
 ## New files in this phase
 
 | File | Type |

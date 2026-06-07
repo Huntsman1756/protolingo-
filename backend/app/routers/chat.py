@@ -120,7 +120,7 @@ async def list_conversations(
         select(Conversation)
         .where(
             Conversation.user_id == current_user.id,
-            Conversation.study_plan_id == plan.id,
+            (Conversation.study_plan_id == plan.id) | (Conversation.study_plan_id.is_(None)),
         )
         .order_by(Conversation.updated_at.desc())
     )
@@ -173,7 +173,7 @@ async def get_conversation_messages(
         .where(
             ChatHistory.conversation_id == conversation_id,
             ChatHistory.user_id == current_user.id,
-            ChatHistory.study_plan_id == plan.id,
+            (ChatHistory.study_plan_id == plan.id) | (ChatHistory.study_plan_id.is_(None)),
         )
         .order_by(ChatHistory.created_at.asc())
         .limit(MAX_HISTORY)

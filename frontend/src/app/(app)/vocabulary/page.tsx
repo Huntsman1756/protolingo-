@@ -3,20 +3,15 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { vocabularySets } from '@/data/vocabulary'
+import { getVocabularySets, type VocabularySet } from '@/data/vocabulary'
 import { CEFR_LEVELS, type CEFRLevel } from '@/data/curriculum'
+import { useLanguageStore } from '@/store/language'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 // ── Set card ──────────────────────────────────────────────────────────────────
 
-function SetCard({
-  s,
-  wordsLabel,
-}: {
-  s: (typeof vocabularySets)[0]
-  wordsLabel: string
-}) {
+function SetCard({ s, wordsLabel }: { s: VocabularySet; wordsLabel: string }) {
   return (
     <Link
       href={`/vocabulary/${s.id}`}
@@ -49,23 +44,24 @@ function SetCard({
 export default function VocabularyIndexPage() {
   const t = useTranslations('vocabulary')
   const tCommon = useTranslations('common')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [activeLevel, setActiveLevel] = useState<CEFRLevel | 'All'>('All')
   const [search, setSearch] = useState('')
 
+  const vocabSets = getVocabularySets(activeLanguage?.code ?? 'en-US')
+
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
-    return vocabularySets.filter((s) => {
+    return vocabSets.filter((s) => {
       const matchesLevel = activeLevel === 'All' || s.level === activeLevel
       const matchesSearch =
         !q || s.topic.toLowerCase().includes(q) || s.id.includes(q)
       return matchesLevel && matchesSearch
     })
-  }, [activeLevel, search])
+  }, [vocabSets, activeLevel, search])
 
-  const totalWords = vocabularySets.reduce((acc, s) => acc + s.words.length, 0)
-  const usedLevels = [
-    ...new Set(vocabularySets.map((s) => s.level)),
-  ] as CEFRLevel[]
+  const totalWords = vocabSets.reduce((acc, s) => acc + s.words.length, 0)
+  const usedLevels = [...new Set(vocabSets.map((s) => s.level))] as CEFRLevel[]
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">
@@ -79,7 +75,7 @@ export default function VocabularyIndexPage() {
         </div>
         <div className="space-y-4 px-6 py-5">
           <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
-            {vocabularySets.length} {t('sets')} · {totalWords} {t('words')} ·{' '}
+            {vocabSets.length} {t('sets')} · {totalWords} {t('words')} ·{' '}
             {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
           </p>
           {/* Search */}

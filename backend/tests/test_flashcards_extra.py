@@ -11,9 +11,10 @@ from app.schemas.flashcards import FlashcardGenerateResponse, GeneratedFlashcard
 
 async def _seed_plan(db_session, user_id: int):
     """Create a minimal active A1 plan so flashcard endpoints have a study_plan_id."""
-    from app.models.study_plan import StudyPlan
+    from tests.conftest import make_study_plan
 
-    plan = StudyPlan(
+    return await make_study_plan(
+        db_session,
         user_id=user_id,
         cefr_level="A1",
         target_language="en-US",
@@ -24,9 +25,6 @@ async def _seed_plan(db_session, user_id: int):
         generated_plan={},
         is_active=True,
     )
-    db_session.add(plan)
-    await db_session.commit()
-    return plan
 
 
 # ── GET /api/flashcards/all ───────────────────────────────────────────────────

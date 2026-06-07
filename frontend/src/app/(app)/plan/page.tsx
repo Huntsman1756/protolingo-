@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { getCurriculumUnits, type CurriculumUnit } from '@/data/curriculum'
+import { useLanguageStore } from '@/store/language'
 import UnitCard from '@/components/plan/UnitCard'
 import UnitDrawer from '@/components/plan/UnitDrawer'
 import LevelTestBanner from '@/components/plan/LevelTestBanner'
@@ -92,6 +93,8 @@ export default function PlanPage() {
   const t = useTranslations('plan')
   const tCommon = useTranslations('common')
   const router = useRouter()
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
+  const langName = activeLanguage?.name ?? ''
 
   const [plan, setPlan] = useState<StudyPlan | null>(null)
   const [loading, setLoading] = useState(true)
@@ -156,7 +159,8 @@ export default function PlanPage() {
     } finally {
       setLoading(false)
     }
-  }, [router])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-fetch when active language changes
+  }, [router, activeLanguage?.code])
 
   useEffect(() => {
     void loadPlan()
@@ -183,7 +187,7 @@ export default function PlanPage() {
             onClick={() => router.push('/assessment')}
             className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
           >
-            — {t('startAssessment')}
+            {t('startAssessment')}
           </button>
         </div>
       </div>
@@ -191,7 +195,7 @@ export default function PlanPage() {
   }
 
   const level = plan.cefr_level as CEFRLevel
-  const units = getCurriculumUnits(level)
+  const units = getCurriculumUnits(level, activeLanguage?.code)
   const allLessons = flattenLessons(plan)
   const byUnit = lessonsByUnit(allLessons)
   const currentUnitId = plan.current_unit
@@ -212,7 +216,7 @@ export default function PlanPage() {
         <div className="flex flex-wrap items-center gap-4 px-6 py-4">
           <div>
             <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
-              {t('level')}
+              {langName ? `${langName} — ${t('level')}` : t('level')}
             </p>
             <p className="text-fl-fg font-mono text-2xl font-bold tracking-widest">
               {level}

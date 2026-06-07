@@ -69,7 +69,7 @@ The string uses `{{` / `}}` to escape literal JSON braces so Python's `.format()
 |----------|-----------|-------|
 | `parse_memory_marker` | `(text: str) → list[str]` | Extracts items from the marker block; returns `[]` on no match or JSON parse error. Items are stripped and truncated to `MAX_MEMORY_CHARS`. |
 | `strip_memory_marker` | `(text: str) → str` | Removes the marker block and trailing whitespace (`MEMORY_MARKER_RE.sub + .rstrip()`). |
-| `build_memory_context` | `(memories: list[Memory]) → str` | Formats the most recent `MAX_MEMORIES_CONTEXT` items into a `"Saved memories…"` section for injection into the system prompt. Returns `""` when list is empty. |
+| `build_memory_context` | `(memories: list[Memory]) → str` | Formats the most recent `MAX_MEMORIES_CONTEXT` items into a `"Saved memories..."` section for injection into the system prompt. Returns `""` when list is empty. |
 | `save_memories` | `async (db, user_id, items, source) → int` | Persists new items; skips exact duplicates (case-sensitive). Evicts oldest entries (FIFO) before inserting when the total would exceed `MAX_MEMORIES_PER_USER`. Commits the session. Returns the count of actually saved items. |
 | `get_user_memories` | `async (db, user_id) → list[Memory]` | Returns all memories for a user ordered by `created_at ASC`. |
 | `delete_memory` | `async (db, memory_id, user_id) → bool` | Deletes a single memory only if it belongs to `user_id`. Returns `True` on success, `False` if not found or wrong owner. |

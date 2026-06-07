@@ -322,9 +322,10 @@ async def test_clear_all_memories_service(db_session, memory_user):
 async def test_chat_strips_memory_marker_from_response(client, test_user, db_session):
     user, headers = test_user
 
-    from app.models.study_plan import StudyPlan
+    from tests.conftest import make_study_plan
 
-    plan = StudyPlan(
+    _ = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         target_language="en-US",
@@ -335,8 +336,6 @@ async def test_chat_strips_memory_marker_from_response(client, test_user, db_ses
         generated_plan={},
         is_active=True,
     )
-    db_session.add(plan)
-    await db_session.commit()
 
     class FakeChunk:
         class Choice:

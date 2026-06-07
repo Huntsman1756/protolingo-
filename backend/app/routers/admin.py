@@ -17,6 +17,7 @@ from app.models.llm_usage import LLMUsage
 from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.schemas.admin import (
     AdminUserCreate,
     AdminUserResponse,
@@ -75,12 +76,24 @@ async def create_user(
         display_name=data.display_name,
         hashed_password=hash_password(data.password),
         native_language=data.native_language,
+        target_language=data.target_language,
         role=data.role,
         is_active=True,
     )
     db.add(user)
     await db.commit()
     await db.refresh(user)
+
+    from app.models.user_language import UserLanguage
+
+    db.add(
+        UserLanguage(
+            user_id=user.id,
+            target_language=data.target_language,
+            is_active=True,
+        )
+    )
+    await db.commit()
 
     if user.email and settings.EMAIL_ENABLED:
         verify_token = str(uuid.uuid4())
@@ -105,7 +118,8 @@ async def get_user_stats(
     # Active study plan
     plan_result = await db.execute(
         select(StudyPlan)
-        .where(StudyPlan.user_id == user_id, StudyPlan.is_active.is_(True))
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(UserLanguage.user_id == user_id, StudyPlan.is_active.is_(True))
         .order_by(StudyPlan.created_at.desc())
         .limit(1)
     )
@@ -116,7 +130,8 @@ async def get_user_stats(
         await db.scalar(
             select(func.count(Lesson.id))
             .join(StudyPlan, Lesson.study_plan_id == StudyPlan.id)
-            .where(StudyPlan.user_id == user_id, Lesson.is_completed.is_(True))
+            .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+            .where(UserLanguage.user_id == user_id, Lesson.is_completed.is_(True))
         )
         or 0
     )
@@ -154,12 +169,29 @@ async def get_user_stats(
     )
     tokens_by_source: dict[str, int] = {row.source: row.total for row in token_rows}
 
-    # Per-language breakdown
-    plans_result = await db.execute(select(StudyPlan).where(StudyPlan.user_id == user_id))
+    # Per-language breakdown — grouped by target_language
+    plans_result = await db.execute(
+        select(StudyPlan)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(UserLanguage.user_id == user_id)
+    )
     all_plans = plans_result.scalars().all()
 
-    per_language: list[LanguageStats] = []
+    lang_groups: dict[str, dict[str, int | str | None]] = {}
     for sp in all_plans:
+        key = sp.target_language
+        if key not in lang_groups:
+            lang_groups[key] = {
+                "cefr": None,
+                "xp": 0,
+                "streak": 0,
+                "days": 0,
+                "lessons": 0,
+                "ex_correct": 0,
+                "ex_total": 0,
+            }
+        if sp.is_active:
+            lang_groups[key]["cefr"] = sp.cefr_level
         lang_prog = await db.execute(
             select(
                 func.coalesce(func.sum(Progress.xp_earned), 0).label("xp"),
@@ -171,18 +203,26 @@ async def get_user_stats(
             ).where(Progress.study_plan_id == sp.id)
         )
         lp = lang_prog.one()
-        per_language.append(
-            LanguageStats(
-                target_language=sp.target_language,
-                cefr_level=sp.cefr_level if sp.is_active else None,
-                xp_total=lp.xp,
-                streak_current=lp.streak,
-                active_days=lp.days,
-                lessons_completed=lp.lessons,
-                exercises_correct=lp.ex_correct,
-                exercises_total=lp.ex_total,
-            )
+        lang_groups[key]["xp"] += lp.xp
+        lang_groups[key]["streak"] = max(lang_groups[key]["streak"], lp.streak)
+        lang_groups[key]["days"] += lp.days
+        lang_groups[key]["lessons"] += lp.lessons
+        lang_groups[key]["ex_correct"] += lp.ex_correct
+        lang_groups[key]["ex_total"] += lp.ex_total
+
+    per_language: list[LanguageStats] = [
+        LanguageStats(
+            target_language=lang,
+            cefr_level=g["cefr"],
+            xp_total=g["xp"],
+            streak_current=g["streak"],
+            active_days=g["days"],
+            lessons_completed=g["lessons"],
+            exercises_correct=g["ex_correct"],
+            exercises_total=g["ex_total"],
         )
+        for lang, g in lang_groups.items()
+    ]
 
     return AdminUserStatsResponse(
         user_id=user_id,

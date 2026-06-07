@@ -5,9 +5,14 @@ import { useTranslations } from 'next-intl'
 interface Props {
   onBeginner: () => void
   onHasExperience: () => void
+  languageName: string
 }
 
-export default function BeginnerGate({ onBeginner, onHasExperience }: Props) {
+export default function BeginnerGate({
+  onBeginner,
+  onHasExperience,
+  languageName,
+}: Props) {
   const t = useTranslations('assessment')
 
   return (
@@ -22,7 +27,7 @@ export default function BeginnerGate({ onBeginner, onHasExperience }: Props) {
         <div className="space-y-6 p-8">
           <div className="space-y-2 text-center">
             <p className="text-fl-body text-fl-fg font-mono">
-              {t('studiedBefore')}
+              {t('studiedBefore', { language: languageName })}
             </p>
             <p className="text-fl-label text-fl-muted-3 font-mono">
               {t('studiedBeforeHint')}

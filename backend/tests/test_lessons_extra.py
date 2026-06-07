@@ -8,9 +8,10 @@ import pytest
 async def _create_lesson_with_plan(db_session, user_id: int):
     """Helper: create a StudyPlan + Lesson owned by the given user."""
     from app.models.lesson import Lesson
-    from app.models.study_plan import StudyPlan
+    from tests.conftest import make_study_plan
 
-    plan = StudyPlan(
+    plan = await make_study_plan(
+        db_session,
         user_id=user_id,
         cefr_level="A2",
         goals=["grammar"],
@@ -20,8 +21,6 @@ async def _create_lesson_with_plan(db_session, user_id: int):
         generated_plan={},
         is_active=True,
     )
-    db_session.add(plan)
-    await db_session.flush()
 
     lesson = Lesson(
         study_plan_id=plan.id,

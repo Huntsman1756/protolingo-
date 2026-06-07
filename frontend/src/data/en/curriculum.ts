@@ -113,7 +113,12 @@ const A1_UNITS: CurriculumUnit[] = [
     title: 'Identity & Greetings',
     default_weeks: [1, 2],
     grammar_points: ['to-be', 'subject-pronouns'],
-    vocabulary_set_ids: ['identity_a1', 'greetings_a1', 'numbers_1_20_a1'],
+    vocabulary_set_ids: [
+      'identity_a1',
+      'greetings_a1',
+      'numbers_1_20_a1',
+      'numbers_extra_a1',
+    ],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     competency_checklist: [
       'Correctly uses am / is / are in affirmative sentences',
@@ -130,7 +135,12 @@ const A1_UNITS: CurriculumUnit[] = [
     title: 'My World',
     default_weeks: [2, 3],
     grammar_points: ['articles', 'possessive-adjectives'],
-    vocabulary_set_ids: ['family_a1', 'colours_a1', 'adjectives_basic_a1'],
+    vocabulary_set_ids: [
+      'family_a1',
+      'colours_a1',
+      'adjectives_basic_a1',
+      'body_parts_a1',
+    ],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a1-unit-1',
     competency_checklist: [
@@ -385,7 +395,12 @@ const A2_UNITS: CurriculumUnit[] = [
     title: 'Travel & Transport',
     default_weeks: [9, 10],
     grammar_points: ['prepositions-time', 'adverbs-manner'],
-    vocabulary_set_ids: ['transport_a2', 'travel_a2', 'directions_a2'],
+    vocabulary_set_ids: [
+      'transport_a2',
+      'travel_a2',
+      'directions_a2',
+      'animals_nature_a2',
+    ],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'a2-unit-6',
     competency_checklist: [
@@ -545,7 +560,11 @@ const B1_UNITS: CurriculumUnit[] = [
     title: 'Opinions & Discussion',
     default_weeks: [9, 10],
     grammar_points: ['expressing-opinions', 'discourse-connectors-b1'],
-    vocabulary_set_ids: ['opinion_phrases_b1', 'society_b1'],
+    vocabulary_set_ids: [
+      'opinion_phrases_b1',
+      'society_b1',
+      'culture_entertainment_b1',
+    ],
     lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
     prerequisite_unit: 'b1-unit-6',
     competency_checklist: [
@@ -676,7 +695,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
         title: 'Advanced Passive & Causative',
         default_weeks: [5, 6],
         grammar_points: ['advanced-passive'],
-        vocabulary_set_ids: ['industries_b2'],
+        vocabulary_set_ids: ['industries_b2', 'science_research_b2'],
         lesson_types: ['grammar', 'vocabulary', 'reading', 'writing', 'review'],
         prerequisite_unit: 'b2-unit-3',
         competency_checklist: [
@@ -1053,6 +1072,7 @@ export const curriculum: Record<CEFRLevel, LevelCurriculum> = {
           'idiomatic_expressions_c2',
           'literary_devices_c2',
           'critical_analysis_c2',
+          'advanced_verbs_thought_c2',
         ],
         lesson_types: ['grammar', 'reading', 'writing', 'review'],
         prerequisite_unit: 'c2-unit-5',

@@ -13,8 +13,11 @@ class KokoroTTSService:
             r = await client.get(f"{self.base_url}/v1/models", timeout=5.0)
             r.raise_for_status()
 
-    async def synthesize(self, text: str, voice: str | None = None) -> bytes:
+    async def synthesize(
+        self, text: str, voice: str | None = None, language: str | None = None
+    ) -> bytes:
         """Call Kokoro-FastAPI and return MP3 audio bytes."""
+        _ = language  # Kokoro handles language via the voice model itself
         async with httpx.AsyncClient() as client:
             response = await client.post(
                 f"{self.base_url}/v1/audio/speech",
@@ -41,8 +44,11 @@ class OpenAITTSService:
         """Raise if OpenAI TTS is unreachable (lightweight models list call)."""
         await self._client.models.list()
 
-    async def synthesize(self, text: str, voice: str | None = None) -> bytes:
+    async def synthesize(
+        self, text: str, voice: str | None = None, language: str | None = None
+    ) -> bytes:
         """Call OpenAI TTS API and return MP3 audio bytes."""
+        _ = language
         response = await self._client.audio.speech.create(
             model=self.model,
             voice=voice or self.voice,

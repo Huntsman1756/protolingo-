@@ -15,6 +15,7 @@ from app.core.security import decode_access_token
 from app.models.conversation import Conversation as ConversationModel
 from app.models.study_plan import StudyPlan
 from app.models.user import User
+from app.models.user_language import UserLanguage
 from app.services.conversation_pipeline import ConversationPipeline
 from app.services.language_helpers import voice_session_title
 from app.services.llm_adapter import llm_adapter
@@ -108,6 +109,7 @@ async def conversation_ws(
         token = auth_msg.get("token", "")
         initial_context_raw = auth_msg.get("context")  # optional chat history
         voice_pref: str = auth_msg.get("voice", "") or ""
+        target_language_from_client: str | None = auth_msg.get("target_language")
         client_conversation_id_raw = auth_msg.get(
             "conversation_id"
         )  # optional: reserved for future API use
@@ -191,31 +193,67 @@ async def conversation_ws(
         # --- CEFR level and target language from active StudyPlan ---
         from app.services.user_language_service import get_active_language
 
-        active_lang = await get_active_language(db, user_id)
-        if active_lang:
-            result = await db.execute(
-                select(StudyPlan)
-                .where(
-                    StudyPlan.user_id == user_id,
-                    StudyPlan.is_active == True,  # noqa: E712
-                    StudyPlan.target_language == active_lang.target_language,
+        plan: StudyPlan | None = None
+        if target_language_from_client:
+            # Frontend told us which language the user is studying — use it directly
+            ul_result = await db.execute(
+                select(UserLanguage).where(
+                    UserLanguage.user_id == user_id,
+                    UserLanguage.target_language == target_language_from_client,
                 )
-                .limit(1)
             )
-        else:
+            ul = ul_result.scalar_one_or_none()
+            if ul:
+                plan_result = await db.execute(
+                    select(StudyPlan)
+                    .where(
+                        StudyPlan.user_language_id == ul.id,
+                        StudyPlan.is_active == True,  # noqa: E712
+                    )
+                    .limit(1)
+                )
+                plan = plan_result.scalar_one_or_none()
+        if not plan:
+            active_lang = await get_active_language(db, user_id)
+            if active_lang:
+                result = await db.execute(
+                    select(StudyPlan)
+                    .where(
+                        StudyPlan.user_language_id == active_lang.id,
+                        StudyPlan.is_active == True,  # noqa: E712
+                    )
+                    .limit(1)
+                )
+                plan = result.scalar_one_or_none()
+        if not plan:
+
             result = await db.execute(
                 select(StudyPlan)
+                .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
                 .where(
-                    StudyPlan.user_id == user_id,
+                    UserLanguage.user_id == user_id,
                     StudyPlan.is_active == True,  # noqa: E712
                 )
                 .order_by(StudyPlan.created_at.desc())
                 .limit(1)
             )
-        plan = result.scalar_one_or_none()
-        cefr_level = plan.cefr_level if plan else "B1"
-        target_language = plan.target_language if plan else user.target_language
-        study_plan_id_for_conv = plan.id if plan else None
+            plan = result.scalar_one_or_none()
+        if not plan:
+            await websocket.send_json(
+                {"type": "error", "code": "no_active_plan", "message": "No active study plan found"}
+            )
+            await websocket.close(code=1008)
+            return
+        cefr_level = plan.cefr_level
+        if target_language_from_client:
+            target_language = target_language_from_client
+        else:
+            ul_row = await db.execute(
+                select(UserLanguage).where(UserLanguage.id == plan.user_language_id)
+            )
+            ul = ul_row.scalar_one_or_none()
+            target_language = ul.target_language if ul else plan.target_language
+        study_plan_id_for_conv = plan.id
 
         # Read user settings before session closes to avoid DetachedInstanceError
         max_duration = user.conversation_max_duration

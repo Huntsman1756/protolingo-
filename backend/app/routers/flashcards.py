@@ -39,9 +39,8 @@ async def _get_active_plan_or_404(db: AsyncSession, user_id: int) -> StudyPlan:
         raise HTTPException(status_code=404, detail="No active language set")
     result = await db.execute(
         select(StudyPlan).where(
-            StudyPlan.user_id == user_id,
+            StudyPlan.user_language_id == active_lang.id,
             StudyPlan.is_active.is_(True),
-            StudyPlan.target_language == active_lang.target_language,
         )
     )
     plan = result.scalar_one_or_none()
@@ -188,13 +187,14 @@ async def generate_flashcards_endpoint(
     db: AsyncSession = Depends(get_db),
 ):
     plan = await _get_active_plan_or_404(db, current_user.id)
+    target_lang = data.target_language or plan.target_language
     try:
         result = await generate_flashcards(
             topic=data.topic,
             count=data.count,
             cefr_level=data.cefr_level,
             native_language=data.native_language,
-            target_language=plan.target_language,
+            target_language=target_lang,
         )
         # Persist generated cards
         for card_data in result.flashcards:
@@ -213,15 +213,15 @@ async def generate_flashcards_endpoint(
         raise HTTPException(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT, detail="The AI model took too long."
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"AI service unavailable: {str(e)}",
+            detail="ai_service_unavailable",
         )
-    except LLMError as e:
+    except LLMError:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Failed to generate flashcards: {str(e)}",
+            detail="ai_service_error",
         )
 
 
@@ -246,15 +246,15 @@ async def create_flashcard_from_word(
         raise HTTPException(
             status_code=status.HTTP_504_GATEWAY_TIMEOUT, detail="The AI model took too long."
         )
-    except LLMUnavailableError as e:
+    except LLMUnavailableError:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"AI service unavailable: {str(e)}",
+            detail="ai_service_unavailable",
         )
-    except LLMError as e:
+    except LLMError:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Failed to look up word: {str(e)}",
+            detail="ai_service_error",
         )
 
     card = Flashcard(

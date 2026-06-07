@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { useProgressStore } from '@/store/progress'
+import { useLanguageStore } from '@/store/language'
 import OnboardingTour from '@/components/tour/OnboardingTour'
 import WhatsNew from '@/components/whats-new/WhatsNew'
 
@@ -35,6 +36,7 @@ export default function DashboardPage() {
     setProgress,
     setTodayLessons,
   } = useProgressStore()
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [loading, setLoading] = useState(true)
   const [loadError, setLoadError] = useState(false)
   const [hasPlan, setHasPlan] = useState(false)
@@ -58,6 +60,8 @@ export default function DashboardPage() {
           xp: prog.total_xp ?? 0,
           skills: prog.skills ?? {},
         })
+      } else {
+        setProgress({ streak: 0, xp: 0, skills: {} })
       }
       if (planRes.ok) {
         const plan = await planRes.json()
@@ -78,13 +82,21 @@ export default function DashboardPage() {
           }))
         )
         setHasPlan(true)
+      } else {
+        setCefrLevel(null)
+        setProgressDay(0)
+        setTotalDays(0)
+        setPendingCount(0)
+        setTodayLessons([])
+        setHasPlan(false)
       }
     } catch {
       setLoadError(true)
     } finally {
       setLoading(false)
     }
-  }, [setProgress, setTodayLessons])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- re-fetch when active language changes
+  }, [setProgress, setTodayLessons, activeLanguage?.code])
 
   useEffect(() => {
     loadData()
@@ -146,6 +158,12 @@ export default function DashboardPage() {
           <h1 className="text-fl-fg font-mono text-2xl font-bold tracking-tight">
             {user?.displayName || user?.username}
           </h1>
+          {activeLanguage && (
+            <p className="text-fl-muted-1 mt-2 font-mono text-sm">
+              {activeLanguage.name}
+              {cefrLevel ? ` (${cefrLevel})` : ''}
+            </p>
+          )}
         </div>
 
         {/* Stats row */}
@@ -274,7 +292,7 @@ export default function DashboardPage() {
                     disabled={skipping}
                     className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
                   >
-                    {skipping ? '…' : t('skipDay')}
+                    {skipping ? '...' : t('skipDay')}
                   </button>
                   {skipError && (
                     <p className="text-fl-error mt-1 font-mono text-xs">

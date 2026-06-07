@@ -57,7 +57,10 @@
     "wordSaved": "Salvat",
     "wordSaveError": "A apărut o problemă",
     "selectWordHint": "Selectează un cuvânt pentru a-l salva în vocabularul tău",
-    "noActivePlan": "Nu a fost găsit niciun plan de studiu activ"
+    "noActivePlan": "Nu a fost găsit niciun plan de studiu activ",
+    "removeLanguageConfirmTitle": "Elimină limba",
+    "removeLanguageConfirmMessage": "Toate datele pentru această limbă (plan de studiu, progres, flashcards, conversații și amintiri) vor fi șterse permanent. Această acțiune nu poate fi anulată.",
+    "removeLanguageConfirmLabel": "Elimină"
   },
   "nav": {
     "home": "Acasă",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Schimbă limba"
   },
   "auth": {
     "login": {
@@ -241,7 +245,9 @@
     "memoryClearAllTitle": "Șterge toate amintirile",
     "memoryClearAllMessage": "Aceasta va șterge permanent toate amintirile salvate. Această acțiune nu poate fi anulată.",
     "memoryClearAllConfirm": "Șterge tot",
-    "memoryManage": "Gestionează amintirile"
+    "memoryManage": "Gestionează amintirile",
+    "sectionLanguages": "Limbi",
+    "languagesManage": "Limbile mele"
   },
   "legal": {
     "terms": {
@@ -302,9 +308,9 @@
       "s5Title": "5. Cookie-uri și tokenuri de sesiune",
       "s5Body": "FreeLingo folosește două cookie-uri tehnice strict necesare: un refresh_token (httpOnly, expirare 30 de zile) și NEXT_LOCALE (expirare 1 an). Nu se folosesc cookie-uri de urmărire, analiză sau publicitate.",
       "s6Title": "6. Drepturile tale (GDPR)",
-      "s6Body": "Dacă te afli în Spațiul Economic European, ai dreptul de acces, rectificare, ștergere, opoziție și portabilitate a datelor. Pentru a exercita aceste drepturi, contactează-ne la adresa din secțiunea 8 sau șterge-ți contul din Setări. Bază juridică a prelucrării (Art. 6(1)(b) GDPR): prelucrăm datele tale personale deoarece este necesar pentru executarea contractului dintre tine și noi. Transferări internaționale: la utilizarea serviciului găzduit, conținutul conversațiilor și audio pot fi procesate de OpenAI, Inc. (SUA), iar datele de plată sunt procesate de Stripe, Inc. (SUA). Aceste transferări se efectuează în baza Clauzelor Contractuale Standard aprobate de Comisia Europeană (Art. 46 GDPR). Drept de reclamație: ai dreptul de a depune o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP — dataprotection.ro) sau la autoritatea de supraveghere din țara ta de reședință.",
+      "s6Body": "Dacă te afli în Spațiul Economic European, ai dreptul de acces, rectificare, ștergere, opoziție și portabilitate a datelor. Pentru a exercita aceste drepturi, contactează-ne la adresa din secțiunea 8 sau șterge-ți contul din setări. Bază juridică a prelucrării (Art. 6(1)(b) GDPR): prelucrăm datele tale personale deoarece este necesar pentru executarea contractului dintre tine și noi. Transferări internaționale: la utilizarea serviciului găzduit, conținutul conversațiilor și audio pot fi procesate de OpenAI, Inc. (SUA), iar datele de plată sunt procesate de Stripe, Inc. (SUA). Aceste transferări se efectuează în baza Clauzelor Contractuale Standard aprobate de Comisia Europeană (Art. 46 GDPR). Drept de reclamație: ai dreptul de a depune o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP — dataprotection.ro) sau la autoritatea de supraveghere din țara ta de reședință.",
       "s7Title": "7. Retenția și ștergerea datelor",
-      "s7Body": "Datele tale sunt păstrate atât timp cât contul tău există. Poți șterge permanent contul și toate datele asociate în orice moment din pagina Setări.",
+      "s7Body": "Datele tale sunt păstrate atât timp cât contul tău există. Poți șterge permanent contul și toate datele asociate în orice moment din pagina setări.",
       "s8Title": "8. Contact",
       "s8Body": "Pentru întrebări legate de confidențialitate, contactează-ne la: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Termeni și condiții",
@@ -392,10 +398,10 @@
       }
     },
     "suggestedLevel": "Sugerat {aiLevel}; planul folosește {selectedLevel}",
-    "step1": "Pasul 1 / 3: Nivelul tău",
-    "step2": "Pasul 2 / 3: Întrebarea {questionNumber} / {totalQuestions}",
-    "step3": "Pasul 3 / 3: Programul tău",
-    "studiedBefore": "Ai studiat engleza înainte?",
+    "step1": "Pasul 1 / 3: nivelul tău",
+    "step2": "Pasul 2 / 3: întrebarea {questionNumber} / {totalQuestions}",
+    "step3": "Pasul 3 / 3: programul tău",
+    "studiedBefore": "Ai studiat {language} înainte?",
     "studiedBeforeHint": "Aceasta ne ajută să pornim quiz-ul la nivelul potrivit.",
     "beginnerOption": "Sunt un începător complet",
     "beginnerOptionHint": "Încep de la A1, fără quiz.",
@@ -458,7 +464,7 @@
     "unitLabel": "Unitatea",
     "grammarCovered": "Gramatică acoperită",
     "noLessons": "Nicio lecție planificată pentru această unitate încă.",
-    "weekDay": "Săptămâna {week}, Ziua {day}",
+    "weekDay": "Săptămâna {week}, ziua {day}",
     "lessonTypes": {
       "grammar": "Gramatică",
       "vocabulary": "Vocabular",
@@ -556,11 +562,15 @@
     "vocabularyPrev": "Prec.",
     "vocabularyNext": "Urm.",
     "backToFlashcards": "Carduri flash",
-    "noCardsHint": "Folosește + Generează pentru a crea primele carduri flash cu AI"
+    "noCardsHint": "Folosește + Generează pentru a crea primele carduri flash cu AI",
+    "tapToHide": "atinge pentru a ascunde",
+    "tapToReveal": "atinge pentru a dezvălui",
+    "interval": "Interval",
+    "repetitions": "Rep"
   },
   "chat": {
     "title": "Tutore AI",
-    "subtitle": "Întreabă orice despre engleză",
+    "subtitle": "{language} — Întreabă orice",
     "placeholder": "Scrie un mesaj...",
     "send": "Trimite",
     "sending": "Se trimite...",
@@ -693,6 +703,8 @@
     "fieldPassword": "Parolă",
     "fieldDisplayName": "Nume afișat",
     "fieldNativeLanguage": "Limbă maternă",
+    "fieldTargetLanguage": "Limbă de învățat",
+    "fieldRole": "Tip cont",
     "submitCreate": "Creează",
     "searchPlaceholder": "Caută după nume de utilizator sau e-mail...",
     "statsTitle": "Statistici de utilizare",
@@ -733,15 +745,18 @@
     "emailUnverifiedSuccess": "E-mail marcat ca neverificat.",
     "quotaMonthlyTokens": "Limită lunară de tokeni",
     "fieldSubscription": "Abonament",
-    "fieldEndsRenews": "Expiră / Reînnoiește",
+    "fieldEndsRenews": "Expiră / reînnoiește",
     "fieldStripeCustomer": "Client Stripe",
-    "maintenanceTitle": "Mod Mentenanță",
+    "maintenanceTitle": "Mod mentenanță",
     "maintenanceOn": "ACTIV",
-    "maintenanceEnable": "Activează Mentenanța",
-    "maintenanceDisable": "Dezactivează Mentenanța",
+    "maintenanceEnable": "Activează mentenanța",
+    "maintenanceDisable": "Dezactivează mentenanța",
     "maintenanceDesc": "Când este activat, toate funcțiile de abonament (chat, conversații vocale, exerciții de ascultare și citire) vor fi indisponibile pentru toți utilizatorii.",
     "cannotDeactivateSelf": "Nu îți poți dezactiva propriul cont",
-    "cannotDeleteSelf": "Nu îți poți șterge propriul cont"
+    "cannotDeleteSelf": "Nu îți poți șterge propriul cont",
+    "sectionLanguages": "Limbi",
+    "sectionActivity": "Activitate",
+    "statsActive": "Activ"
   },
   "faq": {
     "title": "Întrebări frecvente",
@@ -756,7 +771,7 @@
     "workflowStep5": "Folosește carduri flash pentru a antrena vocabularul în paralel",
     "workflowStep6": "Exersează conversația liberă cu tutorele AI",
     "q_language": "Ce limbă voi învăța?",
-    "a_language": "Doar engleza, deocamdată. Limba maternă pe care o alegi la înregistrare este folosită exclusiv pentru traducerile cardurilor flash și feedback-ul tutorului.",
+    "a_language": "FreeLingo acceptă în prezent mai multe limbi și vom adăuga altele noi în timp. Când o limbă nouă devine disponibilă, o vei găsi în Setări → Limbile mele — adaug-o și începe să înveți imediat.",
     "q_assessment": "Ce este Evaluarea?",
     "a_assessment": "Un test generat de AI cu 15 de întrebări despre gramatică, vocabular, înțelegerea lecturii și transformarea propozițiilor, cu dificultate de la A1 la C1.",
     "q_studyPlan": "Ce este Planul de studiu și cum îl generez?",
@@ -903,15 +918,44 @@
     "pl": "Poloneză",
     "nl": "Olandeză",
     "ro": "Română",
-    "ru": "Rusă"
+    "ru": "Rusă",
+    "myLanguages": "Limbile mele",
+    "addLanguage": "Adaugă limbă",
+    "selectLanguage": "Alege limba pe care vrei să o înveți",
+    "activeLanguage": "Activ",
+    "switchTo": "Comută la aceasta",
+    "switching": "Se comută la {language}...",
+    "switched": "S-a comutat la {language} ({level})",
+    "removeLanguage": "Elimină limba",
+    "removeConfirmTitle": "Elimini {language}?",
+    "removeConfirmMessage": "Toate progresele, lecțiile, flashcard-urile și datele asociate acestei limbi vor fi șterse permanent. Această acțiune nu poate fi anulată.",
+    "removeConfirmButton": "Elimină",
+    "deleteError": "Nu s-a putut șterge {language}. Încearcă din nou.",
+    "noLanguages": "Nicio limbă configurată.",
+    "progressLabel": "Progres",
+    "levelLabel": "Nivel",
+    "xpLabel": "XP total",
+    "streakLabel": "Serie",
+    "lessonsLabel": "Lecții",
+    "flashcardsLabel": "Flashcard-uri",
+    "viewDetails": "Vezi detalii",
+    "supportedLanguages": "Limbi disponibile"
   },
   "targetLanguages": {
     "en-US": "Engleză americană",
-    "en-GB": "Engleză britanică"
+    "en-GB": "Engleză britanică",
+    "es-ES": "Spaniolă",
+    "it-IT": "Italiană",
+    "pt-PT": "Portugheză",
+    "es-ES-description": "Spaniola vorbită în Spania.",
+    "it-IT-description": "Italiana vorbită în Italia.",
+    "pt-PT-description": "Portugheza vorbită în Portugalia.",
+    "en-US-description": "Engleza vorbită în Statele Unite.",
+    "en-GB-description": "Engleza vorbită în Regatul Unit."
   },
   "onboarding": {
-    "title": "Alege engleza ta",
-    "subtitle": "Ce engleză vrei să înveți?",
+    "title": "Alege-ți limba",
+    "subtitle": "Ce limbă vrei să înveți?",
     "chooseVariant": "Selectează varianta",
     "continue": "Continuă",
     "saveFailed": "Salvarea preferințelor a eșuat",
@@ -927,7 +971,9 @@
       "emigration": "A trăi în străinătate",
       "exams": "Examene și certificări",
       "social": "Socializare"
-    }
+    },
+    "newLanguageHeadline": "Ce limbă nouă vrei să înveți?",
+    "newLanguageSubtitle": "Un nou plan de studiu va fi creat pentru această limbă."
   },
   "tour": {
     "skip": "Sari peste",
@@ -974,13 +1020,13 @@
     "paywallLabel": "Premium necesar",
     "paywallTitle": "Deblochează FreeLingo Premium",
     "paywallDesc": "Încearcă gratuit {days} zile, fără taxe azi. Anulează oricând.",
-    "paywallNoCharge": "Card necesar · Nicio taxă până la sfârșitul perioadei de probă · Anulează oricând",
+    "paywallNoCharge": "Card necesar · nicio taxă până la sfârșitul perioadei de probă · anulează oricând",
     "planMonthly": "— Începe la {price}€/lună →",
     "planYearly": "— Începe la {price}€/an →",
     "checkoutError": "Nu s-a putut iniția plata. Încearcă din nou.",
     "pricingLabel": "Preț",
     "pricingTitle": "Preț simplu și transparent",
-    "pricingDesc": "7 zile gratuite cu abonamentul tău · Anulează oricând",
+    "pricingDesc": "7 zile gratuite cu abonamentul tău · anulează oricând",
     "planMonthlyName": "Lunar",
     "planYearlyName": "Anual",
     "bestValue": "Cea mai bună ofertă",
@@ -1033,7 +1079,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.6.13",
+    "version": "v1.7.0",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Salvează cuvinte în timp ce citești",
@@ -1041,11 +1087,15 @@
     },
     "entry2": {
       "label": "Limba platformei",
-      "desc": "Acum poți alege limba interfeței aplicației — meniuri, butoane și etichete — din pagina Setări, independent de limba ta nativă."
+      "desc": "Acum poți alege limba interfeței aplicației — meniuri, butoane și etichete — din pagina setări, independent de limba ta nativă."
     },
     "entry3": {
-      "label": "Corecții",
-      "desc": "Diverse corecții de erori minore și îmbunătățiri de stabilitate pe întreaga platformă."
+      "label": "Învață mai multe limbi",
+      "desc": "Acum poți învăța mai mult de o limbă în același timp. Schimbă limba din bara laterală și adaugă altele noi din setări → Limbile mele. Vom continua să adăugăm mai multe limbi — le vei găsi acolo."
+    },
+    "entry4": {
+      "label": "Corectări de bug-uri",
+      "desc": "Diverse corectări minore de bug-uri și îmbunătățiri de stabilitate pe întreaga platformă."
     }
   },
   "contact": {
@@ -1169,7 +1219,7 @@
   },
   "maintenance": {
     "label": "Întreținere",
-    "title": "În Mentenanță",
+    "title": "În mentenanță",
     "description": "Această secțiune este temporar indisponibilă pentru lucrări de întreținere. Încearcă din nou mai târziu."
   }
 }

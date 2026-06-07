@@ -57,7 +57,10 @@
     "wordSaved": "Zapisano",
     "wordSaveError": "Wystąpił problem",
     "selectWordHint": "Zaznacz słowo, aby zapisać je w swoim słowniku",
-    "noActivePlan": "Nie znaleziono aktywnego planu nauki"
+    "noActivePlan": "Nie znaleziono aktywnego planu nauki",
+    "removeLanguageConfirmTitle": "Usuń język",
+    "removeLanguageConfirmMessage": "Wszystkie dane dla tego języka (plan nauki, postępy, fiszki, konwersacje i wspomnienia) zostaną trwale usunięte. Tej akcji nie można cofnąć.",
+    "removeLanguageConfirmLabel": "Usuń"
   },
   "nav": {
     "home": "Strona główna",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Kontakt",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Zmień język"
   },
   "auth": {
     "login": {
@@ -241,7 +245,9 @@
     "memoryClearAllTitle": "Wyczyść wszystkie wspomnienia",
     "memoryClearAllMessage": "Spowoduje to trwałe usunięcie wszystkich zapisanych wspomnień. Tej akcji nie można cofnąć.",
     "memoryClearAllConfirm": "Wyczyść wszystko",
-    "memoryManage": "Zarządzaj wspomnieniami"
+    "memoryManage": "Zarządzaj wspomnieniami",
+    "sectionLanguages": "Języki",
+    "languagesManage": "Moje języki"
   },
   "legal": {
     "terms": {
@@ -302,9 +308,9 @@
       "s5Title": "5. Pliki cookie i tokeny sesji",
       "s5Body": "FreeLingo używa dwóch technicznych plików cookie niezbędnych do działania usługi: refresh_token (httpOnly, ważność 30 dni) używany do uwierzytelniania sesji oraz NEXT_LOCALE (ważność 1 rok) do zapamiętania preferencji językowych. Nie są używane żadne pliki cookie do śledzenia, analityki ani reklam.",
       "s6Title": "6. Twoje prawa (RODO)",
-      "s6Body": "Jeśli jesteś na terenie Europejskiego Obszaru Gospodarczego, masz prawo do: dostępu do danych osobowych, które przechowujemy; żądania poprawienia niedokładnych danych; żądania usunięcia konta i wszystkich powiązanych danych (dostępne bezpośrednio ze strony Ustawień); sprzeciwu wobec przetwarzania; oraz żądania przenośności danych. Aby skorzystać z tych praw, skontaktuj się z nami pod adresem w sekcji 8 lub usuń konto bezpośrednio w Ustawieniach. Podstawa prawna przetwarzania (Art. 6 ust. 1 lit. b RODO): przetwarzamy Twoje dane osobowe, ponieważ jest to niezbędne do wykonania umowy między Tobą a nami — świadczenia usługi FreeLingo. Przekazywanie danych poza EOG: korzystając z usługi hostowanej, treść Twoich rozmów i dźwięk mogą być przetwarzane przez OpenAI, Inc. (USA), a dane płatnicze są przetwarzane przez Stripe, Inc. (USA). Przekazania te odbywają się na podstawie Standardowych Klauzul Umownych zatwierdzonych przez Komisję Europejską (Art. 46 RODO), zapewniających odpowiedni poziom ochrony. Prawo do skargi: masz prawo wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO — uodo.gov.pl) lub organu nadzorczego w swoim kraju zamieszkania.",
+      "s6Body": "Jeśli jesteś na terenie Europejskiego Obszaru Gospodarczego, masz prawo do: dostępu do danych osobowych, które przechowujemy; żądania poprawienia niedokładnych danych; żądania usunięcia konta i wszystkich powiązanych danych (dostępne bezpośrednio ze strony Ustawień); sprzeciwu wobec przetwarzania; oraz żądania przenośności danych. Aby skorzystać z tych praw, skontaktuj się z nami pod adresem w sekcji 8 lub usuń konto bezpośrednio w ustawieniach. Podstawa prawna przetwarzania (Art. 6 ust. 1 lit. b RODO): przetwarzamy Twoje dane osobowe, ponieważ jest to niezbędne do wykonania umowy między Tobą a nami — świadczenia usługi FreeLingo. Przekazywanie danych poza EOG: korzystając z usługi hostowanej, treść Twoich rozmów i dźwięk mogą być przetwarzane przez OpenAI, Inc. (USA), a dane płatnicze są przetwarzane przez Stripe, Inc. (USA). Przekazania te odbywają się na podstawie Standardowych Klauzul Umownych zatwierdzonych przez Komisję Europejską (Art. 46 RODO), zapewniających odpowiedni poziom ochrony. Prawo do skargi: masz prawo wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO — uodo.gov.pl) lub organu nadzorczego w swoim kraju zamieszkania.",
       "s7Title": "7. Przechowywanie i usuwanie danych",
-      "s7Body": "Twoje dane są przechowywane przez cały czas istnienia konta. Możesz trwale usunąć swoje konto i wszystkie powiązane dane w dowolnym momencie ze strony Ustawień. Usunięcie jest natychmiastowe i nieodwracalne.",
+      "s7Body": "Twoje dane są przechowywane przez cały czas istnienia konta. Możesz trwale usunąć swoje konto i wszystkie powiązane dane w dowolnym momencie ze strony ustawień. Usunięcie jest natychmiastowe i nieodwracalne.",
       "s8Title": "8. Kontakt",
       "s8Body": "W sprawach dotyczących prywatności usługi hostowanej skontaktuj się z nami pod adresem: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Regulamin",
@@ -392,10 +398,10 @@
       }
     },
     "suggestedLevel": "Proponowany {aiLevel}; plan będzie używać {selectedLevel}",
-    "step1": "Krok 1 / 3: Twój poziom",
-    "step2": "Krok 2 / 3: Pytanie {questionNumber} / {totalQuestions}",
-    "step3": "Krok 3 / 3: Twój program",
-    "studiedBefore": "Czy uczyłeś(-aś) się wcześniej angielskiego?",
+    "step1": "Krok 1 / 3: twój poziom",
+    "step2": "Krok 2 / 3: pytanie {questionNumber} / {totalQuestions}",
+    "step3": "Krok 3 / 3: twój program",
+    "studiedBefore": "Czy uczyłeś(-aś) się wcześniej {language}?",
     "studiedBeforeHint": "To pomaga nam dopasować quiz do odpowiedniego poziomu.",
     "beginnerOption": "Jestem kompletnym początkującym",
     "beginnerOptionHint": "Zacznę od A1, quiz nie jest potrzebny.",
@@ -458,7 +464,7 @@
     "unitLabel": "Jednostka",
     "grammarCovered": "Omówiona gramatyka",
     "noLessons": "Brak zaplanowanych lekcji dla tej jednostki.",
-    "weekDay": "Tydzień {week}, Dzień {day}",
+    "weekDay": "Tydzień {week}, dzień {day}",
     "lessonTypes": {
       "grammar": "Gramatyka",
       "vocabulary": "Słownictwo",
@@ -556,11 +562,15 @@
     "vocabularyPrev": "Poprz.",
     "vocabularyNext": "Nast.",
     "backToFlashcards": "Fiszki",
-    "noCardsHint": "Użyj + Wygeneruj, aby stworzyć pierwsze fiszki z AI"
+    "noCardsHint": "Użyj + Wygeneruj, aby stworzyć pierwsze fiszki z AI",
+    "tapToHide": "dotknij aby ukryć",
+    "tapToReveal": "dotknij aby pokazać",
+    "interval": "Interwał",
+    "repetitions": "Powt"
   },
   "chat": {
     "title": "Korepetytor AI",
-    "subtitle": "Zapytaj o cokolwiek po angielsku",
+    "subtitle": "{language} — Zapytaj o cokolwiek",
     "placeholder": "Napisz wiadomość...",
     "send": "Wyślij",
     "sending": "Wysyłanie...",
@@ -693,6 +703,8 @@
     "fieldPassword": "Hasło",
     "fieldDisplayName": "Wyświetlana nazwa",
     "fieldNativeLanguage": "Język ojczysty",
+    "fieldTargetLanguage": "Język do nauki",
+    "fieldRole": "Typ konta",
     "submitCreate": "Utwórz",
     "searchPlaceholder": "Szukaj po nazwie użytkownika lub e-mailu...",
     "statsTitle": "Statystyki użytkowania",
@@ -733,15 +745,18 @@
     "emailUnverifiedSuccess": "E-mail oznaczony jako niezweryfikowany.",
     "quotaMonthlyTokens": "Miesięczny limit tokenów",
     "fieldSubscription": "Subskrypcja",
-    "fieldEndsRenews": "Kończy / Odnawia",
+    "fieldEndsRenews": "Kończy / odnawia",
     "fieldStripeCustomer": "Klient Stripe",
-    "maintenanceTitle": "Tryb Konserwacji",
+    "maintenanceTitle": "Tryb konserwacji",
     "maintenanceOn": "WŁ.",
-    "maintenanceEnable": "Włącz Konserwację",
-    "maintenanceDisable": "Wyłącz Konserwację",
+    "maintenanceEnable": "Włącz konserwację",
+    "maintenanceDisable": "Wyłącz konserwację",
     "maintenanceDesc": "Po włączeniu wszystkie funkcje subskrypcyjne (czat, rozmowy głosowe, ćwiczenia ze słuchu i czytania) będą niedostępne dla wszystkich użytkowników.",
     "cannotDeactivateSelf": "Nie możesz dezaktywować własnego konta",
-    "cannotDeleteSelf": "Nie możesz usunąć własnego konta"
+    "cannotDeleteSelf": "Nie możesz usunąć własnego konta",
+    "sectionLanguages": "Języki",
+    "sectionActivity": "Aktywność",
+    "statsActive": "Aktywny"
   },
   "faq": {
     "title": "FAQ",
@@ -756,7 +771,7 @@
     "workflowStep5": "Używaj fiszek do trenowania słownictwa równolegle",
     "workflowStep6": "Ćwicz swobodną rozmowę z korepetytorem AI",
     "q_language": "Jakiego języka będę się uczyć?",
-    "a_language": "Na razie tylko angielskiego. Język ojczysty wybrany podczas rejestracji jest używany wyłącznie do tłumaczeń fiszek i informacji zwrotnych od korepetytora.",
+    "a_language": "FreeLingo obecnie obsługuje kilka języków i z czasem będziemy dodawać kolejne. Gdy nowy język stanie się dostępny, znajdziesz go w Ustawienia → Moje języki — dodaj go i zacznij naukę od razu.",
     "q_assessment": "Czym jest ocena poziomu?",
     "a_assessment": "Test z 15 pytaniami generowanych przez AI, obejmujący gramatykę, słownictwo, czytanie ze zrozumieniem i transformację zdań, z poziomem trudności od A1 do C1.",
     "q_studyPlan": "Czym jest plan nauki i jak go wygenerować?",
@@ -903,15 +918,44 @@
     "pl": "Polski",
     "nl": "Niderlandzki",
     "ro": "Rumuński",
-    "ru": "Rosyjski"
+    "ru": "Rosyjski",
+    "myLanguages": "Moje języki",
+    "addLanguage": "Dodaj język",
+    "selectLanguage": "Wybierz język, którego chcesz się uczyć",
+    "activeLanguage": "Aktywny",
+    "switchTo": "Przełącz na ten",
+    "switching": "Przełączanie na {language}...",
+    "switched": "Przełączono na {language} ({level})",
+    "removeLanguage": "Usuń język",
+    "removeConfirmTitle": "Usunąć {language}?",
+    "removeConfirmMessage": "Wszystkie postępy, lekcje, fiszki i dane związane z tym językiem zostaną trwale usunięte. Tej akcji nie można cofnąć.",
+    "removeConfirmButton": "Usuń",
+    "deleteError": "Nie można usunąć języka {language}. Spróbuj ponownie.",
+    "noLanguages": "Brak skonfigurowanych języków.",
+    "progressLabel": "Postęp",
+    "levelLabel": "Poziom",
+    "xpLabel": "Łączne XP",
+    "streakLabel": "Seria",
+    "lessonsLabel": "Lekcje",
+    "flashcardsLabel": "Fiszki",
+    "viewDetails": "Zobacz szczegóły",
+    "supportedLanguages": "Dostępne języki"
   },
   "targetLanguages": {
     "en-US": "Angielski amerykański",
-    "en-GB": "Angielski brytyjski"
+    "en-GB": "Angielski brytyjski",
+    "es-ES": "Hiszpański",
+    "it-IT": "Włoski",
+    "pt-PT": "Portugalski",
+    "es-ES-description": "Hiszpański używany w Hiszpanii.",
+    "it-IT-description": "Włoski używany we Włoszech.",
+    "pt-PT-description": "Portugalski używany w Portugalii.",
+    "en-US-description": "Angielski używany w Stanach Zjednoczonych.",
+    "en-GB-description": "Angielski używany w Wielkiej Brytanii."
   },
   "onboarding": {
-    "title": "Wybierz swój angielski",
-    "subtitle": "Którego angielskiego chcesz się uczyć?",
+    "title": "Wybierz swój język",
+    "subtitle": "Którego języka chcesz się uczyć?",
     "chooseVariant": "Wybierz wariant",
     "continue": "Kontynuuj",
     "saveFailed": "Nie udało się zapisać preferencji",
@@ -927,7 +971,9 @@
       "emigration": "Życie za granicą",
       "exams": "Egzaminy i certyfikaty",
       "social": "Towarzystwo"
-    }
+    },
+    "newLanguageHeadline": "Jakiego nowego języka chcesz się uczyć?",
+    "newLanguageSubtitle": "Nowy plan nauki zostanie utworzony dla tego języka."
   },
   "tour": {
     "skip": "Pomiń",
@@ -974,13 +1020,13 @@
     "paywallLabel": "Wymagane Premium",
     "paywallTitle": "Odblokuj FreeLingo Premium",
     "paywallDesc": "Rozpocznij bezpłatny okres próbny na {days} dni, bez opłat dzisiaj. Anuluj kiedy chcesz.",
-    "paywallNoCharge": "Karta wymagana · Brak opłat do końca okresu próbnego · Anuluj kiedy chcesz",
+    "paywallNoCharge": "Karta wymagana · brak opłat do końca okresu próbnego · anuluj kiedy chcesz",
     "planMonthly": "— Zacznij za {price}€/miesiąc →",
     "planYearly": "— Zacznij za {price}€/rok →",
     "checkoutError": "Nie można uruchomić płatności. Spróbuj ponownie.",
     "pricingLabel": "Cena",
     "pricingTitle": "Prosta i przejrzysta cena",
-    "pricingDesc": "7 dni gratis z subskrypcją · Anuluj kiedy chcesz",
+    "pricingDesc": "7 dni gratis z subskrypcją · anuluj kiedy chcesz",
     "planMonthlyName": "Miesięczny",
     "planYearlyName": "Roczny",
     "bestValue": "Najlepsza oferta",
@@ -1033,7 +1079,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.6.13",
+    "version": "v1.7.0",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Zapisuj słowa podczas czytania",
@@ -1041,10 +1087,14 @@
     },
     "entry2": {
       "label": "Język platformy",
-      "desc": "Możesz teraz wybrać język interfejsu aplikacji — menu, przyciski i etykiety — na stronie Ustawień, niezależnie od swojego języka ojczystego."
+      "desc": "Możesz teraz wybrać język interfejsu aplikacji — menu, przyciski i etykiety — na stronie ustawień, niezależnie od swojego języka ojczystego."
     },
     "entry3": {
-      "label": "Poprawki",
+      "label": "Ucz się wielu języków",
+      "desc": "Możesz teraz uczyć się więcej niż jednego języka jednocześnie. Przełączaj języki z paska bocznego i dodawaj nowe w Ustawienia → Moje języki. Będziemy dodawać kolejne języki — znajdziesz je właśnie tam."
+    },
+    "entry4": {
+      "label": "Poprawki błędów",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }
   },
@@ -1169,7 +1219,7 @@
   },
   "maintenance": {
     "label": "Konserwacja",
-    "title": "W Trakcie Konserwacji",
+    "title": "W trakcie konserwacji",
     "description": "Ta sekcja jest tymczasowo niedostępna z powodu prac konserwacyjnych. Spróbuj ponownie później."
   }
 }

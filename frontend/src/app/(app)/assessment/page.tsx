@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useLanguageStore } from '@/store/language'
+import { formatLanguageName } from '@/lib/target-languages'
 import BeginnerGate from '@/components/assessment/BeginnerGate'
 import AdaptiveQuizCard from '@/components/assessment/AdaptiveQuizCard'
 import DurationSelector, {
@@ -61,7 +63,9 @@ const START_LEVEL: CEFRLevel = 'A2'
 export default function AssessmentPage() {
   const t = useTranslations('assessment')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
   const router = useRouter()
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
 
   const [step, setStep] = useState<FlowStep>('checking')
   const [existingPlan, setExistingPlan] = useState<ExistingPlan | null>(null)
@@ -110,10 +114,15 @@ export default function AssessmentPage() {
       setStep('beginner-gate')
     }
     void check()
-  }, [])
+  }, [activeLanguage?.code])
 
   function loadNextQuestion(level: CEFRLevel, usedSet: Set<string>) {
-    const q = pickNextQuestion(usedSet, level)
+    const q = pickNextQuestion(
+      usedSet,
+      level,
+      undefined,
+      activeLanguage?.code ?? 'en-US'
+    )
     if (q) {
       usedSet.add(q.id)
       setCurrentQuestion(q)
@@ -128,7 +137,12 @@ export default function AssessmentPage() {
     setCurrentLevel(START_LEVEL)
     setCorrectStreak(0)
     setWrongStreak(0)
-    const q = pickNextQuestion(usedIds, START_LEVEL)
+    const q = pickNextQuestion(
+      usedIds,
+      START_LEVEL,
+      undefined,
+      activeLanguage?.code ?? 'en-US'
+    )
     if (q) {
       usedIds.add(q.id)
       setCurrentQuestion(q)
@@ -203,7 +217,12 @@ export default function AssessmentPage() {
       setSelectedLevel(data.cefr_level as CEFRLevel)
       setStep('result')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Evaluation failed')
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        msg === 'ai_service_error' || msg === 'ai_service_unavailable'
+          ? tCommon('errorMessage')
+          : msg || 'Evaluation failed'
+      )
     } finally {
       setEvaluating(false)
     }
@@ -225,6 +244,10 @@ export default function AssessmentPage() {
           duration_weeks: durationOption.weeks,
           days_per_week: durationOption.daysPerWeek,
           goals: selectedGoals,
+          // Explicit target_language prevents /complete from relying on the
+          // potentially-stale users.target_language column when the user is
+          // completing assessment for a newly added language.
+          target_language: activeLanguage?.code ?? undefined,
         }),
       })
       if (!res.ok) {
@@ -235,7 +258,12 @@ export default function AssessmentPage() {
       }
       router.push('/plan')
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create plan')
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        msg === 'ai_service_error' || msg === 'ai_service_unavailable'
+          ? tCommon('errorMessage')
+          : msg || 'Failed to create plan'
+      )
       setSubmitting(false)
     }
   }
@@ -318,6 +346,7 @@ export default function AssessmentPage() {
     return (
       <>
         <BeginnerGate
+          languageName={formatLanguageName(activeLanguage?.name ?? '', locale)}
           onBeginner={() => {
             setResult({
               cefr_level: 'A1',

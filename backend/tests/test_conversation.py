@@ -20,6 +20,7 @@ from app.main import app
 async def _create_user_and_token(db_session) -> tuple:
     from app.core.security import hash_password
     from app.models.user import User
+    from app.models.user_language import UserLanguage
 
     user = User(
         username="convuser",
@@ -28,9 +29,12 @@ async def _create_user_and_token(db_session) -> tuple:
         hashed_password=hash_password("convpass"),
         role="user",
         native_language="es",
+        target_language="en-US",
         is_active=True,
     )
     db_session.add(user)
+    await db_session.flush()
+    db_session.add(UserLanguage(user_id=user.id, target_language="en-US", is_active=True))
     await db_session.commit()
     await db_session.refresh(user)
     token = create_access_token(user.id, user.role)

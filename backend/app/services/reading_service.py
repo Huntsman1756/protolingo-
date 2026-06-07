@@ -219,6 +219,7 @@ async def submit_attempt(
     attempt = ReadingAttempt(
         user_id=user_id,
         exercise_id=exercise_id,
+        study_plan_id=study_plan_id,
         answers=answers,
         score=score,
         xp_earned=xp_earned,

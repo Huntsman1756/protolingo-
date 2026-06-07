@@ -15,11 +15,12 @@ async def generate_study_plan(
     LLM is called separately per-lesson when the user opens one for the first time.
     """
     lang_name = get_language_name(target_language)
-    units = get_curriculum_units(request.cefr_level)
+    units = get_curriculum_units(request.cefr_level, target_language)
     lesson_slots = distribute_units(
         units=units,
         total_weeks=request.duration_weeks,
         days_per_week=request.days_per_week,
+        target_language=target_language,
     )
 
     weeks_map: dict[int, list[dict]] = {}

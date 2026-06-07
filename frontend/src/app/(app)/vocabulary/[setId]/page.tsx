@@ -4,7 +4,8 @@ import { useState, use } from 'react'
 import { notFound, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { vocabularySets } from '@/data/vocabulary'
+import { getVocabularySets } from '@/data/vocabulary'
+import { useLanguageStore } from '@/store/language'
 import { apiFetch } from '@/lib/api'
 
 const POS_LABELS: Record<string, string> = {
@@ -27,7 +28,11 @@ export default function VocabularySetPage({
   const { setId } = use(params)
   const router = useRouter()
   const t = useTranslations('vocabulary')
-  const vocabSet = vocabularySets.find((s) => s.id === setId)
+  const tCommon = useTranslations('common')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
+  const langFromId = setId.match(/_(en|es|it|pt)_/)?.[1]
+  const targetLang = activeLanguage?.code ?? langFromId ?? 'en-US'
+  const vocabSet = getVocabularySets(targetLang).find((s) => s.id === setId)
   if (!vocabSet) notFound()
 
   const [adding, setAdding] = useState(false)
@@ -59,7 +64,12 @@ export default function VocabularySetPage({
       const data = (await res.json()) as { created: number }
       setAddedCount(data.created)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to add flashcards.')
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        msg === 'No active study plan found'
+          ? tCommon('noActivePlan')
+          : msg || 'Failed to add flashcards.'
+      )
     } finally {
       setAdding(false)
     }

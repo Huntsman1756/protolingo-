@@ -22,22 +22,23 @@ export interface TargetLanguage {
   code: string      // BCP-47, e.g. "it-IT"
   name: string      // In its own language: "Italiano", "Español"
   nameEn: string    // In English: "Italian", "Spanish"
-  flag: string      // Emoji flag: "🇮🇹"
-  flagPath: string  // Path under /public/flags/: "/flags/italy.jpeg"
+  flagPath: string  // Path under /public/flags/: "/flags/italy.jpg"
   iso639: string    // ISO 639-1: "it", "es"
 }
 
 export const SUPPORTED_TARGET_LANGUAGES: TargetLanguage[] = [
-  { code: 'en-US', name: 'English (US)', nameEn: 'English (US)', flag: '🇺🇸', flagPath: '/flags/usa.jpg',      iso639: 'en' },
-  { code: 'en-GB', name: 'English (UK)', nameEn: 'English (UK)', flag: '🇬🇧', flagPath: '/flags/uk.jpg',       iso639: 'en' },
-  { code: 'es-ES', name: 'Español',      nameEn: 'Spanish',      flag: '🇪🇸', flagPath: '/flags/spain.jpeg',   iso639: 'es' },
-  { code: 'it-IT', name: 'Italiano',     nameEn: 'Italian',      flag: '🇮🇹', flagPath: '/flags/italy.jpeg',   iso639: 'it' },
-  { code: 'pt-PT', name: 'Português',    nameEn: 'Portuguese',   flag: '🇵🇹', flagPath: '/flags/portugal.jpeg', iso639: 'pt' },
+  { code: 'en-US', name: 'English (US)', nameEn: 'English (US)', flagPath: '/flags/usa.jpg',      iso639: 'en' },
+  { code: 'en-GB', name: 'English (UK)', nameEn: 'English (UK)', flagPath: '/flags/uk.jpg',       iso639: 'en' },
+  { code: 'es-ES', name: 'Español',      nameEn: 'Spanish',      flagPath: '/flags/spain.jpg',   iso639: 'es' },
+  { code: 'it-IT', name: 'Italiano',     nameEn: 'Italian',      flagPath: '/flags/italy.jpg',   iso639: 'it' },
+  { code: 'pt-PT', name: 'Português',    nameEn: 'Portuguese',   flagPath: '/flags/portugal.jpg', iso639: 'pt' },
 ]
 
 export function getLanguageByCode(code: string): TargetLanguage | undefined {
   return SUPPORTED_TARGET_LANGUAGES.find(l => l.code === code)
 }
+
+export const DEFAULT_TARGET_LANGUAGE = 'en-GB'
 ```
 
 ---
@@ -51,7 +52,7 @@ A dedicated Zustand store for language state, separate from the auth store to ke
 ```typescript
 import { create } from 'zustand'
 import { TargetLanguage, getLanguageByCode } from '@/lib/target-languages'
-import { apiClient } from '@/lib/api-client'
+import { apiFetch } from '@/lib/api'
 
 export interface UserLanguageInfo {
   target_language: string
@@ -73,7 +74,8 @@ export interface UserLanguageInfo {
 interface LanguageStore {
   activeLanguage: TargetLanguage | null
   userLanguages: UserLanguageInfo[]
-  supportedLanguages: TargetLanguage[]
+  supportedLanguages: TargetLanguage[]   // always the full static SUPPORTED_TARGET_LANGUAGES list
+  availableLanguageCodes: string[]       // operator-filtered subset, from all_supported_languages in API response
   isSwitching: boolean
   fetchLanguages: () => Promise<void>
   switchLanguage: (code: string) => Promise<void>
@@ -82,15 +84,15 @@ interface LanguageStore {
 }
 ```
 
-**`fetchLanguages`:** calls `GET /api/languages` and populates `userLanguages` and `activeLanguage`.
+**`fetchLanguages`:** calls `GET /api/languages` and populates `userLanguages`, `activeLanguage`, and `availableLanguageCodes` (from `all_supported_languages` in the response). Phase 10.5 uses `availableLanguageCodes` to filter the "Add new language" modal so only operator-enabled languages are shown.
 
-**`switchLanguage`:** calls `PUT /api/languages/active`, sets `isSwitching=true` during the request, then calls `fetchLanguages()` and refreshes the current page. Shows a toast: `"Switching to Italian (A2)..."`.
+**`switchLanguage`:** calls `PUT /api/languages/active`, sets `isSwitching=true` during the request. Always resets `isSwitching=false` in a `finally` block — including on error — so the spinner never freezes. On success, calls `fetchLanguages()`. The calling component (LanguageSwitcher) is responsible for calling `router.refresh()` after the store call resolves, so server components re-render with the new active language. After the switch, all language-dependent data (study plan, progress, flashcards, lessons, competencies, conversations, memories) must reflect the new active language.
 
 **`addLanguage`:** calls `POST /api/languages`, then `fetchLanguages()`.
 
-**`removeLanguage`:** calls `DELETE /api/languages/{code}`, then `fetchLanguages()`.
+**`removeLanguage`:** calls `DELETE /api/languages/{code}`, then `fetchLanguages()`. The **component** calling `removeLanguage` is responsible for showing a `ConfirmDialog` before invoking it (same pattern as the logout confirmation in `layout.tsx`), warning that all data associated with this language (study plan, progress, flashcards, conversations, memories) will be permanently deleted. The store method itself does not show any UI.
 
-`supportedLanguages` is always the static `SUPPORTED_TARGET_LANGUAGES` list — no API call needed.
+`supportedLanguages` is always the static `SUPPORTED_TARGET_LANGUAGES` list — no API call needed. `availableLanguageCodes` is the operator-configured subset and is populated from the API.
 
 ---
 
@@ -100,22 +102,24 @@ interface LanguageStore {
 
 ```tsx
 // Behaviour:
-// - Shows the flag emoji + name of the active language
+// - Shows the flag image (via <Image> from flagPath) + name of the active language
 // - If only 1 language: no dropdown, just an indicator (no chevron)
 // - If 2+ languages: dropdown listing all user languages
-// - On switch: calls switchLanguage() from the language store
-// - Confirmation toast during switch
+// - On switch: calls switchLanguage() from the language store, awaits it, then calls router.refresh()
+// - Confirmation toast during switch (state-based positioned <div>, same pattern as chat/page.tsx)
 // - Loading spinner while isSwitching=true
 ```
 
 Visual design:
-- Compact button: flag + name (`🇮🇹 Italiano`) + chevron icon.
+- Compact button: flag image + name + chevron icon.
 - Style: `text-fl-muted hover:text-fl-fg` with subtle hover background.
-- Dropdown: each item shows flag + name + CEFR level badge. Active language has a checkmark.
+- Dropdown: each item shows flag image + name + CEFR level badge (e.g. `B1`). If `plan` is null or `cefr_level` is null (language added but assessment not yet done), omit the badge entirely. Active language has a checkmark.
+
+The flag image uses `<Image>` from `next/image` with `lang.flagPath`, matching the existing `TargetLanguageSelector` pattern.
 
 **File:** `frontend/src/app/(app)/layout.tsx`
 
-Add `<LanguageSwitcher />` at the top of the sidebar, below the app logo/name and before the navigation items. The component calls `fetchLanguages()` on mount if `userLanguages` is empty.
+Add `<LanguageSwitcher />` at the top of the sidebar (desktop), below the app logo/name and before the navigation items. Also add it to the mobile dropdown menu, at the top before the main navigation items. The component calls `fetchLanguages()` on mount if `userLanguages` is empty.
 
 ---
 
@@ -123,7 +127,38 @@ Add `<LanguageSwitcher />` at the top of the sidebar, below the app logo/name an
 
 **File:** `frontend/src/lib/mappers.ts`
 
-Add a mapper for `UserLanguageInfo` from the API response to the frontend type, including the plan summary and progress data.
+Add `mapUserLanguageInfo` — a mapper from the API response shape to the frontend `UserLanguageInfo` type, including the plan summary and progress data:
+
+```typescript
+import type { UserLanguageInfo } from '@/store/language'
+
+export function mapUserLanguageInfo(data: Record<string, any>): UserLanguageInfo {
+  return {
+    target_language: data.target_language,
+    is_active: data.is_active,
+    plan: data.plan
+      ? {
+          id: data.plan.id,
+          cefr_level: data.plan.cefr_level ?? null,
+          progress_day: data.plan.progress_day,
+          total_days: data.plan.total_days,
+          completion_pct: data.plan.completion_pct,
+        }
+      : null,
+    progress: data.progress
+      ? {
+          total_xp: data.progress.total_xp,
+          current_streak: data.progress.current_streak,
+          lessons_completed: data.progress.lessons_completed,
+        }
+      : null,
+  }
+}
+```
+
+`import type` is required to avoid a circular dependency (`store/language.ts` must not import from `lib/mappers.ts`). This mapper is intended for use by **components and pages** (Phase 10.5+), not by the store itself.
+
+**Inside `fetchLanguages`:** the store maps the response inline rather than calling `mapUserLanguageInfo`, preserving the established pattern where stores never import from `lib/mappers.ts` (consistent with `auth.ts`). `mapUserLanguageInfo` is available for components that need to work with language data outside the store.
 
 ---
 
@@ -131,7 +166,7 @@ Add a mapper for `UserLanguageInfo` from the API response to the frontend type, 
 
 **Files:** all 10 locale files under `messages/`
 
-Add to the existing `nav` namespace:
+### `nav` namespace — new key
 
 ```json
 "nav": {
@@ -139,9 +174,46 @@ Add to the existing `nav` namespace:
 }
 ```
 
-The English value above is the reference. Add the equivalent translation in each locale file.
+### `common` namespace — remove-language confirmation dialog
+
+```json
+"common": {
+  "removeLanguageConfirmTitle": "Remove language",
+  "removeLanguageConfirmMessage": "All data for this language (study plan, progress, flashcards, conversations, and memories) will be permanently deleted. This action cannot be undone.",
+  "removeLanguageConfirmLabel": "Remove"
+}
+```
+
+### `targetLanguages` namespace — expand with new languages
+
+The existing namespace already has `en-US` and `en-GB` in all 10 locales. Add the 3 new languages:
+
+```json
+"targetLanguages": {
+  "en-US": "American English",
+  "en-GB": "British English",
+  "es-ES": "Spanish",
+  "it-IT": "Italian",
+  "pt-PT": "Portuguese"
+}
+```
+
+The English values above are the reference. Add the equivalent translation in each of the other 9 locale files.
+
+> **Design rationale:** target language names are shown translated into the user's UI language (a Russian user reads "Американский английский", a Spanish user reads "Inglés americano"). This is used by `TargetLanguageSelector` via `t(lang.code)` where `lang.code` is the BCP-47 code (`"en-US"`, `"es-ES"`, etc.) — no separate `labelKey` field is needed.
+>
+> `LanguageSwitcher` (the compact sidebar button) uses `lang.name` (the language's own name: "Español", "Italiano") since in that context the user has already chosen the language and self-identification is clearer.
 
 ---
+
+## Tests
+
+### Frontend tests (Vitest)
+
+| File | What to test |
+|------|-------------|
+| `frontend/tests/lib/target-languages.test.ts` | `getLanguageByCode` returns correct language for all 5 codes; `SUPPORTED_TARGET_LANGUAGES` has expected structure; `DEFAULT_TARGET_LANGUAGE` is valid |
+| `frontend/tests/store/language.test.ts` | `fetchLanguages` populates store; `switchLanguage` calls API and updates active language; `addLanguage`/`removeLanguage` call correct endpoints |
 
 ## New files in this phase
 
@@ -155,6 +227,8 @@ The English value above is the reference. Add the equivalent translation in each
 
 | File | Change |
 |------|--------|
-| `frontend/src/app/(app)/layout.tsx` | Add `LanguageSwitcher` to sidebar |
+| `frontend/src/app/(app)/layout.tsx` | Add `LanguageSwitcher` to sidebar (desktop) and mobile menu |
 | `frontend/src/lib/mappers.ts` | Add `UserLanguageInfo` mapper |
-| `messages/*.json` (all 10) | Add `nav.switchLanguage` |
+| `frontend/src/components/TargetLanguageSelector.tsx` | Update to new `TargetLanguage` interface: change import from `TARGET_LANGUAGES` → `SUPPORTED_TARGET_LANGUAGES`; replace `lang.flag` → `lang.flagPath`; replace `t(lang.labelKey)` → `t(lang.code)` (same `targetLanguages` namespace, `code` is the key); make `availableCodes: string[]` a **required** prop — filter `SUPPORTED_TARGET_LANGUAGES` to only those codes before rendering. TypeScript enforces that any caller must pass the operator-configured list explicitly |
+| `frontend/src/app/(auth)/onboarding/page.tsx` | Call `fetchLanguages()` from the language store on mount; pass `availableLanguageCodes` from the store to `<TargetLanguageSelector availableCodes={availableLanguageCodes} />` so only operator-enabled languages are shown |
+| `messages/*.json` (all 10) | Add `nav.switchLanguage`, `common.removeLanguageConfirm*` keys; expand `targetLanguages` with `es-ES`, `it-IT`, `pt-PT` |

@@ -46,12 +46,8 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | **10.2** | Backend: services and multi-language prompts | [phase-10.2-multi-language.instructions.md](phase-10.2-multi-language.instructions.md) |
 | **10.3** | API: new endpoints and refactor of existing ones | [phase-10.3-multi-language.instructions.md](phase-10.3-multi-language.instructions.md) |
 | **10.4** | Frontend: core infrastructure | [phase-10.4-multi-language.instructions.md](phase-10.4-multi-language.instructions.md) |
-| **10.5** | Frontend: pages | [phase-10.5-multi-language.instructions.md](phase-10.5-multi-language.instructions.md) |
+| **10.5** | Frontend: pages and i18n keys | [phase-10.5-multi-language.instructions.md](phase-10.5-multi-language.instructions.md) |
 | **10.6** | Curriculum and language data | [phase-10.6-multi-language.instructions.md](phase-10.6-multi-language.instructions.md) |
-| **10.7** | i18n: new translation keys | [phase-10.7-multi-language.instructions.md](phase-10.7-multi-language.instructions.md) |
-| **10.8** | Pydantic schemas (see Phase 10.3) | [phase-10.8-multi-language.instructions.md](phase-10.8-multi-language.instructions.md) |
-| **10.9** | Tests | [phase-10.9-multi-language.instructions.md](phase-10.9-multi-language.instructions.md) |
-| **10.10** | Finalisation, docs, version bump | [phase-10.10-multi-language.instructions.md](phase-10.10-multi-language.instructions.md) |
 
 ---
 
@@ -64,7 +60,7 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | `backend/app/services/user_language_service.py` | 10.2 |
 | `backend/app/routers/languages.py` | 10.3 |
 | `backend/app/schemas/language.py` | 10.3 |
-| `backend/tests/test_multi_language.py` | 10.9 |
+| `backend/tests/test_multi_language.py` | 10.1–10.6 |
 | `backend/app/data/es/` (8 files) | 10.6 |
 | `backend/app/data/it/` (8 files) | 10.6 |
 | `backend/app/data/pt/` (8 files) | 10.6 |
@@ -75,9 +71,9 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | `frontend/src/data/es/` (5 files) | 10.6 |
 | `frontend/src/data/it/` (5 files) | 10.6 |
 | `frontend/src/data/pt/` (5 files) | 10.6 |
-| `frontend/public/flags/spain.jpeg` | 10.6 (already exists ✅) |
-| `frontend/public/flags/italy.jpeg` | 10.6 (already exists ✅) |
-| `frontend/public/flags/portugal.jpeg` | 10.6 (already exists ✅) |
+| `frontend/public/flags/spain.jpg` | 10.6 (already exists ✅) |
+| `frontend/public/flags/italy.jpg` | 10.6 (already exists ✅) |
+| `frontend/public/flags/portugal.jpg` | 10.6 (already exists ✅) |
 
 ---
 
@@ -105,26 +101,37 @@ FreeLingo moves from "one user = one language = one study plan" to an architectu
 | `backend/app/schemas/auth.py` | 10.3 |
 | `backend/app/main.py` | 10.3 |
 | `frontend/src/data/curriculum.ts` | 10.6 |
-| `frontend/src/app/(app)/layout.tsx` | 10.4, 10.10 |
+| `frontend/src/app/(app)/layout.tsx` | 10.4 |
 | `frontend/src/app/(auth)/onboarding/page.tsx` | 10.5 |
 | `frontend/src/app/(app)/plan/page.tsx` | 10.5 |
 | `frontend/src/app/(app)/dashboard/page.tsx` | 10.5 |
 | `frontend/src/app/(app)/chat/page.tsx` | 10.5 |
 | `frontend/src/app/(app)/flashcards/page.tsx` | 10.5 |
 | `frontend/src/app/(app)/progress/page.tsx` | 10.5 |
-| `messages/*.json` (all 10 locale files) | 10.7 |
-| `backend/tests/conftest.py` | **10.1**, 10.9 |
-| `backend/tests/test_auth.py` | 10.9 |
-| `backend/tests/test_study_plan.py` | **10.1**, 10.9 |
-| `backend/tests/test_flashcards.py` | 10.9 |
-| `backend/tests/test_assessment.py` | **10.1**, 10.9 |
-| `specs/database-models.instructions.md` | 10.10 |
-| `specs/api-endpoints.instructions.md` | 10.10 |
-| `specs/services.instructions.md` | 10.10 |
-| `specs/architecture.instructions.md` | 10.10 |
-| `specs/study-plan.instructions.md` | 10.10 |
-| `specs/phase-4-target-language.instructions.md` | 10.10 |
-| `specs/version.md` | 10.10 |
-| `AGENTS.md` | 10.10 |
-| `CHANGELOG.md` | 10.10 |
-| `README.md` | 10.10 |
+| `messages/*.json` (all 10 locale files) | 10.4, 10.5, 10.6 |
+| `backend/tests/conftest.py` | 10.1 |
+| `backend/tests/test_auth.py` | 10.3 |
+| `backend/tests/test_study_plan.py` | 10.1, 10.3 |
+| `backend/tests/test_flashcards.py` | 10.3 |
+| `backend/tests/test_lessons.py` | 10.3 |
+| `backend/tests/test_chat.py` | 10.3 |
+| `backend/tests/test_conversation.py` | 10.3 |
+| `backend/tests/test_listening.py` | 10.3 |
+| `backend/tests/test_reading.py` | 10.3 |
+| `backend/tests/test_progress.py` | 10.3 |
+| `backend/tests/test_memories.py` | 10.3 |
+| `backend/tests/test_assessment.py` | 10.3 |
+| `backend/tests/test_multi_language.py` | 10.1, 10.2, 10.3, 10.6 |
+| `frontend/tests/lib/target-languages.test.ts` | 10.4 |
+| `frontend/tests/store/language.test.ts` | 10.4 |
+| `frontend/tests/components/LanguageSwitcher.test.tsx` | 10.5 |
+| `frontend/tests/store/language.test.ts` | 10.5 (My Languages page) |
+| `specs/database-models.instructions.md` | 10.1 |
+| `specs/api-endpoints.instructions.md` | 10.3 |
+| `specs/services.instructions.md` | 10.2 |
+| `specs/architecture-backend.instructions.md` | 10.2 |
+| `specs/study-plan.instructions.md` | 10.1 |
+| `specs/phase-4-target-language.instructions.md` | 10.2 |
+| `specs/version.md` | completion |
+| `CHANGELOG.md` | completion |
+| `AGENTS.md` | completion |

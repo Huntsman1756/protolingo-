@@ -1,6 +1,6 @@
 import pytest
 
-from tests.conftest import deactivate_active_plans
+from tests.conftest import deactivate_active_plans, make_study_plan
 
 
 @pytest.mark.asyncio
@@ -147,13 +147,13 @@ async def test_skip_day_requires_auth(client):
 @pytest.mark.asyncio
 async def test_skip_day_does_not_exceed_total(client, test_user, db_session):
     """POST /skip-day is capped at total_days and does not go over."""
-    from app.models.study_plan import StudyPlan
 
     user, headers = test_user
 
     await deactivate_active_plans(db_session, user.id)
 
-    plan = StudyPlan(
+    _ = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         goals=["grammar"],
@@ -162,10 +162,8 @@ async def test_skip_day_does_not_exceed_total(client, test_user, db_session):
         current_unit="",
         generated_plan={},
         is_active=True,
-        progress_day=2,  # already at total_days (1 * 2)
+        progress_day=2,
     )
-    db_session.add(plan)
-    await db_session.commit()
 
     response = await client.post("/api/study-plan/skip-day", headers=headers)
     assert response.status_code == 200
@@ -198,13 +196,13 @@ async def test_pending_lessons_empty_for_new_plan(client, test_user):
 async def test_pending_lessons_returns_incomplete_past_lessons(client, test_user, db_session):
     """Incomplete lessons from days before progress_day appear in pending list."""
     from app.models.lesson import Lesson
-    from app.models.study_plan import StudyPlan
 
     user, headers = test_user
 
     await deactivate_active_plans(db_session, user.id)
 
-    plan = StudyPlan(
+    plan = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         goals=["grammar"],
@@ -213,10 +211,8 @@ async def test_pending_lessons_returns_incomplete_past_lessons(client, test_user
         current_unit="",
         generated_plan={},
         is_active=True,
-        progress_day=1,  # day 0 (week1/day1) is "passed"
+        progress_day=1,
     )
-    db_session.add(plan)
-    await db_session.flush()
 
     # Incomplete lesson on day 0 (week=1, day=1) — should be pending
     pending_lesson = Lesson(
@@ -269,13 +265,13 @@ async def test_pending_lessons_requires_auth(client):
 async def test_today_auto_advances_when_day_complete(client, test_user, db_session):
     """GET /today auto-advances progress_day when all lessons for the current day are complete."""
     from app.models.lesson import Lesson
-    from app.models.study_plan import StudyPlan
 
     user, headers = test_user
 
     await deactivate_active_plans(db_session, user.id)
 
-    plan = StudyPlan(
+    plan = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         goals=["grammar"],
@@ -320,8 +316,6 @@ async def test_today_auto_advances_when_day_complete(client, test_user, db_sessi
         is_active=True,
         progress_day=0,
     )
-    db_session.add(plan)
-    await db_session.flush()
 
     # Add a completed lesson for day 1 (progress_day=0 → week=1, day=1)
     lesson = Lesson(
@@ -350,7 +344,6 @@ async def test_today_auto_advances_when_day_complete(client, test_user, db_sessi
 @pytest.mark.asyncio
 async def test_today_returns_empty_when_plan_complete(client, test_user, db_session):
     """GET /today with progress_day == total_days returns empty lessons list."""
-    from app.models.study_plan import StudyPlan
 
     user, headers = test_user
 
@@ -358,7 +351,8 @@ async def test_today_returns_empty_when_plan_complete(client, test_user, db_sess
 
     await deactivate_active_plans(db_session, user.id)
 
-    plan = StudyPlan(
+    _ = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="A1",
         goals=["grammar"],
@@ -374,10 +368,8 @@ async def test_today_returns_empty_when_plan_complete(client, test_user, db_sess
             "weekly_plan": [],
         },
         is_active=True,
-        progress_day=total,  # already at total — plan finished
+        progress_day=total,
     )
-    db_session.add(plan)
-    await db_session.commit()
 
     response = await client.get("/api/study-plan/today", headers=headers)
     assert response.status_code == 200

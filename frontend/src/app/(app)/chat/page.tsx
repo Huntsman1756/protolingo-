@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
+import { useLanguageStore } from '@/store/language'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
@@ -28,8 +29,10 @@ interface Conversation {
 export default function ChatPage() {
   const t = useTranslations('chat')
   const tCommon = useTranslations('common')
+  const tLang = useTranslations('targetLanguages')
   const router = useRouter()
   const user = useAuthStore((s) => s.user)
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const {
     selectedWord,
     tooltipPos,
@@ -76,6 +79,7 @@ export default function ChatPage() {
     } catch {
       /* ignore */
     }
+    setConversations([])
     return []
   }, [])
 
@@ -86,12 +90,15 @@ export default function ChatPage() {
       const data = await loadConversations()
       if (data.length > 0) {
         selectConversation(data[0].id)
+      } else {
+        setActiveId(null)
+        setMessages([])
       }
       setLoadingConvs(false)
     }
     init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [activeLanguage?.code])
 
   async function selectConversation(id: number) {
     dismissTooltip()
@@ -214,8 +221,8 @@ export default function ChatPage() {
           }
         }
       }
-    } catch (err: unknown) {
-      setError(t('errorMessage'))
+    } catch (e) {
+      setError(e instanceof Error ? e.message : t('errorMessage'))
     } finally {
       setSending(false)
       inputRef.current?.focus()
@@ -228,8 +235,10 @@ export default function ChatPage() {
         <div className="flex h-[calc(100dvh-56px)] w-full overflow-hidden md:h-screen">
           {/* Memory updated toast */}
           {memoryToast && (
-            <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 fixed top-16 left-1/2 z-50 -translate-x-1/2 border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
-              {t('memoryUpdated')}
+            <div className="pointer-events-none fixed inset-x-0 top-16 z-50 flex justify-center">
+              <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 pointer-events-auto border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
+                {t('memoryUpdated')}
+              </div>
             </div>
           )}
           {/* Sidebar backdrop — mobile only */}
@@ -351,14 +360,18 @@ export default function ChatPage() {
                     {t('title')}
                   </p>
                   <p className="text-fl-muted-2 max-w-xs font-mono text-xs leading-relaxed">
-                    {t('subtitle')}
+                    {t('subtitle', {
+                      language: activeLanguage
+                        ? tLang(activeLanguage.code)
+                        : tLang('en-GB'),
+                    })}
                   </p>
                 </div>
               ) : (
                 messages.map((msg, i) => (
                   <div
                     key={i}
-                    className={`flex items-end gap-2 ${msg.role === 'user' ? 'flex-row-reverse ml-auto max-w-[75%]' : 'flex-row'}`}
+                    className={`flex items-end gap-2 ${msg.role === 'user' ? 'ml-auto max-w-[75%] flex-row-reverse' : 'flex-row'}`}
                   >
                     {/* Avatar */}
                     <div className="border-fl-border mb-0.5 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border">
@@ -389,7 +402,9 @@ export default function ChatPage() {
                         </div>
                       )}
                     </div>
-                    <div className={`min-w-[10rem] max-w-[75%] text-left`}>                      <div
+                    <div className={`max-w-[75%] min-w-[10rem] text-left`}>
+                      {' '}
+                      <div
                         className={`word-selectable border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
                           msg.role === 'user'
                             ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
@@ -421,7 +436,10 @@ export default function ChatPage() {
               )}
               {error && (
                 <div className="text-fl-label text-fl-error-fg border-fl-error/30 border px-4 py-2 font-mono">
-                  ✕ {error === 'No active study plan found' ? tCommon('noActivePlan') : t('errorMessage')}
+                  ✕{' '}
+                  {error === 'No active study plan found'
+                    ? tCommon('noActivePlan')
+                    : t('errorMessage')}
                 </div>
               )}
               <div ref={bottomRef} />

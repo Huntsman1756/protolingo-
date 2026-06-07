@@ -67,6 +67,9 @@ class AssessmentCompleteRequest(BaseModel):
     duration_weeks: int = 12
     days_per_week: int = 4
     goals: list[str] = ["grammar", "vocabulary", "reading", "writing"]
+    target_language: str | None = (
+        None  # Phase 10: explicit language avoids relying on users.target_language
+    )
 
 
 # ── Level test ─────────────────────────────────────────────────────────────────

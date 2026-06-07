@@ -36,9 +36,10 @@ async def test_admin_user_stats_reflects_completed_lesson(
     user, _ = test_user
 
     from app.models.lesson import Lesson
-    from app.models.study_plan import StudyPlan
+    from tests.conftest import make_study_plan
 
-    plan = StudyPlan(
+    plan = await make_study_plan(
+        db_session,
         user_id=user.id,
         cefr_level="B1",
         goals=["speaking"],
@@ -48,8 +49,6 @@ async def test_admin_user_stats_reflects_completed_lesson(
         generated_plan={},
         is_active=True,
     )
-    db_session.add(plan)
-    await db_session.flush()
 
     lesson = Lesson(
         study_plan_id=plan.id,

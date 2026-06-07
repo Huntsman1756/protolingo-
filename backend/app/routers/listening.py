@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.database import get_db
-from app.core.deps import get_active_study_plan, get_current_user, get_redis, require_subscription
+from app.core.deps import get_active_study_plan, get_redis, require_subscription
 from app.core.limiter import limiter
 from app.models.listening import ListeningExercise
 from app.models.study_plan import StudyPlan
@@ -194,6 +194,7 @@ async def generate_exercise(
 async def get_audio(
     request: Request,
     exercise_id: int,
+    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> FileResponse:
@@ -205,6 +206,8 @@ async def get_audio(
     """
     exercise = await db.get(ListeningExercise, exercise_id)
     if exercise is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="exercise_not_found")
+    if exercise.target_language != plan.target_language:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="exercise_not_found")
 
     audio_path = os.path.join(settings.AUDIO_STORAGE_PATH, "listening", f"{exercise_id}.mp3")
@@ -267,7 +270,7 @@ async def get_listening_history(
     skip: int = 0,
     limit: int = 10,
     plan: StudyPlan = Depends(get_active_study_plan),
-    current_user: User = Depends(get_current_user),
+    current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ) -> ListeningHistoryResponse:
     """Return paginated list of the user's past listening attempts."""

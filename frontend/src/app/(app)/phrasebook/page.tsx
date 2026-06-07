@@ -2,19 +2,22 @@
 
 import { useState, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
-import { phrasebookCategories, type Register } from '@/data/phrasebook'
-import type { CEFRLevel } from '@/data/grammar'
+import { getPhrasebookCategories, type Register } from '@/data/phrasebook'
+import type { CEFRLevel } from '@/data/types'
+import { useLanguageStore } from '@/store/language'
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 const REGISTERS: Register[] = ['formal', 'neutral', 'informal']
 
-const REGISTER_COLORS: Record<Register, string> = {
+const REGISTER_COLORS: Record<string, string> = {
   formal: 'text-blue-600 dark:text-blue-400',
   neutral: 'text-fl-muted-2',
   informal: 'text-amber-600 dark:text-amber-400',
 }
+
+type PhrasebookCategory = ReturnType<typeof getPhrasebookCategories>[number]
 
 // ── Category card ─────────────────────────────────────────────────────────────
 
@@ -22,7 +25,7 @@ function CategoryCard({
   cat,
   registerFilter,
 }: {
-  cat: (typeof phrasebookCategories)[0]
+  cat: PhrasebookCategory
   registerFilter: Register | 'All'
 }) {
   const t = useTranslations('phrasebook')
@@ -107,8 +110,14 @@ function CopyButton({ text }: { text: string }) {
 export default function PhrasebookPage() {
   const t = useTranslations('phrasebook')
   const tCommon = useTranslations('common')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [activeLevel, setActiveLevel] = useState<CEFRLevel | 'All'>('All')
   const [activeRegister, setActiveRegister] = useState<Register | 'All'>('All')
+
+  const phrasebookCategories = useMemo(
+    () => getPhrasebookCategories(activeLanguage?.code),
+    [activeLanguage?.code]
+  )
 
   const filteredCategories = useMemo(() => {
     return phrasebookCategories.filter((cat) => {
@@ -118,7 +127,7 @@ export default function PhrasebookPage() {
         cat.phrases.some((p) => p.register === activeRegister)
       return matchesLevel && matchesRegister
     })
-  }, [activeLevel, activeRegister])
+  }, [activeLevel, activeRegister, phrasebookCategories])
 
   const totalPhrases = phrasebookCategories.reduce(
     (acc, c) => acc + c.phrases.length,

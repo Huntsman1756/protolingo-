@@ -33,6 +33,7 @@ class AdminUserCreate(BaseModel):
     password: str = Field(min_length=10, max_length=25)
     display_name: str = Field(max_length=100)
     native_language: str = Field(min_length=2, max_length=5)
+    target_language: str = Field(min_length=2, max_length=10)
     role: Literal["user", "admin"] = "user"
 
     @field_validator("password")

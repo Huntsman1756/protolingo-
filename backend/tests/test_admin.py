@@ -40,6 +40,7 @@ async def test_create_user_as_admin(client, admin_user):
             "password": "Test1234!@",
             "display_name": "New Admin User",
             "native_language": "es",
+            "target_language": "en",
             "role": "user",
         },
     )
@@ -61,6 +62,7 @@ async def test_create_user_duplicate_username(client, admin_user):
             "password": "Test1234!@",
             "display_name": "Dup",
             "native_language": "es",
+            "target_language": "en",
         },
     )
     response = await client.post(
@@ -71,6 +73,7 @@ async def test_create_user_duplicate_username(client, admin_user):
             "password": "Test1234!@",
             "display_name": "Dup2",
             "native_language": "fr",
+            "target_language": "en",
         },
     )
     assert response.status_code == 409

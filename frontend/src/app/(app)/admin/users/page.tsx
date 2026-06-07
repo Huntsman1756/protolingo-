@@ -6,6 +6,8 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { useConfigStore } from '@/store/config'
+import { useLanguageStore } from '@/store/language'
+import { SUPPORTED_TARGET_LANGUAGES } from '@/lib/target-languages'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 interface AdminUserItem {
@@ -37,6 +39,7 @@ export default function AdminUsersPage() {
   const tCommon = useTranslations('common')
   const tBilling = useTranslations('billing')
   const tLang = useTranslations('languages')
+  const tTarget = useTranslations('targetLanguages')
   const tNav = useTranslations('nav')
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [total, setTotal] = useState(0)
@@ -54,11 +57,15 @@ export default function AdminUsersPage() {
     password: '',
     display_name: '',
     native_language: 'es',
+    target_language: 'en-US',
     role: 'user',
   })
   const [error, setError] = useState('')
   const [deletePending, setDeletePending] = useState<AdminUserItem | null>(null)
   const currentUserId = useAuthStore((s) => s.user?.id)
+  const availableLanguageCodes = useLanguageStore(
+    (s) => s.availableLanguageCodes
+  )
   const maintenanceMode = useConfigStore((s) => s.maintenanceMode)
   const [maintenanceLoading, setMaintenanceLoading] = useState(false)
 
@@ -135,6 +142,7 @@ export default function AdminUsersPage() {
         password: '',
         display_name: '',
         native_language: 'es',
+        target_language: 'en-US',
         role: 'user',
       })
       await loadUsers(page, searchTerm, subscriptionFilter)
@@ -365,29 +373,59 @@ export default function AdminUsersPage() {
                 className={inputCls}
               />
             ))}
-            <select
-              value={form.native_language}
-              onChange={(e) =>
-                setForm({ ...form, native_language: e.target.value })
-              }
-              className={inputCls + ' appearance-none'}
-            >
-              {[...LANGUAGES]
-                .sort((a, b) => tLang(a).localeCompare(tLang(b)))
-                .map((code) => (
-                  <option key={code} value={code}>
-                    {tLang(code)}
+            <div>
+              <label className="text-fl-label text-fl-muted-3 mb-1 block font-mono text-xs tracking-widest uppercase">
+                {t('fieldNativeLanguage')}
+              </label>
+              <select
+                value={form.native_language}
+                onChange={(e) =>
+                  setForm({ ...form, native_language: e.target.value })
+                }
+                className={inputCls + ' appearance-none'}
+              >
+                {[...LANGUAGES]
+                  .sort((a, b) => tLang(a).localeCompare(tLang(b)))
+                  .map((code) => (
+                    <option key={code} value={code}>
+                      {tLang(code)}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div>
+              <label className="text-fl-label text-fl-muted-3 mb-1 block font-mono text-xs tracking-widest uppercase">
+                {t('fieldTargetLanguage')}
+              </label>
+              <select
+                value={form.target_language}
+                onChange={(e) =>
+                  setForm({ ...form, target_language: e.target.value })
+                }
+                className={inputCls + ' appearance-none'}
+              >
+                {SUPPORTED_TARGET_LANGUAGES.filter((l) =>
+                  availableLanguageCodes.includes(l.code)
+                ).map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {tTarget(lang.code)}
                   </option>
                 ))}
-            </select>
-            <select
-              value={form.role}
-              onChange={(e) => setForm({ ...form, role: e.target.value })}
-              className={inputCls + ' appearance-none'}
-            >
-              <option value="user">{t('roleUser')}</option>
-              <option value="admin">{t('roleAdmin')}</option>
-            </select>
+              </select>
+            </div>
+            <div>
+              <label className="text-fl-label text-fl-muted-3 mb-1 block font-mono text-xs tracking-widest uppercase">
+                {t('fieldRole')}
+              </label>
+              <select
+                value={form.role}
+                onChange={(e) => setForm({ ...form, role: e.target.value })}
+                className={inputCls + ' appearance-none'}
+              >
+                <option value="user">{t('roleUser')}</option>
+                <option value="admin">{t('roleAdmin')}</option>
+              </select>
+            </div>
             <button
               type="submit"
               className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 mt-1 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"

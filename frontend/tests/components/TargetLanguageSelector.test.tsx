@@ -1,0 +1,203 @@
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
+import React from 'react'
+import TargetLanguageSelector from '@/components/TargetLanguageSelector'
+
+vi.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => key,
+}))
+
+vi.mock('next/image', () => ({
+  default: function MockImage({
+    src,
+    alt,
+    width,
+    height,
+    className,
+  }: {
+    src: string
+    alt: string
+    width: number
+    height: number
+    className?: string
+  }) {
+    return React.createElement('img', { src, alt, width, height, className })
+  },
+}))
+
+describe('TargetLanguageSelector', () => {
+  const allCodes = ['en-US', 'en-GB', 'es-ES', 'it-IT', 'pt-PT']
+
+  it('renders only languages matching availableCodes', () => {
+    render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={() => { }}
+        availableCodes={['en-US', 'en-GB']}
+      />
+    )
+
+    const buttons = screen.getAllByRole('button')
+    expect(buttons).toHaveLength(2)
+  })
+
+  it('renders all languages when all codes are available', () => {
+    render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={() => { }}
+        availableCodes={allCodes}
+      />
+    )
+
+    const buttons = screen.getAllByRole('button')
+    expect(buttons).toHaveLength(5)
+  })
+
+  it('renders nothing when availableCodes is empty', () => {
+    const { container } = render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={() => { }}
+        availableCodes={[]}
+      />
+    )
+
+    expect(screen.queryByRole('button')).toBeNull()
+    const div = container.firstChild as HTMLElement
+    expect(div.children).toHaveLength(0)
+  })
+
+  it('renders nothing when no supported language matches availableCodes', () => {
+    const { container } = render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={() => { }}
+        availableCodes={['fr-FR', 'de-DE']}
+      />
+    )
+
+    expect(screen.queryByRole('button')).toBeNull()
+    const div = container.firstChild as HTMLElement
+    expect(div.children).toHaveLength(0)
+  })
+
+  it('shows active state for the selected language', () => {
+    render(
+      <TargetLanguageSelector
+        value="es-ES"
+        onChange={() => { }}
+        availableCodes={allCodes}
+      />
+    )
+
+    const buttons = screen.getAllByRole('button')
+    const activeButton = buttons.find((btn) =>
+      btn.className.includes('bg-fl-accent')
+    )
+
+    expect(activeButton).toBeDefined()
+    expect(activeButton!.textContent).toContain('es-ES')
+  })
+
+  it('calls onChange with the clicked code', () => {
+    const onChange = vi.fn()
+
+    render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={onChange}
+        availableCodes={allCodes}
+      />
+    )
+
+    const buttons = screen.getAllByRole('button')
+    const italianButton = buttons.find((btn) =>
+      btn.textContent?.includes('it-IT')
+    )
+
+    expect(italianButton).toBeDefined()
+    fireEvent.click(italianButton!)
+
+    expect(onChange).toHaveBeenCalledWith('it-IT')
+  })
+
+  it('calls onChange when clicking already-selected language', () => {
+    const onChange = vi.fn()
+
+    render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={onChange}
+        availableCodes={['en-GB', 'en-US']}
+      />
+    )
+
+    const buttons = screen.getAllByRole('button')
+    const activeButton = buttons.find((btn) =>
+      btn.className.includes('bg-fl-accent')
+    )
+
+    fireEvent.click(activeButton!)
+
+    expect(onChange).toHaveBeenCalledWith('en-GB')
+  })
+
+  it('renders flag images with correct src', () => {
+    render(
+      <TargetLanguageSelector
+        value="en-US"
+        onChange={() => { }}
+        availableCodes={allCodes}
+      />
+    )
+
+    const images = screen.getAllByRole('img')
+    const srcs = images.map((img) => img.getAttribute('src'))
+
+    expect(srcs).toContain('/flags/usa.jpg')
+    expect(srcs).toContain('/flags/uk.jpg')
+    expect(srcs).toContain('/flags/spain.jpg')
+    expect(srcs).toContain('/flags/italy.jpg')
+    expect(srcs).toContain('/flags/portugal.jpg')
+  })
+
+  it('displays translated names from targetLanguages namespace', () => {
+    render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={() => { }}
+        availableCodes={allCodes}
+      />
+    )
+
+    const buttons = screen.getAllByRole('button')
+    const textContent = buttons.map((b) => b.textContent).join(' ')
+
+    expect(textContent).toContain('en-US')
+    expect(textContent).toContain('en-GB')
+    expect(textContent).toContain('es-ES')
+    expect(textContent).toContain('it-IT')
+    expect(textContent).toContain('pt-PT')
+  })
+
+  it('does not re-render filtered languages when onChange does not change', () => {
+    const { rerender } = render(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={() => { }}
+        availableCodes={['en-GB', 'en-US']}
+      />
+    )
+
+    rerender(
+      <TargetLanguageSelector
+        value="en-GB"
+        onChange={() => { }}
+        availableCodes={['en-GB', 'en-US']}
+      />
+    )
+
+    expect(screen.getAllByRole('button')).toHaveLength(2)
+  })
+})

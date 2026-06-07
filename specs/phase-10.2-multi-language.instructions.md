@@ -19,7 +19,7 @@ Adapt all backend services to be language-agnostic and introduce the `user_langu
 **Revision ID:** `0030_not_null_study_plan_id`  
 **Down revision:** `0029_multi_language`
 
-This migration is a **no-op placeholder** that keeps the revision chain intact. The `ALTER COLUMN … NOT NULL` statements originally planned here were moved to Phase 10.3.
+This migration is a **no-op placeholder** that keeps the revision chain intact. The `ALTER COLUMN ... NOT NULL` statements originally planned here were moved to Phase 10.3.
 
 **Reason:** The services modified in Phase 10.2 (`progress_service.py`, `memory_service.py`, etc.) accept `study_plan_id` as an optional parameter, but the *callers* that must supply it — `routers/lessons.py`, `routers/flashcards.py`, `listening_service.py`, and `reading_service.py` — are not updated until Phase 10.3 when `get_active_study_plan` is wired into those endpoints. Enforcing `NOT NULL` before those callers are updated would break every lesson completion, flashcard review, and listening/reading exercise.
 
@@ -271,6 +271,15 @@ async def get_active_study_plan(
 | `backend/app/services/study_plan_generator.py` | Dynamic title, `target_language` param |
 | `backend/app/services/progress_service.py` | Add `study_plan_id: int \| None = None` to all functions (callers updated in Phase 10.3) |
 | `backend/app/core/deps.py` | Add `get_active_study_plan` dependency |
+
+## Tests
+
+### New tests (`backend/tests/test_multi_language.py`)
+
+| Test | Description |
+|------|-------------|
+| `test_prompt_language_agnostic` | System prompts include the correct language name (not hardcoded "English") |
+| `test_chat_prompt_uses_target_language` | `TUTOR_SYSTEM_PROMPT` uses the active plan's language |
 
 ## New files in this phase
 

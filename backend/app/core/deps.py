@@ -81,36 +81,18 @@ async def get_active_study_plan(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> StudyPlan:
-    """Return the active study plan for the user's active language.
-
-    Falls back to any active plan if the active-language lookup fails (e.g.
-    a legacy user whose user_languages row is temporarily missing). This
-    mirrors the fallback logic in the WebSocket conversation endpoint.
-    """
+    """Return the active study plan for the user's active language."""
     from app.services.user_language_service import get_active_language
 
     active_lang = await get_active_language(db, current_user.id)
-    if active_lang:
-        result = await db.execute(
-            select(StudyPlan).where(
-                StudyPlan.user_id == current_user.id,
-                StudyPlan.target_language == active_lang.target_language,
-                StudyPlan.is_active == True,  # noqa: E712
-            )
-        )
-        plan = result.scalar_one_or_none()
-        if plan:
-            return plan
+    if not active_lang:
+        raise HTTPException(status_code=404, detail="No active language set")
 
-    # Fallback: any active plan for the user
     result = await db.execute(
-        select(StudyPlan)
-        .where(
-            StudyPlan.user_id == current_user.id,
+        select(StudyPlan).where(
+            StudyPlan.user_language_id == active_lang.id,
             StudyPlan.is_active == True,  # noqa: E712
         )
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
     )
     plan = result.scalar_one_or_none()
     if not plan:

@@ -57,7 +57,10 @@
     "wordSaved": "Opgeslagen",
     "wordSaveError": "Er is een probleem opgetreden",
     "selectWordHint": "Selecteer een woord om het op te slaan in je woordenschat",
-    "noActivePlan": "Geen actief studieplan gevonden"
+    "noActivePlan": "Geen actief studieplan gevonden",
+    "removeLanguageConfirmTitle": "Taal verwijderen",
+    "removeLanguageConfirmMessage": "Alle gegevens voor deze taal (studieplan, voortgang, flashcards, gesprekken en herinneringen) worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "removeLanguageConfirmLabel": "Verwijderen"
   },
   "nav": {
     "home": "Home",
@@ -77,7 +80,8 @@
     "listening": "Listening",
     "reading": "Reading",
     "contact": "Contact",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "switchLanguage": "Taal wijzigen"
   },
   "auth": {
     "login": {
@@ -241,7 +245,9 @@
     "memoryClearAllTitle": "Alle herinneringen wissen",
     "memoryClearAllMessage": "Hiermee worden alle opgeslagen herinneringen permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
     "memoryClearAllConfirm": "Alles wissen",
-    "memoryManage": "Herinneringen beheren"
+    "memoryManage": "Herinneringen beheren",
+    "sectionLanguages": "Talen",
+    "languagesManage": "Mijn talen"
   },
   "legal": {
     "terms": {
@@ -302,9 +308,9 @@
       "s5Title": "5. Cookies en sessietokens",
       "s5Body": "FreeLingo gebruikt twee technische cookies die strikt noodzakelijk zijn voor de service: een refresh_token (httpOnly, vervaldatum 30 dagen) voor sessieauthenticatie, en NEXT_LOCALE (vervaldatum 1 jaar) om je taalvoorkeur te onthouden. Er worden geen tracking-, analyse- of advertentiecookies gebruikt.",
       "s6Title": "6. Jouw rechten (AVG)",
-      "s6Body": "Als je in de Europese Economische Ruimte bent, heb je het recht op: toegang tot de persoonsgegevens die we over je bewaren; correctie van onjuiste gegevens; verwijdering van je account en alle bijbehorende gegevens (beschikbaar rechtstreeks via de pagina Instellingen); bezwaar tegen verwerking; en overdraagbaarheid van gegevens. Om deze rechten uit te oefenen, neem contact met ons op via het adres in sectie 8 of verwijder je account rechtstreeks via Instellingen. Rechtsgrondslag voor verwerking (Art. 6(1)(b) AVG): we verwerken je persoonsgegevens omdat dit noodzakelijk is voor de uitvoering van de overeenkomst tussen jou en ons — de levering van de FreeLingo-service. Internationale doorgiften: bij gebruik van de gehoste service kunnen je gespreksinhoud en audio worden verwerkt door OpenAI, Inc. (VS), en betalingsgegevens worden verwerkt door Stripe, Inc. (VS). Deze doorgiften worden uitgevoerd op grond van de door de Europese Commissie goedgekeurde Standaardcontractbepalingen (Art. 46 AVG), waarmee een adequaat beschermingsniveau wordt gewaarborgd. Klachtrecht: je hebt het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens (AP — autoriteitpersoonsgegevens.nl) of bij de toezichthoudende autoriteit in je land van verblijf.",
+      "s6Body": "Als je in de Europese Economische Ruimte bent, heb je het recht op: toegang tot de persoonsgegevens die we over je bewaren; correctie van onjuiste gegevens; verwijdering van je account en alle bijbehorende gegevens (beschikbaar rechtstreeks via de pagina Instellingen); bezwaar tegen verwerking; en overdraagbaarheid van gegevens. Om deze rechten uit te oefenen, neem contact met ons op via het adres in sectie 8 of verwijder je account rechtstreeks via instellingen. Rechtsgrondslag voor verwerking (Art. 6(1)(b) AVG): we verwerken je persoonsgegevens omdat dit noodzakelijk is voor de uitvoering van de overeenkomst tussen jou en ons — de levering van de FreeLingo-service. Internationale doorgiften: bij gebruik van de gehoste service kunnen je gespreksinhoud en audio worden verwerkt door OpenAI, Inc. (VS), en betalingsgegevens worden verwerkt door Stripe, Inc. (VS). Deze doorgiften worden uitgevoerd op grond van de door de Europese Commissie goedgekeurde Standaardcontractbepalingen (Art. 46 AVG), waarmee een adequaat beschermingsniveau wordt gewaarborgd. Klachtrecht: je hebt het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens (AP — autoriteitpersoonsgegevens.nl) of bij de toezichthoudende autoriteit in je land van verblijf.",
       "s7Title": "7. Bewaring en verwijdering van gegevens",
-      "s7Body": "Je gegevens worden bewaard zolang je account bestaat. Je kunt je account en alle bijbehorende gegevens op elk moment permanent verwijderen via de pagina Instellingen. Verwijdering is onmiddellijk en onomkeerbaar.",
+      "s7Body": "Je gegevens worden bewaard zolang je account bestaat. Je kunt je account en alle bijbehorende gegevens op elk moment permanent verwijderen via de pagina instellingen. Verwijdering is onmiddellijk en onomkeerbaar.",
       "s8Title": "8. Contact",
       "s8Body": "Voor privacygerelateerde vragen over de gehoste service, neem contact met ons op via: contacto@arturocarreterocalvo.com.",
       "linkTerms": "Gebruiksvoorwaarden",
@@ -392,10 +398,10 @@
       }
     },
     "suggestedLevel": "Voorgesteld {aiLevel}; plan gebruikt {selectedLevel}",
-    "step1": "Stap 1 / 3: Jouw niveau",
-    "step2": "Stap 2 / 3: Vraag {questionNumber} / {totalQuestions}",
-    "step3": "Stap 3 / 3: Jouw programma",
-    "studiedBefore": "Heb je eerder Engels gestudeerd?",
+    "step1": "Stap 1 / 3: jouw niveau",
+    "step2": "Stap 2 / 3: vraag {questionNumber} / {totalQuestions}",
+    "step3": "Stap 3 / 3: jouw programma",
+    "studiedBefore": "Heb je eerder {language} gestudeerd?",
     "studiedBeforeHint": "Dit helpt ons de quiz op het juiste niveau te starten.",
     "beginnerOption": "Ik ben een complete beginner",
     "beginnerOptionHint": "Ik begin bij A1, geen quiz nodig.",
@@ -458,7 +464,7 @@
     "unitLabel": "Eenheid",
     "grammarCovered": "Behandelde grammatica",
     "noLessons": "Nog geen lessen gepland voor deze eenheid.",
-    "weekDay": "Week {week}, Dag {day}",
+    "weekDay": "Week {week}, dag {day}",
     "lessonTypes": {
       "grammar": "Grammatica",
       "vocabulary": "Woordenschat",
@@ -556,11 +562,15 @@
     "vocabularyPrev": "Vorige",
     "vocabularyNext": "Volgende",
     "backToFlashcards": "Flashcards",
-    "noCardsHint": "Gebruik + Genereer om je eerste flashcards met AI te maken"
+    "noCardsHint": "Gebruik + Genereer om je eerste flashcards met AI te maken",
+    "tapToHide": "tik om te verbergen",
+    "tapToReveal": "tik om te tonen",
+    "interval": "Interval",
+    "repetitions": "Herh"
   },
   "chat": {
     "title": "AI-tutor",
-    "subtitle": "Stel alles over Engels",
+    "subtitle": "{language} — Stel alles",
     "placeholder": "Typ een bericht...",
     "send": "Versturen",
     "sending": "Versturen...",
@@ -693,6 +703,8 @@
     "fieldPassword": "Wachtwoord",
     "fieldDisplayName": "Weergavenaam",
     "fieldNativeLanguage": "Moedertaal",
+    "fieldTargetLanguage": "Te leren taal",
+    "fieldRole": "Accounttype",
     "submitCreate": "Aanmaken",
     "searchPlaceholder": "Zoek op gebruikersnaam of e-mail...",
     "statsTitle": "Gebruiksstatistieken",
@@ -733,15 +745,18 @@
     "emailUnverifiedSuccess": "E-mail gemarkeerd als niet geverifieerd.",
     "quotaMonthlyTokens": "Maandelijks tokenlimiet",
     "fieldSubscription": "Abonnement",
-    "fieldEndsRenews": "Eindigt / Verlengt",
+    "fieldEndsRenews": "Eindigt / verlengt",
     "fieldStripeCustomer": "Stripe-klant",
     "maintenanceTitle": "Onderhoudsmodus",
     "maintenanceOn": "AAN",
-    "maintenanceEnable": "Onderhoud Inschakelen",
-    "maintenanceDisable": "Onderhoud Uitschakelen",
+    "maintenanceEnable": "Onderhoud inschakelen",
+    "maintenanceDisable": "Onderhoud uitschakelen",
     "maintenanceDesc": "Indien ingeschakeld zijn alle abonnementsfuncties (tutorchat, spraakgesprekken, luister- en leesoefeningen) niet beschikbaar voor alle gebruikers.",
     "cannotDeactivateSelf": "Je kunt je eigen account niet deactiveren",
-    "cannotDeleteSelf": "Je kunt je eigen account niet verwijderen"
+    "cannotDeleteSelf": "Je kunt je eigen account niet verwijderen",
+    "sectionLanguages": "Talen",
+    "sectionActivity": "Activiteit",
+    "statsActive": "Actief"
   },
   "faq": {
     "title": "FAQ",
@@ -756,7 +771,7 @@
     "workflowStep5": "Gebruik flashcards om woordenschat parallel te trainen",
     "workflowStep6": "Oefen vrij gesprek met de AI-tutor",
     "q_language": "Welke taal leer ik?",
-    "a_language": "Alleen Engels, voor nu. De moedertaal die je kiest bij registratie wordt uitsluitend gebruikt voor flashcard-vertalingen en tutorfeedback.",
+    "a_language": "FreeLingo ondersteunt momenteel meerdere talen en we zullen er in de loop van de tijd meer toevoegen. Wanneer een nieuwe taal beschikbaar komt, vind je die onder Instellingen → Mijn talen — voeg hem toe en begin meteen met leren.",
     "q_assessment": "Wat is de Beoordeling?",
     "a_assessment": "Een door AI gegenereerde test van 15 vragen over grammatica, woordenschat, leesbegrip en zinnen transformeren, met moeilijkheidsgraad van A1 tot C1.",
     "q_studyPlan": "Wat is het Studieplan en hoe genereer ik er een?",
@@ -903,15 +918,44 @@
     "pl": "Pools",
     "nl": "Nederlands",
     "ro": "Roemeens",
-    "ru": "Russisch"
+    "ru": "Russisch",
+    "myLanguages": "Mijn talen",
+    "addLanguage": "Taal toevoegen",
+    "selectLanguage": "Kies de taal die je wilt leren",
+    "activeLanguage": "Actief",
+    "switchTo": "Wissel naar deze",
+    "switching": "Wisselen naar {language}...",
+    "switched": "Gewisseld naar {language} ({level})",
+    "removeLanguage": "Taal verwijderen",
+    "removeConfirmTitle": "{language} verwijderen?",
+    "removeConfirmMessage": "Alle voortgang, lessen, flashcards en gegevens van deze taal worden permanent verwijderd. Deze actie kan niet ongedaan worden gemaakt.",
+    "removeConfirmButton": "Verwijderen",
+    "deleteError": "Kan {language} niet verwijderen. Probeer het opnieuw.",
+    "noLanguages": "Geen talen geconfigureerd.",
+    "progressLabel": "Voortgang",
+    "levelLabel": "Niveau",
+    "xpLabel": "Totale XP",
+    "streakLabel": "Reeks",
+    "lessonsLabel": "Lessen",
+    "flashcardsLabel": "Flashcards",
+    "viewDetails": "Details bekijken",
+    "supportedLanguages": "Beschikbare talen"
   },
   "targetLanguages": {
     "en-US": "Amerikaans Engels",
-    "en-GB": "Brits Engels"
+    "en-GB": "Brits Engels",
+    "es-ES": "Spaans",
+    "it-IT": "Italiaans",
+    "pt-PT": "Portugees",
+    "es-ES-description": "Spaans zoals gesproken in Spanje.",
+    "it-IT-description": "Italiaans zoals gesproken in Italië.",
+    "pt-PT-description": "Portugees zoals gesproken in Portugal.",
+    "en-US-description": "Engels zoals gesproken in de Verenigde Staten.",
+    "en-GB-description": "Engels zoals gesproken in het Verenigd Koninkrijk."
   },
   "onboarding": {
-    "title": "Kies jouw Engels",
-    "subtitle": "Welk Engels wil je leren?",
+    "title": "Kies jouw taal",
+    "subtitle": "Welke taal wil je leren?",
     "chooseVariant": "Selecteer variant",
     "continue": "Doorgaan",
     "saveFailed": "Opslaan van voorkeuren mislukt",
@@ -927,7 +971,9 @@
       "emigration": "In het buitenland leven",
       "exams": "Examens en certificaten",
       "social": "Socialiseren"
-    }
+    },
+    "newLanguageHeadline": "Welke nieuwe taal wil je leren?",
+    "newLanguageSubtitle": "Er wordt een nieuw studieplan aangemaakt voor deze taal."
   },
   "tour": {
     "skip": "Overslaan",
@@ -974,13 +1020,13 @@
     "paywallLabel": "Premium vereist",
     "paywallTitle": "Ontgrendel FreeLingo Premium",
     "paywallDesc": "Start je gratis proefperiode van {days} dagen, vandaag geen kosten. Altijd opzegbaar.",
-    "paywallNoCharge": "Kaart vereist · Geen kosten tot einde proefperiode · Altijd opzegbaar",
+    "paywallNoCharge": "Kaart vereist · geen kosten tot einde proefperiode · altijd opzegbaar",
     "planMonthly": "— Starten voor €{price}/maand →",
     "planYearly": "— Starten voor €{price}/jaar →",
     "checkoutError": "Betaling kon niet worden gestart. Probeer opnieuw.",
     "pricingLabel": "Prijs",
     "pricingTitle": "Eenvoudige, transparante prijzen",
-    "pricingDesc": "7 dagen gratis bij je abonnement · Op elk moment opzeggen",
+    "pricingDesc": "7 dagen gratis bij je abonnement · op elk moment opzeggen",
     "planMonthlyName": "Maandelijks",
     "planYearlyName": "Jaarlijks",
     "bestValue": "Beste waarde",
@@ -1033,7 +1079,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.6.13",
+    "version": "v1.7.0",
     "cta": "Begrepen",
     "entry1": {
       "label": "Woorden opslaan tijdens het lezen",
@@ -1041,11 +1087,15 @@
     },
     "entry2": {
       "label": "Platformtaal",
-      "desc": "Je kunt nu de taal van de app-interface — menu's, knoppen en labels — kiezen via de pagina Instellingen, onafhankelijk van je moedertaal."
+      "desc": "Je kunt nu de taal van de app-interface — menu's, knoppen en labels — kiezen via de pagina instellingen, onafhankelijk van je moedertaal."
     },
     "entry3": {
+      "label": "Leer meerdere talen",
+      "desc": "Je kunt nu meer dan één taal tegelijk leren. Wissel van taal via de zijbalk en voeg nieuwe talen toe via instellingen → Mijn talen. We blijven meer talen toevoegen — je vindt ze daar."
+    },
+    "entry4": {
       "label": "Bugfixes",
-      "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen op het hele platform."
+      "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen in het hele platform."
     }
   },
   "contact": {
@@ -1169,7 +1219,7 @@
   },
   "maintenance": {
     "label": "Onderhoud",
-    "title": "In Onderhoud",
+    "title": "In onderhoud",
     "description": "Dit gedeelte is tijdelijk niet beschikbaar vanwege onderhoud. Probeer het later opnieuw."
   }
 }

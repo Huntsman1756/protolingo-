@@ -23,17 +23,18 @@ MAX_MEMORIES_PER_USER = 150
 
 MEMORY_SYSTEM_INSTRUCTION_BASE = """
 Memory capability: if during the conversation you learn something noteworthy
-about the student (personal details, preferences, tastes, hobbies, profession,
-plans, goals, struggles with {target_language_name}, or anything that would help
-personalise future lessons), you may persist it by appending a memory block at
-the very end of your response. Format exactly:
+about the student as a person — personal details, preferences, tastes, hobbies,
+profession, plans, goals, other languages they are studying, learning style,
+motivations, or anything that would help personalise future interactions — you
+may persist it by appending a memory block at the very end of your response.
+Format exactly:
 
 <<MEMORY>>{{"items":["short fact about the student"]}}<<ENDMEMORY>>
 
 Rules for the memory block:
 - Only include it when you genuinely learn something new and worth remembering.
   Do NOT include it in every response — most replies should have no memory block.
-- Each item must be at most 200 characters, in English, and self-contained.
+- Each item must be at most 200 characters, in {target_language_name}, and self-contained.
 - Do NOT repeat facts already captured in the existing memories shown above.
 - The block must be the LAST thing in your response, after all visible text.
 - It will be stripped before the student sees your reply, so it won't confuse them.

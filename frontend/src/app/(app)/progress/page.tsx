@@ -2,15 +2,16 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { useLanguageStore } from '@/store/language'
 import {
   getCurriculumUnits,
-  CEFR_LEVELS,
   type CurriculumUnit,
   type CEFRLevel,
 } from '@/data/curriculum'
-import { vocabularySets } from '@/data/vocabulary'
+import { getVocabularySets } from '@/data/vocabulary'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -72,6 +73,8 @@ function UnitCompetencyBlock({
   unit: CurriculumUnit
   record: CompetencyRecord | undefined
 }) {
+  const t = useTranslations('progress')
+  const tPlan = useTranslations('plan')
   const masteredCount = record?.mastered_count ?? 0
   const totalCount = unit.competency_checklist.length
   const score = record?.score ?? 0
@@ -84,7 +87,7 @@ function UnitCompetencyBlock({
       <div className="border-fl-border flex items-center justify-between border-b px-5 py-4">
         <div className="flex items-center gap-2">
           <span className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
-            Unit {unit.unit_number}
+            {tPlan('unitLabel')} {unit.unit_number}
           </span>
           <span className="text-fl-fg font-mono text-xs font-bold">
             {unit.title}
@@ -92,7 +95,7 @@ function UnitCompetencyBlock({
         </div>
         <div className="flex items-center gap-3">
           <span className="text-fl-label text-fl-muted-3 font-mono">
-            {masteredCount}/{totalCount} mastered
+            {masteredCount}/{totalCount} {t('mastered')}
           </span>
           {record && (
             <span className="text-fl-label text-fl-muted-2 font-mono">
@@ -146,6 +149,11 @@ function UnitCompetencyBlock({
 
 export default function ProgressPage() {
   const t = useTranslations('progress')
+  const tPlan = useTranslations('plan')
+  const tVocab = useTranslations('vocabulary')
+  const tCommon = useTranslations('common')
+  const router = useRouter()
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [summary, setSummary] = useState<ProgressSummary | null>(null)
   const [competencies, setCompetencies] = useState<CompetencyRecord[]>([])
   const [plan, setPlan] = useState<StudyPlan | null>(null)
@@ -170,19 +178,11 @@ export default function ProgressPage() {
       }
     }
     void load()
-  }, [])
+  }, [activeLanguage?.code])
 
-  const cefrLevel = plan?.cefr_level as CEFRLevel | undefined
-  const levelUnits = cefrLevel
-    ? getCurriculumUnits(cefrLevel)
-    : CEFR_LEVELS.flatMap((l) => getCurriculumUnits(l))
+  const targetLanguageCode = activeLanguage?.code ?? 'en-US'
 
   const compMap = Object.fromEntries(competencies.map((c) => [c.unit_id, c]))
-
-  const levelVocabSets = cefrLevel
-    ? vocabularySets.filter((s) => s.level === cefrLevel)
-    : []
-  const totalLevelWords = levelVocabSets.reduce((a, s) => a + s.words.length, 0)
 
   if (loading) {
     return (
@@ -194,6 +194,30 @@ export default function ProgressPage() {
     )
   }
 
+  if (!plan) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center p-6">
+        <div className="border-fl-border bg-fl-surface w-full max-w-md space-y-4 border p-8">
+          <p className="text-fl-label text-fl-error-fg font-mono">
+            {tCommon('noActivePlan')}
+          </p>
+          <button
+            onClick={() => router.push('/assessment')}
+            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
+          >
+            {tPlan('startAssessment')}
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const cefrLevel = plan.cefr_level as CEFRLevel
+  const levelUnits = getCurriculumUnits(cefrLevel, targetLanguageCode)
+  const vocabSets = getVocabularySets(targetLanguageCode)
+  const levelVocabSets = vocabSets.filter((s) => s.level === cefrLevel)
+  const totalLevelWords = levelVocabSets.reduce((a, s) => a + s.words.length, 0)
+
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">
       {/* Header */}
@@ -203,9 +227,9 @@ export default function ProgressPage() {
           <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('subtitle')}
           </span>
-          {cefrLevel && (
+          {activeLanguage && cefrLevel && (
             <span className="border-fl-border text-fl-label text-fl-muted-3 ml-auto border px-2 py-0.5 font-mono tracking-widest uppercase">
-              {cefrLevel} Programme
+              {activeLanguage.name} · {cefrLevel}
             </span>
           )}
         </div>
@@ -231,14 +255,6 @@ export default function ProgressPage() {
                 </p>
               </div>
             ))}
-          </div>
-        )}
-
-        {!plan && (
-          <div className="px-6 py-6 text-center">
-            <p className="text-fl-muted-3 font-mono text-xs leading-relaxed">
-              {t('noActivePlanDesc')}
-            </p>
           </div>
         )}
       </div>
@@ -290,7 +306,7 @@ export default function ProgressPage() {
             </span>
             <div className="bg-fl-border h-px flex-1" />
             <span className="text-fl-label text-fl-muted-3 font-mono">
-              {totalLevelWords} words
+              {totalLevelWords} {tVocab('words')}
             </span>
           </div>
 
@@ -311,7 +327,7 @@ export default function ProgressPage() {
                     />
                   </div>
                   <span className="text-fl-label text-fl-muted-3 w-12 text-right font-mono">
-                    {s.words.length}w
+                    {s.words.length} {tVocab('words')}
                   </span>
                 </div>
               </div>

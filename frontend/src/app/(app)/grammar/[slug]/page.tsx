@@ -2,9 +2,10 @@
 
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { use } from 'react'
+import { use, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
-import { grammarTopics } from '@/data/grammar'
+import { getGrammarTopics } from '@/data/grammar'
+import { useLanguageStore } from '@/store/language'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -85,7 +86,14 @@ export default function GrammarDetailPage({
 }) {
   const t = useTranslations('grammar')
   const tNav = useTranslations('nav')
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const { slug } = use(params)
+
+  const grammarTopics = useMemo(
+    () => getGrammarTopics(activeLanguage?.code),
+    [activeLanguage?.code]
+  )
+
   const topic = grammarTopics.find((t) => t.slug === slug)
   if (!topic) notFound()
 

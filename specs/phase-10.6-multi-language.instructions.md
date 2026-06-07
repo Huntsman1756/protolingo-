@@ -120,9 +120,9 @@ export function getCurriculum(targetLanguage: string): CurriculumData {
 ## 10.6.5 Flag images
 
 Already present in `frontend/public/flags/`:
-- `spain.jpeg` ✅
-- `italy.jpeg` ✅
-- `portugal.jpeg` ✅
+- `spain.jpg` ✅
+- `italy.jpg` ✅
+- `portugal.jpg` ✅
 - `usa.jpg` ✅ (existing)
 - `uk.jpg` ✅ (existing)
 
@@ -138,11 +138,11 @@ Add entries for the 3 new languages to the existing `targetLanguages` namespace 
 
 ```json
 "targetLanguages": {
-  "es-ES": "Spanish (Spain)",
+  "es-ES": "Spanish",
   "es-ES-description": "Spanish spoken in Spain, one of the most widely spoken languages in the world.",
   "it-IT": "Italian",
   "it-IT-description": "Standard Italian, the language of culture, art and gastronomy.",
-  "pt-PT": "Portuguese (Portugal)",
+  "pt-PT": "Portuguese",
   "pt-PT-description": "European Portuguese, official language of Portugal."
 }
 ```
@@ -151,6 +151,20 @@ The English values above are the reference. Add the equivalent translations in a
 
 ---
 
+## Tests
+
+### New tests (`backend/tests/test_multi_language.py`)
+
+| Test | Description |
+|------|-------------|
+| `test_curriculum_per_language` | `get_curriculum()` returns the correct curriculum for each language (en, es, it, pt) |
+
+### Frontend tests (Vitest)
+
+| File | What to test |
+|------|-------------|
+| `frontend/tests/data/curriculum.test.ts` | `getCurriculum('es-ES')` returns Spanish curriculum; all 5 languages have complete data; dispatcher falls back for unsupported languages |
+
 ## New files in this phase
 
 | File | Type |
@@ -158,7 +172,7 @@ The English values above are the reference. Add the equivalent translations in a
 | `backend/app/data/es/__init__.py` | Package |
 | `backend/app/data/es/_types.py` | Types |
 | `backend/app/data/es/curriculum.py` | Entry point |
-| `backend/app/data/es/curriculum_a1.py` … `curriculum_c2.py` | 6 CEFR files |
+| `backend/app/data/es/curriculum_a1.py` ... `curriculum_c2.py` | 6 CEFR files |
 | `backend/app/data/it/` | Same structure (8 files) |
 | `backend/app/data/pt/` | Same structure (8 files) |
 | `frontend/src/data/es/curriculum.ts` | ES curriculum |

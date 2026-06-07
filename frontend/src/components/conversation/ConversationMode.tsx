@@ -156,11 +156,13 @@ export default function ConversationMode({
   initialContext,
   autoStart,
   cefrLevel,
+  targetLanguage,
   onClose,
 }: {
   initialContext?: ChatContextItem[]
   autoStart?: boolean
   cefrLevel?: string | null
+  targetLanguage?: string
   onClose?: () => void
 }) {
   const t = useTranslations('conversation')
@@ -309,6 +311,7 @@ export default function ConversationMode({
             : null
         if (storedVoice) authPayload.voice = storedVoice
         if (context?.length) authPayload.context = context
+        if (targetLanguage) authPayload.target_language = targetLanguage
         ws.send(JSON.stringify(authPayload))
         setStatus('live')
       }
@@ -384,7 +387,9 @@ export default function ConversationMode({
                       ? t('quotaExceededTime')
                       : msg.code === 'quota_exceeded_tokens'
                         ? t('quotaExceededTokens')
-                        : (msg.message ?? t('errorConnection'))
+                        : msg.code === 'no_active_plan'
+                          ? tCommon('noActivePlan')
+                          : (msg.message ?? t('errorConnection'))
               )
               setStatus('error')
               ws.close()
@@ -424,7 +429,7 @@ export default function ConversationMode({
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [t]
+    [t, targetLanguage]
   )
 
   // ─── Session lifecycle ────────────────────────────────────────────────────
@@ -523,8 +528,10 @@ export default function ConversationMode({
 
       {/* Memory updated toast */}
       {memoryToast && (
-        <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 fixed top-16 left-1/2 z-50 -translate-x-1/2 border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
-          {t('memoryUpdated')}
+        <div className="pointer-events-none fixed inset-x-0 top-16 z-50 flex justify-center">
+          <div className="border-fl-border bg-fl-surface text-fl-muted-1 animate-in fade-in slide-in-from-top-2 pointer-events-auto border px-4 py-2 font-mono text-xs tracking-widest uppercase shadow-lg">
+            {t('memoryUpdated')}
+          </div>
         </div>
       )}
 

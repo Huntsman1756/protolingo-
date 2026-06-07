@@ -1,4 +1,4 @@
-from app.data.curriculum import CURRICULUM
+from app.data.curriculum import get_curriculum
 from app.schemas.lessons import (
     FillBlankEvaluation,
     FreeWriteEvaluation,
@@ -11,7 +11,7 @@ from app.services.llm_adapter import llm_adapter
 
 def get_valid_grammar_slugs(target_language: str = "en-US") -> set[str]:
     """Return the set of valid grammar slugs for a given target language."""
-    curriculum = CURRICULUM.get(target_language, CURRICULUM.get("en-US", {}))
+    curriculum = get_curriculum(target_language)
     return {slug for units in curriculum.values() for unit in units for slug in unit.grammar_points}
 
 
@@ -66,7 +66,7 @@ For pronunciation exercises use this exact structure:
   "type": "pronunciation",
   "question": "Listen and repeat:",
   "options": ["Hint: focus on the specific sound or pattern"],
-  "correct": "The exact English phrase the student must pronounce.",
+  "correct": "The exact {target_language_name} phrase the student must pronounce.",
   "explanation": "What phonetic aspect this practices (e.g. -ing endings, linking sounds)"
 }}
 
@@ -119,13 +119,14 @@ Before returning, verify:
 
 FILL_BLANK_EVAL_PROMPT = """
 Student level: {cefr_level}
+Target language: {target_language_name}
 Sentence with blank: {question}
 Expected answer: {correct_answer}
 Student's answer: {student_answer}
 
-The student had to fill in the blank in the sentence above. Evaluate whether the answer is correct.
-Be lenient with minor spelling variation and case. Treat contractions as equivalent to their full forms
-(e.g. "isn't" = "is not", "I'm" = "I am", "doesn't" = "does not").
+The student had to fill in the blank in the sentence above. Evaluate whether the answer is correct
+in {target_language_name}. Be lenient with minor spelling variation and case. Treat contractions as
+equivalent to their full forms (e.g. "isn't" = "is not", "I'm" = "I am", "doesn't" = "does not").
 
 Return JSON:
 {{
@@ -145,11 +146,12 @@ If incorrect:
 
 FREE_WRITE_EVAL_PROMPT = """
 Student level: {cefr_level}
+Target language: {target_language_name}
 Exercise prompt: {prompt}
 Evaluation criteria: {criteria}
 Student's answer: {answer}
 
-Evaluate the answer and return JSON:
+Evaluate the {target_language_name} writing sample and return JSON:
 {{
   "score": 0.8,
   "feedback": "Good use of present continuous. Watch out for...",
@@ -161,11 +163,12 @@ Evaluate the answer and return JSON:
 
 PRONUNCIATION_EVAL_PROMPT = """
 Student level: {cefr_level}
+Target language: {target_language_name}
 Target phrase: {target}
 Transcribed speech: {transcription}
 
-The student was asked to repeat the target phrase aloud. The speech was transcribed by STT.
-Evaluate how accurately they pronounced the phrase and return JSON:
+The student was asked to repeat the {target_language_name} phrase aloud. The speech was
+transcribed by STT. Evaluate how accurately they pronounced the phrase and return JSON:
 {{
   "score": 0.85,
   "feedback": "Good pronunciation. The word 'working' was slightly unclear.",
@@ -232,9 +235,14 @@ async def evaluate_free_write(
     prompt: str,
     criteria: list[str],
     answer: str,
+    target_language: str = "en-US",
 ) -> FreeWriteEvaluation:
+    from app.services.language_helpers import get_language_name
+
+    target_language_name = get_language_name(target_language)
     eval_prompt = FREE_WRITE_EVAL_PROMPT.format(
         cefr_level=cefr_level,
+        target_language_name=target_language_name,
         prompt=prompt,
         criteria=", ".join(criteria),
         answer=answer,
@@ -251,9 +259,14 @@ async def evaluate_pronunciation(
     cefr_level: str,
     target: str,
     transcription: str,
+    target_language: str = "en-US",
 ) -> PronunciationEvaluation:
+    from app.services.language_helpers import get_language_name
+
+    target_language_name = get_language_name(target_language)
     eval_prompt = PRONUNCIATION_EVAL_PROMPT.format(
         cefr_level=cefr_level,
+        target_language_name=target_language_name,
         target=target,
         transcription=transcription,
     )
@@ -269,9 +282,14 @@ async def evaluate_fill_blank(
     question: str,
     correct_answer: str,
     student_answer: str,
+    target_language: str = "en-US",
 ) -> FillBlankEvaluation:
+    from app.services.language_helpers import get_language_name
+
+    target_language_name = get_language_name(target_language)
     eval_prompt = FILL_BLANK_EVAL_PROMPT.format(
         cefr_level=cefr_level,
+        target_language_name=target_language_name,
         question=question,
         correct_answer=correct_answer,
         student_answer=student_answer,
