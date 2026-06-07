@@ -44,7 +44,14 @@ export default function PrivacyPage() {
     t('s2i9'),
     t('s2i10'),
   ]
-  const s3Items = [t('s3i1'), t('s3i2'), t('s3i3'), t('s3i4'), t('s3i5'), t('s3i6')]
+  const s3Items = [
+    t('s3i1'),
+    t('s3i2'),
+    t('s3i3'),
+    t('s3i4'),
+    t('s3i5'),
+    t('s3i6'),
+  ]
 
   return (
     <div>

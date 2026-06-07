@@ -6,12 +6,12 @@ cross-user isolation, and full lesson lifecycle.
 
 from __future__ import annotations
 
-import pytest
 from unittest.mock import AsyncMock, patch
+
+import pytest
 
 from app.schemas.lessons import FillBlankEvaluation, FreeWriteEvaluation, PronunciationEvaluation
 from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError
-
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -264,9 +264,7 @@ async def test_complete_lesson_other_user_forbidden(client, test_user, db_sessio
     lesson = await _create_lesson_with_plan(db_session, owner.id)
 
     _, headers_other = test_user
-    response = await client.post(
-        f"/api/lessons/{lesson.id}/complete", headers=headers_other
-    )
+    response = await client.post(f"/api/lessons/{lesson.id}/complete", headers=headers_other)
     assert response.status_code == 404
 
 
@@ -304,9 +302,7 @@ async def test_complete_lesson_sets_completed_at(client, test_user, db_session):
 async def test_complete_lesson_with_unit_id(client, test_user, db_session):
     """Complete a lesson that has a unit_id — exercises competency scoring path."""
     user, headers = test_user
-    lesson = await _create_lesson_with_plan(
-        db_session, user.id, unit_id="a2-unit-1"
-    )
+    lesson = await _create_lesson_with_plan(db_session, user.id, unit_id="a2-unit-1")
 
     response = await client.post(f"/api/lessons/{lesson.id}/complete", headers=headers)
     assert response.status_code == 200
@@ -319,9 +315,7 @@ async def test_complete_lesson_with_scored_exercises(client, test_user, db_sessi
     from app.models.lesson import Exercise
 
     user, headers = test_user
-    lesson = await _create_lesson_with_plan(
-        db_session, user.id, unit_id="a2-unit-1"
-    )
+    lesson = await _create_lesson_with_plan(db_session, user.id, unit_id="a2-unit-1")
 
     e1 = Exercise(
         lesson_id=lesson.id,
@@ -353,9 +347,7 @@ async def test_complete_lesson_with_scored_exercises(client, test_user, db_sessi
 @pytest.mark.asyncio
 async def test_answer_exercise_requires_auth(client):
     """Answer endpoint without token returns 401."""
-    response = await client.post(
-        "/api/lessons/exercises/1/answer", json={"answer": "B"}
-    )
+    response = await client.post("/api/lessons/exercises/1/answer", json={"answer": "B"})
     assert response.status_code == 401
 
 
@@ -375,6 +367,7 @@ async def test_answer_exercise_not_found(client, test_user):
 async def test_answer_exercise_already_answered(client, test_user, db_session):
     """Answering an already-answered exercise returns 409."""
     from datetime import UTC, datetime
+
     from app.models.lesson import Exercise
 
     user, headers = test_user
@@ -571,9 +564,9 @@ async def test_answer_fill_blank_correct(client, test_user, db_session):
         correct_answer="Her",
     )
 
-    mock_eval = AsyncMock(return_value=FillBlankEvaluation(
-        is_correct=True, score=1.0, feedback="Perfect!"
-    ))
+    mock_eval = AsyncMock(
+        return_value=FillBlankEvaluation(is_correct=True, score=1.0, feedback="Perfect!")
+    )
 
     with patch("app.routers.lessons.evaluate_fill_blank", mock_eval):
         response = await client.post(
@@ -602,9 +595,11 @@ async def test_answer_fill_blank_wrong(client, test_user, db_session):
         correct_answer="Her",
     )
 
-    mock_eval = AsyncMock(return_value=FillBlankEvaluation(
-        is_correct=False, score=0.0, feedback="The correct answer is 'Her'."
-    ))
+    mock_eval = AsyncMock(
+        return_value=FillBlankEvaluation(
+            is_correct=False, score=0.0, feedback="The correct answer is 'Her'."
+        )
+    )
 
     with patch("app.routers.lessons.evaluate_fill_blank", mock_eval):
         response = await client.post(
@@ -721,9 +716,9 @@ async def test_answer_free_write_with_llm(client, test_user, db_session):
         correct_answer="Sample answer.",
     )
 
-    mock_eval = AsyncMock(return_value=FreeWriteEvaluation(
-        score=0.8, feedback="Good grammar.", corrections=[]
-    ))
+    mock_eval = AsyncMock(
+        return_value=FreeWriteEvaluation(score=0.8, feedback="Good grammar.", corrections=[])
+    )
 
     with patch("app.routers.lessons.evaluate_free_write", mock_eval):
         response = await client.post(
@@ -751,9 +746,9 @@ async def test_answer_free_write_no_criteria_in_options(client, test_user, db_se
         correct_answer="Sample.",
     )
 
-    mock_eval = AsyncMock(return_value=FreeWriteEvaluation(
-        score=0.7, feedback="Decent.", corrections=[]
-    ))
+    mock_eval = AsyncMock(
+        return_value=FreeWriteEvaluation(score=0.7, feedback="Decent.", corrections=[])
+    )
 
     with patch("app.routers.lessons.evaluate_free_write", mock_eval):
         response = await client.post(
@@ -813,9 +808,11 @@ async def test_answer_pronunciation_with_llm(client, test_user, db_session):
         correct_answer="I am working today.",
     )
 
-    mock_eval = AsyncMock(return_value=PronunciationEvaluation(
-        score=0.85, feedback="Good pronunciation.", is_correct=True
-    ))
+    mock_eval = AsyncMock(
+        return_value=PronunciationEvaluation(
+            score=0.85, feedback="Good pronunciation.", is_correct=True
+        )
+    )
 
     with patch("app.routers.lessons.evaluate_pronunciation", mock_eval):
         response = await client.post(
@@ -983,9 +980,7 @@ async def test_full_lesson_lifecycle(client, test_user, db_session):
     assert r_dup.status_code == 409
 
     # Step 5: Complete lesson
-    r_complete = await client.post(
-        f"/api/lessons/{lesson.id}/complete", headers=headers
-    )
+    r_complete = await client.post(f"/api/lessons/{lesson.id}/complete", headers=headers)
     assert r_complete.status_code == 200
     assert r_complete.json()["is_completed"] is True
 
@@ -996,9 +991,7 @@ async def test_lifecycle_lesson_with_unit(client, test_user, db_session):
     from app.models.lesson import Exercise
 
     user, headers = test_user
-    lesson = await _create_lesson_with_plan(
-        db_session, user.id, unit_id="a2-unit-1"
-    )
+    lesson = await _create_lesson_with_plan(db_session, user.id, unit_id="a2-unit-1")
 
     e1 = Exercise(
         lesson_id=lesson.id,
@@ -1019,8 +1012,6 @@ async def test_lifecycle_lesson_with_unit(client, test_user, db_session):
     )
 
     # Complete with unit — triggers competency path
-    r_complete = await client.post(
-        f"/api/lessons/{lesson.id}/complete", headers=headers
-    )
+    r_complete = await client.post(f"/api/lessons/{lesson.id}/complete", headers=headers)
     assert r_complete.status_code == 200
     assert r_complete.json()["is_completed"] is True

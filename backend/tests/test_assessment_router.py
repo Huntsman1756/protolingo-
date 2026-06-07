@@ -11,13 +11,6 @@ from unittest.mock import patch
 import pytest
 from httpx import AsyncClient
 
-from app.schemas.assessment import (
-    AssessmentResult,
-    FreeWriteEvalRequest,
-    LevelTestResult,
-    LevelTestSubmitRequest,
-)
-from app.services.assessment import evaluate_adaptive_quiz
 from app.services.llm_adapter import (
     LLMError,
     LLMTimeoutError,
@@ -249,7 +242,9 @@ async def test_submit_assessment_legacy_key_fallback(client: AsyncClient, test_u
         assert response.json()["cefr_level"] == "B1"
 
 
-async def test_submit_assessment_session_deleted_after_use(client: AsyncClient, test_user, mock_redis):
+async def test_submit_assessment_session_deleted_after_use(
+    client: AsyncClient, test_user, mock_redis
+):
     """POST /submit deletes the Redis session after successful evaluation."""
     user, headers = test_user
 
@@ -293,9 +288,7 @@ async def test_submit_assessment_session_deleted_after_use(client: AsyncClient, 
         assert await mock_redis.get(key) is None  # session deleted
 
 
-async def test_submit_assessment_no_session_after_legacy_deletion(
-    client: AsyncClient, test_user
-):
+async def test_submit_assessment_no_session_after_legacy_deletion(client: AsyncClient, test_user):
     """POST /submit returns 404 when no session exists at all (no scoped, no legacy)."""
     _user, headers = test_user
 
@@ -643,11 +636,13 @@ async def test_free_write_with_existing_session_gets_language(
     await mock_redis.setex(
         f"assessment:{user.id}:en-US",
         1800,
-        json.dumps({
-            "session_id": "sess-1",
-            "quiz": {"questions": []},
-            "target_language": "en-US",
-        }),
+        json.dumps(
+            {
+                "session_id": "sess-1",
+                "quiz": {"questions": []},
+                "target_language": "en-US",
+            }
+        ),
     )
 
     mock_free_write_result = '{"adjusted_level": "A2", "writing_score": 0.70, "analysis": "OK", "strengths": [], "weaknesses": []}'  # noqa: E501
@@ -797,8 +792,9 @@ async def test_complete_deactivates_previous_active_plans(
     """
     user, headers = test_user
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import delete
+
+    from app.models.study_plan import StudyPlan
 
     # Call /complete for en-US → creates an active plan on user_language_id=1
     resp1 = await client.post(
@@ -889,9 +885,7 @@ async def test_level_test_questions_requires_auth(client: AsyncClient):
 async def test_level_test_questions_plan_not_found(client: AsyncClient, test_user):
     """GET /level-test/questions/{id} returns 404 for non-existent plan."""
     _user, headers = test_user
-    response = await client.get(
-        "/api/assessment/level-test/questions/99999", headers=headers
-    )
+    response = await client.get("/api/assessment/level-test/questions/99999", headers=headers)
     assert response.status_code == 404
     assert "not found" in response.json()["detail"]
 
@@ -901,8 +895,8 @@ async def test_level_test_questions_wrong_user(client: AsyncClient, test_user, d
     _user, headers = test_user
 
     # Create a plan for a different user
-    from app.models.user import User
     from app.core.security import hash_password
+    from app.models.user import User
 
     other_user = User(
         username="other",
@@ -918,11 +912,13 @@ async def test_level_test_questions_wrong_user(client: AsyncClient, test_user, d
     await db_session.flush()
 
     from app.models.user_language import UserLanguage
+
     ul = UserLanguage(user_id=other_user.id, target_language="en-US", is_active=True)
     db_session.add(ul)
     await db_session.flush()
 
     from app.models.study_plan import StudyPlan
+
     other_plan = StudyPlan(
         user_id=other_user.id,
         user_language_id=ul.id,
@@ -949,8 +945,9 @@ async def test_level_test_questions_success(client: AsyncClient, test_user_with_
     user, headers = test_user_with_plan
 
     # Get the plan from the fixture
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -982,8 +979,9 @@ async def test_level_test_questions_handles_llm_timeout(
     """GET /level-test/questions/{id} returns 504 on LLM timeout."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1009,8 +1007,9 @@ async def test_level_test_questions_handles_llm_unavailable(
     """GET /level-test/questions/{id} returns 503 on LLM unavailable."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1036,8 +1035,9 @@ async def test_level_test_questions_handles_llm_generic_error(
     """GET /level-test/questions/{id} returns 502 on generic LLM error."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1088,8 +1088,9 @@ async def test_level_test_submit_high_score_advance(
     """POST /level-test/submit with >= 75% score recommends 'advance' with next_level."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1111,12 +1112,14 @@ async def test_level_test_submit_high_score_advance(
     for i in range(15):
         skill = ["grammar", "vocabulary", "reading"][i % 3]
         correct = (i % 5) != 0  # 4 of 5 correct per skill
-        answers.append({
-            "question_id": f"q{i}",
-            "skill": skill,
-            "difficulty": "A1",
-            "correct": correct,
-        })
+        answers.append(
+            {
+                "question_id": f"q{i}",
+                "skill": skill,
+                "difficulty": "A1",
+                "correct": correct,
+            }
+        )
 
     response = await client.post(
         "/api/assessment/level-test/submit",
@@ -1141,8 +1144,9 @@ async def test_level_test_submit_medium_score_extend(
     """POST /level-test/submit with 55-74% score recommends 'extend'."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1155,12 +1159,14 @@ async def test_level_test_submit_medium_score_extend(
     for i in range(15):
         skill = ["grammar", "vocabulary", "reading"][i % 3]
         correct = i % 5 < 3  # 3 of 5 correct per skill
-        answers.append({
-            "question_id": f"q{i}",
-            "skill": skill,
-            "difficulty": "A1",
-            "correct": correct,
-        })
+        answers.append(
+            {
+                "question_id": f"q{i}",
+                "skill": skill,
+                "difficulty": "A1",
+                "correct": correct,
+            }
+        )
 
     response = await client.post(
         "/api/assessment/level-test/submit",
@@ -1179,8 +1185,9 @@ async def test_level_test_submit_low_score_repeat(
     """POST /level-test/submit with < 55% score recommends 'repeat'."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1193,12 +1200,14 @@ async def test_level_test_submit_low_score_repeat(
     for i in range(15):
         skill = ["grammar", "vocabulary", "reading"][i % 3]
         correct = i % 5 == 0  # 1 of 5 correct per skill
-        answers.append({
-            "question_id": f"q{i}",
-            "skill": skill,
-            "difficulty": "A1",
-            "correct": correct,
-        })
+        answers.append(
+            {
+                "question_id": f"q{i}",
+                "skill": skill,
+                "difficulty": "A1",
+                "correct": correct,
+            }
+        )
 
     response = await client.post(
         "/api/assessment/level-test/submit",
@@ -1237,9 +1246,7 @@ async def test_level_test_result_requires_auth(client: AsyncClient):
 async def test_level_test_result_plan_not_found(client: AsyncClient, test_user):
     """GET /level-test/result/{id} returns 404 for non-existent plan."""
     _user, headers = test_user
-    response = await client.get(
-        "/api/assessment/level-test/result/99999", headers=headers
-    )
+    response = await client.get("/api/assessment/level-test/result/99999", headers=headers)
     assert response.status_code == 404
 
 
@@ -1247,8 +1254,9 @@ async def test_level_test_result_not_taken(client: AsyncClient, test_user_with_p
     """GET /level-test/result/{id} returns 404 if test hasn't been taken yet."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1269,8 +1277,9 @@ async def test_level_test_result_advance(client: AsyncClient, test_user_with_pla
     """GET /level-test/result/{id} returns advance recommendation with next_level."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1299,8 +1308,9 @@ async def test_level_test_result_repeat(client: AsyncClient, test_user_with_plan
     """GET /level-test/result/{id} returns repeat recommendation without next_level."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1328,8 +1338,9 @@ async def test_level_test_result_extend(client: AsyncClient, test_user_with_plan
     """GET /level-test/result/{id} returns extend recommendation without next_level."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1357,9 +1368,9 @@ async def test_level_test_result_c2_advance(client: AsyncClient, test_user_with_
     """GET /level-test/result returns advance for C2 with next_level=None (no higher level)."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
-    from app.models.user_language import UserLanguage
+
+    from app.models.study_plan import StudyPlan
 
     # Get the user's plan and update its level to C2
     plan = (
@@ -1390,8 +1401,9 @@ async def test_level_test_result_null_score_defaults_to_zero(
     """GET /level-test/result with null score defaults to 0.0."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(
@@ -1419,8 +1431,9 @@ async def test_level_test_result_null_recommendation_defaults_to_repeat(
     """GET /level-test/result with null recommendation defaults to 'repeat'."""
     user, headers = test_user_with_plan
 
-    from app.models.study_plan import StudyPlan
     from sqlalchemy import select
+
+    from app.models.study_plan import StudyPlan
 
     plan = (
         await db_session.execute(

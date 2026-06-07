@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
 import json
 from unittest.mock import AsyncMock, MagicMock, patch
 
@@ -228,21 +227,21 @@ class TestExceptions:
         assert str(e) == "something went wrong"
 
     def test_llm_timeout_error(self):
-        from app.services.llm_adapter import LLMTimeoutError, LLMError
+        from app.services.llm_adapter import LLMError, LLMTimeoutError
 
         e = LLMTimeoutError("timed out")
         assert isinstance(e, LLMError)
         assert str(e) == "timed out"
 
     def test_llm_unavailable_error(self):
-        from app.services.llm_adapter import LLMUnavailableError, LLMError
+        from app.services.llm_adapter import LLMError, LLMUnavailableError
 
         e = LLMUnavailableError("down")
         assert isinstance(e, LLMError)
         assert str(e) == "down"
 
     def test_llm_response_error_with_raw(self):
-        from app.services.llm_adapter import LLMResponseError, LLMError
+        from app.services.llm_adapter import LLMError, LLMResponseError
 
         e = LLMResponseError("bad json", raw_response="<html>error</html>")
         assert isinstance(e, LLMError)
@@ -305,12 +304,8 @@ class TestLLMAdapterInit:
 
     def test_anthropic_provider(self, monkeypatch):
         monkeypatch.setattr("app.core.config.settings.LLM_PROVIDER", "anthropic")
-        monkeypatch.setattr(
-            "app.core.config.settings.ANTHROPIC_API_KEY", "sk-ant-test"
-        )
-        monkeypatch.setattr(
-            "app.core.config.settings.ANTHROPIC_MODEL", "claude-3-5-haiku-latest"
-        )
+        monkeypatch.setattr("app.core.config.settings.ANTHROPIC_API_KEY", "sk-ant-test")
+        monkeypatch.setattr("app.core.config.settings.ANTHROPIC_MODEL", "claude-3-5-haiku-latest")
 
         from app.services.llm_adapter import LLMAdapter
 
@@ -406,7 +401,7 @@ class TestChatNonStreaming:
 
         from app.services.llm_adapter import LLMAdapter
 
-        special = 'emoji 🎉 unicode ñ ü chinese 中文 math ∑∏∫'
+        special = "emoji 🎉 unicode ñ ü chinese 中文 math ∑∏∫"
         msg = MagicMock()
         msg.content = special
         response = MagicMock()
@@ -511,12 +506,8 @@ class TestChatStreaming:
 
 def _make_anthropic_settings(monkeypatch):
     monkeypatch.setattr("app.core.config.settings.LLM_PROVIDER", "anthropic")
-    monkeypatch.setattr(
-        "app.core.config.settings.ANTHROPIC_API_KEY", "sk-ant-test"
-    )
-    monkeypatch.setattr(
-        "app.core.config.settings.ANTHROPIC_MODEL", "claude-3-5-haiku-latest"
-    )
+    monkeypatch.setattr("app.core.config.settings.ANTHROPIC_API_KEY", "sk-ant-test")
+    monkeypatch.setattr("app.core.config.settings.ANTHROPIC_MODEL", "claude-3-5-haiku-latest")
 
 
 class TestAnthropicChat:
@@ -595,9 +586,7 @@ class TestAnthropicChat:
             new_callable=AsyncMock,
             return_value=resp,
         ):
-            result = await adapter.chat(
-                [{"role": "user", "content": "Hi"}], stream=True
-            )
+            result = await adapter.chat([{"role": "user", "content": "Hi"}], stream=True)
             assert isinstance(result, LLMStream)
 
     @pytest.mark.asyncio
@@ -617,11 +606,13 @@ class TestAnthropicChat:
             new_callable=AsyncMock,
             return_value=resp,
         ) as mock_create:
-            await adapter.chat([
-                {"role": "system", "content": "You are helpful."},
-                {"role": "user", "content": "Hi"},
-                {"role": "system", "content": "Also be concise."},
-            ])
+            await adapter.chat(
+                [
+                    {"role": "system", "content": "You are helpful."},
+                    {"role": "user", "content": "Hi"},
+                    {"role": "system", "content": "Also be concise."},
+                ]
+            )
             call_kwargs = mock_create.call_args.kwargs
             assert "system" in call_kwargs
             assert "You are helpful." in call_kwargs["system"]
@@ -645,9 +636,11 @@ class TestAnthropicChat:
             new_callable=AsyncMock,
             return_value=resp,
         ) as mock_create:
-            await adapter.chat([
-                {"role": "system", "content": "Generate JSON."},
-            ])
+            await adapter.chat(
+                [
+                    {"role": "system", "content": "Generate JSON."},
+                ]
+            )
             call_kwargs = mock_create.call_args.kwargs
             assert len(call_kwargs["messages"]) == 1
             assert call_kwargs["messages"][0]["role"] == "user"
@@ -687,6 +680,7 @@ class TestAnthropicErrorMapping:
         _make_anthropic_settings(monkeypatch)
 
         import anthropic as _anthropic
+
         from app.services.llm_adapter import LLMAdapter, LLMTimeoutError
 
         adapter = LLMAdapter()
@@ -703,8 +697,9 @@ class TestAnthropicErrorMapping:
     async def test_connection_error_mapped(self, monkeypatch):
         _make_anthropic_settings(monkeypatch)
 
-        import httpx
         import anthropic as _anthropic
+        import httpx
+
         from app.services.llm_adapter import LLMAdapter, LLMUnavailableError
 
         req = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
@@ -722,8 +717,9 @@ class TestAnthropicErrorMapping:
     async def test_rate_limit_error_mapped(self, monkeypatch):
         _make_anthropic_settings(monkeypatch)
 
-        import httpx
         import anthropic as _anthropic
+        import httpx
+
         from app.services.llm_adapter import LLMAdapter, LLMUnavailableError
 
         req = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
@@ -742,8 +738,9 @@ class TestAnthropicErrorMapping:
     async def test_generic_status_error_mapped(self, monkeypatch):
         _make_anthropic_settings(monkeypatch)
 
-        import httpx
         import anthropic as _anthropic
+        import httpx
+
         from app.services.llm_adapter import LLMAdapter, LLMError
 
         req = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
@@ -872,8 +869,9 @@ class TestCallWithRetry:
         """When an LLMError subclass is raised, it should be preserved (not re-wrapped)."""
         _make_anthropic_settings(monkeypatch)
 
-        import httpx
         import anthropic as _anthropic
+        import httpx
+
         from app.services.llm_adapter import LLMAdapter, LLMUnavailableError
 
         req = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
