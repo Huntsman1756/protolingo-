@@ -32,6 +32,12 @@ interface ProgressSummary {
   skills: Record<string, number>
 }
 
+interface FlashcardProgress {
+  id: number
+  word: string
+  repetitions: number
+}
+
 interface StudyPlan {
   id: number
   cefr_level: string
@@ -159,19 +165,23 @@ export default function ProgressPage() {
   const [plan, setPlan] = useState<StudyPlan | null>(null)
   const [loading, setLoading] = useState(true)
   const [levelUnits, setLevelUnits] = useState<CurriculumUnit[]>([])
+  const [flashcards, setFlashcards] = useState<FlashcardProgress[]>([])
 
   useEffect(() => {
     async function load() {
       try {
-        const [sumRes, compRes, planRes] = await Promise.all([
+        const [sumRes, compRes, planRes, flashRes] = await Promise.all([
           apiFetch('/api/progress/summary'),
           apiFetch('/api/progress/competencies'),
           apiFetch('/api/study-plan/current'),
+          apiFetch('/api/flashcards/all').catch(() => null),
         ])
         if (sumRes.ok) setSummary((await sumRes.json()) as ProgressSummary)
         if (compRes.ok)
           setCompetencies((await compRes.json()) as CompetencyRecord[])
         if (planRes.ok) setPlan((await planRes.json()) as StudyPlan)
+        if (flashRes?.ok)
+          setFlashcards((await flashRes.json()) as FlashcardProgress[])
       } catch {
         /* ignore */
       } finally {
@@ -225,6 +235,16 @@ export default function ProgressPage() {
   const vocabSets = getVocabularySets(targetLanguageCode)
   const levelVocabSets = vocabSets.filter((s) => s.level === cefrLevel)
   const totalLevelWords = levelVocabSets.reduce((a, s) => a + s.words.length, 0)
+
+  const masteredWordSet = new Set(
+    flashcards.filter((f) => f.repetitions > 0).map((f) => f.word.toLowerCase())
+  )
+  const totalMastered = levelVocabSets.reduce(
+    (a, s) =>
+      a +
+      s.words.filter((w) => masteredWordSet.has(w.word.toLowerCase())).length,
+    0
+  )
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">
@@ -314,37 +334,42 @@ export default function ProgressPage() {
             </span>
             <div className="bg-fl-border h-px flex-1" />
             <span className="text-fl-label text-fl-muted-3 font-mono">
-              {totalLevelWords} {tVocab('words')}
+              {totalMastered}/{totalLevelWords} {tVocab('words')}
             </span>
           </div>
 
           <div className="border-fl-border bg-fl-surface divide-fl-border divide-y border">
-            {levelVocabSets.map((s) => (
-              <div key={s.id} className="flex items-center gap-4 px-5 py-3">
-                <Link
-                  href={`/vocabulary/${s.id}`}
-                  className="text-fl-muted-1 hover:text-fl-fg min-w-0 flex-1 truncate font-mono text-xs transition-colors"
-                >
-                  {s.topic}
-                </Link>
-                <div className="flex items-center gap-3">
-                  <div className="bg-fl-border h-1.5 w-24">
-                    <div
-                      className="bg-fl-accent h-full"
-                      style={{ width: '0%' }}
-                    />
+            {levelVocabSets.map((s) => {
+              const mastered = s.words.filter((w) =>
+                masteredWordSet.has(w.word.toLowerCase())
+              ).length
+              const pct =
+                s.words.length > 0
+                  ? Math.round((mastered / s.words.length) * 100)
+                  : 0
+              return (
+                <div key={s.id} className="flex items-center gap-4 px-5 py-3">
+                  <Link
+                    href={`/vocabulary/${s.id}`}
+                    className="text-fl-muted-1 hover:text-fl-fg min-w-0 flex-1 truncate font-mono text-xs transition-colors"
+                  >
+                    {s.topic}
+                  </Link>
+                  <div className="flex items-center gap-3">
+                    <div className="bg-fl-border h-1.5 w-24">
+                      <div
+                        className="bg-fl-accent h-full transition-all"
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <span className="text-fl-label text-fl-muted-3 w-12 text-right font-mono">
+                      {mastered}/{s.words.length}
+                    </span>
                   </div>
-                  <span className="text-fl-label text-fl-muted-3 w-12 text-right font-mono">
-                    {s.words.length} {tVocab('words')}
-                  </span>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
-
-          <p className="text-fl-label text-fl-muted-4 font-mono">
-            {t('addToFlashcards')}
-          </p>
         </section>
       )}
 
