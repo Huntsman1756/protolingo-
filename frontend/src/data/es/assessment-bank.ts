@@ -1,4 +1,5 @@
 import type { CEFRLevel } from '@/data/grammar'
+import { CEFR_LEVELS } from '../curriculum'
 
 export type Skill = 'grammar' | 'vocabulary' | 'reading'
 
@@ -1104,7 +1105,7 @@ export function adjustLevel(
   current: CEFRLevel,
   direction: 'up' | 'down'
 ): CEFRLevel {
-  const levels: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+  const levels = CEFR_LEVELS
   const idx = levels.indexOf(current)
   if (direction === 'up' && idx < levels.length - 1) return levels[idx + 1]
   if (direction === 'down' && idx > 0) return levels[idx - 1]

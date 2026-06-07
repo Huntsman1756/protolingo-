@@ -1,0 +1,46 @@
+from fastapi import APIRouter, Query
+
+from app.data._types import CurriculumUnit
+from app.data.curriculum import get_curriculum, get_curriculum_units
+from app.schemas.curriculum import CurriculumResponse, CurriculumUnitResponse
+
+router = APIRouter(prefix="/api/curriculum", tags=["curriculum"])
+
+
+def _to_response(u: CurriculumUnit) -> dict:
+    return CurriculumUnitResponse(
+        id=u.id,
+        level=u.level,
+        unit_number=u.unit_number,
+        title=u.title,
+        default_weeks=u.default_weeks,
+        grammar_points=u.grammar_points,
+        vocabulary_set_ids=u.vocabulary_set_ids,
+        lesson_types=list(u.lesson_types),
+        prerequisite_unit=u.prerequisite_unit,
+        competency_checklist=u.competency_checklist,
+    )
+
+
+@router.get("", response_model=CurriculumResponse)
+def get_all_curriculum(
+    language: str = Query("en-US", description="BCP-47 target language code"),
+) -> dict:
+    curriculum = get_curriculum(language)
+    return {
+        "A1": [_to_response(u) for u in curriculum["A1"]],
+        "A2": [_to_response(u) for u in curriculum["A2"]],
+        "B1": [_to_response(u) for u in curriculum["B1"]],
+        "B2": [_to_response(u) for u in curriculum["B2"]],
+        "C1": [_to_response(u) for u in curriculum["C1"]],
+        "C2": [_to_response(u) for u in curriculum["C2"]],
+    }
+
+
+@router.get("/{level}", response_model=list[CurriculumUnitResponse])
+def get_curriculum_by_level(
+    level: str,
+    language: str = Query("en-US", description="BCP-47 target language code"),
+) -> list:
+    units = get_curriculum_units(level, language)
+    return [_to_response(u) for u in units]

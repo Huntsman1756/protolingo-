@@ -103,6 +103,7 @@ export default function PlanPage() {
   const [activeDrawer, setActiveDrawer] = useState<CurriculumUnit | null>(null)
   const [activeLessonId, setActiveLessonId] = useState<number | null>(null)
   const [pendingLessons, setPendingLessons] = useState<PendingLesson[]>([])
+  const [units, setUnits] = useState<CurriculumUnit[]>([])
 
   const loadPlan = useCallback(async () => {
     setLoading(true)
@@ -166,6 +167,14 @@ export default function PlanPage() {
     void loadPlan()
   }, [loadPlan])
 
+  useEffect(() => {
+    if (plan?.cefr_level && activeLanguage?.code) {
+      getCurriculumUnits(plan.cefr_level, activeLanguage.code)
+        .then(setUnits)
+        .catch(() => setUnits([]))
+    }
+  }, [plan?.cefr_level, activeLanguage?.code])
+
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -195,7 +204,6 @@ export default function PlanPage() {
   }
 
   const level = plan.cefr_level as CEFRLevel
-  const units = getCurriculumUnits(level, activeLanguage?.code)
   const allLessons = flattenLessons(plan)
   const byUnit = lessonsByUnit(allLessons)
   const currentUnitId = plan.current_unit

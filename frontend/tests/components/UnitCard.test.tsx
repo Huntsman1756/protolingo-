@@ -213,7 +213,7 @@ const mockUnit: CurriculumUnit = {
   level: 'A1',
   unit_number: 1,
   title: 'Greetings & Introductions',
-  default_weeks: [1, 2],
+  default_weeks: 2,
   grammar_points: ['presente de indicativo', 'verbos ser/estar'],
   vocabulary_set_ids: ['v1', 'v2'],
   lesson_types: ['grammar', 'vocabulary', 'reading'],

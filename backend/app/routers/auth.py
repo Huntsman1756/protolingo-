@@ -90,6 +90,7 @@ async def register(
         target_language=data.target_language,
         role=role,
         is_active=True,
+        is_verified=not settings.EMAIL_ENABLED,
     )
     db.add(user)
     await db.commit()
