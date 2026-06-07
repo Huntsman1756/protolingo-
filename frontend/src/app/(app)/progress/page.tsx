@@ -158,6 +158,7 @@ export default function ProgressPage() {
   const [competencies, setCompetencies] = useState<CompetencyRecord[]>([])
   const [plan, setPlan] = useState<StudyPlan | null>(null)
   const [loading, setLoading] = useState(true)
+  const [levelUnits, setLevelUnits] = useState<CurriculumUnit[]>([])
 
   useEffect(() => {
     async function load() {
@@ -181,6 +182,14 @@ export default function ProgressPage() {
   }, [activeLanguage?.code])
 
   const targetLanguageCode = activeLanguage?.code ?? 'en-US'
+
+  useEffect(() => {
+    if (plan?.cefr_level) {
+      getCurriculumUnits(plan.cefr_level, targetLanguageCode)
+        .then(setLevelUnits)
+        .catch(() => setLevelUnits([]))
+    }
+  }, [plan?.cefr_level, targetLanguageCode])
 
   const compMap = Object.fromEntries(competencies.map((c) => [c.unit_id, c]))
 
@@ -213,7 +222,6 @@ export default function ProgressPage() {
   }
 
   const cefrLevel = plan.cefr_level as CEFRLevel
-  const levelUnits = getCurriculumUnits(cefrLevel, targetLanguageCode)
   const vocabSets = getVocabularySets(targetLanguageCode)
   const levelVocabSets = vocabSets.filter((s) => s.level === cefrLevel)
   const totalLevelWords = levelVocabSets.reduce((a, s) => a + s.words.length, 0)

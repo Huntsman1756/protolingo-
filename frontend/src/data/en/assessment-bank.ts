@@ -1,5 +1,5 @@
 import type { CEFRLevel } from './grammar'
-import { CEFR_LEVELS } from './curriculum'
+import { CEFR_LEVELS } from '../curriculum'
 
 export interface AssessmentQuestion {
   id: string // e.g. "g-a1-001"
