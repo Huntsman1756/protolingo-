@@ -158,8 +158,9 @@ class TestGetQuotaStatus:
     @pytest.mark.asyncio
     async def test_all_zero_when_empty(self, redis_mock):
         """Fresh Redis returns zeros across all counters."""
-        status = await get_quota_status(redis_mock, user_id=1, weekly_limit=5,
-                                         daily_minutes_limit=30, weekly_minutes_limit=120)
+        status = await get_quota_status(
+            redis_mock, user_id=1, weekly_limit=5, daily_minutes_limit=30, weekly_minutes_limit=120
+        )
         assert status["sessions_this_week"] == 0
         assert status["sessions_limit"] == 5
         assert status["sessions_unlimited"] is False
@@ -176,8 +177,9 @@ class TestGetQuotaStatus:
         await redis_mock.set(_week_key(1), "3")
         await redis_mock.set(_day_key(1), "120")  # 2 minutes
         await redis_mock.set(_weekly_seconds_key(1), "900")  # 15 minutes
-        status = await get_quota_status(redis_mock, user_id=1, weekly_limit=7,
-                                         daily_minutes_limit=45, weekly_minutes_limit=200)
+        status = await get_quota_status(
+            redis_mock, user_id=1, weekly_limit=7, daily_minutes_limit=45, weekly_minutes_limit=200
+        )
         assert status["sessions_this_week"] == 3
         assert status["minutes_today"] == 2
         assert status["minutes_this_week"] == 15
@@ -185,8 +187,9 @@ class TestGetQuotaStatus:
     @pytest.mark.asyncio
     async def test_unlimited_flags_when_limit_is_zero(self, redis_mock):
         """A limit of 0 means unlimited across all three limits."""
-        status = await get_quota_status(redis_mock, user_id=1, weekly_limit=0,
-                                         daily_minutes_limit=0, weekly_minutes_limit=0)
+        status = await get_quota_status(
+            redis_mock, user_id=1, weekly_limit=0, daily_minutes_limit=0, weekly_minutes_limit=0
+        )
         assert status["sessions_unlimited"] is True
         assert status["time_unlimited"] is True
         assert status["weekly_minutes_unlimited"] is True
@@ -197,8 +200,9 @@ class TestGetQuotaStatus:
     @pytest.mark.asyncio
     async def test_mixed_limits_some_unlimited(self, redis_mock):
         """One limit zero while others have caps still shows correct flags."""
-        status = await get_quota_status(redis_mock, user_id=1, weekly_limit=3,
-                                         daily_minutes_limit=0, weekly_minutes_limit=60)
+        status = await get_quota_status(
+            redis_mock, user_id=1, weekly_limit=3, daily_minutes_limit=0, weekly_minutes_limit=60
+        )
         assert status["sessions_unlimited"] is False
         assert status["time_unlimited"] is True
         assert status["weekly_minutes_unlimited"] is False
@@ -206,8 +210,9 @@ class TestGetQuotaStatus:
     @pytest.mark.asyncio
     async def test_default_weekly_minutes_limit(self, redis_mock):
         """Default weekly_minutes_limit is 0 (unlimited)."""
-        status = await get_quota_status(redis_mock, user_id=1, weekly_limit=5,
-                                         daily_minutes_limit=30)
+        status = await get_quota_status(
+            redis_mock, user_id=1, weekly_limit=5, daily_minutes_limit=30
+        )
         assert status["weekly_minutes_limit"] == 0
         assert status["weekly_minutes_unlimited"] is True
 
@@ -215,8 +220,9 @@ class TestGetQuotaStatus:
     async def test_minutes_floor_division(self, redis_mock):
         """Seconds that don't form full minutes are truncated (floor division)."""
         await redis_mock.set(_day_key(1), "119")  # 1 full minute + 59s
-        status = await get_quota_status(redis_mock, user_id=1, weekly_limit=5,
-                                         daily_minutes_limit=30)
+        status = await get_quota_status(
+            redis_mock, user_id=1, weekly_limit=5, daily_minutes_limit=30
+        )
         assert status["minutes_today"] == 1  # floor division
 
     @pytest.mark.asyncio
@@ -224,8 +230,9 @@ class TestGetQuotaStatus:
         """High values are reported correctly."""
         await redis_mock.set(_week_key(1), "999")
         await redis_mock.set(_day_key(1), "36000")  # 600 minutes
-        status = await get_quota_status(redis_mock, user_id=1, weekly_limit=1000,
-                                         daily_minutes_limit=600)
+        status = await get_quota_status(
+            redis_mock, user_id=1, weekly_limit=1000, daily_minutes_limit=600
+        )
         assert status["sessions_this_week"] == 999
         assert status["minutes_today"] == 600
 
@@ -239,8 +246,9 @@ class TestCheckAndIncrementSessions:
     @pytest.mark.asyncio
     async def test_unlimited_always_allowed(self, redis_mock):
         """When weekly_limit is 0, sessions are always allowed."""
-        allowed, used, limit = await check_and_increment_sessions(redis_mock, user_id=1,
-                                                                   weekly_limit=0)
+        allowed, used, limit = await check_and_increment_sessions(
+            redis_mock, user_id=1, weekly_limit=0
+        )
         assert allowed is True
         assert used == 0
         assert limit == 0
@@ -248,8 +256,9 @@ class TestCheckAndIncrementSessions:
     @pytest.mark.asyncio
     async def test_first_session_allowed(self, redis_mock):
         """First session of the week is always allowed when limit > 0."""
-        allowed, used, limit = await check_and_increment_sessions(redis_mock, user_id=1,
-                                                                   weekly_limit=5)
+        allowed, used, limit = await check_and_increment_sessions(
+            redis_mock, user_id=1, weekly_limit=5
+        )
         assert allowed is True
         assert used == 0
         assert limit == 5
@@ -267,8 +276,9 @@ class TestCheckAndIncrementSessions:
     async def test_used_before_reflects_previous_value(self, redis_mock):
         """used_before is the value BEFORE increment, not after."""
         await redis_mock.set(_week_key(2), "2")
-        allowed, used, limit = await check_and_increment_sessions(redis_mock, user_id=2,
-                                                                   weekly_limit=5)
+        allowed, used, limit = await check_and_increment_sessions(
+            redis_mock, user_id=2, weekly_limit=5
+        )
         assert used == 2  # before incr
         assert int(await redis_mock.get(_week_key(2))) == 3  # after incr
 
@@ -276,8 +286,9 @@ class TestCheckAndIncrementSessions:
     async def test_denied_when_at_limit(self, redis_mock):
         """When current >= limit, session is denied and counter does NOT increment."""
         await redis_mock.set(_week_key(3), "3")
-        allowed, used, limit = await check_and_increment_sessions(redis_mock, user_id=3,
-                                                                   weekly_limit=3)
+        allowed, used, limit = await check_and_increment_sessions(
+            redis_mock, user_id=3, weekly_limit=3
+        )
         assert allowed is False
         assert used == 3
         assert limit == 3
@@ -288,16 +299,18 @@ class TestCheckAndIncrementSessions:
     async def test_denied_when_over_limit(self, redis_mock):
         """When current > limit (edge case), session is denied."""
         await redis_mock.set(_week_key(4), "10")
-        allowed, used, limit = await check_and_increment_sessions(redis_mock, user_id=4,
-                                                                   weekly_limit=3)
+        allowed, used, limit = await check_and_increment_sessions(
+            redis_mock, user_id=4, weekly_limit=3
+        )
         assert allowed is False
         assert int(await redis_mock.get(_week_key(4))) == 10  # unchanged
 
     @pytest.mark.asyncio
     async def test_first_session_sets_ttl(self, redis_mock):
         """First increment (new_val == 1) sets expire TTL on the key."""
-        allowed, used, limit = await check_and_increment_sessions(redis_mock, user_id=5,
-                                                                   weekly_limit=5)
+        allowed, used, limit = await check_and_increment_sessions(
+            redis_mock, user_id=5, weekly_limit=5
+        )
         assert allowed is True
         ttl = await redis_mock.ttl(_week_key(5))
         assert ttl >= 1  # TTL was set
@@ -314,7 +327,7 @@ class TestCheckAndIncrementSessions:
         # First call (key starts empty): get returns None, incr returns 1, sets TTL
         # Second call: get returns 1, incr returns 2, does NOT set TTL
         await check_and_increment_sessions(redis_mock, user_id=6, weekly_limit=5)
-        ttl_first = await redis_mock.ttl(first_key)
+        _ = await redis_mock.ttl(first_key)
         await redis_mock.expire(first_key, 12345)  # override TTL
         await check_and_increment_sessions(redis_mock, user_id=6, weekly_limit=5)
         ttl_second = await redis_mock.ttl(first_key)
@@ -324,11 +337,11 @@ class TestCheckAndIncrementSessions:
     @pytest.mark.asyncio
     async def test_limit_exactly_one(self, redis_mock):
         """With limit=1, first call allowed, second denied."""
-        allowed1, _, _ = await check_and_increment_sessions(redis_mock, user_id=7,
-                                                             weekly_limit=1)
+        allowed1, _, _ = await check_and_increment_sessions(redis_mock, user_id=7, weekly_limit=1)
         assert allowed1 is True
-        allowed2, used2, _ = await check_and_increment_sessions(redis_mock, user_id=7,
-                                                                 weekly_limit=1)
+        allowed2, used2, _ = await check_and_increment_sessions(
+            redis_mock, user_id=7, weekly_limit=1
+        )
         assert allowed2 is False
         assert used2 == 1
 
@@ -337,11 +350,13 @@ class TestCheckAndIncrementSessions:
         """Each user_id has an independent counter."""
         await check_and_increment_sessions(redis_mock, user_id=10, weekly_limit=2)
         await check_and_increment_sessions(redis_mock, user_id=10, weekly_limit=2)
-        allowed_u10, _, _ = await check_and_increment_sessions(redis_mock, user_id=10,
-                                                                weekly_limit=2)
+        allowed_u10, _, _ = await check_and_increment_sessions(
+            redis_mock, user_id=10, weekly_limit=2
+        )
         assert allowed_u10 is False  # user 10 is at limit
-        allowed_u20, _, _ = await check_and_increment_sessions(redis_mock, user_id=20,
-                                                                weekly_limit=2)
+        allowed_u20, _, _ = await check_and_increment_sessions(
+            redis_mock, user_id=20, weekly_limit=2
+        )
         assert allowed_u20 is True  # user 20 still has room
 
 
@@ -354,8 +369,9 @@ class TestCheckDailyMinutes:
     @pytest.mark.asyncio
     async def test_unlimited_always_allowed(self, redis_mock):
         """Limit of 0 means always allowed."""
-        allowed, used, limit = await check_daily_minutes(redis_mock, user_id=1,
-                                                          daily_minutes_limit=0)
+        allowed, used, limit = await check_daily_minutes(
+            redis_mock, user_id=1, daily_minutes_limit=0
+        )
         assert allowed is True
         assert used == 0
         assert limit == 0
@@ -364,8 +380,9 @@ class TestCheckDailyMinutes:
     async def test_allowed_when_under_limit(self, redis_mock):
         """Usage below the limit allows more time."""
         await redis_mock.set(_day_key(1), "120")  # 2 minutes of seconds
-        allowed, used, limit = await check_daily_minutes(redis_mock, user_id=1,
-                                                          daily_minutes_limit=5)
+        allowed, used, limit = await check_daily_minutes(
+            redis_mock, user_id=1, daily_minutes_limit=5
+        )
         assert allowed is True
         assert used == 2
         assert limit == 5
@@ -374,8 +391,9 @@ class TestCheckDailyMinutes:
     async def test_denied_when_at_limit(self, redis_mock):
         """Usage at or above the limit denies further time."""
         await redis_mock.set(_day_key(2), "300")  # exactly 5 minutes (300 sec)
-        allowed, used, limit = await check_daily_minutes(redis_mock, user_id=2,
-                                                          daily_minutes_limit=5)
+        allowed, used, limit = await check_daily_minutes(
+            redis_mock, user_id=2, daily_minutes_limit=5
+        )
         assert allowed is False
         assert used == 5
 
@@ -383,16 +401,18 @@ class TestCheckDailyMinutes:
     async def test_denied_when_over_limit(self, redis_mock):
         """Usage exceeding the limit denies time."""
         await redis_mock.set(_day_key(3), "600")  # 10 minutes
-        allowed, used, limit = await check_daily_minutes(redis_mock, user_id=3,
-                                                          daily_minutes_limit=5)
+        allowed, used, limit = await check_daily_minutes(
+            redis_mock, user_id=3, daily_minutes_limit=5
+        )
         assert allowed is False
         assert used == 10
 
     @pytest.mark.asyncio
     async def test_zero_usage_with_limit(self, redis_mock):
         """Zero usage with a positive limit is allowed."""
-        allowed, used, limit = await check_daily_minutes(redis_mock, user_id=4,
-                                                          daily_minutes_limit=30)
+        allowed, used, limit = await check_daily_minutes(
+            redis_mock, user_id=4, daily_minutes_limit=30
+        )
         assert allowed is True
         assert used == 0
         assert limit == 30
@@ -401,8 +421,7 @@ class TestCheckDailyMinutes:
     async def test_seconds_just_under_next_minute(self, redis_mock):
         """299 seconds = 4 minutes (floor), still under limit of 5."""
         await redis_mock.set(_day_key(5), "299")
-        allowed, used, _ = await check_daily_minutes(redis_mock, user_id=5,
-                                                      daily_minutes_limit=5)
+        allowed, used, _ = await check_daily_minutes(redis_mock, user_id=5, daily_minutes_limit=5)
         assert allowed is True
         assert used == 4
 
@@ -425,8 +444,9 @@ class TestCheckWeeklyMinutes:
     @pytest.mark.asyncio
     async def test_unlimited_always_allowed(self, redis_mock):
         """Limit of 0 means always allowed (weekly)."""
-        allowed, used, limit = await check_weekly_minutes(redis_mock, user_id=1,
-                                                           weekly_minutes_limit=0)
+        allowed, used, limit = await check_weekly_minutes(
+            redis_mock, user_id=1, weekly_minutes_limit=0
+        )
         assert allowed is True
         assert used == 0
         assert limit == 0
@@ -435,8 +455,9 @@ class TestCheckWeeklyMinutes:
     async def test_allowed_when_under_limit(self, redis_mock):
         """Usage below the weekly limit allows more time."""
         await redis_mock.set(_weekly_seconds_key(1), "600")  # 10 minutes
-        allowed, used, limit = await check_weekly_minutes(redis_mock, user_id=1,
-                                                           weekly_minutes_limit=15)
+        allowed, used, limit = await check_weekly_minutes(
+            redis_mock, user_id=1, weekly_minutes_limit=15
+        )
         assert allowed is True
         assert used == 10
 
@@ -444,8 +465,9 @@ class TestCheckWeeklyMinutes:
     async def test_denied_when_at_limit(self, redis_mock):
         """Usage at the weekly limit denies further time."""
         await redis_mock.set(_weekly_seconds_key(2), "3600")  # 60 minutes
-        allowed, used, limit = await check_weekly_minutes(redis_mock, user_id=2,
-                                                           weekly_minutes_limit=60)
+        allowed, used, limit = await check_weekly_minutes(
+            redis_mock, user_id=2, weekly_minutes_limit=60
+        )
         assert allowed is False
         assert used == 60
 
@@ -453,16 +475,18 @@ class TestCheckWeeklyMinutes:
     async def test_denied_when_over_limit(self, redis_mock):
         """Usage exceeding the weekly limit denies time."""
         await redis_mock.set(_weekly_seconds_key(3), "7200")  # 120 minutes
-        allowed, used, limit = await check_weekly_minutes(redis_mock, user_id=3,
-                                                           weekly_minutes_limit=60)
+        allowed, used, limit = await check_weekly_minutes(
+            redis_mock, user_id=3, weekly_minutes_limit=60
+        )
         assert allowed is False
         assert used == 120
 
     @pytest.mark.asyncio
     async def test_zero_usage_with_limit(self, redis_mock):
         """No usage stored yet, check passes."""
-        allowed, used, limit = await check_weekly_minutes(redis_mock, user_id=4,
-                                                           weekly_minutes_limit=120)
+        allowed, used, limit = await check_weekly_minutes(
+            redis_mock, user_id=4, weekly_minutes_limit=120
+        )
         assert allowed is True
         assert used == 0
         assert limit == 120
@@ -586,7 +610,9 @@ class TestGetMonthlyTokensUsed:
 
         # Current month entry
         current = LLMUsage(
-            user_id=user.id, source="chat", total_tokens=100,
+            user_id=user.id,
+            source="chat",
+            total_tokens=100,
             created_at=month_start.replace(day=15, tzinfo=None),
         )
         # Previous month entry
@@ -595,7 +621,9 @@ class TestGetMonthlyTokensUsed:
         else:
             prev_month = month_start.replace(month=month_start.month - 1, tzinfo=None)
         old = LLMUsage(
-            user_id=user.id, source="conversation", total_tokens=500,
+            user_id=user.id,
+            source="conversation",
+            total_tokens=500,
             created_at=prev_month.replace(day=20),
         )
         db_session.add_all([current, old])
@@ -612,14 +640,28 @@ class TestGetMonthlyTokensUsed:
         user, _ = test_user
         now = datetime.now(UTC)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
-        db_session.add_all([
-            LLMUsage(user_id=user.id, source="chat", total_tokens=50,
-                     created_at=month_start.replace(day=5)),
-            LLMUsage(user_id=user.id, source="chat", total_tokens=30,
-                     created_at=month_start.replace(day=10)),
-            LLMUsage(user_id=user.id, source="conversation", total_tokens=20,
-                     created_at=month_start.replace(day=20)),
-        ])
+        db_session.add_all(
+            [
+                LLMUsage(
+                    user_id=user.id,
+                    source="chat",
+                    total_tokens=50,
+                    created_at=month_start.replace(day=5),
+                ),
+                LLMUsage(
+                    user_id=user.id,
+                    source="chat",
+                    total_tokens=30,
+                    created_at=month_start.replace(day=10),
+                ),
+                LLMUsage(
+                    user_id=user.id,
+                    source="conversation",
+                    total_tokens=20,
+                    created_at=month_start.replace(day=20),
+                ),
+            ]
+        )
         await db_session.commit()
         used = await get_monthly_tokens_used(db_session, user_id=user.id)
         assert used == 100
@@ -632,12 +674,22 @@ class TestGetMonthlyTokensUsed:
         user, _ = test_user
         now = datetime.now(UTC)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
-        db_session.add_all([
-            LLMUsage(user_id=user.id, source="chat", total_tokens=100,
-                     created_at=month_start.replace(day=1, tzinfo=None)),
-            LLMUsage(user_id=user.id, source="conversation", total_tokens=None,
-                     created_at=month_start.replace(day=2, tzinfo=None)),
-        ])
+        db_session.add_all(
+            [
+                LLMUsage(
+                    user_id=user.id,
+                    source="chat",
+                    total_tokens=100,
+                    created_at=month_start.replace(day=1, tzinfo=None),
+                ),
+                LLMUsage(
+                    user_id=user.id,
+                    source="conversation",
+                    total_tokens=None,
+                    created_at=month_start.replace(day=2, tzinfo=None),
+                ),
+            ]
+        )
         await db_session.commit()
         used = await get_monthly_tokens_used(db_session, user_id=user.id)
         assert used == 100
@@ -645,17 +697,21 @@ class TestGetMonthlyTokensUsed:
     @pytest.mark.asyncio
     async def test_isolated_by_user(self, db_session, test_user):
         """Each user's tokens are counted independently."""
-        from app.models.llm_usage import LLMUsage
         from app.core.security import hash_password
+        from app.models.llm_usage import LLMUsage
         from app.models.user import User
         from app.models.user_language import UserLanguage
 
         user, _ = test_user
         # Create a second user
         user2 = User(
-            username="otheruser", email="other@example.com",
-            display_name="Other", hashed_password=hash_password("pass"),
-            role="user", native_language="fr", target_language="en-US",
+            username="otheruser",
+            email="other@example.com",
+            display_name="Other",
+            hashed_password=hash_password("pass"),
+            role="user",
+            native_language="fr",
+            target_language="en-US",
             is_active=True,
         )
         db_session.add(user2)
@@ -665,12 +721,22 @@ class TestGetMonthlyTokensUsed:
 
         now = datetime.now(UTC)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
-        db_session.add_all([
-            LLMUsage(user_id=user.id, source="chat", total_tokens=200,
-                     created_at=month_start.replace(day=1, tzinfo=None)),
-            LLMUsage(user_id=user2.id, source="chat", total_tokens=999,
-                     created_at=month_start.replace(day=1, tzinfo=None)),
-        ])
+        db_session.add_all(
+            [
+                LLMUsage(
+                    user_id=user.id,
+                    source="chat",
+                    total_tokens=200,
+                    created_at=month_start.replace(day=1, tzinfo=None),
+                ),
+                LLMUsage(
+                    user_id=user2.id,
+                    source="chat",
+                    total_tokens=999,
+                    created_at=month_start.replace(day=1, tzinfo=None),
+                ),
+            ]
+        )
         await db_session.commit()
 
         assert await get_monthly_tokens_used(db_session, user_id=user.id) == 200
@@ -686,8 +752,7 @@ class TestCheckMonthlyTokens:
     @pytest.mark.asyncio
     async def test_unlimited_always_allowed(self, db_session):
         """Limit of 0 means unlimited tokens."""
-        allowed, used, limit = await check_monthly_tokens(db_session, user_id=1,
-                                                           monthly_limit=0)
+        allowed, used, limit = await check_monthly_tokens(db_session, user_id=1, monthly_limit=0)
         assert allowed is True
         assert used == 0
         assert limit == 0
@@ -700,12 +765,19 @@ class TestCheckMonthlyTokens:
         user, _ = test_user
         now = datetime.now(UTC)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
-        db_session.add(LLMUsage(user_id=user.id, source="chat", total_tokens=5000,
-                                created_at=month_start.replace(day=10, tzinfo=None)))
+        db_session.add(
+            LLMUsage(
+                user_id=user.id,
+                source="chat",
+                total_tokens=5000,
+                created_at=month_start.replace(day=10, tzinfo=None),
+            )
+        )
         await db_session.commit()
 
-        allowed, used, limit = await check_monthly_tokens(db_session, user_id=user.id,
-                                                           monthly_limit=10000)
+        allowed, used, limit = await check_monthly_tokens(
+            db_session, user_id=user.id, monthly_limit=10000
+        )
         assert allowed is True
         assert used == 5000
         assert limit == 10000
@@ -718,12 +790,19 @@ class TestCheckMonthlyTokens:
         user, _ = test_user
         now = datetime.now(UTC)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
-        db_session.add(LLMUsage(user_id=user.id, source="chat", total_tokens=10000,
-                                created_at=month_start.replace(day=10, tzinfo=None)))
+        db_session.add(
+            LLMUsage(
+                user_id=user.id,
+                source="chat",
+                total_tokens=10000,
+                created_at=month_start.replace(day=10, tzinfo=None),
+            )
+        )
         await db_session.commit()
 
-        allowed, used, limit = await check_monthly_tokens(db_session, user_id=user.id,
-                                                           monthly_limit=10000)
+        allowed, used, limit = await check_monthly_tokens(
+            db_session, user_id=user.id, monthly_limit=10000
+        )
         assert allowed is False
         assert used == 10000
 
@@ -735,12 +814,19 @@ class TestCheckMonthlyTokens:
         user, _ = test_user
         now = datetime.now(UTC)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
-        db_session.add(LLMUsage(user_id=user.id, source="chat", total_tokens=15000,
-                                created_at=month_start.replace(day=10, tzinfo=None)))
+        db_session.add(
+            LLMUsage(
+                user_id=user.id,
+                source="chat",
+                total_tokens=15000,
+                created_at=month_start.replace(day=10, tzinfo=None),
+            )
+        )
         await db_session.commit()
 
-        allowed, used, limit = await check_monthly_tokens(db_session, user_id=user.id,
-                                                           monthly_limit=10000)
+        allowed, used, limit = await check_monthly_tokens(
+            db_session, user_id=user.id, monthly_limit=10000
+        )
         assert allowed is False
         assert used == 15000
 
@@ -763,7 +849,8 @@ class TestCheckAllQuotas:
             mock_sf.return_value = cm
 
             max_dur, err_code, err_msg, close_code = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=100000,
                 daily_minutes_limit=30,
                 weekly_minutes_limit=120,
@@ -782,15 +869,14 @@ class TestCheckAllQuotas:
         # Pre-set daily usage: 25 minutes = 1500 seconds
         await redis_mock.set(_day_key(user_id), "1500")
 
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, _, _ = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=100000,
                 daily_minutes_limit=30,
                 weekly_minutes_limit=0,  # unlimited weekly
@@ -808,15 +894,14 @@ class TestCheckAllQuotas:
         # Pre-set weekly usage: 100 minutes = 6000 seconds
         await redis_mock.set(_weekly_seconds_key(user_id), "6000")
 
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, _, _ = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=100000,
                 daily_minutes_limit=30,
                 weekly_minutes_limit=120,
@@ -833,17 +918,18 @@ class TestCheckAllQuotas:
         """When both daily and weekly have remaining, the tighter cap wins."""
         user_id = 4
         await redis_mock.set(_day_key(user_id), "1500")  # 25 min used → 5 min remaining
-        await redis_mock.set(_weekly_seconds_key(user_id), "6000")  # 100 min used → 20 min remaining
+        await redis_mock.set(
+            _weekly_seconds_key(user_id), "6000"
+        )  # 100 min used → 20 min remaining
 
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, _, _ = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=100000,
                 daily_minutes_limit=30,
                 weekly_minutes_limit=120,
@@ -859,15 +945,14 @@ class TestCheckAllQuotas:
         user_id = 5
         await redis_mock.set(_day_key(user_id), "1800")  # 30 minutes (at limit)
 
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, err_msg, close_code = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=100000,
                 daily_minutes_limit=30,
                 weekly_minutes_limit=0,
@@ -885,15 +970,14 @@ class TestCheckAllQuotas:
         user_id = 6
         await redis_mock.set(_weekly_seconds_key(user_id), "12000")  # 200 min (over 120)
 
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, err_msg, close_code = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=100000,
                 daily_minutes_limit=60,
                 weekly_minutes_limit=120,
@@ -910,15 +994,14 @@ class TestCheckAllQuotas:
         user_id = 7
         await redis_mock.set(_week_key(user_id), "5")  # at limit of 5
 
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, err_msg, close_code = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=100000,
                 daily_minutes_limit=60,
                 weekly_minutes_limit=0,
@@ -937,21 +1020,24 @@ class TestCheckAllQuotas:
         user, _ = test_user
         now = datetime.now(UTC)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
-        db_session.add(LLMUsage(
-            user_id=user.id, source="chat", total_tokens=50000,
-            created_at=month_start.replace(day=10, tzinfo=None),
-        ))
+        db_session.add(
+            LLMUsage(
+                user_id=user.id,
+                source="chat",
+                total_tokens=50000,
+                created_at=month_start.replace(day=10, tzinfo=None),
+            )
+        )
         await db_session.commit()
 
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, err_msg, close_code = await check_all_quotas(
-                redis_mock, user.id,
+                redis_mock,
+                user.id,
                 monthly_tokens_limit=10000,
                 daily_minutes_limit=60,
                 weekly_minutes_limit=0,
@@ -966,15 +1052,14 @@ class TestCheckAllQuotas:
     async def test_all_unlimited_passes(self, redis_mock, db_session):
         """When all limits are 0, everything passes and max_duration is unchanged."""
         user_id = 10
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, err_msg, close_code = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=0,
                 daily_minutes_limit=0,
                 weekly_minutes_limit=0,
@@ -992,16 +1077,15 @@ class TestCheckAllQuotas:
         user_id = 11
         # Don't even need to mock db_session since it won't be called
         # But we still need it available in case
-        with patch(
-            "app.utils.db.db_session", return_value=AsyncMock()
-        ) as mock_sf:
+        with patch("app.utils.db.db_session", return_value=AsyncMock()) as mock_sf:
             mock_sf.assert_not_called = lambda: None  # won't be called
             cm = AsyncMock()
             cm.__aenter__.return_value = db_session
             mock_sf.return_value = cm
 
             max_dur, err_code, _, _ = await check_all_quotas(
-                redis_mock, user_id,
+                redis_mock,
+                user_id,
                 monthly_tokens_limit=0,  # skip DB
                 daily_minutes_limit=30,
                 weekly_minutes_limit=0,
@@ -1022,8 +1106,9 @@ class TestQuotaWorkflow:
         """Simulate a complete session: check, record, check again."""
         user_id = 1
         # Initial: all zeros
-        status = await get_quota_status(redis_mock, user_id, weekly_limit=5,
-                                         daily_minutes_limit=30, weekly_minutes_limit=120)
+        status = await get_quota_status(
+            redis_mock, user_id, weekly_limit=5, daily_minutes_limit=30, weekly_minutes_limit=120
+        )
         assert status["sessions_this_week"] == 0
         assert status["minutes_today"] == 0
 
@@ -1035,14 +1120,17 @@ class TestQuotaWorkflow:
         await record_session_seconds(redis_mock, user_id, seconds=300)
 
         # Verify state
-        daily_ok, minutes_used, _ = await check_daily_minutes(redis_mock, user_id, daily_minutes_limit=30)
+        daily_ok, minutes_used, _ = await check_daily_minutes(
+            redis_mock, user_id, daily_minutes_limit=30
+        )
         assert daily_ok is True
         assert minutes_used == 5
 
         # Record more time up to the daily limit
         await record_session_seconds(redis_mock, user_id, seconds=1500)  # 25 more → 30 total
-        daily_ok2, minutes_used2, _ = await check_daily_minutes(redis_mock, user_id,
-                                                                 daily_minutes_limit=30)
+        daily_ok2, minutes_used2, _ = await check_daily_minutes(
+            redis_mock, user_id, daily_minutes_limit=30
+        )
         assert daily_ok2 is False
         assert minutes_used2 == 30
 
@@ -1053,8 +1141,10 @@ class TestQuotaWorkflow:
         limit = 3
 
         # Use all sessions
-        for i in range(limit):
-            allowed, _, _ = await check_and_increment_sessions(redis_mock, user_id, weekly_limit=limit)
+        for _ in range(limit):
+            allowed, _, _ = await check_and_increment_sessions(
+                redis_mock, user_id, weekly_limit=limit
+            )
             assert allowed is True
 
         # Next attempt should fail
@@ -1086,12 +1176,15 @@ class TestQuotaWorkflow:
         await redis_mock.set(_weekly_seconds_key(user_id), "900")  # 15 min
 
         # Check all three quota types in parallel
-        daily_ok, daily_used, _ = await check_daily_minutes(redis_mock, user_id,
-                                                              daily_minutes_limit=30)
-        weekly_min_ok, weekly_used, _ = await check_weekly_minutes(redis_mock, user_id,
-                                                                     weekly_minutes_limit=120)
-        session_ok, session_used, _ = await check_and_increment_sessions(redis_mock, user_id,
-                                                                          weekly_limit=5)
+        daily_ok, daily_used, _ = await check_daily_minutes(
+            redis_mock, user_id, daily_minutes_limit=30
+        )
+        weekly_min_ok, weekly_used, _ = await check_weekly_minutes(
+            redis_mock, user_id, weekly_minutes_limit=120
+        )
+        session_ok, session_used, _ = await check_and_increment_sessions(
+            redis_mock, user_id, weekly_limit=5
+        )
 
         assert daily_ok is True
         assert daily_used == 15

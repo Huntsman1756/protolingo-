@@ -104,6 +104,7 @@ export default function TermsPage() {
           { title: t('s8Title'), body: t('s8Body') },
           { title: t('s9Title'), body: t('s9Body') },
           { title: t('s10Title'), body: t('s10Body') },
+          { title: t('s11Title'), body: t('s11Body') },
         ].map((section) => (
           <section key={section.title} className="space-y-3">
             <h2 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
@@ -114,6 +115,10 @@ export default function TermsPage() {
             </p>
           </section>
         ))}
+
+        <p className="text-fl-muted-2 font-mono text-xs tracking-wide">
+          {t('linkContact')}
+        </p>
 
         <div className="border-fl-border flex gap-6 border-t pt-4">
           <Link
