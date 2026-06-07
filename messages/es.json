@@ -951,11 +951,11 @@
     "supportedLanguages": "Idiomas disponibles"
   },
   "targetLanguages": {
-    "en-US": "inglés (EEUU)",
-    "en-GB": "inglés (UK)",
-    "es-ES": "español",
-    "it-IT": "italiano",
-    "pt-PT": "portugués",
+    "en-US": "Inglés (EEUU)",
+    "en-GB": "Inglés (UK)",
+    "es-ES": "Español",
+    "it-IT": "Italiano",
+    "pt-PT": "Portugués",
     "en": "inglés",
     "es": "español",
     "it": "italiano",

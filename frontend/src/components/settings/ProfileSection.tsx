@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { mapUser } from '@/lib/mappers'
 import { useAuthStore } from '@/store/auth'
@@ -55,13 +55,14 @@ function resizeImage(file: File, maxPx: number): Promise<Blob> {
 export function ProfileSection() {
   const t = useTranslations('settings')
   const tLang = useTranslations('languages')
+  const currentLocale = useLocale()
   const user = useAuthStore((s) => s.user)
   const setUser = useAuthStore((s) => s.setUser)
 
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [nativeLanguage, setNativeLanguage] = useState('es')
-  const [uiLocale, setUiLocale] = useState('en')
+  const [uiLocale, setUiLocale] = useState(currentLocale)
   const [bio, setBio] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -80,10 +81,10 @@ export function ProfileSection() {
       setDisplayName(user.displayName || '')
       setEmail(user.email || '')
       setNativeLanguage(user.native_language || 'es')
-      setUiLocale(user.ui_locale || 'en')
+      setUiLocale(user.ui_locale || currentLocale)
       setBio(user.bio || '')
     }
-  }, [user])
+  }, [user, currentLocale])
 
   async function handleAvatarUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]

@@ -30,6 +30,7 @@ from app.routers import (
     chat,
     contact,
     conversation,
+    curriculum,
     feedback,
     flashcards,
     languages,
@@ -138,6 +139,7 @@ app.include_router(stt.router)
 app.include_router(conversation.router)
 app.include_router(config_router.router)
 app.include_router(contact.router)
+app.include_router(curriculum.router)
 app.include_router(feedback.router)
 app.include_router(memories.router)
 app.include_router(languages.router)
