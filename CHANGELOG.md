@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.7.1] - 2026-06-07
 
+### Changed
+- **Updated Terms of Service**: added intellectual property clause (§4 — AI-generated content belongs to the user), indemnification clause (§8), severability clause (§11), and contact information.
+- **Updated Privacy Policy**: added LLM Memories (§2), feedback board data (§2), corresponding data usage items (§3), and severability clause (§9).
+
 ### Fixed
 - Minor bug fixes and improvements.
 
