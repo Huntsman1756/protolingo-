@@ -41,8 +41,17 @@ export default function PrivacyPage() {
     t('s2i6'),
     t('s2i7'),
     t('s2i8'),
+    t('s2i9'),
+    t('s2i10'),
   ]
-  const s3Items = [t('s3i1'), t('s3i2'), t('s3i3'), t('s3i4')]
+  const s3Items = [
+    t('s3i1'),
+    t('s3i2'),
+    t('s3i3'),
+    t('s3i4'),
+    t('s3i5'),
+    t('s3i6'),
+  ]
 
   return (
     <div>
@@ -134,6 +143,7 @@ export default function PrivacyPage() {
           { title: t('s6Title'), body: t('s6Body') },
           { title: t('s7Title'), body: t('s7Body') },
           { title: t('s8Title'), body: t('s8Body') },
+          { title: t('s9Title'), body: t('s9Body') },
         ].map((section) => (
           <section key={section.title} className="space-y-3">
             <h2 className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">

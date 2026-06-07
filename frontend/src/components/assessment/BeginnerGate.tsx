@@ -5,15 +5,16 @@ import { useTranslations } from 'next-intl'
 interface Props {
   onBeginner: () => void
   onHasExperience: () => void
-  languageName: string
+  languageCode: string
 }
 
 export default function BeginnerGate({
   onBeginner,
   onHasExperience,
-  languageName,
+  languageCode,
 }: Props) {
   const t = useTranslations('assessment')
+  const tLang = useTranslations('targetLanguages')
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center p-6">
@@ -27,7 +28,7 @@ export default function BeginnerGate({
         <div className="space-y-6 p-8">
           <div className="space-y-2 text-center">
             <p className="text-fl-body text-fl-fg font-mono">
-              {t('studiedBefore', { language: languageName })}
+              {t('studiedBefore', { language: tLang(languageCode) })}
             </p>
             <p className="text-fl-label text-fl-muted-3 font-mono">
               {t('studiedBeforeHint')}

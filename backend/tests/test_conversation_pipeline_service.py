@@ -15,12 +15,10 @@ import pytest
 
 from app.services.conversation_pipeline import (
     MAX_BUFFER_CHARS,
-    WARNING_ADVANCE_SECONDS,
     ConversationPipeline,
     _build_conversation_system_prompt,
 )
 from app.services.llm_adapter import LLMError, LLMTimeoutError, LLMUnavailableError
-
 
 # ---------------------------------------------------------------------------
 # Shared helpers
@@ -742,7 +740,9 @@ async def test_process_memory_save_failure_does_not_crash() -> None:
     pipeline.llm.chat = AsyncMock(return_value=fake_stream())
     pipeline.tts.synthesize = AsyncMock(return_value=b"audio")
 
-    with patch("app.services.conversation_pipeline.save_memories", side_effect=RuntimeError("DB down")):
+    with patch(
+        "app.services.conversation_pipeline.save_memories", side_effect=RuntimeError("DB down")
+    ):
         ws = FakeWS()
         await pipeline._process(b"audio", ws)
 
@@ -1244,10 +1244,12 @@ async def test_full_pipeline_lifecycle() -> None:
     pipeline._redis = AsyncMock()
 
     ws = FakeWS()
-    ws.receive = AsyncMock(side_effect=[
-        {"bytes": b"audio-chunk-1"},
-        {"type": "websocket.disconnect"},
-    ])
+    ws.receive = AsyncMock(
+        side_effect=[
+            {"bytes": b"audio-chunk-1"},
+            {"type": "websocket.disconnect"},
+        ]
+    )
 
     with patch("app.services.conversation_pipeline.record_session_seconds"):
         # Run the pipeline
@@ -1278,12 +1280,14 @@ async def test_full_pipeline_with_interrupt_and_barge_in() -> None:
     ws = FakeWS()
 
     # Sequence: audio → interrupt → audio → disconnect
-    ws.receive = AsyncMock(side_effect=[
-        {"bytes": b"how are you"},
-        {"text": '{"type": "interrupt"}'},
-        {"bytes": b"ok"},
-        {"type": "websocket.disconnect"},
-    ])
+    ws.receive = AsyncMock(
+        side_effect=[
+            {"bytes": b"how are you"},
+            {"text": '{"type": "interrupt"}'},
+            {"bytes": b"ok"},
+            {"type": "websocket.disconnect"},
+        ]
+    )
 
     pipeline._redis = AsyncMock()
 

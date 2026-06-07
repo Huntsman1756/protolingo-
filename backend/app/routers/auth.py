@@ -5,7 +5,7 @@ from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, File, HTTPException, Request, Response, UploadFile, status
 from redis.asyncio import Redis
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
@@ -95,14 +95,7 @@ async def register(
     await db.commit()
     await db.refresh(user)
 
-    # Create the UserLanguage row so get_active_study_plan works for this new user
-    user_lang = UserLanguage(
-        user_id=user.id,
-        target_language=data.target_language,
-        is_active=True,
-    )
-    db.add(user_lang)
-    await db.commit()
+    # UserLanguage is created during onboarding when the user picks a language.
 
     # Auto-login: issue tokens so the frontend can redirect to /onboarding
     access_token = create_access_token(user.id, user.role)
@@ -272,9 +265,29 @@ async def update_me(
 
             await switch_language(db, current_user.id, data.target_language)
         else:
-            from app.services.user_language_service import add_language  # noqa: PLC0415
+            # If switching variant of the same language (e.g. en-US → en-GB),
+            # update the existing row instead of creating a duplicate.
+            new_prefix = data.target_language.split("-")[0]
+            same_base = next(
+                (ul for ul in user_langs if ul.target_language.split("-")[0] == new_prefix),
+                None,
+            )
+            if same_base:
+                # Deactivate all currently active languages
+                await db.execute(
+                    update(UserLanguage)
+                    .where(
+                        UserLanguage.user_id == current_user.id,
+                        UserLanguage.is_active.is_(True),
+                    )
+                    .values(is_active=False)
+                )
+                same_base.target_language = data.target_language
+                same_base.is_active = True
+            else:
+                from app.services.user_language_service import add_language  # noqa: PLC0415
 
-            await add_language(db, current_user.id, data.target_language)
+                await add_language(db, current_user.id, data.target_language)
     if data.ui_locale is not None:
         current_user.ui_locale = data.ui_locale if data.ui_locale.strip() else None
     if data.conversation_max_duration is not None:
