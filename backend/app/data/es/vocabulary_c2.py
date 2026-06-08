@@ -11,6 +11,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="pulcritud",
+                frequency_rank=930,
                 pos="noun",
                 definition="Esmero y cuidado extremo",
                 example="Escribe con una pulcritud admirable.",
@@ -18,6 +19,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="prolijidad",
+                frequency_rank=931,
                 pos="noun",
                 definition="Minuciosidad y detalle exhaustivo",
                 example="La prolijidad de su informe es impresionante.",
@@ -25,6 +27,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="virtuosismo",
+                frequency_rank=932,
                 pos="noun",
                 definition="Dominio técnico excepcional",
                 example="Su virtuosismo lingüístico es innegable.",
@@ -32,6 +35,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="magistral",
+                frequency_rank=933,
                 pos="adjective",
                 definition="Digno de un maestro",
                 example="Hizo una exposición magistral.",
@@ -39,6 +43,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="impecable",
+                frequency_rank=934,
                 pos="adjective",
                 definition="Sin ningún error o defecto",
                 example="Su gramática es impecable.",
@@ -46,6 +51,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="depurado",
+                frequency_rank=935,
                 pos="adjective",
                 definition="Refinado y perfeccionado",
                 example="Tiene un estilo muy depurado.",
@@ -53,6 +59,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="exquisito",
+                frequency_rank=936,
                 pos="adjective",
                 definition="De calidad y gusto excelentes",
                 example="Su prosa es exquisita.",
@@ -60,6 +67,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="consumado",
+                frequency_rank=937,
                 pos="adjective",
                 definition="Que ha alcanzado la perfección",
                 example="Es un orador consumado.",
@@ -67,6 +75,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="insuperable",
+                frequency_rank=938,
                 pos="adjective",
                 definition="Que no puede ser superado",
                 example="Su dominio del subjuntivo es insuperable.",
@@ -74,6 +83,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="portentoso",
+                frequency_rank=939,
                 pos="adjective",
                 definition="Extraordinario por su magnitud",
                 example="Tiene una memoria portentosa.",
@@ -89,6 +99,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="prosopopeya",
+                frequency_rank=940,
                 pos="noun",
                 definition="Atribución de cualidades humanas a lo inanimado",
                 example="La prosopopeya es frecuente en la poesía.",
@@ -96,6 +107,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sinécdoque",
+                frequency_rank=941,
                 pos="noun",
                 definition="Designar una parte por el todo o viceversa",
                 example='Usa una sinécdoque al decir "velas" por "barcos".',
@@ -103,6 +115,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pleonasmo",
+                frequency_rank=942,
                 pos="noun",
                 definition="Redundancia expresiva con fines estilísticos",
                 example="Lo vi con mis propios ojos es un pleonasmo.",
@@ -110,6 +123,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hipérbaton",
+                frequency_rank=943,
                 pos="noun",
                 definition="Alteración del orden lógico de las palabras",
                 example="El hipérbaton es característico del barroco.",
@@ -117,6 +131,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="onomatopeya",
+                frequency_rank=944,
                 pos="noun",
                 definition="Palabra que imita un sonido",
                 example="El zumbido es una onomatopeya.",
@@ -124,6 +139,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estrofa",
+                frequency_rank=945,
                 pos="noun",
                 definition="Conjunto de versos de un poema",
                 example="El poema tiene cuatro estrofas.",
@@ -131,6 +147,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="prosaico",
+                frequency_rank=946,
                 pos="adjective",
                 definition="Falto de poesía o elevación",
                 example="Su estilo es demasiado prosaico.",
@@ -138,6 +155,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="lírica",
+                frequency_rank=947,
                 pos="noun",
                 definition="Género poético que expresa sentimientos",
                 example="La lírica medieval está en galaicoportugués.",
@@ -145,6 +163,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="elegía",
+                frequency_rank=948,
                 pos="noun",
                 definition="Poema de lamento por una pérdida",
                 example="Escribió una elegía a su padre fallecido.",
@@ -152,6 +171,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="égloga",
+                frequency_rank=949,
                 pos="noun",
                 definition="Poema pastoril idealizado",
                 example="Las églogas de Garcilaso son muy célebres.",
@@ -167,6 +187,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="preceptiva",
+                frequency_rank=950,
                 pos="noun",
                 definition="Conjunto de normas de composición literaria",
                 example="La preceptiva clásica exigía las tres unidades.",
@@ -174,6 +195,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="solecismo",
+                frequency_rank=951,
                 pos="noun",
                 definition="Error gramatical o sintáctico",
                 example="Cometió un solecismo en la redacción.",
@@ -181,6 +203,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="barbarismo",
+                frequency_rank=952,
                 pos="noun",
                 definition="Uso incorrecto de una palabra extranjera",
                 example="Ese anglicismo es un barbarismo.",
@@ -188,6 +211,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cacofonía",
+                frequency_rank=953,
                 pos="noun",
                 definition="Combinación desagradable de sonidos",
                 example="Esa frase produce cacofonía al leerla.",
@@ -195,6 +219,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="eufonía",
+                frequency_rank=954,
                 pos="noun",
                 definition="Combinación agradable de sonidos",
                 example="El verso destaca por su eufonía.",
@@ -202,6 +227,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ampuloso",
+                frequency_rank=955,
                 pos="adjective",
                 definition="Exageradamente adornado",
                 example="Su estilo es demasiado ampuloso.",
@@ -209,6 +235,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="lacónico",
+                frequency_rank=956,
                 pos="adjective",
                 definition="Breve y conciso al extremo",
                 example="Fue una respuesta lacónica.",
@@ -216,6 +243,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="grandilocuente",
+                frequency_rank=957,
                 pos="adjective",
                 definition="Que habla con excesiva solemnidad",
                 example="Su discurso resultó grandilocuente.",
@@ -223,6 +251,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sublime",
+                frequency_rank=958,
                 pos="adjective",
                 definition="De extraordinaria elevación estética",
                 example="La prosa de Cervantes es sublime.",
@@ -230,6 +259,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="preciosista",
+                frequency_rank=959,
                 pos="adjective",
                 definition="Que busca excesivo refinamiento formal",
                 example="Tiene un lenguaje muy preciosista.",
@@ -245,6 +275,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="equivalencia",
+                frequency_rank=960,
                 pos="noun",
                 definition="Correspondencia de significado entre lenguas",
                 example="Busca la equivalencia más precisa.",
@@ -252,6 +283,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="intraducible",
+                frequency_rank=961,
                 pos="adjective",
                 definition="Que no puede traducirse exactamente",
                 example="Saudade es prácticamente intraducible.",
@@ -259,6 +291,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="calco",
+                frequency_rank=962,
                 pos="noun",
                 definition="Traducción literal que resulta forzada",
                 example="Eso es un calco del inglés.",
@@ -266,6 +299,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="matiz",
+                frequency_rank=963,
                 pos="noun",
                 definition="Detalle sutil de significado",
                 example="La traducción pierde muchos matices.",
@@ -273,6 +307,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="transliterar",
+                frequency_rank=964,
                 pos="verb",
                 definition="Representar los caracteres de un sistema en otro",
                 example="Transliteraron el texto del cirílico.",
@@ -280,6 +315,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vertir",
+                frequency_rank=965,
                 pos="verb",
                 definition="Traducir a otra lengua",
                 example="Vertió el poema al español.",
@@ -287,6 +323,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fidelidad",
+                frequency_rank=966,
                 pos="noun",
                 definition="Exactitud respecto al original",
                 example="La traducción respeta la fidelidad al texto.",
@@ -294,6 +331,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="adaptación",
+                frequency_rank=967,
                 pos="noun",
                 definition="Ajuste cultural de una traducción",
                 example="Hicieron una adaptación para el público hispano.",
@@ -301,6 +339,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="giro",
+                frequency_rank=968,
                 pos="noun",
                 definition="Estructura idiomática propia de una lengua",
                 example="Es un giro típico del español.",
@@ -308,6 +347,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="traslación",
+                frequency_rank=969,
                 pos="noun",
                 definition="Acción de trasladar un texto a otra lengua",
                 example="La traslación de poesía es especialmente compleja.",
@@ -323,6 +363,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="intermediar",
+                frequency_rank=970,
                 pos="verb",
                 definition="Actuar de puente entre dos partes",
                 example="Intermedió entre el orador y el público.",
@@ -330,6 +371,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="transigir",
+                frequency_rank=971,
                 pos="verb",
                 definition="Ceder en parte para llegar a un acuerdo",
                 example="Ambas partes tuvieron que transigir.",
@@ -337,6 +379,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conciliador",
+                frequency_rank=972,
                 pos="adjective",
                 definition="Que busca poner de acuerdo",
                 example="Adoptó un tono conciliador.",
@@ -344,6 +387,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="terciar",
+                frequency_rank=973,
                 pos="verb",
                 definition="Intervenir para mediar en una discusión",
                 example="Terció en la disputa para calmarlos.",
@@ -351,6 +395,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="zanjarse",
+                frequency_rank=974,
                 pos="verb",
                 definition="Darse por resuelto un asunto",
                 example="La cuestión se zanjó por consenso.",
@@ -358,6 +403,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="consensuar",
+                frequency_rank=975,
                 pos="verb",
                 definition="Acordar por consenso",
                 example="Consensuaron los términos del acuerdo.",
@@ -365,6 +411,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="saldar",
+                frequency_rank=976,
                 pos="verb",
                 definition="Resolver definitivamente",
                 example="Saldaron sus diferencias.",
@@ -372,6 +419,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="disenso",
+                frequency_rank=977,
                 pos="noun",
                 definition="Desacuerdo o discrepancia",
                 example="Hubo disenso en varios puntos.",
@@ -379,6 +427,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="avenencia",
+                frequency_rank=978,
                 pos="noun",
                 definition="Acuerdo alcanzado tras negociación",
                 example="Llegaron a una avenencia.",
@@ -386,6 +435,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mediador",
+                frequency_rank=979,
                 pos="noun",
                 definition="Persona que facilita el entendimiento entre partes",
                 example="Actuó como mediador en el conflicto.",
@@ -401,6 +451,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="diacronía",
+                frequency_rank=980,
                 pos="noun",
                 definition="Evolución de un fenómeno a lo largo del tiempo",
                 example="La diacronía explica los cambios lingüísticos.",
@@ -408,6 +459,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sincronía",
+                frequency_rank=981,
                 pos="noun",
                 definition="Estudio de una lengua en un momento dado",
                 example="El análisis sincrónico se centra en el presente.",
@@ -415,6 +467,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="etimología",
+                frequency_rank=982,
                 pos="noun",
                 definition="Origen y evolución de una palabra",
                 example='La etimología de "almohada" es árabe.',
@@ -422,6 +475,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="latín vulgar",
+                frequency_rank=983,
                 pos="phrase",
                 definition="Variedad hablada del latín de donde derivan las lenguas romances",
                 example="El español proviene del latín vulgar.",
@@ -429,6 +483,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mozárabe",
+                frequency_rank=984,
                 pos="noun",
                 definition="Lengua romance hablada en Al-Ándalus",
                 example="Las jarchas están escritas en mozárabe.",
@@ -436,6 +491,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="Alfonso X",
+                frequency_rank=985,
                 pos="noun",
                 definition="Rey que impulsó la normalización del castellano",
                 example="Alfonso X el Sabio fijó la prosa castellana.",
@@ -443,6 +499,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="Nebrija",
+                frequency_rank=986,
                 pos="noun",
                 definition="Autor de la primera gramática castellana (1492)",
                 example="Nebrija escribió la primera gramática.",
@@ -450,6 +507,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rae",
+                frequency_rank=987,
                 pos="noun",
                 definition="Real Academia Española",
                 example="La RAE fundó en 1713.",
@@ -457,6 +515,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="americanismo",
+                frequency_rank=988,
                 pos="noun",
                 definition="Vocablo propio del español de América",
                 example="Popote es un americanismo.",
@@ -464,6 +523,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arcaísmo",
+                frequency_rank=989,
                 pos="noun",
                 definition="Palabra o expresión anticuada",
                 example="Fierro es un arcaísmo de hierro.",
@@ -479,6 +539,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="hispanidad",
+                frequency_rank=990,
                 pos="noun",
                 definition="Comunidad de pueblos de cultura hispánica",
                 example="La hispanidad abarca dos continentes.",
@@ -486,6 +547,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mestizaje",
+                frequency_rank=991,
                 pos="noun",
                 definition="Mezcla de culturas",
                 example="El mestizaje define la cultura hispanoamericana.",
@@ -493,6 +555,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="casticismo",
+                frequency_rank=992,
                 pos="noun",
                 definition="Defensa de lo genuinamente español",
                 example="El casticismo es un concepto del siglo XVIII.",
@@ -500,6 +563,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="Generación del 98",
+                frequency_rank=993,
                 pos="phrase",
                 definition="Grupo de escritores tras el desastre de 1898",
                 example="Unamuno pertenece a la Generación del 98.",
@@ -507,6 +571,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="Siglo de Oro",
+                frequency_rank=994,
                 pos="phrase",
                 definition="Período de máximo esplendor cultural español",
                 example="El Siglo de Oro abarca los siglos XVI y XVII.",
@@ -514,6 +579,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vanguardia",
+                frequency_rank=995,
                 pos="noun",
                 definition="Movimientos artísticos de ruptura",
                 example="Las vanguardias transformaron el arte del siglo XX.",
@@ -521,6 +587,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="Quijote",
+                frequency_rank=996,
                 pos="noun",
                 definition="Obra maestra de Cervantes",
                 example="El Quijote es la obra cumbre de la literatura.",
@@ -528,6 +595,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="flamenco",
+                frequency_rank=997,
                 pos="noun",
                 definition="Expresión artística andaluza",
                 example="El flamenco es patrimonio inmaterial.",
@@ -535,6 +603,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="iberoamérica",
+                frequency_rank=998,
                 pos="noun",
                 definition="Conjunto de países americanos de habla hispana y portuguesa",
                 example="Iberoamérica comparte lazos históricos y culturales.",
@@ -542,6 +611,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cervantino",
+                frequency_rank=999,
                 pos="adjective",
                 definition="Relativo a Cervantes o a su obra",
                 example="El humor cervantino es inconfundible.",
@@ -557,6 +627,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="acuñar",
+                frequency_rank=1000,
                 pos="verb",
                 definition="Crear una expresión o término nuevo",
                 example="Acuñó el término para describir el fenómeno.",
@@ -564,6 +635,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pergeñar",
+                frequency_rank=1001,
                 pos="verb",
                 definition="Bosquejar o idear un texto",
                 example="Pergeñó el borrador en una noche.",
@@ -571,6 +643,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hilvanar",
+                frequency_rank=1002,
                 pos="verb",
                 definition="Enlazar ideas de forma coherente",
                 example="Hilvanó los argumentos con maestría.",
@@ -578,6 +651,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="engarzar",
+                frequency_rank=1003,
                 pos="verb",
                 definition="Encadenar elementos de forma armoniosa",
                 example="Engarzó las citas con elegancia.",
@@ -585,6 +659,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pulir",
+                frequency_rank=1004,
                 pos="verb",
                 definition="Perfeccionar un texto",
                 example="Pulió cada párrafo antes de publicar.",
@@ -592,6 +667,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="esbozo",
+                frequency_rank=1005,
                 pos="noun",
                 definition="Versión preliminar de una obra",
                 example="Presentó un esbozo del capítulo.",
@@ -599,6 +675,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="artificio",
+                frequency_rank=1006,
                 pos="noun",
                 definition="Recurso elaborado y no natural",
                 example="Abusa de artificios retóricos.",
@@ -606,6 +683,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inusitado",
+                frequency_rank=1007,
                 pos="adjective",
                 definition="Poco habitual, extraordinario",
                 example="Usó un giro inusitado.",
@@ -613,6 +691,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="genuino",
+                frequency_rank=1008,
                 pos="adjective",
                 definition="Auténtico, no copiado ni falso",
                 example="Su estilo es genuino.",
@@ -620,6 +699,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="plagiar",
+                frequency_rank=1009,
                 pos="verb",
                 definition="Copiar una obra ajena",
                 example="Le acusaron de plagiar el artículo.",
@@ -635,6 +715,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="edición",
+                frequency_rank=1010,
                 pos="noun",
                 definition="Proceso de preparar un texto para publicar",
                 example="La edición estuvo a cargo de un especialista.",
@@ -642,6 +723,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="imprenta",
+                frequency_rank=1011,
                 pos="noun",
                 definition="Técnica de reproducción de textos",
                 example="La imprenta revolucionó la difusión cultural.",
@@ -649,6 +731,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="manuscrito",
+                frequency_rank=1012,
                 pos="noun",
                 definition="Texto escrito a mano",
                 example="El manuscrito original se conserva en la biblioteca.",
@@ -656,6 +739,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="compilar",
+                frequency_rank=1013,
                 pos="verb",
                 definition="Reunir textos dispersos en una sola obra",
                 example="Compiló sus artículos en un libro.",
@@ -663,6 +747,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reeditar",
+                frequency_rank=1014,
                 pos="verb",
                 definition="Volver a publicar con cambios",
                 example="Reeditaron la novela con un nuevo prólogo.",
@@ -670,6 +755,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="difusión",
+                frequency_rank=1015,
                 pos="noun",
                 definition="Alcance de la distribución de una obra",
                 example="La difusión del libro fue masiva.",
@@ -677,6 +763,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tiraje",
+                frequency_rank=1016,
                 pos="noun",
                 definition="Número de ejemplares impresos",
                 example="El primer tiraje fue de diez mil copias.",
@@ -684,6 +771,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="prólogo",
+                frequency_rank=1017,
                 pos="noun",
                 definition="Texto introductorio de una obra",
                 example="El prólogo lo escribió un autor consagrado.",
@@ -691,6 +779,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="epílogo",
+                frequency_rank=1018,
                 pos="noun",
                 definition="Texto final que cierra una obra",
                 example="El epílogo revela el destino de los personajes.",
@@ -698,6 +787,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="autoedición",
+                frequency_rank=1019,
                 pos="noun",
                 definition="Publicación hecha por el propio autor",
                 example="Optó por la autoedición al no encontrar editorial.",
@@ -713,6 +803,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="culmen",
+                frequency_rank=1020,
                 pos="noun",
                 definition="Punto más alto de perfección",
                 example="Esta obra representa el culmen de su carrera.",
@@ -720,6 +811,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cenit",
+                frequency_rank=1021,
                 pos="noun",
                 definition="Momento de máximo esplendor",
                 example="Alcanzó el cenit de su producción literaria.",
@@ -727,6 +819,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="paradigmático",
+                frequency_rank=1022,
                 pos="adjective",
                 definition="Que sirve de modelo o ejemplo",
                 example="Es un caso paradigmático.",
@@ -734,6 +827,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cúspide",
+                frequency_rank=1023,
                 pos="noun",
                 definition="Parte más alta, cumbre",
                 example="Está en la cúspide de su carrera.",
@@ -741,6 +835,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="plenitud",
+                frequency_rank=1024,
                 pos="noun",
                 definition="Estado de desarrollo completo",
                 example="Escribe con la plenitud de quien domina la lengua.",
@@ -748,6 +843,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hito",
+                frequency_rank=1025,
                 pos="noun",
                 definition="Acontecimiento muy importante",
                 example="Este libro marcó un hito en la literatura.",
@@ -755,6 +851,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="consagrarse",
+                frequency_rank=1026,
                 pos="verb",
                 definition="Alcanzar reconocimiento definitivo",
                 example="Se consagró como escritor con su tercera novela.",
@@ -762,6 +859,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="trascendencia",
+                frequency_rank=1027,
                 pos="noun",
                 definition="Importancia que va más allá de lo inmediato",
                 example="Su obra tiene una trascendencia universal.",
@@ -769,6 +867,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sapiencia",
+                frequency_rank=1028,
                 pos="noun",
                 definition="Sabiduría profunda",
                 example="Escribe con la sapiencia de los años.",
@@ -776,6 +875,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="erudición",
+                frequency_rank=1029,
                 pos="noun",
                 definition="Conocimiento amplio y profundo",
                 example="Su erudición abarca múltiples disciplinas.",
@@ -791,6 +891,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="gentrificación",
+                frequency_rank=1030,
                 pos="noun",
                 definition="Transformación urbana que desplaza a residentes originales",
                 example="La gentrificación ha cambiado el barrio por completo.",
@@ -798,6 +899,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="precarización",
+                frequency_rank=1031,
                 pos="noun",
                 definition="Proceso de deterioro de las condiciones laborales",
                 example="La precarización afecta a los jóvenes trabajadores.",
@@ -805,6 +907,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sostenibilidad",
+                frequency_rank=1032,
                 pos="noun",
                 definition="Capacidad de mantenerse sin agotar recursos",
                 example="La sostenibilidad es clave para el futuro.",
@@ -812,6 +915,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="brecha",
+                frequency_rank=1033,
                 pos="noun",
                 definition="Diferencia o distancia significativa entre grupos",
                 example="La brecha digital afecta a las zonas rurales.",
@@ -819,6 +923,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="coyuntura",
+                frequency_rank=1034,
                 pos="noun",
                 definition="Conjunto de circunstancias del momento",
                 example="La coyuntura económica exige cautela.",
@@ -826,6 +931,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="paradigma",
+                frequency_rank=1035,
                 pos="noun",
                 definition="Modelo o patrón de referencia",
                 example="Necesitamos un nuevo paradigma educativo.",
@@ -833,6 +939,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="resiliencia",
+                frequency_rank=1036,
                 pos="noun",
                 definition="Capacidad de adaptarse a situaciones adversas",
                 example="La resiliencia comunitaria es fundamental.",
@@ -840,6 +947,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="transversal",
+                frequency_rank=1037,
                 pos="adjective",
                 definition="Que afecta a múltiples áreas o sectores",
                 example="Es un problema transversal que requiere colaboración.",
@@ -847,6 +955,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="coyuntural",
+                frequency_rank=1038,
                 pos="adjective",
                 definition="Relativo a las circunstancias del momento",
                 example="Son medidas coyunturales, no estructurales.",
@@ -854,6 +963,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="endémico",
+                frequency_rank=1039,
                 pos="adjective",
                 definition="Propio y exclusivo de un lugar o situación",
                 example="La corrupción es un problema endémico.",
@@ -861,6 +971,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mitigar",
+                frequency_rank=1040,
                 pos="verb",
                 definition="Reducir la intensidad o gravedad de algo",
                 example="Debemos mitigar los efectos del cambio climático.",
@@ -868,6 +979,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="erradicar",
+                frequency_rank=1041,
                 pos="verb",
                 definition="Eliminar completamente algo negativo",
                 example="Es difícil erradicar la pobreza estructural.",
@@ -875,6 +987,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fomentar",
+                frequency_rank=1042,
                 pos="verb",
                 definition="Promover o impulsar algo",
                 example="Hay que fomentar la participación ciudadana.",
@@ -882,6 +995,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="visibilizar",
+                frequency_rank=1043,
                 pos="verb",
                 definition="Hacer visible o dar reconocimiento a algo",
                 example="El movimiento busca visibilizar las desigualdades.",
@@ -889,6 +1003,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="empoderar",
+                frequency_rank=1044,
                 pos="verb",
                 definition="Dar poder o autonomía a un grupo",
                 example="El proyecto busca empoderar a las mujeres rurales.",
@@ -896,6 +1011,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vulnerabilidad",
+                frequency_rank=1045,
                 pos="noun",
                 definition="Cualidad de ser susceptible a daño",
                 example="La vulnerabilidad social requiere atención prioritaria.",
@@ -903,6 +1019,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inclusión",
+                frequency_rank=1046,
                 pos="noun",
                 definition="Acción de integrar a todos en la sociedad",
                 example="La inclusión es un derecho fundamental.",
@@ -910,6 +1027,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="equidad",
+                frequency_rank=1047,
                 pos="noun",
                 definition="Justicia e igualdad de oportunidades",
                 example="Buscamos equidad en el acceso a la educación.",
@@ -925,6 +1043,7 @@ C2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="epistemología",
+                frequency_rank=1048,
                 pos="noun",
                 definition="Rama de la filosofía que estudia el conocimiento",
                 example="La epistemología cuestiona los fundamentos del saber.",
@@ -932,6 +1051,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="heurístico",
+                frequency_rank=1049,
                 pos="adjective",
                 definition="Que sirve para descubrir o inventar",
                 example="Es un método heurístico muy eficaz.",
@@ -939,6 +1059,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="empírico",
+                frequency_rank=1050,
                 pos="adjective",
                 definition="Basado en la experiencia y observación",
                 example="Los datos empíricos confirman la hipótesis.",
@@ -946,6 +1067,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="paradigma",
+                frequency_rank=1051,
                 pos="noun",
                 definition="Marco teórico de referencia en una disciplina",
                 example="Kuhn analizó los cambios de paradigma científico.",
@@ -953,6 +1075,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="corroborar",
+                frequency_rank=1052,
                 pos="verb",
                 definition="Confirmar con pruebas o argumentos",
                 example="Los resultados corroboran la teoría inicial.",
@@ -960,6 +1083,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="refutar",
+                frequency_rank=1053,
                 pos="verb",
                 definition="Demostrar que algo es falso o incorrecto",
                 example="El estudio refuta las conclusiones anteriores.",
@@ -967,6 +1091,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="extrapolar",
+                frequency_rank=1054,
                 pos="verb",
                 definition="Aplicar conclusiones de un contexto a otro",
                 example="No se pueden extrapolar estos resultados sin más.",
@@ -974,6 +1099,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sesgo",
+                frequency_rank=1055,
                 pos="noun",
                 definition="Inclinación o distorsión en la interpretación",
                 example="El estudio tiene un sesgo metodológico evidente.",
@@ -981,6 +1107,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rigor",
+                frequency_rank=1056,
                 pos="noun",
                 definition="Exactitud y precisión en el método",
                 example="La investigación carece de rigor científico.",
@@ -988,6 +1115,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="axioma",
+                frequency_rank=1057,
                 pos="noun",
                 definition="Proposición evidente que no requiere demostración",
                 example="Es un axioma de la física clásica.",
@@ -995,6 +1123,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="postulado",
+                frequency_rank=1058,
                 pos="noun",
                 definition="Principio que se admite como base de razonamiento",
                 example="Los postulados de Einstein revolucionaron la física.",
@@ -1002,6 +1131,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="disonancia",
+                frequency_rank=1059,
                 pos="noun",
                 definition="Falta de armonía o coherencia",
                 example="Hay disonancia entre la teoría y la práctica.",
@@ -1009,6 +1139,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="consenso",
+                frequency_rank=1060,
                 pos="noun",
                 definition="Acuerdo general entre especialistas",
                 example="Existe consenso sobre la necesidad de más investigación.",
@@ -1016,6 +1147,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="disertación",
+                frequency_rank=1061,
                 pos="noun",
                 definition="Exposición razonada sobre un tema",
                 example="Su disertación fue brillante y bien documentada.",
@@ -1023,6 +1155,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escrutinio",
+                frequency_rank=1062,
                 pos="noun",
                 definition="Examen detallado y crítico",
                 example="El trabajo fue sometido a escrutinio riguroso.",
@@ -1030,6 +1163,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="verosímil",
+                frequency_rank=1063,
                 pos="adjective",
                 definition="Que parece verdadero o posible",
                 example="La hipótesis es verosímil pero falta evidencia.",
@@ -1037,6 +1171,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fidedigno",
+                frequency_rank=1064,
                 pos="adjective",
                 definition="Digno de fe y crédito",
                 example="Necesitamos fuentes fidedignas para el estudio.",
@@ -1044,6 +1179,7 @@ C2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="holístico",
+                frequency_rank=1065,
                 pos="adjective",
                 definition="Que considera el todo y no solo las partes",
                 example="Adoptamos un enfoque holístico del problema.",

@@ -69,7 +69,7 @@ B2_UNITS: list[CurriculumUnit] = [
         unit_number=4,
         title="Expresiones idiomáticas",
         grammar_points=["modismos-comunes", "expresiones-coloquiales", "refranes"],
-        vocabulary_set_ids=["modismos_b2", "cultura_b2"],
+        vocabulary_set_ids=["modismos_b2", "cultura_b2", "modismos_expresiones_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Understands and uses 20+ high-frequency idiomatic expressions in context: no hay mal que por bien no venga, a las duras y a las maduras, no dar pie con bola, ponerse las pilas, no tener pelos en la lengua",

@@ -29,7 +29,7 @@ C1_UNITS: list[CurriculumUnit] = [
         unit_number=2,
         title="Registro formal y académico",
         grammar_points=["pasiva-refleja", "nominalizacion", "impersonalidad"],
-        vocabulary_set_ids=["académico_c1", "investigación_c1"],
+        vocabulary_set_ids=["académico_c1", "investigación_c1", "registro_lingüístico_c1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Uses the pasiva refleja (se + third person) fluently in formal and technical writing as the natural Spanish alternative to the passive voice with ser",

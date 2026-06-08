@@ -11,7 +11,7 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=1,
         title="Perfect Aspects",
         grammar_points=["present-perfect", "present-perfect-continuous", "past-perfect"],
-        vocabulary_set_ids=["time_expressions_b1", "life_changes_b1"],
+        vocabulary_set_ids=["time_expressions_b1", "life_changes_b1", "experiences_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Use present perfect simple vs continuous correctly",
@@ -27,7 +27,7 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=2,
         title="Conditionals 1 & 2",
         grammar_points=["first-conditional", "second-conditional", "zero-conditional"],
-        vocabulary_set_ids=["conditionals_vocab_b1", "hypothetical_b1"],
+        vocabulary_set_ids=["conditionals_vocab_b1", "hypothetical_b1", "decisions_b1", "environment_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Form and use zero, first, and second conditionals correctly",
@@ -43,7 +43,7 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=3,
         title="Passive Voice",
         grammar_points=["passive-voice-simple", "passive-voice-perfect"],
-        vocabulary_set_ids=["processes_b1", "news_events_b1"],
+        vocabulary_set_ids=["processes_b1", "news_events_b1", "media_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Form passive sentences in present and past tenses",
@@ -59,7 +59,7 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=4,
         title="Relative Clauses & Connectors",
         grammar_points=["relative-clauses", "discourse-connectors-b1"],
-        vocabulary_set_ids=["connectors_b1", "descriptions_b1"],
+        vocabulary_set_ids=["connectors_b1", "descriptions_b1", "technology_b1", "communication_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Use defining and non-defining relative clauses",
@@ -75,7 +75,7 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=5,
         title="Modals & Advice",
         grammar_points=["modal-verbs", "should-ought-to", "must-have-to"],
-        vocabulary_set_ids=["advice_b1", "obligation_b1"],
+        vocabulary_set_ids=["advice_b1", "obligation_b1", "advice_phrases_b1", "work_obligations_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Use must/have to/should/ought to correctly",
@@ -91,7 +91,7 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=6,
         title="Reported Speech",
         grammar_points=["reported-speech"],
-        vocabulary_set_ids=["reporting_verbs_b1", "news_b1"],
+        vocabulary_set_ids=["reporting_verbs_b1", "news_b1", "news_media_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Report what someone said with correct tense backshift",
@@ -111,6 +111,8 @@ B1_UNITS: list[CurriculumUnit] = [
             "feelings_regret_b1",
             "hypothetical_past_b1",
             "culture_entertainment_b1",
+            "opinion_phrases_b1",
+            "society_b1",
         ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[

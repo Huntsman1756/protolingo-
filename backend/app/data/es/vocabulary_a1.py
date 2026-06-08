@@ -11,6 +11,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="hola",
+                frequency_rank=1,
                 pos="phrase",
                 definition="Saludo informal",
                 example="¡Hola! ¿Qué tal estás?",
@@ -26,6 +27,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="buenos días",
+                frequency_rank=3,
                 pos="phrase",
                 definition="Saludo matutino",
                 example="Buenos días, ¿cómo amaneció?",
@@ -33,6 +35,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="buenas tardes",
+                frequency_rank=4,
                 pos="phrase",
                 definition="Saludo vespertino",
                 example="Buenas tardes, ¿me puede ayudar?",
@@ -40,6 +43,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="buenas noches",
+                frequency_rank=5,
                 pos="phrase",
                 definition="Saludo nocturno o despedida",
                 example="Buenas noches, que descanses.",
@@ -47,6 +51,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hasta luego",
+                frequency_rank=6,
                 pos="phrase",
                 definition="Despedida que implica reencuentro",
                 example="Hasta luego, fue un placer.",
@@ -54,6 +59,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hasta mañana",
+                frequency_rank=7,
                 pos="phrase",
                 definition="Despedida para el día siguiente",
                 example="Hasta mañana en la oficina.",
@@ -61,6 +67,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="por favor",
+                frequency_rank=8,
                 pos="phrase",
                 definition="Expresión de cortesía para pedir algo",
                 example="Un café, por favor.",
@@ -68,6 +75,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="gracias",
+                frequency_rank=9,
                 pos="phrase",
                 definition="Expresión de agradecimiento",
                 example="Muchas gracias por tu ayuda.",
@@ -75,6 +83,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="de nada",
+                frequency_rank=10,
                 pos="phrase",
                 definition="Respuesta a un agradecimiento",
                 example="De nada, cuando quieras.",
@@ -82,6 +91,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="perdón",
+                frequency_rank=11,
                 pos="phrase",
                 definition="Disculpa por una falta leve",
                 example="Perdón, no te había visto.",
@@ -89,6 +99,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="lo siento",
+                frequency_rank=12,
                 pos="phrase",
                 definition="Expresión de disculpa o pesar",
                 example="Lo siento mucho, me equivoqué.",
@@ -104,6 +115,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="nombre",
+                frequency_rank=23,
                 pos="noun",
                 definition="Palabra que identifica a una persona",
                 example="Mi nombre es Carlos.",
@@ -111,6 +123,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="apellido",
+                frequency_rank=200,
                 pos="noun",
                 definition="Nombre de familia",
                 example="Mi apellido es García.",
@@ -118,6 +131,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="edad",
+                frequency_rank=24,
                 pos="noun",
                 definition="Años que ha vivido una persona",
                 example="Tengo veinticinco años de edad.",
@@ -125,6 +139,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="nacionalidad",
+                frequency_rank=201,
                 pos="noun",
                 definition="País de origen de una persona",
                 example="Mi nacionalidad es mexicana.",
@@ -132,6 +147,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="llamarse",
+                frequency_rank=202,
                 pos="verb",
                 definition="Tener un nombre determinado",
                 example="¿Cómo se llama usted?",
@@ -139,6 +155,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ser",
+                frequency_rank=71,
                 pos="verb",
                 definition="Verbo que indica identidad o esencia",
                 example="Yo soy profesor.",
@@ -146,6 +163,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tener",
+                frequency_rank=73,
                 pos="verb",
                 definition="Verbo de posesión o edad",
                 example="Ella tiene treinta años.",
@@ -153,6 +171,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vivir",
+                frequency_rank=81,
                 pos="verb",
                 definition="Residir en un lugar",
                 example="Vivo en Barcelona.",
@@ -160,6 +179,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="presentar",
+                frequency_rank=203,
                 pos="verb",
                 definition="Dar a conocer a una persona",
                 example="Te presento a mi amiga Laura.",
@@ -167,6 +187,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="encantado",
+                frequency_rank=204,
                 pos="adjective",
                 definition="Fórmula de cortesía al conocer a alguien",
                 example="Encantado de conocerte.",
@@ -174,6 +195,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mucho gusto",
+                frequency_rank=205,
                 pos="phrase",
                 definition="Expresión de placer al conocer a alguien",
                 example="Mucho gusto, soy Ana.",
@@ -181,6 +203,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="¿cómo te llamas?",
+                frequency_rank=206,
                 pos="phrase",
                 definition="Pregunta para saber el nombre",
                 example="Hola, ¿cómo te llamas?",
@@ -196,6 +219,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="español",
+                frequency_rank=207,
                 pos="adjective",
                 definition="Originario de España",
                 example="Mi profesor es español.",
@@ -203,6 +227,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mexicano",
+                frequency_rank=208,
                 pos="adjective",
                 definition="Originario de México",
                 example="La comida mexicana es deliciosa.",
@@ -210,6 +235,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="argentino",
+                frequency_rank=209,
                 pos="adjective",
                 definition="Originario de Argentina",
                 example="El tango es argentino.",
@@ -217,6 +243,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="colombiano",
+                frequency_rank=210,
                 pos="adjective",
                 definition="Originario de Colombia",
                 example="Mi amigo es colombiano.",
@@ -224,6 +251,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="chileno",
+                frequency_rank=211,
                 pos="adjective",
                 definition="Originario de Chile",
                 example="El vino chileno es famoso.",
@@ -231,6 +259,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="francés",
+                frequency_rank=212,
                 pos="adjective",
                 definition="Originario de Francia",
                 example="El queso francés es muy bueno.",
@@ -238,6 +267,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inglés",
+                frequency_rank=213,
                 pos="adjective",
                 definition="Originario de Inglaterra",
                 example="Ella habla inglés perfectamente.",
@@ -245,6 +275,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="italiano",
+                frequency_rank=214,
                 pos="adjective",
                 definition="Originario de Italia",
                 example="El restaurante italiano está cerca.",
@@ -252,6 +283,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="alemán",
+                frequency_rank=215,
                 pos="adjective",
                 definition="Originario de Alemania",
                 example="El coche alemán es de calidad.",
@@ -259,6 +291,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="japonés",
+                frequency_rank=216,
                 pos="adjective",
                 definition="Originario de Japón",
                 example="El jardín japonés es tranquilo.",
@@ -266,6 +299,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="brasileño",
+                frequency_rank=217,
                 pos="adjective",
                 definition="Originario de Brasil",
                 example="El carnaval brasileño es alegre.",
@@ -273,6 +307,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="extranjero",
+                frequency_rank=218,
                 pos="noun",
                 definition="Persona de otro país",
                 example="Soy extranjero en esta ciudad.",
@@ -288,6 +323,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="profesor",
+                frequency_rank=219,
                 pos="noun",
                 definition="Persona que enseña",
                 example="El profesor explica la lección.",
@@ -295,6 +331,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="médico",
+                frequency_rank=136,
                 pos="noun",
                 definition="Persona que ejerce la medicina",
                 example="El médico me recetó un jarabe.",
@@ -302,6 +339,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ingeniero",
+                frequency_rank=220,
                 pos="noun",
                 definition="Persona que aplica la ingeniería",
                 example="Mi hermano es ingeniero civil.",
@@ -309,6 +347,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="abogado",
+                frequency_rank=221,
                 pos="noun",
                 definition="Persona que defiende causas legales",
                 example="El abogado ganó el caso.",
@@ -316,6 +355,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="enfermero",
+                frequency_rank=222,
                 pos="noun",
                 definition="Persona que cuida enfermos",
                 example="La enfermera tomó la temperatura.",
@@ -323,6 +363,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cocinero",
+                frequency_rank=223,
                 pos="noun",
                 definition="Persona que prepara alimentos",
                 example="El cocinero preparó una paella.",
@@ -330,6 +371,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estudiante",
+                frequency_rank=224,
                 pos="noun",
                 definition="Persona que cursa estudios",
                 example="Soy estudiante de español.",
@@ -337,6 +379,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="periodista",
+                frequency_rank=225,
                 pos="noun",
                 definition="Persona que trabaja en medios informativos",
                 example="La periodista entrevistó al alcalde.",
@@ -344,6 +387,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dependiente",
+                frequency_rank=226,
                 pos="noun",
                 definition="Persona que atiende en una tienda",
                 example="El dependiente me mostró la talla.",
@@ -351,6 +395,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arquitecto",
+                frequency_rank=227,
                 pos="noun",
                 definition="Persona que diseña edificios",
                 example="El arquitecto dibujó los planos.",
@@ -358,6 +403,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="policía",
+                frequency_rank=228,
                 pos="noun",
                 definition="Agente del cuerpo de seguridad",
                 example="El policía dirigía el tráfico.",
@@ -365,6 +411,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="trabajar",
+                frequency_rank=82,
                 pos="verb",
                 definition="Desempeñar una ocupación",
                 example="Trabajo en una oficina.",
@@ -380,6 +427,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="madre",
+                frequency_rank=29,
                 pos="noun",
                 definition="Mujer que ha tenido hijos",
                 example="Mi madre cocina muy bien.",
@@ -387,6 +435,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="padre",
+                frequency_rank=28,
                 pos="noun",
                 definition="Hombre que ha tenido hijos",
                 example="Mi padre trabaja en un banco.",
@@ -394,6 +443,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hermano",
+                frequency_rank=30,
                 pos="noun",
                 definition="Persona con los mismos padres",
                 example="Tengo un hermano mayor.",
@@ -401,6 +451,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hermana",
+                frequency_rank=31,
                 pos="noun",
                 definition="Persona con los mismos padres (femenino)",
                 example="Mi hermana estudia medicina.",
@@ -408,6 +459,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hijo",
+                frequency_rank=32,
                 pos="noun",
                 definition="Descendiente varón",
                 example="Su hijo juega al fútbol.",
@@ -415,6 +467,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hija",
+                frequency_rank=33,
                 pos="noun",
                 definition="Descendiente mujer",
                 example="Mi hija tiene cinco años.",
@@ -422,6 +475,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="abuelo",
+                frequency_rank=115,
                 pos="noun",
                 definition="Padre de los padres",
                 example="Mi abuelo cuenta muchas historias.",
@@ -429,6 +483,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="abuela",
+                frequency_rank=229,
                 pos="noun",
                 definition="Madre de los padres",
                 example="Mi abuela teje bufandas.",
@@ -436,6 +491,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tío",
+                frequency_rank=230,
                 pos="noun",
                 definition="Hermano de los padres",
                 example="Mi tío vive en Madrid.",
@@ -443,6 +499,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="primo",
+                frequency_rank=231,
                 pos="noun",
                 definition="Hijo del tío o tía",
                 example="Juego con mis primos los domingos.",
@@ -450,6 +507,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="esposo",
+                frequency_rank=232,
                 pos="noun",
                 definition="Hombre casado",
                 example="Mi esposo se llama Luis.",
@@ -457,6 +515,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sobrino",
+                frequency_rank=233,
                 pos="noun",
                 definition="Hijo del hermano",
                 example="Mi sobrino cumple tres años.",
@@ -472,6 +531,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="alto",
+                frequency_rank=234,
                 pos="adjective",
                 definition="De gran estatura",
                 example="Mi hermano es muy alto.",
@@ -479,6 +539,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="bajo",
+                frequency_rank=235,
                 pos="adjective",
                 definition="De poca estatura",
                 example="Ella es baja pero rápida.",
@@ -486,6 +547,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="gordo",
+                frequency_rank=236,
                 pos="adjective",
                 definition="De cuerpo voluminoso",
                 example="El gato está un poco gordo.",
@@ -493,6 +555,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="delgado",
+                frequency_rank=237,
                 pos="adjective",
                 definition="De cuerpo fino",
                 example="Es delgado como su padre.",
@@ -500,6 +563,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="joven",
+                frequency_rank=238,
                 pos="adjective",
                 definition="De poca edad",
                 example="La profesora es muy joven.",
@@ -507,6 +571,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mayor",
+                frequency_rank=239,
                 pos="adjective",
                 definition="De edad avanzada",
                 example="Mi abuela es mayor pero activa.",
@@ -514,6 +579,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="guapo",
+                frequency_rank=240,
                 pos="adjective",
                 definition="De aspecto agradable",
                 example="¡Qué guapo estás hoy!",
@@ -521,6 +587,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="feo",
+                frequency_rank=64,
                 pos="adjective",
                 definition="De aspecto poco agradable",
                 example="Ese edificio es muy feo.",
@@ -528,6 +595,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rubio",
+                frequency_rank=241,
                 pos="adjective",
                 definition="De pelo de color claro",
                 example="El niño rubio corre rápido.",
@@ -535,6 +603,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="moreno",
+                frequency_rank=242,
                 pos="adjective",
                 definition="De pelo o piel oscura",
                 example="Mi amiga es morena y alta.",
@@ -542,6 +611,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pelo",
+                frequency_rank=243,
                 pos="noun",
                 definition="Conjunto de cabellos",
                 example="Tiene el pelo largo y liso.",
@@ -549,6 +619,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ojos",
+                frequency_rank=244,
                 pos="noun",
                 definition="Órgano de la vista",
                 example="Sus ojos son de color verde.",
@@ -564,6 +635,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="despertarse",
+                frequency_rank=245,
                 pos="verb",
                 definition="Dejar de dormir",
                 example="Me despierto a las siete.",
@@ -571,6 +643,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="levantarse",
+                frequency_rank=246,
                 pos="verb",
                 definition="Ponerse de pie al salir de la cama",
                 example="Me levanto temprano cada día.",
@@ -578,6 +651,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ducharse",
+                frequency_rank=247,
                 pos="verb",
                 definition="Lavarse el cuerpo con agua",
                 example="Me ducho antes de desayunar.",
@@ -585,6 +659,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="desayunar",
+                frequency_rank=248,
                 pos="verb",
                 definition="Tomar la primera comida del día",
                 example="Desayuno café con tostadas.",
@@ -592,6 +667,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vestirse",
+                frequency_rank=249,
                 pos="verb",
                 definition="Ponerse la ropa",
                 example="Me visto rápido por las mañanas.",
@@ -599,6 +675,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="trabajar",
+                frequency_rank=82,
                 pos="verb",
                 definition="Desempeñar una labor",
                 example="Trabajo hasta las cinco.",
@@ -606,6 +683,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="almorzar",
+                frequency_rank=250,
                 pos="verb",
                 definition="Tomar la comida del mediodía",
                 example="Almuerzo a las dos de la tarde.",
@@ -613,6 +691,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="volver",
+                frequency_rank=251,
                 pos="verb",
                 definition="Regresar al punto de partida",
                 example="Vuelvo a casa después del trabajo.",
@@ -620,6 +699,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cenar",
+                frequency_rank=252,
                 pos="verb",
                 definition="Tomar la última comida del día",
                 example="Cenamos juntos en familia.",
@@ -627,6 +707,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="acostarse",
+                frequency_rank=253,
                 pos="verb",
                 definition="Ir a la cama para dormir",
                 example="Me acuesto a las diez.",
@@ -634,6 +715,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="leer",
+                frequency_rank=84,
                 pos="verb",
                 definition="Pasar la vista por un texto",
                 example="Leo un poco antes de dormir.",
@@ -641,6 +723,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="descansar",
+                frequency_rank=254,
                 pos="verb",
                 definition="Reposar para recuperar energías",
                 example="Los domingos descanso todo el día.",
@@ -656,6 +739,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="hora",
+                frequency_rank=43,
                 pos="noun",
                 definition="Unidad de tiempo de sesenta minutos",
                 example="¿Qué hora es?",
@@ -663,6 +747,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="minuto",
+                frequency_rank=44,
                 pos="noun",
                 definition="Unidad de tiempo de sesenta segundos",
                 example="Faltan cinco minutos para las tres.",
@@ -670,6 +755,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="segundo",
+                frequency_rank=255,
                 pos="noun",
                 definition="Unidad básica de tiempo",
                 example="Espera un segundo, por favor.",
@@ -677,6 +763,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reloj",
+                frequency_rank=256,
                 pos="noun",
                 definition="Instrumento para medir el tiempo",
                 example="Mi reloj marca las doce.",
@@ -684,6 +771,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mañana",
+                frequency_rank=41,
                 pos="noun",
                 definition="Primera parte del día",
                 example="La clase es por la mañana.",
@@ -691,6 +779,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tarde",
+                frequency_rank=42,
                 pos="noun",
                 definition="Parte del día entre mañana y noche",
                 example="Nos vemos esta tarde.",
@@ -698,6 +787,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="noche",
+                frequency_rank=40,
                 pos="noun",
                 definition="Parte del día sin luz solar",
                 example="Salimos por la noche.",
@@ -705,6 +795,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mediodía",
+                frequency_rank=257,
                 pos="noun",
                 definition="Momento central del día",
                 example="El almuerzo es al mediodía.",
@@ -712,6 +803,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="medianoche",
+                frequency_rank=258,
                 pos="noun",
                 definition="Momento medio de la noche",
                 example="Llegamos a medianoche.",
@@ -719,6 +811,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="en punto",
+                frequency_rank=259,
                 pos="phrase",
                 definition="Hora exacta sin minutos",
                 example="Son las ocho en punto.",
@@ -726,6 +819,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="y media",
+                frequency_rank=260,
                 pos="phrase",
                 definition="Treinta minutos pasada la hora",
                 example="Es la una y media.",
@@ -733,6 +827,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="y cuarto",
+                frequency_rank=261,
                 pos="phrase",
                 definition="Quince minutos pasada la hora",
                 example="Quedamos a las cinco y cuarto.",
@@ -748,6 +843,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="agua",
+                frequency_rank=262,
                 pos="noun",
                 definition="Líquido transparente e incoloro",
                 example="Un vaso de agua, por favor.",
@@ -755,6 +851,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pan",
+                frequency_rank=263,
                 pos="noun",
                 definition="Alimento hecho de harina y agua",
                 example="El pan está recién horneado.",
@@ -762,6 +859,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="leche",
+                frequency_rank=264,
                 pos="noun",
                 definition="Líquido blanco producido por mamíferos",
                 example="Bebo leche en el desayuno.",
@@ -769,6 +867,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="queso",
+                frequency_rank=265,
                 pos="noun",
                 definition="Producto lácteo sólido",
                 example="Me gusta el queso manchego.",
@@ -776,6 +875,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="carne",
+                frequency_rank=266,
                 pos="noun",
                 definition="Tejido muscular de animales para consumo",
                 example="La carne asada está deliciosa.",
@@ -783,6 +883,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pescado",
+                frequency_rank=267,
                 pos="noun",
                 definition="Pez comestible",
                 example="El pescado fresco es muy sano.",
@@ -790,6 +891,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fruta",
+                frequency_rank=268,
                 pos="noun",
                 definition="Alimento dulce de árboles y plantas",
                 example="Como fruta todos los días.",
@@ -797,6 +899,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="verdura",
+                frequency_rank=269,
                 pos="noun",
                 definition="Planta comestible de huerta",
                 example="La verdura es buena para la salud.",
@@ -804,6 +907,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arroz",
+                frequency_rank=270,
                 pos="noun",
                 definition="Cereal en grano muy consumido",
                 example="La paella lleva arroz.",
@@ -811,6 +915,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vino",
+                frequency_rank=271,
                 pos="noun",
                 definition="Bebida alcohólica de uva",
                 example="Una copa de vino tinto.",
@@ -818,6 +923,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cerveza",
+                frequency_rank=272,
                 pos="noun",
                 definition="Bebida alcohólica de cebada",
                 example="Una cerveza bien fría.",
@@ -825,6 +931,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="huevo",
+                frequency_rank=273,
                 pos="noun",
                 definition="Cuerpo redondeado de aves, alimento",
                 example="Dos huevos fritos para el desayuno.",
@@ -840,6 +947,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="cine",
+                frequency_rank=274,
                 pos="noun",
                 definition="Lugar donde se proyectan películas",
                 example="Vamos al cine esta noche.",
@@ -847,6 +955,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="teatro",
+                frequency_rank=275,
                 pos="noun",
                 definition="Lugar donde se representan obras",
                 example="La obra de teatro fue magnífica.",
@@ -854,6 +963,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="parque",
+                frequency_rank=276,
                 pos="noun",
                 definition="Zona verde pública",
                 example="Paseamos por el parque.",
@@ -861,6 +971,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="playa",
+                frequency_rank=277,
                 pos="noun",
                 definition="Orilla del mar",
                 example="En verano vamos a la playa.",
@@ -868,6 +979,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="deporte",
+                frequency_rank=278,
                 pos="noun",
                 definition="Actividad física reglamentada",
                 example="Hago deporte tres veces por semana.",
@@ -875,6 +987,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="música",
+                frequency_rank=279,
                 pos="noun",
                 definition="Arte de combinar sonidos",
                 example="Escucho música mientras estudio.",
@@ -882,6 +995,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="leer",
+                frequency_rank=84,
                 pos="verb",
                 definition="Interpretar un texto escrito",
                 example="Me gusta leer novelas.",
@@ -889,6 +1003,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="bailar",
+                frequency_rank=280,
                 pos="verb",
                 definition="Mover el cuerpo al ritmo de la música",
                 example="Bailamos salsa los viernes.",
@@ -896,6 +1011,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="correr",
+                frequency_rank=281,
                 pos="verb",
                 definition="Desplazarse rápidamente a pie",
                 example="Corro cinco kilómetros cada mañana.",
@@ -903,6 +1019,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="nadar",
+                frequency_rank=282,
                 pos="verb",
                 definition="Desplazarse en el agua",
                 example="Nado en la piscina municipal.",
@@ -910,6 +1027,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="viajar",
+                frequency_rank=283,
                 pos="verb",
                 definition="Desplazarse a otro lugar",
                 example="Viajamos a Italia el próximo mes.",
@@ -917,6 +1035,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="descansar",
+                frequency_rank=284,
                 pos="verb",
                 definition="Reposar para recuperar fuerzas",
                 example="Me gusta descansar los fines de semana.",
@@ -932,6 +1051,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="supermercado",
+                frequency_rank=285,
                 pos="noun",
                 definition="Tienda grande de alimentos",
                 example="Voy al supermercado cada sábado.",
@@ -939,6 +1059,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="farmacia",
+                frequency_rank=286,
                 pos="noun",
                 definition="Establecimiento que vende medicinas",
                 example="La farmacia está abierta hasta tarde.",
@@ -946,6 +1067,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hospital",
+                frequency_rank=137,
                 pos="noun",
                 definition="Centro de atención médica",
                 example="El hospital está en el centro.",
@@ -953,6 +1075,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="banco",
+                frequency_rank=287,
                 pos="noun",
                 definition="Institución financiera",
                 example="Tengo que ir al banco a sacar dinero.",
@@ -960,6 +1083,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estación",
+                frequency_rank=108,
                 pos="noun",
                 definition="Lugar de parada de transportes",
                 example="La estación de tren está lejos.",
@@ -967,6 +1091,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aeropuerto",
+                frequency_rank=107,
                 pos="noun",
                 definition="Instalación para vuelos",
                 example="Llegamos al aeropuerto con tiempo.",
@@ -974,6 +1099,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="museo",
+                frequency_rank=131,
                 pos="noun",
                 definition="Edificio que exhibe obras de arte",
                 example="El museo abre los domingos.",
@@ -981,6 +1107,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="restaurante",
+                frequency_rank=288,
                 pos="noun",
                 definition="Local donde se sirven comidas",
                 example="Cenamos en un restaurante italiano.",
@@ -988,6 +1115,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="biblioteca",
+                frequency_rank=289,
                 pos="noun",
                 definition="Lugar con libros para consulta",
                 example="Estudio en la biblioteca municipal.",
@@ -995,6 +1123,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="iglesia",
+                frequency_rank=290,
                 pos="noun",
                 definition="Templo religioso cristiano",
                 example="La iglesia está en la plaza.",
@@ -1002,6 +1131,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="plaza",
+                frequency_rank=291,
                 pos="noun",
                 definition="Espacio abierto en una ciudad",
                 example="La plaza mayor es muy bonita.",
@@ -1009,6 +1139,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="calle",
+                frequency_rank=292,
                 pos="noun",
                 definition="Vía pública entre edificios",
                 example="Vivo en una calle tranquila.",
@@ -1024,6 +1155,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="derecha",
+                frequency_rank=293,
                 pos="noun",
                 definition="Lado opuesto al izquierdo",
                 example="Gire a la derecha en la esquina.",
@@ -1031,6 +1163,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="izquierda",
+                frequency_rank=294,
                 pos="noun",
                 definition="Lado opuesto al derecho",
                 example="El banco está a la izquierda.",
@@ -1038,6 +1171,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="recto",
+                frequency_rank=295,
                 pos="adverb",
                 definition="En línea recta, sin desviarse",
                 example="Siga recto hasta el semáforo.",
@@ -1045,6 +1179,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cerca",
+                frequency_rank=296,
                 pos="adverb",
                 definition="A poca distancia",
                 example="El metro está muy cerca.",
@@ -1052,6 +1187,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="lejos",
+                frequency_rank=297,
                 pos="adverb",
                 definition="A gran distancia",
                 example="El aeropuerto está lejos.",
@@ -1059,6 +1195,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aquí",
+                frequency_rank=298,
                 pos="adverb",
                 definition="En este lugar",
                 example="La tienda está aquí mismo.",
@@ -1066,6 +1203,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="allí",
+                frequency_rank=299,
                 pos="adverb",
                 definition="En aquel lugar",
                 example="El museo está allí, al fondo.",
@@ -1073,6 +1211,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cruzar",
+                frequency_rank=300,
                 pos="verb",
                 definition="Atravesar una vía",
                 example="Cruce la calle con cuidado.",
@@ -1080,6 +1219,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="doblar",
+                frequency_rank=301,
                 pos="verb",
                 definition="Girar en una dirección",
                 example="Doble en la próxima esquina.",
@@ -1087,6 +1227,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="seguir",
+                frequency_rank=302,
                 pos="verb",
                 definition="Continuar en una dirección",
                 example="Siga esta calle hasta el final.",
@@ -1094,6 +1235,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="esquina",
+                frequency_rank=303,
                 pos="noun",
                 definition="Ángulo de una calle",
                 example="La farmacia está en la esquina.",
@@ -1101,6 +1243,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="semáforo",
+                frequency_rank=304,
                 pos="noun",
                 definition="Aparato que regula el tráfico",
                 example="Pare en el semáforo en rojo.",
@@ -1116,6 +1259,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="coche",
+                frequency_rank=305,
                 pos="noun",
                 definition="Vehículo de motor para pocas personas",
                 example="Voy al trabajo en coche.",
@@ -1123,6 +1267,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="autobús",
+                frequency_rank=306,
                 pos="noun",
                 definition="Vehículo grande de transporte público",
                 example="Tomo el autobús número 12.",
@@ -1130,6 +1275,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tren",
+                frequency_rank=307,
                 pos="noun",
                 definition="Medio de transporte sobre raíles",
                 example="El tren sale a las ocho.",
@@ -1137,6 +1283,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="metro",
+                frequency_rank=308,
                 pos="noun",
                 definition="Ferrocarril subterráneo urbano",
                 example="El metro es rápido y barato.",
@@ -1144,6 +1291,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="avión",
+                frequency_rank=309,
                 pos="noun",
                 definition="Vehículo que vuela",
                 example="Viajamos en avión a Londres.",
@@ -1151,6 +1299,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="bicicleta",
+                frequency_rank=310,
                 pos="noun",
                 definition="Vehículo de dos ruedas a pedales",
                 example="Voy al parque en bicicleta.",
@@ -1158,6 +1307,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="taxi",
+                frequency_rank=311,
                 pos="noun",
                 definition="Vehículo de alquiler con conductor",
                 example="Tomamos un taxi al aeropuerto.",
@@ -1165,6 +1315,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="barco",
+                frequency_rank=312,
                 pos="noun",
                 definition="Embarcación para navegar",
                 example="El barco zarpa al amanecer.",
@@ -1172,6 +1323,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conducir",
+                frequency_rank=313,
                 pos="verb",
                 definition="Manejar un vehículo",
                 example="Conduzco despacio por la ciudad.",
@@ -1179,6 +1331,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="volar",
+                frequency_rank=314,
                 pos="verb",
                 definition="Desplazarse por el aire",
                 example="Volamos a Buenos Aires mañana.",
@@ -1186,6 +1339,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="billete",
+                frequency_rank=109,
                 pos="noun",
                 definition="Documento que acredita un pago de viaje",
                 example="Compré el billete de tren.",
@@ -1193,6 +1347,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="parada",
+                frequency_rank=315,
                 pos="noun",
                 definition="Lugar donde se detiene el transporte",
                 example="La parada del autobús está cerca.",
@@ -1208,6 +1363,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="sol",
+                frequency_rank=316,
                 pos="noun",
                 definition="Estrella que da luz y calor a la Tierra",
                 example="Hoy hace mucho sol.",
@@ -1215,6 +1371,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="lluvia",
+                frequency_rank=317,
                 pos="noun",
                 definition="Agua que cae de las nubes",
                 example="La lluvia mojó las calles.",
@@ -1222,6 +1379,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="nieve",
+                frequency_rank=318,
                 pos="noun",
                 definition="Agua congelada en copos",
                 example="En la montaña hay nieve.",
@@ -1229,6 +1387,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="viento",
+                frequency_rank=319,
                 pos="noun",
                 definition="Aire en movimiento",
                 example="El viento sopla fuerte hoy.",
@@ -1236,6 +1395,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="nube",
+                frequency_rank=320,
                 pos="noun",
                 definition="Masa de vapor en el cielo",
                 example="El cielo está lleno de nubes.",
@@ -1243,6 +1403,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="calor",
+                frequency_rank=321,
                 pos="noun",
                 definition="Temperatura elevada",
                 example="En verano hace mucho calor.",
@@ -1250,6 +1411,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="frío",
+                frequency_rank=322,
                 pos="noun",
                 definition="Temperatura baja",
                 example="El frío del invierno es intenso.",
@@ -1257,6 +1419,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="temperatura",
+                frequency_rank=323,
                 pos="noun",
                 definition="Grado de calor o frío",
                 example="La temperatura es de veinte grados.",
@@ -1264,6 +1427,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="primavera",
+                frequency_rank=324,
                 pos="noun",
                 definition="Estación entre invierno y verano",
                 example="En primavera florecen las flores.",
@@ -1271,6 +1435,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="verano",
+                frequency_rank=119,
                 pos="noun",
                 definition="Estación más calurosa",
                 example="El verano es ideal para la playa.",
@@ -1278,6 +1443,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="otoño",
+                frequency_rank=325,
                 pos="noun",
                 definition="Estación entre verano e invierno",
                 example="En otoño caen las hojas.",
@@ -1285,6 +1451,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="invierno",
+                frequency_rank=120,
                 pos="noun",
                 definition="Estación más fría",
                 example="En invierno nieva en la sierra.",
@@ -1300,6 +1467,7 @@ A1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="persona",
+                frequency_rank=326,
                 pos="noun",
                 definition="Individuo de la especie humana",
                 example="Cada persona es única.",
@@ -1307,6 +1475,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="amigo",
+                frequency_rank=34,
                 pos="noun",
                 definition="Persona con la que se tiene amistad",
                 example="Mi amigo vive en Sevilla.",
@@ -1314,6 +1483,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="casa",
+                frequency_rank=35,
                 pos="noun",
                 definition="Edificio para habitar",
                 example="Mi casa tiene tres dormitorios.",
@@ -1321,6 +1491,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escuela",
+                frequency_rank=37,
                 pos="noun",
                 definition="Institución de enseñanza",
                 example="Los niños van a la escuela.",
@@ -1328,6 +1499,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="trabajo",
+                frequency_rank=36,
                 pos="noun",
                 definition="Ocupación laboral",
                 example="Me gusta mucho mi trabajo.",
@@ -1335,6 +1507,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="familia",
+                frequency_rank=27,
                 pos="noun",
                 definition="Grupo de personas emparentadas",
                 example="La familia es muy importante.",
@@ -1342,6 +1515,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tiempo",
+                frequency_rank=38,
                 pos="noun",
                 definition="Duración de las cosas",
                 example="No tengo tiempo para ir.",
@@ -1349,6 +1523,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dinero",
+                frequency_rank=124,
                 pos="noun",
                 definition="Medio de pago",
                 example="Necesito sacar dinero del banco.",
@@ -1356,6 +1531,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="comprar",
+                frequency_rank=95,
                 pos="verb",
                 definition="Adquirir algo a cambio de dinero",
                 example="Voy a comprar el pan.",
@@ -1363,6 +1539,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hablar",
+                frequency_rank=78,
                 pos="verb",
                 definition="Expresarse con palabras",
                 example="Hablo un poco de español.",
@@ -1370,6 +1547,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="entender",
+                frequency_rank=87,
                 pos="verb",
                 definition="Comprender algo",
                 example="No entiendo esta palabra.",
@@ -1377,6 +1555,7 @@ A1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escribir",
+                frequency_rank=85,
                 pos="verb",
                 definition="Representar palabras con letras",
                 example="Escribo un correo a mi jefe.",

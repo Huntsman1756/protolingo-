@@ -11,6 +11,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="atisbo",
+                frequency_rank=762,
                 pos="noun",
                 definition="Indicio leve de algo",
                 example="Había un atisbo de esperanza en su voz.",
@@ -18,6 +19,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="soslayar",
+                frequency_rank=763,
                 pos="verb",
                 definition="Evitar o esquivar un asunto",
                 example="Soslayó la pregunta con habilidad.",
@@ -25,6 +27,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conllevar",
+                frequency_rank=764,
                 pos="verb",
                 definition="Implicar o suponer forzosamente",
                 example="El cargo conlleva mucha responsabilidad.",
@@ -32,6 +35,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sesgo",
+                frequency_rank=765,
                 pos="noun",
                 definition="Inclinación o tendencia que distorsiona",
                 example="El estudio presenta un sesgo evidente.",
@@ -39,6 +43,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tangencial",
+                frequency_rank=766,
                 pos="adjective",
                 definition="Que trata un asunto de forma superficial",
                 example="Hizo un comentario tangencial.",
@@ -46,6 +51,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vislumbrar",
+                frequency_rank=767,
                 pos="verb",
                 definition="Ver o intuir débilmente",
                 example="Se vislumbra una solución al conflicto.",
@@ -53,6 +59,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ambivalencia",
+                frequency_rank=768,
                 pos="noun",
                 definition="Coexistencia de sentimientos opuestos",
                 example="Siente ambivalencia ante la decisión.",
@@ -60,6 +67,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sutil",
+                frequency_rank=769,
                 pos="adjective",
                 definition="Delicado, fino, casi imperceptible",
                 example="Hay una diferencia sutil entre ambos términos.",
@@ -67,6 +75,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="entrañar",
+                frequency_rank=770,
                 pos="verb",
                 definition="Contener o implicar en sí mismo",
                 example="La propuesta entraña ciertos riesgos.",
@@ -74,6 +83,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="elocuente",
+                frequency_rank=771,
                 pos="adjective",
                 definition="Que expresa con claridad y fuerza",
                 example="Su silencio fue muy elocuente.",
@@ -89,6 +99,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="solemne",
+                frequency_rank=772,
                 pos="adjective",
                 definition="Que tiene formalidad grave y ceremonial",
                 example="El acto fue muy solemne.",
@@ -96,6 +107,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="protocolo",
+                frequency_rank=773,
                 pos="noun",
                 definition="Conjunto de reglas de cortesía formal",
                 example="El protocolo exige traje oscuro.",
@@ -103,6 +115,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cortesía",
+                frequency_rank=774,
                 pos="noun",
                 definition="Comportamiento educado y respetuoso",
                 example="Es una cuestión de cortesía.",
@@ -110,6 +123,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="solemnidad",
+                frequency_rank=775,
                 pos="noun",
                 definition="Cualidad de formal y ceremonial",
                 example="La solemnidad del momento era palpable.",
@@ -117,6 +131,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="decoro",
+                frequency_rank=776,
                 pos="noun",
                 definition="Dignidad en el comportamiento",
                 example="Mantén el decoro en la reunión.",
@@ -124,6 +139,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="distinguido",
+                frequency_rank=777,
                 pos="adjective",
                 definition="Elegante y refinado",
                 example="Es un caballero muy distinguido.",
@@ -131,6 +147,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="protocolario",
+                frequency_rank=778,
                 pos="adjective",
                 definition="Propio del protocolo",
                 example="Fue un acto meramente protocolario.",
@@ -138,6 +155,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cordial",
+                frequency_rank=779,
                 pos="adjective",
                 definition="Afectuoso pero formal",
                 example="Mantuvo un tono cordial durante toda la reunión.",
@@ -145,6 +163,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="etiqueta",
+                frequency_rank=780,
                 pos="noun",
                 definition="Conjunto de normas de comportamiento social",
                 example="La etiqueta exige puntualidad.",
@@ -152,6 +171,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="venerar",
+                frequency_rank=781,
                 pos="verb",
                 definition="Mostrar profundo respeto",
                 example="Veneraba a su maestro.",
@@ -167,6 +187,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="paradigma",
+                frequency_rank=782,
                 pos="noun",
                 definition="Modelo o patrón teórico",
                 example="Supone un cambio de paradigma.",
@@ -174,6 +195,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="axioma",
+                frequency_rank=783,
                 pos="noun",
                 definition="Principio que se acepta sin demostración",
                 example="Partimos de un axioma fundamental.",
@@ -181,6 +203,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="epistemología",
+                frequency_rank=784,
                 pos="noun",
                 definition="Teoría del conocimiento",
                 example="La epistemología aborda cómo conocemos.",
@@ -188,6 +211,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="disertación",
+                frequency_rank=785,
                 pos="noun",
                 definition="Exposición oral o escrita sobre un tema",
                 example="Leyó una disertación sobre el Barroco.",
@@ -195,6 +219,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tratado",
+                frequency_rank=786,
                 pos="noun",
                 definition="Obra que aborda un tema en profundidad",
                 example="Publicó un tratado sobre economía.",
@@ -202,6 +227,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="postulado",
+                frequency_rank=787,
                 pos="noun",
                 definition="Proposición que se toma como base",
                 example="El postulado inicial es discutible.",
@@ -209,6 +235,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="empírico",
+                frequency_rank=788,
                 pos="adjective",
                 definition="Basado en la experiencia y observación",
                 example="Aportó datos empíricos.",
@@ -216,6 +243,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="catedrático",
+                frequency_rank=789,
                 pos="noun",
                 definition="Profesor titular de universidad",
                 example="Es catedrático de Historia.",
@@ -223,6 +251,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="monografía",
+                frequency_rank=790,
                 pos="noun",
                 definition="Estudio detallado sobre un tema concreto",
                 example="Escribió una monografía sobre Goya.",
@@ -230,6 +259,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escolástico",
+                frequency_rank=791,
                 pos="adjective",
                 definition="Propio de las escuelas medievales",
                 example="Tuvo una formación escolástica.",
@@ -245,6 +275,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="indagar",
+                frequency_rank=792,
                 pos="verb",
                 definition="Investigar a fondo",
                 example="Indagaron las causas del accidente.",
@@ -252,6 +283,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escrutar",
+                frequency_rank=793,
                 pos="verb",
                 definition="Examinar con atención minuciosa",
                 example="Escrutó los documentos en busca de pistas.",
@@ -259,6 +291,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="contrastar",
+                frequency_rank=794,
                 pos="verb",
                 definition="Comparar para verificar",
                 example="Contrastamos los resultados con otros estudios.",
@@ -266,6 +299,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="corroborar",
+                frequency_rank=795,
                 pos="verb",
                 definition="Confirmar con nuevas pruebas",
                 example="Los datos corroboran su hipótesis.",
@@ -273,6 +307,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="refrendar",
+                frequency_rank=796,
                 pos="verb",
                 definition="Respaldar con autoridad",
                 example="El comité refrendó las conclusiones.",
@@ -280,6 +315,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="muestreo",
+                frequency_rank=797,
                 pos="noun",
                 definition="Selección de una muestra representativa",
                 example="El muestreo fue aleatorio.",
@@ -287,6 +323,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="variable",
+                frequency_rank=798,
                 pos="noun",
                 definition="Factor que puede cambiar en un estudio",
                 example="Controlaron todas las variables.",
@@ -294,6 +331,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estadística",
+                frequency_rank=799,
                 pos="noun",
                 definition="Ciencia que analiza datos numéricos",
                 example="La estadística respalda su teoría.",
@@ -301,6 +339,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rigor",
+                frequency_rank=800,
                 pos="noun",
                 definition="Exactitud y precisión metodológica",
                 example="Aplicó rigor científico a la investigación.",
@@ -308,6 +347,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="publicación",
+                frequency_rank=801,
                 pos="noun",
                 definition="Difusión formal de un trabajo científico",
                 example="La publicación salió en Nature.",
@@ -323,6 +363,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="encomienda",
+                frequency_rank=802,
                 pos="noun",
                 definition="Encargo o tarea asignada",
                 example="Recibió la encomienda de liderar el proyecto.",
@@ -330,6 +371,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="diligencia",
+                frequency_rank=803,
                 pos="noun",
                 definition="Cuidado y prontitud al ejecutar algo",
                 example="Tramitó el expediente con diligencia.",
@@ -337,6 +379,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="prerrogativa",
+                frequency_rank=804,
                 pos="noun",
                 definition="Derecho exclusivo de un cargo",
                 example="Es prerrogativa del director.",
@@ -344,6 +387,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="adjudicar",
+                frequency_rank=805,
                 pos="verb",
                 definition="Asignar o conceder algo",
                 example="Adjudicaron el contrato a la mejor oferta.",
@@ -351,6 +395,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="comisionar",
+                frequency_rank=806,
                 pos="verb",
                 definition="Encargar una misión a alguien",
                 example="Le comisionaron para negociar en el extranjero.",
@@ -358,6 +403,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="expediente",
+                frequency_rank=807,
                 pos="noun",
                 definition="Conjunto de documentos de un asunto",
                 example="El expediente está incompleto.",
@@ -365,6 +411,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="interinidad",
+                frequency_rank=808,
                 pos="noun",
                 definition="Situación temporal de un puesto",
                 example="Cubrió el puesto en interinidad.",
@@ -372,6 +419,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cualificación",
+                frequency_rank=809,
                 pos="noun",
                 definition="Conjunto de capacidades profesionales",
                 example="Tiene una alta cualificación.",
@@ -379,6 +427,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="proactivo",
+                frequency_rank=810,
                 pos="adjective",
                 definition="Que toma la iniciativa",
                 example="Es un empleado muy proactivo.",
@@ -386,6 +435,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escalafón",
+                frequency_rank=811,
                 pos="noun",
                 definition="Jerarquía dentro de una organización",
                 example="Ascendió en el escalafón rápidamente.",
@@ -401,6 +451,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="implementar",
+                frequency_rank=812,
                 pos="verb",
                 definition="Poner en funcionamiento un sistema",
                 example="Implementaron el nuevo software en toda la empresa.",
@@ -408,6 +459,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="optimizar",
+                frequency_rank=813,
                 pos="verb",
                 definition="Mejorar el rendimiento de algo",
                 example="Optimizamos los procesos de producción.",
@@ -415,6 +467,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sincronizar",
+                frequency_rank=814,
                 pos="verb",
                 definition="Coordinar para que ocurra a la vez",
                 example="Sincroniza los datos entre dispositivos.",
@@ -422,6 +475,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="compatibilidad",
+                frequency_rank=815,
                 pos="noun",
                 definition="Capacidad de funcionar conjuntamente",
                 example="Hay que comprobar la compatibilidad del sistema.",
@@ -429,6 +483,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rendimiento",
+                frequency_rank=816,
                 pos="noun",
                 definition="Productividad de un sistema",
                 example="El rendimiento del servidor ha mejorado.",
@@ -436,6 +491,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="parámetro",
+                frequency_rank=817,
                 pos="noun",
                 definition="Valor que define una configuración",
                 example="Ajusta los parámetros de búsqueda.",
@@ -443,6 +499,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="algoritmo",
+                frequency_rank=818,
                 pos="noun",
                 definition="Conjunto de reglas para resolver un problema",
                 example="El algoritmo aprende de los datos.",
@@ -450,6 +507,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="interfaz",
+                frequency_rank=819,
                 pos="noun",
                 definition="Sistema de comunicación usuario-máquina",
                 example="La interfaz es muy intuitiva.",
@@ -457,6 +515,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escalabilidad",
+                frequency_rank=820,
                 pos="noun",
                 definition="Capacidad de crecer sin perder eficiencia",
                 example="La aplicación tiene buena escalabilidad.",
@@ -464,6 +523,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="depurar",
+                frequency_rank=821,
                 pos="verb",
                 definition="Eliminar errores de un sistema",
                 example="Depuraron el código antes del lanzamiento.",
@@ -479,6 +539,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="ironía",
+                frequency_rank=822,
                 pos="noun",
                 definition="Expresión que da a entender lo contrario de lo dicho",
                 example="Lo dijo con mucha ironía.",
@@ -486,6 +547,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sarcasmo",
+                frequency_rank=823,
                 pos="noun",
                 definition="Ironía cruel o mordaz",
                 example="Su comentario estaba cargado de sarcasmo.",
@@ -493,6 +555,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mordaz",
+                frequency_rank=824,
                 pos="adjective",
                 definition="Crítico e hiriente con ingenio",
                 example="Tiene un sentido del humor muy mordaz.",
@@ -500,6 +563,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sátira",
+                frequency_rank=825,
                 pos="noun",
                 definition="Crítica humorística de la sociedad",
                 example="La obra es una sátira política.",
@@ -507,6 +571,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="retranca",
+                frequency_rank=826,
                 pos="noun",
                 definition="Segunda intención maliciosa (coloquial)",
                 example="Lo dijo con retranca.",
@@ -514,6 +579,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="chusco",
+                frequency_rank=827,
                 pos="adjective",
                 definition="Gracioso por lo extraño o peculiar",
                 example="El chiste tenía un punto chusco.",
@@ -521,6 +587,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="chascarrillo",
+                frequency_rank=828,
                 pos="noun",
                 definition="Anécdota breve y graciosa",
                 example="Contó un chascarrillo en la sobremesa.",
@@ -528,6 +595,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="parodia",
+                frequency_rank=829,
                 pos="noun",
                 definition="Imitación burlesca de algo",
                 example="Hicieron una parodia del programa.",
@@ -535,6 +603,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="socarronería",
+                frequency_rank=830,
                 pos="noun",
                 definition="Ironía disimulada y burlona",
                 example="Su socarronería a veces ofende.",
@@ -542,6 +611,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ocurrente",
+                frequency_rank=831,
                 pos="adjective",
                 definition="Que tiene ideas ingeniosas",
                 example="Es muy ocurrente con los juegos de palabras.",
@@ -557,6 +627,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="idiosincrasia",
+                frequency_rank=832,
                 pos="noun",
                 definition="Rasgos propios de un pueblo o persona",
                 example="La siesta forma parte de la idiosincrasia española.",
@@ -564,6 +635,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="acervo",
+                frequency_rank=833,
                 pos="noun",
                 definition="Conjunto de bienes culturales acumulados",
                 example="El acervo cultural de la región es inmenso.",
@@ -571,6 +643,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vanguardia",
+                frequency_rank=834,
                 pos="noun",
                 definition="Movimiento artístico innovador",
                 example="Fue un artista de vanguardia.",
@@ -578,6 +651,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mecenazgo",
+                frequency_rank=835,
                 pos="noun",
                 definition="Protección económica de artistas",
                 example="El mecenazgo impulsó el Renacimiento.",
@@ -585,6 +659,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vernáculo",
+                frequency_rank=836,
                 pos="adjective",
                 definition="Propio del lugar o del país",
                 example="Utiliza expresiones vernáculas.",
@@ -592,6 +667,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cosmopolita",
+                frequency_rank=837,
                 pos="adjective",
                 definition="Que integra influencias de muchos lugares",
                 example="Es una ciudad cosmopolita.",
@@ -599,6 +675,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="caligrafía",
+                frequency_rank=838,
                 pos="noun",
                 definition="Arte de escribir a mano con belleza",
                 example="Tiene una caligrafía impecable.",
@@ -606,6 +683,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="imaginería",
+                frequency_rank=839,
                 pos="noun",
                 definition="Arte de tallar imágenes religiosas",
                 example="La imaginería barroca es impresionante.",
@@ -613,6 +691,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="perenne",
+                frequency_rank=840,
                 pos="adjective",
                 definition="Que dura para siempre",
                 example="Su legado es perenne.",
@@ -620,6 +699,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="alegoría",
+                frequency_rank=841,
                 pos="noun",
                 definition="Representación simbólica de una idea",
                 example="El cuadro es una alegoría de la justicia.",
@@ -635,6 +715,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="perorata",
+                frequency_rank=842,
                 pos="noun",
                 definition="Discurso largo y aburrido",
                 example="Soltó una perorata que no venía a cuento.",
@@ -642,6 +723,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="alocución",
+                frequency_rank=843,
                 pos="noun",
                 definition="Discurso breve y solemne",
                 example="El presidente dirigió una alocución a la nación.",
@@ -649,6 +731,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arenga",
+                frequency_rank=844,
                 pos="noun",
                 definition="Discurso para enardecer a la gente",
                 example="El capitán lanzó una arenga a sus tropas.",
@@ -656,6 +739,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="elocución",
+                frequency_rank=845,
                 pos="noun",
                 definition="Manera de hablar en público",
                 example="Su elocución es clara y pausada.",
@@ -663,6 +747,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="proclama",
+                frequency_rank=846,
                 pos="noun",
                 definition="Declaración pública solemne",
                 example="Leyó una proclama en la plaza.",
@@ -670,6 +755,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="perorar",
+                frequency_rank=847,
                 pos="verb",
                 definition="Pronunciar un discurso",
                 example="Peroró durante más de una hora.",
@@ -677,6 +763,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="declamar",
+                frequency_rank=848,
                 pos="verb",
                 definition="Recitar con entonación dramática",
                 example="Declamó el poema con mucha pasión.",
@@ -684,6 +771,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="improvisar",
+                frequency_rank=849,
                 pos="verb",
                 definition="Hablar sin un discurso preparado",
                 example="Improvisó unas palabras muy emotivas.",
@@ -691,6 +779,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estrado",
+                frequency_rank=850,
                 pos="noun",
                 definition="Tarima desde donde se habla en público",
                 example="Subió al estrado con seguridad.",
@@ -698,6 +787,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="retórica",
+                frequency_rank=851,
                 pos="noun",
                 definition="Arte de persuadir mediante el lenguaje",
                 example="Domina la retórica clásica.",
@@ -713,6 +803,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="diapositiva",
+                frequency_rank=852,
                 pos="noun",
                 definition="Cada pantalla de una presentación",
                 example="La diapositiva resume los datos clave.",
@@ -720,6 +811,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="exordio",
+                frequency_rank=853,
                 pos="noun",
                 definition="Introducción de un discurso",
                 example="El exordio captó la atención del público.",
@@ -727,6 +819,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="epílogo",
+                frequency_rank=854,
                 pos="noun",
                 definition="Conclusión de un discurso",
                 example="El epílogo fue muy emotivo.",
@@ -734,6 +827,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="infografía",
+                frequency_rank=855,
                 pos="noun",
                 definition="Representación visual de datos",
                 example="La infografía ilustra los resultados.",
@@ -741,6 +835,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hincapié",
+                frequency_rank=856,
                 pos="noun",
                 definition="Énfasis en un punto",
                 example="Hizo hincapié en los puntos clave.",
@@ -748,6 +843,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ameno",
+                frequency_rank=857,
                 pos="adjective",
                 definition="Agradable y entretenido",
                 example="Hizo una presentación muy amena.",
@@ -755,6 +851,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conciso",
+                frequency_rank=858,
                 pos="adjective",
                 definition="Breve y preciso",
                 example="Fue un discurso conciso y brillante.",
@@ -762,6 +859,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="audiovisual",
+                frequency_rank=859,
                 pos="adjective",
                 definition="Que combina sonido e imagen",
                 example="Usó material audiovisual de apoyo.",
@@ -769,6 +867,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="turno",
+                frequency_rank=860,
                 pos="noun",
                 definition="Momento asignado para intervenir",
                 example="Ahora cedo el turno a mi compañero.",
@@ -776,6 +875,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="exposición",
+                frequency_rank=861,
                 pos="noun",
                 definition="Presentación detallada de un tema",
                 example="Su exposición fue muy clara.",
@@ -791,6 +891,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="ceceo",
+                frequency_rank=862,
                 pos="noun",
                 definition="Pronunciación de s como z (rasgo dialectal)",
                 example="El ceceo es común en algunas zonas de Andalucía.",
@@ -798,6 +899,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="seseo",
+                frequency_rank=863,
                 pos="noun",
                 definition="Pronunciación de z/c como s",
                 example="El seseo predomina en Hispanoamérica.",
@@ -805,6 +907,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="voseo",
+                frequency_rank=864,
                 pos="noun",
                 definition="Uso de vos en lugar de tú",
                 example="El voseo es típico de Argentina.",
@@ -812,6 +915,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="leísmo",
+                frequency_rank=865,
                 pos="noun",
                 definition="Uso de le en lugar de lo",
                 example="El leísmo está extendido en Castilla.",
@@ -819,6 +923,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="laísmo",
+                frequency_rank=866,
                 pos="noun",
                 definition="Uso de la en lugar de le",
                 example="El laísmo es frecuente en Madrid.",
@@ -826,6 +931,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dialecto",
+                frequency_rank=867,
                 pos="noun",
                 definition="Variedad regional de una lengua",
                 example="El andaluz es un dialecto del español.",
@@ -833,6 +939,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="jerga",
+                frequency_rank=868,
                 pos="noun",
                 definition="Lenguaje especializado de un grupo",
                 example="Los médicos usan mucha jerga.",
@@ -840,6 +947,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="argot",
+                frequency_rank=869,
                 pos="noun",
                 definition="Lenguaje informal de un grupo social",
                 example="El argot juvenil cambia rápido.",
@@ -847,6 +955,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="bilingüismo",
+                frequency_rank=870,
                 pos="noun",
                 definition="Uso de dos lenguas",
                 example="El bilingüismo es común en Cataluña.",
@@ -854,6 +963,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="diglosia",
+                frequency_rank=871,
                 pos="noun",
                 definition="Convivencia de dos lenguas con distinto prestigio",
                 example="Hay una situación de diglosia en algunas regiones.",
@@ -869,6 +979,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="variante",
+                frequency_rank=872,
                 pos="noun",
                 definition="Forma distinta de una misma lengua",
                 example="El español tiene muchas variantes regionales.",
@@ -876,6 +987,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="modalidad",
+                frequency_rank=873,
                 pos="noun",
                 definition="Variedad lingüística",
                 example="La modalidad canaria tiene rasgos propios.",
@@ -883,6 +995,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="castellano",
+                frequency_rank=874,
                 pos="noun",
                 definition="Nombre del español en España",
                 example="En España se suele decir castellano.",
@@ -890,6 +1003,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hispanohablante",
+                frequency_rank=875,
                 pos="noun",
                 definition="Persona que habla español",
                 example="Hay más de 500 millones de hispanohablantes.",
@@ -897,6 +1011,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="lusitanismo",
+                frequency_rank=876,
                 pos="noun",
                 definition="Préstamo del portugués al español",
                 example="Mermelada es un lusitanismo.",
@@ -904,6 +1019,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="anglicismo",
+                frequency_rank=877,
                 pos="noun",
                 definition="Préstamo del inglés",
                 example="Hay muchos anglicismos en el español actual.",
@@ -911,6 +1027,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="galicismo",
+                frequency_rank=878,
                 pos="noun",
                 definition="Préstamo del francés",
                 example="Chófer es un galicismo.",
@@ -918,6 +1035,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="nahuatlismo",
+                frequency_rank=879,
                 pos="noun",
                 definition="Préstamo del náhuatl",
                 example="Chocolate es un nahuatlismo.",
@@ -925,6 +1043,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="quechuismo",
+                frequency_rank=880,
                 pos="noun",
                 definition="Préstamo del quechua",
                 example="Cóndor es un quechuismo.",
@@ -932,6 +1051,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arabismo",
+                frequency_rank=881,
                 pos="noun",
                 definition="Préstamo del árabe",
                 example="Ojalá es un arabismo.",
@@ -947,6 +1067,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="desmenuzar",
+                frequency_rank=882,
                 pos="verb",
                 definition="Analizar minuciosamente",
                 example="Desmenuzó el argumento punto por punto.",
@@ -954,6 +1075,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="disecar",
+                frequency_rank=883,
                 pos="verb",
                 definition="Analizar en detalle",
                 example="Disecó la novela en su ensayo.",
@@ -961,6 +1083,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ponderar",
+                frequency_rank=884,
                 pos="verb",
                 definition="Evaluar sopesando pros y contras",
                 example="Hay que ponderar los riesgos.",
@@ -968,6 +1091,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="escrutinio",
+                frequency_rank=885,
                 pos="noun",
                 definition="Examen cuidadoso y detallado",
                 example="Sometieron las cuentas a un escrutinio.",
@@ -975,6 +1099,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="discernimiento",
+                frequency_rank=886,
                 pos="noun",
                 definition="Capacidad de distinguir y valorar",
                 example="Actuó con gran discernimiento.",
@@ -982,6 +1107,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="exhaustivo",
+                frequency_rank=887,
                 pos="adjective",
                 definition="Que agota todas las posibilidades",
                 example="Hicieron un análisis exhaustivo.",
@@ -989,6 +1115,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pericial",
+                frequency_rank=888,
                 pos="adjective",
                 definition="Propio de un experto",
                 example="Emitió un informe pericial.",
@@ -996,6 +1123,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="taxonomía",
+                frequency_rank=889,
                 pos="noun",
                 definition="Clasificación sistemática",
                 example="Establecieron una taxonomía de los errores.",
@@ -1003,6 +1131,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="concluyente",
+                frequency_rank=890,
                 pos="adjective",
                 definition="Que no deja lugar a dudas",
                 example="Las pruebas no son concluyentes.",
@@ -1010,6 +1139,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inferir",
+                frequency_rank=891,
                 pos="verb",
                 definition="Deducir a partir de indicios",
                 example="De los datos se infiere una tendencia.",
@@ -1025,6 +1155,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="compendiar",
+                frequency_rank=892,
                 pos="verb",
                 definition="Resumir lo esencial",
                 example="Compendió toda su teoría en tres páginas.",
@@ -1032,6 +1163,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sintetizar",
+                frequency_rank=893,
                 pos="verb",
                 definition="Reducir a lo fundamental",
                 example="Sintetiza los puntos clave del debate.",
@@ -1039,6 +1171,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="esbozar",
+                frequency_rank=894,
                 pos="verb",
                 definition="Trazar de forma esquemática",
                 example="Esbozó su idea en la reunión.",
@@ -1046,6 +1179,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reformular",
+                frequency_rank=895,
                 pos="verb",
                 definition="Expresar de otra manera",
                 example="Reformuló la pregunta para que se entendiera.",
@@ -1053,6 +1187,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="parafrasear",
+                frequency_rank=896,
                 pos="verb",
                 definition="Decir lo mismo con otras palabras",
                 example="Parafraseó al autor sin citarlo.",
@@ -1060,6 +1195,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="esquematizar",
+                frequency_rank=897,
                 pos="verb",
                 definition="Representar de forma esquemática",
                 example="Esquematizó todo el proceso.",
@@ -1067,6 +1203,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="extracto",
+                frequency_rank=898,
                 pos="noun",
                 definition="Resumen de un texto",
                 example="Leyó un extracto del informe.",
@@ -1074,6 +1211,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sinopsis",
+                frequency_rank=899,
                 pos="noun",
                 definition="Resumen muy breve",
                 example="La sinopsis del libro está en la contraportada.",
@@ -1081,6 +1219,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="recapitular",
+                frequency_rank=900,
                 pos="verb",
                 definition="Recordar ordenadamente lo dicho",
                 example="Recapitulemos antes de seguir.",
@@ -1088,6 +1227,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="glosar",
+                frequency_rank=901,
                 pos="verb",
                 definition="Comentar y explicar un texto",
                 example="Glosó el poema verso a verso.",
@@ -1103,6 +1243,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="erudito",
+                frequency_rank=902,
                 pos="adjective",
                 definition="Que posee amplios conocimientos",
                 example="Es un lector muy erudito.",
@@ -1110,6 +1251,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="versado",
+                frequency_rank=903,
                 pos="adjective",
                 definition="Instruido en una materia",
                 example="Está versado en literatura clásica.",
@@ -1117,6 +1259,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="prolífico",
+                frequency_rank=904,
                 pos="adjective",
                 definition="Que produce abundantemente",
                 example="Es un autor muy prolífico.",
@@ -1124,6 +1267,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aportación",
+                frequency_rank=905,
                 pos="noun",
                 definition="Contribución valiosa",
                 example="Su aportación al debate fue fundamental.",
@@ -1131,6 +1275,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="renombrado",
+                frequency_rank=906,
                 pos="adjective",
                 definition="De gran fama y prestigio",
                 example="Es un científico renombrado.",
@@ -1138,6 +1283,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="consolidar",
+                frequency_rank=907,
                 pos="verb",
                 definition="Afianzar lo aprendido",
                 example="Consolidé mis conocimientos de gramática.",
@@ -1145,6 +1291,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="proeza",
+                frequency_rank=908,
                 pos="noun",
                 definition="Acción que requiere gran esfuerzo",
                 example="Aprender un idioma es toda una proeza.",
@@ -1152,6 +1299,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="competencia",
+                frequency_rank=909,
                 pos="noun",
                 definition="Capacidad para desenvolverse en un ámbito",
                 example="Su competencia lingüística es admirable.",
@@ -1159,6 +1307,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="solvencia",
+                frequency_rank=910,
                 pos="noun",
                 definition="Capacidad y seguridad al hacer algo",
                 example="Habla con absoluta solvencia.",
@@ -1166,6 +1315,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="destreza",
+                frequency_rank=911,
                 pos="noun",
                 definition="Habilidad adquirida con la práctica",
                 example="Ha desarrollado una gran destreza comunicativa.",
@@ -1181,6 +1331,7 @@ C1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="coloquial",
+                frequency_rank=912,
                 pos="adjective",
                 definition="Propio del lenguaje informal y cotidiano",
                 example="Usa un tono coloquial en sus correos personales.",
@@ -1188,6 +1339,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="formalidad",
+                frequency_rank=913,
                 pos="noun",
                 definition="Cualidad de ser formal o protocolario",
                 example="La formalidad del acto requiere vestimenta adecuada.",
@@ -1195,6 +1347,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vulgarismo",
+                frequency_rank=914,
                 pos="noun",
                 definition="Expresión impropia del lenguaje culto",
                 example="Evita los vulgarismos en un texto académico.",
@@ -1202,6 +1355,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tecnicismo",
+                frequency_rank=915,
                 pos="noun",
                 definition="Término propio de una especialidad",
                 example="El artículo está lleno de tecnicismos médicos.",
@@ -1209,6 +1363,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="neologismo",
+                frequency_rank=916,
                 pos="noun",
                 definition="Palabra o expresión de nueva creación",
                 example="'Postureo' es un neologismo muy extendido.",
@@ -1216,6 +1371,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arcaísmo",
+                frequency_rank=917,
                 pos="noun",
                 definition="Palabra o expresión en desuso",
                 example="'Vuesa merced' es un arcaísmo del español.",
@@ -1223,6 +1379,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="eufemismo",
+                frequency_rank=918,
                 pos="noun",
                 definition="Expresión suave para algo desagradable",
                 example="'Fallecer' es un eufemismo de 'morir'.",
@@ -1230,6 +1387,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ironía",
+                frequency_rank=919,
                 pos="noun",
                 definition="Expresión que significa lo contrario de lo dicho",
                 example="Lo dijo con ironía, no lo pensaba de verdad.",
@@ -1237,6 +1395,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sarcasmo",
+                frequency_rank=920,
                 pos="noun",
                 definition="Ironía cruel o mordaz",
                 example="Su respuesta estuvo cargada de sarcasmo.",
@@ -1244,6 +1403,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="solemne",
+                frequency_rank=921,
                 pos="adjective",
                 definition="Formal, serio y con gravedad",
                 example="Pronunció un discurso solemne.",
@@ -1251,6 +1411,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="retórica",
+                frequency_rank=922,
                 pos="noun",
                 definition="Arte de persuadir con la palabra",
                 example="Domina la retórica como pocos políticos.",
@@ -1258,6 +1419,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="elocuencia",
+                frequency_rank=923,
                 pos="noun",
                 definition="Capacidad de hablar con fluidez y persuasión",
                 example="Su elocuencia cautivó al auditorio.",
@@ -1265,6 +1427,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="verborrea",
+                frequency_rank=924,
                 pos="noun",
                 definition="Abundancia excesiva de palabras",
                 example="El texto adolece de verborrea innecesaria.",
@@ -1272,6 +1435,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="concisión",
+                frequency_rank=925,
                 pos="noun",
                 definition="Brevedad y precisión al expresarse",
                 example="Valoro la concisión en la escritura.",
@@ -1279,6 +1443,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ambigüedad",
+                frequency_rank=926,
                 pos="noun",
                 definition="Posibilidad de más de una interpretación",
                 example="La ambigüedad del texto genera confusión.",
@@ -1286,6 +1451,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="polisemia",
+                frequency_rank=927,
                 pos="noun",
                 definition="Cualidad de una palabra con varios significados",
                 example="La polisemia es común en el lenguaje natural.",
@@ -1293,6 +1459,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pragmática",
+                frequency_rank=928,
                 pos="noun",
                 definition="Estudio del lenguaje en su contexto de uso",
                 example="La pragmática analiza la intención del hablante.",
@@ -1300,6 +1467,7 @@ C1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="discurso",
+                frequency_rank=929,
                 pos="noun",
                 definition="Exposición oral o escrita sobre un tema",
                 example="Su discurso fue claro y bien estructurado.",

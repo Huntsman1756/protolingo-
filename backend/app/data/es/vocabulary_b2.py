@@ -11,6 +11,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="angustia",
+                frequency_rank=594,
                 pos="noun",
                 definition="Malestar intenso con sensación de ahogo",
                 example="La espera le producía una gran angustia.",
@@ -18,6 +19,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="desasosiego",
+                frequency_rank=595,
                 pos="noun",
                 definition="Falta de tranquilidad interior",
                 example="Sentía un desasosiego que no podía explicar.",
@@ -25,6 +27,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estremecerse",
+                frequency_rank=596,
                 pos="verb",
                 definition="Temblar por una emoción intensa",
                 example="Se estremeció al oír la noticia.",
@@ -32,6 +35,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conmover",
+                frequency_rank=597,
                 pos="verb",
                 definition="Provocar una emoción profunda",
                 example="Su historia me conmovió hasta las lágrimas.",
@@ -39,6 +43,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="indignación",
+                frequency_rank=598,
                 pos="noun",
                 definition="Enfado intenso ante una injusticia",
                 example="La decisión causó indignación entre los ciudadanos.",
@@ -46,6 +51,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="añoranza",
+                frequency_rank=599,
                 pos="noun",
                 definition="Pena por la ausencia de algo o alguien",
                 example="Siente añoranza de su tierra natal.",
@@ -53,6 +59,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="plenitud",
+                frequency_rank=600,
                 pos="noun",
                 definition="Estado de satisfacción total",
                 example="Alcanzó una sensación de plenitud.",
@@ -60,6 +67,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sobrecogedor",
+                frequency_rank=601,
                 pos="adjective",
                 definition="Que impresiona profundamente",
                 example="El paisaje era sobrecogedor.",
@@ -67,6 +75,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="enternecer",
+                frequency_rank=602,
                 pos="verb",
                 definition="Provocar ternura",
                 example="La escena me enterneció.",
@@ -74,6 +83,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="desolación",
+                frequency_rank=603,
                 pos="noun",
                 definition="Tristeza profunda y soledad",
                 example="La desolación se apoderó de él.",
@@ -89,6 +99,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="suponer",
+                frequency_rank=604,
                 pos="verb",
                 definition="Dar por cierto algo sin comprobarlo",
                 example="Supongo que llegará mañana.",
@@ -96,6 +107,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="deducir",
+                frequency_rank=605,
                 pos="verb",
                 definition="Llegar a una conclusión por razonamiento",
                 example="Por su expresión deduje que no le gustaba.",
@@ -103,6 +115,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="especular",
+                frequency_rank=606,
                 pos="verb",
                 definition="Teorizar sin base firme",
                 example="No especulemos sin pruebas.",
@@ -110,6 +123,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="probabilidad",
+                frequency_rank=607,
                 pos="noun",
                 definition="Posibilidad de que algo ocurra",
                 example="Hay una alta probabilidad de lluvia.",
@@ -117,6 +131,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="indicio",
+                frequency_rank=608,
                 pos="noun",
                 definition="Señal que apunta a algo",
                 example="No hay indicios de que sea cierto.",
@@ -124,6 +139,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="presunción",
+                frequency_rank=609,
                 pos="noun",
                 definition="Suposición basada en apariencias",
                 example="Es una mera presunción, no un hecho.",
@@ -131,6 +147,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="plausible",
+                frequency_rank=610,
                 pos="adjective",
                 definition="Que parece razonable o creíble",
                 example="Es una explicación plausible.",
@@ -138,6 +155,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="improbable",
+                frequency_rank=611,
                 pos="adjective",
                 definition="Poco probable",
                 example="Es improbable que nieve en mayo.",
@@ -145,6 +163,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hipotético",
+                frequency_rank=612,
                 pos="adjective",
                 definition="Basado en una suposición",
                 example="Es un caso hipotético.",
@@ -152,6 +171,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conjetura",
+                frequency_rank=613,
                 pos="noun",
                 definition="Opinión basada en datos incompletos",
                 example="Eso no son más que conjeturas.",
@@ -167,6 +187,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="costumbre",
+                frequency_rank=614,
                 pos="noun",
                 definition="Práctica habitual adquirida",
                 example="Tiene la costumbre de madrugar.",
@@ -174,6 +195,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rutina",
+                frequency_rank=615,
                 pos="noun",
                 definition="Secuencia de actividades repetidas",
                 example="Mi rutina diaria incluye hacer ejercicio.",
@@ -181,6 +203,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arraigado",
+                frequency_rank=616,
                 pos="adjective",
                 definition="Muy establecido y difícil de cambiar",
                 example="Es una tradición muy arraigada.",
@@ -188,6 +211,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="persistir",
+                frequency_rank=617,
                 pos="verb",
                 definition="Mantenerse firme o continuar",
                 example="Persiste en su empeño de aprender.",
@@ -195,6 +219,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="adquirir",
+                frequency_rank=618,
                 pos="verb",
                 definition="Obtener o incorporar algo",
                 example="Adquirió el hábito de leer antes de dormir.",
@@ -202,6 +227,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="incorporar",
+                frequency_rank=619,
                 pos="verb",
                 definition="Añadir algo a lo existente",
                 example="Incorporé el yoga a mi rutina.",
@@ -209,6 +235,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mantenerse",
+                frequency_rank=620,
                 pos="verb",
                 definition="Conservarse en un estado",
                 example="Se mantiene en forma corriendo.",
@@ -216,6 +243,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="abandonar",
+                frequency_rank=621,
                 pos="verb",
                 definition="Dejar una práctica o costumbre",
                 example="Abandonó el tabaco hace años.",
@@ -223,6 +251,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="frecuencia",
+                frequency_rank=622,
                 pos="noun",
                 definition="Repetición periódica de algo",
                 example="Viaja con frecuencia al extranjero.",
@@ -230,6 +259,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rutinario",
+                frequency_rank=623,
                 pos="adjective",
                 definition="Que se hace por costumbre",
                 example="Lleva una vida muy rutinaria.",
@@ -245,6 +275,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="transformar",
+                frequency_rank=624,
                 pos="verb",
                 definition="Cambiar de forma o naturaleza",
                 example="La experiencia lo transformó.",
@@ -252,6 +283,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="evolución",
+                frequency_rank=625,
                 pos="noun",
                 definition="Cambio progresivo",
                 example="La evolución del proyecto ha sido notable.",
@@ -259,6 +291,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="transición",
+                frequency_rank=626,
                 pos="noun",
                 definition="Paso de un estado a otro",
                 example="Está en una transición profesional.",
@@ -266,6 +299,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="adaptarse",
+                frequency_rank=627,
                 pos="verb",
                 definition="Acomodarse a nuevas condiciones",
                 example="Me adapté rápido al nuevo trabajo.",
@@ -273,6 +307,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="modificar",
+                frequency_rank=628,
                 pos="verb",
                 definition="Alterar parcialmente algo",
                 example="Modificaron el horario de apertura.",
@@ -280,6 +315,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="drástico",
+                frequency_rank=629,
                 pos="adjective",
                 definition="Radical y repentino",
                 example="Hicieron cambios drásticos en la empresa.",
@@ -287,6 +323,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="paulatinamente",
+                frequency_rank=630,
                 pos="adverb",
                 definition="De forma gradual",
                 example="Paulatinamente fue ganando confianza.",
@@ -294,6 +331,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reestructurar",
+                frequency_rank=631,
                 pos="verb",
                 definition="Modificar la estructura de algo",
                 example="Reestructuraron todo el departamento.",
@@ -301,6 +339,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="innovación",
+                frequency_rank=632,
                 pos="noun",
                 definition="Introducción de novedades",
                 example="La innovación es clave en este sector.",
@@ -308,6 +347,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="retroceso",
+                frequency_rank=633,
                 pos="noun",
                 definition="Vuelta atrás en un proceso",
                 example="La medida supone un retroceso.",
@@ -323,6 +363,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="redactar",
+                frequency_rank=634,
                 pos="verb",
                 definition="Escribir un texto ordenado",
                 example="Redactó un ensayo brillante.",
@@ -330,6 +371,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estructura",
+                frequency_rank=635,
                 pos="noun",
                 definition="Organización de las partes de un texto",
                 example="El ensayo tiene una estructura clara.",
@@ -337,6 +379,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="introducción",
+                frequency_rank=636,
                 pos="noun",
                 definition="Parte inicial de un texto",
                 example="La introducción plantea la tesis.",
@@ -344,6 +387,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="desarrollo",
+                frequency_rank=637,
                 pos="noun",
                 definition="Parte central donde se exponen los argumentos",
                 example="El desarrollo del ensayo es sólido.",
@@ -351,6 +395,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conclusión",
+                frequency_rank=638,
                 pos="noun",
                 definition="Parte final que resume lo expuesto",
                 example="La conclusión cierra el argumento.",
@@ -358,6 +403,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fundamentar",
+                frequency_rank=639,
                 pos="verb",
                 definition="Apoyar con razones o datos",
                 example="Fundamentó su tesis con datos.",
@@ -365,6 +411,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="citar",
+                frequency_rank=640,
                 pos="verb",
                 definition="Mencionar una fuente o autor",
                 example="Cita a varios expertos en el tema.",
@@ -372,6 +419,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="exponer",
+                frequency_rank=641,
                 pos="verb",
                 definition="Presentar ideas de forma clara",
                 example="Expuso sus argumentos con claridad.",
@@ -379,6 +427,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="coherencia",
+                frequency_rank=642,
                 pos="noun",
                 definition="Conexión lógica entre las partes",
                 example="El texto carece de coherencia.",
@@ -386,6 +435,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cohesión",
+                frequency_rank=643,
                 pos="noun",
                 definition="Unión adecuada entre las partes de un texto",
                 example="Usa conectores para dar cohesión al texto.",
@@ -401,6 +451,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="disciplina",
+                frequency_rank=644,
                 pos="noun",
                 definition="Área de estudio o conocimiento",
                 example="La lingüística es una disciplina fascinante.",
@@ -408,6 +459,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="investigación",
+                frequency_rank=645,
                 pos="noun",
                 definition="Estudio sistemático de un tema",
                 example="La investigación duró tres años.",
@@ -415,6 +467,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="metodología",
+                frequency_rank=646,
                 pos="noun",
                 definition="Conjunto de métodos de investigación",
                 example="La metodología empleada es rigurosa.",
@@ -422,6 +475,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fuente",
+                frequency_rank=647,
                 pos="noun",
                 definition="Origen de información",
                 example="Consultó fuentes fiables.",
@@ -429,6 +483,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="bibliografía",
+                frequency_rank=648,
                 pos="noun",
                 definition="Lista de obras consultadas",
                 example="La bibliografía incluye veinte referencias.",
@@ -436,6 +491,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hipótesis",
+                frequency_rank=649,
                 pos="noun",
                 definition="Suposición que se investiga",
                 example="Planteó una hipótesis innovadora.",
@@ -443,6 +499,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="análisis",
+                frequency_rank=650,
                 pos="noun",
                 definition="Examen detallado de algo",
                 example="El análisis de los datos fue exhaustivo.",
@@ -450,6 +507,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="publicar",
+                frequency_rank=651,
                 pos="verb",
                 definition="Difundir un trabajo académico",
                 example="Publicó su artículo en una revista prestigiosa.",
@@ -457,6 +515,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tesis",
+                frequency_rank=652,
                 pos="noun",
                 definition="Trabajo de investigación doctoral",
                 example="Defendió su tesis doctoral.",
@@ -464,6 +523,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ponencia",
+                frequency_rank=653,
                 pos="noun",
                 definition="Presentación en un congreso",
                 example="Presentó una ponencia en el congreso.",
@@ -479,6 +539,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="costar un ojo de la cara",
+                frequency_rank=654,
                 pos="phrase",
                 definition="Ser muy caro",
                 example="Ese coche cuesta un ojo de la cara.",
@@ -486,6 +547,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ponerse las pilas",
+                frequency_rank=655,
                 pos="phrase",
                 definition="Empezar a esforzarse o concentrarse",
                 example="Tienes que ponerte las pilas con el estudio.",
@@ -493,6 +555,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="no tener pelos en la lengua",
+                frequency_rank=656,
                 pos="phrase",
                 definition="Hablar con franqueza sin importar las consecuencias",
                 example="No tiene pelos en la lengua y siempre dice lo que piensa.",
@@ -500,6 +563,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estar en las nubes",
+                frequency_rank=657,
                 pos="phrase",
                 definition="Estar distraído o despistado",
                 example="Hoy estás en las nubes.",
@@ -507,6 +571,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="meter la pata",
+                frequency_rank=658,
                 pos="phrase",
                 definition="Cometer un error o decir algo inoportuno",
                 example="Metí la pata al mencionar el tema.",
@@ -514,6 +579,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ser pan comido",
+                frequency_rank=659,
                 pos="phrase",
                 definition="Ser muy fácil",
                 example="El examen fue pan comido.",
@@ -521,6 +587,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="echar una mano",
+                frequency_rank=660,
                 pos="phrase",
                 definition="Ayudar a alguien",
                 example="¿Me echas una mano con esto?",
@@ -528,6 +595,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tirar la toalla",
+                frequency_rank=661,
                 pos="phrase",
                 definition="Rendirse, abandonar",
                 example="No pienso tirar la toalla.",
@@ -535,6 +603,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dar la talla",
+                frequency_rank=662,
                 pos="phrase",
                 definition="Estar a la altura esperada",
                 example="El nuevo empleado da la talla.",
@@ -542,6 +611,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estar de mala leche",
+                frequency_rank=663,
                 pos="phrase",
                 definition="Estar de mal humor (coloquial)",
                 example="Hoy está de mala leche.",
@@ -557,6 +627,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="patrimonio",
+                frequency_rank=664,
                 pos="noun",
                 definition="Conjunto de bienes culturales",
                 example="La Alhambra es patrimonio de la humanidad.",
@@ -564,6 +635,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="herencia",
+                frequency_rank=665,
                 pos="noun",
                 definition="Legado cultural recibido",
                 example="Es una herencia de nuestros antepasados.",
@@ -571,6 +643,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arraigo",
+                frequency_rank=666,
                 pos="noun",
                 definition="Vinculación profunda con un lugar",
                 example="Tiene mucho arraigo en su pueblo.",
@@ -578,6 +651,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="folclore",
+                frequency_rank=667,
                 pos="noun",
                 definition="Conjunto de tradiciones populares",
                 example="El folclore español es muy variado.",
@@ -585,6 +659,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="gastronomía",
+                frequency_rank=668,
                 pos="noun",
                 definition="Cultura culinaria de una región",
                 example="La gastronomía vasca es excepcional.",
@@ -592,6 +667,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="festividad",
+                frequency_rank=669,
                 pos="noun",
                 definition="Celebración tradicional",
                 example="Las fallas son una festividad valenciana.",
@@ -599,6 +675,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="artesanía",
+                frequency_rank=670,
                 pos="noun",
                 definition="Producción manual de objetos",
                 example="La artesanía local es muy valorada.",
@@ -606,6 +683,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="costumbrismo",
+                frequency_rank=671,
                 pos="noun",
                 definition="Representación de las costumbres típicas",
                 example="El costumbrismo refleja la vida cotidiana.",
@@ -613,6 +691,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="multicultural",
+                frequency_rank=672,
                 pos="adjective",
                 definition="Que integra diversas culturas",
                 example="Es una sociedad multicultural.",
@@ -620,6 +699,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="identidad",
+                frequency_rank=673,
                 pos="noun",
                 definition="Conjunto de rasgos propios",
                 example="Defienden su identidad cultural.",
@@ -635,6 +715,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="alegar",
+                frequency_rank=674,
                 pos="verb",
                 definition="Exponer razones a favor",
                 example="Alegó que no había pruebas suficientes.",
@@ -642,6 +723,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="contraargumentar",
+                frequency_rank=675,
                 pos="verb",
                 definition="Responder con argumentos opuestos",
                 example="Contraargumentó con datos contundentes.",
@@ -649,6 +731,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inferencia",
+                frequency_rank=676,
                 pos="noun",
                 definition="Conclusión derivada de un razonamiento",
                 example="Hizo una inferencia lógica.",
@@ -656,6 +739,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sesgo",
+                frequency_rank=677,
                 pos="noun",
                 definition="Tendencia que distorsiona un juicio",
                 example="El artículo tiene un claro sesgo político.",
@@ -663,6 +747,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="objeciones",
+                frequency_rank=678,
                 pos="noun",
                 definition="Razones en contra de una propuesta",
                 example="Planteó varias objeciones al plan.",
@@ -670,6 +755,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="matizar",
+                frequency_rank=679,
                 pos="verb",
                 definition="Precisar o suavizar una afirmación",
                 example="Quisiera matizar mi postura.",
@@ -677,6 +763,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="retórica",
+                frequency_rank=680,
                 pos="noun",
                 definition="Arte de persuadir con el lenguaje",
                 example="Su retórica es muy convincente.",
@@ -684,6 +771,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="falacia",
+                frequency_rank=681,
                 pos="noun",
                 definition="Argumento incorrecto que parece válido",
                 example="Eso es una falacia lógica.",
@@ -691,6 +779,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="solidez",
+                frequency_rank=682,
                 pos="noun",
                 definition="Firmeza de un argumento",
                 example="Su argumentación carece de solidez.",
@@ -698,6 +787,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="concesión",
+                frequency_rank=683,
                 pos="noun",
                 definition="Reconocimiento parcial del argumento ajeno",
                 example="Hizo una concesión antes de refutar.",
@@ -713,6 +803,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="desigualdad",
+                frequency_rank=684,
                 pos="noun",
                 definition="Falta de igualdad social o económica",
                 example="La desigualdad es un reto global.",
@@ -720,6 +811,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sostenibilidad",
+                frequency_rank=685,
                 pos="noun",
                 definition="Capacidad de mantenerse sin agotar recursos",
                 example="La sostenibilidad es clave para el futuro.",
@@ -727,6 +819,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inclusión",
+                frequency_rank=686,
                 pos="noun",
                 definition="Integración de todos sin excluir",
                 example="Fomentan la inclusión en las aulas.",
@@ -734,6 +827,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="brecha",
+                frequency_rank=687,
                 pos="noun",
                 definition="Distancia entre dos realidades",
                 example="La brecha salarial sigue siendo un problema.",
@@ -741,6 +835,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="concienciar",
+                frequency_rank=688,
                 pos="verb",
                 definition="Hacer tomar conciencia sobre algo",
                 example="Hay que concienciar sobre el reciclaje.",
@@ -748,6 +843,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="globalización",
+                frequency_rank=689,
                 pos="noun",
                 definition="Interconexión mundial de economías y culturas",
                 example="La globalización tiene ventajas e inconvenientes.",
@@ -755,6 +851,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="derechos humanos",
+                frequency_rank=690,
                 pos="phrase",
                 definition="Derechos fundamentales de toda persona",
                 example="Los derechos humanos deben protegerse.",
@@ -762,6 +859,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="emigrar",
+                frequency_rank=691,
                 pos="verb",
                 definition="Salir de un país para vivir en otro",
                 example="Muchos jóvenes emigran buscando trabajo.",
@@ -769,6 +867,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="censo",
+                frequency_rank=692,
                 pos="noun",
                 definition="Registro estadístico de la población",
                 example="El censo se actualiza cada diez años.",
@@ -776,6 +875,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="paro",
+                frequency_rank=693,
                 pos="noun",
                 definition="Situación de desempleo",
                 example="La tasa de paro ha bajado.",
@@ -791,6 +891,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="narrativa",
+                frequency_rank=694,
                 pos="noun",
                 definition="Género que relata una historia",
                 example="La narrativa española actual es muy diversa.",
@@ -798,6 +899,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="argumento",
+                frequency_rank=695,
                 pos="noun",
                 definition="Trama o historia de una obra",
                 example="El argumento de la novela es complejo.",
@@ -805,6 +907,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="protagonista",
+                frequency_rank=696,
                 pos="noun",
                 definition="Personaje principal de una obra",
                 example="El protagonista es un joven detective.",
@@ -812,6 +915,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="desenlace",
+                frequency_rank=697,
                 pos="noun",
                 definition="Final de una historia",
                 example="El desenlace fue inesperado.",
@@ -819,6 +923,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="narrador",
+                frequency_rank=698,
                 pos="noun",
                 definition="Voz que cuenta la historia",
                 example="El narrador es omnisciente.",
@@ -826,6 +931,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="capítulo",
+                frequency_rank=699,
                 pos="noun",
                 definition="División de una obra literaria",
                 example="Cada capítulo termina con intriga.",
@@ -833,6 +939,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="género",
+                frequency_rank=700,
                 pos="noun",
                 definition="Categoría de obra literaria",
                 example="La novela negra es su género favorito.",
@@ -840,6 +947,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="realismo",
+                frequency_rank=701,
                 pos="noun",
                 definition="Corriente que representa la realidad",
                 example="El realismo mágico caracteriza su obra.",
@@ -847,6 +955,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="metáfora",
+                frequency_rank=702,
                 pos="noun",
                 definition="Figura que identifica dos conceptos distintos",
                 example="Usa una metáfora brillante.",
@@ -854,6 +963,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="verosímil",
+                frequency_rank=703,
                 pos="adjective",
                 definition="Que parece verdadero o creíble",
                 example="La trama es muy verosímil.",
@@ -869,6 +979,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="interpretar",
+                frequency_rank=704,
                 pos="verb",
                 definition="Atribuir un significado a un texto",
                 example="Cada lector interpreta la obra a su manera.",
@@ -876,6 +987,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="entrelíneas",
+                frequency_rank=705,
                 pos="adverb",
                 definition="Lo que se deduce sin estar escrito",
                 example="Hay que leer entre líneas.",
@@ -883,6 +995,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="subrayar",
+                frequency_rank=706,
                 pos="verb",
                 definition="Marcar lo importante en un texto",
                 example="Subrayo las ideas clave.",
@@ -890,6 +1003,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="resumen",
+                frequency_rank=707,
                 pos="noun",
                 definition="Exposición breve de un texto",
                 example="Haz un resumen del capítulo.",
@@ -897,6 +1011,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reseña",
+                frequency_rank=708,
                 pos="noun",
                 definition="Crítica breve de una obra",
                 example="Escribí una reseña del libro.",
@@ -904,6 +1019,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="prefacio",
+                frequency_rank=709,
                 pos="noun",
                 definition="Texto introductorio de una obra",
                 example="El prefacio lo escribió otro autor.",
@@ -911,6 +1027,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="índice",
+                frequency_rank=710,
                 pos="noun",
                 definition="Lista de contenidos de un libro",
                 example="Consulta el índice para encontrar el capítulo.",
@@ -918,6 +1035,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vocabulario",
+                frequency_rank=711,
                 pos="noun",
                 definition="Conjunto de palabras de un texto",
                 example="El vocabulario de este autor es muy rico.",
@@ -925,6 +1043,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="contexto",
+                frequency_rank=712,
                 pos="noun",
                 definition="Circunstancias que rodean un texto",
                 example="Hay que entender el contexto histórico.",
@@ -932,6 +1051,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="análisis",
+                frequency_rank=713,
                 pos="noun",
                 definition="Estudio detallado de una obra",
                 example="Hicimos un análisis literario del poema.",
@@ -947,6 +1067,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="redacción",
+                frequency_rank=714,
                 pos="noun",
                 definition="Equipo que elabora un medio",
                 example="Toda la redacción trabajó en la noticia.",
@@ -954,6 +1075,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="corresponsal",
+                frequency_rank=715,
                 pos="noun",
                 definition="Periodista destacado en el extranjero",
                 example="El corresponsal informa desde la zona.",
@@ -961,6 +1083,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="editorial",
+                frequency_rank=716,
                 pos="noun",
                 definition="Artículo de opinión del medio",
                 example="El editorial critica la nueva ley.",
@@ -968,6 +1091,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="primicia",
+                frequency_rank=717,
                 pos="noun",
                 definition="Noticia dada antes que por otros",
                 example="El periódico publicó la primicia.",
@@ -975,6 +1099,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="veracidad",
+                frequency_rank=718,
                 pos="noun",
                 definition="Cualidad de ser veraz",
                 example="La veracidad de la noticia está en duda.",
@@ -982,6 +1107,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fuente",
+                frequency_rank=719,
                 pos="noun",
                 definition="Origen de la información",
                 example="Protegen la identidad de sus fuentes.",
@@ -989,6 +1115,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="manipulación",
+                frequency_rank=720,
                 pos="noun",
                 definition="Distorsión interesada de la información",
                 example="Denunciaron manipulación informativa.",
@@ -996,6 +1123,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="difamar",
+                frequency_rank=721,
                 pos="verb",
                 definition="Dañar la reputación de alguien",
                 example="Le acusaron de difamar a la empresa.",
@@ -1003,6 +1131,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="credibilidad",
+                frequency_rank=722,
                 pos="noun",
                 definition="Capacidad de ser creído",
                 example="El medio ha perdido credibilidad.",
@@ -1010,6 +1139,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cobertura",
+                frequency_rank=723,
                 pos="noun",
                 definition="Seguimiento que un medio da a un hecho",
                 example="La cobertura del evento fue masiva.",
@@ -1025,6 +1155,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="coyuntura",
+                frequency_rank=724,
                 pos="noun",
                 definition="Situación temporal de un contexto",
                 example="La coyuntura económica es delicada.",
@@ -1032,6 +1163,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="panorama",
+                frequency_rank=725,
                 pos="noun",
                 definition="Visión general de una situación",
                 example="El panorama político es incierto.",
@@ -1039,6 +1171,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="controversia",
+                frequency_rank=726,
                 pos="noun",
                 definition="Debate público con posturas enfrentadas",
                 example="La ley generó una gran controversia.",
@@ -1046,6 +1179,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tendencia",
+                frequency_rank=727,
                 pos="noun",
                 definition="Dirección en que evoluciona algo",
                 example="Es una tendencia al alza.",
@@ -1053,6 +1187,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="auge",
+                frequency_rank=728,
                 pos="noun",
                 definition="Momento de máximo desarrollo",
                 example="El sector tecnológico está en auge.",
@@ -1060,6 +1195,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="declive",
+                frequency_rank=729,
                 pos="noun",
                 definition="Fase de disminución o pérdida",
                 example="La industria local está en declive.",
@@ -1067,6 +1203,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estancamiento",
+                frequency_rank=730,
                 pos="noun",
                 definition="Falta de avance o progreso",
                 example="La economía sufre un estancamiento.",
@@ -1074,6 +1211,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="acontecimiento",
+                frequency_rank=731,
                 pos="noun",
                 definition="Hecho de relevancia social",
                 example="Fue el acontecimiento del año.",
@@ -1081,6 +1219,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="repercusión",
+                frequency_rank=732,
                 pos="noun",
                 definition="Efecto o consecuencia de algo",
                 example="La noticia tuvo repercusión internacional.",
@@ -1088,6 +1227,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inminente",
+                frequency_rank=733,
                 pos="adjective",
                 definition="Que está a punto de suceder",
                 example="Se espera un anuncio inminente.",
@@ -1103,6 +1243,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="sofisticado",
+                frequency_rank=734,
                 pos="adjective",
                 definition="Elegante y complejo",
                 example="Maneja un vocabulario muy sofisticado.",
@@ -1110,6 +1251,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="precisión",
+                frequency_rank=735,
                 pos="noun",
                 definition="Exactitud al expresar algo",
                 example="Se expresa con gran precisión.",
@@ -1117,6 +1259,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="elocuencia",
+                frequency_rank=736,
                 pos="noun",
                 definition="Capacidad de expresarse con fluidez",
                 example="Habló con elocuencia ante el público.",
@@ -1124,6 +1267,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="matiz",
+                frequency_rank=737,
                 pos="noun",
                 definition="Detalle que aporta precisión",
                 example="Añadió un matiz importante.",
@@ -1131,6 +1275,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="argumentar",
+                frequency_rank=738,
                 pos="verb",
                 definition="Razonar para defender una idea",
                 example="Argumenta con solidez sus propuestas.",
@@ -1138,6 +1283,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="discernir",
+                frequency_rank=739,
                 pos="verb",
                 definition="Distinguir con claridad",
                 example="Sabe discernir entre lo importante y lo accesorio.",
@@ -1145,6 +1291,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cuestionar",
+                frequency_rank=740,
                 pos="verb",
                 definition="Poner en duda algo",
                 example="Cuestionó los resultados del estudio.",
@@ -1152,6 +1299,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="avanzado",
+                frequency_rank=741,
                 pos="adjective",
                 definition="De nivel superior",
                 example="Tiene un nivel avanzado de español.",
@@ -1159,6 +1307,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="perfeccionar",
+                frequency_rank=742,
                 pos="verb",
                 definition="Mejorar hasta alcanzar la excelencia",
                 example="Quiero perfeccionar mi pronunciación.",
@@ -1166,6 +1315,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="autonomía",
+                frequency_rank=743,
                 pos="noun",
                 definition="Capacidad de desenvolverse sin ayuda",
                 example="Ya tengo autonomía para leer en español.",
@@ -1181,6 +1331,7 @@ B2_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="tomar el pelo",
+                frequency_rank=744,
                 pos="phrase",
                 definition="Burlarse de alguien con bromas",
                 example="¿Me estás tomando el pelo o es verdad?",
@@ -1188,6 +1339,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estar en las nubes",
+                frequency_rank=745,
                 pos="phrase",
                 definition="Estar distraído o desconcentrado",
                 example="Hoy estás en las nubes, no prestas atención.",
@@ -1195,6 +1347,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dar en el clavo",
+                frequency_rank=746,
                 pos="phrase",
                 definition="Acertar completamente",
                 example="Con esa respuesta has dado en el clavo.",
@@ -1202,6 +1355,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="meter la pata",
+                frequency_rank=747,
                 pos="phrase",
                 definition="Cometer un error o equivocación",
                 example="Metí la pata al decir eso en la reunión.",
@@ -1209,6 +1363,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="costar un ojo de la cara",
+                frequency_rank=748,
                 pos="phrase",
                 definition="Ser muy caro",
                 example="Ese coche cuesta un ojo de la cara.",
@@ -1216,6 +1371,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="no tener ni idea",
+                frequency_rank=749,
                 pos="phrase",
                 definition="No saber nada sobre algo",
                 example="No tengo ni idea de cómo funciona esto.",
@@ -1223,6 +1379,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="echar de menos",
+                frequency_rank=750,
                 pos="phrase",
                 definition="Sentir la ausencia de alguien o algo",
                 example="Echo de menos a mi familia.",
@@ -1230,6 +1387,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ponerse las pilas",
+                frequency_rank=751,
                 pos="phrase",
                 definition="Empezar a trabajar con energía",
                 example="Ponte las pilas, que tenemos mucho que hacer.",
@@ -1237,6 +1395,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dar la lata",
+                frequency_rank=752,
                 pos="phrase",
                 definition="Molestar o insistir demasiado",
                 example="Deja de dar la lata con ese tema.",
@@ -1244,6 +1403,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tener ganas",
+                frequency_rank=753,
                 pos="phrase",
                 definition="Sentir deseo o apetencia por algo",
                 example="Tengo ganas de ir al cine esta noche.",
@@ -1251,6 +1411,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="hacer la vista gorda",
+                frequency_rank=754,
                 pos="phrase",
                 definition="Fingir que no se ve algo",
                 example="El profesor hizo la vista gorda con los retrasos.",
@@ -1258,6 +1419,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estar al tanto",
+                frequency_rank=755,
                 pos="phrase",
                 definition="Estar informado de algo",
                 example="Mantente al tanto de las noticias.",
@@ -1265,6 +1427,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="llevar a cabo",
+                frequency_rank=756,
                 pos="phrase",
                 definition="Realizar o ejecutar algo",
                 example="Llevamos a cabo el proyecto con éxito.",
@@ -1272,6 +1435,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dar por sentado",
+                frequency_rank=757,
                 pos="phrase",
                 definition="Asumir algo como cierto sin verificar",
                 example="No des por sentado que todos piensan igual.",
@@ -1279,6 +1443,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tener en cuenta",
+                frequency_rank=758,
                 pos="phrase",
                 definition="Considerar o tomar en consideración",
                 example="Ten en cuenta que es su primer día.",
@@ -1286,6 +1451,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="irse por las ramas",
+                frequency_rank=759,
                 pos="phrase",
                 definition="Desviarse del tema principal",
                 example="No te vayas por las ramas, ve al grano.",
@@ -1293,6 +1459,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estar hasta las narices",
+                frequency_rank=760,
                 pos="phrase",
                 definition="Estar harto o cansado de algo",
                 example="Estoy hasta las narices de este trabajo.",
@@ -1300,6 +1467,7 @@ B2_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="quedarse en blanco",
+                frequency_rank=761,
                 pos="phrase",
                 definition="No poder recordar o pensar en algo",
                 example="Me quedé en blanco durante el examen.",

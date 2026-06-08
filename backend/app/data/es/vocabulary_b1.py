@@ -11,6 +11,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="alegría",
+                frequency_rank=456,
                 pos="noun",
                 definition="Sentimiento de felicidad o contento",
                 example="Sintió una gran alegría al ver a su familia.",
@@ -18,6 +19,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="tristeza",
+                frequency_rank=457,
                 pos="noun",
                 definition="Estado anímico de pena o aflicción",
                 example="La tristeza se reflejaba en su mirada.",
@@ -25,6 +27,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="miedo",
+                frequency_rank=458,
                 pos="noun",
                 definition="Sensación de temor ante un peligro",
                 example="Tengo miedo a las alturas.",
@@ -32,6 +35,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rabia",
+                frequency_rank=459,
                 pos="noun",
                 definition="Enfado intenso o ira",
                 example="Le dio mucha rabia la injusticia del resultado.",
@@ -39,6 +43,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sorpresa",
+                frequency_rank=129,
                 pos="noun",
                 definition="Reacción ante algo inesperado",
                 example="¡Qué sorpresa verte por aquí!",
@@ -46,6 +51,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vergüenza",
+                frequency_rank=460,
                 pos="noun",
                 definition="Sentimiento de incomodidad o pudor",
                 example="Me da vergüenza hablar en público.",
@@ -53,6 +59,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ilusión",
+                frequency_rank=461,
                 pos="noun",
                 definition="Esperanza o emoción positiva",
                 example="Tengo mucha ilusión por el viaje.",
@@ -60,6 +67,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ansiedad",
+                frequency_rank=462,
                 pos="noun",
                 definition="Estado de inquietud o nerviosismo",
                 example="La ansiedad le impide dormir bien.",
@@ -67,6 +75,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="alivio",
+                frequency_rank=463,
                 pos="noun",
                 definition="Sensación de tranquilidad tras un problema",
                 example="Sintió alivio al aprobar el examen.",
@@ -74,6 +83,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="envidia",
+                frequency_rank=464,
                 pos="noun",
                 definition="Pesar por el bien ajeno",
                 example="No sientas envidia de los éxitos de otros.",
@@ -89,6 +99,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="desear",
+                frequency_rank=465,
                 pos="verb",
                 definition="Anhelar o querer algo con intensidad",
                 example="Deseo viajar por todo el mundo.",
@@ -96,6 +107,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="esperar",
+                frequency_rank=466,
                 pos="verb",
                 definition="Tener esperanza o aguardar algo",
                 example="Espero que te vaya bien en la entrevista.",
@@ -103,6 +115,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="anhelar",
+                frequency_rank=467,
                 pos="verb",
                 definition="Desear con vehemencia",
                 example="Anhela encontrar la felicidad.",
@@ -110,6 +123,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sueño",
+                frequency_rank=155,
                 pos="noun",
                 definition="Aspiración o meta deseada",
                 example="Mi sueño es ser médico.",
@@ -117,6 +131,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="meta",
+                frequency_rank=154,
                 pos="noun",
                 definition="Objetivo que se quiere alcanzar",
                 example="Me he fijado una meta para este año.",
@@ -124,6 +139,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="propósito",
+                frequency_rank=468,
                 pos="noun",
                 definition="Intención firme de hacer algo",
                 example="Mi propósito es aprender español este año.",
@@ -131,6 +147,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ambición",
+                frequency_rank=469,
                 pos="noun",
                 definition="Deseo intenso de lograr éxito",
                 example="Tiene la ambición de montar su propia empresa.",
@@ -138,6 +155,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ojalá",
+                frequency_rank=470,
                 pos="phrase",
                 definition="Expresión de deseo intenso",
                 example="¡Ojalá llueva mañana!",
@@ -145,6 +163,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="confiar",
+                frequency_rank=471,
                 pos="verb",
                 definition="Tener fe o seguridad en algo",
                 example="Confío en que todo saldrá bien.",
@@ -152,6 +171,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="lograr",
+                frequency_rank=472,
                 pos="verb",
                 definition="Conseguir lo que se pretende",
                 example="Logró cumplir todos sus objetivos.",
@@ -167,6 +187,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="empresa",
+                frequency_rank=150,
                 pos="noun",
                 definition="Organización dedicada a una actividad económica",
                 example="Trabajo en una empresa de tecnología.",
@@ -174,6 +195,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reunión",
+                frequency_rank=148,
                 pos="noun",
                 definition="Encuentro para tratar un asunto",
                 example="Tengo una reunión a las diez.",
@@ -181,6 +203,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="jornada",
+                frequency_rank=473,
                 pos="noun",
                 definition="Tiempo de trabajo diario",
                 example="Mi jornada laboral es de ocho horas.",
@@ -188,6 +211,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="contrato",
+                frequency_rank=474,
                 pos="noun",
                 definition="Acuerdo laboral por escrito",
                 example="Firmé un contrato indefinido.",
@@ -195,6 +219,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="sueldo",
+                frequency_rank=475,
                 pos="noun",
                 definition="Dinero que se cobra por trabajar",
                 example="Me han subido el sueldo este mes.",
@@ -202,6 +227,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="jefe",
+                frequency_rank=147,
                 pos="noun",
                 definition="Persona que dirige a otros en el trabajo",
                 example="Mi jefe es muy comprensivo.",
@@ -209,6 +235,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="compañero",
+                frequency_rank=476,
                 pos="noun",
                 definition="Persona con la que se comparte el trabajo",
                 example="Mis compañeros de trabajo son muy amables.",
@@ -216,6 +243,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="solicitar",
+                frequency_rank=477,
                 pos="verb",
                 definition="Pedir formalmente algo",
                 example="He solicitado un aumento de sueldo.",
@@ -223,6 +251,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="ascenso",
+                frequency_rank=478,
                 pos="noun",
                 definition="Subida de categoría profesional",
                 example="Me han dado un ascenso.",
@@ -230,6 +259,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="renunciar",
+                frequency_rank=479,
                 pos="verb",
                 definition="Dejar voluntariamente un puesto",
                 example="Renunció a su cargo por motivos personales.",
@@ -245,6 +275,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="carrera",
+                frequency_rank=480,
                 pos="noun",
                 definition="Estudios universitarios",
                 example="Estudio la carrera de Derecho.",
@@ -252,6 +283,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="asignatura",
+                frequency_rank=481,
                 pos="noun",
                 definition="Materia de estudio",
                 example="Mi asignatura favorita es Historia.",
@@ -259,6 +291,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="matricularse",
+                frequency_rank=482,
                 pos="verb",
                 definition="Inscribirse en un curso",
                 example="Me he matriculado en un curso de inglés.",
@@ -266,6 +299,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="beca",
+                frequency_rank=483,
                 pos="noun",
                 definition="Ayuda económica para estudiar",
                 example="Consiguió una beca para estudiar en el extranjero.",
@@ -273,6 +307,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="examen",
+                frequency_rank=168,
                 pos="noun",
                 definition="Prueba para evaluar conocimientos",
                 example="El examen final es la semana que viene.",
@@ -280,6 +315,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aprobar",
+                frequency_rank=484,
                 pos="verb",
                 definition="Superar un examen con éxito",
                 example="Aprobé todas las asignaturas.",
@@ -287,6 +323,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="suspender",
+                frequency_rank=485,
                 pos="verb",
                 definition="No superar un examen",
                 example="Suspendí matemáticas y tengo que repetir.",
@@ -294,6 +331,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="apuntes",
+                frequency_rank=486,
                 pos="noun",
                 definition="Notas escritas durante el estudio",
                 example="¿Me dejas tus apuntes de clase?",
@@ -301,6 +339,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="formación",
+                frequency_rank=487,
                 pos="noun",
                 definition="Proceso de adquirir conocimientos",
                 example="La formación continua es fundamental.",
@@ -308,6 +347,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="investigar",
+                frequency_rank=488,
                 pos="verb",
                 definition="Buscar información de forma sistemática",
                 example="Estoy investigando para mi proyecto final.",
@@ -323,6 +363,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="vivencia",
+                frequency_rank=489,
                 pos="noun",
                 definition="Experiencia personal significativa",
                 example="Aquella vivencia me marcó para siempre.",
@@ -330,6 +371,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="recuerdo",
+                frequency_rank=114,
                 pos="noun",
                 definition="Memoria de algo vivido",
                 example="Tengo muy buenos recuerdos de la infancia.",
@@ -337,6 +379,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="etapa",
+                frequency_rank=490,
                 pos="noun",
                 definition="Período de la vida",
                 example="La adolescencia es una etapa difícil.",
@@ -344,6 +387,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="anecdota",
+                frequency_rank=491,
                 pos="noun",
                 definition="Relato breve de un suceso curioso",
                 example="Me contó una anécdota muy graciosa.",
@@ -351,6 +395,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="superar",
+                frequency_rank=492,
                 pos="verb",
                 definition="Vencer un obstáculo o dificultad",
                 example="Superó todos los retos que se le presentaron.",
@@ -358,6 +403,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fracasar",
+                frequency_rank=493,
                 pos="verb",
                 definition="No conseguir el resultado esperado",
                 example="Fracasó en su primer intento, pero no se rindió.",
@@ -365,6 +411,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="arrepentirse",
+                frequency_rank=494,
                 pos="verb",
                 definition="Lamentar haber hecho algo",
                 example="No me arrepiento de mis decisiones.",
@@ -372,6 +419,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="acontecimiento",
+                frequency_rank=495,
                 pos="noun",
                 definition="Suceso importante",
                 example="Fue un acontecimiento histórico.",
@@ -379,6 +427,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aprendizaje",
+                frequency_rank=496,
                 pos="noun",
                 definition="Proceso de adquirir conocimiento",
                 example="El viaje fue un gran aprendizaje.",
@@ -386,6 +435,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cambio",
+                frequency_rank=497,
                 pos="noun",
                 definition="Transformación o modificación",
                 example="Hizo un cambio radical en su vida.",
@@ -401,6 +451,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="éxito",
+                frequency_rank=498,
                 pos="noun",
                 definition="Resultado positivo de una acción",
                 example="El proyecto fue un éxito rotundo.",
@@ -408,6 +459,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="triunfar",
+                frequency_rank=499,
                 pos="verb",
                 definition="Alcanzar el éxito",
                 example="Triunfó en el mundo de los negocios.",
@@ -415,6 +467,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mérito",
+                frequency_rank=500,
                 pos="noun",
                 definition="Reconocimiento por un esfuerzo",
                 example="El premio es mérito de todo el equipo.",
@@ -422,6 +475,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="esfuerzo",
+                frequency_rank=501,
                 pos="noun",
                 definition="Empleo de energía para lograr algo",
                 example="Con esfuerzo y dedicación lo conseguirás.",
@@ -429,6 +483,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="orgullo",
+                frequency_rank=502,
                 pos="noun",
                 definition="Satisfacción por un logro propio o ajeno",
                 example="Siente orgullo de lo que ha conseguido.",
@@ -436,6 +491,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reconocimiento",
+                frequency_rank=503,
                 pos="noun",
                 definition="Aprecio público de un mérito",
                 example="Recibió un reconocimiento por su labor.",
@@ -443,6 +499,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="destacar",
+                frequency_rank=504,
                 pos="verb",
                 definition="Sobresalir entre los demás",
                 example="Destaca por su creatividad.",
@@ -450,6 +507,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="superación",
+                frequency_rank=505,
                 pos="noun",
                 definition="Acción de vencer dificultades",
                 example="Su historia es un ejemplo de superación.",
@@ -457,6 +515,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="alcanzar",
+                frequency_rank=506,
                 pos="verb",
                 definition="Llegar a conseguir algo",
                 example="Alcanzó todas las metas que se propuso.",
@@ -464,6 +523,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="progresar",
+                frequency_rank=507,
                 pos="verb",
                 definition="Avanzar o mejorar",
                 example="He progresado mucho en español.",
@@ -479,6 +539,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="periódico",
+                frequency_rank=508,
                 pos="noun",
                 definition="Publicación diaria con noticias",
                 example="Leo el periódico todas las mañanas.",
@@ -486,6 +547,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reportaje",
+                frequency_rank=509,
                 pos="noun",
                 definition="Trabajo periodístico extenso",
                 example="El reportaje sobre el cambio climático fue excelente.",
@@ -493,6 +555,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="titular",
+                frequency_rank=510,
                 pos="noun",
                 definition="Título de una noticia",
                 example="El titular de portada era impactante.",
@@ -500,6 +563,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="entrevista",
+                frequency_rank=511,
                 pos="noun",
                 definition="Conversación con preguntas a una persona",
                 example="La entrevista al presidente fue muy reveladora.",
@@ -507,6 +571,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="informar",
+                frequency_rank=512,
                 pos="verb",
                 definition="Comunicar una noticia",
                 example="Nos informaron de los cambios.",
@@ -514,6 +579,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="publicar",
+                frequency_rank=513,
                 pos="verb",
                 definition="Difundir una información",
                 example="Publicaron la noticia en todos los medios.",
@@ -521,6 +587,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="difundir",
+                frequency_rank=514,
                 pos="verb",
                 definition="Propagar una información",
                 example="La noticia se difundió rápidamente.",
@@ -528,6 +595,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="acontecimiento",
+                frequency_rank=515,
                 pos="noun",
                 definition="Suceso de relevancia",
                 example="El terremoto fue un acontecimiento devastador.",
@@ -535,6 +603,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rumor",
+                frequency_rank=516,
                 pos="noun",
                 definition="Información no confirmada",
                 example="Corre el rumor de que van a cerrar la empresa.",
@@ -542,6 +611,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="portada",
+                frequency_rank=517,
                 pos="noun",
                 definition="Primera página de una publicación",
                 example="Su foto apareció en la portada del periódico.",
@@ -557,6 +627,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="ciudadanía",
+                frequency_rank=518,
                 pos="noun",
                 definition="Conjunto de ciudadanos de un país",
                 example="La ciudadanía exige más transparencia.",
@@ -564,6 +635,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="derecho",
+                frequency_rank=519,
                 pos="noun",
                 definition="Facultad reconocida por la ley",
                 example="La educación es un derecho fundamental.",
@@ -571,6 +643,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="deber",
+                frequency_rank=520,
                 pos="noun",
                 definition="Obligación moral o legal",
                 example="Votar es un deber ciudadano.",
@@ -578,6 +651,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="convivencia",
+                frequency_rank=521,
                 pos="noun",
                 definition="Vida en común con otros",
                 example="La convivencia en el barrio es excelente.",
@@ -585,6 +659,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="desigualdad",
+                frequency_rank=522,
                 pos="noun",
                 definition="Falta de igualdad entre personas",
                 example="La desigualdad social es un problema grave.",
@@ -592,6 +667,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="solidaridad",
+                frequency_rank=523,
                 pos="noun",
                 definition="Apoyo a causas o personas necesitadas",
                 example="Mostraron mucha solidaridad tras el desastre.",
@@ -599,6 +675,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="manifestación",
+                frequency_rank=524,
                 pos="noun",
                 definition="Protesta colectiva en la calle",
                 example="Hubo una manifestación por el clima.",
@@ -606,6 +683,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="gobierno",
+                frequency_rank=525,
                 pos="noun",
                 definition="Órgano que dirige un país",
                 example="El gobierno aprobó la nueva ley.",
@@ -613,6 +691,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="impuesto",
+                frequency_rank=526,
                 pos="noun",
                 definition="Tributo que se paga al Estado",
                 example="Los impuestos financian los servicios públicos.",
@@ -620,6 +699,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="inmigrante",
+                frequency_rank=527,
                 pos="noun",
                 definition="Persona que llega a otro país para vivir",
                 example="Muchos inmigrantes contribuyen a la economía.",
@@ -635,6 +715,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="aspecto",
+                frequency_rank=528,
                 pos="noun",
                 definition="Apariencia exterior de algo o alguien",
                 example="Tiene un aspecto saludable.",
@@ -642,6 +723,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rasgo",
+                frequency_rank=529,
                 pos="noun",
                 definition="Característica distintiva",
                 example="Sus rasgos faciales son muy definidos.",
@@ -649,6 +731,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="semejante",
+                frequency_rank=530,
                 pos="adjective",
                 definition="Parecido o similar",
                 example="Es muy semejante a su hermano.",
@@ -656,6 +739,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="complexión",
+                frequency_rank=531,
                 pos="noun",
                 definition="Constitución física de una persona",
                 example="Es de complexión delgada.",
@@ -663,6 +747,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="estatura",
+                frequency_rank=532,
                 pos="noun",
                 definition="Altura de una persona",
                 example="Es de estatura media.",
@@ -670,6 +755,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="personalidad",
+                frequency_rank=533,
                 pos="noun",
                 definition="Conjunto de rasgos psicológicos",
                 example="Tiene una personalidad arrolladora.",
@@ -677,6 +763,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="carácter",
+                frequency_rank=534,
                 pos="noun",
                 definition="Forma de ser de una persona",
                 example="Es una persona de carácter fuerte.",
@@ -684,6 +771,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cualidad",
+                frequency_rank=535,
                 pos="noun",
                 definition="Rasgo positivo de una persona",
                 example="La honestidad es su mejor cualidad.",
@@ -691,6 +779,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="defecto",
+                frequency_rank=536,
                 pos="noun",
                 definition="Imperfección o carencia",
                 example="Su único defecto es la impaciencia.",
@@ -698,6 +787,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="parecerse",
+                frequency_rank=537,
                 pos="verb",
                 definition="Tener semejanza con alguien",
                 example="Te pareces mucho a tu madre.",
@@ -713,6 +803,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="conocido",
+                frequency_rank=538,
                 pos="noun",
                 definition="Persona de trato superficial",
                 example="Es solo un conocido del trabajo.",
@@ -720,6 +811,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="colega",
+                frequency_rank=539,
                 pos="noun",
                 definition="Compañero de profesión",
                 example="Salí a cenar con unos colegas.",
@@ -727,6 +819,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="pareja",
+                frequency_rank=540,
                 pos="noun",
                 definition="Persona con la que se mantiene una relación",
                 example="Vive con su pareja desde hace años.",
@@ -734,6 +827,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="vecino",
+                frequency_rank=541,
                 pos="noun",
                 definition="Persona que vive cerca",
                 example="Mis vecinos son muy silenciosos.",
@@ -741,6 +835,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="amistad",
+                frequency_rank=542,
                 pos="noun",
                 definition="Relación de afecto entre amigos",
                 example="Nuestra amistad dura más de veinte años.",
@@ -748,6 +843,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="confianza",
+                frequency_rank=543,
                 pos="noun",
                 definition="Seguridad en una persona",
                 example="Tengo plena confianza en ella.",
@@ -755,6 +851,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="discutir",
+                frequency_rank=544,
                 pos="verb",
                 definition="Debatir o pelear verbalmente",
                 example="Discutimos por una tontería.",
@@ -762,6 +859,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="reconciliarse",
+                frequency_rank=545,
                 pos="verb",
                 definition="Restablecer una relación tras un conflicto",
                 example="Se reconciliaron después de meses sin hablarse.",
@@ -769,6 +867,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="apoyar",
+                frequency_rank=546,
                 pos="verb",
                 definition="Brindar ayuda o respaldo",
                 example="Siempre me ha apoyado en los momentos difíciles.",
@@ -776,6 +875,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="mudarse",
+                frequency_rank=547,
                 pos="verb",
                 definition="Cambiar de vivienda",
                 example="Se mudaron a otra ciudad.",
@@ -791,6 +891,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="destino",
+                frequency_rank=548,
                 pos="noun",
                 definition="Lugar al que se viaja",
                 example="Nuestro destino es Cancún.",
@@ -798,6 +899,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="itinerario",
+                frequency_rank=549,
                 pos="noun",
                 definition="Ruta o recorrido planificado",
                 example="El itinerario incluye cuatro ciudades.",
@@ -805,6 +907,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="alojamiento",
+                frequency_rank=550,
                 pos="noun",
                 definition="Lugar donde hospedarse",
                 example="Buscamos alojamiento cerca del centro.",
@@ -812,6 +915,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="equipaje",
+                frequency_rank=110,
                 pos="noun",
                 definition="Maletas y bultos de viaje",
                 example="Facturé el equipaje en el mostrador.",
@@ -819,6 +923,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aduanas",
+                frequency_rank=551,
                 pos="noun",
                 definition="Control fronterizo",
                 example="Pasamos por aduanas sin problema.",
@@ -826,6 +931,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="retraso",
+                frequency_rank=552,
                 pos="noun",
                 definition="Demora en la salida o llegada",
                 example="El vuelo sufrió un retraso de dos horas.",
@@ -833,6 +939,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cancelar",
+                frequency_rank=553,
                 pos="verb",
                 definition="Anular una reserva",
                 example="Tuvimos que cancelar el viaje.",
@@ -840,6 +947,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="turista",
+                frequency_rank=106,
                 pos="noun",
                 definition="Persona que viaja por placer",
                 example="La ciudad está llena de turistas en verano.",
@@ -847,6 +955,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="guía",
+                frequency_rank=554,
                 pos="noun",
                 definition="Persona que orienta a los viajeros",
                 example="El guía nos explicó la historia del lugar.",
@@ -854,6 +963,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aventura",
+                frequency_rank=159,
                 pos="noun",
                 definition="Experiencia emocionante o arriesgada",
                 example="Este viaje ha sido toda una aventura.",
@@ -869,6 +979,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="casualidad",
+                frequency_rank=555,
                 pos="noun",
                 definition="Hecho fortuito o coincidencia",
                 example="¡Qué casualidad encontrarte aquí!",
@@ -876,6 +987,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="imprescindible",
+                frequency_rank=556,
                 pos="adjective",
                 definition="Absolutamente necesario",
                 example="El pasaporte es imprescindible para viajar.",
@@ -883,6 +995,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="disponible",
+                frequency_rank=557,
                 pos="adjective",
                 definition="Que se puede usar o está libre",
                 example="¿Estás disponible el viernes?",
@@ -890,6 +1003,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="próximo",
+                frequency_rank=558,
                 pos="adjective",
                 definition="Cercano en el tiempo",
                 example="El próximo mes empiezo un curso.",
@@ -897,6 +1011,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="previo",
+                frequency_rank=559,
                 pos="adjective",
                 definition="Anterior en el tiempo",
                 example="Es necesario un aviso previo de dos semanas.",
@@ -904,6 +1019,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="urgente",
+                frequency_rank=560,
                 pos="adjective",
                 definition="Que requiere atención inmediata",
                 example="Necesito hablar contigo, es urgente.",
@@ -911,6 +1027,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="cotidiano",
+                frequency_rank=561,
                 pos="adjective",
                 definition="De cada día, habitual",
                 example="Son problemas cotidianos sin importancia.",
@@ -918,6 +1035,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="imprevisto",
+                frequency_rank=562,
                 pos="noun",
                 definition="Suceso no planeado",
                 example="Surgió un imprevisto y no pude asistir.",
@@ -925,6 +1043,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="aprovechar",
+                frequency_rank=563,
                 pos="verb",
                 definition="Sacar beneficio de algo",
                 example="Aprovechamos el buen tiempo para ir a la playa.",
@@ -932,6 +1051,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="enfrentarse",
+                frequency_rank=564,
                 pos="verb",
                 definition="Hacer frente a una situación",
                 example="Se enfrentó a muchos obstáculos.",
@@ -947,6 +1067,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="opinar",
+                frequency_rank=565,
                 pos="verb",
                 definition="Expresar una opinión",
                 example="¿Tú qué opinas sobre este tema?",
@@ -954,6 +1075,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="parecer",
+                frequency_rank=566,
                 pos="verb",
                 definition="Tener una opinión o impresión",
                 example="Me parece una buena idea.",
@@ -961,6 +1083,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="criterio",
+                frequency_rank=567,
                 pos="noun",
                 definition="Juicio para formarse una opinión",
                 example="Tiene buen criterio para elegir personal.",
@@ -968,6 +1091,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="punto de vista",
+                frequency_rank=568,
                 pos="phrase",
                 definition="Perspectiva desde la que se analiza algo",
                 example="Desde mi punto de vista, es la mejor opción.",
@@ -975,6 +1099,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="coincidir",
+                frequency_rank=569,
                 pos="verb",
                 definition="Estar de acuerdo",
                 example="Coincido contigo en ese punto.",
@@ -982,6 +1107,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="discrepar",
+                frequency_rank=570,
                 pos="verb",
                 definition="Tener una opinión diferente",
                 example="Discrepo de tu análisis de la situación.",
@@ -989,6 +1115,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="postura",
+                frequency_rank=571,
                 pos="noun",
                 definition="Actitud o posición ante un tema",
                 example="Defendió su postura con argumentos sólidos.",
@@ -996,6 +1123,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="convencer",
+                frequency_rank=572,
                 pos="verb",
                 definition="Persuadir con razones",
                 example="Me convenció con sus argumentos.",
@@ -1003,6 +1131,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="rechazar",
+                frequency_rank=573,
                 pos="verb",
                 definition="No aceptar una propuesta u opinión",
                 example="Rechazó la oferta amablemente.",
@@ -1010,6 +1139,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="debatir",
+                frequency_rank=574,
                 pos="verb",
                 definition="Discutir sobre un tema",
                 example="Debatimos durante horas sobre política.",
@@ -1025,6 +1155,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="argumento",
+                frequency_rank=575,
                 pos="noun",
                 definition="Razón que apoya una opinión",
                 example="Sus argumentos eran muy convincentes.",
@@ -1032,6 +1163,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="evidencia",
+                frequency_rank=576,
                 pos="noun",
                 definition="Prueba que demuestra algo",
                 example="No hay evidencia que respalde esa teoría.",
@@ -1039,6 +1171,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="réplica",
+                frequency_rank=577,
                 pos="noun",
                 definition="Respuesta que contradice un argumento",
                 example="Su réplica dejó sin palabras al oponente.",
@@ -1046,6 +1179,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="turno",
+                frequency_rank=578,
                 pos="noun",
                 definition="Momento asignado para hablar",
                 example="Espera tu turno para intervenir.",
@@ -1053,6 +1187,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="intervenir",
+                frequency_rank=579,
                 pos="verb",
                 definition="Tomar parte en una conversación",
                 example="Me gustaría intervenir en este debate.",
@@ -1060,6 +1195,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="refutar",
+                frequency_rank=580,
                 pos="verb",
                 definition="Rebatir un argumento con razones",
                 example="Refutó todas las objeciones planteadas.",
@@ -1067,6 +1203,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="conclusión",
+                frequency_rank=581,
                 pos="noun",
                 definition="Resolución final de un razonamiento",
                 example="Llegamos a la conclusión de que era inviable.",
@@ -1074,6 +1211,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="objetar",
+                frequency_rank=582,
                 pos="verb",
                 definition="Oponer una razón a lo dicho",
                 example="Nadie objetó nada a la propuesta.",
@@ -1081,6 +1219,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="moderar",
+                frequency_rank=583,
                 pos="verb",
                 definition="Dirigir un debate",
                 example="El profesor moderó el debate.",
@@ -1088,6 +1227,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="consenso",
+                frequency_rank=584,
                 pos="noun",
                 definition="Acuerdo entre varias partes",
                 example="Se alcanzó un consenso tras largas negociaciones.",
@@ -1103,6 +1243,7 @@ B1_SETS: list[VocabularySet] = [
         words=[
             VocabularyEntry(
                 word="vocabulario",
+                frequency_rank=585,
                 pos="noun",
                 definition="Conjunto de palabras de una lengua",
                 example="He ampliado mucho mi vocabulario.",
@@ -1110,6 +1251,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="expresión",
+                frequency_rank=586,
                 pos="noun",
                 definition="Forma de manifestar ideas",
                 example="Esa expresión es muy coloquial.",
@@ -1117,6 +1259,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="fluidez",
+                frequency_rank=587,
                 pos="noun",
                 definition="Capacidad de hablar con soltura",
                 example="He ganado fluidez hablando español.",
@@ -1124,6 +1267,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="comprensión",
+                frequency_rank=588,
                 pos="noun",
                 definition="Capacidad de entender",
                 example="Mi comprensión lectora ha mejorado.",
@@ -1131,6 +1275,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="comunicar",
+                frequency_rank=589,
                 pos="verb",
                 definition="Transmitir información",
                 example="Ya me comunico bastante bien en español.",
@@ -1138,6 +1283,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="redactar",
+                frequency_rank=590,
                 pos="verb",
                 definition="Escribir un texto",
                 example="Redacté un informe para el trabajo.",
@@ -1145,6 +1291,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="corregir",
+                frequency_rank=591,
                 pos="verb",
                 definition="Señalar y enmendar errores",
                 example="Corrígeme si me equivoco.",
@@ -1152,6 +1299,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="intermedio",
+                frequency_rank=592,
                 pos="adjective",
                 definition="Nivel medio de conocimiento",
                 example="Tengo un nivel intermedio de español.",
@@ -1159,6 +1307,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="dominar",
+                frequency_rank=593,
                 pos="verb",
                 definition="Tener un control completo de algo",
                 example="Quiero dominar el español en dos años.",
@@ -1166,6 +1315,7 @@ B1_SETS: list[VocabularySet] = [
             ),
             VocabularyEntry(
                 word="meta",
+                frequency_rank=154,
                 pos="noun",
                 definition="Objetivo que se pretende alcanzar",
                 example="Mi meta es el nivel B2.",
