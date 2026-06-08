@@ -42,6 +42,7 @@ from app.routers import (
     stt,
     study_plan,
     tts,
+    vocabulary,
 )
 from app.routers import config as config_router
 from app.routers import health as health_router
@@ -144,6 +145,7 @@ app.include_router(feedback.router)
 app.include_router(memories.router)
 app.include_router(languages.router)
 app.include_router(health_router.router)
+app.include_router(vocabulary.router)
 
 if settings.STRIPE_ENABLED:
     import stripe as _stripe

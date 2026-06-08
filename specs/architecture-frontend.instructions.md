@@ -71,16 +71,15 @@ frontend/
 │   │   ├── TargetLanguageSelector.tsx
 │   │   └── ThemeProvider.tsx
 │   │
-│   ├── data/                    # Static content and curriculum data (4 languages)
-│   │   ├── types.ts              # Shared TypeScript types (CEFRLevel, GrammarCategory, AssessmentQuestion, etc.)
-│   │   ├── curriculum.ts         # Curriculum definitions — language-aware dispatcher
+│   ├── data/                    # Static content: curriculum, grammar, phrasebook — vocabulary + assessment now in backend
+│   │   ├── types.ts              # Shared TypeScript types (CEFRLevel, AssessmentQuestion, VocabularyEntry, VocabularySet, etc.)
+│   │   ├── curriculum.ts         # Curriculum definitions — language-aware dispatcher (API-backed)
 │   │   ├── grammar.ts            # Grammar reference — language-aware dispatcher
 │   │   ├── phrasebook.ts         # Phrasebook — language-aware dispatcher
-│   │   ├── vocabulary.ts         # Vocabulary sets — language-aware dispatcher
-│   │   ├── en/                   # English curriculum (4 files: curriculum, grammar, vocab, phrasebook)
-│   │   ├── es/                   # Spanish curriculum (4 files)
-│   │   ├── it/                   # Italian curriculum (4 files)
-│   │   └── pt/                   # Portuguese curriculum (4 files)
+│   │   ├── en/                   # English (3 files: curriculum, grammar, phrasebook)
+│   │   ├── es/                   # Spanish (3 files)
+│   │   ├── it/                   # Italian (3 files)
+│   │   └── pt/                   # Portuguese (3 files)
 │   │
 │   ├── store/                   # Zustand stores (6)
 │   │   ├── auth.ts              # Access token, user info, login/refresh/logout

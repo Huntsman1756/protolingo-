@@ -41,8 +41,15 @@ class AssessmentQuestion:
 
 
 PartOfSpeech = Literal[
-    "noun", "verb", "adjective", "adverb", "phrase",
-    "conjunction", "preposition", "numeral", "pronoun",
+    "noun",
+    "verb",
+    "adjective",
+    "adverb",
+    "phrase",
+    "conjunction",
+    "preposition",
+    "numeral",
+    "pronoun",
 ]
 
 

@@ -42,7 +42,7 @@ backend/
 │   │   ├── memory.py            # Memory (persistent LLM context)
 │   │   └── llm_usage.py         # LLMUsage (token audit trail)
 │   │
-│   ├── schemas/                 # Pydantic v2 request/response schemas (13 modules)
+│   ├── schemas/                 # Pydantic v2 request/response schemas (14 modules)
 │   │   ├── __init__.py
 │   │   ├── auth.py
 │   │   ├── admin.py
@@ -58,16 +58,17 @@ backend/
 │   │   ├── study_plan.py
 │   │   └── tts_stt.py
 │   │
-│   ├── routers/                 # FastAPI routers (19 REST + 1 WebSocket = 20 total)
+│   ├── routers/                 # FastAPI routers (20 REST + 1 WebSocket = 21 total)
 │   │   ├── __init__.py
 │   │   ├── admin.py             # User management, maintenance toggle, system config
-│   │   ├── assessment.py        # Level assessment quiz + completion
+│   │   ├── assessment.py        # Level assessment quiz + completion + static bank
 │   │   ├── auth.py              # Register, login, refresh, logout, verify-email, reset-password
 │   │   ├── billing.py           # Stripe checkout, customer portal, webhook
 │   │   ├── chat.py              # SSE chat streaming
 │   │   ├── config.py            # Public config endpoint (maintenance mode, features)
 │   │   ├── contact.py           # Contact form submission
 │   │   ├── conversation.py      # WebSocket voice conversation
+│   │   ├── curriculum.py        # Curriculum data (now auth-required)
 │   │   ├── feedback.py          # Feedback board CRUD
 │   │   ├── flashcards.py        # Spaced-repetition flashcard CRUD + review
 │   │   ├── health.py            # Health check
@@ -79,7 +80,8 @@ backend/
 │   │   ├── reading.py           # AI-generated reading exercises
 │   │   ├── stt.py               # Speech-to-text proxy
 │   │   ├── study_plan.py        # Study plan generation + today's lessons
-│   │   └── tts.py               # Text-to-speech proxy
+│   │   ├── tts.py               # Text-to-speech proxy
+│   │   └── vocabulary.py        # Static vocabulary data (per language + per level)
 │   │
 │   ├── services/                # Business logic + external service clients (17 modules)
 │   │   ├── __init__.py
@@ -101,15 +103,16 @@ backend/
 │   │   ├── tts_service.py       # Text-to-speech abstraction (local Kokoro / OpenAI)
 │   │   └── user_language_service.py # Multi-language study plan management (phase 10)
 │   │
-│   └── data/                    # Static curriculum and assessment content (4 languages)
+│   └── data/                    # Static curriculum, assessment, and vocabulary content (4 languages)
 │       ├── __init__.py
-│       ├── _types.py             # Shared types (CEFRLevel, CurriculumUnit, AssessmentQuestion)
+│       ├── _types.py             # Shared types (CEFRLevel, CurriculumUnit, AssessmentQuestion, VocabularyEntry, VocabularySet)
 │       ├── curriculum.py         # Language-aware curriculum dispatcher
 │       ├── assessment_bank.py    # Language-aware assessment bank dispatcher
-│       ├── en/                   # English curriculum (46 units, A1–C2) + assessment bank (~100 questions)
-│       ├── es/                   # Spanish curriculum (46 units, A1–C2) + assessment bank (~100 questions)
-│       ├── it/                   # Italian curriculum (46 units, A1–C2) + assessment bank (~100 questions)
-│       └── pt/                   # Portuguese curriculum (46 units, A1–C2) + assessment bank (~100 questions)
+│       ├── vocabulary.py         # Language-aware vocabulary dispatcher
+│       ├── en/                   # English — curriculum, assessment bank, vocabulary (per CEFR level)
+│       ├── es/                   # Spanish — curriculum, assessment bank, vocabulary
+│       ├── it/                   # Italian — curriculum, assessment bank, vocabulary
+│       └── pt/                   # Portuguese — curriculum, assessment bank, vocabulary
 │
 ├── alembic/
 │   └── versions/                # DB migrations (31 migrations)

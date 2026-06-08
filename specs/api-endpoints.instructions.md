@@ -67,6 +67,29 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 
 ---
 
+## Curriculum — `/api/curriculum`
+
+Auth required (`get_current_user`). Returns static curriculum data for all supported target languages.
+
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | `` | get_current_user | Full curriculum for all 6 CEFR levels. Query param: `language` (BCP-47, default `en-US`). |
+| GET | `/{level}` | get_current_user | Units for a specific CEFR level. Query param: `language` (BCP-47). |
+
+---
+
+## Vocabulary — `/api/vocabulary`
+
+Auth required (`get_current_user`). Serves static vocabulary data (330 sets, ~3,940 words across 4 languages, organized per CEFR level).
+
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | `` | get_current_user | All vocabulary sets for the given language. Query param: `language` (BCP-47, default `en-US`). Response: `{sets: [{id, level, topic, unit_ref, words: [{word, pos, definition, example, ipa?, frequency_rank?}]}]}`. |
+| GET | `/level/{level}` | get_current_user | Vocabulary sets filtered by CEFR level (A1–C2). Query param: `language` (BCP-47). Returns 400 for invalid levels. |
+| GET | `/{set_id}` | get_current_user | A single vocabulary set by ID. Query param: `language` (BCP-47). Response: `{set: {...}}`. Returns 404 if not found. |
+
+---
+
 ## Study Plan — `/api/study-plan`
 
 | Method | Path | Description |

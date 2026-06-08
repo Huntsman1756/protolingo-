@@ -11,7 +11,7 @@ import {
   type CurriculumUnit,
   type CEFRLevel,
 } from '@/data/curriculum'
-import { getVocabularySets } from '@/data/vocabulary'
+import type { VocabularySet } from '@/data/types'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -201,6 +201,15 @@ export default function ProgressPage() {
     }
   }, [plan?.cefr_level, targetLanguageCode])
 
+  const [vocabSets, setVocabSets] = useState<VocabularySet[]>([])
+
+  useEffect(() => {
+    apiFetch(`/api/vocabulary?language=${targetLanguageCode}`)
+      .then((r) => r.json())
+      .then((d: { sets: VocabularySet[] }) => setVocabSets(d.sets))
+      .catch(() => setVocabSets([]))
+  }, [targetLanguageCode])
+
   const compMap = Object.fromEntries(competencies.map((c) => [c.unit_id, c]))
 
   if (loading) {
@@ -232,7 +241,6 @@ export default function ProgressPage() {
   }
 
   const cefrLevel = plan.cefr_level as CEFRLevel
-  const vocabSets = getVocabularySets(targetLanguageCode)
   const levelVocabSets = vocabSets.filter((s) => s.level === cefrLevel)
   const totalLevelWords = levelVocabSets.reduce((a, s) => a + s.words.length, 0)
 

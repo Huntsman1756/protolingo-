@@ -47,3 +47,20 @@ export interface AssessmentQuestion {
   correct: string
   grammar_slug?: string
 }
+
+export interface VocabularyEntry {
+  word: string
+  pos: PartOfSpeech
+  definition: string
+  example: string
+  ipa?: string
+  frequency_rank?: number
+}
+
+export interface VocabularySet {
+  id: string
+  level: CEFRLevel
+  topic: string
+  unit_ref: string
+  words: VocabularyEntry[]
+}

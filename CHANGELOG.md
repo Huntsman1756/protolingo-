@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - **Assessment bank migrated to backend**: the static assessment question bank (~100 questions per language × 4 languages) has been moved from the frontend (`data/assessment-bank.ts` and per-language files) to the backend (`app/data/{en,es,it,pt}/assessment_bank.py`), following the same dispatcher pattern as the curriculum. A new endpoint `GET /api/assessment/bank?language=` serves the questions to the frontend, which now fetches them via API instead of bundling them statically. The adaptive quiz logic (`pickNextQuestion`, `adjustLevel`) remains client-side. This is a pure architectural refactor — no user-facing changes.
+- **Vocabulary content migrated to backend**: 330 vocabulary sets (~3,940 words across 4 languages) moved from frontend static files to the backend, organized per CEFR level (same pattern as curriculum). New endpoints `GET /api/vocabulary`, `GET /api/vocabulary/level/{level}`, and `GET /api/vocabulary/{set_id}` serve the data with auth required. The frontend vocabulary hub, set detail, and progress pages now consume the API. This is a pure architectural refactor — no user-facing content changes.
+- **Curriculum endpoints now require authentication** (`GET /api/curriculum` and `GET /api/curriculum/{level}`).
 
 ## [1.7.2] - 2026-06-07
 
