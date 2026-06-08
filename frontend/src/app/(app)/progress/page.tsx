@@ -11,7 +11,7 @@ import {
   type CurriculumUnit,
   type CEFRLevel,
 } from '@/data/curriculum'
-import { getVocabularySets } from '@/data/vocabulary'
+import type { VocabularySet } from '@/data/types'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -166,6 +166,7 @@ export default function ProgressPage() {
   const [loading, setLoading] = useState(true)
   const [levelUnits, setLevelUnits] = useState<CurriculumUnit[]>([])
   const [flashcards, setFlashcards] = useState<FlashcardProgress[]>([])
+  const [showAllLevels, setShowAllLevels] = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -201,6 +202,15 @@ export default function ProgressPage() {
     }
   }, [plan?.cefr_level, targetLanguageCode])
 
+  const [vocabSets, setVocabSets] = useState<VocabularySet[]>([])
+
+  useEffect(() => {
+    apiFetch(`/api/vocabulary?language=${targetLanguageCode}`)
+      .then((r) => r.json())
+      .then((d: { sets: VocabularySet[] }) => setVocabSets(d.sets))
+      .catch(() => setVocabSets([]))
+  }, [targetLanguageCode])
+
   const compMap = Object.fromEntries(competencies.map((c) => [c.unit_id, c]))
 
   if (loading) {
@@ -232,14 +242,18 @@ export default function ProgressPage() {
   }
 
   const cefrLevel = plan.cefr_level as CEFRLevel
-  const vocabSets = getVocabularySets(targetLanguageCode)
-  const levelVocabSets = vocabSets.filter((s) => s.level === cefrLevel)
-  const totalLevelWords = levelVocabSets.reduce((a, s) => a + s.words.length, 0)
+  const displayVocabSets = showAllLevels
+    ? vocabSets
+    : vocabSets.filter((s) => s.level === cefrLevel)
+  const totalDisplayWords = displayVocabSets.reduce(
+    (a, s) => a + s.words.length,
+    0
+  )
 
   const masteredWordSet = new Set(
     flashcards.filter((f) => f.repetitions > 0).map((f) => f.word.toLowerCase())
   )
-  const totalMastered = levelVocabSets.reduce(
+  const totalMastered = displayVocabSets.reduce(
     (a, s) =>
       a +
       s.words.filter((w) => masteredWordSet.has(w.word.toLowerCase())).length,
@@ -324,22 +338,47 @@ export default function ProgressPage() {
       )}
 
       {/* Vocabulary Progress */}
-      {levelVocabSets.length > 0 && (
+      {displayVocabSets.length > 0 && (
         <section className="space-y-4">
           <div className="flex items-center gap-3">
             <span className="text-fl-fg font-mono text-base font-bold tracking-widest">
-              {cefrLevel
-                ? t('vocabularyHeader', { level: cefrLevel })
-                : t('vocabularySection')}
+              {showAllLevels
+                ? t('vocabularySection')
+                : cefrLevel
+                  ? t('vocabularyHeader', { level: cefrLevel })
+                  : t('vocabularySection')}
             </span>
             <div className="bg-fl-border h-px flex-1" />
             <span className="text-fl-label text-fl-muted-3 font-mono">
-              {totalMastered}/{totalLevelWords} {tVocab('words')}
+              {totalMastered}/{totalDisplayWords} {tVocab('words')}
             </span>
           </div>
 
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowAllLevels(false)}
+              className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                !showAllLevels
+                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+              }`}
+            >
+              {t('currentLevelOnly')}
+            </button>
+            <button
+              onClick={() => setShowAllLevels(true)}
+              className={`text-fl-label border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                showAllLevels
+                  ? 'border-fl-fg text-fl-fg bg-fl-surface-2'
+                  : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg'
+              }`}
+            >
+              {t('allLevels')}
+            </button>
+          </div>
+
           <div className="border-fl-border bg-fl-surface divide-fl-border divide-y border">
-            {levelVocabSets.map((s) => {
+            {displayVocabSets.map((s) => {
               const mastered = s.words.filter((w) =>
                 masteredWordSet.has(w.word.toLowerCase())
               ).length

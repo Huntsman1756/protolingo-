@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data._types import CurriculumUnit
+from app.data.es._types import CurriculumUnit
 
 A2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -100,7 +100,7 @@ A2_UNITS: list[CurriculumUnit] = [
         unit_number=6,
         title="Futuro simple y condicional",
         grammar_points=["futuro-simple", "condicional-simple", "si-presente-futuro"],
-        vocabulary_set_ids=["trabajo_a2", "planes_a2"],
+        vocabulary_set_ids=["trabajo_a2", "planes_a2", "conectores_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Conjugates the simple future for all persons using the infinitive as the stem (hablaré, comerás, vivirá) and irregular stems: habr-, querr-, podr-, tendr-, vendr-, saldr-, pondr-, dir-, har-",

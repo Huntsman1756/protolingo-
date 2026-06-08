@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { getVocabularySets, type VocabularySet } from '@/data/vocabulary'
+import { apiFetch } from '@/lib/api'
+import type { VocabularySet } from '@/data/types'
 import { CEFR_LEVELS, type CEFRLevel } from '@/data/curriculum'
 import { useLanguageStore } from '@/store/language'
 
@@ -47,8 +48,15 @@ export default function VocabularyIndexPage() {
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [activeLevel, setActiveLevel] = useState<CEFRLevel | 'All'>('All')
   const [search, setSearch] = useState('')
+  const [vocabSets, setVocabSets] = useState<VocabularySet[]>([])
 
-  const vocabSets = getVocabularySets(activeLanguage?.code ?? 'en-US')
+  useEffect(() => {
+    const lang = activeLanguage?.code ?? 'en-US'
+    apiFetch(`/api/vocabulary?language=${lang}`)
+      .then((r) => r.json())
+      .then((d: { sets: VocabularySet[] }) => setVocabSets(d.sets))
+      .catch(() => setVocabSets([]))
+  }, [activeLanguage?.code])
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
@@ -75,8 +83,13 @@ export default function VocabularyIndexPage() {
         </div>
         <div className="space-y-4 px-6 py-5">
           <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
-            {vocabSets.length} {t('sets')} · {totalWords} {t('words')} ·{' '}
-            {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
+            {vocabSets.length} {t('sets')} · {totalWords} {t('words')}
+            {usedLevels.length > 0 && (
+              <>
+                {' · '}
+                {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
+              </>
+            )}
           </p>
           {/* Search */}
           <input

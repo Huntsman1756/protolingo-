@@ -11,7 +11,7 @@ A1_UNITS: list[CurriculumUnit] = [
         unit_number=1,
         title="Identity & Greetings",
         grammar_points=["to-be", "subject-pronouns", "questions-yes-no"],
-        vocabulary_set_ids=["identity_a1", "greetings_a1"],
+        vocabulary_set_ids=["identity_a1", "greetings_a1", "numbers_1_20_a1", "numbers_extra_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Introduce yourself (name, age, nationality)",
@@ -75,7 +75,7 @@ A1_UNITS: list[CurriculumUnit] = [
         unit_number=5,
         title="Actions Right Now",
         grammar_points=["present-continuous"],
-        vocabulary_set_ids=["action_verbs_a1", "clothes_a1"],
+        vocabulary_set_ids=["action_verbs_a1", "clothes_a1", "sports_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Describe what is happening right now",

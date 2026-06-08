@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data._types import CurriculumUnit
+from app.data.es._types import CurriculumUnit
 
 C2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -83,7 +83,7 @@ C2_UNITS: list[CurriculumUnit] = [
         unit_number=5,
         title="Creación de contenido avanzado",
         grammar_points=["generos-textuales", "creatividad-linguistica", "edicion"],
-        vocabulary_set_ids=["creación_c2", "publicación_c2"],
+        vocabulary_set_ids=["creación_c2", "publicación_c2", "sociedad_contemporánea_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Produces a 500-word piece across different text genres — opinion column, personal essay, short story, formal report — adapting vocabulary, tone, and structure to the genre conventions of each",
@@ -101,7 +101,7 @@ C2_UNITS: list[CurriculumUnit] = [
         unit_number=6,
         title="C2 consolidación y maestría",
         grammar_points=["expresion-matizada", "integracion-gramatical", "fluidez-nativa"],
-        vocabulary_set_ids=["maestría_c2"],
+        vocabulary_set_ids=["maestría_c2", "ciencia_investigación_c2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Expresses subtle nuances of meaning — doubt, irony, tentativeness, emphasis — through precise selection of grammatical structure and vocabulary rather than explicit hedging",

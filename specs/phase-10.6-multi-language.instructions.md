@@ -105,15 +105,15 @@ export function getCurriculum(targetLanguage: string): CurriculumData {
 |------|-------------|
 | `curriculum.ts` | Curriculum units (A1–C2) |
 | `grammar.ts` | Grammar reference entries |
-| `vocabulary.ts` | Vocabulary sets |
+| `vocabulary.ts` | Vocabulary sets — migrated to backend in v1.7.3 (`app/data/{lang}/vocabulary_{a1-c2}.py`), served via `/api/vocabulary` |
 | `phrasebook.ts` | Phrasebook entries |
 | `assessment-bank` | Assessment question bank (now in `backend/app/data/{lang}/assessment_bank.py`) |
 
 ### Directories to create
 
-- `frontend/src/data/es/` (4 files)
-- `frontend/src/data/it/` (4 files)
-- `frontend/src/data/pt/` (4 files)
+- `frontend/src/data/es/` (3 files: curriculum, grammar, phrasebook)
+- `frontend/src/data/it/` (3 files)
+- `frontend/src/data/pt/` (3 files)
 
 ---
 
@@ -173,15 +173,15 @@ The English values above are the reference. Add the equivalent translations in a
 | `backend/app/data/es/_types.py` | Types |
 | `backend/app/data/es/curriculum.py` | Entry point |
 | `backend/app/data/es/curriculum_a1.py` ... `curriculum_c2.py` | 6 CEFR files |
-| `backend/app/data/it/` | Same structure (8 files) |
-| `backend/app/data/pt/` | Same structure (8 files) |
+| `backend/app/data/it/` | Same structure (8 files + vocabulary migrated from frontend in v1.7.3) |
+| `backend/app/data/pt/` | Same structure (8 files + vocabulary migrated from frontend in v1.7.3) |
 | `frontend/src/data/es/curriculum.ts` | ES curriculum |
 | `frontend/src/data/es/grammar.ts` | ES grammar |
-| `frontend/src/data/es/vocabulary.ts` | ES vocabulary |
+| `backend/app/data/es/vocabulary_a1.py`...`c2.py` | ES vocabulary (migrated from frontend in v1.7.3) |
 | `frontend/src/data/es/phrasebook.ts` | ES phrasebook |
 | `backend/app/data/es/assessment_bank.py` | ES assessment bank |
-| `frontend/src/data/it/` | Same structure (4 files) |
-| `frontend/src/data/pt/` | Same structure (4 files) |
+| `frontend/src/data/it/` | Same structure (3 files) |
+| `frontend/src/data/pt/` | Same structure (3 files) |
 
 ## Modified files in this phase
 

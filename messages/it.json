@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Il mio piano",
     "addToFlashcards": "Aggiungi parole da un set al tuo mazzo per monitorare i progressi individuali.",
     "noActivePlanDesc": "Fai la valutazione per iniziare a monitorare le tue abilità.",
-    "vocabularyHeader": "Vocabolario {level}"
+    "vocabularyHeader": "Vocabolario {level}",
+    "currentLevelOnly": "Solo livello corrente",
+    "allLevels": "Tutti i livelli"
   },
   "grammar": {
     "title": "Grammatica",
