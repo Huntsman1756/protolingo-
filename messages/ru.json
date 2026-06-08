@@ -676,7 +676,8 @@
     "level": "Уровень",
     "register": "Регистр",
     "statsLine": "{situationCount} ситуаций · {phraseCount} фраз · {range}",
-    "situationsShown": "{count, plural, one {# ситуация показана} few {# ситуации показано} other {# ситуаций показано}}"
+    "situationsShown": "{count, plural, one {# ситуация показана} few {# ситуации показано} other {# ситуаций показано}}",
+    "searchPlaceholder": "Поиск фраз..."
   },
   "admin": {
     "title": "Администрирование",

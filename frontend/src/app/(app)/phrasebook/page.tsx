@@ -210,7 +210,7 @@ export default function PhrasebookPage() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder={tCommon('search')}
+              placeholder={t('searchPlaceholder')}
               className="border-fl-border bg-fl-surface-2 text-fl-fg placeholder:text-fl-muted-3 focus:border-fl-fg w-full border px-3 py-2 font-mono text-xs focus:outline-none"
             />
           </div>

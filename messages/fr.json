@@ -676,7 +676,8 @@
     "level": "Niveau",
     "register": "Registre",
     "statsLine": "{situationCount} situations · {phraseCount} phrases · {range}",
-    "situationsShown": "{count, plural, one {# situation affichée} other {# situations affichées}}"
+    "situationsShown": "{count, plural, one {# situation affichée} other {# situations affichées}}",
+    "searchPlaceholder": "Rechercher des phrases..."
   },
   "admin": {
     "title": "Administration",

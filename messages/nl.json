@@ -676,7 +676,8 @@
     "level": "Niveau",
     "register": "Register",
     "statsLine": "{situationCount} situaties · {phraseCount} zinnen · {range}",
-    "situationsShown": "{count, plural, one {# situatie weergegeven} other {# situaties weergegeven}}"
+    "situationsShown": "{count, plural, one {# situatie weergegeven} other {# situaties weergegeven}}",
+    "searchPlaceholder": "Zinnen doorzoeken..."
   },
   "admin": {
     "title": "Admin",
