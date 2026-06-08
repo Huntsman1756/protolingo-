@@ -1,7 +1,9 @@
 export type { CEFRLevel, Register } from '@/data/types'
 
+import { apiFetch } from '@/lib/api'
+
 export interface Phrase {
-  english: string
+  text: string
   context: string
   register: string
   unit_ref?: string
@@ -15,39 +17,25 @@ export interface PhrasebookCategory {
   phrases: Phrase[]
 }
 
-import { phrasebookCategories as enCategories } from './en/phrasebook'
-import { phrasebookCategories as esCategories } from './es/phrasebook'
-import { phrasebookCategories as itCategories } from './it/phrasebook'
-import { phrasebookCategories as ptCategories } from './pt/phrasebook'
-
-const categoriesMap: Record<string, PhrasebookCategory[]> = {
-  en: enCategories,
-  es: esCategories,
-  it: itCategories,
-  pt: ptCategories,
-}
-
-export function getPhrasebookCategories(
+export async function getPhrasebookCategories(
   targetLanguage: string = 'en-US'
-): PhrasebookCategory[] {
-  const iso = targetLanguage.split('-')[0]
-  return categoriesMap[iso] ?? enCategories
-}
-
-export const phrasebookCategories = enCategories
-
-export function getPhrasebookByLevel(level: string): PhrasebookCategory[] {
-  return enCategories.filter((c) => c.level === level)
-}
-
-export function getPhrasebookByRegister(
-  register: string
-): PhrasebookCategory[] {
-  return enCategories.filter((c) =>
-    c.phrases.some((p) => p.register === register)
+): Promise<PhrasebookCategory[]> {
+  const res = await apiFetch(
+    `/api/phrasebook?language=${encodeURIComponent(targetLanguage)}`
   )
+  if (!res.ok) return []
+  const data = await res.json()
+  return data.categories ?? []
 }
 
-export function getAllSituations(): string[] {
-  return enCategories.map((c) => c.situation)
+export async function getPhrasebookByLevel(
+  level: string,
+  targetLanguage: string = 'en-US'
+): Promise<PhrasebookCategory[]> {
+  const res = await apiFetch(
+    `/api/phrasebook/level/${encodeURIComponent(level)}?language=${encodeURIComponent(targetLanguage)}`
+  )
+  if (!res.ok) return []
+  const data = await res.json()
+  return data.categories ?? []
 }
