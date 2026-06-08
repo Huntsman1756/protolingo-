@@ -104,7 +104,7 @@ export default function VocabularySetPage({
           href="/vocabulary"
           className="hover:text-fl-fg tracking-widest uppercase transition-colors"
         >
-          Vocabulary
+          {t('title')}
         </Link>
         <span>›</span>
         <span className="text-fl-muted-2 tracking-widest uppercase">

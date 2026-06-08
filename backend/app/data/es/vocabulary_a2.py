@@ -4,7 +4,7 @@ from app.data._types import VocabularyEntry, VocabularySet
 
 A2_SETS: list[VocabularySet] = [
     VocabularySet(
-        id="viajes_es_a2",
+        id="viajes_a2",
         level="A2",
         topic="Viajes",
         unit_ref="a2-unit-1",
@@ -96,7 +96,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="experiencias_es_a2",
+        id="experiencias_a2",
         level="A2",
         topic="Experiencias",
         unit_ref="a2-unit-1",
@@ -188,7 +188,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="infancia_es_a2",
+        id="infancia_a2",
         level="A2",
         topic="La infancia",
         unit_ref="a2-unit-2",
@@ -280,7 +280,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="descripciones_es_a2",
+        id="descripciones_a2",
         level="A2",
         topic="Descripciones",
         unit_ref="a2-unit-2",
@@ -372,7 +372,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="compras_es_a2",
+        id="compras_a2",
         level="A2",
         topic="De compras",
         unit_ref="a2-unit-3",
@@ -464,7 +464,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="regalos_es_a2",
+        id="regalos_a2",
         level="A2",
         topic="Regalos",
         unit_ref="a2-unit-3",
@@ -556,7 +556,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="ciudades_es_a2",
+        id="ciudades_a2",
         level="A2",
         topic="Ciudades",
         unit_ref="a2-unit-4",
@@ -648,7 +648,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="cultura_es_a2",
+        id="cultura_a2",
         level="A2",
         topic="Cultura",
         unit_ref="a2-unit-4",
@@ -740,7 +740,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="salud_es_a2",
+        id="salud_a2",
         level="A2",
         topic="Salud",
         unit_ref="a2-unit-5",
@@ -832,7 +832,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="consejos_es_a2",
+        id="consejos_a2",
         level="A2",
         topic="Consejos",
         unit_ref="a2-unit-5",
@@ -924,7 +924,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="trabajo_es_a2",
+        id="trabajo_a2",
         level="A2",
         topic="El trabajo",
         unit_ref="a2-unit-6",
@@ -1016,7 +1016,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="planes_es_a2",
+        id="planes_a2",
         level="A2",
         topic="Planes",
         unit_ref="a2-unit-6",
@@ -1108,7 +1108,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="historias_es_a2",
+        id="historias_a2",
         level="A2",
         topic="Historias",
         unit_ref="a2-unit-7",
@@ -1200,7 +1200,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="anecdotas_es_a2",
+        id="anécdotas_a2",
         level="A2",
         topic="Anécdotas",
         unit_ref="a2-unit-7",
@@ -1292,7 +1292,7 @@ A2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="repaso_es_a2",
+        id="repaso_a2",
         level="A2",
         topic="Repaso A2",
         unit_ref="a2-unit-8",

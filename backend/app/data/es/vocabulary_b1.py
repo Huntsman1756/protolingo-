@@ -4,7 +4,7 @@ from app.data._types import VocabularyEntry, VocabularySet
 
 B1_SETS: list[VocabularySet] = [
     VocabularySet(
-        id="emociones_es_b1",
+        id="emociones_b1",
         level="B1",
         topic="Emociones y sentimientos",
         unit_ref="b1-unit-1",
@@ -82,7 +82,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="deseos_es_b1",
+        id="deseos_b1",
         level="B1",
         topic="Deseos y aspiraciones",
         unit_ref="b1-unit-1",
@@ -160,7 +160,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="trabajo_es_b1",
+        id="trabajo_b1",
         level="B1",
         topic="Entorno laboral",
         unit_ref="b1-unit-2",
@@ -238,7 +238,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="estudios_es_b1",
+        id="estudios_b1",
         level="B1",
         topic="Estudios y formación",
         unit_ref="b1-unit-2",
@@ -316,7 +316,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="experiencias_es_b1",
+        id="experiencias_b1",
         level="B1",
         topic="Experiencias de vida",
         unit_ref="b1-unit-3",
@@ -394,7 +394,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="logros_es_b1",
+        id="logros_b1",
         level="B1",
         topic="Logros y realizaciones",
         unit_ref="b1-unit-3",
@@ -472,7 +472,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="noticias_es_b1",
+        id="noticias_b1",
         level="B1",
         topic="Noticias y actualidad",
         unit_ref="b1-unit-4",
@@ -550,7 +550,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="sociedad_es_b1",
+        id="sociedad_b1",
         level="B1",
         topic="Sociedad y ciudadanía",
         unit_ref="b1-unit-4",
@@ -628,7 +628,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="descripciones_es_b1",
+        id="descripciones_b1",
         level="B1",
         topic="Descripciones detalladas",
         unit_ref="b1-unit-5",
@@ -706,7 +706,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="gente_es_b1",
+        id="gente_b1",
         level="B1",
         topic="Gente y relaciones",
         unit_ref="b1-unit-5",
@@ -784,7 +784,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="viajes_es_b1",
+        id="viajes_b1",
         level="B1",
         topic="Viajes y aventuras",
         unit_ref="b1-unit-6",
@@ -862,7 +862,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="situaciones_es_b1",
+        id="situaciones_b1",
         level="B1",
         topic="Situaciones cotidianas",
         unit_ref="b1-unit-6",
@@ -940,7 +940,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="opiniones_es_b1",
+        id="opiniones_b1",
         level="B1",
         topic="Opiniones y puntos de vista",
         unit_ref="b1-unit-7",
@@ -1018,7 +1018,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="debates_es_b1",
+        id="debates_b1",
         level="B1",
         topic="Debates y argumentación",
         unit_ref="b1-unit-7",
@@ -1096,7 +1096,7 @@ B1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="repaso_es_b1",
+        id="repaso_b1",
         level="B1",
         topic="Repaso B1",
         unit_ref="b1-unit-8",

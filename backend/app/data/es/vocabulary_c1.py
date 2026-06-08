@@ -4,7 +4,7 @@ from app.data._types import VocabularyEntry, VocabularySet
 
 C1_SETS: list[VocabularySet] = [
     VocabularySet(
-        id="matices_es_c1",
+        id="matices_c1",
         level="C1",
         topic="Matices del lenguaje",
         unit_ref="c1-unit-1",
@@ -82,7 +82,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="formalidad_es_c1",
+        id="formalidad_c1",
         level="C1",
         topic="Formalidad y registro",
         unit_ref="c1-unit-1",
@@ -160,7 +160,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="académico_es_c1",
+        id="académico_c1",
         level="C1",
         topic="Registro académico",
         unit_ref="c1-unit-2",
@@ -238,7 +238,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="investigación_es_c1",
+        id="investigación_c1",
         level="C1",
         topic="Investigación",
         unit_ref="c1-unit-2",
@@ -316,7 +316,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="profesional_es_c1",
+        id="profesional_c1",
         level="C1",
         topic="Léxico profesional",
         unit_ref="c1-unit-3",
@@ -394,7 +394,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="técnico_es_c1",
+        id="técnico_c1",
         level="C1",
         topic="Léxico técnico",
         unit_ref="c1-unit-3",
@@ -472,7 +472,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="humor_es_c1",
+        id="humor_c1",
         level="C1",
         topic="Humor e ironía",
         unit_ref="c1-unit-4",
@@ -550,7 +550,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="cultura_es_c1",
+        id="cultura_c1",
         level="C1",
         topic="Cultura avanzada",
         unit_ref="c1-unit-4",
@@ -628,7 +628,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="oratoria_es_c1",
+        id="oratoria_c1",
         level="C1",
         topic="Oratoria",
         unit_ref="c1-unit-5",
@@ -706,7 +706,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="presentaciones_es_c1",
+        id="presentaciones_c1",
         level="C1",
         topic="Presentaciones",
         unit_ref="c1-unit-5",
@@ -784,7 +784,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="variedades_es_c1",
+        id="variedades_c1",
         level="C1",
         topic="Variedades del español",
         unit_ref="c1-unit-6",
@@ -862,7 +862,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="dialectos_es_c1",
+        id="dialectos_c1",
         level="C1",
         topic="Dialectos del español",
         unit_ref="c1-unit-6",
@@ -940,7 +940,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="análisis_es_c1",
+        id="análisis_c1",
         level="C1",
         topic="Análisis y evaluación",
         unit_ref="c1-unit-7",
@@ -1018,7 +1018,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="síntesis_es_c1",
+        id="síntesis_c1",
         level="C1",
         topic="Síntesis y reformulación",
         unit_ref="c1-unit-7",
@@ -1096,7 +1096,7 @@ C1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="repaso_es_c1",
+        id="repaso_c1",
         level="C1",
         topic="Repaso C1",
         unit_ref="c1-unit-8",

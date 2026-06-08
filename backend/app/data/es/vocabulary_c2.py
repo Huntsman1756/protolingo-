@@ -4,7 +4,7 @@ from app.data._types import VocabularyEntry, VocabularySet
 
 C2_SETS: list[VocabularySet] = [
     VocabularySet(
-        id="excelencia_es_c2",
+        id="excelencia_c2",
         level="C2",
         topic="Excelencia lingüística",
         unit_ref="c2-unit-1",
@@ -82,7 +82,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="literatura_es_c2",
+        id="literatura_c2",
         level="C2",
         topic="Literatura avanzada",
         unit_ref="c2-unit-2",
@@ -160,7 +160,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="estilo_es_c2",
+        id="estilo_c2",
         level="C2",
         topic="Estilística",
         unit_ref="c2-unit-2",
@@ -238,7 +238,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="traducción_es_c2",
+        id="traducción_c2",
         level="C2",
         topic="Traducción",
         unit_ref="c2-unit-3",
@@ -316,7 +316,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="mediación_es_c2",
+        id="mediación_c2",
         level="C2",
         topic="Mediación lingüística",
         unit_ref="c2-unit-3",
@@ -394,7 +394,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="historia_es_c2",
+        id="historia_c2",
         level="C2",
         topic="Historia de la lengua",
         unit_ref="c2-unit-4",
@@ -472,7 +472,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="cultura_es_c2",
+        id="cultura_c2",
         level="C2",
         topic="Cultura hispánica",
         unit_ref="c2-unit-4",
@@ -550,7 +550,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="creación_es_c2",
+        id="creación_c2",
         level="C2",
         topic="Creación de contenido",
         unit_ref="c2-unit-5",
@@ -628,7 +628,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="publicación_es_c2",
+        id="publicación_c2",
         level="C2",
         topic="Publicación",
         unit_ref="c2-unit-5",
@@ -706,7 +706,7 @@ C2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="maestría_es_c2",
+        id="maestría_c2",
         level="C2",
         topic="Maestría",
         unit_ref="c2-unit-6",

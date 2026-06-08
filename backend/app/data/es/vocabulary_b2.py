@@ -4,7 +4,7 @@ from app.data._types import VocabularyEntry, VocabularySet
 
 B2_SETS: list[VocabularySet] = [
     VocabularySet(
-        id="sentimientos_es_b2",
+        id="sentimientos_b2",
         level="B2",
         topic="Sentimientos y emociones",
         unit_ref="b2-unit-1",
@@ -82,7 +82,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="hipótesis_es_b2",
+        id="hipótesis_b2",
         level="B2",
         topic="Hipótesis y suposiciones",
         unit_ref="b2-unit-1",
@@ -160,7 +160,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="hábitos_es_b2",
+        id="hábitos_b2",
         level="B2",
         topic="Hábitos y costumbres",
         unit_ref="b2-unit-2",
@@ -238,7 +238,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="cambios_es_b2",
+        id="cambios_b2",
         level="B2",
         topic="Cambios y transformaciones",
         unit_ref="b2-unit-2",
@@ -316,7 +316,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="ensayos_es_b2",
+        id="ensayos_b2",
         level="B2",
         topic="Ensayos y redacción",
         unit_ref="b2-unit-3",
@@ -394,7 +394,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="académico_es_b2",
+        id="académico_b2",
         level="B2",
         topic="Vocabulario académico",
         unit_ref="b2-unit-3",
@@ -472,7 +472,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="modismos_es_b2",
+        id="modismos_b2",
         level="B2",
         topic="Modismos y expresiones",
         unit_ref="b2-unit-4",
@@ -550,7 +550,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="cultura_es_b2",
+        id="cultura_b2",
         level="B2",
         topic="Cultura y tradiciones",
         unit_ref="b2-unit-4",
@@ -628,7 +628,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="debates_es_b2",
+        id="debates_b2",
         level="B2",
         topic="Debates y argumentación",
         unit_ref="b2-unit-5",
@@ -706,7 +706,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="temas-sociales_es_b2",
+        id="temas-sociales_b2",
         level="B2",
         topic="Temas sociales",
         unit_ref="b2-unit-5",
@@ -784,7 +784,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="literatura_es_b2",
+        id="literatura_b2",
         level="B2",
         topic="Literatura y narrativa",
         unit_ref="b2-unit-6",
@@ -862,7 +862,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="lectura_es_b2",
+        id="lectura_b2",
         level="B2",
         topic="Lectura y comprensión",
         unit_ref="b2-unit-6",
@@ -940,7 +940,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="noticias_es_b2",
+        id="noticias_b2",
         level="B2",
         topic="Periodismo y medios",
         unit_ref="b2-unit-7",
@@ -1018,7 +1018,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="actualidad_es_b2",
+        id="actualidad_b2",
         level="B2",
         topic="Actualidad y sociedad",
         unit_ref="b2-unit-7",
@@ -1096,7 +1096,7 @@ B2_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="repaso_es_b2",
+        id="repaso_b2",
         level="B2",
         topic="Repaso B2",
         unit_ref="b2-unit-8",

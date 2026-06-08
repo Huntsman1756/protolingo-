@@ -4,7 +4,7 @@ from app.data._types import VocabularyEntry, VocabularySet
 
 A1_SETS: list[VocabularySet] = [
     VocabularySet(
-        id="saludos_es_a1",
+        id="saludos_a1",
         level="A1",
         topic="Saludos y cortesía",
         unit_ref="a1-unit-1",
@@ -97,7 +97,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="presentaciones_es_a1",
+        id="presentaciones_a1",
         level="A1",
         topic="Presentaciones personales",
         unit_ref="a1-unit-1",
@@ -189,7 +189,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="nacionalidades_es_a1",
+        id="nacionalidades_a1",
         level="A1",
         topic="Nacionalidades",
         unit_ref="a1-unit-2",
@@ -281,7 +281,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="profesiones_es_a1",
+        id="profesiones_a1",
         level="A1",
         topic="Profesiones",
         unit_ref="a1-unit-2",
@@ -373,7 +373,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="familia_es_a1",
+        id="familia_a1",
         level="A1",
         topic="La familia",
         unit_ref="a1-unit-3",
@@ -465,7 +465,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="descripciones_es_a1",
+        id="descripciones_a1",
         level="A1",
         topic="Descripciones físicas",
         unit_ref="a1-unit-3",
@@ -557,7 +557,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="rutina_es_a1",
+        id="rutina_a1",
         level="A1",
         topic="Rutina diaria",
         unit_ref="a1-unit-4",
@@ -649,7 +649,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="horas_es_a1",
+        id="horas_a1",
         level="A1",
         topic="La hora",
         unit_ref="a1-unit-4",
@@ -741,7 +741,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="comida_es_a1",
+        id="comida_a1",
         level="A1",
         topic="Comida y bebida",
         unit_ref="a1-unit-5",
@@ -833,7 +833,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="actividades_es_a1",
+        id="actividades_a1",
         level="A1",
         topic="Actividades de ocio",
         unit_ref="a1-unit-5",
@@ -925,7 +925,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="lugares_es_a1",
+        id="lugares_a1",
         level="A1",
         topic="Lugares de la ciudad",
         unit_ref="a1-unit-6",
@@ -1017,7 +1017,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="direcciones_es_a1",
+        id="direcciones_a1",
         level="A1",
         topic="Direcciones",
         unit_ref="a1-unit-6",
@@ -1109,7 +1109,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="transporte_es_a1",
+        id="transporte_a1",
         level="A1",
         topic="Transporte",
         unit_ref="a1-unit-7",
@@ -1201,7 +1201,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="clima_es_a1",
+        id="clima_a1",
         level="A1",
         topic="El clima",
         unit_ref="a1-unit-7",
@@ -1293,7 +1293,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="repaso_es_a1",
+        id="repaso_a1",
         level="A1",
         topic="Repaso A1",
         unit_ref="a1-unit-8",
