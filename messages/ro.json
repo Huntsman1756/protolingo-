@@ -676,7 +676,8 @@
     "level": "Nivel",
     "register": "Registru",
     "statsLine": "{situationCount} situații · {phraseCount} fraze · {range}",
-    "situationsShown": "{count, plural, one {# situație afișată} other {# situații afișate}}"
+    "situationsShown": "{count, plural, one {# situație afișată} other {# situații afișate}}",
+    "searchPlaceholder": "Caută fraze..."
   },
   "admin": {
     "title": "Admin",

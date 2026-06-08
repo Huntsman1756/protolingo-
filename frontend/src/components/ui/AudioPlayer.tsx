@@ -9,6 +9,8 @@ interface AudioPlayerProps {
   voice?: string
   size?: 'sm' | 'md'
   className?: string
+  /** If set, fetches pre-cached audio via GET from this URL instead of POST /api/tts */
+  audioUrl?: string
 }
 
 type PlayerState = 'idle' | 'loading' | 'playing' | 'error'
@@ -18,6 +20,7 @@ export function AudioPlayer({
   voice,
   size = 'sm',
   className = '',
+  audioUrl,
 }: AudioPlayerProps) {
   const [state, setState] = useState<PlayerState>('idle')
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -47,15 +50,29 @@ export function AudioPlayer({
       const t0 = performance.now()
 
       const fetchStart = performance.now()
-      const res = await fetch('/api/tts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-TTS-Trace-ID': traceId,
-          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
-        },
-        body: JSON.stringify({ text, voice: resolvedVoice }),
-      })
+      const res = await fetch(
+        audioUrl ?? '/api/tts',
+        audioUrl
+          ? {
+              headers: {
+                ...(accessToken
+                  ? { Authorization: `Bearer ${accessToken}` }
+                  : {}),
+              },
+              credentials: 'include' as RequestCredentials,
+            }
+          : {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-TTS-Trace-ID': traceId,
+                ...(accessToken
+                  ? { Authorization: `Bearer ${accessToken}` }
+                  : {}),
+              },
+              body: JSON.stringify({ text, voice: resolvedVoice }),
+            }
+      )
       const fetchMs = performance.now() - fetchStart
       if (!res.ok) throw new Error(`TTS error ${res.status}`)
 

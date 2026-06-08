@@ -676,7 +676,8 @@
     "level": "Poziom",
     "register": "Rejestr",
     "statsLine": "{situationCount} sytuacji · {phraseCount} zwrotów · {range}",
-    "situationsShown": "{count, plural, one {# sytuacja wyświetlona} few {# sytuacje wyświetlone} other {# sytuacji wyświetlonych}}"
+    "situationsShown": "{count, plural, one {# sytuacja wyświetlona} few {# sytuacje wyświetlone} other {# sytuacji wyświetlonych}}",
+    "searchPlaceholder": "Szukaj zwrotów..."
   },
   "admin": {
     "title": "Admin",

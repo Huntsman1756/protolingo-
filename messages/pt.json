@@ -676,7 +676,8 @@
     "level": "Nível",
     "register": "Registo",
     "statsLine": "{situationCount} situações · {phraseCount} frases · {range}",
-    "situationsShown": "{count, plural, one {# situação exibida} other {# situações exibidas}}"
+    "situationsShown": "{count, plural, one {# situação exibida} other {# situações exibidas}}",
+    "searchPlaceholder": "Pesquisar frases..."
   },
   "admin": {
     "title": "Administração",

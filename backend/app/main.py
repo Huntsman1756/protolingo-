@@ -37,6 +37,7 @@ from app.routers import (
     lessons,
     listening,
     memories,
+    phrasebook,
     progress,
     reading,
     stt,
@@ -143,6 +144,7 @@ app.include_router(contact.router)
 app.include_router(curriculum.router)
 app.include_router(feedback.router)
 app.include_router(memories.router)
+app.include_router(phrasebook.router)
 app.include_router(languages.router)
 app.include_router(health_router.router)
 app.include_router(vocabulary.router)

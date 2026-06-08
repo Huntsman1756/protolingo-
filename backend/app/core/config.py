@@ -42,6 +42,12 @@ class Settings(BaseSettings):
     STRIPE_TRIAL_DAYS: int = 7
     STRIPE_BASE_URL: str = "http://localhost:3000"
 
+    # Display prices (shown on landing page and paywall banner)
+    PRICE_MONTHLY: float = 0.0
+    PRICE_YEARLY: float = 0.0
+    TOTAL_PRICE_MONTHLY: float = 0.0
+    TOTAL_PRICE_YEARLY: float = 0.0
+
     # Email / SMTP
     EMAIL_ENABLED: bool = False
     CONTACT_EMAIL: str = ""

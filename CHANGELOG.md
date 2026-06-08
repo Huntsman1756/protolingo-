@@ -316,7 +316,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.8] - 2026-05-12
 
 ### Added
-- Pricing section: crossed-out original prices (19.95 €/month, 199.50 €/year) shown above current launch prices using `text-fl-muted-2 line-through`.
+- Pricing section: crossed-out original prices (x €/month, x €/year) shown above current launch prices using `text-fl-muted-2 line-through`.
 - `pricingLabel` i18n key updated to "Launch Offer" in all 10 locales (es, en, de, fr, it, pt, nl, pl, ro, ru).
 
 ### Changed
@@ -405,7 +405,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Admin can manually override `subscription_status` and `subscription_ends_at` via `PATCH /api/admin/users/{id}`
 - `store/config.ts` (frontend): fetches `/api/config` on app load, exposes `stripeEnabled` and `stripeTrialDays`
 - `store/auth.ts`: `User` type extended with `subscription_status` and `subscription_ends_at`; exported `isSubscribed()` helper
-- `PaywallBanner` and `PaywallGate` components: paywall overlay with monthly (14.95€) and yearly (149.50€) plan buttons; renders nothing when Stripe is disabled
+- `PaywallBanner` and `PaywallGate` components: paywall overlay with monthly and yearly plan buttons; renders nothing when Stripe is disabled
 - `PaywallGate` applied to six frontend pages: `/chat`, `/conversation`, `/flashcards`, `/dashboard`, `/lesson/[id]`, `/assessment/level-test`
 - Settings page: subscription status badge, next billing date, "Manage subscription" portal link, "Subscribe" CTA — section hidden when Stripe is disabled
 - Landing page: pricing section (two plan cards) conditionally rendered when `STRIPE_ENABLED=true`

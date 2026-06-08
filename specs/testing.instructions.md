@@ -1,5 +1,5 @@
 ---
-description: "Testing strategy for FreeLingo: backend pytest suite (31 test files with SQLite in-memory DB and Redis mocking), frontend Vitest suite (17 test files covering stores, components, lib, and middleware), E2E plan (Playwright, pending), CI integration, and coverage requirements."
+description: "Testing strategy for FreeLingo: backend pytest suite (33 test files with SQLite in-memory DB and Redis mocking), frontend Vitest suite (16 test files covering stores, components, lib, and middleware), E2E plan (Playwright, pending), CI integration, and coverage requirements."
 applyTo: "**/*.test.*, **/*.spec.*, **/tests/**, **/__tests__/**"
 ---
 
@@ -62,9 +62,10 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 | `test_maintenance.py` | 153 | Maintenance mode toggle, API behavior during maintenance |
 | `test_memories.py` | 362 | LLM memory (Phase 9): memory creation, retrieval, update, deletion |
 | `test_llm_adapter.py` | — | LLM adapter: JSON parsing, streaming, 5 exception classes, 4 provider init paths, chat (streaming + non-streaming), Anthropic error mapping, structured output with retry, DeepSeek provider, edge cases (63 tests, 38%→100% coverage) |
+| `test_phrasebook.py` | 185 | Phrasebook API: list categories, by-level filtering, category detail, language switching, auth, error cases (14 tests) |
 | `test_quota_service.py` | — | Quota service: key helpers, quota status, session tracking, daily/weekly minute checks, monthly token tracking, combined quota validation, full session lifecycle (71 tests, 37%→100% coverage) |
 
-**Total: 32 test files, 691 tests, ~12,000 lines of test code.**
+**Total: 33 test files, 705 tests, ~12,000 lines of test code.**
 
 ### Coverage
 

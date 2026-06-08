@@ -67,6 +67,10 @@ export default async function Home() {
   // which can fail in SSR context (self-referential fetch + SSL issues).
   let stripeEnabled = false
   let trialDays = 7
+  let priceMonthly = 0.0
+  let priceYearly = 0.0
+  let totalPriceMonthly = 0.0
+  let totalPriceYearly = 0.0
   try {
     const backendUrl = process.env.BACKEND_URL || 'http://backend:8000'
     const configRes = await fetch(`${backendUrl}/api/config`, {
@@ -76,6 +80,10 @@ export default async function Home() {
       const cfg = await configRes.json()
       stripeEnabled = cfg.stripe_enabled ?? false
       trialDays = cfg.stripe_trial_days ?? 7
+      priceMonthly = cfg.price_monthly ?? 0.0
+      priceYearly = cfg.price_yearly ?? 0.0
+      totalPriceMonthly = cfg.total_price_monthly ?? 0.0
+      totalPriceYearly = cfg.total_price_yearly ?? 0.0
     }
   } catch {
     /* non-fatal */
@@ -167,6 +175,10 @@ export default async function Home() {
         stripeEnabled={stripeEnabled}
         trialDays={trialDays}
         hasSession={hasSession}
+        priceMonthly={priceMonthly}
+        priceYearly={priceYearly}
+        totalPriceMonthly={totalPriceMonthly}
+        totalPriceYearly={totalPriceYearly}
       />
 
       {/* Footer */}

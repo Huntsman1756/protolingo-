@@ -70,3 +70,23 @@ class VocabularySet:
     topic: str
     unit_ref: str  # e.g. "a1-unit-1"
     words: list[VocabularyEntry]
+
+
+Register = Literal["formal", "neutral", "informal"]
+
+
+@dataclass
+class PhrasebookEntry:
+    text: str  # the phrase in the target language
+    context: str  # when/where to use it
+    register: Register
+    unit_ref: str | None = None
+
+
+@dataclass
+class PhrasebookCategory:
+    id: str  # e.g. "greetings", "restaurant_a2"
+    level: CEFRLevel
+    situation: str  # e.g. "Greetings & Introductions"
+    icon: str  # single emoji, e.g. "👋"
+    phrases: list[PhrasebookEntry]

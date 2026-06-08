@@ -261,3 +261,16 @@ All endpoints require `require_subscription`.
 | GET | `` | 30/min | require_subscription | Returns all memories for the authenticated user. Response: `{memories: [{id, content, source, created_at}]}`. |
 | DELETE | `/{id}` | 30/min | require_subscription | Deletes a single memory by ID. Returns HTTP 204. Returns 404 if not found or not owned by the user. |
 | DELETE | `` | 10/min | require_subscription | Clears all memories for the authenticated user. Response: `{deleted: int}`. |
+
+---
+
+## Phrasebook — `/api/phrasebook`
+
+All endpoints require `get_current_user`.
+
+| Method | Path | Rate limit | Auth | Description |
+|--------|------|------------|------|-------------|
+| GET | `` | 60/min | get_current_user | Returns all phrasebook categories for the given target language. Query param: `language` (BCP-47, default `en-US`). Response: `{categories: [{id, level, situation, icon, phrases: [{text, context, register, unit_ref}]}]}`. |
+| GET | `/level/{level}` | 60/min | get_current_user | Returns phrasebook categories filtered by CEFR level (A1–C2). Returns 400 for invalid levels. Query param: `language`. |
+| GET | `/{category_id}` | 60/min | get_current_user | Returns a single phrasebook category by ID. Query param: `language`. Returns 404 if not found. |
+| GET | `/audio/{category_id}/{phrase_index}` | 30/min | get_current_user | Returns cached TTS audio (audio/mpeg) for a specific phrase. Generates and caches on first request; subsequent requests serve from disk. Query param: `language`. Returns 404 if category or phrase index not found, 503 if TTS service unavailable. |
