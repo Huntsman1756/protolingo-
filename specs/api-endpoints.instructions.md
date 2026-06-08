@@ -56,6 +56,7 @@ Requires `role="admin"`. All endpoints return 403 for non-admin users.
 | Method | Path | Description |
 |--------|------|-------------|
 | GET | `/start` | Begins adaptive quiz (LLM-generated questions, static fallback) |
+| GET | `/bank` | Returns the full static assessment bank for the given language (query param `language`, default `en-US`). Auth required. Response: `{questions: [{id, skill, difficulty, question, options, correct, grammar_slug}]}`. |
 | POST | `/submit` | Legacy: submits answers for CEFR evaluation |
 | POST | `/evaluate` | Deterministic CEFR evaluation (no LLM — groups by difficulty) |
 | POST | `/free-write` | Evaluates free-write text for CEFR placement (LLM) |

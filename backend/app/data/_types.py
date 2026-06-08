@@ -24,3 +24,17 @@ class CurriculumUnit:
     competency_checklist: list[str]
     default_weeks: int
     prerequisite_unit: str | None = None
+
+
+Skill = Literal["grammar", "vocabulary", "reading"]
+
+
+@dataclass
+class AssessmentQuestion:
+    id: str  # e.g. "g-a1-001", "v-b2-003", "r-c1-001"
+    skill: Skill
+    difficulty: CEFRLevel
+    question: str
+    options: list[str]  # exactly 4
+    correct: str  # must match one option exactly
+    grammar_slug: str | None = None

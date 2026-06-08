@@ -107,13 +107,13 @@ export function getCurriculum(targetLanguage: string): CurriculumData {
 | `grammar.ts` | Grammar reference entries |
 | `vocabulary.ts` | Vocabulary sets |
 | `phrasebook.ts` | Phrasebook entries |
-| `assessment-bank.ts` | Assessment question bank |
+| `assessment-bank` | Assessment question bank (now in `backend/app/data/{lang}/assessment_bank.py`) |
 
 ### Directories to create
 
-- `frontend/src/data/es/` (5 files)
-- `frontend/src/data/it/` (5 files)
-- `frontend/src/data/pt/` (5 files)
+- `frontend/src/data/es/` (4 files)
+- `frontend/src/data/it/` (4 files)
+- `frontend/src/data/pt/` (4 files)
 
 ---
 
@@ -179,9 +179,9 @@ The English values above are the reference. Add the equivalent translations in a
 | `frontend/src/data/es/grammar.ts` | ES grammar |
 | `frontend/src/data/es/vocabulary.ts` | ES vocabulary |
 | `frontend/src/data/es/phrasebook.ts` | ES phrasebook |
-| `frontend/src/data/es/assessment-bank.ts` | ES assessment bank |
-| `frontend/src/data/it/` | Same structure (5 files) |
-| `frontend/src/data/pt/` | Same structure (5 files) |
+| `backend/app/data/es/assessment_bank.py` | ES assessment bank |
+| `frontend/src/data/it/` | Same structure (4 files) |
+| `frontend/src/data/pt/` | Same structure (4 files) |
 
 ## Modified files in this phase
 

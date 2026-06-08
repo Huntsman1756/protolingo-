@@ -380,7 +380,7 @@ When adding a new target language in the future (e.g. Italian `it-IT`), the foll
 | `src/data/grammar.ts` | Add Italian grammar reference data |
 | `src/data/vocabulary.ts` | Add Italian vocabulary sets |
 | `src/data/phrasebook.ts` | Add Italian phrasebook entries |
-| `src/data/assessment-bank.ts` | Add Italian assessment questions |
+| `backend/app/data/it/assessment_bank.py` | Add Italian assessment questions |
 | `public/flags/it.jpg` | Add Italian flag image |
 
 ### Messages

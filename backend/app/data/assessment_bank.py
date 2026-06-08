@@ -1,0 +1,37 @@
+"""
+Language-aware assessment bank dispatcher.
+
+Mirrors the curriculum dispatcher pattern: resolves the correct
+per-language assessment bank module by ISO 639-1 prefix.
+"""
+
+from __future__ import annotations
+
+import sys
+
+from app.data._types import AssessmentQuestion  # noqa: F401
+
+_LANG_MODULES: dict[str, str] = {
+    "en": "app.data.en.assessment_bank",
+    "es": "app.data.es.assessment_bank",
+    "it": "app.data.it.assessment_bank",
+    "pt": "app.data.pt.assessment_bank",
+}
+
+_CACHE: dict[str, list[AssessmentQuestion]] = {}
+
+
+def _resolve_bank(target_language: str) -> list[AssessmentQuestion]:
+    iso = target_language.split("-")[0]
+    module_name = _LANG_MODULES.get(iso, "app.data.en.assessment_bank")
+
+    if module_name not in _CACHE:
+        __import__(module_name)
+        _CACHE[module_name] = sys.modules[module_name].ASSESSMENT_BANK
+
+    return _CACHE[module_name]
+
+
+def get_assessment_bank(target_language: str = "en-US") -> list[AssessmentQuestion]:
+    """Return the full assessment bank for the given target language."""
+    return _resolve_bank(target_language)

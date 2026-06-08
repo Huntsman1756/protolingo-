@@ -37,3 +37,13 @@ export type PartOfSpeech =
   | 'preposition'
   | 'numeral'
   | 'pronoun'
+
+export interface AssessmentQuestion {
+  id: string
+  skill: Skill
+  difficulty: CEFRLevel
+  question: string
+  options: string[]
+  correct: string
+  grammar_slug?: string
+}

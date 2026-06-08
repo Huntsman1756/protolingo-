@@ -15,6 +15,7 @@ from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.models.user_language import UserLanguage
 from app.schemas.assessment import (
+    AssessmentBankResponse,
     AssessmentCompleteRequest,
     AssessmentResult,
     AssessmentSubmitRequest,
@@ -151,6 +152,36 @@ async def start_assessment(
         json.dumps({"session_id": session_id, "quiz": quiz, "target_language": target_language}),
     )
     return {"quiz": _strip_answers(quiz), "session_id": session_id}
+
+
+@router.get("/bank", response_model=AssessmentBankResponse)
+async def get_assessment_bank(
+    language: str = Query("en-US", description="BCP-47 target language code"),
+    _current_user: User = Depends(get_current_user),
+):
+    """
+    Return the full static assessment bank for the given language.
+    Includes correct answers — the frontend needs them for the real-time
+    adaptive quiz logic. The backend re-evaluates answers server-side
+    via POST /api/assessment/evaluate.
+    """
+    from app.data.assessment_bank import get_assessment_bank as _get_bank  # noqa: PLC0415
+
+    questions = _get_bank(language)
+    return AssessmentBankResponse(
+        questions=[
+            {
+                "id": q.id,
+                "skill": q.skill,
+                "difficulty": q.difficulty,
+                "question": q.question,
+                "options": q.options,
+                "correct": q.correct,
+                "grammar_slug": q.grammar_slug,
+            }
+            for q in questions
+        ]
+    )
 
 
 @router.post("/submit", response_model=AssessmentResult)
