@@ -13,20 +13,43 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         structure="aunque / a pesar de que / por más que / por mucho que + subjuntivo",
         rules=[
             "Concesivas con indicativo: hecho real. Con subjuntivo: hipotético o irrelevante.",
-            "\"Aunque\" + presente de subjuntivo = no sé si ocurre; \"aunque\" + imperfecto de subjuntivo = improbable.",
-            "\"Por más que\" + subjuntivo refuerza la idea de que el obstáculo no importa.",
-            "\"Por muy + adjetivo + que\" siempre con subjuntivo: \"Por muy difícil que sea\".",
+            '"Aunque" + presente de subjuntivo = no sé si ocurre; "aunque" + imperfecto de subjuntivo = improbable.',
+            '"Por más que" + subjuntivo refuerza la idea de que el obstáculo no importa.',
+            '"Por muy + adjetivo + que" siempre con subjuntivo: "Por muy difícil que sea".',
         ],
         examples=[
-            GrammarExample(text="Aunque no estés de acuerdo, respeto tu opinión.", translation="Even if you don't agree, I respect your opinion.", note="subjuntivo: hipotético"),
-            GrammarExample(text="Por más que se lo explico, no lo entiende.", translation="No matter how much I explain it to him, he doesn't understand.", note="indicativo: hecho real"),
-            GrammarExample(text="Por muy cansado que esté, siempre ayuda a los demás.", translation="No matter how tired he is, he always helps others."),
-            GrammarExample(text="Aunque me lo hubieras dicho antes, no habría podido ir.", translation="Even if you had told me earlier, I wouldn't have been able to go."),
+            GrammarExample(
+                text="Aunque no estés de acuerdo, respeto tu opinión.",
+                translation="Even if you don't agree, I respect your opinion.",
+                note="subjuntivo: hipotético",
+            ),
+            GrammarExample(
+                text="Por más que se lo explico, no lo entiende.",
+                translation="No matter how much I explain it to him, he doesn't understand.",
+                note="indicativo: hecho real",
+            ),
+            GrammarExample(
+                text="Por muy cansado que esté, siempre ayuda a los demás.",
+                translation="No matter how tired he is, he always helps others.",
+            ),
+            GrammarExample(
+                text="Aunque me lo hubieras dicho antes, no habría podido ir.",
+                translation="Even if you had told me earlier, I wouldn't have been able to go.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Aunque llueva, sé que está lloviendo.", correct="Aunque llueve, sé que está lloviendo. / Aunque llueva, saldré.", note="Si el hecho es conocido, se usa indicativo. El subjuntivo implica incertidumbre."),
+            GrammarMistake(
+                wrong="Aunque llueva, sé que está lloviendo.",
+                correct="Aunque llueve, sé que está lloviendo. / Aunque llueva, saldré.",
+                note="Si el hecho es conocido, se usa indicativo. El subjuntivo implica incertidumbre.",
+            ),
         ],
-        related=["subjuntivo-final", "subjuntivo-relativo", "subjuntivo-presente", "contraargumentacion"],
+        related=[
+            "subjuntivo-final",
+            "subjuntivo-relativo",
+            "subjuntivo-presente",
+            "contraargumentacion",
+        ],
     ),
     GrammarTopic(
         slug="subjuntivo-final",
@@ -39,18 +62,38 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         rules=[
             "Finales con sujeto distinto: para que + subjuntivo.",
             "Finales con mismo sujeto: para + infinitivo.",
-            "\"No sea que\" + subjuntivo expresa cautela o temor.",
-            "Con verbo principal en pasado, la final va en imperfecto de subjuntivo: \"Fui para que me vieras\".",
+            '"No sea que" + subjuntivo expresa cautela o temor.',
+            'Con verbo principal en pasado, la final va en imperfecto de subjuntivo: "Fui para que me vieras".',
         ],
         examples=[
-            GrammarExample(text="Te lo explico para que lo entiendas mejor.", translation="I explain it to you so that you understand it better."),
-            GrammarExample(text="Habla más alto para que todos te oigan.", translation="Speak louder so that everyone can hear you."),
-            GrammarExample(text="Salí temprano a fin de que no me pillara el tráfico.", translation="I left early so that I wouldn't get caught in traffic."),
-            GrammarExample(text="Lleva el abrigo, no sea que haga frío.", translation="Take your coat, in case it's cold."),
+            GrammarExample(
+                text="Te lo explico para que lo entiendas mejor.",
+                translation="I explain it to you so that you understand it better.",
+            ),
+            GrammarExample(
+                text="Habla más alto para que todos te oigan.",
+                translation="Speak louder so that everyone can hear you.",
+            ),
+            GrammarExample(
+                text="Salí temprano a fin de que no me pillara el tráfico.",
+                translation="I left early so that I wouldn't get caught in traffic.",
+            ),
+            GrammarExample(
+                text="Lleva el abrigo, no sea que haga frío.",
+                translation="Take your coat, in case it's cold.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Te llamo para que vienes.", correct="Te llamo para que vengas.", note="\"Para que\" siempre rige subjuntivo."),
-            GrammarMistake(wrong="Fui para que me veas.", correct="Fui para que me vieras.", note="Con verbo principal en pasado, la final va en imperfecto de subjuntivo."),
+            GrammarMistake(
+                wrong="Te llamo para que vienes.",
+                correct="Te llamo para que vengas.",
+                note='"Para que" siempre rige subjuntivo.',
+            ),
+            GrammarMistake(
+                wrong="Fui para que me veas.",
+                correct="Fui para que me vieras.",
+                note="Con verbo principal en pasado, la final va en imperfecto de subjuntivo.",
+            ),
         ],
         related=["subjuntivo-concesivo", "subjuntivo-relativo", "concordancia-temporal"],
     ),
@@ -65,18 +108,40 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         rules=[
             "Indicativo en la relativa: antecedente específico y conocido.",
             "Subjuntivo en la relativa: antecedente inespecífico, hipotético o negado.",
-            "Con \"el/la/los/las + que\" en oraciones explicativas se usa indicativo.",
-            "Tras superlativo o palabras como \"único/primero/último\" es frecuente el subjuntivo.",
+            'Con "el/la/los/las + que" en oraciones explicativas se usa indicativo.',
+            'Tras superlativo o palabras como "único/primero/último" es frecuente el subjuntivo.',
         ],
         examples=[
-            GrammarExample(text="Busco una casa que tenga jardín.", translation="I'm looking for a house that has a garden.", note="subjuntivo: no sé si existe"),
-            GrammarExample(text="Busco la casa que tiene la puerta azul.", translation="I'm looking for the house that has the blue door.", note="indicativo: sé que existe"),
-            GrammarExample(text="No hay nadie que sepa tocar el piano aquí.", translation="There is no one who knows how to play the piano here."),
-            GrammarExample(text="Es lo mejor que me haya pasado en la vida.", translation="It's the best thing that has ever happened to me."),
+            GrammarExample(
+                text="Busco una casa que tenga jardín.",
+                translation="I'm looking for a house that has a garden.",
+                note="subjuntivo: no sé si existe",
+            ),
+            GrammarExample(
+                text="Busco la casa que tiene la puerta azul.",
+                translation="I'm looking for the house that has the blue door.",
+                note="indicativo: sé que existe",
+            ),
+            GrammarExample(
+                text="No hay nadie que sepa tocar el piano aquí.",
+                translation="There is no one who knows how to play the piano here.",
+            ),
+            GrammarExample(
+                text="Es lo mejor que me haya pasado en la vida.",
+                translation="It's the best thing that has ever happened to me.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Busco alguien que habla inglés.", correct="Busco a alguien que hable inglés.", note="Antecedente inespecífico → subjuntivo."),
-            GrammarMistake(wrong="No hay nadie que sabe la respuesta.", correct="No hay nadie que sepa la respuesta.", note="Antecedente negado → subjuntivo."),
+            GrammarMistake(
+                wrong="Busco alguien que habla inglés.",
+                correct="Busco a alguien que hable inglés.",
+                note="Antecedente inespecífico → subjuntivo.",
+            ),
+            GrammarMistake(
+                wrong="No hay nadie que sabe la respuesta.",
+                correct="No hay nadie que sepa la respuesta.",
+                note="Antecedente negado → subjuntivo.",
+            ),
         ],
         related=["subjuntivo-concesivo", "subjuntivo-final", "que-relativo", "superlativos"],
     ),
@@ -86,20 +151,28 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C1",
         category="Voz pasiva",
         summary="Usos avanzados de la pasiva refleja en registros formales y académicos.",
-        explanation="La **pasiva refleja** con \"se\" es la forma pasiva predominante en español. En niveles avanzados se dominan sus matices:\n\n**Pasiva refleja vs. impersonal con se**:\n- *Se vende piso.* → pasiva refleja (sujeto: piso; concuerda).\n- *Se vende pisos.* → impersonal (verbo en singular; menos frecuente).\n\n**Con verbos de percepción y comunicación**:\n- *Se oyeron disparos.* / *Se comenta que dimitirá.*\n\n**En textos académicos y científicos**:\n- *Se analizaron los datos. / Se observó un aumento.*\n\n**Diferencias dialectales**:\n- En algunas zonas de América se prefiere la impersonal con \"se\" + verbo en singular incluso con complemento plural: *Se vende casas* (frecuente en carteles, aunque la norma culta prefiere *Se venden casas*).\n\n**Pasiva refleja con verbos pronominales**:\n- No se puede usar si el verbo ya lleva \"se\" pronominal: *~~Se se arrepintió~~* → Impersonal con \"uno\": *Uno se arrepiente*.",
+        explanation='La **pasiva refleja** con "se" es la forma pasiva predominante en español. En niveles avanzados se dominan sus matices:\n\n**Pasiva refleja vs. impersonal con se**:\n- *Se vende piso.* → pasiva refleja (sujeto: piso; concuerda).\n- *Se vende pisos.* → impersonal (verbo en singular; menos frecuente).\n\n**Con verbos de percepción y comunicación**:\n- *Se oyeron disparos.* / *Se comenta que dimitirá.*\n\n**En textos académicos y científicos**:\n- *Se analizaron los datos. / Se observó un aumento.*\n\n**Diferencias dialectales**:\n- En algunas zonas de América se prefiere la impersonal con "se" + verbo en singular incluso con complemento plural: *Se vende casas* (frecuente en carteles, aunque la norma culta prefiere *Se venden casas*).\n\n**Pasiva refleja con verbos pronominales**:\n- No se puede usar si el verbo ya lleva "se" pronominal: *~~Se se arrepintió~~* → Impersonal con "uno": *Uno se arrepiente*.',
         rules=[
             "En la pasiva refleja el verbo concuerda con el sujeto paciente.",
-            "En textos académicos se prefiere la pasiva refleja a la pasiva con \"ser\".",
+            'En textos académicos se prefiere la pasiva refleja a la pasiva con "ser".',
             "Con verbos ya pronominales no se puede usar pasiva refleja.",
-            "La impersonal con \"se\" + verbo singular es frecuente pero menos normativa con objetos plurales.",
+            'La impersonal con "se" + verbo singular es frecuente pero menos normativa con objetos plurales.',
         ],
         examples=[
-            GrammarExample(text="Se analizaron más de mil muestras en el laboratorio.", translation="More than a thousand samples were analyzed in the lab."),
-            GrammarExample(text="Se espera que las temperaturas bajen en los próximos días.", translation="Temperatures are expected to drop in the coming days."),
-            GrammarExample(text="En esta revista se publican artículos de divulgación científica.", translation="In this magazine, science communication articles are published."),
+            GrammarExample(
+                text="Se analizaron más de mil muestras en el laboratorio.",
+                translation="More than a thousand samples were analyzed in the lab.",
+            ),
+            GrammarExample(
+                text="Se espera que las temperaturas bajen en los próximos días.",
+                translation="Temperatures are expected to drop in the coming days.",
+            ),
+            GrammarExample(
+                text="En esta revista se publican artículos de divulgación científica.",
+                translation="In this magazine, science communication articles are published.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["se-pasivo", "se-impersonal", "voz-pasiva"],
     ),
     GrammarTopic(
@@ -117,12 +190,20 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La nominalización permite tematizar la acción como objeto de análisis.",
         ],
         examples=[
-            GrammarExample(text="La destrucción del hábitat natural es una amenaza grave.", translation="The destruction of the natural habitat is a serious threat."),
-            GrammarExample(text="Se ha producido un aumento significativo de la demanda.", translation="There has been a significant increase in demand."),
-            GrammarExample(text="La falta de comunicación fue la causa del conflicto.", translation="The lack of communication was the cause of the conflict."),
+            GrammarExample(
+                text="La destrucción del hábitat natural es una amenaza grave.",
+                translation="The destruction of the natural habitat is a serious threat.",
+            ),
+            GrammarExample(
+                text="Se ha producido un aumento significativo de la demanda.",
+                translation="There has been a significant increase in demand.",
+            ),
+            GrammarExample(
+                text="La falta de comunicación fue la causa del conflicto.",
+                translation="The lack of communication was the cause of the conflict.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["impersonalidad", "registro-formal", "cohesion-textual"],
     ),
     GrammarTopic(
@@ -131,20 +212,28 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C1",
         category="Avanzado",
         summary="Mecanismos para ocultar el agente o generalizar: se, uno, pasiva, nominalización.",
-        explanation="La **impersonalidad** es un rasgo del discurso formal, académico y científico. Se logra por varios medios:\n\n**Construcciones con \"se\"**:\n- *Se recomienda reservar con antelación.*\n- *Se puede observar una tendencia al alza.*\n\n**El pronombre \"uno\"**:\n- *Uno no sabe qué hacer en estas situaciones.*\n- *Cuando uno viaja, se da cuenta de otras realidades.*\n\n**Voz pasiva**:\n- *Los resultados fueron analizados por un equipo de expertos.*\n\n**Nominalización**:\n- *La implementación de la medida se llevará a cabo en enero.*\n\n**Tercera persona plural indeterminada**:\n- *Llaman a la puerta. / Dicen que va a nevar.*\n\n**Infinitivo con valor impersonal**:\n- *Prohibido fumar. / Conviene madrugar.*",
+        explanation='La **impersonalidad** es un rasgo del discurso formal, académico y científico. Se logra por varios medios:\n\n**Construcciones con "se"**:\n- *Se recomienda reservar con antelación.*\n- *Se puede observar una tendencia al alza.*\n\n**El pronombre "uno"**:\n- *Uno no sabe qué hacer en estas situaciones.*\n- *Cuando uno viaja, se da cuenta de otras realidades.*\n\n**Voz pasiva**:\n- *Los resultados fueron analizados por un equipo de expertos.*\n\n**Nominalización**:\n- *La implementación de la medida se llevará a cabo en enero.*\n\n**Tercera persona plural indeterminada**:\n- *Llaman a la puerta. / Dicen que va a nevar.*\n\n**Infinitivo con valor impersonal**:\n- *Prohibido fumar. / Conviene madrugar.*',
         rules=[
-            "\"Se\" es el recurso más versátil para impersonalizar.",
-            "\"Uno\" personaliza ligeramente pero mantiene generalidad.",
+            '"Se" es el recurso más versátil para impersonalizar.',
+            '"Uno" personaliza ligeramente pero mantiene generalidad.',
             "La tercera persona plural indeterminada es común en la lengua oral.",
             "El abuso de la impersonalidad puede hacer el texto frío y distante.",
         ],
         examples=[
-            GrammarExample(text="Se ha demostrado que el ejercicio regular mejora la salud mental.", translation="It has been shown that regular exercise improves mental health."),
-            GrammarExample(text="Cuando uno aprende un idioma, descubre otra cultura.", translation="When one learns a language, one discovers another culture."),
-            GrammarExample(text="Dicen que el precio de la vivienda va a bajar.", translation="They say that the price of housing is going to go down."),
+            GrammarExample(
+                text="Se ha demostrado que el ejercicio regular mejora la salud mental.",
+                translation="It has been shown that regular exercise improves mental health.",
+            ),
+            GrammarExample(
+                text="Cuando uno aprende un idioma, descubre otra cultura.",
+                translation="When one learns a language, one discovers another culture.",
+            ),
+            GrammarExample(
+                text="Dicen que el precio de la vivienda va a bajar.",
+                translation="They say that the price of housing is going to go down.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["nominalizacion", "se-impersonal", "voz-pasiva"],
     ),
     GrammarTopic(
@@ -158,14 +247,19 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Los sinónimos dentro de un campo semántico rara vez son intercambiables al 100%.",
             "Cada palabra tiene matices de intensidad, formalidad o contexto.",
             "Consultar diccionarios de uso y de sinónimos para afinar la precisión.",
-            "En contextos formales se prefiere la palabra más precisa (\"manifestar\" en lugar de \"decir\").",
+            'En contextos formales se prefiere la palabra más precisa ("manifestar" en lugar de "decir").',
         ],
         examples=[
-            GrammarExample(text="No es lo mismo decir \"hace frío\" que \"hace un frío gélido\". La segunda opción intensifica.", translation="It's not the same to say \"it's cold\" as \"it's freezing cold\". The second option intensifies."),
-            GrammarExample(text="En el artículo el periodista no \"dice\", sino que \"sostiene\" o \"argumenta\".", translation="In the article, the journalist doesn't just \"say\", but rather \"maintains\" or \"argues\"."),
+            GrammarExample(
+                text='No es lo mismo decir "hace frío" que "hace un frío gélido". La segunda opción intensifica.',
+                translation='It\'s not the same to say "it\'s cold" as "it\'s freezing cold". The second option intensifies.',
+            ),
+            GrammarExample(
+                text='En el artículo el periodista no "dice", sino que "sostiene" o "argumenta".',
+                translation='In the article, the journalist doesn\'t just "say", but rather "maintains" or "argues".',
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["precision-lexica", "derivacion", "registro-formal"],
     ),
     GrammarTopic(
@@ -176,18 +270,26 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         summary="Formar nuevas palabras con prefijos y sufijos: aumentar, disminuir o matizar el significado.",
         explanation="La **derivación** es el mecanismo por el cual se forman nuevas palabras añadiendo prefijos y sufijos a una raíz.\n\n**Prefijos productivos**:\n- *re-* (repetición): rehacer, releer, reescribir\n- *des-* (negación, inversión): deshacer, desconectar, desconfiar\n- *in-/im-/i-* (negación): incapaz, imposible, ilegal\n- *pre-* (anterioridad): predecir, prejuzgar, precocinar\n- *sobre-* (exceso): sobrevalorar, sobrecargar, sobrevolar\n- *sub-* (debajo, inferior): subestimar, subterráneo, subtítulo\n- *inter-* (entre): internacional, intercambiar, interconectar\n- *multi-/pluri-* (muchos): multinacional, pluriempleo\n- *anti-* (oposición): antinatural, antivirus, antirrobo\n\n**Sufijos productivos**:\n- *-ble* (capacidad): comible, lavable, creíble\n- *-dor/-dora* (agente): trabajador, escritora, conductor\n- *-ería* (lugar, actividad): panadería, carnicería\n- *-azo* (golpe, aumentativo): portazo, golazo, cochazo\n- *-ito/-illo* (diminutivo): poquito, chiquillo, mesita",
         rules=[
-            "Un mismo prefijo puede tener varios significados: \"re-\" puede ser repetición o intensificación.",
+            'Un mismo prefijo puede tener varios significados: "re-" puede ser repetición o intensificación.',
             "La derivación permite crear palabras que no están en el diccionario pero son comprensibles.",
             "No todos los prefijos se pueden aplicar a todas las palabras; hay restricciones léxicas.",
             "Los sufijos apreciativos (-ito, -azo, -ón) son muy productivos en el habla coloquial.",
         ],
         examples=[
-            GrammarExample(text="Es imposible predecir el resultado con exactitud.", translation="It's impossible to predict the result accurately."),
-            GrammarExample(text="Tendrás que reescribir el informe porque está incompleto.", translation="You'll have to rewrite the report because it's incomplete."),
-            GrammarExample(text="¡Menudo golazo marcó en el último minuto!", translation="What an amazing goal he scored in the last minute!"),
+            GrammarExample(
+                text="Es imposible predecir el resultado con exactitud.",
+                translation="It's impossible to predict the result accurately.",
+            ),
+            GrammarExample(
+                text="Tendrás que reescribir el informe porque está incompleto.",
+                translation="You'll have to rewrite the report because it's incomplete.",
+            ),
+            GrammarExample(
+                text="¡Menudo golazo marcó en el último minuto!",
+                translation="What an amazing goal he scored in the last minute!",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["campos-semanticos", "precision-lexica", "nominalizacion"],
     ),
     GrammarTopic(
@@ -201,14 +303,20 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Evitar palabras comodín; buscar el término más específico.",
             "Distinguir entre sinónimos parciales: no son intercambiables en todos los contextos.",
             "Consultar diccionarios combinatorios para saber qué verbo acompaña a cada sustantivo.",
-            "El contexto determina la elección: no es lo mismo \"oler\" que \"apestar\" o \"perfumar\".",
+            'El contexto determina la elección: no es lo mismo "oler" que "apestar" o "perfumar".',
         ],
         examples=[
-            GrammarExample(text="El gobierno implementó nuevas medidas para paliar la crisis.", translation="The government implemented new measures to mitigate the crisis.", note="no \"hizo\" medidas ni \"arreglar\" la crisis"),
-            GrammarExample(text="Escucho música mientras trabajo, pero oigo el ruido del tráfico de fondo.", translation="I listen to music while I work, but I hear the traffic noise in the background."),
+            GrammarExample(
+                text="El gobierno implementó nuevas medidas para paliar la crisis.",
+                translation="The government implemented new measures to mitigate the crisis.",
+                note='no "hizo" medidas ni "arreglar" la crisis',
+            ),
+            GrammarExample(
+                text="Escucho música mientras trabajo, pero oigo el ruido del tráfico de fondo.",
+                translation="I listen to music while I work, but I hear the traffic noise in the background.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["campos-semanticos", "derivacion", "falsos-amigos"],
     ),
     GrammarTopic(
@@ -225,12 +333,23 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "En contextos formales se evita la ironía para no generar malentendidos.",
         ],
         examples=[
-            GrammarExample(text="¡Qué bien! Justo lo que necesitaba.", translation="Great! Just what I needed.", note="dicho al recibir una mala noticia"),
-            GrammarExample(text="Menudo amigo estás hecho.", translation="Some friend you are.", note="ironía: no es buen amigo"),
-            GrammarExample(text="Claro, tú siempre tienes razón.", translation="Of course, you're always right.", note="dicho con tono irónico"),
+            GrammarExample(
+                text="¡Qué bien! Justo lo que necesitaba.",
+                translation="Great! Just what I needed.",
+                note="dicho al recibir una mala noticia",
+            ),
+            GrammarExample(
+                text="Menudo amigo estás hecho.",
+                translation="Some friend you are.",
+                note="ironía: no es buen amigo",
+            ),
+            GrammarExample(
+                text="Claro, tú siempre tienes razón.",
+                translation="Of course, you're always right.",
+                note="dicho con tono irónico",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["sarcasmo", "doble-sentido", "expresiones-coloquiales"],
     ),
     GrammarTopic(
@@ -239,7 +358,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C1",
         category="Avanzado",
         summary="Ironía mordaz con intención de herir, burlarse o criticar duramente.",
-        explanation="El **sarcasmo** es una forma de ironía más agresiva y directa que busca ridiculizar, humillar o criticar de forma mordaz.\n\n**Características del sarcasmo**:\n- Intención manifiesta de herir o burlarse.\n- Tono de voz más cortante que la ironía.\n- Suele incluir hipérboles o comparaciones hirientes.\n\n**Ejemplos**:\n- *\"Eres un genio\"* (después de que alguien cometa un error evidente).\n- *\"No te esfuerces demasiado\"* (cuando alguien no está haciendo nada).\n- *\"Qué sorpresa, has llegado tarde otra vez\"* (falso asombro).\n\n**Diferencia con la ironía**:\n- La ironía puede ser humorística o incluso afectuosa.\n- El sarcasmo siempre tiene una carga negativa y busca provocar.\n\nEn el ámbito hispanohablante el sarcasmo varía culturalmente: es muy frecuente en España, mientras que en algunos países latinoamericanos puede considerarse más agresivo.",
+        explanation='El **sarcasmo** es una forma de ironía más agresiva y directa que busca ridiculizar, humillar o criticar de forma mordaz.\n\n**Características del sarcasmo**:\n- Intención manifiesta de herir o burlarse.\n- Tono de voz más cortante que la ironía.\n- Suele incluir hipérboles o comparaciones hirientes.\n\n**Ejemplos**:\n- *"Eres un genio"* (después de que alguien cometa un error evidente).\n- *"No te esfuerces demasiado"* (cuando alguien no está haciendo nada).\n- *"Qué sorpresa, has llegado tarde otra vez"* (falso asombro).\n\n**Diferencia con la ironía**:\n- La ironía puede ser humorística o incluso afectuosa.\n- El sarcasmo siempre tiene una carga negativa y busca provocar.\n\nEn el ámbito hispanohablante el sarcasmo varía culturalmente: es muy frecuente en España, mientras que en algunos países latinoamericanos puede considerarse más agresivo.',
         rules=[
             "El sarcasmo se apoya en la exageración y el falso elogio.",
             "La entonación es crucial para distinguir sarcasmo de elogio sincero.",
@@ -247,11 +366,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Culturalmente, el sarcasmo no se percibe igual en todos los países hispanohablantes.",
         ],
         examples=[
-            GrammarExample(text="No, si tú eres muy listo.", translation="Oh sure, you're so clever.", note="sarcasmo: ha sido imprudente"),
-            GrammarExample(text="Sí, claro, ahora mismo lo hago.", translation="Yeah, right, I'll do it right now.", note="dicho cuando no hay intención de hacerlo"),
+            GrammarExample(
+                text="No, si tú eres muy listo.",
+                translation="Oh sure, you're so clever.",
+                note="sarcasmo: ha sido imprudente",
+            ),
+            GrammarExample(
+                text="Sí, claro, ahora mismo lo hago.",
+                translation="Yeah, right, I'll do it right now.",
+                note="dicho cuando no hay intención de hacerlo",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["ironia", "doble-sentido", "expresiones-coloquiales"],
     ),
     GrammarTopic(
@@ -268,11 +394,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Muchos refranes y frases hechas admiten juegos de doble sentido.",
         ],
         examples=[
-            GrammarExample(text="Como siempre, llega a la hora.", translation="As always, he arrives on time. / As always, he arrives late.", note="depende de la entonación y el contexto"),
-            GrammarExample(text="Se venden calcetines para caballeros de lana.", translation="Wool socks for men for sale. / Socks for wool gentlemen for sale.", note="ambigüedad sintáctica"),
+            GrammarExample(
+                text="Como siempre, llega a la hora.",
+                translation="As always, he arrives on time. / As always, he arrives late.",
+                note="depende de la entonación y el contexto",
+            ),
+            GrammarExample(
+                text="Se venden calcetines para caballeros de lana.",
+                translation="Wool socks for men for sale. / Socks for wool gentlemen for sale.",
+                note="ambigüedad sintáctica",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["ironia", "sarcasmo", "metaforas"],
     ),
     GrammarTopic(
@@ -289,12 +422,23 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La regla de tres es un patrón persuasivo muy efectivo.",
         ],
         examples=[
-            GrammarExample(text="¿Cuántas veces tenemos que repetir lo mismo?", translation="How many times do we have to repeat the same thing?", note="pregunta retórica"),
-            GrammarExample(text="Trabajamos sin descanso, luchamos sin tregua, soñamos sin límites.", translation="We work tirelessly, we fight relentlessly, we dream boundlessly.", note="paralelismo y tríada"),
-            GrammarExample(text="Es la peor de las soluciones, pero es la única que tenemos.", translation="It's the worst of solutions, but it's the only one we have.", note="antítesis"),
+            GrammarExample(
+                text="¿Cuántas veces tenemos que repetir lo mismo?",
+                translation="How many times do we have to repeat the same thing?",
+                note="pregunta retórica",
+            ),
+            GrammarExample(
+                text="Trabajamos sin descanso, luchamos sin tregua, soñamos sin límites.",
+                translation="We work tirelessly, we fight relentlessly, we dream boundlessly.",
+                note="paralelismo y tríada",
+            ),
+            GrammarExample(
+                text="Es la peor de las soluciones, pero es la única que tenemos.",
+                translation="It's the worst of solutions, but it's the only one we have.",
+                note="antítesis",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["persuasion", "estructura-argumentativa", "figuras-literarias"],
     ),
     GrammarTopic(
@@ -308,14 +452,19 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Combinar logos, pathos y ethos para una argumentación completa.",
             "El pathos solo es efectivo si se equilibra con argumentos sólidos.",
             "La credibilidad (ethos) se construye desde el inicio.",
-            "En español, el uso del plural inclusivo es muy persuasivo: \"Tenemos que actuar\".",
+            'En español, el uso del plural inclusivo es muy persuasivo: "Tenemos que actuar".',
         ],
         examples=[
-            GrammarExample(text="Todos sabemos que el cambio climático es real. Como sociedad, tenemos la responsabilidad de actuar. No podemos mirar hacia otro lado.", translation="We all know climate change is real. As a society, we have the responsibility to act. We can't look the other way."),
-            GrammarExample(text="Según los últimos datos del INE, la pobreza infantil ha aumentado un 12%. Detrás de cada cifra hay un niño que no tiene para comer.", translation="According to the latest INE data, child poverty has increased by 12%. Behind every figure, there is a child who doesn't have enough to eat."),
+            GrammarExample(
+                text="Todos sabemos que el cambio climático es real. Como sociedad, tenemos la responsabilidad de actuar. No podemos mirar hacia otro lado.",
+                translation="We all know climate change is real. As a society, we have the responsibility to act. We can't look the other way.",
+            ),
+            GrammarExample(
+                text="Según los últimos datos del INE, la pobreza infantil ha aumentado un 12%. Detrás de cada cifra hay un niño que no tiene para comer.",
+                translation="According to the latest INE data, child poverty has increased by 12%. Behind every figure, there is a child who doesn't have enough to eat.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["recursos-retoricos", "estructura-argumentativa", "figuras-literarias"],
     ),
     GrammarTopic(
@@ -332,12 +481,23 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Polisíndeton ralentiza; asíndeton acelera el ritmo.",
         ],
         examples=[
-            GrammarExample(text="Y los niños corren, y los perros ladran, y los coches pitan, y el mundo sigue girando.", translation="And the children run, and the dogs bark, and the cars honk, and the world keeps turning.", note="polisíndeton"),
-            GrammarExample(text="Llegué, vi, vencí.", translation="I came, I saw, I conquered.", note="asíndeton"),
-            GrammarExample(text="El dulce sonido del silencio.", translation="The sweet sound of silence.", note="sinestesia"),
+            GrammarExample(
+                text="Y los niños corren, y los perros ladran, y los coches pitan, y el mundo sigue girando.",
+                translation="And the children run, and the dogs bark, and the cars honk, and the world keeps turning.",
+                note="polisíndeton",
+            ),
+            GrammarExample(
+                text="Llegué, vi, vencí.",
+                translation="I came, I saw, I conquered.",
+                note="asíndeton",
+            ),
+            GrammarExample(
+                text="El dulce sonido del silencio.",
+                translation="The sweet sound of silence.",
+                note="sinestesia",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["metaforas", "recursos-retoricos", "descripcion-literaria"],
     ),
     GrammarTopic(
@@ -349,17 +509,28 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         explanation="El **español de América Latina** presenta variaciones respecto al español peninsular que no son errores, sino rasgos dialectales legítimos.\n\n**Rasgos fonéticos generales**:\n- **Seseo**: c/z y s suenan igual (/s/). *casa* y *caza* son homófonos.\n- **Yeísmo**: ll y y suenan igual (/ʝ/). Generalizado en casi toda América.\n- Aspiración o elisión de -s al final de sílaba: *ehtá* por *está*.\n\n**Rasgos gramaticales**:\n- **Ustedes** como único pronombre de segunda persona plural (no se usa vosotros).\n- **Voseo** en Argentina, Uruguay, Paraguay, partes de Centroamérica: *vos tenés*.\n- Mayor uso de diminutivos: *ahorita, cafecito, pancito*.\n- Pretérito indefinido preferido sobre el perfecto: *Ya lo hice* vs. *Ya lo he hecho*.\n\n**Rasgos léxicos**:\n- Vocabulario diferente según el país: *carro* (México) / *coche* (España); *computadora* / *ordenador*; *celular* / *móvil*.\n- Influencia de lenguas indígenas y africanas en el léxico.",
         rules=[
             "El seseo no es un error; es la norma culta en América Latina.",
-            "\"Ustedes\" sustituye a \"vosotros\" en toda América; la conjugación es la de 3ª persona plural.",
+            '"Ustedes" sustituye a "vosotros" en toda América; la conjugación es la de 3ª persona plural.',
             "El voseo modifica la conjugación: vos tenés, vos querés, vos sos.",
             "El léxico varía enormemente por país; una palabra inocente en uno puede ser ofensiva en otro.",
         ],
         examples=[
-            GrammarExample(text="Ustedes tienen razón.", translation="You are right.", note="única forma plural en América Latina"),
-            GrammarExample(text="Vos sabés lo que hiciste.", translation="You know what you did.", note="voseo rioplatense"),
-            GrammarExample(text="Ahorita te llamo.", translation="I'll call you shortly/right now.", note="dimitutivo; en México \"ahorita\" puede significar \"en un rato\""),
+            GrammarExample(
+                text="Ustedes tienen razón.",
+                translation="You are right.",
+                note="única forma plural en América Latina",
+            ),
+            GrammarExample(
+                text="Vos sabés lo que hiciste.",
+                translation="You know what you did.",
+                note="voseo rioplatense",
+            ),
+            GrammarExample(
+                text="Ahorita te llamo.",
+                translation="I'll call you shortly/right now.",
+                note='dimitutivo; en México "ahorita" puede significar "en un rato"',
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["diferencias-regionales", "voseo", "falsos-amigos"],
     ),
     GrammarTopic(
@@ -370,18 +541,29 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         summary="Variación léxica y gramatical entre los países hispanohablantes.",
         explanation="El español es una lengua pluricéntrica: no hay una sola norma correcta. Cada región tiene sus particularidades.\n\n**Variación léxica** (mismo concepto, distinta palabra):\n| Concepto | España | México | Argentina |\n|----------|--------|--------|-----------|\n| coche | coche | carro | auto |\n| ordenador | ordenador | computadora | computadora |\n| móvil | móvil | celular | celular |\n| zumo | zumo | jugo | jugo |\n| patata | patata | papa | papa |\n| conducir | conducir | manejar | manejar |\n| coger | coger (tomar) | NO usar (obsceno) | NO usar (obsceno) |\n\n**Variación gramatical**:\n- *Leísmo* en España: *Le vi* por *Lo vi*.\n- *Voseo* en Argentina/Uruguay/Centroamérica.\n- Perfecto vs. indefinido: *Hoy he ido* (España) vs. *Hoy fui* (América).\n\n**Variación pragmática**:\n- *Tú* vs. *usted*: en Colombia se usa *usted* incluso entre amigos.\n- Tratamiento informal: *güey* (México), *tío/tía* (España), *che* (Argentina), *pana* (Venezuela).",
         rules=[
-            "No existe una variedad \"correcta\" del español; cada norma culta es válida.",
+            'No existe una variedad "correcta" del español; cada norma culta es válida.',
             "Al aprender español conviene elegir una variedad meta y ser consciente de las demás.",
             "El contexto determina qué variedad usar: en entornos internacionales se tiende a un español neutro.",
             "Muchas palabras son comprensibles en todos los países aunque no sean las locales.",
         ],
         examples=[
-            GrammarExample(text="Voy a coger el autobús.", translation="I'm going to take the bus.", note="normal en España; evitar en Latinoamérica"),
-            GrammarExample(text="Manejo hasta tu casa en media hora.", translation="I'll drive to your house in half an hour.", note="Argentina/México"),
-            GrammarExample(text="¿Me pasas la papa, por favor?", translation="Can you pass me the potato, please?", note="Latinoamérica; en España sería \"patata\""),
+            GrammarExample(
+                text="Voy a coger el autobús.",
+                translation="I'm going to take the bus.",
+                note="normal en España; evitar en Latinoamérica",
+            ),
+            GrammarExample(
+                text="Manejo hasta tu casa en media hora.",
+                translation="I'll drive to your house in half an hour.",
+                note="Argentina/México",
+            ),
+            GrammarExample(
+                text="¿Me pasas la papa, por favor?",
+                translation="Can you pass me the potato, please?",
+                note='Latinoamérica; en España sería "patata"',
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["espanol-latinoamerica", "voseo", "falsos-amigos"],
     ),
     GrammarTopic(
@@ -389,22 +571,29 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title="Voseo",
         level="C1",
         category="Avanzado",
-        summary="El uso de \"vos\" como pronombre de segunda persona singular en el español rioplatense y centroamericano.",
+        summary='El uso de "vos" como pronombre de segunda persona singular en el español rioplatense y centroamericano.',
         explanation="El **voseo** es el uso del pronombre **vos** en lugar de **tú** para la segunda persona del singular. Es normativo y culto en Argentina, Uruguay y Paraguay, y frecuente en partes de Centroamérica.\n\n**Conjugación del voseo (rioplatense)**:\n\n| Verbo | Presente | Imperativo |\n|-------|----------|------------|\n| tener | vos tenés | tené |\n| querer | vos querés | queré |\n| poder | vos podés | podé |\n| ser | vos sos | sé |\n| ir | vos vas | andá (irregular) |\n| haber | vos has | — |\n\n**Patrón**: se acentúa la última sílaba; se pierde la -d final del imperativo.\n\n**Variantes regionales**:\n- *Voseo pronominal y verbal* (Argentina): *vos tenés*.\n- *Voseo solo verbal* (Chile, zonas de Colombia): *tú tenís*.\n\nEl voseo se combina con el pronombre *te* y el posesivo *tu/tuyo*: *Vos te llamás... y tu casa...*",
         structure="vos + verbo con acento en la última sílaba (vos tenés, vos querés, vos sos)",
         rules=[
             "El voseo es normativo y culto en las regiones donde se usa.",
             "La conjugación difiere de la de tú: se pierde el diptongo (tú tienes → vos tenés).",
             "El imperativo voseante pierde la -d: hablá, comé, escribí.",
-            "El verbo \"ser\" tiene forma propia: vos sos (no ~~vos erés~~).",
+            'El verbo "ser" tiene forma propia: vos sos (no ~~vos erés~~).',
         ],
         examples=[
-            GrammarExample(text="Vos tenés que venir a conocer Buenos Aires.", translation="You have to come visit Buenos Aires.", note="voseo rioplatense"),
+            GrammarExample(
+                text="Vos tenés que venir a conocer Buenos Aires.",
+                translation="You have to come visit Buenos Aires.",
+                note="voseo rioplatense",
+            ),
             GrammarExample(text="¿De dónde sos?", translation="Where are you from?"),
-            GrammarExample(text="Hablá más fuerte que no te escucho.", translation="Speak louder, I can't hear you.", note="imperativo voseante"),
+            GrammarExample(
+                text="Hablá más fuerte que no te escucho.",
+                translation="Speak louder, I can't hear you.",
+                note="imperativo voseante",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["espanol-latinoamerica", "diferencias-regionales", "pronombres-sujeto"],
     ),
     GrammarTopic(
@@ -421,10 +610,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "En síntesis académicas se debe citar la fuente original.",
         ],
         examples=[
-            GrammarExample(text="En resumen, el artículo plantea que el bilingüismo aporta beneficios cognitivos medibles, aunque advierte de la necesidad de más estudios longitudinales.", translation="In summary, the article argues that bilingualism brings measurable cognitive benefits, although it warns of the need for more longitudinal studies."),
+            GrammarExample(
+                text="En resumen, el artículo plantea que el bilingüismo aporta beneficios cognitivos medibles, aunque advierte de la necesidad de más estudios longitudinales.",
+                translation="In summary, the article argues that bilingualism brings measurable cognitive benefits, although it warns of the need for more longitudinal studies.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["critica-constructiva", "reformulacion", "estructura-argumentativa"],
     ),
     GrammarTopic(
@@ -441,11 +632,16 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Empezar con un aspecto positivo antes de señalar lo mejorable.",
         ],
         examples=[
-            GrammarExample(text="Me ha gustado mucho tu presentación. Quizás podrías añadir más ejemplos para hacerla aún más clara.", translation="I really liked your presentation. Perhaps you could add more examples to make it even clearer."),
-            GrammarExample(text="Entiendo tu enfoque, pero me pregunto si no sería mejor considerar otras opciones.", translation="I understand your approach, but I wonder if it wouldn't be better to consider other options."),
+            GrammarExample(
+                text="Me ha gustado mucho tu presentación. Quizás podrías añadir más ejemplos para hacerla aún más clara.",
+                translation="I really liked your presentation. Perhaps you could add more examples to make it even clearer.",
+            ),
+            GrammarExample(
+                text="Entiendo tu enfoque, pero me pregunto si no sería mejor considerar otras opciones.",
+                translation="I understand your approach, but I wonder if it wouldn't be better to consider other options.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["reformulacion", "sintesis-textual", "condicional-simple", "matizadores"],
     ),
     GrammarTopic(
@@ -456,18 +652,26 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         summary="Parafrasear y reformular para aclarar, corregir o matizar lo dicho.",
         explanation="La **reformulación** es una estrategia discursiva que permite volver a expresar una idea de forma más clara, precisa o matizada.\n\n**Tipos de reformulación**:\n\n**Explicativa** (aclarar):\n- *es decir, o sea, esto es, a saber, en otras palabras*\n- *La situación es insostenible, es decir, no podemos seguir así.*\n\n**Rectificativa** (corregir):\n- *mejor dicho, más bien, digo, quiero decir*\n- *Es caro, mejor dicho, es carísimo.*\n\n**Recapitulativa** (resumir):\n- *en resumen, en conclusión, en definitiva, total, al fin y al cabo*\n- *Total, que no vamos a la playa.*\n\n**De distanciamiento** (matizar):\n- *en cualquier caso, de todas formas, en todo caso*\n- *No sé si es la mejor opción; en cualquier caso, es la que tenemos.*\n\nLa reformulación es una habilidad clave en el nivel C1 para negociar significado, aclarar malentendidos y demostrar dominio léxico.",
         rules=[
-            "\"Es decir\" introduce una aclaración de lo dicho.",
-            "\"Mejor dicho\" corrige o matiza lo anterior.",
-            "\"Total\" en registro coloquial introduce un resumen o conclusión.",
+            '"Es decir" introduce una aclaración de lo dicho.',
+            '"Mejor dicho" corrige o matiza lo anterior.',
+            '"Total" en registro coloquial introduce un resumen o conclusión.',
             "La reformulación demuestra control activo del discurso.",
         ],
         examples=[
-            GrammarExample(text="El proyecto es viable, es decir, contamos con los recursos necesarios para llevarlo a cabo.", translation="The project is viable; that is, we have the resources needed to carry it out."),
-            GrammarExample(text="No me gusta la idea. Mejor dicho, me parece terrible.", translation="I don't like the idea. Or rather, it seems terrible to me."),
-            GrammarExample(text="No estudié nada, llovió todo el día y encima perdí el tren. Total, un desastre de día.", translation="I didn't study at all, it rained all day, and on top of that I missed the train. All in all, a disastrous day."),
+            GrammarExample(
+                text="El proyecto es viable, es decir, contamos con los recursos necesarios para llevarlo a cabo.",
+                translation="The project is viable; that is, we have the resources needed to carry it out.",
+            ),
+            GrammarExample(
+                text="No me gusta la idea. Mejor dicho, me parece terrible.",
+                translation="I don't like the idea. Or rather, it seems terrible to me.",
+            ),
+            GrammarExample(
+                text="No estudié nada, llovió todo el día y encima perdí el tren. Total, un desastre de día.",
+                translation="I didn't study at all, it rained all day, and on top of that I missed the train. All in all, a disastrous day.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["sintesis-textual", "critica-constructiva", "conectores-avanzados"],
     ),
 ]

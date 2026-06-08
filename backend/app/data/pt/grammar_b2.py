@@ -15,11 +15,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Com se, embora, como se.",
         ],
         examples=[
-            GrammarExample(text="Se eu tivesse mais tempo, viajava mais.", translation="If I had more time, I would travel more."),
-            GrammarExample(text="Embora chovesse, fomos a praia.", translation="Although it was raining, we went to the beach."),
+            GrammarExample(
+                text="Se eu tivesse mais tempo, viajava mais.",
+                translation="If I had more time, I would travel more.",
+            ),
+            GrammarExample(
+                text="Embora chovesse, fomos a praia.",
+                translation="Although it was raining, we went to the beach.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se eu tinha tempo, ia.", correct="Se eu tivesse tempo, ia.", note="Condicao hipotetica: imperfeito conjuntivo."),
+            GrammarMistake(
+                wrong="Se eu tinha tempo, ia.",
+                correct="Se eu tivesse tempo, ia.",
+                note="Condicao hipotetica: imperfeito conjuntivo.",
+            ),
         ],
         related=["presente-conjuntivo", "se-imperfeito-subjuntivo", "mais-que-perfeito-conjuntivo"],
     ),
@@ -35,11 +45,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Condicao NAO realizada no passado.",
         ],
         examples=[
-            GrammarExample(text="Se tivesse estudado, teria passado.", translation="If I had studied, I would have passed."),
-            GrammarExample(text="Se ela tivesse vindo, teria sido melhor.", translation="If she had come, it would have been better."),
+            GrammarExample(
+                text="Se tivesse estudado, teria passado.",
+                translation="If I had studied, I would have passed.",
+            ),
+            GrammarExample(
+                text="Se ela tivesse vindo, teria sido melhor.",
+                translation="If she had come, it would have been better.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se eu tinha estudado, passava.", correct="Se eu tivesse estudado, passava.", note="Condicao passada: tivesse + participio."),
+            GrammarMistake(
+                wrong="Se eu tinha estudado, passava.",
+                correct="Se eu tivesse estudado, passava.",
+                note="Condicao passada: tivesse + participio.",
+            ),
         ],
         related=["imperfeito-conjuntivo", "condicional-composto"],
     ),
@@ -55,11 +75,23 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Preterito/condicional -> imperfeito conj.",
         ],
         examples=[
-            GrammarExample(text="Queria que viesses.", translation="I wanted you to come.", note="preterito -> imperfeito conj."),
-            GrammarExample(text="Espero que chegues.", translation="I hope you arrive.", note="presente -> presente conj."),
+            GrammarExample(
+                text="Queria que viesses.",
+                translation="I wanted you to come.",
+                note="preterito -> imperfeito conj.",
+            ),
+            GrammarExample(
+                text="Espero que chegues.",
+                translation="I hope you arrive.",
+                note="presente -> presente conj.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Queria que venhas.", correct="Queria que viesses.", note="Preterito -> imperfeito conjuntivo."),
+            GrammarMistake(
+                wrong="Queria que venhas.",
+                correct="Queria que viesses.",
+                note="Preterito -> imperfeito conjuntivo.",
+            ),
         ],
         related=["presente-conjuntivo", "imperfeito-conjuntivo", "futuro-do-conjuntivo"],
     ),
@@ -77,11 +109,13 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Voltar a = repeticao.",
         ],
         examples=[
-            GrammarExample(text="Comecei a aprender portugues ha um ano.", translation="I started learning Portuguese a year ago."),
+            GrammarExample(
+                text="Comecei a aprender portugues ha um ano.",
+                translation="I started learning Portuguese a year ago.",
+            ),
             GrammarExample(text="Acabei de comer.", translation="I have just finished eating."),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["estar-a-infinitivo", "andar-a-estar-a", "costumava"],
     ),
     GrammarTopic(
@@ -97,11 +131,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Haver de = determinacao (EP).",
         ],
         examples=[
-            GrammarExample(text="Tenho de terminar este relatorio.", translation="I have to finish this report."),
-            GrammarExample(text="Hei de visitar os Acores um dia!", translation="I will visit the Azores one day!", note="determinacao EP"),
+            GrammarExample(
+                text="Tenho de terminar este relatorio.",
+                translation="I have to finish this report.",
+            ),
+            GrammarExample(
+                text="Hei de visitar os Acores um dia!",
+                translation="I will visit the Azores one day!",
+                note="determinacao EP",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["perifrases-aspetuais", "querer-poder", "andar-a-estar-a"],
     ),
     GrammarTopic(
@@ -116,12 +156,22 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Andar a = repetido/persistente.",
         ],
         examples=[
-            GrammarExample(text="Estou a ler um livro.", translation="I am reading a book.", note="agora"),
-            GrammarExample(text="Ando a ler um livro.", translation="I have been reading a book.", note="dias"),
-            GrammarExample(text="Ela anda a trabalhar demais.", translation="She has been working too much."),
+            GrammarExample(
+                text="Estou a ler um livro.", translation="I am reading a book.", note="agora"
+            ),
+            GrammarExample(
+                text="Ando a ler um livro.", translation="I have been reading a book.", note="dias"
+            ),
+            GrammarExample(
+                text="Ela anda a trabalhar demais.", translation="She has been working too much."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ando a comer agora.", correct="Estou a comer agora.", note="Acao no momento: estar a."),
+            GrammarMistake(
+                wrong="Ando a comer agora.",
+                correct="Estou a comer agora.",
+                note="Acao no momento: estar a.",
+            ),
         ],
         related=["estar-a-infinitivo", "perifrases-aspetuais"],
     ),
@@ -137,11 +187,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Sujeito diferente da oracao principal.",
         ],
         examples=[
-            GrammarExample(text="E importante estudares mais.", translation="It is important for you to study more."),
-            GrammarExample(text="Para chegarmos a tempo, temos de sair.", translation="In order for us to arrive on time."),
+            GrammarExample(
+                text="E importante estudares mais.",
+                translation="It is important for you to study more.",
+            ),
+            GrammarExample(
+                text="Para chegarmos a tempo, temos de sair.",
+                translation="In order for us to arrive on time.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="E importante tu estudar.", correct="E importante tu estudares.", note="Sujeito diferente -> infinitivo pessoal."),
+            GrammarMistake(
+                wrong="E importante tu estudar.",
+                correct="E importante tu estudares.",
+                note="Sujeito diferente -> infinitivo pessoal.",
+            ),
         ],
         related=["presente-conjuntivo", "colocacao-pronominal"],
     ),
@@ -158,11 +218,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ainda que, mesmo que + conj.",
         ],
         examples=[
-            GrammarExample(text="Vou a festa desde que tu tambem vas.", translation="I will go as long as you go."),
-            GrammarExample(text="Sairei mais cedo, a menos que haja reuniao.", translation="I will leave earlier, unless there is a meeting."),
+            GrammarExample(
+                text="Vou a festa desde que tu tambem vas.",
+                translation="I will go as long as you go.",
+            ),
+            GrammarExample(
+                text="Sairei mais cedo, a menos que haja reuniao.",
+                translation="I will leave earlier, unless there is a meeting.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Desde que tu tambem vais.", correct="Desde que tu tambem vas.", note="Desde que condicional + conjuntivo."),
+            GrammarMistake(
+                wrong="Desde que tu tambem vais.",
+                correct="Desde que tu tambem vas.",
+                note="Desde que condicional + conjuntivo.",
+            ),
         ],
         related=["conectores-argumentativos", "coesao-textual"],
     ),
@@ -178,10 +248,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Elipse quando possivel.",
         ],
         examples=[
-            GrammarExample(text="O Joao comprou um carro. Ele esta contente com o veiculo.", translation="Joao bought a car. He is happy with the vehicle."),
+            GrammarExample(
+                text="O Joao comprou um carro. Ele esta contente com o veiculo.",
+                translation="Joao bought a car. He is happy with the vehicle.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="O Joao comprou um carro. O Joao esta contente.", correct="O Joao comprou um carro. Ele esta contente.", note="Evitar repeticao excessiva."),
+            GrammarMistake(
+                wrong="O Joao comprou um carro. O Joao esta contente.",
+                correct="O Joao comprou um carro. Ele esta contente.",
+                note="Evitar repeticao excessiva.",
+            ),
         ],
         related=["conectores-avancados", "conectores-argumentativos"],
     ),
@@ -198,11 +275,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Tratamento formal.",
         ],
         examples=[
-            GrammarExample(text="Poder-me-ia informar sobre o horario?", translation="Could you inform me about the schedule?", note="cortesia + mesoclise"),
-            GrammarExample(text="O senhor deseja mais alguma coisa?", translation="Would you like anything else, sir?"),
+            GrammarExample(
+                text="Poder-me-ia informar sobre o horario?",
+                translation="Could you inform me about the schedule?",
+                note="cortesia + mesoclise",
+            ),
+            GrammarExample(
+                text="O senhor deseja mais alguma coisa?",
+                translation="Would you like anything else, sir?",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["expressoes-idiomaticas", "expressoes-coloquiais", "linguagem-jornalistica"],
     ),
     GrammarTopic(
@@ -217,11 +300,14 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Sentido literal diferente do figurado.",
         ],
         examples=[
-            GrammarExample(text="Ando com a pulga atras da orelha.", translation="I have been suspicious."),
-            GrammarExample(text="Ela esta com os azeites hoje.", translation="She is in a bad mood today."),
+            GrammarExample(
+                text="Ando com a pulga atras da orelha.", translation="I have been suspicious."
+            ),
+            GrammarExample(
+                text="Ela esta com os azeites hoje.", translation="She is in a bad mood today."
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["expressoes-coloquiais", "proverbios", "registo-formal"],
     ),
     GrammarTopic(
@@ -240,7 +326,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Bora tomar um cafe?", translation="Let us go grab a coffee?"),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Que filme fixe! (registo formal)", correct="Que filme interessante!", note="Evitar fixe em registo formal."),
+            GrammarMistake(
+                wrong="Que filme fixe! (registo formal)",
+                correct="Que filme interessante!",
+                note="Evitar fixe em registo formal.",
+            ),
         ],
         related=["expressoes-idiomaticas", "proverbios", "registo-formal"],
     ),
@@ -256,11 +346,16 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Sabedoria popular.",
         ],
         examples=[
-            GrammarExample(text="Agua mole em pedra dura, tanto bate ate que fura.", translation="Constant dripping wears away the stone."),
-            GrammarExample(text="Mais vale um passaro na mao do que dois a voar.", translation="A bird in the hand is worth two in the bush."),
+            GrammarExample(
+                text="Agua mole em pedra dura, tanto bate ate que fura.",
+                translation="Constant dripping wears away the stone.",
+            ),
+            GrammarExample(
+                text="Mais vale um passaro na mao do que dois a voar.",
+                translation="A bird in the hand is worth two in the bush.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["expressoes-idiomaticas", "expressoes-coloquiais"],
     ),
     GrammarTopic(
@@ -275,11 +370,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Conectores especificos.",
         ],
         examples=[
-            GrammarExample(text="Em primeiro lugar, a educacao e fundamental.", translation="Firstly, education is fundamental."),
-            GrammarExample(text="Concluindo, os beneficios superam os riscos.", translation="In conclusion, the benefits outweigh the risks."),
+            GrammarExample(
+                text="Em primeiro lugar, a educacao e fundamental.",
+                translation="Firstly, education is fundamental.",
+            ),
+            GrammarExample(
+                text="Concluindo, os beneficios superam os riscos.",
+                translation="In conclusion, the benefits outweigh the risks.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Eu acho que... (texto formal)", correct="Considera-se que...", note="Evitar 1a pessoa em textos argumentativos."),
+            GrammarMistake(
+                wrong="Eu acho que... (texto formal)",
+                correct="Considera-se que...",
+                note="Evitar 1a pessoa em textos argumentativos.",
+            ),
         ],
         related=["contra-argumentacao", "conectores-argumentativos", "coesao-textual"],
     ),
@@ -296,10 +401,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Evidencia.",
         ],
         examples=[
-            GrammarExample(text="Embora alguns defendam o contrario, os estudos mostram que...", translation="Although some argue the opposite, studies show that..."),
+            GrammarExample(
+                text="Embora alguns defendam o contrario, os estudos mostram que...",
+                translation="Although some argue the opposite, studies show that...",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Isso e mentira. (agressivo)", correct="Essa perspetiva parece ignorar alguns factos.", note="Contra-argumentacao respeitosa."),
+            GrammarMistake(
+                wrong="Isso e mentira. (agressivo)",
+                correct="Essa perspetiva parece ignorar alguns factos.",
+                note="Contra-argumentacao respeitosa.",
+            ),
         ],
         related=["estrutura-argumentativa", "matizadores", "conectores-argumentativos"],
     ),
@@ -315,11 +427,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Evitar categoricas.",
         ],
         examples=[
-            GrammarExample(text="Provavelmente, esta e a melhor abordagem.", translation="This is probably the best approach."),
+            GrammarExample(
+                text="Provavelmente, esta e a melhor abordagem.",
+                translation="This is probably the best approach.",
+            ),
             GrammarExample(text="De certa forma, concordo.", translation="In a way, I agree."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Possivelmente talvez seja melhor.", correct="Provavelmente e melhor.", note="Evitar acumular matizadores."),
+            GrammarMistake(
+                wrong="Possivelmente talvez seja melhor.",
+                correct="Provavelmente e melhor.",
+                note="Evitar acumular matizadores.",
+            ),
         ],
         related=["estrutura-argumentativa", "contra-argumentacao"],
     ),
@@ -336,10 +455,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "MQP = flashback.",
         ],
         examples=[
-            GrammarExample(text="Era uma noite de tempestade. De repente, a porta abriu-se.", translation="It was a stormy night. Suddenly, the door opened."),
+            GrammarExample(
+                text="Era uma noite de tempestade. De repente, a porta abriu-se.",
+                translation="It was a stormy night. Suddenly, the door opened.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="De repente, estava a chover.", correct="De repente, comecou a chover.", note="De repente pede acao pontual (perfeito)."),
+            GrammarMistake(
+                wrong="De repente, estava a chover.",
+                correct="De repente, comecou a chover.",
+                note="De repente pede acao pontual (perfeito).",
+            ),
         ],
         related=["preterito-imperfeito", "perfeito-vs-imperfeito", "descricao-literaria"],
     ),
@@ -356,10 +482,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Metaforas, personificacao.",
         ],
         examples=[
-            GrammarExample(text="O sol punha-se no horizonte, tingindo o ceu de tons alaranjados.", translation="The sun was setting, dyeing the sky orange."),
+            GrammarExample(
+                text="O sol punha-se no horizonte, tingindo o ceu de tons alaranjados.",
+                translation="The sun was setting, dyeing the sky orange.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="A casa era bonita. (pobre)", correct="A casa exibia uma beleza melancolica.", note="Vocabulario rico."),
+            GrammarMistake(
+                wrong="A casa era bonita. (pobre)",
+                correct="A casa exibia uma beleza melancolica.",
+                note="Vocabulario rico.",
+            ),
         ],
         related=["tempos-narrativos", "recursos-estilisticos", "figuras-literarias"],
     ),
@@ -375,10 +508,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mais comum que a forma simples.",
         ],
         examples=[
-            GrammarExample(text="Quando cheguei, ela ja tinha saido.", translation="When I arrived, she had already left."),
+            GrammarExample(
+                text="Quando cheguei, ela ja tinha saido.",
+                translation="When I arrived, she had already left.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Quando cheguei, ela ja tinha saiu.", correct="Quando cheguei, ela ja tinha saido.", note="Ter + participio (saido)."),
+            GrammarMistake(
+                wrong="Quando cheguei, ela ja tinha saiu.",
+                correct="Quando cheguei, ela ja tinha saido.",
+                note="Ter + participio (saido).",
+            ),
         ],
         related=["mais-que-perfeito", "preterito-imperfeito", "discurso-indireto-passado"],
     ),
@@ -396,10 +536,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Presente historico.",
         ],
         examples=[
-            GrammarExample(text="O Governo anunciou ontem um novo pacote de medidas.", translation="The Government announced a new measures package yesterday.", note="lead"),
+            GrammarExample(
+                text="O Governo anunciou ontem um novo pacote de medidas.",
+                translation="The Government announced a new measures package yesterday.",
+                note="lead",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Eu entrevistei o presidente.", correct="O presidente afirmou que...", note="Jornalismo evita 1a pessoa."),
+            GrammarMistake(
+                wrong="Eu entrevistei o presidente.",
+                correct="O presidente afirmou que...",
+                note="Jornalismo evita 1a pessoa.",
+            ),
         ],
         related=["titulos", "discurso-reportado", "registo-formal"],
     ),
@@ -416,11 +564,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Virgula = e/mas.",
         ],
         examples=[
-            GrammarExample(text="Incendio devasta milhares de hectares no Algarve.", translation="Fire devastates thousands of hectares in the Algarve."),
-            GrammarExample(text="Benfica vence, Porto empata.", translation="Benfica wins, Porto draws."),
+            GrammarExample(
+                text="Incendio devasta milhares de hectares no Algarve.",
+                translation="Fire devastates thousands of hectares in the Algarve.",
+            ),
+            GrammarExample(
+                text="Benfica vence, Porto empata.", translation="Benfica wins, Porto draws."
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["linguagem-jornalistica", "discurso-reportado"],
     ),
     GrammarTopic(
@@ -435,10 +587,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Direta, indireta, mista.",
         ],
         examples=[
-            GrammarExample(text="O ministro salientou que os resultados sao animadores.", translation="The minister stressed that the results are encouraging."),
+            GrammarExample(
+                text="O ministro salientou que os resultados sao animadores.",
+                translation="The minister stressed that the results are encouraging.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ele disse que estou cansado.", correct="Ele disse que estava cansado.", note="Citacao indireta adapta tempos."),
+            GrammarMistake(
+                wrong="Ele disse que estou cansado.",
+                correct="Ele disse que estava cansado.",
+                note="Citacao indireta adapta tempos.",
+            ),
         ],
         related=["discurso-indireto", "discurso-indireto-passado", "linguagem-jornalistica"],
     ),

@@ -23,8 +23,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="O livro é do João.", translation="The book is João's."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Eu estar feliz.", correct="Eu estou feliz.", note="Usa-se estar para estados temporários, não ser."),
-            GrammarMistake(wrong="Sou tarde.", correct="É tarde.", note="Expressões impessoais usam o verbo na 3.ª pessoa."),
+            GrammarMistake(
+                wrong="Eu estar feliz.",
+                correct="Eu estou feliz.",
+                note="Usa-se estar para estados temporários, não ser.",
+            ),
+            GrammarMistake(
+                wrong="Sou tarde.",
+                correct="É tarde.",
+                note="Expressões impessoais usam o verbo na 3.ª pessoa.",
+            ),
         ],
         related=["estar", "ser-nacionalidade", "horas"],
     ),
@@ -44,12 +52,24 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Estou em Lisboa.", translation="I am in Lisbon."),
             GrammarExample(text="Ela está cansada hoje.", translation="She is tired today."),
-            GrammarExample(text="Estamos a estudar português.", translation="We are studying Portuguese.", note="EP: estar a + infinitivo"),
+            GrammarExample(
+                text="Estamos a estudar português.",
+                translation="We are studying Portuguese.",
+                note="EP: estar a + infinitivo",
+            ),
             GrammarExample(text="Está frio lá fora.", translation="It is cold outside."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sou em casa.", correct="Estou em casa.", note="Localização usa estar, nunca ser."),
-            GrammarMistake(wrong="Estou português.", correct="Sou português.", note="Nacionalidade usa ser, não estar."),
+            GrammarMistake(
+                wrong="Sou em casa.",
+                correct="Estou em casa.",
+                note="Localização usa estar, nunca ser.",
+            ),
+            GrammarMistake(
+                wrong="Estou português.",
+                correct="Sou português.",
+                note="Nacionalidade usa ser, não estar.",
+            ),
         ],
         related=["ser", "estar-a-infinitivo", "preposicoes-lugar"],
     ),
@@ -69,13 +89,29 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Eu falo português.", translation="I speak Portuguese."),
-            GrammarExample(text="Tu és muito simpático.", translation="You are very nice.", note="informal"),
-            GrammarExample(text="Você mora em Lisboa?", translation="Do you live in Lisbon?", note="semi-formal"),
-            GrammarExample(text="A gente gosta de café.", translation="We like coffee.", note="coloquial"),
+            GrammarExample(
+                text="Tu és muito simpático.", translation="You are very nice.", note="informal"
+            ),
+            GrammarExample(
+                text="Você mora em Lisboa?",
+                translation="Do you live in Lisbon?",
+                note="semi-formal",
+            ),
+            GrammarExample(
+                text="A gente gosta de café.", translation="We like coffee.", note="coloquial"
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Nós vai ao cinema.", correct="Nós vamos ao cinema.", note="Nós concorda com verbo na 1.ª pessoa do plural."),
-            GrammarMistake(wrong="Tu fala bem.", correct="Tu falas bem.", note="Tu exige verbo na 2.ª pessoa do singular."),
+            GrammarMistake(
+                wrong="Nós vai ao cinema.",
+                correct="Nós vamos ao cinema.",
+                note="Nós concorda com verbo na 1.ª pessoa do plural.",
+            ),
+            GrammarMistake(
+                wrong="Tu fala bem.",
+                correct="Tu falas bem.",
+                note="Tu exige verbo na 2.ª pessoa do singular.",
+            ),
         ],
         related=["ser", "estar", "colocacao-pronominal"],
     ),
@@ -94,13 +130,31 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="O carro é azul.", translation="The car is blue."),
-            GrammarExample(text="A Maria está em casa.", translation="Maria is at home.", note="artigo com nome próprio (EP)"),
-            GrammarExample(text="O meu irmão mora em Londres.", translation="My brother lives in London.", note="artigo + possessivo"),
-            GrammarExample(text="Os alunos estão na sala.", translation="The students are in the classroom."),
+            GrammarExample(
+                text="A Maria está em casa.",
+                translation="Maria is at home.",
+                note="artigo com nome próprio (EP)",
+            ),
+            GrammarExample(
+                text="O meu irmão mora em Londres.",
+                translation="My brother lives in London.",
+                note="artigo + possessivo",
+            ),
+            GrammarExample(
+                text="Os alunos estão na sala.", translation="The students are in the classroom."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Meu livro é interessante.", correct="O meu livro é interessante.", note="Em EP usa-se artigo antes de possessivo."),
-            GrammarMistake(wrong="O senhora Maria.", correct="A senhora Maria.", note="Artigo concorda com o género do substantivo."),
+            GrammarMistake(
+                wrong="Meu livro é interessante.",
+                correct="O meu livro é interessante.",
+                note="Em EP usa-se artigo antes de possessivo.",
+            ),
+            GrammarMistake(
+                wrong="O senhora Maria.",
+                correct="A senhora Maria.",
+                note="Artigo concorda com o género do substantivo.",
+            ),
         ],
         related=["artigos-indefinidos", "contracoes-preposicionais", "adjetivos-possessivos"],
     ),
@@ -120,12 +174,22 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Sou espanhol.", translation="I am Spanish.", note="masculino"),
             GrammarExample(text="Ela é portuguesa.", translation="She is Portuguese."),
-            GrammarExample(text="Nós somos franceses.", translation="We are French.", note="plural masculino"),
+            GrammarExample(
+                text="Nós somos franceses.", translation="We are French.", note="plural masculino"
+            ),
             GrammarExample(text="Eles são brasileiros.", translation="They are Brazilian."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Estou português.", correct="Sou português.", note="Nacionalidade é permanente: usa-se ser."),
-            GrammarMistake(wrong="Sou Portuguesa.", correct="Sou portuguesa.", note="Adjetivos de nacionalidade escrevem-se com minúscula."),
+            GrammarMistake(
+                wrong="Estou português.",
+                correct="Sou português.",
+                note="Nacionalidade é permanente: usa-se ser.",
+            ),
+            GrammarMistake(
+                wrong="Sou Portuguesa.",
+                correct="Sou portuguesa.",
+                note="Adjetivos de nacionalidade escrevem-se com minúscula.",
+            ),
         ],
         related=["ser", "genero-substantivos", "artigos-definidos"],
     ),
@@ -145,12 +209,26 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="O carro vermelho.", translation="The red car.", note="masculino"),
             GrammarExample(text="A casa branca.", translation="The white house.", note="feminino"),
-            GrammarExample(text="A cidade é bonita.", translation="The city is beautiful.", note="-dade, feminina"),
-            GrammarExample(text="O problema é difícil.", translation="The problem is difficult.", note="origem grega, masculino"),
+            GrammarExample(
+                text="A cidade é bonita.",
+                translation="The city is beautiful.",
+                note="-dade, feminina",
+            ),
+            GrammarExample(
+                text="O problema é difícil.",
+                translation="The problem is difficult.",
+                note="origem grega, masculino",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="A problema.", correct="O problema.", note="Palavras gregas em -ma são masculinas."),
-            GrammarMistake(wrong="O viagem.", correct="A viagem.", note="Palavras em -gem são femininas."),
+            GrammarMistake(
+                wrong="A problema.",
+                correct="O problema.",
+                note="Palavras gregas em -ma são masculinas.",
+            ),
+            GrammarMistake(
+                wrong="O viagem.", correct="A viagem.", note="Palavras em -gem são femininas."
+            ),
         ],
         related=["artigos-definidos", "artigos-indefinidos", "adjetivos-descritivos"],
     ),
@@ -168,13 +246,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Comprei um livro.", translation="I bought a book."),
-            GrammarExample(text="Há uma árvore no jardim.", translation="There is a tree in the garden."),
-            GrammarExample(text="Ela tem uns trinta anos.", translation="She is about thirty years old."),
-            GrammarExample(text="Umas pessoas estão à espera.", translation="Some people are waiting."),
+            GrammarExample(
+                text="Há uma árvore no jardim.", translation="There is a tree in the garden."
+            ),
+            GrammarExample(
+                text="Ela tem uns trinta anos.", translation="She is about thirty years old."
+            ),
+            GrammarExample(
+                text="Umas pessoas estão à espera.", translation="Some people are waiting."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sou um professor.", correct="Sou professor.", note="Profissão com ser não leva artigo (a menos que tenha adjetivo)."),
-            GrammarMistake(wrong="Um outra pessoa.", correct="Uma outra pessoa.", note="Artigo concorda com o substantivo que segue."),
+            GrammarMistake(
+                wrong="Sou um professor.",
+                correct="Sou professor.",
+                note="Profissão com ser não leva artigo (a menos que tenha adjetivo).",
+            ),
+            GrammarMistake(
+                wrong="Um outra pessoa.",
+                correct="Uma outra pessoa.",
+                note="Artigo concorda com o substantivo que segue.",
+            ),
         ],
         related=["artigos-definidos", "genero-substantivos", "contracoes-preposicionais"],
     ),
@@ -193,13 +285,25 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Tenho dois irmãos.", translation="I have two siblings."),
-            GrammarExample(text="Ela tem vinte anos.", translation="She is twenty years old.", note="idade = ter"),
+            GrammarExample(
+                text="Ela tem vinte anos.",
+                translation="She is twenty years old.",
+                note="idade = ter",
+            ),
             GrammarExample(text="Tens fome?", translation="Are you hungry?", note="sensação"),
-            GrammarExample(text="Tenho de ir ao médico.", translation="I have to go to the doctor.", note="obrigação"),
+            GrammarExample(
+                text="Tenho de ir ao médico.",
+                translation="I have to go to the doctor.",
+                note="obrigação",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sou 25 anos.", correct="Tenho 25 anos.", note="Idade usa ter, nunca ser."),
-            GrammarMistake(wrong="Estou fome.", correct="Tenho fome.", note="Sensações usam ter, não estar."),
+            GrammarMistake(
+                wrong="Sou 25 anos.", correct="Tenho 25 anos.", note="Idade usa ter, nunca ser."
+            ),
+            GrammarMistake(
+                wrong="Estou fome.", correct="Tenho fome.", note="Sensações usam ter, não estar."
+            ),
         ],
         related=["haver", "querer-poder", "presente-regular"],
     ),
@@ -217,14 +321,32 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Com nomes de parentesco próximos, o artigo pode ser omitido.",
         ],
         examples=[
-            GrammarExample(text="O meu carro é azul.", translation="My car is blue.", note="EP: artigo + possessivo"),
+            GrammarExample(
+                text="O meu carro é azul.",
+                translation="My car is blue.",
+                note="EP: artigo + possessivo",
+            ),
             GrammarExample(text="A tua casa é bonita.", translation="Your house is beautiful."),
-            GrammarExample(text="Os nossos filhos estão na escola.", translation="Our children are at school."),
-            GrammarExample(text="O livro dela é interessante.", translation="Her book is interesting.", note="dele/dela evita ambiguidade"),
+            GrammarExample(
+                text="Os nossos filhos estão na escola.", translation="Our children are at school."
+            ),
+            GrammarExample(
+                text="O livro dela é interessante.",
+                translation="Her book is interesting.",
+                note="dele/dela evita ambiguidade",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Meu livro.", correct="O meu livro.", note="Em EP, o artigo é obrigatório antes do possessivo."),
-            GrammarMistake(wrong="O seu livro do João.", correct="O livro do João.", note="Usa-se dele para evitar ambiguidade de seu."),
+            GrammarMistake(
+                wrong="Meu livro.",
+                correct="O meu livro.",
+                note="Em EP, o artigo é obrigatório antes do possessivo.",
+            ),
+            GrammarMistake(
+                wrong="O seu livro do João.",
+                correct="O livro do João.",
+                note="Usa-se dele para evitar ambiguidade de seu.",
+            ),
         ],
         related=["artigos-definidos", "pronomes-objeto-direto", "pronomes-objeto-indireto"],
     ),
@@ -243,13 +365,33 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Uma casa bonita.", translation="A beautiful house."),
-            GrammarExample(text="Um homem inteligente.", translation="An intelligent man.", note="adjetivo uniforme"),
-            GrammarExample(text="Um grande escritor.", translation="A great writer.", note="grande antes = qualidade"),
-            GrammarExample(text="As flores são bonitas.", translation="The flowers are beautiful.", note="concordância plural"),
+            GrammarExample(
+                text="Um homem inteligente.",
+                translation="An intelligent man.",
+                note="adjetivo uniforme",
+            ),
+            GrammarExample(
+                text="Um grande escritor.",
+                translation="A great writer.",
+                note="grande antes = qualidade",
+            ),
+            GrammarExample(
+                text="As flores são bonitas.",
+                translation="The flowers are beautiful.",
+                note="concordância plural",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Umas flores bonito.", correct="Umas flores bonitas.", note="Adjetivo concorda em género e número."),
-            GrammarMistake(wrong="Uma homem grande.", correct="Um homem grande.", note="Artigo e adjetivo devem concordar."),
+            GrammarMistake(
+                wrong="Umas flores bonito.",
+                correct="Umas flores bonitas.",
+                note="Adjetivo concorda em género e número.",
+            ),
+            GrammarMistake(
+                wrong="Uma homem grande.",
+                correct="Um homem grande.",
+                note="Artigo e adjetivo devem concordar.",
+            ),
         ],
         related=["genero-substantivos", "comparativos", "superlativos"],
     ),
@@ -267,14 +409,28 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "A conjugação nós é igual no presente e pretérito perfeito para -ar.",
         ],
         examples=[
-            GrammarExample(text="Eu falo português todos os dias.", translation="I speak Portuguese every day."),
-            GrammarExample(text="Ela come fruta ao almoço.", translation="She eats fruit at lunch."),
-            GrammarExample(text="Nós abrimos a loja às nove.", translation="We open the shop at nine."),
+            GrammarExample(
+                text="Eu falo português todos os dias.", translation="I speak Portuguese every day."
+            ),
+            GrammarExample(
+                text="Ela come fruta ao almoço.", translation="She eats fruit at lunch."
+            ),
+            GrammarExample(
+                text="Nós abrimos a loja às nove.", translation="We open the shop at nine."
+            ),
             GrammarExample(text="Eles vendem livros usados.", translation="They sell used books."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Eu falar português.", correct="Eu falo português.", note="O verbo deve ser conjugado."),
-            GrammarMistake(wrong="Eles come muito.", correct="Eles comem muito.", note="Não se esqueça do -m no plural."),
+            GrammarMistake(
+                wrong="Eu falar português.",
+                correct="Eu falo português.",
+                note="O verbo deve ser conjugado.",
+            ),
+            GrammarMistake(
+                wrong="Eles come muito.",
+                correct="Eles comem muito.",
+                note="Não se esqueça do -m no plural.",
+            ),
         ],
         related=["ser", "estar", "ter", "ir-futuro"],
     ),
@@ -292,14 +448,30 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Muitos verbos são reflexivos em português mas não noutras línguas.",
         ],
         examples=[
-            GrammarExample(text="Chamo-me Ricardo.", translation="My name is Ricardo.", note="ênclise (EP)"),
-            GrammarExample(text="Levanto-me cedo todos os dias.", translation="I get up early every day."),
-            GrammarExample(text="Não me lembro do nome dele.", translation="I don't remember his name.", note="negação → próclise"),
+            GrammarExample(
+                text="Chamo-me Ricardo.", translation="My name is Ricardo.", note="ênclise (EP)"
+            ),
+            GrammarExample(
+                text="Levanto-me cedo todos os dias.", translation="I get up early every day."
+            ),
+            GrammarExample(
+                text="Não me lembro do nome dele.",
+                translation="I don't remember his name.",
+                note="negação → próclise",
+            ),
             GrammarExample(text="Ela senta-se à janela.", translation="She sits by the window."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Chamo João.", correct="Chamo-me João.", note="Chamar-se é reflexivo em português."),
-            GrammarMistake(wrong="Eu levanto cedo.", correct="Eu levanto-me cedo.", note="Em EP, o pronome reflexivo é normalmente mantido."),
+            GrammarMistake(
+                wrong="Chamo João.",
+                correct="Chamo-me João.",
+                note="Chamar-se é reflexivo em português.",
+            ),
+            GrammarMistake(
+                wrong="Eu levanto cedo.",
+                correct="Eu levanto-me cedo.",
+                note="Em EP, o pronome reflexivo é normalmente mantido.",
+            ),
         ],
         related=["colocacao-pronominal", "presente-regular", "pronomes-sujeito"],
     ),
@@ -323,8 +495,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="São vinte para as seis.", translation="It is twenty to six."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Estão três horas.", correct="São três horas.", note="Horas usam ser, nunca estar."),
-            GrammarMistake(wrong="São três e cinquenta.", correct="São dez para as quatro.", note="Após a meia hora, usa-se para."),
+            GrammarMistake(
+                wrong="Estão três horas.",
+                correct="São três horas.",
+                note="Horas usam ser, nunca estar.",
+            ),
+            GrammarMistake(
+                wrong="São três e cinquenta.",
+                correct="São dez para as quatro.",
+                note="Após a meia hora, usa-se para.",
+            ),
         ],
         related=["ser", "dias-semana", "numeros-ordinais"],
     ),
@@ -343,12 +523,24 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Gosto de chocolate.", translation="I like chocolate."),
-            GrammarExample(text="Ela gosta do cinema português.", translation="She likes Portuguese cinema.", note="de+o=do"),
+            GrammarExample(
+                text="Ela gosta do cinema português.",
+                translation="She likes Portuguese cinema.",
+                note="de+o=do",
+            ),
             GrammarExample(text="Nós gostamos de viajar.", translation="We like to travel."),
-            GrammarExample(text="Não gosto de acordar cedo.", translation="I don't like waking up early.", note="negação"),
+            GrammarExample(
+                text="Não gosto de acordar cedo.",
+                translation="I don't like waking up early.",
+                note="negação",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Gosto chocolate.", correct="Gosto de chocolate.", note="Gostar exige sempre a preposição de."),
+            GrammarMistake(
+                wrong="Gosto chocolate.",
+                correct="Gosto de chocolate.",
+                note="Gostar exige sempre a preposição de.",
+            ),
             GrammarMistake(wrong="Gosto o livro.", correct="Gosto do livro.", note="de + o = do."),
         ],
         related=["contracoes-preposicionais", "tambem-tampouco", "muito-pouco"],
@@ -368,12 +560,24 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Eu também gosto de praia.", translation="I also like the beach."),
-            GrammarExample(text="Não vi o filme. — Eu também não.", translation="I didn't see the movie. — Me neither.", note="coloquial"),
-            GrammarExample(text="Não fui à festa. — Eu tampouco.", translation="I didn't go to the party. — Neither did I.", note="formal"),
+            GrammarExample(
+                text="Não vi o filme. — Eu também não.",
+                translation="I didn't see the movie. — Me neither.",
+                note="coloquial",
+            ),
+            GrammarExample(
+                text="Não fui à festa. — Eu tampouco.",
+                translation="I didn't go to the party. — Neither did I.",
+                note="formal",
+            ),
             GrammarExample(text="Ela também quer ir.", translation="She also wants to go."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Também não gosto.", correct="Eu também não gosto.", note="A frase isolada precisa de sujeito."),
+            GrammarMistake(
+                wrong="Também não gosto.",
+                correct="Eu também não gosto.",
+                note="A frase isolada precisa de sujeito.",
+            ),
         ],
         related=["muito-pouco", "gostar-de", "comparativos"],
     ),
@@ -393,12 +597,24 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Tenho muito trabalho.", translation="I have a lot of work."),
             GrammarExample(text="Ela tem muitos amigos.", translation="She has many friends."),
-            GrammarExample(text="Ele é muito alto.", translation="He is very tall.", note="invariável"),
-            GrammarExample(text="Há poucas pessoas na rua.", translation="There are few people on the street."),
+            GrammarExample(
+                text="Ele é muito alto.", translation="He is very tall.", note="invariável"
+            ),
+            GrammarExample(
+                text="Há poucas pessoas na rua.", translation="There are few people on the street."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ela é muita bonita.", correct="Ela é muito bonita.", note="Antes de adjetivo, muito é invariável."),
-            GrammarMistake(wrong="Tenho muito amigos.", correct="Tenho muitos amigos.", note="Antes de substantivo plural, varia."),
+            GrammarMistake(
+                wrong="Ela é muita bonita.",
+                correct="Ela é muito bonita.",
+                note="Antes de adjetivo, muito é invariável.",
+            ),
+            GrammarMistake(
+                wrong="Tenho muito amigos.",
+                correct="Tenho muitos amigos.",
+                note="Antes de substantivo plural, varia.",
+            ),
         ],
         related=["tambem-tampouco", "adjetivos-descritivos", "comparativos"],
     ),
@@ -416,14 +632,31 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Haver pode conjugar-se: haverá, houve, havia.",
         ],
         examples=[
-            GrammarExample(text="Há um supermercado perto daqui.", translation="There is a supermarket nearby."),
-            GrammarExample(text="Há muitas pessoas na fila.", translation="There are many people in line."),
-            GrammarExample(text="Cheguei há cinco minutos.", translation="I arrived five minutes ago."),
-            GrammarExample(text="Houve um problema na reunião.", translation="There was a problem at the meeting."),
+            GrammarExample(
+                text="Há um supermercado perto daqui.", translation="There is a supermarket nearby."
+            ),
+            GrammarExample(
+                text="Há muitas pessoas na fila.", translation="There are many people in line."
+            ),
+            GrammarExample(
+                text="Cheguei há cinco minutos.", translation="I arrived five minutes ago."
+            ),
+            GrammarExample(
+                text="Houve um problema na reunião.",
+                translation="There was a problem at the meeting.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Hão muitas pessoas.", correct="Há muitas pessoas.", note="Haver impessoal é sempre singular."),
-            GrammarMistake(wrong="Cheguei há duas horas atrás.", correct="Cheguei há duas horas.", note="Há já significa tempo decorrido; atrás é redundante."),
+            GrammarMistake(
+                wrong="Hão muitas pessoas.",
+                correct="Há muitas pessoas.",
+                note="Haver impessoal é sempre singular.",
+            ),
+            GrammarMistake(
+                wrong="Cheguei há duas horas atrás.",
+                correct="Cheguei há duas horas.",
+                note="Há já significa tempo decorrido; atrás é redundante.",
+            ),
         ],
         related=["ter", "preposicoes-lugar"],
     ),
@@ -443,12 +676,24 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="O livro está na mesa.", translation="The book is on the table."),
             GrammarExample(text="Moro em Lisboa.", translation="I live in Lisbon."),
-            GrammarExample(text="Vou ao cinema.", translation="I'm going to the cinema.", note="a+o=ao"),
-            GrammarExample(text="Ela veio do Porto.", translation="She came from Porto.", note="de+o=do"),
+            GrammarExample(
+                text="Vou ao cinema.", translation="I'm going to the cinema.", note="a+o=ao"
+            ),
+            GrammarExample(
+                text="Ela veio do Porto.", translation="She came from Porto.", note="de+o=do"
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Estou em o carro.", correct="Estou no carro.", note="em + o = no (contração obrigatória)."),
-            GrammarMistake(wrong="Vou no supermercado.", correct="Vou ao supermercado.", note="Destino usa a+artigo=ao, não em+artigo."),
+            GrammarMistake(
+                wrong="Estou em o carro.",
+                correct="Estou no carro.",
+                note="em + o = no (contração obrigatória).",
+            ),
+            GrammarMistake(
+                wrong="Vou no supermercado.",
+                correct="Vou ao supermercado.",
+                note="Destino usa a+artigo=ao, não em+artigo.",
+            ),
         ],
         related=["contracoes-preposicionais", "estar", "ir-futuro"],
     ),
@@ -466,13 +711,29 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "a+o=ao; por+artigo=pelo, pela.",
         ],
         examples=[
-            GrammarExample(text="O carro do meu pai.", translation="My father's car.", note="de+o=do"),
-            GrammarExample(text="Ela está na escola.", translation="She is at school.", note="em+a=na"),
-            GrammarExample(text="Vou ao médico amanhã.", translation="I'm going to the doctor tomorrow.", note="a+o=ao"),
-            GrammarExample(text="Passeamos pela cidade.", translation="We walked through the city.", note="por+a=pela"),
+            GrammarExample(
+                text="O carro do meu pai.", translation="My father's car.", note="de+o=do"
+            ),
+            GrammarExample(
+                text="Ela está na escola.", translation="She is at school.", note="em+a=na"
+            ),
+            GrammarExample(
+                text="Vou ao médico amanhã.",
+                translation="I'm going to the doctor tomorrow.",
+                note="a+o=ao",
+            ),
+            GrammarExample(
+                text="Passeamos pela cidade.",
+                translation="We walked through the city.",
+                note="por+a=pela",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="O livro de o Pedro.", correct="O livro do Pedro.", note="A contração é obrigatória."),
+            GrammarMistake(
+                wrong="O livro de o Pedro.",
+                correct="O livro do Pedro.",
+                note="A contração é obrigatória.",
+            ),
             GrammarMistake(wrong="Estou em a sala.", correct="Estou na sala.", note="em + a = na."),
         ],
         related=["preposicoes-lugar", "artigos-definidos", "adjetivos-possessivos"],
@@ -491,14 +752,34 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Em EP, o futuro simples é menos comum na fala.",
         ],
         examples=[
-            GrammarExample(text="Vou visitar os meus pais no domingo.", translation="I'm going to visit my parents on Sunday."),
-            GrammarExample(text="Ela vai começar um novo trabalho.", translation="She is going to start a new job."),
-            GrammarExample(text="Vamos viajar para o Algarve.", translation="We are going to travel to the Algarve."),
-            GrammarExample(text="O que é que vais fazer amanhã?", translation="What are you going to do tomorrow?"),
+            GrammarExample(
+                text="Vou visitar os meus pais no domingo.",
+                translation="I'm going to visit my parents on Sunday.",
+            ),
+            GrammarExample(
+                text="Ela vai começar um novo trabalho.",
+                translation="She is going to start a new job.",
+            ),
+            GrammarExample(
+                text="Vamos viajar para o Algarve.",
+                translation="We are going to travel to the Algarve.",
+            ),
+            GrammarExample(
+                text="O que é que vais fazer amanhã?",
+                translation="What are you going to do tomorrow?",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Vou a estudar.", correct="Vou estudar.", note="Não se usa preposição entre ir e o infinitivo."),
-            GrammarMistake(wrong="Eu ir estudar.", correct="Eu vou estudar.", note="O verbo ir deve ser conjugado."),
+            GrammarMistake(
+                wrong="Vou a estudar.",
+                correct="Vou estudar.",
+                note="Não se usa preposição entre ir e o infinitivo.",
+            ),
+            GrammarMistake(
+                wrong="Eu ir estudar.",
+                correct="Eu vou estudar.",
+                note="O verbo ir deve ser conjugado.",
+            ),
         ],
         related=["presente-regular", "querer-poder", "futuro-do-presente"],
     ),
@@ -516,14 +797,26 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Em EP, ser capaz de é alternativa a poder.",
         ],
         examples=[
-            GrammarExample(text="Quero um bilhete para Lisboa.", translation="I want a ticket to Lisbon."),
-            GrammarExample(text="Podes ajudar-me?", translation="Can you help me?", note="tu, informal"),
+            GrammarExample(
+                text="Quero um bilhete para Lisboa.", translation="I want a ticket to Lisbon."
+            ),
+            GrammarExample(
+                text="Podes ajudar-me?", translation="Can you help me?", note="tu, informal"
+            ),
             GrammarExample(text="Não posso sair hoje.", translation="I can't go out today."),
             GrammarExample(text="Ela quer ser médica.", translation="She wants to be a doctor."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Eu podo falar inglês.", correct="Eu posso falar inglês.", note="Poder→eu posso, não podo."),
-            GrammarMistake(wrong="Queres que eu vou?", correct="Queres que eu vá?", note="Querer que + presente do conjuntivo."),
+            GrammarMistake(
+                wrong="Eu podo falar inglês.",
+                correct="Eu posso falar inglês.",
+                note="Poder→eu posso, não podo.",
+            ),
+            GrammarMistake(
+                wrong="Queres que eu vou?",
+                correct="Queres que eu vá?",
+                note="Querer que + presente do conjuntivo.",
+            ),
         ],
         related=["presente-regular", "gostar-de", "ir-futuro", "presente-conjuntivo"],
     ),
@@ -543,13 +836,28 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="A aula é na terça-feira.", translation="The class is on Tuesday."),
-            GrammarExample(text="No sábado vou à praia.", translation="On Saturday I go to the beach."),
-            GrammarExample(text="O restaurante fecha à segunda.", translation="The restaurant is closed on Mondays.", note="omite -feira"),
-            GrammarExample(text="Que dia é hoje? Hoje é quinta.", translation="What day is today? Today is Thursday."),
+            GrammarExample(
+                text="No sábado vou à praia.", translation="On Saturday I go to the beach."
+            ),
+            GrammarExample(
+                text="O restaurante fecha à segunda.",
+                translation="The restaurant is closed on Mondays.",
+                note="omite -feira",
+            ),
+            GrammarExample(
+                text="Que dia é hoje? Hoje é quinta.",
+                translation="What day is today? Today is Thursday.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="No segunda-feira.", correct="Na segunda-feira.", note="Segunda-feira é feminino: na, não no."),
-            GrammarMistake(wrong="A reunião é em segunda.", correct="A reunião é na segunda.", note="em+a=na."),
+            GrammarMistake(
+                wrong="No segunda-feira.",
+                correct="Na segunda-feira.",
+                note="Segunda-feira é feminino: na, não no.",
+            ),
+            GrammarMistake(
+                wrong="A reunião é em segunda.", correct="A reunião é na segunda.", note="em+a=na."
+            ),
         ],
         related=["horas", "preposicoes-lugar", "contracoes-preposicionais"],
     ),
@@ -567,14 +875,31 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Esta construção é uma das principais diferenças EP/BP.",
         ],
         examples=[
-            GrammarExample(text="Estou a estudar português.", translation="I am studying Portuguese.", note="EP: a + infinitivo"),
-            GrammarExample(text="Ela está a falar ao telefone.", translation="She is talking on the phone."),
-            GrammarExample(text="Estamos a pensar em comprar uma casa.", translation="We are thinking about buying a house."),
+            GrammarExample(
+                text="Estou a estudar português.",
+                translation="I am studying Portuguese.",
+                note="EP: a + infinitivo",
+            ),
+            GrammarExample(
+                text="Ela está a falar ao telefone.", translation="She is talking on the phone."
+            ),
+            GrammarExample(
+                text="Estamos a pensar em comprar uma casa.",
+                translation="We are thinking about buying a house.",
+            ),
             GrammarExample(text="O que é que estás a fazer?", translation="What are you doing?"),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Estou estudando português.", correct="Estou a estudar português.", note="EP não usa gerúndio; usa estar a + infinitivo."),
-            GrammarMistake(wrong="Estou em estudar.", correct="Estou a estudar.", note="A preposição é a, não em."),
+            GrammarMistake(
+                wrong="Estou estudando português.",
+                correct="Estou a estudar português.",
+                note="EP não usa gerúndio; usa estar a + infinitivo.",
+            ),
+            GrammarMistake(
+                wrong="Estou em estudar.",
+                correct="Estou a estudar.",
+                note="A preposição é a, não em.",
+            ),
         ],
         related=["estar", "andar-a-estar-a"],
     ),
@@ -587,22 +912,46 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         explanation="Os **demonstrativos** indicam a localização espacial ou temporal de algo em relação ao falante e ao ouvinte.\n\n- **Este/esta/estes/estas** → perto de quem fala: *Este livro é meu.*\n- **Esse/essa/esses/essas** → perto de quem ouve: *Essa caneta que tens na mão é bonita.*\n- **Aquele/aquela/aqueles/aquelas** → longe de ambos: *Aquele prédio ali é o museu.*\n\nAs formas **neutras** (isto, isso, aquilo) usam-se para referir ideias ou objetos não especificados:\n- *O que é isto?*\n- *Isso que disseste não é verdade.*\n\n**Como adjetivos**, precedem o nome e concordam em género e número: *este carro, esta casa, estes livros, estas flores.*\n\n**Como pronomes**, substituem o nome: *—Qual camisola queres? —Esta.*\n\nEm português europeu, as formas contraídas com preposições são comuns: *neste* (em+este), *desse* (de+esse), *àquele* (a+aquele).",
         structure="este/esta/estes/estas (perto de quem fala) · esse/essa/esses/essas (perto de quem ouve) · aquele/aquela/aqueles/aquelas (longe) · isto/isso/aquilo (neutro)",
         rules=[
-            "\"Este/esta\" indica o que está perto de quem fala (aqui).",
-            "\"Esse/essa\" indica o que está perto de quem ouve (aí).",
-            "\"Aquele/aquela\" indica o que está longe de ambos (ali/acolá).",
+            '"Este/esta" indica o que está perto de quem fala (aqui).',
+            '"Esse/essa" indica o que está perto de quem ouve (aí).',
+            '"Aquele/aquela" indica o que está longe de ambos (ali/acolá).',
             "As formas neutras (isto, isso, aquilo) referem-se a ideias ou objetos não nomeados.",
             "Contraem-se com as preposições em e de: neste, desse, naquele, desta, daquela.",
         ],
         examples=[
-            GrammarExample(text="Este livro é muito interessante.", translation="This book is very interesting.", note="perto de quem fala"),
-            GrammarExample(text="Essa mochila que tens aí é nova?", translation="That backpack you have there is new?", note="perto de quem ouve"),
-            GrammarExample(text="Aquele senhor ali é o meu avô.", translation="That gentleman over there is my grandfather.", note="longe de ambos"),
+            GrammarExample(
+                text="Este livro é muito interessante.",
+                translation="This book is very interesting.",
+                note="perto de quem fala",
+            ),
+            GrammarExample(
+                text="Essa mochila que tens aí é nova?",
+                translation="That backpack you have there is new?",
+                note="perto de quem ouve",
+            ),
+            GrammarExample(
+                text="Aquele senhor ali é o meu avô.",
+                translation="That gentleman over there is my grandfather.",
+                note="longe de ambos",
+            ),
             GrammarExample(text="O que é isto?", translation="What is this?", note="forma neutra"),
-            GrammarExample(text="Neste momento não posso falar.", translation="At this moment I can't talk.", note="contração em+este"),
+            GrammarExample(
+                text="Neste momento não posso falar.",
+                translation="At this moment I can't talk.",
+                note="contração em+este",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="A este casa é bonita.", correct="Esta casa é bonita.", note="O demonstrativo não leva artigo."),
-            GrammarMistake(wrong="Aquilo livro é meu.", correct="Aquele livro é meu.", note="\"Aquilo\" é a forma neutra; para acompanhar \"livro\" usa-se \"aquele\"."),
+            GrammarMistake(
+                wrong="A este casa é bonita.",
+                correct="Esta casa é bonita.",
+                note="O demonstrativo não leva artigo.",
+            ),
+            GrammarMistake(
+                wrong="Aquilo livro é meu.",
+                correct="Aquele livro é meu.",
+                note='"Aquilo" é a forma neutra; para acompanhar "livro" usa-se "aquele".',
+            ),
         ],
         related=["adjetivos-descritivos", "adjetivos-possessivos", "artigos-definidos"],
     ),
@@ -621,14 +970,38 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Em português europeu usam-se ordinais para andares e reis: D. João II (segundo).",
         ],
         examples=[
-            GrammarExample(text="Moro no terceiro andar.", translation="I live on the third floor.", note="ordinal antes do nome"),
-            GrammarExample(text="É a primeira vez que visito Portugal.", translation="It's the first time I visit Portugal.", note="primeira (feminino)"),
-            GrammarExample(text="Ficou em segundo lugar na corrida.", translation="He came in second place in the race.", note="posição"),
-            GrammarExample(text="O meu aniversário é a 15.ª edição? Não, é o meu 15.º aniversário.", translation="My birthday is the 15th.", note="abreviatura"),
+            GrammarExample(
+                text="Moro no terceiro andar.",
+                translation="I live on the third floor.",
+                note="ordinal antes do nome",
+            ),
+            GrammarExample(
+                text="É a primeira vez que visito Portugal.",
+                translation="It's the first time I visit Portugal.",
+                note="primeira (feminino)",
+            ),
+            GrammarExample(
+                text="Ficou em segundo lugar na corrida.",
+                translation="He came in second place in the race.",
+                note="posição",
+            ),
+            GrammarExample(
+                text="O meu aniversário é a 15.ª edição? Não, é o meu 15.º aniversário.",
+                translation="My birthday is the 15th.",
+                note="abreviatura",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Moro no andar terceiro.", correct="Moro no terceiro andar.", note="Em português, o ordinal vem antes do nome."),
-            GrammarMistake(wrong="É a primeiro vez.", correct="É a primeira vez.", note="\"Vez\" é feminino → primeira."),
+            GrammarMistake(
+                wrong="Moro no andar terceiro.",
+                correct="Moro no terceiro andar.",
+                note="Em português, o ordinal vem antes do nome.",
+            ),
+            GrammarMistake(
+                wrong="É a primeiro vez.",
+                correct="É a primeira vez.",
+                note='"Vez" é feminino → primeira.',
+            ),
         ],
         related=["horas", "dias-semana"],
     ),

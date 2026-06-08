@@ -23,8 +23,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Noi siamo a Roma.", translation="We are in Rome."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Io sono medico.", correct="Sono medico.", note="Il pronome soggetto è spesso omesso in italiano."),
-            GrammarMistake(wrong="Lui è un medico.", correct="Lui è medico.", note="Davanti a professioni si omette l'articolo."),
+            GrammarMistake(
+                wrong="Io sono medico.",
+                correct="Sono medico.",
+                note="Il pronome soggetto è spesso omesso in italiano.",
+            ),
+            GrammarMistake(
+                wrong="Lui è un medico.",
+                correct="Lui è medico.",
+                note="Davanti a professioni si omette l'articolo.",
+            ),
         ],
         related=["avere", "essere-nazionalita", "pronomi-soggetto"],
     ),
@@ -45,11 +53,21 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Ho due fratelli.", translation="I have two brothers."),
             GrammarExample(text="Quanti anni hai?", translation="How old are you?"),
-            GrammarExample(text="Ho fame. Andiamo a mangiare?", translation="I'm hungry. Shall we go eat?"),
+            GrammarExample(
+                text="Ho fame. Andiamo a mangiare?", translation="I'm hungry. Shall we go eat?"
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sono 20 anni.", correct="Ho 20 anni.", note="L'età si esprime con avere, non essere."),
-            GrammarMistake(wrong="O mangiato la pizza.", correct="Ho mangiato la pizza.", note="Non dimenticare la H: 'ho' è verbo, 'o' è congiunzione."),
+            GrammarMistake(
+                wrong="Sono 20 anni.",
+                correct="Ho 20 anni.",
+                note="L'età si esprime con avere, non essere.",
+            ),
+            GrammarMistake(
+                wrong="O mangiato la pizza.",
+                correct="Ho mangiato la pizza.",
+                note="Non dimenticare la H: 'ho' è verbo, 'o' è congiunzione.",
+            ),
         ],
         related=["essere", "passato-prossimo-avere", "passato-prossimo-essere"],
     ),
@@ -68,13 +86,31 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Lei formale richiede il verbo alla terza persona singolare.",
         ],
         examples=[
-            GrammarExample(text="Parlo italiano.", translation="I speak Italian.", note="pronome omesso"),
-            GrammarExample(text="Io preferisco il caffè, lei preferisce il tè.", translation="I prefer coffee, she prefers tea.", note="contrasto"),
-            GrammarExample(text="Lei come si chiama?", translation="What is your name? (formal)", note="Lei di cortesia"),
+            GrammarExample(
+                text="Parlo italiano.", translation="I speak Italian.", note="pronome omesso"
+            ),
+            GrammarExample(
+                text="Io preferisco il caffè, lei preferisce il tè.",
+                translation="I prefer coffee, she prefers tea.",
+                note="contrasto",
+            ),
+            GrammarExample(
+                text="Lei come si chiama?",
+                translation="What is your name? (formal)",
+                note="Lei di cortesia",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Io parlo italiano ogni volta.", correct="Parlo italiano.", note="L'uso eccessivo dei pronomi suona innaturale in italiano."),
-            GrammarMistake(wrong="Tu come ti chiami? (a un professore)", correct="Lei come si chiama?", note="Con estranei o superiori si usa il Lei di cortesia."),
+            GrammarMistake(
+                wrong="Io parlo italiano ogni volta.",
+                correct="Parlo italiano.",
+                note="L'uso eccessivo dei pronomi suona innaturale in italiano.",
+            ),
+            GrammarMistake(
+                wrong="Tu come ti chiami? (a un professore)",
+                correct="Lei come si chiama?",
+                note="Con estranei o superiori si usa il Lei di cortesia.",
+            ),
         ],
         related=["essere", "avere", "pronomi-diretti", "pronomi-indiretti"],
     ),
@@ -95,12 +131,24 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Il libro è sul tavolo.", translation="The book is on the table."),
             GrammarExample(text="Lo studente è italiano.", translation="The student is Italian."),
-            GrammarExample(text="Gli amici arrivano domani.", translation="The friends arrive tomorrow."),
-            GrammarExample(text="L'amica di Maria è francese.", translation="Maria's friend is French."),
+            GrammarExample(
+                text="Gli amici arrivano domani.", translation="The friends arrive tomorrow."
+            ),
+            GrammarExample(
+                text="L'amica di Maria è francese.", translation="Maria's friend is French."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Il studente", correct="Lo studente", note="Davanti a s+consonante si usa lo, non il."),
-            GrammarMistake(wrong="I amici", correct="Gli amici", note="Davanti a vocale il plurale maschile è gli."),
+            GrammarMistake(
+                wrong="Il studente",
+                correct="Lo studente",
+                note="Davanti a s+consonante si usa lo, non il.",
+            ),
+            GrammarMistake(
+                wrong="I amici",
+                correct="Gli amici",
+                note="Davanti a vocale il plurale maschile è gli.",
+            ),
         ],
         related=["articoli-indeterminativi", "genere-nomi", "preposizioni-luogo"],
     ),
@@ -123,8 +171,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Loro sono tedeschi.", translation="They are German."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sono un italiano.", correct="Sono italiano.", note="Non si usa l'articolo con le nazionalità."),
-            GrammarMistake(wrong="Lei è francesa.", correct="Lei è francese.", note="Gli aggettivi in -ese sono invariabili: francese, inglese, cinese."),
+            GrammarMistake(
+                wrong="Sono un italiano.",
+                correct="Sono italiano.",
+                note="Non si usa l'articolo con le nazionalità.",
+            ),
+            GrammarMistake(
+                wrong="Lei è francesa.",
+                correct="Lei è francese.",
+                note="Gli aggettivi in -ese sono invariabili: francese, inglese, cinese.",
+            ),
         ],
         related=["essere", "aggettivi-descrittivi", "articoli-indeterminativi"],
     ),
@@ -142,13 +198,31 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Parole greche in -ma e -ta sono maschili: il problema, il pianeta.",
         ],
         examples=[
-            GrammarExample(text="Il libro è interessante.", translation="The book is interesting.", note="-o → maschile"),
-            GrammarExample(text="La pizza è buona.", translation="The pizza is good.", note="-a → femminile"),
-            GrammarExample(text="Il problema è difficile.", translation="The problem is difficult.", note="-ma → maschile (eccezione)"),
+            GrammarExample(
+                text="Il libro è interessante.",
+                translation="The book is interesting.",
+                note="-o → maschile",
+            ),
+            GrammarExample(
+                text="La pizza è buona.", translation="The pizza is good.", note="-a → femminile"
+            ),
+            GrammarExample(
+                text="Il problema è difficile.",
+                translation="The problem is difficult.",
+                note="-ma → maschile (eccezione)",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="La problema", correct="Il problema", note="I nomi di origine greca in -ma sono maschili."),
-            GrammarMistake(wrong="Il mano", correct="La mano", note="Mano è femminile nonostante la desinenza in -o."),
+            GrammarMistake(
+                wrong="La problema",
+                correct="Il problema",
+                note="I nomi di origine greca in -ma sono maschili.",
+            ),
+            GrammarMistake(
+                wrong="Il mano",
+                correct="La mano",
+                note="Mano è femminile nonostante la desinenza in -o.",
+            ),
         ],
         related=["articoli-determinativi", "articoli-indeterminativi", "aggettivi-descrittivi"],
     ),
@@ -169,11 +243,22 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Ho un cane.", translation="I have a dog."),
             GrammarExample(text="È uno studente bravo.", translation="He is a good student."),
-            GrammarExample(text="Cerco un'amica per uscire.", translation="I'm looking for a friend to go out with."),
+            GrammarExample(
+                text="Cerco un'amica per uscire.",
+                translation="I'm looking for a friend to go out with.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ho uno libro.", correct="Ho un libro.", note="Uno solo davanti a s+cons, z, gn, ps, x, y."),
-            GrammarMistake(wrong="Cerco una amica.", correct="Cerco un'amica.", note="Davanti a vocale femminile si usa un'."),
+            GrammarMistake(
+                wrong="Ho uno libro.",
+                correct="Ho un libro.",
+                note="Uno solo davanti a s+cons, z, gn, ps, x, y.",
+            ),
+            GrammarMistake(
+                wrong="Cerco una amica.",
+                correct="Cerco un'amica.",
+                note="Davanti a vocale femminile si usa un'.",
+            ),
         ],
         related=["articoli-determinativi", "genere-nomi"],
     ),
@@ -192,12 +277,28 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="La mia casa è grande.", translation="My house is big."),
-            GrammarExample(text="Mio padre è medico.", translation="My father is a doctor.", note="parentela → no articolo"),
-            GrammarExample(text="Il loro cane è simpatico.", translation="Their dog is nice.", note="loro richiede articolo"),
+            GrammarExample(
+                text="Mio padre è medico.",
+                translation="My father is a doctor.",
+                note="parentela → no articolo",
+            ),
+            GrammarExample(
+                text="Il loro cane è simpatico.",
+                translation="Their dog is nice.",
+                note="loro richiede articolo",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Il mio padre è alto.", correct="Mio padre è alto.", note="Con parentela singolare non si usa l'articolo."),
-            GrammarMistake(wrong="La sua sorella si chiama Anna.", correct="Sua sorella si chiama Anna.", note="Anche qui si omette l'articolo."),
+            GrammarMistake(
+                wrong="Il mio padre è alto.",
+                correct="Mio padre è alto.",
+                note="Con parentela singolare non si usa l'articolo.",
+            ),
+            GrammarMistake(
+                wrong="La sua sorella si chiama Anna.",
+                correct="Sua sorella si chiama Anna.",
+                note="Anche qui si omette l'articolo.",
+            ),
         ],
         related=["essere", "articoli-determinativi", "genere-nomi"],
     ),
@@ -215,13 +316,29 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Aggettivi in -e: stessa forma per maschile e femminile singolare.",
         ],
         examples=[
-            GrammarExample(text="Una casa bella e luminosa.", translation="A beautiful and bright house."),
-            GrammarExample(text="Un buon ristorante.", translation="A good restaurant.", note="buono prima del nome"),
-            GrammarExample(text="Le macchine rosse sono veloci.", translation="The red cars are fast."),
+            GrammarExample(
+                text="Una casa bella e luminosa.", translation="A beautiful and bright house."
+            ),
+            GrammarExample(
+                text="Un buon ristorante.",
+                translation="A good restaurant.",
+                note="buono prima del nome",
+            ),
+            GrammarExample(
+                text="Le macchine rosse sono veloci.", translation="The red cars are fast."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Una casa bello.", correct="Una casa bella.", note="L'aggettivo deve concordare in genere e numero."),
-            GrammarMistake(wrong="Il cane simpatica.", correct="Il cane simpatico.", note="Cane è maschile → aggettivo maschile."),
+            GrammarMistake(
+                wrong="Una casa bello.",
+                correct="Una casa bella.",
+                note="L'aggettivo deve concordare in genere e numero.",
+            ),
+            GrammarMistake(
+                wrong="Il cane simpatica.",
+                correct="Il cane simpatico.",
+                note="Cane è maschile → aggettivo maschile.",
+            ),
         ],
         related=["genere-nomi", "comparativi", "superlativi"],
     ),
@@ -240,13 +357,26 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Domande: *C'è un bagno qui?*",
         ],
         examples=[
-            GrammarExample(text="C'è un gatto sul divano.", translation="There is a cat on the sofa."),
-            GrammarExample(text="Ci sono molte persone in piazza.", translation="There are many people in the square."),
+            GrammarExample(
+                text="C'è un gatto sul divano.", translation="There is a cat on the sofa."
+            ),
+            GrammarExample(
+                text="Ci sono molte persone in piazza.",
+                translation="There are many people in the square.",
+            ),
             GrammarExample(text="Non c'è problema.", translation="There is no problem."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="C'è tre libri.", correct="Ci sono tre libri.", note="Con i plurali si usa ci sono, non c'è."),
-            GrammarMistake(wrong="È un gatto.", correct="C'è un gatto.", note="È = identità; c'è = esistenza/presenza."),
+            GrammarMistake(
+                wrong="C'è tre libri.",
+                correct="Ci sono tre libri.",
+                note="Con i plurali si usa ci sono, non c'è.",
+            ),
+            GrammarMistake(
+                wrong="È un gatto.",
+                correct="C'è un gatto.",
+                note="È = identità; c'è = esistenza/presenza.",
+            ),
         ],
         related=["essere", "preposizioni-luogo", "articoli-indeterminativi"],
     ),
@@ -270,8 +400,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Noi abitiamo a Milano.", translation="We live in Milan."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Io parla italiano.", correct="Io parlo italiano.", note="La prima persona finisce in -o, non in -a."),
-            GrammarMistake(wrong="Noi cerciamo il libro.", correct="Noi cerchiamo il libro.", note="Con cercare si aggiunge H prima di -iamo."),
+            GrammarMistake(
+                wrong="Io parla italiano.",
+                correct="Io parlo italiano.",
+                note="La prima persona finisce in -o, non in -a.",
+            ),
+            GrammarMistake(
+                wrong="Noi cerciamo il libro.",
+                correct="Noi cerchiamo il libro.",
+                note="Con cercare si aggiunge H prima di -iamo.",
+            ),
         ],
         related=["presente-ere", "presente-ire", "pronomi-soggetto"],
     ),
@@ -295,8 +433,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Voi correte ogni mattina.", translation="You run every morning."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Io legge un libro.", correct="Io leggo un libro.", note="La prima persona di leggere è leggo, non legge."),
-            GrammarMistake(wrong="Voi leggi.", correct="Voi leggete.", note="La seconda persona plurale di -ere è -ete."),
+            GrammarMistake(
+                wrong="Io legge un libro.",
+                correct="Io leggo un libro.",
+                note="La prima persona di leggere è leggo, non legge.",
+            ),
+            GrammarMistake(
+                wrong="Voi leggi.",
+                correct="Voi leggete.",
+                note="La seconda persona plurale di -ere è -ete.",
+            ),
         ],
         related=["presente-are", "presente-ire", "passato-prossimo-avere"],
     ),
@@ -319,8 +465,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Noi partiamo domani.", translation="We leave tomorrow."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Io capo tutto.", correct="Io capisco tutto.", note="Capire prende -isc-: capisco, non capo."),
-            GrammarMistake(wrong="Loro dormiscono.", correct="Loro dormono.", note="Dormire non prende -isc-. La 3ª plurale è dormono."),
+            GrammarMistake(
+                wrong="Io capo tutto.",
+                correct="Io capisco tutto.",
+                note="Capire prende -isc-: capisco, non capo.",
+            ),
+            GrammarMistake(
+                wrong="Loro dormiscono.",
+                correct="Loro dormono.",
+                note="Dormire non prende -isc-. La 3ª plurale è dormono.",
+            ),
         ],
         related=["presente-are", "presente-ere", "verbi-riflessivi"],
     ),
@@ -344,8 +498,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Ci divertiamo molto.", translation="We have a lot of fun."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Io lavo le mani.", correct="Mi lavo le mani.", note="Lavarsi le mani richiede il pronome riflessivo in italiano."),
-            GrammarMistake(wrong="Chiamo Marco.", correct="Mi chiamo Marco.", note="Chiamare senza pronome = telefonare. Per presentarsi serve chiamarsi."),
+            GrammarMistake(
+                wrong="Io lavo le mani.",
+                correct="Mi lavo le mani.",
+                note="Lavarsi le mani richiede il pronome riflessivo in italiano.",
+            ),
+            GrammarMistake(
+                wrong="Chiamo Marco.",
+                correct="Mi chiamo Marco.",
+                note="Chiamare senza pronome = telefonare. Per presentarsi serve chiamarsi.",
+            ),
         ],
         related=["presente-are", "presente-ire", "verbi-modali"],
     ),
@@ -368,8 +530,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Non ci piace aspettare.", translation="We don't like waiting."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Io piace la pizza.", correct="Mi piace la pizza.", note="Non si dice 'io piace'. La costruzione è 'a me piace' → mi piace."),
-            GrammarMistake(wrong="Mi piace i gatti.", correct="Mi piacciono i gatti.", note="Con soggetti plurali si usa piacciono, non piace."),
+            GrammarMistake(
+                wrong="Io piace la pizza.",
+                correct="Mi piace la pizza.",
+                note="Non si dice 'io piace'. La costruzione è 'a me piace' → mi piace.",
+            ),
+            GrammarMistake(
+                wrong="Mi piace i gatti.",
+                correct="Mi piacciono i gatti.",
+                note="Con soggetti plurali si usa piacciono, non piace.",
+            ),
         ],
         related=["pronomi-indiretti", "verbi-modali", "condizionale-cortesia"],
     ),
@@ -390,11 +560,21 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Devo andare a lavoro.", translation="I have to go to work."),
             GrammarExample(text="Puoi aiutarmi?", translation="Can you help me?"),
-            GrammarExample(text="Voglio imparare l'italiano.", translation="I want to learn Italian."),
+            GrammarExample(
+                text="Voglio imparare l'italiano.", translation="I want to learn Italian."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Posso di entrare?", correct="Posso entrare?", note="I verbi modali non vogliono la preposizione di."),
-            GrammarMistake(wrong="Devo mi alzare.", correct="Devo alzarmi. (o: Mi devo alzare.)", note="Il pronome va prima del modale o dopo l'infinito."),
+            GrammarMistake(
+                wrong="Posso di entrare?",
+                correct="Posso entrare?",
+                note="I verbi modali non vogliono la preposizione di.",
+            ),
+            GrammarMistake(
+                wrong="Devo mi alzare.",
+                correct="Devo alzarmi. (o: Mi devo alzare.)",
+                note="Il pronome va prima del modale o dopo l'infinito.",
+            ),
         ],
         related=["presente-are", "verbi-riflessivi", "condizionale-presente"],
     ),
@@ -412,13 +592,23 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Risposta breve: Neanche io. / Anche a me.",
         ],
         examples=[
-            GrammarExample(text="Anch'io vado al cinema.", translation="I'm going to the cinema too."),
+            GrammarExample(
+                text="Anch'io vado al cinema.", translation="I'm going to the cinema too."
+            ),
             GrammarExample(text="Anche a me piace il mare.", translation="I like the sea too."),
             GrammarExample(text="Neanch'io lo so.", translation="I don't know either."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Anche mi piace.", correct="Anche a me piace.", note="Con piacere si usa anche a me, non anche mi."),
-            GrammarMistake(wrong="Non neanche io.", correct="Neanche io.", note="Neanche ha già la negazione; non serve 'non'."),
+            GrammarMistake(
+                wrong="Anche mi piace.",
+                correct="Anche a me piace.",
+                note="Con piacere si usa anche a me, non anche mi.",
+            ),
+            GrammarMistake(
+                wrong="Non neanche io.",
+                correct="Neanche io.",
+                note="Neanche ha già la negazione; non serve 'non'.",
+            ),
         ],
         related=["piacere", "comparativi", "pronomi-indiretti"],
     ),
@@ -442,8 +632,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Vado dal dentista.", translation="I go to the dentist."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Vivo in Roma.", correct="Vivo a Roma.", note="Con le città si usa a, non in."),
-            GrammarMistake(wrong="Andiamo a Italia.", correct="Andiamo in Italia.", note="Con i paesi si usa in."),
+            GrammarMistake(
+                wrong="Vivo in Roma.", correct="Vivo a Roma.", note="Con le città si usa a, non in."
+            ),
+            GrammarMistake(
+                wrong="Andiamo a Italia.",
+                correct="Andiamo in Italia.",
+                note="Con i paesi si usa in.",
+            ),
         ],
         related=["articoli-determinativi", "ce-ci-sono", "articoli-indeterminativi"],
     ),
@@ -467,10 +663,23 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Finiamo il lavoro!", translation="Let's finish the work!"),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Non parli così!", correct="Non parlare così!", note="L'imperativo negativo del tu usa l'infinito, non il presente."),
-            GrammarMistake(wrong="Guardi il film! (a un amico)", correct="Guarda il film!", note="Agli amici si dà del tu; guardi è la forma di cortesia (Lei)."),
+            GrammarMistake(
+                wrong="Non parli così!",
+                correct="Non parlare così!",
+                note="L'imperativo negativo del tu usa l'infinito, non il presente.",
+            ),
+            GrammarMistake(
+                wrong="Guardi il film! (a un amico)",
+                correct="Guarda il film!",
+                note="Agli amici si dà del tu; guardi è la forma di cortesia (Lei).",
+            ),
         ],
-        related=["presente-are", "imperativo-affermativo", "imperativo-negativo", "imperativo-pronomi"],
+        related=[
+            "presente-are",
+            "imperativo-affermativo",
+            "imperativo-negativo",
+            "imperativo-pronomi",
+        ],
     ),
     GrammarTopic(
         slug="numeri-ordinali",
@@ -486,13 +695,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con re e papi senza articolo: Carlo quinto, Giovanni ventitreesimo.",
         ],
         examples=[
-            GrammarExample(text="È la prima volta che vengo in Italia.", translation="It's the first time I come to Italy."),
+            GrammarExample(
+                text="È la prima volta che vengo in Italia.",
+                translation="It's the first time I come to Italy.",
+            ),
             GrammarExample(text="Abito al terzo piano.", translation="I live on the third floor."),
-            GrammarExample(text="Il mio secondo figlio si chiama Luca.", translation="My second son is called Luca."),
+            GrammarExample(
+                text="Il mio secondo figlio si chiama Luca.",
+                translation="My second son is called Luca.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="La uno volta", correct="La prima volta", note="L'ordinale di uno è primo, non uno."),
-            GrammarMistake(wrong="Abito al tre piano.", correct="Abito al terzo piano.", note="Tre è cardinale; terzo è ordinale."),
+            GrammarMistake(
+                wrong="La uno volta",
+                correct="La prima volta",
+                note="L'ordinale di uno è primo, non uno.",
+            ),
+            GrammarMistake(
+                wrong="Abito al tre piano.",
+                correct="Abito al terzo piano.",
+                note="Tre è cardinale; terzo è ordinale.",
+            ),
         ],
         related=["aggettivi-descrittivi", "articoli-determinativi", "giorni-settimana"],
     ),
@@ -511,13 +734,30 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "-care/-gare aggiungono h: cercherò, pagherò.",
         ],
         examples=[
-            GrammarExample(text="Domani parlerò con il direttore.", translation="Tomorrow I will speak with the director."),
-            GrammarExample(text="La prossima settimana andremo al mare.", translation="Next week we will go to the beach."),
-            GrammarExample(text="Sarà molto felice di vederti.", translation="He will be very happy to see you."),
+            GrammarExample(
+                text="Domani parlerò con il direttore.",
+                translation="Tomorrow I will speak with the director.",
+            ),
+            GrammarExample(
+                text="La prossima settimana andremo al mare.",
+                translation="Next week we will go to the beach.",
+            ),
+            GrammarExample(
+                text="Sarà molto felice di vederti.",
+                translation="He will be very happy to see you.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Domani parlarò con lui.", correct="Domani parlerò con lui.", note="Per i verbi in -are la a diventa e al futuro."),
-            GrammarMistake(wrong="La settimana prossima vado al mare.", correct="La settimana prossima andrò al mare.", note="Per eventi futuri certi si usa il futuro semplice."),
+            GrammarMistake(
+                wrong="Domani parlarò con lui.",
+                correct="Domani parlerò con lui.",
+                note="Per i verbi in -are la a diventa e al futuro.",
+            ),
+            GrammarMistake(
+                wrong="La settimana prossima vado al mare.",
+                correct="La settimana prossima andrò al mare.",
+                note="Per eventi futuri certi si usa il futuro semplice.",
+            ),
         ],
         related=["stare-per", "condizionale-presente", "presente-are"],
     ),
@@ -537,12 +777,25 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Sto per partire.", translation="I'm about to leave."),
-            GrammarExample(text="Il film sta per cominciare.", translation="The movie is about to start."),
-            GrammarExample(text="Stavamo per arrivare quando si è rotta la macchina.", translation="We were about to arrive when the car broke down."),
+            GrammarExample(
+                text="Il film sta per cominciare.", translation="The movie is about to start."
+            ),
+            GrammarExample(
+                text="Stavamo per arrivare quando si è rotta la macchina.",
+                translation="We were about to arrive when the car broke down.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sto per studiando.", correct="Sto per studiare. (o: Sto studiando.)", note="Stare per vuole l'infinito, non il gerundio."),
-            GrammarMistake(wrong="Sto per andare al cinema stasera.", correct="Stasera vado al cinema.", note="Stare per si usa solo per azioni veramente imminenti."),
+            GrammarMistake(
+                wrong="Sto per studiando.",
+                correct="Sto per studiare. (o: Sto studiando.)",
+                note="Stare per vuole l'infinito, non il gerundio.",
+            ),
+            GrammarMistake(
+                wrong="Sto per andare al cinema stasera.",
+                correct="Stasera vado al cinema.",
+                note="Stare per si usa solo per azioni veramente imminenti.",
+            ),
         ],
         related=["futuro-semplice", "stare-gerundio"],
     ),
@@ -560,13 +813,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non si scrivono con la lettera maiuscola.",
         ],
         examples=[
-            GrammarExample(text="Lunedì vado dal dentista.", translation="On Monday I'm going to the dentist."),
-            GrammarExample(text="Il sabato dormo fino a tardi.", translation="On Saturdays I sleep late."),
-            GrammarExample(text="La domenica andiamo a messa.", translation="On Sundays we go to church."),
+            GrammarExample(
+                text="Lunedì vado dal dentista.", translation="On Monday I'm going to the dentist."
+            ),
+            GrammarExample(
+                text="Il sabato dormo fino a tardi.", translation="On Saturdays I sleep late."
+            ),
+            GrammarExample(
+                text="La domenica andiamo a messa.", translation="On Sundays we go to church."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Lunedì vado in palestra. (intendendo ogni lunedì)", correct="Il lunedì vado in palestra.", note="Senza articolo indica un giorno specifico; per l'abitudine serve l'articolo."),
-            GrammarMistake(wrong="Il Domenica vado a messa.", correct="La domenica vado a messa.", note="Domenica è femminile: la domenica."),
+            GrammarMistake(
+                wrong="Lunedì vado in palestra. (intendendo ogni lunedì)",
+                correct="Il lunedì vado in palestra.",
+                note="Senza articolo indica un giorno specifico; per l'abitudine serve l'articolo.",
+            ),
+            GrammarMistake(
+                wrong="Il Domenica vado a messa.",
+                correct="La domenica vado a messa.",
+                note="Domenica è femminile: la domenica.",
+            ),
         ],
         related=["numeri-ordinali", "preposizioni-luogo", "articoli-determinativi"],
     ),
@@ -579,23 +846,55 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         explanation="I **dimostrativi** servono a indicare la posizione nello spazio o nel tempo di ciò a cui ci si riferisce.\n\n- **Questo/questa/questi/queste** → qualcosa vicino a chi parla: *Questo libro è mio.*\n- **Quello/quella/quelli/quelle** → qualcosa lontano da chi parla e da chi ascolta: *Quella casa laggiù è antica.*\n\n**Quello** segue le stesse regole dell'articolo determinativo:\n- *quello studente* (come *lo studente*)\n- *quell'amico* (come *l'amico*)\n- *quel libro* (come *il libro*)\n- *quegli zaini* (come *gli zaini*)\n- *quei libri* (come *i libri*)\n\nLa forma neutra **ciò** si usa per riferirsi a un'idea o a qualcosa di non specificato:\n- *Ciò che dici è vero.*\n- *Non capisco ciò.*\n\n**Come aggettivi**, precedono il nome e concordano in genere e numero: *questo ragazzo, questa ragazza, questi ragazzi, queste ragazze.*\n\n**Come pronomi**, sostituiscono il nome: *—Quale maglietta vuoi? —Questa.*",
         structure="questo/questa/questi/queste (vicino) · quello/quella/quelli/quelle (lontano) · ciò (neutro)",
         rules=[
-            "\"Questo\" indica qualcosa vicino a chi parla.",
-            "\"Quello\" indica qualcosa lontano da chi parla e da chi ascolta.",
-            "Le forme di \"quello\" seguono le stesse regole dell'articolo determinativo.",
-            "\"Ciò\" è la forma neutra e si usa per idee o concetti astratti.",
+            '"Questo" indica qualcosa vicino a chi parla.',
+            '"Quello" indica qualcosa lontano da chi parla e da chi ascolta.',
+            'Le forme di "quello" seguono le stesse regole dell\'articolo determinativo.',
+            '"Ciò" è la forma neutra e si usa per idee o concetti astratti.',
             "I dimostrativi concordano in genere e numero con il nome.",
         ],
         examples=[
-            GrammarExample(text="Questo libro è molto interessante.", translation="This book is very interesting.", note="vicino a chi parla"),
-            GrammarExample(text="Quella casa in fondo alla strada è di mia zia.", translation="That house at the end of the street is my aunt's.", note="lontano"),
-            GrammarExample(text="Ciò che mi hai detto è incredibile.", translation="What you told me is incredible.", note="forma neutra"),
-            GrammarExample(text="Quello studente è tedesco.", translation="That student is German.", note="quello + s+consonante"),
-            GrammarExample(text="Questi biscotti sono buonissimi.", translation="These biscuits are delicious.", note="plurale vicino"),
+            GrammarExample(
+                text="Questo libro è molto interessante.",
+                translation="This book is very interesting.",
+                note="vicino a chi parla",
+            ),
+            GrammarExample(
+                text="Quella casa in fondo alla strada è di mia zia.",
+                translation="That house at the end of the street is my aunt's.",
+                note="lontano",
+            ),
+            GrammarExample(
+                text="Ciò che mi hai detto è incredibile.",
+                translation="What you told me is incredible.",
+                note="forma neutra",
+            ),
+            GrammarExample(
+                text="Quello studente è tedesco.",
+                translation="That student is German.",
+                note="quello + s+consonante",
+            ),
+            GrammarExample(
+                text="Questi biscotti sono buonissimi.",
+                translation="These biscuits are delicious.",
+                note="plurale vicino",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Quello libro è interessante.", correct="Quel libro è interessante.", note="Davanti a consonante semplice si usa \"quel\", non \"quello\"."),
-            GrammarMistake(wrong="Questo è bello.", correct="Ciò è bello.", note="Per un'idea astratta si usa \"ciò\", non \"questo\"."),
-            GrammarMistake(wrong="La questa casa è grande.", correct="Questa casa è grande.", note="Il dimostrativo non vuole l'articolo davanti."),
+            GrammarMistake(
+                wrong="Quello libro è interessante.",
+                correct="Quel libro è interessante.",
+                note='Davanti a consonante semplice si usa "quel", non "quello".',
+            ),
+            GrammarMistake(
+                wrong="Questo è bello.",
+                correct="Ciò è bello.",
+                note='Per un\'idea astratta si usa "ciò", non "questo".',
+            ),
+            GrammarMistake(
+                wrong="La questa casa è grande.",
+                correct="Questa casa è grande.",
+                note="Il dimostrativo non vuole l'articolo davanti.",
+            ),
         ],
         related=["aggettivi-descrittivi", "aggettivi-possessivi", "articoli-determinativi"],
     ),
@@ -615,16 +914,46 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La scelta della forma dipende dal genere e numero del nome che segue.",
         ],
         examples=[
-            GrammarExample(text="Il libro è sul tavolo.", translation="The book is on the table.", note="su + il = sul"),
-            GrammarExample(text="Andiamo al ristorante stasera.", translation="We go to the restaurant tonight.", note="a + il = al"),
-            GrammarExample(text="Le chiavi sono nella borsa.", translation="The keys are in the bag.", note="in + la = nella"),
-            GrammarExample(text="Il cane dei vicini abbaia sempre.", translation="The neighbours' dog always barks.", note="di + i = dei"),
-            GrammarExample(text="La macchina è degli amici di Marco.", translation="The car belongs to Marco's friends.", note="di + gli = degli"),
+            GrammarExample(
+                text="Il libro è sul tavolo.",
+                translation="The book is on the table.",
+                note="su + il = sul",
+            ),
+            GrammarExample(
+                text="Andiamo al ristorante stasera.",
+                translation="We go to the restaurant tonight.",
+                note="a + il = al",
+            ),
+            GrammarExample(
+                text="Le chiavi sono nella borsa.",
+                translation="The keys are in the bag.",
+                note="in + la = nella",
+            ),
+            GrammarExample(
+                text="Il cane dei vicini abbaia sempre.",
+                translation="The neighbours' dog always barks.",
+                note="di + i = dei",
+            ),
+            GrammarExample(
+                text="La macchina è degli amici di Marco.",
+                translation="The car belongs to Marco's friends.",
+                note="di + gli = degli",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Vado a il cinema.", correct="Vado al cinema.", note="Si usa sempre la preposizione articolata, non separata."),
-            GrammarMistake(wrong="Il libro di il ragazzo.", correct="Il libro del ragazzo.", note="di + il = del"),
-            GrammarMistake(wrong="Sono in la cucina.", correct="Sono nella cucina.", note="in + la = nella"),
+            GrammarMistake(
+                wrong="Vado a il cinema.",
+                correct="Vado al cinema.",
+                note="Si usa sempre la preposizione articolata, non separata.",
+            ),
+            GrammarMistake(
+                wrong="Il libro di il ragazzo.",
+                correct="Il libro del ragazzo.",
+                note="di + il = del",
+            ),
+            GrammarMistake(
+                wrong="Sono in la cucina.", correct="Sono nella cucina.", note="in + la = nella"
+            ),
         ],
         related=["articoli-determinativi", "preposizioni-luogo", "articoli-indeterminativi"],
     ),

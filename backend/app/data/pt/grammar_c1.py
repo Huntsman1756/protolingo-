@@ -15,11 +15,21 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ainda que/mesmo que + conjuntivo.",
         ],
         examples=[
-            GrammarExample(text="Por mais que tentes, nem sempre vais conseguir.", translation="No matter how hard you try, you will not always succeed."),
-            GrammarExample(text="Mesmo que me pagassem, nao faria esse trabalho.", translation="Even if they paid me, I would not do that job."),
+            GrammarExample(
+                text="Por mais que tentes, nem sempre vais conseguir.",
+                translation="No matter how hard you try, you will not always succeed.",
+            ),
+            GrammarExample(
+                text="Mesmo que me pagassem, nao faria esse trabalho.",
+                translation="Even if they paid me, I would not do that job.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Por mais que tentas.", correct="Por mais que tentes.", note="Por mais que exige conjuntivo."),
+            GrammarMistake(
+                wrong="Por mais que tentas.",
+                correct="Por mais que tentes.",
+                note="Por mais que exige conjuntivo.",
+            ),
         ],
         related=["conectores-avancados", "imperfeito-conjuntivo", "contra-argumentacao"],
     ),
@@ -35,10 +45,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mesmo sujeito: para + inf.",
         ],
         examples=[
-            GrammarExample(text="Enviei o email para que todos fiquem informados.", translation="I sent the email so that everyone is informed."),
+            GrammarExample(
+                text="Enviei o email para que todos fiquem informados.",
+                translation="I sent the email so that everyone is informed.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Estudo para que eu passe.", correct="Estudo para passar.", note="Mesmo sujeito: para + inf."),
+            GrammarMistake(
+                wrong="Estudo para que eu passe.",
+                correct="Estudo para passar.",
+                note="Mesmo sujeito: para + inf.",
+            ),
         ],
         related=["presente-conjuntivo", "conectores-avancados", "infinitivo-pessoal"],
     ),
@@ -54,11 +71,23 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Indicativo: especifico.",
         ],
         examples=[
-            GrammarExample(text="Procuro alguem que fale chines.", translation="I am looking for someone who speaks Chinese.", note="indeterminado"),
-            GrammarExample(text="Conheco alguem que fala chines.", translation="I know someone who speaks Chinese.", note="especifico"),
+            GrammarExample(
+                text="Procuro alguem que fale chines.",
+                translation="I am looking for someone who speaks Chinese.",
+                note="indeterminado",
+            ),
+            GrammarExample(
+                text="Conheco alguem que fala chines.",
+                translation="I know someone who speaks Chinese.",
+                note="especifico",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Procuro alguem que fala chines.", correct="Procuro alguem que fale chines.", note="Indeterminado -> conjuntivo."),
+            GrammarMistake(
+                wrong="Procuro alguem que fala chines.",
+                correct="Procuro alguem que fale chines.",
+                note="Indeterminado -> conjuntivo.",
+            ),
         ],
         related=["presente-conjuntivo", "que-relativo"],
     ),
@@ -74,11 +103,16 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Realizar-se-a = sera realizado.",
         ],
         examples=[
-            GrammarExample(text="Comenta-se que o acordo sera assinado amanha.", translation="It is said that the agreement will be signed tomorrow."),
-            GrammarExample(text="Observa-se uma melhoria significativa.", translation="A significant improvement is observed."),
+            GrammarExample(
+                text="Comenta-se que o acordo sera assinado amanha.",
+                translation="It is said that the agreement will be signed tomorrow.",
+            ),
+            GrammarExample(
+                text="Observa-se uma melhoria significativa.",
+                translation="A significant improvement is observed.",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["voz-passiva", "se-impessoal", "se-passivo"],
     ),
     GrammarTopic(
@@ -93,10 +127,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Evitar cadeias de nominalizacoes.",
         ],
         examples=[
-            GrammarExample(text="A implementacao do programa foi bem-sucedida.", translation="The implementation of the program was successful."),
+            GrammarExample(
+                text="A implementacao do programa foi bem-sucedida.",
+                translation="The implementation of the program was successful.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="A realizacao da implementacao da verificacao.", correct="A verificacao dos dados.", note="Evitar cadeias."),
+            GrammarMistake(
+                wrong="A realizacao da implementacao da verificacao.",
+                correct="A verificacao dos dados.",
+                note="Evitar cadeias.",
+            ),
         ],
         related=["impessoalidade", "registo-formal", "coesao-textual"],
     ),
@@ -113,10 +154,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Convem/importa + infinitivo.",
         ],
         examples=[
-            GrammarExample(text="Foi observado um aumento significativo.", translation="A significant increase was observed."),
+            GrammarExample(
+                text="Foi observado um aumento significativo.",
+                translation="A significant increase was observed.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Eu observei um aumento. (academico)", correct="Foi observado um aumento.", note="Evitar 1a pessoa."),
+            GrammarMistake(
+                wrong="Eu observei um aumento. (academico)",
+                correct="Foi observado um aumento.",
+                note="Evitar 1a pessoa.",
+            ),
         ],
         related=["nominalizacao", "voz-passiva", "registo-formal"],
     ),
@@ -131,10 +179,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Agrupar vocabulario por areas.",
         ],
         examples=[
-            GrammarExample(text="O juiz condenou o reu com base nas provas. (campo: justica)", translation="The judge sentenced the defendant based on the evidence."),
+            GrammarExample(
+                text="O juiz condenou o reu com base nas provas. (campo: justica)",
+                translation="The judge sentenced the defendant based on the evidence.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Usar lexico de campo errado.", correct="Verificar o campo semantico adequado.", note=""),
+            GrammarMistake(
+                wrong="Usar lexico de campo errado.",
+                correct="Verificar o campo semantico adequado.",
+                note="",
+            ),
         ],
         related=["derivacao", "precisao-lexica"],
     ),
@@ -149,11 +204,20 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Prefixos e sufixos formam palavras.",
         ],
         examples=[
-            GrammarExample(text="feliz -> infeliz -> felicidade", translation="happy -> unhappy -> happiness"),
-            GrammarExample(text="construir -> construcao -> reconstrutivo", translation="to build -> construction -> reconstructive"),
+            GrammarExample(
+                text="feliz -> infeliz -> felicidade", translation="happy -> unhappy -> happiness"
+            ),
+            GrammarExample(
+                text="construir -> construcao -> reconstrutivo",
+                translation="to build -> construction -> reconstructive",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Infelicidade: verificar se e atestada.", correct="Infelicidade: ver em dicionario.", note="Nem todas as derivacoes sao validas."),
+            GrammarMistake(
+                wrong="Infelicidade: verificar se e atestada.",
+                correct="Infelicidade: ver em dicionario.",
+                note="Nem todas as derivacoes sao validas.",
+            ),
         ],
         related=["campos-semanticos", "precisao-lexica"],
     ),
@@ -169,10 +233,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Saber (facto) vs conhecer (familiaridade).",
         ],
         examples=[
-            GrammarExample(text="Sei a resposta. / Conheco bem essa pessoa.", translation="I know the answer. / I know that person well."),
+            GrammarExample(
+                text="Sei a resposta. / Conheco bem essa pessoa.",
+                translation="I know the answer. / I know that person well.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Conheco a resposta.", correct="Sei a resposta.", note="Conhecer = familiaridade."),
+            GrammarMistake(
+                wrong="Conheco a resposta.",
+                correct="Sei a resposta.",
+                note="Conhecer = familiaridade.",
+            ),
         ],
         related=["derivacao", "campos-semanticos", "falsos-amigos"],
     ),
@@ -188,10 +259,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Traco cultural portugues.",
         ],
         examples=[
-            GrammarExample(text="Pois sim, acredito muito nisso.", translation="Yeah, right, I totally believe that.", note="ironico"),
+            GrammarExample(
+                text="Pois sim, acredito muito nisso.",
+                translation="Yeah, right, I totally believe that.",
+                note="ironico",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Interpretar ironia literalmente.", correct="Prestar atencao a entoacao e contexto.", note=""),
+            GrammarMistake(
+                wrong="Interpretar ironia literalmente.",
+                correct="Prestar atencao a entoacao e contexto.",
+                note="",
+            ),
         ],
         related=["humor-portugues", "duplo-sentido", "recursos-retoricos"],
     ),
@@ -208,11 +287,19 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Desenrascanco.",
         ],
         examples=[
-            GrammarExample(text="Como estas? -- Vai-se andando.", translation="How are you? -- Getting by."),
-            GrammarExample(text="Isto so acontece em Portugal.", translation="This only happens in Portugal."),
+            GrammarExample(
+                text="Como estas? -- Vai-se andando.", translation="How are you? -- Getting by."
+            ),
+            GrammarExample(
+                text="Isto so acontece em Portugal.", translation="This only happens in Portugal."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Confundir sarcasmo portugues com grosseria.", correct="O sarcasmo portugues e frequentemente afavel.", note=""),
+            GrammarMistake(
+                wrong="Confundir sarcasmo portugues com grosseria.",
+                correct="O sarcasmo portugues e frequentemente afavel.",
+                note="",
+            ),
         ],
         related=["ironia", "duplo-sentido", "expressoes-idiomaticas"],
     ),
@@ -227,10 +314,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ambiguidade lexical e sintatica.",
         ],
         examples=[
-            GrammarExample(text="Ele e um genio. (pode ser ironico)", translation="He is a genius.", note="duplo sentido"),
+            GrammarExample(
+                text="Ele e um genio. (pode ser ironico)",
+                translation="He is a genius.",
+                note="duplo sentido",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Duplo sentido nao intencional em textos formais.", correct="Rever para evitar ambiguidades.", note=""),
+            GrammarMistake(
+                wrong="Duplo sentido nao intencional em textos formais.",
+                correct="Rever para evitar ambiguidades.",
+                note="",
+            ),
         ],
         related=["ironia", "humor-portugues", "recursos-retoricos"],
     ),
@@ -246,8 +341,14 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Paradoxo, antitese.",
         ],
         examples=[
-            GrammarExample(text="Quem nunca errou? (pergunta retorica)", translation="Who has never made a mistake?"),
-            GrammarExample(text="O silencio ensurdecedor da noite. (paradoxo)", translation="The deafening silence of the night."),
+            GrammarExample(
+                text="Quem nunca errou? (pergunta retorica)",
+                translation="Who has never made a mistake?",
+            ),
+            GrammarExample(
+                text="O silencio ensurdecedor da noite. (paradoxo)",
+                translation="The deafening silence of the night.",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(wrong="Uso excessivo.", correct="Dosear as figuras.", note=""),
@@ -265,10 +366,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ethos, Pathos, Logos.",
         ],
         examples=[
-            GrammarExample(text="Enquanto profissional com 20 anos de experiencia, recomendo... (ethos)", translation="As a professional with 20 years of experience, I recommend..."),
+            GrammarExample(
+                text="Enquanto profissional com 20 anos de experiencia, recomendo... (ethos)",
+                translation="As a professional with 20 years of experience, I recommend...",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Apelos emocionais sem fundamentacao.", correct="Combinar pathos com logos.", note=""),
+            GrammarMistake(
+                wrong="Apelos emocionais sem fundamentacao.",
+                correct="Combinar pathos com logos.",
+                note="",
+            ),
         ],
         related=["recursos-retoricos", "estrutura-argumentativa"],
     ),
@@ -285,10 +393,16 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="O tempo e dinheiro. (metafora)", translation="Time is money."),
-            GrammarExample(text="Portugal venceu o jogo. (metonimia)", translation="Portugal won the match."),
+            GrammarExample(
+                text="Portugal venceu o jogo. (metonimia)", translation="Portugal won the match."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Confundir metafora com comparacao.", correct="Metafora = identificacao. Comparacao = como.", note=""),
+            GrammarMistake(
+                wrong="Confundir metafora com comparacao.",
+                correct="Metafora = identificacao. Comparacao = como.",
+                note="",
+            ),
         ],
         related=["descricao-literaria", "recursos-retoricos", "estilo-literario"],
     ),
@@ -304,11 +418,20 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "PB: proclise. PE: enclise.",
         ],
         examples=[
-            GrammarExample(text="PE: pequeno-almoco. / PB: cafe da manha.", translation="PE vs PB: breakfast"),
-            GrammarExample(text="PE: Da-me um cafe. / PB: Me da um cafe.", translation="PE vs PB: give me a coffee"),
+            GrammarExample(
+                text="PE: pequeno-almoco. / PB: cafe da manha.", translation="PE vs PB: breakfast"
+            ),
+            GrammarExample(
+                text="PE: Da-me um cafe. / PB: Me da um cafe.",
+                translation="PE vs PB: give me a coffee",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Misturar PE e PB.", correct="Escolher uma variante e ser consistente.", note=""),
+            GrammarMistake(
+                wrong="Misturar PE e PB.",
+                correct="Escolher uma variante e ser consistente.",
+                note="",
+            ),
         ],
         related=["portugues-europeu", "diferencas-regionais"],
     ),
@@ -325,11 +448,22 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Artigo + possessivo + nome proprio.",
         ],
         examples=[
-            GrammarExample(text="O Pedro esta a estudar para o exame.", translation="Pedro is studying for the exam."),
-            GrammarExample(text="Dar-te-ei o livro amanha.", translation="I will give you the book tomorrow.", note="mesoclise"),
+            GrammarExample(
+                text="O Pedro esta a estudar para o exame.",
+                translation="Pedro is studying for the exam.",
+            ),
+            GrammarExample(
+                text="Dar-te-ei o livro amanha.",
+                translation="I will give you the book tomorrow.",
+                note="mesoclise",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Me apetece sair.", correct="Apetece-me sair.", note="EP nao comeca frase com pronome atono."),
+            GrammarMistake(
+                wrong="Me apetece sair.",
+                correct="Apetece-me sair.",
+                note="EP nao comeca frase com pronome atono.",
+            ),
         ],
         related=["portugues-brasileiro", "diferencas-regionais", "estar-a-infinitivo"],
     ),
@@ -346,10 +480,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Padrao: Coimbra-Lisboa.",
         ],
         examples=[
-            GrammarExample(text="Quereis um fino? (Porto)", translation="Do you want a draft beer?", note="norte"),
+            GrammarExample(
+                text="Quereis um fino? (Porto)",
+                translation="Do you want a draft beer?",
+                note="norte",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Assumir que todo o pais fala igual.", correct="Respeitar a variacao regional.", note=""),
+            GrammarMistake(
+                wrong="Assumir que todo o pais fala igual.",
+                correct="Respeitar a variacao regional.",
+                note="",
+            ),
         ],
         related=["portugues-europeu", "portugues-brasileiro"],
     ),
@@ -366,7 +508,10 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "20-30% do original.",
         ],
         examples=[
-            GrammarExample(text="Em suma, o autor defende que a globalizacao trouxe mais beneficios.", translation="In summary, the author argues that globalization brought more benefits."),
+            GrammarExample(
+                text="Em suma, o autor defende que a globalizacao trouxe mais beneficios.",
+                translation="In summary, the author argues that globalization brought more benefits.",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(wrong="Sintese demasiado longa.", correct="Sintese concisa.", note=""),
@@ -385,10 +530,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Condicional: seria, poderia.",
         ],
         examples=[
-            GrammarExample(text="O relatorio esta muito completo. Talvez fosse util incluir mais dados.", translation="The report is comprehensive. It might be useful to include more data."),
+            GrammarExample(
+                text="O relatorio esta muito completo. Talvez fosse util incluir mais dados.",
+                translation="The report is comprehensive. It might be useful to include more data.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Isto esta errado.", correct="Esta seccao poderia beneficiar de uma revisao.", note=""),
+            GrammarMistake(
+                wrong="Isto esta errado.",
+                correct="Esta seccao poderia beneficiar de uma revisao.",
+                note="",
+            ),
         ],
         related=["reformulacao", "matizadores", "registo-formal"],
     ),
@@ -404,10 +556,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Adaptar registo.",
         ],
         examples=[
-            GrammarExample(text="O evento foi cancelado. Ou seja, nao havera concerto.", translation="The event was canceled. In other words, there will be no concert."),
+            GrammarExample(
+                text="O evento foi cancelado. Ou seja, nao havera concerto.",
+                translation="The event was canceled. In other words, there will be no concert.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ou seja, tipo, quer dizer...", correct="Ou seja,...", note="Um reformulador e suficiente."),
+            GrammarMistake(
+                wrong="Ou seja, tipo, quer dizer...",
+                correct="Ou seja,...",
+                note="Um reformulador e suficiente.",
+            ),
         ],
         related=["sintese-textual", "critica-construtiva", "registo-formal"],
     ),

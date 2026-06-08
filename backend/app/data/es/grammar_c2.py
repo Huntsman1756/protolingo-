@@ -17,13 +17,29 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "El subjuntivo puede aparecer en oraciones independientes con valor desiderativo o dubitativo.",
         ],
         examples=[
-            GrammarExample(text="Sea como fuere, debemos tomar una decisión.", translation="Be that as it may, we must make a decision.", note="fórmula concesiva lexicalizada"),
-            GrammarExample(text="No es que no quisiera ir, es que no pude.", translation="It's not that I didn't want to go, it's that I couldn't.", note="subjuntivo en estructura contrastiva"),
-            GrammarExample(text="Quien bien te quiere te hará llorar.", translation="Whoever loves you well will make you cry.", note="indicativo en relativa con valor genérico"),
+            GrammarExample(
+                text="Sea como fuere, debemos tomar una decisión.",
+                translation="Be that as it may, we must make a decision.",
+                note="fórmula concesiva lexicalizada",
+            ),
+            GrammarExample(
+                text="No es que no quisiera ir, es que no pude.",
+                translation="It's not that I didn't want to go, it's that I couldn't.",
+                note="subjuntivo en estructura contrastiva",
+            ),
+            GrammarExample(
+                text="Quien bien te quiere te hará llorar.",
+                translation="Whoever loves you well will make you cry.",
+                note="indicativo en relativa con valor genérico",
+            ),
         ],
-        common_mistakes=[
+        common_mistakes=[],
+        related=[
+            "subjuntivo-concesivo",
+            "subjuntivo-final",
+            "subjuntivo-relativo",
+            "concordancia-temporal",
         ],
-        related=["subjuntivo-concesivo", "subjuntivo-final", "subjuntivo-relativo", "concordancia-temporal"],
     ),
     GrammarTopic(
         slug="repaso-condicional",
@@ -31,21 +47,36 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Condicionales",
         summary="Dominio de todas las estructuras condicionales, incluidas las mixtas y las de registro culto.",
-        explanation="En C2 se dominan las **condicionales mixtas**, las variantes cultas y las estructuras alternativas.\n\n**Condicionales mixtas**: combinan prótasis y apódosis de distintos tipos.\n- *Si **hubieras estudiado** (tipo 3), ahora **tendrías** (tipo 2) trabajo.*\n- *Si **fueras** (tipo 2) más responsable, **habrías terminado** (tipo 3) ayer.*\n\n**Variantes de la prótasis sin \"si\"**:\n- *De + infinitivo*: *De haberlo sabido, no habría venido.*\n- *A no ser que / a menos que / salvo que + subjuntivo*: *Iré a no ser que llueva.*\n- *Siempre que / con tal (de) que / a condición de que + subjuntivo*: *Te ayudo siempre que me escuches.*\n\n**Condicionales con imperativo en la apódosis**:\n- *Si necesitas ayuda, llámame.*\n\n**Condicionales de registro culto**:\n- *Hubiera + participio* en lugar de *habría + participio*: *Si lo hubiera sabido, no hubiera ido.*",
+        explanation='En C2 se dominan las **condicionales mixtas**, las variantes cultas y las estructuras alternativas.\n\n**Condicionales mixtas**: combinan prótasis y apódosis de distintos tipos.\n- *Si **hubieras estudiado** (tipo 3), ahora **tendrías** (tipo 2) trabajo.*\n- *Si **fueras** (tipo 2) más responsable, **habrías terminado** (tipo 3) ayer.*\n\n**Variantes de la prótasis sin "si"**:\n- *De + infinitivo*: *De haberlo sabido, no habría venido.*\n- *A no ser que / a menos que / salvo que + subjuntivo*: *Iré a no ser que llueva.*\n- *Siempre que / con tal (de) que / a condición de que + subjuntivo*: *Te ayudo siempre que me escuches.*\n\n**Condicionales con imperativo en la apódosis**:\n- *Si necesitas ayuda, llámame.*\n\n**Condicionales de registro culto**:\n- *Hubiera + participio* en lugar de *habría + participio*: *Si lo hubiera sabido, no hubiera ido.*',
         rules=[
             "Las condicionales mixtas rompen la correspondencia tipo a tipo para expresar matices temporales.",
-            "\"De + infinitivo\" es una alternativa formal a \"si + pluscuamperfecto de subjuntivo\".",
-            "\"Siempre que\" + subjuntivo = condición necesaria.",
-            "\"Con tal de que\" expresa condición mínima suficiente.",
+            '"De + infinitivo" es una alternativa formal a "si + pluscuamperfecto de subjuntivo".',
+            '"Siempre que" + subjuntivo = condición necesaria.',
+            '"Con tal de que" expresa condición mínima suficiente.',
         ],
         examples=[
-            GrammarExample(text="De haberlo sabido, te habría avisado antes.", translation="Had I known, I would have told you earlier.", note="alternativa formal a \"si hubiera sabido\""),
-            GrammarExample(text="Iré a la playa el sábado, a no ser que llueva.", translation="I'll go to the beach on Saturday, unless it rains."),
-            GrammarExample(text="Si hubieras ahorrado más, ahora no estarías preocupado.", translation="If you had saved more, you wouldn't be worried now.", note="condicional mixta"),
+            GrammarExample(
+                text="De haberlo sabido, te habría avisado antes.",
+                translation="Had I known, I would have told you earlier.",
+                note='alternativa formal a "si hubiera sabido"',
+            ),
+            GrammarExample(
+                text="Iré a la playa el sábado, a no ser que llueva.",
+                translation="I'll go to the beach on Saturday, unless it rains.",
+            ),
+            GrammarExample(
+                text="Si hubieras ahorrado más, ahora no estarías preocupado.",
+                translation="If you had saved more, you wouldn't be worried now.",
+                note="condicional mixta",
+            ),
         ],
-        common_mistakes=[
+        common_mistakes=[],
+        related=[
+            "si-presente-futuro",
+            "si-imperfecto-subjuntivo",
+            "condicional-compuesto",
+            "subjuntivo-imperfecto",
         ],
-        related=["si-presente-futuro", "si-imperfecto-subjuntivo", "condicional-compuesto", "subjuntivo-imperfecto"],
     ),
     GrammarTopic(
         slug="concordancia-de-tiempos",
@@ -61,12 +92,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La concordancia subjuntivo mantiene coherencia con el verbo principal.",
         ],
         examples=[
-            GrammarExample(text="Dijo que le habían asegurado que el problema ya se habría resuelto para cuando él llegara.", translation="He said that they had assured him that the problem would have already been solved by the time he arrived."),
-            GrammarExample(text="El que fuera ministro de Economía ha publicado sus memorias.", translation="The former Minister of Economy has published his memoirs.", note="-ra con valor de indicativo"),
+            GrammarExample(
+                text="Dijo que le habían asegurado que el problema ya se habría resuelto para cuando él llegara.",
+                translation="He said that they had assured him that the problem would have already been solved by the time he arrived.",
+            ),
+            GrammarExample(
+                text="El que fuera ministro de Economía ha publicado sus memorias.",
+                translation="The former Minister of Economy has published his memoirs.",
+                note="-ra con valor de indicativo",
+            ),
         ],
-        common_mistakes=[
+        common_mistakes=[],
+        related=[
+            "concordancia-temporal",
+            "estilo-indirecto-pasado",
+            "pluscuamperfecto",
+            "subjuntivo-imperfecto",
         ],
-        related=["concordancia-temporal", "estilo-indirecto-pasado", "pluscuamperfecto", "subjuntivo-imperfecto"],
     ),
     GrammarTopic(
         slug="estilo-literario",
@@ -79,15 +121,27 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "El hipérbaton es más libre en poesía que en prosa.",
             "Los cultismos enriquecen pero no deben sobrecargar el texto.",
             "La literatura contemporánea hispanoamericana ha flexibilizado el uso de registros.",
-            "El gerundio de anterioridad es propio de registros literarios: \"Habiendo terminado, se fue\".",
+            'El gerundio de anterioridad es propio de registros literarios: "Habiendo terminado, se fue".',
         ],
         examples=[
-            GrammarExample(text="Del salón en el ángulo oscuro, de su dueño tal vez olvidada, silenciosa y cubierta de polvo veíase el arpa.", translation="In the dark corner of the room, perhaps forgotten by its owner, silent and covered in dust, the harp could be seen.", note="Bécquer, hipérbaton"),
-            GrammarExample(text="Macondo era entonces una aldea de veinte casas de barro y cañabrava construidas a la orilla de un río de aguas diáfanas.", translation="Macondo was then a village of twenty adobe and cane houses built on the bank of a river of diaphanous waters.", note="García Márquez, adjetivación"),
+            GrammarExample(
+                text="Del salón en el ángulo oscuro, de su dueño tal vez olvidada, silenciosa y cubierta de polvo veíase el arpa.",
+                translation="In the dark corner of the room, perhaps forgotten by its owner, silent and covered in dust, the harp could be seen.",
+                note="Bécquer, hipérbaton",
+            ),
+            GrammarExample(
+                text="Macondo era entonces una aldea de veinte casas de barro y cañabrava construidas a la orilla de un río de aguas diáfanas.",
+                translation="Macondo was then a village of twenty adobe and cane houses built on the bank of a river of diaphanous waters.",
+                note="García Márquez, adjetivación",
+            ),
         ],
-        common_mistakes=[
+        common_mistakes=[],
+        related=[
+            "voz-narrativa",
+            "recursos-estilisticos",
+            "descripcion-literaria",
+            "figuras-literarias",
         ],
-        related=["voz-narrativa", "recursos-estilisticos", "descripcion-literaria", "figuras-literarias"],
     ),
     GrammarTopic(
         slug="voz-narrativa",
@@ -103,11 +157,18 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La focalización puede cambiar dentro de una misma obra.",
         ],
         examples=[
-            GrammarExample(text="Cierras los ojos y respiras hondo. Sabes que no hay vuelta atrás.", translation="You close your eyes and take a deep breath. You know there's no turning back.", note="segunda persona"),
-            GrammarExample(text="Nadie lo vio llegar, pero todos supieron que algo había cambiado en el pueblo.", translation="No one saw him arrive, but everyone knew something had changed in the town.", note="tercera persona omnisciente"),
+            GrammarExample(
+                text="Cierras los ojos y respiras hondo. Sabes que no hay vuelta atrás.",
+                translation="You close your eyes and take a deep breath. You know there's no turning back.",
+                note="segunda persona",
+            ),
+            GrammarExample(
+                text="Nadie lo vio llegar, pero todos supieron que algo había cambiado en el pueblo.",
+                translation="No one saw him arrive, but everyone knew something had changed in the town.",
+                note="tercera persona omnisciente",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["estilo-literario", "recursos-estilisticos", "tiempos-narrativos"],
     ),
     GrammarTopic(
@@ -124,12 +185,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Estos recursos deben usarse con moderación; su abuso puede resultar artificioso.",
         ],
         examples=[
-            GrammarExample(text="Llegué, vi, vencí.", translation="I came, I saw, I conquered.", note="asíndeton"),
-            GrammarExample(text="Y los días pasan, y las horas vuelan, y el silencio crece, y el eco de tu voz se apaga.", translation="And the days go by, and the hours fly, and the silence grows, and the echo of your voice fades.", note="polisíndeton"),
-            GrammarExample(text="Cuando tú vas, yo vengo. Cuando tú ríes, yo lloro.", translation="When you go, I come. When you laugh, I cry.", note="paralelismo antitético"),
+            GrammarExample(
+                text="Llegué, vi, vencí.",
+                translation="I came, I saw, I conquered.",
+                note="asíndeton",
+            ),
+            GrammarExample(
+                text="Y los días pasan, y las horas vuelan, y el silencio crece, y el eco de tu voz se apaga.",
+                translation="And the days go by, and the hours fly, and the silence grows, and the echo of your voice fades.",
+                note="polisíndeton",
+            ),
+            GrammarExample(
+                text="Cuando tú vas, yo vengo. Cuando tú ríes, yo lloro.",
+                translation="When you go, I come. When you laugh, I cry.",
+                note="paralelismo antitético",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["figuras-literarias", "estilo-literario", "voz-narrativa"],
     ),
     GrammarTopic(
@@ -146,12 +218,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Un buen traductor conoce profundamente ambas lenguas y culturas.",
         ],
         examples=[
-            GrammarExample(text="Tengo 25 años.", translation="I am 25 years old.", note="equivalencia funcional: tener = to be"),
-            GrammarExample(text="Me gusta bailar.", translation="I like dancing.", note="cambio de estructura: el sujeto pasa a ser la persona"),
-            GrammarExample(text="Es pan comido.", translation="It's a piece of cake.", note="modismo con equivalente diferente"),
+            GrammarExample(
+                text="Tengo 25 años.",
+                translation="I am 25 years old.",
+                note="equivalencia funcional: tener = to be",
+            ),
+            GrammarExample(
+                text="Me gusta bailar.",
+                translation="I like dancing.",
+                note="cambio de estructura: el sujeto pasa a ser la persona",
+            ),
+            GrammarExample(
+                text="Es pan comido.",
+                translation="It's a piece of cake.",
+                note="modismo con equivalente diferente",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["matices-traduccion", "falsos-amigos", "precision-lexica"],
     ),
     GrammarTopic(
@@ -168,11 +251,18 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Traducir también es interpretar: el traductor toma decisiones.",
         ],
         examples=[
-            GrammarExample(text="Después de comer nos quedamos de sobremesa un buen rato.", translation="After lunch we stayed at the table chatting for a while.", note="concepto cultural sin equivalente exacto"),
-            GrammarExample(text="Hoy estreno zapatos.", translation="I'm wearing new shoes for the first time today.", note="\"estrenar\" requiere una paráfrasis"),
+            GrammarExample(
+                text="Después de comer nos quedamos de sobremesa un buen rato.",
+                translation="After lunch we stayed at the table chatting for a while.",
+                note="concepto cultural sin equivalente exacto",
+            ),
+            GrammarExample(
+                text="Hoy estreno zapatos.",
+                translation="I'm wearing new shoes for the first time today.",
+                note='"estrenar" requiere una paráfrasis',
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["equivalencia", "falsos-amigos", "precision-lexica"],
     ),
     GrammarTopic(
@@ -189,13 +279,33 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "En traducción, verificar los falsos amigos es parte de la revisión.",
         ],
         examples=[
-            GrammarExample(text="Actualmente vivo en Madrid.", translation="I currently live in Madrid.", note="NO: \"Actually I live in Madrid\" (que significa \"en realidad\")"),
-            GrammarExample(text="Estoy constipado, no puedo ir.", translation="I have a cold, I can't go.", note="NO: \"I'm constipated\" (que significa \"estoy estreñido\")"),
-            GrammarExample(text="La conferencia fue un éxito.", translation="The conference was a success.", note="NO: \"... was an exit\" (salida)"),
+            GrammarExample(
+                text="Actualmente vivo en Madrid.",
+                translation="I currently live in Madrid.",
+                note='NO: "Actually I live in Madrid" (que significa "en realidad")',
+            ),
+            GrammarExample(
+                text="Estoy constipado, no puedo ir.",
+                translation="I have a cold, I can't go.",
+                note='NO: "I\'m constipated" (que significa "estoy estreñido")',
+            ),
+            GrammarExample(
+                text="La conferencia fue un éxito.",
+                translation="The conference was a success.",
+                note='NO: "... was an exit" (salida)',
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Estoy embarazada de la situación.", correct="Estoy avergonzada de la situación.", note="\"Embarazada\" solo significa \"pregnant\", no \"embarrassed\"."),
-            GrammarMistake(wrong="Asistí a mi amigo con la mudanza.", correct="Ayudé a mi amigo con la mudanza.", note="\"Asistir\" = to attend. Para \"to assist\" se usa \"ayudar\"."),
+            GrammarMistake(
+                wrong="Estoy embarazada de la situación.",
+                correct="Estoy avergonzada de la situación.",
+                note='"Embarazada" solo significa "pregnant", no "embarrassed".',
+            ),
+            GrammarMistake(
+                wrong="Asistí a mi amigo con la mudanza.",
+                correct="Ayudé a mi amigo con la mudanza.",
+                note='"Asistir" = to attend. Para "to assist" se usa "ayudar".',
+            ),
         ],
         related=["equivalencia", "matices-traduccion", "precision-lexica"],
     ),
@@ -213,11 +323,18 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Conocer la etimología ayuda a deducir significados de palabras desconocidas.",
         ],
         examples=[
-            GrammarExample(text="Tengo el vaso lleno. / Tengo pleno conocimiento de los hechos.", translation="My glass is full. / I have full knowledge of the facts.", note="doblete: lleno (patrimonial) / pleno (cultismo)"),
-            GrammarExample(text="La fábula enseña una moraleja. / Habla más alto, por favor.", translation="The fable teaches a moral. / Speak louder, please.", note="doblete: fábula (cultismo) / habla (patrimonial)"),
+            GrammarExample(
+                text="Tengo el vaso lleno. / Tengo pleno conocimiento de los hechos.",
+                translation="My glass is full. / I have full knowledge of the facts.",
+                note="doblete: lleno (patrimonial) / pleno (cultismo)",
+            ),
+            GrammarExample(
+                text="La fábula enseña una moraleja. / Habla más alto, por favor.",
+                translation="The fable teaches a moral. / Speak louder, please.",
+                note="doblete: fábula (cultismo) / habla (patrimonial)",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["arabismos", "indigenismos", "derivacion"],
     ),
     GrammarTopic(
@@ -234,12 +351,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Conocer arabismos enriquece el vocabulario y la comprensión cultural.",
         ],
         examples=[
-            GrammarExample(text="El aceite de oliva es fundamental en la dieta mediterránea.", translation="Olive oil is fundamental in the Mediterranean diet.", note="aceite < ár. az-zayt"),
-            GrammarExample(text="Se sentó en la alcoba a leer un rato.", translation="He sat in the bedroom to read for a while.", note="alcoba < ár. al-qubba"),
-            GrammarExample(text="El alcalde inauguró el nuevo mercado.", translation="The mayor inaugurated the new market.", note="alcalde < ár. al-qāḍī (juez)"),
+            GrammarExample(
+                text="El aceite de oliva es fundamental en la dieta mediterránea.",
+                translation="Olive oil is fundamental in the Mediterranean diet.",
+                note="aceite < ár. az-zayt",
+            ),
+            GrammarExample(
+                text="Se sentó en la alcoba a leer un rato.",
+                translation="He sat in the bedroom to read for a while.",
+                note="alcoba < ár. al-qubba",
+            ),
+            GrammarExample(
+                text="El alcalde inauguró el nuevo mercado.",
+                translation="The mayor inaugurated the new market.",
+                note="alcalde < ár. al-qāḍī (juez)",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["indigenismos", "lexicon-historico", "diferencias-regionales"],
     ),
     GrammarTopic(
@@ -256,12 +384,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Algunos indigenismos solo se usan en sus países de origen.",
         ],
         examples=[
-            GrammarExample(text="El huracán arrasó la costa caribeña.", translation="The hurricane devastated the Caribbean coast.", note="huracán < taíno"),
-            GrammarExample(text="Me encanta el chocolate con churros.", translation="I love chocolate with churros.", note="chocolate < náhuatl xocolātl"),
-            GrammarExample(text="En los Andes cultivan muchas variedades de papa.", translation="In the Andes they grow many varieties of potato.", note="papa < quechua"),
+            GrammarExample(
+                text="El huracán arrasó la costa caribeña.",
+                translation="The hurricane devastated the Caribbean coast.",
+                note="huracán < taíno",
+            ),
+            GrammarExample(
+                text="Me encanta el chocolate con churros.",
+                translation="I love chocolate with churros.",
+                note="chocolate < náhuatl xocolātl",
+            ),
+            GrammarExample(
+                text="En los Andes cultivan muchas variedades de papa.",
+                translation="In the Andes they grow many varieties of potato.",
+                note="papa < quechua",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["arabismos", "lexicon-historico", "espanol-latinoamerica"],
     ),
     GrammarTopic(
@@ -278,11 +417,18 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La crónica admite un estilo más personal que la noticia.",
         ],
         examples=[
-            GrammarExample(text="El presente estudio analiza la relación entre el bilingüismo y el desarrollo cognitivo en niños de 3 a 6 años.", translation="The present study analyzes the relationship between bilingualism and cognitive development in children aged 3 to 6.", note="artículo académico"),
-            GrammarExample(text="La obra, aunque irregular en su ritmo, ofrece una mirada conmovedora sobre la condición humana.", translation="The work, although uneven in its pace, offers a moving look at the human condition.", note="reseña"),
+            GrammarExample(
+                text="El presente estudio analiza la relación entre el bilingüismo y el desarrollo cognitivo en niños de 3 a 6 años.",
+                translation="The present study analyzes the relationship between bilingualism and cognitive development in children aged 3 to 6.",
+                note="artículo académico",
+            ),
+            GrammarExample(
+                text="La obra, aunque irregular en su ritmo, ofrece una mirada conmovedora sobre la condición humana.",
+                translation="The work, although uneven in its pace, offers a moving look at the human condition.",
+                note="reseña",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["estructura-argumentativa", "lenguaje-periodistico", "sintesis-textual"],
     ),
     GrammarTopic(
@@ -299,12 +445,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La greguería es un género inventado en español: humor + metáfora.",
         ],
         examples=[
-            GrammarExample(text="¿Te wasapeo luego y quedamos?", translation="Shall I WhatsApp you later and we'll meet up?", note="neologismo: wasapear"),
-            GrammarExample(text="El amor es un intento de desayunar dos veces.", translation="Love is an attempt to have breakfast twice.", note="greguería de Ramón Gómez de la Serna"),
-            GrammarExample(text="Y todo es una broma, y todo es una broma que va en serio.", translation="And everything is a joke, and everything is a joke that is serious.", note="juego de palabras y paradoja"),
+            GrammarExample(
+                text="¿Te wasapeo luego y quedamos?",
+                translation="Shall I WhatsApp you later and we'll meet up?",
+                note="neologismo: wasapear",
+            ),
+            GrammarExample(
+                text="El amor es un intento de desayunar dos veces.",
+                translation="Love is an attempt to have breakfast twice.",
+                note="greguería de Ramón Gómez de la Serna",
+            ),
+            GrammarExample(
+                text="Y todo es una broma, y todo es una broma que va en serio.",
+                translation="And everything is a joke, and everything is a joke that is serious.",
+                note="juego de palabras y paradoja",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["doble-sentido", "ironia", "derivacion"],
     ),
     GrammarTopic(
@@ -321,12 +478,28 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Una buena corrección respeta el estilo del autor; no lo reescribe.",
         ],
         examples=[
-            GrammarExample(text="«No estoy de acuerdo», replicó el ministro.", translation="\"I don't agree,\" the minister replied.", note="uso de comillas españolas"),
-            GrammarExample(text="Me alegro de que hayas venido.", translation="I'm glad you've come.", note="deque correcto: alegrarse de que"),
+            GrammarExample(
+                text="«No estoy de acuerdo», replicó el ministro.",
+                translation='"I don\'t agree," the minister replied.',
+                note="uso de comillas españolas",
+            ),
+            GrammarExample(
+                text="Me alegro de que hayas venido.",
+                translation="I'm glad you've come.",
+                note="deque correcto: alegrarse de que",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Pienso de que tienes razón.", correct="Pienso que tienes razón.", note="Dequeísmo: \"pensar\" no rige \"de\"."),
-            GrammarMistake(wrong="Me alegro que hayas venido.", correct="Me alegro de que hayas venido.", note="Queísmo: \"alegrarse\" rige \"de\": alegrarse de algo."),
+            GrammarMistake(
+                wrong="Pienso de que tienes razón.",
+                correct="Pienso que tienes razón.",
+                note='Dequeísmo: "pensar" no rige "de".',
+            ),
+            GrammarMistake(
+                wrong="Me alegro que hayas venido.",
+                correct="Me alegro de que hayas venido.",
+                note='Queísmo: "alegrarse" rige "de": alegrarse de algo.',
+            ),
         ],
         related=["precision-lexica", "cohesion-textual", "registro-formal"],
     ),
@@ -344,12 +517,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Matizar no es ser impreciso; es adecuar el discurso a lo que realmente se sabe.",
         ],
         examples=[
-            GrammarExample(text="Cabe la posibilidad de que la reunión se aplace hasta el lunes.", translation="There is a possibility that the meeting will be postponed until Monday.", note="probabilidad baja"),
-            GrammarExample(text="Yo diría que lo mejor es esperar unos días antes de decidir.", translation="I would say that the best thing is to wait a few days before deciding.", note="condicional de modestia"),
-            GrammarExample(text="Lo que está claro es que tenemos que actuar ya.", translation="What is clear is that we have to act now.", note="estructura enfática"),
+            GrammarExample(
+                text="Cabe la posibilidad de que la reunión se aplace hasta el lunes.",
+                translation="There is a possibility that the meeting will be postponed until Monday.",
+                note="probabilidad baja",
+            ),
+            GrammarExample(
+                text="Yo diría que lo mejor es esperar unos días antes de decidir.",
+                translation="I would say that the best thing is to wait a few days before deciding.",
+                note="condicional de modestia",
+            ),
+            GrammarExample(
+                text="Lo que está claro es que tenemos que actuar ya.",
+                translation="What is clear is that we have to act now.",
+                note="estructura enfática",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["matizadores", "subjuntivo-duda", "condicional-simple"],
     ),
     GrammarTopic(
@@ -366,10 +550,13 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Comprensión de todas las estructuras gramaticales, incluso las de baja frecuencia.",
         ],
         examples=[
-            GrammarExample(text="De haberlo sabido, no habría venido; pero, ya que estoy aquí, lo mejor será que me quede y eche una mano, a no ser que prefieras que me vaya.", translation="Had I known, I wouldn't have come; but since I'm here, the best thing will be for me to stay and lend a hand, unless you prefer me to leave.", note="integración de múltiples estructuras"),
+            GrammarExample(
+                text="De haberlo sabido, no habría venido; pero, ya que estoy aquí, lo mejor será que me quede y eche una mano, a no ser que prefieras que me vaya.",
+                translation="Had I known, I wouldn't have come; but since I'm here, the best thing will be for me to stay and lend a hand, unless you prefer me to leave.",
+                note="integración de múltiples estructuras",
+            ),
         ],
-        common_mistakes=[
-        ],
+        common_mistakes=[],
         related=["fluidez-nativa", "concordancia-de-tiempos", "repaso-subjuntivo"],
     ),
     GrammarTopic(
@@ -386,11 +573,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La fluidez no es ausencia de errores, sino naturalidad en la comunicación.",
         ],
         examples=[
-            GrammarExample(text="O sea, que al final no vienes... pues nada, otro día será, no pasa nada.", translation="So, in the end you're not coming... well, another time then, no worries.", note="muletillas y gestión de turno"),
-            GrammarExample(text="— Qué, ¿nos tomamos algo? — Me sabe mal, pero es que no me da la vida. — Venga, va, un ratito nada más.", translation="\"Hey, shall we grab a drink?\" \"I feel bad, but I'm just too busy.\" \"Come on, just for a little while.\"", note="diálogo natural coloquial"),
+            GrammarExample(
+                text="O sea, que al final no vienes... pues nada, otro día será, no pasa nada.",
+                translation="So, in the end you're not coming... well, another time then, no worries.",
+                note="muletillas y gestión de turno",
+            ),
+            GrammarExample(
+                text="— Qué, ¿nos tomamos algo? — Me sabe mal, pero es que no me da la vida. — Venga, va, un ratito nada más.",
+                translation='"Hey, shall we grab a drink?" "I feel bad, but I\'m just too busy." "Come on, just for a little while."',
+                note="diálogo natural coloquial",
+            ),
         ],
-        common_mistakes=[
+        common_mistakes=[],
+        related=[
+            "integracion-gramatical",
+            "expresiones-coloquiales",
+            "modismos-comunes",
+            "expresion-matizada",
         ],
-        related=["integracion-gramatical", "expresiones-coloquiales", "modismos-comunes", "expresion-matizada"],
     ),
 ]

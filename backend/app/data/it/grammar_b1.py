@@ -18,15 +18,36 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "-are → -i; -ere/-ire → -a per le prime tre persone.",
         ],
         examples=[
-            GrammarExample(text="Penso che lui sia bravissimo.", translation="I think he is very good."),
-            GrammarExample(text="Spero che tu possa venire alla festa.", translation="I hope you can come to the party."),
-            GrammarExample(text="È importante che voi parliate italiano.", translation="It's important that you speak Italian."),
+            GrammarExample(
+                text="Penso che lui sia bravissimo.", translation="I think he is very good."
+            ),
+            GrammarExample(
+                text="Spero che tu possa venire alla festa.",
+                translation="I hope you can come to the party.",
+            ),
+            GrammarExample(
+                text="È importante che voi parliate italiano.",
+                translation="It's important that you speak Italian.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Penso che lui è bravo.", correct="Penso che lui sia bravo.", note="Dopo pensare che si usa il congiuntivo, non l'indicativo."),
-            GrammarMistake(wrong="Credo che hai ragione.", correct="Credo che tu abbia ragione.", note="Dopo credere che serve il congiuntivo."),
+            GrammarMistake(
+                wrong="Penso che lui è bravo.",
+                correct="Penso che lui sia bravo.",
+                note="Dopo pensare che si usa il congiuntivo, non l'indicativo.",
+            ),
+            GrammarMistake(
+                wrong="Credo che hai ragione.",
+                correct="Credo che tu abbia ragione.",
+                note="Dopo credere che serve il congiuntivo.",
+            ),
         ],
-        related=["verbi-opinione", "espressioni-impersonali", "congiuntivo-volonta", "congiuntivo-emozioni"],
+        related=[
+            "verbi-opinione",
+            "espressioni-impersonali",
+            "congiuntivo-volonta",
+            "congiuntivo-emozioni",
+        ],
     ),
     GrammarTopic(
         slug="verbi-opinione",
@@ -42,13 +63,30 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con certezza oggettiva alcuni ammettono l'indicativo.",
         ],
         examples=[
-            GrammarExample(text="Penso che questo film sia molto bello.", translation="I think this movie is very good."),
-            GrammarExample(text="Credo di aver capito tutto.", translation="I think I understood everything.", note="stesso soggetto"),
-            GrammarExample(text="Sembra che domani piova.", translation="It seems like it will rain tomorrow."),
+            GrammarExample(
+                text="Penso che questo film sia molto bello.",
+                translation="I think this movie is very good.",
+            ),
+            GrammarExample(
+                text="Credo di aver capito tutto.",
+                translation="I think I understood everything.",
+                note="stesso soggetto",
+            ),
+            GrammarExample(
+                text="Sembra che domani piova.", translation="It seems like it will rain tomorrow."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Penso di che tu abbia ragione.", correct="Penso che tu abbia ragione.", note="Di solo con stesso soggetto; altrimenti che."),
-            GrammarMistake(wrong="Penso che io ho ragione.", correct="Penso di avere ragione.", note="Stesso soggetto → di + infinito."),
+            GrammarMistake(
+                wrong="Penso di che tu abbia ragione.",
+                correct="Penso che tu abbia ragione.",
+                note="Di solo con stesso soggetto; altrimenti che.",
+            ),
+            GrammarMistake(
+                wrong="Penso che io ho ragione.",
+                correct="Penso di avere ragione.",
+                note="Stesso soggetto → di + infinito.",
+            ),
         ],
         related=["congiuntivo-presente", "espressioni-impersonali", "congiuntivo-dubbi"],
     ),
@@ -66,13 +104,28 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Stesso soggetto: è importante + infinito.",
         ],
         examples=[
-            GrammarExample(text="È importante che tu mangi sano.", translation="It's important that you eat healthy."),
-            GrammarExample(text="Bisogna che arriviamo in orario.", translation="We need to arrive on time."),
-            GrammarExample(text="Può darsi che loro non lo sappiano.", translation="They might not know it."),
+            GrammarExample(
+                text="È importante che tu mangi sano.",
+                translation="It's important that you eat healthy.",
+            ),
+            GrammarExample(
+                text="Bisogna che arriviamo in orario.", translation="We need to arrive on time."
+            ),
+            GrammarExample(
+                text="Può darsi che loro non lo sappiano.", translation="They might not know it."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="È importante che tu mangi sano. (indicativo)", correct="È importante che tu mangi sano.", note="Mangi è congiuntivo (prima persona -are è uguale all'indicativo)."),
-            GrammarMistake(wrong="È possibile che lui arriva tardi.", correct="È possibile che lui arrivi tardi.", note="Con è possibile che si usa il congiuntivo."),
+            GrammarMistake(
+                wrong="È importante che tu mangi sano. (indicativo)",
+                correct="È importante che tu mangi sano.",
+                note="Mangi è congiuntivo (prima persona -are è uguale all'indicativo).",
+            ),
+            GrammarMistake(
+                wrong="È possibile che lui arriva tardi.",
+                correct="È possibile che lui arrivi tardi.",
+                note="Con è possibile che si usa il congiuntivo.",
+            ),
         ],
         related=["congiuntivo-presente", "verbi-opinione", "si-impersonale"],
     ),
@@ -91,12 +144,25 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Voglio che tu sia felice.", translation="I want you to be happy."),
-            GrammarExample(text="Preferisco che andiamo domani.", translation="I prefer that we go tomorrow."),
-            GrammarExample(text="Spero che abbiate fatto buon viaggio.", translation="I hope you had a good trip."),
+            GrammarExample(
+                text="Preferisco che andiamo domani.", translation="I prefer that we go tomorrow."
+            ),
+            GrammarExample(
+                text="Spero che abbiate fatto buon viaggio.",
+                translation="I hope you had a good trip.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Voglio che tu vai.", correct="Voglio che tu vada.", note="Dopo volere che ci vuole il congiuntivo."),
-            GrammarMistake(wrong="Voglio che io parto.", correct="Voglio partire.", note="Stesso soggetto → infinito."),
+            GrammarMistake(
+                wrong="Voglio che tu vai.",
+                correct="Voglio che tu vada.",
+                note="Dopo volere che ci vuole il congiuntivo.",
+            ),
+            GrammarMistake(
+                wrong="Voglio che io parto.",
+                correct="Voglio partire.",
+                note="Stesso soggetto → infinito.",
+            ),
         ],
         related=["congiuntivo-presente", "verbi-opinione", "congiuntivo-emozioni", "vorrei"],
     ),
@@ -114,13 +180,28 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Nella lingua parlata informale si può sentire l'indicativo, ma non è corretto.",
         ],
         examples=[
-            GrammarExample(text="Sono felice che tu sia venuto.", translation="I'm happy that you came."),
-            GrammarExample(text="Mi dispiace che non possiate restare.", translation="I'm sorry that you can't stay."),
-            GrammarExample(text="Ho paura che lui si perda.", translation="I'm afraid he might get lost."),
+            GrammarExample(
+                text="Sono felice che tu sia venuto.", translation="I'm happy that you came."
+            ),
+            GrammarExample(
+                text="Mi dispiace che non possiate restare.",
+                translation="I'm sorry that you can't stay.",
+            ),
+            GrammarExample(
+                text="Ho paura che lui si perda.", translation="I'm afraid he might get lost."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sono contento che tu sei qui.", correct="Sono contento che tu sia qui.", note="Le emozioni richiedono il congiuntivo."),
-            GrammarMistake(wrong="Mi dispiace che non puoi venire.", correct="Mi dispiace che tu non possa venire.", note="Dopo dispiacere che serve il congiuntivo."),
+            GrammarMistake(
+                wrong="Sono contento che tu sei qui.",
+                correct="Sono contento che tu sia qui.",
+                note="Le emozioni richiedono il congiuntivo.",
+            ),
+            GrammarMistake(
+                wrong="Mi dispiace che non puoi venire.",
+                correct="Mi dispiace che tu non possa venire.",
+                note="Dopo dispiacere che serve il congiuntivo.",
+            ),
         ],
         related=["congiuntivo-presente", "congiuntivo-volonta", "congiuntivo-dubbi"],
     ),
@@ -134,17 +215,34 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         rules=[
             "Dubitare, non sapere, non essere sicuro, non credere → congiuntivo.",
             "Sapere, essere sicuro, essere certo → indicativo.",
-            "Dopo \"non so se\" si può usare indicativo o congiuntivo.",
+            'Dopo "non so se" si può usare indicativo o congiuntivo.',
             "La negazione trasforma l'indicativo in congiuntivo.",
         ],
         examples=[
-            GrammarExample(text="Dubito che lui arrivi in orario.", translation="I doubt he will arrive on time."),
-            GrammarExample(text="Non sono sicuro che questa sia la strada giusta.", translation="I'm not sure this is the right way."),
-            GrammarExample(text="Non credo che loro vogliano venire.", translation="I don't think they want to come."),
+            GrammarExample(
+                text="Dubito che lui arrivi in orario.",
+                translation="I doubt he will arrive on time.",
+            ),
+            GrammarExample(
+                text="Non sono sicuro che questa sia la strada giusta.",
+                translation="I'm not sure this is the right way.",
+            ),
+            GrammarExample(
+                text="Non credo che loro vogliano venire.",
+                translation="I don't think they want to come.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Dubito che lui arriva.", correct="Dubito che lui arrivi.", note="Dubitare richiede il congiuntivo."),
-            GrammarMistake(wrong="Non so se lui è a casa. (formale)", correct="Non so se lui sia a casa.", note="Nel registro formale, dopo non so se si preferisce il congiuntivo."),
+            GrammarMistake(
+                wrong="Dubito che lui arriva.",
+                correct="Dubito che lui arrivi.",
+                note="Dubitare richiede il congiuntivo.",
+            ),
+            GrammarMistake(
+                wrong="Non so se lui è a casa. (formale)",
+                correct="Non so se lui sia a casa.",
+                note="Nel registro formale, dopo non so se si preferisce il congiuntivo.",
+            ),
         ],
         related=["congiuntivo-presente", "verbi-opinione", "espressioni-impersonali"],
     ),
@@ -162,13 +260,30 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non confondere con il trapassato remoto (ebbi fatto).",
         ],
         examples=[
-            GrammarExample(text="Quando arrivai, erano già partiti tutti.", translation="When I arrived, everyone had already left."),
-            GrammarExample(text="Se avessi studiato, avresti passato l'esame.", translation="If you had studied, you would have passed the exam."),
-            GrammarExample(text="Non avevo mai visto niente di simile.", translation="I had never seen anything like it."),
+            GrammarExample(
+                text="Quando arrivai, erano già partiti tutti.",
+                translation="When I arrived, everyone had already left.",
+            ),
+            GrammarExample(
+                text="Se avessi studiato, avresti passato l'esame.",
+                translation="If you had studied, you would have passed the exam.",
+            ),
+            GrammarExample(
+                text="Non avevo mai visto niente di simile.",
+                translation="I had never seen anything like it.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se avevo soldi, compravo la casa.", correct="Se avessi avuto soldi, avrei comprato la casa.", note="Periodo ipotetico 3º tipo: congiuntivo trapassato + condizionale passato."),
-            GrammarMistake(wrong="Dopo che ho mangiato, sono uscito.", correct="Dopo aver mangiato, sono uscito.", note="Con lo stesso soggetto: dopo + infinito passato."),
+            GrammarMistake(
+                wrong="Se avevo soldi, compravo la casa.",
+                correct="Se avessi avuto soldi, avrei comprato la casa.",
+                note="Periodo ipotetico 3º tipo: congiuntivo trapassato + condizionale passato.",
+            ),
+            GrammarMistake(
+                wrong="Dopo che ho mangiato, sono uscito.",
+                correct="Dopo aver mangiato, sono uscito.",
+                note="Con lo stesso soggetto: dopo + infinito passato.",
+            ),
         ],
         related=["trapassato-prossimo", "concordanza-tempi", "periodo-ipotetico-2"],
     ),
@@ -187,13 +302,30 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con espressioni temporali: quando, appena, dopo che + futuro anteriore.",
         ],
         examples=[
-            GrammarExample(text="Quando avrò finito i compiti, uscirò.", translation="When I have finished my homework, I will go out."),
-            GrammarExample(text="Saranno già partiti? Non rispondono.", translation="Do you think they have already left? They don't answer."),
-            GrammarExample(text="Avrà dimenticato l'appuntamento.", translation="He must have forgotten the appointment."),
+            GrammarExample(
+                text="Quando avrò finito i compiti, uscirò.",
+                translation="When I have finished my homework, I will go out.",
+            ),
+            GrammarExample(
+                text="Saranno già partiti? Non rispondono.",
+                translation="Do you think they have already left? They don't answer.",
+            ),
+            GrammarExample(
+                text="Avrà dimenticato l'appuntamento.",
+                translation="He must have forgotten the appointment.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Quando finirò, ti chiamo.", correct="Quando avrò finito, ti chiamerò.", note="Dopo quando + futuro si usa il futuro anteriore per anteriorità, poi futuro semplice."),
-            GrammarMistake(wrong="Sarà arrivato ieri? (supposizione)", correct="Sarà arrivato ieri.", note="OK! Il futuro anteriore può esprimere supposizione sul passato."),
+            GrammarMistake(
+                wrong="Quando finirò, ti chiamo.",
+                correct="Quando avrò finito, ti chiamerò.",
+                note="Dopo quando + futuro si usa il futuro anteriore per anteriorità, poi futuro semplice.",
+            ),
+            GrammarMistake(
+                wrong="Sarà arrivato ieri? (supposizione)",
+                correct="Sarà arrivato ieri.",
+                note="OK! Il futuro anteriore può esprimere supposizione sul passato.",
+            ),
         ],
         related=["futuro-semplice", "concordanza-tempi", "condizionale-presente"],
     ),
@@ -211,13 +343,27 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Futuro → condizionale passato.",
         ],
         examples=[
-            GrammarExample(text="Penso che Marco sia malato.", translation="I think Marco is sick."),
-            GrammarExample(text="Pensavo che Marco fosse malato.", translation="I thought Marco was sick."),
-            GrammarExample(text="Speravo che sarebbe venuto.", translation="I hoped he would come."),
+            GrammarExample(
+                text="Penso che Marco sia malato.", translation="I think Marco is sick."
+            ),
+            GrammarExample(
+                text="Pensavo che Marco fosse malato.", translation="I thought Marco was sick."
+            ),
+            GrammarExample(
+                text="Speravo che sarebbe venuto.", translation="I hoped he would come."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Pensavo che Marco sia malato.", correct="Pensavo che Marco fosse malato.", note="Principale al passato → subordinata al passato."),
-            GrammarMistake(wrong="Credevo che verrà.", correct="Credevo che sarebbe venuto.", note="Futuro nel passato → condizionale passato."),
+            GrammarMistake(
+                wrong="Pensavo che Marco sia malato.",
+                correct="Pensavo che Marco fosse malato.",
+                note="Principale al passato → subordinata al passato.",
+            ),
+            GrammarMistake(
+                wrong="Credevo che verrà.",
+                correct="Credevo che sarebbe venuto.",
+                note="Futuro nel passato → condizionale passato.",
+            ),
         ],
         related=["congiuntivo-presente", "congiuntivo-imperfetto", "discorso-indiretto-passato"],
     ),
@@ -237,13 +383,29 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Agente introdotto da da.",
         ],
         examples=[
-            GrammarExample(text="La lettera è stata spedita ieri.", translation="The letter was sent yesterday."),
-            GrammarExample(text="Il museo viene visitato da molti turisti.", translation="The museum is visited by many tourists."),
-            GrammarExample(text="Queste regole vanno rispettate.", translation="These rules must be respected."),
+            GrammarExample(
+                text="La lettera è stata spedita ieri.",
+                translation="The letter was sent yesterday.",
+            ),
+            GrammarExample(
+                text="Il museo viene visitato da molti turisti.",
+                translation="The museum is visited by many tourists.",
+            ),
+            GrammarExample(
+                text="Queste regole vanno rispettate.", translation="These rules must be respected."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="La lettera ha stata spedita.", correct="La lettera è stata spedita.", note="La forma passiva usa essere, non avere."),
-            GrammarMistake(wrong="Il libro viene essendo letto.", correct="Il libro viene letto.", note="Venire + participio; non serve essere."),
+            GrammarMistake(
+                wrong="La lettera ha stata spedita.",
+                correct="La lettera è stata spedita.",
+                note="La forma passiva usa essere, non avere.",
+            ),
+            GrammarMistake(
+                wrong="Il libro viene essendo letto.",
+                correct="Il libro viene letto.",
+                note="Venire + participio; non serve essere.",
+            ),
         ],
         related=["si-passivante", "passato-prossimo-essere", "concordanza-tempi"],
     ),
@@ -262,13 +424,29 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Il si impersonale non indica una persona specifica.",
         ],
         examples=[
-            GrammarExample(text="In Italia si mangia bene.", translation="In Italy people eat well."),
-            GrammarExample(text="Come si dice \"casa\" in inglese?", translation="How do you say \"casa\" in English?"),
-            GrammarExample(text="Quando si è giovani, si fanno molti errori.", translation="When one is young, one makes many mistakes."),
+            GrammarExample(
+                text="In Italia si mangia bene.", translation="In Italy people eat well."
+            ),
+            GrammarExample(
+                text='Come si dice "casa" in inglese?',
+                translation='How do you say "casa" in English?',
+            ),
+            GrammarExample(
+                text="Quando si è giovani, si fanno molti errori.",
+                translation="When one is young, one makes many mistakes.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Si mangiano bene in Italia.", correct="In Italia si mangia bene.", note="Il si impersonale usa la 3ª singolare, non plurale."),
-            GrammarMistake(wrong="Ci si alziamo presto.", correct="Ci si alza presto.", note="Ci si + 3ª singolare (non plurale)."),
+            GrammarMistake(
+                wrong="Si mangiano bene in Italia.",
+                correct="In Italia si mangia bene.",
+                note="Il si impersonale usa la 3ª singolare, non plurale.",
+            ),
+            GrammarMistake(
+                wrong="Ci si alziamo presto.",
+                correct="Ci si alza presto.",
+                note="Ci si + 3ª singolare (non plurale).",
+            ),
         ],
         related=["si-passivante", "verbi-riflessivi", "pronomi-indiretti"],
     ),
@@ -289,11 +467,22 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Qui si vendono biglietti.", translation="Tickets are sold here."),
             GrammarExample(text="Si affitta appartamento.", translation="Apartment for rent."),
-            GrammarExample(text="Non si accettano carte di credito.", translation="Credit cards are not accepted."),
+            GrammarExample(
+                text="Non si accettano carte di credito.",
+                translation="Credit cards are not accepted.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Si vende libri.", correct="Si vendono libri.", note="Libri è plurale → si vendono."),
-            GrammarMistake(wrong="Si affittano appartamento.", correct="Si affitta appartamento.", note="Appartamento è singolare → si affitta."),
+            GrammarMistake(
+                wrong="Si vende libri.",
+                correct="Si vendono libri.",
+                note="Libri è plurale → si vendono.",
+            ),
+            GrammarMistake(
+                wrong="Si affittano appartamento.",
+                correct="Si affitta appartamento.",
+                note="Appartamento è singolare → si affitta.",
+            ),
         ],
         related=["si-impersonale", "forma-passiva", "verbi-riflessivi"],
     ),
@@ -311,13 +500,30 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Che non può essere omesso come in inglese (that).",
         ],
         examples=[
-            GrammarExample(text="La donna che parla è mia zia.", translation="The woman who is speaking is my aunt."),
-            GrammarExample(text="Il film che abbiamo visto era bello.", translation="The film that we saw was good."),
-            GrammarExample(text="La cosa che mi piace di più è viaggiare.", translation="The thing that I like most is traveling."),
+            GrammarExample(
+                text="La donna che parla è mia zia.",
+                translation="The woman who is speaking is my aunt.",
+            ),
+            GrammarExample(
+                text="Il film che abbiamo visto era bello.",
+                translation="The film that we saw was good.",
+            ),
+            GrammarExample(
+                text="La cosa che mi piace di più è viaggiare.",
+                translation="The thing that I like most is traveling.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="La ragazza con che parlo.", correct="La ragazza con cui parlo.", note="Dopo preposizione si usa cui, non che."),
-            GrammarMistake(wrong="Il film abbiamo visto era bello.", correct="Il film che abbiamo visto era bello.", note="In italiano il pronome relativo non si può omettere."),
+            GrammarMistake(
+                wrong="La ragazza con che parlo.",
+                correct="La ragazza con cui parlo.",
+                note="Dopo preposizione si usa cui, non che.",
+            ),
+            GrammarMistake(
+                wrong="Il film abbiamo visto era bello.",
+                correct="Il film che abbiamo visto era bello.",
+                note="In italiano il pronome relativo non si può omettere.",
+            ),
         ],
         related=["cui", "il-quale", "pronomi-diretti"],
     ),
@@ -335,13 +541,29 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non confondere cui (relativo) con qui (luogo).",
         ],
         examples=[
-            GrammarExample(text="La città in cui vivo è Roma.", translation="The city where I live is Rome."),
-            GrammarExample(text="L'amico di cui ti parlavo è arrivato.", translation="The friend I was telling you about has arrived."),
-            GrammarExample(text="La ragazza il cui fratello è attore si chiama Anna.", translation="The girl whose brother is an actor is called Anna."),
+            GrammarExample(
+                text="La città in cui vivo è Roma.", translation="The city where I live is Rome."
+            ),
+            GrammarExample(
+                text="L'amico di cui ti parlavo è arrivato.",
+                translation="The friend I was telling you about has arrived.",
+            ),
+            GrammarExample(
+                text="La ragazza il cui fratello è attore si chiama Anna.",
+                translation="The girl whose brother is an actor is called Anna.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="La città in che vivo.", correct="La città in cui vivo.", note="Dopo preposizione si usa cui, mai che."),
-            GrammarMistake(wrong="L'amico cui ti parlavo.", correct="L'amico di cui ti parlavo.", note="Cui ha bisogno della preposizione esplicita."),
+            GrammarMistake(
+                wrong="La città in che vivo.",
+                correct="La città in cui vivo.",
+                note="Dopo preposizione si usa cui, mai che.",
+            ),
+            GrammarMistake(
+                wrong="L'amico cui ti parlavo.",
+                correct="L'amico di cui ti parlavo.",
+                note="Cui ha bisogno della preposizione esplicita.",
+            ),
         ],
         related=["che-relativo", "il-quale", "pronomi-indiretti"],
     ),
@@ -359,13 +581,30 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Registro più formale rispetto a che/cui.",
         ],
         examples=[
-            GrammarExample(text="Il fratello di Maria, il quale vive a Londra, è medico.", translation="Maria's brother, who lives in London, is a doctor."),
-            GrammarExample(text="La persona alla quale mi sono rivolto è stata gentile.", translation="The person to whom I turned was kind."),
-            GrammarExample(text="I motivi per i quali ho deciso di partire sono molti.", translation="The reasons for which I decided to leave are many."),
+            GrammarExample(
+                text="Il fratello di Maria, il quale vive a Londra, è medico.",
+                translation="Maria's brother, who lives in London, is a doctor.",
+            ),
+            GrammarExample(
+                text="La persona alla quale mi sono rivolto è stata gentile.",
+                translation="The person to whom I turned was kind.",
+            ),
+            GrammarExample(
+                text="I motivi per i quali ho deciso di partire sono molti.",
+                translation="The reasons for which I decided to leave are many.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="La madre di Marco, che è insegnante... (ambiguo)", correct="La madre di Marco, la quale è insegnante...", note="Con che non si capisce se è la madre o Marco a essere insegnante."),
-            GrammarMistake(wrong="Il quale che ho visto.", correct="Il quale ho visto. (o: che ho visto.)", note="Non si combina il quale con che."),
+            GrammarMistake(
+                wrong="La madre di Marco, che è insegnante... (ambiguo)",
+                correct="La madre di Marco, la quale è insegnante...",
+                note="Con che non si capisce se è la madre o Marco a essere insegnante.",
+            ),
+            GrammarMistake(
+                wrong="Il quale che ho visto.",
+                correct="Il quale ho visto. (o: che ho visto.)",
+                note="Non si combina il quale con che.",
+            ),
         ],
         related=["che-relativo", "cui", "connettivi-avanzati"],
     ),
@@ -384,13 +623,28 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non si usa mai il congiuntivo in questo tipo.",
         ],
         examples=[
-            GrammarExample(text="Se piove, resto a casa.", translation="If it rains, I will stay home."),
-            GrammarExample(text="Se avrò tempo, ti aiuterò.", translation="If I have time, I will help you."),
-            GrammarExample(text="Se hai fame, prendi una mela.", translation="If you are hungry, take an apple."),
+            GrammarExample(
+                text="Se piove, resto a casa.", translation="If it rains, I will stay home."
+            ),
+            GrammarExample(
+                text="Se avrò tempo, ti aiuterò.", translation="If I have time, I will help you."
+            ),
+            GrammarExample(
+                text="Se hai fame, prendi una mela.",
+                translation="If you are hungry, take an apple.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se pioverei, resterei a casa.", correct="Se piove, resto a casa.", note="Nel 1º tipo non si usa mai il condizionale nella protasi."),
-            GrammarMistake(wrong="Se piove, resterei a casa.", correct="Se piove, resto a casa. (o: Se piovesse, resterei a casa.)", note="Non mischiare protasi reale con apodosi ipotetica."),
+            GrammarMistake(
+                wrong="Se pioverei, resterei a casa.",
+                correct="Se piove, resto a casa.",
+                note="Nel 1º tipo non si usa mai il condizionale nella protasi.",
+            ),
+            GrammarMistake(
+                wrong="Se piove, resterei a casa.",
+                correct="Se piove, resto a casa. (o: Se piovesse, resterei a casa.)",
+                note="Non mischiare protasi reale con apodosi ipotetica.",
+            ),
         ],
         related=["periodo-ipotetico-2", "se-congiuntivo", "condizionale-presente"],
     ),
@@ -409,22 +663,44 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mai il condizionale nella protasi.",
         ],
         examples=[
-            GrammarExample(text="Se avessi tempo, viaggerei di più.", translation="If I had time, I would travel more."),
-            GrammarExample(text="Se facesse bel tempo, andrei al mare.", translation="If the weather were nice, I would go to the beach."),
-            GrammarExample(text="Se potessi parlare italiano, vivrei a Roma.", translation="If I could speak Italian, I would live in Rome."),
+            GrammarExample(
+                text="Se avessi tempo, viaggerei di più.",
+                translation="If I had time, I would travel more.",
+            ),
+            GrammarExample(
+                text="Se facesse bel tempo, andrei al mare.",
+                translation="If the weather were nice, I would go to the beach.",
+            ),
+            GrammarExample(
+                text="Se potessi parlare italiano, vivrei a Roma.",
+                translation="If I could speak Italian, I would live in Rome.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se avrei soldi, comprerei una casa.", correct="Se avessi soldi, comprerei una casa.", note="Dopo se mai il condizionale; si usa il congiuntivo imperfetto."),
-            GrammarMistake(wrong="Se avessi soldi, compravo una casa.", correct="Se avessi soldi, comprerei una casa.", note="L'apodosi vuole il condizionale presente, non l'imperfetto indicativo."),
+            GrammarMistake(
+                wrong="Se avrei soldi, comprerei una casa.",
+                correct="Se avessi soldi, comprerei una casa.",
+                note="Dopo se mai il condizionale; si usa il congiuntivo imperfetto.",
+            ),
+            GrammarMistake(
+                wrong="Se avessi soldi, compravo una casa.",
+                correct="Se avessi soldi, comprerei una casa.",
+                note="L'apodosi vuole il condizionale presente, non l'imperfetto indicativo.",
+            ),
         ],
-        related=["periodo-ipotetico-1", "se-congiuntivo", "congiuntivo-imperfetto", "condizionale-presente"],
+        related=[
+            "periodo-ipotetico-1",
+            "se-congiuntivo",
+            "congiuntivo-imperfetto",
+            "condizionale-presente",
+        ],
     ),
     GrammarTopic(
         slug="se-congiuntivo",
         title="Se + congiuntivo: regole generali",
         level="B1",
         category="Congiuntivo",
-        summary="La regola fondamentale: dopo \"se\" non si usa mai il condizionale.",
+        summary='La regola fondamentale: dopo "se" non si usa mai il condizionale.',
         explanation="La regola più importante del periodo ipotetico italiano:\n\n**Dopo \"se\" non si usa MAI il condizionale.**\n\n- 1º tipo (realtà): *Se piove, prendo l'ombrello.*\n- 2º tipo (possibilità): *Se piovesse, prenderei l'ombrello.*\n- 3º tipo (irrealtà): *Se avesse piovuto, avrei preso l'ombrello.*\n\nIl condizionale va solo nell'apodosi (conseguenza), mai nella protasi (se).",
         rules=[
             "Dopo se mai il condizionale.",
@@ -434,14 +710,32 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Se potessi, lo farei.", translation="If I could, I would do it."),
-            GrammarExample(text="Se avessi saputo, sarei venuto.", translation="If I had known, I would have come."),
-            GrammarExample(text="Se vuoi, possiamo uscire.", translation="If you want, we can go out."),
+            GrammarExample(
+                text="Se avessi saputo, sarei venuto.",
+                translation="If I had known, I would have come.",
+            ),
+            GrammarExample(
+                text="Se vuoi, possiamo uscire.", translation="If you want, we can go out."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se potrei, lo farei.", correct="Se potessi, lo farei.", note="Errore classico: mai condizionale dopo se."),
-            GrammarMistake(wrong="Se avrei saputo, sarei venuto.", correct="Se avessi saputo, sarei venuto.", note="Dopo se si usa congiuntivo trapassato, non condizionale passato."),
+            GrammarMistake(
+                wrong="Se potrei, lo farei.",
+                correct="Se potessi, lo farei.",
+                note="Errore classico: mai condizionale dopo se.",
+            ),
+            GrammarMistake(
+                wrong="Se avrei saputo, sarei venuto.",
+                correct="Se avessi saputo, sarei venuto.",
+                note="Dopo se si usa congiuntivo trapassato, non condizionale passato.",
+            ),
         ],
-        related=["periodo-ipotetico-1", "periodo-ipotetico-2", "congiuntivo-imperfetto", "congiuntivo-trapassato"],
+        related=[
+            "periodo-ipotetico-1",
+            "periodo-ipotetico-2",
+            "congiuntivo-imperfetto",
+            "congiuntivo-trapassato",
+        ],
     ),
     GrammarTopic(
         slug="discorso-indiretto-passato",
@@ -458,13 +752,29 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Indicatori temporali: oggi → quel giorno, qui → lì.",
         ],
         examples=[
-            GrammarExample(text="Ha detto che era stanco.", translation="He said that he was tired."),
-            GrammarExample(text="Disse che sarebbe arrivato il giorno dopo.", translation="He said that he would arrive the following day."),
-            GrammarExample(text="Mi spiegò che aveva già finito il lavoro.", translation="He explained that he had already finished the work."),
+            GrammarExample(
+                text="Ha detto che era stanco.", translation="He said that he was tired."
+            ),
+            GrammarExample(
+                text="Disse che sarebbe arrivato il giorno dopo.",
+                translation="He said that he would arrive the following day.",
+            ),
+            GrammarExample(
+                text="Mi spiegò che aveva già finito il lavoro.",
+                translation="He explained that he had already finished the work.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ha detto che è stanco. (ieri)", correct="Ha detto che era stanco.", note="Verbo principale al passato → subordinata al passato."),
-            GrammarMistake(wrong="Ha detto che verrà domani.", correct="Ha detto che sarebbe venuto il giorno dopo.", note="Futuro nel passato → condizionale passato."),
+            GrammarMistake(
+                wrong="Ha detto che è stanco. (ieri)",
+                correct="Ha detto che era stanco.",
+                note="Verbo principale al passato → subordinata al passato.",
+            ),
+            GrammarMistake(
+                wrong="Ha detto che verrà domani.",
+                correct="Ha detto che sarebbe venuto il giorno dopo.",
+                note="Futuro nel passato → condizionale passato.",
+            ),
         ],
         related=["discorso-indiretto", "concordanza-tempi", "trasformazioni-temporali"],
     ),
@@ -482,13 +792,30 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Condizione: purché, a patto che + congiuntivo.",
         ],
         examples=[
-            GrammarExample(text="Siccome pioveva, siamo rimasti a casa.", translation="Since it was raining, we stayed home."),
-            GrammarExample(text="Non ho studiato, quindi non ho passato l'esame.", translation="I didn't study, therefore I didn't pass the exam."),
-            GrammarExample(text="Benché fosse tardi, abbiamo continuato.", translation="Although it was late, we continued."),
+            GrammarExample(
+                text="Siccome pioveva, siamo rimasti a casa.",
+                translation="Since it was raining, we stayed home.",
+            ),
+            GrammarExample(
+                text="Non ho studiato, quindi non ho passato l'esame.",
+                translation="I didn't study, therefore I didn't pass the exam.",
+            ),
+            GrammarExample(
+                text="Benché fosse tardi, abbiamo continuato.",
+                translation="Although it was late, we continued.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Benché era tardi, siamo usciti.", correct="Benché fosse tardi, siamo usciti.", note="Benché richiede il congiuntivo."),
-            GrammarMistake(wrong="Siccome pioveva, perciò siamo rimasti a casa.", correct="Siccome pioveva, siamo rimasti a casa.", note="Non usare due connettivi causali/consecutivi insieme."),
+            GrammarMistake(
+                wrong="Benché era tardi, siamo usciti.",
+                correct="Benché fosse tardi, siamo usciti.",
+                note="Benché richiede il congiuntivo.",
+            ),
+            GrammarMistake(
+                wrong="Siccome pioveva, perciò siamo rimasti a casa.",
+                correct="Siccome pioveva, siamo rimasti a casa.",
+                note="Non usare due connettivi causali/consecutivi insieme.",
+            ),
         ],
         related=["connettivi-narrativi", "congiuntivo-presente", "connettivi-avanzati"],
     ),
@@ -506,13 +833,30 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Tempo fa → tempo prima.",
         ],
         examples=[
-            GrammarExample(text="Disse che quel giorno era stanco. (oggi)", translation="He said that that day he was tired."),
-            GrammarExample(text="Mi disse che sarebbe partito il giorno dopo. (domani)", translation="He told me that he would leave the next day."),
-            GrammarExample(text="Disse che era stato lì il giorno prima. (qui / ieri)", translation="He said that he had been there the day before."),
+            GrammarExample(
+                text="Disse che quel giorno era stanco. (oggi)",
+                translation="He said that that day he was tired.",
+            ),
+            GrammarExample(
+                text="Mi disse che sarebbe partito il giorno dopo. (domani)",
+                translation="He told me that he would leave the next day.",
+            ),
+            GrammarExample(
+                text="Disse che era stato lì il giorno prima. (qui / ieri)",
+                translation="He said that he had been there the day before.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Disse che oggi era stanco.", correct="Disse che quel giorno era stanco.", note="Con verbo principale al passato, oggi → quel giorno."),
-            GrammarMistake(wrong="Ieri ha detto che domani partirà.", correct="Ieri ha detto che oggi sarebbe partito. (o: il giorno dopo)", note="Adattare il riferimento temporale al momento del discorso indiretto."),
+            GrammarMistake(
+                wrong="Disse che oggi era stanco.",
+                correct="Disse che quel giorno era stanco.",
+                note="Con verbo principale al passato, oggi → quel giorno.",
+            ),
+            GrammarMistake(
+                wrong="Ieri ha detto che domani partirà.",
+                correct="Ieri ha detto che oggi sarebbe partito. (o: il giorno dopo)",
+                note="Adattare il riferimento temporale al momento del discorso indiretto.",
+            ),
         ],
         related=["discorso-indiretto-passato", "discorso-indiretto", "marcatori-temporali"],
     ),

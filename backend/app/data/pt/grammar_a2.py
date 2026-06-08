@@ -18,14 +18,29 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "A forma nós é igual no presente e pretérito para -ar.",
         ],
         examples=[
-            GrammarExample(text="Ontem falei com a Maria.", translation="Yesterday I spoke with Maria."),
+            GrammarExample(
+                text="Ontem falei com a Maria.", translation="Yesterday I spoke with Maria."
+            ),
             GrammarExample(text="Ela comeu tudo.", translation="She ate everything."),
-            GrammarExample(text="Nós abrimos a loja às oito.", translation="We opened the shop at eight."),
-            GrammarExample(text="Eles venderam a casa no ano passado.", translation="They sold the house last year."),
+            GrammarExample(
+                text="Nós abrimos a loja às oito.", translation="We opened the shop at eight."
+            ),
+            GrammarExample(
+                text="Eles venderam a casa no ano passado.",
+                translation="They sold the house last year.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ontem eu falo com ela.", correct="Ontem eu falei com ela.", note="Ontem requer pretérito perfeito."),
-            GrammarMistake(wrong="Nós falemos.", correct="Nós falamos.", note="Falemos é conjuntivo/imperativo, não pretérito."),
+            GrammarMistake(
+                wrong="Ontem eu falo com ela.",
+                correct="Ontem eu falei com ela.",
+                note="Ontem requer pretérito perfeito.",
+            ),
+            GrammarMistake(
+                wrong="Nós falemos.",
+                correct="Nós falamos.",
+                note="Falemos é conjuntivo/imperativo, não pretérito.",
+            ),
         ],
         related=["marcadores-temporais", "preterito-imperfeito", "perfeito-vs-imperfeito"],
     ),
@@ -43,13 +58,26 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Nunca pode usar-se com perfeito ou presente.",
         ],
         examples=[
-            GrammarExample(text="Ontem fui ao cinema.", translation="Yesterday I went to the cinema."),
+            GrammarExample(
+                text="Ontem fui ao cinema.", translation="Yesterday I went to the cinema."
+            ),
             GrammarExample(text="Já leste o livro?", translation="Have you already read the book?"),
-            GrammarExample(text="Ainda não terminei o trabalho.", translation="I haven't finished the work yet."),
-            GrammarExample(text="Quando era criança, brincava na rua.", translation="When I was a child, I used to play in the street.", note="imperfeito"),
+            GrammarExample(
+                text="Ainda não terminei o trabalho.",
+                translation="I haven't finished the work yet.",
+            ),
+            GrammarExample(
+                text="Quando era criança, brincava na rua.",
+                translation="When I was a child, I used to play in the street.",
+                note="imperfeito",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ontem eu vou ao cinema.", correct="Ontem eu fui ao cinema.", note="Ontem requer passado."),
+            GrammarMistake(
+                wrong="Ontem eu vou ao cinema.",
+                correct="Ontem eu fui ao cinema.",
+                note="Ontem requer passado.",
+            ),
         ],
         related=["preterito-perfeito-regular", "preterito-imperfeito", "perfeito-vs-imperfeito"],
     ),
@@ -67,14 +95,26 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Memorizar estes verbos: são de uso diário.",
         ],
         examples=[
-            GrammarExample(text="Eu fui ao médico ontem.", translation="I went to the doctor yesterday.", note="ir"),
-            GrammarExample(text="A festa foi ótima.", translation="The party was great.", note="ser"),
-            GrammarExample(text="Ela teve uma ideia brilhante.", translation="She had a brilliant idea."),
+            GrammarExample(
+                text="Eu fui ao médico ontem.",
+                translation="I went to the doctor yesterday.",
+                note="ir",
+            ),
+            GrammarExample(
+                text="A festa foi ótima.", translation="The party was great.", note="ser"
+            ),
+            GrammarExample(
+                text="Ela teve uma ideia brilhante.", translation="She had a brilliant idea."
+            ),
             GrammarExample(text="Nós fizemos o jantar.", translation="We made dinner."),
             GrammarExample(text="Eles vieram cedo.", translation="They came early."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Eu fazi o trabalho.", correct="Eu fiz o trabalho.", note="Fazer no pretérito: fiz, fizeste, fez..."),
+            GrammarMistake(
+                wrong="Eu fazi o trabalho.",
+                correct="Eu fiz o trabalho.",
+                note="Fazer no pretérito: fiz, fizeste, fez...",
+            ),
         ],
         related=["preterito-perfeito-regular", "marcadores-temporais", "perfeito-vs-imperfeito"],
     ),
@@ -92,13 +132,27 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Imperfeito = cenário; perfeito = ação pontual.",
         ],
         examples=[
-            GrammarExample(text="Quando era pequeno, morava no Porto.", translation="When I was little, I lived in Porto."),
-            GrammarExample(text="Ela cantava muito bem.", translation="She used to sing very well."),
-            GrammarExample(text="Estava a chover quando saí de casa.", translation="It was raining when I left home."),
-            GrammarExample(text="Eram cinco da tarde.", translation="It was five in the afternoon."),
+            GrammarExample(
+                text="Quando era pequeno, morava no Porto.",
+                translation="When I was little, I lived in Porto.",
+            ),
+            GrammarExample(
+                text="Ela cantava muito bem.", translation="She used to sing very well."
+            ),
+            GrammarExample(
+                text="Estava a chover quando saí de casa.",
+                translation="It was raining when I left home.",
+            ),
+            GrammarExample(
+                text="Eram cinco da tarde.", translation="It was five in the afternoon."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Quando era criança eu brinquei na rua.", correct="Quando era criança, brincava na rua.", note="Hábitos passados exigem imperfeito, não perfeito."),
+            GrammarMistake(
+                wrong="Quando era criança eu brinquei na rua.",
+                correct="Quando era criança, brincava na rua.",
+                note="Hábitos passados exigem imperfeito, não perfeito.",
+            ),
         ],
         related=["perfeito-vs-imperfeito", "costumava", "marcadores-temporais"],
     ),
@@ -117,12 +171,25 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Imperfeito pinta o fundo; perfeito avança a história.",
         ],
         examples=[
-            GrammarExample(text="Estava a dormir quando o despertador tocou.", translation="I was sleeping when the alarm went off.", note="imperfeito + perfeito"),
-            GrammarExample(text="Quando vivia em Lisboa, ia à praia todos os fins de semana.", translation="When I lived in Lisbon, I used to go to the beach every weekend."),
-            GrammarExample(text="Ontem comi bacalhau.", translation="Yesterday I ate cod.", note="perfeito"),
+            GrammarExample(
+                text="Estava a dormir quando o despertador tocou.",
+                translation="I was sleeping when the alarm went off.",
+                note="imperfeito + perfeito",
+            ),
+            GrammarExample(
+                text="Quando vivia em Lisboa, ia à praia todos os fins de semana.",
+                translation="When I lived in Lisbon, I used to go to the beach every weekend.",
+            ),
+            GrammarExample(
+                text="Ontem comi bacalhau.", translation="Yesterday I ate cod.", note="perfeito"
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ontem chovia muito.", correct="Ontem choveu muito.", note="Ontem refere-se a facto concluído → perfeito."),
+            GrammarMistake(
+                wrong="Ontem chovia muito.",
+                correct="Ontem choveu muito.",
+                note="Ontem refere-se a facto concluído → perfeito.",
+            ),
         ],
         related=["preterito-perfeito-regular", "preterito-imperfeito", "costumava"],
     ),
@@ -141,11 +208,20 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Costumava acordar cedo.", translation="I used to wake up early."),
-            GrammarExample(text="Ela costumava cantar no coro.", translation="She used to sing in the choir."),
-            GrammarExample(text="Costumávamos jantar fora às sextas.", translation="We used to eat out on Fridays."),
+            GrammarExample(
+                text="Ela costumava cantar no coro.", translation="She used to sing in the choir."
+            ),
+            GrammarExample(
+                text="Costumávamos jantar fora às sextas.",
+                translation="We used to eat out on Fridays.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Costumei ir à praia.", correct="Costumava ir à praia.", note="Hábitos passados usam imperfeito, não perfeito."),
+            GrammarMistake(
+                wrong="Costumei ir à praia.",
+                correct="Costumava ir à praia.",
+                note="Hábitos passados usam imperfeito, não perfeito.",
+            ),
         ],
         related=["preterito-imperfeito", "perfeito-vs-imperfeito", "marcadores-temporais"],
     ),
@@ -164,13 +240,25 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Comprei-o ontem.", translation="I bought it yesterday."),
-            GrammarExample(text="Vou comprá-lo.", translation="I'm going to buy it.", note="-r → -lo"),
-            GrammarExample(text="Eles compraram-no.", translation="They bought it.", note="-m → -no"),
+            GrammarExample(
+                text="Vou comprá-lo.", translation="I'm going to buy it.", note="-r → -lo"
+            ),
+            GrammarExample(
+                text="Eles compraram-no.", translation="They bought it.", note="-m → -no"
+            ),
             GrammarExample(text="Conheço-a.", translation="I know her."),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Vou comprar-o.", correct="Vou comprá-lo.", note="Verbo em -r: pronome transforma-se em -lo."),
-            GrammarMistake(wrong="Comprei ele.", correct="Comprei-o.", note="Ele é pronome sujeito, nunca objeto direto."),
+            GrammarMistake(
+                wrong="Vou comprar-o.",
+                correct="Vou comprá-lo.",
+                note="Verbo em -r: pronome transforma-se em -lo.",
+            ),
+            GrammarMistake(
+                wrong="Comprei ele.",
+                correct="Comprei-o.",
+                note="Ele é pronome sujeito, nunca objeto direto.",
+            ),
         ],
         related=["pronomes-objeto-indireto", "colocacao-pronominal"],
     ),
@@ -189,13 +277,30 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Dei-lhe o recado.", translation="I gave him/her the message."),
-            GrammarExample(text="A Maria emprestou-me o livro.", translation="Maria lent me the book."),
-            GrammarExample(text="Não te disse nada.", translation="I didn't tell you anything.", note="negação → próclise"),
-            GrammarExample(text="O professor explicou-lhes a matéria.", translation="The teacher explained the subject to them."),
+            GrammarExample(
+                text="A Maria emprestou-me o livro.", translation="Maria lent me the book."
+            ),
+            GrammarExample(
+                text="Não te disse nada.",
+                translation="I didn't tell you anything.",
+                note="negação → próclise",
+            ),
+            GrammarExample(
+                text="O professor explicou-lhes a matéria.",
+                translation="The teacher explained the subject to them.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Dei para ele o livro.", correct="Dei-lhe o livro.", note="Usa-se pronome lhe em vez de para ele."),
-            GrammarMistake(wrong="Eu lhe dei o livro.", correct="Eu dei-lhe o livro.", note="Frase afirmativa EP: pronome depois do verbo."),
+            GrammarMistake(
+                wrong="Dei para ele o livro.",
+                correct="Dei-lhe o livro.",
+                note="Usa-se pronome lhe em vez de para ele.",
+            ),
+            GrammarMistake(
+                wrong="Eu lhe dei o livro.",
+                correct="Eu dei-lhe o livro.",
+                note="Frase afirmativa EP: pronome depois do verbo.",
+            ),
         ],
         related=["pronomes-objeto-direto", "colocacao-pronominal"],
     ),
@@ -215,12 +320,28 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Chamo-me Ana.", translation="My name is Ana.", note="ênclise"),
             GrammarExample(text="Não te esqueças.", translation="Don't forget.", note="próclise"),
-            GrammarExample(text="Já lhe contei tudo.", translation="I already told him/her everything.", note="próclise com advérbio"),
-            GrammarExample(text="Dar-te-ei uma resposta amanhã.", translation="I will give you an answer tomorrow.", note="mesóclise, formal"),
+            GrammarExample(
+                text="Já lhe contei tudo.",
+                translation="I already told him/her everything.",
+                note="próclise com advérbio",
+            ),
+            GrammarExample(
+                text="Dar-te-ei uma resposta amanhã.",
+                translation="I will give you an answer tomorrow.",
+                note="mesóclise, formal",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Não esqueças-te.", correct="Não te esqueças.", note="Com negação, pronome vai antes do verbo."),
-            GrammarMistake(wrong="Me chamo João.", correct="Chamo-me João.", note="EP não começa frase com pronome átono."),
+            GrammarMistake(
+                wrong="Não esqueças-te.",
+                correct="Não te esqueças.",
+                note="Com negação, pronome vai antes do verbo.",
+            ),
+            GrammarMistake(
+                wrong="Me chamo João.",
+                correct="Chamo-me João.",
+                note="EP não começa frase com pronome átono.",
+            ),
         ],
         related=["pronomes-objeto-direto", "pronomes-objeto-indireto", "verbos-reflexivos"],
     ),
@@ -238,13 +359,28 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Bom/mau/grande/pequeno: melhor, pior, maior, menor.",
         ],
         examples=[
-            GrammarExample(text="Lisboa é mais bonita do que Madrid.", translation="Lisbon is more beautiful than Madrid."),
-            GrammarExample(text="Este livro é melhor do que o filme.", translation="This book is better than the movie.", note="bom→melhor"),
-            GrammarExample(text="Ela é tão inteligente como o irmão.", translation="She is as intelligent as her brother."),
-            GrammarExample(text="Hoje está menos frio do que ontem.", translation="Today is less cold than yesterday."),
+            GrammarExample(
+                text="Lisboa é mais bonita do que Madrid.",
+                translation="Lisbon is more beautiful than Madrid.",
+            ),
+            GrammarExample(
+                text="Este livro é melhor do que o filme.",
+                translation="This book is better than the movie.",
+                note="bom→melhor",
+            ),
+            GrammarExample(
+                text="Ela é tão inteligente como o irmão.",
+                translation="She is as intelligent as her brother.",
+            ),
+            GrammarExample(
+                text="Hoje está menos frio do que ontem.",
+                translation="Today is less cold than yesterday.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="É mais bom.", correct="É melhor.", note="Comparativo de bom é melhor."),
+            GrammarMistake(
+                wrong="É mais bom.", correct="É melhor.", note="Comparativo de bom é melhor."
+            ),
         ],
         related=["superlativos", "tao-como", "adjetivos-descritivos"],
     ),
@@ -262,14 +398,32 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Na fala, muito + adjetivo é mais comum.",
         ],
         examples=[
-            GrammarExample(text="Ela é a pessoa mais simpática que conheço.", translation="She is the nicest person I know."),
-            GrammarExample(text="Este restaurante é ótimo.", translation="This restaurant is excellent."),
-            GrammarExample(text="A torre é altíssima.", translation="The tower is very tall.", note="sintético"),
-            GrammarExample(text="Este é o filme menos interessante do ano.", translation="This is the least interesting movie of the year."),
+            GrammarExample(
+                text="Ela é a pessoa mais simpática que conheço.",
+                translation="She is the nicest person I know.",
+            ),
+            GrammarExample(
+                text="Este restaurante é ótimo.", translation="This restaurant is excellent."
+            ),
+            GrammarExample(
+                text="A torre é altíssima.", translation="The tower is very tall.", note="sintético"
+            ),
+            GrammarExample(
+                text="Este é o filme menos interessante do ano.",
+                translation="This is the least interesting movie of the year.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="É a mais boa.", correct="É a melhor.", note="Superlativo de bom é melhor/ótima."),
-            GrammarMistake(wrong="Este livro é muito ótimo.", correct="Este livro é ótimo.", note="Ótimo já é superlativo."),
+            GrammarMistake(
+                wrong="É a mais boa.",
+                correct="É a melhor.",
+                note="Superlativo de bom é melhor/ótima.",
+            ),
+            GrammarMistake(
+                wrong="Este livro é muito ótimo.",
+                correct="Este livro é ótimo.",
+                note="Ótimo já é superlativo.",
+            ),
         ],
         related=["comparativos", "tao-como", "adjetivos-descritivos"],
     ),
@@ -287,14 +441,33 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Tão... que = consequência.",
         ],
         examples=[
-            GrammarExample(text="É tão inteligente como tu.", translation="He is as intelligent as you."),
-            GrammarExample(text="Tenho tanto trabalho como na semana passada.", translation="I have as much work as last week."),
-            GrammarExample(text="Ela dorme tanto como eu.", translation="She sleeps as much as I do."),
-            GrammarExample(text="Estava tão cansada que adormeceu no sofá.", translation="She was so tired that she fell asleep on the sofa.", note="consequência"),
+            GrammarExample(
+                text="É tão inteligente como tu.", translation="He is as intelligent as you."
+            ),
+            GrammarExample(
+                text="Tenho tanto trabalho como na semana passada.",
+                translation="I have as much work as last week.",
+            ),
+            GrammarExample(
+                text="Ela dorme tanto como eu.", translation="She sleeps as much as I do."
+            ),
+            GrammarExample(
+                text="Estava tão cansada que adormeceu no sofá.",
+                translation="She was so tired that she fell asleep on the sofa.",
+                note="consequência",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="É tão alto do que tu.", correct="É tão alto como tu.", note="Tão... como, não tão... do que."),
-            GrammarMistake(wrong="Tenho tão dinheiro como ele.", correct="Tenho tanto dinheiro como ele.", note="Com substantivo: tanto, não tão."),
+            GrammarMistake(
+                wrong="É tão alto do que tu.",
+                correct="É tão alto como tu.",
+                note="Tão... como, não tão... do que.",
+            ),
+            GrammarMistake(
+                wrong="Tenho tão dinheiro como ele.",
+                correct="Tenho tanto dinheiro como ele.",
+                note="Com substantivo: tanto, não tão.",
+            ),
         ],
         related=["comparativos", "superlativos", "adjetivos-descritivos"],
     ),
@@ -311,14 +484,26 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Pronomes átonos seguem o verbo (ênclise).",
         ],
         examples=[
-            GrammarExample(text="Fala mais devagar, por favor.", translation="Speak more slowly, please.", note="tu"),
+            GrammarExample(
+                text="Fala mais devagar, por favor.",
+                translation="Speak more slowly, please.",
+                note="tu",
+            ),
             GrammarExample(text="Coma a sopa.", translation="Eat the soup.", note="você"),
-            GrammarExample(text="Digam-me a verdade.", translation="Tell me the truth.", note="vocês + pronome"),
+            GrammarExample(
+                text="Digam-me a verdade.", translation="Tell me the truth.", note="vocês + pronome"
+            ),
             GrammarExample(text="Senta-te.", translation="Sit down.", note="tu, reflexivo"),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Falas mais devagar!", correct="Fala mais devagar!", note="Imperativo tu perde o -s."),
-            GrammarMistake(wrong="Senta-se! (para tu)", correct="Senta-te!", note="Para tu, o pronome é te."),
+            GrammarMistake(
+                wrong="Falas mais devagar!",
+                correct="Fala mais devagar!",
+                note="Imperativo tu perde o -s.",
+            ),
+            GrammarMistake(
+                wrong="Senta-se! (para tu)", correct="Senta-te!", note="Para tu, o pronome é te."
+            ),
         ],
         related=["imperativo-negativo", "imperativo-irregular", "colocacao-pronominal"],
     ),
@@ -336,14 +521,30 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Você e vocês têm a mesma forma.",
         ],
         examples=[
-            GrammarExample(text="Não fales tão alto.", translation="Don't speak so loudly.", note="tu"),
+            GrammarExample(
+                text="Não fales tão alto.", translation="Don't speak so loudly.", note="tu"
+            ),
             GrammarExample(text="Não coma isso.", translation="Don't eat that.", note="você"),
-            GrammarExample(text="Não se esqueçam do passaporte.", translation="Don't forget your passports.", note="vocês + próclise"),
-            GrammarExample(text="Não me interrompas.", translation="Don't interrupt me.", note="tu, próclise"),
+            GrammarExample(
+                text="Não se esqueçam do passaporte.",
+                translation="Don't forget your passports.",
+                note="vocês + próclise",
+            ),
+            GrammarExample(
+                text="Não me interrompas.", translation="Don't interrupt me.", note="tu, próclise"
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Não fala alto! (para tu)", correct="Não fales alto!", note="Para tu, usa-se o conjuntivo."),
-            GrammarMistake(wrong="Não esqueças-te!", correct="Não te esqueças!", note="Com negação, pronome vai antes do verbo."),
+            GrammarMistake(
+                wrong="Não fala alto! (para tu)",
+                correct="Não fales alto!",
+                note="Para tu, usa-se o conjuntivo.",
+            ),
+            GrammarMistake(
+                wrong="Não esqueças-te!",
+                correct="Não te esqueças!",
+                note="Com negação, pronome vai antes do verbo.",
+            ),
         ],
         related=["imperativo-afirmativo", "imperativo-irregular", "presente-conjuntivo"],
     ),
@@ -362,13 +563,27 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Sê simpático.", translation="Be nice.", note="ser, tu"),
-            GrammarExample(text="Faça o favor de entrar.", translation="Please come in.", note="fazer, você"),
-            GrammarExample(text="Põe a mesa, por favor.", translation="Set the table, please.", note="pôr, tu"),
-            GrammarExample(text="Não ponhas os pés em cima da mesa.", translation="Don't put your feet on the table.", note="negativo, tu"),
+            GrammarExample(
+                text="Faça o favor de entrar.", translation="Please come in.", note="fazer, você"
+            ),
+            GrammarExample(
+                text="Põe a mesa, por favor.", translation="Set the table, please.", note="pôr, tu"
+            ),
+            GrammarExample(
+                text="Não ponhas os pés em cima da mesa.",
+                translation="Don't put your feet on the table.",
+                note="negativo, tu",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Seja feliz! (para tu)", correct="Sê feliz!", note="Para tu, imperativo de ser é sê."),
-            GrammarMistake(wrong="Não faz isso!", correct="Não faças isso!", note="Negativo: não faças (tu)."),
+            GrammarMistake(
+                wrong="Seja feliz! (para tu)",
+                correct="Sê feliz!",
+                note="Para tu, imperativo de ser é sê.",
+            ),
+            GrammarMistake(
+                wrong="Não faz isso!", correct="Não faças isso!", note="Negativo: não faças (tu)."
+            ),
         ],
         related=["imperativo-afirmativo", "imperativo-negativo", "presente-conjuntivo"],
     ),
@@ -386,13 +601,27 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Com pronomes: mesóclise (formal).",
         ],
         examples=[
-            GrammarExample(text="Falaremos sobre isso amanhã.", translation="We will talk about it tomorrow."),
-            GrammarExample(text="O concerto realizar-se-á no sábado.", translation="The concert will take place on Saturday.", note="mesóclise"),
-            GrammarExample(text="Direi a verdade.", translation="I will tell the truth.", note="irregular"),
-            GrammarExample(text="Ela fará o jantar.", translation="She will make dinner.", note="irregular"),
+            GrammarExample(
+                text="Falaremos sobre isso amanhã.", translation="We will talk about it tomorrow."
+            ),
+            GrammarExample(
+                text="O concerto realizar-se-á no sábado.",
+                translation="The concert will take place on Saturday.",
+                note="mesóclise",
+            ),
+            GrammarExample(
+                text="Direi a verdade.", translation="I will tell the truth.", note="irregular"
+            ),
+            GrammarExample(
+                text="Ela fará o jantar.", translation="She will make dinner.", note="irregular"
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Nós fazeremos.", correct="Nós faremos.", note="Fazer no futuro é irregular: farei, farás..."),
+            GrammarMistake(
+                wrong="Nós fazeremos.",
+                correct="Nós faremos.",
+                note="Fazer no futuro é irregular: farei, farás...",
+            ),
         ],
         related=["ir-futuro", "condicional", "futuro-composto", "futuro-do-conjuntivo"],
     ),
@@ -410,14 +639,32 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mesóclise (formal): dar-te-ia.",
         ],
         examples=[
-            GrammarExample(text="Gostaria de um café, por favor.", translation="I would like a coffee, please.", note="pedido cordial"),
-            GrammarExample(text="Se tivesse dinheiro, viajaria pelo mundo.", translation="If I had money, I would travel the world."),
-            GrammarExample(text="Ele disse que chegaria às três.", translation="He said he would arrive at three."),
+            GrammarExample(
+                text="Gostaria de um café, por favor.",
+                translation="I would like a coffee, please.",
+                note="pedido cordial",
+            ),
+            GrammarExample(
+                text="Se tivesse dinheiro, viajaria pelo mundo.",
+                translation="If I had money, I would travel the world.",
+            ),
+            GrammarExample(
+                text="Ele disse que chegaria às três.",
+                translation="He said he would arrive at three.",
+            ),
             GrammarExample(text="Poderia ajudar-me?", translation="Could you help me?"),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se tivesse dinheiro, viajava pelo mundo.", correct="Se tivesse dinheiro, viajaria pelo mundo.", note="Se+imperfeito conj. → condicional."),
-            GrammarMistake(wrong="Eu gostava de um café.", correct="Eu gostaria de um café.", note="Gostaria é mais cordial."),
+            GrammarMistake(
+                wrong="Se tivesse dinheiro, viajava pelo mundo.",
+                correct="Se tivesse dinheiro, viajaria pelo mundo.",
+                note="Se+imperfeito conj. → condicional.",
+            ),
+            GrammarMistake(
+                wrong="Eu gostava de um café.",
+                correct="Eu gostaria de um café.",
+                note="Gostaria é mais cordial.",
+            ),
         ],
         related=["futuro-do-presente", "condicional-composto", "se-imperfeito-subjuntivo"],
     ),
@@ -435,12 +682,26 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Particípio passado é invariável.",
         ],
         examples=[
-            GrammarExample(text="Quando chegares, já terei terminado o trabalho.", translation="When you arrive, I will have already finished."),
-            GrammarExample(text="Ele ainda não chegou; terá havido trânsito.", translation="He hasn't arrived; there must have been traffic.", note="suposição"),
-            GrammarExample(text="Amanhã a esta hora já teremos partido.", translation="By this time tomorrow we will have already left."),
+            GrammarExample(
+                text="Quando chegares, já terei terminado o trabalho.",
+                translation="When you arrive, I will have already finished.",
+            ),
+            GrammarExample(
+                text="Ele ainda não chegou; terá havido trânsito.",
+                translation="He hasn't arrived; there must have been traffic.",
+                note="suposição",
+            ),
+            GrammarExample(
+                text="Amanhã a esta hora já teremos partido.",
+                translation="By this time tomorrow we will have already left.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Quando chegares, já vou ter jantado.", correct="Quando chegares, já terei jantado.", note="Não se usa ir+ter; usa-se ter no futuro."),
+            GrammarMistake(
+                wrong="Quando chegares, já vou ter jantado.",
+                correct="Quando chegares, já terei jantado.",
+                note="Não se usa ir+ter; usa-se ter no futuro.",
+            ),
         ],
         related=["futuro-do-presente", "condicional", "preterito-perfeito-composto"],
     ),
@@ -458,12 +719,25 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Vírgula após conector no início em EP.",
         ],
         examples=[
-            GrammarExample(text="Primeiro, tomei o pequeno-almoço. Depois, fui trabalhar.", translation="First, I had breakfast. Then I went to work."),
-            GrammarExample(text="Enquanto esperava, li um livro.", translation="While I was waiting, I read a book."),
-            GrammarExample(text="Por fim, conseguimos terminar o projeto.", translation="Finally, we managed to finish the project."),
+            GrammarExample(
+                text="Primeiro, tomei o pequeno-almoço. Depois, fui trabalhar.",
+                translation="First, I had breakfast. Then I went to work.",
+            ),
+            GrammarExample(
+                text="Enquanto esperava, li um livro.",
+                translation="While I was waiting, I read a book.",
+            ),
+            GrammarExample(
+                text="Por fim, conseguimos terminar o projeto.",
+                translation="Finally, we managed to finish the project.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Enquanto que esperava.", correct="Enquanto esperava.", note="Enquanto é conjunção; não precisa de que."),
+            GrammarMistake(
+                wrong="Enquanto que esperava.",
+                correct="Enquanto esperava.",
+                note="Enquanto é conjunção; não precisa de que.",
+            ),
         ],
         related=["sequencia-temporal", "conectores-argumentativos"],
     ),
@@ -481,12 +755,25 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mal + verbo = assim que.",
         ],
         examples=[
-            GrammarExample(text="Antes de sair, desliguei as luzes.", translation="Before leaving, I turned off the lights."),
-            GrammarExample(text="Depois de comer, lavámos a louça.", translation="After eating, we washed the dishes."),
-            GrammarExample(text="Mal entrei em casa, o telefone tocou.", translation="As soon as I got home, the phone rang."),
+            GrammarExample(
+                text="Antes de sair, desliguei as luzes.",
+                translation="Before leaving, I turned off the lights.",
+            ),
+            GrammarExample(
+                text="Depois de comer, lavámos a louça.",
+                translation="After eating, we washed the dishes.",
+            ),
+            GrammarExample(
+                text="Mal entrei em casa, o telefone tocou.",
+                translation="As soon as I got home, the phone rang.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Antes de que chegues.", correct="Antes que chegues.", note="Sem de com que + conjuntivo."),
+            GrammarMistake(
+                wrong="Antes de que chegues.",
+                correct="Antes que chegues.",
+                note="Sem de com que + conjuntivo.",
+            ),
         ],
         related=["conectores-narrativos", "preterito-imperfeito"],
     ),
@@ -504,14 +791,35 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Perguntas indiretas não usam interrogação.",
         ],
         examples=[
-            GrammarExample(text="Ela disse que estava doente.", translation="She said she was sick."),
-            GrammarExample(text="Ele perguntou se eu queria café.", translation="He asked if I wanted coffee.", note="pergunta indireta com se"),
-            GrammarExample(text="O professor explicou que a prova seria na sexta.", translation="The teacher explained that the test would be on Friday."),
-            GrammarExample(text="A Maria contou que tinha ido a Lisboa.", translation="Maria told me she had gone to Lisbon.", note="mais-que-perfeito"),
+            GrammarExample(
+                text="Ela disse que estava doente.", translation="She said she was sick."
+            ),
+            GrammarExample(
+                text="Ele perguntou se eu queria café.",
+                translation="He asked if I wanted coffee.",
+                note="pergunta indireta com se",
+            ),
+            GrammarExample(
+                text="O professor explicou que a prova seria na sexta.",
+                translation="The teacher explained that the test would be on Friday.",
+            ),
+            GrammarExample(
+                text="A Maria contou que tinha ido a Lisboa.",
+                translation="Maria told me she had gone to Lisbon.",
+                note="mais-que-perfeito",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ela disse que está cansada.", correct="Ela disse que estava cansada.", note="Verbo no passado: tempo recua."),
-            GrammarMistake(wrong="Ele perguntou que eu queria café.", correct="Ele perguntou se eu queria café.", note="Perguntas sim/não usam se."),
+            GrammarMistake(
+                wrong="Ela disse que está cansada.",
+                correct="Ela disse que estava cansada.",
+                note="Verbo no passado: tempo recua.",
+            ),
+            GrammarMistake(
+                wrong="Ele perguntou que eu queria café.",
+                correct="Ele perguntou se eu queria café.",
+                note="Perguntas sim/não usam se.",
+            ),
         ],
         related=["mudancas-temporais", "discurso-indireto-passado", "discurso-reportado"],
     ),
@@ -529,12 +837,25 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Pronomes ajustam-se à perspetiva do narrador.",
         ],
         examples=[
-            GrammarExample(text="Ele disse que ia ao médico no dia seguinte. (direto: Vou ao médico amanhã.)", translation="He said he was going to the doctor the next day."),
-            GrammarExample(text="Ela disse que estava ali. (direto: Estou aqui.)", translation="She said she was there."),
-            GrammarExample(text="Ela disse que tinha visto o filme no dia anterior. (direto: Vi o filme ontem.)", translation="She said she had seen the movie the day before."),
+            GrammarExample(
+                text="Ele disse que ia ao médico no dia seguinte. (direto: Vou ao médico amanhã.)",
+                translation="He said he was going to the doctor the next day.",
+            ),
+            GrammarExample(
+                text="Ela disse que estava ali. (direto: Estou aqui.)",
+                translation="She said she was there.",
+            ),
+            GrammarExample(
+                text="Ela disse que tinha visto o filme no dia anterior. (direto: Vi o filme ontem.)",
+                translation="She said she had seen the movie the day before.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ele disse que vem amanhã. (discurso indireto)", correct="Ele disse que vinha no dia seguinte.", note="Vem e amanhã devem ser adaptados."),
+            GrammarMistake(
+                wrong="Ele disse que vem amanhã. (discurso indireto)",
+                correct="Ele disse que vinha no dia seguinte.",
+                note="Vem e amanhã devem ser adaptados.",
+            ),
         ],
         related=["discurso-indireto", "discurso-indireto-passado"],
     ),
@@ -554,14 +875,36 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Com negação, próclise: Não mo deu.",
         ],
         examples=[
-            GrammarExample(text="Ele deu-mo ontem.", translation="He gave it to me yesterday.", note="me + o → mo"),
-            GrammarExample(text="Quem te contou isso? — A Maria contou-to.", translation="Who told you that? — Maria told it to you.", note="te + o → to"),
-            GrammarExample(text="O livro? Emprestei-lho na semana passada.", translation="The book? I lent it to him last week.", note="lhe + o → lho"),
-            GrammarExample(text="Não no-lo entregaram a tempo.", translation="They didn't deliver it to us on time.", note="nos + o → no-lo; próclise com negação"),
+            GrammarExample(
+                text="Ele deu-mo ontem.",
+                translation="He gave it to me yesterday.",
+                note="me + o → mo",
+            ),
+            GrammarExample(
+                text="Quem te contou isso? — A Maria contou-to.",
+                translation="Who told you that? — Maria told it to you.",
+                note="te + o → to",
+            ),
+            GrammarExample(
+                text="O livro? Emprestei-lho na semana passada.",
+                translation="The book? I lent it to him last week.",
+                note="lhe + o → lho",
+            ),
+            GrammarExample(
+                text="Não no-lo entregaram a tempo.",
+                translation="They didn't deliver it to us on time.",
+                note="nos + o → no-lo; próclise com negação",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Deu-me-o.", correct="Deu-mo.", note="Os pronomes devem fundir-se: me+o → mo."),
-            GrammarMistake(wrong="Não deu-mo.", correct="Não mo deu.", note="Com negação, o pronome vai antes do verbo."),
+            GrammarMistake(
+                wrong="Deu-me-o.", correct="Deu-mo.", note="Os pronomes devem fundir-se: me+o → mo."
+            ),
+            GrammarMistake(
+                wrong="Não deu-mo.",
+                correct="Não mo deu.",
+                note="Com negação, o pronome vai antes do verbo.",
+            ),
         ],
         related=["pronomes-objeto-direto", "pronomes-objeto-indireto", "colocacao-pronominal"],
     ),

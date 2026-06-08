@@ -18,15 +18,36 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Essere: fossi, fossi, fosse...",
         ],
         examples=[
-            GrammarExample(text="Se potessi, viaggerei in tutto il mondo.", translation="If I could, I would travel the world."),
-            GrammarExample(text="Pensavo che tu fossi gia partito.", translation="I thought you had already left."),
-            GrammarExample(text="Vorrei che fosse sempre estate.", translation="I wish it were always summer."),
+            GrammarExample(
+                text="Se potessi, viaggerei in tutto il mondo.",
+                translation="If I could, I would travel the world.",
+            ),
+            GrammarExample(
+                text="Pensavo che tu fossi gia partito.",
+                translation="I thought you had already left.",
+            ),
+            GrammarExample(
+                text="Vorrei che fosse sempre estate.", translation="I wish it were always summer."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se potrei, viaggerei.", correct="Se potessi, viaggerei.", note="Dopo se mai il condizionale; si usa congiuntivo imperfetto."),
-            GrammarMistake(wrong="Pensavo che tu eri partito.", correct="Pensavo che tu fossi partito.", note="Verbo principale al passato: congiuntivo imperfetto."),
+            GrammarMistake(
+                wrong="Se potrei, viaggerei.",
+                correct="Se potessi, viaggerei.",
+                note="Dopo se mai il condizionale; si usa congiuntivo imperfetto.",
+            ),
+            GrammarMistake(
+                wrong="Pensavo che tu eri partito.",
+                correct="Pensavo che tu fossi partito.",
+                note="Verbo principale al passato: congiuntivo imperfetto.",
+            ),
         ],
-        related=["congiuntivo-presente", "congiuntivo-trapassato", "concordanza-congiuntivo", "periodo-ipotetico-2"],
+        related=[
+            "congiuntivo-presente",
+            "congiuntivo-trapassato",
+            "concordanza-congiuntivo",
+            "periodo-ipotetico-2",
+        ],
     ),
     GrammarTopic(
         slug="congiuntivo-trapassato",
@@ -43,15 +64,37 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con essere il participio concorda col soggetto.",
         ],
         examples=[
-            GrammarExample(text="Se avessi saputo, sarei venuto prima.", translation="If I had known, I would have come earlier."),
-            GrammarExample(text="Credevo che fossero gia partiti.", translation="I thought they had already left."),
-            GrammarExample(text="Se avessi studiato, avresti passato l esame.", translation="If you had studied, you would have passed the exam."),
+            GrammarExample(
+                text="Se avessi saputo, sarei venuto prima.",
+                translation="If I had known, I would have come earlier.",
+            ),
+            GrammarExample(
+                text="Credevo che fossero gia partiti.",
+                translation="I thought they had already left.",
+            ),
+            GrammarExample(
+                text="Se avessi studiato, avresti passato l esame.",
+                translation="If you had studied, you would have passed the exam.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Se avrei saputo, sarei venuto.", correct="Se avessi saputo, sarei venuto.", note="Dopo se mai il condizionale; congiuntivo trapassato."),
-            GrammarMistake(wrong="Credevo che hanno finito.", correct="Credevo che avessero finito.", note="Verbo principale al passato + anteriorita = congiuntivo trapassato."),
+            GrammarMistake(
+                wrong="Se avrei saputo, sarei venuto.",
+                correct="Se avessi saputo, sarei venuto.",
+                note="Dopo se mai il condizionale; congiuntivo trapassato.",
+            ),
+            GrammarMistake(
+                wrong="Credevo che hanno finito.",
+                correct="Credevo che avessero finito.",
+                note="Verbo principale al passato + anteriorita = congiuntivo trapassato.",
+            ),
         ],
-        related=["congiuntivo-imperfetto", "periodo-ipotetico-2", "se-congiuntivo", "concordanza-congiuntivo"],
+        related=[
+            "congiuntivo-imperfetto",
+            "periodo-ipotetico-2",
+            "se-congiuntivo",
+            "concordanza-congiuntivo",
+        ],
     ),
     GrammarTopic(
         slug="concordanza-congiuntivo",
@@ -67,16 +110,40 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Princ. passato + anteriorita = congiuntivo trapassato.",
         ],
         examples=[
-            GrammarExample(text="Penso che lui dica la verita.", translation="I think he is telling the truth."),
-            GrammarExample(text="Penso che lui abbia detto la verita.", translation="I think he told the truth."),
-            GrammarExample(text="Pensavo che lui dicesse la verita.", translation="I thought he was telling the truth."),
-            GrammarExample(text="Pensavo che lui avesse detto la verita.", translation="I thought he had told the truth."),
+            GrammarExample(
+                text="Penso che lui dica la verita.", translation="I think he is telling the truth."
+            ),
+            GrammarExample(
+                text="Penso che lui abbia detto la verita.",
+                translation="I think he told the truth.",
+            ),
+            GrammarExample(
+                text="Pensavo che lui dicesse la verita.",
+                translation="I thought he was telling the truth.",
+            ),
+            GrammarExample(
+                text="Pensavo che lui avesse detto la verita.",
+                translation="I thought he had told the truth.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Penso che lui dicesse la verita.", correct="Penso che lui dica la verita.", note="Presente + contemporaneita = presente."),
-            GrammarMistake(wrong="Pensavo che lui dica la verita.", correct="Pensavo che lui dicesse la verita.", note="Passato + contemporaneita = imperfetto."),
+            GrammarMistake(
+                wrong="Penso che lui dicesse la verita.",
+                correct="Penso che lui dica la verita.",
+                note="Presente + contemporaneita = presente.",
+            ),
+            GrammarMistake(
+                wrong="Pensavo che lui dica la verita.",
+                correct="Pensavo che lui dicesse la verita.",
+                note="Passato + contemporaneita = imperfetto.",
+            ),
         ],
-        related=["congiuntivo-presente", "congiuntivo-imperfetto", "congiuntivo-trapassato", "concordanza-tempi"],
+        related=[
+            "congiuntivo-presente",
+            "congiuntivo-imperfetto",
+            "congiuntivo-trapassato",
+            "concordanza-tempi",
+        ],
     ),
     GrammarTopic(
         slug="stare-gerundio",
@@ -93,13 +160,27 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Si puo usare al presente e all imperfetto.",
         ],
         examples=[
-            GrammarExample(text="Sto leggendo un libro interessante.", translation="I'm reading an interesting book."),
-            GrammarExample(text="Cosa stavi facendo quando ti ho chiamato?", translation="What were you doing when I called you?"),
+            GrammarExample(
+                text="Sto leggendo un libro interessante.",
+                translation="I'm reading an interesting book.",
+            ),
+            GrammarExample(
+                text="Cosa stavi facendo quando ti ho chiamato?",
+                translation="What were you doing when I called you?",
+            ),
             GrammarExample(text="Stanno arrivando!", translation="They are arriving!"),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Sto per mangiando.", correct="Sto per mangiare. (o: Sto mangiando.)", note="Stare per + infinito vs stare + gerundio."),
-            GrammarMistake(wrong="Sono mangiando.", correct="Sto mangiando.", note="La perifrasi progressiva usa stare, non essere."),
+            GrammarMistake(
+                wrong="Sto per mangiando.",
+                correct="Sto per mangiare. (o: Sto mangiando.)",
+                note="Stare per + infinito vs stare + gerundio.",
+            ),
+            GrammarMistake(
+                wrong="Sono mangiando.",
+                correct="Sto mangiando.",
+                note="La perifrasi progressiva usa stare, non essere.",
+            ),
         ],
         related=["andare-gerundio", "venire-gerundio", "stare-per"],
     ),
@@ -118,11 +199,19 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Spesso con verbi di cambiamento.",
         ],
         examples=[
-            GrammarExample(text="La situazione va migliorando.", translation="The situation is getting better."),
-            GrammarExample(text="Il tempo andava peggiorando.", translation="The weather was getting worse."),
+            GrammarExample(
+                text="La situazione va migliorando.", translation="The situation is getting better."
+            ),
+            GrammarExample(
+                text="Il tempo andava peggiorando.", translation="The weather was getting worse."
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Vado a migliorando.", correct="Vado migliorando.", note="Andare + gerundio senza preposizione."),
+            GrammarMistake(
+                wrong="Vado a migliorando.",
+                correct="Vado migliorando.",
+                note="Andare + gerundio senza preposizione.",
+            ),
         ],
         related=["stare-gerundio", "venire-gerundio", "imperfetto"],
     ),
@@ -141,10 +230,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Sottolinea continuita o ripetizione.",
         ],
         examples=[
-            GrammarExample(text="Ti vengo dicendo da mesi di fare attenzione.", translation="I've been telling you for months to be careful."),
+            GrammarExample(
+                text="Ti vengo dicendo da mesi di fare attenzione.",
+                translation="I've been telling you for months to be careful.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Vengo a dicendo.", correct="Vengo dicendo.", note="Venire + gerundio senza preposizione."),
+            GrammarMistake(
+                wrong="Vengo a dicendo.",
+                correct="Vengo dicendo.",
+                note="Venire + gerundio senza preposizione.",
+            ),
         ],
         related=["stare-gerundio", "andare-gerundio", "imperfetto"],
     ),
@@ -162,12 +258,25 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ovvero/ossia per spiegare o ridefinire.",
         ],
         examples=[
-            GrammarExample(text="Non e pigro, bensi molto metodico.", translation="He's not lazy, but rather very methodical."),
-            GrammarExample(text="Avevo studiato molto, eppure non ho passato l'esame.", translation="I'd studied a lot, yet I didn't pass."),
-            GrammarExample(text="Non mi piace, anzi lo detesto.", translation="I don't like it, on the contrary I hate it."),
+            GrammarExample(
+                text="Non e pigro, bensi molto metodico.",
+                translation="He's not lazy, but rather very methodical.",
+            ),
+            GrammarExample(
+                text="Avevo studiato molto, eppure non ho passato l'esame.",
+                translation="I'd studied a lot, yet I didn't pass.",
+            ),
+            GrammarExample(
+                text="Non mi piace, anzi lo detesto.",
+                translation="I don't like it, on the contrary I hate it.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Non e rosso ma bensi blu.", correct="Non e rosso, bensi blu.", note="Bensi sostituisce ma, non si usano insieme."),
+            GrammarMistake(
+                wrong="Non e rosso ma bensi blu.",
+                correct="Non e rosso, bensi blu.",
+                note="Bensi sostituisce ma, non si usano insieme.",
+            ),
         ],
         related=["connettivi-argomentativi", "controargomentazione", "struttura-argomentativa"],
     ),
@@ -185,10 +294,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Coesione lessicale: ripetizione, sinonimia, iperonimia.",
         ],
         examples=[
-            GrammarExample(text="Ho comprato un libro. L'ho letto in due giorni.", translation="I bought a book. I read it in two days.", note="anafora"),
+            GrammarExample(
+                text="Ho comprato un libro. L'ho letto in due giorni.",
+                translation="I bought a book. I read it in two days.",
+                note="anafora",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Marco ha comprato un libro. Il quaderno era interessante.", correct="Marco ha comprato un libro. Il libro era interessante.", note="Mancanza di coesione."),
+            GrammarMistake(
+                wrong="Marco ha comprato un libro. Il quaderno era interessante.",
+                correct="Marco ha comprato un libro. Il libro era interessante.",
+                note="Mancanza di coesione.",
+            ),
         ],
         related=["connettivi-avanzati", "struttura-argomentativa", "sintesi-testuale"],
     ),
@@ -206,11 +323,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Formule di apertura e chiusura appropriate.",
         ],
         examples=[
-            GrammarExample(text="La ringrazio per la Sua disponibilita.", translation="I thank you for your availability."),
-            GrammarExample(text="Le sarei grato se volesse rispondermi.", translation="I would be grateful if you would reply."),
+            GrammarExample(
+                text="La ringrazio per la Sua disponibilita.",
+                translation="I thank you for your availability.",
+            ),
+            GrammarExample(
+                text="Le sarei grato se volesse rispondermi.",
+                translation="I would be grateful if you would reply.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ti ringrazio (in mail formale).", correct="La ringrazio.", note="Contesto formale = Lei, non tu."),
+            GrammarMistake(
+                wrong="Ti ringrazio (in mail formale).",
+                correct="La ringrazio.",
+                note="Contesto formale = Lei, non tu.",
+            ),
         ],
         related=["congiuntivo-presente", "pronomi-soggetto", "discorso-indiretto"],
     ),
@@ -228,12 +355,20 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Usarli rende il discorso piu naturale.",
         ],
         examples=[
-            GrammarExample(text="In bocca al lupo per l'esame!", translation="Good luck for the exam!"),
+            GrammarExample(
+                text="In bocca al lupo per l'esame!", translation="Good luck for the exam!"
+            ),
             GrammarExample(text="Sono al verde questo mese.", translation="I'm broke this month."),
-            GrammarExample(text="Non vedo l'ora di vederti!", translation="I can't wait to see you!"),
+            GrammarExample(
+                text="Non vedo l'ora di vederti!", translation="I can't wait to see you!"
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="In bocca di lupo!", correct="In bocca al lupo!", note="Espressione fissa: al lupo, non di lupo."),
+            GrammarMistake(
+                wrong="In bocca di lupo!",
+                correct="In bocca al lupo!",
+                note="Espressione fissa: al lupo, non di lupo.",
+            ),
         ],
         related=["espressioni-colloquiali", "proverbi-italiani", "linguaggio-giornalistico"],
     ),
@@ -251,13 +386,29 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mica rafforza la negazione nel parlato.",
         ],
         examples=[
-            GrammarExample(text="Dai, andiamo al cinema!", translation="Come on, let's go to the cinema!"),
-            GrammarExample(text="Hai visto la partita? — Magari! Ero al lavoro.", translation="Did you see the match? — I wish! I was at work."),
-            GrammarExample(text="— Grazie mille! — Figurati!", translation="— Thank you so much! — Don't mention it!"),
+            GrammarExample(
+                text="Dai, andiamo al cinema!", translation="Come on, let's go to the cinema!"
+            ),
+            GrammarExample(
+                text="Hai visto la partita? — Magari! Ero al lavoro.",
+                translation="Did you see the match? — I wish! I was at work.",
+            ),
+            GrammarExample(
+                text="— Grazie mille! — Figurati!",
+                translation="— Thank you so much! — Don't mention it!",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Figurati! (a un professore)", correct="Si figuri! (o: Di niente.)", note="Con il Lei formale si usa si figuri."),
-            GrammarMistake(wrong="Magari piove. (per dire forse)", correct="Forse piove.", note="Magari = sarebbe bello se, non = forse."),
+            GrammarMistake(
+                wrong="Figurati! (a un professore)",
+                correct="Si figuri! (o: Di niente.)",
+                note="Con il Lei formale si usa si figuri.",
+            ),
+            GrammarMistake(
+                wrong="Magari piove. (per dire forse)",
+                correct="Forse piove.",
+                note="Magari = sarebbe bello se, non = forse.",
+            ),
         ],
         related=["modi-di-dire", "registro-formale", "proverbi-italiani"],
     ),
@@ -275,13 +426,30 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Si usano per dare autorevolezza a un discorso.",
         ],
         examples=[
-            GrammarExample(text="Chi dorme non piglia pesci: alzati presto e mettiti a studiare!", translation="The early bird catches the worm!"),
-            GrammarExample(text="Non preoccuparti: non tutto il male viene per nuocere.", translation="Don't worry: every cloud has a silver lining."),
-            GrammarExample(text="Ho consegnato il progetto in ritardo, ma meglio tardi che mai!", translation="I handed in the project late, but better late than never!"),
+            GrammarExample(
+                text="Chi dorme non piglia pesci: alzati presto e mettiti a studiare!",
+                translation="The early bird catches the worm!",
+            ),
+            GrammarExample(
+                text="Non preoccuparti: non tutto il male viene per nuocere.",
+                translation="Don't worry: every cloud has a silver lining.",
+            ),
+            GrammarExample(
+                text="Ho consegnato il progetto in ritardo, ma meglio tardi che mai!",
+                translation="I handed in the project late, but better late than never!",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Chi non dorme piglia pesci.", correct="Chi dorme non piglia pesci.", note="Il proverbio e fisso."),
-            GrammarMistake(wrong="Meglio mai che tardi.", correct="Meglio tardi che mai.", note="L'ordine e importante nel proverbio."),
+            GrammarMistake(
+                wrong="Chi non dorme piglia pesci.",
+                correct="Chi dorme non piglia pesci.",
+                note="Il proverbio e fisso.",
+            ),
+            GrammarMistake(
+                wrong="Meglio mai che tardi.",
+                correct="Meglio tardi che mai.",
+                note="L'ordine e importante nel proverbio.",
+            ),
         ],
         related=["modi-di-dire", "espressioni-colloquiali", "italiano-regionale"],
     ),
@@ -299,11 +467,22 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Conclusione che riprende la tesi senza ripetere.",
         ],
         examples=[
-            GrammarExample(text="In questo saggio sosterrò che lo studio delle lingue straniere è fondamentale. Innanzitutto... Inoltre... Tuttavia alcuni obiettano che... Ma queste obiezioni non tengono conto di...", translation="In this essay I will argue that studying foreign languages is essential. First of all... Furthermore..."),
+            GrammarExample(
+                text="In questo saggio sosterrò che lo studio delle lingue straniere è fondamentale. Innanzitutto... Inoltre... Tuttavia alcuni obiettano che... Ma queste obiezioni non tengono conto di...",
+                translation="In this essay I will argue that studying foreign languages is essential. First of all... Furthermore...",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Tesi confusa o assente all'inizio.", correct="Esplicitare la tesi nel primo paragrafo.", note="Un testo argomentativo deve far capire subito la posizione dell'autore."),
-            GrammarMistake(wrong="Saltare dalla tesi alla conclusione senza argomenti.", correct="Sviluppare almeno 2-3 argomenti a favore.", note="La parte argomentativa e il cuore del testo."),
+            GrammarMistake(
+                wrong="Tesi confusa o assente all'inizio.",
+                correct="Esplicitare la tesi nel primo paragrafo.",
+                note="Un testo argomentativo deve far capire subito la posizione dell'autore.",
+            ),
+            GrammarMistake(
+                wrong="Saltare dalla tesi alla conclusione senza argomenti.",
+                correct="Sviluppare almeno 2-3 argomenti a favore.",
+                note="La parte argomentativa e il cuore del testo.",
+            ),
         ],
         related=["controargomentazione", "connettivi-avanzati", "coesione-testuale"],
     ),
@@ -321,10 +500,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mantenere un tono rispettoso anche nel dissenso.",
         ],
         examples=[
-            GrammarExample(text="E vero che l'intelligenza artificiale puo sostituire alcuni lavori, tuttavia ne creera di nuovi.", translation="It's true that AI can replace some jobs, however it will create new ones."),
+            GrammarExample(
+                text="E vero che l'intelligenza artificiale puo sostituire alcuni lavori, tuttavia ne creera di nuovi.",
+                translation="It's true that AI can replace some jobs, however it will create new ones.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ignorare completamente le obiezioni.", correct="Affrontare le obiezioni principali e confutarle.", note="Una buona argomentazione considera anche i punti deboli."),
+            GrammarMistake(
+                wrong="Ignorare completamente le obiezioni.",
+                correct="Affrontare le obiezioni principali e confutarle.",
+                note="Una buona argomentazione considera anche i punti deboli.",
+            ),
         ],
         related=["struttura-argomentativa", "connettivi-avanzati", "coesione-testuale"],
     ),
@@ -342,10 +528,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Usare il dizionario dei sinonimi per esplorare opzioni.",
         ],
         examples=[
-            GrammarExample(text="Ho osservato il quadro per ore.", translation="I observed the painting for hours.", note="osservare = guardare con attenzione"),
+            GrammarExample(
+                text="Ho osservato il quadro per ore.",
+                translation="I observed the painting for hours.",
+                note="osservare = guardare con attenzione",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ho visto il panorama con attenzione.", correct="Ho osservato/ammirato il panorama con attenzione.", note="Vedere e generico; per attenzione si usa osservare."),
+            GrammarMistake(
+                wrong="Ho visto il panorama con attenzione.",
+                correct="Ho osservato/ammirato il panorama con attenzione.",
+                note="Vedere e generico; per attenzione si usa osservare.",
+            ),
         ],
         related=["precisione-lessicale", "registro-formale", "campi-semantici"],
     ),
@@ -363,10 +557,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Alternare i tempi per creare ritmo narrativo.",
         ],
         examples=[
-            GrammarExample(text="Era una notte buia e tempestosa. All'improvviso, un lampo illumino la stanza. Qualcuno era entrato.", translation="It was a dark and stormy night. Suddenly, a flash lit up the room. Someone had entered.", note="imperfetto + pass. remoto + trapassato"),
+            GrammarExample(
+                text="Era una notte buia e tempestosa. All'improvviso, un lampo illumino la stanza. Qualcuno era entrato.",
+                translation="It was a dark and stormy night. Suddenly, a flash lit up the room. Someone had entered.",
+                note="imperfetto + pass. remoto + trapassato",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Usare solo passato prossimo per narrare.", correct="Alternare imperfetto, passato remoto e trapassato.", note="Il passato remoto e il tempo della narrazione per eccellenza."),
+            GrammarMistake(
+                wrong="Usare solo passato prossimo per narrare.",
+                correct="Alternare imperfetto, passato remoto e trapassato.",
+                note="Il passato remoto e il tempo della narrazione per eccellenza.",
+            ),
         ],
         related=["imperfetto", "passato-remoto", "trapassato-prossimo", "descrizione-letteraria"],
     ),
@@ -384,10 +586,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mostrare, non dire (show, don't tell).",
         ],
         examples=[
-            GrammarExample(text="Il sole al tramonto tingeva il cielo di arancione e viola. Un vento tiepido portava il profumo del mare.", translation="The setting sun dyed the sky orange and purple. A warm wind carried the scent of the sea."),
+            GrammarExample(
+                text="Il sole al tramonto tingeva il cielo di arancione e viola. Un vento tiepido portava il profumo del mare.",
+                translation="The setting sun dyed the sky orange and purple. A warm wind carried the scent of the sea.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Era bello. (descrizione generica)", correct="Il panorama era mozzafiato: colline verdi si estendevano a perdita d'occhio.", note="Mostrare con dettagli concreti invece di dire solo che e bello."),
+            GrammarMistake(
+                wrong="Era bello. (descrizione generica)",
+                correct="Il panorama era mozzafiato: colline verdi si estendevano a perdita d'occhio.",
+                note="Mostrare con dettagli concreti invece di dire solo che e bello.",
+            ),
         ],
         related=["tempi-narrativi", "voce-narrativa", "figure-stilistiche"],
     ),
@@ -406,13 +615,30 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "E il tempo narrativo per eccellenza.",
         ],
         examples=[
-            GrammarExample(text="Dante nacque a Firenze nel 1265.", translation="Dante was born in Florence in 1265."),
-            GrammarExample(text="Lessi quel libro l'estate scorsa. (Sud)", translation="I read that book last summer."),
-            GrammarExample(text="Fecero tutto il possibile per aiutarci.", translation="They did everything possible to help us."),
+            GrammarExample(
+                text="Dante nacque a Firenze nel 1265.",
+                translation="Dante was born in Florence in 1265.",
+            ),
+            GrammarExample(
+                text="Lessi quel libro l'estate scorsa. (Sud)",
+                translation="I read that book last summer.",
+            ),
+            GrammarExample(
+                text="Fecero tutto il possibile per aiutarci.",
+                translation="They did everything possible to help us.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ieri andiedi al cinema.", correct="Ieri andai al cinema. (o: sono andato)", note="Andare: passato remoto irregolare → andai."),
-            GrammarMistake(wrong="Usare il passato remoto per eventi recenti (al Nord).", correct="Preferire il passato prossimo per eventi recenti al Nord.", note="Al Nord il passato remoto e sentito come formale/letterario."),
+            GrammarMistake(
+                wrong="Ieri andiedi al cinema.",
+                correct="Ieri andai al cinema. (o: sono andato)",
+                note="Andare: passato remoto irregolare → andai.",
+            ),
+            GrammarMistake(
+                wrong="Usare il passato remoto per eventi recenti (al Nord).",
+                correct="Preferire il passato prossimo per eventi recenti al Nord.",
+                note="Al Nord il passato remoto e sentito come formale/letterario.",
+            ),
         ],
         related=["imperfetto", "tempi-narrativi", "trapassato-prossimo", "concordanza-tempi"],
     ),
@@ -430,11 +656,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Lessico specifico del settore trattato.",
         ],
         examples=[
-            GrammarExample(text="Crisi di governo: il Presidente sale al Quirinale.", translation="Government crisis: the President goes to the Quirinale."),
-            GrammarExample(text="Firmato l'accordo, le parti hanno rilasciato dichiarazioni.", translation="Having signed the agreement, the parties released statements."),
+            GrammarExample(
+                text="Crisi di governo: il Presidente sale al Quirinale.",
+                translation="Government crisis: the President goes to the Quirinale.",
+            ),
+            GrammarExample(
+                text="Firmato l'accordo, le parti hanno rilasciato dichiarazioni.",
+                translation="Having signed the agreement, the parties released statements.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Usare linguaggio colloquiale in un articolo formale.", correct="Mantenere un registro formale e oggettivo.", note="Il giornalismo richiede un registro piu elevato."),
+            GrammarMistake(
+                wrong="Usare linguaggio colloquiale in un articolo formale.",
+                correct="Mantenere un registro formale e oggettivo.",
+                note="Il giornalismo richiede un registro piu elevato.",
+            ),
         ],
         related=["titoli", "registro-formale", "discorso-riportato"],
     ),
@@ -452,11 +688,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Metafore e giochi di parole per attirare l'attenzione.",
         ],
         examples=[
-            GrammarExample(text="Crolla la Borsa: persi 50 miliardi.", translation="Stock market crashes: 50 billion lost."),
-            GrammarExample(text="Mafia, maxi-operazione: 50 arresti.", translation="Mafia, major operation: 50 arrests."),
+            GrammarExample(
+                text="Crolla la Borsa: persi 50 miliardi.",
+                translation="Stock market crashes: 50 billion lost.",
+            ),
+            GrammarExample(
+                text="Mafia, maxi-operazione: 50 arresti.",
+                translation="Mafia, major operation: 50 arrests.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Titolo troppo lungo e descrittivo.", correct="Titolo breve, incisivo, spesso senza verbo o articolo.", note="I titoli italiani sono stringati e d'effetto."),
+            GrammarMistake(
+                wrong="Titolo troppo lungo e descrittivo.",
+                correct="Titolo breve, incisivo, spesso senza verbo o articolo.",
+                note="I titoli italiani sono stringati e d'effetto.",
+            ),
         ],
         related=["linguaggio-giornalistico", "discorso-riportato", "registro-formale"],
     ),
@@ -474,12 +720,28 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Verbi dichiarativi: affermare, dichiarare, sostenere, riferire.",
         ],
         examples=[
-            GrammarExample(text="Secondo fonti vicine al governo, il premier si dimetterebbe entro domani.", translation="According to sources close to the government, the PM would resign by tomorrow.", note="condizionale di dissociazione"),
-            GrammarExample(text="\"Non abbiamo nulla da nascondere\", ha dichiarato il portavoce.", translation="'We have nothing to hide,' stated the spokesperson."),
+            GrammarExample(
+                text="Secondo fonti vicine al governo, il premier si dimetterebbe entro domani.",
+                translation="According to sources close to the government, the PM would resign by tomorrow.",
+                note="condizionale di dissociazione",
+            ),
+            GrammarExample(
+                text='"Non abbiamo nulla da nascondere", ha dichiarato il portavoce.',
+                translation="'We have nothing to hide,' stated the spokesperson.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Il ministro ha detto che si dimettera. (senza fonte certa)", correct="Il ministro si dimetterebbe. (condizionale di dissociazione)", note="Se la notizia non e confermata, si usa il condizionale."),
+            GrammarMistake(
+                wrong="Il ministro ha detto che si dimettera. (senza fonte certa)",
+                correct="Il ministro si dimetterebbe. (condizionale di dissociazione)",
+                note="Se la notizia non e confermata, si usa il condizionale.",
+            ),
         ],
-        related=["linguaggio-giornalistico", "titoli", "discorso-indiretto", "condizionale-presente"],
+        related=[
+            "linguaggio-giornalistico",
+            "titoli",
+            "discorso-indiretto",
+            "condizionale-presente",
+        ],
     ),
 ]

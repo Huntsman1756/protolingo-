@@ -17,14 +17,33 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Uso del congiuntivo nella prosa letteraria contemporanea.",
         ],
         examples=[
-            GrammarExample(text="Che la forza sia con te!", translation="May the force be with you!", note="ottativo/desiderativo"),
-            GrammarExample(text="Non sapevo che avesse gia pubblicato tre romanzi.", translation="I didn't know he had already published three novels."),
-            GrammarExample(text="Comportati come se niente fosse successo.", translation="Act as if nothing had happened."),
+            GrammarExample(
+                text="Che la forza sia con te!",
+                translation="May the force be with you!",
+                note="ottativo/desiderativo",
+            ),
+            GrammarExample(
+                text="Non sapevo che avesse gia pubblicato tre romanzi.",
+                translation="I didn't know he had already published three novels.",
+            ),
+            GrammarExample(
+                text="Comportati come se niente fosse successo.",
+                translation="Act as if nothing had happened.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Evitare sempre il congiuntivo nel parlato.", correct="Usare il congiuntivo con naturalezza, anche nel parlato informale dove appropriato.", note="Il vero C2 usa il congiuntivo senza sforzo, non lo evita."),
+            GrammarMistake(
+                wrong="Evitare sempre il congiuntivo nel parlato.",
+                correct="Usare il congiuntivo con naturalezza, anche nel parlato informale dove appropriato.",
+                note="Il vero C2 usa il congiuntivo senza sforzo, non lo evita.",
+            ),
         ],
-        related=["congiuntivo-presente", "congiuntivo-imperfetto", "congiuntivo-trapassato", "concordanza-congiuntivo"],
+        related=[
+            "congiuntivo-presente",
+            "congiuntivo-imperfetto",
+            "congiuntivo-trapassato",
+            "concordanza-congiuntivo",
+        ],
     ),
     GrammarTopic(
         slug="ripasso-condizionale",
@@ -40,13 +59,33 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Sfumature tra condizionale e congiuntivo nelle ipotetiche.",
         ],
         examples=[
-            GrammarExample(text="Secondo indiscrezioni, il ministro rassegnerebbe le dimissioni.", translation="According to rumors, the minister would resign.", note="dissociazione"),
-            GrammarExample(text="Avrei tanto voluto conoscerti prima.", translation="I would have really liked to meet you earlier.", note="desiderio irrealizzato"),
-            GrammarExample(text="Promisero che avrebbero fatto tutto il possibile.", translation="They promised they would do everything possible.", note="futuro nel passato"),
+            GrammarExample(
+                text="Secondo indiscrezioni, il ministro rassegnerebbe le dimissioni.",
+                translation="According to rumors, the minister would resign.",
+                note="dissociazione",
+            ),
+            GrammarExample(
+                text="Avrei tanto voluto conoscerti prima.",
+                translation="I would have really liked to meet you earlier.",
+                note="desiderio irrealizzato",
+            ),
+            GrammarExample(
+                text="Promisero che avrebbero fatto tutto il possibile.",
+                translation="They promised they would do everything possible.",
+                note="futuro nel passato",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Ha detto che verra.", correct="Ha detto che sarebbe venuto.", note="Futuro nel passato = condizionale passato."),
-            GrammarMistake(wrong="Sarei dovuto andare. (senza concordare)", correct="Sarei dovuto/a andare.", note="Concordanza del participio con il soggetto."),
+            GrammarMistake(
+                wrong="Ha detto che verra.",
+                correct="Ha detto che sarebbe venuto.",
+                note="Futuro nel passato = condizionale passato.",
+            ),
+            GrammarMistake(
+                wrong="Sarei dovuto andare. (senza concordare)",
+                correct="Sarei dovuto/a andare.",
+                note="Concordanza del participio con il soggetto.",
+            ),
         ],
         related=["condizionale-presente", "condizionale-cortesia", "discorso-riportato"],
     ),
@@ -64,13 +103,33 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con verbi servili + essere: sono dovuto/a andare.",
         ],
         examples=[
-            GrammarExample(text="Le mura della citta sono antiche. (mura = mura difensive)", translation="The city walls are ancient.", note="mura vs muri"),
-            GrammarExample(text="La maggior parte degli invitati erano contenti. (accordo a senso)", translation="Most of the guests were happy.", note="accordo a senso"),
-            GrammarExample(text="Non sono potuta venire ieri. (femminile)", translation="I couldn't come yesterday.", note="accordo con essere"),
+            GrammarExample(
+                text="Le mura della citta sono antiche. (mura = mura difensive)",
+                translation="The city walls are ancient.",
+                note="mura vs muri",
+            ),
+            GrammarExample(
+                text="La maggior parte degli invitati erano contenti. (accordo a senso)",
+                translation="Most of the guests were happy.",
+                note="accordo a senso",
+            ),
+            GrammarExample(
+                text="Non sono potuta venire ieri. (femminile)",
+                translation="I couldn't come yesterday.",
+                note="accordo con essere",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="I muri della citta.", correct="Le mura della citta.", note="Mura = mura difensive/di cinta; muri = pareti."),
-            GrammarMistake(wrong="Non ho potuta andare.", correct="Non sono potuta andare.", note="Con verbi che richiedono essere all'infinito, il servile prende essere."),
+            GrammarMistake(
+                wrong="I muri della citta.",
+                correct="Le mura della citta.",
+                note="Mura = mura difensive/di cinta; muri = pareti.",
+            ),
+            GrammarMistake(
+                wrong="Non ho potuta andare.",
+                correct="Non sono potuta andare.",
+                note="Con verbi che richiedono essere all'infinito, il servile prende essere.",
+            ),
         ],
         related=["genere-nomi", "passato-prossimo-essere", "concordanza-tempi"],
     ),
@@ -88,10 +147,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Variatio: variare strutture per evitare monotonia.",
         ],
         examples=[
-            GrammarExample(text="Ed ecco, quasi al cominciar de l'erta, una lonza leggera e presta molto, che di pel macolato era coverta. (Dante)", translation="And behold, almost at the start of the slope, a leopard light and very swift, covered with spotted fur."),
+            GrammarExample(
+                text="Ed ecco, quasi al cominciar de l'erta, una lonza leggera e presta molto, che di pel macolato era coverta. (Dante)",
+                translation="And behold, almost at the start of the slope, a leopard light and very swift, covered with spotted fur.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Scrivere in modo artificiosamente complesso.", correct="La complessita deve essere al servizio del significato, non fine a se stessa.", note="Lo stile elevato non e accumulo di parole difficili."),
+            GrammarMistake(
+                wrong="Scrivere in modo artificiosamente complesso.",
+                correct="La complessita deve essere al servizio del significato, non fine a se stessa.",
+                note="Lo stile elevato non e accumulo di parole difficili.",
+            ),
         ],
         related=["voce-narrativa", "figure-stilistiche", "tempi-narrativi"],
     ),
@@ -109,10 +175,18 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Leggere molto per sviluppare orecchio stilistico.",
         ],
         examples=[
-            GrammarExample(text="Non so perche quel giorno decisi di prendere il treno invece dell'autobus. Forse fu il cielo grigio, forse la voglia di cambiare qualcosa, qualsiasi cosa.", translation="I don't know why that day I decided to take the train instead of the bus. Maybe it was the gray sky, maybe the desire to change something, anything.", note="prima persona, tono riflessivo"),
+            GrammarExample(
+                text="Non so perche quel giorno decisi di prendere il treno invece dell'autobus. Forse fu il cielo grigio, forse la voglia di cambiare qualcosa, qualsiasi cosa.",
+                translation="I don't know why that day I decided to take the train instead of the bus. Maybe it was the gray sky, maybe the desire to change something, anything.",
+                note="prima persona, tono riflessivo",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Cambiare punto di vista all'interno dello stesso testo.", correct="Mantenere coerenza nel punto di vista scelto.", note="Salti di punto di vista confondono il lettore."),
+            GrammarMistake(
+                wrong="Cambiare punto di vista all'interno dello stesso testo.",
+                correct="Mantenere coerenza nel punto di vista scelto.",
+                note="Salti di punto di vista confondono il lettore.",
+            ),
         ],
         related=["stile-letterario", "descrizione-letteraria", "tempi-narrativi"],
     ),
@@ -130,11 +204,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Usare con moderazione per non appesantire.",
         ],
         examples=[
-            GrammarExample(text="Non chiedermi di restare. Non chiedermi di capire. Non chiedermi niente.", translation="Don't ask me to stay. Don't ask me to understand. Don't ask me anything.", note="anafora"),
-            GrammarExample(text="Veni, vidi, vici. (asindeto)", translation="I came, I saw, I conquered.", note="asindeto"),
+            GrammarExample(
+                text="Non chiedermi di restare. Non chiedermi di capire. Non chiedermi niente.",
+                translation="Don't ask me to stay. Don't ask me to understand. Don't ask me anything.",
+                note="anafora",
+            ),
+            GrammarExample(
+                text="Veni, vidi, vici. (asindeto)",
+                translation="I came, I saw, I conquered.",
+                note="asindeto",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Abusare delle figure retoriche.", correct="Usare le figure con parsimonia per creare effetto.", note="Troppe figure retoriche rendono il testo artificioso."),
+            GrammarMistake(
+                wrong="Abusare delle figure retoriche.",
+                correct="Usare le figure con parsimonia per creare effetto.",
+                note="Troppe figure retoriche rendono il testo artificioso.",
+            ),
         ],
         related=["figure-retoriche", "stile-letterario", "voce-narrativa"],
     ),
@@ -152,10 +238,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La traduzione perfetta spesso non esiste: scegliere la soluzione migliore.",
         ],
         examples=[
-            GrammarExample(text="EN: It's raining cats and dogs. IT: Piove a catinelle. (non: Piovono cani e gatti)", translation="EN: It's raining cats and dogs. IT: Piove a catinelle. (not literal)"),
+            GrammarExample(
+                text="EN: It's raining cats and dogs. IT: Piove a catinelle. (non: Piovono cani e gatti)",
+                translation="EN: It's raining cats and dogs. IT: Piove a catinelle. (not literal)",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Tradurre letteralmente espressioni idiomatiche.", correct="Cercare l'equivalente idiomatico nella lingua d'arrivo.", note="Le espressioni idiomatiche raramente si traducono parola per parola."),
+            GrammarMistake(
+                wrong="Tradurre letteralmente espressioni idiomatiche.",
+                correct="Cercare l'equivalente idiomatico nella lingua d'arrivo.",
+                note="Le espressioni idiomatiche raramente si traducono parola per parola.",
+            ),
         ],
         related=["sfumature-traduzione", "falsi-amici", "precisione-lessicale"],
     ),
@@ -173,11 +266,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Il passato remoto letterario puo essere reso con il simple past.",
         ],
         examples=[
-            GrammarExample(text="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.", translation="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.", note="-ina → little"),
-            GrammarExample(text="IT: Penso che sia vero. EN: I think it's true. (congiuntivo perso)", translation="IT: Penso che sia vero. EN: I think it's true.", note="congiuntivo -> indicativo"),
+            GrammarExample(
+                text="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.",
+                translation="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.",
+                note="-ina → little",
+            ),
+            GrammarExample(
+                text="IT: Penso che sia vero. EN: I think it's true. (congiuntivo perso)",
+                translation="IT: Penso che sia vero. EN: I think it's true.",
+                note="congiuntivo -> indicativo",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Tradurre ogni parola senza considerare la perdita di sfumature.", correct="Compensare le perdite con altre strategie traduttive.", note="La traduzione e sempre un compromesso."),
+            GrammarMistake(
+                wrong="Tradurre ogni parola senza considerare la perdita di sfumature.",
+                correct="Compensare le perdite con altre strategie traduttive.",
+                note="La traduzione e sempre un compromesso.",
+            ),
         ],
         related=["equivalenza", "falsi-amici", "congiuntivo-presente"],
     ),
@@ -195,11 +300,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Lista sempre aggiornata di falsi amici da consultare.",
         ],
         examples=[
-            GrammarExample(text="Actually, I disagree. ≠ Attualmente, non sono d'accordo. (SBAGLIATO: significa In realta, non sono d'accordo.)", translation="Actually, I disagree. (NOT: Currently, I disagree.)", note="actually ≠ attualmente"),
-            GrammarExample(text="She is very sensible. ≠ Lei e molto sensibile. (SBAGLIATO: significa Lei e molto ragionevole.)", translation="She is very sensible. (NOT: She is very sensitive.)", note="sensible ≠ sensibile"),
+            GrammarExample(
+                text="Actually, I disagree. ≠ Attualmente, non sono d'accordo. (SBAGLIATO: significa In realta, non sono d'accordo.)",
+                translation="Actually, I disagree. (NOT: Currently, I disagree.)",
+                note="actually ≠ attualmente",
+            ),
+            GrammarExample(
+                text="She is very sensible. ≠ Lei e molto sensibile. (SBAGLIATO: significa Lei e molto ragionevole.)",
+                translation="She is very sensible. (NOT: She is very sensitive.)",
+                note="sensible ≠ sensibile",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Tradurre attualmente con actually.", correct="Attualmente = currently; actually = in realta.", note="Uno dei falsi amici piu comuni e pericolosi."),
+            GrammarMistake(
+                wrong="Tradurre attualmente con actually.",
+                correct="Attualmente = currently; actually = in realta.",
+                note="Uno dei falsi amici piu comuni e pericolosi.",
+            ),
         ],
         related=["sfumature-traduzione", "equivalenza", "precisione-lessicale"],
     ),
@@ -217,11 +334,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "L'italiano e in continua evoluzione (neostandard, anglicismi).",
         ],
         examples=[
-            GrammarExample(text="Latino: Illa mulier pulchra est. Italiano: Quella donna e bella.", translation="Latin: That woman is beautiful. Italian: That woman is beautiful.", note="evoluzione dal latino all'italiano"),
-            GrammarExample(text="Dai Promessi Sposi: Quel ramo del lago di Como... (incipit celebre)", translation="From The Betrothed: That branch of Lake Como...", note="L'italiano manzoniano"),
+            GrammarExample(
+                text="Latino: Illa mulier pulchra est. Italiano: Quella donna e bella.",
+                translation="Latin: That woman is beautiful. Italian: That woman is beautiful.",
+                note="evoluzione dal latino all'italiano",
+            ),
+            GrammarExample(
+                text="Dai Promessi Sposi: Quel ramo del lago di Como... (incipit celebre)",
+                translation="From The Betrothed: That branch of Lake Como...",
+                note="L'italiano manzoniano",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Pensare che l'italiano sia sempre stato uguale.", correct="Conoscere le tappe principali dell'evoluzione linguistica.", note="La lingua e un organismo vivo in costante cambiamento."),
+            GrammarMistake(
+                wrong="Pensare che l'italiano sia sempre stato uguale.",
+                correct="Conoscere le tappe principali dell'evoluzione linguistica.",
+                note="La lingua e un organismo vivo in costante cambiamento.",
+            ),
         ],
         related=["latinismi", "prestiti-linguistici", "italiano-standard"],
     ),
@@ -239,11 +368,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Alcuni latinismi suonano antiquati o pretenziosi se abusati.",
         ],
         examples=[
-            GrammarExample(text="Il candidato e stato assunto dopo un lungo iter burocratico.", translation="The candidate was hired after a long bureaucratic process.", note="iter = procedura"),
-            GrammarExample(text="La riunione e stata aggiornata ad hoc per discutere l'emergenza.", translation="The meeting was called ad hoc to discuss the emergency.", note="ad hoc = appositamente"),
+            GrammarExample(
+                text="Il candidato e stato assunto dopo un lungo iter burocratico.",
+                translation="The candidate was hired after a long bureaucratic process.",
+                note="iter = procedura",
+            ),
+            GrammarExample(
+                text="La riunione e stata aggiornata ad hoc per discutere l'emergenza.",
+                translation="The meeting was called ad hoc to discuss the emergency.",
+                note="ad hoc = appositamente",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Pronunciare i latinismi alla latina (specie in contesti italiani).", correct="In italiano i latinismi si pronunciano secondo la fonetica italiana.", note="Curriculum vitae si pronuncia curricolum vite (all'italiana)."),
+            GrammarMistake(
+                wrong="Pronunciare i latinismi alla latina (specie in contesti italiani).",
+                correct="In italiano i latinismi si pronunciano secondo la fonetica italiana.",
+                note="Curriculum vitae si pronuncia curricolum vite (all'italiana).",
+            ),
         ],
         related=["prestiti-linguistici", "evoluzione-linguistica", "registro-formale"],
     ),
@@ -261,12 +402,28 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "L'italiano ha sempre assorbito parole da altre lingue.",
         ],
         examples=[
-            GrammarExample(text="Ho comprato un computer nuovo. (nessun equivalente italiano accettato)", translation="I bought a new computer.", note="anglicismo"),
-            GrammarExample(text="Lo zucchero viene dall'arabo sukkar.", translation="Sugar comes from the Arabic sukkar.", note="prestito arabo antico"),
-            GrammarExample(text="C'e chi dice smart working e chi dice lavoro agile.", translation="Some say smart working and others say agile work.", note="anglicismo vs alternativa italiana"),
+            GrammarExample(
+                text="Ho comprato un computer nuovo. (nessun equivalente italiano accettato)",
+                translation="I bought a new computer.",
+                note="anglicismo",
+            ),
+            GrammarExample(
+                text="Lo zucchero viene dall'arabo sukkar.",
+                translation="Sugar comes from the Arabic sukkar.",
+                note="prestito arabo antico",
+            ),
+            GrammarExample(
+                text="C'e chi dice smart working e chi dice lavoro agile.",
+                translation="Some say smart working and others say agile work.",
+                note="anglicismo vs alternativa italiana",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Usare anglicismi inutili quando esiste un equivalente italiano preciso.", correct="Preferire l'equivalente italiano se disponibile e naturale.", note="Non tutti gli anglicismi sono necessari."),
+            GrammarMistake(
+                wrong="Usare anglicismi inutili quando esiste un equivalente italiano preciso.",
+                correct="Preferire l'equivalente italiano se disponibile e naturale.",
+                note="Non tutti gli anglicismi sono necessari.",
+            ),
         ],
         related=["latinismi", "evoluzione-linguistica", "italiano-standard"],
     ),
@@ -284,10 +441,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Leggere esempi del genere prima di scrivere.",
         ],
         examples=[
-            GrammarExample(text="Saggio: In questo saggio si intende dimostrare che... Relazione: Dati alla mano, si evince che... Recensione: L'ultimo film di Sorrentino e un capolavoro visivo...", translation="Essay: This essay aims to demonstrate that... Report: Based on the data, it appears that... Review: Sorrentino's latest film is a visual masterpiece..."),
+            GrammarExample(
+                text="Saggio: In questo saggio si intende dimostrare che... Relazione: Dati alla mano, si evince che... Recensione: L'ultimo film di Sorrentino e un capolavoro visivo...",
+                translation="Essay: This essay aims to demonstrate that... Report: Based on the data, it appears that... Review: Sorrentino's latest film is a visual masterpiece...",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Mescolare le convenzioni di generi diversi.", correct="Rispettare le caratteristiche specifiche di ogni genere.", note="Una relazione tecnica non e un saggio personale."),
+            GrammarMistake(
+                wrong="Mescolare le convenzioni di generi diversi.",
+                correct="Rispettare le caratteristiche specifiche di ogni genere.",
+                note="Una relazione tecnica non e un saggio personale.",
+            ),
         ],
         related=["struttura-argomentativa", "registro-formale", "sintesi-testuale"],
     ),
@@ -305,11 +469,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La lingua e plastica: le regole descrivono, non prescrivono.",
         ],
         examples=[
-            GrammarExample(text="Era un tramonto petaloso, di quelli che ti restano negli occhi per giorni.", translation="It was a petal-filled sunset, the kind that stays in your eyes for days.", note="neologismo"),
-            GrammarExample(text="Le sue parole erano coltelli di vetro: trasparenti, affilati, invisibili fino al colpo.", translation="His words were glass knives: transparent, sharp, invisible until the blow.", note="metafora originale"),
+            GrammarExample(
+                text="Era un tramonto petaloso, di quelli che ti restano negli occhi per giorni.",
+                translation="It was a petal-filled sunset, the kind that stays in your eyes for days.",
+                note="neologismo",
+            ),
+            GrammarExample(
+                text="Le sue parole erano coltelli di vetro: trasparenti, affilati, invisibili fino al colpo.",
+                translation="His words were glass knives: transparent, sharp, invisible until the blow.",
+                note="metafora originale",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Creare neologismi senza conoscere le regole di formazione delle parole.", correct="I neologismi devono rispettare la morfologia italiana per essere accettati.", note="La creativita e libertà nella regola, non ignoranza della regola."),
+            GrammarMistake(
+                wrong="Creare neologismi senza conoscere le regole di formazione delle parole.",
+                correct="I neologismi devono rispettare la morfologia italiana per essere accettati.",
+                note="La creativita e libertà nella regola, non ignoranza della regola.",
+            ),
         ],
         related=["derivazione", "precisione-lessicale", "stile-letterario"],
     ),
@@ -327,10 +503,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Un buon editing migliora senza stravolgere la voce dell'autore.",
         ],
         examples=[
-            GrammarExample(text="Prima: L'azienda ha fatto un sacco di cose per migliorare la situazione. Dopo: L'azienda ha implementato diverse strategie per ottimizzare i processi interni.", translation="Before: The company did a lot of things to improve the situation. After: The company implemented several strategies to optimize internal processes."),
+            GrammarExample(
+                text="Prima: L'azienda ha fatto un sacco di cose per migliorare la situazione. Dopo: L'azienda ha implementato diverse strategie per ottimizzare i processi interni.",
+                translation="Before: The company did a lot of things to improve the situation. After: The company implemented several strategies to optimize internal processes.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Limitarsi alla correzione dei refusi.", correct="Revisionare a tutti i livelli: struttura, stile, lingua.", note="L'editing efficace va oltre la grammatica."),
+            GrammarMistake(
+                wrong="Limitarsi alla correzione dei refusi.",
+                correct="Revisionare a tutti i livelli: struttura, stile, lingua.",
+                note="L'editing efficace va oltre la grammatica.",
+            ),
         ],
         related=["sintesi-testuale", "riformulazione", "precisione-lessicale"],
     ),
@@ -348,11 +531,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Il linguaggio diplomatico evita conflitti e mantiene relazioni.",
         ],
         examples=[
-            GrammarExample(text="Mi sembra che forse ci sia un piccolo margine di miglioramento in questa sezione.", translation="It seems to me that perhaps there is a small margin for improvement in this section.", note="attenuazione diplomatica"),
-            GrammarExample(text="Non e esattamente quello che avevamo in mente. (invece di: E completamente sbagliato.)", translation="It's not exactly what we had in mind. (instead of: It's completely wrong.)", note="understatement"),
+            GrammarExample(
+                text="Mi sembra che forse ci sia un piccolo margine di miglioramento in questa sezione.",
+                translation="It seems to me that perhaps there is a small margin for improvement in this section.",
+                note="attenuazione diplomatica",
+            ),
+            GrammarExample(
+                text="Non e esattamente quello che avevamo in mente. (invece di: E completamente sbagliato.)",
+                translation="It's not exactly what we had in mind. (instead of: It's completely wrong.)",
+                note="understatement",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Questo e inaccettabile! (in contesto professionale)", correct="Ho alcune perplessita su questo aspetto. Potremmo valutare delle alternative?", note="La diplomazia preserva la relazione professionale."),
+            GrammarMistake(
+                wrong="Questo e inaccettabile! (in contesto professionale)",
+                correct="Ho alcune perplessita su questo aspetto. Potremmo valutare delle alternative?",
+                note="La diplomazia preserva la relazione professionale.",
+            ),
         ],
         related=["critica-costruttiva", "registro-formale", "condizionale-cortesia"],
     ),
@@ -370,11 +565,22 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La grammatica e al servizio dell'espressione, non viceversa.",
         ],
         examples=[
-            GrammarExample(text="Se avessi saputo che sarebbe stato cosi difficile, ci avrei pensato due volte prima di accettare, ma ormai quel che e fatto e fatto.", translation="If I had known it would be so difficult, I would have thought twice before accepting, but what's done is done.", note="periodo ipotetico 3 tipo + connettivo"),
-            GrammarExample(text="Benche non condivida pienamente la sua posizione, devo ammettere che le sue argomentazioni, per quanto provocatorie, non sono prive di fondamento.", translation="Although I don't fully share his position, I must admit that his arguments, however provocative, are not without foundation."),
+            GrammarExample(
+                text="Se avessi saputo che sarebbe stato cosi difficile, ci avrei pensato due volte prima di accettare, ma ormai quel che e fatto e fatto.",
+                translation="If I had known it would be so difficult, I would have thought twice before accepting, but what's done is done.",
+                note="periodo ipotetico 3 tipo + connettivo",
+            ),
+            GrammarExample(
+                text="Benche non condivida pienamente la sua posizione, devo ammettere che le sue argomentazioni, per quanto provocatorie, non sono prive di fondamento.",
+                translation="Although I don't fully share his position, I must admit that his arguments, however provocative, are not without foundation.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Evitare strutture complesse per paura dell'errore.", correct="Usare strutture complesse con sicurezza, accettando che l'errore occasionale e normale.", note="La fluidita C2 non significa perfezione assoluta, ma naturalezza."),
+            GrammarMistake(
+                wrong="Evitare strutture complesse per paura dell'errore.",
+                correct="Usare strutture complesse con sicurezza, accettando che l'errore occasionale e normale.",
+                note="La fluidita C2 non significa perfezione assoluta, ma naturalezza.",
+            ),
         ],
         related=["fluidita-nativa", "ripasso-congiuntivo", "ripasso-condizionale"],
     ),
@@ -392,11 +598,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Accettare che ci sara sempre qualcosa da imparare.",
         ],
         examples=[
-            GrammarExample(text="Mah, insomma, non e che mi entusiasmi l'idea, pero tutto sommato si potrebbe anche fare, dai.", translation="Well, I mean, it's not that the idea excites me, but all in all it could be done, come on.", note="parlato naturale con segnali discorsivi"),
-            GrammarExample(text="Certe volte basta uno sguardo per capirsi, senza bisogno di tante parole.", translation="Sometimes a look is enough to understand each other, without needing many words.", note="fluidita espressiva"),
+            GrammarExample(
+                text="Mah, insomma, non e che mi entusiasmi l'idea, pero tutto sommato si potrebbe anche fare, dai.",
+                translation="Well, I mean, it's not that the idea excites me, but all in all it could be done, come on.",
+                note="parlato naturale con segnali discorsivi",
+            ),
+            GrammarExample(
+                text="Certe volte basta uno sguardo per capirsi, senza bisogno di tante parole.",
+                translation="Sometimes a look is enough to understand each other, without needing many words.",
+                note="fluidita espressiva",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Cercare la perfezione assoluta.", correct="Cercare la naturalezza: anche i madrelingua fanno errori nel parlato.", note="La fluidita e comunicazione efficace, non perfezione grammaticale."),
+            GrammarMistake(
+                wrong="Cercare la perfezione assoluta.",
+                correct="Cercare la naturalezza: anche i madrelingua fanno errori nel parlato.",
+                note="La fluidita e comunicazione efficace, non perfezione grammaticale.",
+            ),
         ],
         related=["integrazione-grammaticale", "espressione-sfumata", "italiano-standard"],
     ),
@@ -415,12 +633,28 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Controllare che ogni capoverso abbia un'unica idea principale.",
         ],
         examples=[
-            GrammarExample(text="Prima della revisione: Il progetto è importante. Avrà un impatto. Dobbiamo considerare molti fattori.", translation="Dopo la revisione: Il progetto riveste un'importanza strategica e avrà un impatto significativo, a condizione che si considerino attentamente i molteplici fattori in gioco.", note="Da frasi telegrafiche a un unico periodo coeso."),
-            GrammarExample(text="Prima: La ricerca ha dimostrato che la gente mangia troppi zuccheri.", translation="Dopo: Dalla ricerca emerge un consumo eccessivo di zuccheri nella popolazione analizzata.", note="Registro accademico e precisione lessicale."),
+            GrammarExample(
+                text="Prima della revisione: Il progetto è importante. Avrà un impatto. Dobbiamo considerare molti fattori.",
+                translation="Dopo la revisione: Il progetto riveste un'importanza strategica e avrà un impatto significativo, a condizione che si considerino attentamente i molteplici fattori in gioco.",
+                note="Da frasi telegrafiche a un unico periodo coeso.",
+            ),
+            GrammarExample(
+                text="Prima: La ricerca ha dimostrato che la gente mangia troppi zuccheri.",
+                translation="Dopo: Dalla ricerca emerge un consumo eccessivo di zuccheri nella popolazione analizzata.",
+                note="Registro accademico e precisione lessicale.",
+            ),
         ],
         common_mistakes=[
-            GrammarMistake(wrong="Revisionare tutto in un unico passaggio.", correct="Fare più passaggi, ciascuno focalizzato su un aspetto specifico.", note="La revisione è un processo stratificato."),
-            GrammarMistake(wrong="Non eliminare ridondanze per paura di perdere contenuto.", correct="Ogni parola deve giustificare la propria presenza.", note="Concisione."),
+            GrammarMistake(
+                wrong="Revisionare tutto in un unico passaggio.",
+                correct="Fare più passaggi, ciascuno focalizzato su un aspetto specifico.",
+                note="La revisione è un processo stratificato.",
+            ),
+            GrammarMistake(
+                wrong="Non eliminare ridondanze per paura di perdere contenuto.",
+                correct="Ogni parola deve giustificare la propria presenza.",
+                note="Concisione.",
+            ),
         ],
         related=["riformulazione", "sintesi-testuale", "precisione-lessicale", "generi-testuali"],
     ),
