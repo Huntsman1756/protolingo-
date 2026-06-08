@@ -156,7 +156,7 @@ Step 2: Adaptive quiz (12 questions from static bank)
     - 2 correct in a row → move up one level
     - 2 wrong in a row → move down one level
     - Stop after 12 questions or when confidence threshold reached
-  Questions drawn from frontend/src/data/assessment-bank.ts (~80 curated questions)
+  Questions fetched from GET /api/assessment/bank (~100 curated questions per language)
   Skills tracked: grammar, vocabulary, reading
 
 Step 3: Duration & goals
@@ -165,9 +165,9 @@ Step 3: Duration & goals
   → Persists results, creates StudyPlan
 ```
 
-### Static question bank (`frontend/src/data/assessment-bank.ts`)
+### Static question bank (`backend/app/data/{lang}/assessment_bank.py`)
 
-Approximately 80 curated questions spanning A1 to B2. Each question has:
+Approximately 100 curated questions per language spanning A1 to C2. Each question has:
 - `id` (e.g. `"g-a1-001"`)
 - `skill` (grammar, vocabulary, or reading)
 - `difficulty` (CEFR level)

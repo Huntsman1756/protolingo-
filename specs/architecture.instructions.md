@@ -55,7 +55,7 @@ freelingo/
 │   │   │   ├── (legal)/         # Terms and Privacy pages — minimal layout
 │   │   │   └── api/             # Next.js Route Handlers: chat (SSE), tts, stt proxies
 │   │   ├── components/          # 11 component directories + 4 standalone files
-│   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook, assessment-bank (4 languages: en/es/it/pt)
+│   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook (4 languages: en/es/it/pt)
 │   │   ├── store/               # Zustand stores: auth, config, language, loading, progress, theme (6)
 │   │   ├── lib/                 # Utilities: api, audio, conversation-ws, locales, mappers, target-languages, utils (7)
 │   │   ├── i18n/                # next-intl locale resolver
@@ -85,7 +85,7 @@ Step 1: BeginnerGate ("Have you studied English before?")
     ↓ No → skip to A1, create plan directly
     ↓ Yes → continue
     ↓
-Step 2: Adaptive quiz (12 questions, drawn from static assessment-bank.ts)
+Step 2: Adaptive quiz (15 questions, fetched from GET /api/assessment/bank)
     ↓
 Step 3: Duration selector (4/8/12/16 weeks) + goals selection
     ↓

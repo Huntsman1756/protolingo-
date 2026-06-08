@@ -101,14 +101,15 @@ backend/
 │   │   ├── tts_service.py       # Text-to-speech abstraction (local Kokoro / OpenAI)
 │   │   └── user_language_service.py # Multi-language study plan management (phase 10)
 │   │
-│   └── data/                    # Static curriculum content (4 languages)
+│   └── data/                    # Static curriculum and assessment content (4 languages)
 │       ├── __init__.py
-│       ├── _types.py             # Shared types (CEFRLevel, CurriculumUnit)
-│       ├── curriculum.py         # Language-aware dispatcher
-│       ├── en/                   # English curriculum (46 units, A1–C2)
-│       ├── es/                   # Spanish curriculum (46 units, A1–C2)
-│       ├── it/                   # Italian curriculum (46 units, A1–C2)
-│       └── pt/                   # Portuguese curriculum (46 units, A1–C2)
+│       ├── _types.py             # Shared types (CEFRLevel, CurriculumUnit, AssessmentQuestion)
+│       ├── curriculum.py         # Language-aware curriculum dispatcher
+│       ├── assessment_bank.py    # Language-aware assessment bank dispatcher
+│       ├── en/                   # English curriculum (46 units, A1–C2) + assessment bank (~100 questions)
+│       ├── es/                   # Spanish curriculum (46 units, A1–C2) + assessment bank (~100 questions)
+│       ├── it/                   # Italian curriculum (46 units, A1–C2) + assessment bank (~100 questions)
+│       └── pt/                   # Portuguese curriculum (46 units, A1–C2) + assessment bank (~100 questions)
 │
 ├── alembic/
 │   └── versions/                # DB migrations (31 migrations)

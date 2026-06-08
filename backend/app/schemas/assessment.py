@@ -84,3 +84,22 @@ class LevelTestResult(BaseModel):
     score: float
     recommendation: str  # advance | extend | repeat
     next_level: str | None = None
+
+
+# ── Assessment bank (static question bank served to frontend) ──────────────────
+
+
+class AssessmentBankQuestion(BaseModel):
+    """A single question from the static assessment bank."""
+
+    id: str
+    skill: str
+    difficulty: str
+    question: str
+    options: list[str]
+    correct: str
+    grammar_slug: str | None = None
+
+
+class AssessmentBankResponse(BaseModel):
+    questions: list[AssessmentBankQuestion]

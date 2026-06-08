@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.3] - 2026-06-08
+
+### Changed
+- **Assessment bank migrated to backend**: the static assessment question bank (~100 questions per language × 4 languages) has been moved from the frontend (`data/assessment-bank.ts` and per-language files) to the backend (`app/data/{en,es,it,pt}/assessment_bank.py`), following the same dispatcher pattern as the curriculum. A new endpoint `GET /api/assessment/bank?language=` serves the questions to the frontend, which now fetches them via API instead of bundling them statically. The adaptive quiz logic (`pickNextQuestion`, `adjustLevel`) remains client-side. This is a pure architectural refactor — no user-facing changes.
+
 ## [1.7.2] - 2026-06-07
 
 ### Fixed

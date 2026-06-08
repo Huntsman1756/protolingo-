@@ -72,16 +72,15 @@ frontend/
 │   │   └── ThemeProvider.tsx
 │   │
 │   ├── data/                    # Static content and curriculum data (4 languages)
-│   │   ├── types.ts              # Shared TypeScript types (CEFRLevel, GrammarCategory, etc.)
-│   │   ├── assessment-bank.ts    # Adaptive quiz question bank — language-aware dispatcher
+│   │   ├── types.ts              # Shared TypeScript types (CEFRLevel, GrammarCategory, AssessmentQuestion, etc.)
 │   │   ├── curriculum.ts         # Curriculum definitions — language-aware dispatcher
 │   │   ├── grammar.ts            # Grammar reference — language-aware dispatcher
 │   │   ├── phrasebook.ts         # Phrasebook — language-aware dispatcher
 │   │   ├── vocabulary.ts         # Vocabulary sets — language-aware dispatcher
-│   │   ├── en/                   # English curriculum (5 files: curriculum, grammar, vocab, phrasebook, assessment)
-│   │   ├── es/                   # Spanish curriculum (5 files)
-│   │   ├── it/                   # Italian curriculum (5 files)
-│   │   └── pt/                   # Portuguese curriculum (5 files)
+│   │   ├── en/                   # English curriculum (4 files: curriculum, grammar, vocab, phrasebook)
+│   │   ├── es/                   # Spanish curriculum (4 files)
+│   │   ├── it/                   # Italian curriculum (4 files)
+│   │   └── pt/                   # Portuguese curriculum (4 files)
 │   │
 │   ├── store/                   # Zustand stores (6)
 │   │   ├── auth.ts              # Access token, user info, login/refresh/logout

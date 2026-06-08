@@ -11,13 +11,8 @@ import DurationSelector, {
   DURATION_OPTIONS,
   type DurationOption,
 } from '@/components/assessment/DurationSelector'
-import {
-  pickNextQuestion,
-  adjustLevel,
-  type AssessmentQuestion,
-} from '@/data/assessment-bank'
+import { type AssessmentQuestion, type CEFRLevel } from '@/data/types'
 import { CEFR_LEVELS } from '@/data/curriculum'
-import type { CEFRLevel } from '@/data/grammar'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -57,6 +52,26 @@ const CORRECT_STREAK_TO_UP = 2
 const WRONG_STREAK_TO_DOWN = 2
 const START_LEVEL: CEFRLevel = 'A2'
 
+function pickNextQuestion(
+  bank: AssessmentQuestion[],
+  usedIds: Set<string>,
+  currentLevel: CEFRLevel
+): AssessmentQuestion | null {
+  const available = bank.filter(
+    (q) => !usedIds.has(q.id) && q.difficulty === currentLevel
+  )
+  if (available.length === 0) return null
+  return available[Math.floor(Math.random() * available.length)]
+}
+
+function adjustLevel(current: CEFRLevel, direction: 'up' | 'down'): CEFRLevel {
+  const idx = CEFR_LEVELS.indexOf(current)
+  if (direction === 'up' && idx < CEFR_LEVELS.length - 1)
+    return CEFR_LEVELS[idx + 1]
+  if (direction === 'down' && idx > 0) return CEFR_LEVELS[idx - 1]
+  return current
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function AssessmentPage() {
@@ -68,6 +83,8 @@ export default function AssessmentPage() {
   const [step, setStep] = useState<FlowStep>('checking')
   const [existingPlan, setExistingPlan] = useState<ExistingPlan | null>(null)
   const [error, setError] = useState('')
+  const [bank, setBank] = useState<AssessmentQuestion[]>([])
+  const [bankLoading, setBankLoading] = useState(true)
 
   const [currentQuestion, setCurrentQuestion] =
     useState<AssessmentQuestion | null>(null)
@@ -97,9 +114,19 @@ export default function AssessmentPage() {
   useEffect(() => {
     async function check() {
       try {
-        const res = await apiFetch('/api/study-plan/current')
-        if (res.ok) {
-          const plan = await res.json()
+        const lang = activeLanguage?.code ?? 'en-US'
+        const [planRes, bankRes] = await Promise.all([
+          apiFetch('/api/study-plan/current'),
+          apiFetch(`/api/assessment/bank?language=${lang}`),
+        ])
+        if (bankRes.ok) {
+          const bankData = (await bankRes.json()) as {
+            questions: AssessmentQuestion[]
+          }
+          setBank(bankData.questions)
+        }
+        if (planRes.ok) {
+          const plan = await planRes.json()
           if (plan?.cefr_level) {
             setExistingPlan(plan as ExistingPlan)
             setStep('existing')
@@ -108,6 +135,8 @@ export default function AssessmentPage() {
         }
       } catch {
         /* no plan */
+      } finally {
+        setBankLoading(false)
       }
       setStep('beginner-gate')
     }
@@ -115,12 +144,7 @@ export default function AssessmentPage() {
   }, [activeLanguage?.code])
 
   function loadNextQuestion(level: CEFRLevel, usedSet: Set<string>) {
-    const q = pickNextQuestion(
-      usedSet,
-      level,
-      undefined,
-      activeLanguage?.code ?? 'en-US'
-    )
+    const q = pickNextQuestion(bank, usedSet, level)
     if (q) {
       usedSet.add(q.id)
       setCurrentQuestion(q)
@@ -130,17 +154,16 @@ export default function AssessmentPage() {
   }
 
   function startQuiz() {
+    if (bank.length === 0) {
+      setError(tCommon('errorMessage'))
+      return
+    }
     usedIds.clear()
     setAnswers([])
     setCurrentLevel(START_LEVEL)
     setCorrectStreak(0)
     setWrongStreak(0)
-    const q = pickNextQuestion(
-      usedIds,
-      START_LEVEL,
-      undefined,
-      activeLanguage?.code ?? 'en-US'
-    )
+    const q = pickNextQuestion(bank, usedIds, START_LEVEL)
     if (q) {
       usedIds.add(q.id)
       setCurrentQuestion(q)

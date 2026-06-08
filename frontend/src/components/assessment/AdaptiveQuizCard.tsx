@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import type { AssessmentQuestion } from '@/data/assessment-bank'
+import type { AssessmentQuestion } from '@/data/types'
 
 interface Props {
   question: AssessmentQuestion
