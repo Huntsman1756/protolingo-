@@ -129,6 +129,17 @@ Auth required (`get_current_user`). Serves static vocabulary data (330 sets, ~3,
 
 ---
 
+## Grammar — `/api/grammar`
+
+All endpoints require `get_current_user`.
+
+| Method | Path | Rate limit | Auth | Description |
+|--------|------|------------|------|-------------|
+| GET | `` | 60/min | get_current_user | Returns all grammar topics for the given target language. Query param: `language` (BCP-47, default `en-US`). Response: `{topics: [{slug, title, level, category, summary, explanation, structure, rules, examples, common_mistakes, related}]}`. |
+| GET | `/{slug}` | 60/min | get_current_user | Returns a single grammar topic by slug. Query param: `language`. Returns 404 if not found. |
+
+---
+
 ## Chat — `/api/chat`
 
 | Method | Path | Description |

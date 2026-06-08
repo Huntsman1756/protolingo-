@@ -61,7 +61,7 @@ backend/
 │   │   ├── curriculum.py
 │   │   └── phrasebook.py
 │   │
-│   ├── routers/                 # FastAPI routers (20 REST + 1 WebSocket = 21 total)
+│   ├── routers/                 # FastAPI routers (21 REST + 1 WebSocket = 22 total)
 │   │   ├── __init__.py
 │   │   ├── admin.py             # User management, maintenance toggle, system config
 │   │   ├── assessment.py        # Level assessment quiz + completion + static bank
@@ -74,6 +74,7 @@ backend/
 │   │   ├── curriculum.py        # Curriculum data (now auth-required)
 │   │   ├── feedback.py          # Feedback board CRUD
 │   │   ├── flashcards.py        # Spaced-repetition flashcard CRUD + review
+│   │   ├── grammar.py            # Grammar reference topics by language and CEFR level
 │   │   ├── health.py            # Health check
 │   │   ├── languages.py         # Available target languages
 │   │   ├── lessons.py           # Lesson content + exercise submission

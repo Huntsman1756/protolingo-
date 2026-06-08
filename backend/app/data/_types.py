@@ -5,7 +5,7 @@ Used by all language curriculum modules.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal
 
 CEFRLevel = Literal["A1", "A2", "B1", "B2", "C1", "C2"]
@@ -90,3 +90,32 @@ class PhrasebookCategory:
     situation: str  # e.g. "Greetings & Introductions"
     icon: str  # single emoji, e.g. "👋"
     phrases: list[PhrasebookEntry]
+
+
+@dataclass
+class GrammarExample:
+    text: str  # the example sentence in the target language
+    translation: str | None = None
+    note: str | None = None
+
+
+@dataclass
+class GrammarMistake:
+    wrong: str
+    correct: str
+    note: str
+
+
+@dataclass
+class GrammarTopic:
+    slug: str  # e.g. "present-simple", "ser"
+    title: str
+    level: CEFRLevel
+    category: str  # language-specific grammar category
+    summary: str
+    explanation: str  # Markdown-lite
+    structure: str | None = None
+    rules: list[str] = field(default_factory=list)
+    examples: list[GrammarExample] = field(default_factory=list)
+    common_mistakes: list[GrammarMistake] = field(default_factory=list)
+    related: list[str] = field(default_factory=list)

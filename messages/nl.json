@@ -1095,21 +1095,17 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Woorden opslaan tijdens het lezen",
-      "desc": "Selecteer een woord in een leesoefening om het direct op te slaan als flashcard. De AI genereert een definitie, voorbeeldzin en vertaling — vind al je opgeslagen woorden in het nieuwe Mijn woordenschat-paneel in de Flashcards-sectie."
+      "label": "Meer en betere leerinhoud",
+      "desc": "De secties Zinnen en Grammatica zijn vernieuwd met nieuwe inhoud, uitspraak voor elke zin — druk op play om te luisteren — en sneller laden. De Engelse grammatica heeft nu meer dan 130 gedetailleerde onderwerpen, even uitgebreid als de andere talen."
     },
     "entry2": {
-      "label": "Platformtaal",
-      "desc": "Je kunt nu de taal van de app-interface — menu's, knoppen en labels — kiezen via de pagina instellingen, onafhankelijk van je moedertaal."
-    },
-    "entry3": {
       "label": "Leer meerdere talen",
       "desc": "Je kunt nu meer dan één taal tegelijk leren. Wissel van taal via de zijbalk en voeg nieuwe talen toe via instellingen → Mijn talen. We blijven meer talen toevoegen — je vindt ze daar."
     },
-    "entry4": {
+    "entry3": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen in het hele platform."
     }

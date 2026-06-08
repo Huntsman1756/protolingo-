@@ -109,7 +109,7 @@ function CopyButton({ text }: { text: string }) {
       title="Copy"
       aria-label="Copy phrase"
     >
-      {copied ? '\u2713' : '\U0001f4cb'}
+      {copied ? '\u2713' : '\u{1f4cb}'}
     </button>
   )
 }

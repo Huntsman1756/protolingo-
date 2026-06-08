@@ -1095,21 +1095,17 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Compris",
     "entry1": {
-      "label": "Sauvegarder des mots en lisant",
-      "desc": "Sélectionne n'importe quel mot dans un exercice de lecture pour l'enregistrer instantanément comme flashcard. L'IA génère une définition, un exemple et une traduction — retrouve tous tes mots enregistrés dans le nouveau panneau Mon vocabulaire dans la section Flashcards."
+      "label": "Contenu pédagogique enrichi et amélioré",
+      "desc": "Les sections Guide de conversation et Grammaire ont été entièrement repensées avec du nouveau contenu, la prononciation pour chaque phrase — appuyez sur lecture pour l'écouter — et un chargement plus rapide. La grammaire anglaise compte désormais plus de 130 sujets détaillés, à la hauteur des autres langues."
     },
     "entry2": {
-      "label": "Langue de la plateforme",
-      "desc": "Tu peux désormais choisir la langue de l'interface de l'application — menus, boutons et étiquettes — depuis la page Paramètres, indépendamment de ta langue maternelle."
-    },
-    "entry3": {
       "label": "Apprendre plusieurs langues",
       "desc": "Vous pouvez désormais apprendre plusieurs langues en même temps. Changez de langue depuis la barre latérale et ajoutez-en de nouvelles depuis paramètres → Mes langues. Nous ajouterons d'autres langues — vous les trouverez là-bas."
     },
-    "entry4": {
+    "entry3": {
       "label": "Corrections de bugs",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }
