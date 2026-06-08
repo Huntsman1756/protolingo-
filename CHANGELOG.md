@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.4] - 2026-06-08
+
+### Added
+- **Phrasebook migrated to backend**: all phrasebook data (~280-305 phrases per language × 4 languages, 25 categories each) moved from frontend static files to the backend, organized per CEFR level. New endpoints `GET /api/phrasebook`, `GET /api/phrasebook/level/{level}`, `GET /api/phrasebook/{category_id}`, and `GET /api/phrasebook/audio/{category_id}/{phrase_index}` serve the data with auth required and cached TTS audio. The frontend phrasebook page now fetches via API with loading states and a search bar.
+- **Phrasebook TTS audio caching**: each phrase's pronunciation is generated once on first request and cached to disk (`/data/audio/phrasebook/{lang}/{hash}.mp3`), so subsequent plays are instant and free. A play button (▶) appears next to each phrase alongside the copy button.
+- **Phrasebook search**: a search bar filters phrases by text content, combinable with the existing level and register filters.
+- **English grammar expanded**: 75 new topics added, bringing English from 55 to 130 topics across A1–C2, matching the depth of the other languages. New topics cover areas like question tags, indirect questions, subjunctive mood, narrative tenses, collocations, hedging, rhetorical devices, pragmatic competence, and more. Categories previously sparse or empty (Phrasal Verbs 0→4, Articles 1→4, Questions 1→4) are now properly represented.
+- **Grammar migrated to backend**: all grammar topics (~125-131 per language × 4 languages) moved from frontend static files to the backend, organized per CEFR level. New endpoints `GET /api/grammar` and `GET /api/grammar/{slug}` serve the data with auth required. The frontend grammar index and detail pages now fetch via API with loading/error states. The lesson page's grammar references also use the API.
+- **Grammar audio button renamed field**: the `english` field in `GrammarExample` and `Phrase` interfaces was renamed to `text` for accuracy (it contains the target language phrase, not necessarily English).
+
+### Fixed
+- Two broken `related[]` cross-references in grammar data: Italian `si-impersonale` referencing `pronomin-indiretti` → `pronomi-indiretti`, Portuguese `horas` referencing `numeros` → `numeros-ordinais`.
+
+### Changed
+- **Phrasebook copy button**: fixed clipboard emoji rendering by using correct JavaScript Unicode escape (`\\u{1f4cb}`).
+
 ## [1.7.3] - 2026-06-08
 
 ### Added

@@ -1095,21 +1095,17 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Wörter beim Lesen speichern",
-      "desc": "Markiere ein beliebiges Wort in einer Leseübung, um es sofort als Karteikarte zu speichern. Die KI generiert Definition, Beispielsatz und Übersetzung — alle gespeicherten Wörter findest du im neuen Panel Mein Vokabular im Bereich Karteikarten."
+      "label": "Mehr und bessere Lerninhalte",
+      "desc": "Die Bereiche Redewendungen und Grammatik wurden mit neuen Inhalten, Aussprache für jede Phrase — einfach auf Play drücken — und schnellerem Laden grundlegend überarbeitet. Die englische Grammatik umfasst jetzt über 130 detaillierte Themen und entspricht damit der Tiefe der anderen Sprachen."
     },
     "entry2": {
-      "label": "Plattformsprache",
-      "desc": "Du kannst nun die Sprache der App-Oberfläche — Menüs, Schaltflächen und Beschriftungen — unabhängig von deiner Muttersprache in den Einstellungen auswählen."
-    },
-    "entry3": {
       "label": "Mehrere Sprachen lernen",
       "desc": "Du kannst jetzt mehrere Sprachen gleichzeitig lernen. Wechsle die Sprache über die Seitenleiste und füge neue Sprachen unter Einstellungen → Meine Sprachen hinzu. Wir werden weitere Sprachen hinzufügen — du findest sie dann dort."
     },
-    "entry4": {
+    "entry3": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen in der gesamten Plattform."
     }

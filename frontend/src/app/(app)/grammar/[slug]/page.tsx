@@ -1,15 +1,13 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { use, useMemo } from 'react'
+import { use } from 'react'
 import { useTranslations } from 'next-intl'
-import { getGrammarTopics } from '@/data/grammar'
+import { getGrammarTopics, type GrammarTopic } from '@/data/grammar'
 import { useLanguageStore } from '@/store/language'
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-/** Render a Markdown-lite explanation: bold, code, line breaks, lists */
 function renderExplanation(text: string) {
   const lines = text.split('\n')
   return lines.map((line, i) => {
@@ -19,13 +17,12 @@ function renderExplanation(text: string) {
           key={i}
           className="text-fl-muted-1 font-mono text-xs leading-relaxed"
         >
-          <span className="text-fl-muted-3 mr-2">·</span>
+          <span className="text-fl-muted-3 mr-2">{'\u00b7'}</span>
           <RichText text={line.slice(2)} />
         </li>
       )
     }
     if (line.trim() === '') return null
-    // table row
     if (line.startsWith('|')) {
       return (
         <tr key={i}>
@@ -51,7 +48,6 @@ function renderExplanation(text: string) {
   })
 }
 
-/** Inline bold (**text**) and code (`text`) rendering */
 function RichText({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`)/)
   return (
@@ -77,24 +73,64 @@ function RichText({ text }: { text: string }) {
   )
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
-
 export default function GrammarDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
   const t = useTranslations('grammar')
+  const tCommon = useTranslations('common')
   const tNav = useTranslations('nav')
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const { slug } = use(params)
 
-  const grammarTopics = useMemo(
-    () => getGrammarTopics(activeLanguage?.code),
-    [activeLanguage?.code]
-  )
+  const [topics, setTopics] = useState<GrammarTopic[]>([])
+  const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(false)
 
-  const topic = grammarTopics.find((t) => t.slug === slug)
+  const fetchTopics = useCallback(async (lang: string) => {
+    setLoading(true)
+    setLoadError(false)
+    try {
+      const data = await getGrammarTopics(lang)
+      setTopics(data)
+    } catch {
+      setLoadError(true)
+      setTopics([])
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchTopics(activeLanguage?.code ?? 'en-US')
+  }, [activeLanguage?.code, fetchTopics])
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
+          {tCommon('loading')}
+        </span>
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
+        <p className="text-fl-muted-2 font-mono text-sm">{tCommon('error')}</p>
+        <button
+          onClick={() => fetchTopics(activeLanguage?.code ?? 'en-US')}
+          className="text-fl-accent font-mono text-xs tracking-widest uppercase underline"
+        >
+          {tCommon('retry')}
+        </button>
+      </div>
+    )
+  }
+
+  const topic = topics.find((t) => t.slug === slug)
   if (!topic) notFound()
 
   const hasTable = topic.explanation.includes('|')
@@ -102,12 +138,11 @@ export default function GrammarDetailPage({
   const hasList = explanationLines.some((l) => l.startsWith('- '))
 
   const relatedTopics = topic.related
-    .map((s) => grammarTopics.find((t) => t.slug === s))
+    .map((s) => topics.find((t) => t.slug === s))
     .filter(Boolean)
 
   return (
     <div className="mx-auto max-w-2xl space-y-4 p-6">
-      {/* Breadcrumb */}
       <nav className="text-fl-label text-fl-muted-3 flex items-center gap-2 font-mono">
         <Link
           href="/grammar"
@@ -115,18 +150,17 @@ export default function GrammarDetailPage({
         >
           {tNav('grammar')}
         </Link>
-        <span>›</span>
+        <span>{'\u203a'}</span>
         <span className="text-fl-muted-2 tracking-widest uppercase">
           {topic.level}
         </span>
-        <span>›</span>
+        <span>{'\u203a'}</span>
         <span className="text-fl-fg tracking-wide">{topic.title}</span>
       </nav>
 
-      {/* Title card */}
       <div className="border-fl-border bg-fl-surface border">
         <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
-          <span className="text-fl-label text-fl-muted-3">●</span>
+          <span className="text-fl-label text-fl-muted-3">{'\u25cf'}</span>
           <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('backToGrammar')}
           </span>
@@ -157,7 +191,6 @@ export default function GrammarDetailPage({
         </div>
       </div>
 
-      {/* Explanation */}
       <div className="border-fl-border bg-fl-surface border">
         <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
           <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
@@ -183,7 +216,6 @@ export default function GrammarDetailPage({
         </div>
       </div>
 
-      {/* Key Rules */}
       {topic.rules.length > 0 && (
         <div className="border-fl-border bg-fl-surface border">
           <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
@@ -206,7 +238,6 @@ export default function GrammarDetailPage({
         </div>
       )}
 
-      {/* Examples */}
       {topic.examples.length > 0 && (
         <div className="border-fl-border bg-fl-surface border">
           <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
@@ -220,7 +251,7 @@ export default function GrammarDetailPage({
                 key={i}
                 className="border-fl-border space-y-0.5 border-l-2 pl-4"
               >
-                <p className="text-fl-fg font-mono text-xs">{ex.english}</p>
+                <p className="text-fl-fg font-mono text-xs">{ex.text}</p>
                 {ex.note && (
                   <p className="text-fl-label text-fl-muted-3 font-mono italic">
                     {ex.note}
@@ -232,7 +263,6 @@ export default function GrammarDetailPage({
         </div>
       )}
 
-      {/* Common Mistakes */}
       {topic.common_mistakes.length > 0 && (
         <div className="border-fl-border bg-fl-surface border">
           <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
@@ -246,7 +276,7 @@ export default function GrammarDetailPage({
                 {m.wrong && (
                   <div className="flex items-start gap-2">
                     <span className="text-fl-label shrink-0 font-mono text-red-500">
-                      ✗
+                      {'\u2717'}
                     </span>
                     <p className="text-fl-muted-2 font-mono text-xs line-through">
                       {m.wrong}
@@ -256,7 +286,7 @@ export default function GrammarDetailPage({
                 {m.correct && (
                   <div className="flex items-start gap-2">
                     <span className="text-fl-label shrink-0 font-mono text-green-500">
-                      ✓
+                      {'\u2713'}
                     </span>
                     <p className="text-fl-fg font-mono text-xs">{m.correct}</p>
                   </div>
@@ -272,7 +302,6 @@ export default function GrammarDetailPage({
         </div>
       )}
 
-      {/* Related Topics */}
       {relatedTopics.length > 0 && (
         <div className="border-fl-border bg-fl-surface border">
           <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
@@ -289,7 +318,7 @@ export default function GrammarDetailPage({
                     href={`/grammar/${rt.slug}`}
                     className="border-fl-border text-fl-label text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg border px-3 py-2 font-mono tracking-widest uppercase transition-colors"
                   >
-                    ● {rt.title}
+                    {'\u25cf'} {rt.title}
                     <span className="text-fl-muted-4 ml-2">{rt.level}</span>
                   </Link>
                 )
@@ -298,12 +327,11 @@ export default function GrammarDetailPage({
         </div>
       )}
 
-      {/* Back link */}
       <Link
         href="/grammar"
         className="text-fl-label text-fl-muted-2 hover:text-fl-fg inline-block font-mono tracking-widest uppercase transition-colors"
       >
-        ← {t('backLink')}
+        {'\u2190'} {t('backLink')}
       </Link>
     </div>
   )

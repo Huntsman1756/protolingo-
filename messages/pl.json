@@ -1095,21 +1095,17 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Zapisuj słowa podczas czytania",
-      "desc": "Zaznacz dowolne słowo w ćwiczeniu czytania, aby natychmiast zapisać je jako kartę. AI generuje definicję, przykład i tłumaczenie — wszystkie zapisane słowa znajdziesz w nowym panelu Mój słownik w sekcji Fiszki."
+      "label": "Więcej i lepsze materiały dydaktyczne",
+      "desc": "Sekcje Rozmówek i Gramatyki zostały odświeżone — nowe treści, wymowa każdej frazy (wystarczy nacisnąć play) i szybsze ładowanie. Gramatyka angielska ma teraz ponad 130 szczegółowych tematów, dorównując pozostałym językom."
     },
     "entry2": {
-      "label": "Język platformy",
-      "desc": "Możesz teraz wybrać język interfejsu aplikacji — menu, przyciski i etykiety — na stronie ustawień, niezależnie od swojego języka ojczystego."
-    },
-    "entry3": {
       "label": "Ucz się wielu języków",
       "desc": "Możesz teraz uczyć się więcej niż jednego języka jednocześnie. Przełączaj języki z paska bocznego i dodawaj nowe w Ustawienia → Moje języki. Będziemy dodawać kolejne języki — znajdziesz je właśnie tam."
     },
-    "entry4": {
+    "entry3": {
       "label": "Poprawki błędów",
       "desc": "Różne drobne poprawki błędów i ulepszenia stabilności na całej platformie."
     }

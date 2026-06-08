@@ -1095,21 +1095,17 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Got it",
     "entry1": {
-      "label": "Save words from reading",
-      "desc": "Select any word in a reading exercise to instantly save it as a flashcard. The AI generates a definition, example sentence, and translation — find all your saved words in the new My Vocabulary panel in the Flashcards section."
+      "label": "More and better learning content",
+      "desc": "The Phrasebook and Grammar sections have been completely revamped with new content, proper pronunciation for every phrase — just press play to hear it — and faster loading. English grammar now has over 130 detailed topics matching the depth of other languages."
     },
     "entry2": {
-      "label": "Platform language",
-      "desc": "You can now choose the language of the app interface — menus, buttons, and labels — from the Settings page, independently of your native language."
-    },
-    "entry3": {
       "label": "Learn multiple languages",
       "desc": "You can now learn more than one language at the same time. Switch between languages from the sidebar and add new ones from Settings → My Languages. We'll keep adding more languages — when we do, you'll find them there."
     },
-    "entry4": {
+    "entry3": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }

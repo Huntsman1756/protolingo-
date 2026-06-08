@@ -1,14 +1,12 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { getGrammarTopics, type GrammarTopic } from '@/data/grammar'
 import type { GrammarCategory } from '@/data/types'
 import { CEFR_LEVELS } from '@/data/curriculum'
 import { useLanguageStore } from '@/store/language'
-
-// ── Topic card ────────────────────────────────────────────────────────────────
 
 function TopicCard({ topic }: { topic: GrammarTopic }) {
   return (
@@ -36,33 +34,47 @@ function TopicCard({ topic }: { topic: GrammarTopic }) {
   )
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
-
 export default function GrammarIndexPage() {
   const t = useTranslations('grammar')
   const tCommon = useTranslations('common')
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
+  const [topics, setTopics] = useState<GrammarTopic[]>([])
+  const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState(false)
   const [search, setSearch] = useState('')
   const [activeCategory, setActiveCategory] = useState<GrammarCategory | 'All'>(
     'All'
   )
 
-  const grammarTopics = useMemo(
-    () => getGrammarTopics(activeLanguage?.code),
-    [activeLanguage?.code]
-  )
+  const fetchTopics = useCallback(async (lang: string) => {
+    setLoading(true)
+    setLoadError(false)
+    try {
+      const data = await getGrammarTopics(lang)
+      setTopics(data)
+    } catch {
+      setLoadError(true)
+      setTopics([])
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchTopics(activeLanguage?.code ?? 'en-US')
+  }, [activeLanguage?.code, fetchTopics])
 
   const allCategories: GrammarCategory[] = useMemo(
     () =>
       Array.from(
-        new Set(grammarTopics.map((t) => t.category))
+        new Set(topics.map((t) => t.category))
       ).sort() as GrammarCategory[],
-    [grammarTopics]
+    [topics]
   )
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
-    return grammarTopics.filter((t) => {
+    return topics.filter((t) => {
       const matchesSearch =
         !q ||
         t.title.toLowerCase().includes(q) ||
@@ -72,28 +84,50 @@ export default function GrammarIndexPage() {
         activeCategory === 'All' || t.category === activeCategory
       return matchesSearch && matchesCategory
     })
-  }, [search, activeCategory, grammarTopics])
+  }, [search, activeCategory, topics])
 
   const usedCategories = useMemo(() => {
-    const cats = new Set(grammarTopics.map((t) => t.category))
+    const cats = new Set(topics.map((t) => t.category))
     return allCategories.filter((c) => cats.has(c))
-  }, [grammarTopics, allCategories])
+  }, [topics, allCategories])
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
+          {tCommon('loading')}
+        </span>
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
+        <p className="text-fl-muted-2 font-mono text-sm">{tCommon('error')}</p>
+        <button
+          onClick={() => fetchTopics(activeLanguage?.code ?? 'en-US')}
+          className="text-fl-accent font-mono text-xs tracking-widest uppercase underline"
+        >
+          {tCommon('retry')}
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">
-      {/* Header */}
       <div className="border-fl-border bg-fl-surface border">
         <div className="border-fl-border flex items-center gap-2 border-b px-6 py-4">
-          <span className="text-fl-label text-fl-muted-3">●</span>
+          <span className="text-fl-label text-fl-muted-3">{'\u25cf'}</span>
           <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
             {t('title')}
           </span>
         </div>
         <div className="space-y-4 px-6 py-5">
           <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
-            {grammarTopics.length} topics · A1 – C2
+            {topics.length} topics · A1 – C2
           </p>
-          {/* Search */}
           <input
             type="text"
             value={search}
@@ -101,7 +135,6 @@ export default function GrammarIndexPage() {
             placeholder={t('searchPlaceholder')}
             className="bg-fl-bg border-fl-border text-fl-fg placeholder:text-fl-muted-4 focus:border-fl-border-2 w-full max-w-sm border px-4 py-2.5 font-mono text-xs transition-colors focus:outline-none"
           />
-          {/* Category filter */}
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setActiveCategory('All')}
@@ -132,17 +165,15 @@ export default function GrammarIndexPage() {
         </div>
       </div>
 
-      {/* Results count when filtering */}
       {(search || activeCategory !== 'All') && (
         <p className="text-fl-label text-fl-muted-3 font-mono">
           {t('topicsFound', { count: filtered.length })}
         </p>
       )}
 
-      {/* Level sections */}
       {CEFR_LEVELS.map((level) => {
-        const topics = filtered.filter((t) => t.level === level)
-        if (!topics.length) return null
+        const levelTopics = filtered.filter((t) => t.level === level)
+        if (!levelTopics.length) return null
         return (
           <section key={level} className="space-y-3">
             <div className="flex items-center gap-3">
@@ -151,11 +182,11 @@ export default function GrammarIndexPage() {
               </span>
               <div className="bg-fl-border h-px flex-1" />
               <span className="text-fl-label text-fl-muted-3 font-mono">
-                {topics.length} topic{topics.length !== 1 ? 's' : ''}
+                {levelTopics.length} topic{levelTopics.length !== 1 ? 's' : ''}
               </span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {topics.map((t) => (
+              {levelTopics.map((t) => (
                 <TopicCard key={t.slug} topic={t} />
               ))}
             </div>

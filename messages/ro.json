@@ -1095,21 +1095,17 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Salvează cuvinte în timp ce citești",
-      "desc": "Selectează orice cuvânt dintr-un exercițiu de lectură pentru a-l salva instant ca flashcard. IA generează definiție, exemplu și traducere — găsești toate cuvintele salvate în noul panou Vocabularul meu din secțiunea Flashcards."
+      "label": "Conținut didactic extins și îmbunătățit",
+      "desc": "Secțiunile de Expresii și Gramatică au fost reînnoite cu conținut nou, pronunție pentru fiecare frază — apasă play pentru a o auzi — și încărcare mai rapidă. Gramatica engleză are acum peste 130 de subiecte detaliate, la același nivel cu celelalte limbi."
     },
     "entry2": {
-      "label": "Limba platformei",
-      "desc": "Acum poți alege limba interfeței aplicației — meniuri, butoane și etichete — din pagina setări, independent de limba ta nativă."
-    },
-    "entry3": {
       "label": "Învață mai multe limbi",
       "desc": "Acum poți învăța mai mult de o limbă în același timp. Schimbă limba din bara laterală și adaugă altele noi din setări → Limbile mele. Vom continua să adăugăm mai multe limbi — le vei găsi acolo."
     },
-    "entry4": {
+    "entry3": {
       "label": "Corectări de bug-uri",
       "desc": "Diverse corectări minore de bug-uri și îmbunătățiri de stabilitate pe întreaga platformă."
     }

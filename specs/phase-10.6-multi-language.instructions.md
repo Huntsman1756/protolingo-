@@ -105,7 +105,7 @@ export function getCurriculum(targetLanguage: string): CurriculumData {
 |------|-------------|
 | `curriculum.ts` | Curriculum units (A1–C2) |
 | `grammar.ts` | Grammar reference entries |
-| `vocabulary.ts` | Vocabulary sets — migrated to backend in v1.7.3 (`app/data/{lang}/vocabulary_{a1-c2}.py`), served via `/api/vocabulary` |
+| `vocabulary.ts` | Vocabulary sets — migrated to backend in v1.7.4 (`app/data/{lang}/vocabulary_{a1-c2}.py`), served via `/api/vocabulary` |
 | `phrasebook.ts` | Phrasebook entries |
 | `assessment-bank` | Assessment question bank (now in `backend/app/data/{lang}/assessment_bank.py`) |
 
@@ -173,11 +173,11 @@ The English values above are the reference. Add the equivalent translations in a
 | `backend/app/data/es/_types.py` | Types |
 | `backend/app/data/es/curriculum.py` | Entry point |
 | `backend/app/data/es/curriculum_a1.py` ... `curriculum_c2.py` | 6 CEFR files |
-| `backend/app/data/it/` | Same structure (8 files + vocabulary migrated from frontend in v1.7.3) |
-| `backend/app/data/pt/` | Same structure (8 files + vocabulary migrated from frontend in v1.7.3) |
+| `backend/app/data/it/` | Same structure (8 files + vocabulary migrated from frontend in v1.7.4) |
+| `backend/app/data/pt/` | Same structure (8 files + vocabulary migrated from frontend in v1.7.4) |
 | `frontend/src/data/es/curriculum.ts` | ES curriculum |
 | `frontend/src/data/es/grammar.ts` | ES grammar |
-| `backend/app/data/es/vocabulary_a1.py`...`c2.py` | ES vocabulary (migrated from frontend in v1.7.3) |
+| `backend/app/data/es/vocabulary_a1.py`...`c2.py` | ES vocabulary (migrated from frontend in v1.7.4) |
 | `frontend/src/data/es/phrasebook.ts` | ES phrasebook |
 | `backend/app/data/es/assessment_bank.py` | ES assessment bank |
 | `frontend/src/data/it/` | Same structure (3 files) |

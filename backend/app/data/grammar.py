@@ -1,0 +1,46 @@
+"""
+Language-aware grammar dispatcher.
+
+Mirrors the vocabulary/phrasebook dispatcher pattern: resolves the correct
+per-language grammar module by ISO 639-1 prefix.
+"""
+
+from __future__ import annotations
+
+import sys
+
+from app.data._types import GrammarExample, GrammarMistake, GrammarTopic  # noqa: F401
+
+_LANG_MODULES: dict[str, str] = {
+    "en": "app.data.en.grammar",
+    "es": "app.data.es.grammar",
+    "it": "app.data.it.grammar",
+    "pt": "app.data.pt.grammar",
+}
+
+_CACHE: dict[str, list[GrammarTopic]] = {}
+
+
+def _resolve_topics(target_language: str) -> list[GrammarTopic]:
+    iso = target_language.split("-")[0]
+    module_name = _LANG_MODULES.get(iso, "app.data.en.grammar")
+
+    if module_name not in _CACHE:
+        __import__(module_name)
+        _CACHE[module_name] = sys.modules[module_name].GRAMMAR_TOPICS
+
+    return _CACHE[module_name]
+
+
+def get_grammar_topics(target_language: str = "en-US") -> list[GrammarTopic]:
+    """Return all grammar topics for the given target language."""
+    return _resolve_topics(target_language)
+
+
+def get_grammar_topic(slug: str, target_language: str = "en-US") -> GrammarTopic | None:
+    """Return a single grammar topic by slug for the given target language."""
+    topics = _resolve_topics(target_language)
+    for t in topics:
+        if t.slug == slug:
+            return t
+    return None

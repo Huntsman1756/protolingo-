@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useProgressStore } from '@/store/progress'
 import { useLanguageStore } from '@/store/language'
-import { grammarTopics } from '@/data/grammar'
+import { getGrammarTopics, type GrammarTopic } from '@/data/grammar'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
@@ -61,6 +61,14 @@ export default function LessonPage() {
   const [completed, setCompleted] = useState(false)
   const [dayComplete, setDayComplete] = useState(false)
   const [progressDayAtStart, setProgressDayAtStart] = useState(-1)
+  const [grammarTopics, setGrammarTopics] = useState<GrammarTopic[]>([])
+
+  useEffect(() => {
+    getGrammarTopics(activeLanguage?.code ?? 'en-US')
+      .then(setGrammarTopics)
+      .catch(() => setGrammarTopics([]))
+  }, [activeLanguage?.code])
+
   const [loading, setLoading] = useState(true)
   const [loadError, setLoadError] = useState(false)
   const [submitError, setSubmitError] = useState(false)

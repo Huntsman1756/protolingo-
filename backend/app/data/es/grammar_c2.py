@@ -1,0 +1,396 @@
+"""Spanish grammar topics — C2."""
+
+from app.data._types import GrammarExample, GrammarMistake, GrammarTopic
+
+C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
+    GrammarTopic(
+        slug="repaso-subjuntivo",
+        title="Repaso avanzado del subjuntivo",
+        level="C2",
+        category="Subjuntivo",
+        summary="Integración de todos los usos del subjuntivo en contextos complejos.",
+        explanation="En nivel C2 se domina la alternancia indicativo/subjuntivo en todos los contextos, incluidos aquellos en los que la elección refleja un **matiz significativo sutil**.\n\n**Casos de alternancia con cambio de significado**:\n\n- *No creo que **venga*** (subjuntivo: duda real). vs. *No creo que **viene*** (indicativo: se niega una creencia ajena).\n- *Aunque **llueve**, saldré* (sé que llueve). vs. *Aunque **llueva**, saldré* (no sé si lloverá).\n- *Quizás **tiene** razón* (probabilidad alta). vs. *Quizás **tenga** razón* (probabilidad baja).\n\n**Dominio de la concordancia temporal en discursos complejos**:\n- *No pensé que **fuera a llover**.* (Imperfecto subj. con valor de futuro del pasado.)\n- *Me molestó que no me **hubieras avisado**.* (Pluscuamperfecto subj. para anterioridad.)\n\n**Subjuntivo en contextos formales y literarios**:\n- *Quien **osare** desafiar la ley...* (subjuntivo arcaizante con valor eventual).\n- *Sea como fuere...* (fórmula concesiva lexicalizada).",
+        rules=[
+            "La alternancia indicativo/subjuntivo puede reflejar matices semánticos muy sutiles.",
+            "El dominio C2 implica usar el subjuntivo de forma natural, sin pensarlo.",
+            "En registros cultos se usan construcciones subjuntivas arcaizantes o lexicalizadas.",
+            "El subjuntivo puede aparecer en oraciones independientes con valor desiderativo o dubitativo.",
+        ],
+        examples=[
+            GrammarExample(text="Sea como fuere, debemos tomar una decisión.", translation="Be that as it may, we must make a decision.", note="fórmula concesiva lexicalizada"),
+            GrammarExample(text="No es que no quisiera ir, es que no pude.", translation="It's not that I didn't want to go, it's that I couldn't.", note="subjuntivo en estructura contrastiva"),
+            GrammarExample(text="Quien bien te quiere te hará llorar.", translation="Whoever loves you well will make you cry.", note="indicativo en relativa con valor genérico"),
+        ],
+        common_mistakes=[
+        ],
+        related=["subjuntivo-concesivo", "subjuntivo-final", "subjuntivo-relativo", "concordancia-temporal"],
+    ),
+    GrammarTopic(
+        slug="repaso-condicional",
+        title="Repaso avanzado de condicionales",
+        level="C2",
+        category="Condicionales",
+        summary="Dominio de todas las estructuras condicionales, incluidas las mixtas y las de registro culto.",
+        explanation="En C2 se dominan las **condicionales mixtas**, las variantes cultas y las estructuras alternativas.\n\n**Condicionales mixtas**: combinan prótasis y apódosis de distintos tipos.\n- *Si **hubieras estudiado** (tipo 3), ahora **tendrías** (tipo 2) trabajo.*\n- *Si **fueras** (tipo 2) más responsable, **habrías terminado** (tipo 3) ayer.*\n\n**Variantes de la prótasis sin \"si\"**:\n- *De + infinitivo*: *De haberlo sabido, no habría venido.*\n- *A no ser que / a menos que / salvo que + subjuntivo*: *Iré a no ser que llueva.*\n- *Siempre que / con tal (de) que / a condición de que + subjuntivo*: *Te ayudo siempre que me escuches.*\n\n**Condicionales con imperativo en la apódosis**:\n- *Si necesitas ayuda, llámame.*\n\n**Condicionales de registro culto**:\n- *Hubiera + participio* en lugar de *habría + participio*: *Si lo hubiera sabido, no hubiera ido.*",
+        rules=[
+            "Las condicionales mixtas rompen la correspondencia tipo a tipo para expresar matices temporales.",
+            "\"De + infinitivo\" es una alternativa formal a \"si + pluscuamperfecto de subjuntivo\".",
+            "\"Siempre que\" + subjuntivo = condición necesaria.",
+            "\"Con tal de que\" expresa condición mínima suficiente.",
+        ],
+        examples=[
+            GrammarExample(text="De haberlo sabido, te habría avisado antes.", translation="Had I known, I would have told you earlier.", note="alternativa formal a \"si hubiera sabido\""),
+            GrammarExample(text="Iré a la playa el sábado, a no ser que llueva.", translation="I'll go to the beach on Saturday, unless it rains."),
+            GrammarExample(text="Si hubieras ahorrado más, ahora no estarías preocupado.", translation="If you had saved more, you wouldn't be worried now.", note="condicional mixta"),
+        ],
+        common_mistakes=[
+        ],
+        related=["si-presente-futuro", "si-imperfecto-subjuntivo", "condicional-compuesto", "subjuntivo-imperfecto"],
+    ),
+    GrammarTopic(
+        slug="concordancia-de-tiempos",
+        title="Concordancia de tiempos en discursos complejos",
+        level="C2",
+        category="Tiempos verbales",
+        summary="Dominio de la consecutio temporum en narraciones y discursos con múltiples niveles temporales.",
+        explanation="En textos con múltiples planos temporales (narraciones con flashbacks y flashforwards, discursos hipotéticos, estilo indirecto encadenado), la **concordancia temporal** es compleja.\n\n**Narración con tres planos temporales**:\n- Plano base: imperfecto (*Era 1995*).\n- Flashback: pluscuamperfecto (*Ya había terminado la guerra*).\n- Anterior al flashback: pluscuamperfecto con valor de anterioridad reforzada (*Para entonces ya la habían declarado varias veces*).\n\n**Estilo indirecto encadenado (dos niveles de pasado)**:\n- *Dijo que le habían contado que andaban buscando a alguien que hubiera vivido en el extranjero.*\n\n**Uso de formas en -ra con valor de indicativo**:\n- En registro culto/literario: *El que fuera presidente...* (= El que fue presidente).\n\n**Dominio de la correlación subjuntivo-indicativo**:\n- *Espero que cuando **llegues** (pres. subj.) todavía **esté** (pres. subj.) despierto.*\n- *Esperaba que cuando **llegaras** (imp. subj.) todavía **estuviera** (imp. subj.) despierto.*",
+        rules=[
+            "Cada salto temporal hacia atrás requiere pluscuamperfecto.",
+            "En estilo indirecto encadenado se aplican las reglas en cascada.",
+            "La forma -ra puede funcionar como indicativo en registros cultos.",
+            "La concordancia subjuntivo mantiene coherencia con el verbo principal.",
+        ],
+        examples=[
+            GrammarExample(text="Dijo que le habían asegurado que el problema ya se habría resuelto para cuando él llegara.", translation="He said that they had assured him that the problem would have already been solved by the time he arrived."),
+            GrammarExample(text="El que fuera ministro de Economía ha publicado sus memorias.", translation="The former Minister of Economy has published his memoirs.", note="-ra con valor de indicativo"),
+        ],
+        common_mistakes=[
+        ],
+        related=["concordancia-temporal", "estilo-indirecto-pasado", "pluscuamperfecto", "subjuntivo-imperfecto"],
+    ),
+    GrammarTopic(
+        slug="estilo-literario",
+        title="Estilo literario",
+        level="C2",
+        category="Avanzado",
+        summary="Rasgos del español literario: lenguaje figurado, hipérbaton, arcaísmos, cultismos.",
+        explanation="El **estilo literario** se caracteriza por una elaboración consciente del lenguaje que persigue la belleza expresiva.\n\n**Rasgos del español literario**:\n\n**Léxico culto y preciso**:\n- Uso de cultismos: *ígneo, álgido, lóbrego, efímero, falaz*.\n- Evitar palabras comodín.\n\n**Sintaxis elaborada**:\n- Hipérbaton: *Del monte en la ladera, por mi mano plantado tengo un huerto.*\n- Subordinación compleja.\n- Uso de gerundios, participios absolutos y construcciones de infinitivo.\n\n**Figuras retóricas**:\n- Metáfora, símil, personificación, sinestesia, aliteración.\n\n**Registro y tono**:\n- Puede alternar entre lo sublime y lo coloquial con intención estilística.\n- Uso de arcaísmos con fines evocadores.\n\nEn C2 se espera leer literatura en español y reconocer estos rasgos, así como incorporar algunos en la escritura creativa.",
+        rules=[
+            "El hipérbaton es más libre en poesía que en prosa.",
+            "Los cultismos enriquecen pero no deben sobrecargar el texto.",
+            "La literatura contemporánea hispanoamericana ha flexibilizado el uso de registros.",
+            "El gerundio de anterioridad es propio de registros literarios: \"Habiendo terminado, se fue\".",
+        ],
+        examples=[
+            GrammarExample(text="Del salón en el ángulo oscuro, de su dueño tal vez olvidada, silenciosa y cubierta de polvo veíase el arpa.", translation="In the dark corner of the room, perhaps forgotten by its owner, silent and covered in dust, the harp could be seen.", note="Bécquer, hipérbaton"),
+            GrammarExample(text="Macondo era entonces una aldea de veinte casas de barro y cañabrava construidas a la orilla de un río de aguas diáfanas.", translation="Macondo was then a village of twenty adobe and cane houses built on the bank of a river of diaphanous waters.", note="García Márquez, adjetivación"),
+        ],
+        common_mistakes=[
+        ],
+        related=["voz-narrativa", "recursos-estilisticos", "descripcion-literaria", "figuras-literarias"],
+    ),
+    GrammarTopic(
+        slug="voz-narrativa",
+        title="Voz narrativa",
+        level="C2",
+        category="Avanzado",
+        summary="Tipos de narrador y su efecto en el texto: primera, segunda y tercera persona, focalización.",
+        explanation="La **voz narrativa** es la instancia que cuenta la historia. Su elección determina la perspectiva, el tono y la información disponible para el lector.\n\n**Tipos de narrador**:\n\n**Primera persona** (yo):\n- Narrador protagonista o testigo.\n- Crea intimidad y subjetividad.\n- *Nunca olvidaré el día en que conocí a María.*\n\n**Segunda persona** (tú/usted/vos):\n- Poco frecuente; interpela al lector o al propio narrador.\n- *Llegas a casa, enciendes la luz y te das cuenta de que no estás solo.*\n\n**Tercera persona** (él/ella):\n- **Omnisciente**: lo sabe todo de todos los personajes.\n- **Equisciente o de focalización interna**: solo sabe lo que piensa/siente un personaje.\n- **Objetivista o de focalización externa**: solo narra lo observable, como una cámara.\n\nEn español literario, el cambio de voz narrativa dentro de una obra es un recurso de alta elaboración (Cortázar, Vargas Llosa).",
+        rules=[
+            "La primera persona crea subjetividad y cercanía.",
+            "La tercera persona omnisciente da control total de la información.",
+            "La segunda persona es un recurso arriesgado pero impactante.",
+            "La focalización puede cambiar dentro de una misma obra.",
+        ],
+        examples=[
+            GrammarExample(text="Cierras los ojos y respiras hondo. Sabes que no hay vuelta atrás.", translation="You close your eyes and take a deep breath. You know there's no turning back.", note="segunda persona"),
+            GrammarExample(text="Nadie lo vio llegar, pero todos supieron que algo había cambiado en el pueblo.", translation="No one saw him arrive, but everyone knew something had changed in the town.", note="tercera persona omnisciente"),
+        ],
+        common_mistakes=[
+        ],
+        related=["estilo-literario", "recursos-estilisticos", "tiempos-narrativos"],
+    ),
+    GrammarTopic(
+        slug="recursos-estilisticos",
+        title="Recursos estilísticos avanzados",
+        level="C2",
+        category="Avanzado",
+        summary="Elipsis, asíndeton, polisíndeton, paralelismo y otros recursos de la prosa elaborada.",
+        explanation="Los **recursos estilísticos** son elecciones conscientes del autor para crear efectos de ritmo, énfasis o ambigüedad.\n\n**Recursos de omisión**:\n- **Elipsis**: omitir elementos recuperables por el contexto. *Él pidió vino; yo, cerveza.*\n- **Asíndeton**: omitir conjunciones para dar ritmo rápido. *Acude, corre, vuela.*\n\n**Recursos de adición**:\n- **Polisíndeton**: multiplicar conjunciones. *Y sueña, y espera, y calla, y muere.*\n- **Enumeración**: acumular elementos. *Miedos, dudas, esperanzas, todo cabe en un segundo.*\n\n**Recursos de repetición**:\n- **Anáfora**: repetir al inicio. *Todo lo intenté, todo lo perdí.*\n- **Epífora**: repetir al final. *De ti depende. De ti espera. De ti confía.*\n- **Paralelismo**: estructuras sintácticas simétricas.\n- **Quiasmo**: cruce de estructuras. *Ni son todos los que están, ni están todos los que son.*\n\n**Recursos de orden**:\n- **Hipérbaton**: alterar el orden lógico.\n\nEn C2 se espera usar algunos de estos recursos de forma deliberada en la escritura.",
+        rules=[
+            "La elipsis y el asíndeton aceleran el ritmo.",
+            "El polisíndeton y la enumeración ralentizan y enfatizan.",
+            "El paralelismo crea equilibrio; el quiasmo crea contraste elegante.",
+            "Estos recursos deben usarse con moderación; su abuso puede resultar artificioso.",
+        ],
+        examples=[
+            GrammarExample(text="Llegué, vi, vencí.", translation="I came, I saw, I conquered.", note="asíndeton"),
+            GrammarExample(text="Y los días pasan, y las horas vuelan, y el silencio crece, y el eco de tu voz se apaga.", translation="And the days go by, and the hours fly, and the silence grows, and the echo of your voice fades.", note="polisíndeton"),
+            GrammarExample(text="Cuando tú vas, yo vengo. Cuando tú ríes, yo lloro.", translation="When you go, I come. When you laugh, I cry.", note="paralelismo antitético"),
+        ],
+        common_mistakes=[
+        ],
+        related=["figuras-literarias", "estilo-literario", "voz-narrativa"],
+    ),
+    GrammarTopic(
+        slug="equivalencia",
+        title="Equivalencia y traducción",
+        level="C2",
+        category="Avanzado",
+        summary="Principios de equivalencia entre el español y otras lenguas; el arte de traducir matices.",
+        explanation="La **equivalencia** es el principio fundamental de la traducción: encontrar en la lengua meta una expresión que transmita el mismo significado, registro y efecto que el original.\n\n**Tipos de equivalencia**:\n- **Equivalencia formal**: mantener estructura y palabras (traducción literal).\n  *It's raining → Está lloviendo.*\n- **Equivalencia dinámica o funcional**: mismo efecto comunicativo, distinta forma.\n  *It's a piece of cake → Es pan comido.*\n- **Equivalencia pragmática**: adaptar al contexto cultural.\n  *How are you? → ¿Qué tal?* (más natural que *¿Cómo estás?* en muchos contextos).\n\n**Desafíos de la traducción español-inglés**:\n- **Ser/estar** no tiene equivalente directo en inglés.\n- **Subjuntivo** tiene usos sin equivalente en inglés (*Quiero que vengas → I want you to come*).\n- **Diminutivos** con carga afectiva no siempre traducibles.\n- **Falsos amigos y calcos**.",
+        rules=[
+            "La equivalencia dinámica suele ser más natural que la literal.",
+            "No todo es traducible palabra por palabra; a veces hay que cambiar la estructura.",
+            "Los referentes culturales (refranes, chistes, costumbres) requieren adaptación.",
+            "Un buen traductor conoce profundamente ambas lenguas y culturas.",
+        ],
+        examples=[
+            GrammarExample(text="Tengo 25 años.", translation="I am 25 years old.", note="equivalencia funcional: tener = to be"),
+            GrammarExample(text="Me gusta bailar.", translation="I like dancing.", note="cambio de estructura: el sujeto pasa a ser la persona"),
+            GrammarExample(text="Es pan comido.", translation="It's a piece of cake.", note="modismo con equivalente diferente"),
+        ],
+        common_mistakes=[
+        ],
+        related=["matices-traduccion", "falsos-amigos", "precision-lexica"],
+    ),
+    GrammarTopic(
+        slug="matices-traduccion",
+        title="Matices de traducción",
+        level="C2",
+        category="Avanzado",
+        summary="Traducir no es solo cambiar palabras: capturar el tono, el registro y la intención.",
+        explanation="La traducción de calidad va más allá de la equivalencia semántica. Captura:\n\n**Registro**:\n- *¿Me puede decir la hora?* → formal. *Could you tell me the time?*\n- *Oye, ¿qué hora es?* → informal. *Hey, what time is it?*\n\n**Tono e intención**:\n- *¡Vaya, qué sorpresa!* puede expresar alegría o ironía según el contexto.\n- En inglés el tono a menudo se marca con *tag questions* que no tienen equivalente exacto en español.\n\n**Carga cultural**:\n- *Sobremesa* no tiene equivalente en inglés.\n- *Estrenar* (usar algo por primera vez) no tiene un verbo equivalente.\n\n**Juegos de palabras y humor**:\n- Los juegos de palabras son notoriamente difíciles de traducir y a menudo requieren recreación.\n\n**Estrategias**:\n- Préstamo (dejar la palabra original).\n- Calco (traducción literal de la expresión).\n- Adaptación (cambiar el referente cultural).\n- Compensación (perder un matiz en un lugar y ganarlo en otro).",
+        rules=[
+            "La buena traducción captura el registro, no solo el significado.",
+            "Los referentes culturales se adaptan o se explican.",
+            "El humor y los juegos de palabras suelen requerir recreación, no traducción literal.",
+            "Traducir también es interpretar: el traductor toma decisiones.",
+        ],
+        examples=[
+            GrammarExample(text="Después de comer nos quedamos de sobremesa un buen rato.", translation="After lunch we stayed at the table chatting for a while.", note="concepto cultural sin equivalente exacto"),
+            GrammarExample(text="Hoy estreno zapatos.", translation="I'm wearing new shoes for the first time today.", note="\"estrenar\" requiere una paráfrasis"),
+        ],
+        common_mistakes=[
+        ],
+        related=["equivalencia", "falsos-amigos", "precision-lexica"],
+    ),
+    GrammarTopic(
+        slug="falsos-amigos",
+        title="Falsos amigos",
+        level="C2",
+        category="Avanzado",
+        summary="Palabras que se parecen entre español e inglés pero significan cosas distintas.",
+        explanation="Los **falsos amigos** son palabras que tienen forma similar en dos idiomas pero significado diferente. Pueden causar errores graves de comunicación.\n\n**Falsos amigos frecuentes español-inglés**:\n\n| Español | Significa | No significa |\n|---------|-----------|-------------|\n| *actualmente* | currently | actually (en realidad) |\n| *asistir* | to attend | to assist (ayudar) |\n| *carpeta* | folder | carpet (alfombra) |\n| *compromiso* | commitment | compromise (acuerdo mutuo) |\n| *constipado* | cold (illness) | constipated (estreñido) |\n| *embarazada* | pregnant | embarrassed (avergonzada) |\n| *éxito* | success | exit (salida) |\n| *fábrica* | factory | fabric (tela) |\n| *largo* | long | large (grande) |\n| *recordar* | to remember | to record (grabar) |\n| *ropa* | clothes | rope (cuerda) |\n| *sensible* | sensitive | sensible (sensato) |\n| *simpático* | nice, likeable | sympathetic (compasivo) |\n| *suceso* | event | success (éxito) |\n\nEn nivel C2 se espera el dominio de estos pares y la capacidad de usarlos correctamente en ambos idiomas.",
+        rules=[
+            "Memorizar los falsos amigos más comunes para evitar malentendidos.",
+            "El contexto ayuda a distinguir el significado correcto.",
+            "Algunos falsos amigos también existen entre variedades del español.",
+            "En traducción, verificar los falsos amigos es parte de la revisión.",
+        ],
+        examples=[
+            GrammarExample(text="Actualmente vivo en Madrid.", translation="I currently live in Madrid.", note="NO: \"Actually I live in Madrid\" (que significa \"en realidad\")"),
+            GrammarExample(text="Estoy constipado, no puedo ir.", translation="I have a cold, I can't go.", note="NO: \"I'm constipated\" (que significa \"estoy estreñido\")"),
+            GrammarExample(text="La conferencia fue un éxito.", translation="The conference was a success.", note="NO: \"... was an exit\" (salida)"),
+        ],
+        common_mistakes=[
+            GrammarMistake(wrong="Estoy embarazada de la situación.", correct="Estoy avergonzada de la situación.", note="\"Embarazada\" solo significa \"pregnant\", no \"embarrassed\"."),
+            GrammarMistake(wrong="Asistí a mi amigo con la mudanza.", correct="Ayudé a mi amigo con la mudanza.", note="\"Asistir\" = to attend. Para \"to assist\" se usa \"ayudar\"."),
+        ],
+        related=["equivalencia", "matices-traduccion", "precision-lexica"],
+    ),
+    GrammarTopic(
+        slug="lexicon-historico",
+        title="Léxico histórico del español",
+        level="C2",
+        category="Avanzado",
+        summary="Evolución del léxico español: del latín al español moderno. Cultismos, semicultismos y patrimoniales.",
+        explanation="El léxico español procede principalmente del **latín**, pero las palabras han seguido distintas vías evolutivas:\n\n**Palabras patrimoniales**:\n- Evolucionaron fonéticamente desde el latín por transmisión oral.\n- Lat. *oculum* → esp. *ojo*.\n- Lat. *fabulare* → esp. *hablar*.\n\n**Cultismos**:\n- Incorporadas tardíamente del latín, sin apenas evolución fonética.\n- Lat. *oculista* → esp. *oculista* (no *ojista*).\n- Lat. *fábula* → esp. *fábula* (no *habla* con ese significado).\n\n**Semicultismos**:\n- Evolución incompleta: lat. *saeculum* → esp. *siglo* (no *sejo* ni *século*).\n\n**Dobletes**:\n- Una misma palabra latina da dos palabras españolas: una patrimonial y otra culta.\n- Lat. *collocare* → *colgar* (patrimonial) y *colocar* (cultismo).\n- Lat. *plenum* → *lleno* (patrimonial) y *pleno* (cultismo).\n\nReconocer el origen de las palabras ayuda a entender ortografías irregulares y relaciones semánticas.",
+        rules=[
+            "Las palabras patrimoniales sufren más cambios fonéticos que los cultismos.",
+            "Los dobletes muestran una misma raíz con dos evoluciones distintas.",
+            "Muchos tecnicismos y palabras abstractas son cultismos.",
+            "Conocer la etimología ayuda a deducir significados de palabras desconocidas.",
+        ],
+        examples=[
+            GrammarExample(text="Tengo el vaso lleno. / Tengo pleno conocimiento de los hechos.", translation="My glass is full. / I have full knowledge of the facts.", note="doblete: lleno (patrimonial) / pleno (cultismo)"),
+            GrammarExample(text="La fábula enseña una moraleja. / Habla más alto, por favor.", translation="The fable teaches a moral. / Speak louder, please.", note="doblete: fábula (cultismo) / habla (patrimonial)"),
+        ],
+        common_mistakes=[
+        ],
+        related=["arabismos", "indigenismos", "derivacion"],
+    ),
+    GrammarTopic(
+        slug="arabismos",
+        title="Arabismos en el español",
+        level="C2",
+        category="Avanzado",
+        summary="Palabras de origen árabe en el léxico español y su importancia cultural.",
+        explanation="Los **arabismos** constituyen el segundo mayor componente léxico del español tras el latín (unas 4.000 palabras). Reflejan ocho siglos de presencia árabe en la península ibérica.\n\n**Campos semánticos con abundancia de arabismos**:\n\n**Agricultura y agua**:\n- *acequia, alberca, noria, azud, aljibe*\n- *aceite, aceituna, azúcar, algodón, arroz, naranja, limón, sandía, zanahoria, berenjena, alcachofa*\n\n**Arquitectura y vivienda**:\n- *alcoba, azotea, alféizar, tabique, zaguán, azulejo, alcantarilla*\n\n**Administración y comercio**:\n- *aduana, alcalde, albacea, álgebra, algoritmo, cifra, tarifa, almacén, almoneda*\n\n**Vida cotidiana**:\n- *almohada, alfombra, taza, jarra, guitarra, laúd, ajedrez*\n\n**Característica formal**: la mayoría empiezan por **al-** (artículo árabe fusionado) o **a-**: *alcohol, aldea, algodón, azúcar, acequia*.",
+        rules=[
+            "Muchos arabismos comienzan con al- o a- (artículo incorporado).",
+            "Son más frecuentes en el sur de España y se extendieron a América.",
+            "Algunos arabismos solo se usan en ciertas regiones.",
+            "Conocer arabismos enriquece el vocabulario y la comprensión cultural.",
+        ],
+        examples=[
+            GrammarExample(text="El aceite de oliva es fundamental en la dieta mediterránea.", translation="Olive oil is fundamental in the Mediterranean diet.", note="aceite < ár. az-zayt"),
+            GrammarExample(text="Se sentó en la alcoba a leer un rato.", translation="He sat in the bedroom to read for a while.", note="alcoba < ár. al-qubba"),
+            GrammarExample(text="El alcalde inauguró el nuevo mercado.", translation="The mayor inaugurated the new market.", note="alcalde < ár. al-qāḍī (juez)"),
+        ],
+        common_mistakes=[
+        ],
+        related=["indigenismos", "lexicon-historico", "diferencias-regionales"],
+    ),
+    GrammarTopic(
+        slug="indigenismos",
+        title="Indigenismos en el español",
+        level="C2",
+        category="Avanzado",
+        summary="Palabras de origen indígena americano incorporadas al español general.",
+        explanation="Los **indigenismos** son palabras procedentes de lenguas indígenas americanas que se han incorporado al español. Muchas han trascendido a otras lenguas.\n\n**Principales fuentes**:\n\n**Taíno** (Caribe):\n- *canoa, hamaca, huracán, maíz, tabaco, yuca, iguana, manatí, caimán*\n\n**Náhuatl** (México):\n- *chocolate, tomate, aguacate, cacao, coyote, ocelote, guacamole, petate, tiza, mecate*\n\n**Quechua** (Andes):\n- *cóndor, llama, puma, papa, cancha, carpa, mate, pampa, quinina, caucho*\n\n**Guaraní** (Paraguay/Río de la Plata):\n- *anaconda, jaguar, mandioca, tapir, petunia, tucán*\n\n**Características**:\n- Muchos son nombres de flora y fauna americana sin equivalente en el Viejo Mundo.\n- Algunos tienen diferente significado o frecuencia según el país.\n- *Papa* (tubérculo) en Latinoamérica; *patata* en España (del cruce papa + batata).",
+        rules=[
+            "Los indigenismos suelen ser sustantivos de realidades americanas.",
+            "Muchos se han internacionalizado: chocolate, tomate, huracán, tabaco.",
+            "La pronunciación y escritura se adaptaron al español.",
+            "Algunos indigenismos solo se usan en sus países de origen.",
+        ],
+        examples=[
+            GrammarExample(text="El huracán arrasó la costa caribeña.", translation="The hurricane devastated the Caribbean coast.", note="huracán < taíno"),
+            GrammarExample(text="Me encanta el chocolate con churros.", translation="I love chocolate with churros.", note="chocolate < náhuatl xocolātl"),
+            GrammarExample(text="En los Andes cultivan muchas variedades de papa.", translation="In the Andes they grow many varieties of potato.", note="papa < quechua"),
+        ],
+        common_mistakes=[
+        ],
+        related=["arabismos", "lexicon-historico", "espanol-latinoamerica"],
+    ),
+    GrammarTopic(
+        slug="generos-textuales",
+        title="Géneros textuales",
+        level="C2",
+        category="Avanzado",
+        summary="Dominio de diversos tipos de texto: ensayo, artículo académico, informe, reseña, crónica.",
+        explanation="En C2 se dominan las convenciones de distintos **géneros textuales** en español.\n\n**Ensayo**:\n- Texto argumentativo de extensión media.\n- Estilo personal y reflexivo.\n- Tesis, argumentación, ejemplos, conclusión.\n- Ej: Octavio Paz, *El laberinto de la soledad*.\n\n**Artículo académico**:\n- Estructura IMRyD (Introducción, Método, Resultados y Discusión).\n- Impersonalidad, nominalización, pasiva refleja.\n- Citación de fuentes.\n\n**Informe**:\n- Exposición objetiva de hechos o resultados.\n- Estructura clara con epígrafes.\n- Lenguaje denotativo, sin valoraciones personales.\n\n**Reseña**:\n- Resumen y valoración crítica de una obra.\n- Combina exposición (resumen) y argumentación (crítica).\n\n**Crónica**:\n- Relato periodístico que combina información y valoración.\n- Estilo más literario que la noticia.\n- Cronología y presencia del cronista.\n\n**Columna de opinión**:\n- Texto breve y periódico de opinión personal.\n- Estilo característico del autor.",
+        rules=[
+            "Cada género tiene convenciones de estructura, registro y estilo.",
+            "El artículo académico prioriza la objetividad y la impersonalidad.",
+            "La reseña combina exposición y crítica.",
+            "La crónica admite un estilo más personal que la noticia.",
+        ],
+        examples=[
+            GrammarExample(text="El presente estudio analiza la relación entre el bilingüismo y el desarrollo cognitivo en niños de 3 a 6 años.", translation="The present study analyzes the relationship between bilingualism and cognitive development in children aged 3 to 6.", note="artículo académico"),
+            GrammarExample(text="La obra, aunque irregular en su ritmo, ofrece una mirada conmovedora sobre la condición humana.", translation="The work, although uneven in its pace, offers a moving look at the human condition.", note="reseña"),
+        ],
+        common_mistakes=[
+        ],
+        related=["estructura-argumentativa", "lenguaje-periodistico", "sintesis-textual"],
+    ),
+    GrammarTopic(
+        slug="creatividad-linguistica",
+        title="Creatividad lingüística",
+        level="C2",
+        category="Avanzado",
+        summary="Jugar con el idioma: neologismos, juegos de palabras, calambures, usos lúdicos del español.",
+        explanation="La **creatividad lingüística** es la capacidad de usar el idioma de forma original, lúdica o innovadora, respetando (o transgrediendo con intención) sus normas.\n\n**Formas de creatividad lingüística**:\n\n**Neologismos**:\n- Por derivación: *tuitear, wasapear, googlear, likeador*.\n- Por composición: *ciberactivista, teletrabajo, videollamada*.\n- Por préstamo adaptado: *fútbol, eslogan, bluyín*.\n\n**Juegos de palabras**:\n- **Calambur**: agrupación distinta de sílabas: *Si el rey no muere, el reino muere.*\n- **Palíndromos**: *Dábale arroz a la zorra el abad.*\n- **Paronomasia**: semejanza fonética con diferente significado: *Tarde, pero sin sueño.*\n\n**Humor lingüístico**:\n- Equívocos, ambigüedades, dobles sentidos.\n- Exageración de rasgos dialectales.\n\n**Escritura creativa**:\n- Prosa poética, microrrelato, greguerías (Ramón Gómez de la Serna).\n- Mezcla de registros con intención estilística.",
+        rules=[
+            "Los neologismos deben ser comprensibles en contexto.",
+            "La creatividad no justifica la incorrección involuntaria.",
+            "Los juegos de palabras requieren dominio de la fonética y la polisemia.",
+            "La greguería es un género inventado en español: humor + metáfora.",
+        ],
+        examples=[
+            GrammarExample(text="¿Te wasapeo luego y quedamos?", translation="Shall I WhatsApp you later and we'll meet up?", note="neologismo: wasapear"),
+            GrammarExample(text="El amor es un intento de desayunar dos veces.", translation="Love is an attempt to have breakfast twice.", note="greguería de Ramón Gómez de la Serna"),
+            GrammarExample(text="Y todo es una broma, y todo es una broma que va en serio.", translation="And everything is a joke, and everything is a joke that is serious.", note="juego de palabras y paradoja"),
+        ],
+        common_mistakes=[
+        ],
+        related=["doble-sentido", "ironia", "derivacion"],
+    ),
+    GrammarTopic(
+        slug="edicion",
+        title="Edición y corrección de textos",
+        level="C2",
+        category="Avanzado",
+        summary="Revisar y corregir textos propios y ajenos con criterio profesional.",
+        explanation="La **edición y corrección de textos** requiere aplicar criterios de corrección ortotipográfica, gramatical y de estilo.\n\n**Niveles de corrección**:\n\n**Corrección ortotipográfica**:\n- Ortografía: tildes, puntuación, uso de mayúsculas.\n- Abreviaturas, siglas, símbolos.\n- Comillas (españolas « », inglesas \" \", simples ' ').\n\n**Corrección gramatical**:\n- Concordancia, régimen preposicional, orden de palabras.\n- Queísmo/Dequeísmo: *Me alegro de que vengas* (deque correcto) vs. *~~Pienso de que...~~* (dequeísmo).\n- Leísmo/Laísmo/Loísmo.\n\n**Corrección de estilo**:\n- Claridad: frases excesivamente largas, ambigüedades.\n- Precisión léxica: evitar palabras comodín.\n- Cohesión: conectores, referencias.\n- Adecuación al registro y al género textual.\n\n**Corrección de contenido**:\n- Verificar datos, fechas, nombres, citas.\n\nLos signos de corrección tipográfica son estándar (aunque con variantes).",
+        rules=[
+            "Revisar primero la estructura general, luego párrafos, luego frases, luego palabras.",
+            "La corrección ortotipográfica incluye el uso correcto de los signos de puntuación españoles.",
+            "El dequeísmo y el queísmo son errores frecuentes incluso entre hablantes nativos.",
+            "Una buena corrección respeta el estilo del autor; no lo reescribe.",
+        ],
+        examples=[
+            GrammarExample(text="«No estoy de acuerdo», replicó el ministro.", translation="\"I don't agree,\" the minister replied.", note="uso de comillas españolas"),
+            GrammarExample(text="Me alegro de que hayas venido.", translation="I'm glad you've come.", note="deque correcto: alegrarse de que"),
+        ],
+        common_mistakes=[
+            GrammarMistake(wrong="Pienso de que tienes razón.", correct="Pienso que tienes razón.", note="Dequeísmo: \"pensar\" no rige \"de\"."),
+            GrammarMistake(wrong="Me alegro que hayas venido.", correct="Me alegro de que hayas venido.", note="Queísmo: \"alegrarse\" rige \"de\": alegrarse de algo."),
+        ],
+        related=["precision-lexica", "cohesion-textual", "registro-formal"],
+    ),
+    GrammarTopic(
+        slug="expresion-matizada",
+        title="Expresión matizada",
+        level="C2",
+        category="Avanzado",
+        summary="Expresar ideas con matices de certeza, duda, probabilidad y compromiso.",
+        explanation="En C2 se espera la capacidad de modular el grado de compromiso con lo dicho mediante **mecanismos de atenuación e intensificación**.\n\n**Escala de certeza (de menor a mayor)**:\n- *Es improbable que... / Dudo mucho que...*\n- *No estoy seguro de que...*\n- *Puede que... / Cabe la posibilidad de que...*\n- *Es posible que... / Quizás...*\n- *Probablemente / Seguramente...* (+ indicativo).\n- *Sin duda / Desde luego que / Está claro que...* (+ indicativo).\n\n**Recursos de atenuación pragmática**:\n- Futuro de conjetura: *Serán las tres.*\n- Condicional de modestia: *Yo diría que no es buena idea.*\n- Imperfecto de cortesía: *Quería pedirle un favor.*\n- Preguntas negativas: *¿No crees que deberíamos esperar?*\n\n**Recursos de refuerzo**:\n- Adverbios: *indudablemente, rotundamente, categóricamente*.\n- Estructuras enfáticas: *Lo que está claro es que... / De lo que no cabe duda es de que...*",
+        rules=[
+            "La escala de certeza se expresa con indicativo (certeza) o subjuntivo (duda).",
+            "El futuro de conjetura y el condicional de modestia son marcas de habla culta coloquial.",
+            "El imperfecto de cortesía atenúa peticiones.",
+            "Matizar no es ser impreciso; es adecuar el discurso a lo que realmente se sabe.",
+        ],
+        examples=[
+            GrammarExample(text="Cabe la posibilidad de que la reunión se aplace hasta el lunes.", translation="There is a possibility that the meeting will be postponed until Monday.", note="probabilidad baja"),
+            GrammarExample(text="Yo diría que lo mejor es esperar unos días antes de decidir.", translation="I would say that the best thing is to wait a few days before deciding.", note="condicional de modestia"),
+            GrammarExample(text="Lo que está claro es que tenemos que actuar ya.", translation="What is clear is that we have to act now.", note="estructura enfática"),
+        ],
+        common_mistakes=[
+        ],
+        related=["matizadores", "subjuntivo-duda", "condicional-simple"],
+    ),
+    GrammarTopic(
+        slug="integracion-gramatical",
+        title="Integración gramatical completa",
+        level="C2",
+        category="Avanzado",
+        summary="Uso integrado y sin errores de todos los recursos gramaticales del español en la producción espontánea.",
+        explanation="El nivel C2 se caracteriza por la **automatización completa** de la gramática: el hablante no piensa en reglas, simplemente produce.\n\n**Indicadores de integración gramatical**:\n\n- **Alternancia ser/estar sin vacilación** incluso con adjetivos que cambian de significado (*ser listo* ≠ *estar listo*).\n- **Selección automática de indicativo/subjuntivo** en todos los contextos.\n- **Concordancia temporal** en discursos con múltiples planos sin errores.\n- **Uso natural de pronombres de OD/OI combinados** (se lo, me lo, etc.).\n- **Perífrasis verbales** usadas con precisión de matiz (*acabar de, volver a, andar + gerundio, venir a + infinitivo*).\n- **Dominio de los matices entre tiempos del pasado** (indefinido, imperfecto, perfecto, pluscuamperfecto).\n- **Uso de conectores y marcadores discursivos** de forma variada y precisa.\n- **Voz pasiva, impersonal y pasiva refleja** según el contexto y el registro.\n\nEn C2 el error gramatical es prácticamente inexistente. La diferencia con un nativo es solo de frecuencia de uso de ciertas estructuras.",
+        rules=[
+            "Producción fluida sin errores gramaticales sistemáticos.",
+            "Capacidad de autocorrección inmediata cuando se comete un lapsus.",
+            "Uso apropiado del registro en todas las situaciones.",
+            "Comprensión de todas las estructuras gramaticales, incluso las de baja frecuencia.",
+        ],
+        examples=[
+            GrammarExample(text="De haberlo sabido, no habría venido; pero, ya que estoy aquí, lo mejor será que me quede y eche una mano, a no ser que prefieras que me vaya.", translation="Had I known, I wouldn't have come; but since I'm here, the best thing will be for me to stay and lend a hand, unless you prefer me to leave.", note="integración de múltiples estructuras"),
+        ],
+        common_mistakes=[
+        ],
+        related=["fluidez-nativa", "concordancia-de-tiempos", "repaso-subjuntivo"],
+    ),
+    GrammarTopic(
+        slug="fluidez-nativa",
+        title="Fluidez nativa",
+        level="C2",
+        category="Avanzado",
+        summary="Características del habla de nivel nativo: muletillas, sobreentendidos, humor, referencias culturales.",
+        explanation="La **fluidez nativa** va más allá de la corrección gramatical. Implica:\n\n**Rasgos de la fluidez nativa**:\n\n**Velocidad y ritmo**:\n- Pausas mínimas, titubeos solo para planificar contenido, no forma.\n- Entonación natural adaptada a la intención comunicativa.\n\n**Dominio de los sobreentendidos**:\n- Capacidad de inferir lo no dicho por contexto y conocimiento compartido.\n- Comprensión de la ironía y el sarcasmo sin necesidad de marcas explícitas.\n\n**Referencias culturales compartidas**:\n- Refranes, frases de películas, memes, canciones, expresiones generacionales.\n- *¡Qué fuerte!*, *Me sabe mal*, *No me da la vida*, *Estoy de bajón*.\n\n**Humor**:\n- Capacidad de hacer y entender chistes, juegos de palabras, bromas situacionales.\n\n**Gestión de la conversación**:\n- Turnos de palabra fluidos, interrupciones naturales, cambios de tema suaves.\n\nLa fluidez nativa no significa hablar sin parar, sino comunicar con la misma naturalidad que un hablante nativo culto.",
+        rules=[
+            "La fluidez nativa incluye dominio de la pragmática y la cultura.",
+            "Los sobreentendidos y el humor son las áreas más difíciles de dominar.",
+            "Las referencias culturales requieren inmersión y exposición constante.",
+            "La fluidez no es ausencia de errores, sino naturalidad en la comunicación.",
+        ],
+        examples=[
+            GrammarExample(text="O sea, que al final no vienes... pues nada, otro día será, no pasa nada.", translation="So, in the end you're not coming... well, another time then, no worries.", note="muletillas y gestión de turno"),
+            GrammarExample(text="— Qué, ¿nos tomamos algo? — Me sabe mal, pero es que no me da la vida. — Venga, va, un ratito nada más.", translation="\"Hey, shall we grab a drink?\" \"I feel bad, but I'm just too busy.\" \"Come on, just for a little while.\"", note="diálogo natural coloquial"),
+        ],
+        common_mistakes=[
+        ],
+        related=["integracion-gramatical", "expresiones-coloquiales", "modismos-comunes", "expresion-matizada"],
+    ),
+]

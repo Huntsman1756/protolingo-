@@ -1095,21 +1095,17 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Entendido",
     "entry1": {
-      "label": "Guarda palavras ao ler",
-      "desc": "Seleciona qualquer palavra num exercício de leitura para a guardar instantaneamente como flashcard. A IA gera definição, exemplo e tradução — encontra todas as palavras guardadas no novo painel Meu vocabulário na secção Flashcards."
+      "label": "Mais e melhor conteúdo didático",
+      "desc": "As secções de Frases e Gramática foram renovadas com novo conteúdo, pronúncia para cada frase — basta premir play para ouvir — e carregamento mais rápido. A gramática inglesa tem agora mais de 130 tópicos detalhados, igualando a profundidade das outras línguas."
     },
     "entry2": {
-      "label": "Idioma da plataforma",
-      "desc": "Já podes escolher o idioma da interface da app — menus, botões e etiquetas — na página de definições, independentemente do teu idioma nativo."
-    },
-    "entry3": {
       "label": "Aprende vários idiomas",
       "desc": "Agora podes aprender mais do que um idioma ao mesmo tempo. Alterna entre idiomas na barra lateral e adiciona novos em definições → Os meus idiomas. Vamos continuar a adicionar mais idiomas — quando o fizermos, vais encontrá-los lá."
     },
-    "entry4": {
+    "entry3": {
       "label": "Correções de bugs",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }

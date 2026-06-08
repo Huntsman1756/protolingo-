@@ -33,6 +33,7 @@ from app.routers import (
     curriculum,
     feedback,
     flashcards,
+    grammar,
     languages,
     lessons,
     listening,
@@ -132,6 +133,7 @@ app.include_router(assessment.router)
 app.include_router(study_plan.router)
 app.include_router(lessons.router)
 app.include_router(flashcards.router)
+app.include_router(grammar.router)
 app.include_router(chat.router)
 app.include_router(progress.router)
 app.include_router(listening.router)

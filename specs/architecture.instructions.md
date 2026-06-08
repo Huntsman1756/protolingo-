@@ -18,7 +18,7 @@ freelingo/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter (7 modules)
 │   │   ├── models/              # SQLAlchemy 2.0 ORM models (14 files, 20 model classes)
 │   │   ├── schemas/             # Pydantic v2 request/response schemas (14 modules)
-│   │   ├── routers/             # 21 routers (20 REST + 1 WebSocket)
+│   │   ├── routers/             # 22 routers (21 REST + 1 WebSocket)
 │   │   ├── services/            # Business logic + external service clients (17 modules)
 │   │   └── data/                # Static curriculum and content data (4 languages)
 │   │       ├── en/              # English curriculum (A1–C2)
