@@ -36,4 +36,8 @@ async def get_config(
         "tts_provider": settings.TTS_PROVIDER,
         "openai_tts_voice": settings.OPENAI_TTS_VOICE,
         "maintenance_mode": maintenance_mode,
+        "price_monthly": settings.PRICE_MONTHLY,
+        "price_yearly": settings.PRICE_YEARLY,
+        "total_price_monthly": settings.TOTAL_PRICE_MONTHLY,
+        "total_price_yearly": settings.TOTAL_PRICE_YEARLY,
     }

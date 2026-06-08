@@ -9,12 +9,20 @@ interface PricingSectionProps {
   stripeEnabled: boolean
   trialDays: number
   hasSession: boolean
+  priceMonthly: number
+  priceYearly: number
+  totalPriceMonthly: number
+  totalPriceYearly: number
 }
 
 export default function PricingSection({
   stripeEnabled,
   trialDays,
   hasSession,
+  priceMonthly,
+  priceYearly,
+  totalPriceMonthly,
+  totalPriceYearly,
 }: PricingSectionProps) {
   const tBilling = useTranslations('billing')
   const tCommon = useTranslations('common')
@@ -129,10 +137,10 @@ export default function PricingSection({
             </span>
           </div>
           <p className="text-fl-muted-2 font-mono text-sm line-through">
-            19.95 € / {tBilling('month')}
+            {totalPriceMonthly} € / {tBilling('month')}
           </p>
           <p className="text-fl-fg font-mono text-xl font-bold">
-            14.95
+            {priceMonthly}
             <span className="text-fl-muted-1 text-sm">
               {' '}
               € / {tBilling('month')}
@@ -173,10 +181,10 @@ export default function PricingSection({
             </div>
           </div>
           <p className="text-fl-muted-2 font-mono text-sm line-through">
-            199.50 € / {tBilling('year')}
+            {totalPriceYearly} € / {tBilling('year')}
           </p>
           <p className="text-fl-fg font-mono text-xl font-bold">
-            149.50
+            {priceYearly}
             <span className="text-fl-muted-1 text-sm">
               {' '}
               € / {tBilling('year')}

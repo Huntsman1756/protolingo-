@@ -6,6 +6,10 @@ interface ConfigStore {
   ttsProvider: string
   openaiTtsVoice: string
   maintenanceMode: boolean
+  priceMonthly: number
+  priceYearly: number
+  totalPriceMonthly: number
+  totalPriceYearly: number
   loaded: boolean
   load: () => Promise<void>
 }
@@ -16,6 +20,10 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
   ttsProvider: 'local',
   openaiTtsVoice: 'nova',
   maintenanceMode: false,
+  priceMonthly: 14.95,
+  priceYearly: 149.5,
+  totalPriceMonthly: 19.95,
+  totalPriceYearly: 199.5,
   loaded: false,
   load: async () => {
     if (get().loaded) return
@@ -29,6 +37,10 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
         ttsProvider: data.tts_provider ?? 'local',
         openaiTtsVoice: data.openai_tts_voice ?? 'nova',
         maintenanceMode: data.maintenance_mode ?? false,
+        priceMonthly: data.price_monthly ?? 14.95,
+        priceYearly: data.price_yearly ?? 149.5,
+        totalPriceMonthly: data.total_price_monthly ?? 19.95,
+        totalPriceYearly: data.total_price_yearly ?? 199.5,
         loaded: true,
       })
     } catch {
