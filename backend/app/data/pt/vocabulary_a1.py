@@ -858,11 +858,11 @@ A1_SETS: list[VocabularySet] = [
                 frequency_rank=99,
             ),
             VocabularyEntry(
-                word="tarde",
+                word="agora",
                 pos="adverb",
-                definition="Além da hora prevista, com atraso.",
-                example="Não chegues tarde!",
-                ipa="/ˈtaɾdɨ/",
+                definition="Neste momento, no tempo presente.",
+                example="Agora são duas horas.",
+                ipa="/ɐˈɡɔɾɐ/",
                 frequency_rank=100,
             ),
             VocabularyEntry(

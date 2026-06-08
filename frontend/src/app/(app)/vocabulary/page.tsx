@@ -83,8 +83,13 @@ export default function VocabularyIndexPage() {
         </div>
         <div className="space-y-4 px-6 py-5">
           <p className="text-fl-muted-2 font-mono text-xs leading-relaxed">
-            {vocabSets.length} {t('sets')} · {totalWords} {t('words')} ·{' '}
-            {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
+            {vocabSets.length} {t('sets')} · {totalWords} {t('words')}
+            {usedLevels.length > 0 && (
+              <>
+                {' · '}
+                {usedLevels[0]} – {usedLevels[usedLevels.length - 1]}
+              </>
+            )}
           </p>
           {/* Search */}
           <input

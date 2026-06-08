@@ -73,29 +73,10 @@ def test_curriculum_vocab_refs_all_defined() -> None:
         for u in units:
             referenced.update(u.vocabulary_set_ids)
 
-    # These 15 IDs are referenced by the English curriculum but never defined
-    # in any vocabulary file. This is a pre-existing data gap, not a regression.
-    known_gaps = {
-        "adjectives_comparison_a2",
-        "advice_b1",
-        "conditionals_vocab_b1",
-        "connectors_b1",
-        "consolidation_b1",
-        "feelings_regret_b1",
-        "hypothetical_b1",
-        "hypothetical_past_b1",
-        "life_changes_b1",
-        "news_b1",
-        "news_events_b1",
-        "obligation_b1",
-        "places_comparison_a2",
-        "reporting_verbs_b1",
-        "time_expressions_b1",
-    }
-    unknown = (referenced - defined) - known_gaps
-    assert not unknown, (
-        f"English curriculum references {len(unknown)} new undefined vocabulary set ID(s):\n"
-        + "\n".join(f"  - {s}" for s in sorted(unknown))
+    missing = referenced - defined
+    assert not missing, (
+        f"English curriculum references {len(missing)} undefined vocabulary set ID(s):\n"
+        + "\n".join(f"  - {s}" for s in sorted(missing))
     )
 
 
