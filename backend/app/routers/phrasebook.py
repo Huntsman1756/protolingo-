@@ -1,6 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+import hashlib
+import os
 
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
+from fastapi.responses import FileResponse
+
+from app.core.app_logger import get_logger
+from app.core.config import settings
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.data._types import PhrasebookCategory
 from app.data.phrasebook import (
     get_phrasebook_by_level,
@@ -16,6 +23,7 @@ from app.schemas.phrasebook import (
 )
 
 router = APIRouter(prefix="/api/phrasebook", tags=["phrasebook"])
+logger = get_logger(__name__)
 
 
 def _category_to_response(c: PhrasebookCategory) -> PhrasebookCategoryResponse:
@@ -78,3 +86,65 @@ def get_phrasebook_category_detail(
             detail="Phrasebook category not found",
         )
     return PhrasebookCategoryDetailResponse(category=_category_to_response(c))
+
+
+@router.get("/audio/{category_id}/{phrase_index}")
+@limiter.limit("30/minute")
+async def get_phrase_audio(
+    request: Request,
+    category_id: str,
+    phrase_index: int,
+    language: str = Query("en-US", description="BCP-47 target language code"),
+    _current_user: User = Depends(get_current_user),
+) -> FileResponse:
+    """Return cached TTS audio for a phrase. Generates and caches on first request."""
+    category = get_phrasebook_category(category_id, language)
+    if not category:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Phrasebook category not found",
+        )
+
+    if phrase_index < 0 or phrase_index >= len(category.phrases):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Phrase not found",
+        )
+
+    phrase = category.phrases[phrase_index]
+
+    iso = language.split("-")[0]
+    cache_key = hashlib.sha256(
+        f"{language}:{category_id}:{phrase_index}:{phrase.text}".encode()
+    ).hexdigest()[:16]
+    audio_dir = os.path.join(settings.AUDIO_STORAGE_PATH, "phrasebook", iso)
+    cache_path = os.path.join(audio_dir, f"{cache_key}.mp3")
+
+    if not os.path.isfile(cache_path):
+        tts_service = getattr(request.app.state, "tts_service", None)
+        if tts_service is None:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="TTS service is not enabled",
+            )
+
+        os.makedirs(audio_dir, exist_ok=True)
+        audio = await tts_service.synthesize(phrase.text)
+        tmp_path = cache_path + ".tmp"
+        with open(tmp_path, "wb") as fh:  # noqa: PTH123
+            fh.write(audio)
+        os.replace(tmp_path, cache_path)
+        logger.info(
+            "phrasebook_audio_cached",
+            language=language,
+            category_id=category_id,
+            phrase_index=phrase_index,
+            cache_key=cache_key,
+            bytes=len(audio),
+        )
+
+    return FileResponse(
+        path=cache_path,
+        media_type="audio/mpeg",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )

@@ -9,6 +9,7 @@ import {
 } from '@/data/phrasebook'
 import type { CEFRLevel } from '@/data/types'
 import { useLanguageStore } from '@/store/language'
+import { AudioPlayer } from '@/components/ui/AudioPlayer'
 
 const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 const REGISTERS: Register[] = ['formal', 'neutral', 'informal']
@@ -22,15 +23,22 @@ const REGISTER_COLORS: Record<string, string> = {
 function CategoryCard({
   cat,
   registerFilter,
+  search,
+  language,
 }: {
   cat: PhrasebookCategory
   registerFilter: Register | 'All'
+  search: string
+  language: string
 }) {
   const t = useTranslations('phrasebook')
-  const phrases =
-    registerFilter === 'All'
-      ? cat.phrases
-      : cat.phrases.filter((p) => p.register === registerFilter)
+  const phrases = cat.phrases.filter((p) => {
+    const matchesRegister =
+      registerFilter === 'All' || p.register === registerFilter
+    const matchesSearch =
+      !search || p.text.toLowerCase().includes(search.toLowerCase())
+    return matchesRegister && matchesSearch
+  })
 
   if (!phrases.length) return null
 
@@ -61,6 +69,11 @@ function CategoryCard({
                 >
                   {t(phrase.register)}
                 </span>
+                <AudioPlayer
+                  text={phrase.text}
+                  size="sm"
+                  audioUrl={`/api/phrasebook/audio/${encodeURIComponent(cat.id)}/${cat.phrases.indexOf(phrase)}?language=${encodeURIComponent(language)}`}
+                />
                 <CopyButton text={phrase.text} />
               </div>
             </div>
@@ -110,6 +123,7 @@ export default function PhrasebookPage() {
   const [loadError, setLoadError] = useState(false)
   const [activeLevel, setActiveLevel] = useState<CEFRLevel | 'All'>('All')
   const [activeRegister, setActiveRegister] = useState<Register | 'All'>('All')
+  const [search, setSearch] = useState('')
 
   const fetchCategories = useCallback(async (lang: string) => {
     setLoading(true)
@@ -135,9 +149,14 @@ export default function PhrasebookPage() {
       const matchesRegister =
         activeRegister === 'All' ||
         cat.phrases.some((p) => p.register === activeRegister)
-      return matchesLevel && matchesRegister
+      const matchesSearch =
+        !search ||
+        cat.phrases.some((p) =>
+          p.text.toLowerCase().includes(search.toLowerCase())
+        )
+      return matchesLevel && matchesRegister && matchesSearch
     })
-  }, [activeLevel, activeRegister, categories])
+  }, [activeLevel, activeRegister, search, categories])
 
   const totalPhrases = categories.reduce((acc, c) => acc + c.phrases.length, 0)
 
@@ -165,6 +184,9 @@ export default function PhrasebookPage() {
     )
   }
 
+  const hasActiveFilters =
+    activeLevel !== 'All' || activeRegister !== 'All' || !!search
+
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">
       <div className="border-fl-border bg-fl-surface border">
@@ -182,6 +204,16 @@ export default function PhrasebookPage() {
               range: `${CEFR_LEVELS[0]} \u2013 ${CEFR_LEVELS[CEFR_LEVELS.length - 1]}`,
             })}
           </p>
+
+          <div className="space-y-2">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={tCommon('search')}
+              className="border-fl-border bg-fl-surface-2 text-fl-fg placeholder:text-fl-muted-3 focus:border-fl-fg w-full border px-3 py-2 font-mono text-xs focus:outline-none"
+            />
+          </div>
 
           <div className="space-y-2">
             <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
@@ -227,7 +259,7 @@ export default function PhrasebookPage() {
         </div>
       </div>
 
-      {(activeLevel !== 'All' || activeRegister !== 'All') && (
+      {hasActiveFilters && (
         <p className="text-fl-label text-fl-muted-3 font-mono">
           {t('situationsShown', { count: filteredCategories.length })}
         </p>
@@ -250,6 +282,8 @@ export default function PhrasebookPage() {
                   key={cat.id}
                   cat={cat}
                   registerFilter={activeRegister}
+                  search={search}
+                  language={activeLanguage?.code ?? 'en-US'}
                 />
               ))}
             </div>
@@ -262,11 +296,12 @@ export default function PhrasebookPage() {
           <p className="text-fl-muted-3 font-mono text-xs tracking-widest uppercase">
             {t('noResults')}
           </p>
-          {(activeLevel !== 'All' || activeRegister !== 'All') && (
+          {hasActiveFilters && (
             <button
               onClick={() => {
                 setActiveLevel('All')
                 setActiveRegister('All')
+                setSearch('')
               }}
               className="text-fl-label border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-fg border px-4 py-2 font-mono tracking-widest uppercase transition-colors"
             >

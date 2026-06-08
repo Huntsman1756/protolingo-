@@ -273,3 +273,4 @@ All endpoints require `get_current_user`.
 | GET | `` | 60/min | get_current_user | Returns all phrasebook categories for the given target language. Query param: `language` (BCP-47, default `en-US`). Response: `{categories: [{id, level, situation, icon, phrases: [{text, context, register, unit_ref}]}]}`. |
 | GET | `/level/{level}` | 60/min | get_current_user | Returns phrasebook categories filtered by CEFR level (A1–C2). Returns 400 for invalid levels. Query param: `language`. |
 | GET | `/{category_id}` | 60/min | get_current_user | Returns a single phrasebook category by ID. Query param: `language`. Returns 404 if not found. |
+| GET | `/audio/{category_id}/{phrase_index}` | 30/min | get_current_user | Returns cached TTS audio (audio/mpeg) for a specific phrase. Generates and caches on first request; subsequent requests serve from disk. Query param: `language`. Returns 404 if category or phrase index not found, 503 if TTS service unavailable. |
