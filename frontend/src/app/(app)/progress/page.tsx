@@ -245,7 +245,10 @@ export default function ProgressPage() {
   const displayVocabSets = showAllLevels
     ? vocabSets
     : vocabSets.filter((s) => s.level === cefrLevel)
-  const totalDisplayWords = displayVocabSets.reduce((a, s) => a + s.words.length, 0)
+  const totalDisplayWords = displayVocabSets.reduce(
+    (a, s) => a + s.words.length,
+    0
+  )
 
   const masteredWordSet = new Set(
     flashcards.filter((f) => f.repetitions > 0).map((f) => f.word.toLowerCase())

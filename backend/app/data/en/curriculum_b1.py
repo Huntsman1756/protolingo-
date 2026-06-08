@@ -27,7 +27,12 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=2,
         title="Conditionals 1 & 2",
         grammar_points=["first-conditional", "second-conditional", "zero-conditional"],
-        vocabulary_set_ids=["conditionals_vocab_b1", "hypothetical_b1", "decisions_b1", "environment_b1"],
+        vocabulary_set_ids=[
+            "conditionals_vocab_b1",
+            "hypothetical_b1",
+            "decisions_b1",
+            "environment_b1",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Form and use zero, first, and second conditionals correctly",
@@ -59,7 +64,12 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=4,
         title="Relative Clauses & Connectors",
         grammar_points=["relative-clauses", "discourse-connectors-b1"],
-        vocabulary_set_ids=["connectors_b1", "descriptions_b1", "technology_b1", "communication_b1"],
+        vocabulary_set_ids=[
+            "connectors_b1",
+            "descriptions_b1",
+            "technology_b1",
+            "communication_b1",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Use defining and non-defining relative clauses",
@@ -75,7 +85,12 @@ B1_UNITS: list[CurriculumUnit] = [
         unit_number=5,
         title="Modals & Advice",
         grammar_points=["modal-verbs", "should-ought-to", "must-have-to"],
-        vocabulary_set_ids=["advice_b1", "obligation_b1", "advice_phrases_b1", "work_obligations_b1"],
+        vocabulary_set_ids=[
+            "advice_b1",
+            "obligation_b1",
+            "advice_phrases_b1",
+            "work_obligations_b1",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Use must/have to/should/ought to correctly",

@@ -92,7 +92,9 @@ def test_curriculum_vocab_refs_all_defined() -> None:
     _check_language_vocab_refs("English", en_curriculum.CURRICULUM, en_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs("Spanish", es_curriculum.CURRICULUM, es_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs("Italian", it_curriculum.CURRICULUM, it_vocabulary.VOCABULARY_SETS)
-    _check_language_vocab_refs("Portuguese", pt_curriculum.CURRICULUM, pt_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs(
+        "Portuguese", pt_curriculum.CURRICULUM, pt_vocabulary.VOCABULARY_SETS
+    )
 
 
 def test_grammar_related_refs_all_defined() -> None:

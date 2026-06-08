@@ -170,7 +170,7 @@ pytest --cov-report=html
 | `tests/components/UnitCard.test.tsx` | 41 | UnitCard: all 5 status states (completed/active/locked/level-test/default), progress bar, click interactions. UnitDrawer: grammar points, lesson list, completion states, escape/outside-click dismiss |
 | `tests/store/progress.test.ts` | 48 | Progress store: 10 initial state fields, setProgress/setTodayLessons/completeLesson/setCurrentUnit/setPlanDuration/updateUnitProgress/unlockLevelTest/setLevelTestResult, state transition isolation |
 
-**Total: 332 tests across 17 files.**
+**Total: 325 tests across 16 files.**
 
 ### Running tests
 
@@ -230,7 +230,7 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 | Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |
 | Frontend format | `prettier --check src/` | Clean diff |
 | Frontend typecheck | `npx tsc --noEmit` | Clean output |
-| Frontend tests | `npm run test:run` | All 332 tests pass |
+| Frontend tests | `npm run test:run` | All 325 tests pass |
 
 **Note**: The backend test job uses SQLite (same as local tests), not PostgreSQL. No Docker services are required for the backend test job.
 

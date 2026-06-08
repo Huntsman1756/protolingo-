@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import pytest
 
-
 # ── GET /api/vocabulary ──────────────────────────────────────────────────────
 
 
@@ -152,9 +151,7 @@ async def test_get_vocabulary_set_detail_spanish(client, test_user):
     assert len(sets) > 0
     set_id = sets[0]["id"]
 
-    response = await client.get(
-        f"/api/vocabulary/{set_id}?language=es-ES", headers=headers
-    )
+    response = await client.get(f"/api/vocabulary/{set_id}?language=es-ES", headers=headers)
     assert response.status_code == 200
     assert response.json()["set"]["id"] == set_id
 
