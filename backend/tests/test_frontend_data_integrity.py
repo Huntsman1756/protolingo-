@@ -62,22 +62,37 @@ def test_curriculum_grammar_refs_all_defined() -> None:
     )
 
 
-def test_curriculum_vocab_refs_all_defined() -> None:
-    """Every vocabulary_set_ids reference in English curriculum must exist in English vocabulary."""
-    from app.data.en.curriculum import CURRICULUM as en_curriculum
-    from app.data.en.vocabulary import VOCABULARY_SETS as en_sets
-
-    defined: set[str] = {s.id for s in en_sets}
+def _check_language_vocab_refs(lang: str, curriculum: dict, vocab_sets: list) -> None:
+    """Validate that all vocabulary_set_ids in a curriculum exist in the vocabulary data."""
+    defined: set[str] = {s.id for s in vocab_sets}
     referenced: set[str] = set()
-    for units in en_curriculum.values():
+    for units in curriculum.values():
         for u in units:
             referenced.update(u.vocabulary_set_ids)
 
     missing = referenced - defined
     assert not missing, (
-        f"English curriculum references {len(missing)} undefined vocabulary set ID(s):\n"
+        f"{lang} curriculum references {len(missing)} undefined vocabulary set ID(s):\n"
         + "\n".join(f"  - {s}" for s in sorted(missing))
     )
+
+
+def test_curriculum_vocab_refs_all_defined() -> None:
+    """Every vocabulary_set_ids reference in every language's curriculum must exist
+    in that language's vocabulary data."""
+    import app.data.en.curriculum as en_curriculum
+    import app.data.en.vocabulary as en_vocabulary
+    import app.data.es.curriculum as es_curriculum
+    import app.data.es.vocabulary as es_vocabulary
+    import app.data.it.curriculum as it_curriculum
+    import app.data.it.vocabulary as it_vocabulary
+    import app.data.pt.curriculum as pt_curriculum
+    import app.data.pt.vocabulary as pt_vocabulary
+
+    _check_language_vocab_refs("English", en_curriculum.CURRICULUM, en_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs("Spanish", es_curriculum.CURRICULUM, es_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs("Italian", it_curriculum.CURRICULUM, it_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs("Portuguese", pt_curriculum.CURRICULUM, pt_vocabulary.VOCABULARY_SETS)
 
 
 def test_grammar_related_refs_all_defined() -> None:

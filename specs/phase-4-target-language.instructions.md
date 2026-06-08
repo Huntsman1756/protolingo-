@@ -378,7 +378,7 @@ When adding a new target language in the future (e.g. Italian `it-IT`), the foll
 | `src/lib/target-languages.ts` | Add `{ code: 'it-IT', flagPath: '/flags/it.jpg' }` to `SUPPORTED_TARGET_LANGUAGES` |
 | `src/data/curriculum.ts` | Add Italian curriculum data |
 | `src/data/grammar.ts` | Add Italian grammar reference data |
-| `src/data/vocabulary.ts` | Add Italian vocabulary sets |
+| `backend/app/data/it/vocabulary.py` | Add Italian vocabulary sets (migrated from frontend in v1.7.3) |
 | `src/data/phrasebook.ts` | Add Italian phrasebook entries |
 | `backend/app/data/it/assessment_bank.py` | Add Italian assessment questions |
 | `public/flags/it.jpg` | Add Italian flag image |

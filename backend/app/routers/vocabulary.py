@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
 from app.core.deps import get_current_user
+from app.data._types import VocabularySet
 from app.data.vocabulary import get_vocabulary_by_level, get_vocabulary_set, get_vocabulary_sets
 from app.models.user import User
 from app.schemas.vocabulary import (
@@ -13,7 +14,7 @@ from app.schemas.vocabulary import (
 router = APIRouter(prefix="/api/vocabulary", tags=["vocabulary"])
 
 
-def _set_to_response(s: object) -> VocabularySetResponse:
+def _set_to_response(s: VocabularySet) -> VocabularySetResponse:
     return VocabularySetResponse(
         id=s.id,
         level=s.level,

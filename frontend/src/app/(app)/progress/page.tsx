@@ -248,7 +248,7 @@ export default function ProgressPage() {
   const totalDisplayWords = displayVocabSets.reduce((a, s) => a + s.words.length, 0)
 
   const masteredWordSet = new Set(
-    flashcards.filter((f) => f.repetitions >= 3).map((f) => f.word.toLowerCase())
+    flashcards.filter((f) => f.repetitions > 0).map((f) => f.word.toLowerCase())
   )
   const totalMastered = displayVocabSets.reduce(
     (a, s) =>
