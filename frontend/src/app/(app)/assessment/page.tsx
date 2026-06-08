@@ -84,7 +84,6 @@ export default function AssessmentPage() {
   const [existingPlan, setExistingPlan] = useState<ExistingPlan | null>(null)
   const [error, setError] = useState('')
   const [bank, setBank] = useState<AssessmentQuestion[]>([])
-  const [bankLoading, setBankLoading] = useState(true)
 
   const [currentQuestion, setCurrentQuestion] =
     useState<AssessmentQuestion | null>(null)
@@ -135,8 +134,6 @@ export default function AssessmentPage() {
         }
       } catch {
         /* no plan */
-      } finally {
-        setBankLoading(false)
       }
       setStep('beginner-gate')
     }
