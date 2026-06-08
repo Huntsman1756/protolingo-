@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Przejdź do mojego planu",
     "addToFlashcards": "Dodaj słowa z zestawu do talii fiszek, aby śledzić postęp poszczególnych słów.",
     "noActivePlanDesc": "Ukończ ocenę poziomu, aby zacząć śledzić umiejętności.",
-    "vocabularyHeader": "Słownictwo {level}"
+    "vocabularyHeader": "Słownictwo {level}",
+    "currentLevelOnly": "Tylko bieżący poziom",
+    "allLevels": "Wszystkie poziomy"
   },
   "grammar": {
     "title": "Podręcznik gramatyki",

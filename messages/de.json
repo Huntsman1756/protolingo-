@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Zum Lernplan",
     "addToFlashcards": "Füge Wörter aus einem Set zu deinem Kartendeck hinzu, um individuelle Fortschritte zu verfolgen.",
     "noActivePlanDesc": "Mache die Bewertung, um deine Fähigkeiten zu verfolgen.",
-    "vocabularyHeader": "Vokabular {level}"
+    "vocabularyHeader": "Vokabular {level}",
+    "currentLevelOnly": "Nur aktuelle Stufe",
+    "allLevels": "Alle Stufen"
   },
   "grammar": {
     "title": "Grammatik",

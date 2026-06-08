@@ -174,7 +174,7 @@ frontend/
 | `/phrasebook` | Common phrases by category |
 | `/listening` | AI-generated listening comprehension exercises |
 | `/reading` | AI-generated reading comprehension exercises |
-| `/progress` | Skills tracker with radar chart |
+| `/progress` | Skills tracker with radar chart and multi-level vocabulary progress toggle |
 | `/settings` | Profile, avatar, subscription, conversation settings |
 | `/faq` | Frequently asked questions |
 | `/feedback` | Feature requests and bug reports board (community) |
