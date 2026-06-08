@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Przejdź do mojego planu",
     "addToFlashcards": "Dodaj słowa z zestawu do talii fiszek, aby śledzić postęp poszczególnych słów.",
     "noActivePlanDesc": "Ukończ ocenę poziomu, aby zacząć śledzić umiejętności.",
-    "vocabularyHeader": "Słownictwo {level}"
+    "vocabularyHeader": "Słownictwo {level}",
+    "currentLevelOnly": "Tylko bieżący poziom",
+    "allLevels": "Wszystkie poziomy"
   },
   "grammar": {
     "title": "Podręcznik gramatyki",
@@ -1092,7 +1094,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.7.2",
+    "version": "v1.7.3",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Zapisuj słowa podczas czytania",

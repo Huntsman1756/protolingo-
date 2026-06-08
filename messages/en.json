@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Go to My Plan",
     "addToFlashcards": "Add words from a set to your flashcard deck to track individual word progress.",
     "noActivePlanDesc": "Complete the assessment to start tracking your skills.",
-    "vocabularyHeader": "{level} Vocabulary"
+    "vocabularyHeader": "{level} Vocabulary",
+    "currentLevelOnly": "Current level only",
+    "allLevels": "All levels"
   },
   "grammar": {
     "title": "Grammar Reference",
@@ -1092,7 +1094,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.7.2",
+    "version": "v1.7.3",
     "cta": "Got it",
     "entry1": {
       "label": "Save words from reading",

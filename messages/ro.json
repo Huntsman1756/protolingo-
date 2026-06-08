@@ -620,7 +620,9 @@
     "goToMyPlan": "→ La planul meu",
     "addToFlashcards": "Adaugă cuvinte dintr-un set în pachetul tău de carduri flash pentru a urmări progresul individual al cuvintelor.",
     "noActivePlanDesc": "Finalizează evaluarea pentru a urmări abilitățile.",
-    "vocabularyHeader": "Vocabular {level}"
+    "vocabularyHeader": "Vocabular {level}",
+    "currentLevelOnly": "Doar nivelul curent",
+    "allLevels": "Toate nivelurile"
   },
   "grammar": {
     "title": "Referință gramaticală",
@@ -1092,7 +1094,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.7.2",
+    "version": "v1.7.3",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Salvează cuvinte în timp ce citești",

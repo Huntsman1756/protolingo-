@@ -24,3 +24,49 @@ class CurriculumUnit:
     competency_checklist: list[str]
     default_weeks: int
     prerequisite_unit: str | None = None
+
+
+Skill = Literal["grammar", "vocabulary", "reading"]
+
+
+@dataclass
+class AssessmentQuestion:
+    id: str  # e.g. "g-a1-001", "v-b2-003", "r-c1-001"
+    skill: Skill
+    difficulty: CEFRLevel
+    question: str
+    options: list[str]  # exactly 4
+    correct: str  # must match one option exactly
+    grammar_slug: str | None = None
+
+
+PartOfSpeech = Literal[
+    "noun",
+    "verb",
+    "adjective",
+    "adverb",
+    "phrase",
+    "conjunction",
+    "preposition",
+    "numeral",
+    "pronoun",
+]
+
+
+@dataclass
+class VocabularyEntry:
+    word: str
+    pos: PartOfSpeech
+    definition: str
+    example: str
+    ipa: str | None = None
+    frequency_rank: int | None = None
+
+
+@dataclass
+class VocabularySet:
+    id: str  # e.g. "identity_a1", "saludos_es_a1"
+    level: CEFRLevel
+    topic: str
+    unit_ref: str  # e.g. "a1-unit-1"
+    words: list[VocabularyEntry]

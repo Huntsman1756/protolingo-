@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Ir ao meu plano",
     "addToFlashcards": "Adicione palavras de um conjunto ao seu deck para rastrear o progresso individual.",
     "noActivePlanDesc": "Faça a avaliação para começar a rastrear suas habilidades.",
-    "vocabularyHeader": "Vocabulário {level}"
+    "vocabularyHeader": "Vocabulário {level}",
+    "currentLevelOnly": "Apenas nível atual",
+    "allLevels": "Todos os níveis"
   },
   "grammar": {
     "title": "Gramática",
@@ -1092,7 +1094,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.7.2",
+    "version": "v1.7.3",
     "cta": "Entendido",
     "entry1": {
       "label": "Guarda palavras ao ler",

@@ -71,17 +71,15 @@ frontend/
 │   │   ├── TargetLanguageSelector.tsx
 │   │   └── ThemeProvider.tsx
 │   │
-│   ├── data/                    # Static content and curriculum data (4 languages)
-│   │   ├── types.ts              # Shared TypeScript types (CEFRLevel, GrammarCategory, etc.)
-│   │   ├── assessment-bank.ts    # Adaptive quiz question bank — language-aware dispatcher
-│   │   ├── curriculum.ts         # Curriculum definitions — language-aware dispatcher
+│   ├── data/                    # Static content: curriculum, grammar, phrasebook — vocabulary + assessment now in backend
+│   │   ├── types.ts              # Shared TypeScript types (CEFRLevel, AssessmentQuestion, VocabularyEntry, VocabularySet, etc.)
+│   │   ├── curriculum.ts         # Curriculum definitions — language-aware dispatcher (API-backed)
 │   │   ├── grammar.ts            # Grammar reference — language-aware dispatcher
 │   │   ├── phrasebook.ts         # Phrasebook — language-aware dispatcher
-│   │   ├── vocabulary.ts         # Vocabulary sets — language-aware dispatcher
-│   │   ├── en/                   # English curriculum (5 files: curriculum, grammar, vocab, phrasebook, assessment)
-│   │   ├── es/                   # Spanish curriculum (5 files)
-│   │   ├── it/                   # Italian curriculum (5 files)
-│   │   └── pt/                   # Portuguese curriculum (5 files)
+│   │   ├── en/                   # English (3 files: curriculum, grammar, phrasebook)
+│   │   ├── es/                   # Spanish (3 files)
+│   │   ├── it/                   # Italian (3 files)
+│   │   └── pt/                   # Portuguese (3 files)
 │   │
 │   ├── store/                   # Zustand stores (6)
 │   │   ├── auth.ts              # Access token, user info, login/refresh/logout
@@ -176,7 +174,7 @@ frontend/
 | `/phrasebook` | Common phrases by category |
 | `/listening` | AI-generated listening comprehension exercises |
 | `/reading` | AI-generated reading comprehension exercises |
-| `/progress` | Skills tracker with radar chart |
+| `/progress` | Skills tracker with radar chart and multi-level vocabulary progress toggle |
 | `/settings` | Profile, avatar, subscription, conversation settings |
 | `/faq` | Frequently asked questions |
 | `/feedback` | Feature requests and bug reports board (community) |

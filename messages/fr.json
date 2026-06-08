@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Mon plan",
     "addToFlashcards": "Ajoutez des mots d'un ensemble à votre deck pour suivre les progrès individuels.",
     "noActivePlanDesc": "Faites l'évaluation pour commencer à suivre vos compétences.",
-    "vocabularyHeader": "Vocabulaire {level}"
+    "vocabularyHeader": "Vocabulaire {level}",
+    "currentLevelOnly": "Niveau actuel uniquement",
+    "allLevels": "Tous les niveaux"
   },
   "grammar": {
     "title": "Grammaire",
@@ -1092,7 +1094,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.7.2",
+    "version": "v1.7.3",
     "cta": "Compris",
     "entry1": {
       "label": "Sauvegarder des mots en lisant",

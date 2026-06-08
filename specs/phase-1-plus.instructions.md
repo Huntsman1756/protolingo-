@@ -16,7 +16,7 @@ A unified resource centre delivering five complementary features: a grammar refe
 | # | Milestone | What was built |
 |---|-----------|----------------|
 | 1 | Grammar Reference | Static grammar data file + `/grammar` index + `/grammar/[slug]` detail pages |
-| 2 | Vocabulary Hub | Static vocabulary data file + `/vocabulary` index + set detail pages with flashcard integration |
+| 2 | Vocabulary Hub | Backend vocabulary data per language + `/vocabulary` index via API + set detail pages with flashcard integration |
 | 3 | Phrasebook | Static phrasebook data file + `/phrasebook` page with level and register filters |
 | 4 | Skills Tracker | `/progress` page showing unit competencies, vocabulary progress, XP history |
 | 5 | Level Completion Test | End-of-level exam at `/assessment/level-test` with auto-generated questions and scoring |
@@ -77,9 +77,9 @@ Dynamic route rendering a single grammar topic. The `[slug]` parameter maps dire
 
 ## Milestone 2 — Vocabulary Hub
 
-### Data model (`frontend/src/data/vocabulary.ts`)
+### Data model (`backend/app/data/_types.py` + per-language `vocabulary.py`)
 
-Static TypeScript file containing approximately 20 vocabulary sets spanning A1 to B2. Each set corresponds to a topic from the curriculum.
+> **Migrated to backend in v1.7.3.** Originally static TypeScript (`frontend/src/data/vocabulary.ts`); now served via `GET /api/vocabulary` from Python dataclasses organized per CEFR level (A1–C2) across 4 languages (en, es, it, pt). The frontend vocabulary hub and set detail pages consume the API instead of importing static data.
 
 **VocabularyEntry** (per word):
 
@@ -306,27 +306,21 @@ Next.js middleware at `src/middleware.ts`:
 
 ## Technical design decisions
 
-### All static content — no API, no DB
+### Static content
 
-Grammar topics, vocabulary sets, phrasebook entries, and assessment questions are all static TypeScript constants. Reasons:
+Grammar topics and phrasebook entries remain static TypeScript constants in the frontend. **Vocabulary and assessment data were migrated to the backend in v1.7.3** — they are now served via API endpoints (`/api/vocabulary`, `/api/assessment/bank`) from Python dataclasses. Curriculum data (unit definitions, grammar points, vocabulary set IDs) lives in both backend Python files and a lightweight frontend `curriculum.ts` that fetches units via the `/api/curriculum` endpoint.
 
-1. **Zero latency**: content renders instantly, no network round-trips
-2. **Offline-capable**: content is available even without a backend connection (cached in JS bundle)
-3. **TypeScript type safety**: the TypeScript compiler validates all data structure at build time
-4. **Tree-shakeable**: unused content is eliminated during bundling
-5. **No maintenance overhead**: no DB migrations needed when adding/editing reference content
-
-The frontend data files mirror the backend's `app/data/curriculum.py` in structure but contain substantially more detail (explanations, examples, translations).
+Reasons for the mixed approach:
+1. **Grammar/phrasebook (frontend static)**: zero latency, offline-capable, tree-shakeable, no DB migrations
+2. **Vocabulary/assessment (backend API)**: large datasets (~330 sets, ~3,940 words across 4 languages; ~400 questions across 4 languages) benefit from server-side serving and language-aware dispatching without bloating the client bundle
+3. **Curriculum (both)**: lightweight unit definitions in frontend for quick rendering; full data in backend for plan generation
 
 ### Cross-referencing
 
 A data integrity test (`test_frontend_data_integrity.py`) validates that:
 - Every `grammar_slug` referenced in curriculum units exists in `grammar.ts`
-- Every `vocabulary_set_id` referenced in curriculum units exists in `vocabulary.ts`
-- Every `unit_ref` in vocabulary sets points to a valid curriculum unit
+- Every `vocabulary_set_id` referenced in each language's curriculum exists in that language's backend vocabulary data (validated for all 4 languages: en, es, it, pt)
 - Every `related` slug in grammar topics points to an existing topic
-
-This test runs in the backend test suite to catch inconsistencies across data files.
 
 ### Dual data files (frontend + backend)
 
@@ -342,11 +336,11 @@ This duplication is intentional: the frontend needs the data for instant renderi
 
 - [x] `/grammar` renders all topics with no API calls (static TypeScript data)
 - [x] `/grammar/[slug]` renders full detail; unknown slugs return 404
-- [x] `/vocabulary` lists all sets grouped by level with flashcard-progress badges
+- [x] `/vocabulary` lists all sets grouped by level with flashcard-progress badges (fetches via `/api/vocabulary`)
 - [x] `/vocabulary/[setId]` shows words + "Add to flashcards" button that integrates with the flashcard API
 - [x] `/phrasebook` lists situations with level and register filters
 - [x] `/progress` shows per-unit competency checklist with scores
-- [x] `/progress` shows vocabulary progress bars per set
+- [x] `/progress` shows vocabulary progress bars per set (fetches via `/api/vocabulary`)
 - [x] Level test available only after all units in a level are completed
 - [x] Level test generates 20 curriculum-constrained questions via LLM
 - [x] Level test recommendation thresholds: advance >= 75% / extend 55-74% / repeat < 55%

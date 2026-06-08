@@ -43,7 +43,11 @@ A2_UNITS: list[CurriculumUnit] = [
         unit_number=3,
         title="Comparisons",
         grammar_points=["comparatives-superlatives"],
-        vocabulary_set_ids=["adjectives_comparison_a2", "places_comparison_a2"],
+        vocabulary_set_ids=[
+            "adjectives_comparison_a2",
+            "places_comparison_a2",
+            "cities_countries_a2",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Compare two or more people, places, or things",

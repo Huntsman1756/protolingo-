@@ -1,27 +1,21 @@
 """
-Sprint 6 — Frontend data cross-reference integrity tests.
+Sprint 6 — Data cross-reference integrity tests.
 
 Validates that:
   1. Every grammar slug referenced in curriculum.ts exists in grammar.ts.
-  2. Every vocabulary set ID referenced in curriculum.ts exists in vocabulary.ts.
-  3. Every VocabularySet constant declared in vocabulary.ts appears in the export array.
+  2. Every vocabulary set ID referenced in the backend curriculum exists in the backend vocabulary data.
+  3. Vocabulary set IDs are unique across all languages.
   4. Grammar `related[]` arrays only reference slugs that exist in grammar.ts.
-
-These tests parse the TypeScript source files with regex — no compilation needed.
-They run as part of the normal backend pytest suite.
 """
 
 import re
 from pathlib import Path
 
-# Path to frontend data directory (relative to backend/)
+# Paths
 FRONTEND_DATA = Path(__file__).resolve().parent.parent.parent / "frontend" / "src" / "data"
 
 GRAMMAR_FILE = FRONTEND_DATA / "grammar.ts"
-VOCABULARY_FILE = FRONTEND_DATA / "vocabulary.ts"
 CURRICULUM_FILE = FRONTEND_DATA / "curriculum.ts"
-
-# ── Helpers ───────────────────────────────────────────────────────────────────
 
 
 def _read(path: Path) -> str:
@@ -29,70 +23,29 @@ def _read(path: Path) -> str:
 
 
 def _extract_grammar_slugs(src: str) -> set[str]:
-    """Extract all `slug: '...'` values from grammar.ts."""
     return set(re.findall(r"slug:\s*'([^']+)'", src))
 
 
-def _extract_vocabulary_ids(src: str) -> set[str]:
-    """Extract vocabulary set IDs (snake_case, underscores only) from vocabulary.ts."""
-    # VocabularySet `id` values use snake_case: e.g. 'formal_writing_c1'
-    # Curriculum unit ids use hyphens (c1-unit-1) — these won't match.
-    return set(re.findall(r"\bid:\s*'([a-z][a-z0-9_]+)'", src))
-
-
 def _extract_curriculum_grammar_refs(src: str) -> set[str]:
-    """Extract all slug strings from grammar_points: [...] arrays in curriculum.ts."""
     refs: set[str] = set()
     for block in re.findall(r"grammar_points:\s*\[([^\]]*)\]", src, re.DOTALL):
         refs.update(re.findall(r"'([^']+)'", block))
     return refs
 
 
-def _extract_curriculum_vocab_refs(src: str) -> set[str]:
-    """Extract all IDs from vocabulary_set_ids: [...] arrays in curriculum.ts."""
-    refs: set[str] = set()
-    for block in re.findall(r"vocabulary_set_ids:\s*\[([^\]]*)\]", src, re.DOTALL):
-        refs.update(re.findall(r"'([^']+)'", block))
-    return refs
-
-
 def _extract_grammar_related_refs(src: str) -> set[str]:
-    """Extract all slug strings from related: [...] arrays in grammar.ts."""
     refs: set[str] = set()
     for block in re.findall(r"related:\s*\[([^\]]*)\]", src, re.DOTALL):
         refs.update(re.findall(r"'([^']+)'", block))
     return refs
 
 
-def _extract_vocabulary_const_names(src: str) -> set[str]:
-    """Extract names of all `const <name>: VocabularySet = {` declarations."""
-    return set(
-        re.findall(
-            r"^const\s+([a-z][a-z0-9_]+)\s*:\s*VocabularySet\s*=",
-            src,
-            re.MULTILINE,
-        )
-    )
-
-
-def _extract_vocabulary_export_names(src: str) -> set[str]:
-    """Extract identifiers inside the `export const vocabularySets: VocabularySet[] = [...]` array."""
-    match = re.search(
-        r"export\s+const\s+vocabularySets\s*:\s*VocabularySet\[\]\s*=\s*\[(.*?)\]",
-        src,
-        re.DOTALL,
-    )
-    if not match:
-        return set()
-    return set(re.findall(r"\b([a-z][a-z0-9_]+)\b", match.group(1)))
-
-
 # ── Tests ──────────────────────────────────────────────────────────────────────
 
 
 def test_data_files_exist() -> None:
-    """Sanity check: all three data files must be present."""
-    for path in (GRAMMAR_FILE, VOCABULARY_FILE, CURRICULUM_FILE):
+    """Sanity check: frontend data files that remain must be present."""
+    for path in (GRAMMAR_FILE, CURRICULUM_FILE):
         assert path.exists(), f"Missing data file: {path}"
 
 
@@ -109,16 +62,38 @@ def test_curriculum_grammar_refs_all_defined() -> None:
     )
 
 
-def test_curriculum_vocab_refs_all_defined() -> None:
-    """Every ID in vocabulary_set_ids[] must exist as an id in vocabulary.ts."""
-    defined = _extract_vocabulary_ids(_read(VOCABULARY_FILE))
-    referenced = _extract_curriculum_vocab_refs(_read(CURRICULUM_FILE))
+def _check_language_vocab_refs(lang: str, curriculum: dict, vocab_sets: list) -> None:
+    """Validate that all vocabulary_set_ids in a curriculum exist in the vocabulary data."""
+    defined: set[str] = {s.id for s in vocab_sets}
+    referenced: set[str] = set()
+    for units in curriculum.values():
+        for u in units:
+            referenced.update(u.vocabulary_set_ids)
 
     missing = referenced - defined
-    assert (
-        not missing
-    ), f"curriculum.ts references {len(missing)} undefined vocabulary set ID(s):\n" + "\n".join(
-        f"  - {s}" for s in sorted(missing)
+    assert not missing, (
+        f"{lang} curriculum references {len(missing)} undefined vocabulary set ID(s):\n"
+        + "\n".join(f"  - {s}" for s in sorted(missing))
+    )
+
+
+def test_curriculum_vocab_refs_all_defined() -> None:
+    """Every vocabulary_set_ids reference in every language's curriculum must exist
+    in that language's vocabulary data."""
+    import app.data.en.curriculum as en_curriculum
+    import app.data.en.vocabulary as en_vocabulary
+    import app.data.es.curriculum as es_curriculum
+    import app.data.es.vocabulary as es_vocabulary
+    import app.data.it.curriculum as it_curriculum
+    import app.data.it.vocabulary as it_vocabulary
+    import app.data.pt.curriculum as pt_curriculum
+    import app.data.pt.vocabulary as pt_vocabulary
+
+    _check_language_vocab_refs("English", en_curriculum.CURRICULUM, en_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs("Spanish", es_curriculum.CURRICULUM, es_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs("Italian", it_curriculum.CURRICULUM, it_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs(
+        "Portuguese", pt_curriculum.CURRICULUM, pt_vocabulary.VOCABULARY_SETS
     )
 
 
@@ -136,16 +111,26 @@ def test_grammar_related_refs_all_defined() -> None:
 
 
 def test_vocabulary_export_completeness() -> None:
-    """Every VocabularySet constant declared in vocabulary.ts must appear in the export array."""
-    src = _read(VOCABULARY_FILE)
-    declared = _extract_vocabulary_const_names(src)
-    exported = _extract_vocabulary_export_names(src)
+    """Every vocabulary set ID in the backend data must belong to exactly one CEFR level."""
+    from app.data.en.vocabulary import VOCABULARY_SETS as en_sets
+    from app.data.es.vocabulary import VOCABULARY_SETS as es_sets
+    from app.data.it.vocabulary import VOCABULARY_SETS as it_sets
+    from app.data.pt.vocabulary import VOCABULARY_SETS as pt_sets
 
-    missing = declared - exported
-    assert not missing, (
-        f"{len(missing)} VocabularySet constant(s) declared but missing from the export array:\n"
-        + "\n".join(f"  - {n}" for n in sorted(missing))
-    )
+    for lang, sets in [("en", en_sets), ("es", es_sets), ("it", it_sets), ("pt", pt_sets)]:
+        for s in sets:
+            assert s.level in (
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2",
+            ), f"{lang} set {s.id}: invalid level {s.level}"
+            assert s.id, f"{lang}: set with empty id"
+            assert s.topic, f"{lang} {s.id}: empty topic"
+            assert s.unit_ref, f"{lang} {s.id}: empty unit_ref"
+            assert len(s.words) > 0, f"{lang} {s.id}: no words"
 
 
 def test_grammar_slug_uniqueness() -> None:
@@ -164,18 +149,22 @@ def test_grammar_slug_uniqueness() -> None:
 
 
 def test_vocabulary_id_uniqueness() -> None:
-    """No two vocabulary sets should share the same id."""
-    src = _read(VOCABULARY_FILE)
-    all_ids = re.findall(r"\bid:\s*'([a-z][a-z0-9_]+)'", src)
-    seen: set[str] = set()
-    duplicates: list[str] = []
-    for vid in all_ids:
-        if vid in seen:
-            duplicates.append(vid)
-        seen.add(vid)
-    assert not duplicates, "Duplicate vocabulary set ID(s) found:\n" + "\n".join(
-        f"  - {s}" for s in sorted(set(duplicates))
-    )
+    """No vocabulary set ID should be duplicated within a single language."""
+    from app.data.en.vocabulary import VOCABULARY_SETS as en_sets
+    from app.data.es.vocabulary import VOCABULARY_SETS as es_sets
+    from app.data.it.vocabulary import VOCABULARY_SETS as it_sets
+    from app.data.pt.vocabulary import VOCABULARY_SETS as pt_sets
+
+    for lang, sets in [("en", en_sets), ("es", es_sets), ("it", it_sets), ("pt", pt_sets)]:
+        seen: set[str] = set()
+        duplicates: list[str] = []
+        for s in sets:
+            if s.id in seen:
+                duplicates.append(s.id)
+            seen.add(s.id)
+        assert not duplicates, f"{lang}: duplicate vocabulary set ID(s):\n" + "\n".join(
+            f"  - {d}" for d in sorted(duplicates)
+        )
 
 
 def test_curriculum_unit_id_uniqueness() -> None:

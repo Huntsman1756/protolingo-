@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, use } from 'react'
+import { useState, useEffect, use } from 'react'
 import { notFound, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { getVocabularySets } from '@/data/vocabulary'
+import type { VocabularySet } from '@/data/types'
 import { useLanguageStore } from '@/store/language'
 import { apiFetch } from '@/lib/api'
 
@@ -30,14 +30,35 @@ export default function VocabularySetPage({
   const t = useTranslations('vocabulary')
   const tCommon = useTranslations('common')
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
-  const langFromId = setId.match(/_(en|es|it|pt)_/)?.[1]
-  const targetLang = activeLanguage?.code ?? langFromId ?? 'en-US'
-  const vocabSet = getVocabularySets(targetLang).find((s) => s.id === setId)
-  if (!vocabSet) notFound()
-
+  const [vocabSet, setVocabSet] = useState<VocabularySet | null>(null)
+  const [loading, setLoading] = useState(true)
   const [adding, setAdding] = useState(false)
   const [addedCount, setAddedCount] = useState<number | null>(null)
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    const lang = activeLanguage?.code ?? 'en-US'
+    apiFetch(`/api/vocabulary/${encodeURIComponent(setId)}?language=${lang}`)
+      .then((r) => {
+        if (!r.ok) throw new Error('not found')
+        return r.json()
+      })
+      .then((d: { set: VocabularySet }) => setVocabSet(d.set))
+      .catch(() => setVocabSet(null))
+      .finally(() => setLoading(false))
+  }, [setId, activeLanguage?.code])
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
+          {tCommon('loading')}
+        </span>
+      </div>
+    )
+  }
+
+  if (!vocabSet) notFound()
 
   async function handleAddAll() {
     if (!vocabSet) return
@@ -83,7 +104,7 @@ export default function VocabularySetPage({
           href="/vocabulary"
           className="hover:text-fl-fg tracking-widest uppercase transition-colors"
         >
-          Vocabulary
+          {t('title')}
         </Link>
         <span>›</span>
         <span className="text-fl-muted-2 tracking-widest uppercase">

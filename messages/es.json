@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Ir a mi plan",
     "addToFlashcards": "Añade palabras de un conjunto a tu mazo de tarjetas para seguir el progreso individual.",
     "noActivePlanDesc": "Completa la evaluación para empezar a seguir tus habilidades.",
-    "vocabularyHeader": "Vocabulario {level}"
+    "vocabularyHeader": "Vocabulario {level}",
+    "currentLevelOnly": "Solo nivel actual",
+    "allLevels": "Todos los niveles"
   },
   "grammar": {
     "title": "Gramática",
@@ -1092,7 +1094,7 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.7.2",
+    "version": "v1.7.3",
     "cta": "Entendido",
     "entry1": {
       "label": "Guarda palabras al leer",

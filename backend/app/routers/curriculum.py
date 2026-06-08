@@ -1,7 +1,9 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
 
+from app.core.deps import get_current_user
 from app.data._types import CurriculumUnit
 from app.data.curriculum import get_curriculum, get_curriculum_units
+from app.models.user import User
 from app.schemas.curriculum import CurriculumResponse, CurriculumUnitResponse
 
 router = APIRouter(prefix="/api/curriculum", tags=["curriculum"])
@@ -25,6 +27,7 @@ def _to_response(u: CurriculumUnit) -> dict:
 @router.get("", response_model=CurriculumResponse)
 def get_all_curriculum(
     language: str = Query("en-US", description="BCP-47 target language code"),
+    _current_user: User = Depends(get_current_user),
 ) -> dict:
     curriculum = get_curriculum(language)
     return {
@@ -41,6 +44,7 @@ def get_all_curriculum(
 def get_curriculum_by_level(
     level: str,
     language: str = Query("en-US", description="BCP-47 target language code"),
+    _current_user: User = Depends(get_current_user),
 ) -> list:
     units = get_curriculum_units(level, language)
     return [_to_response(u) for u in units]

@@ -27,7 +27,7 @@ freelingo/
 │   │       └── pt/              # Portuguese curriculum (A1–C2)
 │   ├── alembic/
 │   │   └── versions/            # DB migrations (31)
-│   └── tests/                   # pytest suite (31 test files, 677 tests)
+│   └── tests/                   # pytest suite (32 test files, 691 tests)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
@@ -55,7 +55,7 @@ freelingo/
 │   │   │   ├── (legal)/         # Terms and Privacy pages — minimal layout
 │   │   │   └── api/             # Next.js Route Handlers: chat (SSE), tts, stt proxies
 │   │   ├── components/          # 11 component directories + 4 standalone files
-│   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook, assessment-bank (4 languages: en/es/it/pt)
+│   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook (4 languages: en/es/it/pt)
 │   │   ├── store/               # Zustand stores: auth, config, language, loading, progress, theme (6)
 │   │   ├── lib/                 # Utilities: api, audio, conversation-ws, locales, mappers, target-languages, utils (7)
 │   │   ├── i18n/                # next-intl locale resolver
@@ -85,7 +85,7 @@ Step 1: BeginnerGate ("Have you studied English before?")
     ↓ No → skip to A1, create plan directly
     ↓ Yes → continue
     ↓
-Step 2: Adaptive quiz (12 questions, drawn from static assessment-bank.ts)
+Step 2: Adaptive quiz (15 questions, fetched from GET /api/assessment/bank)
     ↓
 Step 3: Duration selector (4/8/12/16 weeks) + goals selection
     ↓
@@ -167,6 +167,6 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 Testing infrastructure and strategy are documented in [testing.instructions.md](testing.instructions.md).
 
 **Summary:**
-- **Backend**: pytest + pytest-asyncio, 31 test files, 677 tests, 83% coverage (target: 70%)
-- **Frontend**: Vitest, 17 test files, 332 tests covering stores, components, lib, and middleware
+- **Backend**: pytest + pytest-asyncio, 32 test files, 691 tests, 83% coverage (target: 70%)
+- **Frontend**: Vitest, 16 test files, 325 tests covering stores, components, lib, and middleware
 - **E2E**: Playwright (planned, not yet implemented)

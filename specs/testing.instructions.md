@@ -51,11 +51,12 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 | `test_progress_extra.py` | 83 | Additional progress tracking scenarios |
 | `test_conversation.py` | 555 | WebSocket authentication, TTS/STT disabled rejection, pipeline lifecycle, session management |
 | `test_conversation_pipeline_service.py` | — | Conversation pipeline service: system prompt, sentence cleaning, TTS queue, greet, audio processing, barge-in, usage tracking, inactivity watcher, max-duration watcher, full lifecycle (76 tests, 50%→97% coverage) |
-| `test_frontend_data_integrity.py` | 196 | Cross-reference validation: curriculum.ts vs grammar.ts, vocabulary.ts — ensures all referenced slugs and IDs exist |
+| `test_frontend_data_integrity.py` | 168 | Cross-reference validation: curriculum.ts vs grammar.ts, all 4 languages' curriculum vs backend vocabulary — ensures all referenced slugs and IDs exist |
 | `test_listening.py` | 503 | Exercise pool (next / generate), generation lock, audio serving, answer evaluation (score + XP), attempt deduplication, history |
 | `test_listening_extra.py` | 208 | Additional listening exercise scenarios |
 | `test_reading.py` | 400 | Reading exercise generation, comprehension questions, answer evaluation, XP calculation |
 | `test_reading_extra.py` | 255 | Additional reading exercise scenarios |
+| `test_vocabulary.py` | 175 | Vocabulary API: list sets, by-level, set detail, language switching, auth, error cases (14 tests) |
 | `test_feedback.py` | 1116 | Feedback board: feature requests, bug reports, voting, comments, admin moderation |
 | `test_billing.py` | 381 | Stripe subscriptions, webhooks, payment status, subscription lifecycle |
 | `test_maintenance.py` | 153 | Maintenance mode toggle, API behavior during maintenance |
@@ -63,7 +64,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 | `test_llm_adapter.py` | — | LLM adapter: JSON parsing, streaming, 5 exception classes, 4 provider init paths, chat (streaming + non-streaming), Anthropic error mapping, structured output with retry, DeepSeek provider, edge cases (63 tests, 38%→100% coverage) |
 | `test_quota_service.py` | — | Quota service: key helpers, quota status, session tracking, daily/weekly minute checks, monthly token tracking, combined quota validation, full session lifecycle (71 tests, 37%→100% coverage) |
 
-**Total: 31 test files, 677 tests, ~12,000 lines of test code.**
+**Total: 32 test files, 691 tests, ~12,000 lines of test code.**
 
 ### Coverage
 
@@ -113,7 +114,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 
 **Data integrity**:
 - Every grammar_slug in curriculum.ts referenced by curriculum units exists in grammar.ts
-- Every vocabulary_set_id in curriculum.ts referenced by curriculum units exists in vocabulary.ts
+- Every vocabulary_set_id referenced by each language's curriculum exists in that language's backend vocabulary data (validated for all 4 languages: en, es, it, pt)
 - Every related grammar slug in grammar topics points to an existing topic
 
 ### Running tests
@@ -169,7 +170,7 @@ pytest --cov-report=html
 | `tests/components/UnitCard.test.tsx` | 41 | UnitCard: all 5 status states (completed/active/locked/level-test/default), progress bar, click interactions. UnitDrawer: grammar points, lesson list, completion states, escape/outside-click dismiss |
 | `tests/store/progress.test.ts` | 48 | Progress store: 10 initial state fields, setProgress/setTodayLessons/completeLesson/setCurrentUnit/setPlanDuration/updateUnitProgress/unlockLevelTest/setLevelTestResult, state transition isolation |
 
-**Total: 332 tests across 17 files.**
+**Total: 325 tests across 16 files.**
 
 ### Running tests
 
@@ -229,7 +230,7 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 | Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |
 | Frontend format | `prettier --check src/` | Clean diff |
 | Frontend typecheck | `npx tsc --noEmit` | Clean output |
-| Frontend tests | `npm run test:run` | All 332 tests pass |
+| Frontend tests | `npm run test:run` | All 325 tests pass |
 
 **Note**: The backend test job uses SQLite (same as local tests), not PostgreSQL. No Docker services are required for the backend test job.
 
@@ -257,7 +258,7 @@ The `pre-push` opencode skill mirrors the CI workflow locally. Run order:
 - **Each test file runs independently** — no shared state between files, fresh DB per test
 - **Coverage thresholds enforced** — backend >= 70% (enforced)
 - **No `docker compose` in test configs** — the development environment does not have Docker locally; E2E tests target a remote deployment
-- **Data integrity tests validate cross-file references** — ensures curriculum, grammar, and vocabulary data files stay consistent
+- **Data integrity tests validate cross-file references** — ensures curriculum, grammar, and backend vocabulary data files stay consistent across all 4 languages
 - **Frontend: test critical logic + components** — test stores, utils, API client, middleware, and key components (VoiceRecorder, AudioPlayer, ProfileSection, UnitCard/UnitDrawer, LanguageSwitcher)
 - **Frontend: mock `localStorage` and `next/navigation` globally** in `tests/setup.ts` — individual test files should not re-mock these
 - **Frontend: tests live in `frontend/tests/`** — not co-located with source files, mirroring the backend `tests/` convention

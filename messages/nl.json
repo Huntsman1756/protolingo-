@@ -620,7 +620,9 @@
     "goToMyPlan": "→ Naar mijn plan",
     "addToFlashcards": "Voeg woorden uit een set toe aan je flashcard-deck om de voortgang van individuele woorden bij te houden.",
     "noActivePlanDesc": "Voltooi de beoordeling om je vaardigheden bij te houden.",
-    "vocabularyHeader": "{level} woordenschat"
+    "vocabularyHeader": "{level} woordenschat",
+    "currentLevelOnly": "Alleen huidig niveau",
+    "allLevels": "Alle niveaus"
   },
   "grammar": {
     "title": "Grammaticareferentie",
@@ -1092,7 +1094,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.7.2",
+    "version": "v1.7.3",
     "cta": "Begrepen",
     "entry1": {
       "label": "Woorden opslaan tijdens het lezen",
