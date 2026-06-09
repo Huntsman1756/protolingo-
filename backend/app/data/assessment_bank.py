@@ -12,7 +12,8 @@ import sys
 from app.data._types import AssessmentQuestion  # noqa: F401
 
 _LANG_MODULES: dict[str, str] = {
-    "en": "app.data.en.assessment_bank",
+    "en-GB": "app.data.en_GB.assessment_bank",
+    "en-US": "app.data.en_US.assessment_bank",
     "es": "app.data.es.assessment_bank",
     "it": "app.data.it.assessment_bank",
     "pt": "app.data.pt.assessment_bank",
@@ -22,8 +23,9 @@ _CACHE: dict[str, list[AssessmentQuestion]] = {}
 
 
 def _resolve_bank(target_language: str) -> list[AssessmentQuestion]:
-    iso = target_language.split("-")[0]
-    module_name = _LANG_MODULES.get(iso, "app.data.en.assessment_bank")
+    module_name = _LANG_MODULES.get(target_language) or _LANG_MODULES.get(
+        target_language.split("-")[0], "app.data.en_GB.assessment_bank"
+    )
 
     if module_name not in _CACHE:
         __import__(module_name)

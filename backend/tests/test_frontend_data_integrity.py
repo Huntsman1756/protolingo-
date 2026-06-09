@@ -61,7 +61,7 @@ def test_curriculum_grammar_refs_all_defined() -> None:
 
     # Collect all grammar slugs across all supported languages
     defined: set[str] = set()
-    for lang in ("en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
         defined.update(_get_grammar_slugs(lang))
 
     missing = referenced - defined
@@ -90,8 +90,8 @@ def _check_language_vocab_refs(lang: str, curriculum: dict, vocab_sets: list) ->
 def test_curriculum_vocab_refs_all_defined() -> None:
     """Every vocabulary_set_ids reference in every language's curriculum must exist
     in that language's vocabulary data."""
-    import app.data.en.curriculum as en_curriculum
-    import app.data.en.vocabulary as en_vocabulary
+    import app.data.en_GB.curriculum as en_curriculum
+    import app.data.en_GB.vocabulary as en_vocabulary
     import app.data.es.curriculum as es_curriculum
     import app.data.es.vocabulary as es_vocabulary
     import app.data.it.curriculum as it_curriculum
@@ -109,7 +109,7 @@ def test_curriculum_vocab_refs_all_defined() -> None:
 
 def test_grammar_related_refs_all_defined() -> None:
     """Every slug in a grammar topic's related[] array must exist in that language's grammar data."""
-    for lang_code in ("en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
         defined = _get_grammar_slugs(lang_code)
         related = _get_grammar_related_refs(lang_code)
 
@@ -122,7 +122,7 @@ def test_grammar_related_refs_all_defined() -> None:
 
 def test_vocabulary_export_completeness() -> None:
     """Every vocabulary set ID in the backend data must belong to exactly one CEFR level."""
-    from app.data.en.vocabulary import VOCABULARY_SETS as en_sets
+    from app.data.en_GB.vocabulary import VOCABULARY_SETS as en_sets
     from app.data.es.vocabulary import VOCABULARY_SETS as es_sets
     from app.data.it.vocabulary import VOCABULARY_SETS as it_sets
     from app.data.pt.vocabulary import VOCABULARY_SETS as pt_sets
@@ -145,7 +145,7 @@ def test_vocabulary_export_completeness() -> None:
 
 def test_grammar_slug_uniqueness() -> None:
     """No two grammar topics should share the same slug within a language."""
-    for lang_code in ("en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
         from app.data.grammar import get_grammar_topics
 
         topics = get_grammar_topics(lang_code)
@@ -163,7 +163,7 @@ def test_grammar_slug_uniqueness() -> None:
 
 def test_vocabulary_id_uniqueness() -> None:
     """No vocabulary set ID should be duplicated within a single language."""
-    from app.data.en.vocabulary import VOCABULARY_SETS as en_sets
+    from app.data.en_GB.vocabulary import VOCABULARY_SETS as en_sets
     from app.data.es.vocabulary import VOCABULARY_SETS as es_sets
     from app.data.it.vocabulary import VOCABULARY_SETS as it_sets
     from app.data.pt.vocabulary import VOCABULARY_SETS as pt_sets
@@ -178,6 +178,50 @@ def test_vocabulary_id_uniqueness() -> None:
         assert not duplicates, f"{lang}: duplicate vocabulary set ID(s):\n" + "\n".join(
             f"  - {d}" for d in sorted(duplicates)
         )
+
+
+def test_en_us_curriculum_vocab_refs_all_defined() -> None:
+    """Every vocabulary_set_ids reference in en_US curriculum must exist in en_US vocabulary."""
+    import app.data.en_US.curriculum as en_us_curriculum
+    import app.data.en_US.vocabulary as en_us_vocabulary
+
+    _check_language_vocab_refs(
+        "en-US", en_us_curriculum.CURRICULUM, en_us_vocabulary.VOCABULARY_SETS
+    )
+
+
+def test_en_us_vocabulary_export_completeness() -> None:
+    """Every vocabulary set in en_US must have a valid CEFR level and required fields."""
+    from app.data.en_US.vocabulary import VOCABULARY_SETS as en_us_sets
+
+    for s in en_us_sets:
+        assert s.level in (
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+        ), f"en-US set {s.id}: invalid level {s.level}"
+        assert s.id, "en-US: set with empty id"
+        assert s.topic, f"en-US {s.id}: empty topic"
+        assert s.unit_ref, f"en-US {s.id}: empty unit_ref"
+        assert len(s.words) > 0, f"en-US {s.id}: no words"
+
+
+def test_en_us_vocabulary_id_uniqueness() -> None:
+    """No vocabulary set ID should be duplicated within en_US."""
+    from app.data.en_US.vocabulary import VOCABULARY_SETS as en_us_sets
+
+    seen: set[str] = set()
+    duplicates: list[str] = []
+    for s in en_us_sets:
+        if s.id in seen:
+            duplicates.append(s.id)
+        seen.add(s.id)
+    assert not duplicates, "en-US: duplicate vocabulary set ID(s):\n" + "\n".join(
+        f"  - {d}" for d in sorted(duplicates)
+    )
 
 
 def test_curriculum_unit_id_uniqueness() -> None:

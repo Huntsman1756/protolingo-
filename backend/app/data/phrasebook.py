@@ -12,7 +12,8 @@ import sys
 from app.data._types import CEFRLevel, PhrasebookCategory, PhrasebookEntry  # noqa: F401
 
 _LANG_MODULES: dict[str, str] = {
-    "en": "app.data.en.phrasebook",
+    "en-GB": "app.data.en_GB.phrasebook",
+    "en-US": "app.data.en_US.phrasebook",
     "es": "app.data.es.phrasebook",
     "it": "app.data.it.phrasebook",
     "pt": "app.data.pt.phrasebook",
@@ -22,8 +23,9 @@ _CACHE: dict[str, list[PhrasebookCategory]] = {}
 
 
 def _resolve_categories(target_language: str) -> list[PhrasebookCategory]:
-    iso = target_language.split("-")[0]
-    module_name = _LANG_MODULES.get(iso, "app.data.en.phrasebook")
+    module_name = _LANG_MODULES.get(target_language) or _LANG_MODULES.get(
+        target_language.split("-")[0], "app.data.en_GB.phrasebook"
+    )
 
     if module_name not in _CACHE:
         __import__(module_name)

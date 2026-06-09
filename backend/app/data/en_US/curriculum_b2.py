@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en._types import CurriculumUnit
+from app.data.en_US._types import CurriculumUnit
 
 B2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -16,7 +16,7 @@ B2_UNITS: list[CurriculumUnit] = [
         competency_checklist=[
             "Uses the past perfect to sequence two past events correctly",
             "Does not use the past perfect when the sequence is already clear from context",
-            "Uses time connectors (prior to, subsequently, meanwhile) to organise a narrative",
+            "Uses time connectors (prior to, subsequently, meanwhile) to organize a narrative",
             "Writes a coherent 150-word past narrative with correct verb forms",
             "Distinguishes past simple (simple past action) from past perfect (earlier action)",
         ],
@@ -34,7 +34,7 @@ B2_UNITS: list[CurriculumUnit] = [
         competency_checklist=[
             'Uses "I wish + past simple" for present wishes correctly',
             'Uses "I wish + past perfect" for past regrets correctly',
-            'Uses "I wish + would" to express a complaint about behaviour',
+            'Uses "I wish + would" to express a complaint about behavior',
             'Uses "if only" for emphasis without changing the underlying structure',
             "Expresses nuanced emotions (remorse, yearning, nostalgia) in writing",
         ],

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en._types import CurriculumUnit
+from app.data.en_US._types import CurriculumUnit
 
 C2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -14,7 +14,7 @@ C2_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["nuanced_adjectives_c2"],
         lesson_types=["grammar", "reading", "writing"],
         competency_checklist=[
-            "Use a wide range of discourse markers to organise arguments at paragraph and essay level.",
+            "Use a wide range of discourse markers to organize arguments at paragraph and essay level.",
             "Identify how discourse markers signal logical relationships in sophisticated texts.",
             "Employ nuanced C2 adjectives to add precision and depth to writing.",
             "Produce a cohesive analytical essay of 400+ words using advanced connectors.",
