@@ -12,7 +12,8 @@ import sys
 from app.data._types import CEFRLevel, VocabularyEntry, VocabularySet  # noqa: F401
 
 _LANG_MODULES: dict[str, str] = {
-    "en": "app.data.en.vocabulary",
+    "en-GB": "app.data.en_GB.vocabulary",
+    "en-US": "app.data.en_US.vocabulary",
     "es": "app.data.es.vocabulary",
     "it": "app.data.it.vocabulary",
     "pt": "app.data.pt.vocabulary",
@@ -22,8 +23,9 @@ _CACHE: dict[str, list[VocabularySet]] = {}
 
 
 def _resolve_sets(target_language: str) -> list[VocabularySet]:
-    iso = target_language.split("-")[0]
-    module_name = _LANG_MODULES.get(iso, "app.data.en.vocabulary")
+    module_name = _LANG_MODULES.get(target_language) or _LANG_MODULES.get(
+        target_language.split("-")[0], "app.data.en_GB.vocabulary"
+    )
 
     if module_name not in _CACHE:
         __import__(module_name)

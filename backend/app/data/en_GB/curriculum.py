@@ -10,17 +10,17 @@ from __future__ import annotations
 
 # Re-export shared types so existing consumers importing from this module
 # (via the app.data.curriculum proxy) continue to work unchanged.
-from app.data.en._types import (  # noqa: F401
+from app.data.en_GB._types import (  # noqa: F401
     CEFRLevel,
     CurriculumUnit,
     LessonType,
 )
-from app.data.en.curriculum_a1 import A1_UNITS
-from app.data.en.curriculum_a2 import A2_UNITS
-from app.data.en.curriculum_b1 import B1_UNITS
-from app.data.en.curriculum_b2 import B2_UNITS
-from app.data.en.curriculum_c1 import C1_UNITS
-from app.data.en.curriculum_c2 import C2_UNITS
+from app.data.en_GB.curriculum_a1 import A1_UNITS
+from app.data.en_GB.curriculum_a2 import A2_UNITS
+from app.data.en_GB.curriculum_b1 import B1_UNITS
+from app.data.en_GB.curriculum_b2 import B2_UNITS
+from app.data.en_GB.curriculum_c1 import C1_UNITS
+from app.data.en_GB.curriculum_c2 import C2_UNITS
 
 CEFR_LEVELS: list[str] = ["A1", "A2", "B1", "B2", "C1", "C2"]
 

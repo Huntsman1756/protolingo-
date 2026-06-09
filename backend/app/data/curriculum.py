@@ -15,7 +15,8 @@ from app.data._types import CEFRLevel, CurriculumUnit  # noqa: F401
 CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"]
 
 _LANG_MODULES: dict[str, str] = {
-    "en": "app.data.en.curriculum",
+    "en-GB": "app.data.en_GB.curriculum",
+    "en-US": "app.data.en_US.curriculum",
     "es": "app.data.es.curriculum",
     "it": "app.data.it.curriculum",
     "pt": "app.data.pt.curriculum",
@@ -24,7 +25,7 @@ _LANG_MODULES: dict[str, str] = {
 _CACHE: dict[str, object] = {}
 
 _I18N = {
-    "en-US": {
+    "en-GB": {
         "lesson_title": "{title} - Lesson {n}",
         "test_unit_title": "Level {level} Completion Test",
         "test_title": "Level {level} Completion Test",
@@ -33,7 +34,7 @@ _I18N = {
             "Complete the assessment to unlock the next level",
         ],
     },
-    "en-GB": {
+    "en-US": {
         "lesson_title": "{title} - Lesson {n}",
         "test_unit_title": "Level {level} Completion Test",
         "test_title": "Level {level} Completion Test",
@@ -73,8 +74,9 @@ _I18N = {
 
 
 def _resolve_module(target_language: str) -> object:
-    iso = target_language.split("-")[0]
-    module_name = _LANG_MODULES.get(iso, "app.data.en.curriculum")
+    module_name = _LANG_MODULES.get(target_language) or _LANG_MODULES.get(
+        target_language.split("-")[0], "app.data.en_GB.curriculum"
+    )
 
     if module_name not in _CACHE:
         __import__(module_name)
