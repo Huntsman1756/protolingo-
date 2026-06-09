@@ -597,7 +597,7 @@ A1_SETS: list[VocabularySet] = [
         ],
     ),
     VocabularySet(
-        id="colors_a1",
+        id="colours_a1",
         level="A1",
         topic="Colors",
         unit_ref="a1-unit-2",
