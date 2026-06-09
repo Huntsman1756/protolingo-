@@ -237,10 +237,10 @@ C2_SETS: list[VocabularySet] = [
                 ipa="/ə ˌdʌbəl edʒd ˈsɔːrd/",
             ),
             VocabularyEntry(
-                word="a grey area",
+                word="a gray area",
                 pos="phrase",
                 definition="A situation where rules or judgements are unclear.",
-                example="Intellectual property can be a legal grey area.",
+                example="Intellectual property can be a legal gray area.",
                 ipa="/ə ɡreɪ ˈeərɪə/",
             ),
             VocabularyEntry(
@@ -334,7 +334,7 @@ C2_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="satire",
                 pos="noun",
-                definition="The use of humour or irony to expose folly or vice.",
+                definition="The use of humor or irony to expose folly or vice.",
                 example="Swift's A Modest Proposal is biting satire.",
                 ipa="/ˈsætaɪər/",
                 frequency_rank=400,
@@ -446,7 +446,7 @@ C2_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="deconstruct",
                 pos="verb",
-                definition="To analyse by taking apart; to expose hidden assumptions.",
+                definition="To analyze by taking apart; to expose hidden assumptions.",
                 example="The essay deconstructs the narrative of progress.",
                 ipa="/ˌdiːkənˈstrʌkt/",
                 frequency_rank=450,

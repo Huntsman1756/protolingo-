@@ -294,7 +294,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="I am writing on behalf of the residents' association."),
             GrammarExample(text="In terms of customer satisfaction, this has been our best year."),
             GrammarExample(
-                text="The event was cancelled as a result of the severe weather warning."
+                text="The event was canceled as a result of the severe weather warning."
             ),
         ],
         common_mistakes=[
@@ -655,7 +655,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C1",
         category="Nouns",
         summary="Use the possessive 's beyond ownership — for time, place, measurement, and the double genitive.",
-        explanation="The possessive 's has many uses beyond ownership:\n\n**Time expressions:**\n- *a week's holiday, three hours' delay, yesterday's news*\n\n**Place and organisations:**\n- *London's transport system, the company's policy*\n\n**Measurement:**\n- *a kilo's worth of apples, a stone's throw away*\n\n**Double genitive (of + possessive):**\n- *a friend of mine* (= one of my friends)\n- *a colleague of Sarah's* (= one of Sarah's colleagues)\n- *that idea of yours* (= that idea you had)\n\nThe double genitive is used when the noun is indefinite (a/an/some/that + noun + of + possessive).\n\n**With 's or of?**\n- People and animals → preferably 's: *John's car*\n- Things and abstract concepts → preferably of: *the roof of the house*",
+        explanation="The possessive 's has many uses beyond ownership:\n\n**Time expressions:**\n- *a week's vacation, three hours' delay, yesterday's news*\n\n**Place and organisations:**\n- *London's transport system, the company's policy*\n\n**Measurement:**\n- *a kilo's worth of apples, a stone's throw away*\n\n**Double genitive (of + possessive):**\n- *a friend of mine* (= one of my friends)\n- *a colleague of Sarah's* (= one of Sarah's colleagues)\n- *that idea of yours* (= that idea you had)\n\nThe double genitive is used when the noun is indefinite (a/an/some/that + noun + of + possessive).\n\n**With 's or of?**\n- People and animals → preferably 's: *John's car*\n- Things and abstract concepts → preferably of: *the roof of the house*",
         rules=[
             "Use 's for people, animals, time expressions, and organisations.",
             "Use 'of' for inanimate objects and abstract concepts.",
@@ -663,7 +663,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Time expressions with numbers always use 's: two weeks' notice, ten minutes' walk.",
         ],
         examples=[
-            GrammarExample(text="I have three weeks' holiday this year.", note="time expression"),
+            GrammarExample(text="I have three weeks' vacation this year.", note="time expression"),
             GrammarExample(text="She is a colleague of my father's.", note="double genitive"),
             GrammarExample(text="That idea of yours is brilliant!", note="double genitive"),
             GrammarExample(
@@ -677,8 +677,8 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="After 'a friend of', use a possessive pronoun, not an object pronoun.",
             ),
             GrammarMistake(
-                wrong="I have two week's holiday.",
-                correct="I have two weeks' holiday.",
+                wrong="I have two week's vacation.",
+                correct="I have two weeks' vacation.",
                 note="With plural time expressions, the apostrophe goes after the 's'.",
             ),
         ],

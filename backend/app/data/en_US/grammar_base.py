@@ -197,7 +197,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A1",
         category="Tenses",
         summary='Describe what exists in a place using "there is" and "there are".',
-        explanation="Use **there is** (singular/uncountable) and **there are** (plural) to say that something exists or is located somewhere.\\n\\n- *There is a park near my house.*\\n- *There are three bedrooms in my flat.*\\n\\nNegative: *There isn't a café here.* / *There aren't any shops nearby.*\\n\\nQuestion: *Is there a bank near here?* / *Are there any seats?*",
+        explanation="Use **there is** (singular/uncountable) and **there are** (plural) to say that something exists or is located somewhere.\\n\\n- *There is a park near my house.*\\n- *There are three bedrooms in my apartment.*\\n\\nNegative: *There isn't a café here.* / *There aren't any shops nearby.*\\n\\nQuestion: *Is there a bank near here?* / *Are there any seats?*",
         structure="There is + singular noun · There are + plural noun",
         rules=[
             'Use "there is" for singular countable and uncountable nouns.',
@@ -888,7 +888,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Tenses",
         summary="Describe past habits, repeated actions, and states that no longer exist using *used to* and *would*.",
-        explanation='**Used to** describes past habits, repeated actions, or states that are no longer true.\\n\\n**Structure:** *subject + used to + base verb*\\n- *I used to play football every weekend.* (past habit)\\n- *She used to live in Madrid.* (past state)\\n\\n**Would** describes past repeated actions or habits (NOT states).\\n\\n**Structure:** *subject + would + base verb*\\n- *Every summer, we would visit my grandparents.* (past habit)\\n- ❌ *She would live in Madrid.* (wrong — states need "used to", not "would")\\n\\n**Key differences:**\\n| | used to | would |\\n|---|---|---|\\n| Habits | ✓ | ✓ |\\n| States | ✓ | ✗ |\\n| Single past events | ✗ | ✗ |\\n\\n**Negatives and questions use "used to":**\\n- *I didn\'t use to like coffee.* (note: "use to", not "used to", after "did")\\n- *Did you use to play chess?*',
+        explanation='**Used to** describes past habits, repeated actions, or states that are no longer true.\\n\\n**Structure:** *subject + used to + base verb*\\n- *I used to play soccer every weekend.* (past habit)\\n- *She used to live in Madrid.* (past state)\\n\\n**Would** describes past repeated actions or habits (NOT states).\\n\\n**Structure:** *subject + would + base verb*\\n- *Every summer, we would visit my grandparents.* (past habit)\\n- ❌ *She would live in Madrid.* (wrong — states need "used to", not "would")\\n\\n**Key differences:**\\n| | used to | would |\\n|---|---|---|\\n| Habits | ✓ | ✓ |\\n| States | ✓ | ✗ |\\n| Single past events | ✗ | ✗ |\\n\\n**Negatives and questions use "used to":**\\n- *I didn\'t use to like coffee.* (note: "use to", not "used to", after "did")\\n- *Did you use to play chess?*',
         rules=[
             'Use "used to" for past habits AND past states that are no longer true.',
             'Use "would" only for past repeated actions — never for past states (know, believe, live, be, etc.).',
@@ -902,7 +902,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note='past state — use "used to", not "would"',
             ),
             GrammarExample(
-                text="Every Friday, we would go to the cinema together.",
+                text="Every Friday, we would go to the movies together.",
                 note='past repeated action — "would" is fine',
             ),
             GrammarExample(
@@ -1081,7 +1081,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Modals",
         summary="Giving advice, making recommendations, and expressing obligation or expectation.",
-        explanation="**Should** and **ought to** are used to give advice, make recommendations, and express what is right or expected.\n\n- **Should**: more common, general advice. *You should see a doctor.*\n- **Ought to**: slightly more formal, often implies a moral duty or strong expectation. *You ought to apologise.*\n\n| Use | Example |\n|-----|---------|\n| Advice | You should study more. |\n| Expectation | The train should arrive at 3. |\n| Past regret | You should have called me. |\n\nIn negative: *should not* (shouldn't), *ought not to*.",
+        explanation="**Should** and **ought to** are used to give advice, make recommendations, and express what is right or expected.\n\n- **Should**: more common, general advice. *You should see a doctor.*\n- **Ought to**: slightly more formal, often implies a moral duty or strong expectation. *You ought to apologize.*\n\n| Use | Example |\n|-----|---------|\n| Advice | You should study more. |\n| Expectation | The train should arrive at 3. |\n| Past regret | You should have called me. |\n\nIn negative: *should not* (shouldn't), *ought not to*.",
         structure="should / ought to + base verb",
         rules=[
             '"Should" is more common in everyday English; "ought to" is more formal.',
@@ -1114,7 +1114,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Modals",
         summary="Expressing obligation, necessity, and prohibition with must and have to.",
-        explanation="**Must** and **have to** both express obligation, but with subtle differences:\n\n- **Must**: internal obligation (the speaker feels it is necessary). *I must call my mum.*\n- **Have to**: external obligation (rules, laws, other people). *I have to wear a uniform.*\n\n| Use | Internal | External |\n|-----|----------|----------|\n| Present | must | have to |\n| Past | had to | had to |\n| Future | must | will have to |\n\nNegative:\n- **Must not** (mustn't): prohibition. *You mustn't smoke here.*\n- **Don't have to**: no obligation. *You don't have to come.*",
+        explanation="**Must** and **have to** both express obligation, but with subtle differences:\n\n- **Must**: internal obligation (the speaker feels it is necessary). *I must call my mom.*\n- **Have to**: external obligation (rules, laws, other people). *I have to wear a uniform.*\n\n| Use | Internal | External |\n|-----|----------|----------|\n| Present | must | have to |\n| Past | had to | had to |\n| Future | must | will have to |\n\nNegative:\n- **Must not** (mustn't): prohibition. *You mustn't smoke here.*\n- **Don't have to**: no obligation. *You don't have to come.*",
         structure="must / have to + base verb",
         rules=[
             '"Must" expresses the speaker\'s personal feeling of obligation.',
@@ -1153,7 +1153,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         rules=[
             "Wish + past simple → regret about the present.",
             "Wish + past perfect → regret about the past.",
-            "Wish + would → desire or annoyance about the future/behaviour.",
+            "Wish + would → desire or annoyance about the future/behavior.",
             '"If only" is more emphatic than "I wish".',
             'Never use "wish" + present or future simple.',
         ],
@@ -1182,7 +1182,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B2",
         category="Conditionals",
         summary="Unreal or hypothetical present/future situations.",
-        explanation="The **second conditional** expresses hypothetical situations that are unlikely or contrary to current reality.\\n\\n*If I won the lottery, I would travel the world.*\\n(I haven't won — this is imaginary.)\\n\\nNote: use **were** (not was) for all subjects in formal/written English:\\n*If I were you, I would apologise.*",
+        explanation="The **second conditional** expresses hypothetical situations that are unlikely or contrary to current reality.\\n\\n*If I won the lottery, I would travel the world.*\\n(I haven't won — this is imaginary.)\\n\\nNote: use **were** (not was) for all subjects in formal/written English:\\n*If I were you, I would apologize.*",
         structure="If + past simple, would + base verb",
         rules=[
             "If-clause: past simple (never would).",
@@ -1292,7 +1292,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         rules=[
             "Present wish: I wish + past simple.",
             "Past regret: I wish + past perfect (had + past participle).",
-            '"Wish + would" expresses a complaint about someone else\'s behaviour.',
+            '"Wish + would" expresses a complaint about someone else\'s behavior.',
             '"If only" is more emphatic than "I wish".',
             'Never use "I wish + present simple" — always a past form.',
         ],
@@ -1304,7 +1304,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="If only I had listened to her advice.", note="past regret — I didn't listen"
             ),
             GrammarExample(
-                text="I wish you would be quiet!", note="wish + would — annoying behaviour"
+                text="I wish you would be quiet!", note="wish + would — annoying behavior"
             ),
             GrammarExample(text="I wish I hadn't eaten so much.", note="past regret"),
         ],
@@ -1407,7 +1407,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B2",
         category="Modals",
         summary="Talk about past deductions, obligations, and missed opportunities.",
-        explanation="**Modal perfects** use *modal + have + past participle* to speculate about, criticise, or deduce past events.\\n\\n| Form | Meaning | Example |\\n|------|---------|----------|\\n| must have | past deduction (certain) | *She must have left already.* |\\n| can't have | past deduction (impossible) | *He can't have done it.* |\\n| could have | past possibility (but didn't) | *I could have helped you.* |\\n| should have | past obligation not fulfilled | *You should have called.* |\\n| might have | past possibility (uncertain) | *She might have forgotten.* |",
+        explanation="**Modal perfects** use *modal + have + past participle* to speculate about, criticize, or deduce past events.\\n\\n| Form | Meaning | Example |\\n|------|---------|----------|\\n| must have | past deduction (certain) | *She must have left already.* |\\n| can't have | past deduction (impossible) | *He can't have done it.* |\\n| could have | past possibility (but didn't) | *I could have helped you.* |\\n| should have | past obligation not fulfilled | *You should have called.* |\\n| might have | past possibility (uncertain) | *She might have forgotten.* |",
         structure="Modal + have + past participle",
         rules=[
             'Structure: modal + have + past participle (never "of").',
@@ -1494,7 +1494,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C1",
         category="Conditionals",
         summary="Combine different time frames in one conditional sentence.",
-        explanation="**Mixed conditionals** blend the second and third conditional to connect different time frames.\\n\\n**Past condition → present result** (most common):\\n*If I had studied medicine, I would be a doctor now.*\\n(I didn't study medicine in the past → I'm not a doctor now.)\\n\\n**Present condition → past result**:\\n*If she weren't so stubborn, she would have apologised.*\\n(She is stubborn → she didn't apologise in the past.)",
+        explanation="**Mixed conditionals** blend the second and third conditional to connect different time frames.\\n\\n**Past condition → present result** (most common):\\n*If I had studied medicine, I would be a doctor now.*\\n(I didn't study medicine in the past → I'm not a doctor now.)\\n\\n**Present condition → past result**:\\n*If she weren't so stubborn, she would have apologized.*\\n(She is stubborn → she didn't apologize in the past.)",
         rules=[
             "Past → present: If + past perfect, would + base verb.",
             "Present → past: If + past simple, would have + past participle.",
@@ -1547,7 +1547,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C1",
         category="Advanced",
         summary="Emphasise a particular part of a sentence.",
-        explanation="**It-cleft**: emphasise almost any part of a sentence.\\n*It was John who broke the window.*\\n(Focus: John — not someone else.)\\n\\n**Wh-cleft (pseudo-cleft)**: especially for actions.\\n*What I need is a long holiday.*\\n*What surprised me was his attitude.*",
+        explanation="**It-cleft**: emphasise almost any part of a sentence.\\n*It was John who broke the window.*\\n(Focus: John — not someone else.)\\n\\n**Wh-cleft (pseudo-cleft)**: especially for actions.\\n*What I need is a long vacation.*\\n*What surprised me was his attitude.*",
         rules=[
             '"It is/was + focus + relative clause" is the it-cleft structure.',
             "Use who for people, that/which for things.",
@@ -1791,7 +1791,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="This kind of behaviour I will not tolerate.",
+                text="This kind of behavior I will not tolerate.",
                 note="object fronting for emphasis",
             ),
             GrammarExample(

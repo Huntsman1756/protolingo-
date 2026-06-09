@@ -168,7 +168,7 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
                 text="How much does this cost?", context="Asking the price", register="neutral"
             ),
             PhrasebookEntry(
-                text="Do you have this in [size/colour]?",
+                text="Do you have this in [size/color]?",
                 context="Asking about stock",
                 register="neutral",
             ),

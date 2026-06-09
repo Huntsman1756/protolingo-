@@ -80,8 +80,8 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
                 register="neutral",
             ),
             PhrasebookEntry(
-                text="A return ticket to [destination], please.",
-                context="Buying a return ticket",
+                text="A round-trip ticket to [destination], please.",
+                context="Buying a round-trip ticket",
                 register="neutral",
             ),
             PhrasebookEntry(

@@ -52,7 +52,7 @@ def distribute_units(
     days_per_week: int,
 ) -> list[dict]:
     """
-    Map curriculum units onto lesson slots across the chosen programme duration.
+    Map curriculum units onto lesson slots across the chosen program duration.
 
     Returns a flat list of lesson-slot dicts:
         {week, day, unit_id, lesson_type, title, objectives, estimated_minutes}

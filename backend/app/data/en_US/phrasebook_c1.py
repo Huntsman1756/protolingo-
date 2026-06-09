@@ -70,7 +70,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="To summarise the key takeaways, ...",
+                text="To summarize the key takeaways, ...",
                 context="Closing the presentation",
                 register="formal",
             ),
@@ -210,7 +210,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
         phrases=[
             PhrasebookEntry(
                 text="I sense there may be some tension around this issue \u2014 shall we address it openly?",
-                context="Naming a conflict and inviting dialogue",
+                context="Naming a conflict and inviting dialog",
                 register="formal",
             ),
             PhrasebookEntry(

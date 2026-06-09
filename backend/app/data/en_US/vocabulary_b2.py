@@ -10,10 +10,10 @@ B2_SETS: list[VocabularySet] = [
         unit_ref="b2-unit-1",
         words=[
             VocabularyEntry(
-                word="analyse",
+                word="analyze",
                 pos="verb",
                 definition="To examine something in detail.",
-                example="The report analyses current market trends.",
+                example="The report analyzes current market trends.",
                 ipa="/ˈænəlaɪz/",
                 frequency_rank=295,
             ),
@@ -204,7 +204,7 @@ B2_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="efficient",
                 pos="adjective",
-                definition="Achieving results with minimum wasted effort.",
+                definition="Achieving results with minimom wasted effort.",
                 example="The new process is much more efficient.",
                 ipa="/ɪˈfɪʃənt/",
                 frequency_rank=330,
@@ -299,7 +299,7 @@ B2_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="campaign",
                 pos="noun",
-                definition="An organised effort to achieve a goal.",
+                definition="An organized effort to achieve a goal.",
                 example="They ran a successful awareness campaign.",
                 ipa="/kæmˈpeɪn/",
                 frequency_rank=265,
@@ -420,7 +420,7 @@ B2_SETS: list[VocabularySet] = [
                 word="consequently",
                 pos="adverb",
                 definition="As a result; therefore.",
-                example="The deadline was missed; consequently, the contract was cancelled.",
+                example="The deadline was missed; consequently, the contract was canceled.",
                 ipa="/ˈkɒnsɪkwəntli/",
                 frequency_rank=330,
             ),
@@ -660,7 +660,7 @@ B2_SETS: list[VocabularySet] = [
                 word="supposedly",
                 pos="adverb",
                 definition="According to what is generally believed or claimed.",
-                example="The meeting was supposedly cancelled.",
+                example="The meeting was supposedly canceled.",
                 ipa="/səˈpoʊzɪdli/",
                 frequency_rank=410,
             ),

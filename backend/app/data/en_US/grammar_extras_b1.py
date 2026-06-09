@@ -20,7 +20,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="He must be tired — he has been working all day."),
             GrammarExample(text="She might be at the gym. I'm not sure."),
-            GrammarExample(text="That can't be her car — it's a different colour."),
+            GrammarExample(text="That can't be her car — it's a different color."),
             GrammarExample(text="They must have taken the wrong train.", note="past deduction"),
         ],
         common_mistakes=[
@@ -227,9 +227,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Adjectives & Adverbs",
         summary="Put multiple adjectives in the correct order before a noun.",
-        explanation="When using more than one adjective before a noun, they usually follow this order:\n\n**Opinion → Size → Age → Shape → Colour → Origin → Material → Purpose**\n\n- *a beautiful big old round red Italian wooden dining table*\n\nIn practice, 2-3 adjectives is more typical:\n- *a lovely small cottage*\n- *an expensive Italian leather bag*\n- *a tall young woman*\n\nUse commas between adjectives of the same category, but not between different categories:\n- *a cold, rainy day* (both opinion/description)\n- *a beautiful old house* (opinion + age — no comma)",
+        explanation="When using more than one adjective before a noun, they usually follow this order:\n\n**Opinion → Size → Age → Shape → Color → Origin → Material → Purpose**\n\n- *a beautiful big old round red Italian wooden dining table*\n\nIn practice, 2-3 adjectives is more typical:\n- *a lovely small cottage*\n- *an expensive Italian leather bag*\n- *a tall young woman*\n\nUse commas between adjectives of the same category, but not between different categories:\n- *a cold, rainy day* (both opinion/description)\n- *a beautiful old house* (opinion + age — no comma)",
         rules=[
-            "General order: opinion → size → age → shape → colour → origin → material → purpose.",
+            "General order: opinion → size → age → shape → color → origin → material → purpose.",
             "Limit to 2-3 adjectives before a noun in most cases.",
             "Use commas between adjectives from the same category.",
             "No commas between adjectives from different categories.",
@@ -246,7 +246,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarMistake(
                 wrong="a red big car",
                 correct="a big red car",
-                note="Size goes before colour.",
+                note="Size goes before color.",
             ),
             GrammarMistake(
                 wrong="a French old beautiful painting",
@@ -347,7 +347,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="The road is being widened at the moment."),
             GrammarExample(text="My car was being repaired when I called."),
             GrammarExample(text="The documents are being reviewed by the manager."),
-            GrammarExample(text="A new school is being built in our neighbourhood."),
+            GrammarExample(text="A new school is being built in our neighborhood."),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -377,7 +377,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Some verbs change meaning with different prepositions: think about (consider) vs. think of (have an idea).",
         ],
         examples=[
-            GrammarExample(text="She is really good at maths."),
+            GrammarExample(text="She is really good at math."),
             GrammarExample(text="It depends on the weather."),
             GrammarExample(text="What are you worried about?"),
             GrammarExample(text="There has been an increase in prices recently."),

@@ -186,7 +186,7 @@ async def test_unknown_language_falls_back_to_english(client, test_user):
     """An unknown language code should fall back to English sets."""
     _, headers = test_user
 
-    en_res = await client.get("/api/vocabulary?language=en-US", headers=headers)
+    en_res = await client.get("/api/vocabulary?language=en-GB", headers=headers)
     unknown_res = await client.get("/api/vocabulary?language=ja-JP", headers=headers)
 
     en_ids = {s["id"] for s in en_res.json()["sets"]}

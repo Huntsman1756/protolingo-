@@ -19,7 +19,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Her eyes were red because she had been crying."),
-            GrammarExample(text="They had been travelling for months when they ran out of money."),
+            GrammarExample(text="They had been traveling for months when they ran out of money."),
             GrammarExample(text="The ground was wet. It had been raining all night."),
             GrammarExample(text="I had been hoping to see her before she left.", note="past hope"),
         ],
@@ -231,7 +231,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         category="Tenses",
         summary="Use 'need + -ing' to express a passive meaning — something needs to be done.",
         structure="Subject + need(s) + verb-ing (passive meaning)",
-        explanation="A special structure in English uses 'need + gerund (-ing)' with a passive meaning:\n\n- *The car needs washing.* = The car needs to be washed.\n- *The garden needs weeding.* = The garden needs to be weeded.\n- *Your hair needs cutting.* = Your hair needs to be cut.\n\nThis structure always has a passive sense — the subject receives the action, it doesn't do it. It is very common in everyday spoken English.\n\n**Note:** 'Need + infinitive' means the subject needs to do something: *I need to wash the car.*",
+        explanation="A special structure in English uses 'need + gerund (-ing)' with a passive meaning:\n\n- *The car needs washing.* = The car needs to be washed.\n- *The yard needs weeding.* = The yard needs to be weeded.\n- *Your hair needs cutting.* = Your hair needs to be cut.\n\nThis structure always has a passive sense — the subject receives the action, it doesn't do it. It is very common in everyday spoken English.\n\n**Note:** 'Need + infinitive' means the subject needs to do something: *I need to wash the car.*",
         rules=[
             "Need + gerund = passive meaning (something needs to be done to the subject).",
             "Need + infinitive = active meaning (the subject needs to do something).",
@@ -262,7 +262,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B2",
         category="Clauses",
         summary="Express why something happens (reason), what it is for (purpose), and what happens as a result.",
-        explanation="**Purpose** (why you do something):\n- *to + infinitive: I went to the shop to buy milk.*\n- *in order to / so as to: She arrived early in order to get a good seat.*\n- *so that + clause: I left a note so that they would know where I was.*\n\n**Reason** (why something happens):\n- *because / since / as: I stayed home because it was raining.*\n- *because of / due to / owing to + noun: The match was cancelled due to bad weather.*\n\n**Result** (what happens as a consequence):\n- *so / therefore / as a result: It rained, so we stayed inside.*\n- *such...that / so...that: It was such a good book that I read it twice.*",
+        explanation="**Purpose** (why you do something):\n- *to + infinitive: I went to the shop to buy milk.*\n- *in order to / so as to: She arrived early in order to get a good seat.*\n- *so that + clause: I left a note so that they would know where I was.*\n\n**Reason** (why something happens):\n- *because / since / as: I stayed home because it was raining.*\n- *because of / due to / owing to + noun: The match was canceled due to bad weather.*\n\n**Result** (what happens as a consequence):\n- *so / therefore / as a result: It rained, so we stayed inside.*\n- *such...that / so...that: It was such a good book that I read it twice.*",
         rules=[
             "Use 'to + infinitive' for the most common purpose expressions.",
             "Use 'so that' + subject + modal (can/could/will/would) for purpose with a different subject.",
@@ -288,8 +288,8 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Use 'to + verb', not 'for to + verb', for purpose.",
             ),
             GrammarMistake(
-                wrong="It was cancelled due to it rained.",
-                correct="It was cancelled due to the rain. (or) because it rained.",
+                wrong="It was canceled due to it rained.",
+                correct="It was canceled due to the rain. (or) because it rained.",
                 note="After 'due to', use a noun phrase; after 'because', use a clause.",
             ),
         ],
@@ -341,7 +341,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B2",
         category="Reported Speech",
         summary="Go beyond 'say' and 'tell' — use a variety of reporting verbs with correct grammatical patterns.",
-        explanation="Different reporting verbs require different grammatical structures:\n\n**Verb + that + clause:** *admit, agree, claim, complain, explain, insist, mention, promise, suggest*\n- *She admitted that she had made a mistake.*\n\n**Verb + object + to + infinitive:** *advise, encourage, invite, remind, tell, warn*\n- *He warned us not to drive in the snow.*\n\n**Verb + -ing:** *admit, deny, recommend, suggest*\n- *He denied stealing the money.*\n\n**Verb + preposition + -ing:** *apologise for, insist on, accuse of, blame for*\n- *She apologised for being late.*",
+        explanation="Different reporting verbs require different grammatical structures:\n\n**Verb + that + clause:** *admit, agree, claim, complain, explain, insist, mention, promise, suggest*\n- *She admitted that she had made a mistake.*\n\n**Verb + object + to + infinitive:** *advise, encourage, invite, remind, tell, warn*\n- *He warned us not to drive in the snow.*\n\n**Verb + -ing:** *admit, deny, recommend, suggest*\n- *He denied stealing the money.*\n\n**Verb + preposition + -ing:** *apologize for, insist on, accuse of, blame for*\n- *She apologized for being late.*",
         rules=[
             "'Suggest' and 'recommend' can be followed by that + subject + base verb (subjunctive) or -ing.",
             "'Deny' is always followed by -ing, never by an infinitive.",
@@ -357,7 +357,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="The doctor advised me to get more rest.", note="verb + object + to-infinitive"
             ),
             GrammarExample(
-                text="He apologised for not calling sooner.", note="verb + preposition + -ing"
+                text="He apologized for not calling sooner.", note="verb + preposition + -ing"
             ),
         ],
         common_mistakes=[
@@ -559,7 +559,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         category="Advanced",
         summary="Add emphasis and contrast using auxiliary do/did and what-clauses.",
         structure="do/does/did + base verb · What + clause + is/was + focus",
-        explanation="Several structures add emphasis in English:\n\n**1. Emphatic do/does/did:** used in positive sentences to add emphasis or contrast:\n- *I do like your new haircut!* (emphasis)\n- *He didn't enjoy the film, but I did think the ending was good.* (contrast)\n- *She does work hard, I assure you.* (contradicting a doubt)\n\n**2. What-clauses (cleft sentences — basic):**\n- Normal: *I need a holiday.*\n- Emphatic: *What I need is a holiday.*\n- Normal: *She dislikes rudeness.*\n- Emphatic: *What she dislikes is rudeness.*\n\n**3. It-clefts (basic):**\n- *It was John who broke the vase. / It was on Tuesday that she arrived.*",
+        explanation="Several structures add emphasis in English:\n\n**1. Emphatic do/does/did:** used in positive sentences to add emphasis or contrast:\n- *I do like your new haircut!* (emphasis)\n- *He didn't enjoy the film, but I did think the ending was good.* (contrast)\n- *She does work hard, I assure you.* (contradicting a doubt)\n\n**2. What-clauses (cleft sentences — basic):**\n- Normal: *I need a vacation.*\n- Emphatic: *What I need is a vacation.*\n- Normal: *She dislikes rudeness.*\n- Emphatic: *What she dislikes is rudeness.*\n\n**3. It-clefts (basic):**\n- *It was John who broke the vase. / It was on Tuesday that she arrived.*",
         rules=[
             "'Do/does/did' for emphasis is only used in positive statements.",
             "The emphatic 'do' carries strong stress in spoken English.",
@@ -570,7 +570,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="I do understand how you feel, but try to stay positive."),
             GrammarExample(text="What really annoys me is when people are late."),
             GrammarExample(
-                text="It was because of the weather that we cancelled the trip.", note="it-cleft"
+                text="It was because of the weather that we canceled the trip.", note="it-cleft"
             ),
             GrammarExample(text="She didn't say much, but she did seem interested."),
         ],
@@ -595,7 +595,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         category="Adjectives & Adverbs",
         summary="Express how one thing changes in relation to another using the...the...",
         structure="The + comparative, the + comparative",
-        explanation="The **the...the...** structure shows that two things change together — as one increases or decreases, the other does too:\n\n- *The more you practise, the better you become.*\n- *The sooner we leave, the earlier we will arrive.*\n- *The harder I try, the more frustrated I get.*\n\nBoth parts use 'the' + comparative form. The structure can be reduced in conversation:\n- *The more, the merrier.*\n- *The bigger, the better.*",
+        explanation="The **the...the...** structure shows that two things change together — as one increases or decreases, the other does too:\n\n- *The more you practice, the better you become.*\n- *The sooner we leave, the earlier we will arrive.*\n- *The harder I try, the more frustrated I get.*\n\nBoth parts use 'the' + comparative form. The structure can be reduced in conversation:\n- *The more, the merrier.*\n- *The bigger, the better.*",
         rules=[
             "Both clauses use 'the' + comparative form.",
             "Shows a proportional relationship: one thing depends on the other.",
@@ -610,8 +610,8 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="More you practise, better you become.",
-                correct="The more you practise, the better you become.",
+                wrong="More you practice, better you become.",
+                correct="The more you practice, the better you become.",
                 note="Both parts need 'the' before the comparative.",
             ),
             GrammarMistake(
@@ -629,7 +629,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         category="Passive Voice",
         summary="Combine modals with the passive to express obligation, possibility, and advice about actions.",
         structure="modal + be + past participle",
-        explanation="Modal verbs can be combined with the passive voice:\n\n**Present/Future passive with modals:**\n- *must be done, should be told, can be seen, might be cancelled*\n\n- *The report must be submitted by Friday.* (obligation)\n- *The rules should be followed at all times.* (advice)\n- *The documents can be downloaded from the website.* (possibility)\n\n**Past passive with modals:**\n- modal + have been + past participle\n- *The letter should have been sent last week.*\n- *The mistake could have been avoided.*",
+        explanation="Modal verbs can be combined with the passive voice:\n\n**Present/Future passive with modals:**\n- *must be done, should be told, can be seen, might be canceled*\n\n- *The report must be submitted by Friday.* (obligation)\n- *The rules should be followed at all times.* (advice)\n- *The documents can be downloaded from the website.* (possibility)\n\n**Past passive with modals:**\n- modal + have been + past participle\n- *The letter should have been sent last week.*\n- *The mistake could have been avoided.*",
         rules=[
             "Form: modal + be + past participle (present/future).",
             "Form: modal + have been + past participle (past reference).",

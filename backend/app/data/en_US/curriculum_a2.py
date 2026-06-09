@@ -100,7 +100,7 @@ A2_UNITS: list[CurriculumUnit] = [
         competency_checklist=[
             "Uses should / shouldn't for advice",
             "Uses must / mustn't for obligation and prohibition",
-            "Describes symptoms and gives health advice in a dialogue",
+            "Describes symptoms and gives health advice in a dialog",
         ],
         default_weeks=1,
         prerequisite_unit="a2-unit-5",

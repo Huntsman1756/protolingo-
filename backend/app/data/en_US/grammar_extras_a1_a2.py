@@ -18,7 +18,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "'How' combines with adjectives: *How old / How much / How many / How far*.",  # noqa: E501
         ],
         examples=[
-            GrammarExample(text="What is your favourite colour?"),
+            GrammarExample(text="What is your favorite color?"),
             GrammarExample(text="Where do you work?"),
             GrammarExample(text="How do you get to school?", note="asking about method"),
             GrammarExample(text="Who is that man?", note="asking about a person"),
@@ -157,7 +157,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="I always brush my teeth before bed."),
             GrammarExample(text="She is usually at home in the evening."),
             GrammarExample(
-                text="We sometimes go to the cinema.", note="sometimes can start the sentence"
+                text="We sometimes go to the movies.", note="sometimes can start the sentence"
             ),
             GrammarExample(text="He never eats meat."),
         ],
@@ -293,7 +293,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="I taught myself to play the guitar."),
             GrammarExample(text="Be careful — don't hurt yourself!"),
-            GrammarExample(text="She lives by herself in a small flat."),
+            GrammarExample(text="She lives by herself in a small apartment."),
             GrammarExample(text="Help yourselves to more cake.", note="plural imperative"),
         ],
         common_mistakes=[

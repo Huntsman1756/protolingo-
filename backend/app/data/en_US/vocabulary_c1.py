@@ -248,7 +248,7 @@ C1_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="take something with a pinch of salt",
                 pos="phrase",
-                definition="To be sceptical about a claim.",
+                definition="To be skeptical about a claim.",
                 example="Take his advice with a pinch of salt.",
                 ipa="/teɪk ˈsʌmθɪŋ wɪð ə pɪntʃ əv sɔːlt/",
             ),
@@ -515,7 +515,7 @@ C1_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="bias",
                 pos="noun",
-                definition="An unfair prejudice in favour of or against something.",
+                definition="An unfair prejudice in favor of or against something.",
                 example="The report showed clear confirmation bias.",
                 ipa="/ˈbaɪəs/",
                 frequency_rank=360,
@@ -561,10 +561,10 @@ C1_SETS: list[VocabularySet] = [
                 frequency_rank=240,
             ),
             VocabularyEntry(
-                word="sceptical",
+                word="skeptical",
                 pos="adjective",
                 definition="Not easily convinced; having doubts.",
-                example="I am sceptical of these results.",
+                example="I am skeptical of these results.",
                 ipa="/ˈskeptɪkəl/",
                 frequency_rank=390,
             ),

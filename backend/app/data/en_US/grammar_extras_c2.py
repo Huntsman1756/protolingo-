@@ -9,7 +9,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Prepositions",
         summary="Master formal multi-word prepositions for sophisticated academic and professional writing.",
-        explanation="C2-level complex prepositions express precise logical relationships:\n\n| Phrase | Meaning | Example |\n|--------|---------|--------|\n| in light of | considering (new information) | *In light of recent events, we are reviewing our policy.* |\n| by virtue of | because of (a quality or position) | *She was invited by virtue of her expertise.* |\n| at the expense of | harming or sacrificing something | *Growth at the expense of the environment is unsustainable.* |\n| in the wake of | following (usually something bad) | *In the wake of the scandal, several ministers resigned.* |\n| with a view to | with the intention of | *We met with a view to resolving the dispute.* |\n| in lieu of | instead of | *She took extra holiday in lieu of overtime pay.* |\n| on the grounds of | because of (a stated reason) | *He was dismissed on the grounds of gross misconduct.* |\n| in pursuance of | in order to achieve (legal) | *in pursuance of the objectives set out in the treaty* |",
+        explanation="C2-level complex prepositions express precise logical relationships:\n\n| Phrase | Meaning | Example |\n|--------|---------|--------|\n| in light of | considering (new information) | *In light of recent events, we are reviewing our policy.* |\n| by virtue of | because of (a quality or position) | *She was invited by virtue of her expertise.* |\n| at the expense of | harming or sacrificing something | *Growth at the expense of the environment is unsustainable.* |\n| in the wake of | following (usually something bad) | *In the wake of the scandal, several ministers resigned.* |\n| with a view to | with the intention of | *We met with a view to resolving the dispute.* |\n| in lieu of | instead of | *She took extra vacation in lieu of overtime pay.* |\n| on the grounds of | because of (a stated reason) | *He was dismissed on the grounds of gross misconduct.* |\n| in pursuance of | in order to achieve (legal) | *in pursuance of the objectives set out in the treaty* |",
         rules=[
             "Complex prepositions are characteristic of very formal, academic, and legal writing.",
             "They express precise logical and causal relationships.",
@@ -120,7 +120,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Advanced",
         summary="Use metaphor, simile, and analogy to make abstract ideas concrete and persuasive.",
-        explanation="Figurative language makes writing more vivid and memorable:\n\n**Metaphor** — saying one thing IS another:\n- *The housing market is a bubble waiting to burst.*\n- *She has a heart of stone.*\n\n**Simile** — comparing with 'like' or 'as':\n- *The information spread like wildfire.*\n- *He was as cool as a cucumber under pressure.*\n\n**Extended metaphor** — a metaphor developed over multiple sentences or paragraphs:\n- *The company was a ship in stormy seas. The CEO was the captain, the staff were the crew, and the new strategy was their compass.*\n\n**Analogy** — explaining something by comparing it to something more familiar:\n- *The human brain is like a computer — it processes information, stores memories, and can be 'programmed' through learning.*",
+        explanation="Figurative language makes writing more vivid and memorable:\n\n**Metaphor** — saying one thing IS another:\n- *The housing market is a bubble waiting to burst.*\n- *She has a heart of stone.*\n\n**Simile** — comparing with 'like' or 'as':\n- *The information spread like wildfire.*\n- *He was as cool as a cucumber under pressure.*\n\n**Extended metaphor** — a metaphor developed over multiple sentences or paragraphs:\n- *The company was a ship in stormy seas. The CEO was the captain, the staff were the crew, and the new strategy was their compass.*\n\n**Analogy** — explaining something by comparing it to something more familiar:\n- *The human brain is like a computer — it processes information, stores memories, and can be 'programd' through learning.*",
         rules=[
             "Use metaphor to make abstract or complex ideas more accessible.",
             "Avoid mixed metaphors: 'We need to grasp the nettle and run with it.' (grasping a nettle and running don't mix).",
@@ -156,7 +156,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Advanced",
         summary="Master ironic and understated expression — essential for truly native-like communication.",
-        explanation="These devices say one thing but mean another, often for humour, politeness, or rhetorical effect:\n\n**Verbal irony** — saying the opposite of what you mean:\n- *What a beautiful day!* (during a thunderstorm)\n\n**Understatement** — making something seem less important than it is:\n- *The Atlantic is quite a big pond.* (deliberately trivial)\n- *Einstein had a decent brain.*\n\n**Litotes** — using a negative to express a positive, usually for understatement:\n- *She is not unkind.* (= She is actually kind)\n- *The results are not insignificant.* (= They are very significant)\n- *He was not a little annoyed.* (= He was very annoyed)\n\n**Sarcasm** — irony intended to mock or hurt:\n- *Oh brilliant, another meeting. Just what I needed.*",
+        explanation="These devices say one thing but mean another, often for humor, politeness, or rhetorical effect:\n\n**Verbal irony** — saying the opposite of what you mean:\n- *What a beautiful day!* (during a thunderstorm)\n\n**Understatement** — making something seem less important than it is:\n- *The Atlantic is quite a big pond.* (deliberately trivial)\n- *Einstein had a decent brain.*\n\n**Litotes** — using a negative to express a positive, usually for understatement:\n- *She is not unkind.* (= She is actually kind)\n- *The results are not insignificant.* (= They are very significant)\n- *He was not a little annoyed.* (= He was very annoyed)\n\n**Sarcasm** — irony intended to mock or hurt:\n- *Oh brilliant, another meeting. Just what I needed.*",
         rules=[
             "Irony relies heavily on tone of voice — be careful in writing where tone is ambiguous.",
             "Understatement and litotes are characteristic of British English style.",
@@ -194,7 +194,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Phrasal Verbs",
         summary="Master phrasal verbs with multiple meanings and idiomatic uses that only become clear in context.",
-        explanation="At C2, many phrasal verbs have multiple, often unrelated meanings:\n\n**take off**\n1. Remove clothing: *Take off your coat.*\n2. Depart (plane): *The flight took off on time.*\n3. Become successful: *Her career really took off.*\n4. Imitate humourously: *He can take off the president perfectly.*\n\n**come across**\n1. Find by chance: *I came across an old photo.*\n2. Make an impression: *She comes across as very confident.*\n\n**get through**\n1. Finish: *I got through a lot of work today.*\n2. Survive: *We got through the crisis together.*\n3. Make contact: *I couldn't get through to her on the phone.*\n4. Pass an exam: *She got through the test easily.*\n\n**break down**\n1. Stop working: *The car broke down.*\n2. Analyse: *Let me break down the figures for you.*\n3. Lose emotional control: *She broke down in tears.*\n4. Decompose: *The material breaks down over time.*",
+        explanation="At C2, many phrasal verbs have multiple, often unrelated meanings:\n\n**take off**\n1. Remove clothing: *Take off your coat.*\n2. Depart (plane): *The flight took off on time.*\n3. Become successful: *Her career really took off.*\n4. Imitate humorously: *He can take off the president perfectly.*\n\n**come across**\n1. Find by chance: *I came across an old photo.*\n2. Make an impression: *She comes across as very confident.*\n\n**get through**\n1. Finish: *I got through a lot of work today.*\n2. Survive: *We got through the crisis together.*\n3. Make contact: *I couldn't get through to her on the phone.*\n4. Pass an exam: *She got through the test easily.*\n\n**break down**\n1. Stop working: *The car broke down.*\n2. Analyse: *Let me break down the figures for you.*\n3. Lose emotional control: *She broke down in tears.*\n4. Decompose: *The material breaks down over time.*",
         rules=[
             "Context determines the meaning of polysemous phrasal verbs.",
             "Listen for the surrounding words and the overall situation to disambiguate.",
@@ -211,7 +211,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="found by chance",
             ),
             GrammarExample(
-                text="She broke down the complex problem into manageable steps.", note="analysed"
+                text="She broke down the complex problem into manageable steps.", note="analyzed"
             ),
             GrammarExample(
                 text="We got through the recession by cutting costs and diversifying.",
@@ -233,7 +233,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Advanced",
         summary="Control how information flows across paragraphs using thematic progression patterns.",
-        explanation="At text level, cohesion means how sentences and paragraphs link together across a whole document:\n\n**Thematic progression patterns:**\n\n1. **Linear progression** — the new information of one sentence becomes the topic of the next:\n*The company launched a new product. The product was developed over two years. Those two years involved...*\n\n2. **Constant topic** — the same topic is maintained across sentences:\n*The government announced new measures. It also revealed plans for tax reform. The government further pledged...*\n\n3. **Derived topics** — topics are derived from a superordinate theme:\n*The university has three faculties. The Faculty of Arts offers... The Faculty of Science specialises in...*\n\n**Cohesive ties across paragraphs:**\n- Opening sentences should link back to the previous paragraph.\n- Closing sentences should point forward or summarise.\n- Transition paragraphs can explicitly bridge two sections.",
+        explanation="At text level, cohesion means how sentences and paragraphs link together across a whole document:\n\n**Thematic progression patterns:**\n\n1. **Linear progression** — the new information of one sentence becomes the topic of the next:\n*The company launched a new product. The product was developed over two years. Those two years involved...*\n\n2. **Constant topic** — the same topic is maintained across sentences:\n*The government announced new measures. It also revealed plans for tax reform. The government further pledged...*\n\n3. **Derived topics** — topics are derived from a superordinate theme:\n*The university has three faculties. The Faculty of Arts offers... The Faculty of Science specializes in...*\n\n**Cohesive ties across paragraphs:**\n- Opening sentences should link back to the previous paragraph.\n- Closing sentences should point forward or summarize.\n- Transition paragraphs can explicitly bridge two sections.",
         rules=[
             "Each paragraph opening should connect to what came before.",
             "Use a mix of progression patterns — constant topic for clarity, linear for narrative.",
@@ -242,7 +242,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="The article analyses three key economic trends. The first of these is rising inflation. This trend has been...",
+                text="The article analyzes three key economic trends. The first of these is rising inflation. This trend has been...",
                 note="derived topic progression",
             ),
             GrammarExample(
@@ -252,7 +252,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="Coffee production is declining. The government announced new measures. My neighbour grows tomatoes.",
+                wrong="Coffee production is declining. The government announced new measures. My neighbor grows tomatoes.",
                 correct="Coffee production is declining. This decline has prompted the government to announce new measures to support farmers.",
                 note="Each sentence should connect to the previous one — avoid non-sequiturs.",
             ),
@@ -340,14 +340,14 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         summary="Understand what is meant beyond what is literally said — reading between the lines in English.",
         explanation="**Pragmatic competence** is the ability to understand implied meaning (implicature) and use language appropriately in context:\n\n**Conversational implicature** — what is suggested but not stated:\n- A: *Are you coming to the party?*\n- B: *I have to work late.*\n  (Implicature: No, I can't come — but B never directly says 'no')\n\n**The Cooperative Principle** (Grice's Maxims):\n- Be informative, truthful, relevant, and clear.\n- When someone deliberately breaks a maxim, they are implying something.\n\n**Politeness strategies:**\n- Indirect requests: *It's a bit cold in here.* (= Please close the window)\n- Hedged criticism: *Perhaps next time we could consider a different approach.* (= That was wrong)\n\n**Context-dependent meaning:**\n- *Nice weather we're having.* (= This conversation is awkward — let's talk about something safe)",
         rules=[
-            "English speakers often imply rather than state directly — learn to recognise indirectness.",
+            "English speakers often imply rather than state directly — learn to recognize indirectness.",
             "Indirectness is not dishonesty — it is often politeness.",
             "Consider the context: who is speaking, the relationship, and the situation.",
             "If unsure, respond to both the literal and implied meaning.",
         ],
         examples=[
             GrammarExample(
-                text="A: 'Did you like the presentation?' B: 'The slides were very colourful.'",
+                text="A: 'Did you like the presentation?' B: 'The slides were very colorful.'",
                 note="implicature: B didn't like the content but is being polite",
             ),
             GrammarExample(
