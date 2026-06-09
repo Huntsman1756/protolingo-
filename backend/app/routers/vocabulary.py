@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.data._types import VocabularySet
 from app.data.vocabulary import get_vocabulary_by_level, get_vocabulary_set, get_vocabulary_sets
 from app.models.user import User
@@ -35,7 +36,9 @@ def _set_to_response(s: VocabularySet) -> VocabularySetResponse:
 
 
 @router.get("", response_model=VocabularySetsResponse)
+@limiter.limit("60/minute")
 def list_vocabulary_sets(
+    request: Request,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ):
@@ -45,7 +48,9 @@ def list_vocabulary_sets(
 
 
 @router.get("/level/{level}", response_model=VocabularySetsResponse)
+@limiter.limit("60/minute")
 def list_vocabulary_by_level(
+    request: Request,
     level: str,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
@@ -63,7 +68,9 @@ def list_vocabulary_by_level(
 
 
 @router.get("/{set_id}", response_model=VocabularySetDetailResponse)
+@limiter.limit("60/minute")
 def get_vocabulary_set_detail(
+    request: Request,
     set_id: str,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),

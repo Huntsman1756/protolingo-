@@ -176,7 +176,7 @@ async def login(
 
 
 @router.post("/refresh", response_model=TokenResponse)
-@limiter.limit("20/minute")
+@limiter.limit("60/minute")
 async def refresh(
     request: Request,
     response: Response,
@@ -218,6 +218,7 @@ async def refresh(
 
 
 @router.post("/logout")
+@limiter.limit("60/minute")
 async def logout(
     request: Request,
     response: Response,
@@ -231,12 +232,15 @@ async def logout(
 
 
 @router.get("/me", response_model=UserResponse)
-async def get_me(current_user: User = Depends(get_current_user)):
+@limiter.limit("60/minute")
+async def get_me(request: Request, current_user: User = Depends(get_current_user)):
     return current_user
 
 
 @router.patch("/me", response_model=UserResponse)
+@limiter.limit("60/minute")
 async def update_me(
+    request: Request,
     data: UserUpdateRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -311,7 +315,9 @@ _AVATARS_DIR = "/app/avatars"
 
 
 @router.post("/me/avatar", response_model=UserResponse)
+@limiter.limit("60/minute")
 async def upload_avatar(
+    request: Request,
     file: UploadFile = File(...),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -349,7 +355,9 @@ async def upload_avatar(
 
 
 @router.delete("/me/avatar", response_model=UserResponse)
+@limiter.limit("60/minute")
 async def delete_avatar(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -365,6 +373,7 @@ async def delete_avatar(
 
 
 @router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)
+@limiter.limit("5/minute")
 async def delete_me(
     request: Request,
     response: Response,
@@ -398,7 +407,9 @@ async def delete_me(
 
 
 @router.get("/quota")
+@limiter.limit("60/minute")
 async def get_my_quota(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
     redis: Redis = Depends(get_redis),
@@ -429,7 +440,7 @@ async def get_my_quota(
 
 
 @router.get("/verify-email")
-@limiter.limit("10/minute")
+@limiter.limit("60/minute")
 async def verify_email(
     request: Request,
     token: str,

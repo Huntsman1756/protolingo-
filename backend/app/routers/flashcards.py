@@ -50,7 +50,9 @@ async def _get_active_plan_or_404(db: AsyncSession, user_id: int) -> StudyPlan:
 
 
 @router.get("/due", response_model=FlashcardListResponse)
+@limiter.limit("60/minute")
 async def get_due_flashcards(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -80,7 +82,9 @@ async def get_due_flashcards(
 
 
 @router.get("/all", response_model=list[FlashcardResponse])
+@limiter.limit("60/minute")
 async def get_all_flashcards(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -97,7 +101,9 @@ async def get_all_flashcards(
 
 
 @router.post("", response_model=FlashcardResponse)
+@limiter.limit("60/minute")
 async def create_flashcard(
+    request: Request,
     data: FlashcardCreate,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -118,7 +124,9 @@ async def create_flashcard(
 
 
 @router.post("/bulk", response_model=FlashcardBulkResponse)
+@limiter.limit("60/minute")
 async def create_flashcards_bulk(
+    request: Request,
     data: FlashcardBulkCreate,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -152,7 +160,9 @@ async def create_flashcards_bulk(
 
 
 @router.post("/{card_id}/review", response_model=FlashcardResponse)
+@limiter.limit("60/minute")
 async def review_flashcard(
+    request: Request,
     card_id: int,
     data: FlashcardReview,
     current_user: User = Depends(get_current_user),
@@ -273,7 +283,9 @@ async def create_flashcard_from_word(
 
 
 @router.get("/vocabulary", response_model=VocabularyListResponse)
+@limiter.limit("60/minute")
 async def get_vocabulary_flashcards(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
     page: int = Query(1, ge=1),
@@ -306,7 +318,9 @@ async def get_vocabulary_flashcards(
 
 
 @router.delete("/{card_id}", status_code=status.HTTP_204_NO_CONTENT)
+@limiter.limit("60/minute")
 async def delete_flashcard(
+    request: Request,
     card_id: int,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),

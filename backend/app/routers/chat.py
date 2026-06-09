@@ -1,7 +1,7 @@
 import json
 from datetime import UTC, date, datetime
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import StreamingResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.app_logger import get_logger
 from app.core.database import get_db
 from app.core.deps import get_active_study_plan, require_subscription
+from app.core.limiter import limiter
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
 from app.models.llm_usage import LLMUsage
@@ -111,7 +112,9 @@ MAX_HISTORY = 30
 
 
 @router.get("/conversations", response_model=list[ConversationResponse])
+@limiter.limit("60/minute")
 async def list_conversations(
+    request: Request,
     plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
@@ -128,7 +131,9 @@ async def list_conversations(
 
 
 @router.post("/conversations", response_model=ConversationResponse)
+@limiter.limit("60/minute")
 async def create_conversation(
+    request: Request,
     data: ConversationCreate,
     plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
@@ -146,7 +151,9 @@ async def create_conversation(
 
 
 @router.delete("/conversations/{conversation_id}", status_code=status.HTTP_204_NO_CONTENT)
+@limiter.limit("60/minute")
 async def delete_conversation(
+    request: Request,
     conversation_id: int,
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
@@ -159,7 +166,9 @@ async def delete_conversation(
 
 
 @router.get("/conversations/{conversation_id}/messages", response_model=ChatHistoryResponse)
+@limiter.limit("60/minute")
 async def get_conversation_messages(
+    request: Request,
     conversation_id: int,
     plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
@@ -186,8 +195,10 @@ async def get_conversation_messages(
 
 
 @router.post("")
+@limiter.limit("30/minute")
 async def chat(
-    request: ChatRequest,
+    request: Request,
+    request_data: ChatRequest,
     plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
@@ -205,16 +216,16 @@ async def chat(
             )
 
     # Resolve or create conversation
-    if request.conversation_id:
-        conv = await db.get(Conversation, request.conversation_id)
+    if request_data.conversation_id:
+        conv = await db.get(Conversation, request_data.conversation_id)
         if not conv or conv.user_id != current_user.id:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found"
             )
     else:
         # Auto-create a conversation titled with the first 60 chars of the message
-        title = request.message[:60].strip()
-        if len(request.message) > 60:
+        title = request_data.message[:60].strip()
+        if len(request_data.message) > 60:
             title += "..."
         conv = Conversation(user_id=current_user.id, title=title, study_plan_id=plan.id)
         db.add(conv)
@@ -282,7 +293,7 @@ async def chat(
             user_id=current_user.id,
             conversation_id=conversation_id,
             role="user",
-            content=request.message,
+            content=request_data.message,
             study_plan_id=plan.id,
         )
     )
@@ -418,7 +429,9 @@ async def chat(
 
 
 @router.get("/history", response_model=ChatHistoryResponse)
+@limiter.limit("60/minute")
 async def get_history(
+    request: Request,
     plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),

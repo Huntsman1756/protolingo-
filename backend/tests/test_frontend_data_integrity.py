@@ -2,19 +2,20 @@
 Sprint 6 — Data cross-reference integrity tests.
 
 Validates that:
-  1. Every grammar slug referenced in curriculum.ts exists in grammar.ts.
+  1. Every grammar slug referenced in curriculum.ts exists in backend grammar data.
   2. Every vocabulary set ID referenced in the backend curriculum exists in the backend vocabulary data.
   3. Vocabulary set IDs are unique across all languages.
-  4. Grammar `related[]` arrays only reference slugs that exist in grammar.ts.
+  4. Grammar `related[]` arrays only reference slugs that exist in grammar data.
+  5. Grammar slugs are unique per language.
 """
+
+from __future__ import annotations
 
 import re
 from pathlib import Path
 
-# Paths
 FRONTEND_DATA = Path(__file__).resolve().parent.parent.parent / "frontend" / "src" / "data"
 
-GRAMMAR_FILE = FRONTEND_DATA / "grammar.ts"
 CURRICULUM_FILE = FRONTEND_DATA / "curriculum.ts"
 
 
@@ -22,8 +23,21 @@ def _read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def _extract_grammar_slugs(src: str) -> set[str]:
-    return set(re.findall(r"slug:\s*'([^']+)'", src))
+def _get_grammar_slugs(target_language: str) -> set[str]:
+    from app.data.grammar import get_grammar_topics
+
+    topics = get_grammar_topics(target_language)
+    return {t.slug for t in topics}
+
+
+def _get_grammar_related_refs(target_language: str) -> set[str]:
+    from app.data.grammar import get_grammar_topics
+
+    topics = get_grammar_topics(target_language)
+    refs: set[str] = set()
+    for t in topics:
+        refs.update(t.related)
+    return refs
 
 
 def _extract_curriculum_grammar_refs(src: str) -> set[str]:
@@ -33,26 +47,22 @@ def _extract_curriculum_grammar_refs(src: str) -> set[str]:
     return refs
 
 
-def _extract_grammar_related_refs(src: str) -> set[str]:
-    refs: set[str] = set()
-    for block in re.findall(r"related:\s*\[([^\]]*)\]", src, re.DOTALL):
-        refs.update(re.findall(r"'([^']+)'", block))
-    return refs
-
-
 # ── Tests ──────────────────────────────────────────────────────────────────────
 
 
 def test_data_files_exist() -> None:
     """Sanity check: frontend data files that remain must be present."""
-    for path in (GRAMMAR_FILE, CURRICULUM_FILE):
-        assert path.exists(), f"Missing data file: {path}"
+    assert CURRICULUM_FILE.exists(), "Missing data file: curriculum.ts"
 
 
 def test_curriculum_grammar_refs_all_defined() -> None:
-    """Every slug in grammar_points[] must exist as a slug in grammar.ts."""
-    defined = _extract_grammar_slugs(_read(GRAMMAR_FILE))
+    """Every slug in grammar_points[] must exist as a slug in backend grammar data."""
     referenced = _extract_curriculum_grammar_refs(_read(CURRICULUM_FILE))
+
+    # Collect all grammar slugs across all supported languages
+    defined: set[str] = set()
+    for lang in ("en-US", "es-ES", "it-IT", "pt-PT"):
+        defined.update(_get_grammar_slugs(lang))
 
     missing = referenced - defined
     assert (
@@ -98,16 +108,16 @@ def test_curriculum_vocab_refs_all_defined() -> None:
 
 
 def test_grammar_related_refs_all_defined() -> None:
-    """Every slug in a grammar topic's related[] array must exist in grammar.ts."""
-    src = _read(GRAMMAR_FILE)
-    defined = _extract_grammar_slugs(src)
-    related = _extract_grammar_related_refs(src)
+    """Every slug in a grammar topic's related[] array must exist in that language's grammar data."""
+    for lang_code in ("en-US", "es-ES", "it-IT", "pt-PT"):
+        defined = _get_grammar_slugs(lang_code)
+        related = _get_grammar_related_refs(lang_code)
 
-    missing = related - defined
-    assert not missing, (
-        f"grammar.ts has {len(missing)} related[] slug(s) that point to non-existent topics:\n"
-        + "\n".join(f"  - {s}" for s in sorted(missing))
-    )
+        missing = related - defined
+        assert not missing, (
+            f"{lang_code} grammar has {len(missing)} related[] slug(s) that point to non-existent topics:\n"
+            + "\n".join(f"  - {s}" for s in sorted(missing))
+        )
 
 
 def test_vocabulary_export_completeness() -> None:
@@ -134,18 +144,21 @@ def test_vocabulary_export_completeness() -> None:
 
 
 def test_grammar_slug_uniqueness() -> None:
-    """No two grammar topics should share the same slug."""
-    src = _read(GRAMMAR_FILE)
-    all_slugs = re.findall(r"slug:\s*'([^']+)'", src)
-    seen: set[str] = set()
-    duplicates: list[str] = []
-    for slug in all_slugs:
-        if slug in seen:
-            duplicates.append(slug)
-        seen.add(slug)
-    assert not duplicates, "Duplicate grammar slug(s) found:\n" + "\n".join(
-        f"  - {s}" for s in sorted(set(duplicates))
-    )
+    """No two grammar topics should share the same slug within a language."""
+    for lang_code in ("en-US", "es-ES", "it-IT", "pt-PT"):
+        from app.data.grammar import get_grammar_topics
+
+        topics = get_grammar_topics(lang_code)
+        all_slugs = [t.slug for t in topics]
+        seen: set[str] = set()
+        duplicates: list[str] = []
+        for slug in all_slugs:
+            if slug in seen:
+                duplicates.append(slug)
+            seen.add(slug)
+        assert not duplicates, f"{lang_code}: duplicate grammar slug(s):\n" + "\n".join(
+            f"  - {s}" for s in sorted(set(duplicates))
+        )
 
 
 def test_vocabulary_id_uniqueness() -> None:
@@ -170,9 +183,7 @@ def test_vocabulary_id_uniqueness() -> None:
 def test_curriculum_unit_id_uniqueness() -> None:
     """No two curriculum units across all levels should share the same id."""
     src = _read(CURRICULUM_FILE)
-    # Unit ids follow the pattern: id: 'a1-unit-1' (hyphen-separated)
     all_unit_ids = re.findall(r"\bid:\s*'([a-z][a-z0-9-]+)'", src)
-    # Filter out vocabulary set ids (those have underscores not hyphens)
     unit_ids = [uid for uid in all_unit_ids if "-unit-" in uid]
     seen: set[str] = set()
     duplicates: list[str] = []

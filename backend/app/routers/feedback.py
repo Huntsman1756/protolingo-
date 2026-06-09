@@ -315,7 +315,7 @@ async def get_feedback(
 
 
 @router.delete("/{entry_id}", status_code=status.HTTP_204_NO_CONTENT)
-@limiter.limit("20/minute")
+@limiter.limit("60/minute")
 async def delete_feedback(
     request: Request,
     entry_id: int,
@@ -336,7 +336,7 @@ async def delete_feedback(
 
 
 @router.post("/{entry_id}/vote", response_model=FeedbackVoteResponse)
-@limiter.limit("30/minute")
+@limiter.limit("60/minute")
 async def toggle_vote(
     request: Request,
     entry_id: int,
@@ -377,7 +377,7 @@ async def toggle_vote(
 
 
 @router.patch("/{entry_id}/status", response_model=FeedbackEntryOut)
-@limiter.limit("30/minute")
+@limiter.limit("60/minute")
 async def update_status(
     request: Request,
     entry_id: int,
@@ -473,7 +473,7 @@ async def add_comment(
     "/{entry_id}/comments/{comment_id}",
     status_code=status.HTTP_204_NO_CONTENT,
 )
-@limiter.limit("20/minute")
+@limiter.limit("60/minute")
 async def delete_comment(
     request: Request,
     entry_id: int,

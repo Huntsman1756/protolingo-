@@ -496,7 +496,11 @@
     "levelTestResult": "Level Test Result",
     "testScore": "Score:",
     "pendingLessons": "Pending lessons",
-    "resume": "Resume"
+    "resume": "Resume",
+    "noPlanLabel": "GET STARTED",
+    "noPlanTitle": "Create your study plan",
+    "noPlanDesc": "Take a quick assessment to discover your level and get a personalized learning path.",
+    "noPlanHint": "Takes about 10 minutes"
   },
   "lesson": {
     "loading": "Loading lesson...",
@@ -676,7 +680,8 @@
     "level": "Level",
     "register": "Register",
     "statsLine": "{situationCount} situations · {phraseCount} phrases · {range}",
-    "situationsShown": "{count, plural, one {# situation shown} other {# situations shown}}"
+    "situationsShown": "{count, plural, one {# situation shown} other {# situations shown}}",
+    "searchPlaceholder": "Search phrases..."
   },
   "admin": {
     "title": "Admin",
@@ -1094,21 +1099,17 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Got it",
     "entry1": {
-      "label": "Save words from reading",
-      "desc": "Select any word in a reading exercise to instantly save it as a flashcard. The AI generates a definition, example sentence, and translation — find all your saved words in the new My Vocabulary panel in the Flashcards section."
+      "label": "Improved learning resources",
+      "desc": "All learning resource sections have been expanded with new content."
     },
     "entry2": {
-      "label": "Platform language",
-      "desc": "You can now choose the language of the app interface — menus, buttons, and labels — from the Settings page, independently of your native language."
-    },
-    "entry3": {
       "label": "Learn multiple languages",
       "desc": "You can now learn more than one language at the same time. Switch between languages from the sidebar and add new ones from Settings → My Languages. We'll keep adding more languages — when we do, you'll find them there."
     },
-    "entry4": {
+    "entry3": {
       "label": "Bug fixes",
       "desc": "Various minor bug fixes and stability improvements across the platform."
     }

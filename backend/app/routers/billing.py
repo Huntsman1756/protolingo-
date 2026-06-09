@@ -55,7 +55,7 @@ class CheckoutRequest(BaseModel):
 
 
 @router.post("/checkout")
-@limiter.limit("10/minute")
+@limiter.limit("60/minute")
 async def create_checkout_session(
     request: Request,
     body: CheckoutRequest,
@@ -106,7 +106,7 @@ async def create_checkout_session(
 
 
 @router.post("/portal")
-@limiter.limit("10/minute")
+@limiter.limit("60/minute")
 async def create_portal_session(
     request: Request,
     current_user: User = Depends(get_current_user),

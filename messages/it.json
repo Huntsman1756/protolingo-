@@ -496,7 +496,11 @@
     "levelTestResult": "Risultato del test di livello",
     "testScore": "Punteggio:",
     "pendingLessons": "Lezioni in sospeso",
-    "resume": "Riprendi"
+    "resume": "Riprendi",
+    "noPlanLabel": "INIZIA",
+    "noPlanTitle": "Crea il tuo piano di studio",
+    "noPlanDesc": "Fai una breve valutazione per scoprire il tuo livello e ottenere un percorso di apprendimento personalizzato.",
+    "noPlanHint": "Richiede circa 10 minuti"
   },
   "lesson": {
     "loading": "Caricamento lezione...",
@@ -676,7 +680,8 @@
     "level": "Livello",
     "register": "Registro",
     "statsLine": "{situationCount} situazioni · {phraseCount} frasi · {range}",
-    "situationsShown": "{count, plural, one {# situazione mostrata} other {# situazioni mostrate}}"
+    "situationsShown": "{count, plural, one {# situazione mostrata} other {# situazioni mostrate}}",
+    "searchPlaceholder": "Cerca frasi..."
   },
   "admin": {
     "title": "Amministrazione",
@@ -1094,21 +1099,17 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Capito",
     "entry1": {
-      "label": "Salva parole durante la lettura",
-      "desc": "Seleziona qualsiasi parola in un esercizio di lettura per salvarla immediatamente come flashcard. L'IA genera definizione, esempio e traduzione — trovi tutte le parole salvate nel nuovo pannello Il mio vocabolario nella sezione Flashcard."
+      "label": "Risorse didattiche migliorate",
+      "desc": "Tutte le sezioni di risorse didattiche sono state ampliate con nuovi contenuti."
     },
     "entry2": {
-      "label": "Lingua della piattaforma",
-      "desc": "Ora puoi scegliere la lingua dell'interfaccia dell'app — menu, pulsanti ed etichette — dalla pagina impostazioni, indipendentemente dalla tua lingua madre."
-    },
-    "entry3": {
       "label": "Impara più lingue",
       "desc": "Ora puoi imparare più di una lingua alla volta. Cambia lingua dalla barra laterale e aggiungine di nuove da impostazioni → Le mie lingue. Continueremo ad aggiungere altre lingue — le troverai lì."
     },
-    "entry4": {
+    "entry3": {
       "label": "Correzioni di bug",
       "desc": "Varie correzioni di bug minori e miglioramenti della stabilità su tutta la piattaforma."
     }

@@ -11,6 +11,7 @@ from sqlalchemy import select
 from app.core.app_logger import get_logger
 from app.core.config import settings
 from app.core.deps import MAINTENANCE_KEY, require_subscription
+from app.core.limiter import limiter
 from app.core.security import decode_access_token
 from app.models.conversation import Conversation as ConversationModel
 from app.models.study_plan import StudyPlan
@@ -55,6 +56,7 @@ def _make_silence_wav(duration_ms: int = 100, sample_rate: int = 16000) -> bytes
 
 
 @router.post("/api/conversation/warmup")
+@limiter.limit("20/minute")
 async def conversation_warmup(
     request: Request,
     _current_user: User = Depends(require_subscription),

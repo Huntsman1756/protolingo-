@@ -190,8 +190,8 @@ This document records what was built and the completion criteria met.
 | 19 | Tests — `test_billing.py` with Stripe SDK mocks | ✅ |
 
 **Plans:**
-- Monthly: 14.95 €/month (temporal) · 7-day trial (card required)
-- Yearly: 149.50 €/year (temporal, 2 months free) · 7-day trial (card required)
+- Monthly: x €/month (temporal) · 7-day trial (card required)
+- Yearly: x €/year (temporal, 2 months free) · 7-day trial (card required)
 
 **Completion criteria:**
 - [x] `STRIPE_ENABLED=false` → no paywall, no billing UI, all endpoints accessible

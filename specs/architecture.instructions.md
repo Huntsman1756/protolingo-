@@ -16,9 +16,9 @@ freelingo/
 ├── backend/                     # Python 3.14 FastAPI
 │   ├── app/
 │   │   ├── core/                # Config, DB engine, security, deps, rate limiter (7 modules)
-│   │   ├── models/              # SQLAlchemy 2.0 ORM models (19 model classes)
-│   │   ├── schemas/             # Pydantic v2 request/response schemas (13 modules)
-│   │   ├── routers/             # 20 routers (19 REST + 1 WebSocket)
+│   │   ├── models/              # SQLAlchemy 2.0 ORM models (14 files, 20 model classes)
+│   │   ├── schemas/             # Pydantic v2 request/response schemas (14 modules)
+│   │   ├── routers/             # 22 routers (21 REST + 1 WebSocket)
 │   │   ├── services/            # Business logic + external service clients (17 modules)
 │   │   └── data/                # Static curriculum and content data (4 languages)
 │   │       ├── en/              # English curriculum (A1–C2)
@@ -27,7 +27,7 @@ freelingo/
 │   │       └── pt/              # Portuguese curriculum (A1–C2)
 │   ├── alembic/
 │   │   └── versions/            # DB migrations (31)
-│   └── tests/                   # pytest suite (32 test files, 691 tests)
+│   └── tests/                   # pytest suite (33 test files, 705 tests)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
@@ -55,12 +55,12 @@ freelingo/
 │   │   │   ├── (legal)/         # Terms and Privacy pages — minimal layout
 │   │   │   └── api/             # Next.js Route Handlers: chat (SSE), tts, stt proxies
 │   │   ├── components/          # 11 component directories + 4 standalone files
-│   │   ├── data/                # Static content: curriculum, grammar, vocab, phrasebook (4 languages: en/es/it/pt)
+│   │   ├── data/                # Data access layer (API-backed for curriculum, vocab, phrasebook; static for grammar)
 │   │   ├── store/               # Zustand stores: auth, config, language, loading, progress, theme (6)
 │   │   ├── lib/                 # Utilities: api, audio, conversation-ws, locales, mappers, target-languages, utils (7)
 │   │   ├── i18n/                # next-intl locale resolver
 │   │   └── middleware.ts        # Auth guard + locale detection
-│   ├── tests/                   # Vitest suite (17 test files, 332 tests)
+│   ├── tests/                   # Vitest suite (16 test files, 325 tests)
 │   ├── public/                  # Static assets (flags/, vad/ WASM models)
 │   └── scripts/                 # Postinstall helpers (copy-vad-models.js)
 │
@@ -167,6 +167,6 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 Testing infrastructure and strategy are documented in [testing.instructions.md](testing.instructions.md).
 
 **Summary:**
-- **Backend**: pytest + pytest-asyncio, 32 test files, 691 tests, 83% coverage (target: 70%)
+- **Backend**: pytest + pytest-asyncio, 33 test files, 705 tests, 83% coverage (target: 70%)
 - **Frontend**: Vitest, 16 test files, 325 tests covering stores, components, lib, and middleware
 - **E2E**: Playwright (planned, not yet implemented)

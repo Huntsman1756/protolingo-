@@ -25,7 +25,7 @@ backend/
 │   │   ├── app_logger.py        # Structured logging (structlog)
 │   │   └── limiter.py           # slowapi rate limiter setup
 │   │
-│   ├── models/                  # SQLAlchemy 2.0 ORM models (19 model classes)
+│   ├── models/                  # SQLAlchemy 2.0 ORM models (14 files, 20 model classes)
 │   │   ├── __init__.py
 │   │   ├── user.py              # User, UserPreferences, user quotas, avatar
 │   │   ├── user_language.py     # UserLanguage (phase 10: multi-language learning)
@@ -57,8 +57,11 @@ backend/
 │   │   ├── reading.py
 │   │   ├── study_plan.py
 │   │   └── tts_stt.py
+│   │   ├── vocabulary.py
+│   │   ├── curriculum.py
+│   │   └── phrasebook.py
 │   │
-│   ├── routers/                 # FastAPI routers (20 REST + 1 WebSocket = 21 total)
+│   ├── routers/                 # FastAPI routers (21 REST + 1 WebSocket = 22 total)
 │   │   ├── __init__.py
 │   │   ├── admin.py             # User management, maintenance toggle, system config
 │   │   ├── assessment.py        # Level assessment quiz + completion + static bank
@@ -71,11 +74,13 @@ backend/
 │   │   ├── curriculum.py        # Curriculum data (now auth-required)
 │   │   ├── feedback.py          # Feedback board CRUD
 │   │   ├── flashcards.py        # Spaced-repetition flashcard CRUD + review
+│   │   ├── grammar.py            # Grammar reference topics by language and CEFR level
 │   │   ├── health.py            # Health check
 │   │   ├── languages.py         # Available target languages
 │   │   ├── lessons.py           # Lesson content + exercise submission
 │   │   ├── listening.py         # AI-generated listening exercises
 │   │   ├── memories.py          # LLM memory management
+│   │   ├── phrasebook.py        # Phrasebook categories and phrases
 │   │   ├── progress.py          # User progress, XP, streak, skills
 │   │   ├── reading.py           # AI-generated reading exercises
 │   │   ├── stt.py               # Speech-to-text proxy
@@ -103,21 +108,21 @@ backend/
 │   │   ├── tts_service.py       # Text-to-speech abstraction (local Kokoro / OpenAI)
 │   │   └── user_language_service.py # Multi-language study plan management (phase 10)
 │   │
-│   └── data/                    # Static curriculum, assessment, and vocabulary content (4 languages)
+│   └── data/                    # Static curriculum, assessment, vocabulary, and phrasebook content (4 languages)
 │       ├── __init__.py
-│       ├── _types.py             # Shared types (CEFRLevel, CurriculumUnit, AssessmentQuestion, VocabularyEntry, VocabularySet)
+│       ├── _types.py             # Shared types (CEFRLevel, CurriculumUnit, AssessmentQuestion, VocabularyEntry, VocabularySet, PhrasebookEntry, PhrasebookCategory)
 │       ├── curriculum.py         # Language-aware curriculum dispatcher
 │       ├── assessment_bank.py    # Language-aware assessment bank dispatcher
 │       ├── vocabulary.py         # Language-aware vocabulary dispatcher
-│       ├── en/                   # English — curriculum, assessment bank, vocabulary (per CEFR level)
-│       ├── es/                   # Spanish — curriculum, assessment bank, vocabulary
-│       ├── it/                   # Italian — curriculum, assessment bank, vocabulary
-│       └── pt/                   # Portuguese — curriculum, assessment bank, vocabulary
+│       ├── en/                   # English — curriculum, assessment bank, vocabulary, phrasebook (per CEFR level)
+│       ├── es/                   # Spanish — curriculum, assessment bank, vocabulary, phrasebook
+│       ├── it/                   # Italian — curriculum, assessment bank, vocabulary, phrasebook
+│       └── pt/                   # Portuguese — curriculum, assessment bank, vocabulary, phrasebook
 │
 ├── alembic/
 │   └── versions/                # DB migrations (31 migrations)
 │
-└── tests/                       # pytest suite (32 test files, 691 tests)
+└── tests/                       # pytest suite (33 test files, 705 tests)
 ```
 
 ## Database models
@@ -179,8 +184,8 @@ Testing infrastructure and strategy are documented in [testing.instructions.md](
 
 **Summary:**
 - **Framework**: pytest + pytest-asyncio + httpx AsyncClient
-- **Test files**: 32 (plus conftest.py for shared fixtures)
-- **Tests**: 691
+- **Test files**: 33 (plus conftest.py for shared fixtures)
+- **Tests**: 705
 - **Coverage**: 83% (target: ≥70%)
 - **Key fixtures**: async database session, test client with auth headers, Redis mock, user_language fixture
 

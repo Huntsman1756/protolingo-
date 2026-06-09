@@ -1,12 +1,13 @@
 import re
 from datetime import UTC, datetime
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.models.lesson import Exercise, Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -49,7 +50,9 @@ async def _get_lesson_for_user(lesson_id: int, user_id: int, db: AsyncSession) -
 
 
 @router.get("/{lesson_id}", response_model=LessonDetailResponse)
+@limiter.limit("60/minute")
 async def get_lesson(
+    request: Request,
     lesson_id: int,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -90,7 +93,9 @@ async def get_lesson(
 
 
 @router.post("/{lesson_id}/start", response_model=LessonResponse)
+@limiter.limit("60/minute")
 async def start_lesson(
+    request: Request,
     lesson_id: int,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -100,7 +105,9 @@ async def start_lesson(
 
 
 @router.post("/{lesson_id}/complete", response_model=LessonResponse)
+@limiter.limit("60/minute")
 async def complete_lesson(
+    request: Request,
     lesson_id: int,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -155,7 +162,9 @@ async def complete_lesson(
 
 
 @router.post("/exercises/{exercise_id}/answer", response_model=ExerciseAnswerResponse)
+@limiter.limit("20/minute")
 async def answer_exercise(
+    request: Request,
     exercise_id: int,
     data: ExerciseAnswerRequest,
     current_user: User = Depends(get_current_user),

@@ -71,7 +71,7 @@ async def text_to_speech(
 
 
 @router.get("/tts/preview/{voice}")
-@limiter.limit("10/minute")
+@limiter.limit("60/minute")
 async def voice_preview(
     request: Request,
     voice: str,

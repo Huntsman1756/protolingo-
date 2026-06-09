@@ -1,7 +1,9 @@
 export type { CEFRLevel, GrammarCategory } from '@/data/types'
 
+import { apiFetch } from '@/lib/api'
+
 export interface GrammarExample {
-  english: string
+  text: string
   translation?: string
   note?: string
 }
@@ -26,23 +28,13 @@ export interface GrammarTopic {
   related: string[]
 }
 
-import { grammarTopics as enTopics } from './en/grammar'
-import { grammarTopics as esTopics } from './es/grammar'
-import { grammarTopics as itTopics } from './it/grammar'
-import { grammarTopics as ptTopics } from './pt/grammar'
-
-const topicsMap: Record<string, GrammarTopic[]> = {
-  en: enTopics,
-  es: esTopics,
-  it: itTopics,
-  pt: ptTopics,
-}
-
-export function getGrammarTopics(
+export async function getGrammarTopics(
   targetLanguage: string = 'en-US'
-): GrammarTopic[] {
-  const iso = targetLanguage.split('-')[0]
-  return topicsMap[iso] ?? enTopics
+): Promise<GrammarTopic[]> {
+  const res = await apiFetch(
+    `/api/grammar?language=${encodeURIComponent(targetLanguage)}`
+  )
+  if (!res.ok) return []
+  const data = await res.json()
+  return data.topics ?? []
 }
-
-export const grammarTopics = enTopics

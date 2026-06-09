@@ -7,14 +7,14 @@ import PricingSection from '@/components/billing/PricingSection'
 import { ContactButton } from '@/components/ui/contact-button'
 
 export const metadata: Metadata = {
-  title: 'FreeLingo — AI-powered English learning',
+  title: 'FreeLingo — AI-powered language learning',
   description:
-    'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons. Self-hosted and privacy-friendly.',
+    'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons. Self-hosted and privacy-friendly.',
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'FreeLingo — AI-powered English learning',
+    title: 'FreeLingo — AI-powered language learning',
     description:
-      'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
+      'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
     url: 'https://freelingo.app',
     type: 'website',
     images: [
@@ -22,15 +22,15 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'FreeLingo — AI-powered English learning',
+        alt: 'FreeLingo — AI-powered language learning',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FreeLingo — AI-powered English learning',
+    title: 'FreeLingo — AI-powered language learning',
     description:
-      'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
+      'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
     images: ['/og-image.png'],
   },
 }
@@ -43,7 +43,7 @@ const jsonLd = {
   operatingSystem: 'Web',
   url: 'https://freelingo.app',
   description:
-    'Self-hosted AI-powered English learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
+    'Self-hosted AI-powered language learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
   author: {
     '@type': 'Person',
     name: 'Arturo Carretero Calvo',
@@ -67,6 +67,10 @@ export default async function Home() {
   // which can fail in SSR context (self-referential fetch + SSL issues).
   let stripeEnabled = false
   let trialDays = 7
+  let priceMonthly = 0.0
+  let priceYearly = 0.0
+  let totalPriceMonthly = 0.0
+  let totalPriceYearly = 0.0
   try {
     const backendUrl = process.env.BACKEND_URL || 'http://backend:8000'
     const configRes = await fetch(`${backendUrl}/api/config`, {
@@ -76,6 +80,10 @@ export default async function Home() {
       const cfg = await configRes.json()
       stripeEnabled = cfg.stripe_enabled ?? false
       trialDays = cfg.stripe_trial_days ?? 7
+      priceMonthly = cfg.price_monthly ?? 0.0
+      priceYearly = cfg.price_yearly ?? 0.0
+      totalPriceMonthly = cfg.total_price_monthly ?? 0.0
+      totalPriceYearly = cfg.total_price_yearly ?? 0.0
     }
   } catch {
     /* non-fatal */
@@ -167,6 +175,10 @@ export default async function Home() {
         stripeEnabled={stripeEnabled}
         trialDays={trialDays}
         hasSession={hasSession}
+        priceMonthly={priceMonthly}
+        priceYearly={priceYearly}
+        totalPriceMonthly={totalPriceMonthly}
+        totalPriceYearly={totalPriceYearly}
       />
 
       {/* Footer */}

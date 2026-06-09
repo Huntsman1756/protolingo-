@@ -496,7 +496,11 @@
     "levelTestResult": "Resultado del test de nivel",
     "testScore": "Puntuación:",
     "pendingLessons": "Lecciones pendientes",
-    "resume": "Reanudar"
+    "resume": "Reanudar",
+    "noPlanLabel": "EMPEZAR",
+    "noPlanTitle": "Crea tu plan de estudio",
+    "noPlanDesc": "Haz una evaluación rápida para descubrir tu nivel y obtener un plan de estudio personalizado.",
+    "noPlanHint": "Solo te llevará 10 minutos"
   },
   "lesson": {
     "loading": "Cargando lección...",
@@ -676,7 +680,8 @@
     "level": "Nivel",
     "register": "Registro",
     "statsLine": "{situationCount} situaciones · {phraseCount} frases · {range}",
-    "situationsShown": "{count, plural, one {# situación mostrada} other {# situaciones mostradas}}"
+    "situationsShown": "{count, plural, one {# situación mostrada} other {# situaciones mostradas}}",
+    "searchPlaceholder": "Buscar frases..."
   },
   "admin": {
     "title": "Administración",
@@ -1094,21 +1099,17 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Entendido",
     "entry1": {
-      "label": "Guarda palabras al leer",
-      "desc": "Selecciona cualquier palabra en un ejercicio de lectura para guardarla al instante como flashcard. La IA genera la definición, un ejemplo y la traducción — encuentra todas tus palabras guardadas en el nuevo panel Mi Vocabulario de la sección Flashcards."
+      "label": "Recursos didácticos mejorados",
+      "desc": "Todas las secciones de recursos didácticos se han ampliado con nuevo contenido."
     },
     "entry2": {
-      "label": "Idioma de la plataforma",
-      "desc": "Ahora puedes elegir el idioma de la interfaz de la app — menús, botones y etiquetas — desde la página de Ajustes, de forma independiente a tu idioma nativo."
-    },
-    "entry3": {
       "label": "Aprende varios idiomas",
       "desc": "Ahora puedes aprender más de un idioma a la vez. Cambia de idioma desde la barra lateral y añade nuevos desde ajustes → Mis idiomas. Seguiremos añadiendo más idiomas y los encontrarás ahí."
     },
-    "entry4": {
+    "entry3": {
       "label": "Corrección de errores",
       "desc": "Varias correcciones de errores menores y mejoras de estabilidad en la plataforma."
     }

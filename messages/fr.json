@@ -496,7 +496,11 @@
     "levelTestResult": "Résultat du test de niveau",
     "testScore": "Score :",
     "pendingLessons": "Leçons en attente",
-    "resume": "Reprendre"
+    "resume": "Reprendre",
+    "noPlanLabel": "COMMENCER",
+    "noPlanTitle": "Créez votre plan d'étude",
+    "noPlanDesc": "Faites une évaluation rapide pour découvrir votre niveau et obtenir un parcours d'apprentissage personnalisé.",
+    "noPlanHint": "Prend environ 10 minutes"
   },
   "lesson": {
     "loading": "Chargement de la leçon...",
@@ -676,7 +680,8 @@
     "level": "Niveau",
     "register": "Registre",
     "statsLine": "{situationCount} situations · {phraseCount} phrases · {range}",
-    "situationsShown": "{count, plural, one {# situation affichée} other {# situations affichées}}"
+    "situationsShown": "{count, plural, one {# situation affichée} other {# situations affichées}}",
+    "searchPlaceholder": "Rechercher des phrases..."
   },
   "admin": {
     "title": "Administration",
@@ -1094,21 +1099,17 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Compris",
     "entry1": {
-      "label": "Sauvegarder des mots en lisant",
-      "desc": "Sélectionne n'importe quel mot dans un exercice de lecture pour l'enregistrer instantanément comme flashcard. L'IA génère une définition, un exemple et une traduction — retrouve tous tes mots enregistrés dans le nouveau panneau Mon vocabulaire dans la section Flashcards."
+      "label": "Ressources pédagogiques améliorées",
+      "desc": "Toutes les sections de ressources pédagogiques ont été enrichies avec du nouveau contenu."
     },
     "entry2": {
-      "label": "Langue de la plateforme",
-      "desc": "Tu peux désormais choisir la langue de l'interface de l'application — menus, boutons et étiquettes — depuis la page Paramètres, indépendamment de ta langue maternelle."
-    },
-    "entry3": {
       "label": "Apprendre plusieurs langues",
       "desc": "Vous pouvez désormais apprendre plusieurs langues en même temps. Changez de langue depuis la barre latérale et ajoutez-en de nouvelles depuis paramètres → Mes langues. Nous ajouterons d'autres langues — vous les trouverez là-bas."
     },
-    "entry4": {
+    "entry3": {
       "label": "Corrections de bugs",
       "desc": "Diverses corrections de bugs mineurs et améliorations de stabilité sur toute la plateforme."
     }

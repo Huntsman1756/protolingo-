@@ -9,12 +9,20 @@ interface PricingSectionProps {
   stripeEnabled: boolean
   trialDays: number
   hasSession: boolean
+  priceMonthly: number
+  priceYearly: number
+  totalPriceMonthly: number
+  totalPriceYearly: number
 }
 
 export default function PricingSection({
   stripeEnabled,
   trialDays,
   hasSession,
+  priceMonthly,
+  priceYearly,
+  totalPriceMonthly,
+  totalPriceYearly,
 }: PricingSectionProps) {
   const tBilling = useTranslations('billing')
   const tCommon = useTranslations('common')
@@ -117,25 +125,23 @@ export default function PricingSection({
 
         {/* Monthly plan */}
         <div className="border-fl-border bg-fl-surface flex flex-col gap-4 border p-6">
-          <div className="border-fl-border flex items-center justify-between border-b pb-3">
-            <div className="flex items-center gap-2">
-              <span className="text-fl-muted-2 text-sm">◎</span>
-              <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
-                {tBilling('planMonthlyName')}
-              </span>
-            </div>
-            <span className="text-fl-hint text-fl-accent border-fl-accent/30 border px-2 py-0.5 font-mono tracking-widest uppercase">
-              {tBilling('trialBadge')}
+          <div className="border-fl-border flex items-center gap-2 border-b pb-3">
+            <span className="text-fl-muted-2 text-sm">◎</span>
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+              {tBilling('planMonthlyName')}
             </span>
           </div>
           <p className="text-fl-muted-2 font-mono text-sm line-through">
-            19.95 € / {tBilling('month')}
+            {totalPriceMonthly} € / {tBilling('month')}
           </p>
-          <p className="text-fl-fg font-mono text-xl font-bold">
-            14.95
+          <p className="text-fl-fg flex items-center gap-2 font-mono text-xl font-bold">
+            {priceMonthly}
             <span className="text-fl-muted-1 text-sm">
               {' '}
               € / {tBilling('month')}
+            </span>
+            <span className="text-fl-hint text-fl-accent border-fl-accent/30 border px-2 py-0.5 font-mono tracking-widest uppercase">
+              {tBilling('trialBadge')}
             </span>
           </p>
           <p className="text-fl-hint text-fl-muted-2 border-fl-border border-t pt-3 font-mono tracking-widest uppercase">
@@ -163,23 +169,21 @@ export default function PricingSection({
                 {tBilling('planYearlyName')}
               </span>
             </div>
-            <div className="flex flex-row items-center gap-1">
-              <span className="text-fl-hint text-fl-accent border-fl-accent/30 border px-2 py-0.5 font-mono tracking-widest uppercase">
-                {tBilling('bestValue')}
-              </span>
-              <span className="text-fl-hint text-fl-accent border-fl-accent/30 border px-2 py-0.5 font-mono tracking-widest uppercase">
-                {tBilling('trialBadge')}
-              </span>
-            </div>
+            <span className="text-fl-hint text-fl-accent border-fl-accent/30 border px-2 py-0.5 font-mono tracking-widest uppercase">
+              {tBilling('bestValue')}
+            </span>
           </div>
           <p className="text-fl-muted-2 font-mono text-sm line-through">
-            199.50 € / {tBilling('year')}
+            {totalPriceYearly} € / {tBilling('year')}
           </p>
-          <p className="text-fl-fg font-mono text-xl font-bold">
-            149.50
+          <p className="text-fl-fg flex items-center gap-2 font-mono text-xl font-bold">
+            {priceYearly}
             <span className="text-fl-muted-1 text-sm">
               {' '}
               € / {tBilling('year')}
+            </span>
+            <span className="text-fl-hint text-fl-accent border-fl-accent/30 border px-2 py-0.5 font-mono tracking-widest uppercase">
+              {tBilling('trialBadge')}
             </span>
           </p>
           <p className="text-fl-hint text-fl-muted-2 border-fl-border border-t pt-3 font-mono tracking-widest uppercase">

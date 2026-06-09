@@ -496,7 +496,11 @@
     "levelTestResult": "Niveautestresultaat",
     "testScore": "Score:",
     "pendingLessons": "Openstaande lessen",
-    "resume": "Hervatten"
+    "resume": "Hervatten",
+    "noPlanLabel": "BEGINNEN",
+    "noPlanTitle": "Maak je studieplan",
+    "noPlanDesc": "Doe een snelle evaluatie om je niveau te ontdekken en een persoonlijk leertraject te krijgen.",
+    "noPlanHint": "Duurt ongeveer 10 minuten"
   },
   "lesson": {
     "loading": "Les laden...",
@@ -676,7 +680,8 @@
     "level": "Niveau",
     "register": "Register",
     "statsLine": "{situationCount} situaties · {phraseCount} zinnen · {range}",
-    "situationsShown": "{count, plural, one {# situatie weergegeven} other {# situaties weergegeven}}"
+    "situationsShown": "{count, plural, one {# situatie weergegeven} other {# situaties weergegeven}}",
+    "searchPlaceholder": "Zinnen doorzoeken..."
   },
   "admin": {
     "title": "Admin",
@@ -1094,21 +1099,17 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Woorden opslaan tijdens het lezen",
-      "desc": "Selecteer een woord in een leesoefening om het direct op te slaan als flashcard. De AI genereert een definitie, voorbeeldzin en vertaling — vind al je opgeslagen woorden in het nieuwe Mijn woordenschat-paneel in de Flashcards-sectie."
+      "label": "Verbeterde leermiddelen",
+      "desc": "Alle leermiddelensecties zijn uitgebreid met nieuwe inhoud."
     },
     "entry2": {
-      "label": "Platformtaal",
-      "desc": "Je kunt nu de taal van de app-interface — menu's, knoppen en labels — kiezen via de pagina instellingen, onafhankelijk van je moedertaal."
-    },
-    "entry3": {
       "label": "Leer meerdere talen",
       "desc": "Je kunt nu meer dan één taal tegelijk leren. Wissel van taal via de zijbalk en voeg nieuwe talen toe via instellingen → Mijn talen. We blijven meer talen toevoegen — je vindt ze daar."
     },
-    "entry4": {
+    "entry3": {
       "label": "Bugfixes",
       "desc": "Diverse kleine bugfixes en stabiliteitsverbeteringen in het hele platform."
     }

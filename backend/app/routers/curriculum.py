@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, Request
 
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.data._types import CurriculumUnit
 from app.data.curriculum import get_curriculum, get_curriculum_units
 from app.models.user import User
@@ -25,7 +26,9 @@ def _to_response(u: CurriculumUnit) -> dict:
 
 
 @router.get("", response_model=CurriculumResponse)
+@limiter.limit("60/minute")
 def get_all_curriculum(
+    request: Request,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ) -> dict:
@@ -41,7 +44,9 @@ def get_all_curriculum(
 
 
 @router.get("/{level}", response_model=list[CurriculumUnitResponse])
+@limiter.limit("60/minute")
 def get_curriculum_by_level(
+    request: Request,
     level: str,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),

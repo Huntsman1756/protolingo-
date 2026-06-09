@@ -1,0 +1,1008 @@
+"""Spanish grammar topics — A2."""
+
+from app.data._types import GrammarExample, GrammarMistake, GrammarTopic
+
+A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
+    GrammarTopic(
+        slug="preterito-indefinido-regular",
+        title="Pretérito indefinido regular",
+        level="A2",
+        category="Tiempos verbales",
+        summary="El pasado simple para acciones terminadas: conjugación regular de -ar, -er, -ir.",
+        explanation="El **pretérito indefinido** (o pretérito perfecto simple) expresa **acciones pasadas y terminadas**, sin conexión con el presente. Es equivalente al past simple inglés.\n\n| Persona | -ar (hablar) | -er (comer) | -ir (vivir) |\n|--------|-------------|-------------|------------|\n| yo | hablé | comí | viví |\n| tú | hablaste | comiste | viviste |\n| él/ella/usted | habló | comió | vivió |\n| nosotros | hablamos | comimos | vivimos |\n| vosotros | hablasteis | comisteis | vivisteis |\n| ellos/ellas/ustedes | hablaron | comieron | vivieron |\n\nNota: las terminaciones de -er e -ir son **idénticas** en el indefinido. La primera persona de -ar y la de nosotros de -ar y -ir coinciden con el presente; el contexto aclara el tiempo.",
+        structure="raíz + -é/-aste/-ó/-amos/-asteis/-aron (AR) · -í/-iste/-ió/-imos/-isteis/-ieron (ER/IR)",
+        rules=[
+            "-er e -ir comparten las mismas terminaciones en indefinido.",
+            "La primera persona del singular (yo) siempre lleva tilde: hablé, comí, viví.",
+            "La tercera persona del singular lleva tilde: habló, comió, vivió.",
+            "Se usa para acciones completadas en un momento concreto del pasado.",
+            "Con marcadores como ayer, la semana pasada, el año pasado, en 2020.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Ayer hablé con mi madre por teléfono.",
+                translation="Yesterday I spoke with my mother on the phone.",
+            ),
+            GrammarExample(
+                text="Comimos paella el domingo pasado.", translation="We ate paella last Sunday."
+            ),
+            GrammarExample(
+                text="¿Viviste en Barcelona el año pasado?",
+                translation="Did you live in Barcelona last year?",
+            ),
+            GrammarExample(text="Ellos llegaron a las ocho.", translation="They arrived at eight."),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Ayer hablo con Juan.",
+                correct="Ayer hablé con Juan.",
+                note='"Hablo" es presente; para el pasado se necesita "hablé" con tilde.',
+            ),
+            GrammarMistake(
+                wrong="Ayer comí la paella.",
+                correct="Ayer comí paella.",
+                note="En general no se usa artículo definido con comidas cuando se habla de consumirlas.",
+            ),
+        ],
+        related=["preterito-irregular", "marcadores-temporales", "preterito-vs-imperfecto"],
+    ),
+    GrammarTopic(
+        slug="marcadores-temporales",
+        title="Marcadores temporales del pasado",
+        level="A2",
+        category="Adjetivos y adverbios",
+        summary="Ayer, la semana pasada, hace dos días, en 2020... palabras que señalan cuándo ocurrió algo.",
+        explanation="Los **marcadores temporales** son palabras o expresiones que sitúan una acción en el tiempo. Son fundamentales para elegir entre pretérito indefinido e imperfecto.\n\n**Con pretérito indefinido** (acciones puntuales terminadas):\n- *ayer, anoche, anteayer*\n- *el lunes/mes/año pasado*\n- *la semana pasada*\n- *hace dos días / tres meses / un año*\n- *en 2019, en julio*\n- *de repente, de pronto*\n\n**Con pretérito imperfecto** (descripciones, hábitos):\n- *antes, de pequeño/a, cuando era joven*\n- *todos los días, siempre, cada verano*\n- *mientras*\n\nEl marcador temporal ayuda a identificar qué tiempo usar.",
+        structure="ayer · anoche · la semana pasada · el mes/año pasado · hace + tiempo · en + año",
+        rules=[
+            '"Hace + cantidad de tiempo" indica cuánto tiempo ha pasado desde la acción.',
+            '"En + año/mes" se usa con indefinido para localizar una acción concreta.',
+            '"Desde hace" indica duración que continúa en el presente.',
+            'No confundir "hace" (marcador) con "desde hace" (duración continua).',
+        ],
+        examples=[
+            GrammarExample(text="Ayer fui al cine.", translation="Yesterday I went to the cinema."),
+            GrammarExample(
+                text="La semana pasada visité a mis abuelos.",
+                translation="Last week I visited my grandparents.",
+            ),
+            GrammarExample(
+                text="Hace tres años empecé a estudiar español.",
+                translation="Three years ago I started studying Spanish.",
+            ),
+            GrammarExample(
+                text="En 2015 nos mudamos a Madrid.", translation="In 2015 we moved to Madrid."
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Hace dos años he viajado a Chile.",
+                correct="Hace dos años viajé a Chile.",
+                note='"Hace + tiempo" pide pretérito indefinido, no pretérito perfecto.',
+            ),
+            GrammarMistake(
+                wrong="Desde dos años vivo aquí.",
+                correct="Vivo aquí desde hace dos años.",
+                note='"Desde hace" expresa duración desde el pasado hasta ahora.',
+            ),
+        ],
+        related=["preterito-indefinido-regular", "preterito-irregular", "preterito-perfecto"],
+    ),
+    GrammarTopic(
+        slug="preterito-irregular",
+        title="Pretérito indefinido irregular",
+        level="A2",
+        category="Tiempos verbales",
+        summary="Los principales verbos irregulares en pretérito indefinido.",
+        explanation="Muchos de los verbos más frecuentes tienen un **pretérito indefinido irregular** con raíces especiales y terminaciones sin tilde.\n\n**Verbos con raíz irregular (pretéritos fuertes)**:\n\n| Infinitivo | Raíz | yo | tú | él |\n|-----------|------|----|----|-----|\n| tener | tuv- | tuve | tuviste | tuvo |\n| estar | estuv- | estuve | estuviste | estuvo |\n| hacer | hic- (hiz-) | hice | hiciste | hizo |\n| poner | pus- | puse | pusiste | puso |\n| poder | pud- | pude | pudiste | pudo |\n| saber | sup- | supe | supiste | supo |\n| querer | quis- | quise | quisiste | quiso |\n| venir | vin- | vine | viniste | vino |\n| decir | dij- | dije | dijiste | dijo |\n| traer | traj- | traje | trajiste | trajo |\n| conducir | conduj- | conduje | condujiste | condujo |\n| andar | anduv- | anduve | anduviste | anduvo |\n\n**Ir y ser comparten la misma conjugación**: *fui, fuiste, fue, fuimos, fuisteis, fueron*.\n**Dar** es como un verbo -er/-ir: *di, diste, dio, dimos, disteis, dieron*.\n**Ver**: *vi, viste, vio, vimos, visteis, vieron* (sin tilde).",
+        structure="raíz irregular + -e/-iste/-o/-imos/-isteis/-ieron (sin tilde)",
+        rules=[
+            "Las terminaciones de los pretéritos fuertes NO llevan tilde.",
+            '"Hacer" cambia c→z en la tercera persona: hizo (no ~~hico~~).',
+            '"Decir" y verbos en -ducir tienen j en toda la conjugación: dijo, condujo.',
+            "Ir y ser son idénticos en indefinido; el contexto indica el significado.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Ayer no tuve tiempo para llamarte.",
+                translation="Yesterday I didn't have time to call you.",
+            ),
+            GrammarExample(
+                text="¿Qué hiciste el fin de semana?", translation="What did you do on the weekend?"
+            ),
+            GrammarExample(
+                text="Fui al médico y luego fui muy feliz.",
+                translation="I went to the doctor and then I was very happy.",
+                note="ir y ser",
+            ),
+            GrammarExample(
+                text="Ellos no quisieron venir a la cena.",
+                translation="They didn't want to come to the dinner.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Ayer hice la comida.",
+                correct="Ayer hice la comida.",
+                note='Correcto. "Hice" es la forma correcta de hacer en indefinido para yo.',
+            ),
+            GrammarMistake(
+                wrong="Él hico la maleta.",
+                correct="Él hizo la maleta.",
+                note='La tercera persona de hacer es "hizo", con z, no con c.',
+            ),
+        ],
+        related=[
+            "preterito-indefinido-regular",
+            "marcadores-temporales",
+            "preterito-vs-imperfecto",
+        ],
+    ),
+    GrammarTopic(
+        slug="imperfecto",
+        title="Pretérito imperfecto",
+        level="A2",
+        category="Tiempos verbales",
+        summary="Describir hábitos pasados, escenas y acciones en desarrollo en el pasado.",
+        explanation="El **pretérito imperfecto** describe acciones pasadas **no terminadas**, habituales o que servían de trasfondo a otros eventos. Solo hay **tres verbos irregulares**: *ir, ser, ver*.\n\n| Persona | -ar (hablar) | -er (comer) | -ir (vivir) |\n|--------|-------------|-------------|-------------|\n| yo | hablaba | comía | vivía |\n| tú | hablabas | comías | vivías |\n| él/ella/ud. | hablaba | comía | vivía |\n| nosotros | hablábamos | comíamos | vivíamos |\n| vosotros | hablabais | comíais | vivíais |\n| ellos/ellas/uds. | hablaban | comían | vivían |\n\nIrregulares: *ir → iba, ser → era, ver → veía*.\n\nUsos:\n- **Hábitos pasados**: *De pequeño jugaba al fútbol cada día.*\n- **Descripciones en el pasado**: *Era una noche oscura. Llovía.*\n- **Acciones en desarrollo**: *Mientras cocinaba, sonó el teléfono.*",
+        structure="raíz + -aba/-abas/-aba/-ábamos/-abais/-aban (AR) · -ía/-ías/-ía/-íamos/-íais/-ían (ER/IR)",
+        rules=[
+            "El imperfecto de -er e -ir es idéntico.",
+            "Indica acciones no terminadas, habituales o de fondo en el pasado.",
+            "Solo tres verbos irregulares: ir, ser y ver.",
+            "Se usa para describir circunstancias que rodean una acción puntual (en indefinido).",
+        ],
+        examples=[
+            GrammarExample(
+                text="Cuando era pequeño, vivía en un pueblo.",
+                translation="When I was little, I lived in a village.",
+            ),
+            GrammarExample(
+                text="Antes íbamos a la playa todos los veranos.",
+                translation="Before, we used to go to the beach every summer.",
+            ),
+            GrammarExample(
+                text="Ella leía mientras yo cocinaba.",
+                translation="She was reading while I was cooking.",
+            ),
+            GrammarExample(
+                text="Hacía frío y llovía sin parar.",
+                translation="It was cold and it was raining nonstop.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Cuando era pequeño, jugué al fútbol cada día.",
+                correct="Cuando era pequeño, jugaba al fútbol cada día.",
+                note="Los hábitos pasados requieren imperfecto, no indefinido.",
+            ),
+            GrammarMistake(
+                wrong="Ayer iba al cine.",
+                correct="Ayer fui al cine.",
+                note='Con "ayer" y una acción concreta se usa indefinido, no imperfecto.',
+            ),
+        ],
+        related=["preterito-vs-imperfecto", "solia", "marcadores-temporales"],
+    ),
+    GrammarTopic(
+        slug="preterito-vs-imperfecto",
+        title="Contraste: pretérito indefinido vs. imperfecto",
+        level="A2",
+        category="Tiempos verbales",
+        summary="Cuándo usar cada pasado: acción puntual vs. descripción o hábito.",
+        explanation='La elección entre **pretérito indefinido** e **imperfecto** es uno de los mayores desafíos del español. La clave está en **cómo se presenta la acción**:\n\n**Pretérito indefinido**: acción completa, puntual, que "avanza la historia".\n- *A las ocho llegué a casa, cené y me acosté.*\n\n**Pretérito imperfecto**: contexto, descripción, hábito o acción en desarrollo.\n- *Eran las ocho. Llovía. Estaba cansado.*\n\n**Combinados**: el imperfecto describe la escena (fondo) y el indefinido cuenta lo que pasó (acción principal):\n- *Mientras **paseaba** (imperfecto), **vi** (indefinido) a un amigo.*\n\nCon verbos de estado (saber, creer, querer) el indefinido implica cambio: *Supe la verdad* (me enteré) vs. *Sabía la verdad* (ya la sabía).',
+        rules=[
+            'Imperfecto = descripción, hábito, acción de fondo, "escenario".',
+            "Indefinido = acción concreta, terminada, que hace avanzar la narración.",
+            'Imperfecto con "mientras" cuando dos acciones son simultáneas y durativas.',
+            "Con verbos de estado el indefinido implica cambio de estado: supe = me enteré.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Estudiaba cuando me llamaste.",
+                translation="I was studying when you called me.",
+            ),
+            GrammarExample(
+                text="De joven, salía todos los viernes.",
+                translation="When young, I used to go out every Friday.",
+            ),
+            GrammarExample(
+                text="El verano pasado fui a Italia y visité Roma.",
+                translation="Last summer I went to Italy and visited Rome.",
+            ),
+            GrammarExample(
+                text="Hacía sol y los pájaros cantaban. De repente, empezó a llover.",
+                translation="It was sunny and the birds were singing. Suddenly, it started to rain.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Mientras cociné, sonó el teléfono.",
+                correct="Mientras cocinaba, sonó el teléfono.",
+                note='"Mientras + acción de fondo" pide imperfecto.',
+            ),
+            GrammarMistake(
+                wrong="Ayer estaba en casa todo el día.",
+                correct="Ayer estuve en casa todo el día.",
+                note='Con "ayer" y periodo definido se usa indefinido.',
+            ),
+        ],
+        related=["imperfecto", "preterito-indefinido-regular", "solia", "marcadores-temporales"],
+    ),
+    GrammarTopic(
+        slug="solia",
+        title="Soler + infinitivo",
+        level="A2",
+        category="Tiempos verbales",
+        summary="Expresar acciones habituales en pasado y presente con el verbo soler.",
+        explanation='El verbo **soler** (cambio o→ue) significa "tener la costumbre de" y se usa para expresar **acciones habituales** tanto en presente como en pasado.\n\nEn **presente**: *Suelo desayunar a las ocho.* (I usually have breakfast at eight.)\nEn **imperfecto**: *Solía jugar al tenis.* (I used to play tennis.)\n\n**Solía + infinitivo** es equivalente a *used to* en inglés. Es una alternativa al imperfecto simple para enfatizar hábitos pasados.\n\nEl verbo soler **no existe en indefinido** (~~solí~~) ni en otros tiempos más que presente e imperfecto de indicativo.',
+        structure="soler (conjugado) + infinitivo",
+        rules=[
+            "Soler solo se usa en presente e imperfecto de indicativo.",
+            'Siempre va seguido de infinitivo: "Suelo comer a las dos".',
+            '"Soler + infinitivo" expresa frecuencia habitual, no capacidad.',
+            'No confundir "solía" (hábito) con "solo/a" (alone).',
+        ],
+        examples=[
+            GrammarExample(
+                text="Suelo leer antes de dormir.", translation="I usually read before sleeping."
+            ),
+            GrammarExample(
+                text="De niño, solía pasar los veranos en el pueblo.",
+                translation="As a child, I used to spend summers in the village.",
+            ),
+            GrammarExample(text="¿Sueles hacer ejercicio?", translation="Do you usually exercise?"),
+            GrammarExample(
+                text="Antes no solíamos viajar tanto.",
+                translation="Before we didn't use to travel so much.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Solí ir al parque.",
+                correct="Solía ir al parque.",
+                note='"Soler" no tiene forma de indefinido. Se usa el imperfecto "solía".',
+            ),
+            GrammarMistake(
+                wrong="Suelo a comer a las dos.",
+                correct="Suelo comer a las dos.",
+                note="Soler rige infinitivo sin preposición.",
+            ),
+        ],
+        related=["imperfecto", "preterito-vs-imperfecto", "marcadores-temporales"],
+    ),
+    GrammarTopic(
+        slug="pronombres-objeto-directo",
+        title="Pronombres de objeto directo",
+        level="A2",
+        category="Pronombres",
+        summary="me, te, lo, la, nos, os, los, las — sustituir el complemento directo.",
+        explanation="Los **pronombres de objeto directo** sustituyen al complemento que recibe directamente la acción del verbo. Responden a *¿qué?* o *¿a quién?*.\n\n| Persona | Pronombre OD |\n|---------|-------------|\n| yo | me |\n| tú | te |\n| él/usted (masc.) | lo |\n| ella/usted (fem.) | la |\n| nosotros/as | nos |\n| vosotros/as | os |\n| ellos/ustedes (masc.) | los |\n| ellas/ustedes (fem.) | las |\n\nSe colocan **delante del verbo conjugado**: *Lo compré ayer.*\nCon **infinitivo o gerundio** pueden ir detrás soldados a la palabra: *Voy a comprarlo. / Estoy comprándolo.*",
+        structure="pronombre OD + verbo conjugado · infinitivo/gerundio + pronombre OD",
+        rules=[
+            "Concuerdan en género y número con el sustantivo que sustituyen.",
+            "Delante del verbo conjugado; detrás soldados al infinitivo o gerundio.",
+            '"Lo" se usa también para ideas o frases enteras: "No lo sé".',
+            'En España hay tendencia al leísmo de persona, pero lo normativo es "lo" para OD masculino.',
+        ],
+        examples=[
+            GrammarExample(
+                text="¿El libro? Lo leí ayer.", translation="The book? I read it yesterday."
+            ),
+            GrammarExample(
+                text="A María la vi en el supermercado.",
+                translation="María? I saw her at the supermarket.",
+            ),
+            GrammarExample(text="No puedo encontrarlo.", translation="I can't find it."),
+            GrammarExample(
+                text="Estamos preparándola para la fiesta.",
+                translation="We are preparing it for the party.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Lo vi a María.",
+                correct="La vi. / Vi a María.",
+                note='Si el OD es femenino, el pronombre debe ser "la".',
+            ),
+            GrammarMistake(
+                wrong="¿Las flores? Le compré ayer.",
+                correct="¿Las flores? Las compré ayer.",
+                note='OD femenino plural → "las", no "le".',
+            ),
+        ],
+        related=["pronombres-objeto-indirecto", "doble-objeto", "imperativo-afirmativo"],
+    ),
+    GrammarTopic(
+        slug="pronombres-objeto-indirecto",
+        title="Pronombres de objeto indirecto",
+        level="A2",
+        category="Pronombres",
+        summary="me, te, le, nos, os, les — sustituir el complemento indirecto (a quién).",
+        explanation="Los **pronombres de objeto indirecto** sustituyen a la persona o entidad que recibe el beneficio o daño de la acción. Responden a *¿a quién?* o *¿para quién?*.\n\n| Persona | Pronombre OI |\n|---------|-------------|\n| yo | me |\n| tú | te |\n| él/ella/usted | le |\n| nosotros/as | nos |\n| vosotros/as | os |\n| ellos/ellas/ustedes | les |\n\nA diferencia del OD, el OI **no distingue género**: *le* sirve para masculino y femenino singular; *les* para plural.\n\nSe colocan igual que los OD: delante del verbo conjugado o detrás del infinitivo/gerundio. La duplicación del OI es frecuente: *Le di el libro a Juan.*",
+        structure="pronombre OI + verbo conjugado",
+        rules=[
+            "No distinguen género: le/les para masculino y femenino.",
+            'Se suele duplicar el OI con "a + persona" para aclarar: "Le dije a María".',
+            "Colocación: delante del verbo conjugado o soldado al infinitivo/gerundio.",
+            "Con verbos como gustar, encantar, doler, el sujeto va después y el OI va delante.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Le escribí una carta a mi abuela.",
+                translation="I wrote a letter to my grandmother.",
+            ),
+            GrammarExample(
+                text="¿Me puedes prestar tu boli?", translation="Can you lend me your pen?"
+            ),
+            GrammarExample(
+                text="Les explicamos la situación a los clientes.",
+                translation="We explained the situation to the clients.",
+            ),
+            GrammarExample(
+                text="Voy a darle el regalo mañana.",
+                translation="I am going to give him/her the present tomorrow.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="La di el libro a María.",
+                correct="Le di el libro a María.",
+                note='El OI es "le" (invariable en género), no "la".',
+            ),
+            GrammarMistake(
+                wrong="Dí a Juan la noticia.",
+                correct="Le di la noticia a Juan.",
+                note="El OI debe aparecer con el pronombre, especialmente si se menciona la persona.",
+            ),
+        ],
+        related=["pronombres-objeto-directo", "doble-objeto", "gustar"],
+    ),
+    GrammarTopic(
+        slug="doble-objeto",
+        title="Combinación de pronombres OD y OI",
+        level="A2",
+        category="Pronombres",
+        summary="Usar juntos los pronombres de OD y OI: se lo, me lo, te la...",
+        explanation='Cuando en una misma oración aparecen pronombres de **objeto indirecto y objeto directo**, el OI va **siempre antes** del OD.\n\nLa regla más importante: cuando el OI es **le o les** y va seguido de un OD de tercera persona (**lo, la, los, las**), el OI se transforma en **se**:\n- *Le di el libro.* → *Se lo di.* (NO ~~Le lo di~~)\n- *Les mandé las cartas.* → *Se las mandé.*\n\nOrden: **OI + OD + verbo**.\n\nCon infinitivo o gerundio, ambos se colocan detrás: *Voy a decírtelo. / Estoy explicándoselo.*\n\nLa duplicación del OI es posible y frecuente: "Se lo di a ella".',
+        structure="OI + OD + verbo · se + lo/la/los/las (cuando OI es le/les)",
+        rules=[
+            "El OI siempre precede al OD.",
+            "le/les + lo/la/los/las → se + lo/la/los/las.",
+            "Con ambos pronombres al final del infinitivo/gerundio, se acentúa la palabra.",
+            'La duplicación del OI es posible: "Se lo di a ella".',
+        ],
+        examples=[
+            GrammarExample(
+                text="¿El informe? Te lo envío ahora.",
+                translation="The report? I'll send it to you now.",
+            ),
+            GrammarExample(
+                text="Se lo expliqué a mis padres.", translation="I explained it to my parents."
+            ),
+            GrammarExample(text="¿Me lo puedes repetir?", translation="Can you repeat it to me?"),
+            GrammarExample(
+                text="No quiero contárselo todavía.",
+                translation="I don't want to tell it to him/her/them yet.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Le lo dije.",
+                correct="Se lo dije.",
+                note='La combinación "le lo" no existe; se convierte en "se lo".',
+            ),
+            GrammarMistake(
+                wrong="Lo se di.", correct="Se lo di.", note="El OI (se) debe ir antes del OD (lo)."
+            ),
+        ],
+        related=[
+            "pronombres-objeto-directo",
+            "pronombres-objeto-indirecto",
+            "imperativo-afirmativo",
+        ],
+    ),
+    GrammarTopic(
+        slug="comparativos",
+        title="Comparativos",
+        level="A2",
+        category="Adjetivos y adverbios",
+        summary="Comparar personas, objetos y acciones: más... que, menos... que, tan... como.",
+        explanation="En español hay tres tipos de **comparación**:\n\n**Comparativo de superioridad**: *más + adjetivo/sustantivo/adverbio + que*\n- *Ella es más alta que yo. / Tengo más trabajo que antes.*\n\n**Comparativo de inferioridad**: *menos + adjetivo/sustantivo/adverbio + que*\n- *Este coche es menos caro que aquel.*\n\n**Comparativo de igualdad**: *tan + adjetivo/adverbio + como* / *tanto/a/os/as + sustantivo + como*\n- *Es tan inteligente como su hermano. / Tengo tantos libros como tú.*\n\n**Comparativos irregulares**:\n- bueno → mejor · malo → peor · grande → mayor · pequeño → menor\n- *Mejor/peor que*, nunca ~~más mejor~~.",
+        structure="más + adjetivo/sustantivo/adverbio + que · menos + ... + que · tan + adjetivo + como",
+        rules=[
+            '"Más/menos + adjetivo + que" para superioridad e inferioridad.',
+            '"Tan + adjetivo + como" para igualdad con adjetivos; "tanto/a/os/as + sustantivo + como" con sustantivos.',
+            'Los comparativos irregulares no usan "más": mejor, peor, mayor, menor.',
+            'Con números se usa "más de": "Más de cien personas".',
+        ],
+        examples=[
+            GrammarExample(
+                text="Madrid es más grande que Barcelona.",
+                translation="Madrid is bigger than Barcelona.",
+            ),
+            GrammarExample(
+                text="Este ejercicio es menos difícil que el anterior.",
+                translation="This exercise is less difficult than the previous one.",
+            ),
+            GrammarExample(
+                text="Ella es tan simpática como su hermana.",
+                translation="She is as nice as her sister.",
+            ),
+            GrammarExample(
+                text="Esta película es mejor que la otra.",
+                translation="This film is better than the other one.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Es más mejor que el otro.",
+                correct="Es mejor que el otro.",
+                note='"Mejor" ya es comparativo; no necesita "más".',
+            ),
+            GrammarMistake(
+                wrong="Es tan alto que su padre.",
+                correct="Es tan alto como su padre.",
+                note='Las comparaciones de igualdad usan "tan... como", no "tan... que".',
+            ),
+        ],
+        related=["superlativos", "tan-como", "adjetivos-descriptivos"],
+    ),
+    GrammarTopic(
+        slug="superlativos",
+        title="Superlativos",
+        level="A2",
+        category="Adjetivos y adverbios",
+        summary="Expresar el grado máximo de una cualidad: el más..., el mejor, -ísimo.",
+        explanation="El **superlativo** expresa el grado máximo de una cualidad. Hay dos formas:\n\n**Superlativo relativo**: destaca un elemento dentro de un grupo.\n- *el/la/los/las + más/menos + adjetivo + de*: *Es la más inteligente de la clase.*\n\n**Superlativo absoluto**: expresa un grado muy alto sin comparar.\n- *muy + adjetivo*: *Es muy bueno.*\n- *adjetivo + -ísimo/a*: *Es buenísimo. / Es facilísimo.*\n\nIrregulares:\n- bueno → óptimo / buenísimo\n- malo → pésimo / malísimo\n- grande → máximo / grandísimo\n- pequeño → mínimo / pequeñísimo\n\nCambios ortográficos al añadir -ísimo: largo → larguísimo, feliz → felicísimo, rico → riquísimo.",
+        structure="el/la/los/las + más/menos + adjetivo + de · adjetivo + -ísimo/a/os/as",
+        rules=[
+            'Superlativo relativo: "el más + adjetivo + de".',
+            'Superlativo absoluto: "-ísimo/a/os/as" o "muy + adjetivo".',
+            "Los adjetivos en -ble forman -bilísimo: amable → amabilísimo.",
+            "Los terminados en -co/-go cambian a -qu/-gu: rico → riquísimo, largo → larguísimo.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Es el edificio más alto del mundo.",
+                translation="It's the tallest building in the world.",
+            ),
+            GrammarExample(
+                text="La paella está buenísima.", translation="The paella is absolutely delicious."
+            ),
+            GrammarExample(
+                text="Es la persona menos puntual de la oficina.",
+                translation="He/she is the least punctual person in the office.",
+            ),
+            GrammarExample(
+                text="El examen fue facilísimo.", translation="The exam was extremely easy."
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Es el más mejor de todos.",
+                correct="Es el mejor de todos.",
+                note='"Mejor" ya es la forma superlativa de "bueno" para el relativo.',
+            ),
+            GrammarMistake(
+                wrong="Es el más bueno.",
+                correct="Es el mejor.",
+                note='"Bueno" tiene comparativo/superlativo irregular: mejor, el mejor.',
+            ),
+        ],
+        related=["comparativos", "tan-como", "adjetivos-descriptivos"],
+    ),
+    GrammarTopic(
+        slug="tan-como",
+        title="Tan y tanto... como",
+        level="A2",
+        category="Adjetivos y adverbios",
+        summary="Expresar igualdad: tan + adjetivo + como; tanto/a/os/as + sustantivo + como.",
+        explanation="**Tan** y **tanto** expresan **igualdad** en la comparación. La forma correcta depende de qué se compara:\n\n- **Tan + adjetivo + como**: *Eres tan alto como tu hermano.*\n- **Tan + adverbio + como**: *Corre tan rápido como un profesional.*\n- **Tanto/a/os/as + sustantivo + como**: concuerda en género y número. *Tengo tanto dinero como tú. / Hay tantas chicas como chicos.*\n- **Verbo + tanto como**: *Estudio tanto como puedo.*\n\nEn oraciones consecutivas se usa **tan/tanto... que**: *Es tan gracioso que todos se ríen. / Habla tanto que me cansa.*",
+        structure="tan + adjetivo/adverbio + como · tanto/a/os/as + sustantivo + como · verbo + tanto como",
+        rules=[
+            '"Tan" es invariable: siempre igual, con adjetivos y adverbios.',
+            '"Tanto" concuerda en género y número con el sustantivo.',
+            '"Tanto como" con verbos (invariable).',
+            '"Tan... que" y "tanto... que" para consecuencias, no comparación.',
+        ],
+        examples=[
+            GrammarExample(
+                text="No soy tan paciente como tú.", translation="I'm not as patient as you."
+            ),
+            GrammarExample(
+                text="En esta ciudad hay tanta contaminación como en otras capitales.",
+                translation="In this city there is as much pollution as in other capitals.",
+            ),
+            GrammarExample(
+                text="No hablo español tan bien como me gustaría.",
+                translation="I don't speak Spanish as well as I'd like.",
+            ),
+            GrammarExample(
+                text="Estaba tan cansado que me dormí en el sofá.",
+                translation="I was so tired that I fell asleep on the sofa.",
+                note="consecutivo",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Tengo tan dinero como tú.",
+                correct="Tengo tanto dinero como tú.",
+                note='Con sustantivos se usa "tanto/a/os/as", no "tan".',
+            ),
+            GrammarMistake(
+                wrong="Es tanto amable como su madre.",
+                correct="Es tan amable como su madre.",
+                note='Con adjetivos se usa "tan", no "tanto".',
+            ),
+        ],
+        related=["comparativos", "superlativos", "muy-mucho"],
+    ),
+    GrammarTopic(
+        slug="imperativo-afirmativo",
+        title="Imperativo afirmativo",
+        level="A2",
+        category="Verbos",
+        summary="Dar órdenes, instrucciones y consejos con el imperativo afirmativo.",
+        explanation='El **imperativo afirmativo** se usa para dar órdenes, instrucciones, consejos o hacer invitaciones. Tiene formas propias para **tú** y **vosotros**; las formas de **usted** y **ustedes** se toman del **presente de subjuntivo**.\n\n**Formación regular**:\n\n| | -ar (hablar) | -er (comer) | -ir (escribir) |\n|---|-------------|-------------|---------------|\n| tú | habla | come | escribe |\n| usted | hable | coma | escriba |\n| vosotros | hablad | comed | escribid |\n| ustedes | hablen | coman | escriban |\n\nEl imperativo de **tú** afirmativo coincide con la tercera persona singular del presente de indicativo: *él habla → ¡habla tú!*\nEl de **vosotros** se forma sustituyendo la -r del infinitivo por -d: *hablar → hablad*.\n\nLos pronombres van **detrás y soldados**: *cómpralo, siéntate, dime, dáselo*.\nEl imperativo de vosotros pierde la -d ante "os": *sentad + os → sentaos*.',
+        structure="tú: 3ª pers. sing. presente · usted: 3ª pers. sing. subjuntivo · vosotros: infinitivo -r + d",
+        rules=[
+            "Tú afirmativo: como la 3ª persona singular del presente (habla, come, escribe).",
+            "Vosotros afirmativo: cambiar -r del infinitivo por -d (hablad, comed, escribid).",
+            "Usted/ustedes: igual que el presente de subjuntivo.",
+            'Los pronombres van detrás: "dime", "cómpralo", "siéntate".',
+        ],
+        examples=[
+            GrammarExample(text="¡Come más despacio!", translation="Eat more slowly!"),
+            GrammarExample(
+                text="Hablad más bajo, por favor.",
+                translation="Speak more quietly, please.",
+                note="vosotros",
+            ),
+            GrammarExample(text="Dime la verdad.", translation="Tell me the truth."),
+            GrammarExample(
+                text="Siéntese, por favor.", translation="Sit down, please.", note="usted"
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="¡Comes más despacio!",
+                correct="¡Come más despacio!",
+                note='El imperativo de tú es "come", no "comes".',
+            ),
+            GrammarMistake(
+                wrong="Sentaros aquí.",
+                correct="Sentaos aquí.",
+                note='El imperativo de vosotros pierde la -d delante de "os": sentad + os → sentaos.',
+            ),
+        ],
+        related=["imperativo-negativo", "imperativo-irregular", "pronombres-objeto-directo"],
+    ),
+    GrammarTopic(
+        slug="imperativo-negativo",
+        title="Imperativo negativo",
+        level="A2",
+        category="Verbos",
+        summary="Prohibir o desaconsejar con el imperativo negativo.",
+        explanation="El **imperativo negativo** usa siempre las formas del **presente de subjuntivo**, para todas las personas, incluido tú y vosotros.\n\n| Persona | -ar (hablar) | -er (comer) | -ir (escribir) |\n|--------|-------------|-------------|---------------|\n| tú | no hables | no comas | no escribas |\n| usted | no hable | no coma | no escriba |\n| vosotros | no habléis | no comáis | no escribáis |\n| ustedes | no hablen | no coman | no escriban |\n\nLos pronombres en el imperativo negativo van **delante del verbo** (a diferencia del afirmativo):\n- *Cómpralo. → No lo compres.*\n- *Siéntate. → No te sientes.*",
+        structure="no + presente de subjuntivo",
+        rules=[
+            "El imperativo negativo usa siempre el presente de subjuntivo.",
+            'Los pronombres van delante del verbo en el negativo: "No lo hagas".',
+            '"No + subjuntivo" reemplaza completamente al imperativo afirmativo para prohibiciones.',
+            "La forma de vosotros negativo termina en -éis (AR) o -áis (ER/IR): no habléis, no comáis.",
+        ],
+        examples=[
+            GrammarExample(text="No hables tan alto.", translation="Don't speak so loudly."),
+            GrammarExample(
+                text="No comáis tantos dulces.",
+                translation="Don't eat so many sweets.",
+                note="vosotros",
+            ),
+            GrammarExample(
+                text="Por favor, no se preocupe.", translation="Please, don't worry.", note="usted"
+            ),
+            GrammarExample(
+                text="No lo toques, está caliente.", translation="Don't touch it, it's hot."
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="No habla tan alto.",
+                correct="No hables tan alto.",
+                note='El imperativo negativo de tú es "no hables", no "no habla".',
+            ),
+            GrammarMistake(
+                wrong="No sentaros aquí.",
+                correct="No os sentéis aquí.",
+                note='En el negativo los pronombres van delante: "no os sentéis".',
+            ),
+        ],
+        related=["imperativo-afirmativo", "imperativo-irregular", "subjuntivo-presente"],
+    ),
+    GrammarTopic(
+        slug="imperativo-irregular",
+        title="Imperativo irregular",
+        level="A2",
+        category="Verbos",
+        summary="Los imperativos irregulares de tú: ven, di, sal, haz, ten, ve, pon, sé.",
+        explanation="El imperativo afirmativo de **tú** tiene **ocho formas irregulares** muy frecuentes:\n\n| Infinitivo | Imperativo tú |\n|-----------|--------------|\n| decir | **di** |\n| hacer | **haz** |\n| ir | **ve** |\n| poner | **pon** |\n| salir | **sal** |\n| ser | **sé** |\n| tener | **ten** |\n| venir | **ven** |\n\nEstas formas irregulares mantienen los pronombres soldados detrás: *dime, hazlo, ponte, vete, tenlo, ven aquí*.\n\nPara **vosotros**, el imperativo es siempre regular (salvo ir → id).\n\nEl imperativo negativo usa el subjuntivo y sigue las irregularidades del presente de subjuntivo: *no digas, no hagas, no vayas, no pongas...*",
+        structure="ocho formas irregulares de tú",
+        rules=[
+            "Solo ocho verbos tienen imperativo de tú irregular.",
+            "Las formas de vosotros son siempre regulares (infinitivo -r + d).",
+            'Los imperativos irregulares de tú se memorizan: "di, haz, ve, pon, sal, sé, ten, ven".',
+            "El imperativo negativo irregular sigue el subjuntivo.",
+        ],
+        examples=[
+            GrammarExample(text="Di la verdad.", translation="Tell the truth."),
+            GrammarExample(text="Haz los deberes ahora.", translation="Do your homework now."),
+            GrammarExample(text="Ten paciencia.", translation="Be patient."),
+            GrammarExample(text="Pon la mesa, por favor.", translation="Set the table, please."),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Hace los deberes.",
+                correct="Haz los deberes.",
+                note='El imperativo de hacer es "haz". "Hace" es presente de indicativo.',
+            ),
+            GrammarMistake(
+                wrong="Pone la mesa.",
+                correct="Pon la mesa.",
+                note='El imperativo de poner es "pon". "Pone" es presente de indicativo.',
+            ),
+        ],
+        related=["imperativo-afirmativo", "imperativo-negativo", "presente-regular"],
+    ),
+    GrammarTopic(
+        slug="futuro-simple",
+        title="Futuro simple",
+        level="A2",
+        category="Tiempos verbales",
+        summary="Hablar de acciones futuras: hablaré, comerás, vivirán.",
+        explanation="El **futuro simple** se forma añadiendo las terminaciones al **infinitivo completo** (sin quitar -ar/-er/-ir). Es igual para las tres conjugaciones.\n\n| Persona | -ar (hablar) | -er (comer) | -ir (vivir) |\n|--------|-------------|-------------|------------|\n| yo | hablaré | comeré | viviré |\n| tú | hablarás | comerás | vivirás |\n| él/ella/usted | hablará | comerá | vivirá |\n| nosotros | hablaremos | comeremos | viviremos |\n| vosotros | hablaréis | comeréis | viviréis |\n| ellos/ellas/uds. | hablarán | comerán | vivirán |\n\n**Irregulares**: modifican la raíz pero mantienen las mismas terminaciones:\n- decir → dir- · hacer → har- · querer → querr- · poder → podr- · saber → sabr- · salir → saldr- · tener → tendr- · venir → vendr- · poner → pondr- · valer → valdr- · haber → habr- · caber → cabr-\n\nSe usa también para expresar **probabilidad o conjetura** en el presente: *Serán las tres* (probablemente son las tres).",
+        structure="infinitivo completo + -é/-ás/-á/-emos/-éis/-án",
+        rules=[
+            "Las terminaciones se añaden al infinitivo completo; igual para -ar, -er, -ir.",
+            'Todas las formas llevan tilde menos "nosotros" (no lleva tilde: hablaremos).',
+            "Los irregulares cambian la raíz pero mantienen las mismas terminaciones.",
+            'También expresa conjetura: "Estará enfermo" = probablemente está enfermo.',
+        ],
+        examples=[
+            GrammarExample(
+                text="El año que viene estudiaré en Granada.",
+                translation="Next year I will study in Granada.",
+            ),
+            GrammarExample(text="¿Vendrás a la boda?", translation="Will you come to the wedding?"),
+            GrammarExample(
+                text="No podremos llegar a tiempo.",
+                translation="We won't be able to arrive on time.",
+            ),
+            GrammarExample(
+                text="¿Dónde estará Juan? — Estará en casa.",
+                translation="Where could Juan be? — He's probably at home.",
+                note="conjetura",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Mañana voy a viajaré.",
+                correct="Mañana viajaré. / Mañana voy a viajar.",
+                note='No mezclar "ir a" con el futuro simple; se usa uno u otro.',
+            ),
+        ],
+        related=["ir-a-futuro", "condicional-simple", "si-presente-futuro"],
+    ),
+    GrammarTopic(
+        slug="condicional-simple",
+        title="Condicional simple",
+        level="A2",
+        category="Condicionales",
+        summary="Expresar deseos, cortesía, probabilidad en el pasado y situaciones hipotéticas.",
+        explanation="El **condicional simple** se forma añadiendo terminaciones al **infinitivo completo**. Los mismos verbos que son irregulares en futuro lo son en condicional.\n\n| Persona | -ar (hablar) | -er (comer) | -ir (vivir) |\n|--------|-------------|-------------|------------|\n| yo | hablaría | comería | viviría |\n| tú | hablarías | comerías | vivirías |\n| él/ella/ud. | hablaría | comería | viviría |\n| nosotros | hablaríamos | comeríamos | viviríamos |\n| vosotros | hablaríais | comeríais | viviríais |\n| ellos/ellas/uds. | hablarían | comerían | vivirían |\n\nUsos:\n- **Deseo**: *Me gustaría viajar a Japón.*\n- **Cortesía**: *¿Podría ayudarme?*\n- **Consejo**: *Deberías estudiar más.*\n- **Probabilidad en el pasado**: *Serían las tres cuando llegó.*\n- **Futuro del pasado**: *Dijo que vendría.*",
+        structure="infinitivo completo + -ía/-ías/-ía/-íamos/-íais/-ían",
+        rules=[
+            "Terminaciones sobre el infinitivo completo. Siempre llevan tilde.",
+            "Mismos irregulares que el futuro: diría, haría, querría, podría, sabría, saldría, tendría, vendría, pondría, valdría, habría, cabría.",
+            '"Debería" + infinitivo para consejos; "me gustaría" para deseos corteses.',
+            'No se usa "si" con condicional simple en la prótasis.',
+        ],
+        examples=[
+            GrammarExample(
+                text="Me gustaría aprender a tocar la guitarra.",
+                translation="I would like to learn to play the guitar.",
+            ),
+            GrammarExample(
+                text="¿Podrías pasarme la sal?", translation="Could you pass me the salt?"
+            ),
+            GrammarExample(
+                text="Deberías dormir más horas.", translation="You should sleep more hours."
+            ),
+            GrammarExample(
+                text="Dijo que llegaría a las ocho.",
+                translation="He said he would arrive at eight.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Si tendría dinero, viajaría.",
+                correct="Si tuviera dinero, viajaría.",
+                note='En las oraciones condicionales con "si", el condicional no va en la prótasis.',
+            ),
+            GrammarMistake(
+                wrong="¿Puederías ayudarme?",
+                correct="¿Podrías ayudarme?",
+                note='El condicional de poder es "podrías", con -dr-.',
+            ),
+        ],
+        related=["futuro-simple", "si-presente-futuro", "subjuntivo-presente"],
+    ),
+    GrammarTopic(
+        slug="si-presente-futuro",
+        title="Oraciones condicionales: si + presente + futuro",
+        level="A2",
+        category="Condicionales",
+        summary="Condiciones reales o probables con si + presente de indicativo + futuro.",
+        explanation='Las **condicionales de primer tipo** expresan condiciones **posibles o probables**. La estructura es:\n\n**Si + presente de indicativo, + futuro / presente / imperativo.**\n\n- *Si **estudias**, **aprobarás** el examen.* (condición probable → resultado futuro)\n- *Si **quieres**, te **ayudo**.* (presente en ambas partes)\n- *Si **tienes** hambre, **come** algo.* (imperativo en la principal)\n\nLa prótasis (la parte con "si") NUNCA lleva futuro ni condicional en español. Esto es diferente del inglés:\n- *If it rains → Si llueve* (NO ~~Si lloverá~~).',
+        structure="si + presente de indicativo + futuro simple / presente / imperativo",
+        rules=[
+            'En la subordinada con "si" se usa presente de indicativo, nunca futuro ni condicional.',
+            "La oración principal puede ir en futuro, presente o imperativo.",
+            'El orden puede invertirse: "Te ayudo si quieres". En ese caso no hay coma.',
+            "Se usa para condiciones realistas, no hipotéticas ni irreales.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Si llueve, no saldremos.", translation="If it rains, we won't go out."
+            ),
+            GrammarExample(
+                text="Si tienes tiempo, llámame.", translation="If you have time, call me."
+            ),
+            GrammarExample(
+                text="Te lo compro si no es muy caro.",
+                translation="I'll buy it for you if it isn't very expensive.",
+            ),
+            GrammarExample(
+                text="Si quieres, vamos al cine.",
+                translation="If you want, let's go to the cinema.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Si lloverá, no salgo.",
+                correct="Si llueve, no saldré.",
+                note='Después de "si" condicional nunca se usa futuro.',
+            ),
+            GrammarMistake(
+                wrong="Si tendrás tiempo, llámame.",
+                correct="Si tienes tiempo, llámame.",
+                note='"Si" no admite futuro ni condicional en la prótasis.',
+            ),
+        ],
+        related=["futuro-simple", "condicional-simple", "si-imperfecto-subjuntivo"],
+    ),
+    GrammarTopic(
+        slug="conectores-narrativos",
+        title="Conectores narrativos",
+        level="A2",
+        category="Oraciones",
+        summary="Palabras para organizar un relato: primero, luego, entonces, después, al final.",
+        explanation="Los **conectores narrativos** ayudan a ordenar cronológicamente los hechos de un relato o una secuencia de acciones en el pasado.\n\n**Secuencia temporal**:\n- *Primero / En primer lugar / Para empezar* → inicio.\n- *Luego / Después / Más tarde / A continuación* → continuación.\n- *Entonces / En ese momento / De repente* → acontecimiento puntual.\n- *Finalmente / Por último / Al final* → conclusión.\n\nEn narraciones en pasado, estos conectores frecuentemente van con **pretérito indefinido** porque introducen acciones que hacen avanzar la historia:\n- *Primero desayuné; después salí de casa; entonces vi a Marta; finalmente llegué al trabajo.*",
+        rules=[
+            '"Entonces" introduce un acontecimiento puntual o una consecuencia lógica.',
+            '"De repente" marca una acción inesperada; suele ir con indefinido.',
+            '"Al final" ≠ "finalmente": al final indica un desenlace que puede ser sorprendente; finalmente es neutro.',
+            'Los conectores pueden ir al inicio, en medio o precedidos de "y": "y entonces...".',
+        ],
+        examples=[
+            GrammarExample(
+                text="Primero fui al banco, luego pasé por el supermercado y finalmente volví a casa.",
+                translation="First I went to the bank, then I stopped by the supermarket, and finally I went back home.",
+            ),
+            GrammarExample(
+                text="Estaba leyendo cuando de repente se apagó la luz.",
+                translation="I was reading when suddenly the lights went out.",
+            ),
+            GrammarExample(
+                text="Entonces decidí llamar a la policía.",
+                translation="Then I decided to call the police.",
+            ),
+            GrammarExample(
+                text="Al final todo salió bien.",
+                translation="In the end everything turned out fine.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Después fui a su casa.",
+                correct="Después fui a su casa.",
+                note='Correcto. "Después" puede ir seguido del verbo directamente o con "de" + infinitivo.',
+            ),
+        ],
+        related=["secuencia-temporal", "preterito-indefinido-regular", "preterito-vs-imperfecto"],
+    ),
+    GrammarTopic(
+        slug="secuencia-temporal",
+        title="Secuencia temporal en la narración",
+        level="A2",
+        category="Oraciones",
+        summary="Coordinar tiempos verbales en una historia: imperfecto de fondo, indefinido de avance.",
+        explanation="En una narración en pasado, los tiempos verbales no se eligen al azar. Siguen una **secuencia temporal** que distingue:\n\n**Imperfecto** → descripción del contexto, circunstancias, acciones de fondo:\n  *Era un día soleado. Los pájaros cantaban. Ana paseaba por el parque.*\n\n**Indefinido** → acciones que hacen avanzar la historia:\n  *De repente, vio a un amigo. Se acercó y lo saludó.*\n\n**Pluscuamperfecto** → acción anterior a otra pasada:\n  *Cuando llegué, ya habían cerrado.*\n\nCombinarlos correctamente da fluidez al relato y guía al oyente sobre qué es esencial y qué es contexto.",
+        rules=[
+            'Imperfecto para el "telón de fondo" (descripciones, circunstancias).',
+            "Indefinido para las acciones principales que mueven la trama.",
+            "Pluscuamperfecto para lo que ya había ocurrido antes del momento narrado.",
+            "Los conectores temporales ayudan a marcar la secuencia.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Eran las diez de la noche. Llovía con fuerza. De repente, alguien llamó a la puerta.",
+                translation="It was ten at night. It was raining heavily. Suddenly, someone knocked on the door.",
+            ),
+            GrammarExample(
+                text="Mientras desayunaba, leí el periódico.",
+                translation="While I was having breakfast, I read the newspaper.",
+            ),
+            GrammarExample(
+                text="Cuando llegamos al cine, ya había empezado la película.",
+                translation="When we arrived at the cinema, the film had already started.",
+            ),
+            GrammarExample(
+                text="Paseaba por la calle cuando me encontré con un viejo amigo.",
+                translation="I was walking down the street when I ran into an old friend.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Era un día soleado. De repente, alguien llamaba a la puerta.",
+                correct="Era un día soleado. De repente, alguien llamó a la puerta.",
+                note='"De repente" introduce una acción puntual; pide indefinido.',
+            ),
+            GrammarMistake(
+                wrong="Cuando llegué, ya cerraron.",
+                correct="Cuando llegué, ya habían cerrado.",
+                note="Acción anterior a otra pasada → pluscuamperfecto.",
+            ),
+        ],
+        related=["conectores-narrativos", "preterito-vs-imperfecto", "pluscuamperfecto"],
+    ),
+    GrammarTopic(
+        slug="estilo-indirecto",
+        title="Estilo indirecto (presente → pasado)",
+        level="A2",
+        category="Estilo indirecto",
+        summary="Contar lo que alguien dijo adaptando los tiempos verbales.",
+        explanation='El **estilo indirecto** consiste en reproducir lo que alguien ha dicho sin usar una cita textual. Cuando el verbo introductor está en **pasado** (dijo que, comentó que), los tiempos verbales y otras referencias se desplazan hacia el pasado:\n\n| Estilo directo | Estilo indirecto |\n|---------------|-----------------|\n| Presente: "Estoy cansado" | Imperfecto: Dijo que **estaba** cansado |\n| Pret. perfecto: "He comido" | Pluscuamperfecto: Dijo que **había comido** |\n| Indefinido: "Llegué ayer" | Pluscuamperfecto: Dijo que **había llegado** el día anterior |\n| Futuro: "Iré mañana" | Condicional: Dijo que **iría** al día siguiente |\n\nTambién cambian:\n- *hoy → aquel día*\n- *ayer → el día anterior*\n- *mañana → el día siguiente*\n- *aquí → allí*',
+        rules=[
+            'Con verbo introductor en presente ("dice que"), no hay cambio de tiempos.',
+            'Con verbo introductor en pasado ("dijo que"), todos los tiempos retroceden un paso.',
+            "Los pronombres y referencias espaciales también se adaptan.",
+            '"Que" es obligatorio para introducir la subordinada: "Dijo que vendría".',
+        ],
+        examples=[
+            GrammarExample(
+                text="Dijo que estaba cansado.",
+                translation="He said he was tired.",
+                note='directo: "Estoy cansado"',
+            ),
+            GrammarExample(
+                text="Me contó que había vivido en París.",
+                translation="She told me she had lived in Paris.",
+                note='directo: "He vivido en París"',
+            ),
+            GrammarExample(
+                text="Aseguró que llegaría al día siguiente.",
+                translation="He assured me he would arrive the next day.",
+                note='directo: "Llegaré mañana"',
+            ),
+            GrammarExample(
+                text="Nos explicaron que no podían ayudarnos.",
+                translation="They explained they couldn't help us.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Dijo que está cansado.",
+                correct="Dijo que estaba cansado.",
+                note='Con "dijo" (pasado), el verbo subordinado debe concordar en pasado.',
+            ),
+            GrammarMistake(
+                wrong="Dijo que vendrá mañana.",
+                correct="Dijo que vendría al día siguiente.",
+                note='Futuro → condicional, y "mañana" → "al día siguiente".',
+            ),
+        ],
+        related=["cambios-temporales", "imperfecto", "condicional-simple"],
+    ),
+    GrammarTopic(
+        slug="conectores-argumentativos",
+        title="Conectores argumentativos",
+        level="A2",
+        category="Oraciones",
+        summary="Conectores para causa, consecuencia y contraste: porque, así que, sin embargo.",
+        explanation="Los **conectores argumentativos** unen ideas y permiten expresar relaciones lógicas: causa, consecuencia, oposición.\n\n**Causa**: *porque, ya que, puesto que, debido a que*\n- *No fui a la fiesta **porque** estaba enfermo.*\n- *Ya que has terminado, puedes salir.*\n\n**Consecuencia**: *así que, por eso, por lo tanto, en consecuencia*\n- *Tenía hambre, **así que** me preparé un bocadillo.*\n- *No estudió nada; **por eso** suspendió.*\n\n**Contraste**: *pero, sin embargo, no obstante, aunque, en cambio*\n- *Es caro, **pero** merece la pena.*\n- *Hace frío; **sin embargo**, saldré a correr.*",
+        rules=[
+            '"Porque" (causa) junto, sin tilde. "Por qué" (interrogativo) separado y con tilde.',
+            '"Así que" introduce una consecuencia y se escribe separado.',
+            '"Pero" une dos elementos de la misma categoría; "sino" corrige una negación.',
+            '"Aunque" puede ir con indicativo (hecho real) o subjuntivo (hipótesis).',
+        ],
+        examples=[
+            GrammarExample(
+                text="No salí porque llovía mucho.",
+                translation="I didn't go out because it was raining a lot.",
+            ),
+            GrammarExample(
+                text="Estaba agotado, así que me fui a dormir temprano.",
+                translation="I was exhausted, so I went to bed early.",
+            ),
+            GrammarExample(
+                text="Me gusta el chocolate, pero no debo comer tanto.",
+                translation="I like chocolate, but I shouldn't eat so much.",
+            ),
+            GrammarExample(
+                text="Hizo mucho esfuerzo; sin embargo, no consiguió el puesto.",
+                translation="He made a lot of effort; however, he didn't get the position.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="No es caro, pero barato.",
+                correct="No es caro, sino barato.",
+                note='Tras una negación, para corregir se usa "sino", no "pero".',
+            ),
+            GrammarMistake(
+                wrong="No vine por que estaba enfermo.",
+                correct="No vine porque estaba enfermo.",
+                note='"Porque" (causa) se escribe junto y sin tilde.',
+            ),
+        ],
+        related=["conectores-narrativos", "conectores-avanzados", "si-presente-futuro"],
+    ),
+    GrammarTopic(
+        slug="cambios-temporales",
+        title="Cambios temporales en el estilo indirecto",
+        level="A2",
+        category="Estilo indirecto",
+        summary="Cómo cambian las referencias de tiempo y lugar al pasar al estilo indirecto.",
+        explanation='Cuando se pasa del **estilo directo al indirecto** con verbo introductor en pasado, no solo cambian los verbos. Las **referencias temporales y espaciales** también se adaptan:\n\n| Referencia directa | Indirecta (pasado) |\n|-------------------|-------------------|\n| hoy | aquel día / ese día |\n| ayer | el día anterior |\n| mañana | el día siguiente / al día siguiente |\n| esta semana | aquella semana |\n| la semana pasada | la semana anterior |\n| la semana que viene | la semana siguiente |\n| ahora | entonces / en aquel momento |\n| aquí / acá | allí / allá |\n| este / esta | aquel / aquella / ese / esa |\n| hace + tiempo | hacía + tiempo |\n\nEjemplo:\n- Directo: *"Mañana voy al médico."*\n- Indirecto (pasado): *Dijo que **al día siguiente** iba al médico.*',
+        rules=[
+            '"Hoy" → "aquel día" o "ese día".',
+            '"Ahora" → "entonces" o "en aquel momento".',
+            '"Aquí" → "allí".',
+            '"Hace un año" → "hacía un año".',
+        ],
+        examples=[
+            GrammarExample(
+                text="Me dijo que aquel día no podía quedar.",
+                translation="He told me he couldn't meet that day.",
+                note='directo: "Hoy no puedo quedar"',
+            ),
+            GrammarExample(
+                text="Aseguró que la semana anterior había estado de vacaciones.",
+                translation="He assured me he had been on holiday the previous week.",
+            ),
+            GrammarExample(
+                text="Comentó que entonces vivía en Barcelona.",
+                translation="He commented that he was living in Barcelona at that time.",
+            ),
+            GrammarExample(
+                text="Explicaron que hacía dos años que no se veían.",
+                translation="They explained they hadn't seen each other for two years.",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Dijo que ayer no había podido ir.",
+                correct="Dijo que el día anterior no había podido ir.",
+                note='"Ayer" se transforma en "el día anterior" al pasar al pasado.',
+            ),
+            GrammarMistake(
+                wrong="Me contó que hoy estaba cansado.",
+                correct="Me contó que aquel día estaba cansado.",
+                note="Referencia temporal debe desplazarse al pasado.",
+            ),
+        ],
+        related=["estilo-indirecto", "estilo-indirecto-pasado", "conectores-narrativos"],
+    ),
+]

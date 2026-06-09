@@ -79,7 +79,7 @@ Dynamic route rendering a single grammar topic. The `[slug]` parameter maps dire
 
 ### Data model (`backend/app/data/_types.py` + per-language `vocabulary.py`)
 
-> **Migrated to backend in v1.7.3.** Originally static TypeScript (`frontend/src/data/vocabulary.ts`); now served via `GET /api/vocabulary` from Python dataclasses organized per CEFR level (A1–C2) across 4 languages (en, es, it, pt). The frontend vocabulary hub and set detail pages consume the API instead of importing static data.
+> **Migrated to backend in v1.7.4.** Originally static TypeScript (`frontend/src/data/vocabulary.ts`); now served via `GET /api/vocabulary` from Python dataclasses organized per CEFR level (A1–C2) across 4 languages (en, es, it, pt). The frontend vocabulary hub and set detail pages consume the API instead of importing static data.
 
 **VocabularyEntry** (per word):
 
@@ -308,7 +308,7 @@ Next.js middleware at `src/middleware.ts`:
 
 ### Static content
 
-Grammar topics and phrasebook entries remain static TypeScript constants in the frontend. **Vocabulary and assessment data were migrated to the backend in v1.7.3** — they are now served via API endpoints (`/api/vocabulary`, `/api/assessment/bank`) from Python dataclasses. Curriculum data (unit definitions, grammar points, vocabulary set IDs) lives in both backend Python files and a lightweight frontend `curriculum.ts` that fetches units via the `/api/curriculum` endpoint.
+Grammar topics and phrasebook entries remain static TypeScript constants in the frontend. **Vocabulary and assessment data were migrated to the backend in v1.7.4** — they are now served via API endpoints (`/api/vocabulary`, `/api/assessment/bank`) from Python dataclasses. Curriculum data (unit definitions, grammar points, vocabulary set IDs) lives in both backend Python files and a lightweight frontend `curriculum.ts` that fetches units via the `/api/curriculum` endpoint.
 
 Reasons for the mixed approach:
 1. **Grammar/phrasebook (frontend static)**: zero latency, offline-capable, tree-shakeable, no DB migrations

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useLanguageStore } from '@/store/language'
+import NoPlanBanner from '@/components/plan/NoPlanBanner'
 import {
   getCurriculumUnits,
   type CurriculumUnit,
@@ -224,21 +225,7 @@ export default function ProgressPage() {
   }
 
   if (!plan) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center p-6">
-        <div className="border-fl-border bg-fl-surface w-full max-w-md space-y-4 border p-8">
-          <p className="text-fl-label text-fl-error-fg font-mono">
-            {tCommon('noActivePlan')}
-          </p>
-          <button
-            onClick={() => router.push('/assessment')}
-            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
-          >
-            {tPlan('startAssessment')}
-          </button>
-        </div>
-      </div>
-    )
+    return <NoPlanBanner />
   }
 
   const cefrLevel = plan.cefr_level as CEFRLevel

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.4] - 2026-06-09
+
+### Added
+- **Phrasebook migrated to backend**: all phrasebook data (~280-305 phrases per language × 4 languages, 25 categories each) moved from frontend static files to the backend, organized per CEFR level. New endpoints `GET /api/phrasebook`, `GET /api/phrasebook/level/{level}`, `GET /api/phrasebook/{category_id}`, and `GET /api/phrasebook/audio/{category_id}/{phrase_index}` serve the data with auth required and cached TTS audio. The frontend phrasebook page now fetches via API with loading states and a search bar.
+- **Phrasebook TTS audio caching**: each phrase's pronunciation is generated once on first request and cached to disk (`/data/audio/phrasebook/{lang}/{hash}.mp3`), so subsequent plays are instant and free. A play button (▶) appears next to each phrase alongside the copy button.
+- **Phrasebook search**: a search bar filters phrases by text content, combinable with the existing level and register filters.
+- **English grammar expanded**: 75 new topics added, bringing English from 55 to 130 topics across A1–C2, matching the depth of the other languages. New topics cover areas like question tags, indirect questions, subjunctive mood, narrative tenses, collocations, hedging, rhetorical devices, pragmatic competence, and more. Categories previously sparse or empty (Phrasal Verbs 0→4, Articles 1→4, Questions 1→4) are now properly represented.
+- **Grammar migrated to backend**: all grammar topics (~125-131 per language × 4 languages) moved from frontend static files to the backend, organized per CEFR level. New endpoints `GET /api/grammar` and `GET /api/grammar/{slug}` serve the data with auth required. The frontend grammar index and detail pages now fetch via API with loading/error states. The lesson page's grammar references also use the API.
+- **Grammar audio button renamed field**: the `english` field in `GrammarExample` and `Phrase` interfaces was renamed to `text` for accuracy (it contains the target language phrase, not necessarily English).
+
+### Fixed
+- Two broken `related[]` cross-references in grammar data: Italian `si-impersonale` referencing `pronomin-indiretti` → `pronomi-indiretti`, Portuguese `horas` referencing `numeros` → `numeros-ordinais`.
+
+### Changed
+- **Phrasebook copy button**: fixed clipboard emoji rendering by using correct JavaScript Unicode escape (`\\u{1f4cb}`).
+
 ## [1.7.3] - 2026-06-08
 
 ### Added
@@ -316,7 +332,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.8] - 2026-05-12
 
 ### Added
-- Pricing section: crossed-out original prices (19.95 €/month, 199.50 €/year) shown above current launch prices using `text-fl-muted-2 line-through`.
+- Pricing section: crossed-out original prices (x €/month, x €/year) shown above current launch prices using `text-fl-muted-2 line-through`.
 - `pricingLabel` i18n key updated to "Launch Offer" in all 10 locales (es, en, de, fr, it, pt, nl, pl, ro, ru).
 
 ### Changed
@@ -405,7 +421,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Admin can manually override `subscription_status` and `subscription_ends_at` via `PATCH /api/admin/users/{id}`
 - `store/config.ts` (frontend): fetches `/api/config` on app load, exposes `stripeEnabled` and `stripeTrialDays`
 - `store/auth.ts`: `User` type extended with `subscription_status` and `subscription_ends_at`; exported `isSubscribed()` helper
-- `PaywallBanner` and `PaywallGate` components: paywall overlay with monthly (14.95€) and yearly (149.50€) plan buttons; renders nothing when Stripe is disabled
+- `PaywallBanner` and `PaywallGate` components: paywall overlay with monthly and yearly plan buttons; renders nothing when Stripe is disabled
 - `PaywallGate` applied to six frontend pages: `/chat`, `/conversation`, `/flashcards`, `/dashboard`, `/lesson/[id]`, `/assessment/level-test`
 - Settings page: subscription status badge, next billing date, "Manage subscription" portal link, "Subscribe" CTA — section hidden when Stripe is disabled
 - Landing page: pricing section (two plan cards) conditionally rendered when `STRIPE_ENABLED=true`

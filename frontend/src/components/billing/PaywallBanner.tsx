@@ -11,6 +11,8 @@ export function PaywallBanner() {
   const user = useAuthStore((s) => s.user)
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
   const trialDays = useConfigStore((s) => s.stripeTrialDays)
+  const priceMonthly = useConfigStore((s) => s.priceMonthly)
+  const priceYearly = useConfigStore((s) => s.priceYearly)
   const [loading, setLoading] = useState<'monthly' | 'yearly' | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -64,7 +66,7 @@ export function PaywallBanner() {
           >
             {loading === 'monthly'
               ? '...'
-              : t('planMonthly', { price: '14.95' })}
+              : t('planMonthly', { price: String(priceMonthly) })}
           </button>
           <button
             onClick={() => handleCheckout('yearly')}
@@ -73,7 +75,7 @@ export function PaywallBanner() {
           >
             {loading === 'yearly'
               ? '...'
-              : t('planYearly', { price: '149.50' })}
+              : t('planYearly', { price: String(priceYearly) })}
           </button>
         </div>
 

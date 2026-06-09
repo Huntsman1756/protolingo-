@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'FreeLingo',
     short_name: 'FreeLingo',
-    description: 'AI-powered English learning platform',
+    description: 'AI-powered language learning platform',
     start_url: '/',
     display: 'standalone',
     background_color: '#09090b',

@@ -15,8 +15,8 @@ Introduce an optional, fully configurable subscription layer backed by Stripe. W
 
 | Plan | Price | Billing | Trial |
 |------|-------|---------|-------|
-| Monthly | 14.95 €/month | Monthly recurring | 7 days free (card required) |
-| Yearly | 149.50 €/year (≈ 12.46 €/month, 2 months free) | Annual recurring | 7 days free (card required) |
+| Monthly | x €/month | Monthly recurring | 7 days free (card required) |
+| Yearly | x €/year (≈ x €/month, 2 months free) | Annual recurring | 7 days free (card required) |
 
 ### Quotas applied on subscription activation
 | Quota field | Value |
@@ -267,7 +267,7 @@ Shown in place of protected page content when `stripeEnabled && !isSubscribed`.
 
 - Headline: "Start your 7-day free trial" (i18n)
 - Subtext: brief list of what's included
-- Two buttons: "Monthly — €14.95/month" and "Yearly — €149.50/year (2 months free)"
+- Two buttons: "Monthly — x €/month" and "Yearly — x €/year (2 months free)"
 - Each button calls `POST /api/billing/checkout` with the corresponding plan, then `router.push(url)`
 - Small link "Already a subscriber? Refresh your session" (calls `/api/auth/refresh` to re-sync status)
 
@@ -296,7 +296,7 @@ Layout:
 ```
 ┌─────────────────────────┐  ┌─────────────────────────┐
 │  Monthly                │  │  Yearly  ★ Best value   │
-│  14.95 €/month (temp).  │  │  149.50 €/year (temp).  │
+│  x €/month (temp).      │  │  x €/year (temp).       │
 │                         │  │                         │
 │  7 days free            │  │  7 days free            │
 │                         │  │  2 months free          │

@@ -496,7 +496,11 @@
     "levelTestResult": "Stufentestergebnis",
     "testScore": "Punktzahl:",
     "pendingLessons": "Ausstehende Lektionen",
-    "resume": "Fortsetzen"
+    "resume": "Fortsetzen",
+    "noPlanLabel": "LOS GEHTS",
+    "noPlanTitle": "Erstelle deinen Lernplan",
+    "noPlanDesc": "Mach eine kurze Einschätzung, um dein Niveau zu entdecken und einen persönlichen Lernplan zu erhalten.",
+    "noPlanHint": "Dauert etwa 10 Minuten"
   },
   "lesson": {
     "loading": "Lektion wird geladen...",
@@ -676,7 +680,8 @@
     "level": "Niveau",
     "register": "Register",
     "statsLine": "{situationCount} Situationen · {phraseCount} Phrasen · {range}",
-    "situationsShown": "{count, plural, one {# Situation angezeigt} other {# Situationen angezeigt}}"
+    "situationsShown": "{count, plural, one {# Situation angezeigt} other {# Situationen angezeigt}}",
+    "searchPlaceholder": "Phrasen durchsuchen..."
   },
   "admin": {
     "title": "Verwaltung",
@@ -1094,21 +1099,17 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Wörter beim Lesen speichern",
-      "desc": "Markiere ein beliebiges Wort in einer Leseübung, um es sofort als Karteikarte zu speichern. Die KI generiert Definition, Beispielsatz und Übersetzung — alle gespeicherten Wörter findest du im neuen Panel Mein Vokabular im Bereich Karteikarten."
+      "label": "Verbesserte Lernressourcen",
+      "desc": "Alle Lernressourcen wurden mit neuen Inhalten erweitert."
     },
     "entry2": {
-      "label": "Plattformsprache",
-      "desc": "Du kannst nun die Sprache der App-Oberfläche — Menüs, Schaltflächen und Beschriftungen — unabhängig von deiner Muttersprache in den Einstellungen auswählen."
-    },
-    "entry3": {
       "label": "Mehrere Sprachen lernen",
       "desc": "Du kannst jetzt mehrere Sprachen gleichzeitig lernen. Wechsle die Sprache über die Seitenleiste und füge neue Sprachen unter Einstellungen → Meine Sprachen hinzu. Wir werden weitere Sprachen hinzufügen — du findest sie dann dort."
     },
-    "entry4": {
+    "entry3": {
       "label": "Fehlerbehebungen",
       "desc": "Verschiedene kleinere Fehlerbehebungen und Stabilitätsverbesserungen in der gesamten Plattform."
     }

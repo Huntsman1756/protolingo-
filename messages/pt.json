@@ -496,7 +496,11 @@
     "levelTestResult": "Resultado do teste de nível",
     "testScore": "Pontuação:",
     "pendingLessons": "Lições pendentes",
-    "resume": "Retomar"
+    "resume": "Retomar",
+    "noPlanLabel": "COMEÇAR",
+    "noPlanTitle": "Cria o teu plano de estudo",
+    "noPlanDesc": "Faz uma avaliação rápida para descobrir o teu nível e obter um plano de aprendizagem personalizado.",
+    "noPlanHint": "Demora cerca de 10 minutos"
   },
   "lesson": {
     "loading": "Carregando aula...",
@@ -676,7 +680,8 @@
     "level": "Nível",
     "register": "Registo",
     "statsLine": "{situationCount} situações · {phraseCount} frases · {range}",
-    "situationsShown": "{count, plural, one {# situação exibida} other {# situações exibidas}}"
+    "situationsShown": "{count, plural, one {# situação exibida} other {# situações exibidas}}",
+    "searchPlaceholder": "Pesquisar frases..."
   },
   "admin": {
     "title": "Administração",
@@ -1094,21 +1099,17 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.7.3",
+    "version": "v1.7.4",
     "cta": "Entendido",
     "entry1": {
-      "label": "Guarda palavras ao ler",
-      "desc": "Seleciona qualquer palavra num exercício de leitura para a guardar instantaneamente como flashcard. A IA gera definição, exemplo e tradução — encontra todas as palavras guardadas no novo painel Meu vocabulário na secção Flashcards."
+      "label": "Recursos didáticos melhorados",
+      "desc": "Todas as seções de recursos didáticos foram ampliadas com novo conteúdo."
     },
     "entry2": {
-      "label": "Idioma da plataforma",
-      "desc": "Já podes escolher o idioma da interface da app — menus, botões e etiquetas — na página de definições, independentemente do teu idioma nativo."
-    },
-    "entry3": {
       "label": "Aprende vários idiomas",
       "desc": "Agora podes aprender mais do que um idioma ao mesmo tempo. Alterna entre idiomas na barra lateral e adiciona novos em definições → Os meus idiomas. Vamos continuar a adicionar mais idiomas — quando o fizermos, vais encontrá-los lá."
     },
-    "entry4": {
+    "entry3": {
       "label": "Correções de bugs",
       "desc": "Várias correções de bugs menores e melhorias de estabilidade em toda a plataforma."
     }

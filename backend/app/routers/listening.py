@@ -264,7 +264,7 @@ async def submit_listening_attempt(
 
 
 @router.get("/history", response_model=ListeningHistoryResponse)
-@limiter.limit("30/minute")
+@limiter.limit("60/minute")
 async def get_listening_history(
     request: Request,
     skip: int = 0,
