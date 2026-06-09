@@ -37,7 +37,7 @@ class ClearAllResponse(BaseModel):
 
 
 @router.get("", response_model=MemoryListResponse)
-@limiter.limit("30/minute")
+@limiter.limit("60/minute")
 async def list_memories(
     request: Request,
     current_user: User = Depends(require_subscription),
@@ -58,7 +58,7 @@ async def list_memories(
 
 
 @router.delete("/{memory_id}", status_code=status.HTTP_204_NO_CONTENT)
-@limiter.limit("30/minute")
+@limiter.limit("60/minute")
 async def delete_one_memory(
     request: Request,
     memory_id: int,

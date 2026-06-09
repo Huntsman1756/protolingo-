@@ -1,7 +1,7 @@
 from collections import defaultdict
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.app_logger import get_logger
 from app.core.database import get_db
 from app.core.deps import get_active_study_plan, get_current_user
+from app.core.limiter import limiter
 from app.models.lesson import Exercise, Lesson
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -30,7 +31,9 @@ router = APIRouter(prefix="/api/study-plan", tags=["study-plan"])
 
 
 @router.get("/current", response_model=Optional[StudyPlanResponse])
+@limiter.limit("60/minute")
 async def get_current_plan(
+    request: Request,
     language: str | None = Query(None),
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -66,7 +69,9 @@ async def get_current_plan(
 
 
 @router.post("/generate", response_model=StudyPlanResponse)
+@limiter.limit("10/minute")
 async def create_study_plan(
+    request: Request,
     data: GenerateStudyPlanRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -119,7 +124,9 @@ async def create_study_plan(
 
 
 @router.get("/today", response_model=TodayResponse)
+@limiter.limit("20/minute")
 async def get_today_lessons(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -335,7 +342,9 @@ async def get_today_lessons(
 
 
 @router.post("/skip-day")
+@limiter.limit("60/minute")
 async def skip_today(
+    request: Request,
     plan: StudyPlan = Depends(get_active_study_plan),
     db: AsyncSession = Depends(get_db),
 ):
@@ -346,7 +355,9 @@ async def skip_today(
 
 
 @router.get("/pending-lessons", response_model=list[PendingLessonResponse])
+@limiter.limit("60/minute")
 async def get_pending_lessons(
+    request: Request,
     plan: StudyPlan = Depends(get_active_study_plan),
     db: AsyncSession = Depends(get_db),
 ):

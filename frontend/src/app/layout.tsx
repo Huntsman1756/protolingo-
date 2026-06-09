@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s | FreeLingo',
   },
   description:
-    'FreeLingo is a self-hosted AI-powered English learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
+    'FreeLingo is a self-hosted AI-powered language learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
   keywords: [
     'English learning',
     'AI language tutor',
@@ -50,23 +50,23 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://freelingo.app',
     siteName: 'FreeLingo',
-    title: 'FreeLingo — AI-powered English learning',
+    title: 'FreeLingo — AI-powered language learning',
     description:
-      'Learn English with an AI tutor, voice conversations, flashcards, and structured lessons. Self-hosted and privacy-friendly.',
+      'Learn languages with an AI tutor, voice conversations, flashcards, and structured lessons. Self-hosted and privacy-friendly.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'FreeLingo — AI-powered English learning',
+        alt: 'FreeLingo — AI-powered language learning',
       },
     ],
   },
   twitter: {
     card: 'summary',
-    title: 'FreeLingo — AI-powered English learning',
+    title: 'FreeLingo — AI-powered language learning',
     description:
-      'Learn English with an AI tutor, voice conversations, flashcards, and structured lessons.',
+      'Learn languages with an AI tutor, voice conversations, flashcards, and structured lessons.',
     images: ['/logo.png'],
   },
 }

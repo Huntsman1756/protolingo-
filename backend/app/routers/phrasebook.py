@@ -45,7 +45,9 @@ def _category_to_response(c: PhrasebookCategory) -> PhrasebookCategoryResponse:
 
 
 @router.get("", response_model=PhrasebookCategoriesResponse)
+@limiter.limit("60/minute")
 def list_phrasebook_categories(
+    request: Request,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ):
@@ -55,7 +57,9 @@ def list_phrasebook_categories(
 
 
 @router.get("/level/{level}", response_model=PhrasebookCategoriesResponse)
+@limiter.limit("60/minute")
 def list_phrasebook_by_level(
+    request: Request,
     level: str,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
@@ -73,7 +77,9 @@ def list_phrasebook_by_level(
 
 
 @router.get("/{category_id}", response_model=PhrasebookCategoryDetailResponse)
+@limiter.limit("60/minute")
 def get_phrasebook_category_detail(
+    request: Request,
     category_id: str,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),

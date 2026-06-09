@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from uuid import uuid4
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from pydantic import BaseModel
 from redis.asyncio import Redis
 from sqlalchemy import select
@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_user, get_redis
+from app.core.limiter import limiter
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.models.user_language import UserLanguage
@@ -96,7 +97,9 @@ _sessions = None  # kept as sentinel so conftest import doesn't break
 
 
 @router.get("/start", response_model=dict)
+@limiter.limit("10/minute")
 async def start_assessment(
+    request: Request,
     language: str | None = Query(None),
     current_user: User = Depends(get_current_user),
     redis: Redis = Depends(get_redis),
@@ -155,7 +158,9 @@ async def start_assessment(
 
 
 @router.get("/bank", response_model=AssessmentBankResponse)
+@limiter.limit("60/minute")
 async def get_assessment_bank(
+    request: Request,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ):
@@ -185,7 +190,9 @@ async def get_assessment_bank(
 
 
 @router.post("/submit", response_model=AssessmentResult)
+@limiter.limit("10/minute")
 async def submit_assessment(
+    request: Request,
     data: LegacyAssessmentSubmitRequest,
     current_user: User = Depends(get_current_user),
     redis: Redis = Depends(get_redis),
@@ -272,7 +279,9 @@ async def submit_assessment(
 
 
 @router.post("/evaluate", response_model=AssessmentResult)
+@limiter.limit("60/minute")
 async def evaluate_quiz(
+    request: Request,
     data: AssessmentSubmitRequest,
     _current_user: User = Depends(get_current_user),
 ):
@@ -284,7 +293,9 @@ async def evaluate_quiz(
 
 
 @router.post("/free-write", response_model=dict)
+@limiter.limit("10/minute")
 async def evaluate_free_write_endpoint(
+    request: Request,
     data: FreeWriteEvalRequest,
     current_user: User = Depends(get_current_user),
     redis: Redis = Depends(get_redis),
@@ -336,7 +347,9 @@ async def evaluate_free_write_endpoint(
 
 
 @router.post("/complete", response_model=dict)
+@limiter.limit("10/minute")
 async def complete_assessment(
+    request: Request,
     data: AssessmentCompleteRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -419,7 +432,9 @@ async def complete_assessment(
 
 
 @router.get("/level-test/questions/{plan_id}", response_model=dict)
+@limiter.limit("5/minute")
 async def get_level_test_questions(
+    request: Request,
     plan_id: int,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -473,7 +488,9 @@ async def get_level_test_questions(
 
 
 @router.post("/level-test/submit", response_model=LevelTestResult)
+@limiter.limit("10/minute")
 async def submit_level_test(
+    request: Request,
     data: LevelTestSubmitRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -521,7 +538,9 @@ async def submit_level_test(
 
 
 @router.get("/level-test/result/{plan_id}", response_model=LevelTestResult)
+@limiter.limit("60/minute")
 async def get_level_test_result(
+    request: Request,
     plan_id: int,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),

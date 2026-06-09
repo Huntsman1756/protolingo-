@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.data._types import GrammarTopic
 from app.data.grammar import get_grammar_topic, get_grammar_topics
 from app.models.user import User
@@ -46,7 +47,9 @@ def _topic_to_response(t: GrammarTopic) -> GrammarTopicResponse:
 
 
 @router.get("", response_model=GrammarTopicsResponse)
+@limiter.limit("60/minute")
 def list_grammar_topics(
+    request: Request,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ):
@@ -56,7 +59,9 @@ def list_grammar_topics(
 
 
 @router.get("/{slug}", response_model=GrammarTopicDetailResponse)
+@limiter.limit("60/minute")
 def get_grammar_topic_detail(
+    request: Request,
     slug: str,
     language: str = Query("en-US", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),

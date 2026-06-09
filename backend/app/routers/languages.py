@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
 from app.core.database import get_db
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
 from app.models.llm_usage import LLMUsage
@@ -107,7 +108,9 @@ async def _build_progress_info(
 
 
 @router.get("", response_model=UserLanguageListResponse)
+@limiter.limit("60/minute")
 async def list_languages(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -137,7 +140,9 @@ async def list_languages(
 
 
 @router.get("/active")
+@limiter.limit("60/minute")
 async def get_active(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -148,7 +153,9 @@ async def get_active(
 
 
 @router.post("", status_code=status.HTTP_201_CREATED)
+@limiter.limit("60/minute")
 async def add_new_language(
+    request: Request,
     data: LanguageAddRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -158,7 +165,9 @@ async def add_new_language(
 
 
 @router.put("/active")
+@limiter.limit("60/minute")
 async def switch_active_language(
+    request: Request,
     data: LanguageSwitchRequest,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
@@ -171,7 +180,9 @@ async def switch_active_language(
 
 
 @router.delete("/{target_language}", status_code=status.HTTP_204_NO_CONTENT)
+@limiter.limit("5/minute")
 async def delete_language(
+    request: Request,
     target_language: str,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),

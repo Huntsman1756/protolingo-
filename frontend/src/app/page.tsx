@@ -7,14 +7,14 @@ import PricingSection from '@/components/billing/PricingSection'
 import { ContactButton } from '@/components/ui/contact-button'
 
 export const metadata: Metadata = {
-  title: 'FreeLingo — AI-powered English learning',
+  title: 'FreeLingo — AI-powered language learning',
   description:
-    'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons. Self-hosted and privacy-friendly.',
+    'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons. Self-hosted and privacy-friendly.',
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'FreeLingo — AI-powered English learning',
+    title: 'FreeLingo — AI-powered language learning',
     description:
-      'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
+      'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
     url: 'https://freelingo.app',
     type: 'website',
     images: [
@@ -22,15 +22,15 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'FreeLingo — AI-powered English learning',
+        alt: 'FreeLingo — AI-powered language learning',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FreeLingo — AI-powered English learning',
+    title: 'FreeLingo — AI-powered language learning',
     description:
-      'Learn English with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
+      'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
     images: ['/og-image.png'],
   },
 }
@@ -43,7 +43,7 @@ const jsonLd = {
   operatingSystem: 'Web',
   url: 'https://freelingo.app',
   description:
-    'Self-hosted AI-powered English learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
+    'Self-hosted AI-powered language learning platform with voice conversation, flashcards, grammar lessons, and a personal AI tutor.',
   author: {
     '@type': 'Person',
     name: 'Arturo Carretero Calvo',

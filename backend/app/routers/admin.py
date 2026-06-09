@@ -2,7 +2,7 @@ import secrets
 import uuid
 from typing import Literal
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from redis.asyncio import Redis
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -10,6 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.config import settings
 from app.core.database import get_db
 from app.core.deps import MAINTENANCE_KEY, get_redis, require_admin
+from app.core.limiter import limiter
 from app.core.security import hash_password
 from app.models.chat_history import ChatHistory
 from app.models.lesson import Lesson
@@ -34,7 +35,9 @@ router = APIRouter(prefix="/api/admin", tags=["admin"])
 
 
 @router.get("/users", response_model=PaginatedAdminUsersResponse)
+@limiter.limit("60/minute")
 async def list_users(
+    request: Request,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
     skip: int = Query(default=0, ge=0),
@@ -55,7 +58,9 @@ async def list_users(
 
 
 @router.post("/users", response_model=AdminUserResponse)
+@limiter.limit("60/minute")
 async def create_user(
+    request: Request,
     data: AdminUserCreate,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
@@ -107,7 +112,9 @@ async def create_user(
 
 
 @router.get("/users/{user_id}/stats", response_model=AdminUserStatsResponse)
+@limiter.limit("60/minute")
 async def get_user_stats(
+    request: Request,
     user_id: int,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
@@ -246,7 +253,9 @@ async def get_user_stats(
 
 
 @router.get("/users/{user_id}", response_model=AdminUserResponse)
+@limiter.limit("60/minute")
 async def get_user(
+    request: Request,
     user_id: int,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
@@ -258,7 +267,9 @@ async def get_user(
 
 
 @router.patch("/users/{user_id}", response_model=AdminUserResponse)
+@limiter.limit("60/minute")
 async def update_user(
+    request: Request,
     user_id: int,
     data: AdminUserUpdate,
     admin: User = Depends(require_admin),
@@ -299,7 +310,9 @@ async def update_user(
 
 
 @router.get("/users/{user_id}/quota")
+@limiter.limit("60/minute")
 async def get_user_quota(
+    request: Request,
     user_id: int,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
@@ -321,7 +334,9 @@ async def get_user_quota(
 
 
 @router.delete("/users/{user_id}")
+@limiter.limit("5/minute")
 async def delete_user(
+    request: Request,
     user_id: int,
     admin: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db),
@@ -353,7 +368,9 @@ async def delete_user(
 
 
 @router.post("/invite", response_model=InviteResponse)
+@limiter.limit("60/minute")
 async def create_invite(
+    request: Request,
     admin: User = Depends(require_admin),
     redis: Redis = Depends(get_redis),
 ):
@@ -363,7 +380,9 @@ async def create_invite(
 
 
 @router.get("/maintenance")
+@limiter.limit("60/minute")
 async def get_maintenance_mode(
+    request: Request,
     admin: User = Depends(require_admin),
     redis: Redis = Depends(get_redis),
 ):
@@ -372,7 +391,9 @@ async def get_maintenance_mode(
 
 
 @router.patch("/maintenance")
+@limiter.limit("60/minute")
 async def toggle_maintenance_mode(
+    request: Request,
     admin: User = Depends(require_admin),
     redis: Redis = Depends(get_redis),
 ):

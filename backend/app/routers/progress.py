@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_user
+from app.core.limiter import limiter
 from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
@@ -29,7 +30,9 @@ async def _get_active_plan_or_none(db: AsyncSession, user_id: int) -> StudyPlan 
 
 
 @router.get("/summary", response_model=ProgressSummary)
+@limiter.limit("60/minute")
 async def get_summary(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -81,7 +84,9 @@ async def get_summary(
 
 
 @router.get("/history", response_model=ProgressHistoryResponse)
+@limiter.limit("60/minute")
 async def get_history(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
@@ -100,7 +105,9 @@ async def get_history(
 
 
 @router.get("/competencies", response_model=list)
+@limiter.limit("60/minute")
 async def get_competencies(
+    request: Request,
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):

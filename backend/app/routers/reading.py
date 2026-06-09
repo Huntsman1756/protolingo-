@@ -210,7 +210,7 @@ async def submit_reading_attempt(
 
 
 @router.get("/history", response_model=ReadingHistoryResponse)
-@limiter.limit("30/minute")
+@limiter.limit("60/minute")
 async def get_reading_history(
     request: Request,
     skip: int = 0,
