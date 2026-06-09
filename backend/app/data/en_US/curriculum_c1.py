@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en._types import CurriculumUnit
+from app.data.en_US._types import CurriculumUnit
 
 C1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(

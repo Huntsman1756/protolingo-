@@ -12,7 +12,8 @@ import sys
 from app.data._types import GrammarExample, GrammarMistake, GrammarTopic  # noqa: F401
 
 _LANG_MODULES: dict[str, str] = {
-    "en": "app.data.en.grammar",
+    "en-GB": "app.data.en_GB.grammar",
+    "en-US": "app.data.en_US.grammar",
     "es": "app.data.es.grammar",
     "it": "app.data.it.grammar",
     "pt": "app.data.pt.grammar",
@@ -22,8 +23,9 @@ _CACHE: dict[str, list[GrammarTopic]] = {}
 
 
 def _resolve_topics(target_language: str) -> list[GrammarTopic]:
-    iso = target_language.split("-")[0]
-    module_name = _LANG_MODULES.get(iso, "app.data.en.grammar")
+    module_name = _LANG_MODULES.get(target_language) or _LANG_MODULES.get(
+        target_language.split("-")[0], "app.data.en_GB.grammar"
+    )
 
     if module_name not in _CACHE:
         __import__(module_name)

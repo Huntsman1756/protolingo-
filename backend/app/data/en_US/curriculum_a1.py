@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en._types import CurriculumUnit
+from app.data.en_US._types import CurriculumUnit
 
 A1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -32,7 +32,7 @@ A1_UNITS: list[CurriculumUnit] = [
         competency_checklist=[
             "Describe family members and possessions",
             "Use a/an/the correctly in simple sentences",
-            "Name common colours and basic adjectives",
+            "Name common colors and basic adjectives",
         ],
         default_weeks=2,
         prerequisite_unit="a1-unit-1",
