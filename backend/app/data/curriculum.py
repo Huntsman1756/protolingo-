@@ -104,7 +104,7 @@ def distribute_units(
     target_language: str = "en-US",
 ) -> list[dict]:
     """Distribute curriculum units across lesson slots."""
-    i18n = _I18N.get(target_language, _I18N["en-US"])
+    i18n = _I18N.get(target_language) or _I18N.get(target_language.split("-")[0], _I18N["en-GB"])
 
     total_slots = total_weeks * days_per_week
     lesson_slots = max(1, total_slots - 1)
