@@ -496,7 +496,11 @@
     "levelTestResult": "Resultado del test de nivel",
     "testScore": "Puntuación:",
     "pendingLessons": "Lecciones pendientes",
-    "resume": "Reanudar"
+    "resume": "Reanudar",
+    "noPlanLabel": "EMPEZAR",
+    "noPlanTitle": "Crea tu plan de estudio",
+    "noPlanDesc": "Haz una evaluación rápida para descubrir tu nivel y obtener un plan de estudio personalizado.",
+    "noPlanHint": "Solo te llevará 10 minutos"
   },
   "lesson": {
     "loading": "Cargando lección...",
@@ -1098,8 +1102,8 @@
     "version": "v1.7.4",
     "cta": "Entendido",
     "entry1": {
-      "label": "Más y mejor contenido didáctico",
-      "desc": "Las secciones de Frases y Gramática se han renovado con nuevo contenido, pronunciación para cada frase — solo pulsa reproducir para escucharla — y carga más rápida. La gramática inglesa ahora tiene más de 130 temas detallados, igualando la profundidad de los otros idiomas."
+      "label": "Recursos didácticos mejorados",
+      "desc": "Todas las secciones de recursos didácticos se han ampliado con nuevo contenido."
     },
     "entry2": {
       "label": "Aprende varios idiomas",

@@ -9,6 +9,7 @@ import { useLanguageStore } from '@/store/language'
 import UnitCard from '@/components/plan/UnitCard'
 import UnitDrawer from '@/components/plan/UnitDrawer'
 import LevelTestBanner from '@/components/plan/LevelTestBanner'
+import NoPlanBanner from '@/components/plan/NoPlanBanner'
 import type { CEFRLevel } from '@/data/grammar'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -186,21 +187,7 @@ export default function PlanPage() {
   }
 
   if (error || !plan) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center p-6">
-        <div className="border-fl-border bg-fl-surface w-full max-w-md space-y-4 border p-8">
-          <p className="text-fl-label text-fl-error-fg font-mono">
-            {error || t('noPlan')}
-          </p>
-          <button
-            onClick={() => router.push('/assessment')}
-            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
-          >
-            {t('startAssessment')}
-          </button>
-        </div>
-      </div>
-    )
+    return <NoPlanBanner />
   }
 
   const level = plan.cefr_level as CEFRLevel

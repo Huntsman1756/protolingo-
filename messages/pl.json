@@ -496,7 +496,11 @@
     "levelTestResult": "Wynik testu poziomu",
     "testScore": "Wynik:",
     "pendingLessons": "Zaległe lekcje",
-    "resume": "Wznów"
+    "resume": "Wznów",
+    "noPlanLabel": "ZACZNIJ",
+    "noPlanTitle": "Stwórz plan nauki",
+    "noPlanDesc": "Wykonaj szybką ocenę, aby poznać swój poziom i otrzymać spersonalizowaną ścieżkę nauki.",
+    "noPlanHint": "Zajmuje około 10 minut"
   },
   "lesson": {
     "loading": "Ładowanie lekcji...",
@@ -1098,8 +1102,8 @@
     "version": "v1.7.4",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Więcej i lepsze materiały dydaktyczne",
-      "desc": "Sekcje Rozmówek i Gramatyki zostały odświeżone — nowe treści, wymowa każdej frazy (wystarczy nacisnąć play) i szybsze ładowanie. Gramatyka angielska ma teraz ponad 130 szczegółowych tematów, dorównując pozostałym językom."
+      "label": "Ulepszone materiały dydaktyczne",
+      "desc": "Wszystkie sekcje materiałów dydaktycznych zostały rozszerzone o nowe treści."
     },
     "entry2": {
       "label": "Ucz się wielu języków",

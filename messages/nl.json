@@ -496,7 +496,11 @@
     "levelTestResult": "Niveautestresultaat",
     "testScore": "Score:",
     "pendingLessons": "Openstaande lessen",
-    "resume": "Hervatten"
+    "resume": "Hervatten",
+    "noPlanLabel": "BEGINNEN",
+    "noPlanTitle": "Maak je studieplan",
+    "noPlanDesc": "Doe een snelle evaluatie om je niveau te ontdekken en een persoonlijk leertraject te krijgen.",
+    "noPlanHint": "Duurt ongeveer 10 minuten"
   },
   "lesson": {
     "loading": "Les laden...",
@@ -1098,8 +1102,8 @@
     "version": "v1.7.4",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Meer en betere leerinhoud",
-      "desc": "De secties Zinnen en Grammatica zijn vernieuwd met nieuwe inhoud, uitspraak voor elke zin — druk op play om te luisteren — en sneller laden. De Engelse grammatica heeft nu meer dan 130 gedetailleerde onderwerpen, even uitgebreid als de andere talen."
+      "label": "Verbeterde leermiddelen",
+      "desc": "Alle leermiddelensecties zijn uitgebreid met nieuwe inhoud."
     },
     "entry2": {
       "label": "Leer meerdere talen",

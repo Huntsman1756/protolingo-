@@ -496,7 +496,11 @@
     "levelTestResult": "Resultado do teste de nível",
     "testScore": "Pontuação:",
     "pendingLessons": "Lições pendentes",
-    "resume": "Retomar"
+    "resume": "Retomar",
+    "noPlanLabel": "COMEÇAR",
+    "noPlanTitle": "Cria o teu plano de estudo",
+    "noPlanDesc": "Faz uma avaliação rápida para descobrir o teu nível e obter um plano de aprendizagem personalizado.",
+    "noPlanHint": "Demora cerca de 10 minutos"
   },
   "lesson": {
     "loading": "Carregando aula...",
@@ -1098,8 +1102,8 @@
     "version": "v1.7.4",
     "cta": "Entendido",
     "entry1": {
-      "label": "Mais e melhor conteúdo didático",
-      "desc": "As secções de Frases e Gramática foram renovadas com novo conteúdo, pronúncia para cada frase — basta premir play para ouvir — e carregamento mais rápido. A gramática inglesa tem agora mais de 130 tópicos detalhados, igualando a profundidade das outras línguas."
+      "label": "Recursos didáticos melhorados",
+      "desc": "Todas as seções de recursos didáticos foram ampliadas com novo conteúdo."
     },
     "entry2": {
       "label": "Aprende vários idiomas",

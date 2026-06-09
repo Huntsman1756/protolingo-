@@ -496,7 +496,11 @@
     "levelTestResult": "Résultat du test de niveau",
     "testScore": "Score :",
     "pendingLessons": "Leçons en attente",
-    "resume": "Reprendre"
+    "resume": "Reprendre",
+    "noPlanLabel": "COMMENCER",
+    "noPlanTitle": "Créez votre plan d'étude",
+    "noPlanDesc": "Faites une évaluation rapide pour découvrir votre niveau et obtenir un parcours d'apprentissage personnalisé.",
+    "noPlanHint": "Prend environ 10 minutes"
   },
   "lesson": {
     "loading": "Chargement de la leçon...",
@@ -1098,8 +1102,8 @@
     "version": "v1.7.4",
     "cta": "Compris",
     "entry1": {
-      "label": "Contenu pédagogique enrichi et amélioré",
-      "desc": "Les sections Guide de conversation et Grammaire ont été entièrement repensées avec du nouveau contenu, la prononciation pour chaque phrase — appuyez sur lecture pour l'écouter — et un chargement plus rapide. La grammaire anglaise compte désormais plus de 130 sujets détaillés, à la hauteur des autres langues."
+      "label": "Ressources pédagogiques améliorées",
+      "desc": "Toutes les sections de ressources pédagogiques ont été enrichies avec du nouveau contenu."
     },
     "entry2": {
       "label": "Apprendre plusieurs langues",

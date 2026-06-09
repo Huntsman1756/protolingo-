@@ -496,7 +496,11 @@
     "levelTestResult": "Rezultatul testului de nivel",
     "testScore": "Scor:",
     "pendingLessons": "Lecții restante",
-    "resume": "Reia"
+    "resume": "Reia",
+    "noPlanLabel": "ÎNCEPE",
+    "noPlanTitle": "Creează-ți planul de studiu",
+    "noPlanDesc": "Fă o evaluare rapidă pentru a-ți descoperi nivelul și a obține un plan de învățare personalizat.",
+    "noPlanHint": "Durează aproximativ 10 minute"
   },
   "lesson": {
     "loading": "Se încarcă lecția...",
@@ -1098,8 +1102,8 @@
     "version": "v1.7.4",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Conținut didactic extins și îmbunătățit",
-      "desc": "Secțiunile de Expresii și Gramatică au fost reînnoite cu conținut nou, pronunție pentru fiecare frază — apasă play pentru a o auzi — și încărcare mai rapidă. Gramatica engleză are acum peste 130 de subiecte detaliate, la același nivel cu celelalte limbi."
+      "label": "Resurse didactice îmbunătățite",
+      "desc": "Toate secțiunile de resurse didactice au fost extinse cu conținut nou."
     },
     "entry2": {
       "label": "Învață mai multe limbi",

@@ -496,7 +496,11 @@
     "levelTestResult": "Stufentestergebnis",
     "testScore": "Punktzahl:",
     "pendingLessons": "Ausstehende Lektionen",
-    "resume": "Fortsetzen"
+    "resume": "Fortsetzen",
+    "noPlanLabel": "LOS GEHTS",
+    "noPlanTitle": "Erstelle deinen Lernplan",
+    "noPlanDesc": "Mach eine kurze Einschätzung, um dein Niveau zu entdecken und einen persönlichen Lernplan zu erhalten.",
+    "noPlanHint": "Dauert etwa 10 Minuten"
   },
   "lesson": {
     "loading": "Lektion wird geladen...",
@@ -1098,8 +1102,8 @@
     "version": "v1.7.4",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Mehr und bessere Lerninhalte",
-      "desc": "Die Bereiche Redewendungen und Grammatik wurden mit neuen Inhalten, Aussprache für jede Phrase — einfach auf Play drücken — und schnellerem Laden grundlegend überarbeitet. Die englische Grammatik umfasst jetzt über 130 detaillierte Themen und entspricht damit der Tiefe der anderen Sprachen."
+      "label": "Verbesserte Lernressourcen",
+      "desc": "Alle Lernressourcen wurden mit neuen Inhalten erweitert."
     },
     "entry2": {
       "label": "Mehrere Sprachen lernen",
