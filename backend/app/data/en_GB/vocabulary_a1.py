@@ -1458,7 +1458,7 @@ A1_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A seat with a back for one person.",
                 example="Please sit on that chair.",
-                 ipa="/tʃeə/",
+                ipa="/tʃeə/",
                 frequency_rank=280,
             ),
             VocabularyEntry(

@@ -725,10 +725,22 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Academic and formal English relies heavily on nominalisation (verb → noun suffix).",
         ],
         examples=[
-            GrammarExample(text="The mismanagement of resources led to the project's failure.", note="mis- prefix + -ment suffix"),
-            GrammarExample(text="The government has decided to decriminalise the possession of small quantities.", note="de- + criminalise"),
-            GrammarExample(text="The unpredictability of the outcome caused considerable anxiety.", note="un- + predict + -ability"),
-            GrammarExample(text="She emailed the report. / Can you text me the address?", note="conversion: noun → verb"),
+            GrammarExample(
+                text="The mismanagement of resources led to the project's failure.",
+                note="mis- prefix + -ment suffix",
+            ),
+            GrammarExample(
+                text="The government has decided to decriminalise the possession of small quantities.",
+                note="de- + criminalise",
+            ),
+            GrammarExample(
+                text="The unpredictability of the outcome caused considerable anxiety.",
+                note="un- + predict + -ability",
+            ),
+            GrammarExample(
+                text="She emailed the report. / Can you text me the address?",
+                note="conversion: noun → verb",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(

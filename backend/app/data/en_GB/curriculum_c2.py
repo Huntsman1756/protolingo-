@@ -118,7 +118,11 @@ C2_UNITS: list[CurriculumUnit] = [
         level="C2",
         unit_number=7,
         title="Rhetorical Devices & Advanced Text Structure",
-        grammar_points=["rhetorical-devices", "text-level-cohesion", "advanced-concessive-structures"],
+        grammar_points=[
+            "rhetorical-devices",
+            "text-level-cohesion",
+            "advanced-concessive-structures",
+        ],
         vocabulary_set_ids=["advanced_verbs_thought_c2"],
         lesson_types=["grammar", "reading", "writing", "listening", "review"],
         competency_checklist=[

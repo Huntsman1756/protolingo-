@@ -957,7 +957,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="r-a2-004",
         skill="reading",
         difficulty="A2",
-        question='Read: "The library opens at nine o\'clock on weekdays and at ten o\'clock on Saturdays. It is closed on Sundays." — When does the library open on Saturdays?',
+        question="Read: \"The library opens at nine o'clock on weekdays and at ten o'clock on Saturdays. It is closed on Sundays.\" — When does the library open on Saturdays?",
         options=["9 am", "10 am", "11 am", "It is closed"],
         correct="10 am",
     ),
@@ -978,7 +978,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="r-b2-004",
         skill="reading",
         difficulty="B2",
-        question='Read: "The report acknowledges that while the policy has generated substantial revenue, its distributional effects have been largely regressive, disproportionately affecting lower-income households." — What does \'regressive\' imply here?',
+        question="Read: \"The report acknowledges that while the policy has generated substantial revenue, its distributional effects have been largely regressive, disproportionately affecting lower-income households.\" — What does 'regressive' imply here?",
         options=[
             "The policy has been reversed.",
             "The policy burdens lower-income households more heavily.",
@@ -1005,10 +1005,10 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         skill="reading",
         difficulty="C1",
         question=(
-            'Read: "The author\'s apparent detachment from the events she narrates is, on closer reading, '
+            "Read: \"The author's apparent detachment from the events she narrates is, on closer reading, "
             "a carefully constructed illusion. Her precise choice of vocabulary — 'incident' rather than 'attack', "
             "'misunderstanding' rather than 'confrontation' — performs the very domestication of violence she "
-            'purports merely to describe." — What does the writer argue about the author\'s language?'
+            "purports merely to describe.\" — What does the writer argue about the author's language?"
         ),
         options=[
             "It is careless and imprecise.",

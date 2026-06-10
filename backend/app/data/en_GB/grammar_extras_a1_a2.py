@@ -505,9 +505,18 @@ A1_A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="The colour of the sky is blue.", note="BrE: colour / AmE: color"),
-            GrammarExample(text="The theatre is in the town centre.", note="BrE: theatre, centre / AmE: theater, center"),
-            GrammarExample(text="She realised she had forgotten her umbrella.", note="BrE: realised / AmE: realized"),
-            GrammarExample(text="I cancelled the appointment.", note="BrE: cancelled (double l) / AmE: canceled"),
+            GrammarExample(
+                text="The theatre is in the town centre.",
+                note="BrE: theatre, centre / AmE: theater, center",
+            ),
+            GrammarExample(
+                text="She realised she had forgotten her umbrella.",
+                note="BrE: realised / AmE: realized",
+            ),
+            GrammarExample(
+                text="I cancelled the appointment.",
+                note="BrE: cancelled (double l) / AmE: canceled",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(

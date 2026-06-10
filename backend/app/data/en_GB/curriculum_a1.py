@@ -11,7 +11,13 @@ A1_UNITS: list[CurriculumUnit] = [
         unit_number=1,
         title="Identity & Greetings",
         grammar_points=["to-be", "subject-pronouns", "questions-yes-no", "british-spelling"],
-        vocabulary_set_ids=["identity_a1", "greetings_a1", "numbers_1_20_a1", "numbers_extra_a1", "british_greetings_a1"],
+        vocabulary_set_ids=[
+            "identity_a1",
+            "greetings_a1",
+            "numbers_1_20_a1",
+            "numbers_extra_a1",
+            "british_greetings_a1",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Introduce yourself (name, age, nationality)",
@@ -43,7 +49,12 @@ A1_UNITS: list[CurriculumUnit] = [
         unit_number=3,
         title="Daily Life",
         grammar_points=["present-simple", "question-words", "adverbs-frequency"],
-        vocabulary_set_ids=["daily_routines_a1", "time_expressions_a1", "verbs_basic_a1", "food_drinks_a1"],
+        vocabulary_set_ids=[
+            "daily_routines_a1",
+            "time_expressions_a1",
+            "verbs_basic_a1",
+            "food_drinks_a1",
+        ],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
             "Talk about daily routines using present simple with adverbs of frequency",

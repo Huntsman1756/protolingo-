@@ -10,7 +10,11 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
         icon="\U0001f44b",
         phrases=[
             PhrasebookEntry(text="Hello!", context="Standard neutral greeting", register="neutral"),
-            PhrasebookEntry(text="Hi!", context="Informal greeting between friends or peers", register="informal"),
+            PhrasebookEntry(
+                text="Hi!",
+                context="Informal greeting between friends or peers",
+                register="informal",
+            ),
             PhrasebookEntry(
                 text="Good morning.", context="Greeting before noon", register="formal"
             ),
@@ -41,12 +45,18 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             PhrasebookEntry(
                 text="See you later!", context="Informal farewell", register="informal"
             ),
-            PhrasebookEntry(text="Goodbye!", context="Standard farewell — suitable in all contexts", register="neutral"),
+            PhrasebookEntry(
+                text="Goodbye!",
+                context="Standard farewell — suitable in all contexts",
+                register="neutral",
+            ),
             PhrasebookEntry(
                 text="Bye! / Bye-bye!", context="Informal farewell", register="informal"
             ),
             PhrasebookEntry(text="Take care!", context="Warm farewell", register="neutral"),
-            PhrasebookEntry(text="Have a lovely day!", context="Polite British farewell", register="neutral"),
+            PhrasebookEntry(
+                text="Have a lovely day!", context="Polite British farewell", register="neutral"
+            ),
         ],
     ),
     PhrasebookCategory(
@@ -102,7 +112,9 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
                 text="You're welcome.", context="Responding to thanks (neutral)", register="neutral"
             ),
             PhrasebookEntry(
-                text="Not at all.", context="British alternative to 'You're welcome' — slightly more formal", register="neutral"
+                text="Not at all.",
+                context="British alternative to 'You're welcome' — slightly more formal",
+                register="neutral",
             ),
             PhrasebookEntry(
                 text="My pleasure.", context="Warm British response to thanks", register="neutral"
@@ -143,7 +155,9 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(text="How much is it?", context="Asking the price", register="neutral"),
             PhrasebookEntry(
-                text="It's [price] pounds.", context="Stating a price in British currency", register="neutral"
+                text="It's [price] pounds.",
+                context="Stating a price in British currency",
+                register="neutral",
             ),
             PhrasebookEntry(
                 text="Can I have the bill, please?",

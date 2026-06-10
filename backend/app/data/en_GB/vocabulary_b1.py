@@ -1615,7 +1615,7 @@ B1_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="To check or confirm something.",
                 example="Make sure you bring your passport.",
-                 ipa="/meɪk ʃʊə/",
+                ipa="/meɪk ʃʊə/",
             ),
             VocabularyEntry(
                 word="had better",

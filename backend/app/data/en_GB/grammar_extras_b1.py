@@ -563,10 +563,16 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "'A little' = positive: some, a small but sufficient amount.",
         ],
         examples=[
-            GrammarExample(text="I have a few minutes — shall we talk?", note="a few = some, enough"),
-            GrammarExample(text="She has few options in this situation.", note="few = almost none, concerning"),
+            GrammarExample(
+                text="I have a few minutes — shall we talk?", note="a few = some, enough"
+            ),
+            GrammarExample(
+                text="She has few options in this situation.", note="few = almost none, concerning"
+            ),
             GrammarExample(text="Add a little salt to taste.", note="a little = some, sufficient"),
-            GrammarExample(text="There is little evidence to support this claim.", note="little = almost none"),
+            GrammarExample(
+                text="There is little evidence to support this claim.", note="little = almost none"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(

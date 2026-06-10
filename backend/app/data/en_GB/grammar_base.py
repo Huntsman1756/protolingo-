@@ -759,7 +759,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Clauses",
         summary="Add information about a noun using the right relative pronoun: who, which, that, or whose.",
-        explanation='Relative clauses follow a noun and give more information about it. The choice of relative pronoun depends on what the clause refers to:\n\n| Pronoun | Refers to | Example |\n|---------|-----------|--------|\n| **who** | people | *The man who lives next door is a chef.* |\n| **which** | things | *The book which I bought is great.* |\n| **that** | people or things | *The car that broke down was new.* |\n| **whose** | possession (people or things) | *The student whose essay won is here.* |\n\n**When can you omit the pronoun?**\nWhen the relative pronoun is the **object** of the clause, it can be left out:\n- *The book (that) I read was excellent.* (that = object — omissible)\n- *The man who called me was polite.* (who = subject — cannot omit)\n\n**Defining vs. non-defining:** Relative clauses can be defining (no commas, essential) or non-defining (commas, extra info). See the topic *Defining vs. Non-Defining Relative Clauses* for the full treatment.',
+        explanation="Relative clauses follow a noun and give more information about it. The choice of relative pronoun depends on what the clause refers to:\n\n| Pronoun | Refers to | Example |\n|---------|-----------|--------|\n| **who** | people | *The man who lives next door is a chef.* |\n| **which** | things | *The book which I bought is great.* |\n| **that** | people or things | *The car that broke down was new.* |\n| **whose** | possession (people or things) | *The student whose essay won is here.* |\n\n**When can you omit the pronoun?**\nWhen the relative pronoun is the **object** of the clause, it can be left out:\n- *The book (that) I read was excellent.* (that = object — omissible)\n- *The man who called me was polite.* (who = subject — cannot omit)\n\n**Defining vs. non-defining:** Relative clauses can be defining (no commas, essential) or non-defining (commas, extra info). See the topic *Defining vs. Non-Defining Relative Clauses* for the full treatment.",
         structure="Noun + who/which/that + clause · Noun + whose + noun + clause",
         rules=[
             "Who for people, which for things, that for both (in defining clauses only).",
@@ -774,7 +774,8 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="which — non-defining",
             ),
             GrammarExample(
-                text="The bag whose strap is broken needs to be repaired.", note="whose — possession"
+                text="The bag whose strap is broken needs to be repaired.",
+                note="whose — possession",
             ),
             GrammarExample(
                 text="The film (that) I watched last night was brilliant.",
@@ -793,7 +794,11 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Don't repeat the subject pronoun inside the relative clause.",
             ),
         ],
-        related=["defining-non-defining-clauses", "advanced-relative-clauses", "discourse-connectors-b1"],
+        related=[
+            "defining-non-defining-clauses",
+            "advanced-relative-clauses",
+            "discourse-connectors-b1",
+        ],
     ),
     GrammarTopic(
         slug="modal-verbs",
@@ -1170,7 +1175,9 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="I wish I had more free time.", note="present regret"),
             GrammarExample(text="I wish I had gone to the concert.", note="past regret"),
-            GrammarExample(text="If only she would listen to me.", note="emphatic — see B2 for wish+would"),
+            GrammarExample(
+                text="If only she would listen to me.", note="emphatic — see B2 for wish+would"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -1316,7 +1323,8 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="wish + could — ability regret",
             ),
             GrammarExample(
-                text="I wish I hadn't eaten so much.", note="past regret — same as B1 but more nuanced"
+                text="I wish I hadn't eaten so much.",
+                note="past regret — same as B1 but more nuanced",
             ),
             GrammarExample(
                 text="If only we had left earlier — we'd have avoided the traffic.",

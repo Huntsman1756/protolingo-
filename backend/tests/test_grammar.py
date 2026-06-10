@@ -129,7 +129,7 @@ async def test_unknown_language_falls_back_to_english(client, test_user):
     """An unknown language code should fall back to English topics."""
     _, headers = test_user
 
-    en_res = await client.get("/api/grammar?language=en-US", headers=headers)
+    en_res = await client.get("/api/grammar?language=en-GB", headers=headers)
     unknown_res = await client.get("/api/grammar?language=ja-JP", headers=headers)
 
     en_slugs = {t["slug"] for t in en_res.json()["topics"]}
