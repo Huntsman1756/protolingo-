@@ -30,7 +30,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="adjective",
                 definition="Extremely complex and difficult to follow.",
                 example="The explanation was unnecessarily convoluted.",
-                ipa="/ˈkɒnvəluːtɪd/",
+                ipa="/ˈkɑːnvəluːtɪd/",
                 frequency_rank=510,
             ),
             VocabularyEntry(
@@ -38,7 +38,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="adjective",
                 definition="Having keen insight; shrewd.",
                 example="Her astute observation changed our approach.",
-                ipa="/əˈstjuːt/",
+                ipa="/əˈstuːt/",
                 frequency_rank=480,
             ),
             VocabularyEntry(
@@ -141,7 +141,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="preposition",
                 definition="In spite of; despite.",
                 example="Notwithstanding the difficulties, we succeeded.",
-                ipa="/ˌnɒtwɪθˈstændɪŋ/",
+                ipa="/ˌnɑːtwɪθˈstændɪŋ/",
                 frequency_rank=460,
             ),
             VocabularyEntry(
@@ -149,7 +149,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="Based on or dependent on.",
                 example="The argument is predicated on false assumptions.",
-                ipa="/ˈpredɪkeɪtɪd ɒn/",
+                ipa="/ˈpredɪkeɪtɪd ɑːn/",
             ),
             VocabularyEntry(
                 word="elucidate",
@@ -164,7 +164,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To make known by official proclamation.",
                 example="The new rules were promulgated last week.",
-                ipa="/ˈprɒməlɡeɪt/",
+                ipa="/ˈprɑːməlɡeɪt/",
                 frequency_rank=530,
             ),
             VocabularyEntry(
@@ -204,7 +204,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="adverb",
                 definition="Apparently or supposedly, though not necessarily.",
                 example="The meeting was ostensibly about budget, but really about politics.",
-                ipa="/ɒˈstensɪbli/",
+                ipa="/ɑːˈstensɪbli/",
                 frequency_rank=490,
             ),
         ],
@@ -262,7 +262,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="To go beyond conventional limits.",
                 example="This design really pushes the envelope.",
-                ipa="/pʊʃ ðə ˈenvələʊp/",
+                ipa="/pʊʃ ðə ˈenvəloʊp/",
             ),
             VocabularyEntry(
                 word="a catch-22",
@@ -297,7 +297,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="To make something clearer or easier to understand.",
                 example="The report sheds light on the root causes.",
-                ipa="/ʃed laɪt ɒn/",
+                ipa="/ʃed laɪt ɑːn/",
             ),
         ],
     ),
@@ -376,7 +376,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A seemingly contradictory statement that reveals a truth.",
                 example='"Less is more" is a well-known paradox.',
-                ipa="/ˈpærədɒks/",
+                ipa="/ˈpærədɑːks/",
                 frequency_rank=380,
             ),
             VocabularyEntry(
@@ -424,7 +424,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The branch of philosophy concerned with the nature of knowledge.",
                 example="This raises questions of epistemology.",
-                ipa="/ɪˌpɪstɪˈmɒlədʒi/",
+                ipa="/ɪˌpɪstɪˈmɑːlədʒi/",
                 frequency_rank=490,
             ),
             VocabularyEntry(
@@ -432,7 +432,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The branch of metaphysics dealing with the nature of being.",
                 example="The ontological assumptions are made explicit.",
-                ipa="/ɒnˈtɒlədʒi/",
+                ipa="/ɑːnˈtɑːlədʒi/",
                 frequency_rank=490,
             ),
             VocabularyEntry(
@@ -464,7 +464,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To assume as a fact; to put forward as a theory.",
                 example="The author posits that inequality is systemic.",
-                ipa="/ˈpɒzɪt/",
+                ipa="/ˈpɑːzɪt/",
                 frequency_rank=440,
             ),
             VocabularyEntry(
@@ -472,7 +472,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A system of classification.",
                 example="Bloom's taxonomy categorises educational objectives.",
-                ipa="/tækˈsɒnəmi/",
+                ipa="/tækˈsɑːnəmi/",
                 frequency_rank=460,
             ),
             VocabularyEntry(
@@ -544,7 +544,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To make a law or policy widely known; to disseminate officially.",
                 example="The new regulations were promulgated by the ministry.",
-                ipa="/ˈprɒməlɡeɪt/",
+                ipa="/ˈprɑːməlɡeɪt/",
                 frequency_rank=470,
             ),
             VocabularyEntry(
@@ -576,7 +576,7 @@ C2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To confirm or give support to a statement, theory, or finding.",
                 example="The witness corroborated the defendant's alibi.",
-                ipa="/kəˈrɒbəreɪt/",
+                ipa="/kəˈrɑːbəreɪt/",
                 frequency_rank=420,
             ),
             VocabularyEntry(

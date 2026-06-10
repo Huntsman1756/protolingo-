@@ -12,7 +12,7 @@ A2_UNITS: list[CurriculumUnit] = [
         title="The Recent Past",
         grammar_points=["past-simple"],
         vocabulary_set_ids=["irregular_verbs_a2", "past_time_a2"],
-        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
             "Uses 40+ common irregular past forms correctly",
             "Narrates a sequence of past events in a short paragraph",
@@ -26,11 +26,12 @@ A2_UNITS: list[CurriculumUnit] = [
         level="A2",
         unit_number=2,
         title="Plans & Future",
-        grammar_points=["going-to-future", "will-future"],
+        grammar_points=["going-to-future", "will-future", "present-continuous"],
         vocabulary_set_ids=["future_plans_a2", "weather_a2"],
-        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
             "Distinguishes going to (planned intention) from will (spontaneous decision)",
+            "Uses present continuous for fixed future arrangements ('I'm meeting John tomorrow')",
             "Makes predictions about the weather using will",
             "Describes personal plans for the week using going to",
         ],
@@ -48,7 +49,7 @@ A2_UNITS: list[CurriculumUnit] = [
             "places_comparison_a2",
             "cities_countries_a2",
         ],
-        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
             "Compare two or more people, places, or things",
             "Use -er/-est and more/most correctly",
@@ -64,7 +65,7 @@ A2_UNITS: list[CurriculumUnit] = [
         title="Ability & Permission",
         grammar_points=["can-cant", "could-past-ability"],
         vocabulary_set_ids=["abilities_sports_a2", "school_work_a2"],
-        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
             "Express past ability using could",
             "Ask for and grant permission politely",
@@ -80,7 +81,7 @@ A2_UNITS: list[CurriculumUnit] = [
         title="Quantity & Shopping",
         grammar_points=["countable-uncountable", "some-any-much-many"],
         vocabulary_set_ids=["food_shopping_a2", "money_prices_a2"],
-        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
             "Use some/any/much/many with countable and uncountable nouns",
             "Follow a shopping conversation",
@@ -96,7 +97,7 @@ A2_UNITS: list[CurriculumUnit] = [
         title="Health & Body",
         grammar_points=["modal-verbs", "imperatives"],
         vocabulary_set_ids=["body_health_a2", "symptoms_a2"],
-        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
             "Uses should / shouldn't for advice",
             "Uses must / mustn't for obligation and prohibition",
@@ -111,8 +112,8 @@ A2_UNITS: list[CurriculumUnit] = [
         unit_number=7,
         title="Travel & Transport",
         grammar_points=["prepositions-time", "adverbs-manner"],
-        vocabulary_set_ids=["transport_a2", "travel_a2", "directions_a2", "animals_nature_a2"],
-        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        vocabulary_set_ids=["transport_a2", "travel_a2", "directions_a2", "us_transport_a2"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
             "Uses at, on, in for time expressions (at 3pm, on Monday, in June)",
             "Uses adverbs of manner correctly (quickly, carefully, loudly)",
