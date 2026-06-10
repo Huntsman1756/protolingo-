@@ -103,6 +103,8 @@ services:
     restart: unless-stopped
     environment:
       BACKEND_URL: http://backend:8000
+      NEXT_PUBLIC_UMAMI_SCRIPT_URL: ${NEXT_PUBLIC_UMAMI_SCRIPT_URL:-}
+      NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
     ports:
       - "3000:3000"
     depends_on:

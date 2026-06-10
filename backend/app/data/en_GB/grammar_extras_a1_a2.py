@@ -1,8 +1,71 @@
-"""English grammar topics — A1 additional."""
+"""English grammar topics — A1 and A2 additional."""
 
 from app.data._types import GrammarExample, GrammarMistake, GrammarTopic
 
-A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
+A1_A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
+    GrammarTopic(
+        slug="have-got",
+        title="Have Got (I've got, She's got, Have you got?)",
+        level="A1",
+        category="Verbs",
+        summary="Use 'have got' for possession and description — the natural British English alternative to 'have'.",
+        structure="I/you/we/they + have got · he/she/it + has got · Haven't/Hasn't got · Have/Has + subject + got?",
+        explanation=(
+            "**Have got** is the standard British English way to talk about possession, "
+            "relationships, and characteristics. It is used far more in British English than "
+            "in American English.\n\n"
+            "**Affirmative:**\n"
+            "- *I've got a new phone.* (= I have a new phone)\n"
+            "- *She's got brown eyes.*\n"
+            "- *They've got three children.*\n\n"
+            "**Negative:**\n"
+            "- *I haven't got a car.* (= I don't have a car)\n"
+            "- *He hasn't got much time.*\n\n"
+            "**Question:**\n"
+            "- *Have you got a pen?*\n"
+            "- *Has she got any brothers or sisters?*\n\n"
+            "**Important notes:**\n"
+            "- 'Have got' is mainly present tense. For the past, use 'had': "
+            "*She had a dog when she was young.*\n"
+            "- 'Got' adds no extra meaning — 'I've got a car' = 'I have a car' — "
+            "but the 'have got' form sounds more natural in everyday British English.\n"
+            "- In formal writing, 'have' (without 'got') is preferred."
+        ),
+        rules=[
+            "In spoken British English, 'have got' is more natural than 'have' for possession.",
+            "Contractions are very common: 've got, 's got, haven't got, hasn't got.",
+            "'Have got' is present tense only — use 'had' for the past.",
+            "In questions and negatives, do NOT use 'do/does' — use 'have/has' directly: "
+            "'Have you got...?' not 'Do you have got...?'",
+        ],
+        examples=[
+            GrammarExample(
+                text="Have you got any milk? I need some for the tea.",
+                note="common British English question",
+            ),
+            GrammarExample(text="She's got a lovely flat near the station."),
+            GrammarExample(text="I haven't got much time — I'm in a hurry.", note="negative"),
+            GrammarExample(text="Has he got a driving licence?", note="third person question"),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="She have got a brother.",
+                correct="She has got a brother.",
+                note="Use 'has got' (not 'have got') for he/she/it.",
+            ),
+            GrammarMistake(
+                wrong="Do you have got a pen?",
+                correct="Have you got a pen?",
+                note="Don't use 'do/does' with 'have got' — invert 'have/has' directly.",
+            ),
+            GrammarMistake(
+                wrong="I haven't got went to the shops.",
+                correct="I haven't been to the shops.",
+                note="'Have got' expresses possession only. For experiences or actions, use the regular present perfect.",
+            ),
+        ],
+        related=["to-be", "questions-yes-no", "possessive-adjectives"],
+    ),
     GrammarTopic(
         slug="question-words",
         title="Question Words (What, Where, When, Who, Why, How)",
@@ -286,7 +349,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         explanation="Reflexive pronouns end in **-self** (singular) or **-selves** (plural):\n\n| Subject | Reflexive |\n|---------|-----------|\n| I | myself |\n| you | yourself / yourselves |\n| he | himself |\n| she | herself |\n| it | itself |\n| we | ourselves |\n| they | themselves |\n\nUse them when:\n1. The subject and object are the same: *I cut myself.*\n2. To emphasise who did something: *I made it myself.*\n3. With 'by' to mean 'alone': *She lives by herself.*",
         rules=[
             "Use reflexive pronouns when the subject and object are the same person.",
-            "Do NOT use reflexive pronouns after prepositions of place (sit down, wake up).",
+            "Do NOT add a reflexive pronoun to phrasal verbs where English does not require one — unlike French or Spanish, English does not use reflexives with verbs like sit down, wake up, or get dressed when the action clearly applies to yourself.",
             "'By + reflexive' means alone or without help.",
             "Common verbs used with reflexives: enjoy yourself, hurt yourself, help yourself.",
         ],
@@ -412,5 +475,61 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["comparatives-superlatives", "adverbs-manner", "too-enough"],
+    ),
+    GrammarTopic(
+        slug="british-spelling",
+        title="British English Spelling (colour, realise, centre)",
+        level="A1",
+        category="Vocabulary",
+        summary="Learn the key spelling differences between British English and American English.",
+        structure="British spelling patterns vs. American equivalents",
+        explanation=(
+            "British English has several spelling conventions that differ from American English. "
+            "As a learner of British English, use these British spellings:\n\n"
+            "| British | American | Examples |\n"
+            "|---------|----------|----------|\n"
+            "| **-our** | -or | *colour, favour, labour, honour* |\n"
+            "| **-re** | -er | *centre, theatre, metre, litre* |\n"
+            "| **-ise** | -ize | *realise, organise, recognise* |\n"
+            "| **-ogue** | -og | *dialogue, catalogue, monologue* |\n"
+            "| **double consonant** | single | *travelling, cancelled, fulfilling* |\n\n"
+            "**Note:** In British English, *licence* (noun) and *license* (verb) are distinct: "
+            "*'I have a driving licence.'* / *'The council licensed the venue.'*"
+        ),
+        rules=[
+            "Use -our for colour, favour, labour, honour, neighbour.",
+            "Use -re for centre, theatre, metre, litre, fibre.",
+            "Use -ise (preferred BrE) for realise, organise, recognise, apologise.",
+            "Double the final consonant when adding -ing/-ed to verbs ending in a single vowel + l: travelling, cancelled.",
+            "Licence (noun) vs License (verb) — a key British English distinction.",
+        ],
+        examples=[
+            GrammarExample(text="The colour of the sky is blue.", note="BrE: colour / AmE: color"),
+            GrammarExample(
+                text="The theatre is in the town centre.",
+                note="BrE: theatre, centre / AmE: theater, center",
+            ),
+            GrammarExample(
+                text="She realised she had forgotten her umbrella.",
+                note="BrE: realised / AmE: realized",
+            ),
+            GrammarExample(
+                text="I cancelled the appointment.",
+                note="BrE: cancelled (double l) / AmE: canceled",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="I live in the center of London.",
+                correct="I live in the centre of London.",
+                note="In British English, use 'centre', not 'center'.",
+            ),
+            GrammarMistake(
+                wrong="What is your favorite color?",
+                correct="What is your favourite colour?",
+                note="British spellings: 'favourite' and 'colour'.",
+            ),
+        ],
+        related=["have-got", "articles"],
     ),
 ]

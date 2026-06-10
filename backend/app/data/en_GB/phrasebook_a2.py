@@ -1,4 +1,4 @@
-"""English phrasebook — A2 categories."""
+"""British English phrasebook — A2 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -62,6 +62,11 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Could we split the bill?", context="Paying separately", register="neutral"
+            ),
+            PhrasebookEntry(
+                text="Could I have some tap water, please?",
+                context="Requesting free tap water — licensed premises in the UK are legally required to provide it",
+                register="neutral",
             ),
             PhrasebookEntry(
                 text="Is service included?", context="Asking about the tip", register="neutral"

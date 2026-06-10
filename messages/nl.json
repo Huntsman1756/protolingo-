@@ -313,7 +313,7 @@
       "s4Title": "4. Externe AI-diensten",
       "s4Body": "In de gehoste service worden AI-chat, spraaksynthese (TTS) en spraaktranscriptie (STT) aangeboden via de API van OpenAI. Je gespreksinhoud en audio worden naar OpenAI gestuurd voor verwerking, conform het privacybeleid van OpenAI (openai.com/privacy). Betalingsverwerking wordt uitgevoerd door Stripe, Inc. (VS); Stripe verwerkt betalingsgegevens rechtstreeks en wij slaan geen betaalkaartnummers op onze servers op — je transactiegegevens vallen onder het privacybeleid van Stripe (stripe.com/privacy). Voor zelf gehoste implementaties kiest de operator de AI-provider; standaard wordt een lokale Ollama-instantie gebruikt en verlaat er geen data de server.",
       "s5Title": "5. Cookies en sessietokens",
-      "s5Body": "FreeLingo gebruikt twee technische cookies die strikt noodzakelijk zijn voor de service: een refresh_token (httpOnly, vervaldatum 30 dagen) voor sessieauthenticatie, en NEXT_LOCALE (vervaldatum 1 jaar) om je taalvoorkeur te onthouden. Er worden geen tracking-, analyse- of advertentiecookies gebruikt.",
+      "s5Body": "FreeLingo gebruikt twee technische cookies die strikt noodzakelijk zijn voor de service: een refresh_token (httpOnly, vervaldatum 30 dagen) voor sessieauthenticatie, en NEXT_LOCALE (vervaldatum 1 jaar) om je taalvoorkeur te onthouden. Er worden geen tracking- of advertentiecookies gebruikt. Voor anonieme verkeersmeting gebruiken we Umami — een zelf gehoste, open-source analysetool die geen cookies gebruikt, geen persoonsgegevens verzamelt en alle data op onze servers bewaart.",
       "s6Title": "6. Jouw rechten (AVG)",
       "s6Body": "Als je in de Europese Economische Ruimte bent, heb je het recht op: toegang tot de persoonsgegevens die we over je bewaren; correctie van onjuiste gegevens; verwijdering van je account en alle bijbehorende gegevens (beschikbaar rechtstreeks via de pagina Instellingen); bezwaar tegen verwerking; en overdraagbaarheid van gegevens. Om deze rechten uit te oefenen, neem contact met ons op via het adres in sectie 8 of verwijder je account rechtstreeks via instellingen. Rechtsgrondslag voor verwerking (Art. 6(1)(b) AVG): we verwerken je persoonsgegevens omdat dit noodzakelijk is voor de uitvoering van de overeenkomst tussen jou en ons — de levering van de FreeLingo-service. Internationale doorgiften: bij gebruik van de gehoste service kunnen je gespreksinhoud en audio worden verwerkt door OpenAI, Inc. (VS), en betalingsgegevens worden verwerkt door Stripe, Inc. (VS). Deze doorgiften worden uitgevoerd op grond van de door de Europese Commissie goedgekeurde Standaardcontractbepalingen (Art. 46 AVG), waarmee een adequaat beschermingsniveau wordt gewaarborgd. Klachtrecht: je hebt het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens (AP — autoriteitpersoonsgegevens.nl) of bij de toezichthoudende autoriteit in je land van verblijf.",
       "s7Title": "7. Bewaring en verwijdering van gegevens",
@@ -1099,7 +1099,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.7.5",
+    "version": "v1.7.6",
     "cta": "Begrepen",
     "entry1": {
       "label": "Verbeterde leermiddelen",

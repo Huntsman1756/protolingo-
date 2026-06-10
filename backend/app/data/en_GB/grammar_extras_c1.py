@@ -491,9 +491,9 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="After modals, use 'have' (not 'has') + past participle.",
             ),
             GrammarMistake(
-                wrong="She can't be at work — it's Sunday.",
+                wrong="She mustn't be at work — it's Sunday.",
                 correct="She can't be at work — it's Sunday.",
-                note="This is actually correct. 'Can't' is the right negative deduction modal for present.",
+                note="For present negative deduction (it's impossible), use 'can't', not 'mustn't'. 'Mustn't' expresses prohibition.",
             ),
         ],
         related=["modals-deduction", "modal-perfects", "distancing-language"],
@@ -602,9 +602,9 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="'Slightly' weakens — it doesn't work well with extreme positive words like 'amazing'.",
             ),
             GrammarMistake(
-                wrong="The film was quite impossible to understand.",
+                wrong="The film was very impossible to understand.",
                 correct="The film was quite impossible to understand.",
-                note="Actually this IS correct — with non-gradable adjectives, 'quite' means 'completely'.",
+                note="With non-gradable adjectives like 'impossible', use 'quite' (= completely) rather than 'very'.",
             ),
         ],
         related=["gradable-non-gradable", "adverbs-manner", "so-such"],
@@ -683,5 +683,77 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["possessive-adjectives", "possessive-pronouns", "complex-noun-phrases"],
+    ),
+    GrammarTopic(
+        slug="word-formation",
+        title="Word Formation (Prefixes, Suffixes & Conversion)",
+        level="C1",
+        category="Vocabulary",
+        summary="Expand your vocabulary systematically by understanding how words are built from prefixes, suffixes, and conversion.",
+        structure="prefix + root · root + suffix · conversion (zero derivation)",
+        explanation=(
+            "**Word formation** allows you to derive new words from existing ones, dramatically "
+            "expanding your vocabulary.\n\n"
+            "**1. Prefixes** (added to the front):\n\n"
+            "| Prefix | Meaning | Examples |\n"
+            "|--------|---------|----------|\n"
+            "| un-, in-, im-, ir-, il- | not | *unhappy, incomplete, impossible* |\n"
+            "| re- | again | *rewrite, reconsider, rebuild* |\n"
+            "| over-, under- | too much / too little | *overestimate, underfund* |\n"
+            "| mis- | wrongly | *misunderstand, mislead* |\n"
+            "| pre-, post- | before / after | *predate, postwar* |\n"
+            "| co-, inter- | together / between | *cooperate, international* |\n\n"
+            "**2. Suffixes** (added to the end):\n\n"
+            "| Suffix | Creates | Examples |\n"
+            "|--------|---------|----------|\n"
+            "| -tion/-sion | noun | *communication, decision* |\n"
+            "| -ment | noun | *development, achievement* |\n"
+            "| -ity/-ness | noun | *complexity, happiness* |\n"
+            "| -ive/-ful/-less | adjective | *creative, useful, careless* |\n"
+            "| -ise/-ify | verb | *modernise, simplify* |\n"
+            "| -ly | adverb | *significantly, carefully* |\n\n"
+            "**3. Conversion (zero derivation):** Using a word as a different part of speech "
+            "without changing its form:\n"
+            "- *to text* (verb from noun), *to Google* (verb from proper noun)\n"
+            "- *a must* (noun from modal), *a download* (noun from verb)"
+        ),
+        rules=[
+            "Prefixes change meaning but not word class; suffixes typically change word class.",
+            "Watch for spelling changes: happy → happiness (y→i), advise → advisory.",
+            "Some prefixes change form: in- → im- (impossible), il- (illegal), ir- (irregular).",
+            "Conversion is productive in English — most nouns can become verbs informally.",
+            "Academic and formal English relies heavily on nominalisation (verb → noun suffix).",
+        ],
+        examples=[
+            GrammarExample(
+                text="The mismanagement of resources led to the project's failure.",
+                note="mis- prefix + -ment suffix",
+            ),
+            GrammarExample(
+                text="The government has decided to decriminalise the possession of small quantities.",
+                note="de- + criminalise",
+            ),
+            GrammarExample(
+                text="The unpredictability of the outcome caused considerable anxiety.",
+                note="un- + predict + -ability",
+            ),
+            GrammarExample(
+                text="She emailed the report. / Can you text me the address?",
+                note="conversion: noun → verb",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="The situation is completly impossibe.",
+                correct="The situation is completely impossible.",
+                note="Adverb suffix is -ly (completely); negative prefix in- becomes im- before p (impossible).",
+            ),
+            GrammarMistake(
+                wrong="She is very knowledgable about the subject.",
+                correct="She is very knowledgeable about the subject.",
+                note="The e is retained before -able in 'knowledgeable'.",
+            ),
+        ],
+        related=["nominalisation", "collocations", "british-spelling"],
     ),
 ]

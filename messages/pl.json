@@ -313,7 +313,7 @@
       "s4Title": "4. Zewnętrzne usługi AI",
       "s4Body": "W usłudze hostowanej czat AI, synteza mowy (TTS) i transkrypcja mowy (STT) są świadczone za pośrednictwem API OpenAI. Treści rozmów i dźwięk są wysyłane do OpenAI w celu przetworzenia, zgodnie z Polityką prywatności OpenAI (openai.com/privacy). Przetwarzanie płatności jest obsługiwane przez Stripe, Inc. (USA); Stripe przetwarza dane płatnicze bezpośrednio i nie przechowujemy danych kart płatniczych na naszych serwerach — Twoje dane transakcyjne podlegają Polityce prywatności Stripe (stripe.com/privacy). W przypadku wdrożeń samodzielnie hostowanych operator wybiera dostawcę AI; domyślnie używana jest lokalna instancja Ollama i żadne dane nie opuszczają serwera.",
       "s5Title": "5. Pliki cookie i tokeny sesji",
-      "s5Body": "FreeLingo używa dwóch technicznych plików cookie niezbędnych do działania usługi: refresh_token (httpOnly, ważność 30 dni) używany do uwierzytelniania sesji oraz NEXT_LOCALE (ważność 1 rok) do zapamiętania preferencji językowych. Nie są używane żadne pliki cookie do śledzenia, analityki ani reklam.",
+      "s5Body": "FreeLingo używa dwóch technicznych plików cookie niezbędnych do działania usługi: refresh_token (httpOnly, ważność 30 dni) używany do uwierzytelniania sesji oraz NEXT_LOCALE (ważność 1 rok) do zapamiętania preferencji językowych. Nie są używane pliki cookie do śledzenia ani reklam. Do anonimowego pomiaru ruchu używamy Umami — samodzielnie hostowanego, otwartoźródłowego narzędzia analitycznego, które nie używa plików cookie, nie zbiera danych osobowych i przechowuje wszystkie dane na naszych serwerach.",
       "s6Title": "6. Twoje prawa (RODO)",
       "s6Body": "Jeśli jesteś na terenie Europejskiego Obszaru Gospodarczego, masz prawo do: dostępu do danych osobowych, które przechowujemy; żądania poprawienia niedokładnych danych; żądania usunięcia konta i wszystkich powiązanych danych (dostępne bezpośrednio ze strony Ustawień); sprzeciwu wobec przetwarzania; oraz żądania przenośności danych. Aby skorzystać z tych praw, skontaktuj się z nami pod adresem w sekcji 8 lub usuń konto bezpośrednio w ustawieniach. Podstawa prawna przetwarzania (Art. 6 ust. 1 lit. b RODO): przetwarzamy Twoje dane osobowe, ponieważ jest to niezbędne do wykonania umowy między Tobą a nami — świadczenia usługi FreeLingo. Przekazywanie danych poza EOG: korzystając z usługi hostowanej, treść Twoich rozmów i dźwięk mogą być przetwarzane przez OpenAI, Inc. (USA), a dane płatnicze są przetwarzane przez Stripe, Inc. (USA). Przekazania te odbywają się na podstawie Standardowych Klauzul Umownych zatwierdzonych przez Komisję Europejską (Art. 46 RODO), zapewniających odpowiedni poziom ochrony. Prawo do skargi: masz prawo wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO — uodo.gov.pl) lub organu nadzorczego w swoim kraju zamieszkania.",
       "s7Title": "7. Przechowywanie i usuwanie danych",
@@ -1099,7 +1099,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.7.5",
+    "version": "v1.7.6",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Ulepszone materiały dydaktyczne",

@@ -1,5 +1,5 @@
 ---
-description: "Docker Compose specification for FreeLingo — all services (PostgreSQL, Redis, backend, frontend, Ollama, Kokoro TTS, Whisper STT), environment variables, operational notes, and deployment guidance."
+description: "Docker Compose specification for FreeLingo: all services (PostgreSQL, Redis, backend, frontend, Ollama, Kokoro TTS, Whisper STT), environment variables, operational notes, and deployment guidance."
 applyTo: "docker-compose.yml, .env*, **/Dockerfile"
 ---
 
