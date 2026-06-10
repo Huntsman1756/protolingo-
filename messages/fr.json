@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Compris",
     "entry1": {
-      "label": "Ressources pédagogiques améliorées",
-      "desc": "Toutes les sections de ressources pédagogiques ont été enrichies avec du nouveau contenu."
+      "label": "Nouvelles langues à apprendre",
+      "desc": "L’espagnol, l’italien et le portugais sont désormais disponibles — chacun avec un programme complet du débutant à l’avancé (A1–C2), grammaire, vocabulaire, phrases, Reading, Listening et plus. Ajoutez-les depuis Paramètres → Mes langues."
     },
     "entry2": {
-      "label": "Apprendre plusieurs langues",
-      "desc": "Vous pouvez désormais apprendre plusieurs langues en même temps. Changez de langue depuis la barre latérale et ajoutez-en de nouvelles depuis paramètres → Mes langues. Nous ajouterons d'autres langues — vous les trouverez là-bas."
+      "label": "Ressources pédagogiques améliorées",
+      "desc": "Toutes les sections de ressources pédagogiques ont été enrichies avec du nouveau contenu."
     },
     "entry3": {
       "label": "Corrections de bugs",
