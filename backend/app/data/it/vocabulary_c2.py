@@ -125,7 +125,7 @@ C2_SETS: list[VocabularySet] = [
                 word="ermetismo",
                 pos="noun",
                 definition="Corrente poetica italiana del Novecento caratterizzata da linguaggio oscuro.",
-                example="L ermetismo di Ungaretti rinnova la poesia italiana.",
+                example="L'ermetismo di Ungaretti rinnova la poesia italiana.",
                 ipa="/ermeˈtizmo/",
                 frequency_rank=901,
             ),
@@ -221,7 +221,7 @@ C2_SETS: list[VocabularySet] = [
                 word="stilema",
                 pos="noun",
                 definition="Elemento stilistico caratteristico di un autore.",
-                example="L uso del discorso indiretto libero è uno stilema di Verga.",
+                example="L'uso del discorso indiretto libero è uno stilema di Verga.",
                 ipa="/stiˈlɛːma/",
                 frequency_rank=912,
             ),
@@ -253,7 +253,7 @@ C2_SETS: list[VocabularySet] = [
                 word="anticlimax",
                 pos="noun",
                 definition="Caduta improvvisa di tensione dopo un momento intenso.",
-                example="L anticlimax finale lascia il lettore spiazzato.",
+                example="L'anticlimax finale lascia il lettore spiazzato.",
                 ipa="/antiˈkliːmaks/",
                 frequency_rank=916,
             ),
@@ -319,7 +319,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Corrispondenza di significato tra due testi in lingue diverse.",
                 example="Trovare un'equivalenza perfetta è quasi impossibile.",
                 ipa="/ekwivaˈlɛntsa/",
-                frequency_rank=922,
+                frequency_rank=1046,
             ),
             VocabularyEntry(
                 word="calco",
@@ -423,7 +423,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Attività di facilitazione della comunicazione tra culture diverse.",
                 example="La mediazione interculturale è sempre più richiesta.",
                 ipa="/medjatˈtsjoːne/",
-                frequency_rank=934,
+                frequency_rank=1047,
             ),
             VocabularyEntry(
                 word="interlocutore",
@@ -436,7 +436,7 @@ C2_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="pragmatica",
                 pos="noun",
-                definition="Ramo della linguistica che studia il linguaggio nel contesto duso.",
+                definition="Ramo della linguistica che studia il linguaggio nel contesto d'uso.",
                 example="La pragmatica aiuta a comprendere le sfumature culturali.",
                 ipa="/praɡˈmaːtika/",
                 frequency_rank=936,
@@ -546,7 +546,7 @@ C2_SETS: list[VocabularySet] = [
                 frequency_rank=948,
             ),
             VocabularyEntry(
-                word="gallicism",
+                word="gallicismo",
                 pos="noun",
                 definition="Parola o espressione presa in prestito dal francese.",
                 example="Molti gallicismi sono entrati in italiano nel Settecento.",
@@ -589,7 +589,7 @@ C2_SETS: list[VocabularySet] = [
                 word="diacronico",
                 pos="adjective",
                 definition="Che studia l'evoluzione di una lingua nel tempo.",
-                example="L analisi diacronica mostra il cambiamento linguistico.",
+                example="L'analisi diacronica mostra il cambiamento linguistico.",
                 ipa="/diaˈkrɔːniko/",
                 frequency_rank=954,
             ),
@@ -610,7 +610,7 @@ C2_SETS: list[VocabularySet] = [
                 frequency_rank=956,
             ),
             VocabularyEntry(
-                word="descritto",
+                word="descrittivo",
                 pos="adjective",
                 definition="Che descrive l'uso reale della lingua senza prescrizioni.",
                 example="La linguistica descrittiva registra l'evoluzione della lingua.",
@@ -661,7 +661,7 @@ C2_SETS: list[VocabularySet] = [
                 word="analfabetismo",
                 pos="noun",
                 definition="Incapacità di leggere e scrivere.",
-                example="All indomani dell'unità l'analfabetismo superava il 70%.",
+                example="All'indomani dell'unità l'analfabetismo superava il 70%.",
                 ipa="/analfabeˈtizmo/",
                 frequency_rank=962,
             ),
@@ -669,7 +669,7 @@ C2_SETS: list[VocabularySet] = [
                 word="scolarizzazione",
                 pos="noun",
                 definition="Diffusione dell'istruzione scolastica tra la popolazione.",
-                example="La scolarizzazione ha favorito lunificazione linguistica.",
+                example="La scolarizzazione ha favorito l'unificazione linguistica.",
                 ipa="/skolariddzatˈtsjoːne/",
                 frequency_rank=963,
             ),
@@ -709,7 +709,7 @@ C2_SETS: list[VocabularySet] = [
                 word="millenario",
                 pos="adjective",
                 definition="Che dura da migliaia di anni.",
-                example="L Italia ha un patrimonio culturale millenario.",
+                example="L'Italia ha un patrimonio culturale millenario.",
                 ipa="/milleˈnaːrjo/",
                 frequency_rank=968,
             ),
@@ -893,7 +893,7 @@ C2_SETS: list[VocabularySet] = [
                 word="licenziare",
                 pos="verb",
                 definition="Approvare definitivamente un testo per la stampa.",
-                example="L editore ha licenziato il manoscritto.",
+                example="L'editore ha licenziato il manoscritto.",
                 ipa="/litʃenˈtsjaːre/",
                 frequency_rank=989,
             ),
@@ -901,7 +901,7 @@ C2_SETS: list[VocabularySet] = [
                 word="pubblicare",
                 pos="verb",
                 definition="Rendere disponibile al pubblico un'opera.",
-                example="Ha pubblicato il suo primo romanzo a quarant anni.",
+                example="Ha pubblicato il suo primo romanzo a quarant'anni.",
                 ipa="/pubˈbliːkare/",
                 frequency_rank=990,
             ),
@@ -957,7 +957,7 @@ C2_SETS: list[VocabularySet] = [
                 word="autorevolezza",
                 pos="noun",
                 definition="Credibilità e prestigio guadagnati con la competenza.",
-                example="Parla con un autorevolezza che incute rispetto.",
+                example="Parla con un'autorevolezza che incute rispetto.",
                 ipa="/autorevoˈlettsa/",
                 frequency_rank=996,
             ),
@@ -1047,6 +1047,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Differenza ingiusta di condizioni o opportunità tra persone o gruppi.",
                 example="La disuguaglianza economica è in aumento in molti paesi.",
                 ipa="/dizuɡwaʎˈʎantsa/",
+                frequency_rank=1006,
             ),
             VocabularyEntry(
                 word="globalizzazione",
@@ -1054,6 +1055,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Processo di integrazione economica e culturale su scala mondiale.",
                 example="La globalizzazione ha trasformato le economie locali.",
                 ipa="/ɡlobaliddzatˈtsjone/",
+                frequency_rank=1007,
             ),
             VocabularyEntry(
                 word="sostenibilità",
@@ -1061,6 +1063,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Capacità di mantenere uno sviluppo che non comprometta le risorse future.",
                 example="La sostenibilità ambientale è una priorità per il governo.",
                 ipa="/sostenibiˈlita/",
+                frequency_rank=1008,
             ),
             VocabularyEntry(
                 word="immigrazione",
@@ -1068,6 +1071,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Fenomeno di spostamento di persone verso un paese diverso dal proprio.",
                 example="L'immigrazione ha arricchito la cultura della città.",
                 ipa="/immiɡratˈtsjone/",
+                frequency_rank=1009,
             ),
             VocabularyEntry(
                 word="integrazione",
@@ -1075,6 +1079,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Processo di inserimento e partecipazione piena in una comunità.",
                 example="Le politiche di integrazione favoriscono la coesione sociale.",
                 ipa="/inteɡratˈtsjone/",
+                frequency_rank=1010,
             ),
             VocabularyEntry(
                 word="emarginazione",
@@ -1082,6 +1087,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Esclusione di un individuo o gruppo dalla piena partecipazione sociale.",
                 example="L'emarginazione sociale colpisce le fasce più vulnerabili.",
                 ipa="/emarɡinatˈtsjone/",
+                frequency_rank=1011,
             ),
             VocabularyEntry(
                 word="polarizzazione",
@@ -1089,6 +1095,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Divisione netta in posizioni opposte e conflittuali.",
                 example="La polarizzazione politica rende difficile il dialogo.",
                 ipa="/polariddzatˈtsjone/",
+                frequency_rank=1012,
             ),
             VocabularyEntry(
                 word="urbanizzazione",
@@ -1096,6 +1103,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Crescita e sviluppo delle aree urbane.",
                 example="L'urbanizzazione rapida ha creato nuove sfide per le città.",
                 ipa="/urbaniddzatˈtsjone/",
+                frequency_rank=1013,
             ),
             VocabularyEntry(
                 word="gentrificazione",
@@ -1103,6 +1111,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Trasformazione di un quartiere popolare in area residenziale di pregio.",
                 example="La gentrificazione ha cambiato il volto del centro storico.",
                 ipa="/dʒentrifikatˈtsjone/",
+                frequency_rank=1014,
             ),
             VocabularyEntry(
                 word="precarietà",
@@ -1110,6 +1119,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Condizione di instabilità e insicurezza, specialmente lavorativa.",
                 example="La precarietà lavorativa preoccupa le nuove generazioni.",
                 ipa="/prekarjeˈta/",
+                frequency_rank=1015,
             ),
             VocabularyEntry(
                 word="welfare",
@@ -1117,6 +1127,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Sistema di protezione sociale garantito dallo stato.",
                 example="Il welfare state è un pilastro della società europea.",
                 ipa="/ˈwɛlfeər/",
+                frequency_rank=1016,
             ),
             VocabularyEntry(
                 word="cittadinanza",
@@ -1124,6 +1135,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Condizione giuridica di appartenenza a uno stato.",
                 example="Ha ottenuto la cittadinanza italiana dopo dieci anni.",
                 ipa="/tʃittadiˈnantsa/",
+                frequency_rank=1017,
             ),
             VocabularyEntry(
                 word="attivismo",
@@ -1131,6 +1143,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Impegno attivo in cause sociali o politiche.",
                 example="L'attivismo giovanile ha portato cambiamenti significativi.",
                 ipa="/attiˈvizmo/",
+                frequency_rank=1018,
             ),
             VocabularyEntry(
                 word="parità",
@@ -1138,6 +1151,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Uguaglianza di diritti, trattamento e opportunità.",
                 example="La parità di genere è un obiettivo ancora da raggiungere.",
                 ipa="/pariˈta/",
+                frequency_rank=1019,
             ),
             VocabularyEntry(
                 word="inclusione",
@@ -1145,6 +1159,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Processo che garantisce a tutti la partecipazione alla vita sociale.",
                 example="L'inclusione scolastica è fondamentale per una società equa.",
                 ipa="/inkluˈzjone/",
+                frequency_rank=1020,
             ),
             VocabularyEntry(
                 word="digitalizzazione",
@@ -1152,6 +1167,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Processo di conversione al formato digitale di dati e servizi.",
                 example="La digitalizzazione della pubblica amministrazione avanza lentamente.",
                 ipa="/didʒitaliddzatˈtsjone/",
+                frequency_rank=1021,
             ),
             VocabularyEntry(
                 word="alfabetizzazione",
@@ -1159,6 +1175,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Acquisizione delle competenze fondamentali di lettura e scrittura.",
                 example="L'alfabetizzazione digitale è essenziale nel mondo moderno.",
                 ipa="/alfabetiddzatˈtsjone/",
+                frequency_rank=1022,
             ),
             VocabularyEntry(
                 word="sorveglianza",
@@ -1166,6 +1183,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Controllo e monitoraggio sistematico di persone o attività.",
                 example="La sorveglianza di massa solleva questioni etiche importanti.",
                 ipa="/sorveʎˈʎantsa/",
+                frequency_rank=1023,
             ),
             VocabularyEntry(
                 word="censura",
@@ -1173,6 +1191,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Limitazione o soppressione della libertà di espressione.",
                 example="La censura sulla stampa è indice di regime autoritario.",
                 ipa="/tʃenˈsura/",
+                frequency_rank=1024,
             ),
             VocabularyEntry(
                 word="populismo",
@@ -1180,6 +1199,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Movimento politico che contrappone il popolo alle élite.",
                 example="Il populismo ha guadagnato consenso in diversi paesi europei.",
                 ipa="/popuˈlizmo/",
+                frequency_rank=1025,
             ),
         ],
     ),
@@ -1195,6 +1215,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Proposizione provvisoria da verificare tramite esperimenti.",
                 example="L'ipotesi è stata confermata dai dati raccolti.",
                 ipa="/iˈpɔtezi/",
+                frequency_rank=1026,
             ),
             VocabularyEntry(
                 word="variabile",
@@ -1202,6 +1223,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Fattore che può essere modificato o misurato in un esperimento.",
                 example="La temperatura era la variabile indipendente dello studio.",
                 ipa="/vaˈrjabile/",
+                frequency_rank=1027,
             ),
             VocabularyEntry(
                 word="metodologia",
@@ -1209,6 +1231,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Insieme dei metodi e delle procedure di una ricerca.",
                 example="La metodologia adottata segue standard internazionali.",
                 ipa="/metodoloˈdʒia/",
+                frequency_rank=1028,
             ),
             VocabularyEntry(
                 word="campione",
@@ -1216,6 +1239,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Gruppo rappresentativo selezionato per uno studio statistico.",
                 example="Il campione comprendeva mille partecipanti.",
                 ipa="/kamˈpjone/",
+                frequency_rank=1029,
             ),
             VocabularyEntry(
                 word="correlazione",
@@ -1223,6 +1247,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Relazione reciproca tra due fenomeni o variabili.",
                 example="È stata trovata una forte correlazione tra i due fattori.",
                 ipa="/korrelatˈtsjone/",
+                frequency_rank=1030,
             ),
             VocabularyEntry(
                 word="paradigma",
@@ -1230,6 +1255,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Modello di riferimento o quadro teorico di una disciplina.",
                 example="Il nuovo paradigma ha rivoluzionato la fisica teorica.",
                 ipa="/paraˈdiɡma/",
+                frequency_rank=1031,
             ),
             VocabularyEntry(
                 word="empirico",
@@ -1237,6 +1263,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Basato sull'osservazione diretta e sull'esperienza.",
                 example="I risultati empirici confermano la teoria proposta.",
                 ipa="/emˈpiriko/",
+                frequency_rank=1032,
             ),
             VocabularyEntry(
                 word="revisione",
@@ -1244,6 +1271,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Esame critico e sistematico di un lavoro scientifico.",
                 example="L'articolo è stato sottoposto a revisione paritaria.",
                 ipa="/reviˈzjone/",
+                frequency_rank=1033,
             ),
             VocabularyEntry(
                 word="pubblicazione",
@@ -1251,6 +1279,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Diffusione ufficiale di risultati scientifici.",
                 example="La pubblicazione su una rivista prestigiosa ha dato visibilità allo studio.",
                 ipa="/pubblikatˈtsjone/",
+                frequency_rank=1034,
             ),
             VocabularyEntry(
                 word="citazione",
@@ -1258,6 +1287,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Riferimento esplicito a un lavoro scientifico precedente.",
                 example="L'articolo ha ricevuto oltre cento citazioni.",
                 ipa="/tʃitatˈtsjone/",
+                frequency_rank=1035,
             ),
             VocabularyEntry(
                 word="protocollo",
@@ -1265,6 +1295,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Procedura standardizzata per condurre un esperimento.",
                 example="Il protocollo sperimentale è stato approvato dal comitato etico.",
                 ipa="/protoˈkɔllo/",
+                frequency_rank=1036,
             ),
             VocabularyEntry(
                 word="sperimentazione",
@@ -1272,6 +1303,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Attività di verifica pratica di un'ipotesi scientifica.",
                 example="La sperimentazione clinica ha richiesto tre anni.",
                 ipa="/sperimentatˈtsjone/",
+                frequency_rank=1037,
             ),
             VocabularyEntry(
                 word="riproducibilità",
@@ -1279,6 +1311,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Possibilità di ottenere gli stessi risultati ripetendo un esperimento.",
                 example="La riproducibilità è un pilastro del metodo scientifico.",
                 ipa="/riprodutʃibiˈlita/",
+                frequency_rank=1038,
             ),
             VocabularyEntry(
                 word="validazione",
@@ -1286,6 +1319,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Conferma dell'accuratezza e affidabilità di un metodo.",
                 example="La validazione dei dati ha richiesto diversi mesi.",
                 ipa="/validatˈtsjone/",
+                frequency_rank=1039,
             ),
             VocabularyEntry(
                 word="falsificabilità",
@@ -1293,6 +1327,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Possibilità che una teoria possa essere dimostrata falsa.",
                 example="La falsificabilità distingue le teorie scientifiche da quelle non scientifiche.",
                 ipa="/falsifikabiˈlita/",
+                frequency_rank=1040,
             ),
             VocabularyEntry(
                 word="consenso",
@@ -1300,6 +1335,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Accordo generale della comunità scientifica su una teoria.",
                 example="Il consenso scientifico sul cambiamento climatico è schiacciante.",
                 ipa="/konˈsɛnso/",
+                frequency_rank=1041,
             ),
             VocabularyEntry(
                 word="divulgazione",
@@ -1307,6 +1343,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Diffusione della conoscenza scientifica al grande pubblico.",
                 example="La divulgazione scientifica è essenziale per una società informata.",
                 ipa="/divulɡatˈtsjone/",
+                frequency_rank=1042,
             ),
             VocabularyEntry(
                 word="innovazione",
@@ -1314,6 +1351,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Introduzione di nuove idee, metodi o tecnologie.",
                 example="L'innovazione tecnologica guida la crescita economica.",
                 ipa="/innovatˈtsjone/",
+                frequency_rank=1043,
             ),
             VocabularyEntry(
                 word="brevetto",
@@ -1321,6 +1359,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Diritto esclusivo concesso su un'invenzione.",
                 example="L'università ha depositato un brevetto per la nuova scoperta.",
                 ipa="/breˈvetto/",
+                frequency_rank=1044,
             ),
             VocabularyEntry(
                 word="scoperta",
@@ -1328,6 +1367,7 @@ C2_SETS: list[VocabularySet] = [
                 definition="Ritrovamento o rivelazione di qualcosa precedentemente ignoto.",
                 example="La scoperta ha aperto nuove strade nella ricerca medica.",
                 ipa="/skoˈpɛrta/",
+                frequency_rank=1045,
             ),
         ],
     ),

@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Entendido",
     "entry1": {
-      "label": "Recursos didácticos mejorados",
-      "desc": "Todas las secciones de recursos didácticos se han ampliado con nuevo contenido."
+      "label": "Nuevos idiomas para aprender",
+      "desc": "Español, italiano y portugués ya están disponibles, cada uno con un plan de estudios completo de principiante a avanzado (A1–C2), recursos de gramática, vocabulario, frases, Reading, Listening y más. Añádelos desde Ajustes → Mis idiomas."
     },
     "entry2": {
-      "label": "Aprende varios idiomas",
-      "desc": "Ahora puedes aprender más de un idioma a la vez. Cambia de idioma desde la barra lateral y añade nuevos desde ajustes → Mis idiomas. Seguiremos añadiendo más idiomas y los encontrarás ahí."
+      "label": "Recursos didácticos mejorados",
+      "desc": "Todas las secciones de recursos didácticos se han ampliado con nuevo contenido."
     },
     "entry3": {
       "label": "Corrección de errores",

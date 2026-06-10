@@ -183,4 +183,120 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
         ],
     ),
+    PhrasebookCategory(
+        id="customer_service_b2",
+        level="B2",
+        situation="Reclami e assistenza clienti",
+        icon="🛠️",
+        phrases=[
+            PhrasebookEntry(
+                text="Desidero presentare un reclamo formale riguardo al servizio ricevuto.",
+                context="Aprire un reclamo in modo formale",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Il prodotto è arrivato danneggiato e non conforme alla descrizione.",
+                context="Segnalare un problema di conformità",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Potrei parlare con un responsabile, per favore?",
+                context="Chiedere escalation del caso",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Gradirei un rimborso completo entro i termini previsti.",
+                context="Richiedere rimborso",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="In alternativa, accetterei una sostituzione immediata.",
+                context="Proporre soluzione alternativa",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Le allego la ricevuta e la documentazione fotografica.",
+                context="Inviare prove documentali",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Resto in attesa di un riscontro entro cinque giorni lavorativi.",
+                context="Fissare una scadenza ragionevole",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Vorrei capire come intendete procedere per risolvere la situazione.",
+                context="Chiedere un piano di risoluzione",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Apprezzo la disponibilità, ma ho bisogno di una conferma scritta.",
+                context="Richiedere tracciabilità",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Grazie per l'assistenza: il problema risulta finalmente risolto.",
+                context="Chiudere positivamente il reclamo",
+                register="neutral",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="work_meetings_b2",
+        level="B2",
+        situation="Riunioni di lavoro e coordinamento",
+        icon="📊",
+        phrases=[
+            PhrasebookEntry(
+                text="Prima di iniziare, allineiamoci sugli obiettivi della riunione.",
+                context="Aprire la riunione con focus",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Propongo di dare priorità ai punti più urgenti dell'ordine del giorno.",
+                context="Gestire priorità",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Mi sembra che ci sia un rischio operativo da mitigare subito.",
+                context="Segnalare rischio",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Condivido in parte, ma suggerirei un approccio più graduale.",
+                context="Dissentire con tatto",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Possiamo definire responsabilità e scadenze prima di chiudere?",
+                context="Chiarire ownership",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Mi incarico io della bozza e ve la inoltro entro domani.",
+                context="Assumersi un task",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Per evitare ambiguità, riepilogo brevemente le decisioni prese.",
+                context="Fare recap finale",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Se siete d'accordo, fissiamo già il prossimo punto di controllo.",
+                context="Pianificare follow-up",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="È un'osservazione pertinente: la includiamo nel piano d'azione.",
+                context="Validare contributo altrui",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Chiuderei qui: grazie a tutti per il contributo.",
+                context="Chiudere la riunione",
+                register="formal",
+            ),
+        ],
+    ),
 ]

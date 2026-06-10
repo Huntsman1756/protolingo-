@@ -18,16 +18,10 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'No se usa subjuntivo tras "creer que / pensar que" en afirmativo, pero sí en negativo.',
         ],
         examples=[
-            GrammarExample(
-                text="Quiero que vengas a mi fiesta.", translation="I want you to come to my party."
-            ),
-            GrammarExample(
-                text="Espero que tengas un buen viaje.", translation="I hope you have a good trip."
-            ),
-            GrammarExample(
-                text="No creo que sea buena idea.", translation="I don't think it's a good idea."
-            ),
-            GrammarExample(text="Dudo que llueva hoy.", translation="I doubt it will rain today."),
+            GrammarExample(text="Quiero que vengas a mi fiesta.", translation=None),
+            GrammarExample(text="Espero que tengas un buen viaje.", translation=None),
+            GrammarExample(text="No creo que sea buena idea.", translation=None),
+            GrammarExample(text="Dudo que llueva hoy.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -55,28 +49,24 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Subjuntivo",
         summary="Usar el subjuntivo para expresar deseos: espero que, quiero que, deseo que, necesito que.",
-        explanation='Las **expresiones de deseo o voluntad** que proyectan una acción hacia el futuro o expresan un deseo sobre otra persona llevan el verbo subordinado en **subjuntivo**.\n\n**Verbo de voluntad + que + subjuntivo**\n\nVerbos de voluntad más comunes:\n- *querer que, desear que, esperar que, necesitar que, preferir que, exigir que, pedir que, rogar que, recomendar que, sugerir que, prohibir que, permitir que*\n\nCuando el sujeto del verbo de voluntad y del verbo subordinado es **el mismo**, se usa el **infinitivo** (no el subjuntivo):\n- *Quiero ir.* (yo quiero + yo voy) → NO ~~Quiero que yo vaya~~.\n- *Quiero que vayas.* (yo quiero + tú vas) → correcto con subjuntivo.\n\n*Esperar que* en español NO significa "to expect" (que lleva indicativo en su uso de previsión), sino "to hope" y rige subjuntivo.',
+        explanation="Las **expresiones de deseo o voluntad** que proyectan una acción hacia el futuro o expresan un deseo sobre otra persona llevan el verbo subordinado en **subjuntivo**.\n\n**Verbo de voluntad + que + subjuntivo**\n\nVerbos de voluntad más comunes:\n- *querer que, desear que, esperar que, necesitar que, preferir que, exigir que, pedir que, rogar que, recomendar que, sugerir que, prohibir que, permitir que*\n\nCuando el sujeto del verbo de voluntad y del verbo subordinado es **el mismo**, se usa el **infinitivo** (no el subjuntivo):\n- *Quiero ir.* (yo quiero + yo voy) -> NO ~~Quiero que yo vaya~~.\n- *Quiero que vayas.* (yo quiero + tú vas) -> correcto con subjuntivo.\n\nEn este uso, *esperar que* expresa deseo y rige subjuntivo.",
         rules=[
             "Verbo de voluntad + que + subjuntivo cuando los sujetos son distintos.",
             'Si el sujeto es el mismo, se usa infinitivo: "Quiero descansar".',
             '"Ojalá" es una expresión de deseo que siempre rige subjuntivo.',
-            '"Esperar que" + subjuntivo = "to hope that".',
+            '"Esperar que" + subjuntivo expresa deseo o expectativa no factual.',
         ],
         examples=[
-            GrammarExample(
-                text="Espero que te guste el regalo.", translation="I hope you like the present."
-            ),
+            GrammarExample(text="Espero que te guste el regalo.", translation=None),
             GrammarExample(
                 text="Mis padres quieren que estudie medicina.",
-                translation="My parents want me to study medicine.",
+                translation=None,
             ),
             GrammarExample(
                 text="Necesito que me ayudes con esto.",
-                translation="I need you to help me with this.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Prefiero que vengáis mañana.", translation="I prefer you to come tomorrow."
-            ),
+            GrammarExample(text="Prefiero que vengáis mañana.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -98,7 +88,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Subjuntivo",
         summary="La expresión de deseo más intensa del español, de origen árabe.",
-        explanation='**Ojalá** es una de las expresiones más características del español. Procede del árabe hispánico *law šáʼ Alláh* ("si Dios quisiera"). Se usa para expresar un **deseo intenso**.\n\n**Ojalá + presente de subjuntivo**: deseo sobre el presente o futuro que se considera **posible**.\n- *Ojalá llueva mañana.*\n- *Ojalá (que) lleguen a tiempo.*\n\n**Ojalá + imperfecto de subjuntivo**: deseo sobre el presente considerado **difícil o improbable**.\n- *Ojalá tuviera más tiempo.* (I wish I had more time.)\n\n**Ojalá + pluscuamperfecto de subjuntivo**: deseo sobre el pasado que **no se cumplió** (irreal).\n- *Ojalá hubiera estudiado más.* (I wish I had studied more.)\n\nLa conjunción "que" es opcional: *Ojalá que venga* = *Ojalá venga*.',
+        explanation='**Ojalá** es una de las expresiones más características del español. Procede del árabe hispánico *law šáʼ Alláh* ("si Dios quisiera"). Se usa para expresar un **deseo intenso**.\n\n**Ojalá + presente de subjuntivo**: deseo sobre el presente o futuro que se considera **posible**.\n- *Ojalá llueva mañana.*\n- *Ojalá (que) lleguen a tiempo.*\n\n**Ojalá + imperfecto de subjuntivo**: deseo sobre el presente considerado **difícil o improbable**.\n- *Ojalá tuviera más tiempo.*\n\n**Ojalá + pluscuamperfecto de subjuntivo**: deseo sobre el pasado que **no se cumplió** (irreal).\n- *Ojalá hubiera estudiado más.*\n\nLa conjunción "que" es opcional: *Ojalá que venga* = *Ojalá venga*.',
         structure="ojalá (que) + presente de subjuntivo (posible) · imperfecto/pluscuamperfecto de subjuntivo (difícil/imposible)",
         rules=[
             '"Ojalá" rige siempre subjuntivo. Nunca lleva indicativo.',
@@ -107,21 +97,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con pluscuamperfecto de subjuntivo: deseo sobre un pasado que no se cumplió.",
         ],
         examples=[
-            GrammarExample(
-                text="Ojalá pueda ir a tu boda.", translation="I hope I can go to your wedding."
-            ),
+            GrammarExample(text="Ojalá pueda ir a tu boda.", translation=None),
             GrammarExample(
                 text="Ojalá no llueva durante las vacaciones.",
-                translation="Let's hope it doesn't rain during the holidays.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ojalá tuviera más dinero.",
-                translation="I wish I had more money.",
+                translation=None,
                 note="deseo difícil",
             ),
             GrammarExample(
                 text="Ojalá hubiera aprendido español de niño.",
-                translation="I wish I had learned Spanish as a child.",
+                translation=None,
                 note="deseo irreal sobre el pasado",
             ),
         ],
@@ -161,19 +149,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Te recomiendo que visites Granada.",
-                translation="I recommend you visit Granada.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es importante que bebas mucha agua en verano.",
-                translation="It's important that you drink a lot of water in summer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sugiero que lleguéis media hora antes.",
-                translation="I suggest you arrive half an hour early.",
+                translation=None,
             ),
             GrammarExample(
                 text="Conviene que reserves con antelación.",
-                translation="It's advisable that you book in advance.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -205,20 +193,18 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Es posible/probable que" siempre rige subjuntivo.',
         ],
         examples=[
-            GrammarExample(
-                text="No creo que él tenga razón.", translation="I don't think he's right."
-            ),
+            GrammarExample(text="No creo que él tenga razón.", translation=None),
             GrammarExample(
                 text="Dudo que puedan terminar a tiempo.",
-                translation="I doubt they can finish on time.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es posible que llueva mañana.",
-                translation="It's possible that it will rain tomorrow.",
+                translation=None,
             ),
             GrammarExample(
                 text="Quizás vayamos a la playa este fin de semana.",
-                translation="Maybe we'll go to the beach this weekend.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -252,19 +238,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Me alegra que hayas encontrado trabajo.",
-                translation="I'm glad you've found a job.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es increíble que no lo sepas.",
-                translation="It's incredible that you don't know it.",
+                translation=None,
             ),
             GrammarExample(
                 text="Siento que no puedas venir a la boda.",
-                translation="I'm sorry you can't come to the wedding.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es normal que estés cansado después del viaje.",
-                translation="It's normal that you're tired after the trip.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -296,18 +282,16 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Se usa con marcadores como hoy, esta semana, este año, ya, todavía no, nunca, alguna vez.",
         ],
         examples=[
-            GrammarExample(text="Hoy he comido paella.", translation="Today I've eaten paella."),
+            GrammarExample(text="Hoy he comido paella.", translation=None),
             GrammarExample(
                 text="¿Has estado alguna vez en México?",
-                translation="Have you ever been to Mexico?",
+                translation=None,
             ),
             GrammarExample(
                 text="Todavía no hemos terminado el proyecto.",
-                translation="We haven't finished the project yet.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Ya he visto esa película.", translation="I've already seen that film."
-            ),
+            GrammarExample(text="Ya he visto esa película.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -329,7 +313,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Tiempos verbales",
         summary="Había hablado, habías comido... — acción pasada anterior a otra pasada.",
-        explanation="El **pretérito pluscuamperfecto** expresa una acción pasada **anterior a otra acción también pasada**. Se forma con el **imperfecto de haber + participio**.\n\n| Persona | Haber (imperfecto) | + Participio |\n|---------|-------------------|--------------|\n| yo | había | hablado/comido/vivido |\n| tú | habías | hablado/comido/vivido |\n| él/ella/usted | había | hablado/comido/vivido |\n| nosotros | habíamos | hablado/comido/vivido |\n| vosotros | habíais | hablado/comido/vivido |\n| ellos/ellas/uds. | habían | hablado/comido/vivido |\n\nEs el equivalente al *past perfect* inglés: *When I arrived, she had already left → Cuando llegué, ella ya se había ido.*\n\nEs muy frecuente en narraciones para marcar que algo ocurrió antes que el punto de referencia pasado.",
+        explanation="El **pretérito pluscuamperfecto** expresa una acción pasada **anterior a otra acción también pasada**. Se forma con el **imperfecto de haber + participio**.\n\n| Persona | Haber (imperfecto) | + Participio |\n|---------|-------------------|--------------|\n| yo | había | hablado/comido/vivido |\n| tú | habías | hablado/comido/vivido |\n| él/ella/usted | había | hablado/comido/vivido |\n| nosotros | habíamos | hablado/comido/vivido |\n| vosotros | habíais | hablado/comido/vivido |\n| ellos/ellas/uds. | habían | hablado/comido/vivido |\n\nEs muy frecuente en narraciones para marcar que algo ocurrió antes que el punto de referencia pasado.\n\nEjemplo: *Cuando llegué, ella ya se había ido.*",
         structure="haber (imperfecto: había/habías/había/habíamos/habíais/habían) + participio",
         rules=[
             "Acción pasada anterior a otra acción pasada.",
@@ -340,19 +324,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Cuando llegué al cine, la película ya había empezado.",
-                translation="When I arrived at the cinema, the film had already started.",
+                translation=None,
             ),
             GrammarExample(
                 text="Nunca había visto algo tan bonito.",
-                translation="I had never seen something so beautiful.",
+                translation=None,
             ),
             GrammarExample(
                 text="No habían terminado los deberes cuando llegó su madre.",
-                translation="They hadn't finished their homework when their mother arrived.",
+                translation=None,
             ),
             GrammarExample(
                 text="Me dijo que ya había estado en ese restaurante.",
-                translation="He told me he had already been to that restaurant.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -385,19 +369,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Esta semana he ido al gimnasio tres veces.",
-                translation="This week I've gone to the gym three times.",
+                translation=None,
             ),
             GrammarExample(
                 text="¿Alguna vez has probado el ceviche?",
-                translation="Have you ever tried ceviche?",
+                translation=None,
             ),
             GrammarExample(
                 text="Todavía no he encontrado las llaves.",
-                translation="I still haven't found the keys.",
+                translation=None,
             ),
             GrammarExample(
                 text="Últimamente no hemos tenido mucho trabajo.",
-                translation="Lately we haven't had much work.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -426,19 +410,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El edificio fue diseñado por un arquitecto famoso.",
-                translation="The building was designed by a famous architect.",
+                translation=None,
             ),
             GrammarExample(
                 text="Las cartas serán enviadas mañana.",
-                translation="The letters will be sent tomorrow.",
+                translation=None,
             ),
             GrammarExample(
                 text="La decisión ha sido tomada por el comité.",
-                translation="The decision has been made by the committee.",
+                translation=None,
             ),
             GrammarExample(
                 text="Los ladrones fueron detenidos por la policía.",
-                translation="The thieves were arrested by the police.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -461,7 +445,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Voz pasiva",
         summary='Construcciones impersonales con "se": Se habla español. Se vive bien aquí.',
-        explanation='El **se impersonal** se usa para expresar acciones sin mencionar quién las realiza. Equivale a "one", "you" o "people" en inglés, o a la voz pasiva sin agente.\n\n**Características**:\n- El verbo va siempre en **tercera persona del singular**.\n- No hay sujeto gramatical explícito.\n- La acción se presenta como general, sin responsable concreto.\n\nEjemplos:\n- *Se vive bien en esta ciudad.* (One lives well in this city.)\n- *Se habla español aquí.* (Spanish is spoken here.)\n- *Se necesita personal.* (Staff is needed.)\n\nCuando el complemento es de persona, se usa la preposición "a":\n- *Se busca a los responsables.*\n- *Se recibió a los invitados.*',
+        explanation='El **se impersonal** se usa para expresar acciones sin mencionar quién las realiza.\n\n**Características**:\n- El verbo va siempre en **tercera persona del singular**.\n- No hay sujeto gramatical explícito.\n- La acción se presenta como general, sin responsable concreto.\n\nEjemplos:\n- *Se vive bien en esta ciudad.*\n- *Se habla español aquí.*\n- *Se necesita personal.*\n\nCuando el complemento es de persona, se usa la preposición "a":\n- *Se busca a los responsables.*\n- *Se recibió a los invitados.*',
         structure="se + verbo en 3ª persona singular",
         rules=[
             "El verbo va en 3ª persona singular, nunca en plural.",
@@ -472,23 +456,23 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se habla inglés en la recepción.",
-                translation="English is spoken at the reception.",
+                translation=None,
             ),
             GrammarExample(
                 text="Se come muy bien en este restaurante.",
-                translation="One eats very well in this restaurant.",
+                translation=None,
             ),
-            GrammarExample(text="Se necesita camarero.", translation="Waiter needed."),
+            GrammarExample(text="Se necesita camarero.", translation=None),
             GrammarExample(
                 text="Se busca a los criminales.",
-                translation="The criminals are being searched for.",
+                translation=None,
             ),
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="Se venden coches aquí.",
+                wrong="Se vende coches aquí.",
                 correct="Se venden coches aquí.",
-                note='Esta es pasiva refleja (concordancia). La impersonal sería "Se vende coches" (menos frecuente).',
+                note='Con "coches" (plural), en pasiva refleja el verbo debe concordar: "se venden".',
             ),
             GrammarMistake(
                 wrong="Se busca los documentos.",
@@ -513,12 +497,12 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'Solo funciona en 3ª persona; no existe "me vendo" como pasiva refleja.',
         ],
         examples=[
-            GrammarExample(text="Se venden flores frescas.", translation="Fresh flowers are sold."),
-            GrammarExample(text="Se alquila habitación.", translation="Room for rent."),
-            GrammarExample(text="Se necesitan voluntarios.", translation="Volunteers are needed."),
+            GrammarExample(text="Se venden flores frescas.", translation=None),
+            GrammarExample(text="Se alquila habitación.", translation=None),
+            GrammarExample(text="Se necesitan voluntarios.", translation=None),
             GrammarExample(
                 text="Aquí se hablan varios idiomas.",
-                translation="Several languages are spoken here.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -552,19 +536,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="La chica que conocí ayer es italiana.",
-                translation="The girl I met yesterday is Italian.",
+                translation=None,
             ),
             GrammarExample(
                 text="El coche que compré es eléctrico.",
-                translation="The car I bought is electric.",
+                translation=None,
             ),
             GrammarExample(
                 text="Lo que me contaste es increíble.",
-                translation="What you told me is incredible.",
+                translation=None,
             ),
             GrammarExample(
                 text="La ciudad en que vivo es muy tranquila.",
-                translation="The city where I live is very quiet.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -598,19 +582,17 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El bar donde quedamos está en el centro.",
-                translation="The bar where we're meeting is downtown.",
+                translation=None,
             ),
             GrammarExample(
                 text="Volveré a la ciudad donde crecí.",
-                translation="I'll return to the city where I grew up.",
+                translation=None,
             ),
             GrammarExample(
                 text="Llegó justo cuando empezábamos a comer.",
-                translation="He arrived just when we were starting to eat.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Cuando termines, avísame.", translation="When you finish, let me know."
-            ),
+            GrammarExample(text="Cuando termines, avísame.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -638,19 +620,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El autor cuyo libro leí ayer es argentino.",
-                translation="The author whose book I read yesterday is Argentine.",
+                translation=None,
             ),
             GrammarExample(
                 text="La ciudad cuyas calles son tan estrechas es Toledo.",
-                translation="The city whose streets are so narrow is Toledo.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es una persona de cuya honestidad no dudo.",
-                translation="He is a person whose honesty I don't doubt.",
+                translation=None,
             ),
             GrammarExample(
                 text="Los estudiantes cuyos trabajos fueron seleccionados recibirán un premio.",
-                translation="The students whose works were selected will receive a prize.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -684,20 +666,20 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Si me lo hubieras dicho, te habría ayudado.",
-                translation="If you had told me, I would have helped you.",
+                translation=None,
             ),
             GrammarExample(
                 text="No contestan. Se habrían ido ya.",
-                translation="They don't answer. They must have left already.",
+                translation=None,
                 note="conjetura",
             ),
             GrammarExample(
                 text="Habrías disfrutado mucho en la fiesta.",
-                translation="You would have enjoyed the party a lot.",
+                translation=None,
             ),
             GrammarExample(
                 text="Dijo que para entonces ya habría llegado.",
-                translation="He said that by then he would have already arrived.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -731,19 +713,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Si tuviera más tiempo, aprendería francés.",
-                translation="If I had more time, I would learn French.",
+                translation=None,
             ),
             GrammarExample(
                 text="Si fueras más alto, podrías jugar al baloncesto.",
-                translation="If you were taller, you could play basketball.",
+                translation=None,
             ),
             GrammarExample(
                 text="Me compraría esa casa si no fuera tan cara.",
-                translation="I would buy that house if it weren't so expensive.",
+                translation=None,
             ),
             GrammarExample(
                 text="Si vivieras aquí, nos veríamos más a menudo.",
-                translation="If you lived here, we would see each other more often.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -776,18 +758,14 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Estará en el trabajo, no contesta el móvil.",
-                translation="He's probably at work, he doesn't answer his phone.",
+                translation=None,
             ),
             GrammarExample(
                 text="No sé qué le pasaba; tendría un mal día.",
-                translation="I don't know what was wrong with him; he was probably having a bad day.",
+                translation=None,
             ),
-            GrammarExample(
-                text="A lo mejor llueve mañana.", translation="Maybe it will rain tomorrow."
-            ),
-            GrammarExample(
-                text="Es probable que lleguen tarde.", translation="They will probably arrive late."
-            ),
+            GrammarExample(text="A lo mejor llueve mañana.", translation=None),
+            GrammarExample(text="Es probable que lleguen tarde.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -819,20 +797,20 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Me dijo que había estado en Madrid el verano anterior.",
-                translation="He told me he had been in Madrid the previous summer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Preguntó si íbamos a venir a la cena.",
-                translation="He asked if we were going to come to the dinner.",
+                translation=None,
             ),
             GrammarExample(
                 text="Me pidió que le ayudara con la mudanza.",
-                translation="He asked me to help him with the move.",
+                translation=None,
                 note="imperativo → subjuntivo",
             ),
             GrammarExample(
                 text="Explicó que para entonces ya habrían terminado.",
-                translation="He explained that by then they would have already finished.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -867,22 +845,22 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Estudio español para viajar por Latinoamérica.",
-                translation="I study Spanish (in order) to travel around Latin America.",
+                translation=None,
                 note="para = finalidad; por = lugar aproximado",
             ),
             GrammarExample(
                 text="Gracias por todo. El regalo es para ti.",
-                translation="Thanks for everything. The gift is for you.",
+                translation=None,
                 note="por = causa de agradecimiento; para = destinatario",
             ),
             GrammarExample(
                 text="Pasé por tu oficina pero no estabas.",
-                translation="I passed by your office but you weren't there.",
+                translation=None,
                 note="lugar aproximado",
             ),
             GrammarExample(
                 text="Este informe es para el viernes.",
-                translation="This report is for Friday.",
+                translation=None,
                 note="plazo límite",
             ),
         ],
@@ -904,5 +882,73 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["preposiciones-lugar", "voz-pasiva", "conectores-avanzados"],
+    ),
+    GrammarTopic(
+        slug="tildes-diacriticas",
+        title="Tildes diacríticas frecuentes",
+        level="B1",
+        category="Oraciones",
+        summary="Diferencias de significado en pares como tu/tú, el/él, mas/más, se/sé, de/dé.",
+        explanation="La **tilde diacrítica** diferencia palabras que se escriben igual pero tienen función distinta.\n\nPares de alta frecuencia:\n- **tu / tú**: *tu casa* (posesivo) vs *tú vienes* (pronombre).\n- **el / él**: *el libro* (artículo) vs *él habla* (pronombre).\n- **mi / mí**: *mi coche* vs *para mí*.\n- **de / dé**: *vas de azul* vs *quiero que me dé tiempo*.\n- **se / sé**: *se fue* (pronombre) vs *sé la respuesta* (verbo saber).\n- **mas / más**: *mas no pude* (conjunción formal) vs *más tarde* (cantidad).\n- **si / sí**: *si vienes* (condición) vs *sí, claro* (afirmación).\n- **aun / aún**: *aun cansado* (= incluso) vs *aún no llega* (= todavía).\n\nAdemás, los interrogativos y exclamativos llevan tilde en preguntas directas e indirectas: **qué, quién, cuál, cómo, cuándo, cuánto, dónde**.",
+        structure="palabra sin tilde (funcion gramatical) · palabra con tilde (valor diacritico)",
+        rules=[
+            "La tilde diacrítica distingue funciones gramaticales y significado.",
+            "Qué, quién, cuál, cómo, cuándo, cuánto y dónde llevan tilde en interrogativas y exclamativas directas e indirectas.",
+            "Aun = incluso; aún = todavía.",
+            "Mas sin tilde es conjunción de registro formal; más expresa cantidad.",
+        ],
+        examples=[
+            GrammarExample(text="Tu hermano dijo que tú llegabas hoy.", translation=None),
+            GrammarExample(text="No sé si él vendrá.", translation=None),
+            GrammarExample(text="Aún no sé qué hacer.", translation=None),
+            GrammarExample(text="Quiero que me dé una respuesta clara.", translation=None),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Tu tienes razon, mas yo no.",
+                correct="Tú tienes razón, más yo no.",
+                note="Faltan tildes diacríticas y acentuación léxica.",
+            ),
+            GrammarMistake(
+                wrong="No se que quieres.",
+                correct="No sé qué quieres.",
+                note="Sé (verbo saber) y qué interrogativo llevan tilde.",
+            ),
+        ],
+        related=["conectores-argumentativos", "estilo-indirecto-pasado", "acentuacion-general"],
+    ),
+    GrammarTopic(
+        slug="g-j-h",
+        title="Ortografía de g, j y h",
+        level="B1",
+        category="Verbos",
+        summary="Reglas productivas de g/j en verbos y uso frecuente de h en familias léxicas.",
+        explanation="En B1 conviene consolidar reglas ortográficas que afectan mucho a la escritura:\n\n**g / j en verbos**\n- Verbos en **-ger/-gir**: ante *o/a* suele aparecer **j** en algunas formas: *dirigir -> dirijo*, *escoger -> escojo*.\n- Se mantiene **g** ante *e/i*: *diriges, dirigimos*.\n\n**j en palabras frecuentes**\n- *trabajo, viaje, ajeno, juventud*.\n\n**h etimológica**\n- No suena, pero se escribe en muchas familias: *hacer/hecho*, *hervir/hervido*, *humo/fumar* (sin h en derivados no emparentados).\n- Se escribe h en formas de *haber*: *he, has, ha, hemos, han*.",
+        structure="-ger/-gir: g ante e/i, j en ciertas formas ante o/a · h etimologica en familias frecuentes",
+        rules=[
+            "En muchos verbos -ger/-gir, la primera persona del presente lleva j: dirijo, escojo.",
+            "Las formas de haber se escriben con h: he, has, ha, hemos, han.",
+            "La h no suena, pero su ausencia puede cambiar la corrección ortográfica.",
+            "Conviene aprender familias léxicas completas para fijar la grafía.",
+        ],
+        examples=[
+            GrammarExample(text="Siempre dirijo yo la reunión.", translation=None),
+            GrammarExample(text="Hoy he hecho la tarea.", translation=None),
+            GrammarExample(text="Ellos escogieron una opción más segura.", translation=None),
+            GrammarExample(text="La juventud necesita oportunidades.", translation=None),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Yo dirigo el proyecto.",
+                correct="Yo dirijo el proyecto.",
+                note="Primera persona de dirigir se escribe con j.",
+            ),
+            GrammarMistake(
+                wrong="A echo un gran esfuerzo.",
+                correct="Ha hecho un gran esfuerzo.",
+                note="Ha (haber) y hecho (participio de hacer) se escriben con h.",
+            ),
+        ],
+        related=["preterito-irregular", "imperativo-irregular", "b-v-basico"],
     ),
 ]

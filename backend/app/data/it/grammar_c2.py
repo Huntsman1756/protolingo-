@@ -196,7 +196,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Avanzato",
         summary="Anafora, epifora, chiasmo, climax, anticlimax e altre figure di stile.",
-        explanation="Figure stilistiche per la scrittura avanzata:\n- **Anafora:** ripetere all'inizio. *Senza di te... Senza di te...*\n- **Epifora:** ripetere alla fine.\n- **Chiasmo:** incrocio. *Mangio per vivere, non vivo per mangiare.*\n- **Climax:** crescendo. *Spero, credo, so.*\n- **Anticlimax:** decrescendo.\n- **Asindeto:** senza congiunzioni. *Veni, vidi, vici.*\n- **Polisindeto:** con molte congiunzioni. *E mangio e bevve e dormi.*",
+        explanation="Figure stilistiche per la scrittura avanzata:\n- **Anafora:** ripetere all'inizio. *Senza di te... Senza di te...*\n- **Epifora:** ripetere alla fine.\n- **Chiasmo:** incrocio. *Mangio per vivere, non vivo per mangiare.*\n- **Climax:** crescendo. *Spero, credo, so.*\n- **Anticlimax:** decrescendo.\n- **Asindeto:** senza congiunzioni. *Veni, vidi, vici.*\n- **Polisindeto:** con molte congiunzioni. *E mangio e bevo e dormo.*",
         rules=[
             "Anafora enfatizza un concetto ripetendolo.",
             "Chiasmo crea simmetria e contrasto.",
@@ -383,7 +383,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarMistake(
                 wrong="Pronunciare i latinismi alla latina (specie in contesti italiani).",
                 correct="In italiano i latinismi si pronunciano secondo la fonetica italiana.",
-                note="Curriculum vitae si pronuncia curricolum vite (all'italiana).",
+                note="Curriculum vitae in italiano corrente si pronuncia in genere con fonetica italianizzata: /kurriˈkulum ˈviːtae/.",
             ),
         ],
         related=["prestiti-linguistici", "evoluzione-linguistica", "registro-formale"],

@@ -280,7 +280,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C1",
         category="Avancado",
         summary="Caracteristicas do humor portugues.",
-        explanation="Autoironia, sarcasmo afavel, resignacao comica, understatement, desenrascanco.",
+        explanation="Autoironia, sarcasmo afavel, resignacao comica, subentendido, desenrascanco.",
         rules=[
             "Autoironia, sarcasmo.",
             "Resignacao comica.",

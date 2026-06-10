@@ -212,7 +212,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Ontem eu ___ ao cinema.",
         options=["fui", "fui a", "ia", "irei"],
         correct="fui",
-        grammar_slug="passado-simples",
+        grammar_slug="preterito-perfeito-regular",
     ),
     AssessmentQuestion(
         id="g-a2-002",
@@ -221,7 +221,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Ela ___ a carta.",
         options=["escreveu", "foi escrita", "tem escrito", "escrevia"],
         correct="escreveu",
-        grammar_slug="passado-simples",
+        grammar_slug="preterito-perfeito-regular",
     ),
     AssessmentQuestion(
         id="g-a2-003",
@@ -230,7 +230,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Em criança, ___ sempre no parque.",
         options=["brincava", "brinquei", "brincarei", "brinco"],
         correct="brincava",
-        grammar_slug="imperfeito",
+        grammar_slug="preterito-imperfeito",
     ),
     AssessmentQuestion(
         id="g-a2-004",
@@ -239,7 +239,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Enquanto ___, o telefone tocou.",
         options=["dormia", "dormi", "dormirei", "durmo"],
         correct="dormia",
-        grammar_slug="passado-vs-imperfeito",
+        grammar_slug="perfeito-vs-imperfeito",
     ),
     AssessmentQuestion(
         id="g-a2-005",
@@ -248,7 +248,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa com o pronome: ___ vejo amanhã.",
         options=["Vejo-te", "Te vejo", "Vejo tu", "A ti vejo"],
         correct="Vejo-te",
-        grammar_slug="pronomes-pessoais",
+        grammar_slug="pronomes-objeto-direto",
     ),
     AssessmentQuestion(
         id="g-a2-006",
@@ -257,7 +257,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: ___ dei o presente.",
         options=["Dei-lhe", "Dei-o", "Dei-a", "Dei o"],
         correct="Dei-lhe",
-        grammar_slug="pronomes-indiretos",
+        grammar_slug="pronomes-objeto-indireto",
     ),
     AssessmentQuestion(
         id="g-a2-007",
@@ -280,7 +280,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: ___ um café, por favor.",
         options=["Queria", "Quero", "Querias", "Querer"],
         correct="Queria",
-        grammar_slug="condicional-cortesia",
+        grammar_slug="condicional",
     ),
     AssessmentQuestion(
         id="g-a2-009",
@@ -289,7 +289,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa o imperativo: ___ a janela!",
         options=["Abre", "Abri", "Abrir", "Aberto"],
         correct="Abre",
-        grammar_slug="imperativo",
+        grammar_slug="imperativo-afirmativo",
     ),
     AssessmentQuestion(
         id="g-a2-010",
@@ -416,7 +416,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Penso que tu ___ razão.",
         options=["tenhas", "tens", "terás", "tinhas"],
         correct="tenhas",
-        grammar_slug="conjuntivo-presente",
+        grammar_slug="presente-conjuntivo",
     ),
     AssessmentQuestion(
         id="g-b1-002",
@@ -425,7 +425,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: É importante que vocês ___ a horas.",
         options=["cheguem", "chegam", "chegarão", "chegavam"],
         correct="cheguem",
-        grammar_slug="conjuntivo-presente",
+        grammar_slug="presente-conjuntivo",
     ),
     AssessmentQuestion(
         id="g-b1-003",
@@ -434,7 +434,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Espero que a Maria ___ depressa.",
         options=["melhore", "melhora", "melhorará", "melhorava"],
         correct="melhore",
-        grammar_slug="conjuntivo-desejo",
+        grammar_slug="expressoes-desejo",
     ),
     AssessmentQuestion(
         id="g-b1-004",
@@ -480,7 +480,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
             "A pessoa de que te falei está aqui.",
         ],
         correct="A pessoa de quem te falei está aqui.",
-        grammar_slug="pronomes-relativos",
+        grammar_slug="que-relativo",
     ),
     AssessmentQuestion(
         id="g-b1-008",
@@ -489,7 +489,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Se amanhã ___ bom tempo, vou à praia.",
         options=["estiver", "está", "estaria", "estivesse"],
         correct="estiver",
-        grammar_slug="condicional-real",
+        grammar_slug="futuro-do-conjuntivo",
     ),
     AssessmentQuestion(
         id="g-b1-009",
@@ -498,7 +498,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Se ___ rico, viajaria pelo mundo inteiro.",
         options=["fosse", "era", "seria", "seja"],
         correct="fosse",
-        grammar_slug="condicional-irreal",
+        grammar_slug="se-imperfeito-subjuntivo",
     ),
     AssessmentQuestion(
         id="g-b1-010",
@@ -512,7 +512,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
             "O João disse que estivesse cansado.",
         ],
         correct="O João disse que estava cansado.",
-        grammar_slug="discurso-indireto",
+        grammar_slug="discurso-indireto-passado",
     ),
     AssessmentQuestion(
         id="v-b1-001",
@@ -660,7 +660,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Gostaria que tu ___ mais.",
         options=["estudasses", "estudas", "estudarias", "estudavas"],
         correct="estudasses",
-        grammar_slug="conjuntivo-imperfeito",
+        grammar_slug="imperfeito-conjuntivo",
     ),
     AssessmentQuestion(
         id="g-b2-002",
@@ -669,7 +669,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Se ___ o dinheiro, teria comprado aquela casa.",
         options=["tivesse tido", "tinha", "tive", "teria tido"],
         correct="tivesse tido",
-        grammar_slug="conjuntivo-mais-que-perfeito",
+        grammar_slug="mais-que-perfeito-conjuntivo",
     ),
     AssessmentQuestion(
         id="g-b2-003",
@@ -678,7 +678,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa com a perífrase correta: A situação ___ a melhorar.",
         options=["vai", "está", "anda", "fica"],
         correct="vai",
-        grammar_slug="andar-gerundio",
+        grammar_slug="andar-a-estar-a",
     ),
     AssessmentQuestion(
         id="g-b2-004",
@@ -772,7 +772,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Embora ___ tarde, sairei na mesma.",
         options=["seja", "é", "será", "era"],
         correct="seja",
-        grammar_slug="conjuntivo-concessivo",
+        grammar_slug="subjuntivo-concessivo",
     ),
     AssessmentQuestion(
         id="g-c1-002",
@@ -790,7 +790,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Para que o projeto ___ aprovado, são precisas mais assinaturas.",
         options=["seja", "é", "será", "era"],
         correct="seja",
-        grammar_slug="conjuntivo-final",
+        grammar_slug="subjuntivo-final",
     ),
     AssessmentQuestion(
         id="g-c1-004",
@@ -804,7 +804,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
             "Faço muitas coisas.",
         ],
         correct="Tenho um mar de coisas para fazer.",
-        grammar_slug="figuras-de-estilo",
+        grammar_slug="recursos-retoricos",
     ),
     AssessmentQuestion(
         id="v-c1-001",
@@ -886,7 +886,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Quem me dera que ___ verdade!",
         options=["fosse", "é", "era", "será"],
         correct="fosse",
-        grammar_slug="conjuntivo-revisao",
+        grammar_slug="revisao-conjuntivo",
     ),
     AssessmentQuestion(
         id="g-c2-002",
@@ -895,24 +895,29 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Completa: Se ___ mais, hoje saberia responder.",
         options=["tivesse estudado", "estudei", "estudava", "estudo"],
         correct="tivesse estudado",
-        grammar_slug="condicional-misto",
+        grammar_slug="revisao-condicional",
     ),
     AssessmentQuestion(
         id="g-c2-003",
         skill="grammar",
         difficulty="C2",
-        question="Qual é o plural correto?",
-        options=["Os cidadãos", "Os cidadões", "Os cidadães", "Os cidadãos-es"],
-        correct="Os cidadãos",
-        grammar_slug="concordancia-genero",
+        question="Qual frase usa corretamente a mesóclise em registo formal?",
+        options=[
+            "Dir-te-ei a verdade amanhã.",
+            "Te direi a verdade amanhã.",
+            "Direi-te a verdade amanhã.",
+            "Vou dizer-te a verdade amanhã.",
+        ],
+        correct="Dir-te-ei a verdade amanhã.",
+        grammar_slug="mesoclise",
     ),
     AssessmentQuestion(
         id="g-c2-004",
         skill="grammar",
         difficulty="C2",
-        question="Completa com a mesóclise: Dar-___ -ei o livro amanhã.",
-        options=["to", "te", "lhe", "vos"],
-        correct="to",
+        question="Completa com a mesóclise correta: Entregar-___-ei o relatório ao diretor amanhã.",
+        options=["lhe", "o", "te", "nos"],
+        correct="lhe",
         grammar_slug="mesoclise",
     ),
     AssessmentQuestion(

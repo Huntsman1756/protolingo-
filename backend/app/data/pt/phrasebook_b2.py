@@ -11,12 +11,12 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
         phrases=[
             PhrasebookEntry(
                 text="Exmo. Sr. Dr. Silva,",
-                context="Abertura de email formal (homem)",
+                context="Abertura de correio eletrónico formal (homem)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Exma. Sra. Professora Sousa,",
-                context="Abertura de email formal (mulher)",
+                context="Abertura de correio eletrónico formal (mulher)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -35,13 +35,13 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="Na sequ\u00eancia do seu email de...",
+                text="Na sequ\u00eancia do seu correio eletr\u00f3nico de...",
                 context="Referir uma comunica\u00e7\u00e3o anterior",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Escrevo para solicitar informa\u00e7\u00f5es sobre...",
-                context="Introduzir o objetivo do email",
+                context="Introduzir o objetivo do correio eletr\u00f3nico",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -110,7 +110,7 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Podemos encontrar uma solu\u00e7\u00e3o vantajosa para ambos.",
-                context="Propor solu\u00e7\u00e3o win-win",
+                context="Propor solu\u00e7\u00e3o vantajosa para ambas as partes",
                 register="formal",
             ),
             PhrasebookEntry(

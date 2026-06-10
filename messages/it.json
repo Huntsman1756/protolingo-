@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Capito",
     "entry1": {
-      "label": "Risorse didattiche migliorate",
-      "desc": "Tutte le sezioni di risorse didattiche sono state ampliate con nuovi contenuti."
+      "label": "Nuove lingue da imparare",
+      "desc": "Spagnolo, italiano e portoghese sono ora disponibili — ognuno con un curriculum completo da principiante ad avanzato (A1–C2), grammatica, vocabolario, frasi, Reading, Listening e altro. Aggiungili da Impostazioni → Le mie lingue."
     },
     "entry2": {
-      "label": "Impara più lingue",
-      "desc": "Ora puoi imparare più di una lingua alla volta. Cambia lingua dalla barra laterale e aggiungine di nuove da impostazioni → Le mie lingue. Continueremo ad aggiungere altre lingue — le troverai lì."
+      "label": "Risorse didattiche migliorate",
+      "desc": "Tutte le sezioni di risorse didattiche sono state ampliate con nuovi contenuti."
     },
     "entry3": {
       "label": "Correzioni di bug",

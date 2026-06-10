@@ -186,11 +186,11 @@ C2_SETS: list[VocabularySet] = [
                 frequency_rank=931,
             ),
             VocabularyEntry(
-                word="sublime",
+                word="excecional",
                 pos="adjective",
-                definition="De tom elevado, majestoso, grandioso.",
-                example="A linguagem sublime dele evoca os clássicos.",
-                ipa="/suˈblimɨ/",
+                definition="De qualidade muito acima da média.",
+                example="A linguagem dele é excecional e muito expressiva.",
+                ipa="/ɨsɨpsjuˈnaɫ/",
                 frequency_rank=932,
             ),
             VocabularyEntry(
@@ -794,11 +794,11 @@ C2_SETS: list[VocabularySet] = [
                 frequency_rank=1001,
             ),
             VocabularyEntry(
-                word="lapidar",
+                word="depurar",
                 pos="verb",
-                definition="Aperfeiçoar um texto com cuidado minucioso.",
-                example="Lapida cada período com precisão quase doentia.",
-                ipa="/lɐpiˈdaɾ/",
+                definition="Aperfeiçoar retirando excessos e imprecisões.",
+                example="Depura cada período até atingir total clareza.",
+                ipa="/dɨpuˈɾaɾ/",
                 frequency_rank=1002,
             ),
             VocabularyEntry(
@@ -986,11 +986,11 @@ C2_SETS: list[VocabularySet] = [
                 frequency_rank=1023,
             ),
             VocabularyEntry(
-                word="transcender",
+                word="superar",
                 pos="verb",
-                definition="Ultrapassar os limites para alcançar um nível superior.",
-                example="A arte dele transcende as fronteiras da língua.",
-                ipa="/tɾɐ̃ʃsẽˈdeɾ/",
+                definition="Ultrapassar um limite ou nível anterior.",
+                example="A obra dele supera fronteiras linguísticas e culturais.",
+                ipa="/supɨˈɾaɾ/",
                 frequency_rank=1024,
             ),
             VocabularyEntry(

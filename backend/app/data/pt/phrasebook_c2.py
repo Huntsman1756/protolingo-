@@ -74,7 +74,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="nuanced_discourse_c2",
         level="C2",
-        situation="Discurso matizado e hedging",
+        situation="Discurso matizado e atenuacao",
         icon="\U0001f52c",
         phrases=[
             PhrasebookEntry(
@@ -171,7 +171,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="A parte inadimplente ser\u00e1 respons\u00e1vel pelo pagamento de perdas e danos.",
+                text="A parte incumpridora ser\u00e1 respons\u00e1vel pelo pagamento de perdas e danos.",
                 context="Cl\u00e1usula de incumprimento",
                 register="formal",
             ),

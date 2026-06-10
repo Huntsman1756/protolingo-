@@ -20,21 +20,21 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Aunque no estés de acuerdo, respeto tu opinión.",
-                translation="Even if you don't agree, I respect your opinion.",
+                translation=None,
                 note="subjuntivo: hipotético",
             ),
             GrammarExample(
                 text="Por más que se lo explico, no lo entiende.",
-                translation="No matter how much I explain it to him, he doesn't understand.",
+                translation=None,
                 note="indicativo: hecho real",
             ),
             GrammarExample(
                 text="Por muy cansado que esté, siempre ayuda a los demás.",
-                translation="No matter how tired he is, he always helps others.",
+                translation=None,
             ),
             GrammarExample(
                 text="Aunque me lo hubieras dicho antes, no habría podido ir.",
-                translation="Even if you had told me earlier, I wouldn't have been able to go.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -68,19 +68,19 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Te lo explico para que lo entiendas mejor.",
-                translation="I explain it to you so that you understand it better.",
+                translation=None,
             ),
             GrammarExample(
                 text="Habla más alto para que todos te oigan.",
-                translation="Speak louder so that everyone can hear you.",
+                translation=None,
             ),
             GrammarExample(
                 text="Salí temprano a fin de que no me pillara el tráfico.",
-                translation="I left early so that I wouldn't get caught in traffic.",
+                translation=None,
             ),
             GrammarExample(
                 text="Lleva el abrigo, no sea que haga frío.",
-                translation="Take your coat, in case it's cold.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -114,21 +114,21 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Busco una casa que tenga jardín.",
-                translation="I'm looking for a house that has a garden.",
+                translation=None,
                 note="subjuntivo: no sé si existe",
             ),
             GrammarExample(
                 text="Busco la casa que tiene la puerta azul.",
-                translation="I'm looking for the house that has the blue door.",
+                translation=None,
                 note="indicativo: sé que existe",
             ),
             GrammarExample(
                 text="No hay nadie que sepa tocar el piano aquí.",
-                translation="There is no one who knows how to play the piano here.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es lo mejor que me haya pasado en la vida.",
-                translation="It's the best thing that has ever happened to me.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -161,15 +161,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se analizaron más de mil muestras en el laboratorio.",
-                translation="More than a thousand samples were analyzed in the lab.",
+                translation=None,
             ),
             GrammarExample(
                 text="Se espera que las temperaturas bajen en los próximos días.",
-                translation="Temperatures are expected to drop in the coming days.",
+                translation=None,
             ),
             GrammarExample(
                 text="En esta revista se publican artículos de divulgación científica.",
-                translation="In this magazine, science communication articles are published.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -192,15 +192,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="La destrucción del hábitat natural es una amenaza grave.",
-                translation="The destruction of the natural habitat is a serious threat.",
+                translation=None,
             ),
             GrammarExample(
                 text="Se ha producido un aumento significativo de la demanda.",
-                translation="There has been a significant increase in demand.",
+                translation=None,
             ),
             GrammarExample(
                 text="La falta de comunicación fue la causa del conflicto.",
-                translation="The lack of communication was the cause of the conflict.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -222,15 +222,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se ha demostrado que el ejercicio regular mejora la salud mental.",
-                translation="It has been shown that regular exercise improves mental health.",
+                translation=None,
             ),
             GrammarExample(
                 text="Cuando uno aprende un idioma, descubre otra cultura.",
-                translation="When one learns a language, one discovers another culture.",
+                translation=None,
             ),
             GrammarExample(
                 text="Dicen que el precio de la vivienda va a bajar.",
-                translation="They say that the price of housing is going to go down.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -252,11 +252,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text='No es lo mismo decir "hace frío" que "hace un frío gélido". La segunda opción intensifica.',
-                translation='It\'s not the same to say "it\'s cold" as "it\'s freezing cold". The second option intensifies.',
+                translation=None,
             ),
             GrammarExample(
                 text='En el artículo el periodista no "dice", sino que "sostiene" o "argumenta".',
-                translation='In the article, the journalist doesn\'t just "say", but rather "maintains" or "argues".',
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -278,15 +278,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Es imposible predecir el resultado con exactitud.",
-                translation="It's impossible to predict the result accurately.",
+                translation=None,
             ),
             GrammarExample(
                 text="Tendrás que reescribir el informe porque está incompleto.",
-                translation="You'll have to rewrite the report because it's incomplete.",
+                translation=None,
             ),
             GrammarExample(
                 text="¡Menudo golazo marcó en el último minuto!",
-                translation="What an amazing goal he scored in the last minute!",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -308,12 +308,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El gobierno implementó nuevas medidas para paliar la crisis.",
-                translation="The government implemented new measures to mitigate the crisis.",
+                translation=None,
                 note='no "hizo" medidas ni "arreglar" la crisis',
             ),
             GrammarExample(
                 text="Escucho música mientras trabajo, pero oigo el ruido del tráfico de fondo.",
-                translation="I listen to music while I work, but I hear the traffic noise in the background.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -335,17 +335,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="¡Qué bien! Justo lo que necesitaba.",
-                translation="Great! Just what I needed.",
+                translation=None,
                 note="dicho al recibir una mala noticia",
             ),
             GrammarExample(
                 text="Menudo amigo estás hecho.",
-                translation="Some friend you are.",
+                translation=None,
                 note="ironía: no es buen amigo",
             ),
             GrammarExample(
                 text="Claro, tú siempre tienes razón.",
-                translation="Of course, you're always right.",
+                translation=None,
                 note="dicho con tono irónico",
             ),
         ],
@@ -368,12 +368,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="No, si tú eres muy listo.",
-                translation="Oh sure, you're so clever.",
+                translation=None,
                 note="sarcasmo: ha sido imprudente",
             ),
             GrammarExample(
                 text="Sí, claro, ahora mismo lo hago.",
-                translation="Yeah, right, I'll do it right now.",
+                translation=None,
                 note="dicho cuando no hay intención de hacerlo",
             ),
         ],
@@ -396,12 +396,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Como siempre, llega a la hora.",
-                translation="As always, he arrives on time. / As always, he arrives late.",
+                translation=None,
                 note="depende de la entonación y el contexto",
             ),
             GrammarExample(
                 text="Se venden calcetines para caballeros de lana.",
-                translation="Wool socks for men for sale. / Socks for wool gentlemen for sale.",
+                translation=None,
                 note="ambigüedad sintáctica",
             ),
         ],
@@ -424,17 +424,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="¿Cuántas veces tenemos que repetir lo mismo?",
-                translation="How many times do we have to repeat the same thing?",
+                translation=None,
                 note="pregunta retórica",
             ),
             GrammarExample(
                 text="Trabajamos sin descanso, luchamos sin tregua, soñamos sin límites.",
-                translation="We work tirelessly, we fight relentlessly, we dream boundlessly.",
+                translation=None,
                 note="paralelismo y tríada",
             ),
             GrammarExample(
                 text="Es la peor de las soluciones, pero es la única que tenemos.",
-                translation="It's the worst of solutions, but it's the only one we have.",
+                translation=None,
                 note="antítesis",
             ),
         ],
@@ -457,11 +457,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Todos sabemos que el cambio climático es real. Como sociedad, tenemos la responsabilidad de actuar. No podemos mirar hacia otro lado.",
-                translation="We all know climate change is real. As a society, we have the responsibility to act. We can't look the other way.",
+                translation=None,
             ),
             GrammarExample(
                 text="Según los últimos datos del INE, la pobreza infantil ha aumentado un 12%. Detrás de cada cifra hay un niño que no tiene para comer.",
-                translation="According to the latest INE data, child poverty has increased by 12%. Behind every figure, there is a child who doesn't have enough to eat.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -483,17 +483,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Y los niños corren, y los perros ladran, y los coches pitan, y el mundo sigue girando.",
-                translation="And the children run, and the dogs bark, and the cars honk, and the world keeps turning.",
+                translation=None,
                 note="polisíndeton",
             ),
             GrammarExample(
                 text="Llegué, vi, vencí.",
-                translation="I came, I saw, I conquered.",
+                translation=None,
                 note="asíndeton",
             ),
             GrammarExample(
                 text="El dulce sonido del silencio.",
-                translation="The sweet sound of silence.",
+                translation=None,
                 note="sinestesia",
             ),
         ],
@@ -516,17 +516,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ustedes tienen razón.",
-                translation="You are right.",
+                translation=None,
                 note="única forma plural en América Latina",
             ),
             GrammarExample(
                 text="Vos sabés lo que hiciste.",
-                translation="You know what you did.",
+                translation=None,
                 note="voseo rioplatense",
             ),
             GrammarExample(
                 text="Ahorita te llamo.",
-                translation="I'll call you shortly/right now.",
+                translation=None,
                 note='dimitutivo; en México "ahorita" puede significar "en un rato"',
             ),
         ],
@@ -549,17 +549,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Voy a coger el autobús.",
-                translation="I'm going to take the bus.",
+                translation=None,
                 note="normal en España; evitar en Latinoamérica",
             ),
             GrammarExample(
                 text="Manejo hasta tu casa en media hora.",
-                translation="I'll drive to your house in half an hour.",
+                translation=None,
                 note="Argentina/México",
             ),
             GrammarExample(
                 text="¿Me pasas la papa, por favor?",
-                translation="Can you pass me the potato, please?",
+                translation=None,
                 note='Latinoamérica; en España sería "patata"',
             ),
         ],
@@ -583,13 +583,13 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Vos tenés que venir a conocer Buenos Aires.",
-                translation="You have to come visit Buenos Aires.",
+                translation=None,
                 note="voseo rioplatense",
             ),
-            GrammarExample(text="¿De dónde sos?", translation="Where are you from?"),
+            GrammarExample(text="¿De dónde sos?", translation=None),
             GrammarExample(
                 text="Hablá más fuerte que no te escucho.",
-                translation="Speak louder, I can't hear you.",
+                translation=None,
                 note="imperativo voseante",
             ),
         ],
@@ -612,7 +612,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="En resumen, el artículo plantea que el bilingüismo aporta beneficios cognitivos medibles, aunque advierte de la necesidad de más estudios longitudinales.",
-                translation="In summary, the article argues that bilingualism brings measurable cognitive benefits, although it warns of the need for more longitudinal studies.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -634,11 +634,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Me ha gustado mucho tu presentación. Quizás podrías añadir más ejemplos para hacerla aún más clara.",
-                translation="I really liked your presentation. Perhaps you could add more examples to make it even clearer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Entiendo tu enfoque, pero me pregunto si no sería mejor considerar otras opciones.",
-                translation="I understand your approach, but I wonder if it wouldn't be better to consider other options.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -660,18 +660,64 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El proyecto es viable, es decir, contamos con los recursos necesarios para llevarlo a cabo.",
-                translation="The project is viable; that is, we have the resources needed to carry it out.",
+                translation=None,
             ),
             GrammarExample(
                 text="No me gusta la idea. Mejor dicho, me parece terrible.",
-                translation="I don't like the idea. Or rather, it seems terrible to me.",
+                translation=None,
             ),
             GrammarExample(
                 text="No estudié nada, llovió todo el día y encima perdí el tren. Total, un desastre de día.",
-                translation="I didn't study at all, it rained all day, and on top of that I missed the train. All in all, a disastrous day.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
         related=["sintesis-textual", "critica-constructiva", "conectores-avanzados"],
+    ),
+    GrammarTopic(
+        slug="ortotipografia-academica",
+        title="Ortotipografía académica",
+        level="C1",
+        category="Avanzado",
+        summary="Convenciones de mayúsculas, comillas, cursivas y citación breve en textos formales.",
+        explanation="La **ortotipografía académica** regula la presentación formal del texto y contribuye a su legibilidad y credibilidad.\n\nAspectos clave:\n- **Mayúsculas/minúsculas**: instituciones, cargos, títulos y gentilicios según norma.\n- **Comillas**: preferencia de comillas españolas (« ») en edición formal; comillas dobles o simples para niveles internos.\n- **Cursiva**: extranjerismos no adaptados, títulos de obras largas y énfasis técnico puntual.\n- **Abreviaturas y siglas**: coherencia, primer desarrollo y uso posterior estabilizado.\n\nEn C1 se espera aplicar estas convenciones en informes, ensayos y reseñas de manera consistente.",
+        structure="norma ortotipografica + coherencia editorial en todo el texto",
+        rules=[
+            "Mantener un criterio único de comillas en todo el documento.",
+            "Usar cursiva para extranjerismos no adaptados y títulos de obras largas.",
+            "Evitar mayúsculas innecesarias en meses, días y gentilicios.",
+            "Desarrollar siglas la primera vez que aparecen.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Según el Instituto Nacional de Estadística (INE), la tendencia se mantiene estable.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="El concepto de *feedback* se ha integrado en la didáctica actual.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="La autora sostiene: «El cambio no es opcional, sino imprescindible».",
+                translation=None,
+            ),
+            GrammarExample(
+                text="En abril se publicará un nuevo informe sobre educación superior.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="En Abril, El Ministerio publicó datos.",
+                correct="En abril, el ministerio publicó datos.",
+                note="Meses y cargos comunes van en minúscula en uso general.",
+            ),
+            GrammarMistake(
+                wrong="El informe afirma \"La medida es eficaz'.",
+                correct="El informe afirma: «La medida es eficaz».",
+                note="Hay que cerrar correctamente comillas y puntuación.",
+            ),
+        ],
+        related=["registro-formal", "sintesis-textual", "edicion"],
     ),
 ]
