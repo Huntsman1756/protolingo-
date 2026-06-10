@@ -610,7 +610,7 @@ C1_SETS: list[VocabularySet] = [
                 frequency_rank=777,
             ),
             VocabularyEntry(
-                word="all avanguardia",
+                word="all'avanguardia",
                 pos="phrase",
                 definition="Posizione di massimo avanzamento tecnologico.",
                 example="Questa tecnologia è all'avanguardia.",
@@ -698,7 +698,7 @@ C1_SETS: list[VocabularySet] = [
                 frequency_rank=787,
             ),
             VocabularyEntry(
-                word="befiardo",
+                word="beffardo",
                 pos="adjective",
                 definition="Che deride con malignità e superiorità.",
                 example="Mi lanciò un sorriso beffardo.",

@@ -316,7 +316,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarMistake(
                 wrong="A Maria le ho detto tutto.",
                 correct="A Maria ho detto tutto. (o: Le ho detto tutto.)",
-                note="Non si può usare insieme il nome e il pronome (dislocazione).",
+                note="In italiano standard e preferibile evitare il raddoppio qui; nella lingua parlata può comparire come dislocazione.",
             ),
         ],
         related=["pronomi-diretti", "pronomi-combinati", "piacere"],

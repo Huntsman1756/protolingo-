@@ -558,7 +558,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Potere non ha l'imperativo.",
         ],
         examples=[
-            GrammarExample(text="Devo andare a lavoro.", translation="I have to go to work."),
+            GrammarExample(text="Devo andare al lavoro.", translation="I have to go to work."),
             GrammarExample(text="Puoi aiutarmi?", translation="Can you help me?"),
             GrammarExample(
                 text="Voglio imparare l'italiano.", translation="I want to learn Italian."
@@ -886,9 +886,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note='Davanti a consonante semplice si usa "quel", non "quello".',
             ),
             GrammarMistake(
-                wrong="Questo è bello.",
-                correct="Ciò è bello.",
-                note='Per un\'idea astratta si usa "ciò", non "questo".',
+                wrong="Questo è una bella idea.",
+                correct="Questa è una bella idea.",
+                note='"Idea" è femminile: si usa "questa".',
             ),
             GrammarMistake(
                 wrong="La questa casa è grande.",

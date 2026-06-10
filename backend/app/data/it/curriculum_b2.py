@@ -32,7 +32,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=2,
         title="Perifrasi e costruzioni verbali",
-        grammar_points=["stare-gerundio", "andare-gerundio", "venire-gerundio"],
+        grammar_points=["stare-gerundio", "andare-gerundio", "venire-gerundio", "forma-passiva"],
         vocabulary_set_ids=["abitudini_b2", "cambiamenti_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -146,6 +146,7 @@ B2_UNITS: list[CurriculumUnit] = [
             "stare-gerundio",
             "andare-gerundio",
             "venire-gerundio",
+            "forma-passiva",
             "modi-di-dire",
             "struttura-argomentativa",
             "passato-remoto",

@@ -46,7 +46,7 @@ B1_UNITS: list[CurriculumUnit] = [
         level="B1",
         unit_number=3,
         title="Trapassato prossimo e futuro anteriore",
-        grammar_points=["trapassato-prossimo", "futuro-anteriore", "concordanza-tempi"],
+        grammar_points=["trapassato-prossimo-b1", "futuro-anteriore", "concordanza-tempi"],
         vocabulary_set_ids=["esperienze_b1", "progetti_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -138,7 +138,7 @@ B1_UNITS: list[CurriculumUnit] = [
         title="B1 consolidamento",
         grammar_points=[
             "congiuntivo-presente",
-            "trapassato-prossimo",
+            "trapassato-prossimo-b1",
             "futuro-anteriore",
             "forma-passiva",
             "cui",

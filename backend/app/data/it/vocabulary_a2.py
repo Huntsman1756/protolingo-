@@ -564,7 +564,7 @@ A2_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="scartare",
                 pos="verb",
-                definition="Togliere lincarto da un regalo.",
+                definition="Togliere l'incarto da un regalo.",
                 example="I bambini hanno scartato i regali con entusiasmo.",
                 ipa="/skarˈtaːre/",
                 frequency_rank=257,

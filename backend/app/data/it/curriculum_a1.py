@@ -17,7 +17,11 @@ A1_UNITS: list[CurriculumUnit] = [
             "Si presenta usando essere e avere: nome, età, nazionalità — Sono Marco, ho 25 anni, sono italiano",
             "Saluta e si congeda con il registro corretto: ciao, buongiorno, buonasera, arrivederci, a presto",
             "Usa correttamente gli articoli determinativi il/lo/la/i/gli/le, inclusa la regola lo/gli davanti a s+consonante, z, gn, ps, x: lo studente, gli zaini",
-            "Formula e risponde a domande come ""Come ti chiami?"" / ""Di dove sei?"" in un breve scambio orale",
+            "Formula e risponde a domande come "
+            "Come ti chiami?"
+            " / "
+            "Di dove sei?"
+            " in un breve scambio orale",
         ],
         default_weeks=2,
         prerequisite_unit=None,

@@ -238,3 +238,44 @@ def test_curriculum_unit_id_uniqueness() -> None:
     assert not duplicates, "Duplicate curriculum unit ID(s) found:\n" + "\n".join(
         f"  - {s}" for s in sorted(set(duplicates))
     )
+
+
+def test_it_vocabulary_frequency_rank_integrity() -> None:
+    """Italian vocabulary must have complete and unique frequency ranks per CEFR level."""
+    from collections import Counter
+
+    from app.data.it.vocabulary import VOCABULARY_SETS
+
+    for level in ("A1", "A2", "B1", "B2", "C1", "C2"):
+        ranks: list[int] = []
+        for s in VOCABULARY_SETS:
+            if s.level != level:
+                continue
+            for w in s.words:
+                assert (
+                    w.frequency_rank is not None
+                ), f"it {level}: missing frequency_rank for word '{w.word}' in set '{s.id}'"
+                ranks.append(w.frequency_rank)
+
+        duplicates = sorted(rank for rank, n in Counter(ranks).items() if n > 1)
+        assert not duplicates, f"it {level}: duplicate frequency_rank values found:\n" + "\n".join(
+            f"  - {r}" for r in duplicates
+        )
+
+
+def test_it_assessment_options_unique_and_in_italian() -> None:
+    """Italian assessment questions must have unique options and no obvious EN prompts."""
+    from app.data.it.assessment_bank import ASSESSMENT_BANK
+
+    banned_fragments = ["thank you", "goodbye", "childhood"]
+
+    for q in ASSESSMENT_BANK:
+        assert len(q.options) == len(
+            set(q.options)
+        ), f"it assessment {q.id}: duplicate options detected -> {q.options}"
+
+        haystack = " ".join([q.question, *q.options, q.correct]).lower()
+        found = [frag for frag in banned_fragments if frag in haystack]
+        assert not found, f"it assessment {q.id}: contains non-Italian fragment(s): " + ", ".join(
+            found
+        )

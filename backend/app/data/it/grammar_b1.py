@@ -117,9 +117,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="È importante che tu mangi sano. (indicativo)",
+                wrong="È importante che tu mangia sano.",
                 correct="È importante che tu mangi sano.",
-                note="Mangi è congiuntivo (prima persona -are è uguale all'indicativo).",
+                note="Dopo 'è importante che' si usa il congiuntivo: tu mangi.",
             ),
             GrammarMistake(
                 wrong="È possibile che lui arriva tardi.",
@@ -322,9 +322,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Dopo quando + futuro si usa il futuro anteriore per anteriorità, poi futuro semplice.",
             ),
             GrammarMistake(
-                wrong="Sarà arrivato ieri? (supposizione)",
+                wrong="Sarà arrivato ieri, forse.",
                 correct="Sarà arrivato ieri.",
-                note="OK! Il futuro anteriore può esprimere supposizione sul passato.",
+                note="Con il futuro anteriore la supposizione è già implicita.",
             ),
         ],
         related=["futuro-semplice", "concordanza-tempi", "condizionale-presente"],
