@@ -228,7 +228,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         slug="need-gerund",
         title="Need + Gerund (The car needs washing)",
         level="B2",
-        category="Tenses",
+        category="Verb Forms",
         summary="Use 'need + -ing' to express a passive meaning — something needs to be done.",
         structure="Subject + need(s) + verb-ing (passive meaning)",
         explanation="A special structure in English uses 'need + gerund (-ing)' with a passive meaning:\n\n- *The car needs washing.* = The car needs to be washed.\n- *The garden needs weeding.* = The garden needs to be weeded.\n- *Your hair needs cutting.* = Your hair needs to be cut.\n\nThis structure always has a passive sense — the subject receives the action, it doesn't do it. It is very common in everyday spoken English.\n\n**Note:** 'Need + infinitive' means the subject needs to do something: *I need to wash the car.*",
@@ -658,5 +658,53 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["advanced-passive", "passive-constructions-advanced", "modal-verbs"],
+    ),
+    GrammarTopic(
+        slug="be-to-future",
+        title="Be + To-Infinitive (The PM is to address Parliament)",
+        level="B2",
+        category="Tenses",
+        summary="Use 'be + to-infinitive' for formal announcements, official plans, and instructions.",
+        structure="Subject + am/is/are + to + base verb",
+        explanation=(
+            "The **be-to** construction uses *be + to-infinitive* to express formal plans, "
+            "announcements, or instructions. It is very common in British news and formal writing.\n\n"
+            "**Main uses:**\n\n"
+            "1. **Official plans / announcements** (formal future):\n"
+            "   - *The Prime Minister is to address Parliament this afternoon.*\n"
+            "   - *A new hospital is to be built in the town centre.*\n\n"
+            "2. **Instructions / orders** (what someone must do):\n"
+            "   - *You are to report to the head office by 9 am.*\n"
+            "   - *No one is to leave the building.*\n\n"
+            "3. **Destiny or fate** (literary / narrative):\n"
+            "   - *They were never to meet again.*\n"
+            "   - *Little did he know what was to come.*\n\n"
+            "**Register:** Formal and journalistic. Rare in casual conversation."
+        ),
+        rules=[
+            "Form: am/is/are + to + base verb (present); was/were + to + base verb (past).",
+            "Used for formal announcements, instructions, and scheduled events.",
+            "Very common in British news writing and official communication.",
+            "Negative: 'is not to' or 'are not to' = prohibition.",
+        ],
+        examples=[
+            GrammarExample(text="The Chancellor is to deliver his Budget speech next Tuesday.", note="official plan"),
+            GrammarExample(text="All staff are to complete the training by Friday.", note="instruction"),
+            GrammarExample(text="The two leaders were to meet in Geneva, but the summit was cancelled.", note="past plan unfulfilled"),
+            GrammarExample(text="She was to become one of the greatest writers of her generation.", note="destiny/narrative"),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="The minister is to will speak later.",
+                correct="The minister is to speak later.",
+                note="'Be to' already expresses future meaning — do not add 'will'.",
+            ),
+            GrammarMistake(
+                wrong="I am to going the conference.",
+                correct="I am to attend the conference.",
+                note="After 'be to', use the base verb, not the -ing form.",
+            ),
+        ],
+        related=["will-future", "going-to-future", "future-in-the-past"],
     ),
 ]

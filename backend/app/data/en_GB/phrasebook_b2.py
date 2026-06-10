@@ -1,4 +1,4 @@
-"""English phrasebook — B2 categories."""
+"""British English phrasebook — B2 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -30,8 +30,8 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="I would like to draw your attention to...",
-                context="Highlighting important information",
+                text="Please note that...",
+                context="Drawing attention to important information in a formal email — common in British business correspondence",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -55,8 +55,13 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="Yours faithfully, / Yours sincerely,",
-                context="Formal sign-off",
+                text="Yours faithfully,",
+                context="Formal sign-off when the salutation is 'Dear Sir/Madam' (recipient unknown)",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Yours sincerely,",
+                context="Formal sign-off when the salutation names the recipient (e.g. 'Dear Mr Smith')",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -167,6 +172,122 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
                 text="This leads me to conclude that...",
                 context="Drawing a conclusion",
                 register="formal",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="customer_complaints_b2",
+        level="B2",
+        situation="Customer Service & Complaints",
+        icon="\U0001f4e9",
+        phrases=[
+            PhrasebookEntry(
+                text="I'm afraid there seems to be a problem with my order.",
+                context="Opening a complaint politely",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="This isn't quite what I ordered.",
+                context="Politely pointing out an error",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd like to return this item, please.",
+                context="Requesting a return",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I think I've been overcharged.",
+                context="Disputing a charge politely",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Could I speak to the manager, please?",
+                context="Escalating a complaint",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd like a full refund, please.",
+                context="Requesting a refund",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="This isn't up to the standard I'd expect.",
+                context="Expressing dissatisfaction with quality",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Could I have a replacement instead?",
+                context="Asking for a replacement item",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd like to make a formal complaint.",
+                context="Initiating a written or official complaint",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="I'm sure we can sort this out.",
+                context="Collaborative, solution-focused tone",
+                register="neutral",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="social_informal_b2",
+        level="B2",
+        situation="Informal Social English",
+        icon="\U0001f37b",
+        phrases=[
+            PhrasebookEntry(
+                text="It's good to catch up!",
+                context="Seeing someone you haven't seen for a while",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="What have you been up to lately?",
+                context="Casual catching-up question",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="I've been meaning to give you a ring.",
+                context="'Give someone a ring' = call them — common British expression",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="I know exactly what you mean.",
+                context="Showing agreement and empathy",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="That's easier said than done.",
+                context="Pointing out that something is more difficult than it sounds",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd rather not, if you don't mind.",
+                context="Polite refusal — very British in its indirectness",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="It's a bit hit and miss, to be honest.",
+                context="'Hit and miss' = inconsistent in quality — common British idiom",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="It could have been worse!",
+                context="British understatement when things went badly but not catastrophically",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="It's nothing to write home about.",
+                context="British expression meaning something is unremarkable or average",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="Same again?",
+                context="Offering to buy another round of drinks — essential in British pub culture",
+                register="informal",
             ),
         ],
     ),

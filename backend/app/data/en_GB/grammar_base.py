@@ -132,7 +132,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Invert subject and verb in questions.",
             ),
         ],
-        related=["questions-yes-no", "present-simple", "to-be"],
+        related=["present-simple", "to-be"],
     ),
     GrammarTopic(
         slug="subject-pronouns",
@@ -195,7 +195,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         slug="there-is-are",
         title="There is / There are",
         level="A1",
-        category="Tenses",
+        category="Sentence Structure",
         summary='Describe what exists in a place using "there is" and "there are".',
         explanation="Use **there is** (singular/uncountable) and **there are** (plural) to say that something exists or is located somewhere.\\n\\n- *There is a park near my house.*\\n- *There are three bedrooms in my flat.*\\n\\nNegative: *There isn't a café here.* / *There aren't any shops nearby.*\\n\\nQuestion: *Is there a bank near here?* / *Are there any seats?*",
         structure="There is + singular noun · There are + plural noun",
@@ -290,7 +290,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="With specific past time markers (yesterday, last week), use simple past, not present perfect.",
             ),
         ],
-        related=["present-simple", "present-perfect", "past-simple"],
+        related=["present-simple", "present-perfect"],
     ),
     GrammarTopic(
         slug="present-continuous",
@@ -355,7 +355,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note='Short adjectives take -est, not "most".',
             ),
         ],
-        related=["comparatives-superlatives", "adverbs-manner"],
+        related=["adverbs-manner"],
     ),
     GrammarTopic(
         slug="can-cant",
@@ -566,7 +566,7 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         slug="imperatives",
         title="Imperatives",
         level="A2",
-        category="Tenses",
+        category="Verb Forms",
         summary="Give instructions, orders, advice, and warnings.",
         explanation="**Imperatives** use the base form of the verb without a subject.\\n\\n- **Affirmative**: *Open the door. Sit down. Call me later.*\\n- **Negative**: *Don't touch that. Don't be late.*\\n- **Polite**: add \"please\" at the start or end: *Please come in. / Sit down, please.*\\n\\nImperatives are used for instructions, recipes, signs, warnings, and requests.",
         structure="Base verb (+ object) · Don't + base verb",
@@ -755,25 +755,30 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="relative-clauses",
-        title="Relative Clauses",
+        title="Relative Clauses — Relative Pronouns (who, which, that, whose)",
         level="B1",
         category="Clauses",
-        summary="Add information about a noun using who, which, or that.",
-        explanation='**Defining relative clauses** identify which person or thing:\\n*The man who lives next door is a doctor.*\\n\\n**Non-defining** add extra info (comma required — NOT used with "that"):\\n*My brother, who lives in Paris, is visiting next week.*\\n\\n- **who/that** → people\\n- **which/that** → things\\n- **whose** → possession',
-        structure="Noun + who/which/that + clause",
+        summary="Add information about a noun using the right relative pronoun: who, which, that, or whose.",
+        explanation='Relative clauses follow a noun and give more information about it. The choice of relative pronoun depends on what the clause refers to:\n\n| Pronoun | Refers to | Example |\n|---------|-----------|--------|\n| **who** | people | *The man who lives next door is a chef.* |\n| **which** | things | *The book which I bought is great.* |\n| **that** | people or things | *The car that broke down was new.* |\n| **whose** | possession (people or things) | *The student whose essay won is here.* |\n\n**When can you omit the pronoun?**\nWhen the relative pronoun is the **object** of the clause, it can be left out:\n- *The book (that) I read was excellent.* (that = object — omissible)\n- *The man who called me was polite.* (who = subject — cannot omit)\n\n**Defining vs. non-defining:** Relative clauses can be defining (no commas, essential) or non-defining (commas, extra info). See the topic *Defining vs. Non-Defining Relative Clauses* for the full treatment.',
+        structure="Noun + who/which/that + clause · Noun + whose + noun + clause",
         rules=[
-            "Who for people, which for things, that for both (defining only).",
-            'Non-defining clauses: use commas and never "that".',
-            'The relative pronoun can be omitted when it is the object: "The book (that) I read was great."',
+            "Who for people, which for things, that for both (in defining clauses only).",
+            "Whose shows possession for people and things.",
+            "The relative pronoun can be omitted when it is the object of the clause.",
+            "Never use 'that' in non-defining (comma) clauses — see defining-non-defining-clauses.",
         ],
         examples=[
-            GrammarExample(text="The girl who won the prize is my sister.", note="defining"),
+            GrammarExample(text="The girl who won the prize is my sister.", note="who — people"),
             GrammarExample(
-                text="London, which is the capital of England, is very expensive.",
-                note="non-defining",
+                text="London, which is the capital of the United Kingdom, is very expensive.",
+                note="which — non-defining",
             ),
             GrammarExample(
-                text="The bag whose strap is broken needs to be repaired.", note="possession"
+                text="The bag whose strap is broken needs to be repaired.", note="whose — possession"
+            ),
+            GrammarExample(
+                text="The film (that) I watched last night was brilliant.",
+                note="that/omitted — object position",
             ),
         ],
         common_mistakes=[
@@ -782,8 +787,13 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 correct="The woman who works here is called Anna.",
                 note='Use "who" for people, not "which".',
             ),
+            GrammarMistake(
+                wrong="The man who he lives next door is a doctor.",
+                correct="The man who lives next door is a doctor.",
+                note="Don't repeat the subject pronoun inside the relative clause.",
+            ),
         ],
-        related=["advanced-relative-clauses", "discourse-connectors-b1"],
+        related=["defining-non-defining-clauses", "advanced-relative-clauses", "discourse-connectors-b1"],
     ),
     GrammarTopic(
         slug="modal-verbs",
@@ -1144,29 +1154,29 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="wish-if-only",
-        title="Wish / If Only — Expressing Regrets and Desires",
+        title="Wish / If Only — Introduction (Present & Past Regrets)",
         level="B1",
         category="Conditionals",
-        summary="Using wish and if only to express regrets about the present and past, and desires for the future.",
-        explanation="Use **wish** and **if only** to talk about things we would like to be different:\n\n| Situation | Structure | Example |\n|-----------|-----------|---------|\n| Present regret | wish + past simple | I wish I spoke French. |\n| Past regret | wish + past perfect | I wish I had studied harder. |\n| Future desire | wish + would | I wish it would stop raining. |\n| Annoyance | wish + would | I wish you wouldn't interrupt me. |\n\n**If only** is stronger/more emphatic than **wish**:\n- *If only I had more time.*\n- *If only I hadn't said that.*",
-        structure="wish / if only + past simple (present) / past perfect (past) / would (future)",
+        summary="Introduce wish and if only to express what you would like to be different now or in the past.",
+        explanation="Use **wish** and **if only** to talk about things we would like to be different:\n\n| Situation | Structure | Example |\n|-----------|-----------|---------|\n| Present regret | wish + past simple | *I wish I spoke French.* |\n| Past regret | wish + past perfect | *I wish I had studied harder.* |\n\n**If only** is more emphatic than **wish** — it carries a stronger emotional weight:\n- *If only I had more time.* (stronger than 'I wish I had more time')\n- *If only I hadn't said that!*\n\n**Note:** The past simple after 'wish' is not truly past — it describes an unreal present situation.\n*I wish I was/were taller.* = I am not tall (now). Both 'was' and 'were' are accepted; 'were' is more formal.",
+        structure="wish / if only + past simple (present regret) · wish / if only + past perfect (past regret)",
         rules=[
-            "Wish + past simple → regret about the present.",
+            "Wish + past simple → regret about the present (not truly past).",
             "Wish + past perfect → regret about the past.",
-            "Wish + would → desire or annoyance about the future/behaviour.",
-            '"If only" is more emphatic than "I wish".',
-            'Never use "wish" + present or future simple.',
+            '"If only" is more emphatic than "I wish" — use it for stronger feelings.',
+            'Never use "wish" + present or future simple: ✗ "I wish I am taller".',
+            '"Was" and "were" are both accepted after "wish"; "were" is more formal.',
         ],
         examples=[
             GrammarExample(text="I wish I had more free time.", note="present regret"),
             GrammarExample(text="I wish I had gone to the concert.", note="past regret"),
-            GrammarExample(text="If only she would listen to me.", note="emphatic, desire"),
+            GrammarExample(text="If only she would listen to me.", note="emphatic — see B2 for wish+would"),
         ],
         common_mistakes=[
             GrammarMistake(
                 wrong="I wish I am taller.",
                 correct="I wish I was/were taller.",
-                note='Use past simple after "wish" for present regrets.',
+                note='Use past simple after "wish" for present regrets — never present simple.',
             ),
             GrammarMistake(
                 wrong="I wish I would have known.",
@@ -1283,68 +1293,75 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="wishes-regrets",
-        title="Wishes & Regrets (I wish / If only)",
+        title="Wishes & Regrets (Advanced) — Wish + Would/Could & Nuance",
         level="B2",
         category="Conditionals",
-        summary="Express wishes about the present and regrets about the past.",
-        explanation="**I wish / If only** express dissatisfaction with the present or regret about the past.\\n\\n**Present wish** (situation is not real now):\\n*I wish I had more time.* (I don't have time.)\\n*If only she lived closer!*\\n\\n**Past regret** (something happened or didn't happen):\\n*I wish I had studied harder.* (I didn't study hard — I regret it.)\\n*If only I hadn't said that!*\\n\\n**Wish + would** (annoying habit or wanting a change):\\n*I wish you would stop interrupting me.*",
-        structure="I wish / If only + past simple · I wish / If only + past perfect",
+        summary="Deepen your use of wish and if only: wish + would for complaints, wish + could for ability, and the emotional register of regret.",
+        explanation="Building on the B1 introduction, this topic covers the more nuanced uses of **wish**:\n\n**Wish + would** — expressing annoyance at someone else's behaviour or wanting a change:\n- *I wish you would stop interrupting me.* (complaint about behaviour)\n- *I wish the government would do something about it.* (desire for change)\n\n**Note — wish + would vs wish + could:**\n- *I wish I could drive.* → regret about your own **ability** (I can't drive)\n- *I wish you would drive.* → you **want someone else** to do something\n- ✗ *I wish I would drive* — you cannot use 'wish + would' for your own actions\n\n**Wish + could have** — past ability regret:\n- *I wish I could have attended the ceremony.* (it wasn't possible)\n\n**If only — intensifying the emotion:**\n'If only' is more common in British English for expressing strong emotional regret, especially in spoken language and literature:\n- *If only I had known sooner!*\n- *If only she hadn't left so early!*\n\n**Connection to mixed conditionals:**\nWish structures mirror conditional logic:\n- *I wish I had studied medicine.* ≈ *If I had studied medicine, I would be a doctor now.*",
+        structure="wish + would (other's behaviour) · wish + could (ability regret) · if only + past perfect (emphatic)",
         rules=[
-            "Present wish: I wish + past simple.",
-            "Past regret: I wish + past perfect (had + past participle).",
-            '"Wish + would" expresses a complaint about someone else\'s behaviour.',
-            '"If only" is more emphatic than "I wish".',
-            'Never use "I wish + present simple" — always a past form.',
+            "Wish + would → annoyance at someone else's behaviour or desire for external change.",
+            "Wish + could → regret about your own lack of ability (present or past).",
+            "Never use 'wish + would' for your own actions: ✗ 'I wish I would go.' → ✓ 'I wish I could go.'",
+            "'If only' is more emphatic and emotional than 'I wish' — common in British English.",
+            "Wish + past perfect = same as third conditional: regret about a past action that didn't happen.",
         ],
         examples=[
             GrammarExample(
-                text="I wish I spoke Spanish.", note="present wish — I don't speak Spanish"
+                text="I wish you would tidy your room occasionally.",
+                note="wish + would — annoyance at behaviour",
             ),
             GrammarExample(
-                text="If only I had listened to her advice.", note="past regret — I didn't listen"
+                text="I wish I could speak Japanese.",
+                note="wish + could — ability regret",
             ),
             GrammarExample(
-                text="I wish you would be quiet!", note="wish + would — annoying behaviour"
+                text="I wish I hadn't eaten so much.", note="past regret — same as B1 but more nuanced"
             ),
-            GrammarExample(text="I wish I hadn't eaten so much.", note="past regret"),
+            GrammarExample(
+                text="If only we had left earlier — we'd have avoided the traffic.",
+                note="if only + past perfect — emphatic",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="I wish I am taller.",
-                correct="I wish I were taller.",
-                note='Use past simple (or "were") after I wish for present wishes.',
+                wrong="I wish I would study harder.",
+                correct="I wish I studied harder. (or) I wish I could study harder.",
+                note="Don't use 'wish + would' for your own actions. Use past simple or 'wish + could'.",
             ),
             GrammarMistake(
                 wrong="I wish I studied harder yesterday.",
                 correct="I wish I had studied harder yesterday.",
-                note="For past regrets, use past perfect after I wish.",
+                note="For past regrets, use past perfect after 'wish', not past simple.",
             ),
         ],
-        related=["second-conditional", "third-conditional", "modal-perfects"],
+        related=["wish-if-only", "second-conditional", "third-conditional", "mixed-conditionals"],
     ),
     GrammarTopic(
         slug="advanced-passive",
-        title="Advanced Passive (Causative & Modal Passive)",
+        title="Advanced Passive: Causative Have/Get & Passive Infinitives",
         level="B2",
-        category="Tenses",
-        summary="Use have/get + object + past participle and passive with modal verbs.",
-        explanation="**Causative have/get**: used to say that someone else performs a service for you.\\n*I had my car repaired.* (Someone repaired it for me.)\\n*She got her hair cut.*\\n\\n**Passive with modal verbs**:\\n*This must be signed by the manager.*\\n*The form can be submitted online.*\\n\\n**Passive infinitives**:\\n*He wants to be promoted.*\\n*She hoped to be chosen.*",
-        structure="Have/Get + object + past participle · Modal + be + past participle",
+        category="Passive Voice",
+        summary="Use have/get + object + past participle to describe services done for you, and passive infinitives after want, hope, expect.",
+        explanation="**Causative have/get**: say that someone else performs an action for you (usually a service).\n\n*I had my car repaired.* (Someone repaired it for me.)\n*She got her hair cut at the new salon.*\n\n**Structure:** have/get + object + past participle\n\n- *I'm having the house repainted.* (currently in progress)\n- *Can you get this document printed?*\n\n**Have vs. Get:**\n- *Have* is slightly more formal.\n- *Get* is more informal and common in spoken British English.\n\n**Passive infinitives**: used after verbs like want, hope, expect, like, need:\n- *He wants to be promoted.*\n- *She hoped to be chosen for the role.*\n- *The results are expected to be announced tomorrow.*\n\n**Note on modal passives:** For combining modals with the passive (*must be done, should be submitted, can be downloaded*), see the topic *Passive Voice with Modal Verbs*.",
+        structure="have/get + object + past participle · to be + past participle (passive infinitive)",
         rules=[
             "Causative: have/get + object + past participle.",
+            'The object comes BETWEEN the verb and the past participle: "I had my car repaired" (not "I had repaired my car").',
             '"Get" is more informal than "have" in causative structures.',
-            "Modal passive: modal + be + past participle.",
-            "Passive infinitives: to be + past participle.",
-            "The agent (by + person) is optional; include only when important.",
+            "Passive infinitives: to be + past participle, used after want, hope, expect, need, like.",
         ],
         examples=[
             GrammarExample(text="We had the office repainted last month.", note="causative have"),
             GrammarExample(
                 text="She got her phone fixed for free.", note="causative get (informal)"
             ),
-            GrammarExample(text="The report must be submitted by Monday.", note="modal passive"),
             GrammarExample(
                 text="He wants to be considered for the promotion.", note="passive infinitive"
+            ),
+            GrammarExample(
+                text="The contract is expected to be signed by the end of the week.",
+                note="passive infinitive (formal)",
             ),
         ],
         common_mistakes=[
@@ -1354,18 +1371,18 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note='In causative "have", the object comes before the past participle.',
             ),
             GrammarMistake(
-                wrong="This should be submit today.",
-                correct="This should be submitted today.",
-                note="Modal passive needs the full past participle.",
+                wrong="She wants be promoted.",
+                correct="She wants to be promoted.",
+                note="Passive infinitives need 'to be', not just 'be'.",
             ),
         ],
-        related=["passive-voice-simple", "modal-verbs", "modal-perfects"],
+        related=["passive-voice-simple", "passive-modals", "gerunds-infinitives"],
     ),
     GrammarTopic(
         slug="gerunds-infinitives",
         title="Gerunds & Infinitives",
         level="B2",
-        category="Tenses",
+        category="Verb Forms",
         summary="Know which verbs take a gerund (-ing) or an infinitive (to + verb).",
         explanation="Some verbs are followed by a **gerund** (-ing), others by an **infinitive** (to + base verb), and some take both.\\n\\n**Gerund only** (enjoy, avoid, consider, deny, finish, mind, miss, suggest, admit, risk):\\n*She enjoys reading. / He avoided speaking to her.*\\n\\n**Infinitive only** (want, decide, plan, promise, manage, refuse, hope, agree):\\n*They decided to leave. / She refused to answer.*\\n\\n**Both — different meaning**:\\n- *remember doing* (past action) vs *remember to do* (future obligation)\\n- *stop doing* (end an activity) vs *stop to do* (pause in order to)\\n- *try doing* (experiment) vs *try to do* (attempt)",
         structure="Verb + gerund (enjoy doing) · Verb + infinitive (want to do)",
@@ -1506,9 +1523,14 @@ BASE_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="Confusing with 2nd or 3rd conditional",
-                correct="Identify the time frame of each clause separately",
-                note="Ask: is the condition past or present? Is the result past or present?",
+                wrong="If I would have taken that job, I would be living in Tokyo now.",
+                correct="If I had taken that job, I would be living in Tokyo now.",
+                note="The if-clause uses past perfect (had taken), never 'would have' — even in mixed conditionals.",
+            ),
+            GrammarMistake(
+                wrong="If she wasn't so stubborn, she would have apologised.",
+                correct="If she weren't so stubborn, she would have apologised.",
+                note="In formal English, use 'were' (not 'was') for all subjects in hypothetical clauses.",
             ),
         ],
         related=["second-conditional", "third-conditional"],
