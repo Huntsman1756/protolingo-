@@ -1,4 +1,4 @@
-"""English phrasebook — A2 categories."""
+"""American English phrasebook — A2 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -21,7 +21,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="What do you recommend?",
-                context="Asking the waiter for advice",
+                context="Asking the server for a suggestion — 'server' is the standard American term for waiter/waitress",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -51,8 +51,8 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
                 text="The food is delicious!", context="Complimenting the food", register="neutral"
             ),
             PhrasebookEntry(
-                text="Could we have the bill, please?",
-                context="Asking for the bill",
+                text="Could we have the check, please?",
+                context="Asking for the check — Americans say 'check', not 'bill'",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -61,10 +61,10 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
                 register="neutral",
             ),
             PhrasebookEntry(
-                text="Could we split the bill?", context="Paying separately", register="neutral"
+                text="Could we split the check?", context="Paying separately", register="neutral"
             ),
             PhrasebookEntry(
-                text="Is service included?", context="Asking about the tip", register="neutral"
+                text="Is the gratuity included?", context="Asking whether a tip/service charge is already added to the total", register="neutral"
             ),
         ],
     ),

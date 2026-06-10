@@ -1,4 +1,4 @@
-"""English phrasebook — B1 categories."""
+"""American English phrasebook — B1 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -211,8 +211,8 @@ B1_CATEGORIES: list[PhrasebookCategory] = [
                 register="neutral",
             ),
             PhrasebookEntry(
-                text="What do you recommend?",
-                context="Asking for medical advice",
+                text="What would you suggest for this?",
+                context="Asking the doctor for a treatment recommendation (distinct from restaurant 'What do you recommend?')",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -228,6 +228,21 @@ B1_CATEGORIES: list[PhrasebookCategory] = [
             PhrasebookEntry(
                 text="When should I come back?",
                 context="Asking about follow-up",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Do you accept my insurance?",
+                context="Asking whether the doctor accepts your health insurance plan — essential in the US healthcare system",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="What's my co-pay?",
+                context="Asking the amount you pay per visit under your insurance plan",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I need to fill a prescription.",
+                context="Saying you need to pick up medication from a pharmacy",
                 register="neutral",
             ),
         ],

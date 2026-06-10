@@ -206,7 +206,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="past continuous interrupted by past simple",
             ),
             GrammarExample(
-                text="I realised I had left my wallet at home, so I borrowed money from a friend.",
+                text="I realized I had left my wallet at home, so I borrowed money from a friend.",
                 note="past perfect flashback → past simple action",
             ),
         ],
@@ -228,7 +228,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         slug="need-gerund",
         title="Need + Gerund (The car needs washing)",
         level="B2",
-        category="Tenses",
+        category="Verb Forms",
         summary="Use 'need + -ing' to express a passive meaning — something needs to be done.",
         structure="Subject + need(s) + verb-ing (passive meaning)",
         explanation="A special structure in English uses 'need + gerund (-ing)' with a passive meaning:\n\n- *The car needs washing.* = The car needs to be washed.\n- *The yard needs weeding.* = The yard needs to be weeded.\n- *Your hair needs cutting.* = Your hair needs to be cut.\n\nThis structure always has a passive sense — the subject receives the action, it doesn't do it. It is very common in everyday spoken English.\n\n**Note:** 'Need + infinitive' means the subject needs to do something: *I need to wash the car.*",
@@ -236,7 +236,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Need + gerund = passive meaning (something needs to be done to the subject).",
             "Need + infinitive = active meaning (the subject needs to do something).",
             "Only used with transitive verbs (verbs that take an object).",
-            "Very common in British English for household tasks and repairs.",
+            "Common in both British and American English, though slightly more frequent in British English. In American English, 'needs to be washed' is often preferred in formal contexts.",
         ],
         examples=[
             GrammarExample(
@@ -310,9 +310,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Use the perfect infinitive (to have + past participle) for past events: 'He is said to have left.'",
         ],
         examples=[
-            GrammarExample(text="It is thought that the painting is worth over a million pounds."),
+            GrammarExample(text="It is thought that the painting is worth over a million dollars."),
             GrammarExample(
-                text="The painting is thought to be worth over a million pounds.",
+                text="The painting is thought to be worth over a million dollars.",
                 note="same meaning, pattern 2",
             ),
             GrammarExample(
@@ -328,8 +328,8 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Don't mix both patterns in the same sentence.",
             ),
             GrammarMistake(
-                wrong="The film is believed it is a masterpiece.",
-                correct="The film is believed to be a masterpiece.",
+                wrong="The movie is believed it is a masterpiece.",
+                correct="The movie is believed to be a masterpiece.",
                 note="Pattern 2 doesn't need an extra clause.",
             ),
         ],
@@ -522,7 +522,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B2",
         category="Phrasal Verbs",
         summary="Master phrasal verbs with two particles and understand their fixed patterns.",
-        explanation="Three-part phrasal verbs have a verb + two particles. They are always inseparable and are followed by a noun or -ing form:\n\n**Common three-part phrasal verbs:**\n\n| Verb | Meaning | Example |\n|------|---------|--------|\n| look forward to | anticipate with pleasure | *I look forward to meeting you.* |\n| get on with | have a good relationship | *She gets on with her colleagues.* |\n| put up with | tolerate | *I can't put up with the noise.* |\n| come up with | invent, think of | *He came up with a brilliant idea.* |\n| run out of | have none left | *We have run out of bread.* |\n| cut down on | reduce | *I need to cut down on sugar.* |\n| face up to | accept a difficult truth | *You need to face up to the facts.* |\n| get away with | escape punishment | *He got away with cheating.* |\n| live up to | meet expectations | *The film didn't live up to the hype.* |\n| make up for | compensate | *How can I make up for being late?* |",
+        explanation="Three-part phrasal verbs have a verb + two particles. They are always inseparable and are followed by a noun or -ing form:\n\n**Common three-part phrasal verbs:**\n\n| Verb | Meaning | Example |\n|------|---------|--------|\n| look forward to | anticipate with pleasure | *I look forward to meeting you.* |\n| get on with | have a good relationship | *She gets on with her colleagues.* |\n| put up with | tolerate | *I can't put up with the noise.* |\n| come up with | invent, think of | *He came up with a brilliant idea.* |\n| run out of | have none left | *We have run out of bread.* |\n| cut down on | reduce | *I need to cut down on sugar.* |\n| face up to | accept a difficult truth | *You need to face up to the facts.* |\n| get away with | escape punishment | *He got away with cheating.* |\n| live up to | meet expectations | *The movie didn't live up to the hype.* |\n| make up for | compensate | *How can I make up for being late?* |",
         rules=[
             "All three-part phrasal verbs are inseparable — the object always goes at the end.",
             "Most are followed by a noun, pronoun, or -ing form.",
@@ -559,7 +559,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         category="Advanced",
         summary="Add emphasis and contrast using auxiliary do/did and what-clauses.",
         structure="do/does/did + base verb · What + clause + is/was + focus",
-        explanation="Several structures add emphasis in English:\n\n**1. Emphatic do/does/did:** used in positive sentences to add emphasis or contrast:\n- *I do like your new haircut!* (emphasis)\n- *He didn't enjoy the film, but I did think the ending was good.* (contrast)\n- *She does work hard, I assure you.* (contradicting a doubt)\n\n**2. What-clauses (cleft sentences — basic):**\n- Normal: *I need a vacation.*\n- Emphatic: *What I need is a vacation.*\n- Normal: *She dislikes rudeness.*\n- Emphatic: *What she dislikes is rudeness.*\n\n**3. It-clefts (basic):**\n- *It was John who broke the vase. / It was on Tuesday that she arrived.*",
+        explanation="Several structures add emphasis in English:\n\n**1. Emphatic do/does/did:** used in positive sentences to add emphasis or contrast:\n- *I do like your new haircut!* (emphasis)\n- *He didn't enjoy the movie, but I did think the ending was good.* (contrast)\n- *She does work hard, I assure you.* (contradicting a doubt)\n\n**2. What-clauses (cleft sentences — basic):**\n- Normal: *I need a vacation.*\n- Emphatic: *What I need is a vacation.*\n- Normal: *She dislikes rudeness.*\n- Emphatic: *What she dislikes is rudeness.*\n\n**3. It-clefts (basic):**\n- *It was John who broke the vase. / It was on Tuesday that she arrived.*",
         rules=[
             "'Do/does/did' for emphasis is only used in positive statements.",
             "The emphatic 'do' carries strong stress in spoken English.",
@@ -658,5 +658,53 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["advanced-passive", "passive-constructions-advanced", "modal-verbs"],
+    ),
+    GrammarTopic(
+        slug="be-to-future",
+        title="Be + To-Infinitive (The President is to sign...)",
+        level="B2",
+        category="Tenses",
+        summary="Use 'be + to-infinitive' for formal announcements, official plans, and instructions.",
+        structure="Subject + am/is/are + to + base verb",
+        explanation=(
+            "The **be-to** construction uses *be + to-infinitive* to express formal plans, "
+            "announcements, or instructions. It is common in American news and formal writing.\n\n"
+            "**Main uses:**\n\n"
+            "1. **Official plans / announcements** (formal future):\n"
+            "   - *The President is to address Congress this evening.*\n"
+            "   - *A new hospital is to be built in the city center.*\n\n"
+            "2. **Instructions / orders** (what someone must do):\n"
+            "   - *You are to report to the main office by 9 am.*\n"
+            "   - *No one is to leave the building.*\n\n"
+            "3. **Destiny or fate** (literary / narrative):\n"
+            "   - *They were never to meet again.*\n"
+            "   - *Little did he know what was to come.*\n\n"
+            "**Register:** Formal and journalistic. Rare in casual conversation."
+        ),
+        rules=[
+            "Form: am/is/are + to + base verb (present); was/were + to + base verb (past).",
+            "Used for formal announcements, instructions, and scheduled events.",
+            "Very common in American news writing and official communication.",
+            "Negative: 'is not to' or 'are not to' = prohibition.",
+        ],
+        examples=[
+            GrammarExample(text="The Secretary of State is to meet with foreign ministers next week.", note="official plan"),
+            GrammarExample(text="All employees are to complete the training by Friday.", note="instruction"),
+            GrammarExample(text="The two senators were to meet in Washington, but the summit was cancelled.", note="past plan unfulfilled"),
+            GrammarExample(text="She was to become one of the greatest scientists of her generation.", note="destiny/narrative"),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="The senator is to will speak later.",
+                correct="The senator is to speak later.",
+                note="'Be to' already expresses future meaning — do not add 'will'.",
+            ),
+            GrammarMistake(
+                wrong="I am to going the conference.",
+                correct="I am to attend the conference.",
+                note="After 'be to', use the base verb, not the -ing form.",
+            ),
+        ],
+        related=["will-future", "going-to-future", "future-in-the-past"],
     ),
 ]

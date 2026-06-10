@@ -1,4 +1,4 @@
-"""English phrasebook — C1 categories."""
+"""American English phrasebook — C1 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -148,7 +148,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
         id="professional_networking_c1",
         level="C1",
         situation="Professional Networking",
-        icon="\U0001f91d",
+        icon="\U0001f310",
         phrases=[
             PhrasebookEntry(
                 text="I believe we have some mutual connections.",

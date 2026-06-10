@@ -117,7 +117,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="She ___ TV when I arrived.",
         options=["watches", "watched", "was watching", "has watched"],
         correct="was watching",
-        grammar_slug="present-continuous",
+        grammar_slug="past-continuous",
     ),
     AssessmentQuestion(
         id="g-a2-003",
@@ -189,7 +189,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Could you ___ the door, please?",
         options=["to close", "closing", "close", "closed"],
         correct="close",
-        grammar_slug="can-cant",
+        grammar_slug="could-past-ability",
     ),
     AssessmentQuestion(
         id="g-b1-001",
@@ -241,7 +241,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         skill="grammar",
         difficulty="B1",
         question="You ___ see a doctor — that cough sounds bad.",
-        options=["must to", "should to", "should", "ought"],
+        options=["ought to", "must", "should", "should to"],
         correct="should",
         grammar_slug="modal-verbs",
     ),
@@ -400,7 +400,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="g-c2-004",
         skill="grammar",
         difficulty="C2",
-        question="The findings ___ to be inconclusive by the review board.",
+        question="The findings ___ to be inconclusive by the review board last year.",
         options=[
             "were considered",
             "are considered",
@@ -486,7 +486,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="v-a1-010",
         skill="vocabulary",
         difficulty="A1",
-        question='"I am very ___." — choose the adjective for feeling very happy.',
+        question='"I am very ___ about the school trip tomorrow!" — choose the adjective for feeling eager and enthusiastic about something coming up.',
         options=["tired", "hungry", "excited", "bored"],
         correct="excited",
     ),
@@ -606,7 +606,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="v-b1-005",
         skill="vocabulary",
         difficulty="B1",
-        question='"The deadline is ___." (approaching and cannot be changed)',
+        question='"The deadline is ___." (fixed and cannot be changed)',
         options=["flexible", "firm", "optional", "vague"],
         correct="firm",
     ),
@@ -622,7 +622,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="v-b1-007",
         skill="vocabulary",
         difficulty="B1",
-        question='"He ___ to help but never did." (said he would but didn\'t)',
+        question='"He ___ he would come to the meeting but canceled at the last minute." (made a definite commitment he did not keep)',
         options=["offered", "promised", "refused", "agreed"],
         correct="promised",
     ),
@@ -668,8 +668,8 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         skill="vocabulary",
         difficulty="B2",
         question='Choose the word closest in meaning to "ambiguous".',
-        options=["clear", "uncertain", "dangerous", "boring"],
-        correct="uncertain",
+        options=["clear", "unclear", "dangerous", "boring"],
+        correct="unclear",
     ),
     AssessmentQuestion(
         id="v-b2-003",
@@ -677,7 +677,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         difficulty="B2",
         question="The company decided to ___ its losses and close the unprofitable branch.",
         options=["cut", "accept", "mitigate", "write off"],
-        correct="write off",
+        correct="cut",
     ),
     AssessmentQuestion(
         id="v-b2-004",
@@ -715,9 +715,14 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="v-c1-004",
         skill="vocabulary",
         difficulty="C1",
-        question='"The politician\'s speech was full of ___." (inflated language designed to impress rather than inform)',
-        options=["rhetoric", "irony", "satire", "metaphor"],
-        correct="rhetoric",
+        question='In academic contexts, "rhetoric" primarily refers to:',
+        options=[
+            "the art of effective and persuasive communication",
+            "empty language intended to mislead",
+            "grammatical rules of formal writing",
+            "ironic or sarcastic speech",
+        ],
+        correct="the art of effective and persuasive communication",
     ),
     AssessmentQuestion(
         id="v-c2-001",
@@ -760,7 +765,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="r-a1-001",
         skill="reading",
         difficulty="A1",
-        question='Read: "My name is Tom. I am 25 years old. I live in London." — How old is Tom?',
+        question='Read: "My name is Tom. I am 25 years old. I live in Chicago." — How old is Tom?',
         options=["20", "25", "30", "35"],
         correct="25",
     ),
@@ -784,14 +789,14 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="r-a2-001",
         skill="reading",
         difficulty="A2",
-        question='Read: "Anna moved to Berlin two years ago. She works as a nurse and likes her job, but she misses her family in Spain." — Why does Anna feel homesick?',
+        question='Read: "Anna moved to Chicago two years ago. She works as a nurse and likes her job, but she misses her family in Spain." — Where does Anna\'s family live?',
         options=[
-            "She doesn't like her job.",
-            "She moved recently.",
-            "Her family is in Spain.",
-            "Berlin is far.",
+            "In Chicago",
+            "In New York",
+            "In Spain",
+            "In Germany",
         ],
-        correct="Her family is in Spain.",
+        correct="In Spain",
     ),
     AssessmentQuestion(
         id="r-a2-002",
@@ -831,7 +836,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         id="r-b1-002",
         skill="reading",
         difficulty="B1",
-        question='Read: "The council has decided to reduce funding for public libraries by 15%, citing budget constraints." — What does "citing" mean here?',
+        question='Read: "The city council has decided to reduce funding for public libraries by 15%, citing budget constraints." — What does "citing" mean here?',
         options=["ignoring", "giving as a reason", "criticising", "calculating"],
         correct="giving as a reason",
     ),
@@ -938,5 +943,224 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
             "It paradoxically enhances the novel's insight into human nature.",
         ],
         correct="It paradoxically enhances the novel's insight into human nature.",
+    ),
+    # ── Additional Reading questions ──────────────────────────────────────────
+    AssessmentQuestion(
+        id="r-a1-004",
+        skill="reading",
+        difficulty="A1",
+        question='Read: "My name is Emma. I am eight years old. I live with my mom, dad, and sister." — How many people are in Emma\'s family?',
+        options=["2", "3", "4", "5"],
+        correct="4",
+    ),
+    AssessmentQuestion(
+        id="r-a2-004",
+        skill="reading",
+        difficulty="A2",
+        question='Read: "The library opens at nine o\'clock on weekdays and at ten o\'clock on Saturdays. It is closed on Sundays." — When does the library open on Saturdays?',
+        options=["9 am", "10 am", "11 am", "It is closed"],
+        correct="10 am",
+    ),
+    AssessmentQuestion(
+        id="r-b1-004",
+        skill="reading",
+        difficulty="B1",
+        question='Read: "The new shopping center was supposed to open last spring, but construction delays have pushed the opening back to next year." — What is the main reason the shopping center has not opened yet?',
+        options=[
+            "It ran out of money.",
+            "Construction was not completed on time.",
+            "The owners changed their plans.",
+            "The builders went on strike.",
+        ],
+        correct="Construction was not completed on time.",
+    ),
+    AssessmentQuestion(
+        id="r-b2-004",
+        skill="reading",
+        difficulty="B2",
+        question='Read: "The report acknowledges that while the policy has generated substantial revenue, its distributional effects have been largely regressive, disproportionately affecting lower-income households." — What does \'regressive\' imply here?',
+        options=[
+            "The policy has been reversed.",
+            "The policy burdens lower-income households more heavily.",
+            "The policy has had no significant effect.",
+            "The policy has improved the economy overall.",
+        ],
+        correct="The policy burdens lower-income households more heavily.",
+    ),
+    AssessmentQuestion(
+        id="r-b2-005",
+        skill="reading",
+        difficulty="B2",
+        question='Read: "Critics have welcomed the new legislation as a bold step toward environmental accountability. Others, however, remain skeptical, arguing that without binding enforcement mechanisms, the law is little more than a symbolic gesture." — What is the main contrast in this passage?',
+        options=[
+            "Old legislation vs. new legislation",
+            "Supporters and critics of the new law",
+            "Environmental goals vs. economic interests",
+            "Government promises vs. public expectations",
+        ],
+        correct="Supporters and critics of the new law",
+    ),
+    AssessmentQuestion(
+        id="r-c1-003",
+        skill="reading",
+        difficulty="C1",
+        question=(
+            'Read: "The author\'s apparent detachment from the events she narrates is, on closer reading, '
+            "a carefully constructed illusion. Her precise choice of vocabulary — 'incident' rather than 'attack', "
+            "'misunderstanding' rather than 'confrontation' — performs the very domestication of violence she "
+            'purports merely to describe." — What does the writer argue about the author\'s language?'
+        ),
+        options=[
+            "It is careless and imprecise.",
+            "It accurately reflects the events described.",
+            "It subtly minimizes the severity of events through word choice.",
+            "It deliberately provokes the reader with shocking vocabulary.",
+        ],
+        correct="It subtly minimizes the severity of events through word choice.",
+    ),
+    AssessmentQuestion(
+        id="r-c1-004",
+        skill="reading",
+        difficulty="C1",
+        question=(
+            "Read: \"The committee's response was, as one insider put it, 'technically compliant but practically useless' — "
+            'a phrase that captures rather neatly the chasm between institutional obligation and genuine accountability." '
+            "— What does 'technically compliant but practically useless' suggest about the committee?"
+        ),
+        options=[
+            "The committee broke the rules.",
+            "The committee fulfilled the letter but not the spirit of its obligations.",
+            "The committee did nothing at all.",
+            "The committee was unaware of its responsibilities.",
+        ],
+        correct="The committee fulfilled the letter but not the spirit of its obligations.",
+    ),
+    AssessmentQuestion(
+        id="r-c2-003",
+        skill="reading",
+        difficulty="C2",
+        question=(
+            'Read: "There is a tendency in contemporary discourse to conflate visibility with progress — '
+            "to mistake the proliferation of narratives for the redistribution of power. That more voices are heard "
+            "does not necessarily mean that the structures determining who speaks, and on what terms, have "
+            'fundamentally changed." — What distinction does the writer draw?'
+        ),
+        options=[
+            "Between traditional and modern forms of communication",
+            "Between having a voice and having structural influence",
+            "Between public discourse and private opinion",
+            "Between individual progress and collective failure",
+        ],
+        correct="Between having a voice and having structural influence",
+    ),
+    AssessmentQuestion(
+        id="r-c2-004",
+        skill="reading",
+        difficulty="C2",
+        question=(
+            'Read: "The hypothesis that creativity flourishes under constraint is not without merit, but it risks '
+            "becoming a convenient rationalization for the underfunding of the arts. Necessity may be the mother of "
+            'invention, but she is a poor substitute for adequate resources." — What rhetorical strategy does the '
+            "writer use in the final sentence?"
+        ),
+        options=[
+            "A direct refutation of the opposing argument",
+            "A concession followed by a counter-claim using a familiar saying",
+            "An appeal to statistical evidence",
+            "A series of rhetorical questions",
+        ],
+        correct="A concession followed by a counter-claim using a familiar saying",
+    ),
+    # ── Additional Grammar questions (B2–C2) ──────────────────────────────────
+    AssessmentQuestion(
+        id="g-b2-005",
+        skill="grammar",
+        difficulty="B2",
+        question="By the time the guests arrive, we ___ dinner.",
+        options=["will finish", "will be finishing", "will have finished", "finish"],
+        correct="will have finished",
+        grammar_slug="future-perfect",
+    ),
+    AssessmentQuestion(
+        id="g-b2-006",
+        skill="grammar",
+        difficulty="B2",
+        question="The ground was wet; it ___ all night.",
+        options=["rained", "was raining", "had been raining", "has rained"],
+        correct="had been raining",
+        grammar_slug="narrative-tenses",
+    ),
+    AssessmentQuestion(
+        id="g-c1-005",
+        skill="grammar",
+        difficulty="C1",
+        question='"___ the contract carefully, she refused to sign." — Which option is grammatically correct?',
+        options=["Having read", "Having been read", "After read", "She having read"],
+        correct="Having read",
+        grammar_slug="participle-clauses",
+    ),
+    AssessmentQuestion(
+        id="g-c1-006",
+        skill="grammar",
+        difficulty="C1",
+        question='"___ all the evidence presented, the defendant was found not guilty." — Choose the correct option.',
+        options=["Despite of", "Despite", "Although", "In spite that"],
+        correct="Despite",
+        grammar_slug="adverbial-clauses-advanced",
+    ),
+    AssessmentQuestion(
+        id="g-c2-005",
+        skill="grammar",
+        difficulty="C2",
+        question='"Not only ___ the project late, but the final report was also full of errors." (formal inversion)',
+        options=["they delivered", "delivered they", "did they deliver", "had they delivered"],
+        correct="did they deliver",
+        grammar_slug="inversion",
+    ),
+    # ── Additional Vocabulary questions (B2–C2) ───────────────────────────────
+    AssessmentQuestion(
+        id="v-b2-005",
+        skill="vocabulary",
+        difficulty="B2",
+        question='"The investigation team will ___ a thorough review of all records." — Choose the correct collocation.',
+        options=["make", "do", "carry out", "bring"],
+        correct="carry out",
+    ),
+    AssessmentQuestion(
+        id="v-b2-006",
+        skill="vocabulary",
+        difficulty="B2",
+        question='"The two organizations decided to ___ their resources in order to reduce costs." (bring together for a shared purpose)',
+        options=["merge", "pool", "divide", "accumulate"],
+        correct="pool",
+    ),
+    AssessmentQuestion(
+        id="v-c1-005",
+        skill="vocabulary",
+        difficulty="C1",
+        question='"The senator\'s statement was ___ at best — she carefully avoided making any clear commitment." (deliberately ambiguous to avoid commitment)',
+        options=["vague", "ambiguous", "equivocal", "opaque"],
+        correct="equivocal",
+    ),
+    AssessmentQuestion(
+        id="v-c1-006",
+        skill="vocabulary",
+        difficulty="C1",
+        question='What does "circumvent" mean?',
+        options=[
+            "to support something directly",
+            "to find a way around a rule or obstacle",
+            "to criticize something publicly",
+            "to describe something in detail",
+        ],
+        correct="to find a way around a rule or obstacle",
+    ),
+    AssessmentQuestion(
+        id="v-c2-005",
+        skill="vocabulary",
+        difficulty="C2",
+        question='"Her prose style is deliberately ___: she strips away all ornament, metaphor, and sentiment, leaving only the bare facts."',
+        options=["sardonic", "laconic", "austere", "verbose"],
+        correct="austere",
     ),
 ]

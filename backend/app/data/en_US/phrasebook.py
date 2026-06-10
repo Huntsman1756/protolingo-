@@ -1,4 +1,4 @@
-"""English phrasebook — assembler module."""
+"""American English phrasebook — assembler module."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry  # noqa: F401
 from app.data.en_US.phrasebook_a1 import A1_CATEGORIES

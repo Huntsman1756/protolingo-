@@ -1,4 +1,4 @@
-"""English phrasebook — A1 categories."""
+"""American English phrasebook — A1 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -9,7 +9,8 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
         situation="Greetings & Introductions",
         icon="\U0001f44b",
         phrases=[
-            PhrasebookEntry(text="Hello! / Hi!", context="Casual greeting", register="neutral"),
+            PhrasebookEntry(text="Hello!", context="Standard neutral greeting", register="neutral"),
+            PhrasebookEntry(text="Hi!", context="Informal greeting between friends or peers", register="informal"),
             PhrasebookEntry(
                 text="Good morning.", context="Greeting before noon", register="formal"
             ),
@@ -40,7 +41,7 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             PhrasebookEntry(
                 text="See you later!", context="Informal farewell", register="informal"
             ),
-            PhrasebookEntry(text="Goodbye!", context="Formal farewell", register="formal"),
+            PhrasebookEntry(text="Goodbye!", context="Standard farewell — suitable in all contexts", register="neutral"),
             PhrasebookEntry(
                 text="Bye! / Bye-bye!", context="Informal farewell", register="informal"
             ),
@@ -98,7 +99,13 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
                 register="neutral",
             ),
             PhrasebookEntry(
-                text="You're welcome.", context="Responding to thanks", register="neutral"
+                text="You're welcome.", context="Responding to thanks (neutral)", register="neutral"
+            ),
+            PhrasebookEntry(
+                text="No problem.", context="Casual American response to thanks", register="informal"
+            ),
+            PhrasebookEntry(
+                text="Sure thing!", context="Warm, informal American response to thanks", register="informal"
             ),
         ],
     ),
@@ -136,11 +143,11 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(text="How much is it?", context="Asking the price", register="neutral"),
             PhrasebookEntry(
-                text="It's [price] pounds/euros.", context="Stating a price", register="neutral"
+                text="That's [price] dollars.", context="Stating a price in American currency", register="neutral"
             ),
             PhrasebookEntry(
-                text="Can I have the bill, please?",
-                context="Asking for the bill at a caf\u00e9",
+                text="Can I have the check, please?",
+                context="Asking for the check at a café — Americans say 'check', not 'bill'",
                 register="neutral",
             ),
             PhrasebookEntry(
