@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(
   req: Request,
-  { params }: { params: Promise<{ path: string[] }> },
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
   const scriptUrl = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL
   if (!scriptUrl) return new Response(null, { status: 404 })

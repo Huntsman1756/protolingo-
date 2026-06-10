@@ -1,8 +1,8 @@
-"""English grammar topics — A1 additional."""
+"""English grammar topics — A1 and A2 additional."""
 
 from app.data._types import GrammarExample, GrammarMistake, GrammarTopic
 
-A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
+A1_A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
     GrammarTopic(
         slug="question-words",
         title="Question Words (What, Where, When, Who, Why, How)",
@@ -286,7 +286,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         explanation="Reflexive pronouns end in **-self** (singular) or **-selves** (plural):\n\n| Subject | Reflexive |\n|---------|-----------|\n| I | myself |\n| you | yourself / yourselves |\n| he | himself |\n| she | herself |\n| it | itself |\n| we | ourselves |\n| they | themselves |\n\nUse them when:\n1. The subject and object are the same: *I cut myself.*\n2. To emphasise who did something: *I made it myself.*\n3. With 'by' to mean 'alone': *She lives by herself.*",
         rules=[
             "Use reflexive pronouns when the subject and object are the same person.",
-            "Do NOT use reflexive pronouns after prepositions of place (sit down, wake up).",
+            "Do NOT add a reflexive pronoun to phrasal verbs where English does not require one — unlike Spanish or French, English does not use reflexives with verbs like sit down, wake up, or get dressed when the action clearly applies to yourself.",
             "'By + reflexive' means alone or without help.",
             "Common verbs used with reflexives: enjoy yourself, hurt yourself, help yourself.",
         ],
@@ -316,7 +316,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A2",
         category="Pronouns",
         summary="Talk about people and things without saying exactly who or what.",
-        explanation="Indefinite pronouns refer to unspecified people, things, or places:\n\n| | People | Things | Places |\n|---|--------|--------|--------|\n| some- | someone / somebody | something | somewhere |\n| any- | anyone / anybody | anything | anywhere |\n| no- | no one / nobody | nothing | nowhere |\n| every- | everyone / everybody | everything | everywhere |\n\n**Usage:**\n- **some-** in positive sentences: *Someone is at the door.*\n- **any-** in negatives and questions: *I can't find anything. Is anyone there?*\n- **no-** in positive sentences with negative meaning: *Nobody came to the party.*\n- **every-** means all: *Everyone enjoyed the film.*\n\nAll indefinite pronouns are singular and take a singular verb.",
+        explanation="Indefinite pronouns refer to unspecified people, things, or places:\n\n| | People | Things | Places |\n|---|--------|--------|--------|\n| some- | someone / somebody | something | somewhere |\n| any- | anyone / anybody | anything | anywhere |\n| no- | no one / nobody | nothing | nowhere |\n| every- | everyone / everybody | everything | everywhere |\n\n**Usage:**\n- **some-** in positive sentences: *Someone is at the door.*\n- **any-** in negatives and questions: *I can't find anything. Is anyone there?*\n- **no-** in positive sentences with negative meaning: *Nobody came to the party.*\n- **every-** means all: *Everyone enjoyed the movie.*\n\nAll indefinite pronouns are singular and take a singular verb.",
         rules=[
             "Use some- in positive sentences; any- in negatives and questions.",
             "No- words make the verb positive: 'Nobody knows' (not 'Nobody doesn't know').",
@@ -386,7 +386,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         category="Adjectives & Adverbs",
         summary="Say that two things are equal using as + adjective/adverb + as.",
         structure="as + adjective/adverb + as (equality) · not as/so + adjective/adverb + as (inequality)",
-        explanation="Use **as...as** to say two things are the same:\n- *She is as tall as her brother.* (= they are the same height)\n- *This film is as good as the first one.* (= same quality)\n\nUse **not as...as** (or not so...as) to say one thing is less:\n- *He is not as old as he looks.* (= he looks older)\n- *This book isn't as interesting as the other one.*\n\nCommon expressions:\n- *as soon as possible*\n- *as much as you want*\n- *as far as I know*",
+        explanation="Use **as...as** to say two things are the same:\n- *She is as tall as her brother.* (= they are the same height)\n- *This movie is as good as the first one.* (= same quality)\n\nUse **not as...as** (or not so...as) to say one thing is less:\n- *He is not as old as he looks.* (= he looks older)\n- *This book isn't as interesting as the other one.*\n\nCommon expressions:\n- *as soon as possible*\n- *as much as you want*\n- *as far as I know*",
         rules=[
             "Use 'as + adjective + as' to show things are equal.",
             "Use 'not as + adjective + as' to show one thing is less than another.",
@@ -412,5 +412,62 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["comparatives-superlatives", "adverbs-manner", "too-enough"],
+    ),
+    GrammarTopic(
+        slug="american-spelling",
+        title="American English Spelling (color, organize, center)",
+        level="A1",
+        category="Vocabulary",
+        summary="Learn the key spelling differences between American English and British English.",
+        structure="American spelling patterns vs. British equivalents",
+        explanation=(
+            "American English has several spelling conventions that differ from British English. "
+            "As a learner of American English, use these American spellings:\n\n"
+            "| American | British | Examples |\n"
+            "|----------|---------|----------|\n"
+            "| **-or** | -our | *color, favor, labor, honor* |\n"
+            "| **-er** | -re | *center, theater, meter, liter* |\n"
+            "| **-ize** | -ise | *realize, organize, recognize* |\n"
+            "| **-og** | -ogue | *dialog, catalog, monolog* |\n"
+            "| **single -l** (before suffix) | double -ll | *traveling, canceled, fulfilling* |\n\n"
+            "**Note on -ize/-ise:** American English strongly prefers -ize (organize, realize). "
+            "British English accepts both but prefers -ise.\n\n"
+            "**Special case:** In American English, *license* is both noun and verb: "
+            "*'I have a driver's license.'* / *'The city licensed the venue.'*"
+        ),
+        rules=[
+            "Use -or for color, favor, labor, honor, neighbor.",
+            "Use -er for center, theater, meter, liter, fiber.",
+            "Use -ize (American English standard) for realize, organize, recognize.",
+            "Single final consonant before suffix: traveling, canceled (unlike British travelling, cancelled).",
+            "License: one spelling for both noun and verb in American English.",
+        ],
+        examples=[
+            GrammarExample(text="The color of the sky is blue.", note="AmE: color / BrE: colour"),
+            GrammarExample(
+                text="The theater is in the town center.",
+                note="AmE: theater, center / BrE: theatre, centre",
+            ),
+            GrammarExample(
+                text="She realized she had forgotten her umbrella.",
+                note="AmE: realized / BrE: realised",
+            ),
+            GrammarExample(
+                text="I canceled the appointment.", note="AmE: canceled (single l) / BrE: cancelled"
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="I live in the centre of New York.",
+                correct="I live in the center of New York.",
+                note="In American English, use 'center', not 'centre'.",
+            ),
+            GrammarMistake(
+                wrong="What is your favourite colour?",
+                correct="What is your favorite color?",
+                note="American spellings: 'favorite' and 'color'.",
+            ),
+        ],
+        related=["articles"],
     ),
 ]

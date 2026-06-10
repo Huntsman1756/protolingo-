@@ -1,4 +1,4 @@
-"""English phrasebook — B2 categories."""
+"""American English phrasebook — B2 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -10,8 +10,8 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
         icon="\U0001f4e7",
         phrases=[
             PhrasebookEntry(
-                text="I am writing to enquire about...",
-                context="Opening \u2014 asking for information",
+                text="I am writing to inquire about...",
+                context="Opening — asking for information",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -30,8 +30,8 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="I would like to draw your attention to...",
-                context="Highlighting important information",
+                text="Please note that...",
+                context="Drawing attention to important information in a formal email — common in American business correspondence",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -55,8 +55,8 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="Yours faithfully, / Yours sincerely,",
-                context="Formal sign-off",
+                text="Sincerely, / Sincerely yours,",
+                context="Standard American English formal sign-off (used for all formal letters, regardless of whether you know the recipient)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -167,6 +167,122 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
                 text="This leads me to conclude that...",
                 context="Drawing a conclusion",
                 register="formal",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="customer_service_b2",
+        level="B2",
+        situation="Customer Service & Returns",
+        icon="\U0001f4e9",
+        phrases=[
+            PhrasebookEntry(
+                text="I'm afraid there seems to be a problem with my order.",
+                context="Opening a complaint politely",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="This isn't quite what I ordered.",
+                context="Politely pointing out an error",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd like to return this item, please.",
+                context="Requesting a return",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I think I've been overcharged.",
+                context="Disputing a charge politely",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Can I speak with the manager, please?",
+                context="Escalating a complaint — Americans typically say 'speak with' not 'speak to'",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd like a full refund, please.",
+                context="Requesting a refund",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="This isn't up to the standard I'd expect.",
+                context="Expressing dissatisfaction with quality",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Could I get a replacement instead?",
+                context="Asking for a replacement item — Americans often use 'get' where British say 'have'",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd like to file a formal complaint.",
+                context="Initiating a written or official complaint",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="I'm sure we can work this out.",
+                context="Collaborative, solution-focused tone",
+                register="neutral",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="social_informal_b2",
+        level="B2",
+        situation="Informal Social English",
+        icon="\U0001f37b",
+        phrases=[
+            PhrasebookEntry(
+                text="It's great to catch up!",
+                context="Seeing someone you haven't seen for a while",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="What have you been up to lately?",
+                context="Casual catching-up question",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="I've been meaning to give you a call.",
+                context="Saying you intended to contact someone",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="I totally know what you mean.",
+                context="Showing agreement and empathy — 'totally' is a very common AmE intensifier",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="That's easier said than done.",
+                context="Pointing out that something is more difficult than it sounds",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="I'd rather not, if that's okay.",
+                context="Polite but direct refusal — American English tends to be more direct than British",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="It's kind of hit or miss, to be honest.",
+                context="'Hit or miss' = inconsistent in quality — common American idiom",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="It could've been worse!",
+                context="Looking on the bright side when something went badly but not catastrophically",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="That's nothing to write home about.",
+                context="Expression meaning something is unremarkable or average",
+                register="informal",
+            ),
+            PhrasebookEntry(
+                text="Can I get you a refill?",
+                context="Offering someone more of their drink — very common in American restaurants and homes",
+                register="informal",
             ),
         ],
     ),

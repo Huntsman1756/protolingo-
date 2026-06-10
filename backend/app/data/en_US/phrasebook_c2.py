@@ -1,4 +1,4 @@
-"""English phrasebook — C2 categories."""
+"""American English phrasebook — C2 categories."""
 
 from app.data._types import PhrasebookCategory, PhrasebookEntry
 
@@ -45,8 +45,8 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
                 register="formal",
             ),
             PhrasebookEntry(
-                text="This begs the question: why has nothing been done?",
-                context="Rhetorical challenge",
+                text="This raises the question: why has nothing been done?",
+                context="Rhetorical challenge — note: 'begs the question' is technically a logical fallacy (petitio principii) in formal academic contexts, not a synonym for 'raises the question'",
                 register="formal",
             ),
             PhrasebookEntry(

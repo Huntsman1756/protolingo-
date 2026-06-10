@@ -194,7 +194,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         category="Adjectives & Adverbs",
         summary="Intensify descriptions using so and such to mean 'very' or 'to this degree'.",
         structure="so + adjective/adverb · such + (article) + adjective + noun",
-        explanation="**So** and **such** make descriptions stronger.\n\n**So** is used:\n- Before adjectives (no noun): *It is so beautiful.*\n- Before adverbs: *She speaks so quickly.*\n- Before much/many + noun: *so much money, so many people*\n\n**Such** is used:\n- Before a noun phrase (with or without adjective): *It was such a nice day. / She has such patience.*\n\nBoth can be followed by 'that' to show result: *It was so cold that the pipes froze. / It was such a good film that I watched it twice.*",
+        explanation="**So** and **such** make descriptions stronger.\n\n**So** is used:\n- Before adjectives (no noun): *It is so beautiful.*\n- Before adverbs: *She speaks so quickly.*\n- Before much/many + noun: *so much money, so many people*\n\n**Such** is used:\n- Before a noun phrase (with or without adjective): *It was such a nice day. / She has such patience.*\n\nBoth can be followed by 'that' to show result: *It was so cold that the pipes froze. / It was such a good movie that I watched it twice.*",
         rules=[
             "'So' + adjective/adverb (no noun): 'so tired', 'so quickly'.",
             "'Such' + (a/an) + (adjective) + noun: 'such a good idea', 'such beautiful weather'.",
@@ -209,8 +209,8 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="It was a so good film.",
-                correct="It was such a good film.",
+                wrong="It was a so good movie.",
+                correct="It was such a good movie.",
                 note="With an adjective + noun, use 'such', not 'so'.",
             ),
             GrammarMistake(
@@ -309,10 +309,10 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="I used to live in London. Now I live in Bristol.", note="past habit"
+                text="I used to live in Chicago. Now I live in Austin.", note="past habit"
             ),
             GrammarExample(text="She is used to working long hours.", note="it is normal for her"),
-            GrammarExample(text="It took me a while to get used to driving on the left."),
+            GrammarExample(text="It took me a while to get used to driving on freeways."),
             GrammarExample(text="Don't worry — you will soon get used to it."),
         ],
         common_mistakes=[
@@ -402,10 +402,11 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Articles",
         summary="Go beyond basic a/an/the rules: when to use no article and how to talk about things in general.",
-        explanation="At B1 level, article use becomes more nuanced:\n\n**Zero article (no article)** — used with:\n- Plural countable nouns in general: *Dogs are loyal.*\n- Uncountable nouns in general: *Music is universal.*\n- Institutions (when thinking about their purpose):\n  *She goes to school. / He is in hospital. / They are at church.*\n- Meals: *What time is lunch?*\n- Transport: *by car, by bus, on foot*\n\nCompare:\n- *I went to the school.* (the building — maybe for a meeting)\n- *I went to school.* (as a student — the institution's purpose)\n\n**Generic use of 'the':**\n- Inventions: *The telephone was invented by Bell.*\n- Species: *The tiger is endangered.*",
+        explanation="At B1 level, article use becomes more nuanced:\n\n**Zero article (no article)** — used with:\n- Plural countable nouns in general: *Dogs are loyal.*\n- Uncountable nouns in general: *Music is universal.*\n- Institutions (when thinking about their purpose):\n  *She goes to school. / They are at church.*\n- Meals: *What time is lunch?*\n- Transport: *by car, by bus, on foot*\n\n**Important American English note:** Unlike British English, American English uses **the** with hospital when referring to a patient: *He is in **the** hospital.* (not 'in hospital'). School, church, and prison follow the zero-article pattern in both varieties.\n\nCompare:\n- *I went to the school.* (the building — maybe for a meeting)\n- *I went to school.* (as a student — the institution's purpose)\n\n**Generic use of 'the':**\n- Inventions: *The telephone was invented by Bell.*\n- Species: *The tiger is endangered.*",
         rules=[
             "No article for general statements with plural and uncountable nouns.",
-            "No article for institutions when referring to their purpose (school, hospital, prison, church).",
+            "No article for school, church, and prison when referring to their purpose.",
+            "American English requires 'the' with hospital: 'She is in the hospital' (as a patient).",
             "Use 'the' for inventions and species when referring to them generically.",
             "No article for meals, sports, and languages: 'I play tennis', 'She speaks French'.",
         ],
@@ -414,7 +415,10 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(
                 text="Children need a lot of sleep.", note="general, plural — no article"
             ),
-            GrammarExample(text="She has been in hospital for a week.", note="as a patient"),
+            GrammarExample(
+                text="She has been in the hospital for a week.",
+                note="American English — always uses 'the' with hospital",
+            ),
             GrammarExample(text="The smartphone has changed our lives.", note="invention, generic"),
         ],
         common_mistakes=[
@@ -488,8 +492,8 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="I have seen that film yesterday.",
-                correct="I saw that film yesterday.",
+                wrong="I have seen that movie yesterday.",
+                correct="I saw that movie yesterday.",
                 note="With a specific past time (yesterday), use past simple.",
             ),
             GrammarMistake(
@@ -533,5 +537,59 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["comparatives-superlatives", "adverbs-manner", "comparative-as-as"],
+    ),
+    GrammarTopic(
+        slug="quantifiers-few-little",
+        title="Few / A Few, Little / A Little",
+        level="B1",
+        category="Nouns",
+        summary="Understand the difference between 'few' (negative) and 'a few' (positive), and 'little' (negative) and 'a little' (positive).",
+        structure="few / a few + countable plural · little / a little + uncountable",
+        explanation=(
+            "These quantifiers look similar but carry opposite meanings:\n\n"
+            "**With countable nouns (few / a few):**\n\n"
+            "| Form | Meaning | Example |\n"
+            "|------|---------|--------|\n"
+            "| *few* | almost none — negative connotation | *She has few friends.* (= not many, a problem) |\n"
+            "| *a few* | some — positive connotation | *She has a few friends.* (= some, enough) |\n\n"
+            "**With uncountable nouns (little / a little):**\n\n"
+            "| Form | Meaning | Example |\n"
+            "|------|---------|--------|\n"
+            "| *little* | almost none — negative connotation | *There is little hope.* (= almost none) |\n"
+            "| *a little* | some — positive connotation | *There is a little time left.* (= some, enough for now) |\n\n"
+            "**The key:** the article 'a' changes a negative meaning to a positive one."
+        ),
+        rules=[
+            "'Few' and 'a few' are used with countable plural nouns.",
+            "'Little' and 'a little' are used with uncountable nouns.",
+            "'Few' (no article) = negative: almost none, not enough.",
+            "'A few' = positive: some, a small but sufficient number.",
+            "'A little' = positive: some, a small but sufficient amount.",
+        ],
+        examples=[
+            GrammarExample(
+                text="I have a few minutes — shall we talk?", note="a few = some, enough"
+            ),
+            GrammarExample(
+                text="She has few options in this situation.", note="few = almost none, concerning"
+            ),
+            GrammarExample(text="Add a little salt to taste.", note="a little = some, sufficient"),
+            GrammarExample(
+                text="There is little evidence to support this claim.", note="little = almost none"
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="I have few money left.",
+                correct="I have a little money left. (or) I have little money left.",
+                note="'Money' is uncountable — use 'a little' or 'little', not 'few'.",
+            ),
+            GrammarMistake(
+                wrong="There are a little mistakes.",
+                correct="There are a few mistakes.",
+                note="'Mistakes' is countable — use 'a few', not 'a little'.",
+            ),
+        ],
+        related=["some-any-much-many", "countable-uncountable", "both-either-neither"],
     ),
 ]

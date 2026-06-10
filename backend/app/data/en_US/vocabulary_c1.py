@@ -70,7 +70,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The right or condition of self-government.",
                 example="The region was granted greater autonomy.",
-                ipa="/ɔːˈtɒnəmi/",
+                ipa="/ɔːˈtɑːnəmi/",
                 frequency_rank=400,
             ),
             VocabularyEntry(
@@ -94,7 +94,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The great size or importance of something.",
                 example="We underestimated the magnitude of the problem.",
-                ipa="/ˈmæɡnɪtjuːd/",
+                ipa="/ˈmæɡnɪtuːd/",
                 frequency_rank=395,
             ),
             VocabularyEntry(
@@ -264,7 +264,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="Undecided between two options.",
                 example="I'm still on the fence about moving abroad.",
-                ipa="/ɒn ðə fens/",
+                ipa="/ɑːn ðə fens/",
             ),
             VocabularyEntry(
                 word="read between the lines",
@@ -278,7 +278,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="Without hesitation; immediately.",
                 example="She would help at the drop of a hat.",
-                ipa="/æt ðə drɒp əv ə hæt/",
+                ipa="/æt ðə drɑːp əv ə hæt/",
             ),
             VocabularyEntry(
                 word="the tip of the iceberg",
@@ -329,7 +329,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="For the reason that.",
                 example="The proposal was rejected on the grounds that it was too costly.",
-                ipa="/ɒn ðə ɡraʊndz ðæt/",
+                ipa="/ɑːn ðə ɡraʊndz ðæt/",
             ),
             VocabularyEntry(
                 word="in accordance with",
@@ -344,7 +344,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="preposition",
                 definition="Despite; in spite of.",
                 example="Notwithstanding the delays, the project was completed on time.",
-                ipa="/ˌnɒtwɪθˈstændɪŋ/",
+                ipa="/ˌnɑːtwɪθˈstændɪŋ/",
                 frequency_rank=460,
             ),
             VocabularyEntry(
@@ -375,7 +375,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="adverb",
                 definition="Of the thing just mentioned.",
                 example="The contract and all obligations thereof remain in force.",
-                ipa="/ðeərˈɒv/",
+                ipa="/ðeərˈɑːv/",
                 frequency_rank=490,
             ),
             VocabularyEntry(
@@ -437,7 +437,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To confirm or give support to a statement.",
                 example="The witness corroborated the account.",
-                ipa="/kəˈrɒbəreɪt/",
+                ipa="/kəˈrɑːbəreɪt/",
                 frequency_rank=460,
             ),
             VocabularyEntry(
@@ -469,7 +469,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A division into two contrasting groups or ideas.",
                 example="There is a false dichotomy between growth and sustainability.",
-                ipa="/daɪˈkɒtəmi/",
+                ipa="/daɪˈkɑːtəmi/",
                 frequency_rank=460,
             ),
             VocabularyEntry(
@@ -685,7 +685,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="Judgement based on observable facts rather than feelings.",
                 example="Journalistic objectivity is essential.",
-                ipa="/ˌɒbdʒekˈtɪvɪti/",
+                ipa="/ˌɑːbdʒekˈtɪvɪti/",
                 frequency_rank=420,
             ),
             VocabularyEntry(
@@ -693,7 +693,7 @@ C1_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="An exclusive right or privilege.",
                 example="It is the committee's prerogative to decide.",
-                ipa="/prɪˈrɒɡətɪv/",
+                ipa="/prɪˈrɑːɡətɪv/",
                 frequency_rank=450,
             ),
             VocabularyEntry(

@@ -24,6 +24,16 @@ from app.data.en_US.curriculum_c2 import C2_UNITS
 
 CEFR_LEVELS: list[str] = ["A1", "A2", "B1", "B2", "C1", "C2"]
 
+# Estimated lesson duration in minutes per CEFR level.
+LEVEL_MINUTES: dict[str, int] = {
+    "A1": 20,
+    "A2": 25,
+    "B1": 30,
+    "B2": 35,
+    "C1": 40,
+    "C2": 45,
+}
+
 INTENSITY_CONFIG: dict[str, dict] = {
     "intensive": {"duration_weeks": 4, "days_per_week": 5},
     "standard": {"duration_weeks": 8, "days_per_week": 5},
@@ -95,7 +105,7 @@ def distribute_units(
                     "lesson_type": lesson_type,
                     "title": f"{unit.title} — {lesson_type.capitalize()}",
                     "objectives": unit.competency_checklist[:2],
-                    "estimated_minutes": 25,
+                    "estimated_minutes": LEVEL_MINUTES.get(unit.level, 25),
                     "grammar_points": unit.grammar_points,
                     "vocabulary_set_ids": unit.vocabulary_set_ids,
                 }
