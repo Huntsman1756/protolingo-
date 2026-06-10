@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Verbeterde leermiddelen",
-      "desc": "Alle leermiddelensecties zijn uitgebreid met nieuwe inhoud."
+      "label": "Nieuwe talen om te leren",
+      "desc": "Spaans, Italiaans en Portugees zijn nu beschikbaar — elk met een volledig curriculum van beginner tot gevorderd (A1–C2), grammatica, woordenschat, zinnen, Reading, Listening en meer. Voeg ze toe via Instellingen → Mijn talen."
     },
     "entry2": {
-      "label": "Leer meerdere talen",
-      "desc": "Je kunt nu meer dan één taal tegelijk leren. Wissel van taal via de zijbalk en voeg nieuwe talen toe via instellingen → Mijn talen. We blijven meer talen toevoegen — je vindt ze daar."
+      "label": "Verbeterde leermiddelen",
+      "desc": "Alle leermiddelensecties zijn uitgebreid met nieuwe inhoud."
     },
     "entry3": {
       "label": "Bugfixes",

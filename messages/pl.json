@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Ulepszone materiały dydaktyczne",
-      "desc": "Wszystkie sekcje materiałów dydaktycznych zostały rozszerzone o nowe treści."
+      "label": "Nowe języki do nauki",
+      "desc": "Hiszpański, włoski i portugalski są już dostępne — każdy z pełnym programem nauczania od początkującego do zaawansowanego (A1–C2), gramatyką, słownictwem, zwrotami, Reading, Listening i więcej. Dodaj je w Ustawienia → Moje języki."
     },
     "entry2": {
-      "label": "Ucz się wielu języków",
-      "desc": "Możesz teraz uczyć się więcej niż jednego języka jednocześnie. Przełączaj języki z paska bocznego i dodawaj nowe w Ustawienia → Moje języki. Będziemy dodawać kolejne języki — znajdziesz je właśnie tam."
+      "label": "Ulepszone materiały dydaktyczne",
+      "desc": "Wszystkie sekcje materiałów dydaktycznych zostały rozszerzone o nowe treści."
     },
     "entry3": {
       "label": "Poprawki błędów",

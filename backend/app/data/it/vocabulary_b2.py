@@ -127,7 +127,7 @@ B2_SETS: list[VocabularySet] = [
                 definition="Ipotesi basata su indizi ma non dimostrata.",
                 example="È solo una congettura, non abbiamo prove.",
                 ipa="/kondʒetˈtuːra/",
-                frequency_rank=541,
+                frequency_rank=708,
             ),
             VocabularyEntry(
                 word="presupposto",
@@ -567,7 +567,7 @@ B2_SETS: list[VocabularySet] = [
                 definition="Ramo del sapere o materia di studio.",
                 example="La linguistica è una disciplina affascinante.",
                 ipa="/diʃˈʃiːplina/",
-                frequency_rank=591,
+                frequency_rank=709,
             ),
             VocabularyEntry(
                 word="criterio",

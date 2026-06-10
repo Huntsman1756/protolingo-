@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Resurse didactice îmbunătățite",
-      "desc": "Toate secțiunile de resurse didactice au fost extinse cu conținut nou."
+      "label": "Limbi noi de învățat",
+      "desc": "Spaniola, italiana și portugheza sunt acum disponibile — fiecare cu un curriculum complet de la începător la avansat (A1–C2), gramatică, vocabular, fraze, Reading, Listening și mai mult. Adaugă-le din Setări → Limbile mele."
     },
     "entry2": {
-      "label": "Învață mai multe limbi",
-      "desc": "Acum poți învăța mai mult de o limbă în același timp. Schimbă limba din bara laterală și adaugă altele noi din setări → Limbile mele. Vom continua să adăugăm mai multe limbi — le vei găsi acolo."
+      "label": "Resurse didactice îmbunătățite",
+      "desc": "Toate secțiunile de resurse didactice au fost extinse cu conținut nou."
     },
     "entry3": {
       "label": "Corectări de bug-uri",

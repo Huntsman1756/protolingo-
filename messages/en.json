@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Got it",
     "entry1": {
-      "label": "Improved learning resources",
-      "desc": "All learning resource sections have been expanded with new content."
+      "label": "New languages to learn",
+      "desc": "Spanish, Italian, and Portuguese are now available — each with a full curriculum from beginner to advanced (A1–C2), grammar, vocabulary, phrases, Reading, Listening, and more. Add them from Settings → My Languages."
     },
     "entry2": {
-      "label": "Learn multiple languages",
-      "desc": "You can now learn more than one language at the same time. Switch between languages from the sidebar and add new ones from Settings → My Languages. We'll keep adding more languages — when we do, you'll find them there."
+      "label": "Expanded learning resources",
+      "desc": "All learning resource sections have been expanded with new content."
     },
     "entry3": {
       "label": "Bug fixes",

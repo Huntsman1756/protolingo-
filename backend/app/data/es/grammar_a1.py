@@ -19,14 +19,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'En preguntas no se usa auxiliar: "¿Eres tú?".',
         ],
         examples=[
-            GrammarExample(
-                text="Soy estudiante de español.", translation=None
-            ),
+            GrammarExample(text="Soy estudiante de español.", translation=None),
             GrammarExample(text="¿Eres de Argentina?", translation=None),
             GrammarExample(text="Somos hermanos.", translation=None),
-            GrammarExample(
-                text="Son las dos y media.", translation=None, note="hora"
-            ),
+            GrammarExample(text="Son las dos y media.", translation=None, note="hora"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -58,20 +54,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Ello" es el pronombre neutro y casi no se usa en español coloquial.',
         ],
         examples=[
-            GrammarExample(
-                text="Yo vivo en Barcelona.", translation=None, note="énfasis"
-            ),
-            GrammarExample(
-                text="¿Tú qué opinas?", translation=None, note="contraste"
-            ),
+            GrammarExample(text="Yo vivo en Barcelona.", translation=None, note="énfasis"),
+            GrammarExample(text="¿Tú qué opinas?", translation=None, note="contraste"),
             GrammarExample(
                 text="Ustedes son muy amables.",
                 translation=None,
                 note="América Latina",
             ),
-            GrammarExample(
-                text="Vosotros tenéis razón.", translation=None, note="España"
-            ),
+            GrammarExample(text="Vosotros tenéis razón.", translation=None, note="España"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -103,12 +93,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Se omite el artículo con nombres propios de persona, salvo en registros coloquiales.",
         ],
         examples=[
-            GrammarExample(
-                text="El libro está en la mesa.", translation=None
-            ),
-            GrammarExample(
-                text="Los niños juegan en el parque.", translation=None
-            ),
+            GrammarExample(text="El libro está en la mesa.", translation=None),
+            GrammarExample(text="Los niños juegan en el parque.", translation=None),
             GrammarExample(
                 text="Voy al cine los sábados.",
                 translation=None,
@@ -227,12 +213,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Necesito un bolígrafo.", translation=None),
-            GrammarExample(
-                text="Hay una farmacia cerca.", translation=None
-            ),
-            GrammarExample(
-                text="Tiene unas ideas muy buenas.", translation=None
-            ),
+            GrammarExample(text="Hay una farmacia cerca.", translation=None),
+            GrammarExample(text="Tiene unas ideas muy buenas.", translation=None),
             GrammarExample(
                 text="Es una arquitecta famosa.",
                 translation=None,
@@ -304,9 +286,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Mi casa es pequeña.", translation=None),
             GrammarExample(text="¿Dónde están tus llaves?", translation=None),
-            GrammarExample(
-                text="Nuestra profesora es de Chile.", translation=None
-            ),
+            GrammarExample(text="Nuestra profesora es de Chile.", translation=None),
             GrammarExample(
                 text="Sus hijos son muy educados.",
                 translation=None,
@@ -345,9 +325,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Un perro negro.", translation=None),
             GrammarExample(text="Una chica inteligente.", translation=None),
             GrammarExample(text="Los edificios altos.", translation=None),
-            GrammarExample(
-                text="Es un buen amigo.", translation=None, note="apócope de bueno"
-            ),
+            GrammarExample(text="Es un buen amigo.", translation=None, note="apócope de bueno"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -378,9 +356,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'No se usa auxiliar para negativas ni preguntas: "No hablo francés", "¿Comes carne?".',
         ],
         examples=[
-            GrammarExample(
-                text="Hablo español e inglés.", translation=None
-            ),
+            GrammarExample(text="Hablo español e inglés.", translation=None),
             GrammarExample(text="¿Comes en casa hoy?", translation=None),
             GrammarExample(text="Vivimos en el centro.", translation=None),
             GrammarExample(
@@ -418,12 +394,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Me levanto a las siete.", translation=None),
-            GrammarExample(
-                text="¿A qué hora te acuestas?", translation=None
-            ),
-            GrammarExample(
-                text="Nos duchamos por la mañana.", translation=None
-            ),
+            GrammarExample(text="¿A qué hora te acuestas?", translation=None),
+            GrammarExample(text="Nos duchamos por la mañana.", translation=None),
             GrammarExample(text="Ella se llama Carmen.", translation=None),
         ],
         common_mistakes=[
@@ -459,9 +431,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="¿Qué hora es? — Son las tres y media.",
                 translation=None,
             ),
-            GrammarExample(
-                text="La clase empieza a las nueve.", translation=None
-            ),
+            GrammarExample(text="La clase empieza a las nueve.", translation=None),
             GrammarExample(text="Son las dos menos cuarto.", translation=None),
             GrammarExample(text="Es la una en punto.", translation=None),
         ],
@@ -495,9 +465,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Me gusta el café.", translation=None),
-            GrammarExample(
-                text="¿Te gustan las películas de terror?", translation=None
-            ),
+            GrammarExample(text="¿Te gustan las películas de terror?", translation=None),
             GrammarExample(text="A ella le gusta viajar.", translation=None),
             GrammarExample(
                 text="Nos encanta la música latina.",
@@ -534,16 +502,12 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'Se pueden reforzar con "a mí también/tampoco".',
         ],
         examples=[
-            GrammarExample(
-                text="— Me gusta leer. — A mí también.", translation=None
-            ),
+            GrammarExample(text="— Me gusta leer. — A mí también.", translation=None),
             GrammarExample(
                 text="— No he ido al cine. — Yo tampoco.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ella también habla francés.", translation=None
-            ),
+            GrammarExample(text="Ella también habla francés.", translation=None),
             GrammarExample(
                 text="Él tampoco sabe la respuesta.",
                 translation=None,
@@ -578,13 +542,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Excepciones con adjetivos comparativos: mucho mejor, mucho peor, mucho mayor, mucho menor.",
         ],
         examples=[
-            GrammarExample(
-                text="La película es muy interesante.", translation=None
-            ),
+            GrammarExample(text="La película es muy interesante.", translation=None),
             GrammarExample(text="Tengo mucha hambre.", translation=None),
-            GrammarExample(
-                text="Estudia mucho todos los días.", translation=None
-            ),
+            GrammarExample(text="Estudia mucho todos los días.", translation=None),
             GrammarExample(
                 text="Este diccionario es mucho mejor.",
                 translation=None,
@@ -620,13 +580,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Nunca usar estar para origen o nacionalidad.",
         ],
         examples=[
-            GrammarExample(
-                text="¿Dónde está el supermercado?", translation=None
-            ),
+            GrammarExample(text="¿Dónde está el supermercado?", translation=None),
             GrammarExample(text="Estoy muy contento hoy.", translation=None),
-            GrammarExample(
-                text="Estamos aprendiendo español.", translation=None
-            ),
+            GrammarExample(text="Estamos aprendiendo español.", translation=None),
             GrammarExample(text="La puerta está abierta.", translation=None),
         ],
         common_mistakes=[
@@ -662,12 +618,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Hay una farmacia en la esquina.",
                 translation=None,
             ),
-            GrammarExample(
-                text="¿Hay leche en la nevera?", translation=None
-            ),
-            GrammarExample(
-                text="No hay muchas opciones.", translation=None
-            ),
+            GrammarExample(text="¿Hay leche en la nevera?", translation=None),
+            GrammarExample(text="No hay muchas opciones.", translation=None),
             GrammarExample(
                 text="En el parque hay niños jugando.",
                 translation=None,
@@ -702,9 +654,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'Con "de + el" se usa la contracción "del": "al lado del banco".',
         ],
         examples=[
-            GrammarExample(
-                text="El gato está debajo de la mesa.", translation=None
-            ),
+            GrammarExample(text="El gato está debajo de la mesa.", translation=None),
             GrammarExample(
                 text="Hay un parque detrás del colegio.",
                 translation=None,
@@ -742,12 +692,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "En la lengua hablada es mucho más frecuente que el futuro simple.",
         ],
         examples=[
-            GrammarExample(
-                text="Voy a estudiar medicina.", translation=None
-            ),
-            GrammarExample(
-                text="¿Vas a venir a la fiesta?", translation=None
-            ),
+            GrammarExample(text="Voy a estudiar medicina.", translation=None),
+            GrammarExample(text="¿Vas a venir a la fiesta?", translation=None),
             GrammarExample(
                 text="Ellos van a viajar a México este verano.",
                 translation=None,
@@ -786,16 +732,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Querer" también puede ir con sustantivo: "Quiero agua".',
         ],
         examples=[
-            GrammarExample(
-                text="Quiero viajar a Argentina.", translation=None
-            ),
+            GrammarExample(text="Quiero viajar a Argentina.", translation=None),
             GrammarExample(text="¿Puedes ayudarme?", translation=None),
-            GrammarExample(
-                text="No podemos salir esta noche.", translation=None
-            ),
-            GrammarExample(
-                text="Ella quiere ser profesora.", translation=None
-            ),
+            GrammarExample(text="No podemos salir esta noche.", translation=None),
+            GrammarExample(text="Ella quiere ser profesora.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -826,13 +766,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Los días de lunes a viernes no cambian en plural: el lunes → los lunes.",
         ],
         examples=[
-            GrammarExample(
-                text="El martes tengo una reunión.", translation=None
-            ),
+            GrammarExample(text="El martes tengo una reunión.", translation=None),
             GrammarExample(text="Los domingos descansamos.", translation=None),
-            GrammarExample(
-                text="Mi cumpleaños es en abril.", translation=None
-            ),
+            GrammarExample(text="Mi cumpleaños es en abril.", translation=None),
             GrammarExample(
                 text="Estudio español por las mañanas.",
                 translation=None,

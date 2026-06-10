@@ -1099,15 +1099,15 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.7.7",
+    "version": "v1.8.0",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Verbesserte Lernressourcen",
-      "desc": "Alle Lernressourcen wurden mit neuen Inhalten erweitert."
+      "label": "Neue Lernsprachen",
+      "desc": "Spanisch, Italienisch und Portugiesisch sind jetzt verfügbar — jede mit einem vollständigen Lehrplan von Anfänger bis Fortgeschritten (A1–C2), Grammatik, Wortschatz, Redewendungen, Reading, Listening und mehr. Füge sie unter Einstellungen → Meine Sprachen hinzu."
     },
     "entry2": {
-      "label": "Mehrere Sprachen lernen",
-      "desc": "Du kannst jetzt mehrere Sprachen gleichzeitig lernen. Wechsle die Sprache über die Seitenleiste und füge neue Sprachen unter Einstellungen → Meine Sprachen hinzu. Wir werden weitere Sprachen hinzufügen — du findest sie dann dort."
+      "label": "Verbesserte Lernressourcen",
+      "desc": "Alle Lernressourcen wurden mit neuen Inhalten erweitert."
     },
     "entry3": {
       "label": "Fehlerbehebungen",

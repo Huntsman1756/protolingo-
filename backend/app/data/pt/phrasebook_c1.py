@@ -6,7 +6,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="presentations_c1",
         level="C1",
-        situation="Apresenta\u00e7\u00f5es e public speaking",
+        situation="Apresenta\u00e7\u00f5es e orat\u00f3ria",
         icon="\U0001f3a4",
         phrases=[
             PhrasebookEntry(

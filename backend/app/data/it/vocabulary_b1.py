@@ -127,7 +127,7 @@ B1_SETS: list[VocabularySet] = [
                 definition="Considerare, giudicare in base a una riflessione.",
                 example="Ritengo che sia una buona idea.",
                 ipa="/riteˈneːre/",
-                frequency_rank=373,
+                frequency_rank=529,
             ),
             VocabularyEntry(
                 word="supporre",
@@ -612,7 +612,7 @@ B1_SETS: list[VocabularySet] = [
             VocabularyEntry(
                 word="strategia",
                 pos="noun",
-                definition="Piano dazione per raggiungere un obiettivo.",
+                definition="Piano d'azione per raggiungere un obiettivo.",
                 example="Dobbiamo cambiare strategia.",
                 ipa="/straˈtɛːdʒa/",
                 frequency_rank=430,

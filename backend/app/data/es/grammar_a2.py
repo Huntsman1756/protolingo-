@@ -23,9 +23,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Ayer hablé con mi madre por teléfono.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Comimos paella el domingo pasado.", translation=None
-            ),
+            GrammarExample(text="Comimos paella el domingo pasado.", translation=None),
             GrammarExample(
                 text="¿Viviste en Barcelona el año pasado?",
                 translation=None,
@@ -70,9 +68,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Hace tres años empecé a estudiar español.",
                 translation=None,
             ),
-            GrammarExample(
-                text="En 2015 nos mudamos a Madrid.", translation=None
-            ),
+            GrammarExample(text="En 2015 nos mudamos a Madrid.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -107,9 +103,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Ayer no tuve tiempo para llamarte.",
                 translation=None,
             ),
-            GrammarExample(
-                text="¿Qué hiciste el fin de semana?", translation=None
-            ),
+            GrammarExample(text="¿Qué hiciste el fin de semana?", translation=None),
             GrammarExample(
                 text="Fui al médico y luego fui muy feliz.",
                 translation=None,
@@ -244,9 +238,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'No confundir "solía" (hábito) con "solo/a" (sin compañía).',
         ],
         examples=[
-            GrammarExample(
-                text="Suelo leer antes de dormir.", translation=None
-            ),
+            GrammarExample(text="Suelo leer antes de dormir.", translation=None),
             GrammarExample(
                 text="De niño, solía pasar los veranos en el pueblo.",
                 translation=None,
@@ -286,9 +278,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'En España hay tendencia al leísmo de persona, pero lo normativo es "lo" para OD masculino.',
         ],
         examples=[
-            GrammarExample(
-                text="¿El libro? Lo leí ayer.", translation=None
-            ),
+            GrammarExample(text="¿El libro? Lo leí ayer.", translation=None),
             GrammarExample(
                 text="A María la vi en el supermercado.",
                 translation=None,
@@ -332,9 +322,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Le escribí una carta a mi abuela.",
                 translation=None,
             ),
-            GrammarExample(
-                text="¿Me puedes prestar tu boli?", translation=None
-            ),
+            GrammarExample(text="¿Me puedes prestar tu boli?", translation=None),
             GrammarExample(
                 text="Les explicamos la situación a los clientes.",
                 translation=None,
@@ -377,9 +365,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="¿El informe? Te lo envío ahora.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Se lo expliqué a mis padres.", translation=None
-            ),
+            GrammarExample(text="Se lo expliqué a mis padres.", translation=None),
             GrammarExample(text="¿Me lo puedes repetir?", translation=None),
             GrammarExample(
                 text="No quiero contárselo todavía.",
@@ -467,16 +453,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Es el edificio más alto del mundo.",
                 translation=None,
             ),
-            GrammarExample(
-                text="La paella está buenísima.", translation=None
-            ),
+            GrammarExample(text="La paella está buenísima.", translation=None),
             GrammarExample(
                 text="Es la persona menos puntual de la oficina.",
                 translation=None,
             ),
-            GrammarExample(
-                text="El examen fue facilísimo.", translation=None
-            ),
+            GrammarExample(text="El examen fue facilísimo.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -507,9 +489,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Tan... que" y "tanto... que" para consecuencias, no comparación.',
         ],
         examples=[
-            GrammarExample(
-                text="No soy tan paciente como tú.", translation=None
-            ),
+            GrammarExample(text="No soy tan paciente como tú.", translation=None),
             GrammarExample(
                 text="En esta ciudad hay tanta contaminación como en otras capitales.",
                 translation=None,
@@ -560,9 +540,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="vosotros",
             ),
             GrammarExample(text="Dime la verdad.", translation=None),
-            GrammarExample(
-                text="Siéntese, por favor.", translation=None, note="usted"
-            ),
+            GrammarExample(text="Siéntese, por favor.", translation=None, note="usted"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -599,12 +577,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="vosotros",
             ),
-            GrammarExample(
-                text="Por favor, no se preocupe.", translation=None, note="usted"
-            ),
-            GrammarExample(
-                text="No lo toques, está caliente.", translation=None
-            ),
+            GrammarExample(text="Por favor, no se preocupe.", translation=None, note="usted"),
+            GrammarExample(text="No lo toques, está caliente.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -712,12 +686,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Me gustaría aprender a tocar la guitarra.",
                 translation=None,
             ),
-            GrammarExample(
-                text="¿Podrías pasarme la sal?", translation=None
-            ),
-            GrammarExample(
-                text="Deberías dormir más horas.", translation=None
-            ),
+            GrammarExample(text="¿Podrías pasarme la sal?", translation=None),
+            GrammarExample(text="Deberías dormir más horas.", translation=None),
             GrammarExample(
                 text="Dijo que llegaría a las ocho.",
                 translation=None,
@@ -752,12 +722,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Se usa para condiciones realistas, no hipotéticas ni irreales.",
         ],
         examples=[
-            GrammarExample(
-                text="Si llueve, no saldremos.", translation=None
-            ),
-            GrammarExample(
-                text="Si tienes tiempo, llámame.", translation=None
-            ),
+            GrammarExample(text="Si llueve, no saldremos.", translation=None),
+            GrammarExample(text="Si tienes tiempo, llámame.", translation=None),
             GrammarExample(
                 text="Te lo compro si no es muy caro.",
                 translation=None,

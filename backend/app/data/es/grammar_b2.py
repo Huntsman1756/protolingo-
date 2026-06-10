@@ -26,9 +26,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Me pidió que hablara/hablase más despacio.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ojalá lloviera/lloviese mañana.", translation=None
-            ),
+            GrammarExample(text="Ojalá lloviera/lloviese mañana.", translation=None),
             GrammarExample(
                 text="Era importante que llegáramos/llegásemos a tiempo.",
                 translation=None,
@@ -158,9 +156,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Volver a" + infinitivo = repetición: "Volví a llamar".',
         ],
         examples=[
-            GrammarExample(
-                text="Acabo de enterarme de la noticia.", translation=None
-            ),
+            GrammarExample(text="Acabo de enterarme de la noticia.", translation=None),
             GrammarExample(
                 text="Llevamos dos horas esperando.",
                 translation=None,
@@ -259,9 +255,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Dejé de comer carne hace un año.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Sigo pensando que tienes razón.", translation=None
-            ),
+            GrammarExample(text="Sigo pensando que tienes razón.", translation=None),
             GrammarExample(
                 text="No dejes de practicar español todos los días.",
                 translation=None,
@@ -436,9 +430,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Metí la pata al decirle su edad.",
                 translation=None,
             ),
-            GrammarExample(
-                text="El examen fue pan comido.", translation=None
-            ),
+            GrammarExample(text="El examen fue pan comido.", translation=None),
             GrammarExample(
                 text="¿Me echas una mano con las cajas?",
                 translation=None,
@@ -523,9 +515,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="No hay mal que por bien no venga.",
                 translation=None,
             ),
-            GrammarExample(
-                text="En boca cerrada no entran moscas.", translation=None
-            ),
+            GrammarExample(text="En boca cerrada no entran moscas.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -696,9 +686,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(
                 text="Está que echa chispas.", translation=None, note="metáfora coloquial"
             ),
-            GrammarExample(
-                text="El tiempo es oro.", translation=None, note="metáfora"
-            ),
+            GrammarExample(text="El tiempo es oro.", translation=None, note="metáfora"),
             GrammarExample(
                 text="Eres más lento que una tortuga.",
                 translation=None,
@@ -824,7 +812,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "No todas las familias siguen reglas absolutas; hay que consolidar listas de alta frecuencia.",
         ],
         examples=[
-            GrammarExample(text="La información no coincide con la versión oficial.", translation=None),
+            GrammarExample(
+                text="La información no coincide con la versión oficial.", translation=None
+            ),
             GrammarExample(text="Conozco bien esa legislación.", translation=None),
             GrammarExample(text="La decisión exige precisión.", translation=None),
             GrammarExample(text="Traduzco textos técnicos cada semana.", translation=None),
@@ -858,9 +848,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Evitar comas entre sujeto y verbo salvo inciso.",
         ],
         examples=[
-            GrammarExample(text="A mi juicio, la propuesta es útil, pero incompleta.", translation=None),
-            GrammarExample(text="Hay avances relevantes; no obstante, persisten problemas estructurales.", translation=None),
-            GrammarExample(text="El informe concluye algo esencial: la medida debe aplicarse gradualmente.", translation=None),
+            GrammarExample(
+                text="A mi juicio, la propuesta es útil, pero incompleta.", translation=None
+            ),
+            GrammarExample(
+                text="Hay avances relevantes; no obstante, persisten problemas estructurales.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="El informe concluye algo esencial: la medida debe aplicarse gradualmente.",
+                translation=None,
+            ),
             GrammarExample(text="María, ven un momento, por favor.", translation=None),
         ],
         common_mistakes=[

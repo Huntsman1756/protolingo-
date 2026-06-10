@@ -1578,11 +1578,11 @@ A1_SETS: list[VocabularySet] = [
                 frequency_rank=182,
             ),
             VocabularyEntry(
-                word="tempo",
+                word="dia",
                 pos="noun",
-                definition="A duração das coisas, o passar das horas e dos dias.",
-                example="Não tenho tempo para sair.",
-                ipa="/ˈtẽpu/",
+                definition="Período de 24 horas.",
+                example="Hoje foi um dia muito longo.",
+                ipa="/ˈdiɐ/",
                 frequency_rank=183,
             ),
             VocabularyEntry(
@@ -1634,11 +1634,11 @@ A1_SETS: list[VocabularySet] = [
                 frequency_rank=189,
             ),
             VocabularyEntry(
-                word="dormir",
+                word="repousar",
                 pos="verb",
-                definition="Estar em estado de sono.",
-                example="Dormi muito bem esta noite.",
-                ipa="/duɾˈmiɾ/",
+                definition="Repousar para recuperar energias.",
+                example="Ao fim de semana gosto de repousar.",
+                ipa="/ʁɨpuˈzaɾ/",
                 frequency_rank=190,
             ),
             VocabularyEntry(

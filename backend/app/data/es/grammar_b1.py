@@ -18,15 +18,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'No se usa subjuntivo tras "creer que / pensar que" en afirmativo, pero sí en negativo.',
         ],
         examples=[
-            GrammarExample(
-                text="Quiero que vengas a mi fiesta.", translation=None
-            ),
-            GrammarExample(
-                text="Espero que tengas un buen viaje.", translation=None
-            ),
-            GrammarExample(
-                text="No creo que sea buena idea.", translation=None
-            ),
+            GrammarExample(text="Quiero que vengas a mi fiesta.", translation=None),
+            GrammarExample(text="Espero que tengas un buen viaje.", translation=None),
+            GrammarExample(text="No creo que sea buena idea.", translation=None),
             GrammarExample(text="Dudo que llueva hoy.", translation=None),
         ],
         common_mistakes=[
@@ -55,7 +49,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="B1",
         category="Subjuntivo",
         summary="Usar el subjuntivo para expresar deseos: espero que, quiero que, deseo que, necesito que.",
-        explanation='Las **expresiones de deseo o voluntad** que proyectan una acción hacia el futuro o expresan un deseo sobre otra persona llevan el verbo subordinado en **subjuntivo**.\n\n**Verbo de voluntad + que + subjuntivo**\n\nVerbos de voluntad más comunes:\n- *querer que, desear que, esperar que, necesitar que, preferir que, exigir que, pedir que, rogar que, recomendar que, sugerir que, prohibir que, permitir que*\n\nCuando el sujeto del verbo de voluntad y del verbo subordinado es **el mismo**, se usa el **infinitivo** (no el subjuntivo):\n- *Quiero ir.* (yo quiero + yo voy) -> NO ~~Quiero que yo vaya~~.\n- *Quiero que vayas.* (yo quiero + tú vas) -> correcto con subjuntivo.\n\nEn este uso, *esperar que* expresa deseo y rige subjuntivo.',
+        explanation="Las **expresiones de deseo o voluntad** que proyectan una acción hacia el futuro o expresan un deseo sobre otra persona llevan el verbo subordinado en **subjuntivo**.\n\n**Verbo de voluntad + que + subjuntivo**\n\nVerbos de voluntad más comunes:\n- *querer que, desear que, esperar que, necesitar que, preferir que, exigir que, pedir que, rogar que, recomendar que, sugerir que, prohibir que, permitir que*\n\nCuando el sujeto del verbo de voluntad y del verbo subordinado es **el mismo**, se usa el **infinitivo** (no el subjuntivo):\n- *Quiero ir.* (yo quiero + yo voy) -> NO ~~Quiero que yo vaya~~.\n- *Quiero que vayas.* (yo quiero + tú vas) -> correcto con subjuntivo.\n\nEn este uso, *esperar que* expresa deseo y rige subjuntivo.",
         rules=[
             "Verbo de voluntad + que + subjuntivo cuando los sujetos son distintos.",
             'Si el sujeto es el mismo, se usa infinitivo: "Quiero descansar".',
@@ -63,9 +57,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Esperar que" + subjuntivo expresa deseo o expectativa no factual.',
         ],
         examples=[
-            GrammarExample(
-                text="Espero que te guste el regalo.", translation=None
-            ),
+            GrammarExample(text="Espero que te guste el regalo.", translation=None),
             GrammarExample(
                 text="Mis padres quieren que estudie medicina.",
                 translation=None,
@@ -74,9 +66,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Necesito que me ayudes con esto.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Prefiero que vengáis mañana.", translation=None
-            ),
+            GrammarExample(text="Prefiero que vengáis mañana.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -107,9 +97,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con pluscuamperfecto de subjuntivo: deseo sobre un pasado que no se cumplió.",
         ],
         examples=[
-            GrammarExample(
-                text="Ojalá pueda ir a tu boda.", translation=None
-            ),
+            GrammarExample(text="Ojalá pueda ir a tu boda.", translation=None),
             GrammarExample(
                 text="Ojalá no llueva durante las vacaciones.",
                 translation=None,
@@ -205,9 +193,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Es posible/probable que" siempre rige subjuntivo.',
         ],
         examples=[
-            GrammarExample(
-                text="No creo que él tenga razón.", translation=None
-            ),
+            GrammarExample(text="No creo que él tenga razón.", translation=None),
             GrammarExample(
                 text="Dudo que puedan terminar a tiempo.",
                 translation=None,
@@ -305,9 +291,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Todavía no hemos terminado el proyecto.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ya he visto esa película.", translation=None
-            ),
+            GrammarExample(text="Ya he visto esa película.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -608,9 +592,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Llegó justo cuando empezábamos a comer.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Cuando termines, avísame.", translation=None
-            ),
+            GrammarExample(text="Cuando termines, avísame.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -782,12 +764,8 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="No sé qué le pasaba; tendría un mal día.",
                 translation=None,
             ),
-            GrammarExample(
-                text="A lo mejor llueve mañana.", translation=None
-            ),
-            GrammarExample(
-                text="Es probable que lleguen tarde.", translation=None
-            ),
+            GrammarExample(text="A lo mejor llueve mañana.", translation=None),
+            GrammarExample(text="Es probable que lleguen tarde.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(

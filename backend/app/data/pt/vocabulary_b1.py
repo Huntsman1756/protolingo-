@@ -1402,11 +1402,11 @@ B1_SETS: list[VocabularySet] = [
                 frequency_rank=531,
             ),
             VocabularyEntry(
-                word="defender",
+                word="sustentar",
                 pos="verb",
-                definition="Sustentar uma ideia ou posição.",
-                example="Defendeu a sua tese com convicção.",
-                ipa="/dɨfẽˈdeɾ/",
+                definition="Apoiar uma ideia com argumentos.",
+                example="Sustentou a sua tese com dados sólidos.",
+                ipa="/suʃtẽˈtaɾ/",
                 frequency_rank=532,
             ),
             VocabularyEntry(
