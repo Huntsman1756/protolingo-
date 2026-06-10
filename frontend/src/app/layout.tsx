@@ -90,14 +90,14 @@ export default async function RootLayout({
             __html: `(function(){if(document.cookie.indexOf('LOCALE_DETECTED=')!==-1)return;var m=document.cookie.match(/(^| )NEXT_LOCALE=([^;]+)/);var cl=m?m[2]:null;var bl=(navigator.language||'').split('-')[0].toLowerCase();var s=['es','fr','pt','de','it','pl','nl','ro','ru'];document.cookie='LOCALE_DETECTED=1;path=/;max-age=31536000;SameSite=Lax';if(bl!=='en'&&s.indexOf(bl)!==-1&&cl!==bl){document.cookie='NEXT_LOCALE='+bl+';path=/;max-age=31536000;SameSite=Lax';location.reload()}})();`,
           }}
         />
-        {process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL &&
-          process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
-            <script
-              defer
-              src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
-              data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-            />
-          )}
+        {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+          <script
+            defer
+            src="/umami/script.js"
+            data-host-url="/umami"
+            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          />
+        )}
       </head>
       <body className="min-h-full bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
         <NextIntlClientProvider locale={locale} messages={messages}>
