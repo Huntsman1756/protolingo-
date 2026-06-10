@@ -402,11 +402,11 @@ C1_SETS: list[VocabularySet] = [
                 frequency_rank=776,
             ),
             VocabularyEntry(
-                word="empírico",
+                word="demonstrável",
                 pos="adjective",
-                definition="Baseado na experiência e nos dados.",
-                example="Temos provas empíricas a apoiar.",
-                ipa="/ẽˈpiɾiku/",
+                definition="Que pode ser comprovado por evidência.",
+                example="É uma hipótese demonstrável com os dados recolhidos.",
+                ipa="/dɨmõʃˈtɾavɛɫ/",
                 frequency_rank=777,
             ),
             VocabularyEntry(
@@ -942,7 +942,7 @@ C1_SETS: list[VocabularySet] = [
     VocabularySet(
         id="apresentações_c1",
         level="C1",
-        topic="Apresentações e public speaking",
+        topic="Apresentações e oratória",
         unit_ref="c1-unit-5",
         words=[
             VocabularyEntry(
@@ -1442,11 +1442,11 @@ C1_SETS: list[VocabularySet] = [
                 frequency_rank=896,
             ),
             VocabularyEntry(
-                word="lacónico",
+                word="sucinto",
                 pos="adjective",
-                definition="Extremamente conciso.",
-                example="A síntese dele era demasiado lacónica.",
-                ipa="/lɐˈkɔniku/",
+                definition="Breve e direto, com poucas palavras.",
+                example="A síntese final foi sucinta e clara.",
+                ipa="/suˈsĩtu/",
                 frequency_rank=897,
             ),
             VocabularyEntry(

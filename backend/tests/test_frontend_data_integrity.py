@@ -279,3 +279,49 @@ def test_it_assessment_options_unique_and_in_italian() -> None:
         assert not found, f"it assessment {q.id}: contains non-Italian fragment(s): " + ", ".join(
             found
         )
+
+
+def test_pt_assessment_options_unique_and_in_portuguese() -> None:
+    """Portuguese assessment questions must have unique options and no obvious EN prompts."""
+    from app.data.pt.assessment_bank import ASSESSMENT_BANK
+
+    banned_fragments = ["public speaking", "hedging"]
+    banned_in_answers = ["thank you", "goodbye"]
+
+    for q in ASSESSMENT_BANK:
+        assert len(q.options) == len(
+            set(q.options)
+        ), f"pt assessment {q.id}: duplicate options detected -> {q.options}"
+
+        haystack = " ".join([q.question, *q.options, q.correct]).lower()
+        found = [frag for frag in banned_fragments if frag in haystack]
+        assert (
+            not found
+        ), f"pt assessment {q.id}: contains non-Portuguese fragment(s): " + ", ".join(found)
+
+        answers_haystack = " ".join([*q.options, q.correct]).lower()
+        found_in_answers = [frag for frag in banned_in_answers if frag in answers_haystack]
+        assert (
+            not found_in_answers
+        ), f"pt assessment {q.id}: contains English answer fragment(s): " + ", ".join(
+            found_in_answers
+        )
+
+
+def test_pt_vocabulary_no_duplicates_per_level() -> None:
+    """Portuguese vocabulary should not repeat the same surface word inside a CEFR level."""
+    from collections import Counter
+
+    from app.data.pt.vocabulary import VOCABULARY_SETS
+
+    for level in ("A1", "A2", "B1", "B2", "C1", "C2"):
+        words: list[str] = []
+        for s in VOCABULARY_SETS:
+            if s.level != level:
+                continue
+            words.extend(w.word.strip().lower() for w in s.words)
+
+        duplicates = sorted(word for word, n in Counter(words).items() if n > 1)
+        assert not duplicates, f"pt {level}: duplicate vocabulary words found:\n" + "\n".join(
+            f"  - {w}" for w in duplicates
+        )

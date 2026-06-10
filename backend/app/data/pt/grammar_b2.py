@@ -323,7 +323,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Que filme tao fixe!", translation="What a cool movie!"),
-            GrammarExample(text="Bora tomar um cafe?", translation="Let us go grab a coffee?"),
+            GrammarExample(text="Bora tomar um cafe?", translation="Shall we go for a coffee?"),
         ],
         common_mistakes=[
             GrammarMistake(

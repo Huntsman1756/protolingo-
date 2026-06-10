@@ -986,8 +986,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="posição",
             ),
             GrammarExample(
-                text="O meu aniversário é a 15.ª edição? Não, é o meu 15.º aniversário.",
-                translation="My birthday is the 15th.",
+                text="Esta é a 15.ª edição do festival.",
+                translation="This is the 15th edition of the festival.",
                 note="abreviatura",
             ),
         ],

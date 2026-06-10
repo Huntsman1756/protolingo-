@@ -86,7 +86,7 @@ def distribute_units(
                 unit_index += 1
 
     # Completion test slot
-    last_unit = units[-1]
+    level_grammar_points = list(dict.fromkeys([gp for u in units for gp in u.grammar_points]))
     slots.append(
         {
             "week": total_weeks,
@@ -100,7 +100,7 @@ def distribute_units(
                 "Complete the assessment to unlock the next level",
             ],
             "estimated_minutes": 45,
-            "grammar_points": last_unit.grammar_points,
+            "grammar_points": level_grammar_points,
             "vocabulary_set_ids": [],
         }
     )
