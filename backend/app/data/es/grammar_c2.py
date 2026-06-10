@@ -19,17 +19,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Sea como fuere, debemos tomar una decisión.",
-                translation="Be that as it may, we must make a decision.",
+                translation=None,
                 note="fórmula concesiva lexicalizada",
             ),
             GrammarExample(
                 text="No es que no quisiera ir, es que no pude.",
-                translation="It's not that I didn't want to go, it's that I couldn't.",
+                translation=None,
                 note="subjuntivo en estructura contrastiva",
             ),
             GrammarExample(
                 text="Quien bien te quiere te hará llorar.",
-                translation="Whoever loves you well will make you cry.",
+                translation=None,
                 note="indicativo en relativa con valor genérico",
             ),
         ],
@@ -57,16 +57,16 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="De haberlo sabido, te habría avisado antes.",
-                translation="Had I known, I would have told you earlier.",
+                translation=None,
                 note='alternativa formal a "si hubiera sabido"',
             ),
             GrammarExample(
                 text="Iré a la playa el sábado, a no ser que llueva.",
-                translation="I'll go to the beach on Saturday, unless it rains.",
+                translation=None,
             ),
             GrammarExample(
                 text="Si hubieras ahorrado más, ahora no estarías preocupado.",
-                translation="If you had saved more, you wouldn't be worried now.",
+                translation=None,
                 note="condicional mixta",
             ),
         ],
@@ -94,11 +94,11 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Dijo que le habían asegurado que el problema ya se habría resuelto para cuando él llegara.",
-                translation="He said that they had assured him that the problem would have already been solved by the time he arrived.",
+                translation=None,
             ),
             GrammarExample(
                 text="El que fuera ministro de Economía ha publicado sus memorias.",
-                translation="The former Minister of Economy has published his memoirs.",
+                translation=None,
                 note="-ra con valor de indicativo",
             ),
         ],
@@ -126,12 +126,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Del salón en el ángulo oscuro, de su dueño tal vez olvidada, silenciosa y cubierta de polvo veíase el arpa.",
-                translation="In the dark corner of the room, perhaps forgotten by its owner, silent and covered in dust, the harp could be seen.",
+                translation=None,
                 note="Bécquer, hipérbaton",
             ),
             GrammarExample(
                 text="Macondo era entonces una aldea de veinte casas de barro y cañabrava construidas a la orilla de un río de aguas diáfanas.",
-                translation="Macondo was then a village of twenty adobe and cane houses built on the bank of a river of diaphanous waters.",
+                translation=None,
                 note="García Márquez, adjetivación",
             ),
         ],
@@ -159,12 +159,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Cierras los ojos y respiras hondo. Sabes que no hay vuelta atrás.",
-                translation="You close your eyes and take a deep breath. You know there's no turning back.",
+                translation=None,
                 note="segunda persona",
             ),
             GrammarExample(
                 text="Nadie lo vio llegar, pero todos supieron que algo había cambiado en el pueblo.",
-                translation="No one saw him arrive, but everyone knew something had changed in the town.",
+                translation=None,
                 note="tercera persona omnisciente",
             ),
         ],
@@ -187,17 +187,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Llegué, vi, vencí.",
-                translation="I came, I saw, I conquered.",
+                translation=None,
                 note="asíndeton",
             ),
             GrammarExample(
                 text="Y los días pasan, y las horas vuelan, y el silencio crece, y el eco de tu voz se apaga.",
-                translation="And the days go by, and the hours fly, and the silence grows, and the echo of your voice fades.",
+                translation=None,
                 note="polisíndeton",
             ),
             GrammarExample(
                 text="Cuando tú vas, yo vengo. Cuando tú ríes, yo lloro.",
-                translation="When you go, I come. When you laugh, I cry.",
+                translation=None,
                 note="paralelismo antitético",
             ),
         ],
@@ -210,7 +210,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Avanzado",
         summary="Principios de equivalencia entre el español y otras lenguas; el arte de traducir matices.",
-        explanation="La **equivalencia** es el principio fundamental de la traducción: encontrar en la lengua meta una expresión que transmita el mismo significado, registro y efecto que el original.\n\n**Tipos de equivalencia**:\n- **Equivalencia formal**: mantener estructura y palabras (traducción literal).\n  *It's raining → Está lloviendo.*\n- **Equivalencia dinámica o funcional**: mismo efecto comunicativo, distinta forma.\n  *It's a piece of cake → Es pan comido.*\n- **Equivalencia pragmática**: adaptar al contexto cultural.\n  *How are you? → ¿Qué tal?* (más natural que *¿Cómo estás?* en muchos contextos).\n\n**Desafíos de la traducción español-inglés**:\n- **Ser/estar** no tiene equivalente directo en inglés.\n- **Subjuntivo** tiene usos sin equivalente en inglés (*Quiero que vengas → I want you to come*).\n- **Diminutivos** con carga afectiva no siempre traducibles.\n- **Falsos amigos y calcos**.",
+        explanation="La **equivalencia** es el principio fundamental de la traducción: encontrar en la lengua meta una expresión que transmita el mismo significado, registro y efecto que el original.\n\n**Tipos de equivalencia**:\n- **Equivalencia formal**: mantener estructura y palabras (traducción literal).\n  *Llueve -> Está lloviendo.*\n- **Equivalencia dinámica o funcional**: mismo efecto comunicativo, distinta forma.\n  *Es facilísimo -> Es pan comido.*\n- **Equivalencia pragmática**: adaptar al contexto cultural.\n  *¿Qué tal?* como saludo natural en muchos contextos.\n\n**Desafíos de la traducción español-inglés**:\n- **Ser/estar** no tiene correspondencia directa en muchas lenguas.\n- **Subjuntivo** presenta usos sin equivalente exacto en otros sistemas verbales.\n- **Diminutivos** con carga afectiva no siempre traducibles.\n- **Falsos amigos y calcos**.",
         rules=[
             "La equivalencia dinámica suele ser más natural que la literal.",
             "No todo es traducible palabra por palabra; a veces hay que cambiar la estructura.",
@@ -220,17 +220,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Tengo 25 años.",
-                translation="I am 25 years old.",
-                note="equivalencia funcional: tener = to be",
+                translation=None,
+                note="equivalencia funcional en la estructura",
             ),
             GrammarExample(
                 text="Me gusta bailar.",
-                translation="I like dancing.",
+                translation=None,
                 note="cambio de estructura: el sujeto pasa a ser la persona",
             ),
             GrammarExample(
                 text="Es pan comido.",
-                translation="It's a piece of cake.",
+                translation=None,
                 note="modismo con equivalente diferente",
             ),
         ],
@@ -243,7 +243,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Avanzado",
         summary="Traducir no es solo cambiar palabras: capturar el tono, el registro y la intención.",
-        explanation="La traducción de calidad va más allá de la equivalencia semántica. Captura:\n\n**Registro**:\n- *¿Me puede decir la hora?* → formal. *Could you tell me the time?*\n- *Oye, ¿qué hora es?* → informal. *Hey, what time is it?*\n\n**Tono e intención**:\n- *¡Vaya, qué sorpresa!* puede expresar alegría o ironía según el contexto.\n- En inglés el tono a menudo se marca con *tag questions* que no tienen equivalente exacto en español.\n\n**Carga cultural**:\n- *Sobremesa* no tiene equivalente en inglés.\n- *Estrenar* (usar algo por primera vez) no tiene un verbo equivalente.\n\n**Juegos de palabras y humor**:\n- Los juegos de palabras son notoriamente difíciles de traducir y a menudo requieren recreación.\n\n**Estrategias**:\n- Préstamo (dejar la palabra original).\n- Calco (traducción literal de la expresión).\n- Adaptación (cambiar el referente cultural).\n- Compensación (perder un matiz en un lugar y ganarlo en otro).",
+        explanation="La traducción de calidad va más allá de la equivalencia semántica. Captura:\n\n**Registro**:\n- *¿Me puede decir la hora?* -> formal.\n- *Oye, ¿qué hora es?* -> informal.\n\n**Tono e intención**:\n- *¡Vaya, qué sorpresa!* puede expresar alegría o ironía según el contexto.\n- El tono puede requerir recursos pragmáticos sin equivalencia exacta entre lenguas.\n\n**Carga cultural**:\n- *Sobremesa* no tiene equivalente directo en muchas lenguas.\n- *Estrenar* (usar algo por primera vez) suele requerir paráfrasis.\n\n**Juegos de palabras y humor**:\n- Los juegos de palabras son difíciles de traducir y a menudo exigen recreación.\n\n**Estrategias**:\n- Préstamo (dejar la palabra original).\n- Calco (traducción literal de la expresión).\n- Adaptación (cambiar el referente cultural).\n- Compensación (perder un matiz en un lugar y ganarlo en otro).",
         rules=[
             "La buena traducción captura el registro, no solo el significado.",
             "Los referentes culturales se adaptan o se explican.",
@@ -253,12 +253,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Después de comer nos quedamos de sobremesa un buen rato.",
-                translation="After lunch we stayed at the table chatting for a while.",
+                translation=None,
                 note="concepto cultural sin equivalente exacto",
             ),
             GrammarExample(
                 text="Hoy estreno zapatos.",
-                translation="I'm wearing new shoes for the first time today.",
+                translation=None,
                 note='"estrenar" requiere una paráfrasis',
             ),
         ],
@@ -271,7 +271,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="C2",
         category="Avanzado",
         summary="Palabras que se parecen entre español e inglés pero significan cosas distintas.",
-        explanation="Los **falsos amigos** son palabras que tienen forma similar en dos idiomas pero significado diferente. Pueden causar errores graves de comunicación.\n\n**Falsos amigos frecuentes español-inglés**:\n\n| Español | Significa | No significa |\n|---------|-----------|-------------|\n| *actualmente* | currently | actually (en realidad) |\n| *asistir* | to attend | to assist (ayudar) |\n| *carpeta* | folder | carpet (alfombra) |\n| *compromiso* | commitment | compromise (acuerdo mutuo) |\n| *constipado* | cold (illness) | constipated (estreñido) |\n| *embarazada* | pregnant | embarrassed (avergonzada) |\n| *éxito* | success | exit (salida) |\n| *fábrica* | factory | fabric (tela) |\n| *largo* | long | large (grande) |\n| *recordar* | to remember | to record (grabar) |\n| *ropa* | clothes | rope (cuerda) |\n| *sensible* | sensitive | sensible (sensato) |\n| *simpático* | nice, likeable | sympathetic (compasivo) |\n| *suceso* | event | success (éxito) |\n\nEn nivel C2 se espera el dominio de estos pares y la capacidad de usarlos correctamente en ambos idiomas.",
+        explanation="Los **falsos amigos** son palabras que tienen forma similar en dos idiomas pero significado diferente. Pueden causar errores graves de comunicación.\n\n**Falsos amigos frecuentes español-inglés**:\n\n| Español | Significado correcto | Confusión frecuente |\n|---------|----------------------|---------------------|\n| *actualmente* | en este momento | en realidad |\n| *asistir* | acudir | ayudar |\n| *carpeta* | archivador | alfombra |\n| *compromiso* | obligación/acuerdo | cesión mutua |\n| *constipado* | resfriado | estreñido |\n| *embarazada* | en gestación | avergonzada |\n| *éxito* | buen resultado | salida |\n| *fábrica* | planta industrial | tela |\n| *largo* | de mucha longitud | grande |\n| *recordar* | traer a la memoria | grabar |\n| *ropa* | prendas de vestir | cuerda |\n| *sensible* | con sensibilidad | sensato |\n| *simpático* | agradable | compasivo |\n| *suceso* | acontecimiento | buen resultado |\n\nEn nivel C2 se espera el dominio de estos pares y la capacidad de usarlos correctamente en ambos idiomas.",
         rules=[
             "Memorizar los falsos amigos más comunes para evitar malentendidos.",
             "El contexto ayuda a distinguir el significado correcto.",
@@ -281,30 +281,30 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Actualmente vivo en Madrid.",
-                translation="I currently live in Madrid.",
-                note='NO: "Actually I live in Madrid" (que significa "en realidad")',
+                translation=None,
+                note='Uso correcto de "actualmente" con valor temporal.',
             ),
             GrammarExample(
                 text="Estoy constipado, no puedo ir.",
-                translation="I have a cold, I can't go.",
-                note='NO: "I\'m constipated" (que significa "estoy estreñido")',
+                translation=None,
+                note='Evita la confusión entre "constipado" y "estreñido".',
             ),
             GrammarExample(
                 text="La conferencia fue un éxito.",
-                translation="The conference was a success.",
-                note='NO: "... was an exit" (salida)',
+                translation=None,
+                note='"Éxito" no significa "salida".',
             ),
         ],
         common_mistakes=[
             GrammarMistake(
                 wrong="Estoy embarazada de la situación.",
                 correct="Estoy avergonzada de la situación.",
-                note='"Embarazada" solo significa "pregnant", no "embarrassed".',
+                note='"Embarazada" no equivale a "avergonzada".',
             ),
             GrammarMistake(
                 wrong="Asistí a mi amigo con la mudanza.",
                 correct="Ayudé a mi amigo con la mudanza.",
-                note='"Asistir" = to attend. Para "to assist" se usa "ayudar".',
+                note='"Asistir" significa acudir; para ayudar se usa "ayudar".',
             ),
         ],
         related=["equivalencia", "matices-traduccion", "precision-lexica"],
@@ -325,12 +325,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Tengo el vaso lleno. / Tengo pleno conocimiento de los hechos.",
-                translation="My glass is full. / I have full knowledge of the facts.",
+                translation=None,
                 note="doblete: lleno (patrimonial) / pleno (cultismo)",
             ),
             GrammarExample(
                 text="La fábula enseña una moraleja. / Habla más alto, por favor.",
-                translation="The fable teaches a moral. / Speak louder, please.",
+                translation=None,
                 note="doblete: fábula (cultismo) / habla (patrimonial)",
             ),
         ],
@@ -353,17 +353,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El aceite de oliva es fundamental en la dieta mediterránea.",
-                translation="Olive oil is fundamental in the Mediterranean diet.",
+                translation=None,
                 note="aceite < ár. az-zayt",
             ),
             GrammarExample(
                 text="Se sentó en la alcoba a leer un rato.",
-                translation="He sat in the bedroom to read for a while.",
+                translation=None,
                 note="alcoba < ár. al-qubba",
             ),
             GrammarExample(
                 text="El alcalde inauguró el nuevo mercado.",
-                translation="The mayor inaugurated the new market.",
+                translation=None,
                 note="alcalde < ár. al-qāḍī (juez)",
             ),
         ],
@@ -386,17 +386,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El huracán arrasó la costa caribeña.",
-                translation="The hurricane devastated the Caribbean coast.",
+                translation=None,
                 note="huracán < taíno",
             ),
             GrammarExample(
                 text="Me encanta el chocolate con churros.",
-                translation="I love chocolate with churros.",
+                translation=None,
                 note="chocolate < náhuatl xocolātl",
             ),
             GrammarExample(
                 text="En los Andes cultivan muchas variedades de papa.",
-                translation="In the Andes they grow many varieties of potato.",
+                translation=None,
                 note="papa < quechua",
             ),
         ],
@@ -419,12 +419,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El presente estudio analiza la relación entre el bilingüismo y el desarrollo cognitivo en niños de 3 a 6 años.",
-                translation="The present study analyzes the relationship between bilingualism and cognitive development in children aged 3 to 6.",
+                translation=None,
                 note="artículo académico",
             ),
             GrammarExample(
                 text="La obra, aunque irregular en su ritmo, ofrece una mirada conmovedora sobre la condición humana.",
-                translation="The work, although uneven in its pace, offers a moving look at the human condition.",
+                translation=None,
                 note="reseña",
             ),
         ],
@@ -447,17 +447,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="¿Te wasapeo luego y quedamos?",
-                translation="Shall I WhatsApp you later and we'll meet up?",
+                translation=None,
                 note="neologismo: wasapear",
             ),
             GrammarExample(
                 text="El amor es un intento de desayunar dos veces.",
-                translation="Love is an attempt to have breakfast twice.",
+                translation=None,
                 note="greguería de Ramón Gómez de la Serna",
             ),
             GrammarExample(
                 text="Y todo es una broma, y todo es una broma que va en serio.",
-                translation="And everything is a joke, and everything is a joke that is serious.",
+                translation=None,
                 note="juego de palabras y paradoja",
             ),
         ],
@@ -480,12 +480,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="«No estoy de acuerdo», replicó el ministro.",
-                translation='"I don\'t agree," the minister replied.',
+                translation=None,
                 note="uso de comillas españolas",
             ),
             GrammarExample(
                 text="Me alegro de que hayas venido.",
-                translation="I'm glad you've come.",
+                translation=None,
                 note="deque correcto: alegrarse de que",
             ),
         ],
@@ -519,17 +519,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Cabe la posibilidad de que la reunión se aplace hasta el lunes.",
-                translation="There is a possibility that the meeting will be postponed until Monday.",
+                translation=None,
                 note="probabilidad baja",
             ),
             GrammarExample(
                 text="Yo diría que lo mejor es esperar unos días antes de decidir.",
-                translation="I would say that the best thing is to wait a few days before deciding.",
+                translation=None,
                 note="condicional de modestia",
             ),
             GrammarExample(
                 text="Lo que está claro es que tenemos que actuar ya.",
-                translation="What is clear is that we have to act now.",
+                translation=None,
                 note="estructura enfática",
             ),
         ],
@@ -552,7 +552,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="De haberlo sabido, no habría venido; pero, ya que estoy aquí, lo mejor será que me quede y eche una mano, a no ser que prefieras que me vaya.",
-                translation="Had I known, I wouldn't have come; but since I'm here, the best thing will be for me to stay and lend a hand, unless you prefer me to leave.",
+                translation=None,
                 note="integración de múltiples estructuras",
             ),
         ],
@@ -575,12 +575,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O sea, que al final no vienes... pues nada, otro día será, no pasa nada.",
-                translation="So, in the end you're not coming... well, another time then, no worries.",
+                translation=None,
                 note="muletillas y gestión de turno",
             ),
             GrammarExample(
                 text="— Qué, ¿nos tomamos algo? — Me sabe mal, pero es que no me da la vida. — Venga, va, un ratito nada más.",
-                translation='"Hey, shall we grab a drink?" "I feel bad, but I\'m just too busy." "Come on, just for a little while."',
+                translation=None,
                 note="diálogo natural coloquial",
             ),
         ],
@@ -591,5 +591,47 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "modismos-comunes",
             "expresion-matizada",
         ],
+    ),
+    GrammarTopic(
+        slug="norma-panhispanica",
+        title="Norma panhispánica y criterio editorial",
+        level="C2",
+        category="Avanzado",
+        summary="Aplicar criterio normativo avanzado con conciencia de variación y de decisiones editoriales.",
+        explanation="En C2 no basta con conocer reglas: hay que **justificar decisiones** según norma, registro, destinatario y variedad geográfica.\n\nEjes de dominio:\n- Diferenciar norma general, preferencia editorial y variación legítima.\n- Resolver conflictos entre claridad, tradición gráfica y uso real.\n- Mantener coherencia interna del texto (puntuación, comillas, mayúsculas, abreviaturas).\n- Argumentar por qué se elige una opción en contextos ambiguos o debatidos.\n\nEste nivel implica actuar con criterio profesional de corrección y edición, no solo con corrección escolar.",
+        structure="norma + variacion + coherencia + justificacion explicita de decisiones",
+        rules=[
+            "Priorizar coherencia editorial sostenida en todo el documento.",
+            "Distinguir error objetivo de variante válida.",
+            "Adecuar la norma al género textual y al público meta.",
+            "Explicitar decisiones cuando hay más de una opción aceptable.",
+        ],
+        examples=[
+            GrammarExample(
+                text="En una edición para público general, se prioriza claridad sintáctica y puntuación de lectura rápida.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="El informe mantiene comillas españolas en citas principales y comillas dobles en citas internas por consistencia editorial.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="En textos panhispánicos, se reconocen variantes léxicas regionales siempre que no afecten a la comprensión global.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Alterna criterios de puntuación y comillas en cada apartado sin justificación.",
+                correct="Mantiene un criterio editorial único o justifica explícitamente los cambios.",
+                note="La incoherencia editorial reduce legibilidad y fiabilidad del texto.",
+            ),
+            GrammarMistake(
+                wrong="Marca como error absoluto una variante regional asentada y comprendida.",
+                correct="Distingue variante válida de error y decide según público y propósito.",
+                note="En C2 se evalúa criterio normativo contextualizado.",
+            ),
+        ],
+        related=["edicion", "ortotipografia-academica", "diferencias-regionales"],
     ),
 ]

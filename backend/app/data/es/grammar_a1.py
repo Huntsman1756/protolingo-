@@ -20,12 +20,12 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Soy estudiante de español.", translation="I am a Spanish student."
+                text="Soy estudiante de español.", translation=None
             ),
-            GrammarExample(text="¿Eres de Argentina?", translation="Are you from Argentina?"),
-            GrammarExample(text="Somos hermanos.", translation="We are siblings."),
+            GrammarExample(text="¿Eres de Argentina?", translation=None),
+            GrammarExample(text="Somos hermanos.", translation=None),
             GrammarExample(
-                text="Son las dos y media.", translation="It's two thirty.", note="hora"
+                text="Son las dos y media.", translation=None, note="hora"
             ),
         ],
         common_mistakes=[
@@ -59,18 +59,18 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Yo vivo en Barcelona.", translation="I live in Barcelona.", note="énfasis"
+                text="Yo vivo en Barcelona.", translation=None, note="énfasis"
             ),
             GrammarExample(
-                text="¿Tú qué opinas?", translation="What do you think?", note="contraste"
+                text="¿Tú qué opinas?", translation=None, note="contraste"
             ),
             GrammarExample(
                 text="Ustedes son muy amables.",
-                translation="You are very kind.",
+                translation=None,
                 note="América Latina",
             ),
             GrammarExample(
-                text="Vosotros tenéis razón.", translation="You are right.", note="España"
+                text="Vosotros tenéis razón.", translation=None, note="España"
             ),
         ],
         common_mistakes=[
@@ -104,27 +104,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="El libro está en la mesa.", translation="The book is on the table."
+                text="El libro está en la mesa.", translation=None
             ),
             GrammarExample(
-                text="Los niños juegan en el parque.", translation="The children play in the park."
+                text="Los niños juegan en el parque.", translation=None
             ),
             GrammarExample(
                 text="Voy al cine los sábados.",
-                translation="I go to the cinema on Saturdays.",
+                translation=None,
                 note="contracción al",
             ),
             GrammarExample(
                 text="Lo difícil es empezar.",
-                translation="The hard part is starting.",
+                translation=None,
                 note="artículo neutro lo",
             ),
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="El agua está fría.",
+                wrong="La agua está frío.",
                 correct="El agua está fría.",
-                note='Correcto. "Agua" es femenino pero usa "el" por la a tónica. El adjetivo va en femenino.',
+                note='"Agua" es femenino, pero usa "el" por la a tónica. El adjetivo debe ir en femenino: "fría".',
             ),
             GrammarMistake(
                 wrong="Voy a el colegio.",
@@ -149,10 +149,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "En plural se añade -s o -es según corresponda.",
         ],
         examples=[
-            GrammarExample(text="Soy de Perú.", translation="I am from Peru."),
-            GrammarExample(text="Ella es inglesa.", translation="She is English."),
-            GrammarExample(text="Nosotros somos alemanes.", translation="We are German."),
-            GrammarExample(text="¿De dónde eres?", translation="Where are you from?"),
+            GrammarExample(text="Soy de Perú.", translation=None),
+            GrammarExample(text="Ella es inglesa.", translation=None),
+            GrammarExample(text="Nosotros somos alemanes.", translation=None),
+            GrammarExample(text="¿De dónde eres?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -184,16 +184,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'El artículo determina el género en casos ambiguos: "el mar" / "la mar" (poético).',
         ],
         examples=[
-            GrammarExample(text="El coche rojo.", translation="The red car."),
-            GrammarExample(text="La canción es bonita.", translation="The song is pretty."),
+            GrammarExample(text="El coche rojo.", translation=None),
+            GrammarExample(text="La canción es bonita.", translation=None),
             GrammarExample(
                 text="El problema es grave.",
-                translation="The problem is serious.",
+                translation=None,
                 note="masculino de origen griego",
             ),
             GrammarExample(
                 text="La mano izquierda.",
-                translation="The left hand.",
+                translation=None,
                 note="excepción: femenino terminado en -o",
             ),
         ],
@@ -226,16 +226,16 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'No existe artículo indefinido neutro como el definido "lo".',
         ],
         examples=[
-            GrammarExample(text="Necesito un bolígrafo.", translation="I need a pen."),
+            GrammarExample(text="Necesito un bolígrafo.", translation=None),
             GrammarExample(
-                text="Hay una farmacia cerca.", translation="There's a pharmacy nearby."
+                text="Hay una farmacia cerca.", translation=None
             ),
             GrammarExample(
-                text="Tiene unas ideas muy buenas.", translation="She has some very good ideas."
+                text="Tiene unas ideas muy buenas.", translation=None
             ),
             GrammarExample(
                 text="Es una arquitecta famosa.",
-                translation="She is a famous architect.",
+                translation=None,
                 note="con adjetivo, sí lleva artículo",
             ),
         ],
@@ -259,7 +259,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A1",
         category="Tiempos verbales",
         summary="Expresar posesión, edad y sensaciones con el verbo tener.",
-        explanation="El verbo **tener** es irregular (cambio vocálico e → ie) y es uno de los más usados en español. Además de la posesión, expresa:\n\n- **Posesión**: *Tengo un coche nuevo.*\n- **Edad**: *Tengo 25 años.* (NO ~~Soy 25 años~~)\n- **Sensaciones físicas**: *Tengo hambre / sed / frío / calor / sueño.*\n- **Estados**: *Tengo miedo / prisa / suerte / razón.*\n\nEl español usa **tener + sustantivo** donde el inglés usa *to be + adjective*: *I am hungry → Tengo hambre. I am cold → Tengo frío.*",
+        explanation="El verbo **tener** es irregular (cambio vocálico e -> ie) y es uno de los más usados en español. Además de la posesión, expresa:\n\n- **Posesión**: *Tengo un coche nuevo.*\n- **Edad**: *Tengo 25 años.* (NO ~~Soy 25 años~~)\n- **Sensaciones físicas**: *Tengo hambre / sed / frío / calor / sueño.*\n- **Estados**: *Tengo miedo / prisa / suerte / razón.*\n\nEl español usa **tener + sustantivo** en casos donde en otras lenguas se emplea una estructura equivalente a 'ser/estar + adjetivo': *Tengo hambre. Tengo frío.*",
         structure="yo tengo · tú tienes · él tiene · nosotros tenemos · vosotros tenéis · ellos tienen",
         rules=[
             "Es verbo irregular con diptongación e→ie en las formas tónicas (tú tienes, ellos tienen).",
@@ -268,10 +268,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Tener que + infinitivo" expresa obligación: "Tengo que estudiar".',
         ],
         examples=[
-            GrammarExample(text="Tengo dos hermanos.", translation="I have two siblings."),
-            GrammarExample(text="¿Cuántos años tienes?", translation="How old are you?"),
-            GrammarExample(text="Tenemos hambre.", translation="We are hungry."),
-            GrammarExample(text="Tienes razón.", translation="You are right."),
+            GrammarExample(text="Tengo dos hermanos.", translation=None),
+            GrammarExample(text="¿Cuántos años tienes?", translation=None),
+            GrammarExample(text="Tenemos hambre.", translation=None),
+            GrammarExample(text="Tienes razón.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -302,14 +302,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"Su/sus" es ambiguo; cuando sea necesario, aclarar con "de + pronombre".',
         ],
         examples=[
-            GrammarExample(text="Mi casa es pequeña.", translation="My house is small."),
-            GrammarExample(text="¿Dónde están tus llaves?", translation="Where are your keys?"),
+            GrammarExample(text="Mi casa es pequeña.", translation=None),
+            GrammarExample(text="¿Dónde están tus llaves?", translation=None),
             GrammarExample(
-                text="Nuestra profesora es de Chile.", translation="Our teacher is from Chile."
+                text="Nuestra profesora es de Chile.", translation=None
             ),
             GrammarExample(
                 text="Sus hijos son muy educados.",
-                translation="Her/His/Their children are very polite.",
+                translation=None,
                 note="ambiguo",
             ),
         ],
@@ -342,11 +342,11 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'Varios adjetivos seguidos concuerdan todos: "una casa grande y luminosa".',
         ],
         examples=[
-            GrammarExample(text="Un perro negro.", translation="A black dog."),
-            GrammarExample(text="Una chica inteligente.", translation="An intelligent girl."),
-            GrammarExample(text="Los edificios altos.", translation="The tall buildings."),
+            GrammarExample(text="Un perro negro.", translation=None),
+            GrammarExample(text="Una chica inteligente.", translation=None),
+            GrammarExample(text="Los edificios altos.", translation=None),
             GrammarExample(
-                text="Es un buen amigo.", translation="He's a good friend.", note="apócope de bueno"
+                text="Es un buen amigo.", translation=None, note="apócope de bueno"
             ),
         ],
         common_mistakes=[
@@ -379,13 +379,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Hablo español e inglés.", translation="I speak Spanish and English."
+                text="Hablo español e inglés.", translation=None
             ),
-            GrammarExample(text="¿Comes en casa hoy?", translation="Are you eating at home today?"),
-            GrammarExample(text="Vivimos en el centro.", translation="We live downtown."),
+            GrammarExample(text="¿Comes en casa hoy?", translation=None),
+            GrammarExample(text="Vivimos en el centro.", translation=None),
             GrammarExample(
                 text="Mis padres no trabajan los fines de semana.",
-                translation="My parents don't work on weekends.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -408,7 +408,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A1",
         category="Verbos",
         summary="Acciones que el sujeto realiza sobre sí mismo: levantarse, ducharse, vestirse.",
-        explanation="Un verbo reflexivo indica que el sujeto realiza y recibe la acción. Se conjugan con los **pronombres reflexivos** que se colocan **delante del verbo** conjugado.\n\n| Pronombre | Ejemplo con *levantarse* |\n|-----------|--------------------------|\n| me | (yo) me levanto |\n| te | (tú) te levantas |\n| se | (él/ella/usted) se levanta |\n| nos | (nosotros) nos levantamos |\n| os | (vosotros) os levantáis |\n| se | (ellos/ellas/ustedes) se levantan |\n\nMuchos verbos cambian de significado al usarse como reflexivos: *llamar* (to call) vs. *llamarse* (to be named); *ir* (to go) vs. *irse* (to leave).",
+        explanation="Un verbo reflexivo indica que el sujeto realiza y recibe la acción. Se conjugan con los **pronombres reflexivos** que se colocan **delante del verbo** conjugado.\n\n| Pronombre | Ejemplo con *levantarse* |\n|-----------|--------------------------|\n| me | (yo) me levanto |\n| te | (tú) te levantas |\n| se | (él/ella/usted) se levanta |\n| nos | (nosotros) nos levantamos |\n| os | (vosotros) os levantáis |\n| se | (ellos/ellas/ustedes) se levantan |\n\nMuchos verbos cambian de significado al usarse como reflexivos: *llamar* (llamar a alguien) frente a *llamarse* (decir el propio nombre); *ir* (desplazarse) frente a *irse* (marcharse).",
         structure="pronombre reflexivo (me/te/se/nos/os/se) + verbo conjugado",
         rules=[
             "El pronombre reflexivo concuerda con el sujeto: me, te, se, nos, os, se.",
@@ -417,14 +417,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'No todos los verbos con "se" son reflexivos; algunos son pronominales (quejarse, arrepentirse) sin valor reflexivo real.',
         ],
         examples=[
-            GrammarExample(text="Me levanto a las siete.", translation="I get up at seven."),
+            GrammarExample(text="Me levanto a las siete.", translation=None),
             GrammarExample(
-                text="¿A qué hora te acuestas?", translation="What time do you go to bed?"
+                text="¿A qué hora te acuestas?", translation=None
             ),
             GrammarExample(
-                text="Nos duchamos por la mañana.", translation="We shower in the morning."
+                text="Nos duchamos por la mañana.", translation=None
             ),
-            GrammarExample(text="Ella se llama Carmen.", translation="Her name is Carmen."),
+            GrammarExample(text="Ella se llama Carmen.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -457,13 +457,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="¿Qué hora es? — Son las tres y media.",
-                translation="What time is it? — It's half past three.",
+                translation=None,
             ),
             GrammarExample(
-                text="La clase empieza a las nueve.", translation="The class starts at nine."
+                text="La clase empieza a las nueve.", translation=None
             ),
-            GrammarExample(text="Son las dos menos cuarto.", translation="It's a quarter to two."),
-            GrammarExample(text="Es la una en punto.", translation="It's one o'clock sharp."),
+            GrammarExample(text="Son las dos menos cuarto.", translation=None),
+            GrammarExample(text="Es la una en punto.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -494,14 +494,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             '"A + pronombre" es opcional y se usa para énfasis o contraste.',
         ],
         examples=[
-            GrammarExample(text="Me gusta el café.", translation="I like coffee."),
+            GrammarExample(text="Me gusta el café.", translation=None),
             GrammarExample(
-                text="¿Te gustan las películas de terror?", translation="Do you like horror movies?"
+                text="¿Te gustan las películas de terror?", translation=None
             ),
-            GrammarExample(text="A ella le gusta viajar.", translation="She likes to travel."),
+            GrammarExample(text="A ella le gusta viajar.", translation=None),
             GrammarExample(
                 text="Nos encanta la música latina.",
-                translation="We love Latin music.",
+                translation=None,
                 note="misma estructura que gustar",
             ),
         ],
@@ -509,7 +509,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarMistake(
                 wrong="Yo gusto el café.",
                 correct="Me gusta el café. / A mí me gusta el café.",
-                note='"Gustar" no se conjuga como "to like". El sujeto es "el café".',
+                note='"Gustar" no se conjuga como los verbos de acción habituales. El sujeto es "el café".',
             ),
             GrammarMistake(
                 wrong="Me gustan bailar.",
@@ -535,18 +535,18 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="— Me gusta leer. — A mí también.", translation='"I like reading." "Me too."'
+                text="— Me gusta leer. — A mí también.", translation=None
             ),
             GrammarExample(
                 text="— No he ido al cine. — Yo tampoco.",
-                translation='"I haven\'t been to the cinema." "Me neither."',
+                translation=None,
             ),
             GrammarExample(
-                text="Ella también habla francés.", translation="She also speaks French."
+                text="Ella también habla francés.", translation=None
             ),
             GrammarExample(
                 text="Él tampoco sabe la respuesta.",
-                translation="He doesn't know the answer either.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -579,15 +579,15 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="La película es muy interesante.", translation="The film is very interesting."
+                text="La película es muy interesante.", translation=None
             ),
-            GrammarExample(text="Tengo mucha hambre.", translation="I am very hungry."),
+            GrammarExample(text="Tengo mucha hambre.", translation=None),
             GrammarExample(
-                text="Estudia mucho todos los días.", translation="He studies a lot every day."
+                text="Estudia mucho todos los días.", translation=None
             ),
             GrammarExample(
                 text="Este diccionario es mucho mejor.",
-                translation="This dictionary is much better.",
+                translation=None,
                 note="comparativo",
             ),
         ],
@@ -621,13 +621,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="¿Dónde está el supermercado?", translation="Where is the supermarket?"
+                text="¿Dónde está el supermercado?", translation=None
             ),
-            GrammarExample(text="Estoy muy contento hoy.", translation="I am very happy today."),
+            GrammarExample(text="Estoy muy contento hoy.", translation=None),
             GrammarExample(
-                text="Estamos aprendiendo español.", translation="We are learning Spanish."
+                text="Estamos aprendiendo español.", translation=None
             ),
-            GrammarExample(text="La puerta está abierta.", translation="The door is open."),
+            GrammarExample(text="La puerta está abierta.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -649,7 +649,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A1",
         category="Tiempos verbales",
         summary='Expresar existencia con la forma impersonal "hay".',
-        explanation='**Hay** es la forma impersonal del verbo **haber** en presente. Significa "existe/n" y es **invariable**: se usa la misma forma para singular y plural.\n\n- *Hay un gato en el jardín.* (There is a cat in the garden.)\n- *Hay tres libros en la mesa.* (There are three books on the table.)\n\nNunca se dice ~~"Hayn"~~ ni se pluraliza. Equivale a "there is / there are" del inglés, pero con una sola forma.\n\nEn negativo: *No hay leche. / No hay problemas.*\nEn preguntas: *¿Hay un banco cerca? / ¿Hay preguntas?*\n\nPara el pasado se usa **había/hubo** y para el futuro **habrá**.\n\nNo confundir "hay" (haber impersonal) con "ahí" (adverbio de lugar) ni con "ay" (interjección).',
+        explanation='**Hay** es la forma impersonal del verbo **haber** en presente. Significa "existe/n" y es **invariable**: se usa la misma forma para singular y plural.\n\n- *Hay un gato en el jardín.*\n- *Hay tres libros en la mesa.*\n\nNunca se dice ~~"Hayn"~~ ni se pluraliza.\n\nEn negativo: *No hay leche. / No hay problemas.*\nEn preguntas: *¿Hay un banco cerca? / ¿Hay preguntas?*\n\nPara el pasado se usa **había/hubo** y para el futuro **habrá**.\n\nNo confundir "hay" (haber impersonal) con "ahí" (adverbio de lugar) ni con "ay" (interjección).',
         structure="hay + sustantivo (singular o plural) — es invariable",
         rules=[
             '"Hay" es invariable; no cambia con el número del sustantivo.',
@@ -660,17 +660,17 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Hay una farmacia en la esquina.",
-                translation="There's a pharmacy on the corner.",
+                translation=None,
             ),
             GrammarExample(
-                text="¿Hay leche en la nevera?", translation="Is there milk in the fridge?"
+                text="¿Hay leche en la nevera?", translation=None
             ),
             GrammarExample(
-                text="No hay muchas opciones.", translation="There aren't many options."
+                text="No hay muchas opciones.", translation=None
             ),
             GrammarExample(
                 text="En el parque hay niños jugando.",
-                translation="There are children playing in the park.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -703,19 +703,19 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="El gato está debajo de la mesa.", translation="The cat is under the table."
+                text="El gato está debajo de la mesa.", translation=None
             ),
             GrammarExample(
                 text="Hay un parque detrás del colegio.",
-                translation="There is a park behind the school.",
+                translation=None,
             ),
             GrammarExample(
                 text="Mi casa está entre la farmacia y el banco.",
-                translation="My house is between the pharmacy and the bank.",
+                translation=None,
             ),
             GrammarExample(
                 text="Las llaves están dentro del bolso.",
-                translation="The keys are inside the bag.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -733,7 +733,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A1",
         category="Tiempos verbales",
         summary="Expresar planes e intenciones futuras con la perífrasis ir a + infinitivo.",
-        explanation='La perífrasis **ir a + infinitivo** es la forma más común para hablar del **futuro cercano** o expresar **planes e intenciones**.\n\n| Persona | Ir a + infinitivo (viajar) |\n|---------|----------------------------|\n| yo | voy a viajar |\n| tú | vas a viajar |\n| él/ella/usted | va a viajar |\n| nosotros/as | vamos a viajar |\n| vosotros/as | vais a viajar |\n| ellos/ellas/ustedes | van a viajar |\n\nSe diferencia del futuro simple (*viajaré*) en que "ir a + infinitivo" es más coloquial y expresa una intención más inmediata o un plan ya decidido. Es equivalente a "going to" en inglés.',
+        explanation='La perífrasis **ir a + infinitivo** es la forma más común para hablar del **futuro cercano** o expresar **planes e intenciones**.\n\n| Persona | Ir a + infinitivo (viajar) |\n|---------|----------------------------|\n| yo | voy a viajar |\n| tú | vas a viajar |\n| él/ella/usted | va a viajar |\n| nosotros/as | vamos a viajar |\n| vosotros/as | vais a viajar |\n| ellos/ellas/ustedes | van a viajar |\n\nSe diferencia del futuro simple (*viajaré*) en que "ir a + infinitivo" es más coloquial y expresa una intención más inmediata o un plan ya decidido.',
         structure="ir (conjugado) + a + infinitivo",
         rules=[
             'El verbo "ir" se conjuga en presente, seguido de "a" + infinitivo.',
@@ -743,18 +743,18 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Voy a estudiar medicina.", translation="I am going to study medicine."
+                text="Voy a estudiar medicina.", translation=None
             ),
             GrammarExample(
-                text="¿Vas a venir a la fiesta?", translation="Are you going to come to the party?"
+                text="¿Vas a venir a la fiesta?", translation=None
             ),
             GrammarExample(
                 text="Ellos van a viajar a México este verano.",
-                translation="They are going to travel to Mexico this summer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Va a llover, mira las nubes.",
-                translation="It's going to rain, look at the clouds.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -787,14 +787,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Quiero viajar a Argentina.", translation="I want to travel to Argentina."
+                text="Quiero viajar a Argentina.", translation=None
             ),
-            GrammarExample(text="¿Puedes ayudarme?", translation="Can you help me?"),
+            GrammarExample(text="¿Puedes ayudarme?", translation=None),
             GrammarExample(
-                text="No podemos salir esta noche.", translation="We can't go out tonight."
+                text="No podemos salir esta noche.", translation=None
             ),
             GrammarExample(
-                text="Ella quiere ser profesora.", translation="She wants to be a teacher."
+                text="Ella quiere ser profesora.", translation=None
             ),
         ],
         common_mistakes=[
@@ -827,15 +827,15 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="El martes tengo una reunión.", translation="On Tuesday I have a meeting."
+                text="El martes tengo una reunión.", translation=None
             ),
-            GrammarExample(text="Los domingos descansamos.", translation="On Sundays we rest."),
+            GrammarExample(text="Los domingos descansamos.", translation=None),
             GrammarExample(
-                text="Mi cumpleaños es en abril.", translation="My birthday is in April."
+                text="Mi cumpleaños es en abril.", translation=None
             ),
             GrammarExample(
                 text="Estudio español por las mañanas.",
-                translation="I study Spanish in the mornings.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -870,23 +870,23 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Este libro es muy interesante.",
-                translation="This book is very interesting.",
+                translation=None,
                 note="cerca del hablante",
             ),
             GrammarExample(
                 text="Esa casa de ahí es de mi tía.",
-                translation="That house over there is my aunt's.",
+                translation=None,
                 note="distancia media",
             ),
             GrammarExample(
                 text="Aquel edificio es el más alto de la ciudad.",
-                translation="That building over there is the tallest in the city.",
+                translation=None,
                 note="lejos de ambos",
             ),
-            GrammarExample(text="¿Qué es esto?", translation="What is this?", note="forma neutra"),
+            GrammarExample(text="¿Qué es esto?", translation=None, note="forma neutra"),
             GrammarExample(
                 text="Eso que me cuentas es increíble.",
-                translation="What you're telling me is incredible.",
+                translation=None,
                 note="neutro para referirse a una idea",
             ),
         ],
@@ -908,5 +908,46 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["adjetivos-descriptivos", "adjetivos-posesivos", "articulos-definidos"],
+    ),
+    GrammarTopic(
+        slug="signos-interrogacion-exclamacion",
+        title="Signos de interrogación y exclamación",
+        level="A1",
+        category="Oraciones",
+        summary="Uso obligatorio de los signos de apertura y cierre en preguntas y exclamaciones.",
+        explanation="En español, las preguntas y exclamaciones se escriben con **doble signo**:\n\n- Apertura: **¿** y **¡**\n- Cierre: **?** y **!**\n\nEsto permite al lector reconocer el tono desde el inicio de la frase.\n\nEjemplos:\n- *¿Cómo te llamas?*\n- *¡Qué bien!*\n\nSi la pregunta o exclamación está dentro de una oración mayor, solo se marca el fragmento correspondiente:\n- *No sé qué quieres.* (interrogativa indirecta, sin signos)\n- *No sé, ¿qué quieres?* (pregunta directa, con signos).",
+        structure="¿ + enunciado interrogativo + ? · ¡ + enunciado exclamativo + !",
+        rules=[
+            "Las preguntas directas siempre llevan signo de apertura y de cierre.",
+            "Las exclamaciones directas siempre llevan signo de apertura y de cierre.",
+            "Las preguntas indirectas no llevan signos: No sé qué quieres.",
+            "Los signos se colocan pegados al texto interrogativo/exclamativo.",
+        ],
+        examples=[
+            GrammarExample(text="¿De dónde eres?", translation=None),
+            GrammarExample(text="¡Qué frío hace hoy!", translation=None),
+            GrammarExample(
+                text="Perdona, ¿a qué hora empieza la clase?",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Me pregunto qué hora es.",
+                translation=None,
+                note="interrogativa indirecta, sin signos",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Como te llamas?",
+                correct="¿Cómo te llamas?",
+                note="Falta el signo de apertura.",
+            ),
+            GrammarMistake(
+                wrong="¡Que bien.",
+                correct="¡Qué bien!",
+                note="Las exclamaciones cierran con !, no con punto.",
+            ),
+        ],
+        related=["pronombres-sujeto", "conectores-argumentativos", "estilo-indirecto"],
     ),
 ]

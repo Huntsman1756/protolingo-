@@ -68,7 +68,7 @@ def distribute_units(
                 "unit_id": unit.id,
                 "unit_title": unit.title,
                 "lesson_type": lt,
-                "title": f"{unit.title} - Lesson {type_index + 1}",
+                "title": f"{unit.title} - Lección {type_index + 1}",
                 "objectives": unit.competency_checklist[:2] if unit.competency_checklist else [],
                 "estimated_minutes": 25,
                 "grammar_points": unit.grammar_points[:2] if unit.grammar_points else [],

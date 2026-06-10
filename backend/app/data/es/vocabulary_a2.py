@@ -886,7 +886,7 @@ A2_SETS: list[VocabularySet] = [
                 frequency_rank=392,
                 pos="noun",
                 definition="Documento médico para obtener fármacos",
-                example="El doctor me dio una receta.",
+                example="El médico me dio una receta.",
                 ipa="/reˈθeta/",
             ),
             VocabularyEntry(

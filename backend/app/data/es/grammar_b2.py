@@ -20,18 +20,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Si tuviera/tuviese más tiempo, viajaría más.",
-                translation="If I had more time, I would travel more.",
+                translation=None,
             ),
             GrammarExample(
                 text="Me pidió que hablara/hablase más despacio.",
-                translation="He asked me to speak more slowly.",
+                translation=None,
             ),
             GrammarExample(
-                text="Ojalá lloviera/lloviese mañana.", translation="I wish it would rain tomorrow."
+                text="Ojalá lloviera/lloviese mañana.", translation=None
             ),
             GrammarExample(
                 text="Era importante que llegáramos/llegásemos a tiempo.",
-                translation="It was important that we arrived on time.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -65,19 +65,19 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Si hubiera sabido que venías, te habría esperado.",
-                translation="If I had known you were coming, I would have waited for you.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ojalá hubiera estudiado español de niño.",
-                translation="I wish I had studied Spanish as a child.",
+                translation=None,
             ),
             GrammarExample(
                 text="Me habría gustado que hubieras venido a la boda.",
-                translation="I would have liked you to have come to the wedding.",
+                translation=None,
             ),
             GrammarExample(
                 text="Si no hubiese llovido, habríamos ido a la playa.",
-                translation="If it hadn't rained, we would have gone to the beach.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -110,22 +110,22 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Quiero que termines el trabajo hoy.",
-                translation="I want you to finish the work today.",
+                translation=None,
                 note="presente → presente subj.",
             ),
             GrammarExample(
                 text="Quería que terminaras el trabajo aquel día.",
-                translation="I wanted you to finish the work that day.",
+                translation=None,
                 note="pasado → imperfecto subj.",
             ),
             GrammarExample(
                 text="No creo que haya llegado todavía.",
-                translation="I don't think he has arrived yet.",
+                translation=None,
                 note="presente → perfecto subj.",
             ),
             GrammarExample(
                 text="No creía que hubiera llegado todavía.",
-                translation="I didn't think he had arrived yet.",
+                translation=None,
                 note="pasado → pluscuamperfecto subj.",
             ),
         ],
@@ -159,19 +159,19 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Acabo de enterarme de la noticia.", translation="I just found out the news."
+                text="Acabo de enterarme de la noticia.", translation=None
             ),
             GrammarExample(
                 text="Llevamos dos horas esperando.",
-                translation="We've been waiting for two hours.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sigue trabajando en el mismo sitio.",
-                translation="He keeps working at the same place.",
+                translation=None,
             ),
             GrammarExample(
                 text="Está a punto de empezar la película.",
-                translation="The film is about to start.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -186,9 +186,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note='"Empezar" en perífrasis lleva "a".',
             ),
             GrammarMistake(
-                wrong="Anda diciendo mentiras.",
+                wrong="Anda decir mentiras.",
                 correct="Anda diciendo mentiras.",
-                note='Correcto. "Andar + gerundio" es coloquial para acciones intermitentes.',
+                note='En esta perífrasis se usa "andar + gerundio"; no "andar + infinitivo".',
             ),
         ],
         related=["dejar-de-seguir", "perifrasis-modales", "presente-regular"],
@@ -210,27 +210,27 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Tienes que ver esta película, es genial.",
-                translation="You have to see this film, it's great.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hay que reciclar para proteger el medio ambiente.",
-                translation="One must recycle to protect the environment.",
+                translation=None,
             ),
             GrammarExample(
                 text="Deben de estar dormidos, no contestan.",
-                translation="They must be asleep, they don't answer.",
+                translation=None,
                 note="conjetura",
             ),
             GrammarExample(
                 text="No hace falta que vengas tan temprano.",
-                translation="You don't need to come so early.",
+                translation=None,
             ),
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="Hay que reciclar.",
+                wrong="Hay que reciclamos.",
                 correct="Hay que reciclar.",
-                note='Correcto. "Hay que" es impersonal; no se conjuga para personas específicas.',
+                note='"Hay que" es impersonal y va con infinitivo, no con forma conjugada.',
             ),
             GrammarMistake(
                 wrong="Deben de llegar temprano mañana.",
@@ -257,18 +257,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Dejé de comer carne hace un año.",
-                translation="I stopped eating meat a year ago.",
+                translation=None,
             ),
             GrammarExample(
-                text="Sigo pensando que tienes razón.", translation="I still think you're right."
+                text="Sigo pensando que tienes razón.", translation=None
             ),
             GrammarExample(
                 text="No dejes de practicar español todos los días.",
-                translation="Don't stop practicing Spanish every day.",
+                translation=None,
             ),
             GrammarExample(
                 text="Continuaron hablando hasta muy tarde.",
-                translation="They kept talking until very late.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -302,19 +302,19 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El proyecto es ambicioso; no obstante, confiamos en su éxito.",
-                translation="The project is ambitious; nevertheless, we trust in its success.",
+                translation=None,
             ),
             GrammarExample(
                 text="A mí me encanta el campo. Mi hermana, en cambio, prefiere la ciudad.",
-                translation="I love the countryside. My sister, on the other hand, prefers the city.",
+                translation=None,
             ),
             GrammarExample(
                 text="No se presentaron pruebas; por consiguiente, el caso fue desestimado.",
-                translation="No evidence was presented; consequently, the case was dismissed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Los resultados han sido positivos. En efecto, hemos superado las expectativas.",
-                translation="The results have been positive. Indeed, we have exceeded expectations.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -342,22 +342,22 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Compré un libro. Lo estoy leyendo ahora.",
-                translation="I bought a book. I'm reading it now.",
+                translation=None,
                 note="anáfora: lo → libro",
             ),
             GrammarExample(
                 text="Te lo repito: no voy a ir.",
-                translation="I repeat it to you: I'm not going.",
+                translation=None,
                 note='catáfora: lo anticipa "no voy a ir"',
             ),
             GrammarExample(
                 text="El león es un felino. Este animal vive en la sabana.",
-                translation="The lion is a feline. This animal lives in the savannah.",
+                translation=None,
                 note="sustitución léxica",
             ),
             GrammarExample(
                 text="— ¿Vas a venir? — Sí.",
-                translation='"Are you coming?" "Yes."',
+                translation=None,
                 note='elipsis: se omite "voy a venir"',
             ),
         ],
@@ -386,22 +386,22 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="¿Podría indicarme dónde está la estación?",
-                translation="Could you tell me where the station is?",
+                translation=None,
                 note="formal",
             ),
             GrammarExample(
                 text="Oye, ¿sabes dónde está la estación?",
-                translation="Hey, do you know where the station is?",
+                translation=None,
                 note="coloquial",
             ),
             GrammarExample(
                 text="Le agradecería que me enviara la documentación.",
-                translation="I would appreciate it if you sent me the documentation.",
+                translation=None,
                 note="formal",
             ),
             GrammarExample(
                 text="Mándame los papeles cuando puedas.",
-                translation="Send me the papers when you can.",
+                translation=None,
                 note="coloquial",
             ),
         ],
@@ -430,18 +430,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ese coche cuesta un ojo de la cara.",
-                translation="That car costs an arm and a leg.",
+                translation=None,
             ),
             GrammarExample(
                 text="Metí la pata al decirle su edad.",
-                translation="I put my foot in it by telling him his age.",
+                translation=None,
             ),
             GrammarExample(
-                text="El examen fue pan comido.", translation="The exam was a piece of cake."
+                text="El examen fue pan comido.", translation=None
             ),
             GrammarExample(
                 text="¿Me echas una mano con las cajas?",
-                translation="Can you give me a hand with the boxes?",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -474,20 +474,20 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Pues... no sé qué decirte.",
-                translation="Well... I don't know what to tell you.",
+                translation=None,
             ),
             GrammarExample(
                 text="O sea, que al final no vienes.",
-                translation="So, in the end you're not coming.",
+                translation=None,
             ),
             GrammarExample(
                 text="¡Qué guay! Me encanta tu casa nueva.",
-                translation="How cool! I love your new house.",
+                translation=None,
                 note="España",
             ),
             GrammarExample(
                 text='Estaba en plan "no me hables" y yo en plan "pues vale".',
-                translation='He was like "don\'t talk to me" and I was like "whatever".',
+                translation=None,
                 note="muy coloquial",
             ),
         ],
@@ -516,15 +516,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="A quien madruga, Dios le ayuda.",
-                translation="The early bird catches the worm.",
+                translation=None,
             ),
-            GrammarExample(text="Más vale tarde que nunca.", translation="Better late than never."),
+            GrammarExample(text="Más vale tarde que nunca.", translation=None),
             GrammarExample(
                 text="No hay mal que por bien no venga.",
-                translation="Every cloud has a silver lining.",
+                translation=None,
             ),
             GrammarExample(
-                text="En boca cerrada no entran moscas.", translation="Silence is golden."
+                text="En boca cerrada no entran moscas.", translation=None
             ),
         ],
         common_mistakes=[
@@ -552,11 +552,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="En mi opinión, estudiar idiomas desde pequeños es fundamental. En primer lugar, los niños tienen mayor plasticidad cerebral. Además, adquirir una segunda lengua favorece el desarrollo cognitivo.",
-                translation="In my opinion, learning languages from an early age is essential. First, children have greater brain plasticity. Moreover, acquiring a second language favors cognitive development.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hay quienes opinan que la tecnología aísla a las personas. No obstante, bien utilizada, facilita la comunicación y acerca a quienes están lejos.",
-                translation="Some people think that technology isolates people. However, when used well, it facilitates communication and brings closer those who are far away.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -578,11 +578,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Aunque es cierto que las redes sociales pueden ser adictivas, su uso responsable ofrece grandes beneficios educativos y sociales.",
-                translation="Although it's true that social media can be addictive, its responsible use offers great educational and social benefits.",
+                translation=None,
             ),
             GrammarExample(
                 text="Reconozco que la medida es costosa. Sin embargo, los beneficios a largo plazo justifican la inversión.",
-                translation="I acknowledge that the measure is expensive. However, the long-term benefits justify the investment.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -604,22 +604,22 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Quizás deberíamos considerar otras opciones.",
-                translation="Perhaps we should consider other options.",
+                translation=None,
                 note="atenuador",
             ),
             GrammarExample(
                 text="Sin duda, este es el mejor restaurante de la ciudad.",
-                translation="Without a doubt, this is the best restaurant in the city.",
+                translation=None,
                 note="intensificador",
             ),
             GrammarExample(
                 text="Me parece que no es la mejor solución.",
-                translation="I think it's not the best solution.",
+                translation=None,
                 note="atenuador",
             ),
             GrammarExample(
                 text="Está claro que tenemos que actuar ya.",
-                translation="It's clear that we have to act now.",
+                translation=None,
                 note="intensificador",
             ),
         ],
@@ -642,11 +642,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Era una noche oscura. El viento soplaba con fuerza. De repente, escuché un ruido. Alguien había entrado en la casa.",
-                translation="It was a dark night. The wind was blowing hard. Suddenly, I heard a noise. Someone had entered the house.",
+                translation=None,
             ),
             GrammarExample(
                 text="Napoleón nace en Córcega en 1769. A los dieciséis años ingresa en la academia militar.",
-                translation="Napoleon is born in Corsica in 1769. At sixteen he enters the military academy.",
+                translation=None,
                 note="presente histórico",
             ),
         ],
@@ -669,11 +669,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El sol se ocultaba tras las montañas, tiñendo el cielo de tonos anaranjados y violetas. Una brisa cálida mecía las hojas de las palmeras.",
-                translation="The sun was setting behind the mountains, dyeing the sky with orange and violet tones. A warm breeze swayed the palm leaves.",
+                translation=None,
             ),
             GrammarExample(
                 text="Era una mujer alta, de andar pausado y mirada serena. Su voz, grave y melodiosa, inspiraba confianza.",
-                translation="She was a tall woman, with a slow walk and a serene gaze. Her voice, deep and melodious, inspired trust.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -694,19 +694,19 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Está que echa chispas.", translation="He's fuming.", note="metáfora coloquial"
+                text="Está que echa chispas.", translation=None, note="metáfora coloquial"
             ),
             GrammarExample(
-                text="El tiempo es oro.", translation="Time is gold/money.", note="metáfora"
+                text="El tiempo es oro.", translation=None, note="metáfora"
             ),
             GrammarExample(
                 text="Eres más lento que una tortuga.",
-                translation="You're slower than a turtle.",
+                translation=None,
                 note="símil",
             ),
             GrammarExample(
                 text="Las estrellas nos miraban desde el cielo.",
-                translation="The stars were watching us from the sky.",
+                translation=None,
                 note="personificación",
             ),
         ],
@@ -729,12 +729,12 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Aprobada la nueva ley de educación tras un intenso debate parlamentario.",
-                translation="New education law approved after intense parliamentary debate.",
+                translation=None,
                 note="titular: participio + sujeto",
             ),
             GrammarExample(
                 text="Según fuentes cercanas al gobierno, la medida se anunciará la próxima semana.",
-                translation="According to sources close to the government, the measure will be announced next week.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -757,17 +757,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Rescatados diez inmigrantes en la costa de Almería.",
-                translation="Ten immigrants rescued off the coast of Almería.",
+                translation=None,
                 note="participio suelto",
             ),
             GrammarExample(
                 text="Sanidad: la espera media para una operación baja a 90 días.",
-                translation="Healthcare: the average wait for an operation drops to 90 days.",
+                translation=None,
                 note="dos puntos",
             ),
             GrammarExample(
                 text="Aumentar el salario mínimo un 5% el próximo año.",
-                translation="Minimum wage to increase by 5% next year.",
+                translation=None,
                 note="infinitivo de futuro",
             ),
         ],
@@ -790,15 +790,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text='El ministro aseguró que las medidas "darán resultados en el corto plazo".',
-                translation='The minister assured that the measures "will yield results in the short term".',
+                translation=None,
             ),
             GrammarExample(
                 text="Según testigos presenciales, el incendio comenzó sobre las tres de la madrugada.",
-                translation="According to eyewitnesses, the fire started around three in the morning.",
+                translation=None,
             ),
             GrammarExample(
                 text='"No vamos a tolerar la violencia", recalcó el alcalde.',
-                translation='"We will not tolerate violence," the mayor emphasized.',
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -808,5 +808,73 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "estilo-indirecto",
             "estilo-indirecto-pasado",
         ],
+    ),
+    GrammarTopic(
+        slug="c-s-z",
+        title="Ortografía de c, s y z",
+        level="B2",
+        category="Avanzado",
+        summary="Patrones frecuentes en -ción/-sión, -cer/-cir y alternancias c/z en derivación.",
+        explanation="La oposición **c/s/z** genera errores frecuentes en escritura formal. En español de España, además, hay distinción fonética entre /s/ y /z/ en gran parte del territorio, lo que puede ayudar a fijar grafías.\n\nPatrones útiles:\n- Sustantivos en **-ción** suelen derivar de verbos en -ar: *informar -> información*.\n- Sustantivos en **-sión** suelen derivar de formas con -s- o -d-: *dividir -> división*, *expresar -> expresión*.\n- Verbos en **-cer/-cir**: primera persona con **-zco** en muchos casos (*conocer -> conozco, traducir -> traduzco*).\n- Alternancia c/z ante a/o/u en algunas familias: *cruz -> cruzar*, *luz -> lucir* (familias distintas, conviene memorizar).\n\nObjetivo B2: escribir con seguridad en registros académicos y profesionales.",
+        structure="-cion/-sion · -cer/-cir -> -zco (1a persona) · alternancias c/z por contexto",
+        rules=[
+            "-ción es muy frecuente en derivados de verbos en -ar.",
+            "-sión aparece en muchas familias léxicas con base en -s- o -d-.",
+            "Muchos verbos en -cer/-cir forman la 1a persona con -zco.",
+            "No todas las familias siguen reglas absolutas; hay que consolidar listas de alta frecuencia.",
+        ],
+        examples=[
+            GrammarExample(text="La información no coincide con la versión oficial.", translation=None),
+            GrammarExample(text="Conozco bien esa legislación.", translation=None),
+            GrammarExample(text="La decisión exige precisión.", translation=None),
+            GrammarExample(text="Traduzco textos técnicos cada semana.", translation=None),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="La desicion final depende del contexto.",
+                correct="La decisión final depende del contexto.",
+                note="Decisión se escribe con c y tilde.",
+            ),
+            GrammarMistake(
+                wrong="Yo conosco esa norma.",
+                correct="Yo conozco esa norma.",
+                note="Conocer en primera persona: conozco.",
+            ),
+        ],
+        related=["registro-formal", "precision-lexica", "derivacion"],
+    ),
+    GrammarTopic(
+        slug="puntuacion-avanzada",
+        title="Puntuación avanzada",
+        level="B2",
+        category="Oraciones",
+        summary="Uso de coma, punto y coma y dos puntos en textos argumentativos y académicos.",
+        explanation="En B2 la puntuación deja de ser solo mecánica y pasa a organizar argumentos.\n\nUsos clave:\n- **Coma** para incisos, vocativos y conectores: *Sin embargo, no basta con eso.*\n- **Punto y coma** para separar oraciones relacionadas con cierta autonomía: *El plan es viable; falta financiación.*\n- **Dos puntos** para introducir explicación, enumeración o cita breve: *Hay una conclusión clara: debemos actuar ya.*\n\nUna puntuación adecuada mejora claridad, cohesión y tono profesional.",
+        structure="coma (inciso/conector) · punto y coma (relacion fuerte) · dos puntos (explicacion/cita)",
+        rules=[
+            "Los conectores parentéticos suelen ir entre comas: sin embargo, no obstante, por tanto.",
+            "El punto y coma separa unidades complejas cuando la coma es insuficiente.",
+            "Los dos puntos introducen una consecuencia, explicación o enumeración.",
+            "Evitar comas entre sujeto y verbo salvo inciso.",
+        ],
+        examples=[
+            GrammarExample(text="A mi juicio, la propuesta es útil, pero incompleta.", translation=None),
+            GrammarExample(text="Hay avances relevantes; no obstante, persisten problemas estructurales.", translation=None),
+            GrammarExample(text="El informe concluye algo esencial: la medida debe aplicarse gradualmente.", translation=None),
+            GrammarExample(text="María, ven un momento, por favor.", translation=None),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Sin embargo no basta con eso.",
+                correct="Sin embargo, no basta con eso.",
+                note="Falta coma tras conector inicial.",
+            ),
+            GrammarMistake(
+                wrong="El comité, aprobó el texto final.",
+                correct="El comité aprobó el texto final.",
+                note="No se separan sujeto y verbo con coma.",
+            ),
+        ],
+        related=["conectores-avanzados", "cohesion-textual", "estructura-argumentativa"],
     ),
 ]
