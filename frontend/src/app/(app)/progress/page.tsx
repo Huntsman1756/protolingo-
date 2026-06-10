@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useLanguageStore } from '@/store/language'
@@ -156,10 +156,7 @@ function UnitCompetencyBlock({
 
 export default function ProgressPage() {
   const t = useTranslations('progress')
-  const tPlan = useTranslations('plan')
   const tVocab = useTranslations('vocabulary')
-  const tCommon = useTranslations('common')
-  const router = useRouter()
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [summary, setSummary] = useState<ProgressSummary | null>(null)
   const [competencies, setCompetencies] = useState<CompetencyRecord[]>([])

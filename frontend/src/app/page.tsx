@@ -7,12 +7,12 @@ import PricingSection from '@/components/billing/PricingSection'
 import { ContactButton } from '@/components/ui/contact-button'
 
 export const metadata: Metadata = {
-  title: 'FreeLingo — AI-powered language learning',
+  title: 'FreeLingo: AI-powered language learning',
   description:
     'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons. Self-hosted and privacy-friendly.',
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'FreeLingo — AI-powered language learning',
+    title: 'FreeLingo: AI-powered language learning',
     description:
       'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
     url: 'https://freelingo.app',
@@ -22,13 +22,13 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'FreeLingo — AI-powered language learning',
+        alt: 'FreeLingo: AI-powered language learning',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FreeLingo — AI-powered language learning',
+    title: 'FreeLingo: AI-powered language learning',
     description:
       'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
     images: ['/og-image.png'],

@@ -313,7 +313,7 @@
       "s4Title": "4. Servizi IA esterni",
       "s4Body": "Nel servizio ospitato, la chat IA, la sintesi vocale (TTS) e la trascrizione vocale (STT) sono fornite tramite le API di OpenAI. Il contenuto delle tue conversazioni e l'audio vengono inviati a OpenAI per l'elaborazione, soggetti all'Informativa sulla privacy di OpenAI (openai.com/privacy). Il trattamento dei pagamenti è gestito da Stripe, Inc. (USA); Stripe elabora i dati di pagamento direttamente e non memorizziamo i dati della tua carta di pagamento sui nostri server — i tuoi dati di transazione sono soggetti all'Informativa sulla privacy di Stripe (stripe.com/privacy). Per le installazioni self-hosted, l'operatore sceglie il provider IA; per impostazione predefinita si utilizza un'istanza Ollama locale e nessun dato lascia il server.",
       "s5Title": "5. Cookie e token di sessione",
-      "s5Body": "FreeLingo utilizza due cookie tecnici strettamente necessari per il funzionamento del servizio: un refresh_token (httpOnly, scadenza 30 giorni) per l'autenticazione della sessione, e NEXT_LOCALE (scadenza 1 anno) per ricordare le preferenze di lingua. Non vengono utilizzati cookie di tracciamento, analisi o pubblicità.",
+      "s5Body": "FreeLingo utilizza due cookie tecnici strettamente necessari per il funzionamento del servizio: un refresh_token (httpOnly, scadenza 30 giorni) per l'autenticazione della sessione, e NEXT_LOCALE (scadenza 1 anno) per ricordare le preferenze di lingua. Non vengono utilizzati cookie di tracciamento o pubblicità. Per la misurazione anonima del traffico utilizziamo Umami — uno strumento di analisi self-hosted e open source che non utilizza cookie, non raccoglie dati personali e mantiene tutti i dati sui nostri server.",
       "s6Title": "6. I tuoi diritti (GDPR)",
       "s6Body": "Se ti trovi nello Spazio Economico Europeo, hai il diritto di: accedere ai dati personali che conserviamo su di te; richiedere la correzione di dati inesatti; richiedere la cancellazione del tuo account e di tutti i dati associati (disponibile direttamente dalla pagina Impostazioni); opporti al trattamento; e richiedere la portabilità dei dati. Per esercitare questi diritti, contattaci all'indirizzo nella sezione 8 o cancella il tuo account direttamente dalle impostazioni. Base giuridica del trattamento (Art. 6(1)(b) GDPR): trattiamo i tuoi dati personali perché è necessario per l'esecuzione del contratto tra te e noi — la fornitura del servizio FreeLingo. Trasferimenti internazionali: quando utilizzi il servizio ospitato, il contenuto delle tue conversazioni e l'audio possono essere elaborati da OpenAI, Inc. (USA), e i dati di pagamento vengono elaborati da Stripe, Inc. (USA). Questi trasferimenti vengono effettuati nell'ambito delle Clausole Contrattuali Standard approvate dalla Commissione europea (Art. 46 GDPR), garantendo un livello di protezione adeguato. Diritto di reclamo: hai il diritto di presentare un reclamo al Garante per la protezione dei dati personali (Garante — garanteprivacy.it) o all'autorità di controllo del tuo paese di residenza.",
       "s7Title": "7. Conservazione ed eliminazione dei dati",
@@ -1099,7 +1099,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.7.5",
+    "version": "v1.7.6",
     "cta": "Capito",
     "entry1": {
       "label": "Risorse didattiche migliorate",

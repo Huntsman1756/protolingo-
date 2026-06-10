@@ -94,7 +94,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A particular way of thinking about something.",
                 example="From a different perspective, this looks positive.",
-                ipa="/pərˈspektɪv/",
+                ipa="/pəˈspektɪv/",
                 frequency_rank=255,
             ),
             VocabularyEntry(
@@ -158,7 +158,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To discuss in order to reach an agreement.",
                 example="We negotiated a better contract.",
-                ipa="/nɪˈɡoʊʃieɪt/",
+                ipa="/nɪˈɡəʊʃieɪt/",
                 frequency_rank=365,
             ),
             VocabularyEntry(
@@ -246,7 +246,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A person with an interest in a project or company.",
                 example="We need to consult all stakeholders.",
-                ipa="/ˈsteɪkhoʊldər/",
+                ipa="/ˈsteɪkhəʊldə/",
             ),
             VocabularyEntry(
                 word="initiative",
@@ -285,7 +285,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The suppression of information or speech.",
                 example="Critics accused the government of censorship.",
-                ipa="/ˈsensərʃɪp/",
+                ipa="/ˈsensəʃɪp/",
                 frequency_rank=490,
             ),
             VocabularyEntry(
@@ -293,7 +293,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="Prolonged public disagreement or debate.",
                 example="The policy caused great controversy.",
-                ipa="/ˈkɒntrəvɜːrsi/",
+                ipa="/ˈkɒntrəvɜːsi/",
                 frequency_rank=380,
             ),
             VocabularyEntry(
@@ -317,7 +317,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="Variety; the inclusion of different kinds of people.",
                 example="The company values diversity and inclusion.",
-                ipa="/daɪˈvɜːrsɪti/",
+                ipa="/daɪˈvɜːsɪti/",
                 frequency_rank=310,
             ),
             VocabularyEntry(
@@ -333,7 +333,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The activity of collecting and reporting news.",
                 example="Investigative journalism is vital in democracy.",
-                ipa="/ˈdʒɜːrnəlɪzəm/",
+                ipa="/ˈdʒɜːnəlɪzəm/",
                 frequency_rank=410,
             ),
             VocabularyEntry(
@@ -341,7 +341,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The number of copies of a publication distributed.",
                 example="The newspaper has a large circulation.",
-                ipa="/ˌsɜːrkjəˈleɪʃən/",
+                ipa="/ˌsɜːkjəˈleɪʃən/",
                 frequency_rank=390,
             ),
             VocabularyEntry(
@@ -357,7 +357,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The process of worldwide economic and cultural integration.",
                 example="Globalisation has changed many industries.",
-                ipa="/ˌɡloʊbələˈzeɪʃən/",
+                ipa="/ˌɡləʊbələˈzeɪʃən/",
                 frequency_rank=430,
             ),
             VocabularyEntry(
@@ -413,7 +413,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="Before.",
                 example="Prior to the meeting, she reviewed the notes.",
-                ipa="/ˈpraɪər tuː/",
+                ipa="/ˈpraɪə tuː/",
                 frequency_rank=340,
             ),
             VocabularyEntry(
@@ -437,7 +437,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A person or thing that came before.",
                 example="This model is an improvement on its predecessor.",
-                ipa="/ˈpredɪsesər/",
+                ipa="/ˈpredɪsesə/",
                 frequency_rank=390,
             ),
             VocabularyEntry(
@@ -485,7 +485,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="adjective",
                 definition="Able to be predicted or expected.",
                 example="There are no changes in the foreseeable future.",
-                ipa="/fɔːrˈsiːəbəl/",
+                ipa="/fɔːˈsiːəbəl/",
                 frequency_rank=430,
             ),
             VocabularyEntry(
@@ -501,7 +501,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To develop or be revealed over time.",
                 example="The drama unfolded over several months.",
-                ipa="/ʌnˈfoʊld/",
+                ipa="/ʌnˈfəʊld/",
                 frequency_rank=350,
             ),
             VocabularyEntry(
@@ -509,7 +509,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="phrase",
                 definition="A time at which a decisive change in a situation occurs.",
                 example="The invention of the internet was a turning point in communication.",
-                ipa="/ˈtɜːrnɪŋ pɔɪnt/",
+                ipa="/ˈtɜːnɪŋ pɔɪnt/",
                 frequency_rank=390,
             ),
         ],
@@ -533,7 +533,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="Deep regret for wrongdoing.",
                 example="He showed no remorse for what he did.",
-                ipa="/rɪˈmɔːrs/",
+                ipa="/rɪˈmɔːs/",
                 frequency_rank=430,
             ),
             VocabularyEntry(
@@ -549,7 +549,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="adjective",
                 definition="Feeling too much to cope with.",
                 example="He was overwhelmed by the workload.",
-                ipa="/ˌoʊvərˈwelmd/",
+                ipa="/ˌəʊvəˈwelmd/",
                 frequency_rank=390,
             ),
             VocabularyEntry(
@@ -573,7 +573,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A strong desire or longing.",
                 example="He had a yearning to return home.",
-                ipa="/ˈjɜːrnɪŋ/",
+                ipa="/ˈjɜːnɪŋ/",
                 frequency_rank=440,
             ),
             VocabularyEntry(
@@ -629,7 +629,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A feeling of intense excitement and happiness.",
                 example="The team was filled with euphoria after winning.",
-                ipa="/juːˈfɔːriə/",
+                ipa="/juːˈfɔːiə/",
                 frequency_rank=440,
             ),
             VocabularyEntry(
@@ -661,7 +661,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="adverb",
                 definition="According to what is generally believed or claimed.",
                 example="The meeting was supposedly cancelled.",
-                ipa="/səˈpoʊzɪdli/",
+                ipa="/səˈpəʊzɪdli/",
                 frequency_rank=410,
             ),
             VocabularyEntry(
@@ -685,7 +685,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A possible situation or sequence of events.",
                 example="In the worst-case scenario, we lose the client.",
-                ipa="/sɪˈnɑːrɪoʊ/",
+                ipa="/sɪˈnɑːɪəʊ/",
                 frequency_rank=320,
             ),
             VocabularyEntry(
@@ -709,7 +709,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="One of two or more available possibilities.",
                 example="We have no viable alternative.",
-                ipa="/ɔːlˈtɜːrnətɪv/",
+                ipa="/ɔːlˈtɜːnətɪv/",
                 frequency_rank=255,
             ),
             VocabularyEntry(
@@ -749,7 +749,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="An opinion formed on incomplete information; a guess.",
                 example="The report is based on conjecture, not evidence.",
-                ipa="/kənˈdʒektʃər/",
+                ipa="/kənˈdʒektʃə/",
                 frequency_rank=480,
             ),
             VocabularyEntry(
@@ -773,7 +773,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To make goods in large quantities using machinery.",
                 example="Cars are manufactured in this plant.",
-                ipa="/ˌmænjuˈfæktʃər/",
+                ipa="/ˌmænjuˈfæktʃə/",
                 frequency_rank=310,
             ),
             VocabularyEntry(
@@ -789,7 +789,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The basic systems and services of a country or organisation.",
                 example="The country needs to invest in infrastructure.",
-                ipa="/ˈɪnfrəstrʌktʃər/",
+                ipa="/ˈɪnfrəstrʌktʃə/",
                 frequency_rank=295,
             ),
             VocabularyEntry(
@@ -797,7 +797,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="The process of obtaining goods and services for an organisation.",
                 example="The procurement department handles all suppliers.",
-                ipa="/prəˈkjʊərmənt/",
+                ipa="/prəˈkjʊəmənt/",
                 frequency_rank=430,
             ),
             VocabularyEntry(
@@ -805,7 +805,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="verb",
                 definition="To obtain goods or services from an outside supplier.",
                 example="Many companies outsource their IT support.",
-                ipa="/ˈaʊtsɔːrs/",
+                ipa="/ˈaʊtsɔːs/",
                 frequency_rank=410,
             ),
             VocabularyEntry(
@@ -853,7 +853,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="An early model of a product used for testing.",
                 example="They built a prototype before mass production.",
-                ipa="/ˈproʊtətaɪp/",
+                ipa="/ˈprəʊtətaɪp/",
                 frequency_rank=410,
             ),
             VocabularyEntry(
@@ -869,7 +869,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="Ongoing business expenses not directly attributable to production.",
                 example="Reducing overhead is essential for profitability.",
-                ipa="/ˈoʊvərhed/",
+                ipa="/ˈəʊvəhed/",
                 frequency_rank=420,
             ),
             VocabularyEntry(
@@ -941,7 +941,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A temporary alliance of groups for a common purpose.",
                 example="A coalition government was formed.",
-                ipa="/ˌkoʊəˈlɪʃən/",
+                ipa="/ˌkəʊəˈlɪʃən/",
                 frequency_rank=360,
             ),
             VocabularyEntry(
@@ -1005,7 +1005,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A factor that can be changed or measured in an experiment.",
                 example="Temperature was the key variable in the study.",
-                ipa="/ˈvɛəriəbəl/",
+                ipa="/ˈveəriəbəl/",
                 frequency_rank=220,
             ),
             VocabularyEntry(
@@ -1013,7 +1013,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A system of methods used in a particular field of study.",
                 example="The research methodology was carefully reviewed by the panel.",
-                ipa="/ˌmɛθəˈdɒlədʒi/",
+                ipa="/ˌmeθəˈdɒlədʒi/",
                 frequency_rank=300,
             ),
             VocabularyEntry(
@@ -1037,7 +1037,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="noun",
                 definition="A basic structure underlying a system or concept.",
                 example="The theoretical framework guided the entire research project.",
-                ipa="/ˈfreɪmwɜːrk/",
+                ipa="/ˈfreɪmwɜːk/",
                 frequency_rank=190,
             ),
             VocabularyEntry(
@@ -1069,7 +1069,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="adjective",
                 definition="Concerned with theories rather than practical applications.",
                 example="The course covers both theoretical concepts and practical skills.",
-                ipa="/ˌθiːəˈrɛtɪkəl/",
+                ipa="/ˌθiːəˈretɪkəl/",
                 frequency_rank=240,
             ),
             VocabularyEntry(
@@ -1077,7 +1077,7 @@ B2_SETS: list[VocabularySet] = [
                 pos="adjective",
                 definition="Covering completely or broadly; thorough.",
                 example="The report provides a comprehensive overview of the issue.",
-                ipa="/ˌkɒmprɪˈhɛnsɪv/",
+                ipa="/ˌkɒmprɪˈhensɪv/",
                 frequency_rank=180,
             ),
             VocabularyEntry(
@@ -1087,6 +1087,78 @@ B2_SETS: list[VocabularySet] = [
                 example="The project underwent a rigorous evaluation.",
                 ipa="/ɪˌvæljuˈeɪʃən/",
                 frequency_rank=210,
+            ),
+        ],
+    ),
+    VocabularySet(
+        id="uk_institutions_b2",
+        level="B2",
+        topic="British Institutions & Political Vocabulary",
+        unit_ref="b2-unit-7",
+        words=[
+            VocabularyEntry(
+                word="NHS",
+                pos="noun",
+                definition="The National Health Service — the UK's publicly funded healthcare system, free at the point of use for residents.",
+                example="She was treated for free at her local hospital through the NHS.",
+                ipa="/ˌen eɪtʃ ˈes/",
+                frequency_rank=280,
+            ),
+            VocabularyEntry(
+                word="Parliament",
+                pos="noun",
+                definition="The supreme legislative body of the United Kingdom, comprising the House of Commons, the House of Lords, and the Crown.",
+                example="Parliament debated the new legislation for three weeks.",
+                ipa="/ˈpɑːləmənt/",
+                frequency_rank=290,
+            ),
+            VocabularyEntry(
+                word="Prime Minister",
+                pos="noun",
+                definition="The head of the UK government, who leads the Cabinet and is accountable to Parliament.",
+                example="The Prime Minister addressed the nation from Downing Street.",
+                ipa="/praɪm ˈmɪnɪstə/",
+                frequency_rank=270,
+            ),
+            VocabularyEntry(
+                word="BBC",
+                pos="noun",
+                definition="British Broadcasting Corporation — the UK's national public service broadcaster, funded by the licence fee.",
+                example="The BBC broadcasts on television, radio, and online.",
+                ipa="/ˌbiː biː ˈsiː/",
+                frequency_rank=285,
+            ),
+            VocabularyEntry(
+                word="Chancellor",
+                pos="noun",
+                definition="The Chancellor of the Exchequer — the senior UK government minister responsible for economic and financial policy.",
+                example="The Chancellor delivered the annual Budget statement.",
+                ipa="/ˈtʃɑːnsələ/",
+                frequency_rank=310,
+            ),
+            VocabularyEntry(
+                word="constituency",
+                pos="noun",
+                definition="A geographic area whose residents elect one Member of Parliament to the House of Commons.",
+                example="There are 650 constituencies in the UK.",
+                ipa="/kənˈstɪtjʊənsi/",
+                frequency_rank=360,
+            ),
+            VocabularyEntry(
+                word="devolution",
+                pos="noun",
+                definition="The transfer of legislative or executive powers from central government to regional governments (e.g. Scotland, Wales, Northern Ireland).",
+                example="Devolution gave the Scottish Parliament powers over health and education.",
+                ipa="/ˌdevəˈluːʃən/",
+                frequency_rank=390,
+            ),
+            VocabularyEntry(
+                word="civil service",
+                pos="noun",
+                definition="The permanent, politically neutral administrative staff who support the government and implement policy.",
+                example="The civil service remains in place when governments change after an election.",
+                ipa="/ˈsɪvəl ˈsɜːvɪs/",
+                frequency_rank=370,
             ),
         ],
     ),

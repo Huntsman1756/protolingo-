@@ -534,4 +534,58 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         related=["comparatives-superlatives", "adverbs-manner", "comparative-as-as"],
     ),
+    GrammarTopic(
+        slug="quantifiers-few-little",
+        title="Few / A Few, Little / A Little",
+        level="B1",
+        category="Nouns",
+        summary="Understand the difference between 'few' (negative) and 'a few' (positive), and 'little' (negative) and 'a little' (positive).",
+        structure="few / a few + countable plural · little / a little + uncountable",
+        explanation=(
+            "These quantifiers look similar but carry opposite meanings:\n\n"
+            "**With countable nouns (few / a few):**\n\n"
+            "| Form | Meaning | Example |\n"
+            "|------|---------|--------|\n"
+            "| *few* | almost none — negative connotation | *She has few friends.* (= not many, a problem) |\n"
+            "| *a few* | some — positive connotation | *She has a few friends.* (= some, enough) |\n\n"
+            "**With uncountable nouns (little / a little):**\n\n"
+            "| Form | Meaning | Example |\n"
+            "|------|---------|--------|\n"
+            "| *little* | almost none — negative connotation | *There is little hope.* (= almost none) |\n"
+            "| *a little* | some — positive connotation | *There is a little time left.* (= some, enough for now) |\n\n"
+            "**The key:** the article 'a' changes a negative meaning to a positive one."
+        ),
+        rules=[
+            "'Few' and 'a few' are used with countable plural nouns.",
+            "'Little' and 'a little' are used with uncountable nouns.",
+            "'Few' (no article) = negative: almost none, not enough.",
+            "'A few' = positive: some, a small but sufficient number.",
+            "'A little' = positive: some, a small but sufficient amount.",
+        ],
+        examples=[
+            GrammarExample(
+                text="I have a few minutes — shall we talk?", note="a few = some, enough"
+            ),
+            GrammarExample(
+                text="She has few options in this situation.", note="few = almost none, concerning"
+            ),
+            GrammarExample(text="Add a little salt to taste.", note="a little = some, sufficient"),
+            GrammarExample(
+                text="There is little evidence to support this claim.", note="little = almost none"
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="I have few money left.",
+                correct="I have a little money left. (or) I have little money left.",
+                note="'Money' is uncountable — use 'a little' or 'little', not 'few'.",
+            ),
+            GrammarMistake(
+                wrong="There are a little mistakes.",
+                correct="There are a few mistakes.",
+                note="'Mistakes' is countable — use 'a few', not 'a little'.",
+            ),
+        ],
+        related=["some-any-much-many", "countable-uncountable", "both-either-neither"],
+    ),
 ]
