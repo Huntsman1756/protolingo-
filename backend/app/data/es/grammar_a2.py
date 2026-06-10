@@ -9,7 +9,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A2",
         category="Tiempos verbales",
         summary="El pasado simple para acciones terminadas: conjugación regular de -ar, -er, -ir.",
-        explanation="El **pretérito indefinido** (o pretérito perfecto simple) expresa **acciones pasadas y terminadas**, sin conexión con el presente. Es equivalente al past simple inglés.\n\n| Persona | -ar (hablar) | -er (comer) | -ir (vivir) |\n|--------|-------------|-------------|------------|\n| yo | hablé | comí | viví |\n| tú | hablaste | comiste | viviste |\n| él/ella/usted | habló | comió | vivió |\n| nosotros | hablamos | comimos | vivimos |\n| vosotros | hablasteis | comisteis | vivisteis |\n| ellos/ellas/ustedes | hablaron | comieron | vivieron |\n\nNota: las terminaciones de -er e -ir son **idénticas** en el indefinido. La primera persona de -ar y la de nosotros de -ar y -ir coinciden con el presente; el contexto aclara el tiempo.",
+        explanation="El **pretérito indefinido** (o pretérito perfecto simple) expresa **acciones pasadas y terminadas**, sin conexión con el presente.\n\n| Persona | -ar (hablar) | -er (comer) | -ir (vivir) |\n|--------|-------------|-------------|------------|\n| yo | hablé | comí | viví |\n| tú | hablaste | comiste | viviste |\n| él/ella/usted | habló | comió | vivió |\n| nosotros | hablamos | comimos | vivimos |\n| vosotros | hablasteis | comisteis | vivisteis |\n| ellos/ellas/ustedes | hablaron | comieron | vivieron |\n\nNota: las terminaciones de -er e -ir son **idénticas** en el indefinido. La primera persona de -ar y la de nosotros de -ar y -ir coinciden con el presente; el contexto aclara el tiempo.",
         structure="raíz + -é/-aste/-ó/-amos/-asteis/-aron (AR) · -í/-iste/-ió/-imos/-isteis/-ieron (ER/IR)",
         rules=[
             "-er e -ir comparten las mismas terminaciones en indefinido.",
@@ -21,16 +21,16 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ayer hablé con mi madre por teléfono.",
-                translation="Yesterday I spoke with my mother on the phone.",
+                translation=None,
             ),
             GrammarExample(
-                text="Comimos paella el domingo pasado.", translation="We ate paella last Sunday."
+                text="Comimos paella el domingo pasado.", translation=None
             ),
             GrammarExample(
                 text="¿Viviste en Barcelona el año pasado?",
-                translation="Did you live in Barcelona last year?",
+                translation=None,
             ),
-            GrammarExample(text="Ellos llegaron a las ocho.", translation="They arrived at eight."),
+            GrammarExample(text="Ellos llegaron a las ocho.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -61,17 +61,17 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'No confundir "hace" (marcador) con "desde hace" (duración continua).',
         ],
         examples=[
-            GrammarExample(text="Ayer fui al cine.", translation="Yesterday I went to the cinema."),
+            GrammarExample(text="Ayer fui al cine.", translation=None),
             GrammarExample(
                 text="La semana pasada visité a mis abuelos.",
-                translation="Last week I visited my grandparents.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hace tres años empecé a estudiar español.",
-                translation="Three years ago I started studying Spanish.",
+                translation=None,
             ),
             GrammarExample(
-                text="En 2015 nos mudamos a Madrid.", translation="In 2015 we moved to Madrid."
+                text="En 2015 nos mudamos a Madrid.", translation=None
             ),
         ],
         common_mistakes=[
@@ -105,26 +105,26 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ayer no tuve tiempo para llamarte.",
-                translation="Yesterday I didn't have time to call you.",
+                translation=None,
             ),
             GrammarExample(
-                text="¿Qué hiciste el fin de semana?", translation="What did you do on the weekend?"
+                text="¿Qué hiciste el fin de semana?", translation=None
             ),
             GrammarExample(
                 text="Fui al médico y luego fui muy feliz.",
-                translation="I went to the doctor and then I was very happy.",
+                translation=None,
                 note="ir y ser",
             ),
             GrammarExample(
                 text="Ellos no quisieron venir a la cena.",
-                translation="They didn't want to come to the dinner.",
+                translation=None,
             ),
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="Ayer hice la comida.",
+                wrong="Ayer hací la comida.",
                 correct="Ayer hice la comida.",
-                note='Correcto. "Hice" es la forma correcta de hacer en indefinido para yo.',
+                note='La forma correcta del indefinido de "hacer" (yo) es "hice".',
             ),
             GrammarMistake(
                 wrong="Él hico la maleta.",
@@ -155,19 +155,19 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Cuando era pequeño, vivía en un pueblo.",
-                translation="When I was little, I lived in a village.",
+                translation=None,
             ),
             GrammarExample(
                 text="Antes íbamos a la playa todos los veranos.",
-                translation="Before, we used to go to the beach every summer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ella leía mientras yo cocinaba.",
-                translation="She was reading while I was cooking.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hacía frío y llovía sin parar.",
-                translation="It was cold and it was raining nonstop.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -200,19 +200,19 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Estudiaba cuando me llamaste.",
-                translation="I was studying when you called me.",
+                translation=None,
             ),
             GrammarExample(
                 text="De joven, salía todos los viernes.",
-                translation="When young, I used to go out every Friday.",
+                translation=None,
             ),
             GrammarExample(
                 text="El verano pasado fui a Italia y visité Roma.",
-                translation="Last summer I went to Italy and visited Rome.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hacía sol y los pájaros cantaban. De repente, empezó a llover.",
-                translation="It was sunny and the birds were singing. Suddenly, it started to rain.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -235,26 +235,26 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A2",
         category="Tiempos verbales",
         summary="Expresar acciones habituales en pasado y presente con el verbo soler.",
-        explanation='El verbo **soler** (cambio o→ue) significa "tener la costumbre de" y se usa para expresar **acciones habituales** tanto en presente como en pasado.\n\nEn **presente**: *Suelo desayunar a las ocho.* (I usually have breakfast at eight.)\nEn **imperfecto**: *Solía jugar al tenis.* (I used to play tennis.)\n\n**Solía + infinitivo** es equivalente a *used to* en inglés. Es una alternativa al imperfecto simple para enfatizar hábitos pasados.\n\nEl verbo soler **no existe en indefinido** (~~solí~~) ni en otros tiempos más que presente e imperfecto de indicativo.',
+        explanation='El verbo **soler** (cambio o->ue) significa "tener la costumbre de" y se usa para expresar **acciones habituales** tanto en presente como en pasado.\n\nEn **presente**: *Suelo desayunar a las ocho.*\nEn **imperfecto**: *Solía jugar al tenis.*\n\n**Solía + infinitivo** es una alternativa al imperfecto simple para enfatizar hábitos pasados.\n\nEl verbo soler **no existe en indefinido** (~~solí~~) ni en otros tiempos más que presente e imperfecto de indicativo.',
         structure="soler (conjugado) + infinitivo",
         rules=[
             "Soler solo se usa en presente e imperfecto de indicativo.",
             'Siempre va seguido de infinitivo: "Suelo comer a las dos".',
             '"Soler + infinitivo" expresa frecuencia habitual, no capacidad.',
-            'No confundir "solía" (hábito) con "solo/a" (alone).',
+            'No confundir "solía" (hábito) con "solo/a" (sin compañía).',
         ],
         examples=[
             GrammarExample(
-                text="Suelo leer antes de dormir.", translation="I usually read before sleeping."
+                text="Suelo leer antes de dormir.", translation=None
             ),
             GrammarExample(
                 text="De niño, solía pasar los veranos en el pueblo.",
-                translation="As a child, I used to spend summers in the village.",
+                translation=None,
             ),
-            GrammarExample(text="¿Sueles hacer ejercicio?", translation="Do you usually exercise?"),
+            GrammarExample(text="¿Sueles hacer ejercicio?", translation=None),
             GrammarExample(
                 text="Antes no solíamos viajar tanto.",
-                translation="Before we didn't use to travel so much.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -287,16 +287,16 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="¿El libro? Lo leí ayer.", translation="The book? I read it yesterday."
+                text="¿El libro? Lo leí ayer.", translation=None
             ),
             GrammarExample(
                 text="A María la vi en el supermercado.",
-                translation="María? I saw her at the supermarket.",
+                translation=None,
             ),
-            GrammarExample(text="No puedo encontrarlo.", translation="I can't find it."),
+            GrammarExample(text="No puedo encontrarlo.", translation=None),
             GrammarExample(
                 text="Estamos preparándola para la fiesta.",
-                translation="We are preparing it for the party.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -330,18 +330,18 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Le escribí una carta a mi abuela.",
-                translation="I wrote a letter to my grandmother.",
+                translation=None,
             ),
             GrammarExample(
-                text="¿Me puedes prestar tu boli?", translation="Can you lend me your pen?"
+                text="¿Me puedes prestar tu boli?", translation=None
             ),
             GrammarExample(
                 text="Les explicamos la situación a los clientes.",
-                translation="We explained the situation to the clients.",
+                translation=None,
             ),
             GrammarExample(
                 text="Voy a darle el regalo mañana.",
-                translation="I am going to give him/her the present tomorrow.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -375,15 +375,15 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="¿El informe? Te lo envío ahora.",
-                translation="The report? I'll send it to you now.",
+                translation=None,
             ),
             GrammarExample(
-                text="Se lo expliqué a mis padres.", translation="I explained it to my parents."
+                text="Se lo expliqué a mis padres.", translation=None
             ),
-            GrammarExample(text="¿Me lo puedes repetir?", translation="Can you repeat it to me?"),
+            GrammarExample(text="¿Me lo puedes repetir?", translation=None),
             GrammarExample(
                 text="No quiero contárselo todavía.",
-                translation="I don't want to tell it to him/her/them yet.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -419,19 +419,19 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Madrid es más grande que Barcelona.",
-                translation="Madrid is bigger than Barcelona.",
+                translation=None,
             ),
             GrammarExample(
                 text="Este ejercicio es menos difícil que el anterior.",
-                translation="This exercise is less difficult than the previous one.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ella es tan simpática como su hermana.",
-                translation="She is as nice as her sister.",
+                translation=None,
             ),
             GrammarExample(
                 text="Esta película es mejor que la otra.",
-                translation="This film is better than the other one.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -465,17 +465,17 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Es el edificio más alto del mundo.",
-                translation="It's the tallest building in the world.",
+                translation=None,
             ),
             GrammarExample(
-                text="La paella está buenísima.", translation="The paella is absolutely delicious."
+                text="La paella está buenísima.", translation=None
             ),
             GrammarExample(
                 text="Es la persona menos puntual de la oficina.",
-                translation="He/she is the least punctual person in the office.",
+                translation=None,
             ),
             GrammarExample(
-                text="El examen fue facilísimo.", translation="The exam was extremely easy."
+                text="El examen fue facilísimo.", translation=None
             ),
         ],
         common_mistakes=[
@@ -508,19 +508,19 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="No soy tan paciente como tú.", translation="I'm not as patient as you."
+                text="No soy tan paciente como tú.", translation=None
             ),
             GrammarExample(
                 text="En esta ciudad hay tanta contaminación como en otras capitales.",
-                translation="In this city there is as much pollution as in other capitals.",
+                translation=None,
             ),
             GrammarExample(
                 text="No hablo español tan bien como me gustaría.",
-                translation="I don't speak Spanish as well as I'd like.",
+                translation=None,
             ),
             GrammarExample(
                 text="Estaba tan cansado que me dormí en el sofá.",
-                translation="I was so tired that I fell asleep on the sofa.",
+                translation=None,
                 note="consecutivo",
             ),
         ],
@@ -553,15 +553,15 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             'Los pronombres van detrás: "dime", "cómpralo", "siéntate".',
         ],
         examples=[
-            GrammarExample(text="¡Come más despacio!", translation="Eat more slowly!"),
+            GrammarExample(text="¡Come más despacio!", translation=None),
             GrammarExample(
                 text="Hablad más bajo, por favor.",
-                translation="Speak more quietly, please.",
+                translation=None,
                 note="vosotros",
             ),
-            GrammarExample(text="Dime la verdad.", translation="Tell me the truth."),
+            GrammarExample(text="Dime la verdad.", translation=None),
             GrammarExample(
-                text="Siéntese, por favor.", translation="Sit down, please.", note="usted"
+                text="Siéntese, por favor.", translation=None, note="usted"
             ),
         ],
         common_mistakes=[
@@ -593,17 +593,17 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La forma de vosotros negativo termina en -éis (AR) o -áis (ER/IR): no habléis, no comáis.",
         ],
         examples=[
-            GrammarExample(text="No hables tan alto.", translation="Don't speak so loudly."),
+            GrammarExample(text="No hables tan alto.", translation=None),
             GrammarExample(
                 text="No comáis tantos dulces.",
-                translation="Don't eat so many sweets.",
+                translation=None,
                 note="vosotros",
             ),
             GrammarExample(
-                text="Por favor, no se preocupe.", translation="Please, don't worry.", note="usted"
+                text="Por favor, no se preocupe.", translation=None, note="usted"
             ),
             GrammarExample(
-                text="No lo toques, está caliente.", translation="Don't touch it, it's hot."
+                text="No lo toques, está caliente.", translation=None
             ),
         ],
         common_mistakes=[
@@ -635,10 +635,10 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "El imperativo negativo irregular sigue el subjuntivo.",
         ],
         examples=[
-            GrammarExample(text="Di la verdad.", translation="Tell the truth."),
-            GrammarExample(text="Haz los deberes ahora.", translation="Do your homework now."),
-            GrammarExample(text="Ten paciencia.", translation="Be patient."),
-            GrammarExample(text="Pon la mesa, por favor.", translation="Set the table, please."),
+            GrammarExample(text="Di la verdad.", translation=None),
+            GrammarExample(text="Haz los deberes ahora.", translation=None),
+            GrammarExample(text="Ten paciencia.", translation=None),
+            GrammarExample(text="Pon la mesa, por favor.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -671,16 +671,16 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="El año que viene estudiaré en Granada.",
-                translation="Next year I will study in Granada.",
+                translation=None,
             ),
-            GrammarExample(text="¿Vendrás a la boda?", translation="Will you come to the wedding?"),
+            GrammarExample(text="¿Vendrás a la boda?", translation=None),
             GrammarExample(
                 text="No podremos llegar a tiempo.",
-                translation="We won't be able to arrive on time.",
+                translation=None,
             ),
             GrammarExample(
                 text="¿Dónde estará Juan? — Estará en casa.",
-                translation="Where could Juan be? — He's probably at home.",
+                translation=None,
                 note="conjetura",
             ),
         ],
@@ -710,17 +710,17 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Me gustaría aprender a tocar la guitarra.",
-                translation="I would like to learn to play the guitar.",
+                translation=None,
             ),
             GrammarExample(
-                text="¿Podrías pasarme la sal?", translation="Could you pass me the salt?"
+                text="¿Podrías pasarme la sal?", translation=None
             ),
             GrammarExample(
-                text="Deberías dormir más horas.", translation="You should sleep more hours."
+                text="Deberías dormir más horas.", translation=None
             ),
             GrammarExample(
                 text="Dijo que llegaría a las ocho.",
-                translation="He said he would arrive at eight.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -743,7 +743,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         level="A2",
         category="Condicionales",
         summary="Condiciones reales o probables con si + presente de indicativo + futuro.",
-        explanation='Las **condicionales de primer tipo** expresan condiciones **posibles o probables**. La estructura es:\n\n**Si + presente de indicativo, + futuro / presente / imperativo.**\n\n- *Si **estudias**, **aprobarás** el examen.* (condición probable → resultado futuro)\n- *Si **quieres**, te **ayudo**.* (presente en ambas partes)\n- *Si **tienes** hambre, **come** algo.* (imperativo en la principal)\n\nLa prótasis (la parte con "si") NUNCA lleva futuro ni condicional en español. Esto es diferente del inglés:\n- *If it rains → Si llueve* (NO ~~Si lloverá~~).',
+        explanation='Las **condicionales de primer tipo** expresan condiciones **posibles o probables**. La estructura es:\n\n**Si + presente de indicativo, + futuro / presente / imperativo.**\n\n- *Si **estudias**, **aprobarás** el examen.* (condición probable -> resultado futuro)\n- *Si **quieres**, te **ayudo**.* (presente en ambas partes)\n- *Si **tienes** hambre, **come** algo.* (imperativo en la principal)\n\nLa prótasis (la parte con "si") NUNCA lleva futuro ni condicional en español: *Si llueve* (NO ~~Si lloverá~~).',
         structure="si + presente de indicativo + futuro simple / presente / imperativo",
         rules=[
             'En la subordinada con "si" se usa presente de indicativo, nunca futuro ni condicional.',
@@ -753,18 +753,18 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Si llueve, no saldremos.", translation="If it rains, we won't go out."
+                text="Si llueve, no saldremos.", translation=None
             ),
             GrammarExample(
-                text="Si tienes tiempo, llámame.", translation="If you have time, call me."
+                text="Si tienes tiempo, llámame.", translation=None
             ),
             GrammarExample(
                 text="Te lo compro si no es muy caro.",
-                translation="I'll buy it for you if it isn't very expensive.",
+                translation=None,
             ),
             GrammarExample(
                 text="Si quieres, vamos al cine.",
-                translation="If you want, let's go to the cinema.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -797,26 +797,26 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Primero fui al banco, luego pasé por el supermercado y finalmente volví a casa.",
-                translation="First I went to the bank, then I stopped by the supermarket, and finally I went back home.",
+                translation=None,
             ),
             GrammarExample(
                 text="Estaba leyendo cuando de repente se apagó la luz.",
-                translation="I was reading when suddenly the lights went out.",
+                translation=None,
             ),
             GrammarExample(
                 text="Entonces decidí llamar a la policía.",
-                translation="Then I decided to call the police.",
+                translation=None,
             ),
             GrammarExample(
                 text="Al final todo salió bien.",
-                translation="In the end everything turned out fine.",
+                translation=None,
             ),
         ],
         common_mistakes=[
             GrammarMistake(
-                wrong="Después fui a su casa.",
+                wrong="Después de fui a su casa.",
                 correct="Después fui a su casa.",
-                note='Correcto. "Después" puede ir seguido del verbo directamente o con "de" + infinitivo.',
+                note='"Después" va directamente con verbo conjugado; "después de" se usa con sustantivo o infinitivo.',
             ),
         ],
         related=["secuencia-temporal", "preterito-indefinido-regular", "preterito-vs-imperfecto"],
@@ -837,19 +837,19 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Eran las diez de la noche. Llovía con fuerza. De repente, alguien llamó a la puerta.",
-                translation="It was ten at night. It was raining heavily. Suddenly, someone knocked on the door.",
+                translation=None,
             ),
             GrammarExample(
                 text="Mientras desayunaba, leí el periódico.",
-                translation="While I was having breakfast, I read the newspaper.",
+                translation=None,
             ),
             GrammarExample(
                 text="Cuando llegamos al cine, ya había empezado la película.",
-                translation="When we arrived at the cinema, the film had already started.",
+                translation=None,
             ),
             GrammarExample(
                 text="Paseaba por la calle cuando me encontré con un viejo amigo.",
-                translation="I was walking down the street when I ran into an old friend.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -882,22 +882,22 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Dijo que estaba cansado.",
-                translation="He said he was tired.",
+                translation=None,
                 note='directo: "Estoy cansado"',
             ),
             GrammarExample(
                 text="Me contó que había vivido en París.",
-                translation="She told me she had lived in Paris.",
+                translation=None,
                 note='directo: "He vivido en París"',
             ),
             GrammarExample(
                 text="Aseguró que llegaría al día siguiente.",
-                translation="He assured me he would arrive the next day.",
+                translation=None,
                 note='directo: "Llegaré mañana"',
             ),
             GrammarExample(
                 text="Nos explicaron que no podían ayudarnos.",
-                translation="They explained they couldn't help us.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -930,19 +930,19 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="No salí porque llovía mucho.",
-                translation="I didn't go out because it was raining a lot.",
+                translation=None,
             ),
             GrammarExample(
                 text="Estaba agotado, así que me fui a dormir temprano.",
-                translation="I was exhausted, so I went to bed early.",
+                translation=None,
             ),
             GrammarExample(
                 text="Me gusta el chocolate, pero no debo comer tanto.",
-                translation="I like chocolate, but I shouldn't eat so much.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hizo mucho esfuerzo; sin embargo, no consiguió el puesto.",
-                translation="He made a lot of effort; however, he didn't get the position.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -975,20 +975,20 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Me dijo que aquel día no podía quedar.",
-                translation="He told me he couldn't meet that day.",
+                translation=None,
                 note='directo: "Hoy no puedo quedar"',
             ),
             GrammarExample(
                 text="Aseguró que la semana anterior había estado de vacaciones.",
-                translation="He assured me he had been on holiday the previous week.",
+                translation=None,
             ),
             GrammarExample(
                 text="Comentó que entonces vivía en Barcelona.",
-                translation="He commented that he was living in Barcelona at that time.",
+                translation=None,
             ),
             GrammarExample(
                 text="Explicaron que hacía dos años que no se veían.",
-                translation="They explained they hadn't seen each other for two years.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -1004,5 +1004,73 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["estilo-indirecto", "estilo-indirecto-pasado", "conectores-narrativos"],
+    ),
+    GrammarTopic(
+        slug="acentuacion-general",
+        title="Acentuación general",
+        level="A2",
+        category="Adjetivos y adverbios",
+        summary="Reglas base de acentuación: agudas, llanas y esdrújulas.",
+        explanation="La acentuación gráfica en español sigue reglas generales:\n\n- **Agudas**: llevan tilde si terminan en vocal, **n** o **s** (*café, canción*).\n- **Llanas**: llevan tilde si **no** terminan en vocal, **n** o **s** (*árbol, lápiz*).\n- **Esdrújulas y sobresdrújulas**: llevan tilde siempre (*música, devuélvemelo*).\n\nEn este nivel es clave automatizar las reglas de palabras frecuentes para mejorar la escritura de pasado, futuro y condicional.",
+        structure="aguda + (vocal/n/s) -> tilde · llana + (no vocal/n/s) -> tilde · esdrújula -> siempre tilde",
+        rules=[
+            "Las esdrújulas y sobresdrújulas siempre llevan tilde.",
+            "Las agudas solo se tildan si terminan en vocal, n o s.",
+            "Las llanas se tildan cuando terminan en consonante distinta de n o s.",
+            "La tilde distingue formas verbales: hablo (presente) vs hablé (pasado).",
+        ],
+        examples=[
+            GrammarExample(text="Ayer hablo con Ana -> Ayer hablé con Ana.", translation=None),
+            GrammarExample(text="La canción es bonita.", translation=None),
+            GrammarExample(text="Ese árbol es muy alto.", translation=None),
+            GrammarExample(text="La música me encanta.", translation=None),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Ayer hablo con mi madre.",
+                correct="Ayer hablé con mi madre.",
+                note="Falta tilde en pretérito de primera persona.",
+            ),
+            GrammarMistake(
+                wrong="Ese lapiz es mio.",
+                correct="Ese lápiz es mío.",
+                note="Lápiz y mío llevan tilde.",
+            ),
+        ],
+        related=["preterito-indefinido-regular", "futuro-simple", "condicional-simple"],
+    ),
+    GrammarTopic(
+        slug="b-v-basico",
+        title="Ortografía básica de b y v",
+        level="A2",
+        category="Verbos",
+        summary="Reglas de alta frecuencia para distinguir b y v en escritura cotidiana.",
+        explanation="En español, **b** y **v** suenan igual en la mayoría de variedades, por eso conviene aprender reglas prácticas de ortografía.\n\nReglas muy útiles:\n- Después de **m**, se escribe **b**: *también, cambio, ambulancia*.\n- Las terminaciones del imperfecto de -ar llevan **b**: *cantaba, hablábamos*.\n- Muchos verbos en **-bir** van con b: *escribir, recibir, prohibir* (excepto *hervir, servir, vivir*).\n- Muchos verbos en **-olver** van con v: *volver, resolver, devolver*.\n\nEstas reglas reducen errores frecuentes en redacciones A2.",
+        structure="m + b · imperfecto -aba/-abas/-ábamos... · -bir (con excepciones) · -olver",
+        rules=[
+            "Después de m se escribe b.",
+            "El imperfecto de verbos en -ar se escribe con b.",
+            "Los verbos en -bir suelen escribirse con b, salvo hervir, servir y vivir.",
+            "Los verbos terminados en -olver se escriben con v.",
+        ],
+        examples=[
+            GrammarExample(text="También quiero cambiar de trabajo.", translation=None),
+            GrammarExample(text="Cuando era niño, jugaba en la plaza.", translation=None),
+            GrammarExample(text="Voy a escribir un correo.", translation=None),
+            GrammarExample(text="Tenemos que resolver este problema.", translation=None),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Iva a venir, pero no pudo.",
+                correct="Iba a venir, pero no pudo.",
+                note="El imperfecto de ir se escribe con b: iba.",
+            ),
+            GrammarMistake(
+                wrong="Quiero escrivir mejor.",
+                correct="Quiero escribir mejor.",
+                note="El verbo escribir termina en -bir y va con b.",
+            ),
+        ],
+        related=["imperativo-afirmativo", "preterito-indefinido-regular", "condicional-simple"],
     ),
 ]
