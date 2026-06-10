@@ -10,7 +10,11 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
         icon="\U0001f44b",
         phrases=[
             PhrasebookEntry(text="Hello!", context="Standard neutral greeting", register="neutral"),
-            PhrasebookEntry(text="Hi!", context="Informal greeting between friends or peers", register="informal"),
+            PhrasebookEntry(
+                text="Hi!",
+                context="Informal greeting between friends or peers",
+                register="informal",
+            ),
             PhrasebookEntry(
                 text="Good morning.", context="Greeting before noon", register="formal"
             ),
@@ -41,7 +45,11 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             PhrasebookEntry(
                 text="See you later!", context="Informal farewell", register="informal"
             ),
-            PhrasebookEntry(text="Goodbye!", context="Standard farewell — suitable in all contexts", register="neutral"),
+            PhrasebookEntry(
+                text="Goodbye!",
+                context="Standard farewell — suitable in all contexts",
+                register="neutral",
+            ),
             PhrasebookEntry(
                 text="Bye! / Bye-bye!", context="Informal farewell", register="informal"
             ),
@@ -102,10 +110,14 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
                 text="You're welcome.", context="Responding to thanks (neutral)", register="neutral"
             ),
             PhrasebookEntry(
-                text="No problem.", context="Casual American response to thanks", register="informal"
+                text="No problem.",
+                context="Casual American response to thanks",
+                register="informal",
             ),
             PhrasebookEntry(
-                text="Sure thing!", context="Warm, informal American response to thanks", register="informal"
+                text="Sure thing!",
+                context="Warm, informal American response to thanks",
+                register="informal",
             ),
         ],
     ),
@@ -143,7 +155,9 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(text="How much is it?", context="Asking the price", register="neutral"),
             PhrasebookEntry(
-                text="That's [price] dollars.", context="Stating a price in American currency", register="neutral"
+                text="That's [price] dollars.",
+                context="Stating a price in American currency",
+                register="neutral",
             ),
             PhrasebookEntry(
                 text="Can I have the check, please?",

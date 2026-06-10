@@ -723,10 +723,22 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "American English uses -ize (organize, realize) while British uses -ise.",
         ],
         examples=[
-            GrammarExample(text="The mismanagement of resources led to the project's failure.", note="mis- prefix + -ment suffix"),
-            GrammarExample(text="The government has decided to decriminalize possession of small quantities.", note="de- + criminalize"),
-            GrammarExample(text="The unpredictability of the outcome caused considerable anxiety.", note="un- + predict + -ability"),
-            GrammarExample(text="She emailed the report. / Can you text me the address?", note="conversion: noun → verb"),
+            GrammarExample(
+                text="The mismanagement of resources led to the project's failure.",
+                note="mis- prefix + -ment suffix",
+            ),
+            GrammarExample(
+                text="The government has decided to decriminalize possession of small quantities.",
+                note="de- + criminalize",
+            ),
+            GrammarExample(
+                text="The unpredictability of the outcome caused considerable anxiety.",
+                note="un- + predict + -ability",
+            ),
+            GrammarExample(
+                text="She emailed the report. / Can you text me the address?",
+                note="conversion: noun → verb",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(

@@ -64,7 +64,9 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
                 text="Could we split the check?", context="Paying separately", register="neutral"
             ),
             PhrasebookEntry(
-                text="Is the gratuity included?", context="Asking whether a tip/service charge is already added to the total", register="neutral"
+                text="Is the gratuity included?",
+                context="Asking whether a tip/service charge is already added to the total",
+                register="neutral",
             ),
         ],
     ),

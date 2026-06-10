@@ -433,7 +433,7 @@ A1_A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "**Note on -ize/-ise:** American English strongly prefers -ize (organize, realize). "
             "British English accepts both but prefers -ise.\n\n"
             "**Special case:** In American English, *license* is both noun and verb: "
-            "*\'I have a driver's license.\'* / *\'The city licensed the venue.\'*"
+            "*'I have a driver's license.'* / *'The city licensed the venue.'*"
         ),
         rules=[
             "Use -or for color, favor, labor, honor, neighbor.",
@@ -444,9 +444,17 @@ A1_A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="The color of the sky is blue.", note="AmE: color / BrE: colour"),
-            GrammarExample(text="The theater is in the town center.", note="AmE: theater, center / BrE: theatre, centre"),
-            GrammarExample(text="She realized she had forgotten her umbrella.", note="AmE: realized / BrE: realised"),
-            GrammarExample(text="I canceled the appointment.", note="AmE: canceled (single l) / BrE: cancelled"),
+            GrammarExample(
+                text="The theater is in the town center.",
+                note="AmE: theater, center / BrE: theatre, centre",
+            ),
+            GrammarExample(
+                text="She realized she had forgotten her umbrella.",
+                note="AmE: realized / BrE: realised",
+            ),
+            GrammarExample(
+                text="I canceled the appointment.", note="AmE: canceled (single l) / BrE: cancelled"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -460,6 +468,6 @@ A1_A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="American spellings: 'favorite' and 'color'.",
             ),
         ],
-        related=["have-got", "articles"],
+        related=["articles"],
     ),
 ]

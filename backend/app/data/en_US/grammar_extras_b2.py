@@ -688,10 +688,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Negative: 'is not to' or 'are not to' = prohibition.",
         ],
         examples=[
-            GrammarExample(text="The Secretary of State is to meet with foreign ministers next week.", note="official plan"),
-            GrammarExample(text="All employees are to complete the training by Friday.", note="instruction"),
-            GrammarExample(text="The two senators were to meet in Washington, but the summit was cancelled.", note="past plan unfulfilled"),
-            GrammarExample(text="She was to become one of the greatest scientists of her generation.", note="destiny/narrative"),
+            GrammarExample(
+                text="The Secretary of State is to meet with foreign ministers next week.",
+                note="official plan",
+            ),
+            GrammarExample(
+                text="All employees are to complete the training by Friday.", note="instruction"
+            ),
+            GrammarExample(
+                text="The two senators were to meet in Washington, but the summit was cancelled.",
+                note="past plan unfulfilled",
+            ),
+            GrammarExample(
+                text="She was to become one of the greatest scientists of her generation.",
+                note="destiny/narrative",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(

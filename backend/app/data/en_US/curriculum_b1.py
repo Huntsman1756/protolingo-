@@ -86,7 +86,13 @@ B1_UNITS: list[CurriculumUnit] = [
         level="B1",
         unit_number=5,
         title="Modals, Advice & Question Tags",
-        grammar_points=["modal-verbs", "should-ought-to", "must-have-to", "question-tags", "quantifiers-few-little"],
+        grammar_points=[
+            "modal-verbs",
+            "should-ought-to",
+            "must-have-to",
+            "question-tags",
+            "quantifiers-few-little",
+        ],
         vocabulary_set_ids=[
             "advice_b1",
             "obligation_b1",
