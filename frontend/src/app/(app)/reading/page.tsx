@@ -8,6 +8,7 @@ import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { type ReadingExercise } from '@/types/api'
 import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
+import { PageLoading } from '@/components/ui/page-loading'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -70,7 +71,26 @@ function ReadingPage() {
 
   const textRef = useRef<HTMLDivElement>(null)
   const [isReplay, setIsReplay] = useState(false)
+  const [generatingWarn, setGeneratingWarn] = useState(false)
   const generateAbortRef = useRef<AbortController | null>(null)
+  const generatingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Warn if exercise generation takes longer than 15 s
+  useEffect(() => {
+    if (pageState === 'generating') {
+      setGeneratingWarn(false)
+      generatingTimerRef.current = setTimeout(
+        () => setGeneratingWarn(true),
+        15_000
+      )
+    } else {
+      if (generatingTimerRef.current) clearTimeout(generatingTimerRef.current)
+      setGeneratingWarn(false)
+    }
+    return () => {
+      if (generatingTimerRef.current) clearTimeout(generatingTimerRef.current)
+    }
+  }, [pageState])
 
   // Cancel in-flight long-poll on unmount
   useEffect(() => {
@@ -209,26 +229,21 @@ function ReadingPage() {
 
   // ── Loading ──────────────────────────────────────────────────────────────
   if (pageState === 'loading') {
-    return (
-      <div className="flex min-h-[calc(100vh-56px)] items-center justify-center md:min-h-screen">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          ● {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading minHeight="min-h-[calc(100vh-56px)] md:min-h-screen" />
   }
 
   // ── Generating (long-poll) ────────────────────────────────────────────────
   if (pageState === 'generating') {
     return (
-      <div className="flex min-h-[calc(100vh-56px)] flex-col items-center justify-center gap-3 px-4 md:min-h-screen">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          ● {t('generating')}
-        </span>
-        <p className="text-fl-label text-fl-muted-4 max-w-xs text-center font-mono">
-          {t('generatingDesc')}
-        </p>
-      </div>
+      <PageLoading
+        label={t('generating')}
+        subtext={
+          generatingWarn
+            ? `${t('generatingDesc')} ${t('generatingLong')}`
+            : t('generatingDesc')
+        }
+        minHeight="min-h-[calc(100vh-56px)] md:min-h-screen"
+      />
     )
   }
 

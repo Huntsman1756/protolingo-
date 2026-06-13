@@ -392,6 +392,8 @@
     "levelTest": {
       "title": "Level-Abschlusstest",
       "loading": "Fragen werden geladen...",
+      "loadingTest": "Test wird geladen...",
+      "submittingTest": "Antworten werden gesendet...",
       "question": "Frage",
       "of": "von",
       "confirm": "Antwort bestätigen",
@@ -592,6 +594,7 @@
     "conversations": "Gespräche",
     "loading": "Laden...",
     "thinking": "Denke nach...",
+    "takingLonger": "Dauert länger als erwartet...",
     "errorMessage": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
     "deleteTitle": "Chat löschen",
     "deleteMessage": "Dieses Gespräch wird dauerhaft gelöscht.",
@@ -1099,7 +1102,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.8.0",
+    "version": "v1.8.1",
     "cta": "Verstanden",
     "entry1": {
       "label": "Neue Lernsprachen",
@@ -1135,6 +1138,7 @@
     "submit": "Antworten abschicken",
     "generating": "Übung wird erstellt...",
     "generatingDesc": "Die KI erstellt eine neue Übung. Das dauert etwa 30 Sekunden.",
+    "generatingLong": "Dauert länger als erwartet...",
     "noExercises": "Keine Übungen für dein Niveau verfügbar.",
     "generate": "Übung erstellen",
     "audioError": "Audio konnte nicht geladen werden",
@@ -1162,6 +1166,7 @@
     "submit": "Antworten abschicken",
     "generating": "Übung wird erstellt...",
     "generatingDesc": "Die KI erstellt eine neue Übung. Das dauert etwa 30 Sekunden.",
+    "generatingLong": "Dauert länger als erwartet...",
     "noExercises": "Keine Übungen für dein Niveau verfügbar.",
     "generate": "Übung erstellen",
     "alreadyAttempted": "Du hast diese Übung bereits abgeschlossen.",

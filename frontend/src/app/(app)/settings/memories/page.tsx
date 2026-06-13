@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PageLoading } from '@/components/ui/page-loading'
 
 interface MItem {
   id: number
@@ -15,7 +16,6 @@ interface MItem {
 
 export default function SettingsMemoriesPage() {
   const t = useTranslations('settings')
-  const tCommon = useTranslations('common')
 
   const [memories, setMemories] = useState<MItem[]>([])
   const [loading, setLoading] = useState(true)
@@ -74,9 +74,7 @@ export default function SettingsMemoriesPage() {
         </div>
 
         {loading ? (
-          <p className="text-fl-hint text-fl-muted-2 font-mono">
-            {tCommon('loading')}
-          </p>
+          <PageLoading fullScreen={false} />
         ) : memories.length === 0 ? (
           <p className="text-fl-hint text-fl-muted-2 font-mono">
             {t('memoryEmpty')}

@@ -13,6 +13,7 @@ import Image from 'next/image'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { ContactFormModal } from '@/components/ui/contact-form-modal'
 import { LoadingBar } from '@/components/ui/loading-bar'
+import { PageLoading } from '@/components/ui/page-loading'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -108,11 +109,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   if (initializing) {
     return (
-      <div className="bg-fl-bg bg-dot-grid flex min-h-screen items-center justify-center">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          ● {tCommon('initializing')}
-        </span>
-      </div>
+      <PageLoading
+        label={tCommon('initializing')}
+        minHeight="min-h-screen"
+        className="bg-fl-bg bg-dot-grid"
+      />
     )
   }
 
@@ -267,7 +268,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-            v1.8.0
+            v1.8.1
           </p>
           <button
             onClick={() => setContactOpen(true)}
@@ -435,7 +436,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </p>
               </div>
               <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-                v1.8.0
+                v1.8.1
               </p>
               <button
                 onClick={() => {

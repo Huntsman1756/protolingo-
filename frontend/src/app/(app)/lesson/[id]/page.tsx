@@ -12,6 +12,7 @@ import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
+import { PageLoading } from '@/components/ui/page-loading'
 
 interface ExerciseItem {
   id: number
@@ -180,13 +181,7 @@ export default function LessonPage() {
   }
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {t('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading label={t('loading')} />
   }
 
   if (loadError) {

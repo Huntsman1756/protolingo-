@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { PageLoading } from '@/components/ui/page-loading'
 import { apiFetch } from '@/lib/api'
 import { getCurriculumUnits, type CurriculumUnit } from '@/data/curriculum'
 import { useLanguageStore } from '@/store/language'
@@ -92,7 +93,6 @@ function lessonsByUnit(lessons: Lesson[]): Record<string, Lesson[]> {
 
 export default function PlanPage() {
   const t = useTranslations('plan')
-  const tCommon = useTranslations('common')
   const router = useRouter()
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const langName = activeLanguage?.name ?? ''
@@ -177,13 +177,7 @@ export default function PlanPage() {
   }, [plan?.cefr_level, activeLanguage?.code])
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading />
   }
 
   if (error || !plan) {

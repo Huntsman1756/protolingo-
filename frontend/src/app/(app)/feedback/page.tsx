@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PageLoading } from '@/components/ui/page-loading'
+import { Pagination } from '@/components/ui/pagination'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -684,9 +686,10 @@ export default function FeedbackPage() {
       {/* List */}
       <div className="border-fl-border bg-fl-surface border">
         {loading ? (
-          <p className="text-fl-muted-2 animate-pulse px-6 py-10 text-center font-mono text-xs tracking-widest uppercase">
-            {t('loading')}
-          </p>
+          <PageLoading
+            fullScreen={false}
+            className="block px-6 py-10 text-center"
+          />
         ) : entries.length === 0 ? (
           <p className="text-fl-muted-2 px-6 py-10 text-center font-mono text-xs">
             {t('noEntries')}
@@ -792,27 +795,13 @@ export default function FeedbackPage() {
       </div>
 
       {/* Pagination */}
-      {total > PAGE_SIZE && (
-        <div className="border-fl-border bg-fl-surface flex items-center justify-between border px-6 py-3">
-          <button
-            onClick={() => setPage((p) => Math.max(0, p - 1))}
-            disabled={page === 0}
-            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
-          >
-            {t('prevPage')}
-          </button>
-          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest">
-            {page + 1} / {Math.ceil(total / PAGE_SIZE)}
-          </span>
-          <button
-            onClick={() => setPage((p) => p + 1)}
-            disabled={(page + 1) * PAGE_SIZE >= total}
-            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
-          >
-            {t('nextPage')}
-          </button>
-        </div>
-      )}
+      <Pagination
+        page={page}
+        totalPages={Math.ceil(total / PAGE_SIZE)}
+        onPageChange={setPage}
+        prevLabel={t('prevPage')}
+        nextLabel={t('nextPage')}
+      />
 
       {/* Create modal */}
       {showCreate && (

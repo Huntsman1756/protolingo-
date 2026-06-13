@@ -392,6 +392,8 @@
     "levelTest": {
       "title": "Test di completamento livello",
       "loading": "Caricamento domande...",
+      "loadingTest": "Caricamento test...",
+      "submittingTest": "Invio risposte...",
       "question": "Domanda",
       "of": "di",
       "confirm": "Conferma risposta",
@@ -592,6 +594,7 @@
     "conversations": "Conversazioni",
     "loading": "Caricamento...",
     "thinking": "Sto pensando...",
+    "takingLonger": "Ci sta mettendo più del previsto...",
     "errorMessage": "Qualcosa è andato storto. Per favore riprova.",
     "deleteTitle": "Elimina chat",
     "deleteMessage": "Questa conversazione verrà eliminata definitivamente.",
@@ -1099,7 +1102,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.8.0",
+    "version": "v1.8.1",
     "cta": "Capito",
     "entry1": {
       "label": "Nuove lingue da imparare",
@@ -1135,6 +1138,7 @@
     "submit": "Invia risposte",
     "generating": "Generazione in corso...",
     "generatingDesc": "L'IA sta creando un nuovo esercizio. Richiede circa 30 secondi.",
+    "generatingLong": "Ci sta mettendo più del previsto...",
     "noExercises": "Nessun esercizio disponibile per il tuo livello.",
     "generate": "Genera esercizio",
     "audioError": "Impossibile caricare l'audio",
@@ -1162,6 +1166,7 @@
     "submit": "Invia risposte",
     "generating": "Generazione in corso...",
     "generatingDesc": "L'IA sta creando un nuovo esercizio. Richiede circa 30 secondi.",
+    "generatingLong": "Ci sta mettendo più del previsto...",
     "noExercises": "Nessun esercizio disponibile per il tuo livello.",
     "generate": "Genera esercizio",
     "alreadyAttempted": "Hai già completato questo esercizio.",

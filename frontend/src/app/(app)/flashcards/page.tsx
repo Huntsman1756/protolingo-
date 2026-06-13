@@ -8,6 +8,7 @@ import { useAuthStore } from '@/store/auth'
 import { useLanguageStore } from '@/store/language'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
+import { PageLoading } from '@/components/ui/page-loading'
 import { CEFR_LEVELS } from '@/data/curriculum'
 
 interface CardData {
@@ -129,13 +130,7 @@ export default function FlashcardsPage() {
   }
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading />
   }
 
   return (

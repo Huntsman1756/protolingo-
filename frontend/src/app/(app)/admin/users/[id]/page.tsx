@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { getLanguageByCode } from '@/lib/target-languages'
 import { type QuotaStatus } from '@/types/api'
+import { PageLoading } from '@/components/ui/page-loading'
 
 interface LanguageStats {
   target_language: string
@@ -203,13 +204,7 @@ export default function AdminUserStatsPage() {
   }
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {t('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading label={t('loading')} />
   }
 
   if (error || !user || !stats) {

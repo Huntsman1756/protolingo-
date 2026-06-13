@@ -4,6 +4,7 @@ import { Suspense, useCallback, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { Loader2 } from 'lucide-react'
 import { apiFetch } from '@/lib/api'
 import { useAuthStore } from '@/store/auth'
 
@@ -187,7 +188,14 @@ function LoginForm() {
               disabled={loading}
               className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 mt-2 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
             >
-              {loading ? t('signingIn') : t('submit')}
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 inline h-4 w-4 animate-spin" />
+                  {t('signingIn')}
+                </>
+              ) : (
+                t('submit')
+              )}
             </button>
           </form>
 

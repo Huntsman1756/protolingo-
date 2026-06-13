@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
@@ -56,13 +56,18 @@ export default function LanguageSwitcher() {
     }
   }
 
-  if (!activeLanguage) {
-    return (
+  const skeleton = useMemo(
+    () => (
       <div className="flex animate-pulse items-center gap-2 px-5 py-2.5">
         <div className="bg-fl-border h-3.5 w-5 rounded-sm" />
         <div className="bg-fl-border h-3 w-20 rounded" />
       </div>
-    )
+    ),
+    []
+  )
+
+  if (!activeLanguage) {
+    return skeleton
   }
 
   const multiple = userLanguages.length > 1

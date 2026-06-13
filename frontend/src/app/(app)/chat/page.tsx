@@ -12,6 +12,7 @@ import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
+import { PageLoading } from '@/components/ui/page-loading'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -46,8 +47,11 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [sending, setSending] = useState(false)
+  const [sendingWarn, setSendingWarn] = useState(false)
+  const sendingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [error, setError] = useState('')
   const [loadingConvs, setLoadingConvs] = useState(true)
+  const [convLoadError, setConvLoadError] = useState(false)
   const [loadingMsgs, setLoadingMsgs] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [deletePending, setDeletePending] = useState<number | null>(null)
@@ -68,6 +72,20 @@ export default function ChatPage() {
     setSidebarOpen(window.innerWidth >= 768)
   }, [])
 
+  // Warn if LLM takes longer than 60 s
+  useEffect(() => {
+    if (sending) {
+      setSendingWarn(false)
+      sendingTimerRef.current = setTimeout(() => setSendingWarn(true), 60_000)
+    } else {
+      if (sendingTimerRef.current) clearTimeout(sendingTimerRef.current)
+      setSendingWarn(false)
+    }
+    return () => {
+      if (sendingTimerRef.current) clearTimeout(sendingTimerRef.current)
+    }
+  }, [sending])
+
   const loadConversations = useCallback(async () => {
     try {
       const res = await apiFetch('/api/chat/conversations')
@@ -79,15 +97,20 @@ export default function ChatPage() {
     } catch {
       /* ignore */
     }
-    setConversations([])
-    return []
+    return null
   }, [])
 
   // Load conversations on mount, auto-select the most recent
   useEffect(() => {
     async function init() {
+      setConvLoadError(false)
       setLoadingConvs(true)
       const data = await loadConversations()
+      if (data === null) {
+        setConvLoadError(true)
+        setLoadingConvs(false)
+        return
+      }
       if (data.length > 0) {
         selectConversation(data[0].id)
       } else {
@@ -149,6 +172,10 @@ export default function ChatPage() {
     await apiFetch(`/api/chat/conversations/${id}`, { method: 'DELETE' })
     setDeletePending(null)
     const updated = await loadConversations()
+    if (updated === null) {
+      setConvLoadError(true)
+      return
+    }
     if (activeId === id) {
       if (updated.length > 0) {
         selectConversation(updated[0].id)
@@ -195,7 +222,7 @@ export default function ChatPage() {
             if (data.conversation_id && !activeId) {
               setActiveId(data.conversation_id)
               // Refresh sidebar with the new conversation
-              loadConversations().then((list) => setConversations(list))
+              loadConversations().then((list) => list && setConversations(list))
             }
             if (data.token) {
               assistantContent += data.token
@@ -210,7 +237,7 @@ export default function ChatPage() {
             }
             if (data.error) setError(data.error)
             if (data.done) {
-              loadConversations().then((list) => setConversations(list))
+              loadConversations().then((list) => list && setConversations(list))
             }
             if (data.memory_updated) {
               setMemoryToast(true)
@@ -266,9 +293,31 @@ export default function ChatPage() {
               </div>
               <div className="flex-1 overflow-y-auto">
                 {loadingConvs ? (
-                  <p className="text-fl-label text-fl-muted-4 animate-pulse px-4 py-4 font-mono">
-                    {tCommon('loading')}
-                  </p>
+                  <PageLoading fullScreen={false} className="block px-4 py-4" />
+                ) : convLoadError ? (
+                  <div className="flex flex-col items-center gap-3 px-4 py-6">
+                    <p className="text-fl-error font-mono text-xs">
+                      {tCommon('error')}
+                    </p>
+                    <button
+                      onClick={() => {
+                        setConvLoadError(false)
+                        setLoadingConvs(true)
+                        loadConversations()
+                          .then((data) => {
+                            if (data === null) {
+                              setConvLoadError(true)
+                            } else if (data.length > 0) {
+                              selectConversation(data[0].id)
+                            }
+                          })
+                          .finally(() => setLoadingConvs(false))
+                      }}
+                      className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors"
+                    >
+                      {tCommon('retry')}
+                    </button>
+                  </div>
                 ) : conversations.length === 0 ? (
                   <p className="text-fl-label text-fl-muted-4 px-4 py-4 font-mono">
                     {t('noConversation')}
@@ -333,9 +382,16 @@ export default function ChatPage() {
                   : t('newConversation')}
               </span>
               {sending ? (
-                <span className="text-fl-hint text-fl-muted-3 ml-auto animate-pulse font-mono tracking-widest uppercase">
-                  {t('thinking')}
-                </span>
+                <div className="ml-auto flex flex-col items-end gap-0.5">
+                  <span className="text-fl-hint text-fl-muted-3 animate-pulse font-mono tracking-widest uppercase">
+                    {t('thinking')}
+                  </span>
+                  {sendingWarn && (
+                    <span className="text-fl-hint font-mono tracking-widest text-amber-500 uppercase">
+                      {t('takingLonger')}
+                    </span>
+                  )}
+                </div>
               ) : messages.length > 0 ? (
                 <button
                   onClick={continueInVoice}
@@ -350,9 +406,7 @@ export default function ChatPage() {
             <div className="flex-1 space-y-4 overflow-y-auto px-6 py-4">
               {loadingMsgs ? (
                 <div className="flex h-full items-center justify-center">
-                  <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-                    {tCommon('loading')}
-                  </span>
+                  <PageLoading fullScreen={false} />
                 </div>
               ) : messages.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center gap-3 text-center">

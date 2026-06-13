@@ -4,6 +4,7 @@ import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { Loader2 } from 'lucide-react'
 import { apiFetch } from '@/lib/api'
 
 function ResetPasswordContent() {
@@ -104,7 +105,14 @@ function ResetPasswordContent() {
                 disabled={loading || !token}
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
               >
-                {loading ? t('saving') : t('submit')}
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 inline h-4 w-4 animate-spin" />
+                    {t('saving')}
+                  </>
+                ) : (
+                  t('submit')
+                )}
               </button>
               <Link
                 href="/login"

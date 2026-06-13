@@ -392,6 +392,8 @@
     "levelTest": {
       "title": "Niveauafsluitingstest",
       "loading": "Vragen laden...",
+      "loadingTest": "Test laden...",
+      "submittingTest": "Antwoorden verzenden...",
       "question": "Vraag",
       "of": "van",
       "confirm": "Antwoord bevestigen",
@@ -592,6 +594,7 @@
     "conversations": "Gesprekken",
     "loading": "Laden...",
     "thinking": "Nadenken...",
+    "takingLonger": "Duurt langer dan verwacht...",
     "errorMessage": "Er ging iets mis. Probeer opnieuw.",
     "deleteTitle": "Chat verwijderen",
     "deleteMessage": "Dit gesprek wordt permanent verwijderd.",
@@ -1099,7 +1102,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.8.0",
+    "version": "v1.8.1",
     "cta": "Begrepen",
     "entry1": {
       "label": "Nieuwe talen om te leren",
@@ -1135,6 +1138,7 @@
     "submit": "Antwoorden indienen",
     "generating": "Oefening genereren...",
     "generatingDesc": "De AI maakt een nieuwe oefening. Dit duurt ongeveer 30 seconden.",
+    "generatingLong": "Duurt langer dan verwacht...",
     "noExercises": "Geen oefeningen beschikbaar voor jouw niveau.",
     "generate": "Oefening genereren",
     "audioError": "Audio kan niet worden geladen",
@@ -1162,6 +1166,7 @@
     "submit": "Antwoorden indienen",
     "generating": "Oefening genereren...",
     "generatingDesc": "De AI maakt een nieuwe oefening. Dit duurt ongeveer 30 seconden.",
+    "generatingLong": "Duurt langer dan verwacht...",
     "noExercises": "Geen oefeningen beschikbaar voor jouw niveau.",
     "generate": "Oefening genereren",
     "alreadyAttempted": "Je hebt deze oefening al voltooid.",

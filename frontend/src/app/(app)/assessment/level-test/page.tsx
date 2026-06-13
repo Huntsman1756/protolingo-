@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PageLoading } from '@/components/ui/page-loading'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -210,9 +211,6 @@ export default function LevelTestPage() {
   if (showStartWarning) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          Loading test...
-        </span>
         <ConfirmDialog
           open={true}
           title={t('startWarningTitle')}
@@ -230,11 +228,13 @@ export default function LevelTestPage() {
 
   if (step === 'loading' || step === 'submitting') {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {step === 'loading' ? 'Loading test...' : 'Submitting answers...'}
-        </span>
-      </div>
+      <PageLoading
+        label={
+          step === 'loading'
+            ? t('levelTest.loadingTest')
+            : t('levelTest.submittingTest')
+        }
+      />
     )
   }
 

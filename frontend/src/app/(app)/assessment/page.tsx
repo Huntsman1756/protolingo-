@@ -14,6 +14,7 @@ import DurationSelector, {
 import { type AssessmentQuestion, type CEFRLevel } from '@/data/types'
 import { CEFR_LEVELS } from '@/data/curriculum'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PageLoading } from '@/components/ui/page-loading'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -292,11 +293,7 @@ export default function AssessmentPage() {
     (step === 'quiz' && (evaluating || !currentQuestion))
   ) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {evaluating ? t('evaluating') : tCommon('loading')}
-        </span>
-      </div>
+      <PageLoading label={evaluating ? t('evaluating') : tCommon('loading')} />
     )
   }
 
