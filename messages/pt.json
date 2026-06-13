@@ -17,11 +17,18 @@
     "feature6Title": "Progresso e sequências",
     "feature6Desc": "XP, sequências diárias, pontuações de habilidades e competências por unidade. Acompanhe seu crescimento semana a semana e teste seu nível ao final de cada etapa CEFR.",
     "footer": "Código aberto · Auto-hospede gratuitamente ou assine o serviço hospedado",
+    "navFeatures": "Funcionalidades",
+    "navPricing": "Preços",
+    "navFAQ": "FAQ",
+    "howItWorks": "Como funciona",
+    "faqTitle": "Perguntas frequentes",
     "terms": "Termos",
     "privacy": "Privacidade",
     "contact": "Contato",
     "aboutMe": "Sobre mim",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Produto",
+    "footerLegal": "Legal"
   },
   "common": {
     "loading": "Carregando...",
@@ -1098,11 +1105,18 @@
     "portalError": "Não foi possível abrir o portal de faturação. Tente novamente.",
     "openSourceTitle": "Código aberto",
     "openSourceDesc": "Autoaloje gratuitamente no seu servidor",
-    "openSourceCta": "Ver no GitHub"
+    "openSourceCta": "Ver no GitHub",
+    "planFreeBadge": "Grátis para sempre",
+    "priceAmount": "{amount}€",
+    "pricePerPeriod": "€/{period}",
+    "priceOriginal": "{price}€ / {period}",
+    "planFreePriceLabel": "Grátis",
+    "planFreeDesc": "Todo o essencial para começar a aprender",
+    "planFreeCta": "Começar"
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Entendido",
     "entry1": {
       "label": "Novos idiomas para aprender",

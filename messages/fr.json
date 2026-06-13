@@ -17,11 +17,18 @@
     "feature6Title": "Progrès et séries",
     "feature6Desc": "XP, séries quotidiennes, scores de compétences et aptitudes par unité. Suivez votre progression semaine après semaine et testez votre niveau à la fin de chaque étape CECRL.",
     "footer": "Open source · Auto-hébergez gratuitement ou abonnez-vous au service hébergé",
+    "navFeatures": "Fonctionnalités",
+    "navPricing": "Tarifs",
+    "navFAQ": "FAQ",
+    "howItWorks": "Comment ça marche",
+    "faqTitle": "Questions fréquentes",
     "terms": "CGU",
     "privacy": "Confidentialité",
     "contact": "Contact",
     "aboutMe": "À propos",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Produit",
+    "footerLegal": "Mentions légales"
   },
   "common": {
     "loading": "Chargement...",
@@ -1098,11 +1105,18 @@
     "portalError": "Impossible d'ouvrir le portail de facturation. Veuillez réessayer.",
     "openSourceTitle": "Open source",
     "openSourceDesc": "Hébergez-le gratuitement sur votre serveur",
-    "openSourceCta": "Voir sur GitHub"
+    "openSourceCta": "Voir sur GitHub",
+    "planFreeBadge": "Gratuit pour toujours",
+    "priceAmount": "{amount}€",
+    "pricePerPeriod": "€/{period}",
+    "priceOriginal": "{price}€ / {period}",
+    "planFreePriceLabel": "Gratuit",
+    "planFreeDesc": "Tout l'essentiel pour commencer à apprendre",
+    "planFreeCta": "Commencer"
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Compris",
     "entry1": {
       "label": "Nouvelles langues à apprendre",
