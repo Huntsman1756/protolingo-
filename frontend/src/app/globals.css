@@ -134,7 +134,7 @@
   }
 
   html {
-    @apply font-mono;
+    @apply scroll-smooth font-mono;
   }
 
   h1,

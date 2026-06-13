@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import PricingSection from '@/components/billing/PricingSection'
+import { LandingFAQ } from '@/components/ui/landing-faq'
 import { ContactButton } from '@/components/ui/contact-button'
 
 export const metadata: Metadata = {
@@ -62,9 +63,6 @@ export default async function Home() {
   const t = await getTranslations('landing')
   const tCommon = await getTranslations('common')
 
-  // Fetch Stripe config server-side to conditionally show pricing section.
-  // Use BACKEND_URL directly to avoid the Next.js rewrite proxy chain,
-  // which can fail in SSR context (self-referential fetch + SSL issues).
   let stripeEnabled = false
   let trialDays = 7
   let priceMonthly = 0.0
@@ -90,26 +88,49 @@ export default async function Home() {
   }
 
   return (
-    <div className="bg-fl-bg bg-dot-grid text-fl-fg flex min-h-screen flex-col">
+    <div className="bg-fl-bg bg-dot-grid text-fl-fg flex min-h-screen flex-col scroll-smooth">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
       {/* Nav */}
       <nav className="border-fl-border bg-fl-bg/80 sticky top-0 z-10 border-b backdrop-blur-sm">
-        <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
+        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <Image src="/logo.png" alt="FreeLingo" width={28} height={28} />
             <span className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
               FreeLingo
             </span>
           </div>
-          <Link
-            href={hasSession ? '/dashboard' : '/login'}
-            className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-5 py-2 font-mono text-xs tracking-widest uppercase transition-colors"
-          >
-            {hasSession ? t('dashboard') : t('signIn')}
-          </Link>
+          <div className="flex items-center gap-6">
+            <a
+              href="#features"
+              className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
+            >
+              {t('navFeatures')}
+            </a>
+            {stripeEnabled && (
+              <a
+                href="#pricing"
+                className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
+              >
+                {t('navPricing')}
+              </a>
+            )}
+            <a
+              href="#faq"
+              className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
+            >
+              {t('navFAQ')}
+            </a>
+            <Link
+              href={hasSession ? '/dashboard' : '/login'}
+              className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
+            >
+              {hasSession ? t('dashboard') : t('signIn')}
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -119,30 +140,38 @@ export default async function Home() {
           <Image
             src="/logo.png"
             alt="FreeLingo"
-            width={72}
-            height={72}
+            width={64}
+            height={64}
             className="mb-6 opacity-90"
           />
           <span className="text-fl-label text-fl-muted-2 mb-4 font-mono tracking-widest uppercase">
             {tCommon('tagline')}
           </span>
-          <h1 className="text-fl-fg mb-3 max-w-lg font-mono text-xl leading-snug font-bold md:text-2xl">
+          <h1 className="text-fl-fg mb-4 max-w-xl font-sans text-3xl leading-tight font-bold tracking-tight md:text-5xl">
             {t('hero')}
           </h1>
-          <p className="text-fl-muted-1 font-mono text-sm tracking-widest uppercase">
+          <p className="text-fl-muted-1 mb-8 max-w-lg font-sans text-base leading-relaxed md:text-lg">
             {t('heroSub')}
           </p>
         </div>
-        <Link
-          href={hasSession ? '/dashboard' : '/login'}
-          className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-8 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
-        >
-          {hasSession ? t('dashboard') : t('signIn')}
-        </Link>
+        <div className="flex flex-col items-center gap-3 sm:flex-row">
+          <Link
+            href={hasSession ? '/dashboard' : '/login'}
+            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 px-8 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
+          >
+            {hasSession ? t('dashboard') : t('signIn')}
+          </Link>
+          <a
+            href="#features"
+            className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-8 py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
+          >
+            {t('howItWorks')} ↓
+          </a>
+        </div>
       </section>
 
       {/* Features */}
-      <section className="mx-auto w-full max-w-4xl px-6 pb-24">
+      <section id="features" className="mx-auto w-full max-w-4xl px-6 pb-24">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {[
             { title: t('feature1Title'), desc: t('feature1Desc'), icon: '◎' },
@@ -170,16 +199,26 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Pricing — only shown when Stripe is enabled and user is not already subscribed */}
-      <PricingSection
-        stripeEnabled={stripeEnabled}
-        trialDays={trialDays}
-        hasSession={hasSession}
-        priceMonthly={priceMonthly}
-        priceYearly={priceYearly}
-        totalPriceMonthly={totalPriceMonthly}
-        totalPriceYearly={totalPriceYearly}
-      />
+      {/* Pricing */}
+      <div id="pricing">
+        <PricingSection
+          stripeEnabled={stripeEnabled}
+          trialDays={trialDays}
+          hasSession={hasSession}
+          priceMonthly={priceMonthly}
+          priceYearly={priceYearly}
+          totalPriceMonthly={totalPriceMonthly}
+          totalPriceYearly={totalPriceYearly}
+        />
+      </div>
+
+      {/* FAQ */}
+      <section id="faq" className="mx-auto w-full max-w-3xl px-6 pb-16">
+        <h2 className="text-fl-label text-fl-muted-2 mb-8 text-center font-mono tracking-widest uppercase">
+          {t('faqTitle')}
+        </h2>
+        <LandingFAQ />
+      </section>
 
       {/* Footer */}
       <footer className="border-fl-border border-t px-6 py-6">
