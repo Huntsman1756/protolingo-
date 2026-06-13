@@ -26,7 +26,9 @@
     "privacy": "Конфиденциальность",
     "contact": "Контакт",
     "aboutMe": "О себе",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Продукт",
+    "footerLegal": "Правовая информация"
   },
   "common": {
     "loading": "Загрузка...",
@@ -1103,11 +1105,12 @@
     "portalError": "Не удалось открыть портал оплаты. Попробуйте ещё раз.",
     "openSourceTitle": "Открытый исходный код",
     "openSourceDesc": "Бесплатно разверните на своём сервере",
-    "openSourceCta": "Посмотреть на GitHub"
+    "openSourceCta": "Посмотреть на GitHub",
+    "planFreeBadge": "Бесплатно навсегда"
   },
   "whatsNew": {
     "title": "Что нового",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Понятно",
     "entry1": {
       "label": "Новые языки для изучения",

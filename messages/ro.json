@@ -26,7 +26,9 @@
     "privacy": "Confidențialitate",
     "contact": "Contact",
     "aboutMe": "Despre mine",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Produs",
+    "footerLegal": "Juridic"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -1103,11 +1105,12 @@
     "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou.",
     "openSourceTitle": "Sursă deschisă",
     "openSourceDesc": "Găzduieşte-l gratuit pe propriul server",
-    "openSourceCta": "Vezi pe GitHub"
+    "openSourceCta": "Vezi pe GitHub",
+    "planFreeBadge": "Gratuit pentru totdeauna"
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Limbi noi de învățat",

@@ -26,7 +26,9 @@
     "privacy": "Privacy",
     "contact": "Contact",
     "aboutMe": "Over mij",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Product",
+    "footerLegal": "Juridisch"
   },
   "common": {
     "loading": "Laden...",
@@ -1103,11 +1105,12 @@
     "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw.",
     "openSourceTitle": "Open source",
     "openSourceDesc": "Gratis zelf hosten op je eigen server",
-    "openSourceCta": "Bekijk op GitHub"
+    "openSourceCta": "Bekijk op GitHub",
+    "planFreeBadge": "Voor altijd gratis"
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Begrepen",
     "entry1": {
       "label": "Nieuwe talen om te leren",

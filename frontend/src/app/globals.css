@@ -251,3 +251,17 @@ html[data-theme='light'] {
 .word-selectable *::selection {
   background: rgba(217, 119, 6, 0.35);
 }
+
+/* ── Scroll-reveal animation ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

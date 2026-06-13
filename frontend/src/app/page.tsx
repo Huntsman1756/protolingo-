@@ -3,8 +3,17 @@ import Image from 'next/image'
 import { cookies } from 'next/headers'
 import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
+import {
+  BookOpen,
+  MessageSquare,
+  Mic,
+  Headphones,
+  Layers,
+  TrendingUp,
+} from 'lucide-react'
 import PricingSection from '@/components/billing/PricingSection'
 import { LandingFAQ } from '@/components/ui/landing-faq'
+import { ScrollReveal } from '@/components/ui/scroll-reveal'
 import { ContactButton } from '@/components/ui/contact-button'
 
 export const metadata: Metadata = {
@@ -62,6 +71,7 @@ export default async function Home() {
   const hasSession = cookieStore.has('refresh_token')
   const t = await getTranslations('landing')
   const tCommon = await getTranslations('common')
+  const tBilling = await getTranslations('billing')
 
   let stripeEnabled = false
   let trialDays = 7
@@ -171,91 +181,179 @@ export default async function Home() {
       </section>
 
       {/* Features */}
-      <section id="features" className="mx-auto w-full max-w-4xl px-6 pb-24">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {[
-            { title: t('feature1Title'), desc: t('feature1Desc'), icon: '◎' },
-            { title: t('feature2Title'), desc: t('feature2Desc'), icon: '▣' },
-            { title: t('feature3Title'), desc: t('feature3Desc'), icon: '△' },
-            { title: t('feature4Title'), desc: t('feature4Desc'), icon: '◈' },
-            { title: t('feature5Title'), desc: t('feature5Desc'), icon: '◻' },
-            { title: t('feature6Title'), desc: t('feature6Desc'), icon: '◇' },
-          ].map((f) => (
-            <div
-              key={f.title}
-              className="border-fl-border bg-fl-surface border p-6"
-            >
-              <div className="border-fl-border mb-4 flex items-center gap-2 border-b pb-3">
-                <span className="text-fl-muted-2 text-sm">{f.icon}</span>
-                <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
-                  {f.title}
-                </span>
+      <ScrollReveal>
+        <section id="features" className="mx-auto w-full max-w-4xl px-6 pb-24">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {[
+              {
+                title: t('feature1Title'),
+                desc: t('feature1Desc'),
+                Icon: BookOpen,
+              },
+              {
+                title: t('feature2Title'),
+                desc: t('feature2Desc'),
+                Icon: MessageSquare,
+              },
+              { title: t('feature3Title'), desc: t('feature3Desc'), Icon: Mic },
+              {
+                title: t('feature4Title'),
+                desc: t('feature4Desc'),
+                Icon: Headphones,
+              },
+              {
+                title: t('feature5Title'),
+                desc: t('feature5Desc'),
+                Icon: Layers,
+              },
+              {
+                title: t('feature6Title'),
+                desc: t('feature6Desc'),
+                Icon: TrendingUp,
+              },
+            ].map(({ title, desc, Icon }) => (
+              <div
+                key={title}
+                className="border-fl-border bg-fl-surface border p-6"
+              >
+                <div className="border-fl-border mb-4 flex items-center gap-2 border-b pb-3">
+                  <Icon className="text-fl-muted-2 h-4 w-4" />
+                  <span className="text-fl-label text-fl-muted-2 font-sans text-sm font-semibold tracking-tight">
+                    {title}
+                  </span>
+                </div>
+                <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                  {desc}
+                </p>
               </div>
-              <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
-                {f.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* Pricing */}
-      <div id="pricing">
-        <PricingSection
-          stripeEnabled={stripeEnabled}
-          trialDays={trialDays}
-          hasSession={hasSession}
-          priceMonthly={priceMonthly}
-          priceYearly={priceYearly}
-          totalPriceMonthly={totalPriceMonthly}
-          totalPriceYearly={totalPriceYearly}
-        />
-      </div>
+      <ScrollReveal>
+        <div id="pricing">
+          <PricingSection
+            stripeEnabled={stripeEnabled}
+            trialDays={trialDays}
+            hasSession={hasSession}
+            priceMonthly={priceMonthly}
+            priceYearly={priceYearly}
+            totalPriceMonthly={totalPriceMonthly}
+            totalPriceYearly={totalPriceYearly}
+          />
+        </div>
+      </ScrollReveal>
 
-      {/* FAQ */}
-      <section id="faq" className="mx-auto w-full max-w-3xl px-6 pb-16">
-        <h2 className="text-fl-label text-fl-muted-2 mb-8 text-center font-mono tracking-widest uppercase">
-          {t('faqTitle')}
-        </h2>
-        <LandingFAQ />
-      </section>
-
-      {/* Footer */}
-      <footer className="border-fl-border border-t px-6 py-6">
-        <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-3 md:flex-row">
-          <span className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
-            © {new Date().getFullYear()} FreeLingo
-          </span>
-          <div className="flex gap-6">
-            <ContactButton />
-            <a
-              href="https://arturocarreterocalvo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
-            >
-              {t('aboutMe')}
-            </a>
+      {/* Open Source */}
+      <ScrollReveal>
+        <section className="mx-auto w-full max-w-4xl px-6 pb-16">
+          <div className="border-fl-border bg-fl-surface flex flex-col items-center justify-between gap-4 border px-8 py-5 sm:flex-row">
+            <div className="flex items-center gap-4">
+              <Image
+                src="/github.svg"
+                alt="GitHub"
+                width={20}
+                height={20}
+                className="block opacity-80 dark:hidden"
+              />
+              <Image
+                src="/github_white.svg"
+                alt="GitHub"
+                width={20}
+                height={20}
+                className="hidden opacity-80 dark:block"
+              />
+              <div className="text-left">
+                <p className="text-fl-fg font-sans text-sm font-semibold tracking-tight">
+                  {tBilling('openSourceTitle')}
+                </p>
+                <p className="text-fl-hint text-fl-muted-2 mt-0.5 font-mono tracking-widest uppercase">
+                  {tBilling('openSourceDesc')}
+                </p>
+              </div>
+            </div>
             <a
               href="https://github.com/ArtCC/freelingo"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
+              className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-6 py-2.5 font-mono text-xs font-bold tracking-widest whitespace-nowrap uppercase transition-colors"
             >
-              {t('github')}
+              {tBilling('openSourceCta')}
             </a>
-            <Link
-              href="/privacy?from=landing"
-              className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
-            >
-              {t('privacy')}
-            </Link>
-            <Link
-              href="/terms?from=landing"
-              className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
-            >
-              {t('terms')}
-            </Link>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* FAQ */}
+      <ScrollReveal>
+        <section id="faq" className="mx-auto w-full max-w-3xl px-6 pb-16">
+          <h2 className="text-fl-label text-fl-muted-2 mb-8 text-center font-mono tracking-widest uppercase">
+            {t('faqTitle')}
+          </h2>
+          <LandingFAQ />
+        </section>
+      </ScrollReveal>
+
+      {/* Footer */}
+      <footer className="border-fl-border border-t px-6 py-10">
+        <div className="mx-auto grid max-w-4xl grid-cols-2 gap-8 md:grid-cols-4">
+          <div>
+            <span className="text-fl-hint text-fl-muted-3 block font-mono tracking-widest uppercase">
+              FreeLingo
+            </span>
+            <span className="text-fl-hint text-fl-muted-4 mt-2 block font-mono leading-relaxed">
+              © {new Date().getFullYear()}
+            </span>
+          </div>
+          <div>
+            <h4 className="text-fl-label text-fl-muted-2 mb-3 font-sans text-sm font-semibold tracking-tight">
+              {t('footerProduct')}
+            </h4>
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://arturocarreterocalvo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
+              >
+                {t('aboutMe')}
+              </a>
+              <a
+                href="https://github.com/ArtCC/freelingo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
+              >
+                {t('github')}
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 className="text-fl-label text-fl-muted-2 mb-3 font-sans text-sm font-semibold tracking-tight">
+              {t('footerLegal')}
+            </h4>
+            <div className="flex flex-col gap-2">
+              <Link
+                href="/privacy?from=landing"
+                className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
+              >
+                {t('privacy')}
+              </Link>
+              <Link
+                href="/terms?from=landing"
+                className="text-fl-hint text-fl-muted-3 hover:text-fl-muted-1 font-mono tracking-widest uppercase transition-colors"
+              >
+                {t('terms')}
+              </Link>
+            </div>
+          </div>
+          <div>
+            <h4 className="text-fl-label text-fl-muted-2 mb-3 font-sans text-sm font-semibold tracking-tight">
+              {t('contact')}
+            </h4>
+            <ContactButton />
           </div>
         </div>
       </footer>
