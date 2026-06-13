@@ -1106,7 +1106,13 @@
     "openSourceTitle": "Открытый исходный код",
     "openSourceDesc": "Бесплатно разверните на своём сервере",
     "openSourceCta": "Посмотреть на GitHub",
-    "planFreeBadge": "Бесплатно навсегда"
+    "planFreeBadge": "Бесплатно навсегда",
+    "priceAmount": "{amount} ₽",
+    "pricePerPeriod": " ₽/{period}",
+    "priceOriginal": "{price} ₽ / {period}",
+    "planFreePriceLabel": "Бесплатно",
+    "planFreeDesc": "Всё необходимое для начала обучения",
+    "planFreeCta": "Начать"
   },
   "whatsNew": {
     "title": "Что нового",

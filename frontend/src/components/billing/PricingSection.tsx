@@ -102,14 +102,15 @@ export default function PricingSection({
 
   const plans = [
     {
-      name: tBilling('planFreeName'),
+      name: tBilling('planFreeBadge'),
       icon: planIcons[0],
       price: null,
       priceLabel: null,
-      badge: tBilling('planFreeBadge'),
-      badgeStyle: 'text-fl-muted-2 border-fl-border bg-fl-bg-alt',
+      badge: null,
+      desc: tBilling('planFreeDesc'),
+      badgeStyle: '',
       href: hasSession ? '/dashboard' : '/register',
-      cta: tBilling('ctaRegister'),
+      cta: tBilling('planFreeCta'),
       isFree: true,
     },
     {
@@ -119,6 +120,7 @@ export default function PricingSection({
       priceLabel: tBilling('month'),
       originalPrice: totalPriceMonthly,
       badge: tBilling('trialBadge'),
+      desc: null,
       badgeStyle: 'text-fl-accent border-fl-accent/30',
       href: hasSession ? '/dashboard' : '/register',
       cta: tBilling('ctaRegister'),
@@ -131,6 +133,7 @@ export default function PricingSection({
       priceLabel: tBilling('year'),
       originalPrice: totalPriceYearly,
       badge: tBilling('bestValue'),
+      desc: null,
       badgeStyle: 'text-fl-accent border-fl-accent/30',
       href: hasSession ? '/dashboard' : '/register',
       cta: tBilling('ctaRegister'),
@@ -183,12 +186,17 @@ export default function PricingSection({
               {plan.price !== null ? (
                 <>
                   <p className="text-fl-muted-2 font-mono text-sm line-through">
-                    {plan.originalPrice} € / {plan.priceLabel}
+                    {tBilling('priceOriginal', {
+                      price: plan.originalPrice,
+                      period: plan.priceLabel,
+                    })}
                   </p>
                   <p className="text-fl-fg flex items-baseline gap-2 font-mono text-xl font-bold">
-                    {plan.price}
+                    {tBilling('priceAmount', { amount: plan.price })}
                     <span className="text-fl-muted-1 text-sm">
-                      € / {plan.priceLabel}
+                      {tBilling('pricePerPeriod', {
+                        period: plan.priceLabel,
+                      })}
                     </span>
                   </p>
                 </>
@@ -200,7 +208,9 @@ export default function PricingSection({
                   >
                     &nbsp;
                   </p>
-                  <p className="text-fl-fg font-mono text-xl font-bold">€0</p>
+                  <p className="text-fl-muted-1 font-sans text-sm leading-relaxed">
+                    {plan.desc}
+                  </p>
                 </>
               )}
 

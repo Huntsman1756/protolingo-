@@ -1106,7 +1106,13 @@
     "openSourceTitle": "Sursă deschisă",
     "openSourceDesc": "Găzduieşte-l gratuit pe propriul server",
     "openSourceCta": "Vezi pe GitHub",
-    "planFreeBadge": "Gratuit pentru totdeauna"
+    "planFreeBadge": "Gratuit pentru totdeauna",
+    "priceAmount": "{amount} lei",
+    "pricePerPeriod": " lei/{period}",
+    "priceOriginal": "{price} lei / {period}",
+    "planFreePriceLabel": "Gratuit",
+    "planFreeDesc": "Tot ce ai nevoie pentru a începe să înveți",
+    "planFreeCta": "Începe"
   },
   "whatsNew": {
     "title": "Noutăți",

@@ -1106,7 +1106,13 @@
     "openSourceTitle": "Open source",
     "openSourceDesc": "Ospitalo gratis sul tuo server",
     "openSourceCta": "Vedi su GitHub",
-    "planFreeBadge": "Gratis per sempre"
+    "planFreeBadge": "Gratis per sempre",
+    "priceAmount": "{amount}€",
+    "pricePerPeriod": "€/{period}",
+    "priceOriginal": "{price}€ / {period}",
+    "planFreePriceLabel": "Gratis",
+    "planFreeDesc": "Tutto l'essenziale per iniziare a imparare",
+    "planFreeCta": "Inizia"
   },
   "whatsNew": {
     "title": "Novità",
