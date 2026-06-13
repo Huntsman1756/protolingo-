@@ -251,7 +251,7 @@ export default function AdminUsersPage() {
       <div
         className={`border px-5 py-4 ${maintenanceMode ? 'border-yellow-500/40 bg-yellow-500/5' : 'border-fl-border bg-fl-surface'}`}
       >
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="mb-1 flex items-center gap-2">
               <span
@@ -444,7 +444,7 @@ export default function AdminUsersPage() {
           </span>
         </div>
         {/* Search & filter */}
-        <div className="border-fl-border flex gap-2 border-b px-6 py-3">
+        <div className="border-fl-border flex flex-wrap gap-2 border-b px-6 py-3">
           <input
             type="search"
             placeholder={t('searchPlaceholder')}
