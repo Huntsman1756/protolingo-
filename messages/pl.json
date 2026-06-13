@@ -17,11 +17,18 @@
     "feature6Title": "Postęp i serie",
     "feature6Desc": "XP, codzienne serie, wyniki umiejętności i kompetencje jednostkowe. Śledź swój rozwój tydzień po tygodniu i testuj poziom na końcu każdego etapu CEFR.",
     "footer": "Open source · Hostuj samodzielnie za darmo lub subskrybuj usługę hostowaną",
+    "navFeatures": "Funkcje",
+    "navPricing": "Ceny",
+    "navFAQ": "FAQ",
+    "howItWorks": "Jak to działa",
+    "faqTitle": "Często zadawane pytania",
     "terms": "Regulamin",
     "privacy": "Prywatność",
     "contact": "Kontakt",
     "aboutMe": "O mnie",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Produkt",
+    "footerLegal": "Prawne"
   },
   "common": {
     "loading": "Ładowanie...",
@@ -1098,11 +1105,12 @@
     "portalError": "Nie można otworzyć portalu rozliczeń. Spróbuj ponownie.",
     "openSourceTitle": "Otwarte źródło",
     "openSourceDesc": "Bezpłatnie hostuj na własnym serwerze",
-    "openSourceCta": "Zobacz na GitHubie"
+    "openSourceCta": "Zobacz na GitHubie",
+    "planFreeBadge": "Darmowy na zawsze"
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Nowe języki do nauki",

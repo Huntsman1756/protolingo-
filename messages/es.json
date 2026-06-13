@@ -17,11 +17,18 @@
     "feature6Title": "Progreso y rachas",
     "feature6Desc": "XP, rachas diarias, puntuaciones de habilidades y competencias por unidad. Sigue tu evolución semana a semana y pon a prueba tu nivel al final de cada etapa MCER.",
     "footer": "Código abierto · Autoalójalo gratis o suscríbete al servicio alojado",
+    "navFeatures": "Funcionalidades",
+    "navPricing": "Precios",
+    "navFAQ": "FAQ",
+    "howItWorks": "Cómo funciona",
+    "faqTitle": "Preguntas frecuentes",
     "terms": "Términos",
     "privacy": "Privacidad",
     "contact": "Contacto",
     "aboutMe": "Sobre mí",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Producto",
+    "footerLegal": "Legal"
   },
   "common": {
     "loading": "Cargando...",
@@ -1098,11 +1105,12 @@
     "portalError": "No se pudo abrir el portal de facturación. Inténtalo de nuevo.",
     "openSourceTitle": "Código abierto",
     "openSourceDesc": "Autoalójalo gratis en tu propio servidor",
-    "openSourceCta": "Ver en GitHub"
+    "openSourceCta": "Ver en GitHub",
+    "planFreeBadge": "Gratis para siempre"
   },
   "whatsNew": {
     "title": "Novedades",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Entendido",
     "entry1": {
       "label": "Nuevos idiomas para aprender",

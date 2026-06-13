@@ -17,11 +17,18 @@
     "feature6Title": "Progres și serii",
     "feature6Desc": "XP, serii zilnice, scoruri de competențe și aptitudini pe unitate. Urmărește-ți evoluția săptămână după săptămână și testează-ți nivelul la sfârșitul fiecărei etape CEFR.",
     "footer": "Sursă deschisă · Găzduire proprie gratuită sau abonament la serviciul găzduit",
+    "navFeatures": "Funcționalități",
+    "navPricing": "Prețuri",
+    "navFAQ": "FAQ",
+    "howItWorks": "Cum funcționează",
+    "faqTitle": "Întrebări frecvente",
     "terms": "Termeni și condiții",
     "privacy": "Confidențialitate",
     "contact": "Contact",
     "aboutMe": "Despre mine",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Produs",
+    "footerLegal": "Juridic"
   },
   "common": {
     "loading": "Se încarcă...",
@@ -1098,11 +1105,12 @@
     "portalError": "Nu s-a putut deschide portalul de facturare. Încearcă din nou.",
     "openSourceTitle": "Sursă deschisă",
     "openSourceDesc": "Găzduieşte-l gratuit pe propriul server",
-    "openSourceCta": "Vezi pe GitHub"
+    "openSourceCta": "Vezi pe GitHub",
+    "planFreeBadge": "Gratuit pentru totdeauna"
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Limbi noi de învățat",

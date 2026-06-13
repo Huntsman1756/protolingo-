@@ -17,11 +17,18 @@
     "feature6Title": "Voortgang & reeksen",
     "feature6Desc": "XP, dagelijkse reeksen, vaardigheidsscores en eenheidscompetenties. Volg je groei week na week en test je niveau aan het einde van elke CEFR-fase.",
     "footer": "Open source · Zelf hosten gratis of abonneer op de gehoste dienst",
+    "navFeatures": "Functies",
+    "navPricing": "Prijzen",
+    "navFAQ": "FAQ",
+    "howItWorks": "Hoe het werkt",
+    "faqTitle": "Veelgestelde vragen",
     "terms": "Gebruiksvoorwaarden",
     "privacy": "Privacy",
     "contact": "Contact",
     "aboutMe": "Over mij",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Product",
+    "footerLegal": "Juridisch"
   },
   "common": {
     "loading": "Laden...",
@@ -1098,11 +1105,12 @@
     "portalError": "Factureringsportaal kon niet worden geopend. Probeer opnieuw.",
     "openSourceTitle": "Open source",
     "openSourceDesc": "Gratis zelf hosten op je eigen server",
-    "openSourceCta": "Bekijk op GitHub"
+    "openSourceCta": "Bekijk op GitHub",
+    "planFreeBadge": "Voor altijd gratis"
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Begrepen",
     "entry1": {
       "label": "Nieuwe talen om te leren",

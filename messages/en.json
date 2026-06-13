@@ -17,11 +17,18 @@
     "feature6Title": "Progress & Streaks",
     "feature6Desc": "XP, daily streaks, skill scores and unit competencies. Track your growth week by week and test your level at the end of each CEFR stage.",
     "footer": "Open source · Self-host free or subscribe to the hosted service",
+    "navFeatures": "Features",
+    "navPricing": "Pricing",
+    "navFAQ": "FAQ",
+    "howItWorks": "How it works",
+    "faqTitle": "Frequently Asked Questions",
     "terms": "Terms",
     "privacy": "Privacy",
     "contact": "Contact",
     "aboutMe": "About me",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Product",
+    "footerLegal": "Legal"
   },
   "common": {
     "loading": "Loading...",
@@ -1098,11 +1105,12 @@
     "portalError": "Unable to open billing portal. Please try again.",
     "openSourceTitle": "Open source",
     "openSourceDesc": "Free to self-host on your own server",
-    "openSourceCta": "View on GitHub"
+    "openSourceCta": "View on GitHub",
+    "planFreeBadge": "Free Forever"
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Got it",
     "entry1": {
       "label": "New languages to learn",

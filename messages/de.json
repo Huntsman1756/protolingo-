@@ -17,11 +17,18 @@
     "feature6Title": "Fortschritt & Serien",
     "feature6Desc": "XP, tägliche Serien, Kompetenzwerte und Einheitenkompetenzen. Verfolge dein Wachstum Woche für Woche und teste dein Niveau am Ende jeder CEFR-Stufe.",
     "footer": "Open Source · Selbst hosten (kostenlos) oder gehosteten Dienst abonnieren",
+    "navFeatures": "Funktionen",
+    "navPricing": "Preise",
+    "navFAQ": "FAQ",
+    "howItWorks": "So funktioniert's",
+    "faqTitle": "Häufige Fragen",
     "terms": "AGB",
     "privacy": "Datenschutz",
     "contact": "Kontakt",
     "aboutMe": "Über mich",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Produkt",
+    "footerLegal": "Rechtliches"
   },
   "common": {
     "loading": "Laden...",
@@ -1098,11 +1105,12 @@
     "portalError": "Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen.",
     "openSourceTitle": "Open Source",
     "openSourceDesc": "Kostenlos selbst hosten auf deinem Server",
-    "openSourceCta": "Auf GitHub ansehen"
+    "openSourceCta": "Auf GitHub ansehen",
+    "planFreeBadge": "Für immer kostenlos"
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Verstanden",
     "entry1": {
       "label": "Neue Lernsprachen",

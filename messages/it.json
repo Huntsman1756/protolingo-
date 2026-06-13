@@ -17,11 +17,18 @@
     "feature6Title": "Progressi e serie",
     "feature6Desc": "XP, serie giornaliere, punteggi di abilità e competenze per unità. Monitora la tua crescita settimana per settimana e metti alla prova il tuo livello alla fine di ogni fase QCER.",
     "footer": "Open source · Self-hostalo gratis o abbonati al servizio ospitato",
+    "navFeatures": "Funzionalità",
+    "navPricing": "Prezzi",
+    "navFAQ": "FAQ",
+    "howItWorks": "Come funziona",
+    "faqTitle": "Domande frequenti",
     "terms": "Termini",
     "privacy": "Privacy",
     "contact": "Contatto",
     "aboutMe": "Chi sono",
-    "github": "GitHub"
+    "github": "GitHub",
+    "footerProduct": "Prodotto",
+    "footerLegal": "Legale"
   },
   "common": {
     "loading": "Caricamento...",
@@ -1098,11 +1105,12 @@
     "portalError": "Impossibile aprire il portale di fatturazione. Riprova.",
     "openSourceTitle": "Open source",
     "openSourceDesc": "Ospitalo gratis sul tuo server",
-    "openSourceCta": "Vedi su GitHub"
+    "openSourceCta": "Vedi su GitHub",
+    "planFreeBadge": "Gratis per sempre"
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.8.1",
+    "version": "v1.8.2",
     "cta": "Capito",
     "entry1": {
       "label": "Nuove lingue da imparare",
