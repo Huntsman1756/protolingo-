@@ -392,6 +392,8 @@
     "levelTest": {
       "title": "Test ukończenia poziomu",
       "loading": "Ładowanie pytań...",
+      "loadingTest": "Ładowanie testu...",
+      "submittingTest": "Wysyłanie odpowiedzi...",
       "question": "Pytanie",
       "of": "z",
       "confirm": "Potwierdź odpowiedź",
@@ -592,6 +594,7 @@
     "conversations": "Rozmowy",
     "loading": "Ładowanie...",
     "thinking": "Myślenie...",
+    "takingLonger": "Trwa to dłużej niż oczekiwano...",
     "errorMessage": "Coś poszło nie tak. Spróbuj ponownie.",
     "deleteTitle": "Usuń czat",
     "deleteMessage": "Ta rozmowa zostanie trwale usunięta.",
@@ -1099,7 +1102,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.8.0",
+    "version": "v1.8.1",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Nowe języki do nauki",
@@ -1135,6 +1138,7 @@
     "submit": "Prześlij odpowiedzi",
     "generating": "Generowanie ćwiczenia...",
     "generatingDesc": "AI tworzy nowe ćwiczenie. Zajmuje to około 30 sekund.",
+    "generatingLong": "Trwa to dłużej niż oczekiwano...",
     "noExercises": "Brak ćwiczeń dla twojego poziomu.",
     "generate": "Generuj ćwiczenie",
     "audioError": "Nie można załadować audio",
@@ -1162,6 +1166,7 @@
     "submit": "Prześlij odpowiedzi",
     "generating": "Generowanie ćwiczenia...",
     "generatingDesc": "AI tworzy nowe ćwiczenie. Zajmuje to około 30 sekund.",
+    "generatingLong": "Trwa to dłużej niż oczekiwano...",
     "noExercises": "Brak ćwiczeń dla twojego poziomu.",
     "generate": "Generuj ćwiczenie",
     "alreadyAttempted": "To ćwiczenie zostało już ukończone.",

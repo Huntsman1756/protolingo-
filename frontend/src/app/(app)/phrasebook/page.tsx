@@ -10,6 +10,7 @@ import {
 import type { CEFRLevel } from '@/data/types'
 import { useLanguageStore } from '@/store/language'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
+import { PageLoading } from '@/components/ui/page-loading'
 
 const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
 const REGISTERS: Register[] = ['formal', 'neutral', 'informal']
@@ -161,13 +162,7 @@ export default function PhrasebookPage() {
   const totalPhrases = categories.reduce((acc, c) => acc + c.phrases.length, 0)
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading />
   }
 
   if (loadError) {

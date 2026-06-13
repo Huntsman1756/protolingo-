@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 import { useTranslations } from 'next-intl'
+import { PageLoading } from '@/components/ui/page-loading'
 import { apiFetch } from '@/lib/api'
 import { useLanguageStore } from '@/store/language'
 import NoPlanBanner from '@/components/plan/NoPlanBanner'
@@ -212,13 +213,7 @@ export default function ProgressPage() {
   const compMap = Object.fromEntries(competencies.map((c) => [c.unit_id, c]))
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {t('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading label={t('loading')} />
   }
 
   if (!plan) {

@@ -10,22 +10,21 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import type { ChatContextItem } from '@/lib/conversation-ws'
+import { PageLoading } from '@/components/ui/page-loading'
 import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { apiFetch } from '@/lib/api'
 import { useLanguageStore } from '@/store/language'
 
+function ConversationLoading() {
+  return <PageLoading minHeight="min-h-[calc(100vh-56px)] md:min-h-screen" />
+}
+
 const ConversationMode = dynamic(
   () => import('@/components/conversation/ConversationMode'),
   {
     ssr: false,
-    loading: () => (
-      <div className="flex min-h-[calc(100vh-56px)] items-center justify-center md:min-h-screen">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          ● Loading...
-        </span>
-      </div>
-    ),
+    loading: ConversationLoading,
   }
 )
 

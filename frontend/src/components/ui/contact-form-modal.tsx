@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
+import { Loader2 } from 'lucide-react'
 
 interface ContactFormModalProps {
   open: boolean
@@ -187,7 +188,15 @@ export function ContactFormModal({ open, onClose }: ContactFormModalProps) {
                 disabled={isLoading}
                 className="bg-fl-fg text-fl-bg text-fl-label hover:bg-fl-fg-bright flex-1 py-3 font-mono font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
               >
-                — {isLoading ? t('sending') : t('send')}
+                —{' '}
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 inline h-4 w-4 animate-spin" />
+                    {t('sending')}
+                  </>
+                ) : (
+                  t('send')
+                )}
               </button>
             </div>
           </form>

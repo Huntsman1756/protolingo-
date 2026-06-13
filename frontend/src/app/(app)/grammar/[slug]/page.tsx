@@ -7,6 +7,7 @@ import { use } from 'react'
 import { useTranslations } from 'next-intl'
 import { getGrammarTopics, type GrammarTopic } from '@/data/grammar'
 import { useLanguageStore } from '@/store/language'
+import { PageLoading } from '@/components/ui/page-loading'
 
 function renderExplanation(text: string) {
   const lines = text.split('\n')
@@ -107,13 +108,7 @@ export default function GrammarDetailPage({
   }, [activeLanguage?.code, fetchTopics])
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading />
   }
 
   if (loadError) {

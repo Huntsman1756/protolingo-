@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PageLoading } from '@/components/ui/page-loading'
+import { Pagination } from '@/components/ui/pagination'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -188,13 +190,7 @@ export default function AdminFeedbackPage() {
   ]
 
   if (loading && entries.length === 0) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tAdmin('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading label={tAdmin('loading')} />
   }
 
   return (
@@ -364,27 +360,13 @@ export default function AdminFeedbackPage() {
       </div>
 
       {/* Pagination */}
-      {total > PAGE_SIZE && (
-        <div className="border-fl-border bg-fl-surface flex items-center justify-between border px-6 py-3">
-          <button
-            onClick={() => setPage((p) => Math.max(0, p - 1))}
-            disabled={page === 0}
-            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
-          >
-            {tAdmin('prevPage')}
-          </button>
-          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest">
-            {page + 1} / {Math.ceil(total / PAGE_SIZE)}
-          </span>
-          <button
-            onClick={() => setPage((p) => p + 1)}
-            disabled={(page + 1) * PAGE_SIZE >= total}
-            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-20"
-          >
-            {tAdmin('nextPage')}
-          </button>
-        </div>
-      )}
+      <Pagination
+        page={page}
+        totalPages={Math.ceil(total / PAGE_SIZE)}
+        onPageChange={setPage}
+        prevLabel={tAdmin('prevPage')}
+        nextLabel={tAdmin('nextPage')}
+      />
 
       {/* Confirm delete */}
       <ConfirmDialog
