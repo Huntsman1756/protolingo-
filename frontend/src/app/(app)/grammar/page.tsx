@@ -7,6 +7,7 @@ import { getGrammarTopics, type GrammarTopic } from '@/data/grammar'
 import type { GrammarCategory } from '@/data/types'
 import { CEFR_LEVELS } from '@/data/curriculum'
 import { useLanguageStore } from '@/store/language'
+import { PageLoading } from '@/components/ui/page-loading'
 
 function TopicCard({ topic }: { topic: GrammarTopic }) {
   return (
@@ -92,13 +93,7 @@ export default function GrammarIndexPage() {
   }, [topics, allCategories])
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading />
   }
 
   if (loadError) {

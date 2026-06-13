@@ -12,6 +12,7 @@ import {
 } from '@/lib/target-languages'
 import TargetLanguageSelector from '@/components/TargetLanguageSelector'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { PageLoading } from '@/components/ui/page-loading'
 import type { UserLanguageInfo } from '@/store/language'
 
 export default function MyLanguagesPage() {
@@ -141,11 +142,7 @@ export default function MyLanguagesPage() {
 
       {/* Language cards */}
       {loading ? (
-        <div className="flex items-center justify-center py-16">
-          <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-            {tCommon('loading')}
-          </span>
-        </div>
+        <PageLoading />
       ) : userLanguages.length === 0 ? (
         <div className="border-fl-border bg-fl-surface border px-6 py-10 text-center">
           <p className="text-fl-muted-2 font-mono text-sm">

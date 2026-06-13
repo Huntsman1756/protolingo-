@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
+import { PageLoading } from '@/components/ui/page-loading'
+import { Pagination } from '@/components/ui/pagination'
 
 interface VocabItem {
   id: number
@@ -113,9 +115,7 @@ export default function VocabularyPage() {
       {/* List */}
       <div className="border-fl-border bg-fl-surface border">
         {loading ? (
-          <p className="text-fl-muted-3 animate-pulse p-5 font-mono text-xs tracking-widest uppercase">
-            {tCommon('loading')}
-          </p>
+          <PageLoading fullScreen={false} className="block p-5" />
         ) : items.length === 0 ? (
           <p className="text-fl-muted-3 p-5 font-mono text-xs tracking-widest uppercase">
             {debouncedSearch ? tCommon('noResults') : t('myVocabularyEmpty')}
@@ -156,27 +156,16 @@ export default function VocabularyPage() {
       </div>
 
       {/* Pagination */}
-      {pages > 1 && (
-        <div className="flex items-center justify-between gap-2">
-          <button
-            onClick={() => setPage((p) => Math.max(1, p - 1))}
-            disabled={page <= 1 || loading}
-            className="text-fl-label border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            ← {t('vocabularyPrev')}
-          </button>
-          <span className="text-fl-hint text-fl-muted-3 font-mono tracking-widest">
-            {t('vocabularyPageInfo', { page, pages })}
-          </span>
-          <button
-            onClick={() => setPage((p) => Math.min(pages, p + 1))}
-            disabled={page >= pages || loading}
-            className="text-fl-label border-fl-border text-fl-muted-2 hover:text-fl-fg hover:border-fl-border-2 border px-4 py-2 font-mono tracking-widest uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {t('vocabularyNext')} →
-          </button>
-        </div>
-      )}
+      <Pagination
+        page={page - 1}
+        totalPages={pages}
+        loading={loading}
+        onPageChange={(p) => setPage(p + 1)}
+        prevLabel={`← ${t('vocabularyPrev')}`}
+        nextLabel={`${t('vocabularyNext')} →`}
+        pageInfo={t('vocabularyPageInfo', { page, pages })}
+        className="gap-2 border-0 bg-transparent"
+      />
     </div>
   )
 }

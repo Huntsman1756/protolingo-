@@ -392,6 +392,8 @@
     "levelTest": {
       "title": "Level Completion Test",
       "loading": "Loading questions...",
+      "loadingTest": "Loading test...",
+      "submittingTest": "Submitting answers...",
       "question": "Question",
       "of": "of",
       "confirm": "Confirm Answer",
@@ -592,6 +594,7 @@
     "conversations": "Conversations",
     "loading": "Loading...",
     "thinking": "Thinking...",
+    "takingLonger": "Taking longer than expected...",
     "errorMessage": "Something went wrong. Please try again.",
     "deleteTitle": "Delete Chat",
     "deleteMessage": "This conversation will be permanently deleted.",
@@ -1099,7 +1102,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.8.0",
+    "version": "v1.8.1",
     "cta": "Got it",
     "entry1": {
       "label": "New languages to learn",
@@ -1135,6 +1138,7 @@
     "submit": "Submit answers",
     "generating": "Generating exercise...",
     "generatingDesc": "AI is creating a new exercise. This usually takes about 30 seconds.",
+    "generatingLong": "Taking longer than expected...",
     "noExercises": "No exercises available for your level.",
     "generate": "Generate exercise",
     "audioError": "Unable to load audio",
@@ -1162,6 +1166,7 @@
     "submit": "Submit answers",
     "generating": "Generating exercise...",
     "generatingDesc": "AI is creating a new exercise. This usually takes about 30 seconds.",
+    "generatingLong": "Taking longer than expected...",
     "noExercises": "No exercises available for your level.",
     "generate": "Generate exercise",
     "alreadyAttempted": "You have already completed this exercise.",

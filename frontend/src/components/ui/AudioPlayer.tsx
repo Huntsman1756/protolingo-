@@ -1,8 +1,10 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
+
+const TTS_TIMEOUT_MS = 15_000
 
 interface AudioPlayerProps {
   text: string
@@ -24,6 +26,7 @@ export function AudioPlayer({
 }: AudioPlayerProps) {
   const [state, setState] = useState<PlayerState>('idle')
   const audioRef = useRef<HTMLAudioElement | null>(null)
+  const controllerRef = useRef<AbortController | null>(null)
   const accessToken = useAuthStore((s) => s.accessToken)
   const t = useTranslations('audioPlayer')
 
@@ -33,6 +36,8 @@ export function AudioPlayer({
     (typeof window !== 'undefined'
       ? (localStorage.getItem('tts_voice') ?? undefined)
       : undefined)
+
+  useEffect(() => () => controllerRef.current?.abort(), [])
 
   async function handleClick() {
     if (state === 'loading') return
@@ -45,6 +50,10 @@ export function AudioPlayer({
     }
 
     setState('loading')
+    controllerRef.current?.abort()
+    const controller = new AbortController()
+    controllerRef.current = controller
+    const timeoutId = setTimeout(() => controller.abort(), TTS_TIMEOUT_MS)
     try {
       const traceId = `tts-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
       const t0 = performance.now()
@@ -60,6 +69,7 @@ export function AudioPlayer({
                   : {}),
               },
               credentials: 'include' as RequestCredentials,
+              signal: controller.signal,
             }
           : {
               method: 'POST',
@@ -71,8 +81,10 @@ export function AudioPlayer({
                   : {}),
               },
               body: JSON.stringify({ text, voice: resolvedVoice }),
+              signal: controller.signal,
             }
       )
+      clearTimeout(timeoutId)
       const fetchMs = performance.now() - fetchStart
       if (!res.ok) throw new Error(`TTS error ${res.status}`)
 
@@ -133,6 +145,7 @@ export function AudioPlayer({
         setTimeout(() => setState('idle'), 2000)
       }
     } catch {
+      clearTimeout(timeoutId)
       setState('error')
       setTimeout(() => setState('idle'), 2000)
     }

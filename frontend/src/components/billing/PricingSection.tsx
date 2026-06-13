@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { PageLoading } from '@/components/ui/page-loading'
 
 interface PricingSectionProps {
   stripeEnabled: boolean
@@ -25,7 +26,6 @@ export default function PricingSection({
   totalPriceYearly,
 }: PricingSectionProps) {
   const tBilling = useTranslations('billing')
-  const tCommon = useTranslations('common')
   // null = checking (only when hasSession=true), true = subscribed (hide pricing), false = show pricing
   const [subscribed, setSubscribed] = useState<boolean | null>(
     hasSession ? null : false
@@ -70,9 +70,7 @@ export default function PricingSection({
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div className="bg-fl-bg/80 absolute inset-0 backdrop-blur-sm" />
-        <span className="text-fl-muted-2 relative animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tCommon('loading')}
-        </span>
+        <PageLoading fullScreen={false} showDot={false} className="relative" />
       </div>
     )
   }

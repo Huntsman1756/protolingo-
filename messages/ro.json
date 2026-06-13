@@ -392,6 +392,8 @@
     "levelTest": {
       "title": "Test de finalizare a nivelului",
       "loading": "Se încarcă întrebările...",
+      "loadingTest": "Se încarcă testul...",
+      "submittingTest": "Se trimit răspunsurile...",
       "question": "Întrebarea",
       "of": "din",
       "confirm": "Confirmă răspunsul",
@@ -592,6 +594,7 @@
     "conversations": "Conversații",
     "loading": "Se încarcă...",
     "thinking": "Se gândește...",
+    "takingLonger": "Durează mai mult decât de obicei...",
     "errorMessage": "Ceva a mers greșit. Încearcă din nou.",
     "deleteTitle": "Șterge chat-ul",
     "deleteMessage": "Această conversație va fi ștearsă permanent.",
@@ -1099,7 +1102,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.8.0",
+    "version": "v1.8.1",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Limbi noi de învățat",
@@ -1135,6 +1138,7 @@
     "submit": "Trimite răspunsurile",
     "generating": "Se generează exercițiul...",
     "generatingDesc": "AI creează un exercițiu nou. Durează aproximativ 30 de secunde.",
+    "generatingLong": "Durează mai mult decât de obicei...",
     "noExercises": "Nu există exerciții disponibile pentru nivelul tău.",
     "generate": "Generează exercițiu",
     "audioError": "Imposibil de încărcat audio",
@@ -1162,6 +1166,7 @@
     "submit": "Trimite răspunsurile",
     "generating": "Se generează exercițiul...",
     "generatingDesc": "AI creează un exercițiu nou. Durează aproximativ 30 de secunde.",
+    "generatingLong": "Durează mai mult decât de obicei...",
     "noExercises": "Nu există exerciții disponibile pentru nivelul tău.",
     "generate": "Generează exercițiu",
     "alreadyAttempted": "Ai completat deja acest exercițiu.",

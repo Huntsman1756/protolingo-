@@ -9,6 +9,7 @@ import { useProgressStore } from '@/store/progress'
 import { useLanguageStore } from '@/store/language'
 import OnboardingTour from '@/components/tour/OnboardingTour'
 import WhatsNew from '@/components/whats-new/WhatsNew'
+import { PageLoading } from '@/components/ui/page-loading'
 
 interface TodayLessonItem {
   id: number | null
@@ -116,13 +117,7 @@ export default function DashboardPage() {
   }
 
   if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {t('loadingProgress')}
-        </span>
-      </div>
-    )
+    return <PageLoading label={t('loadingProgress')} minHeight="min-h-screen" />
   }
 
   if (loadError) {

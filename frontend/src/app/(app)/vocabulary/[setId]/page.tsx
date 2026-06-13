@@ -4,6 +4,7 @@ import { useState, useEffect, use } from 'react'
 import { notFound, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { PageLoading } from '@/components/ui/page-loading'
 import type { VocabularySet } from '@/data/types'
 import { useLanguageStore } from '@/store/language'
 import { apiFetch } from '@/lib/api'
@@ -49,13 +50,7 @@ export default function VocabularySetPage({
   }, [setId, activeLanguage?.code])
 
   if (loading) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <span className="text-fl-muted-3 animate-pulse font-mono text-xs tracking-widest uppercase">
-          {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading />
   }
 
   if (!vocabSet) notFound()

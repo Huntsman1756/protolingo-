@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { Loader2 } from 'lucide-react'
 import { apiFetch } from '@/lib/api'
 import { mapUser } from '@/lib/mappers'
 import { useAuthStore } from '@/store/auth'
@@ -213,7 +214,14 @@ export default function OnboardingPage() {
                 onClick={() => handleStep2(false)}
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
               >
-                {loading ? tCommon('saving') : t('continue')}
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 inline h-4 w-4 animate-spin" />
+                    {tCommon('saving')}
+                  </>
+                ) : (
+                  t('continue')
+                )}
               </button>
               <button
                 type="button"

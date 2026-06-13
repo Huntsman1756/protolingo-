@@ -8,9 +8,11 @@ import { PaywallGate } from '@/components/billing/PaywallBanner'
 import { MaintenanceGate } from '@/components/billing/MaintenanceBanner'
 import { type ListeningExercise } from '@/types/api'
 import { WordTooltip, useWordSave } from '@/components/ui/WordTooltip'
+import { PageLoading } from '@/components/ui/page-loading'
+import { ExerciseAudioPlayer } from '@/components/ui/exercise-audio-player'
 
 // ---------------------------------------------------------------------------
-// Types
+// Main page logic
 // ---------------------------------------------------------------------------
 
 interface CorrectAnswer {
@@ -43,146 +45,6 @@ type PageState =
   | 'results'
   | 'history'
 
-// ---------------------------------------------------------------------------
-// Audio player for listening exercises
-// Fetches audio via apiFetch (adds Authorization header automatically)
-// ---------------------------------------------------------------------------
-
-function ExerciseAudioPlayer({
-  exerciseId,
-  onFirstPlay,
-}: {
-  exerciseId: number
-  onFirstPlay?: () => void
-}) {
-  const t = useTranslations('listening')
-  const [state, setState] = useState<
-    'idle' | 'loading' | 'playing' | 'paused' | 'error'
-  >('idle')
-  const [progress, setProgress] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const blobUrlRef = useRef<string | null>(null)
-  const playedRef = useRef(false)
-
-  async function handlePlayPause() {
-    if (state === 'loading') return
-
-    if (state === 'playing') {
-      audioRef.current?.pause()
-      setState('paused')
-      return
-    }
-
-    if (state === 'paused' && audioRef.current) {
-      await audioRef.current.play()
-      setState('playing')
-      return
-    }
-
-    // First play: fetch audio blob
-    setState('loading')
-    try {
-      const res = await apiFetch(`/api/listening/audio/${exerciseId}`)
-      if (!res.ok) throw new Error(`${res.status}`)
-      const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      blobUrlRef.current = url
-
-      const audio = new Audio(url)
-      audioRef.current = audio
-
-      audio.addEventListener('loadedmetadata', () => {
-        setDuration(audio.duration)
-      })
-      audio.addEventListener('timeupdate', () => {
-        if (audio.duration > 0) {
-          setProgress((audio.currentTime / audio.duration) * 100)
-        }
-      })
-      audio.addEventListener('ended', () => {
-        setProgress(100)
-        setState('idle')
-      })
-      audio.addEventListener('error', () => setState('error'))
-
-      await audio.play()
-      setState('playing')
-
-      if (!playedRef.current) {
-        playedRef.current = true
-        onFirstPlay?.()
-      }
-    } catch {
-      setState('error')
-    }
-  }
-
-  function handleSeek(e: React.MouseEvent<HTMLDivElement>) {
-    const audio = audioRef.current
-    if (!audio || audio.duration === 0) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const ratio = (e.clientX - rect.left) / rect.width
-    audio.currentTime = ratio * audio.duration
-    setProgress(ratio * 100)
-  }
-
-  useEffect(() => {
-    return () => {
-      audioRef.current?.pause()
-      if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current)
-    }
-  }, [])
-
-  const icon = state === 'loading' ? '◌' : state === 'playing' ? '▐▐' : '▶'
-  const label = state === 'playing' ? 'Pause' : 'Play'
-
-  return (
-    <div className="border-fl-border bg-fl-surface space-y-2 border p-4">
-      <div className="flex items-center gap-4">
-        <button
-          onClick={handlePlayPause}
-          disabled={state === 'loading'}
-          aria-label={label}
-          className="text-fl-fg hover:text-fl-fg-bright w-8 shrink-0 text-center font-mono text-base transition-colors disabled:opacity-40"
-        >
-          {icon}
-        </button>
-
-        {/* Progress bar — clickable scrubber */}
-        <div
-          className="bg-fl-border relative h-1.5 flex-1 cursor-pointer"
-          onClick={handleSeek}
-          role="progressbar"
-          aria-valuenow={Math.round(progress)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-        >
-          <div
-            className="bg-fl-accent h-full transition-all"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        {duration > 0 && (
-          <span className="text-fl-label text-fl-muted-3 shrink-0 font-mono tabular-nums">
-            {Math.ceil(duration)}s
-          </span>
-        )}
-      </div>
-      {state === 'error' && (
-        <p className="text-fl-label font-mono text-red-500">
-          {t('audioError')}
-        </p>
-      )}
-    </div>
-  )
-}
-
-// ---------------------------------------------------------------------------
-// Main page logic
-// ---------------------------------------------------------------------------
-
 function ListeningPage() {
   const t = useTranslations('listening')
   const tCommon = useTranslations('common')
@@ -205,7 +67,26 @@ function ListeningPage() {
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [isReplay, setIsReplay] = useState(false)
+  const [generatingWarn, setGeneratingWarn] = useState(false)
   const generateAbortRef = useRef<AbortController | null>(null)
+  const generatingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Warn if exercise generation takes longer than 15 s
+  useEffect(() => {
+    if (pageState === 'generating') {
+      setGeneratingWarn(false)
+      generatingTimerRef.current = setTimeout(
+        () => setGeneratingWarn(true),
+        15_000
+      )
+    } else {
+      if (generatingTimerRef.current) clearTimeout(generatingTimerRef.current)
+      setGeneratingWarn(false)
+    }
+    return () => {
+      if (generatingTimerRef.current) clearTimeout(generatingTimerRef.current)
+    }
+  }, [pageState])
 
   // Cancel in-flight long-poll on unmount
   useEffect(() => {
@@ -352,26 +233,21 @@ function ListeningPage() {
 
   // ── Loading ──────────────────────────────────────────────────────────────
   if (pageState === 'loading') {
-    return (
-      <div className="flex min-h-[calc(100vh-56px)] items-center justify-center md:min-h-screen">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          ● {tCommon('loading')}
-        </span>
-      </div>
-    )
+    return <PageLoading minHeight="min-h-[calc(100vh-56px)] md:min-h-screen" />
   }
 
   // ── Generating (poll) ─────────────────────────────────────────────────────
   if (pageState === 'generating') {
     return (
-      <div className="flex min-h-[calc(100vh-56px)] flex-col items-center justify-center gap-3 px-4 md:min-h-screen">
-        <span className="text-fl-muted-2 animate-pulse font-mono text-xs tracking-widest uppercase">
-          ● {t('generating')}
-        </span>
-        <p className="text-fl-label text-fl-muted-4 max-w-xs text-center font-mono">
-          {t('generatingDesc')}
-        </p>
-      </div>
+      <PageLoading
+        label={t('generating')}
+        subtext={
+          generatingWarn
+            ? `${t('generatingDesc')} ${t('generatingLong')}`
+            : t('generatingDesc')
+        }
+        minHeight="min-h-[calc(100vh-56px)] md:min-h-screen"
+      />
     )
   }
 
