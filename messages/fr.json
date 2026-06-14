@@ -797,7 +797,7 @@
     "workflowStep5": "Utilisez les Fiches pour entraîner le vocabulaire en parallèle",
     "workflowStep6": "Pratiquez la conversation libre avec le Tuteur IA",
     "q_language": "Quelle langue vais-je apprendre ?",
-    "a_language": "FreeLingo propose actuellement plusieurs langues, et nous en ajouterons d'autres au fil du temps. Lorsqu'une nouvelle langue sera disponible, vous la trouverez dans paramètres → Mes langues — ajoutez-la et commencez à apprendre.",
+    "a_language": "FreeLingo prend actuellement en charge plusieurs langues (anglais américain, anglais britannique, espagnol, italien, portugais), et nous en ajouterons d'autres au fil du temps. Lorsqu'une nouvelle langue sera disponible, vous la trouverez dans Paramètres → Mes langues — ajoutez-la et commencez à apprendre tout de suite.",
     "q_assessment": "Qu’est-ce que l’Évaluation ?",
     "a_assessment": "Un test de 15 questions généré par IA couvrant la grammaire, le vocabulaire, la compréhension écrite et la transformation de phrases, avec une difficulté allant de A1 à C1. À la fin, vous obtenez votre niveau CECR, un score et une analyse de vos forces et faiblesses. Ce résultat alimente le Plan d’Étude et les Fiches générées.",
     "q_studyPlan": "Qu’est-ce que le Plan d’Étude et comment en générer un ?",
@@ -1116,7 +1116,7 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.8.2",
+    "version": "v1.8.3",
     "cta": "Compris",
     "entry1": {
       "label": "Nouvelles langues à apprendre",

@@ -797,7 +797,7 @@
     "workflowStep5": "Folosește carduri flash pentru a antrena vocabularul în paralel",
     "workflowStep6": "Exersează conversația liberă cu tutorele AI",
     "q_language": "Ce limbă voi învăța?",
-    "a_language": "FreeLingo acceptă în prezent mai multe limbi și vom adăuga altele noi în timp. Când o limbă nouă devine disponibilă, o vei găsi în Setări → Limbile mele — adaug-o și începe să înveți imediat.",
+    "a_language": "FreeLingo suportă în prezent mai multe limbi (engleză americană, engleză britanică, spaniolă, italiană, portugheză) și vom adăuga mai multe în timp. Când o nouă limbă devine disponibilă, o vei găsi în Setări → Limbile mele — adaug-o și începe să înveți imediat.",
     "q_assessment": "Ce este Evaluarea?",
     "a_assessment": "Un test generat de AI cu 15 de întrebări despre gramatică, vocabular, înțelegerea lecturii și transformarea propozițiilor, cu dificultate de la A1 la C1.",
     "q_studyPlan": "Ce este Planul de studiu și cum îl generez?",
@@ -1116,7 +1116,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.8.2",
+    "version": "v1.8.3",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Limbi noi de învățat",
