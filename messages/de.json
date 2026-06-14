@@ -797,7 +797,7 @@
     "workflowStep5": "Nutzen Sie Karteikarten, um parallel Vokabular zu üben",
     "workflowStep6": "Üben Sie freies Gespräch mit dem KI-Tutor",
     "q_language": "Welche Sprache werde ich lernen?",
-    "a_language": "FreeLingo unterstützt derzeit mehrere Sprachen, und wir werden im Laufe der Zeit weitere hinzufügen. Wenn eine neue Sprache verfügbar ist, findest du sie unter Einstellungen → Meine Sprachen — füge sie hinzu und lerne sofort los.",
+    "a_language": "FreeLingo unterstützt derzeit mehrere Sprachen (amerikanisches Englisch, britisches Englisch, Spanisch, Italienisch, Portugiesisch), und wir werden mit der Zeit weitere hinzufügen. Wenn eine neue Sprache verfügbar ist, findest du sie unter Einstellungen → Meine Sprachen — füge sie hinzu und beginne sofort zu lernen.",
     "q_assessment": "Was ist die Einstufung?",
     "a_assessment": "Ein von KI generierter Test mit 15 Fragen, der Grammatik, Vokabular, Leseverständnis und Satztransformation abdeckt, mit Schwierigkeiten von A1 bis C1. Am Ende erhalten Sie Ihr GER-Niveau, eine Punktzahl und eine Analyse Ihrer Stärken und Schwächen. Dieses Ergebnis fließt in den Lernplan und die generierten Karteikarten ein.",
     "q_studyPlan": "Was ist der Lernplan und wie erstelle ich einen?",
@@ -1116,7 +1116,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.8.2",
+    "version": "v1.8.3",
     "cta": "Verstanden",
     "entry1": {
       "label": "Neue Lernsprachen",

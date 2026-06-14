@@ -797,7 +797,7 @@
     "workflowStep5": "Gebruik flashcards om woordenschat parallel te trainen",
     "workflowStep6": "Oefen vrij gesprek met de AI-tutor",
     "q_language": "Welke taal leer ik?",
-    "a_language": "FreeLingo ondersteunt momenteel meerdere talen en we zullen er in de loop van de tijd meer toevoegen. Wanneer een nieuwe taal beschikbaar komt, vind je die onder Instellingen → Mijn talen — voeg hem toe en begin meteen met leren.",
+    "a_language": "FreeLingo ondersteunt momenteel meerdere talen (Amerikaans Engels, Brits Engels, Spaans, Italiaans, Portugees) en we zullen er in de loop van de tijd meer toevoegen. Wanneer een nieuwe taal beschikbaar is, vind je deze in Instellingen → Mijn talen — voeg hem toe en begin meteen met leren.",
     "q_assessment": "Wat is de Beoordeling?",
     "a_assessment": "Een door AI gegenereerde test van 15 vragen over grammatica, woordenschat, leesbegrip en zinnen transformeren, met moeilijkheidsgraad van A1 tot C1.",
     "q_studyPlan": "Wat is het Studieplan en hoe genereer ik er een?",
@@ -1116,7 +1116,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.8.2",
+    "version": "v1.8.3",
     "cta": "Begrepen",
     "entry1": {
       "label": "Nieuwe talen om te leren",

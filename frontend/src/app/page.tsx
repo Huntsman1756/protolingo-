@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import PricingSection from '@/components/billing/PricingSection'
 import { LandingFAQ } from '@/components/ui/landing-faq'
+import { LandingNav } from '@/components/ui/landing-nav'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
 import { ContactButton } from '@/components/ui/contact-button'
 
@@ -98,51 +99,22 @@ export default async function Home() {
   }
 
   return (
-    <div className="bg-fl-bg bg-dot-grid text-fl-fg flex min-h-screen flex-col scroll-smooth">
+    <div className="bg-fl-bg text-fl-fg flex min-h-screen flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       {/* Nav */}
-      <nav className="border-fl-border bg-fl-bg/80 sticky top-0 z-10 border-b backdrop-blur-sm">
-        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-          <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="FreeLingo" width={28} height={28} />
-            <span className="text-fl-fg font-mono text-sm font-bold tracking-widest uppercase">
-              FreeLingo
-            </span>
-          </div>
-          <div className="flex items-center gap-6">
-            <a
-              href="#features"
-              className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
-            >
-              {t('navFeatures')}
-            </a>
-            {stripeEnabled && (
-              <a
-                href="#pricing"
-                className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
-              >
-                {t('navPricing')}
-              </a>
-            )}
-            <a
-              href="#faq"
-              className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
-            >
-              {t('navFAQ')}
-            </a>
-            <Link
-              href={hasSession ? '/dashboard' : '/login'}
-              className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
-            >
-              {hasSession ? t('dashboard') : t('signIn')}
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <LandingNav
+        hasSession={hasSession}
+        stripeEnabled={stripeEnabled}
+        navFeatures={t('navFeatures')}
+        navPricing={t('navPricing')}
+        navFAQ={t('navFAQ')}
+        signIn={t('signIn')}
+        dashboard={t('dashboard')}
+      />
 
       {/* Hero */}
       <section className="flex flex-1 flex-col items-center justify-center px-6 py-24 text-center">
@@ -150,8 +122,8 @@ export default async function Home() {
           <Image
             src="/logo.png"
             alt="FreeLingo"
-            width={64}
-            height={64}
+            width={95}
+            height={95}
             className="mb-6 opacity-90"
           />
           <span className="text-fl-label text-fl-muted-2 mb-4 font-mono tracking-widest uppercase">

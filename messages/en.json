@@ -797,7 +797,7 @@
     "workflowStep5": "Use Flashcards to train vocabulary in parallel",
     "workflowStep6": "Practice free conversation with the AI Tutor",
     "q_language": "What language will I learn?",
-    "a_language": "FreeLingo currently supports several languages, and we will keep adding more over time. When a new language becomes available, you will find it in Settings → My Languages — add it and start learning right away.",
+    "a_language": "FreeLingo currently supports several languages (American English, British English, Spanish, Italian, Portuguese), and we will keep adding more over time. When a new language becomes available, you will find it in Settings → My Languages — add it and start learning right away.",
     "q_assessment": "What is the Assessment?",
     "a_assessment": "A 15-question AI-generated test covering grammar, vocabulary, reading comprehension, and sentence transformation, with difficulty ranging from A1 to C1. When you finish, you get your CEFR level, a score, and an analysis of your strengths and weaknesses. This result feeds into the Study Plan and generated Flashcards.",
     "q_studyPlan": "What is the Study Plan and how do I generate one?",
@@ -1116,7 +1116,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.8.2",
+    "version": "v1.8.3",
     "cta": "Got it",
     "entry1": {
       "label": "New languages to learn",
