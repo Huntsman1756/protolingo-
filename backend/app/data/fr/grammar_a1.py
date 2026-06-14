@@ -5,24 +5,26 @@ from app.data._types import GrammarExample, GrammarMistake, GrammarTopic
 A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     GrammarTopic(
         slug="verbe-etre",
-        title="Le verbe être",
+        title="Le verbe être (to be)",
         level="A1",
         category="Verbes",
-        summary="Le verbe être : identité, nationalité, profession, description.",
-        explanation="Le verbe **être** est l'un des deux auxiliaires fondamentaux du français. Il sert à exprimer :\n\n- **L'identité** : *Je suis Marie.*\n- **La nationalité** : *Il est français.*\n- **La profession** : *Elle est médecin.* (sans article)\n- **La description** : *La maison est grande.*\n- **La localisation** : *Paris est en France.*\n\nContrairement à l'espagnol, le français **n'a qu'un seul verbe** (être) pour ces fonctions. Le pronom sujet est **obligatoire** en français.",
+        summary="Le verbe être : identité, nationalité, profession, description. The verb to be: identity, nationality, profession, description.",
+        explanation="Le verbe **être** (= to be) est l'un des deux auxiliaires fondamentaux du français. Il sert à exprimer :\n\n- **L'identité** (identity) : *Je suis Marie.* (I am Marie)\n- **La nationalité** (nationality) : *Il est français.* (He is French)\n- **La profession** (profession) : *Elle est médecin.* (She is a doctor — sans article, without an article)\n- **La description** (description) : *La maison est grande.* (The house is big)\n- **La localisation** (location) : *Paris est en France.* (Paris is in France)\n\nLe pronom sujet (subject pronoun) est **obligatoire** en français.",
         structure="je suis · tu es · il/elle/on est · nous sommes · vous êtes · ils/elles sont",
         rules=[
-            "Le pronom sujet est obligatoire en français.",
-            "'On' remplace souvent 'nous' à l'oral : On est français (familier).",
-            'Pas d\'article après être avec les professions : "Je suis professeur" (pas *je suis un professeur).',
-            '"Être de + lieu" indique l\'origine : "Je suis de Paris".',
+            "Le pronom sujet est obligatoire en français. (The subject pronoun is mandatory in French.)",
+            "'On' remplace souvent 'nous' à l'oral : On est français (familier). ('On' often replaces 'nous' in spoken French.)",
+            'Pas d\'article après être avec les professions : "Je suis professeur" (pas *je suis un professeur). (No article after être with professions.)',
+            '"Être de + lieu" indique l\'origine : "Je suis de Paris". ("Être de + place" indicates origin.)',
         ],
         examples=[
-            GrammarExample(text="Je suis étudiant.", translation=None),
-            GrammarExample(text="Tu es français ?", translation=None),
-            GrammarExample(text="Nous sommes fatigués.", translation=None),
+            GrammarExample(text="Je suis étudiant.", translation="I am a student."),
+            GrammarExample(text="Tu es français ?", translation="Are you French?"),
+            GrammarExample(text="Nous sommes fatigués.", translation="We are tired."),
             GrammarExample(
-                text="Elles sont espagnoles.", translation=None, note="accord féminin pluriel"
+                text="Elles sont espagnoles.",
+                translation="They (f.) are Spanish.",
+                note="accord féminin pluriel",
             ),
         ],
         common_mistakes=[
@@ -41,23 +43,25 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="verbe-avoir",
-        title="Le verbe avoir",
+        title="Le verbe avoir (to have)",
         level="A1",
         category="Verbes",
-        summary="Le verbe avoir : possession, âge, expressions courantes.",
-        explanation="Le verbe **avoir** est le deuxième auxiliaire fondamental du français. Il exprime :\n\n- **La possession** : *J'ai une voiture.*\n- **L'âge** : *J'ai 25 ans.* (jamais *Je suis 25 ans*)\n- **Des sensations et états** : *J'ai faim / soif / chaud / froid / peur / sommeil.*\n- **L'auxiliaire du passé composé** pour la plupart des verbes.",
+        summary="Le verbe avoir : possession, âge, expressions courantes. The verb to have: possession, age, common expressions.",
+        explanation="Le verbe **avoir** (= to have) est le deuxième auxiliaire fondamental du français. Il exprime :\n\n- **La possession** (possession) : *J'ai une voiture.* (I have a car)\n- **L'âge** (age) : *J'ai 25 ans.* (I am 25 years old — literally 'I have 25 years')\n- **Des sensations et états** (feelings/states) : *J'ai faim / soif / chaud / froid / peur / sommeil.* (I'm hungry / thirsty / hot / cold / scared / sleepy)\n- **L'auxiliaire du passé composé** (auxiliary for past tense) pour la plupart des verbes.",
         structure="j'ai · tu as · il/elle/on a · nous avons · vous avez · ils/elles ont",
         rules=[
-            "Le pronom sujet est obligatoire.",
-            "Pour l'âge on utilise 'avoir', jamais 'être' : 'J'ai 30 ans'.",
-            "Les sensations s'expriment avec 'avoir + nom' : 'avoir faim, avoir soif, avoir chaud...'",
-            "'Il y a' (forme impersonnelle de avoir) exprime l'existence.",
+            "Le pronom sujet est obligatoire. (The subject pronoun is mandatory.)",
+            "Pour l'âge on utilise 'avoir', jamais 'être' : 'J'ai 30 ans'. (For age, use 'avoir', never 'être'.)",
+            "Les sensations s'expriment avec 'avoir + nom' : 'avoir faim, avoir soif, avoir chaud...' (Physical sensations use 'avoir + noun'.)",
+            "'Il y a' (forme impersonnelle de avoir) exprime l'existence. ('Il y a' = there is/there are.)",
         ],
         examples=[
-            GrammarExample(text="J'ai deux frères.", translation=None),
-            GrammarExample(text="Quel âge as-tu ?", translation=None),
-            GrammarExample(text="Nous avons faim.", translation=None),
-            GrammarExample(text="Elle a une belle maison.", translation=None),
+            GrammarExample(text="J'ai deux frères.", translation="I have two brothers."),
+            GrammarExample(text="Quel âge as-tu ?", translation="How old are you?"),
+            GrammarExample(text="Nous avons faim.", translation="We are hungry."),
+            GrammarExample(
+                text="Elle a une belle maison.", translation="She has a beautiful house."
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -75,24 +79,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="pronoms-sujets",
-        title="Les pronoms sujets",
+        title="Les pronoms sujets (subject pronouns)",
         level="A1",
         category="Pronoms",
-        summary="Les pronoms personnels sujets : je, tu, il, elle, on, nous, vous, ils, elles.",
-        explanation="Les **pronoms sujets** sont obligatoires en français, contrairement à l'espagnol ou à l'italien. Ils indiquent qui fait l'action.\n\n| Singulier | Pluriel |\n|-----------|--------|\n| je | nous |\n| tu (informel) | vous (formel / pluriel) |\n| il · elle · on | ils · elles |\n\n- **Tu** = informel (amis, famille). **Vous** = formel (inconnus, supérieurs) ou pluriel.\n- **On** = 'nous' à l'oral informel : *On va au cinéma ?* (au lieu de *Nous allons au cinéma ?*).\n- **Ils** = masculin ou mixte. **Elles** = exclusivement féminin.",
+        summary="Les pronoms personnels sujets : je, tu, il, elle, on, nous, vous, ils, elles. (I, you, he, she, one, we, you, they.)",
+        explanation="Les **pronoms sujets** (subject pronouns) sont obligatoires en français, contrairement à l'espagnol ou à l'italien. Ils indiquent qui fait l'action.\n\n| Singulier | Pluriel |\n|-----------|--------|\n| je (I) | nous (we) |\n| tu (you, informal) | vous (you, formal / plural) |\n| il · elle · on (he/she/one) | ils · elles (they m./f.) |\n\n- **Tu** = informel (amis, famille). **Vous** = formel (inconnus, supérieurs) ou pluriel.\n- **On** = 'nous' à l'oral informel : *On va au cinéma ?* (Shall we go to the cinema?)\n- **Ils** = masculin ou mixte. **Elles** = exclusivement féminin.",
         structure="je · tu · il/elle/on · nous · vous · ils/elles",
         rules=[
-            "Le pronom sujet est toujours présent (sauf à l'impératif).",
+            "Le pronom sujet est toujours présent (sauf à l'impératif). (Always present, except in commands.)",
             "'Tu' et 'vous' : toujours respecter le registre (tu = informel, vous = formel/pluriel).",
-            "'On' conjugué comme 'il/elle' (3e personne du singulier).",
-            "L'élision : je → j' devant voyelle ou h muet (j'habite, j'aime).",
+            "'On' conjugué comme 'il/elle' (3e personne du singulier). (Conjugated like il/elle.)",
+            "L'élision : je → j' devant voyelle ou h muet (j'habite, j'aime). (je becomes j' before a vowel.)",
         ],
         examples=[
-            GrammarExample(text="Je parle français.", translation=None),
-            GrammarExample(text="Tu habites où ?", translation=None, note="informel"),
-            GrammarExample(text="Vous êtes très aimable.", translation=None, note="formel"),
+            GrammarExample(text="Je parle français.", translation="I speak French."),
+            GrammarExample(text="Tu habites où ?", translation="Where do you live? (informal)"),
             GrammarExample(
-                text="On va au restaurant ce soir.", translation=None, note="familier pour 'nous'"
+                text="Vous êtes très aimable.", translation="You are very kind. (formal)"
+            ),
+            GrammarExample(
+                text="On va au restaurant ce soir.",
+                translation="We're going to the restaurant tonight. (informal 'we')",
             ),
         ],
         common_mistakes=[
@@ -111,36 +118,41 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="articles-definis",
-        title="Les articles définis",
+        title="Les articles définis (definite articles: the)",
         level="A1",
         category="Articles",
-        summary="le, la, l', les — les articles définis en français.",
-        explanation="Les **articles définis** (le, la, l', les) accompagnent un nom connu ou déjà mentionné.\n\n| | Singulier | Pluriel |\n|---|----------|--------|\n| Masculin | le livre | les livres |\n| Féminin | la maison | les maisons |\n| Devant voyelle/h muet | l'ami, l'école | les amis |\n\nUsages principaux :\n- **Chose spécifique** : *Le livre de Pierre est intéressant.*\n- **Généralisation** : *Les chiens sont fidèles.*\n- **Aimer/détester + le/la/l'/les** : *J'aime le chocolat.*\n\nContractions obligatoires : **à + le → au**, **à + les → aux**, **de + le → du**, **de + les → des**.",
+        summary="le, la, l', les — les articles définis en français. (the)",
+        explanation="Les **articles définis** (**definite articles** = the) accompagnent un nom connu ou déjà mentionné.\n\n| | Singulier | Pluriel |\n|---|----------|--------|\n| Masculin | le livre (the book) | les livres (the books) |\n| Féminin | la maison (the house) | les maisons (the houses) |\n| Devant voyelle/h muet | l'ami, l'école | les amis |\n\nUsages principaux :\n- **Chose spécifique** (specific thing) : *Le livre de Pierre est intéressant.*\n- **Généralisation** (general statement) : *Les chiens sont fidèles.* (Dogs are loyal.)\n- **Aimer/détester + le/la/l'/les** : *J'aime le chocolat.* (I like chocolate.)\n\n⚠️ Contractions obligatoires : **à + le → au**, **à + les → aux**, **de + le → du**, **de + les → des**.",
         structure="le (masc. sing.) · la (fém. sing.) · l' (voyelle/h muet) · les (pluriel)",
         rules=[
-            "Accord en genre et en nombre avec le nom.",
-            "L' devant une voyelle ou un h muet : l'arbre, l'homme.",
+            "Accord en genre et en nombre avec le nom. (Agrees in gender and number with the noun.)",
+            "L' devant une voyelle ou un h muet : l'arbre, l'homme. (l' before vowel or silent h.)",
             "Contractions obligatoires avec à et de : au, aux, du, des.",
             "On utilise l'article défini pour les généralisations et avec aimer/détester.",
         ],
         examples=[
-            GrammarExample(text="Le livre est sur la table.", translation=None),
-            GrammarExample(text="Les enfants jouent dans le jardin.", translation=None),
-            GrammarExample(text="Je vais au cinéma.", translation=None, note="contraction à + le"),
             GrammarExample(
-                text="C'est la maison du professeur.", translation=None, note="contraction de + le"
+                text="Le livre est sur la table.", translation="The book is on the table."
+            ),
+            GrammarExample(
+                text="Les enfants jouent dans le jardin.",
+                translation="The children are playing in the garden.",
+            ),
+            GrammarExample(text="Je vais au cinéma.", translation="I'm going to the cinema."),
+            GrammarExample(
+                text="C'est la maison du professeur.", translation="It's the teacher's house."
             ),
         ],
         common_mistakes=[
             GrammarMistake(
                 wrong="Je vais à le parc.",
                 correct="Je vais au parc.",
-                note="La contraction 'au' est obligatoire pour à + le.",
+                note="La contraction 'au' est obligatoire pour à + le. ('au' is mandatory for à + le.)",
             ),
             GrammarMistake(
                 wrong="J'aime chocolat.",
                 correct="J'aime le chocolat.",
-                note="Avec aimer/détester, l'article défini est obligatoire devant le nom.",
+                note="Avec aimer/détester, l'article défini est obligatoire devant le nom. (With aimer/détester, you need the definite article.)",
             ),
         ],
         related=["articles-indefinis", "articles-partitifs", "genre-noms", "prepositions-lieu"],
@@ -161,14 +173,17 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Apprendre l'article avec le nom pour mémoriser le genre.",
         ],
         examples=[
-            GrammarExample(text="Le garçon est gentil.", translation=None),
-            GrammarExample(text="La fille est intelligente.", translation=None),
+            GrammarExample(text="Le garçon est gentil.", translation="The boy is kind."),
+            GrammarExample(text="La fille est intelligente.", translation="The girl is smart."),
             GrammarExample(
                 text="Le musée est fermé le mardi.",
-                translation=None,
+                translation="The museum is closed on Tuesdays.",
                 note="exception : -ée mais masculin",
             ),
-            GrammarExample(text="La liberté est un droit fondamental.", translation=None),
+            GrammarExample(
+                text="La liberté est un droit fondamental.",
+                translation="Freedom is a fundamental right.",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -186,23 +201,28 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="articles-indefinis",
-        title="Les articles indéfinis",
+        title="Les articles indéfinis (indefinite articles: a/an/some)",
         level="A1",
         category="Articles",
-        summary="un, une, des — les articles indéfinis.",
-        explanation="Les **articles indéfinis** (un, une, des) accompagnent un nom non identifié, mentionné pour la première fois, ou qui est un parmi d'autres.\n\n| | Singulier | Pluriel |\n|---|----------|--------|\n| Masculin | un livre | des livres |\n| Féminin | une maison | des maisons |\n\nUsages :\n- **Première mention** : *Il y a un chat dans le jardin.*\n- **Objet non spécifique** : *Je cherche un travail.*\n- **Avec il y a** : *Il y a une boulangerie près d'ici.*\n\n**Attention** : après la négation, un/une/des → de : *Je n'ai pas de voiture.*",
+        summary="un, une, des — les articles indéfinis. (a/an, some)",
+        explanation="Les **articles indéfinis** (**indefinite articles** = a/an/some) accompagnent un nom non identifié, mentionné pour la première fois.\n\n| | Singulier | Pluriel |\n|---|----------|--------|\n| Masculin | un livre (a book) | des livres (some books) |\n| Féminin | une maison (a house) | des maisons (some houses) |\n\nUsages :\n- **Première mention** (first mention) : *Il y a un chat dans le jardin.*\n- **Objet non spécifique** (non-specific) : *Je cherche un travail.*\n\n⚠️ Après la négation, un/une/des → de : *Je n'ai pas de voiture.* (I don't have a car.)",
         structure="un (masc. sing.) · une (fém. sing.) · des (pluriel)",
         rules=[
-            "Un/une pour une chose non précisée, mentionnée pour la première fois.",
+            "Un/une pour une chose non précisée, mentionnée pour la première fois. (for something unspecified/new)",
             "Des est le pluriel de un/une.",
-            "Après une négation, un/une/des → de/d' : 'Je n'ai pas de frère.'",
-            "Pas d'article indéfini après 'être' + profession : 'Je suis professeur.'",
+            "Après une négation, un/une/des → de/d' : 'Je n'ai pas de frère.' (after negation → de)",
+            "Pas d'article indéfini après 'être' + profession : 'Je suis professeur.' (no article with professions)",
         ],
         examples=[
-            GrammarExample(text="J'ai un chien.", translation=None),
-            GrammarExample(text="Il y a une pharmacie au coin.", translation=None),
-            GrammarExample(text="Elle a des amis à Paris.", translation=None),
-            GrammarExample(text="Je n'ai pas de voiture.", translation=None, note="négation"),
+            GrammarExample(text="J'ai un chien.", translation="I have a dog."),
+            GrammarExample(
+                text="Il y a une pharmacie au coin.",
+                translation="There is a pharmacy on the corner.",
+            ),
+            GrammarExample(
+                text="Elle a des amis à Paris.", translation="She has (some) friends in Paris."
+            ),
+            GrammarExample(text="Je n'ai pas de voiture.", translation="I don't have a car."),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -220,25 +240,23 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="cest-il-est",
-        title="C'est / Il est",
+        title="C'est / Il est (It is / He is / She is)",
         level="A1",
         category="Phrase",
-        summary="Distinction entre c'est (présentation/identification) et il/elle est (description).",
-        explanation="**C'est** et **il/elle est** ont des usages différents :\n\n**C'est + déterminant + nom** :\n- *C'est mon ami.* / *C'est une belle maison.*\n- Pour présenter ou identifier quelqu'un ou quelque chose.\n\n**Il/Elle est + adjectif (sans nom)** :\n- *Il est français.* / *Elle est très gentille.*\n- Pour décrire avec un adjectif.\n\n**Il/Elle est + profession** (sans article) :\n- *Il est médecin.* / *Elle est ingénieure.*\n\nRésumé : **c'est** pour présenter/identifier, **il/elle est** pour décrire.",
+        summary="Distinction entre c'est (présentation/identification) et il/elle est (description). (c'est = identification, il/elle est = description)",
+        explanation="**C'est** et **il/elle est** ont des usages différents :\n\n**C'est + déterminant + nom** (for presenting/identifying) :\n- *C'est mon ami.* (This/He is my friend.)\n\n**Il/Elle est + adjectif** (sans nom — for describing with an adjective) :\n- *Il est français.* (He is French.) / *Elle est très gentille.* (She is very kind.)\n\n**Il/Elle est + profession** (sans article — for professions) :\n- *Il est médecin.* (He is a doctor.)\n\nRésumé : **c'est** pour présenter/identifier, **il/elle est** pour décrire. (c'est = presentation, il/elle est = description)",
         structure="c'est + déterminant + nom · il/elle est + adjectif · il/elle est + profession (sans article)",
         rules=[
-            "C'est + article + nom pour présenter : C'est un ami.",
-            "Il/Elle est + adjectif seul pour décrire : Il est grand.",
-            "Il/Elle est + profession sans article : Elle est médecin.",
-            "Ce sont + pluriel : Ce sont mes amis.",
+            "C'est + article + nom pour présenter : C'est un ami. (for presenting)",
+            "Il/Elle est + adjectif seul pour décrire : Il est grand. (for describing)",
+            "Il/Elle est + profession sans article : Elle est médecin. (profession, no article)",
+            "Ce sont + pluriel : Ce sont mes amis. (These are my friends.)",
         ],
         examples=[
-            GrammarExample(text="C'est mon frère.", translation=None, note="présentation"),
-            GrammarExample(text="Il est très sympa.", translation=None, note="description"),
-            GrammarExample(text="C'est une belle ville.", translation=None),
-            GrammarExample(
-                text="Elle est avocate.", translation=None, note="profession sans article"
-            ),
+            GrammarExample(text="C'est mon frère.", translation="This is my brother."),
+            GrammarExample(text="Il est très sympa.", translation="He is very nice."),
+            GrammarExample(text="C'est une belle ville.", translation="It's a beautiful city."),
+            GrammarExample(text="Elle est avocate.", translation="She is a lawyer."),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -268,14 +286,18 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Notre, votre, leur sont identiques au masculin et au féminin.",
         ],
         examples=[
-            GrammarExample(text="Mon frère habite à Lyon.", translation=None),
-            GrammarExample(text="Ma sœur est avocate.", translation=None),
+            GrammarExample(
+                text="Mon frère habite à Lyon.", translation="My brother lives in Lyon."
+            ),
+            GrammarExample(text="Ma sœur est avocate.", translation="My sister is a lawyer."),
             GrammarExample(
                 text="Mon amie Sophie vient ce soir.",
-                translation=None,
+                translation="My friend Sophie is coming tonight.",
                 note="fém. avec voyelle → mon",
             ),
-            GrammarExample(text="Leurs enfants sont adorables.", translation=None),
+            GrammarExample(
+                text="Leurs enfants sont adorables.", translation="Their children are adorable."
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -306,11 +328,15 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Beau, bon, grand, petit, jeune, vieux, joli, mauvais, nouveau → avant le nom.",
         ],
         examples=[
-            GrammarExample(text="Une maison blanche.", translation=None),
-            GrammarExample(text="Un petit chien.", translation=None, note="petit avant le nom"),
-            GrammarExample(text="Des livres intéressants.", translation=None),
+            GrammarExample(text="Une maison blanche.", translation="A white house."),
             GrammarExample(
-                text="Une belle voiture rouge.", translation=None, note="deux adjectifs"
+                text="Un petit chien.", translation="A small dog.", note="petit avant le nom"
+            ),
+            GrammarExample(text="Des livres intéressants.", translation="Interesting books."),
+            GrammarExample(
+                text="Une belle voiture rouge.",
+                translation="A beautiful red car.",
+                note="deux adjectifs",
             ),
         ],
         common_mistakes=[
@@ -342,12 +368,21 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Les adjectifs en -e au masculin ne changent pas au féminin.",
         ],
         examples=[
-            GrammarExample(text="Il est grand. → Elle est grande.", translation=None),
-            GrammarExample(text="Ils sont heureux. → Elles sont heureuses.", translation=None),
             GrammarExample(
-                text="Des problèmes généraux.", translation=None, note="général → généraux"
+                text="Il est grand. → Elle est grande.", translation="He is tall. → She is tall."
             ),
-            GrammarExample(text="Des robes élégantes.", translation=None, note="fém. pluriel"),
+            GrammarExample(
+                text="Ils sont heureux. → Elles sont heureuses.",
+                translation="They (m.) are happy. → They (f.) are happy.",
+            ),
+            GrammarExample(
+                text="Des problèmes généraux.",
+                translation="General problems.",
+                note="général → généraux",
+            ),
+            GrammarExample(
+                text="Des robes élégantes.", translation="Elegant dresses.", note="fém. pluriel"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -378,10 +413,12 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Verbes en -cer : nous commençons (pas *commencons).",
         ],
         examples=[
-            GrammarExample(text="Je parle français et anglais.", translation=None),
-            GrammarExample(text="Tu habites à Paris ?", translation=None),
-            GrammarExample(text="Nous travaillons ensemble.", translation=None),
-            GrammarExample(text="Ils aiment le cinéma.", translation=None),
+            GrammarExample(
+                text="Je parle français et anglais.", translation="I speak French and English."
+            ),
+            GrammarExample(text="Tu habites à Paris ?", translation="Do you live in Paris?"),
+            GrammarExample(text="Nous travaillons ensemble.", translation="We work together."),
+            GrammarExample(text="Ils aiment le cinéma.", translation="They like the cinema."),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -412,12 +449,22 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Se devant une voyelle → s' : s'habiller, s'appeler.",
         ],
         examples=[
-            GrammarExample(text="Je me lève à sept heures.", translation=None),
-            GrammarExample(text="Tu te douches le matin ?", translation=None),
             GrammarExample(
-                text="Nous nous rencontrons au café.", translation=None, note="réciproque"
+                text="Je me lève à sept heures.", translation="I get up at seven o'clock."
             ),
-            GrammarExample(text="Il ne se couche pas tôt.", translation=None, note="négation"),
+            GrammarExample(
+                text="Tu te douches le matin ?", translation="Do you shower in the morning?"
+            ),
+            GrammarExample(
+                text="Nous nous rencontrons au café.",
+                translation="We meet at the café.",
+                note="réciproque",
+            ),
+            GrammarExample(
+                text="Il ne se couche pas tôt.",
+                translation="He doesn't go to bed early.",
+                note="négation",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -448,10 +495,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Système de 24h (quinze heures) utilisé pour les horaires officiels.",
         ],
         examples=[
-            GrammarExample(text="Quelle heure est-il ?", translation=None),
-            GrammarExample(text="Il est huit heures.", translation=None),
-            GrammarExample(text="Il est deux heures et demie.", translation=None),
-            GrammarExample(text="Le cours commence à neuf heures.", translation=None),
+            GrammarExample(text="Quelle heure est-il ?", translation="What time is it?"),
+            GrammarExample(text="Il est huit heures.", translation="It's eight o'clock."),
+            GrammarExample(text="Il est deux heures et demie.", translation="It's half past two."),
+            GrammarExample(
+                text="Le cours commence à neuf heures.",
+                translation="The class starts at nine o'clock.",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -482,12 +532,17 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Moi si (contredire une négation), moi non (contredire une affirmation).",
         ],
         examples=[
-            GrammarExample(text="J'aime le chocolat.", translation=None),
-            GrammarExample(text="Je déteste faire la vaisselle.", translation=None),
-            GrammarExample(text="Tu aimes danser ? — Oui, j'adore !", translation=None),
+            GrammarExample(text="J'aime le chocolat.", translation="I like chocolate."),
+            GrammarExample(
+                text="Je déteste faire la vaisselle.", translation="I hate doing the dishes."
+            ),
+            GrammarExample(
+                text="Tu aimes danser ? — Oui, j'adore !",
+                translation="Do you like dancing? — Yes, I love it!",
+            ),
             GrammarExample(
                 text="Je n'aime pas le café. — Moi non plus.",
-                translation=None,
+                translation="I don't like coffee. — Me neither.",
                 note="accord négatif",
             ),
         ],
@@ -520,11 +575,19 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Avec aimer/détester, on utilise l'article défini (pas le partitif) : J'aime le pain.",
         ],
         examples=[
-            GrammarExample(text="Je mange du pain et de la confiture.", translation=None),
-            GrammarExample(text="Tu veux de l'eau ?", translation=None),
-            GrammarExample(text="Je ne bois pas de café.", translation=None, note="négation → de"),
             GrammarExample(
-                text="Un verre de vin, s'il vous plaît.", translation=None, note="quantité → de"
+                text="Je mange du pain et de la confiture.", translation="I eat bread and jam."
+            ),
+            GrammarExample(text="Tu veux de l'eau ?", translation="Do you want some water?"),
+            GrammarExample(
+                text="Je ne bois pas de café.",
+                translation="I don't drink coffee.",
+                note="négation → de",
+            ),
+            GrammarExample(
+                text="Un verre de vin, s'il vous plaît.",
+                translation="A glass of wine, please.",
+                note="quantité → de",
             ),
         ],
         common_mistakes=[
@@ -543,25 +606,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="negation-simple",
-        title="La négation simple : ne...pas",
+        title="La négation simple : ne...pas (negation)",
         level="A1",
         category="Phrase",
-        summary="La structure de base de la négation en français.",
-        explanation="La négation de base en français s'exprime avec **ne...pas** qui encadre le verbe conjugué.\n\n- *Je **ne** parle **pas** anglais.*\n- *Il **n'** aime **pas** le café.*\n\nPlace des mots :\n- **ne** avant le verbe (n' devant voyelle)\n- **pas** après le verbe\n\nAvec un verbe pronominal :\n- *Je **ne** me lève **pas** tôt.*\n\nAvec un temps composé :\n- *Je **n'** ai **pas** mangé.*\n\nAttention : après la négation, les articles un/une/des et du/de la/des → **de** :\n- *J'ai une voiture → Je n'ai **pas de** voiture.*",
+        summary="La structure de base de la négation en français. Basic negation structure in French.",
+        explanation="La négation de base en français s'exprime avec **ne...pas** qui encadre le verbe conjugué. (The basic negation wraps the verb with 'ne...pas'.)\n\n- *Je **ne** parle **pas** anglais.* (I don't speak English)\n- *Il **n'** aime **pas** le café.* (He doesn't like coffee)\n\nPlace des mots :\n- **ne** avant le verbe (n' devant voyelle) — before the verb\n- **pas** après le verbe — after the verb\n\nAvec un verbe pronominal :\n- *Je **ne** me lève **pas** tôt.* (I don't get up early)\n\n⚠️ Après la négation, un/une/des et du/de la/des → **de** :\n- *J'ai une voiture → Je n'ai **pas de** voiture.* (I have a car → I don't have a car)",
         structure="ne + verbe + pas",
         rules=[
-            "ne...pas encadre le verbe conjugué.",
-            "Ne devient n' devant une voyelle ou un h muet.",
-            "Après la négation, les articles indéfinis et partitifs deviennent 'de'.",
-            "À l'oral, le 'ne' est souvent omis (registre familier) : 'J'aime pas'.",
+            "ne...pas encadre le verbe conjugué. (wraps around the conjugated verb)",
+            "Ne devient n' devant une voyelle ou un h muet. (n' before vowel or silent h)",
+            "Après la négation, les articles indéfinis et partitifs deviennent 'de'. (un/une/des → de after negation)",
+            "À l'oral, le 'ne' est souvent omis (registre familier) : 'J'aime pas'. (In speech, 'ne' is often dropped.)",
         ],
         examples=[
-            GrammarExample(text="Je ne parle pas chinois.", translation=None),
-            GrammarExample(text="Il n'aime pas les légumes.", translation=None),
-            GrammarExample(text="Nous n'avons pas d'enfants.", translation=None, note="des → de"),
+            GrammarExample(text="Je ne parle pas chinois.", translation="I don't speak Chinese."),
             GrammarExample(
-                text="Je ne me souviens pas.", translation=None, note="verbe pronominal"
+                text="Il n'aime pas les légumes.", translation="He doesn't like vegetables."
             ),
+            GrammarExample(
+                text="Nous n'avons pas d'enfants.", translation="We don't have children."
+            ),
+            GrammarExample(text="Je ne me souviens pas.", translation="I don't remember."),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -579,23 +644,29 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="il-y-a",
-        title="Il y a",
+        title="Il y a (There is / There are)",
         level="A1",
         category="Phrase",
-        summary="Il y a pour exprimer l'existence (il y a un/une/des...).",
-        explanation="**Il y a** est une expression impersonnelle invariante qui sert à exprimer l'existence de quelque chose. Elle correspond à 'there is / there are' en anglais.\n\n- *Il y a **un** parc près d'ici.* (singulier)\n- *Il y a **des** magasins dans la rue.* (pluriel)\n\n**Formes** :\n- Affirmatif : *Il y a...*\n- Négatif : *Il n'y a **pas de**...*\n- Interrogatif : *Est-ce qu'il y a... ? / Y a-t-il... ?*\n\n**Différence avec 'c'est'** :\n- *Il y a un cinéma.* (existence, on ne sait pas lequel)\n- *C'est le cinéma.* (identification)",
+        summary="Il y a pour exprimer l'existence (there is/there are).",
+        explanation="**Il y a** est une expression impersonnelle invariable qui sert à exprimer l'existence de quelque chose. (There is / There are.)\n\n- *Il y a **un** parc près d'ici.* (There is a park near here.)\n- *Il y a **des** magasins dans la rue.* (There are shops on the street.)\n\n**Formes** :\n- Affirmatif : *Il y a...*\n- Négatif : *Il n'y a **pas de**...* (There isn't/aren't any...)\n- Interrogatif : *Est-ce qu'il y a... ?* (Is/Are there...?)\n\n⚠️ Différence avec 'c'est' :\n- *Il y a un cinéma.* (existence — There is a cinema)\n- *C'est le cinéma.* (identification — That's the cinema)",
         structure="Il y a + article + nom",
         rules=[
-            "Il y a est toujours invariable (jamais 'ils y ont').",
-            "Après 'il n'y a pas', l'article indéfini devient 'de'.",
-            "'Il y a' peut aussi exprimer le temps écoulé : 'Il y a trois jours'.",
+            "Il y a est toujours invariable (jamais 'ils y ont'). (Always invariable.)",
+            "Après 'il n'y a pas', l'article indéfini devient 'de'. (After negative: des → de.)",
+            "'Il y a' peut aussi exprimer le temps écoulé : 'Il y a trois jours'. (Also means 'ago': three days ago.)",
         ],
         examples=[
-            GrammarExample(text="Il y a une boulangerie au coin de la rue.", translation=None),
-            GrammarExample(text="Il y a beaucoup de touristes à Paris.", translation=None),
-            GrammarExample(text="Il n'y a pas de problème.", translation=None, note="négation"),
             GrammarExample(
-                text="Est-ce qu'il y a un médecin ici ?", translation=None, note="question"
+                text="Il y a une boulangerie au coin de la rue.",
+                translation="There is a bakery on the street corner.",
+            ),
+            GrammarExample(
+                text="Il y a beaucoup de touristes à Paris.",
+                translation="There are many tourists in Paris.",
+            ),
+            GrammarExample(text="Il n'y a pas de problème.", translation="There is no problem."),
+            GrammarExample(
+                text="Est-ce qu'il y a un médecin ici ?", translation="Is there a doctor here?"
             ),
         ],
         common_mistakes=[
@@ -626,10 +697,20 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "De devient d' devant une voyelle : loin d'ici.",
         ],
         examples=[
-            GrammarExample(text="La boulangerie est à côté de la pharmacie.", translation=None),
-            GrammarExample(text="Le chat est sous la table.", translation=None),
-            GrammarExample(text="Il y a un jardin derrière la maison.", translation=None),
-            GrammarExample(text="La gare est loin d'ici.", translation=None),
+            GrammarExample(
+                text="La boulangerie est à côté de la pharmacie.",
+                translation="The bakery is next to the pharmacy.",
+            ),
+            GrammarExample(
+                text="Le chat est sous la table.", translation="The cat is under the table."
+            ),
+            GrammarExample(
+                text="Il y a un jardin derrière la maison.",
+                translation="There is a garden behind the house.",
+            ),
+            GrammarExample(
+                text="La gare est loin d'ici.", translation="The train station is far from here."
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -660,10 +741,20 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Aller + infinitif = futur proche : Je vais manger.",
         ],
         examples=[
-            GrammarExample(text="Je vais au cinéma ce soir.", translation=None, note="à + le → au"),
-            GrammarExample(text="Tu vas chez le dentiste ?", translation=None),
-            GrammarExample(text="Nous allons à la plage.", translation=None),
-            GrammarExample(text="Elle va aux Pays-Bas.", translation=None, note="à + les → aux"),
+            GrammarExample(
+                text="Je vais au cinéma ce soir.",
+                translation="I'm going to the cinema tonight.",
+                note="à + le → au",
+            ),
+            GrammarExample(
+                text="Tu vas chez le dentiste ?", translation="Are you going to the dentist?"
+            ),
+            GrammarExample(text="Nous allons à la plage.", translation="We're going to the beach."),
+            GrammarExample(
+                text="Elle va aux Pays-Bas.",
+                translation="She's going to the Netherlands.",
+                note="à + les → aux",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -694,10 +785,17 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ne pas confondre avec le futur simple (je mangerai).",
         ],
         examples=[
-            GrammarExample(text="Je vais téléphoner à Marie.", translation=None),
-            GrammarExample(text="Qu'est-ce que tu vas faire ce week-end ?", translation=None),
-            GrammarExample(text="Il va neiger demain.", translation=None),
-            GrammarExample(text="Nous allons visiter le musée.", translation=None),
+            GrammarExample(
+                text="Je vais téléphoner à Marie.", translation="I'm going to call Marie."
+            ),
+            GrammarExample(
+                text="Qu'est-ce que tu vas faire ce week-end ?",
+                translation="What are you going to do this weekend?",
+            ),
+            GrammarExample(text="Il va neiger demain.", translation="It's going to snow tomorrow."),
+            GrammarExample(
+                text="Nous allons visiter le musée.", translation="We're going to visit the museum."
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -728,12 +826,20 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Toujours suivis de l'infinitif sans préposition.",
         ],
         examples=[
-            GrammarExample(text="Je veux apprendre le français.", translation=None),
-            GrammarExample(text="Tu peux m'aider ?", translation=None, note="permission/capacité"),
             GrammarExample(
-                text="Nous devons partir à huit heures.", translation=None, note="obligation"
+                text="Je veux apprendre le français.", translation="I want to learn French."
             ),
-            GrammarExample(text="Elle ne peut pas venir ce soir.", translation=None),
+            GrammarExample(
+                text="Tu peux m'aider ?", translation="Can you help me?", note="permission/capacité"
+            ),
+            GrammarExample(
+                text="Nous devons partir à huit heures.",
+                translation="We have to leave at eight o'clock.",
+                note="obligation",
+            ),
+            GrammarExample(
+                text="Elle ne peut pas venir ce soir.", translation="She can't come tonight."
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -764,11 +870,17 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Pas de préposition pour un jour précis : Je pars lundi.",
         ],
         examples=[
-            GrammarExample(text="Le lundi, j'ai cours de français.", translation=None),
-            GrammarExample(text="On se voit mardi prochain.", translation=None),
-            GrammarExample(text="Mon anniversaire est en avril.", translation=None),
             GrammarExample(
-                text="Je travaille le matin et j'étudie l'après-midi.", translation=None
+                text="Le lundi, j'ai cours de français.",
+                translation="On Mondays, I have French class.",
+            ),
+            GrammarExample(text="On se voit mardi prochain.", translation="See you next Tuesday."),
+            GrammarExample(
+                text="Mon anniversaire est en avril.", translation="My birthday is in April."
+            ),
+            GrammarExample(
+                text="Je travaille le matin et j'étudie l'après-midi.",
+                translation="I work in the morning and study in the afternoon.",
             ),
         ],
         common_mistakes=[

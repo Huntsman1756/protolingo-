@@ -504,4 +504,118 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         common_mistakes=[],
         related=["expression-nuancee", "integration-grammaticale"],
     ),
+    GrammarTopic(
+        slug="francophonie-contemporaine",
+        title="La Francophonie contemporaine",
+        level="C2",
+        category="Expression",
+        summary="Institutions, enjeux et diversité de la Francophonie au XXIe siècle.",
+        explanation="La **Francophonie** est une communauté de 321 millions de locuteurs répartis sur les cinq continents. Elle dépasse la simple communauté linguistique : c'est un espace politique, économique et culturel organisé autour de l'OIF (Organisation Internationale de la Francophonie).\n\n**Institutions clés** :\n- **OIF** (88 États et gouvernements) : promotion de la langue, paix, démocratie, éducation.\n- **AUF** (Agence Universitaire de la Francophonie) : réseau de 1000+ universités.\n- **TV5Monde** : chaîne internationale en français.\n\n**Dynamiques régionales** :\n- L'Afrique concentre 60% des francophones (RDC, Côte d'Ivoire, Cameroun, Sénégal).\n- Le français progresse démographiquement grâce à l'Afrique.\n- Le Québec maintient une politique linguistique volontariste (loi 101).\n\n**Débats** : norme parisienne vs. français d'Afrique, insécurité linguistique, place de l'anglais dans les institutions francophones.",
+        structure="321 millions de locuteurs · 88 États · 5 continents",
+        rules=[
+            "La Francophonie n'est pas un bloc monolithique.",
+            "Le centre de gravité du français se déplace vers l'Afrique.",
+            "L'OIF promeut le plurilinguisme, pas le monolinguisme français.",
+        ],
+        examples=[
+            GrammarExample(
+                text="En Côte d'Ivoire, le nouchi enrichit le français standard de néologismes : 'un gbonhi' (sorcier), 'enjailler' (s'amuser).",
+                translation=None,
+                note="français populaire ivoirien",
+            ),
+            GrammarExample(
+                text="Le Québec a créé l'OQLF (Office québécois de la langue française) pour veiller à l'application de la Charte de la langue française.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Selon l'ONU, le français pourrait être parlé par 700 millions de personnes en 2050, principalement en Afrique.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="La Francophonie, c'est juste les pays où on parle français.",
+                correct="La Francophonie est une organisation politique et culturelle — tous les pays membres ne sont pas majoritairement francophones.",
+                note="Confusion fréquente entre francophonie (fait linguistique, minuscule) et Francophonie (institution, majuscule).",
+            ),
+        ],
+        related=["politique-linguistique-fr", "varietes-francais"],
+    ),
+    GrammarTopic(
+        slug="politique-linguistique-fr",
+        title="La politique linguistique en France",
+        level="C2",
+        category="Expression",
+        summary="De la loi Toubon au débat sur l'écriture inclusive : les politiques linguistiques françaises.",
+        explanation="La France mène une **politique linguistique active** depuis le XVIe siècle :\n\n**Institutions de régulation** :\n- **Académie française** (1635) : veille sur la langue, publie le dictionnaire (9e édition en cours).\n- **DGLFLF** (Délégation générale à la langue française et aux langues de France) : rattachée au ministère de la Culture.\n\n**Lois principales** :\n- **Loi Toubon** (1994) : impose le français dans la publicité, le travail, l'affichage public.\n- **Réforme de l'orthographe** (1990) : rectifications (oignon→ognon, nénuphar→nénufar) — facultatives.\n\n**Débats contemporains** :\n- **Écriture inclusive** : point médian (les électeur·rice·s), double flexion, épicènes. Vif débat académique et politique.\n- **Anglicismes** : 'digital', 'start-up', 'coaching' vs. néologismes proposés ('numérique', 'jeune pousse').\n- **Féminisation des noms de métiers** : 'la ministre' (accepté), 'autrice' (débat récent), 'professeure' (usage croissant).",
+        structure="Académie française + DGLFLF + lois + débats contemporains",
+        rules=[
+            "La loi Toubon garantit un 'droit au français' dans certains domaines.",
+            "La réforme de 1990 est facultative — les deux orthographes coexistent.",
+            "L'Académie est souvent critiquée pour son conservatisme.",
+            "La féminisation est plus avancée au Québec et en Belgique qu'en France.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Loi Toubon : 'Langue de la République en vertu de la Constitution, le français est un élément fondamental de la personnalité et du patrimoine de la France.'",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Écriture inclusive : 'Les candidat·e·s sont invité·e·s à se présenter.' — usage avec point médian.",
+                translation=None,
+                note="débattu",
+            ),
+            GrammarExample(
+                text="Féminisation : 'Madame la Présidente' est maintenant standard, alors que 'Madame le Président' était la règle il y a 30 ans.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="L'Académie française publie les règles du français.",
+                correct="L'Académie n'a pas de pouvoir normatif juridique — elle émet des recommandations. Seul l'État légifère.",
+                note="Distinguer autorité morale et autorité légale.",
+            ),
+        ],
+        related=["francophonie-contemporaine", "evolution-francais"],
+    ),
+    GrammarTopic(
+        slug="evolution-numerique-fr",
+        title="Le français à l'ère numérique",
+        level="C2",
+        category="Expression",
+        summary="Comment le français évolue avec le numérique : réseaux sociaux, SMS, IA et nouveaux usages.",
+        explanation="Le **numérique transforme le français** à une vitesse inédite :\n\n**Réseaux sociaux et messagerie** :\n- Abréviations : *mdr* (mort de rire), *ptdr*, *jpp* (j'en peux plus), *tkt* (t'inquiète).\n- Émoticônes et emojis comme ponctuation émotionnelle.\n- Hashtags et leur syntaxe : *#JeSuisCharlie, #MeToo*.\n\n**Langage SMS et écriture numérique** :\n- Troncation : *ordi, appli, frigo, resto, ciné*.\n- Verlan : *meuf* (femme), *ouf* (fou), *chelou* (louche), *rebeu* (arabe).\n- Néologismes : *googliser*, *tweeter*, *liker*, *forwarder*, *scroller*.\n\n**IA et traitement automatique** :\n- ChatGPT, traduction automatique (DeepL) : défis pour l'apprentissage du français.\n- Biais des modèles : l'anglais domine les données d'entraînement.\n- Enjeux de souveraineté linguistique numérique.\n\n**Argot des gamers** : *tryharder*, *rush*, *cheat*, *noob*, *gg*.",
+        structure="SMS + réseaux + IA + création lexicale numérique",
+        rules=[
+            "Le français numérique n'est pas 'dégradé' — c'est un registre adapté au medium.",
+            "Le verlan est un code social autant qu'un jeu linguistique.",
+            "Les emprunts à l'anglais dans le numérique sont massifs mais le français crée aussi (courriel, pourriel).",
+        ],
+        examples=[
+            GrammarExample(
+                text="tkt j'arrive ds 5 min mdr",
+                translation="T'inquiète, j'arrive dans 5 minutes, mort de rire.",
+                note="langage SMS / messagerie",
+            ),
+            GrammarExample(
+                text="Cette meuf est trop chelou, elle m'a posé un lapin.",
+                translation="Cette femme est très louche, elle m'a fait faux bond.",
+                note="verlan + expression idiomatique",
+            ),
+            GrammarExample(
+                text="DeepL a proposé 'courriel' pour 'email' — un néologisme francisé adopté au Québec mais peu en France.",
+                translation=None,
+                note="divergence Québec/France",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Le français des jeunes est du 'mauvais français'.",
+                correct="Chaque génération développe son propre sociolecte ; celui des jeunes est aussi légitime linguistiquement que tout autre registre.",
+                note="Éviter les jugements de valeur sur les variétés linguistiques.",
+            ),
+        ],
+        related=["francophonie-contemporaine", "creativite-linguistique"],
+    ),
 ]

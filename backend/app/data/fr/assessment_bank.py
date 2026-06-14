@@ -691,7 +691,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Les longs trajets pour le travail",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B2 — Grammar (10)
+    # B2 — Grammar (12)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-b2-001",
@@ -808,8 +808,36 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="s'ouvrit ; entra",
         grammar_slug="temps-narratifs",
     ),
+    AssessmentQuestion(
+        id="g-b2-011",
+        skill="grammar",
+        difficulty="B2",
+        question="Transformez au discours indirect : Il a dit : « Je viendrai demain. »",
+        options=[
+            "Il a dit qu'il viendrait le lendemain",
+            "Il a dit qu'il viendra demain",
+            "Il a dit qu'il venait demain",
+            "Il a dit qu'il serait venu le lendemain",
+        ],
+        correct="Il a dit qu'il viendrait le lendemain",
+        grammar_slug="discours-rapporte",
+    ),
+    AssessmentQuestion(
+        id="g-b2-012",
+        skill="grammar",
+        difficulty="B2",
+        question="Quel pronom évite la répétition dans : « Marie a acheté une robe. La robe est rouge. » ?",
+        options=[
+            "Marie a acheté une robe. Celle-ci est rouge.",
+            "Marie a acheté une robe. Cet est rouge.",
+            "Marie a acheté une robe. Ceci est rouge.",
+            "Marie a acheté une robe. Ceux-ci est rouge.",
+        ],
+        correct="Marie a acheté une robe. Celle-ci est rouge.",
+        grammar_slug="cohesion-textuelle",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # B2 — Vocabulary (6)
+    # B2 — Vocabulary (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-b2-001",
@@ -864,8 +892,24 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         ],
         correct="Persister avec obstination",
     ),
+    AssessmentQuestion(
+        id="v-b2-007",
+        skill="vocabulary",
+        difficulty="B2",
+        question="Que signifie « s'épanouir » dans un contexte professionnel ?",
+        options=["Se développer pleinement", "Fleurir", "Partir en vacances", "Se plaindre"],
+        correct="Se développer pleinement",
+    ),
+    AssessmentQuestion(
+        id="v-b2-008",
+        skill="vocabulary",
+        difficulty="B2",
+        question="Quel est le contraire de « exhaustif » ?",
+        options=["Lacunaire", "Complet", "Précis", "Rigoureux"],
+        correct="Lacunaire",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # B2 — Reading (3)
+    # B2 — Reading (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-b2-001",
@@ -906,8 +950,21 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         ],
         correct="Les jeunes de moins de 25 ans",
     ),
+    AssessmentQuestion(
+        id="r-b2-004",
+        skill="reading",
+        difficulty="B2",
+        question="La COP28 s'est achevée sur un accord qualifié d'« historique » par ses promoteurs, mais que de nombreuses ONG jugent très insuffisant. Le texte mentionne pour la première fois une « transition hors des énergies fossiles », une avancée sémantique qui ne s'accompagne toutefois d'aucun calendrier contraignant.\n\nPourquoi les ONG sont-elles critiques ?",
+        options=[
+            "L'accord ne prévoit pas de calendrier contraignant",
+            "L'accord interdit immédiatement les énergies fossiles",
+            "La COP28 n'a pas eu lieu",
+            "Le texte est trop long",
+        ],
+        correct="L'accord ne prévoit pas de calendrier contraignant",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Grammar (7)
+    # C1 — Grammar (10)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-c1-001",
@@ -987,8 +1044,45 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Il a dit : « Je viendrai demain. »",
         grammar_slug="orthotypographie",
     ),
+    AssessmentQuestion(
+        id="g-c1-008",
+        skill="grammar",
+        difficulty="C1",
+        question="Avec quel suffixe forme-t-on un nom à partir de « solidaire » ?",
+        options=["-ité", "-ment", "-tion", "-eur"],
+        correct="-ité",
+        grammar_slug="derivation",
+    ),
+    AssessmentQuestion(
+        id="g-c1-009",
+        skill="grammar",
+        difficulty="C1",
+        question="Quelle phrase est ironique ?",
+        options=[
+            "Bravo, tu as encore tout cassé !",
+            "Je te félicite sincèrement pour ton travail.",
+            "Il a obtenu son diplôme avec mention.",
+            "Merci de m'avoir aidé.",
+        ],
+        correct="Bravo, tu as encore tout cassé !",
+        grammar_slug="ironie",
+    ),
+    AssessmentQuestion(
+        id="g-c1-010",
+        skill="grammar",
+        difficulty="C1",
+        question="Dans quelle variété de français dit-on 'septante' pour 70 ?",
+        options=[
+            "Le français de Belgique et de Suisse",
+            "Le français du Québec",
+            "Le français de France",
+            "Le français d'Afrique",
+        ],
+        correct="Le français de Belgique et de Suisse",
+        grammar_slug="varietes-francais",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Vocabulary (5)
+    # C1 — Vocabulary (6)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-c1-001",
@@ -1050,8 +1144,21 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         ],
         correct="Absurde et grotesque à l'excès",
     ),
+    AssessmentQuestion(
+        id="v-c1-006",
+        skill="vocabulary",
+        difficulty="C1",
+        question="Que signifie « un pléonasme » ?",
+        options=[
+            "Une répétition de mots ayant le même sens",
+            "Une contradiction dans les termes",
+            "Une métaphore audacieuse",
+            "Une phrase sans verbe",
+        ],
+        correct="Une répétition de mots ayant le même sens",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Reading (3)
+    # C1 — Reading (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-c1-001",
@@ -1092,8 +1199,21 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         ],
         correct="Un entre-deux territorial entre ville et campagne",
     ),
+    AssessmentQuestion(
+        id="r-c1-004",
+        skill="reading",
+        difficulty="C1",
+        question="La Convention citoyenne sur le climat, voulue par le gouvernement comme une réponse à la crise des gilets jaunes, a vu ses propositions les plus ambitieuses largement édulcorées dans le projet de loi final. Si le président s'était engagé à reprendre « sans filtre » les 146 propositions, seules 40 ont été reprises intégralement.\n\nQuel paradoxe le texte met-il en évidence ?",
+        options=[
+            "Le gouvernement n'a repris qu'une minorité des propositions malgré sa promesse",
+            "Les citoyens ont refusé de participer à la convention",
+            "La convention a proposé trop peu de mesures",
+            "Le président a tenu toutes ses promesses",
+        ],
+        correct="Le gouvernement n'a repris qu'une minorité des propositions malgré sa promesse",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Grammar (6)
+    # C2 — Grammar (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-c2-001",
@@ -1174,8 +1294,36 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="J'en ai ras-le-bol de ce bruit !",
         grammar_slug="fluidite-native",
     ),
+    AssessmentQuestion(
+        id="g-c2-007",
+        skill="grammar",
+        difficulty="C2",
+        question="Quelle phrase utilise le discours indirect libre ?",
+        options=[
+            "Qu'allait-il faire maintenant ? La nuit tombait, il avait faim.",
+            "Il se demanda : « Que vais-je faire maintenant ? »",
+            "Il se demandait ce qu'il allait faire maintenant car la nuit tombait et il avait faim.",
+            "« Qu'est-ce que je vais faire ? », pensa-t-il.",
+        ],
+        correct="Qu'allait-il faire maintenant ? La nuit tombait, il avait faim.",
+        grammar_slug="voix-narrative",
+    ),
+    AssessmentQuestion(
+        id="g-c2-008",
+        skill="grammar",
+        difficulty="C2",
+        question="Quelle phrase exprime la nuance la plus atténuée ?",
+        options=[
+            "Ce ne serait pas inintéressant d'y réfléchir",
+            "Il faut absolument y réfléchir",
+            "C'est très intéressant d'y réfléchir",
+            "Réfléchissez-y impérativement",
+        ],
+        correct="Ce ne serait pas inintéressant d'y réfléchir",
+        grammar_slug="expression-nuancee",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Vocabulary (4)
+    # C2 — Vocabulary (6)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-c2-001",
@@ -1229,8 +1377,34 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         ],
         correct="L'apparition d'un mot dans un texte",
     ),
+    AssessmentQuestion(
+        id="v-c2-005",
+        skill="vocabulary",
+        difficulty="C2",
+        question="Que signifie « un oxymore » ?",
+        options=[
+            "Une alliance de mots contradictoires",
+            "Une répétition en début de phrase",
+            "Une exagération manifeste",
+            "Une comparaison sans outil grammatical",
+        ],
+        correct="Une alliance de mots contradictoires",
+    ),
+    AssessmentQuestion(
+        id="v-c2-006",
+        skill="vocabulary",
+        difficulty="C2",
+        question="Que signifie « la concision » ?",
+        options=[
+            "Qualité de ce qui est bref et dense",
+            "Qualité de ce qui est long et détaillé",
+            "Qualité de ce qui est flou et vague",
+            "Qualité de ce qui est lent et lourd",
+        ],
+        correct="Qualité de ce qui est bref et dense",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Reading (3)
+    # C2 — Reading (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-c2-001",
@@ -1270,5 +1444,18 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
             "Elle utilise des phrases très longues",
         ],
         correct="Elle reproduit le rythme de la parole populaire",
+    ),
+    AssessmentQuestion(
+        id="r-c2-004",
+        skill="reading",
+        difficulty="C2",
+        question="La querelle entre les Anciens et les Modernes, qui enflamma l'Académie française à la fin du XVIIe siècle, n'était pas un simple débat esthétique. Elle posait une question qui reste d'actualité : l'innovation créatrice doit-elle primer sur l'héritage classique ? Les Modernes, menés par Perrault, affirmaient la supériorité de leur siècle sur l'Antiquité. Boileau, au nom des Anciens, défendait l'intemporalité des modèles grecs et latins. Quatre siècles plus tard, ce débat résonne encore dans nos controverses sur l'évolution de la langue.\n\nQuel était l'argument central des Modernes selon le texte ?",
+        options=[
+            "Leur siècle était supérieur à l'Antiquité",
+            "L'Académie française devait être supprimée",
+            "Boileau était le meilleur poète",
+            "Le latin devait redevenir la langue officielle",
+        ],
+        correct="Leur siècle était supérieur à l'Antiquité",
     ),
 ]
