@@ -94,6 +94,8 @@ def test_curriculum_vocab_refs_all_defined() -> None:
     import app.data.en_GB.vocabulary as en_vocabulary
     import app.data.es.curriculum as es_curriculum
     import app.data.es.vocabulary as es_vocabulary
+    import app.data.fr.curriculum as fr_curriculum
+    import app.data.fr.vocabulary as fr_vocabulary
     import app.data.it.curriculum as it_curriculum
     import app.data.it.vocabulary as it_vocabulary
     import app.data.pt.curriculum as pt_curriculum
@@ -101,6 +103,7 @@ def test_curriculum_vocab_refs_all_defined() -> None:
 
     _check_language_vocab_refs("English", en_curriculum.CURRICULUM, en_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs("Spanish", es_curriculum.CURRICULUM, es_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs("French", fr_curriculum.CURRICULUM, fr_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs("Italian", it_curriculum.CURRICULUM, it_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs(
         "Portuguese", pt_curriculum.CURRICULUM, pt_vocabulary.VOCABULARY_SETS

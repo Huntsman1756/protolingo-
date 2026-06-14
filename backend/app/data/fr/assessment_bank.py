@@ -118,7 +118,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="aller-a-chez",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # A1 — Vocabulary (5)
+    # A1 — Vocabulary (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-a1-001",
@@ -160,8 +160,32 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         options=["Le pain", "La pomme", "La banane", "L'orange"],
         correct="Le pain",
     ),
+    AssessmentQuestion(
+        id="v-a1-006",
+        skill="vocabulary",
+        difficulty="A1",
+        question="Quel mot désigne la mère de votre mère ?",
+        options=["La grand-mère", "La tante", "La sœur", "La cousine"],
+        correct="La grand-mère",
+    ),
+    AssessmentQuestion(
+        id="v-a1-007",
+        skill="vocabulary",
+        difficulty="A1",
+        question="Que signifie « merci » ?",
+        options=["Thank you", "Goodbye", "Please", "Sorry"],
+        correct="Thank you",
+    ),
+    AssessmentQuestion(
+        id="v-a1-008",
+        skill="vocabulary",
+        difficulty="A1",
+        question="Complétez : En France, on prend le petit-déjeuner le ___ .",
+        options=["matin", "soir", "midi", "après-midi"],
+        correct="matin",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # A1 — Reading (3)
+    # A1 — Reading (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-a1-001",
@@ -186,6 +210,14 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Il est midi. Paul a faim. Il va au restaurant avec son ami Luc.\n\nOù va Paul ?",
         options=["Au restaurant", "Au cinéma", "À la maison", "Au supermarché"],
         correct="Au restaurant",
+    ),
+    AssessmentQuestion(
+        id="r-a1-004",
+        skill="reading",
+        difficulty="A1",
+        question="Je m'appelle Anna. J'ai 30 ans. Je suis italienne mais j'habite à Lyon. J'aime la musique et le cinéma.\n\nDe quelle nationalité est Anna ?",
+        options=["Italienne", "Française", "Espagnole", "Allemande"],
+        correct="Italienne",
     ),
     # ────────────────────────────────────────────────────────────────────
     # A2 — Grammar (12)
@@ -304,7 +336,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="relatifs-simples",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # A2 — Vocabulary (5)
+    # A2 — Vocabulary (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-a2-001",
@@ -346,8 +378,37 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         options=["Le dîner", "Le petit-déjeuner", "Le déjeuner", "Le goûter"],
         correct="Le dîner",
     ),
+    AssessmentQuestion(
+        id="v-a2-006",
+        skill="vocabulary",
+        difficulty="A2",
+        question="Quel est le contraire de « chaud » ?",
+        options=["Froid", "Tiède", "Brûlant", "Doux"],
+        correct="Froid",
+    ),
+    AssessmentQuestion(
+        id="v-a2-007",
+        skill="vocabulary",
+        difficulty="A2",
+        question="Où peut-on acheter des médicaments ?",
+        options=[
+            "À la pharmacie",
+            "À la boulangerie",
+            "À la poste",
+            "À la banque",
+        ],
+        correct="À la pharmacie",
+    ),
+    AssessmentQuestion(
+        id="v-a2-008",
+        skill="vocabulary",
+        difficulty="A2",
+        question="Que signifie « se dépêcher » ?",
+        options=["To hurry", "To rest", "To eat", "To sleep"],
+        correct="To hurry",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # A2 — Reading (3)
+    # A2 — Reading (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-a2-001",
@@ -377,6 +438,19 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Julie adore la lecture. Tous les soirs avant de dormir, elle lit un chapitre de son roman.\n\nQue fait Julie avant de dormir ?",
         options=["Elle lit", "Elle écrit", "Elle chante", "Elle cuisine"],
         correct="Elle lit",
+    ),
+    AssessmentQuestion(
+        id="r-a2-004",
+        skill="reading",
+        difficulty="A2",
+        question="Ce week-end, Thomas et sa famille sont allés au bord de la mer. Ils se sont baignés et ils ont mangé des glaces. Le temps était magnifique.\n\nQuel temps faisait-il ?",
+        options=[
+            "Il faisait beau",
+            "Il pleuvait",
+            "Il neigeait",
+            "Il y avait du vent",
+        ],
+        correct="Il faisait beau",
     ),
     # ────────────────────────────────────────────────────────────────────
     # B1 — Grammar (12)
@@ -500,7 +574,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="conditionnel-passe",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B1 — Vocabulary (5)
+    # B1 — Vocabulary (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-b1-001",
@@ -542,8 +616,37 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         options=["Pessimiste", "Content", "Méchant", "Calme"],
         correct="Pessimiste",
     ),
+    AssessmentQuestion(
+        id="v-b1-006",
+        skill="vocabulary",
+        difficulty="B1",
+        question="Quel est le synonyme de « effrayé » ?",
+        options=["Apeuré", "Content", "Surpris", "Amusé"],
+        correct="Apeuré",
+    ),
+    AssessmentQuestion(
+        id="v-b1-007",
+        skill="vocabulary",
+        difficulty="B1",
+        question="Que signifie l'expression « poser un lapin à quelqu'un » ?",
+        options=[
+            "Ne pas venir à un rendez-vous",
+            "Offrir un animal en cadeau",
+            "Raconter une histoire drôle",
+            "Faire une surprise agréable",
+        ],
+        correct="Ne pas venir à un rendez-vous",
+    ),
+    AssessmentQuestion(
+        id="v-b1-008",
+        skill="vocabulary",
+        difficulty="B1",
+        question="Quel mot désigne une personne qui parle plusieurs langues ?",
+        options=["Polyglotte", "Bilingue", "Monolingue", "Linguiste"],
+        correct="Polyglotte",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # B1 — Reading (3)
+    # B1 — Reading (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-b1-001",
@@ -573,6 +676,19 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Le marché de Noël de Strasbourg est l'un des plus anciens d'Europe. Chaque année, il attire plus de deux millions de visiteurs du monde entier.\n\nDe quelle ville parle le texte ?",
         options=["Strasbourg", "Paris", "Lyon", "Marseille"],
         correct="Strasbourg",
+    ),
+    AssessmentQuestion(
+        id="r-b1-004",
+        skill="reading",
+        difficulty="B1",
+        question="De plus en plus de Français choisissent de vivre à la campagne. Ils cherchent une meilleure qualité de vie, loin du bruit et de la pollution des grandes villes. Cependant, cela implique souvent de longs trajets pour aller travailler.\n\nQuel est l'inconvénient de vivre à la campagne mentionné dans le texte ?",
+        options=[
+            "Les longs trajets pour le travail",
+            "Le coût de la vie trop élevé",
+            "Le manque d'écoles",
+            "L'absence totale de commerces",
+        ],
+        correct="Les longs trajets pour le travail",
     ),
     # ────────────────────────────────────────────────────────────────────
     # B2 — Grammar (10)
@@ -693,7 +809,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="temps-narratifs",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B2 — Vocabulary (5)
+    # B2 — Vocabulary (6)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-b2-001",
@@ -734,6 +850,19 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Que signifie « un atout » ?",
         options=["An advantage", "A tool", "A liability", "A schedule"],
         correct="An advantage",
+    ),
+    AssessmentQuestion(
+        id="v-b2-006",
+        skill="vocabulary",
+        difficulty="B2",
+        question="Que signifie le verbe « s'acharner » ?",
+        options=[
+            "Persister avec obstination",
+            "Abandonner rapidement",
+            "Se reposer longuement",
+            "S'amuser bruyamment",
+        ],
+        correct="Persister avec obstination",
     ),
     # ────────────────────────────────────────────────────────────────────
     # B2 — Reading (3)
@@ -859,7 +988,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="orthotypographie",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Vocabulary (3)
+    # C1 — Vocabulary (5)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-c1-001",
@@ -895,8 +1024,34 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         options=["L'étymologie", "La phonétique", "La syntaxe", "La sémantique"],
         correct="L'étymologie",
     ),
+    AssessmentQuestion(
+        id="v-c1-004",
+        skill="vocabulary",
+        difficulty="C1",
+        question="Que signifie « un euphémisme » ?",
+        options=[
+            "Une expression qui atténue une réalité déplaisante",
+            "Une exagération volontaire",
+            "Une insulte déguisée",
+            "Un compliment exagéré",
+        ],
+        correct="Une expression qui atténue une réalité déplaisante",
+    ),
+    AssessmentQuestion(
+        id="v-c1-005",
+        skill="vocabulary",
+        difficulty="C1",
+        question="Que signifie « ubuesque » ?",
+        options=[
+            "Absurde et grotesque à l'excès",
+            "Très rapide et efficace",
+            "Parfaitement logique",
+            "Extrêmement silencieux",
+        ],
+        correct="Absurde et grotesque à l'excès",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Reading (2)
+    # C1 — Reading (3)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-c1-001",
@@ -923,6 +1078,19 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
             "Les inégalités ont disparu",
         ],
         correct="La mondialisation apporte croissance mais aussi inégalités",
+    ),
+    AssessmentQuestion(
+        id="r-c1-003",
+        skill="reading",
+        difficulty="C1",
+        question="La fractale urbaine s'épanouit à la périphérie des métropoles, défiant la dichotomie classique entre ville et campagne. Cet entre-deux territorial, ni tout à fait urbain ni véritablement rural, cristallise les paradoxes de l'aménagement contemporain.\n\nQue décrit le texte ?",
+        options=[
+            "Un entre-deux territorial entre ville et campagne",
+            "Le centre-ville historique",
+            "Une zone strictement rurale",
+            "Un quartier d'affaires",
+        ],
+        correct="Un entre-deux territorial entre ville et campagne",
     ),
     # ────────────────────────────────────────────────────────────────────
     # C2 — Grammar (6)
@@ -1007,7 +1175,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="fluidite-native",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Vocabulary (2)
+    # C2 — Vocabulary (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-c2-001",
@@ -1035,8 +1203,34 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         ],
         correct="Nocif, dangereux pour la santé",
     ),
+    AssessmentQuestion(
+        id="v-c2-003",
+        skill="vocabulary",
+        difficulty="C2",
+        question="Que signifie « obséquieux » ?",
+        options=[
+            "Excessivement poli par intérêt",
+            "Grossier et malpoli",
+            "Indifférent",
+            "Hésitant",
+        ],
+        correct="Excessivement poli par intérêt",
+    ),
+    AssessmentQuestion(
+        id="v-c2-004",
+        skill="vocabulary",
+        difficulty="C2",
+        question="Que signifie « l'occurrence » en linguistique ?",
+        options=[
+            "L'apparition d'un mot dans un texte",
+            "La fréquence d'un événement",
+            "Une opportunité",
+            "Une coïncidence",
+        ],
+        correct="L'apparition d'un mot dans un texte",
+    ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Reading (2)
+    # C2 — Reading (3)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-c2-001",
@@ -1063,5 +1257,18 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
             "Une loi votée annuellement",
         ],
         correct="Un principe actif garantissant liberté et égalité",
+    ),
+    AssessmentQuestion(
+        id="r-c2-003",
+        skill="reading",
+        difficulty="C2",
+        question="L'écriture célinienne, avec ses points de suspension et son oralité exacerbée, a constitué une rupture dans le paysage littéraire français. En rejetant les conventions stylistiques bourgeoises, Céline a ouvert la voie à une langue brute, viscérale, qui épouse le rythme de la parole populaire.\n\nQuelle est la particularité de l'écriture de Céline selon le texte ?",
+        options=[
+            "Elle reproduit le rythme de la parole populaire",
+            "Elle respecte les conventions classiques",
+            "Elle est principalement poétique",
+            "Elle utilise des phrases très longues",
+        ],
+        correct="Elle reproduit le rythme de la parole populaire",
     ),
 ]
