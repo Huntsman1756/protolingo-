@@ -20,7 +20,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Quoi qu'il arrive, je resterai à tes côtés.", translation=None),
             GrammarExample(text="Où que tu ailles, je penserai à toi.", translation=None),
-            GrammarExample(text="Quelles que soient les difficultés, nous réussirons.", translation=None, note="accord de 'quelles'"),
+            GrammarExample(
+                text="Quelles que soient les difficultés, nous réussirons.",
+                translation=None,
+                note="accord de 'quelles'",
+            ),
             GrammarExample(text="Qui que vous soyez, veuillez vous identifier.", translation=None),
         ],
         common_mistakes=[
@@ -46,10 +50,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Le 'ne' explétif après avant que, de peur que (soutenu).",
         ],
         examples=[
-            GrammarExample(text="J'explique lentement pour que tout le monde suive.", translation=None),
-            GrammarExample(text="Il est sorti discrètement de peur qu'on ne le remarque.", translation=None, note="ne explétif"),
+            GrammarExample(
+                text="J'explique lentement pour que tout le monde suive.", translation=None
+            ),
+            GrammarExample(
+                text="Il est sorti discrètement de peur qu'on ne le remarque.",
+                translation=None,
+                note="ne explétif",
+            ),
             GrammarExample(text="Rentre avant qu'il ne fasse nuit.", translation=None),
-            GrammarExample(text="Je te prête ce livre afin que tu puisses préparer l'examen.", translation=None),
+            GrammarExample(
+                text="Je te prête ce livre afin que tu puisses préparer l'examen.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -75,10 +87,22 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Le seul, l'unique, le premier + que → subjonctif.",
         ],
         examples=[
-            GrammarExample(text="Je cherche un appartement qui ait un balcon.", translation=None, note="indéfini → subjonctif"),
-            GrammarExample(text="Je connais un appartement qui a un balcon.", translation=None, note="défini → indicatif"),
-            GrammarExample(text="C'est le plus beau spectacle que j'aie jamais vu.", translation=None),
-            GrammarExample(text="Il n'y a personne ici qui sache parler japonais.", translation=None),
+            GrammarExample(
+                text="Je cherche un appartement qui ait un balcon.",
+                translation=None,
+                note="indéfini → subjonctif",
+            ),
+            GrammarExample(
+                text="Je connais un appartement qui a un balcon.",
+                translation=None,
+                note="défini → indicatif",
+            ),
+            GrammarExample(
+                text="C'est le plus beau spectacle que j'aie jamais vu.", translation=None
+            ),
+            GrammarExample(
+                text="Il n'y a personne ici qui sache parler japonais.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -103,9 +127,21 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Bien choisir le suffixe : -tion, -ment, -té, -eur, -age, -ance.",
         ],
         examples=[
-            GrammarExample(text="L'augmentation du trafic aérien inquiète les écologistes.", translation=None, note="augmenter → augmentation"),
-            GrammarExample(text="La disparition des abeilles menace la biodiversité.", translation=None, note="disparaître → disparition"),
-            GrammarExample(text="La lenteur du processus a été critiquée.", translation=None, note="lent → lenteur"),
+            GrammarExample(
+                text="L'augmentation du trafic aérien inquiète les écologistes.",
+                translation=None,
+                note="augmenter → augmentation",
+            ),
+            GrammarExample(
+                text="La disparition des abeilles menace la biodiversité.",
+                translation=None,
+                note="disparaître → disparition",
+            ),
+            GrammarExample(
+                text="La lenteur du processus a été critiquée.",
+                translation=None,
+                note="lent → lenteur",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -130,9 +166,16 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Éviter 'on' en contexte très formel.",
         ],
         examples=[
-            GrammarExample(text="Il convient de souligner l'importance de ces résultats.", translation=None),
-            GrammarExample(text="Force est de constater que les progrès sont insuffisants.", translation=None),
-            GrammarExample(text="Il ressort de l'enquête que la majorité des sondés approuvent la mesure.", translation=None),
+            GrammarExample(
+                text="Il convient de souligner l'importance de ces résultats.", translation=None
+            ),
+            GrammarExample(
+                text="Force est de constater que les progrès sont insuffisants.", translation=None
+            ),
+            GrammarExample(
+                text="Il ressort de l'enquête que la majorité des sondés approuvent la mesure.",
+                translation=None,
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -158,9 +201,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Pas de point après les titres centrés.",
         ],
         examples=[
-            GrammarExample(text="« Cette découverte est majeure », a déclaré le chercheur.", translation=None),
-            GrammarExample(text="Trois options s'offrent à nous : négocier, résister ou céder.", translation=None),
-            GrammarExample(text="L'État français a annoncé une nouvelle réforme.", translation=None, note="majuscule accentuée"),
+            GrammarExample(
+                text="« Cette découverte est majeure », a déclaré le chercheur.", translation=None
+            ),
+            GrammarExample(
+                text="Trois options s'offrent à nous : négocier, résister ou céder.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="L'État français a annoncé une nouvelle réforme.",
+                translation=None,
+                note="majuscule accentuée",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -185,9 +237,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Attention aux faux amis de dérivation.",
         ],
         examples=[
-            GrammarExample(text="créer → création, créateur, créatif, créativité, recréer", translation=None),
-            GrammarExample(text="égal → égalité, inégal, inégalité, égaliser, égalitaire", translation=None),
-            GrammarExample(text="faire → défaire, refaire, surfaire, parfaire, contrefaire", translation=None),
+            GrammarExample(
+                text="créer → création, créateur, créatif, créativité, recréer", translation=None
+            ),
+            GrammarExample(
+                text="égal → égalité, inégal, inégalité, égaliser, égalitaire", translation=None
+            ),
+            GrammarExample(
+                text="faire → défaire, refaire, surfaire, parfaire, contrefaire", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -245,9 +303,21 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Le registre formel exige une précision lexicale élevée.",
         ],
         examples=[
-            GrammarExample(text="Le gouvernement a procédé à une réforme.", translation=None, note="vs a fait une réforme"),
-            GrammarExample(text="L'étude révèle des inégalités persistantes.", translation=None, note="vs l'étude dit"),
-            GrammarExample(text="La solution réside dans le dialogue.", translation=None, note="vs la solution est"),
+            GrammarExample(
+                text="Le gouvernement a procédé à une réforme.",
+                translation=None,
+                note="vs a fait une réforme",
+            ),
+            GrammarExample(
+                text="L'étude révèle des inégalités persistantes.",
+                translation=None,
+                note="vs l'étude dit",
+            ),
+            GrammarExample(
+                text="La solution réside dans le dialogue.",
+                translation=None,
+                note="vs la solution est",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -273,7 +343,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Attention au sarcasme qui peut blesser.",
         ],
         examples=[
-            GrammarExample(text="Bravo, tu as encore oublié ton rendez-vous !", translation=None, note="antiphrase"),
+            GrammarExample(
+                text="Bravo, tu as encore oublié ton rendez-vous !",
+                translation=None,
+                note="antiphrase",
+            ),
             GrammarExample(text="Ce n'est pas la mer à boire. (litote)", translation=None),
             GrammarExample(text="Ah, tu t'es réveillé ? Il est midi ! (ironie)", translation=None),
         ],
@@ -300,8 +374,16 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "L'autodérision est appréciée socialement.",
         ],
         examples=[
-            GrammarExample(text="Pourquoi le plombier n'a-t-il jamais faim ? Parce qu'il a toujours un tuyau.", translation=None, note="jeu de mots"),
-            GrammarExample(text="Je suis ponctuel : j'arrive toujours à l'heure... à laquelle je ne devrais pas.", translation=None, note="autodérision"),
+            GrammarExample(
+                text="Pourquoi le plombier n'a-t-il jamais faim ? Parce qu'il a toujours un tuyau.",
+                translation=None,
+                note="jeu de mots",
+            ),
+            GrammarExample(
+                text="Je suis ponctuel : j'arrive toujours à l'heure... à laquelle je ne devrais pas.",
+                translation=None,
+                note="autodérision",
+            ),
         ],
         common_mistakes=[],
         related=["ironie", "double-sens", "figures-rhetoriques"],
@@ -320,8 +402,13 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Les sous-entendus sont très présents dans la communication française.",
         ],
         examples=[
-            GrammarExample(text="Ce politicien a de l'avenir... derrière lui. (double sens)", translation=None),
-            GrammarExample(text="Il est parti. (selon le contexte : il a quitté la pièce ou il est décédé)", translation=None),
+            GrammarExample(
+                text="Ce politicien a de l'avenir... derrière lui. (double sens)", translation=None
+            ),
+            GrammarExample(
+                text="Il est parti. (selon le contexte : il a quitté la pièce ou il est décédé)",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["ironie", "humour", "nuance"],
@@ -341,9 +428,20 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La gradation dramatise le propos.",
         ],
         examples=[
-            GrammarExample(text="Moi, président, je serai exemplaire. Moi, président, je respecterai la parole donnée.", translation=None, note="anaphore"),
-            GrammarExample(text="Peut-on vraiment fermer les yeux sur cette situation ?", translation=None, note="question rhétorique"),
-            GrammarExample(text="Ils sont venus, ils ont vu, ils ont vaincu. (gradation et parallélisme)", translation=None),
+            GrammarExample(
+                text="Moi, président, je serai exemplaire. Moi, président, je respecterai la parole donnée.",
+                translation=None,
+                note="anaphore",
+            ),
+            GrammarExample(
+                text="Peut-on vraiment fermer les yeux sur cette situation ?",
+                translation=None,
+                note="question rhétorique",
+            ),
+            GrammarExample(
+                text="Ils sont venus, ils ont vu, ils ont vaincu. (gradation et parallélisme)",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["persuasion", "art-oratoire", "structure-argumentative"],
@@ -362,9 +460,21 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ethos = montrer sa légitimité à parler du sujet.",
         ],
         examples=[
-            GrammarExample(text="D'après l'OMS, la pollution cause 7 millions de décès par an. Il est temps d'agir.", translation=None, note="logos"),
-            GrammarExample(text="Imaginez vos enfants grandir dans un monde sans forêts.", translation=None, note="pathos"),
-            GrammarExample(text="En tant que médecin urgentiste depuis quinze ans, je peux vous assurer que...", translation=None, note="ethos"),
+            GrammarExample(
+                text="D'après l'OMS, la pollution cause 7 millions de décès par an. Il est temps d'agir.",
+                translation=None,
+                note="logos",
+            ),
+            GrammarExample(
+                text="Imaginez vos enfants grandir dans un monde sans forêts.",
+                translation=None,
+                note="pathos",
+            ),
+            GrammarExample(
+                text="En tant que médecin urgentiste depuis quinze ans, je peux vous assurer que...",
+                translation=None,
+                note="ethos",
+            ),
         ],
         common_mistakes=[],
         related=["figures-rhetoriques", "art-oratoire", "structure-argumentative"],
@@ -384,9 +494,21 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Terminer par une phrase forte.",
         ],
         examples=[
-            GrammarExample(text="Chers collègues, la question qui nous réunit aujourd'hui est cruciale.", translation=None, note="accroche"),
-            GrammarExample(text="Permettez-moi d'illustrer ce propos par un exemple concret.", translation=None, note="transition"),
-            GrammarExample(text="En définitive, c'est notre responsabilité collective qui est en jeu.", translation=None, note="péroraison"),
+            GrammarExample(
+                text="Chers collègues, la question qui nous réunit aujourd'hui est cruciale.",
+                translation=None,
+                note="accroche",
+            ),
+            GrammarExample(
+                text="Permettez-moi d'illustrer ce propos par un exemple concret.",
+                translation=None,
+                note="transition",
+            ),
+            GrammarExample(
+                text="En définitive, c'est notre responsabilité collective qui est en jeu.",
+                translation=None,
+                note="péroraison",
+            ),
         ],
         common_mistakes=[],
         related=["figures-rhetoriques", "persuasion", "structure-argumentative"],
@@ -406,10 +528,18 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Comprendre la diversité évite les malentendus.",
         ],
         examples=[
-            GrammarExample(text="Au Québec : Je vais magasiner avec ma blonde.", translation=None, note="magasiner = faire du shopping"),
-            GrammarExample(text="En Belgique : Il drache ! On va goûter une fois.", translation=None),
+            GrammarExample(
+                text="Au Québec : Je vais magasiner avec ma blonde.",
+                translation=None,
+                note="magasiner = faire du shopping",
+            ),
+            GrammarExample(
+                text="En Belgique : Il drache ! On va goûter une fois.", translation=None
+            ),
             GrammarExample(text="En Suisse : Mon natel n'a plus de batterie.", translation=None),
-            GrammarExample(text="Au Sénégal : On va à l'essencerie avant de partir.", translation=None),
+            GrammarExample(
+                text="Au Sénégal : On va à l'essencerie avant de partir.", translation=None
+            ),
         ],
         common_mistakes=[],
         related=["varietes-francais", "differences-regionales"],
@@ -428,9 +558,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Comprendre la variation enrichit la compétence linguistique.",
         ],
         examples=[
-            GrammarExample(text="Québec : Tu veux-tu aller au cinéma ?", translation=None, note="particule interrogative -tu"),
-            GrammarExample(text="Marseille : Eh bé ! Il fait chaud aujourd'hui, con !", translation=None),
-            GrammarExample(text="Côte d'Ivoire : Il y a un maquis juste là, on y va ?", translation=None),
+            GrammarExample(
+                text="Québec : Tu veux-tu aller au cinéma ?",
+                translation=None,
+                note="particule interrogative -tu",
+            ),
+            GrammarExample(
+                text="Marseille : Eh bé ! Il fait chaud aujourd'hui, con !", translation=None
+            ),
+            GrammarExample(
+                text="Côte d'Ivoire : Il y a un maquis juste là, on y va ?", translation=None
+            ),
         ],
         common_mistakes=[],
         related=["francophonie", "differences-regionales"],
@@ -450,8 +588,14 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="À Lille : Tiens, biloute, ça drache dehors !", translation=None),
-            GrammarExample(text="À Toulouse : Tu veux une chocolatine ?", translation=None, note="pain au chocolat"),
-            GrammarExample(text="À Marseille : T'as vu cette tchatche, il est fort lui !", translation=None),
+            GrammarExample(
+                text="À Toulouse : Tu veux une chocolatine ?",
+                translation=None,
+                note="pain au chocolat",
+            ),
+            GrammarExample(
+                text="À Marseille : T'as vu cette tchatche, il est fort lui !", translation=None
+            ),
         ],
         common_mistakes=[],
         related=["francophonie", "varietes-francais"],
@@ -471,11 +615,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Plan thématique, pas plan par document.",
         ],
         examples=[
-            GrammarExample(text="Si pour Durand la mondialisation est une opportunité, Martin y voit au contraire une menace pour les cultures locales.", translation=None),
-            GrammarExample(text="Ces trois auteurs convergent sur un point : la nécessité de réguler les échanges.", translation=None),
+            GrammarExample(
+                text="Si pour Durand la mondialisation est une opportunité, Martin y voit au contraire une menace pour les cultures locales.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Ces trois auteurs convergent sur un point : la nécessité de réguler les échanges.",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
-        related=["critique-constructive", "reformulation", "analyse_fr_c1"],
+        related=["critique-constructive", "reformulation"],
     ),
     GrammarTopic(
         slug="critique-constructive",
@@ -492,8 +642,14 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Terminer par une appréciation globale.",
         ],
         examples=[
-            GrammarExample(text="L'analyse est rigoureuse. Toutefois, il aurait été intéressant d'élargir le corpus.", translation=None),
-            GrammarExample(text="On peut saluer la clarté de l'exposé, même si certains aspects mériteraient d'être approfondis.", translation=None),
+            GrammarExample(
+                text="L'analyse est rigoureuse. Toutefois, il aurait été intéressant d'élargir le corpus.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="On peut saluer la clarté de l'exposé, même si certains aspects mériteraient d'être approfondis.",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["synthese-textuelle", "reformulation", "structure-argumentative"],
@@ -512,9 +668,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Changer la structure syntaxique.",
         ],
         examples=[
-            GrammarExample(text="Si je vous ai bien compris, vous estimez que la réforme est prématurée.", translation=None),
-            GrammarExample(text="La croissance démographique ralentit. En d'autres termes, la population augmente moins vite qu'avant.", translation=None),
-            GrammarExample(text="Il souffre d'anosmie, c'est-à-dire qu'il a perdu l'odorat.", translation=None),
+            GrammarExample(
+                text="Si je vous ai bien compris, vous estimez que la réforme est prématurée.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="La croissance démographique ralentit. En d'autres termes, la population augmente moins vite qu'avant.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Il souffre d'anosmie, c'est-à-dire qu'il a perdu l'odorat.", translation=None
+            ),
         ],
         common_mistakes=[],
         related=["synthese-textuelle", "critique-constructive"],

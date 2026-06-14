@@ -17,9 +17,21 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Utiliser le subjonctif imparfait en reconnaissance passive (littérature).",
         ],
         examples=[
-            GrammarExample(text="Je ne pense pas qu'il ait pu terminer à temps.", translation=None, note="subjonctif passé"),
-            GrammarExample(text="Bien qu'il fût tard, il continua. (littéraire)", translation=None, note="subjonctif imparfait"),
-            GrammarExample(text="Après qu'il est parti, tout le monde s'est regardé.", translation=None, note="indicatif après 'après que'"),
+            GrammarExample(
+                text="Je ne pense pas qu'il ait pu terminer à temps.",
+                translation=None,
+                note="subjonctif passé",
+            ),
+            GrammarExample(
+                text="Bien qu'il fût tard, il continua. (littéraire)",
+                translation=None,
+                note="subjonctif imparfait",
+            ),
+            GrammarExample(
+                text="Après qu'il est parti, tout le monde s'est regardé.",
+                translation=None,
+                note="indicatif après 'après que'",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -45,8 +57,16 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="J'aurais aimé que tu sois là.", translation=None, note="regret"),
-            GrammarExample(text="Le suspect se serait enfui par la fenêtre.", translation=None, note="conditionnel journalistique"),
-            GrammarExample(text="Si j'avais su que tu serais en retard, je serais venu plus tard.", translation=None, note="concordance complexe"),
+            GrammarExample(
+                text="Le suspect se serait enfui par la fenêtre.",
+                translation=None,
+                note="conditionnel journalistique",
+            ),
+            GrammarExample(
+                text="Si j'avais su que tu serais en retard, je serais venu plus tard.",
+                translation=None,
+                note="concordance complexe",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -71,9 +91,19 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Maîtriser les 4 combinaisons de la condition (réel, irréel présent, irréel passé, mixte).",
         ],
         examples=[
-            GrammarExample(text="Il a avoué qu'il avait menti en prétendant qu'il serait à l'heure.", translation=None),
-            GrammarExample(text="Je me demandais si elle viendrait malgré la pluie.", translation=None, note="si interrogatif"),
-            GrammarExample(text="Si j'avais écouté ce qu'il m'avait conseillé, je ne serais pas dans cette situation.", translation=None),
+            GrammarExample(
+                text="Il a avoué qu'il avait menti en prétendant qu'il serait à l'heure.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Je me demandais si elle viendrait malgré la pluie.",
+                translation=None,
+                note="si interrogatif",
+            ),
+            GrammarExample(
+                text="Si j'avais écouté ce qu'il m'avait conseillé, je ne serais pas dans cette situation.",
+                translation=None,
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -98,8 +128,15 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Les métaphores filées unifient un texte.",
         ],
         examples=[
-            GrammarExample(text="Longtemps, je me suis couché de bonne heure. (Proust, incipit)", translation=None),
-            GrammarExample(text="Dans le silence de la nuit, seul le vent murmurait son chant glacé.", translation=None, note="allitération en s"),
+            GrammarExample(
+                text="Longtemps, je me suis couché de bonne heure. (Proust, incipit)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Dans le silence de la nuit, seul le vent murmurait son chant glacé.",
+                translation=None,
+                note="allitération en s",
+            ),
         ],
         common_mistakes=[],
         related=["voix-narrative", "ressources-stylistiques"],
@@ -119,8 +156,14 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Indirect libre : fusion narration/pensées du personnage.",
         ],
         examples=[
-            GrammarExample(text="Elle regarda par la fenêtre. Dehors, la pluie redoublait. Quelle journée ! (indirect libre)", translation=None),
-            GrammarExample(text="Il ignorait encore que sa vie allait basculer ce soir-là. (omniscient)", translation=None),
+            GrammarExample(
+                text="Elle regarda par la fenêtre. Dehors, la pluie redoublait. Quelle journée ! (indirect libre)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Il ignorait encore que sa vie allait basculer ce soir-là. (omniscient)",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["style-litteraire", "ressources-stylistiques"],
@@ -141,8 +184,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Les dés pipés du destin. (hypallage)", translation=None),
-            GrammarExample(text="Un affreux plaisir, une douce violence. (oxymores)", translation=None),
-            GrammarExample(text="Il marchait. Le vent soufflait. La nuit tombait. (parataxe)", translation=None),
+            GrammarExample(
+                text="Un affreux plaisir, une douce violence. (oxymores)", translation=None
+            ),
+            GrammarExample(
+                text="Il marchait. Le vent soufflait. La nuit tombait. (parataxe)", translation=None
+            ),
         ],
         common_mistakes=[],
         related=["style-litteraire", "voix-narrative"],
@@ -161,9 +208,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Tenir compte du registre et de la culture.",
         ],
         examples=[
-            GrammarExample(text="Je suis allé au marché. → I went to the market. (pas I am gone to the market)", translation=None),
-            GrammarExample(text="Tu me manques. → I miss you. (pas You are missing to me)", translation=None),
-            GrammarExample(text="It's a piece of cake. → C'est un jeu d'enfant. (pas c'est un morceau de gâteau)", translation=None),
+            GrammarExample(
+                text="Je suis allé au marché. → I went to the market. (pas I am gone to the market)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Tu me manques. → I miss you. (pas You are missing to me)", translation=None
+            ),
+            GrammarExample(
+                text="It's a piece of cake. → C'est un jeu d'enfant. (pas c'est un morceau de gâteau)",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["nuances-traduction", "faux-amis"],
@@ -182,8 +237,14 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Les intraduisibles peuvent nécessiter une note.",
         ],
         examples=[
-            GrammarExample(text="Bonne rentrée ! → Enjoy going back to work/school! (pas de traduction littérale)", translation=None),
-            GrammarExample(text="C'est la galère. → It's a real nightmare. (pas It's the galley)", translation=None),
+            GrammarExample(
+                text="Bonne rentrée ! → Enjoy going back to work/school! (pas de traduction littérale)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="C'est la galère. → It's a real nightmare. (pas It's the galley)",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["equivalence", "faux-amis"],
@@ -202,9 +263,18 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "En traduction, le contexte lève l'ambiguïté.",
         ],
         examples=[
-            GrammarExample(text="Actually, I don't know. → En réalité, je ne sais pas. (pas Actuellement)", translation=None),
-            GrammarExample(text="I'll go eventually. → J'irai finalement. (pas Éventuellement)", translation=None),
-            GrammarExample(text="She's very sympathetic. → Elle est très compatissante. (pas sympathique)", translation=None),
+            GrammarExample(
+                text="Actually, I don't know. → En réalité, je ne sais pas. (pas Actuellement)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="I'll go eventually. → J'irai finalement. (pas Éventuellement)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="She's very sympathetic. → Elle est très compatissante. (pas sympathique)",
+                translation=None,
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -229,9 +299,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Les emprunts sont naturels dans toutes les langues.",
         ],
         examples=[
-            GrammarExample(text="alcool, sucre, zéro, chiffre — emprunts à l'arabe médiéval", translation=None),
-            GrammarExample(text="balcon, concert, banque — emprunts à l'italien de la Renaissance", translation=None),
-            GrammarExample(text="week-end, parking, cloud — emprunts contemporains à l'anglais", translation=None),
+            GrammarExample(
+                text="alcool, sucre, zéro, chiffre — emprunts à l'arabe médiéval", translation=None
+            ),
+            GrammarExample(
+                text="balcon, concert, banque — emprunts à l'italien de la Renaissance",
+                translation=None,
+            ),
+            GrammarExample(
+                text="week-end, parking, cloud — emprunts contemporains à l'anglais",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["etymologie", "evolution-francais"],
@@ -271,8 +349,14 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La langue continue d'évoluer.",
         ],
         examples=[
-            GrammarExample(text="Ancien français : 'Rollant sent que la mort le tresprent' → Français moderne : 'Roland sent que la mort s'empare de lui'", translation=None),
-            GrammarExample(text="XVIIe : 'Je vas' → Aujourd'hui : 'Je vais' (le 's' s'est généralisé par analogie)", translation=None),
+            GrammarExample(
+                text="Ancien français : 'Rollant sent que la mort le tresprent' → Français moderne : 'Roland sent que la mort s'empare de lui'",
+                translation=None,
+            ),
+            GrammarExample(
+                text="XVIIe : 'Je vas' → Aujourd'hui : 'Je vais' (le 's' s'est généralisé par analogie)",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["lexique-historique", "etymologie"],
@@ -292,8 +376,14 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La nouvelle privilégie la tension narrative.",
         ],
         examples=[
-            GrammarExample(text="Essai : 'Il convient de s'interroger sur la place du numérique dans nos vies.'", translation=None),
-            GrammarExample(text="Nouvelle : 'Ce matin-là, en ouvrant sa porte, il comprit que rien ne serait plus comme avant.'", translation=None),
+            GrammarExample(
+                text="Essai : 'Il convient de s'interroger sur la place du numérique dans nos vies.'",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Nouvelle : 'Ce matin-là, en ouvrant sa porte, il comprit que rien ne serait plus comme avant.'",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["creativite-linguistique", "edition"],
@@ -312,8 +402,14 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "L'humour et l'ironie sont des terrains de créativité.",
         ],
         examples=[
-            GrammarExample(text="Pourquoi faire simple quand on peut faire compliqué ? → Pourquoi faire compliqué quand on peut faire simple ? (détournement)", translation=None),
-            GrammarExample(text="clavardage = clavier + bavardage (proposé au Québec pour 'chat')", translation=None),
+            GrammarExample(
+                text="Pourquoi faire simple quand on peut faire compliqué ? → Pourquoi faire compliqué quand on peut faire simple ? (détournement)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="clavardage = clavier + bavardage (proposé au Québec pour 'chat')",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["genres-textuels", "edition"],
@@ -332,7 +428,10 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Laisser reposer le texte entre l'écriture et la révision.",
         ],
         examples=[
-            GrammarExample(text="Avant : 'Il y a beaucoup de gens qui pensent que...' → Après : 'Nombreux sont ceux qui estiment que...'", translation=None),
+            GrammarExample(
+                text="Avant : 'Il y a beaucoup de gens qui pensent que...' → Après : 'Nombreux sont ceux qui estiment que...'",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["genres-textuels", "creativite-linguistique"],
@@ -351,9 +450,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Adapter le degré de directivité selon la situation.",
         ],
         examples=[
-            GrammarExample(text="Il ne serait pas déraisonnable d'envisager... (litote pour dire que c'est raisonnable)", translation=None),
-            GrammarExample(text="Je me permets de vous signaler que... (atténuation polie)", translation=None),
-            GrammarExample(text="Autant le dire tout de suite : ce projet est voué à l'échec. (emphase)", translation=None),
+            GrammarExample(
+                text="Il ne serait pas déraisonnable d'envisager... (litote pour dire que c'est raisonnable)",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Je me permets de vous signaler que... (atténuation polie)", translation=None
+            ),
+            GrammarExample(
+                text="Autant le dire tout de suite : ce projet est voué à l'échec. (emphase)",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["integration-grammaticale", "fluidite-native"],
@@ -372,7 +479,10 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La syntaxe complexe est sous contrôle.",
         ],
         examples=[
-            GrammarExample(text="Si j'avais su, lorsque tu m'as appelé hier, que la situation se serait détériorée à ce point, je n'aurais pas hésité à intervenir.", translation=None),
+            GrammarExample(
+                text="Si j'avais su, lorsque tu m'as appelé hier, que la situation se serait détériorée à ce point, je n'aurais pas hésité à intervenir.",
+                translation=None,
+            ),
         ],
         common_mistakes=[],
         related=["expression-nuancee", "fluidite-native"],

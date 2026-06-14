@@ -55,7 +55,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Je suis allé au cinéma.", translation=None, note="masc. sing."),
             GrammarExample(text="Elle est partie hier soir.", translation=None, note="fém. sing."),
-            GrammarExample(text="Nous sommes arrivés en retard.", translation=None, note="masc. plur."),
+            GrammarExample(
+                text="Nous sommes arrivés en retard.", translation=None, note="masc. plur."
+            ),
             GrammarExample(text="Elles sont nées en France.", translation=None, note="fém. plur."),
         ],
         common_mistakes=[
@@ -70,7 +72,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Avec être, le participe passé s'accorde : allée avec un sujet féminin.",
             ),
         ],
-        related=["passe-compose-avoir", "accord-participe-etre", "participes-passes", "verbes-pronominaux"],
+        related=[
+            "passe-compose-avoir",
+            "accord-participe-etre",
+            "participes-passes",
+            "verbes-pronominaux",
+        ],
     ),
     GrammarTopic(
         slug="participes-passes",
@@ -120,9 +127,15 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "L'accord ne change pas la prononciation dans la plupart des cas.",
         ],
         examples=[
-            GrammarExample(text="Marie est arrivée à huit heures.", translation=None, note="fém. sing."),
-            GrammarExample(text="Pierre et Paul sont partis ensemble.", translation=None, note="masc. plur."),
-            GrammarExample(text="Mes sœurs sont nées en Italie.", translation=None, note="fém. plur."),
+            GrammarExample(
+                text="Marie est arrivée à huit heures.", translation=None, note="fém. sing."
+            ),
+            GrammarExample(
+                text="Pierre et Paul sont partis ensemble.", translation=None, note="masc. plur."
+            ),
+            GrammarExample(
+                text="Mes sœurs sont nées en Italie.", translation=None, note="fém. plur."
+            ),
             GrammarExample(text="Elle s'est réveillée tôt.", translation=None, note="pronominal"),
         ],
         common_mistakes=[
@@ -190,7 +203,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Il faisait beau, je suis allé me promener.", translation=None),
             GrammarExample(text="Je lisais quand quelqu'un a frappé à la porte.", translation=None),
-            GrammarExample(text="Avant, j'habitais à Paris, puis j'ai déménagé à Lyon.", translation=None),
+            GrammarExample(
+                text="Avant, j'habitais à Paris, puis j'ai déménagé à Lyon.", translation=None
+            ),
             GrammarExample(text="Quand elle est entrée, tout le monde parlait.", translation=None),
         ],
         common_mistakes=[
@@ -223,8 +238,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Il faisait nuit, la rue était déserte.", translation=None),
-            GrammarExample(text="Elle portait un manteau noir et avait l'air fatiguée.", translation=None),
-            GrammarExample(text="Dans le jardin, il y avait des roses magnifiques.", translation=None),
+            GrammarExample(
+                text="Elle portait un manteau noir et avait l'air fatiguée.", translation=None
+            ),
+            GrammarExample(
+                text="Dans le jardin, il y avait des roses magnifiques.", translation=None
+            ),
             GrammarExample(text="Je me sentais heureux ce jour-là.", translation=None),
         ],
         common_mistakes=[
@@ -259,7 +278,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Tu connais Marie ? — Oui, je la connais.", translation=None),
             GrammarExample(text="Il lit le journal tous les jours. — Il le lit.", translation=None),
             GrammarExample(text="Vous prenez les clés ? — Oui, je les prends.", translation=None),
-            GrammarExample(text="Je ne l'aime pas, ce film.", translation=None, note="l' devant voyelle"),
+            GrammarExample(
+                text="Je ne l'aime pas, ce film.", translation=None, note="l' devant voyelle"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -326,7 +347,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Tu vas à la poste ? — Oui, j'y vais.", translation=None),
             GrammarExample(text="Tu as du sucre ? — Oui, j'en ai.", translation=None),
-            GrammarExample(text="Il revient de Londres ? — Il en revient demain.", translation=None),
+            GrammarExample(
+                text="Il revient de Londres ? — Il en revient demain.", translation=None
+            ),
             GrammarExample(text="Combien de frères as-tu ? — J'en ai deux.", translation=None),
         ],
         common_mistakes=[
@@ -459,8 +482,14 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ne jamais dire 'plus bon' ou 'plus bien'.",
         ],
         examples=[
-            GrammarExample(text="Ce restaurant est meilleur que l'autre.", translation=None, note="bon → meilleur"),
-            GrammarExample(text="Elle cuisine mieux que moi.", translation=None, note="bien → mieux"),
+            GrammarExample(
+                text="Ce restaurant est meilleur que l'autre.",
+                translation=None,
+                note="bon → meilleur",
+            ),
+            GrammarExample(
+                text="Elle cuisine mieux que moi.", translation=None, note="bien → mieux"
+            ),
             GrammarExample(text="Ce sont les meilleures vacances de ma vie !", translation=None),
             GrammarExample(text="Il va mieux aujourd'hui.", translation=None, note="santé"),
         ],
@@ -496,7 +525,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Parle plus fort !", translation=None, note="pas de -s"),
             GrammarExample(text="Allons au cinéma !", translation=None),
             GrammarExample(text="Finissez vos devoirs !", translation=None),
-            GrammarExample(text="Sois gentil avec ta sœur !", translation=None, note="être irrégulier"),
+            GrammarExample(
+                text="Sois gentil avec ta sœur !", translation=None, note="être irrégulier"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -528,7 +559,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Ne parle pas si vite !", translation=None),
             GrammarExample(text="N'oubliez pas vos clés !", translation=None),
-            GrammarExample(text="Ne te lève pas, je t'en prie.", translation=None, note="pronom avant le verbe"),
+            GrammarExample(
+                text="Ne te lève pas, je t'en prie.", translation=None, note="pronom avant le verbe"
+            ),
             GrammarExample(text="Ne me le dites pas !", translation=None),
         ],
         common_mistakes=[
@@ -596,7 +629,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Sois à l'heure !", translation=None),
             GrammarExample(text="Ayez un peu de patience !", translation=None),
             GrammarExample(text="Sache que je t'attendrai.", translation=None),
-            GrammarExample(text="Veuillez remplir ce formulaire.", translation=None, note="politesse"),
+            GrammarExample(
+                text="Veuillez remplir ce formulaire.", translation=None, note="politesse"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -661,10 +696,20 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Pour l'hypothèse, utilisé avec 'si + imparfait'.",
         ],
         examples=[
-            GrammarExample(text="Je voudrais un renseignement, s'il vous plaît.", translation=None, note="politesse"),
-            GrammarExample(text="J'aimerais apprendre le français.", translation=None, note="souhait"),
-            GrammarExample(text="Tu devrais voir ce film, il est excellent.", translation=None, note="conseil"),
-            GrammarExample(text="Si je pouvais, je partirais en vacances.", translation=None, note="hypothèse"),
+            GrammarExample(
+                text="Je voudrais un renseignement, s'il vous plaît.",
+                translation=None,
+                note="politesse",
+            ),
+            GrammarExample(
+                text="J'aimerais apprendre le français.", translation=None, note="souhait"
+            ),
+            GrammarExample(
+                text="Tu devrais voir ce film, il est excellent.", translation=None, note="conseil"
+            ),
+            GrammarExample(
+                text="Si je pouvais, je partirais en vacances.", translation=None, note="hypothèse"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -698,7 +743,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="S'il fait beau demain, nous irons à la plage.", translation=None),
             GrammarExample(text="Si tu as soif, il y a de l'eau dans le frigo.", translation=None),
             GrammarExample(text="Si vous êtes perdus, appelez-moi !", translation=None),
-            GrammarExample(text="Si elle arrive en retard, on commencera sans elle.", translation=None),
+            GrammarExample(
+                text="Si elle arrive en retard, on commencera sans elle.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -729,10 +776,19 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Soudain, tout à coup pour un événement inattendu.",
         ],
         examples=[
-            GrammarExample(text="D'abord, je suis allé à la boulangerie. Ensuite, j'ai pris le bus.", translation=None),
-            GrammarExample(text="J'ai cherché mes clés partout. Finalement, je les ai trouvées dans mon sac.", translation=None),
+            GrammarExample(
+                text="D'abord, je suis allé à la boulangerie. Ensuite, j'ai pris le bus.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="J'ai cherché mes clés partout. Finalement, je les ai trouvées dans mon sac.",
+                translation=None,
+            ),
             GrammarExample(text="Soudain, un chien a traversé la rue.", translation=None),
-            GrammarExample(text="Nous avons visité le musée, puis nous sommes allés au restaurant.", translation=None),
+            GrammarExample(
+                text="Nous avons visité le musée, puis nous sommes allés au restaurant.",
+                translation=None,
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -800,7 +856,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="La femme qui parle est ma mère.", translation=None),
             GrammarExample(text="Le film que j'ai vu hier était ennuyeux.", translation=None),
             GrammarExample(text="C'est le village où je suis né.", translation=None),
-            GrammarExample(text="Le jour où on s'est rencontrés, il pleuvait.", translation=None, note="temps"),
+            GrammarExample(
+                text="Le jour où on s'est rencontrés, il pleuvait.", translation=None, note="temps"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(

@@ -35,7 +35,12 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="'Être' au subjonctif : que tu sois.",
             ),
         ],
-        related=["subjonctif-necessite", "subjonctif-volonte", "subjonctif-emotion", "subjonctif-doute"],
+        related=[
+            "subjonctif-necessite",
+            "subjonctif-volonte",
+            "subjonctif-emotion",
+            "subjonctif-doute",
+        ],
     ),
     GrammarTopic(
         slug="subjonctif-necessite",
@@ -52,9 +57,17 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Il faut que tu finisses tes devoirs.", translation=None),
-            GrammarExample(text="Il est nécessaire que nous réservions à l'avance.", translation=None),
-            GrammarExample(text="Il faut être patient. (pas de changement de sujet)", translation=None, note="infinitif"),
-            GrammarExample(text="Il est indispensable qu'elle prenne ce médicament.", translation=None),
+            GrammarExample(
+                text="Il est nécessaire que nous réservions à l'avance.", translation=None
+            ),
+            GrammarExample(
+                text="Il faut être patient. (pas de changement de sujet)",
+                translation=None,
+                note="infinitif",
+            ),
+            GrammarExample(
+                text="Il est indispensable qu'elle prenne ce médicament.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -86,7 +99,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Je veux que tu m'accompagnes.", translation=None),
             GrammarExample(text="Elle souhaite que son fils fasse des études.", translation=None),
-            GrammarExample(text="Le directeur exige que tout le monde soit présent.", translation=None),
+            GrammarExample(
+                text="Le directeur exige que tout le monde soit présent.", translation=None
+            ),
             GrammarExample(text="J'aimerais que vous m'expliquiez ce problème.", translation=None),
         ],
         common_mistakes=[
@@ -119,7 +134,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Je suis content que tu sois venu.", translation=None),
-            GrammarExample(text="Elle regrette que nous ne puissions pas rester.", translation=None),
+            GrammarExample(
+                text="Elle regrette que nous ne puissions pas rester.", translation=None
+            ),
             GrammarExample(text="J'ai peur qu'il ne comprenne pas.", translation=None),
             GrammarExample(text="C'est dommage que vous partiez déjà.", translation=None),
         ],
@@ -155,7 +172,11 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Je ne pense pas qu'il pleuve demain.", translation=None),
             GrammarExample(text="Je doute que ce soit la bonne solution.", translation=None),
             GrammarExample(text="Il est possible que nous partions plus tôt.", translation=None),
-            GrammarExample(text="Penses-tu qu'elle vienne ?", translation=None, note="interrogatif → subjonctif"),
+            GrammarExample(
+                text="Penses-tu qu'elle vienne ?",
+                translation=None,
+                note="interrogatif → subjonctif",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -220,9 +241,19 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Pas d'accord avec 'en'.",
         ],
         examples=[
-            GrammarExample(text="Les pommes que j'ai mangées étaient délicieuses.", translation=None, note="que = COD avant → accord"),
-            GrammarExample(text="Cette lettre, je l'ai écrite hier.", translation=None, note="l' = la lettre → fém. sing."),
-            GrammarExample(text="J'ai acheté des fleurs.", translation=None, note="COD après → pas d'accord"),
+            GrammarExample(
+                text="Les pommes que j'ai mangées étaient délicieuses.",
+                translation=None,
+                note="que = COD avant → accord",
+            ),
+            GrammarExample(
+                text="Cette lettre, je l'ai écrite hier.",
+                translation=None,
+                note="l' = la lettre → fém. sing.",
+            ),
+            GrammarExample(
+                text="J'ai acheté des fleurs.", translation=None, note="COD après → pas d'accord"
+            ),
             GrammarExample(text="Les filles que j'ai rencontrées sont sympas.", translation=None),
         ],
         common_mistakes=[
@@ -256,8 +287,14 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Quand je suis arrivé, il était déjà parti.", translation=None),
             GrammarExample(text="Elle avait réservé une table avant de venir.", translation=None),
-            GrammarExample(text="Si j'avais su, je ne serais pas venu.", translation=None, note="regret"),
-            GrammarExample(text="Il m'a dit qu'il n'avait pas reçu mon message.", translation=None, note="discours indirect"),
+            GrammarExample(
+                text="Si j'avais su, je ne serais pas venu.", translation=None, note="regret"
+            ),
+            GrammarExample(
+                text="Il m'a dit qu'il n'avait pas reçu mon message.",
+                translation=None,
+                note="discours indirect",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -290,7 +327,11 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Ce livre a été écrit par un auteur français.", translation=None),
             GrammarExample(text="La décision sera annoncée demain.", translation=None),
-            GrammarExample(text="Il est respecté de tous ses collègues.", translation=None, note="de pour un sentiment"),
+            GrammarExample(
+                text="Il est respecté de tous ses collègues.",
+                translation=None,
+                note="de pour un sentiment",
+            ),
             GrammarExample(text="Le voleur a été arrêté par la police.", translation=None),
         ],
         common_mistakes=[
@@ -325,7 +366,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="On parle français au Québec.", translation=None, note="indéfini"),
             GrammarExample(text="On m'a dit que tu déménageais.", translation=None),
             GrammarExample(text="On va au restaurant ce soir ?", translation=None, note="nous"),
-            GrammarExample(text="On ne peut pas toujours gagner.", translation=None, note="généralité"),
+            GrammarExample(
+                text="On ne peut pas toujours gagner.", translation=None, note="généralité"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -372,7 +415,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Sans 'se', le sens devient actif (quelque chose qui mange).",
             ),
         ],
-        related=["passif", "on-impersonnel", "se-impersonal"],
+        related=["passif", "on-impersonnel"],
     ),
     GrammarTopic(
         slug="pronoms-relatifs-simples",
@@ -389,7 +432,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ne pas confondre qui (sujet) et que (objet).",
         ],
         examples=[
-            GrammarExample(text="Le monsieur qui porte un chapeau est mon voisin.", translation=None),
+            GrammarExample(
+                text="Le monsieur qui porte un chapeau est mon voisin.", translation=None
+            ),
             GrammarExample(text="La chanson que tu écoutes est très belle.", translation=None),
             GrammarExample(text="La ville où j'habite est très animée.", translation=None),
             GrammarExample(text="Le jour où on s'est rencontrés, il neigeait.", translation=None),
@@ -423,10 +468,18 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Avec une personne, on préfère 'préposition + qui' : l'ami avec qui je voyage.",
         ],
         examples=[
-            GrammarExample(text="Le projet sur lequel je travaille est confidentiel.", translation=None),
+            GrammarExample(
+                text="Le projet sur lequel je travaille est confidentiel.", translation=None
+            ),
             GrammarExample(text="La table sous laquelle le chat s'est caché.", translation=None),
-            GrammarExample(text="Les amis avec lesquels je voyage.", translation=None, note="personnes aussi possible"),
-            GrammarExample(text="Le problème auquel je pense.", translation=None, note="à + lequel → auquel"),
+            GrammarExample(
+                text="Les amis avec lesquels je voyage.",
+                translation=None,
+                note="personnes aussi possible",
+            ),
+            GrammarExample(
+                text="Le problème auquel je pense.", translation=None, note="à + lequel → auquel"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -457,9 +510,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Le nom qui suit 'dont' prend l'article défini.",
         ],
         examples=[
-            GrammarExample(text="Le film dont je t'ai parlé est en salle.", translation=None, note="parler de"),
-            GrammarExample(text="L'auteur dont j'admire l'œuvre.", translation=None, note="admirer l'œuvre de"),
-            GrammarExample(text="C'est un résultat dont je suis fier.", translation=None, note="fier de"),
+            GrammarExample(
+                text="Le film dont je t'ai parlé est en salle.", translation=None, note="parler de"
+            ),
+            GrammarExample(
+                text="L'auteur dont j'admire l'œuvre.", translation=None, note="admirer l'œuvre de"
+            ),
+            GrammarExample(
+                text="C'est un résultat dont je suis fier.", translation=None, note="fier de"
+            ),
             GrammarExample(text="La ville dont je viens.", translation=None, note="venir de"),
         ],
         common_mistakes=[
@@ -491,9 +550,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Exprime une situation contraire à la réalité présente.",
         ],
         examples=[
-            GrammarExample(text="Si j'avais plus de temps, j'apprendrais le piano.", translation=None),
-            GrammarExample(text="Si tu habitais plus près, on se verrait plus souvent.", translation=None),
-            GrammarExample(text="Si j'étais toi, j'accepterais cette offre.", translation=None, note="conseil"),
+            GrammarExample(
+                text="Si j'avais plus de temps, j'apprendrais le piano.", translation=None
+            ),
+            GrammarExample(
+                text="Si tu habitais plus près, on se verrait plus souvent.", translation=None
+            ),
+            GrammarExample(
+                text="Si j'étais toi, j'accepterais cette offre.", translation=None, note="conseil"
+            ),
             GrammarExample(text="S'il faisait beau, on irait à la plage.", translation=None),
         ],
         common_mistakes=[
@@ -526,8 +591,12 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="J'aurais dû t'écouter.", translation=None, note="regret"),
-            GrammarExample(text="Tu aurais pu me le dire plus tôt !", translation=None, note="reproche"),
-            GrammarExample(text="Si j'avais su, je serais venu(e).", translation=None, note="hypothèse passée"),
+            GrammarExample(
+                text="Tu aurais pu me le dire plus tôt !", translation=None, note="reproche"
+            ),
+            GrammarExample(
+                text="Si j'avais su, je serais venu(e).", translation=None, note="hypothèse passée"
+            ),
             GrammarExample(text="Elle aurait aimé être là.", translation=None),
         ],
         common_mistakes=[
@@ -559,10 +628,24 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Imparfait et plus-que-parfait ne changent pas.",
         ],
         examples=[
-            GrammarExample(text="Il a dit qu'il était malade.", translation=None, note="présent → imparfait"),
-            GrammarExample(text="Elle m'a dit qu'elle avait fini son travail.", translation=None, note="passé composé → plus-que-parfait"),
-            GrammarExample(text="Ils ont annoncé qu'ils partiraient le lendemain.", translation=None, note="futur → conditionnel"),
-            GrammarExample(text="Il a expliqué qu'il allait déménager.", translation=None, note="futur proche → aller à l'imparfait"),
+            GrammarExample(
+                text="Il a dit qu'il était malade.", translation=None, note="présent → imparfait"
+            ),
+            GrammarExample(
+                text="Elle m'a dit qu'elle avait fini son travail.",
+                translation=None,
+                note="passé composé → plus-que-parfait",
+            ),
+            GrammarExample(
+                text="Ils ont annoncé qu'ils partiraient le lendemain.",
+                translation=None,
+                note="futur → conditionnel",
+            ),
+            GrammarExample(
+                text="Il a expliqué qu'il allait déménager.",
+                translation=None,
+                note="futur proche → aller à l'imparfait",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -593,10 +676,24 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Donc ne peut pas commencer une phrase en français très formel.",
         ],
         examples=[
-            GrammarExample(text="Je suis resté chez moi parce qu'il pleuvait.", translation=None, note="cause"),
-            GrammarExample(text="Il a beaucoup travaillé, donc il a réussi.", translation=None, note="conséquence"),
-            GrammarExample(text="Il est malade, pourtant il est venu travailler.", translation=None, note="opposition"),
-            GrammarExample(text="Bien qu'il soit timide, il a fait un discours.", translation=None, note="concession + subjonctif"),
+            GrammarExample(
+                text="Je suis resté chez moi parce qu'il pleuvait.", translation=None, note="cause"
+            ),
+            GrammarExample(
+                text="Il a beaucoup travaillé, donc il a réussi.",
+                translation=None,
+                note="conséquence",
+            ),
+            GrammarExample(
+                text="Il est malade, pourtant il est venu travailler.",
+                translation=None,
+                note="opposition",
+            ),
+            GrammarExample(
+                text="Bien qu'il soit timide, il a fait un discours.",
+                translation=None,
+                note="concession + subjonctif",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(

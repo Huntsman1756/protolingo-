@@ -20,7 +20,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Je suis content que tu sois venu.", translation=None),
             GrammarExample(text="Je doute qu'il ait compris la question.", translation=None),
-            GrammarExample(text="C'est le meilleur film que j'aie jamais vu.", translation=None, note="superlatif + subjonctif"),
+            GrammarExample(
+                text="C'est le meilleur film que j'aie jamais vu.",
+                translation=None,
+                note="superlatif + subjonctif",
+            ),
             GrammarExample(text="Il est possible qu'elle se soit trompée.", translation=None),
         ],
         common_mistakes=[
@@ -53,8 +57,14 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Il fallait que tu viennes. (courant)", translation=None),
             GrammarExample(text="Il fallait que tu vinsses. (littéraire, rare)", translation=None),
-            GrammarExample(text="Je voulais qu'il ait terminé avant ce soir.", translation=None, note="subj. passé"),
-            GrammarExample(text="Je ne pensais pas qu'elle puisse le faire. (courant)", translation=None),
+            GrammarExample(
+                text="Je voulais qu'il ait terminé avant ce soir.",
+                translation=None,
+                note="subj. passé",
+            ),
+            GrammarExample(
+                text="Je ne pensais pas qu'elle puisse le faire. (courant)", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -84,7 +94,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="Bien qu'il soit tard, je vais t'appeler.", translation=None),
             GrammarExample(text="Je répète pour que tout le monde comprenne.", translation=None),
             GrammarExample(text="Attends ici jusqu'à ce que je revienne.", translation=None),
-            GrammarExample(text="Tu peux venir à condition que tu sois à l'heure.", translation=None),
+            GrammarExample(
+                text="Tu peux venir à condition que tu sois à l'heure.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -116,8 +128,14 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="J'écoute de la musique en travaillant.", translation=None),
-            GrammarExample(text="Il est sorti en claquant la porte.", translation=None, note="manière"),
-            GrammarExample(text="En faisant du sport, on reste en forme.", translation=None, note="condition générale"),
+            GrammarExample(
+                text="Il est sorti en claquant la porte.", translation=None, note="manière"
+            ),
+            GrammarExample(
+                text="En faisant du sport, on reste en forme.",
+                translation=None,
+                note="condition générale",
+            ),
             GrammarExample(text="Tout en étant d'accord, je reste prudent.", translation=None),
         ],
         common_mistakes=[
@@ -149,10 +167,22 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ne pas confondre avec le gérondif (en + participe présent).",
         ],
         examples=[
-            GrammarExample(text="Les personnes ayant un billet peuvent entrer.", translation=None, note="participe présent, registre soutenu"),
-            GrammarExample(text="Ne sachant pas la réponse, j'ai gardé le silence.", translation=None),
-            GrammarExample(text="C'est une histoire passionnante.", translation=None, note="adjectif verbal → accord"),
-            GrammarExample(text="Les employés travaillant de nuit ont une prime.", translation=None),
+            GrammarExample(
+                text="Les personnes ayant un billet peuvent entrer.",
+                translation=None,
+                note="participe présent, registre soutenu",
+            ),
+            GrammarExample(
+                text="Ne sachant pas la réponse, j'ai gardé le silence.", translation=None
+            ),
+            GrammarExample(
+                text="C'est une histoire passionnante.",
+                translation=None,
+                note="adjectif verbal → accord",
+            ),
+            GrammarExample(
+                text="Les employés travaillant de nuit ont une prime.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -185,7 +215,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Ayant terminé son rapport, il est parti.", translation=None),
             GrammarExample(text="Étant arrivés en avance, nous avons attendu.", translation=None),
-            GrammarExample(text="S'étant entraînée tous les jours, elle a gagné.", translation=None),
+            GrammarExample(
+                text="S'étant entraînée tous les jours, elle a gagné.", translation=None
+            ),
             GrammarExample(text="N'ayant pas reçu de réponse, j'ai relancé.", translation=None),
         ],
         common_mistakes=[
@@ -218,9 +250,16 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="En raison des travaux, la route est fermée.", translation=None),
-            GrammarExample(text="Il a tellement crié, au point que tout le monde s'est retourné.", translation=None),
-            GrammarExample(text="Certes, le projet est ambitieux, mais il est réalisable.", translation=None),
-            GrammarExample(text="Il n'en reste pas moins que des efforts restent à faire.", translation=None),
+            GrammarExample(
+                text="Il a tellement crié, au point que tout le monde s'est retourné.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Certes, le projet est ambitieux, mais il est réalisable.", translation=None
+            ),
+            GrammarExample(
+                text="Il n'en reste pas moins que des efforts restent à faire.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -245,9 +284,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Les connecteurs guident le lecteur entre les idées.",
         ],
         examples=[
-            GrammarExample(text="Le musée du Louvre est immense. Ce monument attire des millions de visiteurs chaque année.", translation=None, note="reprise nominale"),
-            GrammarExample(text="Paul aime le tennis ; Marie, le basket.", translation=None, note="ellipse"),
-            GrammarExample(text="Non seulement il est compétent, mais il est aussi très sympathique.", translation=None),
+            GrammarExample(
+                text="Le musée du Louvre est immense. Ce monument attire des millions de visiteurs chaque année.",
+                translation=None,
+                note="reprise nominale",
+            ),
+            GrammarExample(
+                text="Paul aime le tennis ; Marie, le basket.", translation=None, note="ellipse"
+            ),
+            GrammarExample(
+                text="Non seulement il est compétent, mais il est aussi très sympathique.",
+                translation=None,
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -273,10 +321,24 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Proscrire le langage familier et les abréviations.",
         ],
         examples=[
-            GrammarExample(text="L'augmentation du chômage a entraîné une baisse de la consommation.", translation=None, note="nominalisation"),
-            GrammarExample(text="Il convient de souligner l'importance de ce phénomène.", translation=None, note="impersonnel"),
-            GrammarExample(text="Les résultats de cette étude seront présentés ci-après.", translation=None),
-            GrammarExample(text="Nous avons procédé à l'analyse des données recueillies.", translation=None, note="nous de modestie"),
+            GrammarExample(
+                text="L'augmentation du chômage a entraîné une baisse de la consommation.",
+                translation=None,
+                note="nominalisation",
+            ),
+            GrammarExample(
+                text="Il convient de souligner l'importance de ce phénomène.",
+                translation=None,
+                note="impersonnel",
+            ),
+            GrammarExample(
+                text="Les résultats de cette étude seront présentés ci-après.", translation=None
+            ),
+            GrammarExample(
+                text="Nous avons procédé à l'analyse des données recueillies.",
+                translation=None,
+                note="nous de modestie",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -302,9 +364,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Toujours inclure une concession pour montrer la nuance.",
         ],
         examples=[
-            GrammarExample(text="Tout d'abord, il faut reconnaître que cette mesure présente des avantages.", translation=None, note="argument"),
-            GrammarExample(text="Certes, cette solution est coûteuse. Cependant, elle reste la plus efficace.", translation=None, note="concession"),
-            GrammarExample(text="En définitive, il apparaît que la réforme est nécessaire.", translation=None, note="conclusion"),
+            GrammarExample(
+                text="Tout d'abord, il faut reconnaître que cette mesure présente des avantages.",
+                translation=None,
+                note="argument",
+            ),
+            GrammarExample(
+                text="Certes, cette solution est coûteuse. Cependant, elle reste la plus efficace.",
+                translation=None,
+                note="concession",
+            ),
+            GrammarExample(
+                text="En définitive, il apparaît que la réforme est nécessaire.",
+                translation=None,
+                note="conclusion",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -331,10 +405,19 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Avoir beau + infinitif (concession avec insistance).",
         ],
         examples=[
-            GrammarExample(text="Bien qu'il soit tard, je vais continuer à travailler.", translation=None),
+            GrammarExample(
+                text="Bien qu'il soit tard, je vais continuer à travailler.", translation=None
+            ),
             GrammarExample(text="Même s'il fait froid, je prendrai mon vélo.", translation=None),
-            GrammarExample(text="Il a beau avoir de l'expérience, il commet encore des erreurs.", translation=None),
-            GrammarExample(text="Quand bien même tu aurais raison, je ne changerais pas d'avis.", translation=None, note="extrême"),
+            GrammarExample(
+                text="Il a beau avoir de l'expérience, il commet encore des erreurs.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Quand bien même tu aurais raison, je ne changerais pas d'avis.",
+                translation=None,
+                note="extrême",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -361,7 +444,10 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Il se pourrait que nous ayons tort.", translation=None),
             GrammarExample(text="Cette solution est, pour ainsi dire, idéale.", translation=None),
-            GrammarExample(text="Le président aurait démissionné. (conditionnel journalistique)", translation=None),
+            GrammarExample(
+                text="Le président aurait démissionné. (conditionnel journalistique)",
+                translation=None,
+            ),
             GrammarExample(text="Il semblerait que la situation s'améliore.", translation=None),
         ],
         common_mistakes=[
@@ -388,9 +474,21 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Plus-que-parfait pour l'antériorité.",
         ],
         examples=[
-            GrammarExample(text="Il ouvrit la porte, traversa le couloir et disparut dans la nuit.", translation=None, note="passé simple littéraire"),
-            GrammarExample(text="La lune éclairait faiblement le jardin.", translation=None, note="imparfait, description"),
-            GrammarExample(text="Il sortit. Il avait attendu ce moment toute sa vie.", translation=None, note="plus-que-parfait"),
+            GrammarExample(
+                text="Il ouvrit la porte, traversa le couloir et disparut dans la nuit.",
+                translation=None,
+                note="passé simple littéraire",
+            ),
+            GrammarExample(
+                text="La lune éclairait faiblement le jardin.",
+                translation=None,
+                note="imparfait, description",
+            ),
+            GrammarExample(
+                text="Il sortit. Il avait attendu ce moment toute sa vie.",
+                translation=None,
+                note="plus-que-parfait",
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -416,9 +514,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Créer des images (comparaisons, métaphores).",
         ],
         examples=[
-            GrammarExample(text="Le soleil couchant embrasait les toits de cuivre et d'or.", translation=None),
-            GrammarExample(text="Un vent glacial sifflait entre les branches dénudées.", translation=None),
-            GrammarExample(text="L'air était lourd, chargé de l'odeur sucrée des jasmins.", translation=None),
+            GrammarExample(
+                text="Le soleil couchant embrasait les toits de cuivre et d'or.", translation=None
+            ),
+            GrammarExample(
+                text="Un vent glacial sifflait entre les branches dénudées.", translation=None
+            ),
+            GrammarExample(
+                text="L'air était lourd, chargé de l'odeur sucrée des jasmins.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -427,7 +531,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Remplacer 'beau' par des adjectifs plus évocateurs.",
             ),
         ],
-        related=["temps-narratifs", "imparfait", "figures-style"],
+        related=["temps-narratifs", "imparfait"],
     ),
     GrammarTopic(
         slug="langage-journalistique",
@@ -444,9 +548,17 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Attribuer les informations : 'selon X', 'd'après Y'.",
         ],
         examples=[
-            GrammarExample(text="Le conseil des ministres a adopté hier la réforme.", translation=None),
-            GrammarExample(text="Selon des sources proches du dossier, un accord aurait été trouvé.", translation=None, note="conditionnel journalistique"),
-            GrammarExample(text="Le suspect, arrêté mardi, a été placé en garde à vue.", translation=None),
+            GrammarExample(
+                text="Le conseil des ministres a adopté hier la réforme.", translation=None
+            ),
+            GrammarExample(
+                text="Selon des sources proches du dossier, un accord aurait été trouvé.",
+                translation=None,
+                note="conditionnel journalistique",
+            ),
+            GrammarExample(
+                text="Le suspect, arrêté mardi, a été placé en garde à vue.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -472,10 +584,23 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Conditionnel pour l'information non confirmée.",
         ],
         examples=[
-            GrammarExample(text="Le porte-parole a indiqué que la situation était sous contrôle.", translation=None, note="neutre"),
-            GrammarExample(text="L'opposition prétend que la réforme est insuffisante.", translation=None, note="mise à distance"),
-            GrammarExample(text="Le directeur a reconnu que des erreurs avaient été commises.", translation=None),
-            GrammarExample(text="Des témoins affirment que le bruit était assourdissant.", translation=None),
+            GrammarExample(
+                text="Le porte-parole a indiqué que la situation était sous contrôle.",
+                translation=None,
+                note="neutre",
+            ),
+            GrammarExample(
+                text="L'opposition prétend que la réforme est insuffisante.",
+                translation=None,
+                note="mise à distance",
+            ),
+            GrammarExample(
+                text="Le directeur a reconnu que des erreurs avaient été commises.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Des témoins affirment que le bruit était assourdissant.", translation=None
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -501,10 +626,18 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Très utiles pour comprendre les francophones natifs.",
         ],
         examples=[
-            GrammarExample(text="Il m'a posé un lapin hier soir.", translation=None, note="pas venu au rendez-vous"),
-            GrammarExample(text="J'ai le cafard depuis son départ.", translation=None, note="je suis triste"),
+            GrammarExample(
+                text="Il m'a posé un lapin hier soir.",
+                translation=None,
+                note="pas venu au rendez-vous",
+            ),
+            GrammarExample(
+                text="J'ai le cafard depuis son départ.", translation=None, note="je suis triste"
+            ),
             GrammarExample(text="Allez, donne ta langue au chat !", translation=None),
-            GrammarExample(text="Elle est à cheval sur la ponctuation.", translation=None, note="très stricte"),
+            GrammarExample(
+                text="Elle est à cheval sur la ponctuation.", translation=None, note="très stricte"
+            ),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -518,6 +651,6 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="Le verbe est 'poser' dans cette expression.",
             ),
         ],
-        related=["modismes_fr_b2", "culture_fr_b2"],
+        related=["registre-formel"],
     ),
 ]

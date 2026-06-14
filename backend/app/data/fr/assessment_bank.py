@@ -851,7 +851,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Quelle phrase respecte les règles typographiques françaises ?",
         options=[
             "Il a dit : « Je viendrai demain. »",
-            "Il a dit: \"Je viendrai demain.\"",
+            'Il a dit: "Je viendrai demain."',
             "Il a dit: «je viendrai demain»",
             "Il a dit : 'Je viendrai demain'",
         ],
