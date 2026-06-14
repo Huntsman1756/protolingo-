@@ -230,7 +230,9 @@ whisper:
 
 #### TTS voice options (Kokoro-82M)
 
-All voices are for English. Grades reflect training data quality and quantity.
+All voices are for English only — Kokoro-82M does not ship multilingual voices. Grades reflect training data quality and quantity.
+
+> **Multilingual learners:** as FreeLingo adds target languages beyond English (Spanish, French, Italian, Portuguese, etc.), Kokoro cannot produce audio for those languages. For non-English study languages, switch to `TTS_PROVIDER=openai` (see [Option B — OpenAI providers](#option-b--openai-providers-no-local-gpu-needed)).
 
 | Voice | Gender | Accent | Grade |
 |-------|--------|--------|-------|

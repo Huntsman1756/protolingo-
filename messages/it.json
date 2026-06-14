@@ -973,6 +973,7 @@
     "es-ES": "Spagnolo",
     "it-IT": "Italiano",
     "pt-PT": "Portoghese",
+    "fr-FR": "Francese",
     "en": "inglese",
     "es": "spagnolo",
     "it": "italiano",
@@ -981,7 +982,8 @@
     "it-IT-description": "Italiano parlato in Italia.",
     "pt-PT-description": "Portoghese parlato in Portogallo.",
     "en-US-description": "Inglese parlato negli Stati Uniti.",
-    "en-GB-description": "Inglese parlato nel Regno Unito."
+    "en-GB-description": "Inglese parlato nel Regno Unito.",
+    "fr-FR-description": "Francese parlato in Francia."
   },
   "onboarding": {
     "title": "Scegli la tua lingua",

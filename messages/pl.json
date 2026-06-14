@@ -973,6 +973,7 @@
     "es-ES": "Hiszpański",
     "it-IT": "Włoski",
     "pt-PT": "Portugalski",
+    "fr-FR": "Francuski",
     "en": "angielski",
     "es": "hiszpański",
     "it": "włoski",
@@ -981,7 +982,8 @@
     "it-IT-description": "Włoski używany we Włoszech.",
     "pt-PT-description": "Portugalski używany w Portugalii.",
     "en-US-description": "Angielski używany w Stanach Zjednoczonych.",
-    "en-GB-description": "Angielski używany w Wielkiej Brytanii."
+    "en-GB-description": "Angielski używany w Wielkiej Brytanii.",
+    "fr-FR-description": "Francuski używany we Francji."
   },
   "onboarding": {
     "title": "Wybierz swój język",

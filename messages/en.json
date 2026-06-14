@@ -973,6 +973,7 @@
     "es-ES": "Spanish",
     "it-IT": "Italian",
     "pt-PT": "Portuguese",
+    "fr-FR": "French",
     "en": "English",
     "es": "Spanish",
     "it": "Italian",
@@ -981,7 +982,8 @@
     "it-IT-description": "Italian as spoken in Italy.",
     "pt-PT-description": "Portuguese as spoken in Portugal.",
     "en-US-description": "English as spoken in the United States.",
-    "en-GB-description": "English as spoken in the United Kingdom."
+    "en-GB-description": "English as spoken in the United Kingdom.",
+    "fr-FR-description": "French as spoken in France."
   },
   "onboarding": {
     "title": "Choose your language",

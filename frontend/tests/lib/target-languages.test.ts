@@ -6,11 +6,11 @@ import {
 } from '@/lib/target-languages'
 
 describe('SUPPORTED_TARGET_LANGUAGES', () => {
-  it('contains exactly 5 languages', () => {
-    expect(SUPPORTED_TARGET_LANGUAGES).toHaveLength(5)
+  it('contains exactly 6 languages', () => {
+    expect(SUPPORTED_TARGET_LANGUAGES).toHaveLength(6)
   })
 
-  const expectedCodes = ['en-US', 'en-GB', 'es-ES', 'it-IT', 'pt-PT']
+  const expectedCodes = ['en-US', 'en-GB', 'es-ES', 'it-IT', 'pt-PT', 'fr-FR']
 
   it.each(expectedCodes)('%s has all required fields', (code) => {
     const lang = SUPPORTED_TARGET_LANGUAGES.find((l) => l.code === code)
@@ -34,6 +34,7 @@ describe('SUPPORTED_TARGET_LANGUAGES', () => {
     expect(paths).toContain('/flags/spain.jpg')
     expect(paths).toContain('/flags/italy.jpg')
     expect(paths).toContain('/flags/portugal.jpg')
+    expect(paths).toContain('/flags/france.jpg')
   })
 
   it('iso639 codes map to correct languages', () => {
@@ -41,10 +42,12 @@ describe('SUPPORTED_TARGET_LANGUAGES', () => {
     const esLangs = SUPPORTED_TARGET_LANGUAGES.filter((l) => l.iso639 === 'es')
     const itLangs = SUPPORTED_TARGET_LANGUAGES.filter((l) => l.iso639 === 'it')
     const ptLangs = SUPPORTED_TARGET_LANGUAGES.filter((l) => l.iso639 === 'pt')
+    const frLangs = SUPPORTED_TARGET_LANGUAGES.filter((l) => l.iso639 === 'fr')
     expect(enLangs).toHaveLength(2)
     expect(esLangs).toHaveLength(1)
     expect(itLangs).toHaveLength(1)
     expect(ptLangs).toHaveLength(1)
+    expect(frLangs).toHaveLength(1)
   })
 })
 
@@ -82,8 +85,16 @@ describe('getLanguageByCode', () => {
     expect(lang!.name).toBe('Português')
   })
 
+  it('returns French for fr-FR', () => {
+    const lang = getLanguageByCode('fr-FR')
+    expect(lang).toBeDefined()
+    expect(lang!.code).toBe('fr-FR')
+    expect(lang!.name).toBe('Français')
+    expect(lang!.nameEn).toBe('French')
+    expect(lang!.iso639).toBe('fr')
+  })
+
   it('returns undefined for an unknown code', () => {
-    expect(getLanguageByCode('fr-FR')).toBeUndefined()
     expect(getLanguageByCode('de-DE')).toBeUndefined()
     expect(getLanguageByCode('')).toBeUndefined()
   })

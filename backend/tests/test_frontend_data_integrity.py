@@ -61,7 +61,7 @@ def test_curriculum_grammar_refs_all_defined() -> None:
 
     # Collect all grammar slugs across all supported languages
     defined: set[str] = set()
-    for lang in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT", "fr-FR"):
         defined.update(_get_grammar_slugs(lang))
 
     missing = referenced - defined
@@ -109,7 +109,7 @@ def test_curriculum_vocab_refs_all_defined() -> None:
 
 def test_grammar_related_refs_all_defined() -> None:
     """Every slug in a grammar topic's related[] array must exist in that language's grammar data."""
-    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT", "fr-FR"):
         defined = _get_grammar_slugs(lang_code)
         related = _get_grammar_related_refs(lang_code)
 
@@ -145,7 +145,7 @@ def test_vocabulary_export_completeness() -> None:
 
 def test_grammar_slug_uniqueness() -> None:
     """No two grammar topics should share the same slug within a language."""
-    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT", "fr-FR"):
         from app.data.grammar import get_grammar_topics
 
         topics = get_grammar_topics(lang_code)

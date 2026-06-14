@@ -706,11 +706,22 @@ class TestCurriculumPerLanguage:
         assert c["A1"][0].title == "Saudações e apresentações"
 
     @pytest.mark.asyncio
+    async def test_curriculum_french(self, client):
+        """get_curriculum('fr-FR') returns French curriculum."""
+        from app.data.curriculum import get_curriculum
+
+        c = get_curriculum("fr-FR")
+        assert "A1" in c
+        assert "C2" in c
+        assert len(c["A1"]) == 8
+        assert c["A1"][0].title == "Se présenter et saluer"
+
+    @pytest.mark.asyncio
     async def test_curriculum_fallback(self, client):
         """Unsupported language falls back to English."""
         from app.data.curriculum import get_curriculum
 
-        c = get_curriculum("fr-FR")
+        c = get_curriculum("de-DE")
         assert "A1" in c
         # Should be English content
         assert c["A1"][0].title == "Identity & Greetings"
