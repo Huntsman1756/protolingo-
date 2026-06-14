@@ -49,11 +49,12 @@ async def test_delete_me_clears_refresh_cookie(client, test_user, mock_redis):
     # Seed a fake refresh token so the endpoint has something to delete
     await mock_redis.setex("refresh:faketoken", 86400, str(user.id))
 
+    client.cookies.set("refresh_token", "faketoken")
     response = await client.delete(
         "/api/auth/me",
         headers=headers,
-        cookies={"refresh_token": "faketoken"},
     )
+    client.cookies.clear()
     assert response.status_code == 204
     # Cookie should be cleared (max_age=0 or absent from Set-Cookie)
     set_cookie = response.headers.get("set-cookie", "")
