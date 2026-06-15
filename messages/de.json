@@ -1129,11 +1129,11 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Neue Lernsprachen",
-      "desc": "Spanisch, Italienisch und Portugiesisch sind jetzt verfügbar — jede mit einem vollständigen Lehrplan von Anfänger bis Fortgeschritten (A1–C2), Grammatik, Wortschatz, Redewendungen, Reading, Listening und mehr. Füge sie unter Einstellungen → Meine Sprachen hinzu."
+      "label": "Fünf neue Lernsprachen",
+      "desc": "Deutsch, Französisch, Italienisch, Portugiesisch und Spanisch sind jetzt verfügbar — jede mit einem vollständigen Lehrplan von Anfänger bis Fortgeschritten (A1–C2), Grammatik, Wortschatz, Redewendungen, Reading, Listening und mehr. Füge sie unter Einstellungen → Meine Sprachen hinzu."
     },
     "entry2": {
       "label": "Verbesserte Lernressourcen",

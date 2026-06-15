@@ -1129,11 +1129,11 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Got it",
     "entry1": {
-      "label": "New languages to learn",
-      "desc": "Spanish, Italian, and Portuguese are now available — each with a full curriculum from beginner to advanced (A1–C2), grammar, vocabulary, phrases, Reading, Listening, and more. Add them from Settings → My Languages."
+      "label": "Five new languages to learn",
+      "desc": "French, German, Italian, Portuguese, and Spanish are now available — each with a full curriculum from beginner to advanced (A1–C2), grammar, vocabulary, phrases, Reading, Listening, and more. Add them from Settings → My Languages."
     },
     "entry2": {
       "label": "Expanded learning resources",

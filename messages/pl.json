@@ -1129,11 +1129,11 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Nowe języki do nauki",
-      "desc": "Hiszpański, włoski i portugalski są już dostępne — każdy z pełnym programem nauczania od początkującego do zaawansowanego (A1–C2), gramatyką, słownictwem, zwrotami, Reading, Listening i więcej. Dodaj je w Ustawienia → Moje języki."
+      "label": "Pięć nowych języków do nauki",
+      "desc": "francuski, hiszpański, niemiecki, portugalski i włoski są już dostępne — każdy z pełnym programem nauczania od początkującego do zaawansowanego (A1–C2), gramatyką, słownictwem, zwrotami, Reading, Listening i więcej. Dodaj je w Ustawienia → Moje języki."
     },
     "entry2": {
       "label": "Ulepszone materiały dydaktyczne",
