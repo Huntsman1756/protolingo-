@@ -974,6 +974,7 @@
     "it-IT": "Italiano",
     "pt-PT": "Português",
     "fr-FR": "Francês",
+    "de-DE": "Alemão",
     "en": "inglês",
     "es": "espanhol",
     "it": "italiano",
@@ -983,7 +984,8 @@
     "pt-PT-description": "Português falado em Portugal.",
     "en-US-description": "Inglês falado nos Estados Unidos.",
     "en-GB-description": "Inglês falado no Reino Unido.",
-    "fr-FR-description": "Francês falado na França."
+    "fr-FR-description": "Francês falado na França.",
+    "de-DE-description": "Alemão falado na Alemanha."
   },
   "onboarding": {
     "title": "Escolha o seu idioma",

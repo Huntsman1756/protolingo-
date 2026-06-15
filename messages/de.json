@@ -974,6 +974,7 @@
     "it-IT": "Italienisch",
     "pt-PT": "Portugiesisch",
     "fr-FR": "Französisch",
+    "de-DE": "Deutsch",
     "en": "Englisch",
     "es": "Spanisch",
     "it": "Italienisch",
@@ -983,7 +984,8 @@
     "pt-PT-description": "Portugiesisch, wie es in Portugal gesprochen wird.",
     "en-US-description": "Englisch, wie es in den USA gesprochen wird.",
     "en-GB-description": "Englisch, wie es im Vereinigten Königreich gesprochen wird.",
-    "fr-FR-description": "Französisch, wie es in Frankreich gesprochen wird."
+    "fr-FR-description": "Französisch, wie es in Frankreich gesprochen wird.",
+    "de-DE-description": "Deutsch, wie es in Deutschland gesprochen wird."
   },
   "onboarding": {
     "title": "Wähle deine Sprache",

@@ -26,7 +26,7 @@ vi.mock('next/image', () => ({
 }))
 
 describe('TargetLanguageSelector', () => {
-  const allCodes = ['en-US', 'en-GB', 'es-ES', 'it-IT', 'pt-PT', 'fr-FR']
+  const allCodes = ['en-US', 'en-GB', 'es-ES', 'it-IT', 'pt-PT', 'fr-FR', 'de-DE']
 
   it('renders only languages matching availableCodes', () => {
     render(
@@ -51,7 +51,7 @@ describe('TargetLanguageSelector', () => {
     )
 
     const buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(6)
+    expect(buttons).toHaveLength(7)
   })
 
   it('renders nothing when availableCodes is empty', () => {
@@ -73,7 +73,7 @@ describe('TargetLanguageSelector', () => {
       <TargetLanguageSelector
         value="en-GB"
         onChange={() => { }}
-        availableCodes={['de-DE', 'ja-JP']}
+        availableCodes={['ja-JP', 'ko-KR']}
       />
     )
 
@@ -161,6 +161,7 @@ describe('TargetLanguageSelector', () => {
     expect(srcs).toContain('/flags/italy.jpg')
     expect(srcs).toContain('/flags/portugal.jpg')
     expect(srcs).toContain('/flags/france.jpg')
+    expect(srcs).toContain('/flags/germany.jpg')
   })
 
   it('displays translated names from targetLanguages namespace', () => {
@@ -181,6 +182,7 @@ describe('TargetLanguageSelector', () => {
     expect(textContent).toContain('it-IT')
     expect(textContent).toContain('pt-PT')
     expect(textContent).toContain('fr-FR')
+    expect(textContent).toContain('de-DE')
   })
 
   it('does not re-render filtered languages when onChange does not change', () => {

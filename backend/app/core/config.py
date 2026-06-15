@@ -64,7 +64,15 @@ class Settings(BaseSettings):
     AUDIO_STORAGE_PATH: str = "/data/audio"
 
     # Multi-language — operator-configured subset of supported target languages.
-    AVAILABLE_TARGET_LANGUAGES: list[str] = ["en-US", "en-GB", "es-ES", "fr-FR", "it-IT", "pt-PT"]
+    AVAILABLE_TARGET_LANGUAGES: list[str] = [
+        "en-US",
+        "en-GB",
+        "de-DE",
+        "es-ES",
+        "fr-FR",
+        "it-IT",
+        "pt-PT",
+    ]
 
     model_config = {"env_file": ".env"}
 

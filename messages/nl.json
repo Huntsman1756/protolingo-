@@ -974,6 +974,7 @@
     "it-IT": "Italiaans",
     "pt-PT": "Portugees",
     "fr-FR": "Frans",
+    "de-DE": "Duits",
     "en": "Engels",
     "es": "Spaans",
     "it": "Italiaans",
@@ -983,7 +984,8 @@
     "pt-PT-description": "Portugees zoals gesproken in Portugal.",
     "en-US-description": "Engels zoals gesproken in de Verenigde Staten.",
     "en-GB-description": "Engels zoals gesproken in het Verenigd Koninkrijk.",
-    "fr-FR-description": "Frans zoals gesproken in Frankrijk."
+    "fr-FR-description": "Frans zoals gesproken in Frankrijk.",
+    "de-DE-description": "Duits zoals gesproken in Duitsland."
   },
   "onboarding": {
     "title": "Kies jouw taal",

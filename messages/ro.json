@@ -974,6 +974,7 @@
     "it-IT": "Italiană",
     "pt-PT": "Portugheză",
     "fr-FR": "Franceză",
+    "de-DE": "Germană",
     "en": "engleză",
     "es": "spaniolă",
     "it": "italiană",
@@ -983,7 +984,8 @@
     "pt-PT-description": "Portugheza vorbită în Portugalia.",
     "en-US-description": "Engleza vorbită în Statele Unite.",
     "en-GB-description": "Engleza vorbită în Regatul Unit.",
-    "fr-FR-description": "Franceza vorbită în Franța."
+    "fr-FR-description": "Franceza vorbită în Franța.",
+    "de-DE-description": "Germana vorbită în Germania."
   },
   "onboarding": {
     "title": "Alege-ți limba",
