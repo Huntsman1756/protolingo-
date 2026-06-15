@@ -40,9 +40,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Coloquial EP: imperfeito em vez de condicional.",
         ],
         examples=[
-            GrammarExample(
-                text="Se estudares, passas.", translation=None
-            ),
+            GrammarExample(text="Se estudares, passas.", translation=None),
             GrammarExample(
                 text="Se estudasses, passavas.",
                 translation=None,
@@ -206,9 +204,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Tenho andado a pensar nisso. -> I have been thinking about that.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Que saudades! -> I miss you so much!", translation=None
-            ),
+            GrammarExample(text="Que saudades! -> I miss you so much!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -262,9 +258,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Queda de consoantes, palatalizacao, nasalizacao.",
         ],
         examples=[
-            GrammarExample(
-                text="Latim: populu -> Portugues: povo", translation=None
-            ),
+            GrammarExample(text="Latim: populu -> Portugues: povo", translation=None),
             GrammarExample(text="Latim: plenu -> Portugues: cheio", translation=None),
         ],
         common_mistakes=[

@@ -18,13 +18,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "A forma nós é igual no presente e pretérito para -ar.",
         ],
         examples=[
-            GrammarExample(
-                text="Ontem falei com a Maria.", translation=None
-            ),
+            GrammarExample(text="Ontem falei com a Maria.", translation=None),
             GrammarExample(text="Ela comeu tudo.", translation=None),
-            GrammarExample(
-                text="Nós abrimos a loja às oito.", translation=None
-            ),
+            GrammarExample(text="Nós abrimos a loja às oito.", translation=None),
             GrammarExample(
                 text="Eles venderam a casa no ano passado.",
                 translation=None,
@@ -58,9 +54,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Nunca pode usar-se com perfeito ou presente.",
         ],
         examples=[
-            GrammarExample(
-                text="Ontem fui ao cinema.", translation=None
-            ),
+            GrammarExample(text="Ontem fui ao cinema.", translation=None),
             GrammarExample(text="Já leste o livro?", translation=None),
             GrammarExample(
                 text="Ainda não terminei o trabalho.",
@@ -100,12 +94,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="ir",
             ),
-            GrammarExample(
-                text="A festa foi ótima.", translation=None, note="ser"
-            ),
-            GrammarExample(
-                text="Ela teve uma ideia brilhante.", translation=None
-            ),
+            GrammarExample(text="A festa foi ótima.", translation=None, note="ser"),
+            GrammarExample(text="Ela teve uma ideia brilhante.", translation=None),
             GrammarExample(text="Nós fizemos o jantar.", translation=None),
             GrammarExample(text="Eles vieram cedo.", translation=None),
         ],
@@ -136,16 +126,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Quando era pequeno, morava no Porto.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ela cantava muito bem.", translation=None
-            ),
+            GrammarExample(text="Ela cantava muito bem.", translation=None),
             GrammarExample(
                 text="Estava a chover quando saí de casa.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Eram cinco da tarde.", translation=None
-            ),
+            GrammarExample(text="Eram cinco da tarde.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -180,9 +166,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Quando vivia em Lisboa, ia à praia todos os fins de semana.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ontem comi bacalhau.", translation=None, note="perfeito"
-            ),
+            GrammarExample(text="Ontem comi bacalhau.", translation=None, note="perfeito"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -208,9 +192,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Costumava acordar cedo.", translation=None),
-            GrammarExample(
-                text="Ela costumava cantar no coro.", translation=None
-            ),
+            GrammarExample(text="Ela costumava cantar no coro.", translation=None),
             GrammarExample(
                 text="Costumávamos jantar fora às sextas.",
                 translation=None,
@@ -240,12 +222,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Comprei-o ontem.", translation=None),
-            GrammarExample(
-                text="Vou comprá-lo.", translation=None, note="-r → -lo"
-            ),
-            GrammarExample(
-                text="Eles compraram-no.", translation=None, note="-m → -no"
-            ),
+            GrammarExample(text="Vou comprá-lo.", translation=None, note="-r → -lo"),
+            GrammarExample(text="Eles compraram-no.", translation=None, note="-m → -no"),
             GrammarExample(text="Conheço-a.", translation=None),
         ],
         common_mistakes=[
@@ -277,9 +255,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Dei-lhe o recado.", translation=None),
-            GrammarExample(
-                text="A Maria emprestou-me o livro.", translation=None
-            ),
+            GrammarExample(text="A Maria emprestou-me o livro.", translation=None),
             GrammarExample(
                 text="Não te disse nada.",
                 translation=None,
@@ -402,12 +378,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Ela é a pessoa mais simpática que conheço.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Este restaurante é ótimo.", translation=None
-            ),
-            GrammarExample(
-                text="A torre é altíssima.", translation=None, note="sintético"
-            ),
+            GrammarExample(text="Este restaurante é ótimo.", translation=None),
+            GrammarExample(text="A torre é altíssima.", translation=None, note="sintético"),
             GrammarExample(
                 text="Este é o filme menos interessante do ano.",
                 translation=None,
@@ -441,16 +413,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Tão... que = consequência.",
         ],
         examples=[
-            GrammarExample(
-                text="É tão inteligente como tu.", translation=None
-            ),
+            GrammarExample(text="É tão inteligente como tu.", translation=None),
             GrammarExample(
                 text="Tenho tanto trabalho como na semana passada.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ela dorme tanto como eu.", translation=None
-            ),
+            GrammarExample(text="Ela dorme tanto como eu.", translation=None),
             GrammarExample(
                 text="Estava tão cansada que adormeceu no sofá.",
                 translation=None,
@@ -490,9 +458,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="tu",
             ),
             GrammarExample(text="Coma a sopa.", translation=None, note="você"),
-            GrammarExample(
-                text="Digam-me a verdade.", translation=None, note="vocês + pronome"
-            ),
+            GrammarExample(text="Digam-me a verdade.", translation=None, note="vocês + pronome"),
             GrammarExample(text="Senta-te.", translation=None, note="tu, reflexivo"),
         ],
         common_mistakes=[
@@ -521,18 +487,14 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Você e vocês têm a mesma forma.",
         ],
         examples=[
-            GrammarExample(
-                text="Não fales tão alto.", translation=None, note="tu"
-            ),
+            GrammarExample(text="Não fales tão alto.", translation=None, note="tu"),
             GrammarExample(text="Não coma isso.", translation=None, note="você"),
             GrammarExample(
                 text="Não se esqueçam do passaporte.",
                 translation=None,
                 note="vocês + próclise",
             ),
-            GrammarExample(
-                text="Não me interrompas.", translation=None, note="tu, próclise"
-            ),
+            GrammarExample(text="Não me interrompas.", translation=None, note="tu, próclise"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -563,12 +525,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Sê simpático.", translation=None, note="ser, tu"),
-            GrammarExample(
-                text="Faça o favor de entrar.", translation=None, note="fazer, você"
-            ),
-            GrammarExample(
-                text="Põe a mesa, por favor.", translation=None, note="pôr, tu"
-            ),
+            GrammarExample(text="Faça o favor de entrar.", translation=None, note="fazer, você"),
+            GrammarExample(text="Põe a mesa, por favor.", translation=None, note="pôr, tu"),
             GrammarExample(
                 text="Não ponhas os pés em cima da mesa.",
                 translation=None,
@@ -601,20 +559,14 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Com pronomes: mesóclise (formal).",
         ],
         examples=[
-            GrammarExample(
-                text="Falaremos sobre isso amanhã.", translation=None
-            ),
+            GrammarExample(text="Falaremos sobre isso amanhã.", translation=None),
             GrammarExample(
                 text="O concerto realizar-se-á no sábado.",
                 translation=None,
                 note="mesóclise",
             ),
-            GrammarExample(
-                text="Direi a verdade.", translation=None, note="irregular"
-            ),
-            GrammarExample(
-                text="Ela fará o jantar.", translation=None, note="irregular"
-            ),
+            GrammarExample(text="Direi a verdade.", translation=None, note="irregular"),
+            GrammarExample(text="Ela fará o jantar.", translation=None, note="irregular"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -791,9 +743,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Perguntas indiretas não usam interrogação.",
         ],
         examples=[
-            GrammarExample(
-                text="Ela disse que estava doente.", translation=None
-            ),
+            GrammarExample(text="Ela disse que estava doente.", translation=None),
             GrammarExample(
                 text="Ele perguntou se eu queria café.",
                 translation=None,

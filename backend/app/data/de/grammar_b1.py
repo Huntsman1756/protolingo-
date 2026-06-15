@@ -30,9 +30,7 @@ Bei **sein, haben, Modalverben** und einigen häufigen Verben verwendet man die 
                 text="Ich würde gern nach Berlin reisen.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Würdest du mir bitte helfen?", translation=None
-            ),
+            GrammarExample(text="Würdest du mir bitte helfen?", translation=None),
             GrammarExample(
                 text="An deiner Stelle würde ich mehr lernen.",
                 translation=None,
@@ -41,12 +39,8 @@ Bei **sein, haben, Modalverben** und einigen häufigen Verben verwendet man die 
                 text="Wir würden gern einen Tisch reservieren.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Was würden Sie tun?", translation=None, note="formell"
-            ),
-            GrammarExample(
-                text="Ich würde sagen, das ist richtig.", translation=None
-            ),
+            GrammarExample(text="Was würden Sie tun?", translation=None, note="formell"),
+            GrammarExample(text="Ich würde sagen, das ist richtig.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -92,15 +86,9 @@ Modalverben im Konjunktiv II: können → könnte, müssen → müsste, dürfen 
             "Für alle anderen Verben: würde + Infinitiv.",
         ],
         examples=[
-            GrammarExample(
-                text="Ich wäre gern in Urlaub.", translation=None
-            ),
-            GrammarExample(
-                text="Hättest du morgen Zeit?", translation=None
-            ),
-            GrammarExample(
-                text="Das könnte schwierig werden.", translation=None
-            ),
+            GrammarExample(text="Ich wäre gern in Urlaub.", translation=None),
+            GrammarExample(text="Hättest du morgen Zeit?", translation=None),
+            GrammarExample(text="Das könnte schwierig werden.", translation=None),
             GrammarExample(
                 text="Du solltest mehr Wasser trinken.",
                 translation=None,
@@ -155,9 +143,7 @@ Im Deutschen wird Höflichkeit nicht nur über *bitte* und *danke* ausgedrückt,
                 translation=None,
                 note="höfliche Bitte",
             ),
-            GrammarExample(
-                text="Ich hätte gern ein Glas Wasser.", translation=None
-            ),
+            GrammarExample(text="Ich hätte gern ein Glas Wasser.", translation=None),
             GrammarExample(
                 text="Würdest du bitte das Fenster schließen?",
                 translation=None,
@@ -222,16 +208,12 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
                 text="Wenn ich mehr Zeit hätte, würde ich reisen.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ich wünschte, ich könnte fliegen.", translation=None
-            ),
+            GrammarExample(text="Ich wünschte, ich könnte fliegen.", translation=None),
             GrammarExample(
                 text="Hätte ich doch auf meine Eltern gehört!",
                 translation=None,
             ),
-            GrammarExample(
-                text="Wäre es doch schon Sommer!", translation=None
-            ),
+            GrammarExample(text="Wäre es doch schon Sommer!", translation=None),
             GrammarExample(
                 text="Er tut so, als ob er alles wüsste.",
                 translation=None,
@@ -282,9 +264,7 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
             "Das Passiv wird häufiger im Deutschen verwendet als in vielen anderen Sprachen.",
         ],
         examples=[
-            GrammarExample(
-                text="Das Haus wird gerade gebaut.", translation=None
-            ),
+            GrammarExample(text="Das Haus wird gerade gebaut.", translation=None),
             GrammarExample(
                 text="Mein Fahrrad wurde gestern gestohlen.",
                 translation=None,
@@ -303,9 +283,7 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
                 translation=None,
                 note="mit durch + Ursache",
             ),
-            GrammarExample(
-                text="Hier wird Deutsch gesprochen.", translation=None
-            ),
+            GrammarExample(text="Hier wird Deutsch gesprochen.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -356,15 +334,9 @@ Bildung: **sein** (konjugiert) + **Partizip II** — Das Fenster **ist** geöffn
                 text="Das Geschäft war gestern geschlossen.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Die Hausaufgaben sind gemacht.", translation=None
-            ),
-            GrammarExample(
-                text="Ist der Tisch schon reserviert?", translation=None
-            ),
-            GrammarExample(
-                text="Alle Probleme sind gelöst.", translation=None
-            ),
+            GrammarExample(text="Die Hausaufgaben sind gemacht.", translation=None),
+            GrammarExample(text="Ist der Tisch schon reserviert?", translation=None),
+            GrammarExample(text="Alle Probleme sind gelöst.", translation=None),
             GrammarExample(text="Das Auto ist repariert.", translation=None),
         ],
         common_mistakes=[
@@ -411,16 +383,12 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
             '"Wollen" wird im Passiv mit Modalverb fast nie verwendet.',
         ],
         examples=[
-            GrammarExample(
-                text="Das Auto muss repariert werden.", translation=None
-            ),
+            GrammarExample(text="Das Auto muss repariert werden.", translation=None),
             GrammarExample(
                 text="Der Termin kann verschoben werden.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Hier darf nicht geraucht werden.", translation=None
-            ),
+            GrammarExample(text="Hier darf nicht geraucht werden.", translation=None),
             GrammarExample(
                 text="Die Rechnung soll bis Freitag bezahlt werden.",
                 translation=None,
@@ -612,9 +580,7 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
             '"Um ... zu" drückt einen Zweck aus, "ohne ... zu" das Fehlen einer Handlung.',
         ],
         examples=[
-            GrammarExample(
-                text="Ich versuche, mehr zu schlafen.", translation=None
-            ),
+            GrammarExample(text="Ich versuche, mehr zu schlafen.", translation=None),
             GrammarExample(
                 text="Es ist wichtig, jeden Tag zu üben.",
                 translation=None,
@@ -751,9 +717,7 @@ Einsilbige Nomen bekommen oft **-es**: *des Mann**es**, des Jahr**es***. Mehrsil
                 text="Das Auto meines Bruders ist kaputt.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Die Farbe des Himmels ist blau.", translation=None
-            ),
+            GrammarExample(text="Die Farbe des Himmels ist blau.", translation=None),
             GrammarExample(
                 text="Wegen des Regens bleiben wir zu Hause.",
                 translation=None,
@@ -1063,9 +1027,7 @@ Ohne Verneinung oder *nur* funktioniert die Konstruktion standardsprachlich nich
                 text="Du brauchst heute nicht zu arbeiten.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ihr braucht keine Angst zu haben.", translation=None
-            ),
+            GrammarExample(text="Ihr braucht keine Angst zu haben.", translation=None),
             GrammarExample(
                 text="Er braucht nicht mitzukommen.",
                 translation=None,
@@ -1079,9 +1041,7 @@ Ohne Verneinung oder *nur* funktioniert die Konstruktion standardsprachlich nich
                 text="Das brauchst du nicht zu verstehen.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Wir brauchen uns nicht zu beeilen.", translation=None
-            ),
+            GrammarExample(text="Wir brauchen uns nicht zu beeilen.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(

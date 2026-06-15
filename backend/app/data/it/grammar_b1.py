@@ -18,9 +18,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "-are → -i; -ere/-ire → -a per le prime tre persone.",
         ],
         examples=[
-            GrammarExample(
-                text="Penso che lui sia bravissimo.", translation=None
-            ),
+            GrammarExample(text="Penso che lui sia bravissimo.", translation=None),
             GrammarExample(
                 text="Spero che tu possa venire alla festa.",
                 translation=None,
@@ -72,9 +70,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="stesso soggetto",
             ),
-            GrammarExample(
-                text="Sembra che domani piova.", translation=None
-            ),
+            GrammarExample(text="Sembra che domani piova.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -108,12 +104,8 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="È importante che tu mangi sano.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Bisogna che arriviamo in orario.", translation=None
-            ),
-            GrammarExample(
-                text="Può darsi che loro non lo sappiano.", translation=None
-            ),
+            GrammarExample(text="Bisogna che arriviamo in orario.", translation=None),
+            GrammarExample(text="Può darsi che loro non lo sappiano.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -144,9 +136,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Voglio che tu sia felice.", translation=None),
-            GrammarExample(
-                text="Preferisco che andiamo domani.", translation=None
-            ),
+            GrammarExample(text="Preferisco che andiamo domani.", translation=None),
             GrammarExample(
                 text="Spero che abbiate fatto buon viaggio.",
                 translation=None,
@@ -180,16 +170,12 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Nella lingua parlata informale si può sentire l'indicativo, ma non è corretto.",
         ],
         examples=[
-            GrammarExample(
-                text="Sono felice che tu sia venuto.", translation=None
-            ),
+            GrammarExample(text="Sono felice che tu sia venuto.", translation=None),
             GrammarExample(
                 text="Mi dispiace che non possiate restare.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ho paura che lui si perda.", translation=None
-            ),
+            GrammarExample(text="Ho paura che lui si perda.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -343,15 +329,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Futuro → condizionale passato.",
         ],
         examples=[
-            GrammarExample(
-                text="Penso che Marco sia malato.", translation=None
-            ),
-            GrammarExample(
-                text="Pensavo che Marco fosse malato.", translation=None
-            ),
-            GrammarExample(
-                text="Speravo che sarebbe venuto.", translation=None
-            ),
+            GrammarExample(text="Penso che Marco sia malato.", translation=None),
+            GrammarExample(text="Pensavo che Marco fosse malato.", translation=None),
+            GrammarExample(text="Speravo che sarebbe venuto.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -391,9 +371,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Il museo viene visitato da molti turisti.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Queste regole vanno rispettate.", translation=None
-            ),
+            GrammarExample(text="Queste regole vanno rispettate.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -424,9 +402,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Il si impersonale non indica una persona specifica.",
         ],
         examples=[
-            GrammarExample(
-                text="In Italia si mangia bene.", translation=None
-            ),
+            GrammarExample(text="In Italia si mangia bene.", translation=None),
             GrammarExample(
                 text='Come si dice "casa" in inglese?',
                 translation='How do you say "casa" in English?',
@@ -541,9 +517,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non confondere cui (relativo) con qui (luogo).",
         ],
         examples=[
-            GrammarExample(
-                text="La città in cui vivo è Roma.", translation=None
-            ),
+            GrammarExample(text="La città in cui vivo è Roma.", translation=None),
             GrammarExample(
                 text="L'amico di cui ti parlavo è arrivato.",
                 translation=None,
@@ -623,12 +597,8 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non si usa mai il congiuntivo in questo tipo.",
         ],
         examples=[
-            GrammarExample(
-                text="Se piove, resto a casa.", translation=None
-            ),
-            GrammarExample(
-                text="Se avrò tempo, ti aiuterò.", translation=None
-            ),
+            GrammarExample(text="Se piove, resto a casa.", translation=None),
+            GrammarExample(text="Se avrò tempo, ti aiuterò.", translation=None),
             GrammarExample(
                 text="Se hai fame, prendi una mela.",
                 translation=None,
@@ -714,9 +684,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Se avessi saputo, sarei venuto.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Se vuoi, possiamo uscire.", translation=None
-            ),
+            GrammarExample(text="Se vuoi, possiamo uscire.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -752,9 +720,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Indicatori temporali: oggi → quel giorno, qui → lì.",
         ],
         examples=[
-            GrammarExample(
-                text="Ha detto che era stanco.", translation=None
-            ),
+            GrammarExample(text="Ha detto che era stanco.", translation=None),
             GrammarExample(
                 text="Disse che sarebbe arrivato il giorno dopo.",
                 translation=None,

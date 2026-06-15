@@ -662,9 +662,7 @@ Abgrenzung: Gradpartikeln (sehr, besonders) vs Fokuspartikeln (nur, sogar) vs Mo
                 translation=None,
                 note="denn = Interesse",
             ),
-            GrammarExample(
-                text="Komm mal her!", translation=None, note="mal = abschwächend"
-            ),
+            GrammarExample(text="Komm mal her!", translation=None, note="mal = abschwächend"),
             GrammarExample(
                 text="Das ist ja wunderbar!",
                 translation=None,

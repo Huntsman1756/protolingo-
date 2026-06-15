@@ -204,9 +204,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Prefixos e sufixos formam palavras.",
         ],
         examples=[
-            GrammarExample(
-                text="feliz -> infeliz -> felicidade", translation=None
-            ),
+            GrammarExample(text="feliz -> infeliz -> felicidade", translation=None),
             GrammarExample(
                 text="construir -> construcao -> reconstrutivo",
                 translation=None,
@@ -287,12 +285,8 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Desenrascanco.",
         ],
         examples=[
-            GrammarExample(
-                text="Como estas? -- Vai-se andando.", translation=None
-            ),
-            GrammarExample(
-                text="Isto so acontece em Portugal.", translation=None
-            ),
+            GrammarExample(text="Como estas? -- Vai-se andando.", translation=None),
+            GrammarExample(text="Isto so acontece em Portugal.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -393,9 +387,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="O tempo e dinheiro. (metafora)", translation=None),
-            GrammarExample(
-                text="Portugal venceu o jogo. (metonimia)", translation=None
-            ),
+            GrammarExample(text="Portugal venceu o jogo. (metonimia)", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -418,9 +410,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "PB: proclise. PE: enclise.",
         ],
         examples=[
-            GrammarExample(
-                text="PE: pequeno-almoco. / PB: cafe da manha.", translation=None
-            ),
+            GrammarExample(text="PE: pequeno-almoco. / PB: cafe da manha.", translation=None),
             GrammarExample(
                 text="PE: Da-me um cafe. / PB: Me da um cafe.",
                 translation=None,

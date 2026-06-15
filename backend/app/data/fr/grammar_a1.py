@@ -59,9 +59,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             GrammarExample(text="J'ai deux frères.", translation=None),
             GrammarExample(text="Quel âge as-tu ?", translation=None),
             GrammarExample(text="Nous avons faim.", translation=None),
-            GrammarExample(
-                text="Elle a une belle maison.", translation=None
-            ),
+            GrammarExample(text="Elle a une belle maison.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -94,9 +92,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Je parle français.", translation=None),
             GrammarExample(text="Tu habites où ?", translation=None),
-            GrammarExample(
-                text="Vous êtes très aimable.", translation=None
-            ),
+            GrammarExample(text="Vous êtes très aimable.", translation=None),
             GrammarExample(
                 text="On va au restaurant ce soir.",
                 translation=None,
@@ -131,17 +127,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "On utilise l'article défini pour les généralisations et avec aimer/détester.",
         ],
         examples=[
-            GrammarExample(
-                text="Le livre est sur la table.", translation=None
-            ),
+            GrammarExample(text="Le livre est sur la table.", translation=None),
             GrammarExample(
                 text="Les enfants jouent dans le jardin.",
                 translation=None,
             ),
             GrammarExample(text="Je vais au cinéma.", translation=None),
-            GrammarExample(
-                text="C'est la maison du professeur.", translation=None
-            ),
+            GrammarExample(text="C'est la maison du professeur.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -219,9 +211,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Il y a une pharmacie au coin.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Elle a des amis à Paris.", translation=None
-            ),
+            GrammarExample(text="Elle a des amis à Paris.", translation=None),
             GrammarExample(text="Je n'ai pas de voiture.", translation=None),
         ],
         common_mistakes=[
@@ -286,18 +276,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Notre, votre, leur sont identiques au masculin et au féminin.",
         ],
         examples=[
-            GrammarExample(
-                text="Mon frère habite à Lyon.", translation=None
-            ),
+            GrammarExample(text="Mon frère habite à Lyon.", translation=None),
             GrammarExample(text="Ma sœur est avocate.", translation=None),
             GrammarExample(
                 text="Mon amie Sophie vient ce soir.",
                 translation=None,
                 note="fém. avec voyelle → mon",
             ),
-            GrammarExample(
-                text="Leurs enfants sont adorables.", translation=None
-            ),
+            GrammarExample(text="Leurs enfants sont adorables.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -329,9 +315,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Une maison blanche.", translation=None),
-            GrammarExample(
-                text="Un petit chien.", translation=None, note="petit avant le nom"
-            ),
+            GrammarExample(text="Un petit chien.", translation=None, note="petit avant le nom"),
             GrammarExample(text="Des livres intéressants.", translation=None),
             GrammarExample(
                 text="Une belle voiture rouge.",
@@ -368,9 +352,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Les adjectifs en -e au masculin ne changent pas au féminin.",
         ],
         examples=[
-            GrammarExample(
-                text="Il est grand. → Elle est grande.", translation=None
-            ),
+            GrammarExample(text="Il est grand. → Elle est grande.", translation=None),
             GrammarExample(
                 text="Ils sont heureux. → Elles sont heureuses.",
                 translation=None,
@@ -380,9 +362,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="général → généraux",
             ),
-            GrammarExample(
-                text="Des robes élégantes.", translation=None, note="fém. pluriel"
-            ),
+            GrammarExample(text="Des robes élégantes.", translation=None, note="fém. pluriel"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -413,9 +393,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Verbes en -cer : nous commençons (pas *commencons).",
         ],
         examples=[
-            GrammarExample(
-                text="Je parle français et anglais.", translation=None
-            ),
+            GrammarExample(text="Je parle français et anglais.", translation=None),
             GrammarExample(text="Tu habites à Paris ?", translation=None),
             GrammarExample(text="Nous travaillons ensemble.", translation=None),
             GrammarExample(text="Ils aiment le cinéma.", translation=None),
@@ -449,12 +427,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Se devant une voyelle → s' : s'habiller, s'appeler.",
         ],
         examples=[
-            GrammarExample(
-                text="Je me lève à sept heures.", translation=None
-            ),
-            GrammarExample(
-                text="Tu te douches le matin ?", translation=None
-            ),
+            GrammarExample(text="Je me lève à sept heures.", translation=None),
+            GrammarExample(text="Tu te douches le matin ?", translation=None),
             GrammarExample(
                 text="Nous nous rencontrons au café.",
                 translation=None,
@@ -533,9 +507,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="J'aime le chocolat.", translation=None),
-            GrammarExample(
-                text="Je déteste faire la vaisselle.", translation=None
-            ),
+            GrammarExample(text="Je déteste faire la vaisselle.", translation=None),
             GrammarExample(
                 text="Tu aimes danser ? — Oui, j'adore !",
                 translation=None,
@@ -575,9 +547,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Avec aimer/détester, on utilise l'article défini (pas le partitif) : J'aime le pain.",
         ],
         examples=[
-            GrammarExample(
-                text="Je mange du pain et de la confiture.", translation=None
-            ),
+            GrammarExample(text="Je mange du pain et de la confiture.", translation=None),
             GrammarExample(text="Tu veux de l'eau ?", translation=None),
             GrammarExample(
                 text="Je ne bois pas de café.",
@@ -620,12 +590,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Je ne parle pas chinois.", translation=None),
-            GrammarExample(
-                text="Il n'aime pas les légumes.", translation=None
-            ),
-            GrammarExample(
-                text="Nous n'avons pas d'enfants.", translation=None
-            ),
+            GrammarExample(text="Il n'aime pas les légumes.", translation=None),
+            GrammarExample(text="Nous n'avons pas d'enfants.", translation=None),
             GrammarExample(text="Je ne me souviens pas.", translation=None),
         ],
         common_mistakes=[
@@ -665,9 +631,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
             ),
             GrammarExample(text="Il n'y a pas de problème.", translation=None),
-            GrammarExample(
-                text="Est-ce qu'il y a un médecin ici ?", translation=None
-            ),
+            GrammarExample(text="Est-ce qu'il y a un médecin ici ?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -701,16 +665,12 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="La boulangerie est à côté de la pharmacie.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Le chat est sous la table.", translation=None
-            ),
+            GrammarExample(text="Le chat est sous la table.", translation=None),
             GrammarExample(
                 text="Il y a un jardin derrière la maison.",
                 translation=None,
             ),
-            GrammarExample(
-                text="La gare est loin d'ici.", translation=None
-            ),
+            GrammarExample(text="La gare est loin d'ici.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -746,9 +706,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="à + le → au",
             ),
-            GrammarExample(
-                text="Tu vas chez le dentiste ?", translation=None
-            ),
+            GrammarExample(text="Tu vas chez le dentiste ?", translation=None),
             GrammarExample(text="Nous allons à la plage.", translation=None),
             GrammarExample(
                 text="Elle va aux Pays-Bas.",
@@ -785,17 +743,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Ne pas confondre avec le futur simple (je mangerai).",
         ],
         examples=[
-            GrammarExample(
-                text="Je vais téléphoner à Marie.", translation=None
-            ),
+            GrammarExample(text="Je vais téléphoner à Marie.", translation=None),
             GrammarExample(
                 text="Qu'est-ce que tu vas faire ce week-end ?",
                 translation=None,
             ),
             GrammarExample(text="Il va neiger demain.", translation=None),
-            GrammarExample(
-                text="Nous allons visiter le musée.", translation=None
-            ),
+            GrammarExample(text="Nous allons visiter le musée.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -826,20 +780,14 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Toujours suivis de l'infinitif sans préposition.",
         ],
         examples=[
-            GrammarExample(
-                text="Je veux apprendre le français.", translation=None
-            ),
-            GrammarExample(
-                text="Tu peux m'aider ?", translation=None, note="permission/capacité"
-            ),
+            GrammarExample(text="Je veux apprendre le français.", translation=None),
+            GrammarExample(text="Tu peux m'aider ?", translation=None, note="permission/capacité"),
             GrammarExample(
                 text="Nous devons partir à huit heures.",
                 translation=None,
                 note="obligation",
             ),
-            GrammarExample(
-                text="Elle ne peut pas venir ce soir.", translation=None
-            ),
+            GrammarExample(text="Elle ne peut pas venir ce soir.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -875,9 +823,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
             ),
             GrammarExample(text="On se voit mardi prochain.", translation=None),
-            GrammarExample(
-                text="Mon anniversaire est en avril.", translation=None
-            ),
+            GrammarExample(text="Mon anniversaire est en avril.", translation=None),
             GrammarExample(
                 text="Je travaille le matin et j'étudie l'après-midi.",
                 translation=None,

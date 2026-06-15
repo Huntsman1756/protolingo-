@@ -89,17 +89,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Eu falo português.", translation=None),
-            GrammarExample(
-                text="Tu és muito simpático.", translation=None, note="informal"
-            ),
+            GrammarExample(text="Tu és muito simpático.", translation=None, note="informal"),
             GrammarExample(
                 text="Você mora em Lisboa?",
                 translation=None,
                 note="semi-formal",
             ),
-            GrammarExample(
-                text="A gente gosta de café.", translation=None, note="coloquial"
-            ),
+            GrammarExample(text="A gente gosta de café.", translation=None, note="coloquial"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -140,9 +136,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="artigo + possessivo",
             ),
-            GrammarExample(
-                text="Os alunos estão na sala.", translation=None
-            ),
+            GrammarExample(text="Os alunos estão na sala.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -174,9 +168,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Sou espanhol.", translation=None, note="masculino"),
             GrammarExample(text="Ela é portuguesa.", translation=None),
-            GrammarExample(
-                text="Nós somos franceses.", translation=None, note="plural masculino"
-            ),
+            GrammarExample(text="Nós somos franceses.", translation=None, note="plural masculino"),
             GrammarExample(text="Eles são brasileiros.", translation=None),
         ],
         common_mistakes=[
@@ -246,15 +238,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Comprei um livro.", translation=None),
-            GrammarExample(
-                text="Há uma árvore no jardim.", translation=None
-            ),
-            GrammarExample(
-                text="Ela tem uns trinta anos.", translation=None
-            ),
-            GrammarExample(
-                text="Umas pessoas estão à espera.", translation=None
-            ),
+            GrammarExample(text="Há uma árvore no jardim.", translation=None),
+            GrammarExample(text="Ela tem uns trinta anos.", translation=None),
+            GrammarExample(text="Umas pessoas estão à espera.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -327,9 +313,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 note="EP: artigo + possessivo",
             ),
             GrammarExample(text="A tua casa é bonita.", translation=None),
-            GrammarExample(
-                text="Os nossos filhos estão na escola.", translation=None
-            ),
+            GrammarExample(text="Os nossos filhos estão na escola.", translation=None),
             GrammarExample(
                 text="O livro dela é interessante.",
                 translation=None,
@@ -409,15 +393,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "A conjugação nós é igual no presente e pretérito perfeito para -ar.",
         ],
         examples=[
-            GrammarExample(
-                text="Eu falo português todos os dias.", translation=None
-            ),
-            GrammarExample(
-                text="Ela come fruta ao almoço.", translation=None
-            ),
-            GrammarExample(
-                text="Nós abrimos a loja às nove.", translation=None
-            ),
+            GrammarExample(text="Eu falo português todos os dias.", translation=None),
+            GrammarExample(text="Ela come fruta ao almoço.", translation=None),
+            GrammarExample(text="Nós abrimos a loja às nove.", translation=None),
             GrammarExample(text="Eles vendem livros usados.", translation=None),
         ],
         common_mistakes=[
@@ -448,12 +426,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Muitos verbos são reflexivos em português mas não noutras línguas.",
         ],
         examples=[
-            GrammarExample(
-                text="Chamo-me Ricardo.", translation=None, note="ênclise (EP)"
-            ),
-            GrammarExample(
-                text="Levanto-me cedo todos os dias.", translation=None
-            ),
+            GrammarExample(text="Chamo-me Ricardo.", translation=None, note="ênclise (EP)"),
+            GrammarExample(text="Levanto-me cedo todos os dias.", translation=None),
             GrammarExample(
                 text="Não me lembro do nome dele.",
                 translation=None,
@@ -597,12 +571,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Tenho muito trabalho.", translation=None),
             GrammarExample(text="Ela tem muitos amigos.", translation=None),
-            GrammarExample(
-                text="Ele é muito alto.", translation=None, note="invariável"
-            ),
-            GrammarExample(
-                text="Há poucas pessoas na rua.", translation=None
-            ),
+            GrammarExample(text="Ele é muito alto.", translation=None, note="invariável"),
+            GrammarExample(text="Há poucas pessoas na rua.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -632,15 +602,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Haver pode conjugar-se: haverá, houve, havia.",
         ],
         examples=[
-            GrammarExample(
-                text="Há um supermercado perto daqui.", translation=None
-            ),
-            GrammarExample(
-                text="Há muitas pessoas na fila.", translation=None
-            ),
-            GrammarExample(
-                text="Cheguei há cinco minutos.", translation=None
-            ),
+            GrammarExample(text="Há um supermercado perto daqui.", translation=None),
+            GrammarExample(text="Há muitas pessoas na fila.", translation=None),
+            GrammarExample(text="Cheguei há cinco minutos.", translation=None),
             GrammarExample(
                 text="Houve um problema na reunião.",
                 translation=None,
@@ -676,12 +640,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="O livro está na mesa.", translation=None),
             GrammarExample(text="Moro em Lisboa.", translation=None),
-            GrammarExample(
-                text="Vou ao cinema.", translation=None, note="a+o=ao"
-            ),
-            GrammarExample(
-                text="Ela veio do Porto.", translation=None, note="de+o=do"
-            ),
+            GrammarExample(text="Vou ao cinema.", translation=None, note="a+o=ao"),
+            GrammarExample(text="Ela veio do Porto.", translation=None, note="de+o=do"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -711,12 +671,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "a+o=ao; por+artigo=pelo, pela.",
         ],
         examples=[
-            GrammarExample(
-                text="O carro do meu pai.", translation=None, note="de+o=do"
-            ),
-            GrammarExample(
-                text="Ela está na escola.", translation=None, note="em+a=na"
-            ),
+            GrammarExample(text="O carro do meu pai.", translation=None, note="de+o=do"),
+            GrammarExample(text="Ela está na escola.", translation=None, note="em+a=na"),
             GrammarExample(
                 text="Vou ao médico amanhã.",
                 translation=None,
@@ -797,12 +753,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Em EP, ser capaz de é alternativa a poder.",
         ],
         examples=[
-            GrammarExample(
-                text="Quero um bilhete para Lisboa.", translation=None
-            ),
-            GrammarExample(
-                text="Podes ajudar-me?", translation=None, note="tu, informal"
-            ),
+            GrammarExample(text="Quero um bilhete para Lisboa.", translation=None),
+            GrammarExample(text="Podes ajudar-me?", translation=None, note="tu, informal"),
             GrammarExample(text="Não posso sair hoje.", translation=None),
             GrammarExample(text="Ela quer ser médica.", translation=None),
         ],
@@ -836,9 +788,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="A aula é na terça-feira.", translation=None),
-            GrammarExample(
-                text="No sábado vou à praia.", translation=None
-            ),
+            GrammarExample(text="No sábado vou à praia.", translation=None),
             GrammarExample(
                 text="O restaurante fecha à segunda.",
                 translation=None,
@@ -880,9 +830,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="EP: a + infinitivo",
             ),
-            GrammarExample(
-                text="Ela está a falar ao telefone.", translation=None
-            ),
+            GrammarExample(text="Ela está a falar ao telefone.", translation=None),
             GrammarExample(
                 text="Estamos a pensar em comprar uma casa.",
                 translation=None,

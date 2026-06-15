@@ -26,9 +26,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Pensavo che tu fossi gia partito.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Vorrei che fosse sempre estate.", translation=None
-            ),
+            GrammarExample(text="Vorrei che fosse sempre estate.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -110,9 +108,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Princ. passato + anteriorita = congiuntivo trapassato.",
         ],
         examples=[
-            GrammarExample(
-                text="Penso che lui dica la verita.", translation=None
-            ),
+            GrammarExample(text="Penso che lui dica la verita.", translation=None),
             GrammarExample(
                 text="Penso che lui abbia detto la verita.",
                 translation=None,
@@ -199,12 +195,8 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Spesso con verbi di cambiamento.",
         ],
         examples=[
-            GrammarExample(
-                text="La situazione va migliorando.", translation=None
-            ),
-            GrammarExample(
-                text="Il tempo andava peggiorando.", translation=None
-            ),
+            GrammarExample(text="La situazione va migliorando.", translation=None),
+            GrammarExample(text="Il tempo andava peggiorando.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -355,13 +347,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Usarli rende il discorso piu naturale.",
         ],
         examples=[
-            GrammarExample(
-                text="In bocca al lupo per l'esame!", translation=None
-            ),
+            GrammarExample(text="In bocca al lupo per l'esame!", translation=None),
             GrammarExample(text="Sono al verde questo mese.", translation=None),
-            GrammarExample(
-                text="Non vedo l'ora di vederti!", translation=None
-            ),
+            GrammarExample(text="Non vedo l'ora di vederti!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -386,9 +374,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mica rafforza la negazione nel parlato.",
         ],
         examples=[
-            GrammarExample(
-                text="Dai, andiamo al cinema!", translation=None
-            ),
+            GrammarExample(text="Dai, andiamo al cinema!", translation=None),
             GrammarExample(
                 text="Hai visto la partita? — Magari! Ero al lavoro.",
                 translation=None,

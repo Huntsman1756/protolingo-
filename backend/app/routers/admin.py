@@ -29,6 +29,7 @@ from app.schemas.admin import (
     PaginatedAdminUsersResponse,
 )
 from app.services import email_service
+from app.services.subscription_service import apply_subscription_quotas
 from app.utils.pagination import paginate
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
@@ -300,8 +301,19 @@ async def update_user(
     if data.monthly_tokens_limit is not None:
         user.monthly_tokens_limit = data.monthly_tokens_limit
     if data.subscription_status is not None:
+        old_status = user.subscription_status
         user.subscription_status = data.subscription_status
-    if data.subscription_ends_at is not None:
+        if data.subscription_status == "none":
+            user.subscription_ends_at = None
+        elif data.subscription_ends_at is not None:
+            user.subscription_ends_at = data.subscription_ends_at
+        # Apply default subscription quotas when first activating
+        if data.subscription_status in ("active", "trialing") and old_status not in (
+            "active",
+            "trialing",
+        ):
+            await apply_subscription_quotas(user, db)
+    elif data.subscription_ends_at is not None:
         user.subscription_ends_at = data.subscription_ends_at
 
     await db.commit()

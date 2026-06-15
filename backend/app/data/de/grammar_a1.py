@@ -45,9 +45,7 @@ Im Gegensatz zum Englischen kann das Subjektpronomen im Deutschen **nicht** wegg
             GrammarExample(text="Wir sind müde.", translation=None, note="Zustand"),
             GrammarExample(text="Sie ist Lehrerin.", translation=None, note="Beruf"),
             GrammarExample(text="Seid ihr fertig?", translation=None),
-            GrammarExample(
-                text="Das Wetter ist schön.", translation=None, note="Eigenschaft"
-            ),
+            GrammarExample(text="Das Wetter ist schön.", translation=None, note="Eigenschaft"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -164,12 +162,8 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
             GrammarExample(text="Wo wohnst du?", translation=None),
             GrammarExample(text="Er ist mein Freund.", translation=None),
             GrammarExample(text="Wir gehen ins Kino.", translation=None),
-            GrammarExample(
-                text="Kommt ihr mit?", translation=None, note="informell"
-            ),
-            GrammarExample(
-                text="Woher kommen Sie?", translation=None, note="formell"
-            ),
+            GrammarExample(text="Kommt ihr mit?", translation=None, note="informell"),
+            GrammarExample(text="Woher kommen Sie?", translation=None, note="formell"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -221,12 +215,8 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
             GrammarExample(text="Der Hund ist braun.", translation=None),
             GrammarExample(text="Die Katze schläft.", translation=None),
             GrammarExample(text="Das Kind spielt.", translation=None),
-            GrammarExample(
-                text="Die Bücher sind neu.", translation=None, note="Plural"
-            ),
-            GrammarExample(
-                text="Der Tisch ist aus Holz.", translation=None
-            ),
+            GrammarExample(text="Die Bücher sind neu.", translation=None, note="Plural"),
+            GrammarExample(text="Der Tisch ist aus Holz.", translation=None),
             GrammarExample(text="Die Stadt ist schön.", translation=None),
         ],
         common_mistakes=[
@@ -290,21 +280,15 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
                 translation=None,
                 note="Beruf mit -er = maskulin",
             ),
-            GrammarExample(
-                text="die Freiheit", translation=None, note="Endung -heit = feminin"
-            ),
+            GrammarExample(text="die Freiheit", translation=None, note="Endung -heit = feminin"),
             GrammarExample(
                 text="das Mädchen",
                 translation=None,
                 note="Verkleinerungsform -chen = neutral",
             ),
             GrammarExample(text="der Montag", translation=None, note="Wochentage = maskulin"),
-            GrammarExample(
-                text="die Universität", translation=None, note="Endung -tät = feminin"
-            ),
-            GrammarExample(
-                text="das Instrument", translation=None, note="Endung -ment = neutral"
-            ),
+            GrammarExample(text="die Universität", translation=None, note="Endung -tät = feminin"),
+            GrammarExample(text="das Instrument", translation=None, note="Endung -ment = neutral"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -354,12 +338,8 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
             'Bei Berufen und Nationalitäten steht kein Artikel: "Ich bin Lehrer." (nicht: ein Lehrer)',
         ],
         examples=[
-            GrammarExample(
-                text="Das ist ein Tisch.", translation=None, note="maskulin"
-            ),
-            GrammarExample(
-                text="Ich habe eine Frage.", translation=None, note="feminin"
-            ),
+            GrammarExample(text="Das ist ein Tisch.", translation=None, note="maskulin"),
+            GrammarExample(text="Ich habe eine Frage.", translation=None, note="feminin"),
             GrammarExample(text="Das ist ein Buch.", translation=None, note="neutral"),
             GrammarExample(text="Es gibt ein Problem.", translation=None),
             GrammarExample(
@@ -367,9 +347,7 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
                 translation=None,
                 note="Plural, kein Artikel",
             ),
-            GrammarExample(
-                text="Ein Hund ist ein Haustier.", translation=None, note="Kategorie"
-            ),
+            GrammarExample(text="Ein Hund ist ein Haustier.", translation=None, note="Kategorie"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -418,24 +396,16 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
             '"euer" verliert das mittlere -e- vor -e: "eure" (nicht: euere).',
         ],
         examples=[
-            GrammarExample(
-                text="Das ist mein Buch.", translation=None, note="neutral"
-            ),
-            GrammarExample(
-                text="Das ist meine Tasche.", translation=None, note="feminin"
-            ),
+            GrammarExample(text="Das ist mein Buch.", translation=None, note="neutral"),
+            GrammarExample(text="Das ist meine Tasche.", translation=None, note="feminin"),
             GrammarExample(text="Sein Auto ist neu.", translation=None),
             GrammarExample(
                 text="Unsere Kinder sind klein.",
                 translation=None,
                 note="Plural",
             ),
-            GrammarExample(
-                text="Ist das euer Hund?", translation=None, note="informell Plural"
-            ),
-            GrammarExample(
-                text="Wo ist Ihr Pass?", translation=None, note="formell"
-            ),
+            GrammarExample(text="Ist das euer Hund?", translation=None, note="informell Plural"),
+            GrammarExample(text="Wo ist Ihr Pass?", translation=None, note="formell"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -488,16 +458,12 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
             "Vor dem Nomen bekommen Adjektive eine Endung (→ Adjektivdeklination, A2).",
         ],
         examples=[
-            GrammarExample(
-                text="Der Film ist interessant.", translation=None
-            ),
+            GrammarExample(text="Der Film ist interessant.", translation=None),
             GrammarExample(text="Mein Zimmer ist klein.", translation=None),
             GrammarExample(text="Die Suppe ist zu heiß.", translation=None),
             GrammarExample(text="Bist du müde?", translation=None),
             GrammarExample(text="Das ist zu teuer.", translation=None),
-            GrammarExample(
-                text="Deutsch ist nicht schwer.", translation=None
-            ),
+            GrammarExample(text="Deutsch ist nicht schwer.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -553,9 +519,7 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
                 note="-d → extra -e-",
             ),
             GrammarExample(text="Wir kaufen ein Auto.", translation=None),
-            GrammarExample(
-                text="Tanzt du gern?", translation=None, note="-z → kein -s-"
-            ),
+            GrammarExample(text="Tanzt du gern?", translation=None, note="-z → kein -s-"),
             GrammarExample(text="Sie spielen Fußball.", translation=None),
         ],
         common_mistakes=[
@@ -604,22 +568,12 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
             "Nicht verwechseln: bekommen (untrennbar) vs mitkommen (trennbar).",
         ],
         examples=[
-            GrammarExample(
-                text="Ich stehe jeden Tag um 7 Uhr auf.", translation=None
-            ),
-            GrammarExample(
-                text="Rufst du mich morgen an?", translation=None
-            ),
-            GrammarExample(
-                text="Wir kaufen am Samstag ein.", translation=None
-            ),
-            GrammarExample(
-                text="Sie sieht abends fern.", translation=None
-            ),
+            GrammarExample(text="Ich stehe jeden Tag um 7 Uhr auf.", translation=None),
+            GrammarExample(text="Rufst du mich morgen an?", translation=None),
+            GrammarExample(text="Wir kaufen am Samstag ein.", translation=None),
+            GrammarExample(text="Sie sieht abends fern.", translation=None),
             GrammarExample(text="Wann fängt der Film an?", translation=None),
-            GrammarExample(
-                text="Kommst du mit ins Kino?", translation=None
-            ),
+            GrammarExample(text="Kommst du mit ins Kino?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -672,20 +626,14 @@ Wird im Alltag mit Freunden und Familie verwendet:
                 translation=None,
                 note="Achtung: halb zehn = 9:30",
             ),
-            GrammarExample(
-                text="Der Bus kommt um Viertel nach acht.", translation=None
-            ),
+            GrammarExample(text="Der Bus kommt um Viertel nach acht.", translation=None),
             GrammarExample(
                 text="Der Film beginnt um zwanzig Uhr.",
                 translation=None,
                 note="offiziell",
             ),
-            GrammarExample(
-                text="Ich arbeite von neun bis fünf.", translation=None
-            ),
-            GrammarExample(
-                text="Es ist fünf vor zwölf.", translation=None, note="11:55"
-            ),
+            GrammarExample(text="Ich arbeite von neun bis fünf.", translation=None),
+            GrammarExample(text="Es ist fünf vor zwölf.", translation=None, note="11:55"),
             GrammarExample(
                 text="Um wie viel Uhr frühstückst du?",
                 translation=None,
@@ -751,9 +699,7 @@ Wird mit einem Verb kombiniert:
         ],
         examples=[
             GrammarExample(text="Ich mag Schokolade.", translation=None),
-            GrammarExample(
-                text="Magst du klassische Musik?", translation=None
-            ),
+            GrammarExample(text="Magst du klassische Musik?", translation=None),
             GrammarExample(text="Ich spiele gern Tennis.", translation=None),
             GrammarExample(
                 text="Ich trinke lieber Tee als Kaffee.",
@@ -765,9 +711,7 @@ Wird mit einem Verb kombiniert:
                 translation=None,
                 note="am liebsten",
             ),
-            GrammarExample(
-                text="Möchtest du etwas trinken?", translation=None
-            ),
+            GrammarExample(text="Möchtest du etwas trinken?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -815,9 +759,7 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
             "Personalpronomen im Akkusativ: mich, dich, ihn, sie, es, uns, euch, sie, Sie.",
         ],
         examples=[
-            GrammarExample(
-                text="Ich sehe den Mann.", translation=None, note="maskulin Akkusativ"
-            ),
+            GrammarExample(text="Ich sehe den Mann.", translation=None, note="maskulin Akkusativ"),
             GrammarExample(
                 text="Er kauft einen Computer.",
                 translation=None,
@@ -828,12 +770,8 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
                 translation=None,
                 note="feminin, kein Wechsel",
             ),
-            GrammarExample(
-                text="Wir gehen durch den Park.", translation=None
-            ),
-            GrammarExample(
-                text="Ich habe keinen Hunger.", translation=None, note="kein → keinen"
-            ),
+            GrammarExample(text="Wir gehen durch den Park.", translation=None),
+            GrammarExample(text="Ich habe keinen Hunger.", translation=None, note="kein → keinen"),
             GrammarExample(
                 text="Ohne dich macht es keinen Spaß.",
                 translation=None,
@@ -899,9 +837,7 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
                 note="Akkusativ",
             ),
             GrammarExample(text="Das ist keine gute Idee.", translation=None),
-            GrammarExample(
-                text="Ich habe keine Zeit.", translation=None, note="Plural/feminin"
-            ),
+            GrammarExample(text="Ich habe keine Zeit.", translation=None, note="Plural/feminin"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -953,17 +889,13 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
                 text="Es gibt einen Supermarkt in der Nähe.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Gibt es hier ein Krankenhaus?", translation=None
-            ),
+            GrammarExample(text="Gibt es hier ein Krankenhaus?", translation=None),
             GrammarExample(text="Es gibt keine Probleme.", translation=None),
             GrammarExample(
                 text="In Berlin gibt es viele Museen.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Es gibt heute Abend eine Party.", translation=None
-            ),
+            GrammarExample(text="Es gibt heute Abend eine Party.", translation=None),
             GrammarExample(text="Gibt es noch Kaffee?", translation=None),
         ],
         common_mistakes=[
@@ -1014,12 +946,8 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
             "Die Präposition bestimmt den Fall, nicht das Verb.",
         ],
         examples=[
-            GrammarExample(
-                text="Das Buch liegt auf dem Tisch.", translation=None
-            ),
-            GrammarExample(
-                text="Die Katze ist unter dem Bett.", translation=None
-            ),
+            GrammarExample(text="Das Buch liegt auf dem Tisch.", translation=None),
+            GrammarExample(text="Die Katze ist unter dem Bett.", translation=None),
             GrammarExample(
                 text="Das Kino ist neben dem Bahnhof.",
                 translation=None,
@@ -1028,12 +956,8 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
                 text="Wir warten vor dem Kino.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Der Spiegel hängt an der Wand.", translation=None
-            ),
-            GrammarExample(
-                text="Mein Handy ist in der Tasche.", translation=None
-            ),
+            GrammarExample(text="Der Spiegel hängt an der Wand.", translation=None),
+            GrammarExample(text="Mein Handy ist in der Tasche.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -1095,9 +1019,7 @@ Merkwort: **Mit, Nach, Zu, Bei, Von, Aus, Seit** — diese 7 immer mit Dativ."""
                 translation=None,
                 note="zu + dem = zum",
             ),
-            GrammarExample(
-                text="Ich wohne bei meinen Eltern.", translation=None
-            ),
+            GrammarExample(text="Ich wohne bei meinen Eltern.", translation=None),
             GrammarExample(
                 text="Nach der Arbeit gehe ich ins Fitnessstudio.",
                 translation=None,
@@ -1167,16 +1089,10 @@ Das Präsens für Zukunft ist völlig korrekt und sogar häufiger als das Futur 
                 text="Ich werde morgen nach München fahren.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Es wird am Wochenende regnen.", translation=None
-            ),
-            GrammarExample(
-                text="Wirst du zur Party kommen?", translation=None
-            ),
+            GrammarExample(text="Es wird am Wochenende regnen.", translation=None),
+            GrammarExample(text="Wirst du zur Party kommen?", translation=None),
             GrammarExample(text="Wir werden dich besuchen.", translation=None),
-            GrammarExample(
-                text="Er wird nächste Woche umziehen.", translation=None
-            ),
+            GrammarExample(text="Er wird nächste Woche umziehen.", translation=None),
             GrammarExample(
                 text="Morgen gehe ich ins Kino.",
                 translation=None,
@@ -1244,17 +1160,13 @@ Das Präsens für Zukunft ist völlig korrekt und sogar häufiger als das Futur 
                 text="Er muss morgen früh aufstehen.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Hier darf man nicht parken.", translation=None
-            ),
+            GrammarExample(text="Hier darf man nicht parken.", translation=None),
             GrammarExample(
                 text="Du solltest mehr schlafen.",
                 translation=None,
                 note="sollen im Konjunktiv = Ratschlag",
             ),
-            GrammarExample(
-                text="Ich möchte eine Cola, bitte.", translation=None
-            ),
+            GrammarExample(text="Ich möchte eine Cola, bitte.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -1311,22 +1223,14 @@ der Frühling, der Sommer, der Herbst, der Winter
             '"Von ... bis" drückt einen Zeitraum aus: von Montag bis Freitag.',
         ],
         examples=[
-            GrammarExample(
-                text="Am Montag habe ich frei.", translation=None
-            ),
-            GrammarExample(
-                text="Im Sommer fahren wir ans Meer.", translation=None
-            ),
-            GrammarExample(
-                text="Der Kurs beginnt um 9 Uhr.", translation=None
-            ),
+            GrammarExample(text="Am Montag habe ich frei.", translation=None),
+            GrammarExample(text="Im Sommer fahren wir ans Meer.", translation=None),
+            GrammarExample(text="Der Kurs beginnt um 9 Uhr.", translation=None),
             GrammarExample(
                 text="Ich arbeite von Dienstag bis Freitag.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Am Wochenende schlafe ich lange.", translation=None
-            ),
+            GrammarExample(text="Am Wochenende schlafe ich lange.", translation=None),
             GrammarExample(text="Im Januar ist es kalt.", translation=None),
         ],
         common_mistakes=[
@@ -1381,13 +1285,9 @@ der Frühling, der Sommer, der Herbst, der Winter
         ],
         examples=[
             GrammarExample(text="Komm bitte hierher!", translation=None, note="du"),
-            GrammarExample(
-                text="Warte einen Moment!", translation=None, note="-e obligatorisch"
-            ),
+            GrammarExample(text="Warte einen Moment!", translation=None, note="-e obligatorisch"),
             GrammarExample(text="Esst langsam!", translation=None, note="ihr"),
-            GrammarExample(
-                text="Nehmen Sie Platz!", translation=None, note="Sie, formell"
-            ),
+            GrammarExample(text="Nehmen Sie Platz!", translation=None, note="Sie, formell"),
             GrammarExample(text="Sei ruhig!", translation=None, note="unregelmäßig: sein"),
             GrammarExample(
                 text="Lies den Text!", translation=None, note="Vokalwechsel e→ie bleibt"

@@ -31,18 +31,10 @@ ich habe gemacht · du hast gemacht · er/es/sie hat gemacht · wir haben gemach
                 translation=None,
             ),
             GrammarExample(text="Hast du den Film gesehen?", translation=None),
-            GrammarExample(
-                text="Er hat lange geschlafen.", translation=None
-            ),
-            GrammarExample(
-                text="Wir haben im Restaurant gegessen.", translation=None
-            ),
-            GrammarExample(
-                text="Sie hat mir nicht geantwortet.", translation=None
-            ),
-            GrammarExample(
-                text="Habt ihr die Hausaufgaben gemacht?", translation=None
-            ),
+            GrammarExample(text="Er hat lange geschlafen.", translation=None),
+            GrammarExample(text="Wir haben im Restaurant gegessen.", translation=None),
+            GrammarExample(text="Sie hat mir nicht geantwortet.", translation=None),
+            GrammarExample(text="Habt ihr die Hausaufgaben gemacht?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -85,12 +77,8 @@ ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · 
                 text="Ich bin gestern nach Hamburg gefahren.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Bist du mit dem Zug gekommen?", translation=None
-            ),
-            GrammarExample(
-                text="Er ist um 6 Uhr aufgewacht.", translation=None
-            ),
+            GrammarExample(text="Bist du mit dem Zug gekommen?", translation=None),
+            GrammarExample(text="Er ist um 6 Uhr aufgewacht.", translation=None),
             GrammarExample(text="Wir sind zu Hause geblieben.", translation=None),
             GrammarExample(text="Was ist passiert?", translation=None),
             GrammarExample(
@@ -140,9 +128,7 @@ ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · 
         ],
         examples=[
             GrammarExample(text="machen → gemacht", translation=None, note="regelmäßig"),
-            GrammarExample(
-                text="sehen → gesehen", translation=None, note="unregelmäßig"
-            ),
+            GrammarExample(text="sehen → gesehen", translation=None, note="unregelmäßig"),
             GrammarExample(
                 text="aufstehen → aufgestanden",
                 translation=None,
@@ -158,9 +144,7 @@ ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · 
                 translation=None,
                 note="-ieren, kein ge-",
             ),
-            GrammarExample(
-                text="bringen → gebracht", translation=None, note="gemischt"
-            ),
+            GrammarExample(text="bringen → gebracht", translation=None, note="gemischt"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -200,22 +184,14 @@ Im schriftlichen Deutsch (Erzählungen, Berichte) wird das Präteritum für **al
             "Das Präteritum ist eine einteilige Vergangenheitsform (kein Hilfsverb nötig).",
         ],
         examples=[
-            GrammarExample(
-                text="Gestern war ich im Kino.", translation=None
-            ),
-            GrammarExample(
-                text="Warst du schon in Berlin?", translation=None
-            ),
-            GrammarExample(
-                text="Ich hatte einen anstrengenden Tag.", translation=None
-            ),
+            GrammarExample(text="Gestern war ich im Kino.", translation=None),
+            GrammarExample(text="Warst du schon in Berlin?", translation=None),
+            GrammarExample(text="Ich hatte einen anstrengenden Tag.", translation=None),
             GrammarExample(
                 text="Wir waren letzte Woche im Urlaub.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Er hatte kein Geld dabei.", translation=None
-            ),
+            GrammarExample(text="Er hatte kein Geld dabei.", translation=None),
             GrammarExample(text="Wart ihr schon essen?", translation=None),
         ],
         common_mistakes=[
@@ -401,18 +377,14 @@ Personalpronomen im Dativ: mir, dir, ihm, ihr, ihm, uns, euch, ihnen/Ihnen""",
             "Nach Dativ-Präpositionen (mit, nach, zu, bei, von, aus, seit) steht ebenfalls Dativ.",
         ],
         examples=[
-            GrammarExample(
-                text="Ich gebe dem Mann das Buch.", translation=None
-            ),
+            GrammarExample(text="Ich gebe dem Mann das Buch.", translation=None),
             GrammarExample(text="Kannst du mir helfen?", translation=None),
             GrammarExample(
                 text="Das Kleid gefällt ihr.",
                 translation=None,
                 note="gefallen + Dativ",
             ),
-            GrammarExample(
-                text="Ich danke dir für das Geschenk.", translation=None
-            ),
+            GrammarExample(text="Ich danke dir für das Geschenk.", translation=None),
             GrammarExample(text="Gehört das Auto ihm?", translation=None),
             GrammarExample(
                 text="Die Musik ist zu laut. Sie stört mich.",
@@ -462,9 +434,7 @@ Kontraktionen: in + das = ins (Wohin?), in + dem = im (Wo?), an + das = ans (Woh
             "Verben der Position → Dativ. Verben der Bewegung → Akkusativ.",
         ],
         examples=[
-            GrammarExample(
-                text="Ich bin im Garten.", translation=None, note="Wo? → Dativ"
-            ),
+            GrammarExample(text="Ich bin im Garten.", translation=None, note="Wo? → Dativ"),
             GrammarExample(
                 text="Ich gehe in den Garten.",
                 translation=None,
@@ -537,9 +507,7 @@ Dativ: indirektes Objekt (Wem?), nach Dativ-Präpositionen — *Ich helfe **dir*
         ],
         examples=[
             GrammarExample(text="Ich sehe dich.", translation=None, note="Akkusativ"),
-            GrammarExample(
-                text="Kannst du mir helfen?", translation=None, note="Dativ"
-            ),
+            GrammarExample(text="Kannst du mir helfen?", translation=None, note="Dativ"),
             GrammarExample(
                 text="Das Geschenk ist für ihn.",
                 translation=None,
@@ -603,9 +571,7 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
                 text="Mein Auto ist schneller als deins.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Berlin ist größer als München.", translation=None
-            ),
+            GrammarExample(text="Berlin ist größer als München.", translation=None),
             GrammarExample(
                 text="Meine Schwester ist jünger als ich.",
                 translation=None,
@@ -668,9 +634,7 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
                 text="Usain Bolt ist der schnellste Läufer der Welt.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Dieses Restaurant ist am besten.", translation=None
-            ),
+            GrammarExample(text="Dieses Restaurant ist am besten.", translation=None),
             GrammarExample(
                 text="Der Mount Everest ist der höchste Berg.",
                 translation=None,
@@ -746,12 +710,8 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
                 text="Je mehr du übst, desto besser wirst du.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ich bin so müde wie gestern.", translation=None
-            ),
-            GrammarExample(
-                text="Er läuft schneller als ich.", translation=None
-            ),
+            GrammarExample(text="Ich bin so müde wie gestern.", translation=None),
+            GrammarExample(text="Er läuft schneller als ich.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -793,26 +753,16 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
             "Die Artikel geben Genus und Fall bereits an, deshalb reichen -e/-en.",
         ],
         examples=[
-            GrammarExample(
-                text="der große Hund", translation=None, note="Nom. maskulin: -e"
-            ),
+            GrammarExample(text="der große Hund", translation=None, note="Nom. maskulin: -e"),
             GrammarExample(
                 text="Ich kaufe den roten Pullover.",
                 translation=None,
                 note="Akk. maskulin: -en",
             ),
-            GrammarExample(
-                text="die nette Kellnerin", translation=None, note="Nom. feminin: -e"
-            ),
-            GrammarExample(
-                text="mit dem alten Auto", translation=None, note="Dat. neutral: -en"
-            ),
-            GrammarExample(
-                text="die kleinen Kinder", translation=None, note="Nom. Plural: -en"
-            ),
-            GrammarExample(
-                text="in der großen Stadt", translation=None, note="Dat. feminin: -en"
-            ),
+            GrammarExample(text="die nette Kellnerin", translation=None, note="Nom. feminin: -e"),
+            GrammarExample(text="mit dem alten Auto", translation=None, note="Dat. neutral: -en"),
+            GrammarExample(text="die kleinen Kinder", translation=None, note="Nom. Plural: -en"),
+            GrammarExample(text="in der großen Stadt", translation=None, note="Dat. feminin: -en"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -1005,9 +955,7 @@ Typische Verben mit dass-Satz: wissen, sagen, glauben, denken, finden, meinen, h
             "Der dass-Satz kann das Subjekt oder Objekt des Hauptsatzes sein.",
         ],
         examples=[
-            GrammarExample(
-                text="Ich weiß, dass du recht hast.", translation=None
-            ),
+            GrammarExample(text="Ich weiß, dass du recht hast.", translation=None),
             GrammarExample(
                 text="Sie sagt, dass sie keine Zeit hat.",
                 translation=None,
@@ -1406,9 +1354,7 @@ Das konjugierte Verb steht am Ende: *Kannst du mir sagen, **wo die Bank ist**?*"
             "Vor dem indirekten Fragesatz steht immer ein Komma.",
         ],
         examples=[
-            GrammarExample(
-                text="Ich weiß nicht, wo er wohnt.", translation=None
-            ),
+            GrammarExample(text="Ich weiß nicht, wo er wohnt.", translation=None),
             GrammarExample(
                 text="Weißt du, ob der Supermarkt noch geöffnet ist?",
                 translation=None,

@@ -18,12 +18,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con pronomi diretti lo, la, li, le, il participio concorda: L'ho vista.",
         ],
         examples=[
-            GrammarExample(
-                text="Ho mangiato una pizza buonissima.", translation=None
-            ),
-            GrammarExample(
-                text="Hai finito i compiti?", translation=None
-            ),
+            GrammarExample(text="Ho mangiato una pizza buonissima.", translation=None),
+            GrammarExample(text="Hai finito i compiti?", translation=None),
             GrammarExample(
                 text="Abbiamo visitato Roma l'anno scorso.",
                 translation=None,
@@ -131,9 +127,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Da piccola giocavo con le bambole.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Era una giornata bellissima.", translation=None
-            ),
+            GrammarExample(text="Era una giornata bellissima.", translation=None),
             GrammarExample(
                 text="Mentre studiavo, ha squillato il telefono.",
                 translation=None,
@@ -216,12 +210,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Appena, poco fa → passato prossimo (prossimità).",
         ],
         examples=[
-            GrammarExample(
-                text="Due giorni fa ho visto Carlo.", translation=None
-            ),
-            GrammarExample(
-                text="Negli anni '90 vivevo a Milano.", translation=None
-            ),
+            GrammarExample(text="Due giorni fa ho visto Carlo.", translation=None),
+            GrammarExample(text="Negli anni '90 vivevo a Milano.", translation=None),
             GrammarExample(
                 text="La settimana prossima andremo a Parigi.",
                 translation=None,
@@ -369,12 +359,8 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Comparativi irregolari: buono → migliore, cattivo → peggiore.",
         ],
         examples=[
-            GrammarExample(
-                text="Roma è più grande di Firenze.", translation=None
-            ),
-            GrammarExample(
-                text="È meno caro che veloce.", translation=None
-            ),
+            GrammarExample(text="Roma è più grande di Firenze.", translation=None),
+            GrammarExample(text="È meno caro che veloce.", translation=None),
             GrammarExample(text="Sono alto come te.", translation=None),
         ],
         common_mistakes=[
@@ -410,9 +396,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="È il ristorante più famoso di Milano.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Questo gelato è buonissimo!", translation=None
-            ),
+            GrammarExample(text="Questo gelato è buonissimo!", translation=None),
             GrammarExample(
                 text="È la meno cara delle tre.",
                 translation=None,
@@ -451,9 +435,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Sei intelligente come tua sorella.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Ho tanto lavoro quanto te.", translation=None
-            ),
+            GrammarExample(text="Ho tanto lavoro quanto te.", translation=None),
             GrammarExample(
                 text="Parla italiano bene quanto un madrelingua.",
                 translation=None,
@@ -591,15 +573,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con periodo ipotetico (2º tipo) si abbina al congiuntivo imperfetto.",
         ],
         examples=[
-            GrammarExample(
-                text="Vorrei un caffè, per favore.", translation=None
-            ),
-            GrammarExample(
-                text="Potresti chiudere la finestra?", translation=None
-            ),
-            GrammarExample(
-                text="Mi piacerebbe visitare Venezia.", translation=None
-            ),
+            GrammarExample(text="Vorrei un caffè, per favore.", translation=None),
+            GrammarExample(text="Potresti chiudere la finestra?", translation=None),
+            GrammarExample(text="Mi piacerebbe visitare Venezia.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -638,9 +614,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Vorrei un tavolo per due, per favore.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Mi potrebbe portare il conto?", translation=None
-            ),
+            GrammarExample(text="Mi potrebbe portare il conto?", translation=None),
             GrammarExample(
                 text="Ti andrebbe di prendere un caffè?",
                 translation=None,
@@ -675,16 +649,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non usare vorrei con se ipotetico: Se potessi, andrei (non: Se potrei, vorrei).",
         ],
         examples=[
-            GrammarExample(
-                text="Vorrei un bicchiere d'acqua.", translation=None
-            ),
+            GrammarExample(text="Vorrei un bicchiere d'acqua.", translation=None),
             GrammarExample(
                 text="Vorrei visitare Firenze un giorno.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Vorrei che facesse più caldo.", translation=None
-            ),
+            GrammarExample(text="Vorrei che facesse più caldo.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -722,9 +692,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Siamo andati al ristorante e poi al cinema.",
                 translation=None,
             ),
-            GrammarExample(
-                text="All'improvviso è apparso un gatto.", translation=None
-            ),
+            GrammarExample(text="All'improvviso è apparso un gatto.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -763,9 +731,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Quando sono arrivato, il film era già cominciato.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Avevo già visto quel film.", translation=None
-            ),
+            GrammarExample(text="Avevo già visto quel film.", translation=None),
             GrammarExample(
                 text="Non avevamo mai mangiato la pizza prima di allora.",
                 translation=None,

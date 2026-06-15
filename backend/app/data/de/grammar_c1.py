@@ -250,9 +250,7 @@ Fugenelemente: -s-, -en-, -es- zwischen Kompositionsteilen: Arbeit**s**platz, Hu
                 translation=None,
                 note="Konversion",
             ),
-            GrammarExample(
-                text="unmöglich = un- + möglich", translation=None, note="Präfix"
-            ),
+            GrammarExample(text="unmöglich = un- + möglich", translation=None, note="Präfix"),
             GrammarExample(
                 text="das Autobahnkreuz = Auto + Bahn + Kreuz",
                 translation=None,
@@ -462,9 +460,7 @@ Hervorhebung: Rhetorische Frage (Wer will schon ewig leben?), Hyperbel (tausendm
                 translation=None,
                 note="Hyperbel",
             ),
-            GrammarExample(
-                text="Der Himmel weinte.", translation=None, note="Personifikation"
-            ),
+            GrammarExample(text="Der Himmel weinte.", translation=None, note="Personifikation"),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -811,9 +807,7 @@ Redensart vs Sprichwort: Redensart ist satzintegriert, Sprichwort ist vollständ
                 text="Ich habe die Nase voll von dieser Diskussion.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Er nimmt kein Blatt vor den Mund.", translation=None
-            ),
+            GrammarExample(text="Er nimmt kein Blatt vor den Mund.", translation=None),
             GrammarExample(
                 text="Wir müssen Nägel mit Köpfen machen.",
                 translation=None,

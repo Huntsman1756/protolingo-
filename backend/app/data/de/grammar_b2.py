@@ -294,17 +294,13 @@ Aus Nebensatz → Nominalphrase: Weil das Wetter schlecht war → Wegen des schl
             "Nominalisierung macht Texte formeller und kompakter.",
         ],
         examples=[
-            GrammarExample(
-                text="wegen des schlechten Wetters", translation=None
-            ),
+            GrammarExample(text="wegen des schlechten Wetters", translation=None),
             GrammarExample(text="nach seiner Ankunft", translation=None),
             GrammarExample(
                 text="Die Entwicklung der Sprache dauert Jahrhunderte.",
                 translation=None,
             ),
-            GrammarExample(
-                text="vor der Entscheidung des Gerichts", translation=None
-            ),
+            GrammarExample(text="vor der Entscheidung des Gerichts", translation=None),
             GrammarExample(
                 text="trotz der Schwierigkeiten bei der Umsetzung",
                 translation=None,
@@ -435,12 +431,8 @@ Substantiviert: der Angestellte, der Verletzte, die Geliebte. Muss vor dem Nomen
             "Substantivierte Partizipien werden großgeschrieben: der Angestellte.",
         ],
         examples=[
-            GrammarExample(
-                text="der geschriebene Brief", translation=None, note="passiv"
-            ),
-            GrammarExample(
-                text="das verlassene Haus", translation=None, note="passiv"
-            ),
+            GrammarExample(text="der geschriebene Brief", translation=None, note="passiv"),
+            GrammarExample(text="das verlassene Haus", translation=None, note="passiv"),
             GrammarExample(
                 text="der eingeschlafene Patient",
                 translation=None,
@@ -642,9 +634,7 @@ Typisch für formelles Deutsch. Das Verb verliert seine wörtliche Bedeutung."""
                 text="Die Firma stellt neue Software zur Verfügung.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Der Plan wurde in Frage gestellt.", translation=None
-            ),
+            GrammarExample(text="Der Plan wurde in Frage gestellt.", translation=None),
             GrammarExample(
                 text="Er nahm von seinen Freunden Abschied.",
                 translation=None,
@@ -780,9 +770,7 @@ Ausnahme: das Herz (neutral!) — des Herzens, dem Herzen, das Herz.""",
             "'Das Herz' ist die einzige neutrale Ausnahme.",
         ],
         examples=[
-            GrammarExample(
-                text="Ich kenne den Jungen.", translation=None, note="Akkusativ: -n"
-            ),
+            GrammarExample(text="Ich kenne den Jungen.", translation=None, note="Akkusativ: -n"),
             GrammarExample(
                 text="Er spricht mit dem Studenten.",
                 translation=None,

@@ -53,9 +53,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Ho due fratelli.", translation=None),
             GrammarExample(text="Quanti anni hai?", translation=None),
-            GrammarExample(
-                text="Ho fame. Andiamo a mangiare?", translation=None
-            ),
+            GrammarExample(text="Ho fame. Andiamo a mangiare?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -86,9 +84,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Lei formale richiede il verbo alla terza persona singolare.",
         ],
         examples=[
-            GrammarExample(
-                text="Parlo italiano.", translation=None, note="pronome omesso"
-            ),
+            GrammarExample(text="Parlo italiano.", translation=None, note="pronome omesso"),
             GrammarExample(
                 text="Io preferisco il caffè, lei preferisce il tè.",
                 translation=None,
@@ -131,12 +127,8 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Il libro è sul tavolo.", translation=None),
             GrammarExample(text="Lo studente è italiano.", translation=None),
-            GrammarExample(
-                text="Gli amici arrivano domani.", translation=None
-            ),
-            GrammarExample(
-                text="L'amica di Maria è francese.", translation=None
-            ),
+            GrammarExample(text="Gli amici arrivano domani.", translation=None),
+            GrammarExample(text="L'amica di Maria è francese.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -203,9 +195,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="-o → maschile",
             ),
-            GrammarExample(
-                text="La pizza è buona.", translation=None, note="-a → femminile"
-            ),
+            GrammarExample(text="La pizza è buona.", translation=None, note="-a → femminile"),
             GrammarExample(
                 text="Il problema è difficile.",
                 translation=None,
@@ -316,17 +306,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Aggettivi in -e: stessa forma per maschile e femminile singolare.",
         ],
         examples=[
-            GrammarExample(
-                text="Una casa bella e luminosa.", translation=None
-            ),
+            GrammarExample(text="Una casa bella e luminosa.", translation=None),
             GrammarExample(
                 text="Un buon ristorante.",
                 translation=None,
                 note="buono prima del nome",
             ),
-            GrammarExample(
-                text="Le macchine rosse sono veloci.", translation=None
-            ),
+            GrammarExample(text="Le macchine rosse sono veloci.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -357,9 +343,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Domande: *C'è un bagno qui?*",
         ],
         examples=[
-            GrammarExample(
-                text="C'è un gatto sul divano.", translation=None
-            ),
+            GrammarExample(text="C'è un gatto sul divano.", translation=None),
             GrammarExample(
                 text="Ci sono molte persone in piazza.",
                 translation=None,
@@ -560,9 +544,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(text="Devo andare al lavoro.", translation=None),
             GrammarExample(text="Puoi aiutarmi?", translation=None),
-            GrammarExample(
-                text="Voglio imparare l'italiano.", translation=None
-            ),
+            GrammarExample(text="Voglio imparare l'italiano.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -592,9 +574,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Risposta breve: Neanche io. / Anche a me.",
         ],
         examples=[
-            GrammarExample(
-                text="Anch'io vado al cinema.", translation=None
-            ),
+            GrammarExample(text="Anch'io vado al cinema.", translation=None),
             GrammarExample(text="Anche a me piace il mare.", translation=None),
             GrammarExample(text="Neanch'io lo so.", translation=None),
         ],
@@ -777,9 +757,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Sto per partire.", translation=None),
-            GrammarExample(
-                text="Il film sta per cominciare.", translation=None
-            ),
+            GrammarExample(text="Il film sta per cominciare.", translation=None),
             GrammarExample(
                 text="Stavamo per arrivare quando si è rotta la macchina.",
                 translation=None,
@@ -813,15 +791,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non si scrivono con la lettera maiuscola.",
         ],
         examples=[
-            GrammarExample(
-                text="Lunedì vado dal dentista.", translation=None
-            ),
-            GrammarExample(
-                text="Il sabato dormo fino a tardi.", translation=None
-            ),
-            GrammarExample(
-                text="La domenica andiamo a messa.", translation=None
-            ),
+            GrammarExample(text="Lunedì vado dal dentista.", translation=None),
+            GrammarExample(text="Il sabato dormo fino a tardi.", translation=None),
+            GrammarExample(text="La domenica andiamo a messa.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(

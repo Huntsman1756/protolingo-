@@ -406,9 +406,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Litote ed eufemismo attenuano o ammorbidiscono.",
         ],
         examples=[
-            GrammarExample(
-                text="Ha un cuore d'oro.", translation=None, note="metafora"
-            ),
+            GrammarExample(text="Ha un cuore d'oro.", translation=None, note="metafora"),
             GrammarExample(
                 text="Non e affatto stupido. (litote per: e molto intelligente)",
                 translation=None,

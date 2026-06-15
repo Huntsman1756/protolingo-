@@ -23,12 +23,8 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="vir, irregular",
             ),
-            GrammarExample(
-                text="É importante que tu estudes.", translation=None
-            ),
-            GrammarExample(
-                text="Queres que eu vá contigo?", translation=None
-            ),
+            GrammarExample(text="É importante que tu estudes.", translation=None),
+            GrammarExample(text="Queres que eu vá contigo?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -58,18 +54,10 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mudança de sujeito ativa o conjuntivo.",
         ],
         examples=[
-            GrammarExample(
-                text="Espero que tenhas uma boa viagem.", translation=None
-            ),
-            GrammarExample(
-                text="Quero que vocês sejam felizes.", translation=None
-            ),
-            GrammarExample(
-                text="Oxalá não chova amanhã.", translation=None
-            ),
-            GrammarExample(
-                text="Tomara que ela consiga o emprego.", translation=None
-            ),
+            GrammarExample(text="Espero que tenhas uma boa viagem.", translation=None),
+            GrammarExample(text="Quero que vocês sejam felizes.", translation=None),
+            GrammarExample(text="Oxalá não chova amanhã.", translation=None),
+            GrammarExample(text="Tomara que ela consiga o emprego.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -99,15 +87,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(text="Talvez vá à festa.", translation=None),
-            GrammarExample(
-                text="Talvez ela saiba a resposta.", translation=None
-            ),
-            GrammarExample(
-                text="Vamos talvez ao cinema.", translation=None
-            ),
-            GrammarExample(
-                text="Talvez seja melhor esperar.", translation=None
-            ),
+            GrammarExample(text="Talvez ela saiba a resposta.", translation=None),
+            GrammarExample(text="Vamos talvez ao cinema.", translation=None),
+            GrammarExample(text="Talvez seja melhor esperar.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -131,9 +113,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "É melhor que + conjuntivo.",
         ],
         examples=[
-            GrammarExample(
-                text="É preciso que acabes o trabalho.", translation=None
-            ),
+            GrammarExample(text="É preciso que acabes o trabalho.", translation=None),
             GrammarExample(
                 text="É importante que todos participem.",
                 translation=None,
@@ -142,9 +122,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Convém que tragas o passaporte.",
                 translation=None,
             ),
-            GrammarExample(
-                text="É melhor que vás ao médico.", translation=None
-            ),
+            GrammarExample(text="É melhor que vás ao médico.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -174,9 +152,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Negação do verbo de opinião ativa o conjuntivo.",
         ],
         examples=[
-            GrammarExample(
-                text="Duvido que ela saiba a resposta.", translation=None
-            ),
+            GrammarExample(text="Duvido que ela saiba a resposta.", translation=None),
             GrammarExample(
                 text="Não acho que seja uma boa ideia.",
                 translation=None,
@@ -213,15 +189,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Que bom que/Que pena que + conjuntivo.",
         ],
         examples=[
-            GrammarExample(
-                text="É bom que estejas aqui.", translation=None
-            ),
-            GrammarExample(
-                text="É uma pena que não possas vir.", translation=None
-            ),
-            GrammarExample(
-                text="Que bom que tenhas gostado!", translation=None
-            ),
+            GrammarExample(text="É bom que estejas aqui.", translation=None),
+            GrammarExample(text="É uma pena que não possas vir.", translation=None),
+            GrammarExample(text="Que bom que tenhas gostado!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -251,9 +221,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 translation=None,
                 note="repetida",
             ),
-            GrammarExample(
-                text="Ela tem andado muito cansada.", translation=None
-            ),
+            GrammarExample(text="Ela tem andado muito cansada.", translation=None),
             GrammarExample(
                 text="Ultimamente tenho pensado em ti.",
                 translation=None,
@@ -358,9 +326,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="As cartas são entregues de manhã.",
                 translation=None,
             ),
-            GrammarExample(
-                text="A ponte foi construída em 1900.", translation=None
-            ),
+            GrammarExample(text="A ponte foi construída em 1900.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -383,9 +349,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Usa-se com verbos intransitivos ou transitivos indiretos.",
         ],
         examples=[
-            GrammarExample(
-                text="Vive-se bem nesta cidade.", translation=None
-            ),
+            GrammarExample(text="Vive-se bem nesta cidade.", translation=None),
             GrammarExample(
                 text="Precisa-se de voluntários.",
                 translation=None,
@@ -415,9 +379,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Comum em anúncios e linguagem formal.",
         ],
         examples=[
-            GrammarExample(
-                text="Vende-se este apartamento.", translation=None
-            ),
+            GrammarExample(text="Vende-se este apartamento.", translation=None),
             GrammarExample(text="Vendem-se carros usados.", translation=None),
             GrammarExample(text="Alugam-se quartos.", translation=None),
         ],
@@ -483,9 +445,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="A casa onde cresci era no campo.",
                 translation=None,
             ),
-            GrammarExample(
-                text="O país de onde venho é frio.", translation=None
-            ),
+            GrammarExample(text="O país de onde venho é frio.", translation=None),
             GrammarExample(
                 text="Lembro-me do dia quando nos conhecemos.",
                 translation=None,
@@ -521,9 +481,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="O escritor cujo livro ganhou o prémio.",
                 translation=None,
             ),
-            GrammarExample(
-                text="A rapariga cuja mãe conheces.", translation=None
-            ),
+            GrammarExample(text="A rapariga cuja mãe conheces.", translation=None),
             GrammarExample(
                 text="As empresas cujos funcionários estão em greve.",
                 translation=None,
@@ -619,13 +577,9 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Essencial no EP.",
         ],
         examples=[
-            GrammarExample(
-                text="Quando chegares, avisa-me.", translation=None
-            ),
+            GrammarExample(text="Quando chegares, avisa-me.", translation=None),
             GrammarExample(text="Se puderem, venham cedo.", translation=None),
-            GrammarExample(
-                text="Assim que souber, digo-te.", translation=None
-            ),
+            GrammarExample(text="Assim que souber, digo-te.", translation=None),
             GrammarExample(
                 text="Enquanto houver esperança, continuaremos.",
                 translation=None,

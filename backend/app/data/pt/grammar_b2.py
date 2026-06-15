@@ -156,15 +156,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Andar a = repetido/persistente.",
         ],
         examples=[
-            GrammarExample(
-                text="Estou a ler um livro.", translation=None, note="agora"
-            ),
-            GrammarExample(
-                text="Ando a ler um livro.", translation=None, note="dias"
-            ),
-            GrammarExample(
-                text="Ela anda a trabalhar demais.", translation=None
-            ),
+            GrammarExample(text="Estou a ler um livro.", translation=None, note="agora"),
+            GrammarExample(text="Ando a ler um livro.", translation=None, note="dias"),
+            GrammarExample(text="Ela anda a trabalhar demais.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -300,12 +294,8 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Sentido literal diferente do figurado.",
         ],
         examples=[
-            GrammarExample(
-                text="Ando com a pulga atras da orelha.", translation=None
-            ),
-            GrammarExample(
-                text="Ela esta com os azeites hoje.", translation=None
-            ),
+            GrammarExample(text="Ando com a pulga atras da orelha.", translation=None),
+            GrammarExample(text="Ela esta com os azeites hoje.", translation=None),
         ],
         common_mistakes=[],
         related=["expressoes-coloquiais", "proverbios", "registo-formal"],
@@ -568,9 +558,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
                 text="Incendio devasta milhares de hectares no Algarve.",
                 translation=None,
             ),
-            GrammarExample(
-                text="Benfica vence, Porto empata.", translation=None
-            ),
+            GrammarExample(text="Benfica vence, Porto empata.", translation=None),
         ],
         common_mistakes=[],
         related=["linguagem-jornalistica", "discurso-reportado"],
