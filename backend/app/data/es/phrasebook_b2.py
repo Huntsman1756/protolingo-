@@ -183,4 +183,150 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
         ],
     ),
+    PhrasebookCategory(
+        id="presentations_b2",
+        level="B2",
+        situation="Presentaciones y hablar en p\u00fablico",
+        icon="\U0001f399\ufe0f",
+        phrases=[
+            PhrasebookEntry(
+                text="Buenos d\u00edas a todos y gracias por asistir.",
+                context="Iniciar una presentaci\u00f3n formal",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="El objetivo de esta presentaci\u00f3n es...",
+                context="Exponer el prop\u00f3sito de la charla",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Como pueden ver en esta diapositiva...",
+                context="Referirse a material visual",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Me gustar\u00eda profundizar en este punto.",
+                context="Indicar que se va a desarrollar una idea",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Cabe preguntarse si...",
+                context="Plantear una cuesti\u00f3n ret\u00f3rica",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Perm\u00edtanme ilustrarlo con un ejemplo.",
+                context="Introducir un ejemplo",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="En resumidas cuentas...",
+                context="Resumir lo expuesto",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Estoy a su disposici\u00f3n para cualquier pregunta.",
+                context="Abrir turno de preguntas",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Si me permiten a\u00f1adir algo m\u00e1s...",
+                context="A\u00f1adir informaci\u00f3n adicional",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Para terminar, quiero agradecerles su atenci\u00f3n.",
+                context="Cerrar la presentaci\u00f3n",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="\u00bfAlguna duda hasta ahora?",
+                context="Verificar comprensi\u00f3n durante la charla",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Me remito a los datos expuestos anteriormente.",
+                context="Referirse a informaci\u00f3n ya presentada",
+                register="formal",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="job_interviews_b2",
+        level="B2",
+        situation="Entrevistas de trabajo",
+        icon="\U0001f4bc",
+        phrases=[
+            PhrasebookEntry(
+                text="Me considero una persona proactiva y orientada a resultados.",
+                context="Describir cualidades personales en una entrevista",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Tengo experiencia en el sector de...",
+                context="Hablar de la experiencia profesional",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Uno de mis mayores logros fue...",
+                context="Destacar un logro profesional",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Me gustar\u00eda formar parte de un equipo como este porque...",
+                context="Explicar motivaci\u00f3n para el puesto",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Me considero capaz de asumir nuevos retos.",
+                context="Mostrar disposici\u00f3n y ambici\u00f3n",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Entre mis puntos fuertes destacar\u00eda...",
+                context="Hablar de fortalezas",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Un \u00e1rea en la que estoy trabajando es...",
+                context="Hablar de una debilidad de forma profesional",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="\u00bfPodr\u00eda darme m\u00e1s detalles sobre las responsabilidades del puesto?",
+                context="Pedir m\u00e1s informaci\u00f3n sobre el cargo",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Estoy buscando un entorno donde pueda crecer profesionalmente.",
+                context="Expresar objetivos de carrera",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Agradezco la oportunidad de haber podido conversar con ustedes.",
+                context="Despedirse al final de la entrevista",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="\u00bfCu\u00e1l ser\u00eda el siguiente paso en el proceso?",
+                context="Preguntar por el seguimiento",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Tengo un nivel avanzado de ingl\u00e9s y conocimientos de...",
+                context="Mencionar idiomas y habilidades t\u00e9cnicas",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Me adapto con facilidad a nuevos entornos de trabajo.",
+                context="Destacar adaptabilidad",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="En mi anterior puesto me encargaba de...",
+                context="Describir responsabilidades anteriores",
+                register="neutral",
+            ),
+        ],
+    ),
 ]

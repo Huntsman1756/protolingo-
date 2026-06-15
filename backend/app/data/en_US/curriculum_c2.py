@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en_US._types import CurriculumUnit
+from app.data._types import CurriculumUnit
 
 C2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -10,7 +10,7 @@ C2_UNITS: list[CurriculumUnit] = [
         level="C2",
         unit_number=1,
         title="Discourse Markers & Text Cohesion",
-        grammar_points=["discourse-markers"],
+        grammar_points=["discourse-markers", "register-and-style", "fronting-emphasis"],
         vocabulary_set_ids=["nuanced_adjectives_c2"],
         lesson_types=["grammar", "reading", "writing"],
         competency_checklist=[
@@ -28,7 +28,7 @@ C2_UNITS: list[CurriculumUnit] = [
         level="C2",
         unit_number=2,
         title="Nominalization & Academic Style",
-        grammar_points=["nominalization"],
+        grammar_points=["nominalization", "register-and-style", "discourse-markers"],
         vocabulary_set_ids=["formal_register_c2"],
         lesson_types=["grammar", "writing", "reading"],
         competency_checklist=[
@@ -48,7 +48,7 @@ C2_UNITS: list[CurriculumUnit] = [
         title="Idiomatic & Figurative Language",
         grammar_points=["fronting-emphasis", "idiomatic-expressions"],
         vocabulary_set_ids=["idiomatic_expressions_c2"],
-        lesson_types=["reading", "vocabulary", "writing", "review"],
+        lesson_types=["grammar", "reading", "vocabulary", "writing", "review"],
         competency_checklist=[
             "Use a wide range of idiomatic expressions naturally in spoken and written English.",
             "Interpret figurative language in authentic literary and journalistic texts.",
@@ -82,9 +82,13 @@ C2_UNITS: list[CurriculumUnit] = [
         level="C2",
         unit_number=5,
         title="Critical Reading & Academic Writing",
-        grammar_points=["register-and-style"],
+        grammar_points=[
+            "register-and-style",
+            "discourse-markers",
+            "advanced-concessive-structures",
+        ],
         vocabulary_set_ids=["critical_analysis_c2"],
-        lesson_types=["reading", "writing", "review"],
+        lesson_types=["grammar", "reading", "writing", "review"],
         competency_checklist=[
             "Read and critically evaluate complex academic and professional texts.",
             "Use critical analysis vocabulary (paradigm, empirical, discourse, posit) accurately.",

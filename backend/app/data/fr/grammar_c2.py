@@ -500,7 +500,23 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "L'objectif n'est pas la perfection absolue mais l'aisance maximale.",
             "Même les natifs font des erreurs occasionnelles.",
         ],
-        examples=[],
+        examples=[
+            GrammarExample(
+                text="Face à cette situation inattendue, il a su garder son sang-froid et improviser une solution élégante.",
+                translation=None,
+                note="fluidité en contexte spontané",
+            ),
+            GrammarExample(
+                text="Bien que les enjeux fussent considérables, elle a présenté son argumentaire avec une aisance remarquable, passant du registre technique au registre vulgarisateur sans effort apparent.",
+                translation=None,
+                note="adaptation spontanée du registre",
+            ),
+            GrammarExample(
+                text="C'est une problématique qui, il faut bien l'avouer, nous dépasse quelque peu — mais nous pouvons néanmoins en cerner les contours.",
+                translation=None,
+                note="hésitation naturelle + autocorrection fluide",
+            ),
+        ],
         common_mistakes=[],
         related=["expression-nuancee", "integration-grammaticale"],
     ),

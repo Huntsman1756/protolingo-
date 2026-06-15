@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en_US._types import CurriculumUnit
+from app.data._types import CurriculumUnit
 
 A2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -10,7 +10,7 @@ A2_UNITS: list[CurriculumUnit] = [
         level="A2",
         unit_number=1,
         title="The Recent Past",
-        grammar_points=["past-simple"],
+        grammar_points=["past-simple", "question-words", "adverbs-manner"],
         vocabulary_set_ids=["irregular_verbs_a2", "past_time_a2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
@@ -43,7 +43,7 @@ A2_UNITS: list[CurriculumUnit] = [
         level="A2",
         unit_number=3,
         title="Comparisons",
-        grammar_points=["comparatives-superlatives"],
+        grammar_points=["comparatives-superlatives", "adverbs-manner", "adverbs-frequency"],
         vocabulary_set_ids=[
             "adjectives_comparison_a2",
             "places_comparison_a2",
@@ -142,7 +142,7 @@ A2_UNITS: list[CurriculumUnit] = [
             "transport_a2",
             "body_health_a2",
         ],
-        lesson_types=["reading", "writing", "review"],
+        lesson_types=["grammar", "reading", "writing", "review"],
         competency_checklist=[
             "Reads and understands a text (150–200 words) on a familiar topic",
             "Writes a short email or message (80–100 words) using past and future tenses",
