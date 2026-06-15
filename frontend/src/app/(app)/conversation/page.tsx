@@ -62,7 +62,7 @@ export default function ConversationPage() {
       }
     }
     setPlanReady(false)
-    apiFetch('/api/plan/today')
+    apiFetch('/api/study-plan/today')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data?.cefr_level) setCefrLevel(data.cefr_level)

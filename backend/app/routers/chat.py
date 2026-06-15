@@ -145,7 +145,7 @@ async def list_conversations(
     plan = await get_active_study_plan_optional(current_user, db)
     if plan is not None:
         where_clause = (Conversation.user_id == current_user.id) & (
-            (Conversation.study_plan_id == plan.id) | (Conversation.study_plan_id.is_(None))
+            Conversation.study_plan_id == plan.id
         )
     else:
         where_clause = Conversation.user_id == current_user.id
@@ -207,7 +207,7 @@ async def get_conversation_messages(
         where_clause = (
             (ChatHistory.conversation_id == conversation_id)
             & (ChatHistory.user_id == current_user.id)
-            & ((ChatHistory.study_plan_id == plan.id) | (ChatHistory.study_plan_id.is_(None)))
+            & (ChatHistory.study_plan_id == plan.id)
         )
     else:
         where_clause = (ChatHistory.conversation_id == conversation_id) & (
