@@ -26,6 +26,7 @@ export default function DashboardPage() {
   const t = useTranslations('dashboard')
   const tNav = useTranslations('nav')
   const tPlan = useTranslations('plan')
+  const tTarget = useTranslations('targetLanguages')
   const tError = useTranslations('error')
   const user = useAuthStore((s) => s.user)
   const {
@@ -155,7 +156,7 @@ export default function DashboardPage() {
           </h1>
           {activeLanguage && (
             <p className="text-fl-muted-1 mt-2 font-mono text-sm">
-              {activeLanguage.name}
+              {tTarget(activeLanguage.code)}
               {cefrLevel ? ` (${cefrLevel})` : ''}
             </p>
           )}

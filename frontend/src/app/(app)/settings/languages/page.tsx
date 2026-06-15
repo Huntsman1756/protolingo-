@@ -151,7 +151,13 @@ export default function MyLanguagesPage() {
         </div>
       ) : (
         <div className="space-y-3">
-          {userLanguages.map((ulang) => {
+          {[...userLanguages]
+            .sort((a, b) =>
+              tTarget(a.target_language).localeCompare(
+                tTarget(b.target_language)
+              )
+            )
+            .map((ulang) => {
             const lang = getLangInfo(ulang.target_language)
             const isActive = ulang.is_active
             const plan = ulang.plan
