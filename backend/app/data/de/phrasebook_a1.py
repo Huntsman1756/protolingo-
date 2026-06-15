@@ -21,12 +21,12 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Guten Morgen!",
-                context="Morning greeting, until about 11 am",
+                context="Morgengruß, bis ca. 11 Uhr",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Guten Abend!",
-                context="Evening greeting, from about 6 pm onwards",
+                context="Abendgruß, ab ca. 18 Uhr",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -36,7 +36,7 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Wie geht es Ihnen?",
-                context="Formell way to ask how someone is",
+                context="formelle Frage nach dem Befinden",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -46,12 +46,12 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Und Ihnen?",
-                context="Fragen back höflichly (formal)",
+                context="höfliche Rückfrage (formell)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Und dir?",
-                context="Fragen back lockerly (informell)",
+                context="lockere Rückfrage (informell)",
                 register="informal",
             ),
             PhrasebookEntry(
@@ -61,37 +61,37 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Auf Wiedersehen!",
-                context="Formell goodbye in any setting",
+                context="formelle Verabschiedung in jedem Kontext",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich heiße...",
-                context="Einleiten yourself by name",
+                context="sich mit Namen vorstellen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wie heißen Sie?",
-                context="Fragen someone's name formally",
+                context="formell nach dem Namen fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Freut mich.",
-                context="Sagen 'nice to meet you' when introduced",
+                context="nach einer Vorstellung Freude ausdrücken",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Woher kommen Sie?",
-                context="Fragen where someone is from (formal)",
+                context="formell nach der Herkunft fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich komme aus...",
-                context="Sagen which country or city you are from",
+                context="Land oder Stadt der Herkunft nennen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Bis bald!",
-                context="Sagen 'see you soon' to acquaintances",
+                context="Bekannten 'bis bald' sagen",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -119,7 +119,7 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Vielen Dank.",
-                context="Slightly more emphatic thank you",
+                context="etwas nachdrücklicheres Dankeschön",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -129,12 +129,12 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Entschuldigung.",
-                context="Getting someone's attention or a light apology",
+                context="Aufmerksamkeit erregen oder leichte Entschuldigung",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Es tut mir leid.",
-                context="Sincere apology (I'm sorry)",
+                context="aufrichtige Entschuldigung",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -144,7 +144,7 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="In Ordnung.",
-                context="Sagen 'okay / alright' to accept something",
+                context="Zustimmung zu etwas ausdrücken (okay / einverstanden)",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -154,17 +154,17 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Nein, danke.",
-                context="Politely declining an offer",
+                context="ein Angebot höflich ablehnen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Vielleicht.",
-                context="Non-committal 'maybe'",
+                context="unverbindliches 'vielleicht'",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Nichts zu danken.",
-                context="Formell 'don't mention it' in response to thanks",
+                context="formelle Antwort auf Dank (keine Ursache)",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -174,17 +174,17 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Darf ich?",
-                context="Fragen 'may I?' before taking or doing something",
+                context="um Erlaubnis fragen, bevor man etwas tut",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Verzeihung.",
-                context="More formal 'pardon me' when bumping into someone",
+                context="formellere Entschuldigung bei versehentlichem Kontakt",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Keine Ursache.",
-                context="Alternative reply to 'thank you' (no cause/not at all)",
+                context="alternative Antwort auf 'danke' (keine Ursache, nicht der Rede wert)",
                 register="neutral",
             ),
         ],
@@ -202,52 +202,52 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Wie alt sind Sie?",
-                context="Fragen someone's age (formal)",
+                context="formell nach dem Alter fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich bin ... Jahre alt.",
-                context="Feststellen your age",
+                context="das eigene Alter nennen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wo wohnen Sie?",
-                context="Fragen where someone lives (formal)",
+                context="formell nach dem Wohnort fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich wohne in...",
-                context="Sagen which city/district you live in",
+                context="Stadt oder Stadtteil nennen, in dem man wohnt",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Was machen Sie beruflich?",
-                context="Fragen what someone does for a living (formal)",
+                context="formell nach dem Beruf fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich bin... von Beruf.",
-                context="Feststellen your profession",
+                context="den eigenen Beruf nennen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Sprechen Sie Deutsch?",
-                context="Fragen if someone speaks German (formal)",
+                context="formell nach Deutschkenntnissen fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich spreche ein bisschen Deutsch.",
-                context="Erklären you speak a little German",
+                context="erklären, dass man etwas Deutsch spricht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich verstehe nicht.",
-                context="Sagen you don't understand",
+                context="sagen, dass man nicht versteht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Können Sie das wiederholen?",
-                context="Fragen someone to repeat what they said (formal)",
+                context="formell um Wiederholung bitten",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -257,32 +257,32 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Sind Sie verheiratet?",
-                context="Fragen if someone is married (formal)",
+                context="formell nach dem Familienstand fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Haben Sie Kinder?",
-                context="Fragen if someone has children (formal)",
+                context="formell nach Kindern fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich lerne Deutsch.",
-                context="Erklären you are currently learning German",
+                context="erklären, dass man gerade Deutsch lernt",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wie bitte?",
-                context="Fragen someone to repeat (pardon?)",
+                context="um Wiederholung bitten (wie bitte?)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Was bedeutet das?",
-                context="Fragen the meaning of a word or phrase",
+                context="nach der Bedeutung eines Wortes oder Satzes fragen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Können Sie mir helfen?",
-                context="Fragen for help (formal)",
+                context="formell um Hilfe bitten",
                 register="formal",
             ),
         ],
@@ -300,72 +300,72 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Es ist ... Uhr.",
-                context="Feststellen the time (e.g. Es ist drei Uhr.)",
+                context="die Uhrzeit nennen (z. B. Es ist drei Uhr.)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich stehe um ... auf.",
-                context="Sagen what time you get up",
+                context="sagen, wann man aufsteht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich frühstücke.",
-                context="Sagen you eat/have breakfast",
+                context="sagen, dass man frühstückt",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich gehe zur Arbeit.",
-                context="Sagen you go to work",
+                context="sagen, dass man zur Arbeit geht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich esse zu Mittag.",
-                context="Sagen you eat/have lunch",
+                context="sagen, dass man zu Mittag isst",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich komme nach Hause.",
-                context="Sagen you come/arrive home",
+                context="sagen, dass man nach Hause kommt",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich sehe fern.",
-                context="Sagen you watch TV",
+                context="sagen, dass man fernsieht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich gehe um ... schlafen.",
-                context="Sagen what time you go to bed",
+                context="sagen, wann man schlafen geht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich arbeite von zu Hause.",
-                context="Sagen you work from home",
+                context="sagen, dass man von zu Hause arbeitet",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich mache Sport.",
-                context="Sagen you do sport / exercise",
+                context="sagen, dass man Sport macht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich koche das Abendessen.",
-                context="Sagen you cook dinner",
+                context="sagen, dass man Abendessen kocht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich gehe einkaufen.",
-                context="Sagen you go shopping",
+                context="sagen, dass man einkaufen geht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich treffe Freunde.",
-                context="Sagen you meet up with friends",
+                context="sagen, dass man Freunde trifft",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich lese ein Buch.",
-                context="Sagen you read a book",
+                context="sagen, dass man ein Buch liest",
                 register="neutral",
             ),
         ],
@@ -383,82 +383,82 @@ A1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Wie viel kostet...?",
-                context="Fragen the price of something specific",
+                context="nach dem Preis von etwas Bestimmtem fragen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich möchte...",
-                context="Sagen 'I would like...' to the shop assistant",
+                context="dem Verkäufer einen Wunsch mitteilen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich suche...",
-                context="Sagen you are looking for something in a shop",
+                context="im Geschäft nach etwas fragen, das man sucht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Haben Sie...?",
-                context="Fragen if the shop has a certain item (formal)",
+                context="formell nach einem Artikel fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Das ist zu teuer.",
-                context="Sagen something is too expensive",
+                context="sagen, dass etwas zu teuer ist",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich nehme...",
-                context="Sagen 'I'll take it' when buying",
+                context="beim Kauf sagen, dass man es nimmt",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Sonst noch etwas?",
-                context="'Anything else?' — asked by the shop assistant",
+                context="Frage des Verkäufers nach weiteren Wünschen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Das ist alles.",
-                context="Sagen 'that's all' when you have everything",
+                context="sagen, dass man alles hat",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Bar oder mit Karte?",
-                context="'Cash or card?' — asked at the checkout",
+                context="Frage an der Kasse nach der Zahlungsart",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Die Quittung bitte.",
-                context="Fragen for the receipt",
+                context="nach dem Kassenbon fragen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Welche Größe ist das?",
-                context="Fragen what size an item is",
+                context="nach der Größe eines Artikels fragen",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Haben Sie das in einer anderen Farbe?",
-                context="Fragen if an item comes in another colour",
+                context="nach einer anderen Farbe fragen",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich möchte das umtauschen.",
-                context="Sagen you want to exchange an item",
+                context="sagen, dass man einen Artikel umtauschen möchte",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich bezahle bar.",
-                context="Sagen you'll pay with cash",
+                context="sagen, dass man bar bezahlt",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Danke, ich schaue mich nur um.",
-                context="Sagt dem Verkäufer, dass man sich nur umschaut",
+                context="dem Verkäufer sagen, dass man sich nur umschaut",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wo ist die Umkleidekabine?",
-                context="Fragen where the fitting room is",
+                context="nach der Umkleidekabine fragen",
                 register="neutral",
             ),
         ],
