@@ -796,6 +796,15 @@
     "workflowStep4": "Completa le tue lezioni quotidiane (pulsante INIZIA nel Dashboard)",
     "workflowStep5": "Usa le Flashcard per allenare il vocabolario in parallelo",
     "workflowStep6": "Pratica la conversazione libera con il Tutor IA",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    },
     "q_language": "Che lingua imparerò?",
     "a_language": "FreeLingo include attualmente diverse lingue (francese, inglese americano, inglese britannico, italiano, portoghese, spagnolo, tedesco) e ne aggiungeremo altre nel tempo. Quando una nuova lingua sarà disponibile, la troverai in Impostazioni → Le mie lingue — aggiungila e inizia subito a imparare.",
     "q_assessment": "Cos'è la Valutazione?",

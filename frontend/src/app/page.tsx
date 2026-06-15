@@ -16,6 +16,7 @@ import { LandingFAQ } from '@/components/ui/landing-faq'
 import { LandingNav } from '@/components/ui/landing-nav'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
 import { ContactButton } from '@/components/ui/contact-button'
+import { LanguageBubbles } from '@/components/LanguageBubbles'
 
 export const metadata: Metadata = {
   title: 'FreeLingo: AI-powered language learning',
@@ -119,13 +120,9 @@ export default async function Home() {
       {/* Hero */}
       <section className="flex flex-1 flex-col items-center justify-center px-6 py-24 text-center">
         <div className="mb-10 flex flex-col items-center">
-          <Image
-            src="/logo.png"
-            alt="FreeLingo"
-            width={95}
-            height={95}
-            className="mb-6 opacity-90"
-          />
+          <div className="mb-6">
+            <LanguageBubbles />
+          </div>
           <span className="text-fl-label text-fl-muted-2 mb-4 font-mono tracking-widest uppercase">
             {tCommon('tagline')}
           </span>
