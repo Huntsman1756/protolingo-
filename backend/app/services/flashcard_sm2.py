@@ -27,10 +27,49 @@ def sm2_update(card: Flashcard, quality: int) -> Flashcard:
     return card
 
 
+_LANG_HINTS: dict[str, str] = {
+    "de": (
+        "Always include the grammatical article (der/die/das) and the plural form "
+        "with each noun in the word field, e.g. 'der Hund (die Hunde)'. "
+        "Capitalize all nouns."
+    ),
+    "fr": (
+        "Always include the article (le/la/l'/les) and indicate gender (m/f) "
+        "with each noun, e.g. 'la maison (f)'. Use standard French spelling."
+    ),
+    "es": (
+        "Always include the article (el/la/los/las) and indicate gender (m/f) "
+        "with each noun, e.g. 'el libro (m)'. Use standard Spanish spelling."
+    ),
+    "it": (
+        "Always include the article (il/la/lo/l'/i/gli/le) and indicate gender (m/f) "
+        "with each noun, e.g. 'la casa (f)'. Use standard Italian spelling."
+    ),
+    "pt": (
+        "Always include the article (o/a/os/as) and indicate gender (m/f) "
+        "with each noun, e.g. 'o carro (m)'. Use European Portuguese spelling and vocabulary."
+    ),
+    "en-US": (
+        "Use American English spelling and vocabulary (e.g. color, center, organize)."
+    ),
+    "en-GB": (
+        "Use British English spelling and vocabulary (e.g. colour, centre, organise)."
+    ),
+}
+
+
+def _get_lang_hint(target_language: str) -> str:
+    hint = _LANG_HINTS.get(target_language)
+    if hint is not None:
+        return hint
+    iso = target_language.split("-")[0].lower()
+    return _LANG_HINTS.get(iso, "")
+
+
 FLASHCARD_GEN_PROMPT = """
 Generate {count} {target_language_name} vocabulary flashcards for a {cefr_level} student
 about the topic: "{topic}". Use {target_language_name} vocabulary and spelling.
-
+{lang_hint}
 Return JSON:
 {{
   "flashcards": [
@@ -49,12 +88,14 @@ async def generate_flashcards(
     topic: str, count: int, cefr_level: str, native_language: str, target_language: str = "en-US"
 ) -> FlashcardGenerateResponse:
     target_language_name = get_language_name(target_language)
+    lang_hint = _get_lang_hint(target_language)
     prompt = FLASHCARD_GEN_PROMPT.format(
         topic=topic,
         count=count,
         cefr_level=cefr_level,
         native_language=native_language,
         target_language_name=target_language_name,
+        lang_hint=lang_hint,
     )
 
     result = await llm_adapter.structured_output(
@@ -69,7 +110,7 @@ A {cefr_level} {target_language_name} student selected the word "{word}" while r
 Context sentence: "{context}"
 
 Generate a flashcard for this word. Use {target_language_name} vocabulary and spelling.
-
+{lang_hint}
 Return JSON:
 {{
   "word": "{word}",
@@ -88,12 +129,14 @@ async def lookup_word(
     target_language: str = "en-US",
 ) -> FlashcardCreate:
     target_language_name = get_language_name(target_language)
+    lang_hint = _get_lang_hint(target_language)
     prompt = WORD_LOOKUP_PROMPT.format(
         word=word,
         context=context or word,
         cefr_level=cefr_level,
         native_language=native_language,
         target_language_name=target_language_name,
+        lang_hint=lang_hint,
     )
     result = await llm_adapter.structured_output(
         [{"role": "system", "content": prompt}],

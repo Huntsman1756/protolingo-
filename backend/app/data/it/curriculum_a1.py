@@ -35,7 +35,7 @@ A1_UNITS: list[CurriculumUnit] = [
         vocabulary_set_ids=["nazionalità_a1", "professioni_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
-            "Indica nazionalità e professione usando essere con la forma corretta maschile/femminile: sono inglese/inglesa, sono medico/medichessa",
+            "Indica nazionalità e professione usando essere con la forma corretta maschile/femminile: sono inglese/inglesa, sono medico/dottoressa",
             "Applica la concordanza di genere: i nomi italiani in -o sono di norma maschili, in -a di norma femminili, e in -e possono essere entrambi — verifica il genere del nome con l'articolo",
             "Usa correttamente un/uno/una/un', incluso uno davanti a s+consonante e z: uno studente, un amico, una pizza, un'amica",
             "Produce una breve autopresentazione (4-5 frasi) combinando essere, avere, nazionalità e professione",
