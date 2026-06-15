@@ -18,15 +18,11 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con pronomi diretti lo, la, li, le, il participio concorda: L'ho vista.",
         ],
         examples=[
-            GrammarExample(
-                text="Ho mangiato una pizza buonissima.", translation="I ate a delicious pizza."
-            ),
-            GrammarExample(
-                text="Hai finito i compiti?", translation="Have you finished your homework?"
-            ),
+            GrammarExample(text="Ho mangiato una pizza buonissima.", translation=None),
+            GrammarExample(text="Hai finito i compiti?", translation=None),
             GrammarExample(
                 text="Abbiamo visitato Roma l'anno scorso.",
-                translation="We visited Rome last year.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -58,13 +54,13 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Al femminile: sono andata, sei arrivata, si è svegliata.",
         ],
         examples=[
-            GrammarExample(text="Sono andato al mercato.", translation="I went to the market."),
+            GrammarExample(text="Sono andato al mercato.", translation=None),
             GrammarExample(
                 text="Maria è arrivata ieri.",
-                translation="Maria arrived yesterday.",
+                translation=None,
                 note="arrivata: femminile",
             ),
-            GrammarExample(text="Ci siamo alzati presto.", translation="We got up early."),
+            GrammarExample(text="Ci siamo alzati presto.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -94,9 +90,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Alcuni verbi hanno doppio participio: visto/veduto, perso/perduto.",
         ],
         examples=[
-            GrammarExample(text="Ho letto un bel libro.", translation="I read a nice book."),
-            GrammarExample(text="Hai visto quel film?", translation="Have you seen that movie?"),
-            GrammarExample(text="Che cosa hai detto?", translation="What did you say?"),
+            GrammarExample(text="Ho letto un bel libro.", translation=None),
+            GrammarExample(text="Hai visto quel film?", translation=None),
+            GrammarExample(text="Che cosa hai detto?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -129,14 +125,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Da piccola giocavo con le bambole.",
-                translation="As a child I used to play with dolls.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Era una giornata bellissima.", translation="It was a beautiful day."
-            ),
+            GrammarExample(text="Era una giornata bellissima.", translation=None),
             GrammarExample(
                 text="Mentre studiavo, ha squillato il telefono.",
-                translation="While I was studying, the phone rang.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -169,17 +163,17 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ieri ho visto un film bellissimo.",
-                translation="Yesterday I saw a wonderful film.",
+                translation=None,
                 note="pass. prossimo: evento",
             ),
             GrammarExample(
                 text="Da giovane andavo sempre al mare.",
-                translation="When I was young I always went to the beach.",
+                translation=None,
                 note="imperfetto: abitudine",
             ),
             GrammarExample(
                 text="Mentre pioveva, sono uscito.",
-                translation="While it was raining, I went out.",
+                translation=None,
                 note="imperfetto + pass. prossimo",
             ),
         ],
@@ -216,15 +210,11 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Appena, poco fa → passato prossimo (prossimità).",
         ],
         examples=[
-            GrammarExample(
-                text="Due giorni fa ho visto Carlo.", translation="Two days ago I saw Carlo."
-            ),
-            GrammarExample(
-                text="Negli anni '90 vivevo a Milano.", translation="In the '90s I lived in Milan."
-            ),
+            GrammarExample(text="Due giorni fa ho visto Carlo.", translation=None),
+            GrammarExample(text="Negli anni '90 vivevo a Milano.", translation=None),
             GrammarExample(
                 text="La settimana prossima andremo a Parigi.",
-                translation="Next week we will go to Paris.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -263,15 +253,15 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Conosci Luca? — Sì, lo conosco.",
-                translation="Do you know Luca? — Yes, I know him.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hai visto la partita? — No, non l'ho vista.",
-                translation="Did you see the match? — No, I didn't see it.",
+                translation=None,
             ),
             GrammarExample(
                 text="Dov'è il libro? — L'ho messo sul tavolo.",
-                translation="Where is the book? — I put it on the table.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -303,9 +293,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con piacere e verbi simili si usano i pronomi indiretti: Mi piace.",
         ],
         examples=[
-            GrammarExample(text="Gli ho dato il mio numero.", translation="I gave him my number."),
-            GrammarExample(text="Che cosa le hai detto?", translation="What did you say to her?"),
-            GrammarExample(text="Vi porto un regalo.", translation="I'll bring you a present."),
+            GrammarExample(text="Gli ho dato il mio numero.", translation=None),
+            GrammarExample(text="Che cosa le hai detto?", translation=None),
+            GrammarExample(text="Vi porto un regalo.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -336,9 +326,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con imperativo e infinito seguono il verbo: Dammelo, Voglio dartelo.",
         ],
         examples=[
-            GrammarExample(text="Me lo presti il libro?", translation="Can you lend me the book?"),
-            GrammarExample(text="Gliel'ho detto ieri.", translation="I told him/her yesterday."),
-            GrammarExample(text="Ce li ha portati Maria.", translation="Maria brought them to us."),
+            GrammarExample(text="Me lo presti il libro?", translation=None),
+            GrammarExample(text="Gliel'ho detto ieri.", translation=None),
+            GrammarExample(text="Ce li ha portati Maria.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -369,13 +359,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Comparativi irregolari: buono → migliore, cattivo → peggiore.",
         ],
         examples=[
-            GrammarExample(
-                text="Roma è più grande di Firenze.", translation="Rome is bigger than Florence."
-            ),
-            GrammarExample(
-                text="È meno caro che veloce.", translation="It's less expensive than it is fast."
-            ),
-            GrammarExample(text="Sono alto come te.", translation="I'm as tall as you."),
+            GrammarExample(text="Roma è più grande di Firenze.", translation=None),
+            GrammarExample(text="È meno caro che veloce.", translation=None),
+            GrammarExample(text="Sono alto come te.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -408,14 +394,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="È il ristorante più famoso di Milano.",
-                translation="It's the most famous restaurant in Milan.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Questo gelato è buonissimo!", translation="This ice cream is really good!"
-            ),
+            GrammarExample(text="Questo gelato è buonissimo!", translation=None),
             GrammarExample(
                 text="È la meno cara delle tre.",
-                translation="It's the least expensive of the three.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -449,14 +433,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Sei intelligente come tua sorella.",
-                translation="You're as intelligent as your sister.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Ho tanto lavoro quanto te.", translation="I have as much work as you."
-            ),
+            GrammarExample(text="Ho tanto lavoro quanto te.", translation=None),
             GrammarExample(
                 text="Parla italiano bene quanto un madrelingua.",
-                translation="He speaks Italian as well as a native speaker.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -488,13 +470,13 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con i pronomi, questi si attaccano alla fine: Dimmelo! Prendilo!",
         ],
         examples=[
-            GrammarExample(text="Parla più lentamente!", translation="Speak more slowly!"),
+            GrammarExample(text="Parla più lentamente!", translation=None),
             GrammarExample(
                 text="Scusi, dov'è la stazione?",
-                translation="Excuse me, where is the station?",
+                translation=None,
                 note="Lei formale",
             ),
-            GrammarExample(text="Prendiamo un caffè!", translation="Let's have a coffee!"),
+            GrammarExample(text="Prendiamo un caffè!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -525,9 +507,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non confondere tu negativo con Lei: Non parlare! (tu) vs Non parli! (Lei).",
         ],
         examples=[
-            GrammarExample(text="Non preoccuparti!", translation="Don't worry!"),
-            GrammarExample(text="Non dite niente!", translation="Don't say anything!"),
-            GrammarExample(text="Signora, non si preoccupi!", translation="Ma'am, don't worry!"),
+            GrammarExample(text="Non preoccuparti!", translation=None),
+            GrammarExample(text="Non dite niente!", translation=None),
+            GrammarExample(text="Signora, non si preoccupi!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -557,10 +539,10 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con il Lei formale, il pronome di solito precede: Lo prenda!",
         ],
         examples=[
-            GrammarExample(text="Prendilo!", translation="Take it!"),
-            GrammarExample(text="Dammi una mano!", translation="Give me a hand!"),
-            GrammarExample(text="Mangiamola subito!", translation="Let's eat it right away!"),
-            GrammarExample(text="Signore, lo guardi!", translation="Sir, look at it!"),
+            GrammarExample(text="Prendilo!", translation=None),
+            GrammarExample(text="Dammi una mano!", translation=None),
+            GrammarExample(text="Mangiamola subito!", translation=None),
+            GrammarExample(text="Signore, lo guardi!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -591,15 +573,9 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Con periodo ipotetico (2º tipo) si abbina al congiuntivo imperfetto.",
         ],
         examples=[
-            GrammarExample(
-                text="Vorrei un caffè, per favore.", translation="I would like a coffee, please."
-            ),
-            GrammarExample(
-                text="Potresti chiudere la finestra?", translation="Could you close the window?"
-            ),
-            GrammarExample(
-                text="Mi piacerebbe visitare Venezia.", translation="I would like to visit Venice."
-            ),
+            GrammarExample(text="Vorrei un caffè, per favore.", translation=None),
+            GrammarExample(text="Potresti chiudere la finestra?", translation=None),
+            GrammarExample(text="Mi piacerebbe visitare Venezia.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -636,14 +612,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Vorrei un tavolo per due, per favore.",
-                translation="I would like a table for two, please.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Mi potrebbe portare il conto?", translation="Could you bring me the bill?"
-            ),
+            GrammarExample(text="Mi potrebbe portare il conto?", translation=None),
             GrammarExample(
                 text="Ti andrebbe di prendere un caffè?",
-                translation="Would you like to have a coffee?",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -675,16 +649,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non usare vorrei con se ipotetico: Se potessi, andrei (non: Se potrei, vorrei).",
         ],
         examples=[
-            GrammarExample(
-                text="Vorrei un bicchiere d'acqua.", translation="I would like a glass of water."
-            ),
+            GrammarExample(text="Vorrei un bicchiere d'acqua.", translation=None),
             GrammarExample(
                 text="Vorrei visitare Firenze un giorno.",
-                translation="I would like to visit Florence one day.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Vorrei che facesse più caldo.", translation="I wish it were warmer."
-            ),
+            GrammarExample(text="Vorrei che facesse più caldo.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -716,15 +686,13 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Prima di uscire, ho chiuso tutte le finestre.",
-                translation="Before going out, I closed all the windows.",
+                translation=None,
             ),
             GrammarExample(
                 text="Siamo andati al ristorante e poi al cinema.",
-                translation="We went to the restaurant and then to the cinema.",
+                translation=None,
             ),
-            GrammarExample(
-                text="All'improvviso è apparso un gatto.", translation="Suddenly a cat appeared."
-            ),
+            GrammarExample(text="All'improvviso è apparso un gatto.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -761,14 +729,12 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Quando sono arrivato, il film era già cominciato.",
-                translation="When I arrived, the film had already started.",
+                translation=None,
             ),
-            GrammarExample(
-                text="Avevo già visto quel film.", translation="I had already seen that film."
-            ),
+            GrammarExample(text="Avevo già visto quel film.", translation=None),
             GrammarExample(
                 text="Non avevamo mai mangiato la pizza prima di allora.",
-                translation="We had never eaten pizza before then.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -804,14 +770,14 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Le domande perdono l'inversione e usano se: Mi ha chiesto se volevo uscire.",
         ],
         examples=[
-            GrammarExample(text="Dice che è stanco.", translation="He says (that) he is tired."),
+            GrammarExample(text="Dice che è stanco.", translation=None),
             GrammarExample(
                 text="Anna dice che domani partirà.",
-                translation="Anna says that she will leave tomorrow.",
+                translation=None,
             ),
             GrammarExample(
                 text="Mi ha chiesto se mi piaceva il film.",
-                translation="He asked me if I liked the film.",
+                translation=None,
             ),
         ],
         common_mistakes=[

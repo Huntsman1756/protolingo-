@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en_GB._types import CurriculumUnit
+from app.data._types import CurriculumUnit
 
 A1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -86,7 +86,7 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=5,
         title="Actions Right Now",
-        grammar_points=["present-continuous"],
+        grammar_points=["present-continuous", "present-simple", "adverbs-frequency"],
         vocabulary_set_ids=["action_verbs_a1", "clothes_a1", "sports_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[
@@ -102,7 +102,7 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=6,
         title="Yesterday",
-        grammar_points=["past-simple"],
+        grammar_points=["past-simple", "prepositions-time", "question-words"],
         vocabulary_set_ids=[
             "past_time_expressions_a1",
             "regular_verbs_past_a1",
@@ -122,7 +122,7 @@ A1_UNITS: list[CurriculumUnit] = [
         level="A1",
         unit_number=7,
         title="Abilities & Wishes",
-        grammar_points=["can-cant"],
+        grammar_points=["can-cant", "imperatives", "questions-yes-no"],
         vocabulary_set_ids=["abilities_a1", "free_time_a1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
         competency_checklist=[

@@ -19,16 +19,16 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Che la forza sia con te!",
-                translation="May the force be with you!",
+                translation=None,
                 note="ottativo/desiderativo",
             ),
             GrammarExample(
                 text="Non sapevo che avesse gia pubblicato tre romanzi.",
-                translation="I didn't know he had already published three novels.",
+                translation=None,
             ),
             GrammarExample(
                 text="Comportati come se niente fosse successo.",
-                translation="Act as if nothing had happened.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -61,17 +61,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Secondo indiscrezioni, il ministro rassegnerebbe le dimissioni.",
-                translation="According to rumors, the minister would resign.",
+                translation=None,
                 note="dissociazione",
             ),
             GrammarExample(
                 text="Avrei tanto voluto conoscerti prima.",
-                translation="I would have really liked to meet you earlier.",
+                translation=None,
                 note="desiderio irrealizzato",
             ),
             GrammarExample(
                 text="Promisero che avrebbero fatto tutto il possibile.",
-                translation="They promised they would do everything possible.",
+                translation=None,
                 note="futuro nel passato",
             ),
         ],
@@ -105,17 +105,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Le mura della citta sono antiche. (mura = mura difensive)",
-                translation="The city walls are ancient.",
+                translation=None,
                 note="mura vs muri",
             ),
             GrammarExample(
                 text="La maggior parte degli invitati erano contenti. (accordo a senso)",
-                translation="Most of the guests were happy.",
+                translation=None,
                 note="accordo a senso",
             ),
             GrammarExample(
                 text="Non sono potuta venire ieri. (femminile)",
-                translation="I couldn't come yesterday.",
+                translation=None,
                 note="accordo con essere",
             ),
         ],
@@ -149,7 +149,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ed ecco, quasi al cominciar de l'erta, una lonza leggera e presta molto, che di pel macolato era coverta. (Dante)",
-                translation="And behold, almost at the start of the slope, a leopard light and very swift, covered with spotted fur.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -177,7 +177,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Non so perche quel giorno decisi di prendere il treno invece dell'autobus. Forse fu il cielo grigio, forse la voglia di cambiare qualcosa, qualsiasi cosa.",
-                translation="I don't know why that day I decided to take the train instead of the bus. Maybe it was the gray sky, maybe the desire to change something, anything.",
+                translation=None,
                 note="prima persona, tono riflessivo",
             ),
         ],
@@ -206,12 +206,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Non chiedermi di restare. Non chiedermi di capire. Non chiedermi niente.",
-                translation="Don't ask me to stay. Don't ask me to understand. Don't ask me anything.",
+                translation=None,
                 note="anafora",
             ),
             GrammarExample(
                 text="Veni, vidi, vici. (asindeto)",
-                translation="I came, I saw, I conquered.",
+                translation=None,
                 note="asindeto",
             ),
         ],
@@ -240,7 +240,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="EN: It's raining cats and dogs. IT: Piove a catinelle. (non: Piovono cani e gatti)",
-                translation="EN: It's raining cats and dogs. IT: Piove a catinelle. (not literal)",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -268,12 +268,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.",
-                translation="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.",
+                translation=None,
                 note="-ina → little",
             ),
             GrammarExample(
                 text="IT: Penso che sia vero. EN: I think it's true. (congiuntivo perso)",
-                translation="IT: Penso che sia vero. EN: I think it's true.",
+                translation=None,
                 note="congiuntivo -> indicativo",
             ),
         ],
@@ -302,12 +302,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Actually, I disagree. ≠ Attualmente, non sono d'accordo. (SBAGLIATO: significa In realta, non sono d'accordo.)",
-                translation="Actually, I disagree. (NOT: Currently, I disagree.)",
+                translation=None,
                 note="actually ≠ attualmente",
             ),
             GrammarExample(
                 text="She is very sensible. ≠ Lei e molto sensibile. (SBAGLIATO: significa Lei e molto ragionevole.)",
-                translation="She is very sensible. (NOT: She is very sensitive.)",
+                translation=None,
                 note="sensible ≠ sensibile",
             ),
         ],
@@ -336,12 +336,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Latino: Illa mulier pulchra est. Italiano: Quella donna e bella.",
-                translation="Latin: That woman is beautiful. Italian: That woman is beautiful.",
+                translation=None,
                 note="evoluzione dal latino all'italiano",
             ),
             GrammarExample(
                 text="Dai Promessi Sposi: Quel ramo del lago di Como... (incipit celebre)",
-                translation="From The Betrothed: That branch of Lake Como...",
+                translation=None,
                 note="L'italiano manzoniano",
             ),
         ],
@@ -370,12 +370,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il candidato e stato assunto dopo un lungo iter burocratico.",
-                translation="The candidate was hired after a long bureaucratic process.",
+                translation=None,
                 note="iter = procedura",
             ),
             GrammarExample(
                 text="La riunione e stata aggiornata ad hoc per discutere l'emergenza.",
-                translation="The meeting was called ad hoc to discuss the emergency.",
+                translation=None,
                 note="ad hoc = appositamente",
             ),
         ],
@@ -404,17 +404,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ho comprato un computer nuovo. (nessun equivalente italiano accettato)",
-                translation="I bought a new computer.",
+                translation=None,
                 note="anglicismo",
             ),
             GrammarExample(
                 text="Lo zucchero viene dall'arabo sukkar.",
-                translation="Sugar comes from the Arabic sukkar.",
+                translation=None,
                 note="prestito arabo antico",
             ),
             GrammarExample(
                 text="C'e chi dice smart working e chi dice lavoro agile.",
-                translation="Some say smart working and others say agile work.",
+                translation=None,
                 note="anglicismo vs alternativa italiana",
             ),
         ],
@@ -443,7 +443,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Saggio: In questo saggio si intende dimostrare che... Relazione: Dati alla mano, si evince che... Recensione: L'ultimo film di Sorrentino e un capolavoro visivo...",
-                translation="Essay: This essay aims to demonstrate that... Report: Based on the data, it appears that... Review: Sorrentino's latest film is a visual masterpiece...",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -471,12 +471,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Era un tramonto petaloso, di quelli che ti restano negli occhi per giorni.",
-                translation="It was a petal-filled sunset, the kind that stays in your eyes for days.",
+                translation=None,
                 note="neologismo",
             ),
             GrammarExample(
                 text="Le sue parole erano coltelli di vetro: trasparenti, affilati, invisibili fino al colpo.",
-                translation="His words were glass knives: transparent, sharp, invisible until the blow.",
+                translation=None,
                 note="metafora originale",
             ),
         ],
@@ -505,7 +505,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Prima: L'azienda ha fatto un sacco di cose per migliorare la situazione. Dopo: L'azienda ha implementato diverse strategie per ottimizzare i processi interni.",
-                translation="Before: The company did a lot of things to improve the situation. After: The company implemented several strategies to optimize internal processes.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -533,12 +533,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Mi sembra che forse ci sia un piccolo margine di miglioramento in questa sezione.",
-                translation="It seems to me that perhaps there is a small margin for improvement in this section.",
+                translation=None,
                 note="attenuazione diplomatica",
             ),
             GrammarExample(
                 text="Non e esattamente quello che avevamo in mente. (invece di: E completamente sbagliato.)",
-                translation="It's not exactly what we had in mind. (instead of: It's completely wrong.)",
+                translation=None,
                 note="understatement",
             ),
         ],
@@ -567,12 +567,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se avessi saputo che sarebbe stato cosi difficile, ci avrei pensato due volte prima di accettare, ma ormai quel che e fatto e fatto.",
-                translation="If I had known it would be so difficult, I would have thought twice before accepting, but what's done is done.",
+                translation=None,
                 note="periodo ipotetico 3 tipo + connettivo",
             ),
             GrammarExample(
                 text="Benche non condivida pienamente la sua posizione, devo ammettere che le sue argomentazioni, per quanto provocatorie, non sono prive di fondamento.",
-                translation="Although I don't fully share his position, I must admit that his arguments, however provocative, are not without foundation.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -600,12 +600,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Mah, insomma, non e che mi entusiasmi l'idea, pero tutto sommato si potrebbe anche fare, dai.",
-                translation="Well, I mean, it's not that the idea excites me, but all in all it could be done, come on.",
+                translation=None,
                 note="parlato naturale con segnali discorsivi",
             ),
             GrammarExample(
                 text="Certe volte basta uno sguardo per capirsi, senza bisogno di tante parole.",
-                translation="Sometimes a look is enough to understand each other, without needing many words.",
+                translation=None,
                 note="fluidita espressiva",
             ),
         ],
@@ -635,12 +635,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Prima della revisione: Il progetto è importante. Avrà un impatto. Dobbiamo considerare molti fattori.",
-                translation="Dopo la revisione: Il progetto riveste un'importanza strategica e avrà un impatto significativo, a condizione che si considerino attentamente i molteplici fattori in gioco.",
+                translation=None,
                 note="Da frasi telegrafiche a un unico periodo coeso.",
             ),
             GrammarExample(
                 text="Prima: La ricerca ha dimostrato che la gente mangia troppi zuccheri.",
-                translation="Dopo: Dalla ricerca emerge un consumo eccessivo di zuccheri nella popolazione analizzata.",
+                translation=None,
                 note="Registro accademico e precisione lessicale.",
             ),
         ],
@@ -657,5 +657,126 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             ),
         ],
         related=["riformulazione", "sintesi-testuale", "precisione-lessicale", "generi-testuali"],
+    ),
+    GrammarTopic(
+        slug="italofonia-contemporanea",
+        title="L'italofonia contemporanea",
+        level="C2",
+        category="Espressione",
+        summary="Istituzioni, dinamiche e diversità dell'italofonia nel XXI secolo.",
+        explanation="L'**italofonia** è la comunità globale di circa 85 milioni di parlanti di italiano, distribuiti tra Italia (58 milioni), Svizzera italiana, comunità storiche in Istria, Dalmazia, Malta, e le diffuse comunità di emigrati in Argentina, Brasile, Stati Uniti, Australia.\n\n**Istituzioni chiave**:\n- **Accademia della Crusca** (1582): la più antica accademia linguistica d'Europa, oggi rinnovata con un ruolo descrittivo e consulenziale.\n- **Società Dante Alighieri** (1889): diffonde la lingua e la cultura italiana nel mondo con 500+ comitati in 80 paesi.\n\n**Dinamiche regionali**:\n- L'italiano in Svizzera è una delle quattro lingue ufficiali, parlato in Ticino e Grigioni.\n- In Istria (Croazia, Slovenia) l'italiano conserva lo status di lingua minoritaria protetta.\n- Le comunità italo-argentine e italo-brasiliane mantengono forme di italiano regionale e dialetti.\n\n**Dibattiti**: italiano come lingua ereditaria (heritage language), insegnamento dell'italiano all'estero, il ruolo dei media italiani (RAI) nella diffusione globale.",
+        rules=[
+            "L'italofonia non è un blocco monolitico: include lingue ereditarie, dialetti, varietà regionali.",
+            "La Crusca oggi ha un approccio descrittivo, non prescrittivo.",
+            "La Società Dante Alighieri è il principale strumento di diplomazia culturale italiana.",
+            "Le comunità italofone all'estero mantengono tratti linguistici spesso arcaici rispetto all'italiano contemporaneo.",
+        ],
+        examples=[
+            GrammarExample(
+                text="In Argentina, si parla ancora di 'botiglia' per 'bottiglia', un tratto conservativo dell'italiano ottocentesco.",
+                translation=None,
+                note="italiano di emigrazione",
+            ),
+            GrammarExample(
+                text="Il Ticino ha una Radiotelevisione svizzera in lingua italiana (RSI) che produce contenuti per l'intera italofonia.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="La Dante Alighieri organizza corsi di italiano per oltre 200.000 studenti all'anno nel mondo.",
+                translation=None,
+                note="diffusione culturale",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="L'italofonia coincide con l'Italia.",
+                correct="L'italofonia comprende comunità in Svizzera, Slovenia, Croazia, Malta e le numerose diaspore nel mondo.",
+                note="L'italofonia non si esaurisce nei confini nazionali.",
+            ),
+        ],
+        related=["politica-linguistica-it", "prestiti-linguistici", "evoluzione-linguistica"],
+    ),
+    GrammarTopic(
+        slug="politica-linguistica-it",
+        title="Politica linguistica in Italia",
+        level="C2",
+        category="Espressione",
+        summary="Dall'Accademia della Crusca alle leggi di tutela: le politiche linguistiche italiane tra standard, dialetti e minoranze.",
+        explanation="L'Italia ha una **politica linguistica complessa** e spesso implicita. A differenza di Francia e Spagna, l'Italia non ha mai avuto un'istituzione statale normativa paragonabile all'Académie française.\n\n**L'Accademia della Crusca**:\n- Ruolo storico di custode della purezza linguistica (Vocabolario degli Accademici della Crusca, 1612).\n- Oggi è un'istituzione rinnovata: il suo sito offre consulenza linguistica gratuita, il periodico *La Crusca per voi*, e promuove il dibattito sull'italiano contemporaneo.\n\n**Legislazione**:\n- **Legge 482/1999**: tutela delle minoranze linguistiche storiche (albanese, catalano, tedesco, greco, sloveno, croato, francese, franco-provenzale, friulano, ladino, occitano, sardo).\n- **Costituzione, art. 6**: 'La Repubblica tutela con apposite norme le minoranze linguistiche'.\n\n**Dibattiti contemporanei**:\n- **Dialetti vs. italiano standard**: l'Italia è un paese di diglossia storica; oggi il 45% degli italiani alterna italiano e dialetto.\n- **Anglicismi**: il dibattito tra puristi e aperturisti è costante; la Crusca ha una posizione equilibrata.\n- **Linguaggio di genere**: femminili professionali (la ministra, l'avvocata, l'architetta) tra resistenze e accettazione.",
+        rules=[
+            "La Crusca ha un ruolo consultivo, non legislativo.",
+            "I dialetti italiani sono lingue romanze a pieno titolo, non varietà 'degradate' dell'italiano.",
+            "La legge 482/1999 protegge dodici minoranze linguistiche storiche.",
+            "Il dibattito sugli anglicismi in Italia è acceso ma non ha prodotto leggi restrittive come in Francia.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Art. 6 Costituzione: 'La Repubblica tutela con apposite norme le minoranze linguistiche.'",
+                translation=None,
+                note="tutela costituzionale",
+            ),
+            GrammarExample(
+                text="La Crusca ha riconosciuto 'petaloso' come neologismo corretto, mostrando il suo approccio descrittivo moderno.",
+                translation=None,
+                note="neologismo e Crusca",
+            ),
+            GrammarExample(
+                text="Il sardo è riconosciuto come lingua minoritaria dalla legge 482/1999, insieme ad altre undici varietà.",
+                translation=None,
+                note="minoranze linguistiche",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="La Crusca decide cosa è corretto in italiano.",
+                correct="La Crusca non ha potere normativo vincolante: osserva, descrive e consiglia, ma non legifera.",
+                note="Ruolo descrittivo, non prescrittivo.",
+            ),
+            GrammarMistake(
+                wrong="I dialetti sono forme scorrette dell'italiano.",
+                correct="I dialetti italiani sono sistemi linguistici autonomi, evoluti dal latino volgare parallelamente all'italiano standard.",
+                note="I dialetti non sono 'errori', sono altre lingue.",
+            ),
+        ],
+        related=["italofonia-contemporanea", "evoluzione-linguistica", "italiano-standard"],
+    ),
+    GrammarTopic(
+        slug="evoluzione-digitale-it",
+        title="L'italiano nell'era digitale",
+        level="C2",
+        category="Espressione",
+        summary="Come l'italiano evolve con il digitale: social media, messaggistica, IA e nuovi usi linguistici.",
+        explanation="Il **digitale sta trasformando l'italiano** a una velocità inedita. Il web e i social media hanno accelerato fenomeni già esistenti (abbreviazioni, prestiti) e ne hanno creati di nuovi.\n\n**Messaggistica e social media**:\n- Abbreviazioni: *xké* (perché), *nn* (non), *cmq* (comunque), *tvb* (ti voglio bene), *xk* (perché).\n- Emoticon ed emoji come punteggiatura emotiva.\n- Hashtag e la loro sintassi: *#iorestoacasa, #savethechildren*.\n\n**Neologismi digitali**:\n- Verbi: *googlare, whatsappare, twittare, taggare, postare, shazammare, spoilerare, cliccare, scrollare*.\n- Nomi: *selfie, blogger, influencer, youtuber, follower, like/laikare*.\n- Calco e adattamento: *scaricare* (download), *caricare* (upload), *condividere* (share), *cestinare* (delete).\n\n**Anglicismi nel digitale**:\n- Penetrazione massiccia: *computer, smartphone, tablet, browser, chat, emoji, streaming, podcast*.\n- Resistenza lessicale: *dominio* (domain), *motore di ricerca* (search engine), *posta elettronica* (email), *allegato* (attachment).\n\n**IA e italiano**:\n- ChatGPT, DeepL, Google Translate: impatto sull'apprendimento e sull'uso dell'italiano.\n- Modelli linguistici addestrati prevalentemente su dati in inglese: rischio di appiattimento delle varietà linguistiche.\n- Sfida della sovranità linguistica digitale per l'italiano.",
+        rules=[
+            "L'italiano digitale non è 'degradato': è un registro adeguato al medium.",
+            "I prestiti dall'inglese nel digitale sono massicci, ma l'italiano ha una tradizione di adattamento (bistecca < beef steak, gol < goal).",
+            "I social media accelerano l'evoluzione linguistica ma anche l'obsolescenza dei neologismi.",
+            "La Crusca monitora l'italiano digitale senza demonizzarlo né idealizzarlo.",
+        ],
+        examples=[
+            GrammarExample(
+                text="nn lo so xké nn me l'ha detto, cmq ci vediamo dopo",
+                translation=None,
+                note="linguaggio SMS / messaggistica",
+            ),
+            GrammarExample(
+                text="Ho whatsappato a Maria e mi ha risposto con un vocale di tre minuti.",
+                translation=None,
+                note="neologismo digitale",
+            ),
+            GrammarExample(
+                text="Su Instagram ha postato un selfie che ha ricevuto mille like in un'ora.",
+                translation=None,
+                note="anglicismi integrati",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="L'italiano dei social è 'cattivo italiano'.",
+                correct="Ogni medium sviluppa un proprio registro: l'italiano digitale è una varietà situazionale, non una degenerazione.",
+                note="Evitare giudizi di valore sulle varietà linguistiche.",
+            ),
+        ],
+        related=["italofonia-contemporanea", "politica-linguistica-it", "creativita-linguistica"],
     ),
 ]

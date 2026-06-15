@@ -105,6 +105,10 @@ export default function AdminUserStatsPage() {
   const [quotaMonthlyTokens, setQuotaMonthlyTokens] = useState<string>('')
   const [quotaSaving, setQuotaSaving] = useState(false)
   const [quotaSaved, setQuotaSaved] = useState(false)
+  const [subscriptionSaving, setSubscriptionSaving] = useState(false)
+  const [currentPlan, setCurrentPlan] = useState<'none' | 'monthly' | 'yearly'>(
+    'none'
+  )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -203,6 +207,57 @@ export default function AdminUserStatsPage() {
     }
   }
 
+  useEffect(() => {
+    if (!user) {
+      setCurrentPlan('none')
+      return
+    }
+    if (
+      user.subscription_status !== 'active' &&
+      user.subscription_status !== 'trialing'
+    ) {
+      setCurrentPlan('none')
+      return
+    }
+    if (user.subscription_ends_at) {
+      const diffDays = Math.round(
+        (new Date(user.subscription_ends_at).getTime() - Date.now()) /
+          (1000 * 60 * 60 * 24)
+      )
+      setCurrentPlan(diffDays > 60 ? 'yearly' : 'monthly')
+      return
+    }
+    setCurrentPlan('monthly')
+  }, [user])
+
+  async function handleSubscriptionChange(plan: 'none' | 'monthly' | 'yearly') {
+    if (!userId) return
+    setSubscriptionSaving(true)
+    try {
+      const body: Record<string, string | null> = {}
+      if (plan === 'none') {
+        body.subscription_status = 'none'
+        body.subscription_ends_at = null
+      } else {
+        body.subscription_status = 'active'
+        const days = plan === 'monthly' ? 30 : 365
+        const endDate = new Date(Date.now() + days * 24 * 60 * 60 * 1000)
+        body.subscription_ends_at = endDate.toISOString()
+      }
+      const res = await apiFetch(`/api/admin/users/${userId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+      if (res.ok) {
+        const updated: AdminUser = await res.json()
+        setUser(updated)
+      }
+    } finally {
+      setSubscriptionSaving(false)
+    }
+  }
+
   if (loading) {
     return <PageLoading label={t('loading')} />
   }
@@ -293,32 +348,25 @@ export default function AdminUserStatsPage() {
               | 'ru'
           )}
         />
-        <StatRow
-          label={t('fieldSubscription')}
-          value={
-            <span
-              className={`text-fl-hint border px-2 py-0.5 font-mono tracking-widest uppercase ${
-                user.subscription_status === 'active'
-                  ? 'border-green-500/40 text-green-400'
-                  : user.subscription_status === 'trialing'
-                    ? 'border-blue-500/40 text-blue-400'
-                    : user.subscription_status === 'past_due'
-                      ? 'border-yellow-500/40 text-yellow-400'
-                      : 'border-fl-border text-fl-muted-2'
-              }`}
-            >
-              {user.subscription_status === 'active'
-                ? tBilling('statusActive')
-                : user.subscription_status === 'trialing'
-                  ? tBilling('statusTrialing')
-                  : user.subscription_status === 'past_due'
-                    ? tBilling('statusPastDue')
-                    : user.subscription_status === 'canceled'
-                      ? tBilling('statusCanceled')
-                      : tBilling('statusNone')}
-            </span>
-          }
-        />
+        <div className="border-fl-border flex items-center justify-between border-b py-3">
+          <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+            {t('fieldSubscription')}
+          </span>
+          <select
+            value={currentPlan}
+            onChange={(e) =>
+              handleSubscriptionChange(
+                e.target.value as 'none' | 'monthly' | 'yearly'
+              )
+            }
+            disabled={subscriptionSaving}
+            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-accent border px-3 py-1.5 font-mono text-xs tracking-widest uppercase focus:outline-none disabled:opacity-40"
+          >
+            <option value="none">{tBilling('statusNone')}</option>
+            <option value="monthly">{tBilling('planMonthlyName')}</option>
+            <option value="yearly">{tBilling('planYearlyName')}</option>
+          </select>
+        </div>
         {user.subscription_ends_at && (
           <StatRow
             label={t('fieldEndsRenews')}

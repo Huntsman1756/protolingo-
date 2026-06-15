@@ -19,15 +19,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Benche fosse stanco, continuo a lavorare.",
-                translation="Although he was tired, he kept working.",
+                translation=None,
             ),
             GrammarExample(
                 text="Nonostante abbia studiato molto, non ha passato l esame.",
-                translation="Despite having studied a lot, he didn't pass the exam.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sebbene sia tardi, resto ancora un po.",
-                translation="Although it's late, I'll stay a little longer.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -60,15 +60,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ti scrivo affinche tu sia informato.",
-                translation="I'm writing so that you are informed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Parlo ad alta voce perche tutti sentano.",
-                translation="I speak loudly so that everyone can hear.",
+                translation=None,
             ),
             GrammarExample(
                 text="Studio ogni giorno per migliorare. (stesso soggetto)",
-                translation="I study every day to improve.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -101,17 +101,17 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Cerco un libro che spieghi bene la grammatica. (non so se esiste)",
-                translation="I'm looking for a book that explains grammar well.",
+                translation=None,
                 note="ipotetico",
             ),
             GrammarExample(
                 text="E il film piu emozionante che io abbia mai visto.",
-                translation="It's the most exciting film I've ever seen.",
+                translation=None,
                 note="superlativo",
             ),
             GrammarExample(
                 text="Conosco un libro che spiega bene la grammatica.",
-                translation="I know a book that explains grammar well.",
+                translation=None,
                 note="certo → indicativo",
             ),
         ],
@@ -145,11 +145,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="L'analisi dei dati ha richiesto tre mesi. (invece di: Abbiamo analizzato i dati per tre mesi.)",
-                translation="The analysis of the data took three months.",
+                translation=None,
             ),
             GrammarExample(
                 text="La costruzione del ponte fu completata nel 2010.",
-                translation="The construction of the bridge was completed in 2010.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -177,15 +177,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Si ritiene che la situazione sia migliorata.",
-                translation="It is believed that the situation has improved.",
+                translation=None,
             ),
             GrammarExample(
                 text="E stato osservato un aumento dei prezzi.",
-                translation="An increase in prices has been observed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Va notato che i risultati sono preliminari.",
-                translation="It should be noted that the results are preliminary.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -213,7 +213,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Nel campo semantico del cibo: pasta, pizza, risotto, insalata, formaggio, vino.",
-                translation="In the semantic field of food: pasta, pizza, risotto, salad, cheese, wine.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -241,12 +241,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Rileggere il testo aiuta a trovare errori.",
-                translation="Rereading the text helps find errors.",
+                translation=None,
                 note="ri- = di nuovo",
             ),
             GrammarExample(
                 text="La situazione e migliorabile.",
-                translation="The situation can be improved.",
+                translation=None,
                 note="-bile = che puo essere",
             ),
         ],
@@ -275,11 +275,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il governo ha adottato misure per contrastare l'inflazione. (non: ha fatto cose)",
-                translation="The government adopted measures to fight inflation.",
+                translation=None,
             ),
             GrammarExample(
                 text="Il tramonto dipingeva il cielo di sfumature purpuree. (non: era bello)",
-                translation="The sunset painted the sky with purple hues.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -307,12 +307,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ma figurati, non vedevo l'ora di passare tre ore in coda alla posta!",
-                translation="Oh sure, I couldn't wait to spend three hours in line at the post office!",
+                translation=None,
                 note="ironia antifrastica",
             ),
             GrammarExample(
                 text="Ah, sei riuscito ad arrivare in orario! Miracolo!",
-                translation="Oh, you managed to arrive on time! A miracle!",
+                translation=None,
                 note="ironia bonaria",
             ),
         ],
@@ -341,12 +341,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Non capisco perche tutti dicano che gli italiani gesticolano... (mentre gesticola vistosamente)",
-                translation="I don't understand why everyone says Italians gesture... (while gesturing emphatically)",
+                translation=None,
                 note="autoironia",
             ),
             GrammarExample(
                 text="Il milanese e il napoletano si incontrano... (tipica barzelletta regionale)",
-                translation="A Milanese and a Neapolitan meet... (typical regional joke)",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -374,12 +374,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il riso abbonda sulla bocca degli sciocchi. (riso = ridere, ma anche cereale)",
-                translation="Laughter/rice abounds in the mouths of fools.",
+                translation=None,
                 note="doppio senso voluto",
             ),
             GrammarExample(
                 text="Ho lasciato la chiave sotto lo zerbino. (chiave fisica o soluzione?)",
-                translation="I left the key under the doormat.",
+                translation=None,
                 note="polisemia",
             ),
         ],
@@ -406,17 +406,15 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Litote ed eufemismo attenuano o ammorbidiscono.",
         ],
         examples=[
-            GrammarExample(
-                text="Ha un cuore d'oro.", translation="He has a heart of gold.", note="metafora"
-            ),
+            GrammarExample(text="Ha un cuore d'oro.", translation=None, note="metafora"),
             GrammarExample(
                 text="Non e affatto stupido. (litote per: e molto intelligente)",
-                translation="He's not stupid at all.",
+                translation=None,
                 note="litote",
             ),
             GrammarExample(
                 text="Ci vediamo tra due secondi! (iperbole)",
-                translation="See you in two seconds!",
+                translation=None,
                 note="iperbole",
             ),
         ],
@@ -445,7 +443,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Avete mai pensato a cosa significhi per i nostri figli crescere in un mondo senza rispetto per l'ambiente?",
-                translation="Have you ever thought about what it means for our children to grow up in a world without respect for the environment?",
+                translation=None,
                 note="pathos + domanda retorica",
             ),
         ],
@@ -474,12 +472,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Amici, romani, connazionali... prestatemi orecchio. (Shakespeare in italiano)",
-                translation="Friends, Romans, countrymen... lend me your ears.",
+                translation=None,
                 note="tricolon + invocazione",
             ),
             GrammarExample(
                 text="Una domanda semplice: siete soddisfatti di come vanno le cose? (pausa) Io no. E credo nemmeno voi.",
-                translation="One simple question: are you satisfied with how things are going? (pause) I'm not. And I think you aren't either.",
+                translation=None,
                 note="domanda retorica + pausa",
             ),
         ],
@@ -508,12 +506,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="A Milano prendo un caffe, a Napoli prendo un caffe. (pronuncia e preparazione diversa)",
-                translation="In Milan I have a coffee, in Naples I have a coffee.",
+                translation=None,
                 note="differenza culturale + linguistica",
             ),
             GrammarExample(
                 text="Al Nord: 'Ho visto Marco ieri.' Al Sud: 'Vidi Marco ieri.'",
-                translation="North: 'I saw Marco yesterday.' South: 'I saw Marco yesterday.'",
+                translation=None,
                 note="passato prossimo vs remoto",
             ),
         ],
@@ -542,11 +540,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="In veneto: 'Come xeo che la va?' (Come va?)",
-                translation="In Veneto: 'How's it going?'",
+                translation=None,
             ),
             GrammarExample(
                 text="A Napoli: 'Sto buono, guaglio!' (Stai bene, ragazzo!)",
-                translation="In Naples: 'I'm good, boy!'",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -574,11 +572,11 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Standard: Ho telefonato loro. / Neostandard: Gli ho telefonato.",
-                translation="Standard: I called them. / Neo-standard: I called them.",
+                translation=None,
             ),
             GrammarExample(
                 text="Standard: Il libro che ho comprato. / Neostandard: Il libro che l'ho comprato.",
-                translation="Standard: The book I bought. / Neo-standard: The book that I bought it.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -606,7 +604,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Riassunto di 300 parole: il testo originale analizza le cause del declino economico italiano identificando tre fattori: demografia, produttivita e debito pubblico.",
-                translation="300-word summary: the original text analyzes the causes of Italy's economic decline identifying three factors: demographics, productivity, and public debt.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -634,12 +632,12 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il tuo lavoro e molto interessante. Forse si potrebbe approfondire la parte sui dati. Nel complesso, ottimo lavoro!",
-                translation="Your work is very interesting. Perhaps the data section could be explored further. Overall, great job!",
+                translation=None,
                 note="sandwich feedback",
             ),
             GrammarExample(
                 text="Hai considerato di strutturare diversamente questa sezione? Renderebbe il tutto piu chiaro.",
-                translation="Have you considered structuring this section differently? It would make it clearer.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -667,7 +665,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Originale: La crisi economica ha colpito duramente le famiglie. Riformulato: I nuclei familiari hanno subito pesantemente gli effetti della recessione.",
-                translation="Original: The economic crisis hit families hard. Reformulated: Households suffered heavily from the effects of the recession.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -696,22 +694,22 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="I dati sono stati raccolti mediante un questionario anonimo.",
-                translation="Data were collected through an anonymous questionnaire.",
+                translation=None,
                 note="passivo con essere",
             ),
             GrammarExample(
                 text="Si è osservato un aumento significativo dei casi.",
-                translation="A significant increase in cases was observed.",
+                translation=None,
                 note="si passivante",
             ),
             GrammarExample(
                 text="I risultati vanno interpretati alla luce del contesto storico.",
-                translation="The results must be interpreted in light of the historical context.",
+                translation=None,
                 note="andare + participio (obbligo)",
             ),
             GrammarExample(
                 text="È emerso che la maggioranza degli intervistati preferisce...",
-                translation="It emerged that the majority of respondents prefer...",
+                translation=None,
                 note="costruzione impersonale",
             ),
         ],

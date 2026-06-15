@@ -28,7 +28,16 @@
     "aboutMe": "Over mij",
     "github": "GitHub",
     "footerProduct": "Product",
-    "footerLegal": "Juridisch"
+    "footerLegal": "Juridisch",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Laden...",
@@ -797,7 +806,7 @@
     "workflowStep5": "Gebruik flashcards om woordenschat parallel te trainen",
     "workflowStep6": "Oefen vrij gesprek met de AI-tutor",
     "q_language": "Welke taal leer ik?",
-    "a_language": "FreeLingo ondersteunt momenteel meerdere talen (Amerikaans Engels, Brits Engels, Spaans, Italiaans, Portugees) en we zullen er in de loop van de tijd meer toevoegen. Wanneer een nieuwe taal beschikbaar is, vind je deze in Instellingen → Mijn talen — voeg hem toe en begin meteen met leren.",
+    "a_language": "FreeLingo ondersteunt momenteel meerdere talen (Amerikaans Engels, Brits Engels, Duits, Frans, Italiaans, Portugees, Spaans) en we zullen er in de loop van de tijd meer toevoegen. Wanneer een nieuwe taal beschikbaar is, vind je deze in Instellingen → Mijn talen — voeg hem toe en begin meteen met leren.",
     "q_assessment": "Wat is de Beoordeling?",
     "a_assessment": "Een door AI gegenereerde test van 15 vragen over grammatica, woordenschat, leesbegrip en zinnen transformeren, met moeilijkheidsgraad van A1 tot C1.",
     "q_studyPlan": "Wat is het Studieplan en hoe genereer ik er een?",
@@ -973,6 +982,8 @@
     "es-ES": "Spaans",
     "it-IT": "Italiaans",
     "pt-PT": "Portugees",
+    "fr-FR": "Frans",
+    "de-DE": "Duits",
     "en": "Engels",
     "es": "Spaans",
     "it": "Italiaans",
@@ -981,7 +992,9 @@
     "it-IT-description": "Italiaans zoals gesproken in Italië.",
     "pt-PT-description": "Portugees zoals gesproken in Portugal.",
     "en-US-description": "Engels zoals gesproken in de Verenigde Staten.",
-    "en-GB-description": "Engels zoals gesproken in het Verenigd Koninkrijk."
+    "en-GB-description": "Engels zoals gesproken in het Verenigd Koninkrijk.",
+    "fr-FR-description": "Frans zoals gesproken in Frankrijk.",
+    "de-DE-description": "Duits zoals gesproken in Duitsland."
   },
   "onboarding": {
     "title": "Kies jouw taal",
@@ -1116,11 +1129,11 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Begrepen",
     "entry1": {
-      "label": "Nieuwe talen om te leren",
-      "desc": "Spaans, Italiaans en Portugees zijn nu beschikbaar — elk met een volledig curriculum van beginner tot gevorderd (A1–C2), grammatica, woordenschat, zinnen, Reading, Listening en meer. Voeg ze toe via Instellingen → Mijn talen."
+      "label": "Vijf nieuwe leertalen",
+      "desc": "Duits, Frans, Italiaans, Portugees en Spaans zijn nu beschikbaar — elk met een volledig curriculum van beginner tot gevorderd (A1–C2), grammatica, woordenschat, zinnen, Reading, Listening en meer. Voeg ze toe via Instellingen → Mijn talen."
     },
     "entry2": {
       "label": "Verbeterde leermiddelen",

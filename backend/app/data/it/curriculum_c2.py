@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.it._types import CurriculumUnit
+from app.data._types import CurriculumUnit
 
 C2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -112,5 +112,70 @@ C2_UNITS: list[CurriculumUnit] = [
         ],
         default_weeks=1,
         prerequisite_unit="c2-unit-5",
+    ),
+    CurriculumUnit(
+        id="c2-unit-7",
+        level="C2",
+        unit_number=7,
+        title="L'italofonia e le sfide contemporanee",
+        grammar_points=[
+            "italofonia-contemporanea",
+            "politica-linguistica-it",
+            "evoluzione-digitale-it",
+        ],
+        vocabulary_set_ids=["italofonia_it_c2", "digitale_it_c2"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        competency_checklist=[
+            "Descrive le istituzioni dell'italofonia (Accademia della Crusca, Società Dante Alighieri, Svizzera italiana) e analizza le dinamiche che definiscono la presenza dell'italiano nel mondo contemporaneo",
+            "Analizza criticamente le politiche linguistiche italiane (ruolo della Crusca, tutela delle minoranze linguistiche, rapporto dialetti/standard) collocandole nel loro contesto storico e politico",
+            "Identifica e contestualizza le innovazioni dell'italiano nell'era digitale: abbreviazioni, anglicismi, neologismi tecnologici, linguaggio dei social media",
+            "Confronta gli approcci alla politica linguistica in Italia, Svizzera italiana, Istria e tra le comunità italofone all'estero, valutandone punti di forza e limiti",
+            "Difende una posizione argomentata su una questione contemporanea della lingua italiana (anglicismi, linguaggio di genere, tutela dei dialetti) in un saggio di 300 parole",
+            "Dimostra una conoscenza sfumata del panorama italofono mondiale al di là degli stereotipi",
+        ],
+        default_weeks=2,
+        prerequisite_unit="c2-unit-6",
+    ),
+    CurriculumUnit(
+        id="c2-unit-8",
+        level="C2",
+        unit_number=8,
+        title="C2 consolidamento e bilancio finale",
+        grammar_points=[
+            "ripasso-congiuntivo",
+            "ripasso-condizionale",
+            "concordanza-di-genere",
+            "stile-letterario",
+            "voce-narrativa",
+            "figure-stilistiche",
+            "equivalenza",
+            "sfumature-traduzione",
+            "falsi-amici",
+            "evoluzione-linguistica",
+            "latinismi",
+            "prestiti-linguistici",
+            "generi-testuali",
+            "creativita-linguistica",
+            "editing",
+            "revisione",
+            "espressione-sfumata",
+            "integrazione-grammaticale",
+            "fluidita-nativa",
+            "italofonia-contemporanea",
+            "politica-linguistica-it",
+            "evoluzione-digitale-it",
+        ],
+        vocabulary_set_ids=["revisione_it_c2"],
+        lesson_types=["grammar", "vocabulary", "reading", "writing", "review"],
+        competency_checklist=[
+            "Produce un discorso spontaneo di 5 minuti in italiano su un tema astratto o polemico con una correttezza quasi nativa, una fluidità naturale e una ricchezza lessicale paragonabile a quella di un parlante italofono colto",
+            "Padroneggia l'intero sistema grammaticale dell'italiano senza errori sistematici — gli unici errori sono lapsus occasionali immediatamente autocorretti",
+            "Legge e interpreta criticamente un testo italiano denso di oltre 500 parole, individuandone la struttura argomentativa, i presupposti, gli impliciti culturali e le strategie retoriche",
+            "Scrive un saggio di 500 parole in registro sostenuto in italiano con padronanza completa della coerenza testuale, dei connettori, dell'ortografia e della punteggiatura",
+            "Svolge il ruolo di mediatore linguistico tra l'italiano e la propria lingua madre, riformulando, sintetizzando ed esplicitando senza distorsioni di significato",
+            "Dimostra una prestazione equivalente ai requisiti CILS C2 / PLIDA C2 / CELI 5 nella comprensione e produzione, orale e scritta",
+        ],
+        default_weeks=1,
+        prerequisite_unit="c2-unit-7",
     ),
 ]

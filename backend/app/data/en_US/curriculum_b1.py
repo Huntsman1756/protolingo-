@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en_US._types import CurriculumUnit
+from app.data._types import CurriculumUnit
 
 B1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -114,7 +114,7 @@ B1_UNITS: list[CurriculumUnit] = [
         level="B1",
         unit_number=6,
         title="Reported Speech",
-        grammar_points=["reported-speech-basics"],
+        grammar_points=["reported-speech-basics", "modal-verbs", "question-tags"],
         vocabulary_set_ids=["reporting_verbs_b1", "news_b1", "news_media_b1"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[

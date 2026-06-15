@@ -64,57 +64,67 @@ The lesson should take about 20-30 minutes. Include 3-5 exercises of mixed types
 For pronunciation exercises use this exact structure:
 {{
   "type": "pronunciation",
-  "question": "Listen and repeat:",
-  "options": ["Hint: focus on the specific sound or pattern"],
+  "question": "A short instruction in {target_language_name} (e.g. 'Repeat the following phrase:')",
+  "options": ["Hint in {target_language_name} about the specific sound or pattern to focus on"],
   "correct": "The exact {target_language_name} phrase the student must pronounce.",
-  "explanation": "What phonetic aspect this practices (e.g. -ing endings, linking sounds)"
+  "explanation": "What phonetic aspect this practices (describe in {target_language_name})."
 }}
 
-Return a JSON object:
+Return a JSON object using this exact schema:
 {{
   "lesson_type": "{lesson_type}",
-  "title": "Descriptive lesson title",
+  "title": "[lesson title in {target_language_name}]",
   "cefr_level": "{cefr_level}",
   "unit_id": "{unit_id}",
   "explanation": {{
-    "text": "Clear explanation targeted at {cefr_level}",
-    "key_points": ["point 1", "point 2"],
+    "text": "[clear grammatical/vocabulary explanation in {target_language_name}]",
+    "key_points": [
+      "[first key takeaway in {target_language_name}]",
+      "[second key takeaway]"
+    ],
     "examples": [
-      {{"sentence": "I work every day.", "note": "habitual action"}}
+      {{"sentence": "[natural example sentence in {target_language_name}]", "note": "[what this example shows]"}}
     ]
   }},
   "exercises": [
     {{
       "type": "multiple_choice",
-      "question": "She ___ (work) at the moment.",
-      "options": ["works", "is working", "worked", "has worked"],
-      "correct": "is working",
-      "explanation": "We use present continuous for actions happening now."
+      "question": "[sentence in {target_language_name} with a gap, or a direct question]",
+      "options": ["[option 1]", "[option 2]", "[option 3]", "[option 4]"],
+      "correct": "[the one correct option, copied exactly as written above]",
+      "explanation": "[why this is correct, in {target_language_name}]"
     }},
     {{
       "type": "fill_blank",
-      "question": "___ name is Maria. (she)",
+      "question": "[sentence in {target_language_name} with ___ marking the blank] [hint in parentheses]",
       "options": null,
-      "correct": "Her",
-      "explanation": "We use 'her' as the possessive adjective for she/her."
+      "correct": "[the word or phrase that fills the blank]",
+      "explanation": "[grammar rule behind the answer, in {target_language_name}]"
     }},
     {{
       "type": "free_write",
-      "question": "Write 2-3 sentences describing what you do every morning. Use the present simple.",
-      "options": ["Use at least two different verbs.", "Write complete sentences."],
-      "correct": "Sample: I wake up at 7. I eat breakfast and drink coffee.",
-      "explanation": "Evaluates use of present simple for routines."
+      "question": "[writing prompt in {target_language_name} with a specific task and requirements]",
+      "options": [
+        "[guideline or constraint for the student]",
+        "[another guideline]"
+      ],
+      "correct": "[model answer in {target_language_name}]",
+      "explanation": "[which skill or grammar point this exercise evaluates]"
     }}
   ],
   "vocabulary": [
-    {{"word": "currently", "definition": "at the present time", "example": "She is currently studying."}}
+    {{"word": "[word or phrase in {target_language_name}]", "definition": "[definition in target language]", "example": "[example sentence in {target_language_name}]"}}
   ],
-  "grammar_refs": ["present-continuous", "present-simple"]
+  "grammar_refs": ["[slug from valid_slugs list]", "[another slug]"]
 }}
+
+IMPORTANT — all content (explanations, questions, options, correct answers, vocabulary)
+must be entirely in {target_language_name}. Only this meta-prompt is in English.
 
 Before returning, verify:
 - Every fill_blank exercise has ___ inside the "question" field (not in "explanation").
 - No multiple_choice option starts with a letter or number prefix (A., B., 1., 2.).
+- All text visible to the student is in {target_language_name}.
 """
 
 FILL_BLANK_EVAL_PROMPT = """

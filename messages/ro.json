@@ -28,7 +28,16 @@
     "aboutMe": "Despre mine",
     "github": "GitHub",
     "footerProduct": "Produs",
-    "footerLegal": "Juridic"
+    "footerLegal": "Juridic",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Se încarcă...",
@@ -797,7 +806,7 @@
     "workflowStep5": "Folosește carduri flash pentru a antrena vocabularul în paralel",
     "workflowStep6": "Exersează conversația liberă cu tutorele AI",
     "q_language": "Ce limbă voi învăța?",
-    "a_language": "FreeLingo suportă în prezent mai multe limbi (engleză americană, engleză britanică, spaniolă, italiană, portugheză) și vom adăuga mai multe în timp. Când o nouă limbă devine disponibilă, o vei găsi în Setări → Limbile mele — adaug-o și începe să înveți imediat.",
+    "a_language": "FreeLingo suportă în prezent mai multe limbi (engleză americană, engleză britanică, franceză, germană, italiană, portugheză, spaniolă) și vom adăuga mai multe în timp. Când o nouă limbă devine disponibilă, o vei găsi în Setări → Limbile mele — adaug-o și începe să înveți imediat.",
     "q_assessment": "Ce este Evaluarea?",
     "a_assessment": "Un test generat de AI cu 15 de întrebări despre gramatică, vocabular, înțelegerea lecturii și transformarea propozițiilor, cu dificultate de la A1 la C1.",
     "q_studyPlan": "Ce este Planul de studiu și cum îl generez?",
@@ -973,6 +982,8 @@
     "es-ES": "Spaniolă",
     "it-IT": "Italiană",
     "pt-PT": "Portugheză",
+    "fr-FR": "Franceză",
+    "de-DE": "Germană",
     "en": "engleză",
     "es": "spaniolă",
     "it": "italiană",
@@ -981,7 +992,9 @@
     "it-IT-description": "Italiana vorbită în Italia.",
     "pt-PT-description": "Portugheza vorbită în Portugalia.",
     "en-US-description": "Engleza vorbită în Statele Unite.",
-    "en-GB-description": "Engleza vorbită în Regatul Unit."
+    "en-GB-description": "Engleza vorbită în Regatul Unit.",
+    "fr-FR-description": "Franceza vorbită în Franța.",
+    "de-DE-description": "Germana vorbită în Germania."
   },
   "onboarding": {
     "title": "Alege-ți limba",
@@ -1116,11 +1129,11 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Am înțeles",
     "entry1": {
-      "label": "Limbi noi de învățat",
-      "desc": "Spaniola, italiana și portugheza sunt acum disponibile — fiecare cu un curriculum complet de la începător la avansat (A1–C2), gramatică, vocabular, fraze, Reading, Listening și mai mult. Adaugă-le din Setări → Limbile mele."
+      "label": "Cinci limbi noi de învățat",
+      "desc": "franceză, germană, italiană, portugheză și spaniolă sunt acum disponibile — fiecare cu un curriculum complet de la începător la avansat (A1–C2), gramatică, vocabular, fraze, Reading, Listening și mai mult. Adaugă-le din Setări → Limbile mele."
     },
     "entry2": {
       "label": "Resurse didactice îmbunătățite",

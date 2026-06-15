@@ -18,9 +18,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Nelle domande, l'intonazione cambia ma l'ordine delle parole rimane lo stesso.",
         ],
         examples=[
-            GrammarExample(text="Io sono uno studente.", translation="I am a student."),
-            GrammarExample(text="Lei è molto simpatica.", translation="She is very nice."),
-            GrammarExample(text="Noi siamo a Roma.", translation="We are in Rome."),
+            GrammarExample(text="Io sono uno studente.", translation=None),
+            GrammarExample(text="Lei è molto simpatica.", translation=None),
+            GrammarExample(text="Noi siamo a Roma.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -51,11 +51,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La H iniziale è muta ma obbligatoria nella scrittura: distinguere 'ho' da 'o'.",
         ],
         examples=[
-            GrammarExample(text="Ho due fratelli.", translation="I have two brothers."),
-            GrammarExample(text="Quanti anni hai?", translation="How old are you?"),
-            GrammarExample(
-                text="Ho fame. Andiamo a mangiare?", translation="I'm hungry. Shall we go eat?"
-            ),
+            GrammarExample(text="Ho due fratelli.", translation=None),
+            GrammarExample(text="Quanti anni hai?", translation=None),
+            GrammarExample(text="Ho fame. Andiamo a mangiare?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -86,17 +84,15 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Lei formale richiede il verbo alla terza persona singolare.",
         ],
         examples=[
-            GrammarExample(
-                text="Parlo italiano.", translation="I speak Italian.", note="pronome omesso"
-            ),
+            GrammarExample(text="Parlo italiano.", translation=None, note="pronome omesso"),
             GrammarExample(
                 text="Io preferisco il caffè, lei preferisce il tè.",
-                translation="I prefer coffee, she prefers tea.",
+                translation=None,
                 note="contrasto",
             ),
             GrammarExample(
                 text="Lei come si chiama?",
-                translation="What is your name? (formal)",
+                translation=None,
                 note="Lei di cortesia",
             ),
         ],
@@ -129,14 +125,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "La / le per femminile.",
         ],
         examples=[
-            GrammarExample(text="Il libro è sul tavolo.", translation="The book is on the table."),
-            GrammarExample(text="Lo studente è italiano.", translation="The student is Italian."),
-            GrammarExample(
-                text="Gli amici arrivano domani.", translation="The friends arrive tomorrow."
-            ),
-            GrammarExample(
-                text="L'amica di Maria è francese.", translation="Maria's friend is French."
-            ),
+            GrammarExample(text="Il libro è sul tavolo.", translation=None),
+            GrammarExample(text="Lo studente è italiano.", translation=None),
+            GrammarExample(text="Gli amici arrivano domani.", translation=None),
+            GrammarExample(text="L'amica di Maria è francese.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -166,9 +158,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Aggettivi in -ese sono invariabili al femminile: francese, inglese.",
         ],
         examples=[
-            GrammarExample(text="Sono spagnolo.", translation="I am Spanish."),
-            GrammarExample(text="Lei è francese.", translation="She is French."),
-            GrammarExample(text="Loro sono tedeschi.", translation="They are German."),
+            GrammarExample(text="Sono spagnolo.", translation=None),
+            GrammarExample(text="Lei è francese.", translation=None),
+            GrammarExample(text="Loro sono tedeschi.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -200,15 +192,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il libro è interessante.",
-                translation="The book is interesting.",
+                translation=None,
                 note="-o → maschile",
             ),
-            GrammarExample(
-                text="La pizza è buona.", translation="The pizza is good.", note="-a → femminile"
-            ),
+            GrammarExample(text="La pizza è buona.", translation=None, note="-a → femminile"),
             GrammarExample(
                 text="Il problema è difficile.",
-                translation="The problem is difficult.",
+                translation=None,
                 note="-ma → maschile (eccezione)",
             ),
         ],
@@ -241,11 +231,11 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Un' con apostrofo per femminile davanti a vocale.",
         ],
         examples=[
-            GrammarExample(text="Ho un cane.", translation="I have a dog."),
-            GrammarExample(text="È uno studente bravo.", translation="He is a good student."),
+            GrammarExample(text="Ho un cane.", translation=None),
+            GrammarExample(text="È uno studente bravo.", translation=None),
             GrammarExample(
                 text="Cerco un'amica per uscire.",
-                translation="I'm looking for a friend to go out with.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -276,15 +266,15 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Loro è invariabile e vuole sempre l'articolo: la loro casa.",
         ],
         examples=[
-            GrammarExample(text="La mia casa è grande.", translation="My house is big."),
+            GrammarExample(text="La mia casa è grande.", translation=None),
             GrammarExample(
                 text="Mio padre è medico.",
-                translation="My father is a doctor.",
+                translation=None,
                 note="parentela → no articolo",
             ),
             GrammarExample(
                 text="Il loro cane è simpatico.",
-                translation="Their dog is nice.",
+                translation=None,
                 note="loro richiede articolo",
             ),
         ],
@@ -316,17 +306,13 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Aggettivi in -e: stessa forma per maschile e femminile singolare.",
         ],
         examples=[
-            GrammarExample(
-                text="Una casa bella e luminosa.", translation="A beautiful and bright house."
-            ),
+            GrammarExample(text="Una casa bella e luminosa.", translation=None),
             GrammarExample(
                 text="Un buon ristorante.",
-                translation="A good restaurant.",
+                translation=None,
                 note="buono prima del nome",
             ),
-            GrammarExample(
-                text="Le macchine rosse sono veloci.", translation="The red cars are fast."
-            ),
+            GrammarExample(text="Le macchine rosse sono veloci.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -357,14 +343,12 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Domande: *C'è un bagno qui?*",
         ],
         examples=[
-            GrammarExample(
-                text="C'è un gatto sul divano.", translation="There is a cat on the sofa."
-            ),
+            GrammarExample(text="C'è un gatto sul divano.", translation=None),
             GrammarExample(
                 text="Ci sono molte persone in piazza.",
-                translation="There are many people in the square.",
+                translation=None,
             ),
-            GrammarExample(text="Non c'è problema.", translation="There is no problem."),
+            GrammarExample(text="Non c'è problema.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -395,9 +379,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Il presente italiano traduce simple present, present continuous e present perfect.",
         ],
         examples=[
-            GrammarExample(text="Io parlo italiano.", translation="I speak Italian."),
-            GrammarExample(text="Tu mangi la pizza?", translation="Do you eat pizza?"),
-            GrammarExample(text="Noi abitiamo a Milano.", translation="We live in Milan."),
+            GrammarExample(text="Io parlo italiano.", translation=None),
+            GrammarExample(text="Tu mangi la pizza?", translation=None),
+            GrammarExample(text="Noi abitiamo a Milano.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -428,9 +412,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non confondere la 3ª singolare in -e con l'imperativo.",
         ],
         examples=[
-            GrammarExample(text="Io leggo un libro.", translation="I read a book."),
-            GrammarExample(text="Lui scrive una lettera.", translation="He writes a letter."),
-            GrammarExample(text="Voi correte ogni mattina.", translation="You run every morning."),
+            GrammarExample(text="Io leggo un libro.", translation=None),
+            GrammarExample(text="Lui scrive una lettera.", translation=None),
+            GrammarExample(text="Voi correte ogni mattina.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -460,9 +444,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Alcuni verbi ammettono entrambi i modelli: applaudo/applaudisco.",
         ],
         examples=[
-            GrammarExample(text="Io dormo otto ore.", translation="I sleep eight hours."),
-            GrammarExample(text="Lui capisce tutto.", translation="He understands everything."),
-            GrammarExample(text="Noi partiamo domani.", translation="We leave tomorrow."),
+            GrammarExample(text="Io dormo otto ore.", translation=None),
+            GrammarExample(text="Lui capisce tutto.", translation=None),
+            GrammarExample(text="Noi partiamo domani.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -493,9 +477,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Al passato prossimo i riflessivi usano sempre essere.",
         ],
         examples=[
-            GrammarExample(text="Mi chiamo Marco.", translation="My name is Marco."),
-            GrammarExample(text="A che ora ti alzi?", translation="What time do you get up?"),
-            GrammarExample(text="Ci divertiamo molto.", translation="We have a lot of fun."),
+            GrammarExample(text="Mi chiamo Marco.", translation=None),
+            GrammarExample(text="A che ora ti alzi?", translation=None),
+            GrammarExample(text="Ci divertiamo molto.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -525,9 +509,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Negativo: non mi piace / non mi piacciono.",
         ],
         examples=[
-            GrammarExample(text="Mi piace la pizza.", translation="I like pizza."),
-            GrammarExample(text="Ti piacciono i gatti?", translation="Do you like cats?"),
-            GrammarExample(text="Non ci piace aspettare.", translation="We don't like waiting."),
+            GrammarExample(text="Mi piace la pizza.", translation=None),
+            GrammarExample(text="Ti piacciono i gatti?", translation=None),
+            GrammarExample(text="Non ci piace aspettare.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -558,11 +542,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Potere non ha l'imperativo.",
         ],
         examples=[
-            GrammarExample(text="Devo andare al lavoro.", translation="I have to go to work."),
-            GrammarExample(text="Puoi aiutarmi?", translation="Can you help me?"),
-            GrammarExample(
-                text="Voglio imparare l'italiano.", translation="I want to learn Italian."
-            ),
+            GrammarExample(text="Devo andare al lavoro.", translation=None),
+            GrammarExample(text="Puoi aiutarmi?", translation=None),
+            GrammarExample(text="Voglio imparare l'italiano.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -592,11 +574,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Risposta breve: Neanche io. / Anche a me.",
         ],
         examples=[
-            GrammarExample(
-                text="Anch'io vado al cinema.", translation="I'm going to the cinema too."
-            ),
-            GrammarExample(text="Anche a me piace il mare.", translation="I like the sea too."),
-            GrammarExample(text="Neanch'io lo so.", translation="I don't know either."),
+            GrammarExample(text="Anch'io vado al cinema.", translation=None),
+            GrammarExample(text="Anche a me piace il mare.", translation=None),
+            GrammarExample(text="Neanch'io lo so.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -626,10 +606,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Mezzi di trasporto: in macchina, in autobus; ma: a piedi.",
         ],
         examples=[
-            GrammarExample(text="Vivo a Firenze.", translation="I live in Florence."),
-            GrammarExample(text="Andiamo in Spagna.", translation="We are going to Spain."),
-            GrammarExample(text="Il libro è sul tavolo.", translation="The book is on the table."),
-            GrammarExample(text="Vado dal dentista.", translation="I go to the dentist."),
+            GrammarExample(text="Vivo a Firenze.", translation=None),
+            GrammarExample(text="Andiamo in Spagna.", translation=None),
+            GrammarExample(text="Il libro è sul tavolo.", translation=None),
+            GrammarExample(text="Vado dal dentista.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -658,9 +638,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Irregolari: essere → sii; avere → abbi; sapere → sappi.",
         ],
         examples=[
-            GrammarExample(text="Ascolta questa canzone!", translation="Listen to this song!"),
-            GrammarExample(text="Non parlare così in fretta!", translation="Don't speak so fast!"),
-            GrammarExample(text="Finiamo il lavoro!", translation="Let's finish the work!"),
+            GrammarExample(text="Ascolta questa canzone!", translation=None),
+            GrammarExample(text="Non parlare così in fretta!", translation=None),
+            GrammarExample(text="Finiamo il lavoro!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -697,12 +677,12 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="È la prima volta che vengo in Italia.",
-                translation="It's the first time I come to Italy.",
+                translation=None,
             ),
-            GrammarExample(text="Abito al terzo piano.", translation="I live on the third floor."),
+            GrammarExample(text="Abito al terzo piano.", translation=None),
             GrammarExample(
                 text="Il mio secondo figlio si chiama Luca.",
-                translation="My second son is called Luca.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -736,15 +716,15 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Domani parlerò con il direttore.",
-                translation="Tomorrow I will speak with the director.",
+                translation=None,
             ),
             GrammarExample(
                 text="La prossima settimana andremo al mare.",
-                translation="Next week we will go to the beach.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sarà molto felice di vederti.",
-                translation="He will be very happy to see you.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -776,13 +756,11 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non si usa per piani futuri generici.",
         ],
         examples=[
-            GrammarExample(text="Sto per partire.", translation="I'm about to leave."),
-            GrammarExample(
-                text="Il film sta per cominciare.", translation="The movie is about to start."
-            ),
+            GrammarExample(text="Sto per partire.", translation=None),
+            GrammarExample(text="Il film sta per cominciare.", translation=None),
             GrammarExample(
                 text="Stavamo per arrivare quando si è rotta la macchina.",
-                translation="We were about to arrive when the car broke down.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -813,15 +791,9 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Non si scrivono con la lettera maiuscola.",
         ],
         examples=[
-            GrammarExample(
-                text="Lunedì vado dal dentista.", translation="On Monday I'm going to the dentist."
-            ),
-            GrammarExample(
-                text="Il sabato dormo fino a tardi.", translation="On Saturdays I sleep late."
-            ),
-            GrammarExample(
-                text="La domenica andiamo a messa.", translation="On Sundays we go to church."
-            ),
+            GrammarExample(text="Lunedì vado dal dentista.", translation=None),
+            GrammarExample(text="Il sabato dormo fino a tardi.", translation=None),
+            GrammarExample(text="La domenica andiamo a messa.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -855,27 +827,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Questo libro è molto interessante.",
-                translation="This book is very interesting.",
+                translation=None,
                 note="vicino a chi parla",
             ),
             GrammarExample(
                 text="Quella casa in fondo alla strada è di mia zia.",
-                translation="That house at the end of the street is my aunt's.",
+                translation=None,
                 note="lontano",
             ),
             GrammarExample(
                 text="Ciò che mi hai detto è incredibile.",
-                translation="What you told me is incredible.",
+                translation=None,
                 note="forma neutra",
             ),
             GrammarExample(
                 text="Quello studente è tedesco.",
-                translation="That student is German.",
+                translation=None,
                 note="quello + s+consonante",
             ),
             GrammarExample(
                 text="Questi biscotti sono buonissimi.",
-                translation="These biscuits are delicious.",
+                translation=None,
                 note="plurale vicino",
             ),
         ],
@@ -916,27 +888,27 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il libro è sul tavolo.",
-                translation="The book is on the table.",
+                translation=None,
                 note="su + il = sul",
             ),
             GrammarExample(
                 text="Andiamo al ristorante stasera.",
-                translation="We go to the restaurant tonight.",
+                translation=None,
                 note="a + il = al",
             ),
             GrammarExample(
                 text="Le chiavi sono nella borsa.",
-                translation="The keys are in the bag.",
+                translation=None,
                 note="in + la = nella",
             ),
             GrammarExample(
                 text="Il cane dei vicini abbaia sempre.",
-                translation="The neighbours' dog always barks.",
+                translation=None,
                 note="di + i = dei",
             ),
             GrammarExample(
                 text="La macchina è degli amici di Marco.",
-                translation="The car belongs to Marco's friends.",
+                translation=None,
                 note="di + gli = degli",
             ),
         ],

@@ -28,7 +28,16 @@
     "aboutMe": "À propos",
     "github": "GitHub",
     "footerProduct": "Produit",
-    "footerLegal": "Mentions légales"
+    "footerLegal": "Mentions légales",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Chargement...",
@@ -797,7 +806,7 @@
     "workflowStep5": "Utilisez les Fiches pour entraîner le vocabulaire en parallèle",
     "workflowStep6": "Pratiquez la conversation libre avec le Tuteur IA",
     "q_language": "Quelle langue vais-je apprendre ?",
-    "a_language": "FreeLingo prend actuellement en charge plusieurs langues (anglais américain, anglais britannique, espagnol, italien, portugais), et nous en ajouterons d'autres au fil du temps. Lorsqu'une nouvelle langue sera disponible, vous la trouverez dans Paramètres → Mes langues — ajoutez-la et commencez à apprendre tout de suite.",
+    "a_language": "FreeLingo prend actuellement en charge plusieurs langues (allemand, anglais américain, anglais britannique, espagnol, français, italien, portugais), et nous en ajouterons d'autres au fil du temps. Lorsqu'une nouvelle langue sera disponible, vous la trouverez dans Paramètres → Mes langues — ajoutez-la et commencez à apprendre tout de suite.",
     "q_assessment": "Qu’est-ce que l’Évaluation ?",
     "a_assessment": "Un test de 15 questions généré par IA couvrant la grammaire, le vocabulaire, la compréhension écrite et la transformation de phrases, avec une difficulté allant de A1 à C1. À la fin, vous obtenez votre niveau CECR, un score et une analyse de vos forces et faiblesses. Ce résultat alimente le Plan d’Étude et les Fiches générées.",
     "q_studyPlan": "Qu’est-ce que le Plan d’Étude et comment en générer un ?",
@@ -973,6 +982,8 @@
     "es-ES": "Espagnol",
     "it-IT": "Italien",
     "pt-PT": "Portugais",
+    "fr-FR": "Français",
+    "de-DE": "Allemand",
     "en": "anglais",
     "es": "espagnol",
     "it": "italien",
@@ -981,7 +992,9 @@
     "it-IT-description": "Italien parlé en Italie.",
     "pt-PT-description": "Portugais parlé au Portugal.",
     "en-US-description": "Anglais parlé aux États-Unis.",
-    "en-GB-description": "Anglais parlé au Royaume-Uni."
+    "en-GB-description": "Anglais parlé au Royaume-Uni.",
+    "fr-FR-description": "Français parlé en France.",
+    "de-DE-description": "Allemand parlé en Allemagne."
   },
   "onboarding": {
     "title": "Choisissez votre langue",
@@ -1116,11 +1129,11 @@
   },
   "whatsNew": {
     "title": "Nouveautés",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Compris",
     "entry1": {
-      "label": "Nouvelles langues à apprendre",
-      "desc": "L’espagnol, l’italien et le portugais sont désormais disponibles — chacun avec un programme complet du débutant à l’avancé (A1–C2), grammaire, vocabulaire, phrases, Reading, Listening et plus. Ajoutez-les depuis Paramètres → Mes langues."
+      "label": "Cinq nouvelles langues à apprendre",
+      "desc": "allemand, espagnol, français, italien et portugais sont désormais disponibles — chacun avec un programme complet du débutant à l’avancé (A1–C2), grammaire, vocabulaire, phrases, Reading, Listening et plus. Ajoutez-les depuis Paramètres → Mes langues."
     },
     "entry2": {
       "label": "Ressources pédagogiques améliorées",

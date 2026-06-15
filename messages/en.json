@@ -28,7 +28,16 @@
     "aboutMe": "About me",
     "github": "GitHub",
     "footerProduct": "Product",
-    "footerLegal": "Legal"
+    "footerLegal": "Legal",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Loading...",
@@ -797,7 +806,7 @@
     "workflowStep5": "Use Flashcards to train vocabulary in parallel",
     "workflowStep6": "Practice free conversation with the AI Tutor",
     "q_language": "What language will I learn?",
-    "a_language": "FreeLingo currently supports several languages (American English, British English, Spanish, Italian, Portuguese), and we will keep adding more over time. When a new language becomes available, you will find it in Settings → My Languages — add it and start learning right away.",
+    "a_language": "FreeLingo currently supports several languages (American English, British English, French, German, Italian, Portuguese, Spanish), and we will keep adding more over time. When a new language becomes available, you will find it in Settings → My Languages — add it and start learning right away.",
     "q_assessment": "What is the Assessment?",
     "a_assessment": "A 15-question AI-generated test covering grammar, vocabulary, reading comprehension, and sentence transformation, with difficulty ranging from A1 to C1. When you finish, you get your CEFR level, a score, and an analysis of your strengths and weaknesses. This result feeds into the Study Plan and generated Flashcards.",
     "q_studyPlan": "What is the Study Plan and how do I generate one?",
@@ -973,6 +982,8 @@
     "es-ES": "Spanish",
     "it-IT": "Italian",
     "pt-PT": "Portuguese",
+    "fr-FR": "French",
+    "de-DE": "German",
     "en": "English",
     "es": "Spanish",
     "it": "Italian",
@@ -981,7 +992,9 @@
     "it-IT-description": "Italian as spoken in Italy.",
     "pt-PT-description": "Portuguese as spoken in Portugal.",
     "en-US-description": "English as spoken in the United States.",
-    "en-GB-description": "English as spoken in the United Kingdom."
+    "en-GB-description": "English as spoken in the United Kingdom.",
+    "fr-FR-description": "French as spoken in France.",
+    "de-DE-description": "German as spoken in Germany."
   },
   "onboarding": {
     "title": "Choose your language",
@@ -1116,11 +1129,11 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Got it",
     "entry1": {
-      "label": "New languages to learn",
-      "desc": "Spanish, Italian, and Portuguese are now available — each with a full curriculum from beginner to advanced (A1–C2), grammar, vocabulary, phrases, Reading, Listening, and more. Add them from Settings → My Languages."
+      "label": "Five new languages to learn",
+      "desc": "French, German, Italian, Portuguese, and Spanish are now available — each with a full curriculum from beginner to advanced (A1–C2), grammar, vocabulary, phrases, Reading, Listening, and more. Add them from Settings → My Languages."
     },
     "entry2": {
       "label": "Expanded learning resources",

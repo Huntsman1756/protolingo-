@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.4] - 2026-06-15
+
+### Added
+- **German and French curricula completed**: all didactic content for German (`de-DE`) and French (`fr-FR`) is now fully translated — assessment question banks, phrasebook contexts, and curriculum competency checklists are entirely in the target language with no English remnants.
+
+### Fixed
+- German assessment bank: 2 vocabulary questions had options in English → translated to German.
+- German phrasebook: ~300 phrase contexts corrected from mixed English/German to pure German.
+- German curriculum: all 46 competency checklists across A1–C2 corrected to German (removed mixed language, hanging particles, grammar errors, and typos).
+
 ## [1.8.3] - 2026-06-14
 
 ### Fixed
