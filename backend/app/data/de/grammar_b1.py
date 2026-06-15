@@ -28,24 +28,24 @@ Bei **sein, haben, Modalverben** und einigen häufigen Verben verwendet man die 
         examples=[
             GrammarExample(
                 text="Ich würde gern nach Berlin reisen.",
-                translation="I would like to travel to Berlin.",
+                translation=None,
             ),
             GrammarExample(
-                text="Würdest du mir bitte helfen?", translation="Would you please help me?"
+                text="Würdest du mir bitte helfen?", translation=None
             ),
             GrammarExample(
                 text="An deiner Stelle würde ich mehr lernen.",
-                translation="If I were you, I would study more.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wir würden gern einen Tisch reservieren.",
-                translation="We would like to reserve a table.",
+                translation=None,
             ),
             GrammarExample(
-                text="Was würden Sie tun?", translation="What would you do?", note="formell"
+                text="Was würden Sie tun?", translation=None, note="formell"
             ),
             GrammarExample(
-                text="Ich würde sagen, das ist richtig.", translation="I would say that is correct."
+                text="Ich würde sagen, das ist richtig.", translation=None
             ),
         ],
         common_mistakes=[
@@ -93,23 +93,23 @@ Modalverben im Konjunktiv II: können → könnte, müssen → müsste, dürfen 
         ],
         examples=[
             GrammarExample(
-                text="Ich wäre gern in Urlaub.", translation="I would like to be on vacation."
+                text="Ich wäre gern in Urlaub.", translation=None
             ),
             GrammarExample(
-                text="Hättest du morgen Zeit?", translation="Would you have time tomorrow?"
+                text="Hättest du morgen Zeit?", translation=None
             ),
             GrammarExample(
-                text="Das könnte schwierig werden.", translation="That could become difficult."
+                text="Das könnte schwierig werden.", translation=None
             ),
             GrammarExample(
                 text="Du solltest mehr Wasser trinken.",
-                translation="You should drink more water.",
+                translation=None,
                 note="Ratschlag",
             ),
-            GrammarExample(text="Ich möchte gern bezahlen.", translation="I would like to pay."),
+            GrammarExample(text="Ich möchte gern bezahlen.", translation=None),
             GrammarExample(
                 text="An deiner Stelle wäre ich vorsichtiger.",
-                translation="If I were you, I would be more careful.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -152,29 +152,29 @@ Im Deutschen wird Höflichkeit nicht nur über *bitte* und *danke* ausgedrückt,
         examples=[
             GrammarExample(
                 text="Könnten Sie mir bitte helfen?",
-                translation="Could you please help me?",
+                translation=None,
                 note="höfliche Bitte",
             ),
             GrammarExample(
-                text="Ich hätte gern ein Glas Wasser.", translation="I would like a glass of water."
+                text="Ich hätte gern ein Glas Wasser.", translation=None
             ),
             GrammarExample(
                 text="Würdest du bitte das Fenster schließen?",
-                translation="Would you please close the window?",
+                translation=None,
             ),
             GrammarExample(
                 text="Dürfte ich kurz stören?",
-                translation="May I interrupt briefly?",
+                translation=None,
                 note="sehr formell",
             ),
             GrammarExample(
                 text="Das wäre alles, danke.",
-                translation="That would be all, thank you.",
+                translation=None,
                 note="in Restaurant/Kaufhaus",
             ),
             GrammarExample(
                 text="Könnten Sie das bitte wiederholen?",
-                translation="Could you please repeat that?",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -220,25 +220,25 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
         examples=[
             GrammarExample(
                 text="Wenn ich mehr Zeit hätte, würde ich reisen.",
-                translation="If I had more time, I would travel.",
+                translation=None,
             ),
             GrammarExample(
-                text="Ich wünschte, ich könnte fliegen.", translation="I wish I could fly."
+                text="Ich wünschte, ich könnte fliegen.", translation=None
             ),
             GrammarExample(
                 text="Hätte ich doch auf meine Eltern gehört!",
-                translation="If only I had listened to my parents!",
+                translation=None,
             ),
             GrammarExample(
-                text="Wäre es doch schon Sommer!", translation="If only it were already summer!"
+                text="Wäre es doch schon Sommer!", translation=None
             ),
             GrammarExample(
                 text="Er tut so, als ob er alles wüsste.",
-                translation="He acts as though he knew everything.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wenn ich du wäre, würde ich den Job annehmen.",
-                translation="If I were you, I would take the job.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -283,28 +283,28 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
         ],
         examples=[
             GrammarExample(
-                text="Das Haus wird gerade gebaut.", translation="The house is being built."
+                text="Das Haus wird gerade gebaut.", translation=None
             ),
             GrammarExample(
                 text="Mein Fahrrad wurde gestern gestohlen.",
-                translation="My bike was stolen yesterday.",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Rechnung ist schon bezahlt worden.",
-                translation="The bill has already been paid.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Museum wird von vielen Touristen besucht.",
-                translation="The museum is visited by many tourists.",
+                translation=None,
                 note="mit Agens",
             ),
             GrammarExample(
                 text="Die Stadt wurde durch ein Erdbeben zerstört.",
-                translation="The city was destroyed by an earthquake.",
+                translation=None,
                 note="mit durch + Ursache",
             ),
             GrammarExample(
-                text="Hier wird Deutsch gesprochen.", translation="German is spoken here."
+                text="Hier wird Deutsch gesprochen.", translation=None
             ),
         ],
         common_mistakes=[
@@ -349,23 +349,23 @@ Bildung: **sein** (konjugiert) + **Partizip II** — Das Fenster **ist** geöffn
         examples=[
             GrammarExample(
                 text="Die Tür ist geschlossen.",
-                translation="The door is closed.",
+                translation=None,
                 note="Zustand jetzt",
             ),
             GrammarExample(
                 text="Das Geschäft war gestern geschlossen.",
-                translation="The shop was closed yesterday.",
+                translation=None,
             ),
             GrammarExample(
-                text="Die Hausaufgaben sind gemacht.", translation="The homework is done."
+                text="Die Hausaufgaben sind gemacht.", translation=None
             ),
             GrammarExample(
-                text="Ist der Tisch schon reserviert?", translation="Is the table already reserved?"
+                text="Ist der Tisch schon reserviert?", translation=None
             ),
             GrammarExample(
-                text="Alle Probleme sind gelöst.", translation="All problems are solved."
+                text="Alle Probleme sind gelöst.", translation=None
             ),
-            GrammarExample(text="Das Auto ist repariert.", translation="The car is repaired."),
+            GrammarExample(text="Das Auto ist repariert.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -412,27 +412,27 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         ],
         examples=[
             GrammarExample(
-                text="Das Auto muss repariert werden.", translation="The car must be repaired."
+                text="Das Auto muss repariert werden.", translation=None
             ),
             GrammarExample(
                 text="Der Termin kann verschoben werden.",
-                translation="The appointment can be postponed.",
+                translation=None,
             ),
             GrammarExample(
-                text="Hier darf nicht geraucht werden.", translation="Smoking is not allowed here."
+                text="Hier darf nicht geraucht werden.", translation=None
             ),
             GrammarExample(
                 text="Die Rechnung soll bis Freitag bezahlt werden.",
-                translation="The bill should be paid by Friday.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich weiß, dass der Fehler korrigiert werden muss.",
-                translation="I know that the mistake must be corrected.",
+                translation=None,
                 note="Nebensatz",
             ),
             GrammarExample(
                 text="Die Fenster können nicht geöffnet werden.",
-                translation="The windows cannot be opened.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -474,27 +474,27 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         examples=[
             GrammarExample(
                 text="Nachdem ich gegessen hatte, ging ich ins Kino.",
-                translation="After I had eaten, I went to the cinema.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er war schon gegangen, als ich ankam.",
-                translation="He had already left when I arrived.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich hatte den Film schon gesehen, deshalb bin ich nicht mitgekommen.",
-                translation="I had already seen the film.",
+                translation=None,
             ),
             GrammarExample(
                 text="Bevor sie nach Berlin zog, hatte sie in München gewohnt.",
-                translation="Before she moved to Berlin, she had lived in Munich.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wir hatten die Tickets schon gekauft, als das Konzert abgesagt wurde.",
-                translation="We had already bought the tickets.",
+                translation=None,
             ),
             GrammarExample(
                 text="Nachdem er das Buch gelesen hatte, schrieb er eine Rezension.",
-                translation="After he had read the book, he wrote a review.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -547,29 +547,29 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         examples=[
             GrammarExample(
                 text="Als ich ein Kind war, wohnte ich in Köln.",
-                translation="When I was a child, I lived in Cologne.",
+                translation=None,
                 note="einmalig, Vergangenheit",
             ),
             GrammarExample(
                 text="Wenn ich nach Berlin komme, besuche ich dich.",
-                translation="When(ever) I come to Berlin, I visit you.",
+                translation=None,
                 note="wiederholt/Zukunft",
             ),
             GrammarExample(
                 text="Nachdem sie gefrühstückt hatte, ging sie zur Arbeit.",
-                translation="After she had breakfast, she went to work.",
+                translation=None,
             ),
             GrammarExample(
                 text="Bevor du gehst, mach bitte das Fenster zu.",
-                translation="Before you leave, please close the window.",
+                translation=None,
             ),
             GrammarExample(
                 text="Während ich koche, kannst du den Tisch decken.",
-                translation="While I cook, you can set the table.",
+                translation=None,
             ),
             GrammarExample(
                 text="Seitdem er in Berlin wohnt, ist er glücklicher.",
-                translation="Since he has been living in Berlin, he is happier.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -613,28 +613,28 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         ],
         examples=[
             GrammarExample(
-                text="Ich versuche, mehr zu schlafen.", translation="I try to sleep more."
+                text="Ich versuche, mehr zu schlafen.", translation=None
             ),
             GrammarExample(
                 text="Es ist wichtig, jeden Tag zu üben.",
-                translation="It is important to practice every day.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er hat vergessen, die Tür zuzumachen.",
-                translation="He forgot to close the door.",
+                translation=None,
                 note="trennbar: zuzumachen",
             ),
             GrammarExample(
                 text="Ich hoffe, dich bald wiederzusehen.",
-                translation="I hope to see you again soon.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie bat mich, das Fenster zu öffnen.",
-                translation="She asked me to open the window.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es freut mich, dich kennenzulernen.",
-                translation="I'm pleased to meet you.",
+                translation=None,
                 note="trennbar: kennenzulernen",
             ),
         ],
@@ -679,29 +679,29 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         examples=[
             GrammarExample(
                 text="Ich lerne Deutsch, um in Berlin zu arbeiten.",
-                translation="I learn German to work in Berlin.",
+                translation=None,
                 note="gleiches Subjekt",
             ),
             GrammarExample(
                 text="Er spart Geld, damit seine Kinder studieren können.",
-                translation="He saves money so that his children can study.",
+                translation=None,
                 note="verschiedene Subjekte",
             ),
             GrammarExample(
                 text="Sie macht Sport, um fit zu bleiben.",
-                translation="She does sports to stay fit.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich schreibe es auf, damit du es nicht vergisst.",
-                translation="I write it down so that you don't forget it.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wir fahren früher los, um den Stau zu vermeiden.",
-                translation="We leave earlier to avoid the traffic jam.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er erklärt alles langsam, damit alle ihn verstehen.",
-                translation="He explains everything slowly so that everyone understands him.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -749,28 +749,28 @@ Einsilbige Nomen bekommen oft **-es**: *des Mann**es**, des Jahr**es***. Mehrsil
         examples=[
             GrammarExample(
                 text="Das Auto meines Bruders ist kaputt.",
-                translation="My brother's car is broken.",
+                translation=None,
             ),
             GrammarExample(
-                text="Die Farbe des Himmels ist blau.", translation="The color of the sky is blue."
+                text="Die Farbe des Himmels ist blau.", translation=None
             ),
             GrammarExample(
                 text="Wegen des Regens bleiben wir zu Hause.",
-                translation="Because of the rain we are staying at home.",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Hauptstadt Deutschlands ist Berlin.",
-                translation="The capital of Germany is Berlin.",
+                translation=None,
                 note="Genitiv mit -(e)s",
             ),
             GrammarExample(
                 text="Das Fahrrad der Nachbarin wurde gestohlen.",
-                translation="The neighbor's bike was stolen.",
+                translation=None,
                 note="feminin Genitiv",
             ),
             GrammarExample(
                 text="Trotz der Kälte gingen wir spazieren.",
-                translation="Despite the cold we went for a walk.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -811,27 +811,27 @@ In der gesprochenen Sprache wird oft **Dativ** statt Genitiv verwendet: *Wegen d
         examples=[
             GrammarExample(
                 text="Wegen des Wetters fällt das Fest aus.",
-                translation="Because of the weather the party is cancelled.",
+                translation=None,
             ),
             GrammarExample(
                 text="Trotz der Kälte gingen sie schwimmen.",
-                translation="Despite the cold, they went swimming.",
+                translation=None,
             ),
             GrammarExample(
                 text="Während des Films bitte nicht sprechen.",
-                translation="Please do not talk during the film.",
+                translation=None,
             ),
             GrammarExample(
                 text="Statt eines Autos kaufte er ein Fahrrad.",
-                translation="Instead of a car, he bought a bicycle.",
+                translation=None,
             ),
             GrammarExample(
                 text="Innerhalb eines Jahres hat sie Deutsch gelernt.",
-                translation="Within a year she learned German.",
+                translation=None,
             ),
             GrammarExample(
                 text="Aufgrund der hohen Nachfrage ist das Produkt ausverkauft.",
-                translation="Due to high demand, the product is sold out.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -873,26 +873,26 @@ Wenn die Form mit dem Indikativ identisch ist (z.B. *wir machen*), wird **Konjun
         examples=[
             GrammarExample(
                 text="Er sagte, er sei krank.",
-                translation="He said he was sick.",
+                translation=None,
                 note="Konjunktiv I von sein",
             ),
             GrammarExample(
                 text="Sie behauptet, sie habe nichts gewusst.",
-                translation="She claims she knew nothing.",
+                translation=None,
                 note="Konjunktiv I von haben",
             ),
             GrammarExample(
                 text="Der Politiker erklärte, die Lage sei stabil.",
-                translation="The politician explained the situation was stable.",
+                translation=None,
             ),
-            GrammarExample(text="Man sagt, er lese viel.", translation="They say he reads a lot."),
+            GrammarExample(text="Man sagt, er lese viel.", translation=None),
             GrammarExample(
                 text="Der Arzt sagte, ich solle mehr Sport machen.",
-                translation="The doctor said I should do more sport.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie meint, das Wetter werde besser.",
-                translation="She thinks the weather will get better.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -932,27 +932,27 @@ In der gesprochenen Sprache wird die indirekte Rede meist mit Indikativ verwende
             "Falls Konjunktiv I = Indikativ, Ersatz durch Konjunktiv II.",
         ],
         examples=[
-            GrammarExample(text="Er sagt, er sei müde.", translation="He says he is tired."),
+            GrammarExample(text="Er sagt, er sei müde.", translation=None),
             GrammarExample(
                 text="Sie fragte, ob ich kommen könne.",
-                translation="She asked whether I could come.",
+                translation=None,
             ),
             GrammarExample(
                 text="Der Chef meinte, wir sollten mehr arbeiten.",
-                translation="The boss thought we should work more.",
+                translation=None,
                 note="sollen als Ersatzform",
             ),
             GrammarExample(
                 text="Er wollte wissen, wo ich wohne.",
-                translation="He wanted to know where I lived.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie behauptet, sie habe ihn nicht gesehen.",
-                translation="She claims she didn't see him.",
+                translation=None,
             ),
             GrammarExample(
                 text="Der Arzt riet ihm, er solle mit dem Rauchen aufhören.",
-                translation="The doctor advised him to stop smoking.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -994,27 +994,27 @@ In der gesprochenen Sprache wird die indirekte Rede meist mit Indikativ verwende
         examples=[
             GrammarExample(
                 text="Er spricht sowohl Deutsch als auch Französisch.",
-                translation="He speaks both German and French.",
+                translation=None,
             ),
             GrammarExample(
                 text="Du kannst entweder mit dem Bus oder mit der Bahn fahren.",
-                translation="You can go either by bus or by train.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich trinke weder Kaffee noch Alkohol.",
-                translation="I drink neither coffee nor alcohol.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie ist zwar klein, aber sehr stark.",
-                translation="She is small, but very strong.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Konzert war nicht nur laut, sondern auch unglaublich gut.",
-                translation="The concert was not only loud but also incredibly good.",
+                translation=None,
             ),
             GrammarExample(
                 text="Je mehr ich lerne, desto sicherer werde ich.",
-                translation="The more I learn, the more confident I become.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -1061,26 +1061,26 @@ Ohne Verneinung oder *nur* funktioniert die Konstruktion standardsprachlich nich
         examples=[
             GrammarExample(
                 text="Du brauchst heute nicht zu arbeiten.",
-                translation="You don't need to work today.",
+                translation=None,
             ),
             GrammarExample(
-                text="Ihr braucht keine Angst zu haben.", translation="You don't need to be afraid."
+                text="Ihr braucht keine Angst zu haben.", translation=None
             ),
             GrammarExample(
                 text="Er braucht nicht mitzukommen.",
-                translation="He doesn't need to come along.",
+                translation=None,
                 note="trennbar: mitzukommen",
             ),
             GrammarExample(
                 text="Sie brauchen nur den Knopf zu drücken.",
-                translation="You only need to press the button.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das brauchst du nicht zu verstehen.",
-                translation="You don't need to understand that.",
+                translation=None,
             ),
             GrammarExample(
-                text="Wir brauchen uns nicht zu beeilen.", translation="We don't need to hurry."
+                text="Wir brauchen uns nicht zu beeilen.", translation=None
             ),
         ],
         common_mistakes=[
@@ -1129,26 +1129,26 @@ Im Perfekt mit Doppelinfinitiv: *Er hat sein Auto reparieren lassen.* (nicht: ge
         examples=[
             GrammarExample(
                 text="Meine Eltern lassen mich lange aufbleiben.",
-                translation="My parents let me stay up late.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich lasse mein Auto reparieren.",
-                translation="I am having my car repaired.",
+                translation=None,
                 note="Veranlassung",
             ),
-            GrammarExample(text="Lass mich in Ruhe!", translation="Leave me alone!"),
+            GrammarExample(text="Lass mich in Ruhe!", translation=None),
             GrammarExample(
                 text="Das Problem lässt sich leicht lösen.",
-                translation="The problem can be easily solved.",
+                translation=None,
                 note="Passiversatz",
             ),
             GrammarExample(
                 text="Hast du deine Tasche im Zug gelassen?",
-                translation="Did you leave your bag on the train?",
+                translation=None,
             ),
             GrammarExample(
                 text="Er hat sich einen neuen Anzug machen lassen.",
-                translation="He had a new suit made.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -1192,32 +1192,32 @@ Genitiv maskulin/neutral: Nomen bekommt -(e)s: *des Lehrers, meines Autos*.""",
         examples=[
             GrammarExample(
                 text="Ich gebe dem Mann den Schlüssel.",
-                translation="I give the man the key.",
+                translation=None,
                 note="Dat. + Akk.",
             ),
             GrammarExample(
                 text="Das Auto meines Vaters ist neu.",
-                translation="My father's car is new.",
+                translation=None,
                 note="Genitiv + -s",
             ),
             GrammarExample(
                 text="Ich habe keinen Hunger und keine Zeit.",
-                translation="I am not hungry and have no time.",
+                translation=None,
                 note="Negativartikel Akk.",
             ),
             GrammarExample(
                 text="Sie spricht mit ihren Kindern.",
-                translation="She speaks with her children.",
+                translation=None,
                 note="Possessiv Dativ Plural + -n",
             ),
             GrammarExample(
                 text="Wegen eines Unfalls kam es zu Verspätungen.",
-                translation="Due to an accident there were delays.",
+                translation=None,
                 note="Genitiv + -s",
             ),
             GrammarExample(
                 text="Zu Beginn des Jahres fahren wir in Urlaub.",
-                translation="At the beginning of the year we go on vacation.",
+                translation=None,
                 note="Genitiv",
             ),
         ],
@@ -1268,30 +1268,30 @@ Dativ: sich etwas anziehen, sich etwas waschen, sich etwas vorstellen, sich etwa
         examples=[
             GrammarExample(
                 text="Ich freue mich auf den Urlaub.",
-                translation="I'm looking forward to the vacation.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er interessiert sich für Geschichte.",
-                translation="He is interested in history.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich wasche mir die Hände.",
-                translation="I wash my hands.",
+                translation=None,
                 note="Dativ: wem? → mir",
             ),
             GrammarExample(
                 text="Kannst du dir das vorstellen?",
-                translation="Can you imagine that?",
+                translation=None,
                 note="Dativ",
             ),
             GrammarExample(
                 text="Wir haben uns gestern im Park getroffen.",
-                translation="We met yesterday in the park.",
+                translation=None,
                 note="Perfekt",
             ),
             GrammarExample(
                 text="Beeil dich! Der Bus kommt gleich.",
-                translation="Hurry up! The bus is coming soon.",
+                translation=None,
             ),
         ],
         common_mistakes=[

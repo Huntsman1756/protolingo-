@@ -16,7 +16,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Qualquer que seja a decisao, estou de acordo.",
-                translation="Whatever the decision may be, I agree.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -41,11 +41,11 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Se estudares, passas.", translation="If you study, you will pass."
+                text="Se estudares, passas.", translation=None
             ),
             GrammarExample(
                 text="Se estudasses, passavas.",
-                translation="If you studied, you would pass.",
+                translation=None,
                 note="coloquial EP",
             ),
         ],
@@ -72,12 +72,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Enviar-lhe-ei os documentos amanha.",
-                translation="I will send you the documents tomorrow.",
+                translation=None,
                 note="formal",
             ),
             GrammarExample(
                 text="Poder-se-ia argumentar que...",
-                translation="One could argue that...",
+                translation=None,
                 note="academico",
             ),
         ],
@@ -105,7 +105,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O sol morria no horizonte, tingindo o Tejo de ouro liquido.",
-                translation="The sun was dying on the horizon, dyeing the Tagus with liquid gold.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -128,7 +128,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Maria abriu a porta devagar, sem saber que o destino a esperava. (omnisciente)",
-                translation="Maria slowly opened the door, not knowing that fate awaited her.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -151,11 +151,11 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O cheiro doce da manha. (sinestesia)",
-                translation="The sweet smell of the morning.",
+                translation=None,
             ),
             GrammarExample(
                 text="O vento varria as velhas vielas. (aliteracao)",
-                translation="The wind swept the old alleys.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -177,7 +177,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Custou os olhos da cara. -> It cost an arm and a leg.",
-                translation="equivalencia funcional",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -204,10 +204,10 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Tenho andado a pensar nisso. -> I have been thinking about that.",
-                translation="composto -> continuous",
+                translation=None,
             ),
             GrammarExample(
-                text="Que saudades! -> I miss you so much!", translation="conceito cultural"
+                text="Que saudades! -> I miss you so much!", translation=None
             ),
         ],
         common_mistakes=[
@@ -234,11 +234,11 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Atualmente moro em Lisboa. -> I currently live in Lisbon.",
-                translation="NOT: Actually",
+                translation=None,
             ),
             GrammarExample(
                 text="Tenho um compromisso as tres. -> I have an appointment at three.",
-                translation="NOT: compromise",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -263,9 +263,9 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Latim: populu -> Portugues: povo", translation="queda inter vocalica"
+                text="Latim: populu -> Portugues: povo", translation=None
             ),
-            GrammarExample(text="Latim: plenu -> Portugues: cheio", translation="palatalizacao"),
+            GrammarExample(text="Latim: plenu -> Portugues: cheio", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -290,11 +290,11 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="A seguranca e uma condicao sine qua non.",
-                translation="Security is a sine qua non condition.",
+                translation=None,
             ),
             GrammarExample(
                 text="Grosso modo, a proposta e aceitavel.",
-                translation="Roughly speaking, the proposal is acceptable.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -319,9 +319,9 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Alimentos, ciencia, arquitetura.",
         ],
         examples=[
-            GrammarExample(text="azeite (az-zayt)", translation="olive oil"),
-            GrammarExample(text="arroz (ar-ruzz)", translation="rice"),
-            GrammarExample(text="algebra (al-jabr)", translation="algebra"),
+            GrammarExample(text="azeite (az-zayt)", translation=None),
+            GrammarExample(text="arroz (ar-ruzz)", translation=None),
+            GrammarExample(text="algebra (al-jabr)", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -346,7 +346,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O presente relatorio apresenta os resultados do inquerito.",
-                translation="This report presents the survey results.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -371,11 +371,11 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Vou googlar esse termo. (neologismo)",
-                translation="I am going to Google that term.",
+                translation=None,
             ),
             GrammarExample(
                 text="Nao e so ver, e prever! (trocadilho)",
-                translation="It is not just seeing, it is foreseeing!",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -397,7 +397,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Rever: Os aluno terminou -> Os alunos terminaram.", translation="concordancia"
+                text="Rever: Os aluno terminou -> Os alunos terminaram.", translation=None
             ),
         ],
         common_mistakes=[
@@ -420,11 +420,11 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="E indubitavel que a medida trouxe beneficios.",
-                translation="It is unquestionable.",
+                translation=None,
             ),
             GrammarExample(
                 text="Diria que a situacao e complexa.",
-                translation="I would say the situation is complex.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -452,7 +452,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se eu tivesse sabido que seria tao dificil, ter-me-ia preparado melhor.",
-                translation="If I had known it would be so difficult, I would have prepared better.",
+                translation=None,
                 note="integracao completa",
             ),
         ],
@@ -481,7 +481,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="A fluencia nao e so falar corretamente -- e pensar, sentir e sonhar em portugues.",
-                translation="Fluency is not just speaking correctly -- it is thinking, feeling, and dreaming in Portuguese.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -507,15 +507,15 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Vou comer um abacaxi com tapioca.",
-                translation="I am going to eat a pineapple with tapioca.",
+                translation=None,
             ),
             GrammarExample(
                 text="O tucano e a arara são aves típicas do Brasil.",
-                translation="The toucan and the macaw are typical Brazilian birds.",
+                translation=None,
             ),
             GrammarExample(
                 text="A capivara é o maior roedor do mundo.",
-                translation="The capybara is the largest rodent in the world.",
+                translation=None,
             ),
         ],
         common_mistakes=[

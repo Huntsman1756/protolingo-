@@ -21,15 +21,15 @@ Satzklammer-Management: nicht mehr als ~15 Wörter zwischen Klammerteilen. Recht
         examples=[
             GrammarExample(
                 text="Ich glaube, dass er, obwohl er wenig Erfahrung hat, die Aufgabe, die ihm gestellt wurde, gut lösen wird.",
-                translation="I believe that although he has little experience, he will solve the task well.",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Frage, ob die Maßnahmen, die die Regierung ergriffen hat, ausreichen, wird kontrovers diskutiert.",
-                translation="The question of whether the measures are sufficient is controversially discussed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Was immer auch geschehen mag — wir werden eine Lösung finden, die für alle tragbar ist.",
-                translation="Whatever may happen, we will find a solution acceptable for everyone.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -68,22 +68,22 @@ Modi-Mischung: Indikativ Hauptsatz + Konjunktiv I Nebensatz = ok. Konjunktiv II 
         examples=[
             GrammarExample(
                 text="Er sagte, er sei krank gewesen.",
-                translation="He said he had been sick.",
+                translation=None,
                 note="Konjunktiv I Perfekt",
             ),
             GrammarExample(
                 text="Wenn ich mehr Zeit gehabt hätte, wäre ich gekommen.",
-                translation="If I had had more time, I would have come.",
+                translation=None,
                 note="Konjunktiv II Vergangenheit",
             ),
             GrammarExample(
                 text="Man nehme 200g Mehl.",
-                translation="Take 200g of flour.",
+                translation=None,
                 note="Konjunktiv I als Aufforderung",
             ),
             GrammarExample(
                 text="Gehen wir doch heute Abend ins Kino!",
-                translation="Let's go to the cinema!",
+                translation=None,
                 note="Adhortativ",
             ),
         ],
@@ -118,18 +118,18 @@ Stilbrüche: bewusst = Stilmittel, ungewollt = unprofessionell.""",
             "Formell ist nicht per se besser — informell ist in informellen Kontexten richtig.",
         ],
         examples=[
-            GrammarExample(text="Haste mal Feuer? (umgangssprachlich)", translation="Got a light?"),
+            GrammarExample(text="Haste mal Feuer? (umgangssprachlich)", translation=None),
             GrammarExample(
                 text="Könntest du mir bitte Feuer geben? (standard)",
-                translation="Could you give me a light?",
+                translation=None,
             ),
             GrammarExample(
                 text="Dürfte ich Sie um Feuer bitten? (gehoben)",
-                translation="Might I ask you for a light?",
+                translation=None,
             ),
             GrammarExample(
                 text="Es wäre mir eine Ehre, wenn Sie mir Feuer geben würden. (ironisch-gehoben)",
-                translation="It would be an honor if you would give me a light.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -167,22 +167,22 @@ Auf C2-Niveau werden Stilmittel aktiv im eigenen Schreiben eingesetzt.""",
         examples=[
             GrammarExample(
                 text="Der Wind heulte um das Haus wie ein verletztes Tier.",
-                translation="The wind howled around the house like a wounded animal.",
+                translation=None,
                 note="Vergleich + Personifikation",
             ),
             GrammarExample(
                 text="Das Weiße Haus dementierte die Vorwürfe.",
-                translation="The White House denied the accusations.",
+                translation=None,
                 note="Metonymie",
             ),
             GrammarExample(
                 text="Ich kam, sah und siegte.",
-                translation="I came, I saw, I conquered.",
+                translation=None,
                 note="Parallelismus + Klimax",
             ),
             GrammarExample(
                 text="O Freiheit, wie lange muss man noch auf dich warten?",
-                translation="O freedom, how much longer must one wait?",
+                translation=None,
                 note="Apostrophe",
             ),
         ],
@@ -215,22 +215,22 @@ Narrative Distanz: nah (Innerer Monolog) → mittel (Erlebte Rede) → fern (neu
         examples=[
             GrammarExample(
                 text="Ich wusste sofort, dass etwas nicht stimmte.",
-                translation="I immediately knew something was wrong.",
+                translation=None,
                 note="Ich-Erzähler",
             ),
             GrammarExample(
                 text="Herr Meier wusste nicht, dass ihn eine Überraschung erwartete.",
-                translation="Mr. Meier did not know a surprise awaited him.",
+                translation=None,
                 note="auktorial, Vorausdeutung",
             ),
             GrammarExample(
                 text="Er blickte aus dem Fenster. Wie lange sollte das noch so weitergehen?",
-                translation="He looked out the window. How much longer was this to go on?",
+                translation=None,
                 note="erlebte Rede",
             ),
             GrammarExample(
                 text="Ein Mann in blauem Mantel betrat das Gebäude. Er trug keine Tasche.",
-                translation="A man in a blue coat entered. He carried no bag.",
+                translation=None,
                 note="neutral",
             ),
         ],
@@ -261,27 +261,27 @@ Die Kenntnis falscher Freunde ist essentiell für akkurate Übersetzungen und id
         examples=[
             GrammarExample(
                 text="Ich habe ein Geschenk bekommen.",
-                translation="I received a gift.",
+                translation=None,
                 note="bekommen ≠ become",
             ),
             GrammarExample(
                 text="Die aktuellen Nachrichten sind wichtig.",
-                translation="The current news is important.",
+                translation=None,
                 note="aktuell ≠ actual",
             ),
             GrammarExample(
                 text="Vorsicht, das ist Gift!",
-                translation="Careful, that is poison!",
+                translation=None,
                 note="Gift ≠ gift",
             ),
             GrammarExample(
                 text="Sie ist sehr sensibel.",
-                translation="She is very sensitive.",
+                translation=None,
                 note="sensibel ≠ sensible",
             ),
             GrammarExample(
                 text="Das ist also die Lösung.",
-                translation="So that is the solution.",
+                translation=None,
                 note="also ≠ also",
             ),
         ],
@@ -417,7 +417,7 @@ Entwicklung: 16. Jh. Luther → 17.-18. Jh. Sprachgesellschaften gegen Alamode-S
             ),
             GrammarExample(
                 text="Grimms Märchen: Es war einmal ein König, der hatte drei Töchter.",
-                translation="Once upon a time there was a king who had three daughters.",
+                translation=None,
             ),
             GrammarExample(
                 text="Duden (1880) legte 27.000 Wörter normiert fest.", translation=None
@@ -458,12 +458,12 @@ Jede Textsorte hat spezifische Konventionen für Aufbau, Stil und Register.""",
         examples=[
             GrammarExample(
                 text="Laut Polizeiangaben ereignete sich der Unfall gegen 18 Uhr.",
-                translation="According to police reports...",
+                translation=None,
                 note="Nachricht",
             ),
             GrammarExample(
                 text="Die vorliegende Arbeit untersucht den Einfluss von...",
-                translation="The present paper examines the influence of...",
+                translation=None,
                 note="wissenschaftlich",
             ),
             GrammarExample(
@@ -512,19 +512,19 @@ Hedging ist Pflicht: Daten deuten hin, nicht Daten beweisen. Ich vermeiden in de
         examples=[
             GrammarExample(
                 text="Die vorliegende Arbeit untersucht die Frage, inwiefern...",
-                translation="The present paper examines the question to what extent...",
+                translation=None,
             ),
             GrammarExample(
                 text="Wie Müller (2020) darlegt, ist dieser Zusammenhang signifikant.",
-                translation="As Müller (2020) shows, this correlation is significant.",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Ergebnisse deuten darauf hin, dass ein Zusammenhang besteht (vgl. Abb. 3).",
-                translation="The results indicate a correlation (see Fig. 3).",
+                translation=None,
             ),
             GrammarExample(
                 text="Zusammenfassend kann festgehalten werden, dass Hypothese 1 bestätigt wurde.",
-                translation="In summary, hypothesis 1 was confirmed.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -556,22 +556,22 @@ Lyrik: bewusster Rhythmus, auch in freien Versen.""",
         examples=[
             GrammarExample(
                 text="Seine Hände zitterten, als er den Brief öffnete. Drinnen: nichts. Nur Stille.",
-                translation="His hands trembled as he opened the letter. Inside: nothing. Just silence.",
+                translation=None,
                 note="Kurzgeschichte",
             ),
             GrammarExample(
                 text="Der Nebel hing schwer über den Feldern, als wäre die Welt in Watte gepackt.",
-                translation="The fog hung heavily over the fields.",
+                translation=None,
                 note="Literarische Prosa",
             ),
             GrammarExample(
                 text="Das glaubst du doch selbst nicht, murmelte sie und wandte sich ab.",
-                translation="You don't believe that yourself, she murmured.",
+                translation=None,
                 note="Dialog",
             ),
             GrammarExample(
                 text="Die Turmuhr schlug Mitternacht. Zwölf schwere Schläge. Und dann Stille.",
-                translation="The tower clock struck midnight.",
+                translation=None,
                 note="Atmosphäre, kurze Sätze",
             ),
         ],
@@ -606,7 +606,7 @@ Lyrik: bewusster Rhythmus, auch in freien Versen.""",
         examples=[
             GrammarExample(
                 text="Ich kenne ihn gut, aber ich weiß nicht, wo er wohnt.",
-                translation="I know him well, but I don't know where he lives.",
+                translation=None,
                 note="kennen vs wissen",
             ),
             GrammarExample(
@@ -654,30 +654,30 @@ Abgrenzung: Gradpartikeln (sehr, besonders) vs Fokuspartikeln (nur, sogar) vs Mo
         examples=[
             GrammarExample(
                 text="Das ist doch ganz einfach!",
-                translation="But that's really easy!",
+                translation=None,
                 note="doch = Widerspruch",
             ),
             GrammarExample(
                 text="Was machst du denn da?",
-                translation="What are you doing there?",
+                translation=None,
                 note="denn = Interesse",
             ),
             GrammarExample(
-                text="Komm mal her!", translation="Come here for a sec!", note="mal = abschwächend"
+                text="Komm mal her!", translation=None, note="mal = abschwächend"
             ),
             GrammarExample(
                 text="Das ist ja wunderbar!",
-                translation="That's wonderful!",
+                translation=None,
                 note="ja = Überraschung",
             ),
             GrammarExample(
                 text="Dann musst du eben Geduld haben.",
-                translation="Well then you just have to be patient.",
+                translation=None,
                 note="eben = Resignation",
             ),
             GrammarExample(
                 text="Er wird wohl den Zug verpasst haben.",
-                translation="He probably missed the train.",
+                translation=None,
                 note="wohl = Vermutung",
             ),
         ],
@@ -710,15 +710,15 @@ Selbstmonitoring und Selbstkorrektur sind Zeichen hoher Kompetenz.""",
         examples=[
             GrammarExample(
                 text="Ich hätte das, wenn ich ehrlich bin, nicht anders gemacht, auch wenn es vielleicht komplizierter gewesen wäre.",
-                translation="I wouldn't have done it differently, to be honest.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das, was ich eigentlich sagen wollte, bevor du mich unterbrochen hast, ist, dass wir das Meeting verschieben müssen.",
-                translation="What I actually wanted to say before you interrupted me is that we need to postpone.",
+                translation=None,
             ),
             GrammarExample(
                 text="Worauf ich hinauswill, ist Folgendes: Wir brauchen einen neuen Ansatz.",
-                translation="What I'm getting at is this: We need a new approach.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -749,17 +749,17 @@ C2 ≠ Perfektion: Auch C2-Sprecher machen Fehler. Entscheidend ist die Geschwin
         examples=[
             GrammarExample(
                 text="Naja, das ist halt so — was will man machen?",
-                translation="Well, that's just how it is — what can you do?",
+                translation=None,
                 note="mit Modalpartikeln",
             ),
             GrammarExample(
                 text="Ich würde sagen — also, wenn Sie mich fragen — dass wir den Termin besser verschieben sollten.",
-                translation="I would say — well, if you ask me — that we should postpone.",
+                translation=None,
                 note="flüssige Modifikation",
             ),
             GrammarExample(
                 text="Also, um es kurz zu machen: Die Sache ist die...",
-                translation="So, to make it short: The thing is...",
+                translation=None,
                 note="natürliche Diskurssteuerung",
             ),
         ],

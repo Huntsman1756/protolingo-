@@ -28,20 +28,20 @@ ich habe gemacht · du hast gemacht · er/es/sie hat gemacht · wir haben gemach
         examples=[
             GrammarExample(
                 text="Ich habe gestern Fußball gespielt.",
-                translation="I played football yesterday.",
+                translation=None,
             ),
-            GrammarExample(text="Hast du den Film gesehen?", translation="Did you see the film?"),
+            GrammarExample(text="Hast du den Film gesehen?", translation=None),
             GrammarExample(
-                text="Er hat lange geschlafen.", translation="He slept for a long time."
-            ),
-            GrammarExample(
-                text="Wir haben im Restaurant gegessen.", translation="We ate at the restaurant."
+                text="Er hat lange geschlafen.", translation=None
             ),
             GrammarExample(
-                text="Sie hat mir nicht geantwortet.", translation="She didn't answer me."
+                text="Wir haben im Restaurant gegessen.", translation=None
             ),
             GrammarExample(
-                text="Habt ihr die Hausaufgaben gemacht?", translation="Did you do the homework?"
+                text="Sie hat mir nicht geantwortet.", translation=None
+            ),
+            GrammarExample(
+                text="Habt ihr die Hausaufgaben gemacht?", translation=None
             ),
         ],
         common_mistakes=[
@@ -83,19 +83,19 @@ ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · 
         examples=[
             GrammarExample(
                 text="Ich bin gestern nach Hamburg gefahren.",
-                translation="I drove to Hamburg yesterday.",
+                translation=None,
             ),
             GrammarExample(
-                text="Bist du mit dem Zug gekommen?", translation="Did you come by train?"
+                text="Bist du mit dem Zug gekommen?", translation=None
             ),
             GrammarExample(
-                text="Er ist um 6 Uhr aufgewacht.", translation="He woke up at 6 o'clock."
+                text="Er ist um 6 Uhr aufgewacht.", translation=None
             ),
-            GrammarExample(text="Wir sind zu Hause geblieben.", translation="We stayed at home."),
-            GrammarExample(text="Was ist passiert?", translation="What happened?"),
+            GrammarExample(text="Wir sind zu Hause geblieben.", translation=None),
+            GrammarExample(text="Was ist passiert?", translation=None),
             GrammarExample(
                 text="Sie sind schnell gewachsen.",
-                translation="They grew quickly.",
+                translation=None,
                 note="Zustandsänderung",
             ),
         ],
@@ -139,27 +139,27 @@ ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · 
             "Die wichtigsten unregelmäßigen Partizipien sollte man auswendig lernen.",
         ],
         examples=[
-            GrammarExample(text="machen → gemacht", translation="to do → done", note="regelmäßig"),
+            GrammarExample(text="machen → gemacht", translation=None, note="regelmäßig"),
             GrammarExample(
-                text="sehen → gesehen", translation="to see → seen", note="unregelmäßig"
+                text="sehen → gesehen", translation=None, note="unregelmäßig"
             ),
             GrammarExample(
                 text="aufstehen → aufgestanden",
-                translation="to get up → gotten up",
+                translation=None,
                 note="trennbar",
             ),
             GrammarExample(
                 text="besuchen → besucht",
-                translation="to visit → visited",
+                translation=None,
                 note="untrennbar, kein ge-",
             ),
             GrammarExample(
                 text="studieren → studiert",
-                translation="to study → studied",
+                translation=None,
                 note="-ieren, kein ge-",
             ),
             GrammarExample(
-                text="bringen → gebracht", translation="to bring → brought", note="gemischt"
+                text="bringen → gebracht", translation=None, note="gemischt"
             ),
         ],
         common_mistakes=[
@@ -201,22 +201,22 @@ Im schriftlichen Deutsch (Erzählungen, Berichte) wird das Präteritum für **al
         ],
         examples=[
             GrammarExample(
-                text="Gestern war ich im Kino.", translation="Yesterday I was at the cinema."
+                text="Gestern war ich im Kino.", translation=None
             ),
             GrammarExample(
-                text="Warst du schon in Berlin?", translation="Have you been to Berlin?"
+                text="Warst du schon in Berlin?", translation=None
             ),
             GrammarExample(
-                text="Ich hatte einen anstrengenden Tag.", translation="I had an exhausting day."
+                text="Ich hatte einen anstrengenden Tag.", translation=None
             ),
             GrammarExample(
                 text="Wir waren letzte Woche im Urlaub.",
-                translation="We were on vacation last week.",
+                translation=None,
             ),
             GrammarExample(
-                text="Er hatte kein Geld dabei.", translation="He had no money with him."
+                text="Er hatte kein Geld dabei.", translation=None
             ),
-            GrammarExample(text="Wart ihr schon essen?", translation="Have you already eaten?"),
+            GrammarExample(text="Wart ihr schon essen?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -265,28 +265,28 @@ Das Perfekt der Modalverben (*Ich habe kommen können*) ist möglich, aber das P
         examples=[
             GrammarExample(
                 text="Ich konnte gestern nicht zur Party kommen.",
-                translation="I could not come to the party yesterday.",
+                translation=None,
             ),
             GrammarExample(
                 text="Als Kind durfte ich nicht so lange aufbleiben.",
-                translation="As a child I was not allowed to stay up so late.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er musste am Wochenende arbeiten.",
-                translation="He had to work at the weekend.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wir wollten eigentlich wandern gehen.",
-                translation="We actually wanted to go hiking.",
+                translation=None,
             ),
             GrammarExample(
                 text="Du solltest mehr schlafen.",
-                translation="You should sleep more.",
+                translation=None,
                 note="sollen im Präteritum = Ratschlag",
             ),
             GrammarExample(
                 text="Ich mochte die Schule nicht.",
-                translation="I didn't like school.",
+                translation=None,
                 note="mögen im Präteritum",
             ),
         ],
@@ -333,32 +333,32 @@ Das Perfekt der Modalverben (*Ich habe kommen können*) ist möglich, aber das P
         examples=[
             GrammarExample(
                 text="Gestern habe ich einen Film gesehen.",
-                translation="Yesterday I saw a film.",
+                translation=None,
                 note="gesprochen: Perfekt",
             ),
             GrammarExample(
                 text="Gestern sah ich einen Film.",
-                translation="Yesterday I saw a film.",
+                translation=None,
                 note="geschrieben: Präteritum",
             ),
             GrammarExample(
                 text="Ich war müde.",
-                translation="I was tired.",
+                translation=None,
                 note="gesprochen: Präteritum von sein, immer!",
             ),
             GrammarExample(
                 text="Sie hatte keine Zeit.",
-                translation="She had no time.",
+                translation=None,
                 note="gesprochen: Präteritum von haben",
             ),
             GrammarExample(
                 text="Er konnte nicht kommen.",
-                translation="He could not come.",
+                translation=None,
                 note="gesprochen: Präteritum Modalverb",
             ),
             GrammarExample(
                 text="Letzten Sommer fuhren wir nach Italien.",
-                translation="Last summer we went to Italy.",
+                translation=None,
                 note="geschrieben: Präteritum",
             ),
         ],
@@ -402,21 +402,21 @@ Personalpronomen im Dativ: mir, dir, ihm, ihr, ihm, uns, euch, ihnen/Ihnen""",
         ],
         examples=[
             GrammarExample(
-                text="Ich gebe dem Mann das Buch.", translation="I give the man the book."
+                text="Ich gebe dem Mann das Buch.", translation=None
             ),
-            GrammarExample(text="Kannst du mir helfen?", translation="Can you help me?"),
+            GrammarExample(text="Kannst du mir helfen?", translation=None),
             GrammarExample(
                 text="Das Kleid gefällt ihr.",
-                translation="She likes the dress.",
+                translation=None,
                 note="gefallen + Dativ",
             ),
             GrammarExample(
-                text="Ich danke dir für das Geschenk.", translation="I thank you for the gift."
+                text="Ich danke dir für das Geschenk.", translation=None
             ),
-            GrammarExample(text="Gehört das Auto ihm?", translation="Does the car belong to him?"),
+            GrammarExample(text="Gehört das Auto ihm?", translation=None),
             GrammarExample(
                 text="Die Musik ist zu laut. Sie stört mich.",
-                translation="The music is too loud. It bothers me.",
+                translation=None,
                 note="stören braucht Akkusativ",
             ),
         ],
@@ -463,31 +463,31 @@ Kontraktionen: in + das = ins (Wohin?), in + dem = im (Wo?), an + das = ans (Woh
         ],
         examples=[
             GrammarExample(
-                text="Ich bin im Garten.", translation="I am in the garden.", note="Wo? → Dativ"
+                text="Ich bin im Garten.", translation=None, note="Wo? → Dativ"
             ),
             GrammarExample(
                 text="Ich gehe in den Garten.",
-                translation="I am going into the garden.",
+                translation=None,
                 note="Wohin? → Akkusativ",
             ),
             GrammarExample(
                 text="Das Bild hängt an der Wand.",
-                translation="The picture hangs on the wall.",
+                translation=None,
                 note="Position → Dativ",
             ),
             GrammarExample(
                 text="Ich hänge das Bild an die Wand.",
-                translation="I hang the picture on the wall.",
+                translation=None,
                 note="Bewegung → Akkusativ",
             ),
             GrammarExample(
                 text="Die Katze springt auf den Tisch.",
-                translation="The cat jumps onto the table.",
+                translation=None,
                 note="Wohin? → Akkusativ",
             ),
             GrammarExample(
                 text="Die Katze sitzt auf dem Tisch.",
-                translation="The cat is sitting on the table.",
+                translation=None,
                 note="Wo? → Dativ",
             ),
         ],
@@ -536,28 +536,28 @@ Dativ: indirektes Objekt (Wem?), nach Dativ-Präpositionen — *Ich helfe **dir*
             'Nach "für" und "ohne" steht immer Akkusativ, nach "mit" und "zu" immer Dativ.',
         ],
         examples=[
-            GrammarExample(text="Ich sehe dich.", translation="I see you.", note="Akkusativ"),
+            GrammarExample(text="Ich sehe dich.", translation=None, note="Akkusativ"),
             GrammarExample(
-                text="Kannst du mir helfen?", translation="Can you help me?", note="Dativ"
+                text="Kannst du mir helfen?", translation=None, note="Dativ"
             ),
             GrammarExample(
                 text="Das Geschenk ist für ihn.",
-                translation="The gift is for him.",
+                translation=None,
                 note="Akkusativ nach für",
             ),
             GrammarExample(
                 text="Ich fahre mit ihr nach Berlin.",
-                translation="I am going with her to Berlin.",
+                translation=None,
                 note="Dativ nach mit",
             ),
             GrammarExample(
                 text="Wir warten auf euch.",
-                translation="We are waiting for you.",
+                translation=None,
                 note="Akkusativ nach auf",
             ),
             GrammarExample(
                 text="Ich möchte Ihnen danken.",
-                translation="I would like to thank you.",
+                translation=None,
                 note="formell, Dativ",
             ),
         ],
@@ -601,27 +601,27 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         examples=[
             GrammarExample(
                 text="Mein Auto ist schneller als deins.",
-                translation="My car is faster than yours.",
+                translation=None,
             ),
             GrammarExample(
-                text="Berlin ist größer als München.", translation="Berlin is bigger than Munich."
+                text="Berlin ist größer als München.", translation=None
             ),
             GrammarExample(
                 text="Meine Schwester ist jünger als ich.",
-                translation="My sister is younger than me.",
+                translation=None,
             ),
             GrammarExample(
                 text="Dieses Buch ist besser als das andere.",
-                translation="This book is better than the other one.",
+                translation=None,
             ),
             GrammarExample(
                 text="Der Sommer ist wärmer als der Frühling.",
-                translation="Summer is warmer than spring.",
+                translation=None,
                 note="Umlaut",
             ),
             GrammarExample(
                 text="Sie spricht schneller Deutsch als ich.",
-                translation="She speaks German faster than I (do).",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -666,27 +666,27 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         examples=[
             GrammarExample(
                 text="Usain Bolt ist der schnellste Läufer der Welt.",
-                translation="Usain Bolt is the fastest runner in the world.",
+                translation=None,
             ),
             GrammarExample(
-                text="Dieses Restaurant ist am besten.", translation="This restaurant is the best."
+                text="Dieses Restaurant ist am besten.", translation=None
             ),
             GrammarExample(
                 text="Der Mount Everest ist der höchste Berg.",
-                translation="Mount Everest is the highest mountain.",
+                translation=None,
             ),
             GrammarExample(
                 text="Am liebsten trinke ich Wasser.",
-                translation="I most prefer to drink water.",
+                translation=None,
                 note="unregelmäßig",
             ),
             GrammarExample(
                 text="Das ist das teuerste Hotel der Stadt.",
-                translation="That is the most expensive hotel in the city.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er spricht am schnellsten von allen.",
-                translation="He speaks the fastest of all.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -729,28 +729,28 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         examples=[
             GrammarExample(
                 text="Sie ist so intelligent wie ihr Bruder.",
-                translation="She is as intelligent as her brother.",
+                translation=None,
                 note="Gleichheit",
             ),
             GrammarExample(
                 text="Deutsch ist nicht so schwer wie Chinesisch.",
-                translation="German is not as difficult as Chinese.",
+                translation=None,
                 note="negative Gleichheit",
             ),
             GrammarExample(
                 text="Dieses Auto ist teurer als jenes.",
-                translation="This car is more expensive than that one.",
+                translation=None,
                 note="Ungleichheit",
             ),
             GrammarExample(
                 text="Je mehr du übst, desto besser wirst du.",
-                translation="The more you practice, the better you get.",
+                translation=None,
             ),
             GrammarExample(
-                text="Ich bin so müde wie gestern.", translation="I am as tired as yesterday."
+                text="Ich bin so müde wie gestern.", translation=None
             ),
             GrammarExample(
-                text="Er läuft schneller als ich.", translation="He runs faster than me."
+                text="Er läuft schneller als ich.", translation=None
             ),
         ],
         common_mistakes=[
@@ -794,24 +794,24 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         ],
         examples=[
             GrammarExample(
-                text="der große Hund", translation="the big dog", note="Nom. maskulin: -e"
+                text="der große Hund", translation=None, note="Nom. maskulin: -e"
             ),
             GrammarExample(
                 text="Ich kaufe den roten Pullover.",
-                translation="I buy the red sweater.",
+                translation=None,
                 note="Akk. maskulin: -en",
             ),
             GrammarExample(
-                text="die nette Kellnerin", translation="the nice waitress", note="Nom. feminin: -e"
+                text="die nette Kellnerin", translation=None, note="Nom. feminin: -e"
             ),
             GrammarExample(
-                text="mit dem alten Auto", translation="with the old car", note="Dat. neutral: -en"
+                text="mit dem alten Auto", translation=None, note="Dat. neutral: -en"
             ),
             GrammarExample(
-                text="die kleinen Kinder", translation="the small children", note="Nom. Plural: -en"
+                text="die kleinen Kinder", translation=None, note="Nom. Plural: -en"
             ),
             GrammarExample(
-                text="in der großen Stadt", translation="in the big city", note="Dat. feminin: -en"
+                text="in der großen Stadt", translation=None, note="Dat. feminin: -en"
             ),
         ],
         common_mistakes=[
@@ -860,32 +860,32 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         examples=[
             GrammarExample(
                 text="Das ist ein interessantes Buch.",
-                translation="This is an interesting book.",
+                translation=None,
                 note="neutral Nom.: -es",
             ),
             GrammarExample(
                 text="Ich habe einen neuen Computer.",
-                translation="I have a new computer.",
+                translation=None,
                 note="maskulin Akk.: -en",
             ),
             GrammarExample(
                 text="Sie wohnt in einer kleinen Wohnung.",
-                translation="She lives in a small apartment.",
+                translation=None,
                 note="feminin Dat.: -en",
             ),
             GrammarExample(
                 text="Mein alter Freund wohnt in Berlin.",
-                translation="My old friend lives in Berlin.",
+                translation=None,
                 note="Possessivartikel: -er",
             ),
             GrammarExample(
                 text="Kein gutes Restaurant hat heute geöffnet.",
-                translation="No good restaurant is open today.",
+                translation=None,
                 note="kein neutral: -es",
             ),
             GrammarExample(
                 text="Er fährt mit seinem neuen Auto.",
-                translation="He drives with his new car.",
+                translation=None,
                 note="Dat. neutral: -en",
             ),
         ],
@@ -937,32 +937,32 @@ Nach **viel, wenig, etwas, nichts** nominalisiert und **großgeschrieben**: *etw
         examples=[
             GrammarExample(
                 text="Guter Wein ist teuer.",
-                translation="Good wine is expensive.",
+                translation=None,
                 note="maskulin Nominativ: -er",
             ),
             GrammarExample(
                 text="Ich trinke gern kaltes Bier.",
-                translation="I like to drink cold beer.",
+                translation=None,
                 note="neutral Akkusativ: -es",
             ),
             GrammarExample(
                 text="Sie hat große blaue Augen.",
-                translation="She has big blue eyes.",
+                translation=None,
                 note="Plural Akkusativ: -e",
             ),
             GrammarExample(
                 text="Mit großem Interesse habe ich den Vortrag gehört.",
-                translation="I listened to the lecture with great interest.",
+                translation=None,
                 note="Dativ neutral: -em",
             ),
             GrammarExample(
                 text="Viele junge Leute wohnen in dieser Gegend.",
-                translation="Many young people live in this area.",
+                translation=None,
                 note="nach viele, Plural: -e",
             ),
             GrammarExample(
                 text="Hast du etwas Neues gehört?",
-                translation="Have you heard anything new?",
+                translation=None,
                 note="Nominalisierung: großgeschrieben",
             ),
         ],
@@ -1006,27 +1006,27 @@ Typische Verben mit dass-Satz: wissen, sagen, glauben, denken, finden, meinen, h
         ],
         examples=[
             GrammarExample(
-                text="Ich weiß, dass du recht hast.", translation="I know that you are right."
+                text="Ich weiß, dass du recht hast.", translation=None
             ),
             GrammarExample(
                 text="Sie sagt, dass sie keine Zeit hat.",
-                translation="She says that she has no time.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich hoffe, dass es morgen schönes Wetter gibt.",
-                translation="I hope that the weather will be nice tomorrow.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es ist wichtig, dass du genug schläfst.",
-                translation="It is important that you sleep enough.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er glaubt, dass der Test einfach ist.",
-                translation="He believes that the test is easy.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich finde, dass dieser Film sehr interessant ist.",
-                translation="I find that this film is very interesting.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -1068,27 +1068,27 @@ Typische Verben mit dass-Satz: wissen, sagen, glauben, denken, finden, meinen, h
         examples=[
             GrammarExample(
                 text="Ich lerne Deutsch, weil ich in Berlin studieren möchte.",
-                translation="I learn German because I want to study in Berlin.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er kommt zu spät, weil sein Bus Verspätung hat.",
-                translation="He is coming late because his bus is delayed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wir können nicht kommen, weil wir arbeiten müssen.",
-                translation="We cannot come because we have to work.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie ist glücklich, weil sie die Prüfung bestanden hat.",
-                translation="She is happy because she passed the exam.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich bleibe im Bett, weil ich krank bin.",
-                translation="I am staying in bed because I am sick.",
+                translation=None,
             ),
             GrammarExample(
                 text="Warum trinkst du keinen Kaffee? — Weil ich lieber Tee mag.",
-                translation="Why don't you drink coffee? — Because I prefer tea.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -1132,30 +1132,30 @@ Im **wenn-Satz** steht das konjugierte Verb **am Ende**. Steht der wenn-Satz vor
         examples=[
             GrammarExample(
                 text="Wenn es regnet, bleibe ich zu Hause.",
-                translation="If it rains, I stay at home.",
+                translation=None,
                 note="konditional",
             ),
             GrammarExample(
                 text="Immer wenn ich Kaffee trinke, werde ich wach.",
-                translation="Whenever I drink coffee, I become alert.",
+                translation=None,
                 note="temporal",
             ),
             GrammarExample(
                 text="Ich freue mich, wenn du kommst.",
-                translation="I'll be happy if/when you come.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wenn du Hilfe brauchst, ruf mich an.",
-                translation="If you need help, call me.",
+                translation=None,
             ),
             GrammarExample(
                 text="Weißt du, ob er heute kommt?",
-                translation="Do you know whether he is coming today?",
+                translation=None,
                 note="ob, nicht wenn",
             ),
             GrammarExample(
                 text="Als ich klein war, wohnte ich auf dem Land.",
-                translation="When I was little, I lived in the countryside.",
+                translation=None,
                 note="als, nicht wenn — einmalige Vergangenheit",
             ),
         ],
@@ -1197,27 +1197,27 @@ Steht der obwohl-Satz vorne, beginnt der Hauptsatz mit dem Verb: *Obwohl es regn
         examples=[
             GrammarExample(
                 text="Er geht zur Arbeit, obwohl er krank ist.",
-                translation="He goes to work although he is sick.",
+                translation=None,
             ),
             GrammarExample(
                 text="Obwohl es regnet, gehen wir spazieren.",
-                translation="Although it is raining, we go for a walk.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie hat die Prüfung bestanden, obwohl sie wenig gelernt hat.",
-                translation="She passed the exam although she studied little.",
+                translation=None,
             ),
             GrammarExample(
                 text="Obwohl das Restaurant teuer ist, ist es immer voll.",
-                translation="Although the restaurant is expensive, it is always full.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich mag ihn, obwohl er manchmal nervig ist.",
-                translation="I like him although he is sometimes annoying.",
+                translation=None,
             ),
             GrammarExample(
                 text="Obwohl ich müde bin, kann ich nicht schlafen.",
-                translation="Although I am tired, I cannot sleep.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -1260,31 +1260,31 @@ Hauptsatz nach Nebensatz: Verb an Position 1 — *Weil ich krank bin, **bleibe**
         examples=[
             GrammarExample(
                 text="Ich bleibe zu Hause, weil ich krank bin.",
-                translation="I stay at home because I am ill.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich weiß, dass er gestern ins Kino gegangen ist.",
-                translation="I know that he went to the cinema yesterday.",
+                translation=None,
                 note="Perfekt: gegangen ist",
             ),
             GrammarExample(
                 text="Sie sagt, dass sie um 7 Uhr aufsteht.",
-                translation="She says that she gets up at 7.",
+                translation=None,
                 note="trennbares Verb: aufsteht (nicht getrennt)",
             ),
             GrammarExample(
                 text="Weil ich krank bin, bleibe ich zu Hause.",
-                translation="Because I am ill, I stay at home.",
+                translation=None,
                 note="Nebensatz vorne, Hauptsatz Verb vor Subjekt",
             ),
             GrammarExample(
                 text="Ich hoffe, dass du morgen kommen kannst.",
-                translation="I hope that you can come tomorrow.",
+                translation=None,
                 note="Modalverb: kommen kannst",
             ),
             GrammarExample(
                 text="Er fragt, ob wir mitkommen wollen.",
-                translation="He asks whether we want to come along.",
+                translation=None,
                 note="ob + Verb am Ende",
             ),
         ],
@@ -1339,32 +1339,32 @@ Vor dem Relativpronomen steht immer ein Komma.""",
         examples=[
             GrammarExample(
                 text="Der Mann, der dort steht, ist mein Onkel.",
-                translation="The man who is standing there is my uncle.",
+                translation=None,
                 note="Nominativ maskulin",
             ),
             GrammarExample(
                 text="Der Film, den wir gestern gesehen haben, war super.",
-                translation="The film that we saw yesterday was great.",
+                translation=None,
                 note="Akkusativ maskulin",
             ),
             GrammarExample(
                 text="Die Frau, die hier wohnt, ist sehr nett.",
-                translation="The woman who lives here is very nice.",
+                translation=None,
                 note="Nominativ feminin",
             ),
             GrammarExample(
                 text="Das Buch, das auf dem Tisch liegt, gehört mir.",
-                translation="The book that is on the table belongs to me.",
+                translation=None,
                 note="Nominativ neutral",
             ),
             GrammarExample(
                 text="Die Kinder, die im Garten spielen, sind meine Neffen.",
-                translation="The children who are playing in the garden are my nephews.",
+                translation=None,
                 note="Nominativ Plural",
             ),
             GrammarExample(
                 text="Kennst du den Mann, den Petra geheiratet hat?",
-                translation="Do you know the man whom Petra married?",
+                translation=None,
                 note="Akkusativ maskulin",
             ),
         ],
@@ -1407,27 +1407,27 @@ Das konjugierte Verb steht am Ende: *Kannst du mir sagen, **wo die Bank ist**?*"
         ],
         examples=[
             GrammarExample(
-                text="Ich weiß nicht, wo er wohnt.", translation="I don't know where he lives."
+                text="Ich weiß nicht, wo er wohnt.", translation=None
             ),
             GrammarExample(
                 text="Weißt du, ob der Supermarkt noch geöffnet ist?",
-                translation="Do you know whether the supermarket is still open?",
+                translation=None,
             ),
             GrammarExample(
                 text="Kannst du mir sagen, wie spät es ist?",
-                translation="Can you tell me what time it is?",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich frage mich, warum er nicht geantwortet hat.",
-                translation="I wonder why he didn't answer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie möchte wissen, wann der nächste Zug fährt.",
-                translation="She wants to know when the next train leaves.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hast du eine Ahnung, ob das Konzert morgen stattfindet?",
-                translation="Do you have any idea whether the concert takes place tomorrow?",
+                translation=None,
             ),
         ],
         common_mistakes=[

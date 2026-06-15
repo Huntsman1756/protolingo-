@@ -23,27 +23,27 @@ sollen: unpersönliches Gerücht (Der Politiker soll zurücktreten). wollen: Beh
         examples=[
             GrammarExample(
                 text="Der Chef muss Bescheid wissen.",
-                translation="The boss must know.",
+                translation=None,
                 note="sichere Vermutung",
             ),
             GrammarExample(
                 text="Der Angeklagte soll das Geld gestohlen haben.",
-                translation="The defendant is said to have stolen the money.",
+                translation=None,
                 note="Gerücht",
             ),
             GrammarExample(
                 text="Sie will bereits dreimal in Japan gewesen sein.",
-                translation="She claims to have been to Japan three times.",
+                translation=None,
                 note="zweifelhafte Behauptung",
             ),
             GrammarExample(
                 text="Das dürfte die Lösung unseres Problems sein.",
-                translation="That should be the solution.",
+                translation=None,
                 note="vorsichtige Vermutung",
             ),
             GrammarExample(
                 text="Das mag ja alles stimmen, aber was hilft uns das?",
-                translation="That may all be true, but what good does it do us?",
+                translation=None,
                 note="einräumend",
             ),
         ],
@@ -75,26 +75,26 @@ Registerwechsel (Code-Switching): Im Freundeskreis: Hast du Bock auf Kino? Im B�
         examples=[
             GrammarExample(
                 text="Es ist darauf hinzuweisen, dass die Frist morgen endet.",
-                translation="It should be noted that the deadline ends tomorrow.",
+                translation=None,
             ),
             GrammarExample(
                 text="Bezüglich Ihrer Anfrage teilen wir Ihnen mit, dass...",
-                translation="Regarding your inquiry, we inform you...",
+                translation=None,
                 note="Genitiv + formell",
             ),
             GrammarExample(
                 text="Der Minister äußerte, er sei zuversichtlich.",
-                translation="The minister expressed he was confident.",
+                translation=None,
                 note="Konjunktiv I",
             ),
             GrammarExample(
                 text="Angesichts der Umstände bleibt uns keine andere Wahl.",
-                translation="In view of the circumstances, we have no choice.",
+                translation=None,
                 note="Genitiv-Präposition",
             ),
             GrammarExample(
                 text="Es gilt, die richtigen Schlüsse zu ziehen.",
-                translation="It is necessary to draw the right conclusions.",
+                translation=None,
                 note="unpersönlich",
             ),
         ],
@@ -132,19 +132,19 @@ Vorteil: Informationsdichte. Nachteil: Schwerfälligkeit bei Übergebrauch.""",
         examples=[
             GrammarExample(
                 text="Die zunehmende Digitalisierung der Arbeitswelt",
-                translation="The increasing digitalization of the working world",
+                translation=None,
             ),
             GrammarExample(
                 text="trotz der schwierigen wirtschaftlichen Rahmenbedingungen",
-                translation="despite the difficult economic conditions",
+                translation=None,
             ),
             GrammarExample(
                 text="nach Abschluss der seit Monaten andauernden Verhandlungen",
-                translation="after the conclusion of the months-long negotiations",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Durchführung des Projekts erfolgte planmäßig.",
-                translation="The project was implemented according to plan.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -184,27 +184,27 @@ FVGs machen Sprache formeller, präziser und distanzierter.""",
         examples=[
             GrammarExample(
                 text="Wir müssen diese Möglichkeit in Betracht ziehen.",
-                translation="We must consider this possibility.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das neue Verfahren wurde zur Anwendung gebracht.",
-                translation="The new procedure was applied.",
+                translation=None,
             ),
             GrammarExample(
                 text="Diese Behauptung muss ich in Zweifel ziehen.",
-                translation="I must question this claim.",
+                translation=None,
             ),
             GrammarExample(
                 text="Stehen Ihnen die Unterlagen zur Verfügung?",
-                translation="Are the documents available to you?",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Komitee traf eine einstimmige Entscheidung.",
-                translation="The committee made a unanimous decision.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er wurde für den Schaden zur Rechenschaft gezogen.",
-                translation="He was held accountable for the damage.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -239,23 +239,23 @@ Fugenelemente: -s-, -en-, -es- zwischen Kompositionsteilen: Arbeit**s**platz, Hu
         examples=[
             GrammarExample(
                 text="die Haustür = das Haus + die Tür",
-                translation="the front door",
+                translation=None,
                 note="Komposition",
             ),
             GrammarExample(
-                text="die Kindheit = das Kind + -heit", translation="childhood", note="Derivation"
+                text="die Kindheit = das Kind + -heit", translation=None, note="Derivation"
             ),
             GrammarExample(
                 text="das Essen (vom Verb essen)",
-                translation="the food / eating",
+                translation=None,
                 note="Konversion",
             ),
             GrammarExample(
-                text="unmöglich = un- + möglich", translation="impossible", note="Präfix"
+                text="unmöglich = un- + möglich", translation=None, note="Präfix"
             ),
             GrammarExample(
                 text="das Autobahnkreuz = Auto + Bahn + Kreuz",
-                translation="motorway interchange",
+                translation=None,
                 note="dreiteilig",
             ),
         ],
@@ -293,27 +293,27 @@ miss-: falsch, schlecht (verstehen → missverstehen, trauen → misstrauen)""",
         examples=[
             GrammarExample(
                 text="Er beantwortete die Frage.",
-                translation="He answered the question.",
+                translation=None,
                 note="be-: transitiv",
             ),
             GrammarExample(
                 text="Ich habe mich im Wald verlaufen.",
-                translation="I got lost in the forest.",
+                translation=None,
                 note="ver-: falsch laufen",
             ),
             GrammarExample(
                 text="Das Glas zerbrach in tausend Stücke.",
-                translation="The glass broke into pieces.",
+                translation=None,
                 note="zer-: Zerstörung",
             ),
             GrammarExample(
                 text="Kolumbus entdeckte Amerika.",
-                translation="Columbus discovered America.",
+                translation=None,
                 note="ent-: die Decke wegnehmen",
             ),
             GrammarExample(
                 text="Du hast mich missverstanden.",
-                translation="You misunderstood me.",
+                translation=None,
                 note="miss-: falsch verstehen",
             ),
         ],
@@ -345,21 +345,21 @@ Gefahr: Ironie kann von Nicht-Muttersprachlern leicht missverstanden werden. Bes
         examples=[
             GrammarExample(
                 text="Das hast du ja mal wieder super hingekriegt!",
-                translation="You did great again! (ironic: you messed up)",
+                translation=None,
                 note="ja + Übertreibung",
             ),
             GrammarExample(
                 text="Der Vortrag war nicht ganz langweilig.",
-                translation="The lecture wasn't entirely boring. (ironic: it was very boring)",
+                translation=None,
                 note="Litotes",
             ),
             GrammarExample(
                 text="Du könntest vielleicht beim nächsten Mal etwas pünktlicher sein.",
-                translation="You might perhaps be a bit more punctual next time. (ironic)",
+                translation=None,
             ),
             GrammarExample(
                 text="Ach, wirklich? Das hätte ich ja nie gedacht!",
-                translation="Oh really? I never would have thought! (ironic: obvious statement)",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -390,27 +390,27 @@ C1-Sprecher wählen Wörter nach Konnotation und Register — und erkennen die s
         examples=[
             GrammarExample(
                 text="Sie hat eine schlanke Figur.",
-                translation="She has a slim figure.",
+                translation=None,
                 note="positiv",
             ),
             GrammarExample(
                 text="Das ist ein sehr preiswertes Hotel.",
-                translation="That is a very reasonably priced hotel.",
+                translation=None,
                 note="positiv",
             ),
             GrammarExample(
                 text="Er äußerte Bedenken gegen den Plan.",
-                translation="He expressed concerns about the plan.",
+                translation=None,
                 note="formell, neutral",
             ),
             GrammarExample(
                 text="Sie behauptete, ihn zu kennen.",
-                translation="She claimed to know him.",
+                translation=None,
                 note="behaupten = Zweifel impliziert",
             ),
             GrammarExample(
                 text="Diese Ansicht ist obsolet.",
-                translation="This view is obsolete.",
+                translation=None,
                 note="fachsprachlich",
             ),
         ],
@@ -444,26 +444,26 @@ Hervorhebung: Rhetorische Frage (Wer will schon ewig leben?), Hyperbel (tausendm
         examples=[
             GrammarExample(
                 text="Das ist der Anfang vom Ende.",
-                translation="The beginning of the end.",
+                translation=None,
                 note="Paradoxon",
             ),
             GrammarExample(
                 text="Reden ist Silber, Schweigen ist Gold.",
-                translation="Speech is silver, silence is gold.",
+                translation=None,
                 note="Antithese",
             ),
             GrammarExample(
                 text="Wer ist schon perfekt?",
-                translation="Who is perfect anyway?",
+                translation=None,
                 note="rhetorische Frage",
             ),
             GrammarExample(
                 text="Das habe ich dir schon hundertmal gesagt!",
-                translation="I've told you a hundred times!",
+                translation=None,
                 note="Hyperbel",
             ),
             GrammarExample(
-                text="Der Himmel weinte.", translation="The sky wept.", note="Personifikation"
+                text="Der Himmel weinte.", translation=None, note="Personifikation"
             ),
         ],
         common_mistakes=[
@@ -494,19 +494,19 @@ Typische Phrasen: Es stellt sich die Frage, ob... / Man muss jedoch bedenken, da
         examples=[
             GrammarExample(
                 text="Einerseits bietet die Digitalisierung viele Chancen. Andererseits birgt sie Risiken.",
-                translation="On the one hand, digitalization offers many opportunities.",
+                translation=None,
             ),
             GrammarExample(
                 text="Es stimmt zwar, dass die Mieten steigen. Allerdings muss man auch die Einkommensentwicklung berücksichtigen.",
-                translation="It is true that rents are rising. However...",
+                translation=None,
             ),
             GrammarExample(
                 text="Daraus folgt, dass wir unser Verhalten ändern müssen.",
-                translation="It follows that we must change our behavior.",
+                translation=None,
             ),
             GrammarExample(
                 text="Zusammenfassend lässt sich feststellen, dass beide Ansätze ihre Berechtigung haben.",
-                translation="In summary, both approaches have their justification.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -537,27 +537,27 @@ Schweiz: Velo (Fahrrad), Trottoir (Bürgersteig), Natel (Handy), Rahm (Sahne). O
         examples=[
             GrammarExample(
                 text="Ich kaufe eine Semmel und ein Sackerl.",
-                translation="I buy a bread roll and a bag.",
+                translation=None,
                 note="Österreich",
             ),
             GrammarExample(
                 text="Er fährt mit dem Velo auf dem Trottoir.",
-                translation="He rides his bike on the sidewalk.",
+                translation=None,
                 note="Schweiz",
             ),
             GrammarExample(
                 text="Das ist eine grosse Strasse.",
-                translation="That is a big street.",
+                translation=None,
                 note="Schweizer Orthographie: kein ß",
             ),
             GrammarExample(
                 text="Ich bin am Sofa gesessen.",
-                translation="I sat on the sofa.",
+                translation=None,
                 note="Österreich: sein + gesessen",
             ),
             GrammarExample(
                 text="Das ist der Mann, welcher das gesagt hat.",
-                translation="That is the man who said that.",
+                translation=None,
                 note="Schweiz: welcher als Relativpronomen",
             ),
         ],
@@ -589,18 +589,18 @@ Phonetik: Norden ich [ɪç], Süden i(ch) [iː]. In Norddeutschland ist Standard
         examples=[
             GrammarExample(
                 text="Ich möchte ein Brötchen / eine Semmel.",
-                translation="I would like a bread roll.",
+                translation=None,
                 note="Nord / Süd",
             ),
             GrammarExample(
                 text="Grüß Gott! (Süd) / Moin! (Nord) / Tach! (West)",
-                translation="Hello!",
+                translation=None,
                 note="regionale Begrüßung",
             ),
-            GrammarExample(text="Samstag / Sonnabend", translation="Saturday", note="Süd / Nord"),
+            GrammarExample(text="Samstag / Sonnabend", translation=None, note="Süd / Nord"),
             GrammarExample(
                 text="ein Viertel vor acht (allg.) / drei Viertel acht (Ost)",
-                translation="quarter to eight",
+                translation=None,
                 note="Uhrzeit regional",
             ),
         ],
@@ -632,15 +632,15 @@ Wichtig: Analyse ist objektiv, eigene Meinung gehört nicht hinein. Belege aus d
         examples=[
             GrammarExample(
                 text="Der Artikel ist im Stil eines Kommentars verfasst.",
-                translation="The article is written in the style of a commentary.",
+                translation=None,
             ),
             GrammarExample(
                 text="Der Autor argumentiert auf zwei Ebenen: emotional und sachlich.",
-                translation="The author argues on two levels: emotional and factual.",
+                translation=None,
             ),
             GrammarExample(
                 text="Die sprachliche Gestaltung ist durch den Nominalstil geprägt.",
-                translation="The linguistic style is characterized by nominal style.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -671,17 +671,17 @@ Formulierungen: Sowohl Müller als auch Schmidt argumentieren... / Im Gegensatz 
         examples=[
             GrammarExample(
                 text="Laut Müller stellt der Klimawandel die größte Herausforderung dar.",
-                translation="According to Müller, climate change is the greatest challenge.",
+                translation=None,
                 note="Paraphrase",
             ),
             GrammarExample(
                 text="Während Autor A die Vorteile betont, hebt Autor B die Kosten hervor.",
-                translation="While author A emphasizes advantages, author B highlights costs.",
+                translation=None,
                 note="Synthese",
             ),
             GrammarExample(
                 text="Die Ergebnisse beider Studien deuten übereinstimmend darauf hin, dass...",
-                translation="Both studies consistently indicate that...",
+                translation=None,
                 note="Synthese",
             ),
         ],
@@ -713,16 +713,16 @@ Eine gute Reformulierung bewahrt die Kernaussage, variiert aber die sprachliche 
         examples=[
             GrammarExample(
                 text="Die Inflation steigt rapide an. Das heißt, das Geld verliert schnell an Wert.",
-                translation="Inflation is rising rapidly. That means money is quickly losing value.",
+                translation=None,
                 note="Vereinfachung",
             ),
             GrammarExample(
                 text="Man könnte auch sagen, dass diese Maßnahme kontraproduktiv ist.",
-                translation="One could also say that this measure is counterproductive.",
+                translation=None,
             ),
             GrammarExample(
                 text="Anders formuliert: Wir brauchen eine grundlegende Neuausrichtung.",
-                translation="In other words: We need a fundamental realignment.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -754,20 +754,20 @@ Vermeiden: Ich/Wir (außer in manchen Fachkulturen), Umgangssprache, Übertreibu
         examples=[
             GrammarExample(
                 text="Es konnte gezeigt werden, dass die Hypothese zutrifft.",
-                translation="It could be shown that the hypothesis is correct.",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Ergebnisse legen nahe, dass ein Zusammenhang besteht.",
-                translation="The results suggest a correlation.",
+                translation=None,
                 note="Hedging",
             ),
             GrammarExample(
                 text="Zusammenfassend lässt sich festhalten, dass die These bestätigt wurde.",
-                translation="In summary, the thesis was confirmed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Dem ist entgegenzuhalten, dass die Stichprobe klein war.",
-                translation="It must be countered that the sample was small.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -805,22 +805,22 @@ Redensart vs Sprichwort: Redensart ist satzintegriert, Sprichwort ist vollständ
         examples=[
             GrammarExample(
                 text="Du hast den Nagel auf den Kopf getroffen!",
-                translation="You hit the nail on the head!",
+                translation=None,
             ),
             GrammarExample(
                 text="Ich habe die Nase voll von dieser Diskussion.",
-                translation="I'm fed up with this discussion.",
+                translation=None,
             ),
             GrammarExample(
-                text="Er nimmt kein Blatt vor den Mund.", translation="He speaks his mind openly."
+                text="Er nimmt kein Blatt vor den Mund.", translation=None
             ),
             GrammarExample(
                 text="Wir müssen Nägel mit Köpfen machen.",
-                translation="We need to do things properly.",
+                translation=None,
             ),
             GrammarExample(
                 text="Nach der Wanderung fühle ich mich wie gerädert.",
-                translation="After the hike I feel completely exhausted.",
+                translation=None,
             ),
         ],
         common_mistakes=[

@@ -17,17 +17,17 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Muitos irregulares.",
         ],
         examples=[
-            GrammarExample(text="Espero que fales com ela.", translation="I hope you talk to her."),
+            GrammarExample(text="Espero que fales com ela.", translation=None),
             GrammarExample(
                 text="Duvido que ele venha.",
-                translation="I doubt he will come.",
+                translation=None,
                 note="vir, irregular",
             ),
             GrammarExample(
-                text="É importante que tu estudes.", translation="It is important that you study."
+                text="É importante que tu estudes.", translation=None
             ),
             GrammarExample(
-                text="Queres que eu vá contigo?", translation="Do you want me to go with you?"
+                text="Queres que eu vá contigo?", translation=None
             ),
         ],
         common_mistakes=[
@@ -59,16 +59,16 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Espero que tenhas uma boa viagem.", translation="I hope you have a good trip."
+                text="Espero que tenhas uma boa viagem.", translation=None
             ),
             GrammarExample(
-                text="Quero que vocês sejam felizes.", translation="I want you to be happy."
+                text="Quero que vocês sejam felizes.", translation=None
             ),
             GrammarExample(
-                text="Oxalá não chova amanhã.", translation="Let's hope it doesn't rain tomorrow."
+                text="Oxalá não chova amanhã.", translation=None
             ),
             GrammarExample(
-                text="Tomara que ela consiga o emprego.", translation="I hope she gets the job."
+                text="Tomara que ela consiga o emprego.", translation=None
             ),
         ],
         common_mistakes=[
@@ -98,15 +98,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Talvez pode ir antes ou depois do verbo.",
         ],
         examples=[
-            GrammarExample(text="Talvez vá à festa.", translation="Maybe I'll go to the party."),
+            GrammarExample(text="Talvez vá à festa.", translation=None),
             GrammarExample(
-                text="Talvez ela saiba a resposta.", translation="Maybe she knows the answer."
+                text="Talvez ela saiba a resposta.", translation=None
             ),
             GrammarExample(
-                text="Vamos talvez ao cinema.", translation="Maybe we'll go to the cinema."
+                text="Vamos talvez ao cinema.", translation=None
             ),
             GrammarExample(
-                text="Talvez seja melhor esperar.", translation="Maybe it's better to wait."
+                text="Talvez seja melhor esperar.", translation=None
             ),
         ],
         common_mistakes=[
@@ -132,18 +132,18 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="É preciso que acabes o trabalho.", translation="You need to finish the work."
+                text="É preciso que acabes o trabalho.", translation=None
             ),
             GrammarExample(
                 text="É importante que todos participem.",
-                translation="It's important that everyone participates.",
+                translation=None,
             ),
             GrammarExample(
                 text="Convém que tragas o passaporte.",
-                translation="You should bring your passport.",
+                translation=None,
             ),
             GrammarExample(
-                text="É melhor que vás ao médico.", translation="You'd better go to the doctor."
+                text="É melhor que vás ao médico.", translation=None
             ),
         ],
         common_mistakes=[
@@ -175,15 +175,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Duvido que ela saiba a resposta.", translation="I doubt she knows the answer."
+                text="Duvido que ela saiba a resposta.", translation=None
             ),
             GrammarExample(
                 text="Não acho que seja uma boa ideia.",
-                translation="I don't think it's a good idea.",
+                translation=None,
             ),
             GrammarExample(
                 text="É possível que cheguemos atrasados.",
-                translation="It's possible we'll arrive late.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -214,13 +214,13 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="É bom que estejas aqui.", translation="It's good that you're here."
+                text="É bom que estejas aqui.", translation=None
             ),
             GrammarExample(
-                text="É uma pena que não possas vir.", translation="It's a shame you can't come."
+                text="É uma pena que não possas vir.", translation=None
             ),
             GrammarExample(
-                text="Que bom que tenhas gostado!", translation="I'm so glad you liked it!"
+                text="Que bom que tenhas gostado!", translation=None
             ),
         ],
         common_mistakes=[
@@ -248,15 +248,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Tenho ido ao ginásio todas as semanas.",
-                translation="I have been going to the gym every week.",
+                translation=None,
                 note="repetida",
             ),
             GrammarExample(
-                text="Ela tem andado muito cansada.", translation="She has been very tired lately."
+                text="Ela tem andado muito cansada.", translation=None
             ),
             GrammarExample(
                 text="Ultimamente tenho pensado em ti.",
-                translation="Lately I've been thinking about you.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -283,12 +283,12 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Quando cheguei, ela já saíra.",
-                translation="When I arrived, she had already left.",
+                translation=None,
                 note="literário",
             ),
             GrammarExample(
                 text="Quando cheguei, ela já tinha saído.",
-                translation="When I arrived, she had already left.",
+                translation=None,
                 note="composto, comum",
             ),
         ],
@@ -316,15 +316,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ultimamente tenho pensado muito nisso.",
-                translation="Lately I've been thinking a lot about that.",
+                translation=None,
             ),
             GrammarExample(
                 text="Nos últimos meses tenho trabalhado muito.",
-                translation="In recent months I've been working a lot.",
+                translation=None,
             ),
             GrammarExample(
                 text="Até agora tudo tem corrido bem.",
-                translation="So far everything has been going well.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -352,14 +352,14 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O bolo foi feito pela minha avó.",
-                translation="The cake was made by my grandmother.",
+                translation=None,
             ),
             GrammarExample(
                 text="As cartas são entregues de manhã.",
-                translation="The letters are delivered in the morning.",
+                translation=None,
             ),
             GrammarExample(
-                text="A ponte foi construída em 1900.", translation="The bridge was built in 1900."
+                text="A ponte foi construída em 1900.", translation=None
             ),
         ],
         common_mistakes=[
@@ -384,14 +384,14 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Vive-se bem nesta cidade.", translation="One lives well in this city."
+                text="Vive-se bem nesta cidade.", translation=None
             ),
             GrammarExample(
                 text="Precisa-se de voluntários.",
-                translation="Volunteers are needed.",
+                translation=None,
                 note="singular",
             ),
-            GrammarExample(text="Aqui come-se bem.", translation="One eats well here."),
+            GrammarExample(text="Aqui come-se bem.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -416,10 +416,10 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Vende-se este apartamento.", translation="This apartment is for sale."
+                text="Vende-se este apartamento.", translation=None
             ),
-            GrammarExample(text="Vendem-se carros usados.", translation="Used cars are sold."),
-            GrammarExample(text="Alugam-se quartos.", translation="Rooms for rent."),
+            GrammarExample(text="Vendem-se carros usados.", translation=None),
+            GrammarExample(text="Alugam-se quartos.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -445,15 +445,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O livro que estou a ler é fascinante.",
-                translation="The book I'm reading is fascinating.",
+                translation=None,
             ),
             GrammarExample(
                 text="A pessoa que telefonou não deixou nome.",
-                translation="The person who called didn't leave a name.",
+                translation=None,
             ),
             GrammarExample(
                 text="O filme de que te falei ganhou um prémio.",
-                translation="The film I told you about won a prize.",
+                translation=None,
                 note="formal",
             ),
         ],
@@ -481,18 +481,18 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="A casa onde cresci era no campo.",
-                translation="The house where I grew up was in the countryside.",
+                translation=None,
             ),
             GrammarExample(
-                text="O país de onde venho é frio.", translation="The country I come from is cold."
+                text="O país de onde venho é frio.", translation=None
             ),
             GrammarExample(
                 text="Lembro-me do dia quando nos conhecemos.",
-                translation="I remember the day when we met.",
+                translation=None,
             ),
             GrammarExample(
                 text="Esta é a razão pela qual não fui.",
-                translation="This is the reason why I didn't go.",
+                translation=None,
                 note="razão → pela qual",
             ),
         ],
@@ -519,14 +519,14 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O escritor cujo livro ganhou o prémio.",
-                translation="The writer whose book won the prize.",
+                translation=None,
             ),
             GrammarExample(
-                text="A rapariga cuja mãe conheces.", translation="The girl whose mother you know."
+                text="A rapariga cuja mãe conheces.", translation=None
             ),
             GrammarExample(
                 text="As empresas cujos funcionários estão em greve.",
-                translation="The companies whose employees are on strike.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -553,15 +553,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se tivesse estudado, teria passado no exame.",
-                translation="If I had studied, I would have passed the exam.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ela teria vindo se soubesse.",
-                translation="She would have come if she had known.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sem a tua ajuda, não teríamos conseguido.",
-                translation="Without your help, we wouldn't have managed.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -588,12 +588,12 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se eu tivesse tempo, ia contigo.",
-                translation="If I had time, I'd go with you.",
+                translation=None,
                 note="coloquial",
             ),
             GrammarExample(
                 text="Se ela estudasse mais, passaria.",
-                translation="If she studied more, she would pass.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -620,15 +620,15 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Quando chegares, avisa-me.", translation="When you arrive, let me know."
+                text="Quando chegares, avisa-me.", translation=None
             ),
-            GrammarExample(text="Se puderem, venham cedo.", translation="If you can, come early."),
+            GrammarExample(text="Se puderem, venham cedo.", translation=None),
             GrammarExample(
-                text="Assim que souber, digo-te.", translation="As soon as I know, I'll tell you."
+                text="Assim que souber, digo-te.", translation=None
             ),
             GrammarExample(
                 text="Enquanto houver esperança, continuaremos.",
-                translation="As long as there is hope, we'll continue.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -655,11 +655,11 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ela disse: Estou cansada. → Ela disse que estava cansada.",
-                translation="She said she was tired.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ele perguntou: Já comeste? → Ele perguntou se eu já tinha comido.",
-                translation="He asked if I had already eaten.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -687,17 +687,17 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Fiquei em casa porque estava a chover.",
-                translation="I stayed home because it was raining.",
+                translation=None,
                 note="causa",
             ),
             GrammarExample(
                 text="Estava a chover, por isso fiquei em casa.",
-                translation="It was raining, so I stayed home.",
+                translation=None,
                 note="consequência",
             ),
             GrammarExample(
                 text="Embora estivesse a chover, fui passear.",
-                translation="Although it was raining, I went for a walk.",
+                translation=None,
                 note="concessão + conjuntivo",
             ),
         ],
@@ -728,22 +728,22 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Estudo português para viajar por Portugal.",
-                translation="I study Portuguese (in order) to travel around Portugal.",
+                translation=None,
                 note="para = finalidade; por = lugar aproximado",
             ),
             GrammarExample(
                 text="Obrigado por tudo. O presente é para ti.",
-                translation="Thanks for everything. The gift is for you.",
+                translation=None,
                 note="por = causa do agradecimento; para = destinatário",
             ),
             GrammarExample(
                 text="Passei por tua casa mas não estavas.",
-                translation="I passed by your house but you weren't there.",
+                translation=None,
                 note="lugar",
             ),
             GrammarExample(
                 text="Este relatório é para sexta-feira.",
-                translation="This report is for Friday.",
+                translation=None,
                 note="prazo",
             ),
         ],

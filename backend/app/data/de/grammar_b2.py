@@ -28,28 +28,28 @@ Irreale Vergleiche: *Er tut so, als hätte er nichts gewusst.*""",
         examples=[
             GrammarExample(
                 text="Ich hätte gern mehr Zeit gehabt.",
-                translation="I would have liked to have had more time.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wenn ich das gewusst hätte, wäre ich zu Hause geblieben.",
-                translation="If I had known that, I would have stayed at home.",
+                translation=None,
             ),
             GrammarExample(
                 text="Du hättest mich anrufen sollen!",
-                translation="You should have called me!",
+                translation=None,
                 note="Vorwurf",
             ),
             GrammarExample(
                 text="Er tat so, als wäre nichts passiert.",
-                translation="He acted as if nothing had happened.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wir hätten früher losfahren müssen.",
-                translation="We should have left earlier.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das hätte ich nicht besser machen können.",
-                translation="I couldn't have done that any better.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -99,28 +99,28 @@ Irreal: *Wenn ich Zeit hätte, würde ich kommen.*""",
         examples=[
             GrammarExample(
                 text="Wenn ich mehr Geld hätte, würde ich reisen.",
-                translation="If I had more money, I would travel.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hätte ich mehr gelernt, hätte ich die Prüfung bestanden.",
-                translation="Had I studied more, I would have passed.",
+                translation=None,
                 note="ohne wenn",
             ),
             GrammarExample(
                 text="Wenn du mich gefragt hättest, hätte ich dir geholfen.",
-                translation="If you had asked me, I would have helped you.",
+                translation=None,
             ),
             GrammarExample(
                 text="An deiner Stelle würde ich das Angebot annehmen.",
-                translation="If I were you, I would accept the offer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wäre das Wetter besser, könnten wir rausgehen.",
-                translation="If the weather were better, we could go out.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wenn er kommen würde, wäre ich sehr froh.",
-                translation="If he came, I would be very happy.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -166,32 +166,32 @@ Zustandspassiv — alle Zeiten: Präsens: Es ist gemacht. Präteritum: Es war ge
         examples=[
             GrammarExample(
                 text="Das Haus ist letztes Jahr gebaut worden.",
-                translation="The house was built last year.",
+                translation=None,
                 note="Perfekt",
             ),
             GrammarExample(
                 text="Das Projekt war bereits abgeschlossen worden.",
-                translation="The project had already been completed.",
+                translation=None,
                 note="Plusquamperfekt",
             ),
             GrammarExample(
                 text="Es wurde viel gelacht und getanzt.",
-                translation="There was a lot of laughing and dancing.",
+                translation=None,
                 note="unpersönliches Passiv",
             ),
             GrammarExample(
                 text="Am Sonntag wird nicht gearbeitet.",
-                translation="There is no work on Sunday.",
+                translation=None,
                 note="unpersönlich ohne es",
             ),
             GrammarExample(
                 text="Ihm ist von allen Seiten geholfen worden.",
-                translation="He was helped from all sides.",
+                translation=None,
                 note="Dativ + Passiv",
             ),
             GrammarExample(
                 text="Die Arbeit wird bis morgen erledigt worden sein.",
-                translation="The work will have been done by tomorrow.",
+                translation=None,
                 note="Futur II",
             ),
         ],
@@ -237,30 +237,30 @@ Zustandspassiv — alle Zeiten: Präsens: Es ist gemacht. Präteritum: Es war ge
         examples=[
             GrammarExample(
                 text="Die Aufgabe ist bis morgen zu erledigen.",
-                translation="The task must be completed by tomorrow.",
+                translation=None,
             ),
             GrammarExample(
                 text="Dieses Problem lässt sich leicht lösen.",
-                translation="This problem can be easily solved.",
+                translation=None,
             ),
             GrammarExample(
                 text="Der Text ist kaum lesbar.",
-                translation="The text is barely readable.",
+                translation=None,
                 note="-bar",
             ),
             GrammarExample(
                 text="Die Fehler sind unvermeidlich.",
-                translation="The errors are unavoidable.",
+                translation=None,
                 note="-lich",
             ),
             GrammarExample(
                 text="Er bekam ein Buch geschenkt.",
-                translation="He was given a book as a gift.",
+                translation=None,
                 note="Rezipientenpassiv",
             ),
             GrammarExample(
                 text="Das gehört sofort erledigt!",
-                translation="That needs to be done immediately!",
+                translation=None,
                 note="regional",
             ),
         ],
@@ -295,23 +295,23 @@ Aus Nebensatz → Nominalphrase: Weil das Wetter schlecht war → Wegen des schl
         ],
         examples=[
             GrammarExample(
-                text="wegen des schlechten Wetters", translation="because of the bad weather"
+                text="wegen des schlechten Wetters", translation=None
             ),
-            GrammarExample(text="nach seiner Ankunft", translation="after his arrival"),
+            GrammarExample(text="nach seiner Ankunft", translation=None),
             GrammarExample(
                 text="Die Entwicklung der Sprache dauert Jahrhunderte.",
-                translation="The development of language takes centuries.",
+                translation=None,
             ),
             GrammarExample(
-                text="vor der Entscheidung des Gerichts", translation="before the court's decision"
+                text="vor der Entscheidung des Gerichts", translation=None
             ),
             GrammarExample(
                 text="trotz der Schwierigkeiten bei der Umsetzung",
-                translation="despite the difficulties in implementation",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Richtigkeit der Aussage wurde bezweifelt.",
-                translation="The correctness of the statement was doubted.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -347,22 +347,22 @@ Funktionsverbgefüge → einfaches Verb: zur Anwendung bringen → anwenden, in 
         examples=[
             GrammarExample(
                 text="Nachdem er den Vertrag unterschrieben hatte...",
-                translation="After he signed the contract...",
+                translation=None,
                 note="statt: Nach der Unterzeichnung...",
             ),
             GrammarExample(
                 text="Wir müssen das Problem lösen.",
-                translation="We must solve the problem.",
+                translation=None,
                 note="statt: Die Lösung des Problems ist notwendig.",
             ),
             GrammarExample(
                 text="Das neue Gesetz wurde eingeführt.",
-                translation="The new law was introduced.",
+                translation=None,
                 note="verbal, lebendig",
             ),
             GrammarExample(
                 text="Er bewies seine Unschuld.",
-                translation="He proved his innocence.",
+                translation=None,
                 note="statt: Er stellte seine Unschuld unter Beweis.",
             ),
         ],
@@ -388,24 +388,24 @@ Partizip I vs II: der schreibende Student (aktiv, gleichzeitig) vs der geschrieb
         examples=[
             GrammarExample(
                 text="Das lachende Kind spielt im Garten.",
-                translation="The laughing child is playing in the garden.",
+                translation=None,
             ),
             GrammarExample(
                 text="Eine wachsende Zahl von Menschen lernt Deutsch.",
-                translation="A growing number of people is learning German.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er verließ singend das Haus.",
-                translation="He left the house singing.",
+                translation=None,
                 note="adverbial",
             ),
             GrammarExample(
                 text="Die kommenden Wochen werden anstrengend.",
-                translation="The coming weeks will be exhausting.",
+                translation=None,
             ),
             GrammarExample(
                 text="Der Reisende wartet auf den Zug.",
-                translation="The traveller is waiting for the train.",
+                translation=None,
                 note="substantiviert",
             ),
         ],
@@ -436,24 +436,24 @@ Substantiviert: der Angestellte, der Verletzte, die Geliebte. Muss vor dem Nomen
         ],
         examples=[
             GrammarExample(
-                text="der geschriebene Brief", translation="the written letter", note="passiv"
+                text="der geschriebene Brief", translation=None, note="passiv"
             ),
             GrammarExample(
-                text="das verlassene Haus", translation="the abandoned house", note="passiv"
+                text="das verlassene Haus", translation=None, note="passiv"
             ),
             GrammarExample(
                 text="der eingeschlafene Patient",
-                translation="the patient who fell asleep",
+                translation=None,
                 note="aktiv — sein-Verb!",
             ),
             GrammarExample(
                 text="Der Verletzte wurde ins Krankenhaus gebracht.",
-                translation="The injured person was taken to hospital.",
+                translation=None,
                 note="substantiviert",
             ),
             GrammarExample(
                 text="die gerade angekommene E-Mail",
-                translation="the email that just arrived",
+                translation=None,
                 note="aktiv — sein-Verb!",
             ),
         ],
@@ -491,19 +491,19 @@ Kann in Relativsatz aufgelöst werden: Das von der Regierung geplante Gesetz →
         examples=[
             GrammarExample(
                 text="der gestern in der Zeitung veröffentlichte Artikel",
-                translation="the article published yesterday in the newspaper",
+                translation=None,
             ),
             GrammarExample(
                 text="die seit Jahren steigenden Mieten",
-                translation="the rents that have been rising for years",
+                translation=None,
             ),
             GrammarExample(
                 text="das von der Regierung geplante Gesetz",
-                translation="the law planned by the government",
+                translation=None,
             ),
             GrammarExample(
                 text="Die im letzten Jahr stark gestiegenen Kosten...",
-                translation="The costs that rose sharply last year...",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -535,19 +535,19 @@ Konsekutiv: also, daher, deshalb, folglich. Konzessiv: trotzdem, dennoch, allerd
         examples=[
             GrammarExample(
                 text="Der Test war schwer. Allerdings hatten alle genug Zeit.",
-                translation="The test was hard. However, everyone had enough time.",
+                translation=None,
             ),
             GrammarExample(
                 text="Er hat wenig gelernt. Folglich hat er die Prüfung nicht bestanden.",
-                translation="He studied little. Consequently, he failed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Projekt ist riskant. Dennoch sollten wir es versuchen.",
-                translation="The project is risky. Nevertheless, we should try it.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Wetter war schlecht. Nichtsdestoweniger gingen wir spazieren.",
-                translation="The weather was bad. Nonetheless, we went for a walk.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -581,22 +581,22 @@ Besonderheit: entlang nachgestellt mit Akk, vorangestellt mit Gen/Dat.""",
         examples=[
             GrammarExample(
                 text="Das Geschenk ist für meinen Bruder.",
-                translation="The gift is for my brother.",
+                translation=None,
                 note="Akkusativ",
             ),
             GrammarExample(
                 text="Ich warte auf den Bus.",
-                translation="I am waiting for the bus.",
+                translation=None,
                 note="Akkusativ nach auf",
             ),
             GrammarExample(
                 text="Er wohnt bei seinen Großeltern.",
-                translation="He lives with his grandparents.",
+                translation=None,
                 note="Dativ",
             ),
             GrammarExample(
                 text="Wegen des Staus kamen wir zu spät.",
-                translation="Because of the traffic jam we arrived late.",
+                translation=None,
                 note="Genitiv",
             ),
         ],
@@ -636,22 +636,22 @@ Typisch für formelles Deutsch. Das Verb verliert seine wörtliche Bedeutung."""
         examples=[
             GrammarExample(
                 text="Wir müssen die Kosten in Kauf nehmen.",
-                translation="We have to accept the costs.",
+                translation=None,
             ),
             GrammarExample(
                 text="Die Firma stellt neue Software zur Verfügung.",
-                translation="The company provides new software.",
+                translation=None,
             ),
             GrammarExample(
-                text="Der Plan wurde in Frage gestellt.", translation="The plan was questioned."
+                text="Der Plan wurde in Frage gestellt.", translation=None
             ),
             GrammarExample(
                 text="Er nahm von seinen Freunden Abschied.",
-                translation="He said goodbye to his friends.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Komitee traf eine schnelle Entscheidung.",
-                translation="The committee made a quick decision.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -683,16 +683,16 @@ Starke Verben im Präteritum: gehen → ging, sehen → sah, geben → gab, komm
         examples=[
             GrammarExample(
                 text="Es war ein dunkler und stürmischer Abend. Plötzlich klopfte es an der Tür.",
-                translation="It was a dark and stormy night.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sie hatte das ganze Haus durchsucht, aber den Schlüssel nicht gefunden.",
-                translation="She had searched the entire house.",
+                translation=None,
                 note="Plusquamperfekt + Präteritum",
             ),
             GrammarExample(
                 text="Zuerst frühstückte er, dann las er die Zeitung, schließlich ging er zur Arbeit.",
-                translation="First he ate breakfast, then read the paper.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -732,17 +732,17 @@ Starke Verben im Präteritum: gehen → ging, sehen → sah, geben → gab, komm
         examples=[
             GrammarExample(
                 text="Der Minister erklärte, die Situation sei unter Kontrolle.",
-                translation="The minister explained the situation was under control.",
+                translation=None,
                 note="Konjunktiv I",
             ),
             GrammarExample(
                 text="Das Gesetz wurde mit großer Mehrheit verabschiedet.",
-                translation="The law was passed with a large majority.",
+                translation=None,
                 note="Passiv",
             ),
             GrammarExample(
                 text="Aufgrund der angespannten Lage wurde der Flughafen gesperrt.",
-                translation="Due to the tense situation, the airport was closed.",
+                translation=None,
                 note="Nominalstil",
             ),
         ],
@@ -781,20 +781,20 @@ Ausnahme: das Herz (neutral!) — des Herzens, dem Herzen, das Herz.""",
         ],
         examples=[
             GrammarExample(
-                text="Ich kenne den Jungen.", translation="I know the boy.", note="Akkusativ: -n"
+                text="Ich kenne den Jungen.", translation=None, note="Akkusativ: -n"
             ),
             GrammarExample(
                 text="Er spricht mit dem Studenten.",
-                translation="He speaks with the student.",
+                translation=None,
                 note="Dativ: -en",
             ),
             GrammarExample(
                 text="Der Löwe schläft. Ich füttere den Löwen.",
-                translation="The lion is sleeping. I feed the lion.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das ist das Haus des Herrn Müller.",
-                translation="This is Mr. Müller's house.",
+                translation=None,
                 note="Genitiv: Herrn",
             ),
         ],
@@ -828,20 +828,20 @@ Bei Sachen: wo(r) + Präposition — Das ist etwas, wovon ich nichts wusste. Das
         examples=[
             GrammarExample(
                 text="Der Mann, mit dem ich gesprochen habe, ist mein Chef.",
-                translation="The man I spoke with is my boss.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Projekt, an dem wir arbeiten, ist fast fertig.",
-                translation="The project we are working on is almost finished.",
+                translation=None,
             ),
             GrammarExample(
                 text="Der Autor, dessen Buch ich gelesen habe, kommt aus Österreich.",
-                translation="The author whose book I read comes from Austria.",
+                translation=None,
                 note="Genitiv",
             ),
             GrammarExample(
                 text="Das ist etwas, wovon ich nichts wusste.",
-                translation="That is something I knew nothing about.",
+                translation=None,
                 note="wo(r)- + Präposition",
             ),
         ],
@@ -877,22 +877,22 @@ Vergangenheit: Modalverb + Partizip II + haben/sein — Er muss den Zug verpasst
         examples=[
             GrammarExample(
                 text="Er soll sehr reich sein.",
-                translation="He is said to be very rich.",
+                translation=None,
                 note="Gerücht",
             ),
             GrammarExample(
                 text="Sie will den berühmten Schauspieler getroffen haben.",
-                translation="She claims to have met the famous actor.",
+                translation=None,
                 note="zweifelhafte Behauptung",
             ),
             GrammarExample(
                 text="Er muss den Zug verpasst haben.",
-                translation="He must have missed the train.",
+                translation=None,
                 note="sichere Schlussfolgerung",
             ),
             GrammarExample(
                 text="Das dürfte die Lösung sein.",
-                translation="That should be the solution.",
+                translation=None,
                 note="vorsichtige Vermutung",
             ),
         ],

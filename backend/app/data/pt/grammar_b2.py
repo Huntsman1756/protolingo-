@@ -17,11 +17,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se eu tivesse mais tempo, viajava mais.",
-                translation="If I had more time, I would travel more.",
+                translation=None,
             ),
             GrammarExample(
                 text="Embora chovesse, fomos a praia.",
-                translation="Although it was raining, we went to the beach.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -47,11 +47,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se tivesse estudado, teria passado.",
-                translation="If I had studied, I would have passed.",
+                translation=None,
             ),
             GrammarExample(
                 text="Se ela tivesse vindo, teria sido melhor.",
-                translation="If she had come, it would have been better.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -77,12 +77,12 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Queria que viesses.",
-                translation="I wanted you to come.",
+                translation=None,
                 note="preterito -> imperfeito conj.",
             ),
             GrammarExample(
                 text="Espero que chegues.",
-                translation="I hope you arrive.",
+                translation=None,
                 note="presente -> presente conj.",
             ),
         ],
@@ -111,9 +111,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Comecei a aprender portugues ha um ano.",
-                translation="I started learning Portuguese a year ago.",
+                translation=None,
             ),
-            GrammarExample(text="Acabei de comer.", translation="I have just finished eating."),
+            GrammarExample(text="Acabei de comer.", translation=None),
         ],
         common_mistakes=[],
         related=["estar-a-infinitivo", "andar-a-estar-a", "costumava"],
@@ -133,11 +133,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Tenho de terminar este relatorio.",
-                translation="I have to finish this report.",
+                translation=None,
             ),
             GrammarExample(
                 text="Hei de visitar os Acores um dia!",
-                translation="I will visit the Azores one day!",
+                translation=None,
                 note="determinacao EP",
             ),
         ],
@@ -157,13 +157,13 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Estou a ler um livro.", translation="I am reading a book.", note="agora"
+                text="Estou a ler um livro.", translation=None, note="agora"
             ),
             GrammarExample(
-                text="Ando a ler um livro.", translation="I have been reading a book.", note="dias"
+                text="Ando a ler um livro.", translation=None, note="dias"
             ),
             GrammarExample(
-                text="Ela anda a trabalhar demais.", translation="She has been working too much."
+                text="Ela anda a trabalhar demais.", translation=None
             ),
         ],
         common_mistakes=[
@@ -189,11 +189,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="E importante estudares mais.",
-                translation="It is important for you to study more.",
+                translation=None,
             ),
             GrammarExample(
                 text="Para chegarmos a tempo, temos de sair.",
-                translation="In order for us to arrive on time.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -220,11 +220,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Vou a festa desde que tu tambem vas.",
-                translation="I will go as long as you go.",
+                translation=None,
             ),
             GrammarExample(
                 text="Sairei mais cedo, a menos que haja reuniao.",
-                translation="I will leave earlier, unless there is a meeting.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -250,7 +250,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O Joao comprou um carro. Ele esta contente com o veiculo.",
-                translation="Joao bought a car. He is happy with the vehicle.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -277,12 +277,12 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Poder-me-ia informar sobre o horario?",
-                translation="Could you inform me about the schedule?",
+                translation=None,
                 note="cortesia + mesoclise",
             ),
             GrammarExample(
                 text="O senhor deseja mais alguma coisa?",
-                translation="Would you like anything else, sir?",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -301,10 +301,10 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Ando com a pulga atras da orelha.", translation="I have been suspicious."
+                text="Ando com a pulga atras da orelha.", translation=None
             ),
             GrammarExample(
-                text="Ela esta com os azeites hoje.", translation="She is in a bad mood today."
+                text="Ela esta com os azeites hoje.", translation=None
             ),
         ],
         common_mistakes=[],
@@ -322,8 +322,8 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
             "Variacao regional.",
         ],
         examples=[
-            GrammarExample(text="Que filme tao fixe!", translation="What a cool movie!"),
-            GrammarExample(text="Bora tomar um cafe?", translation="Shall we go for a coffee?"),
+            GrammarExample(text="Que filme tao fixe!", translation=None),
+            GrammarExample(text="Bora tomar um cafe?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -348,11 +348,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Agua mole em pedra dura, tanto bate ate que fura.",
-                translation="Constant dripping wears away the stone.",
+                translation=None,
             ),
             GrammarExample(
                 text="Mais vale um passaro na mao do que dois a voar.",
-                translation="A bird in the hand is worth two in the bush.",
+                translation=None,
             ),
         ],
         common_mistakes=[],
@@ -372,11 +372,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Em primeiro lugar, a educacao e fundamental.",
-                translation="Firstly, education is fundamental.",
+                translation=None,
             ),
             GrammarExample(
                 text="Concluindo, os beneficios superam os riscos.",
-                translation="In conclusion, the benefits outweigh the risks.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -403,7 +403,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Embora alguns defendam o contrario, os estudos mostram que...",
-                translation="Although some argue the opposite, studies show that...",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -429,9 +429,9 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Provavelmente, esta e a melhor abordagem.",
-                translation="This is probably the best approach.",
+                translation=None,
             ),
-            GrammarExample(text="De certa forma, concordo.", translation="In a way, I agree."),
+            GrammarExample(text="De certa forma, concordo.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -457,7 +457,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Era uma noite de tempestade. De repente, a porta abriu-se.",
-                translation="It was a stormy night. Suddenly, the door opened.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -484,7 +484,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O sol punha-se no horizonte, tingindo o ceu de tons alaranjados.",
-                translation="The sun was setting, dyeing the sky orange.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -510,7 +510,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Quando cheguei, ela ja tinha saido.",
-                translation="When I arrived, she had already left.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -538,7 +538,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O Governo anunciou ontem um novo pacote de medidas.",
-                translation="The Government announced a new measures package yesterday.",
+                translation=None,
                 note="lead",
             ),
         ],
@@ -566,10 +566,10 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Incendio devasta milhares de hectares no Algarve.",
-                translation="Fire devastates thousands of hectares in the Algarve.",
+                translation=None,
             ),
             GrammarExample(
-                text="Benfica vence, Porto empata.", translation="Benfica wins, Porto draws."
+                text="Benfica vence, Porto empata.", translation=None
             ),
         ],
         common_mistakes=[],
@@ -589,7 +589,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="O ministro salientou que os resultados sao animadores.",
-                translation="The minister stressed that the results are encouraging.",
+                translation=None,
             ),
         ],
         common_mistakes=[

@@ -19,16 +19,16 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Che la forza sia con te!",
-                translation="May the force be with you!",
+                translation=None,
                 note="ottativo/desiderativo",
             ),
             GrammarExample(
                 text="Non sapevo che avesse gia pubblicato tre romanzi.",
-                translation="I didn't know he had already published three novels.",
+                translation=None,
             ),
             GrammarExample(
                 text="Comportati come se niente fosse successo.",
-                translation="Act as if nothing had happened.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -61,17 +61,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Secondo indiscrezioni, il ministro rassegnerebbe le dimissioni.",
-                translation="According to rumors, the minister would resign.",
+                translation=None,
                 note="dissociazione",
             ),
             GrammarExample(
                 text="Avrei tanto voluto conoscerti prima.",
-                translation="I would have really liked to meet you earlier.",
+                translation=None,
                 note="desiderio irrealizzato",
             ),
             GrammarExample(
                 text="Promisero che avrebbero fatto tutto il possibile.",
-                translation="They promised they would do everything possible.",
+                translation=None,
                 note="futuro nel passato",
             ),
         ],
@@ -105,17 +105,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Le mura della citta sono antiche. (mura = mura difensive)",
-                translation="The city walls are ancient.",
+                translation=None,
                 note="mura vs muri",
             ),
             GrammarExample(
                 text="La maggior parte degli invitati erano contenti. (accordo a senso)",
-                translation="Most of the guests were happy.",
+                translation=None,
                 note="accordo a senso",
             ),
             GrammarExample(
                 text="Non sono potuta venire ieri. (femminile)",
-                translation="I couldn't come yesterday.",
+                translation=None,
                 note="accordo con essere",
             ),
         ],
@@ -149,7 +149,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ed ecco, quasi al cominciar de l'erta, una lonza leggera e presta molto, che di pel macolato era coverta. (Dante)",
-                translation="And behold, almost at the start of the slope, a leopard light and very swift, covered with spotted fur.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -177,7 +177,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Non so perche quel giorno decisi di prendere il treno invece dell'autobus. Forse fu il cielo grigio, forse la voglia di cambiare qualcosa, qualsiasi cosa.",
-                translation="I don't know why that day I decided to take the train instead of the bus. Maybe it was the gray sky, maybe the desire to change something, anything.",
+                translation=None,
                 note="prima persona, tono riflessivo",
             ),
         ],
@@ -206,12 +206,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Non chiedermi di restare. Non chiedermi di capire. Non chiedermi niente.",
-                translation="Don't ask me to stay. Don't ask me to understand. Don't ask me anything.",
+                translation=None,
                 note="anafora",
             ),
             GrammarExample(
                 text="Veni, vidi, vici. (asindeto)",
-                translation="I came, I saw, I conquered.",
+                translation=None,
                 note="asindeto",
             ),
         ],
@@ -240,7 +240,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="EN: It's raining cats and dogs. IT: Piove a catinelle. (non: Piovono cani e gatti)",
-                translation="EN: It's raining cats and dogs. IT: Piove a catinelle. (not literal)",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -268,12 +268,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.",
-                translation="IT: Ti presento la mia sorellina. EN: I'd like you to meet my little sister.",
+                translation=None,
                 note="-ina → little",
             ),
             GrammarExample(
                 text="IT: Penso che sia vero. EN: I think it's true. (congiuntivo perso)",
-                translation="IT: Penso che sia vero. EN: I think it's true.",
+                translation=None,
                 note="congiuntivo -> indicativo",
             ),
         ],
@@ -302,12 +302,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Actually, I disagree. ≠ Attualmente, non sono d'accordo. (SBAGLIATO: significa In realta, non sono d'accordo.)",
-                translation="Actually, I disagree. (NOT: Currently, I disagree.)",
+                translation=None,
                 note="actually ≠ attualmente",
             ),
             GrammarExample(
                 text="She is very sensible. ≠ Lei e molto sensibile. (SBAGLIATO: significa Lei e molto ragionevole.)",
-                translation="She is very sensible. (NOT: She is very sensitive.)",
+                translation=None,
                 note="sensible ≠ sensibile",
             ),
         ],
@@ -336,12 +336,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Latino: Illa mulier pulchra est. Italiano: Quella donna e bella.",
-                translation="Latin: That woman is beautiful. Italian: That woman is beautiful.",
+                translation=None,
                 note="evoluzione dal latino all'italiano",
             ),
             GrammarExample(
                 text="Dai Promessi Sposi: Quel ramo del lago di Como... (incipit celebre)",
-                translation="From The Betrothed: That branch of Lake Como...",
+                translation=None,
                 note="L'italiano manzoniano",
             ),
         ],
@@ -370,12 +370,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il candidato e stato assunto dopo un lungo iter burocratico.",
-                translation="The candidate was hired after a long bureaucratic process.",
+                translation=None,
                 note="iter = procedura",
             ),
             GrammarExample(
                 text="La riunione e stata aggiornata ad hoc per discutere l'emergenza.",
-                translation="The meeting was called ad hoc to discuss the emergency.",
+                translation=None,
                 note="ad hoc = appositamente",
             ),
         ],
@@ -404,17 +404,17 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ho comprato un computer nuovo. (nessun equivalente italiano accettato)",
-                translation="I bought a new computer.",
+                translation=None,
                 note="anglicismo",
             ),
             GrammarExample(
                 text="Lo zucchero viene dall'arabo sukkar.",
-                translation="Sugar comes from the Arabic sukkar.",
+                translation=None,
                 note="prestito arabo antico",
             ),
             GrammarExample(
                 text="C'e chi dice smart working e chi dice lavoro agile.",
-                translation="Some say smart working and others say agile work.",
+                translation=None,
                 note="anglicismo vs alternativa italiana",
             ),
         ],
@@ -443,7 +443,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Saggio: In questo saggio si intende dimostrare che... Relazione: Dati alla mano, si evince che... Recensione: L'ultimo film di Sorrentino e un capolavoro visivo...",
-                translation="Essay: This essay aims to demonstrate that... Report: Based on the data, it appears that... Review: Sorrentino's latest film is a visual masterpiece...",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -471,12 +471,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Era un tramonto petaloso, di quelli che ti restano negli occhi per giorni.",
-                translation="It was a petal-filled sunset, the kind that stays in your eyes for days.",
+                translation=None,
                 note="neologismo",
             ),
             GrammarExample(
                 text="Le sue parole erano coltelli di vetro: trasparenti, affilati, invisibili fino al colpo.",
-                translation="His words were glass knives: transparent, sharp, invisible until the blow.",
+                translation=None,
                 note="metafora originale",
             ),
         ],
@@ -505,7 +505,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Prima: L'azienda ha fatto un sacco di cose per migliorare la situazione. Dopo: L'azienda ha implementato diverse strategie per ottimizzare i processi interni.",
-                translation="Before: The company did a lot of things to improve the situation. After: The company implemented several strategies to optimize internal processes.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -533,12 +533,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Mi sembra che forse ci sia un piccolo margine di miglioramento in questa sezione.",
-                translation="It seems to me that perhaps there is a small margin for improvement in this section.",
+                translation=None,
                 note="attenuazione diplomatica",
             ),
             GrammarExample(
                 text="Non e esattamente quello che avevamo in mente. (invece di: E completamente sbagliato.)",
-                translation="It's not exactly what we had in mind. (instead of: It's completely wrong.)",
+                translation=None,
                 note="understatement",
             ),
         ],
@@ -567,12 +567,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se avessi saputo che sarebbe stato cosi difficile, ci avrei pensato due volte prima di accettare, ma ormai quel che e fatto e fatto.",
-                translation="If I had known it would be so difficult, I would have thought twice before accepting, but what's done is done.",
+                translation=None,
                 note="periodo ipotetico 3 tipo + connettivo",
             ),
             GrammarExample(
                 text="Benche non condivida pienamente la sua posizione, devo ammettere che le sue argomentazioni, per quanto provocatorie, non sono prive di fondamento.",
-                translation="Although I don't fully share his position, I must admit that his arguments, however provocative, are not without foundation.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -600,12 +600,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Mah, insomma, non e che mi entusiasmi l'idea, pero tutto sommato si potrebbe anche fare, dai.",
-                translation="Well, I mean, it's not that the idea excites me, but all in all it could be done, come on.",
+                translation=None,
                 note="parlato naturale con segnali discorsivi",
             ),
             GrammarExample(
                 text="Certe volte basta uno sguardo per capirsi, senza bisogno di tante parole.",
-                translation="Sometimes a look is enough to understand each other, without needing many words.",
+                translation=None,
                 note="fluidita espressiva",
             ),
         ],
@@ -635,12 +635,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Prima della revisione: Il progetto è importante. Avrà un impatto. Dobbiamo considerare molti fattori.",
-                translation="Dopo la revisione: Il progetto riveste un'importanza strategica e avrà un impatto significativo, a condizione che si considerino attentamente i molteplici fattori in gioco.",
+                translation=None,
                 note="Da frasi telegrafiche a un unico periodo coeso.",
             ),
             GrammarExample(
                 text="Prima: La ricerca ha dimostrato che la gente mangia troppi zuccheri.",
-                translation="Dopo: Dalla ricerca emerge un consumo eccessivo di zuccheri nella popolazione analizzata.",
+                translation=None,
                 note="Registro accademico e precisione lessicale.",
             ),
         ],

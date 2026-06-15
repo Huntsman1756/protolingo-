@@ -40,13 +40,13 @@ Im Gegensatz zum Englischen kann das Subjektpronomen im Deutschen **nicht** wegg
             'Nationalitäten werden ohne Artikel verwendet: "Ich bin Spanier."',
         ],
         examples=[
-            GrammarExample(text="Ich bin Student.", translation="I am a student."),
-            GrammarExample(text="Bist du aus Berlin?", translation="Are you from Berlin?"),
-            GrammarExample(text="Wir sind müde.", translation="We are tired.", note="Zustand"),
-            GrammarExample(text="Sie ist Lehrerin.", translation="She is a teacher.", note="Beruf"),
-            GrammarExample(text="Seid ihr fertig?", translation="Are you (pl.) ready?"),
+            GrammarExample(text="Ich bin Student.", translation=None),
+            GrammarExample(text="Bist du aus Berlin?", translation=None),
+            GrammarExample(text="Wir sind müde.", translation=None, note="Zustand"),
+            GrammarExample(text="Sie ist Lehrerin.", translation=None, note="Beruf"),
+            GrammarExample(text="Seid ihr fertig?", translation=None),
             GrammarExample(
-                text="Das Wetter ist schön.", translation="The weather is nice.", note="Eigenschaft"
+                text="Das Wetter ist schön.", translation=None, note="Eigenschaft"
             ),
         ],
         common_mistakes=[
@@ -102,14 +102,14 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
             'In der gesprochenen Sprache wird "haben" oft als Hilfsverb für das Perfekt verwendet.',
         ],
         examples=[
-            GrammarExample(text="Ich habe einen Bruder.", translation="I have a brother."),
-            GrammarExample(text="Hast du Zeit?", translation="Do you have time?"),
-            GrammarExample(text="Er hat Hunger.", translation="He is hungry.", note="Ausdruck"),
-            GrammarExample(text="Wir haben kein Geld.", translation="We have no money."),
-            GrammarExample(text="Habt ihr Kinder?", translation="Do you (pl.) have children?"),
+            GrammarExample(text="Ich habe einen Bruder.", translation=None),
+            GrammarExample(text="Hast du Zeit?", translation=None),
+            GrammarExample(text="Er hat Hunger.", translation=None, note="Ausdruck"),
+            GrammarExample(text="Wir haben kein Geld.", translation=None),
+            GrammarExample(text="Habt ihr Kinder?", translation=None),
             GrammarExample(
                 text="Sie hat Geburtstag.",
-                translation="It is her birthday.",
+                translation=None,
                 note="feststehender Ausdruck",
             ),
         ],
@@ -160,15 +160,15 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
             'Im Plural gibt es nur ein Pronomen für alle drei Genera: "sie".',
         ],
         examples=[
-            GrammarExample(text="Ich komme aus Spanien.", translation="I come from Spain."),
-            GrammarExample(text="Wo wohnst du?", translation="Where do you live?"),
-            GrammarExample(text="Er ist mein Freund.", translation="He is my friend."),
-            GrammarExample(text="Wir gehen ins Kino.", translation="We are going to the cinema."),
+            GrammarExample(text="Ich komme aus Spanien.", translation=None),
+            GrammarExample(text="Wo wohnst du?", translation=None),
+            GrammarExample(text="Er ist mein Freund.", translation=None),
+            GrammarExample(text="Wir gehen ins Kino.", translation=None),
             GrammarExample(
-                text="Kommt ihr mit?", translation="Are you (pl.) coming along?", note="informell"
+                text="Kommt ihr mit?", translation=None, note="informell"
             ),
             GrammarExample(
-                text="Woher kommen Sie?", translation="Where do you come from?", note="formell"
+                text="Woher kommen Sie?", translation=None, note="formell"
             ),
         ],
         common_mistakes=[
@@ -218,16 +218,16 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
             "Der bestimmte Artikel zeigt an, dass etwas Bekanntes oder Bestimmtes gemeint ist.",
         ],
         examples=[
-            GrammarExample(text="Der Hund ist braun.", translation="The dog is brown."),
-            GrammarExample(text="Die Katze schläft.", translation="The cat is sleeping."),
-            GrammarExample(text="Das Kind spielt.", translation="The child is playing."),
+            GrammarExample(text="Der Hund ist braun.", translation=None),
+            GrammarExample(text="Die Katze schläft.", translation=None),
+            GrammarExample(text="Das Kind spielt.", translation=None),
             GrammarExample(
-                text="Die Bücher sind neu.", translation="The books are new.", note="Plural"
+                text="Die Bücher sind neu.", translation=None, note="Plural"
             ),
             GrammarExample(
-                text="Der Tisch ist aus Holz.", translation="The table is made of wood."
+                text="Der Tisch ist aus Holz.", translation=None
             ),
-            GrammarExample(text="Die Stadt ist schön.", translation="The city is beautiful."),
+            GrammarExample(text="Die Stadt ist schön.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -287,23 +287,23 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
         examples=[
             GrammarExample(
                 text="der Lehrer → die Lehrerin",
-                translation="the teacher (m/f)",
+                translation=None,
                 note="Beruf mit -er = maskulin",
             ),
             GrammarExample(
-                text="die Freiheit", translation="freedom", note="Endung -heit = feminin"
+                text="die Freiheit", translation=None, note="Endung -heit = feminin"
             ),
             GrammarExample(
                 text="das Mädchen",
-                translation="the girl",
+                translation=None,
                 note="Verkleinerungsform -chen = neutral",
             ),
-            GrammarExample(text="der Montag", translation="Monday", note="Wochentage = maskulin"),
+            GrammarExample(text="der Montag", translation=None, note="Wochentage = maskulin"),
             GrammarExample(
-                text="die Universität", translation="the university", note="Endung -tät = feminin"
+                text="die Universität", translation=None, note="Endung -tät = feminin"
             ),
             GrammarExample(
-                text="das Instrument", translation="the instrument", note="Endung -ment = neutral"
+                text="das Instrument", translation=None, note="Endung -ment = neutral"
             ),
         ],
         common_mistakes=[
@@ -355,20 +355,20 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
         ],
         examples=[
             GrammarExample(
-                text="Das ist ein Tisch.", translation="This is a table.", note="maskulin"
+                text="Das ist ein Tisch.", translation=None, note="maskulin"
             ),
             GrammarExample(
-                text="Ich habe eine Frage.", translation="I have a question.", note="feminin"
+                text="Ich habe eine Frage.", translation=None, note="feminin"
             ),
-            GrammarExample(text="Das ist ein Buch.", translation="This is a book.", note="neutral"),
-            GrammarExample(text="Es gibt ein Problem.", translation="There is a problem."),
+            GrammarExample(text="Das ist ein Buch.", translation=None, note="neutral"),
+            GrammarExample(text="Es gibt ein Problem.", translation=None),
             GrammarExample(
                 text="Hier sind Stühle.",
-                translation="Here are chairs.",
+                translation=None,
                 note="Plural, kein Artikel",
             ),
             GrammarExample(
-                text="Ein Hund ist ein Haustier.", translation="A dog is a pet.", note="Kategorie"
+                text="Ein Hund ist ein Haustier.", translation=None, note="Kategorie"
             ),
         ],
         common_mistakes=[
@@ -419,22 +419,22 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
         ],
         examples=[
             GrammarExample(
-                text="Das ist mein Buch.", translation="This is my book.", note="neutral"
+                text="Das ist mein Buch.", translation=None, note="neutral"
             ),
             GrammarExample(
-                text="Das ist meine Tasche.", translation="This is my bag.", note="feminin"
+                text="Das ist meine Tasche.", translation=None, note="feminin"
             ),
-            GrammarExample(text="Sein Auto ist neu.", translation="His car is new."),
+            GrammarExample(text="Sein Auto ist neu.", translation=None),
             GrammarExample(
                 text="Unsere Kinder sind klein.",
-                translation="Our children are small.",
+                translation=None,
                 note="Plural",
             ),
             GrammarExample(
-                text="Ist das euer Hund?", translation="Is that your dog?", note="informell Plural"
+                text="Ist das euer Hund?", translation=None, note="informell Plural"
             ),
             GrammarExample(
-                text="Wo ist Ihr Pass?", translation="Where is your passport?", note="formell"
+                text="Wo ist Ihr Pass?", translation=None, note="formell"
             ),
         ],
         common_mistakes=[
@@ -489,14 +489,14 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
         ],
         examples=[
             GrammarExample(
-                text="Der Film ist interessant.", translation="The film is interesting."
+                text="Der Film ist interessant.", translation=None
             ),
-            GrammarExample(text="Mein Zimmer ist klein.", translation="My room is small."),
-            GrammarExample(text="Die Suppe ist zu heiß.", translation="The soup is too hot."),
-            GrammarExample(text="Bist du müde?", translation="Are you tired?"),
-            GrammarExample(text="Das ist zu teuer.", translation="That is too expensive."),
+            GrammarExample(text="Mein Zimmer ist klein.", translation=None),
+            GrammarExample(text="Die Suppe ist zu heiß.", translation=None),
+            GrammarExample(text="Bist du müde?", translation=None),
+            GrammarExample(text="Das ist zu teuer.", translation=None),
             GrammarExample(
-                text="Deutsch ist nicht schwer.", translation="German is not difficult."
+                text="Deutsch ist nicht schwer.", translation=None
             ),
         ],
         common_mistakes=[
@@ -545,18 +545,18 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
             'Bei trennbaren Verben wird das Präfix ans Ende gestellt: "ich stehe auf".',
         ],
         examples=[
-            GrammarExample(text="Ich wohne in Berlin.", translation="I live in Berlin."),
-            GrammarExample(text="Du lernst Deutsch.", translation="You are learning German."),
+            GrammarExample(text="Ich wohne in Berlin.", translation=None),
+            GrammarExample(text="Du lernst Deutsch.", translation=None),
             GrammarExample(
                 text="Er arbeitet bei Siemens.",
-                translation="He works at Siemens.",
+                translation=None,
                 note="-d → extra -e-",
             ),
-            GrammarExample(text="Wir kaufen ein Auto.", translation="We are buying a car."),
+            GrammarExample(text="Wir kaufen ein Auto.", translation=None),
             GrammarExample(
-                text="Tanzt du gern?", translation="Do you like to dance?", note="-z → kein -s-"
+                text="Tanzt du gern?", translation=None, note="-z → kein -s-"
             ),
-            GrammarExample(text="Sie spielen Fußball.", translation="They play football."),
+            GrammarExample(text="Sie spielen Fußball.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -605,20 +605,20 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
         ],
         examples=[
             GrammarExample(
-                text="Ich stehe jeden Tag um 7 Uhr auf.", translation="I get up every day at 7."
+                text="Ich stehe jeden Tag um 7 Uhr auf.", translation=None
             ),
             GrammarExample(
-                text="Rufst du mich morgen an?", translation="Will you call me tomorrow?"
+                text="Rufst du mich morgen an?", translation=None
             ),
             GrammarExample(
-                text="Wir kaufen am Samstag ein.", translation="We are going shopping on Saturday."
+                text="Wir kaufen am Samstag ein.", translation=None
             ),
             GrammarExample(
-                text="Sie sieht abends fern.", translation="She watches TV in the evening."
+                text="Sie sieht abends fern.", translation=None
             ),
-            GrammarExample(text="Wann fängt der Film an?", translation="When does the film start?"),
+            GrammarExample(text="Wann fängt der Film an?", translation=None),
             GrammarExample(
-                text="Kommst du mit ins Kino?", translation="Are you coming along to the cinema?"
+                text="Kommst du mit ins Kino?", translation=None
             ),
         ],
         common_mistakes=[
@@ -669,26 +669,26 @@ Wird im Alltag mit Freunden und Familie verwendet:
         examples=[
             GrammarExample(
                 text="Wie spät ist es? — Es ist halb zehn.",
-                translation="What time is it? — It is 9:30.",
+                translation=None,
                 note="Achtung: halb zehn = 9:30",
             ),
             GrammarExample(
-                text="Der Bus kommt um Viertel nach acht.", translation="The bus comes at 8:15."
+                text="Der Bus kommt um Viertel nach acht.", translation=None
             ),
             GrammarExample(
                 text="Der Film beginnt um zwanzig Uhr.",
-                translation="The film starts at 8:00 PM.",
+                translation=None,
                 note="offiziell",
             ),
             GrammarExample(
-                text="Ich arbeite von neun bis fünf.", translation="I work from nine to five."
+                text="Ich arbeite von neun bis fünf.", translation=None
             ),
             GrammarExample(
-                text="Es ist fünf vor zwölf.", translation="It is five to twelve.", note="11:55"
+                text="Es ist fünf vor zwölf.", translation=None, note="11:55"
             ),
             GrammarExample(
                 text="Um wie viel Uhr frühstückst du?",
-                translation="At what time do you have breakfast?",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -750,23 +750,23 @@ Wird mit einem Verb kombiniert:
             'Möchten ist der Konjunktiv II von "mögen" und drückt einen Wunsch aus: "Ich möchte ein Eis."',
         ],
         examples=[
-            GrammarExample(text="Ich mag Schokolade.", translation="I like chocolate."),
+            GrammarExample(text="Ich mag Schokolade.", translation=None),
             GrammarExample(
-                text="Magst du klassische Musik?", translation="Do you like classical music?"
+                text="Magst du klassische Musik?", translation=None
             ),
-            GrammarExample(text="Ich spiele gern Tennis.", translation="I like playing tennis."),
+            GrammarExample(text="Ich spiele gern Tennis.", translation=None),
             GrammarExample(
                 text="Ich trinke lieber Tee als Kaffee.",
-                translation="I prefer tea to coffee.",
+                translation=None,
                 note="Vergleich",
             ),
             GrammarExample(
                 text="Am liebsten esse ich Pizza.",
-                translation="My favourite food is pizza.",
+                translation=None,
                 note="am liebsten",
             ),
             GrammarExample(
-                text="Möchtest du etwas trinken?", translation="Would you like something to drink?"
+                text="Möchtest du etwas trinken?", translation=None
             ),
         ],
         common_mistakes=[
@@ -816,27 +816,27 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         ],
         examples=[
             GrammarExample(
-                text="Ich sehe den Mann.", translation="I see the man.", note="maskulin Akkusativ"
+                text="Ich sehe den Mann.", translation=None, note="maskulin Akkusativ"
             ),
             GrammarExample(
                 text="Er kauft einen Computer.",
-                translation="He buys a computer.",
+                translation=None,
                 note="ein → einen",
             ),
             GrammarExample(
                 text="Das Geschenk ist für die Mutter.",
-                translation="The gift is for the mother.",
+                translation=None,
                 note="feminin, kein Wechsel",
             ),
             GrammarExample(
-                text="Wir gehen durch den Park.", translation="We walk through the park."
+                text="Wir gehen durch den Park.", translation=None
             ),
             GrammarExample(
-                text="Ich habe keinen Hunger.", translation="I am not hungry.", note="kein → keinen"
+                text="Ich habe keinen Hunger.", translation=None, note="kein → keinen"
             ),
             GrammarExample(
                 text="Ohne dich macht es keinen Spaß.",
-                translation="Without you it's no fun.",
+                translation=None,
                 note="Personalpronomen",
             ),
         ],
@@ -890,17 +890,17 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
             'Im Plural ohne Artikel: "Ich habe keine Kinder." (nicht: Ich habe nicht Kinder.)',
         ],
         examples=[
-            GrammarExample(text="Ich verstehe das nicht.", translation="I don't understand that."),
-            GrammarExample(text="Das ist nicht teuer.", translation="That is not expensive."),
-            GrammarExample(text="Ich habe kein Auto.", translation="I don't have a car."),
+            GrammarExample(text="Ich verstehe das nicht.", translation=None),
+            GrammarExample(text="Das ist nicht teuer.", translation=None),
+            GrammarExample(text="Ich habe kein Auto.", translation=None),
             GrammarExample(
                 text="Er trinkt keinen Kaffee.",
-                translation="He doesn't drink coffee.",
+                translation=None,
                 note="Akkusativ",
             ),
-            GrammarExample(text="Das ist keine gute Idee.", translation="That is not a good idea."),
+            GrammarExample(text="Das ist keine gute Idee.", translation=None),
             GrammarExample(
-                text="Ich habe keine Zeit.", translation="I have no time.", note="Plural/feminin"
+                text="Ich habe keine Zeit.", translation=None, note="Plural/feminin"
             ),
         ],
         common_mistakes=[
@@ -951,20 +951,20 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         examples=[
             GrammarExample(
                 text="Es gibt einen Supermarkt in der Nähe.",
-                translation="There is a supermarket nearby.",
+                translation=None,
             ),
             GrammarExample(
-                text="Gibt es hier ein Krankenhaus?", translation="Is there a hospital here?"
+                text="Gibt es hier ein Krankenhaus?", translation=None
             ),
-            GrammarExample(text="Es gibt keine Probleme.", translation="There are no problems."),
+            GrammarExample(text="Es gibt keine Probleme.", translation=None),
             GrammarExample(
                 text="In Berlin gibt es viele Museen.",
-                translation="There are many museums in Berlin.",
+                translation=None,
             ),
             GrammarExample(
-                text="Es gibt heute Abend eine Party.", translation="There is a party tonight."
+                text="Es gibt heute Abend eine Party.", translation=None
             ),
-            GrammarExample(text="Gibt es noch Kaffee?", translation="Is there still coffee?"),
+            GrammarExample(text="Gibt es noch Kaffee?", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -1015,24 +1015,24 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         ],
         examples=[
             GrammarExample(
-                text="Das Buch liegt auf dem Tisch.", translation="The book is on the table."
+                text="Das Buch liegt auf dem Tisch.", translation=None
             ),
             GrammarExample(
-                text="Die Katze ist unter dem Bett.", translation="The cat is under the bed."
+                text="Die Katze ist unter dem Bett.", translation=None
             ),
             GrammarExample(
                 text="Das Kino ist neben dem Bahnhof.",
-                translation="The cinema is next to the station.",
+                translation=None,
             ),
             GrammarExample(
                 text="Wir warten vor dem Kino.",
-                translation="We are waiting in front of the cinema.",
+                translation=None,
             ),
             GrammarExample(
-                text="Der Spiegel hängt an der Wand.", translation="The mirror hangs on the wall."
+                text="Der Spiegel hängt an der Wand.", translation=None
             ),
             GrammarExample(
-                text="Mein Handy ist in der Tasche.", translation="My phone is in the bag."
+                text="Mein Handy ist in der Tasche.", translation=None
             ),
         ],
         common_mistakes=[
@@ -1089,24 +1089,24 @@ Merkwort: **Mit, Nach, Zu, Bei, Von, Aus, Seit** — diese 7 immer mit Dativ."""
             'Das indirekte Objekt steht im Dativ: "Ich gebe dem Mann das Buch."',
         ],
         examples=[
-            GrammarExample(text="Ich fahre mit dem Bus.", translation="I go by bus."),
+            GrammarExample(text="Ich fahre mit dem Bus.", translation=None),
             GrammarExample(
                 text="Er geht zum Arzt.",
-                translation="He goes to the doctor.",
+                translation=None,
                 note="zu + dem = zum",
             ),
             GrammarExample(
-                text="Ich wohne bei meinen Eltern.", translation="I live with my parents."
+                text="Ich wohne bei meinen Eltern.", translation=None
             ),
             GrammarExample(
                 text="Nach der Arbeit gehe ich ins Fitnessstudio.",
-                translation="After work I go to the gym.",
+                translation=None,
             ),
             GrammarExample(
                 text="Das Geschenk ist von meiner Freundin.",
-                translation="The gift is from my girlfriend.",
+                translation=None,
             ),
-            GrammarExample(text="Ich komme aus der Türkei.", translation="I come from Turkey."),
+            GrammarExample(text="Ich komme aus der Türkei.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -1165,21 +1165,21 @@ Das Präsens für Zukunft ist völlig korrekt und sogar häufiger als das Futur 
         examples=[
             GrammarExample(
                 text="Ich werde morgen nach München fahren.",
-                translation="I will drive to Munich tomorrow.",
+                translation=None,
             ),
             GrammarExample(
-                text="Es wird am Wochenende regnen.", translation="It will rain at the weekend."
+                text="Es wird am Wochenende regnen.", translation=None
             ),
             GrammarExample(
-                text="Wirst du zur Party kommen?", translation="Will you come to the party?"
+                text="Wirst du zur Party kommen?", translation=None
             ),
-            GrammarExample(text="Wir werden dich besuchen.", translation="We will visit you."),
+            GrammarExample(text="Wir werden dich besuchen.", translation=None),
             GrammarExample(
-                text="Er wird nächste Woche umziehen.", translation="He will move next week."
+                text="Er wird nächste Woche umziehen.", translation=None
             ),
             GrammarExample(
                 text="Morgen gehe ich ins Kino.",
-                translation="Tomorrow I'm going to the cinema.",
+                translation=None,
                 note="Präsens statt Futur I",
             ),
         ],
@@ -1238,22 +1238,22 @@ Das Präsens für Zukunft ist völlig korrekt und sogar häufiger als das Futur 
             'Bei trennbaren Verben: "Ich muss um 7 Uhr aufstehen." (nicht getrennt!).',
         ],
         examples=[
-            GrammarExample(text="Ich kann gut schwimmen.", translation="I can swim well."),
-            GrammarExample(text="Willst du mitkommen?", translation="Do you want to come along?"),
+            GrammarExample(text="Ich kann gut schwimmen.", translation=None),
+            GrammarExample(text="Willst du mitkommen?", translation=None),
             GrammarExample(
                 text="Er muss morgen früh aufstehen.",
-                translation="He has to get up early tomorrow.",
+                translation=None,
             ),
             GrammarExample(
-                text="Hier darf man nicht parken.", translation="You are not allowed to park here."
+                text="Hier darf man nicht parken.", translation=None
             ),
             GrammarExample(
                 text="Du solltest mehr schlafen.",
-                translation="You should sleep more.",
+                translation=None,
                 note="sollen im Konjunktiv = Ratschlag",
             ),
             GrammarExample(
-                text="Ich möchte eine Cola, bitte.", translation="I would like a cola, please."
+                text="Ich möchte eine Cola, bitte.", translation=None
             ),
         ],
         common_mistakes=[
@@ -1312,22 +1312,22 @@ der Frühling, der Sommer, der Herbst, der Winter
         ],
         examples=[
             GrammarExample(
-                text="Am Montag habe ich frei.", translation="On Monday I have the day off."
+                text="Am Montag habe ich frei.", translation=None
             ),
             GrammarExample(
-                text="Im Sommer fahren wir ans Meer.", translation="In summer we go to the sea."
+                text="Im Sommer fahren wir ans Meer.", translation=None
             ),
             GrammarExample(
-                text="Der Kurs beginnt um 9 Uhr.", translation="The course starts at 9 o'clock."
+                text="Der Kurs beginnt um 9 Uhr.", translation=None
             ),
             GrammarExample(
                 text="Ich arbeite von Dienstag bis Freitag.",
-                translation="I work from Tuesday to Friday.",
+                translation=None,
             ),
             GrammarExample(
-                text="Am Wochenende schlafe ich lange.", translation="At the weekend I sleep late."
+                text="Am Wochenende schlafe ich lange.", translation=None
             ),
-            GrammarExample(text="Im Januar ist es kalt.", translation="It is cold in January."),
+            GrammarExample(text="Im Januar ist es kalt.", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -1380,17 +1380,17 @@ der Frühling, der Sommer, der Herbst, der Winter
             'Sie-Imperativ für formelle Ansprache: Infinitiv + "Sie".',
         ],
         examples=[
-            GrammarExample(text="Komm bitte hierher!", translation="Come here please!", note="du"),
+            GrammarExample(text="Komm bitte hierher!", translation=None, note="du"),
             GrammarExample(
-                text="Warte einen Moment!", translation="Wait a moment!", note="-e obligatorisch"
+                text="Warte einen Moment!", translation=None, note="-e obligatorisch"
             ),
-            GrammarExample(text="Esst langsam!", translation="Eat slowly!", note="ihr"),
+            GrammarExample(text="Esst langsam!", translation=None, note="ihr"),
             GrammarExample(
-                text="Nehmen Sie Platz!", translation="Take a seat!", note="Sie, formell"
+                text="Nehmen Sie Platz!", translation=None, note="Sie, formell"
             ),
-            GrammarExample(text="Sei ruhig!", translation="Be quiet!", note="unregelmäßig: sein"),
+            GrammarExample(text="Sei ruhig!", translation=None, note="unregelmäßig: sein"),
             GrammarExample(
-                text="Lies den Text!", translation="Read the text!", note="Vokalwechsel e→ie bleibt"
+                text="Lies den Text!", translation=None, note="Vokalwechsel e→ie bleibt"
             ),
         ],
         common_mistakes=[
@@ -1448,29 +1448,29 @@ Dieses System (ja/nein/doch) gibt es im Englischen nicht — dort gibt es nur ye
         examples=[
             GrammarExample(
                 text="Kommst du mit? — Ja, gern.",
-                translation="Are you coming? — Yes, gladly.",
+                translation=None,
                 note="positive Frage → ja",
             ),
             GrammarExample(
                 text="Kommst du mit? — Nein, ich habe keine Zeit.",
-                translation="Are you coming? — No, I have no time.",
+                translation=None,
             ),
             GrammarExample(
                 text="Kommst du nicht mit? — Doch, ich komme mit.",
-                translation="Aren't you coming? — Yes, I am coming.",
+                translation=None,
                 note="negative Frage → doch",
             ),
             GrammarExample(
                 text="Hast du keinen Hunger? — Doch, ich habe Hunger.",
-                translation="Aren't you hungry? — Yes, I am hungry.",
+                translation=None,
             ),
             GrammarExample(
                 text="Magst du keinen Kaffee? — Nein, ich trinke keinen Kaffee.",
-                translation="Don't you like coffee? — No, I don't drink coffee.",
+                translation=None,
             ),
             GrammarExample(
                 text="Bist du nicht müde? — Doch, sehr!",
-                translation="Aren't you tired? — Yes, very!",
+                translation=None,
                 note="kurze Antwort mit doch",
             ),
         ],

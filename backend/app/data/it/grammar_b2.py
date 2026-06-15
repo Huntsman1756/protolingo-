@@ -20,14 +20,14 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se potessi, viaggerei in tutto il mondo.",
-                translation="If I could, I would travel the world.",
+                translation=None,
             ),
             GrammarExample(
                 text="Pensavo che tu fossi gia partito.",
-                translation="I thought you had already left.",
+                translation=None,
             ),
             GrammarExample(
-                text="Vorrei che fosse sempre estate.", translation="I wish it were always summer."
+                text="Vorrei che fosse sempre estate.", translation=None
             ),
         ],
         common_mistakes=[
@@ -66,15 +66,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Se avessi saputo, sarei venuto prima.",
-                translation="If I had known, I would have come earlier.",
+                translation=None,
             ),
             GrammarExample(
                 text="Credevo che fossero gia partiti.",
-                translation="I thought they had already left.",
+                translation=None,
             ),
             GrammarExample(
                 text="Se avessi studiato, avresti passato l esame.",
-                translation="If you had studied, you would have passed the exam.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -111,19 +111,19 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Penso che lui dica la verita.", translation="I think he is telling the truth."
+                text="Penso che lui dica la verita.", translation=None
             ),
             GrammarExample(
                 text="Penso che lui abbia detto la verita.",
-                translation="I think he told the truth.",
+                translation=None,
             ),
             GrammarExample(
                 text="Pensavo che lui dicesse la verita.",
-                translation="I thought he was telling the truth.",
+                translation=None,
             ),
             GrammarExample(
                 text="Pensavo che lui avesse detto la verita.",
-                translation="I thought he had told the truth.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -162,13 +162,13 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Sto leggendo un libro interessante.",
-                translation="I'm reading an interesting book.",
+                translation=None,
             ),
             GrammarExample(
                 text="Cosa stavi facendo quando ti ho chiamato?",
-                translation="What were you doing when I called you?",
+                translation=None,
             ),
-            GrammarExample(text="Stanno arrivando!", translation="They are arriving!"),
+            GrammarExample(text="Stanno arrivando!", translation=None),
         ],
         common_mistakes=[
             GrammarMistake(
@@ -200,10 +200,10 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="La situazione va migliorando.", translation="The situation is getting better."
+                text="La situazione va migliorando.", translation=None
             ),
             GrammarExample(
-                text="Il tempo andava peggiorando.", translation="The weather was getting worse."
+                text="Il tempo andava peggiorando.", translation=None
             ),
         ],
         common_mistakes=[
@@ -232,7 +232,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ti vengo dicendo da mesi di fare attenzione.",
-                translation="I've been telling you for months to be careful.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -260,15 +260,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Non e pigro, bensi molto metodico.",
-                translation="He's not lazy, but rather very methodical.",
+                translation=None,
             ),
             GrammarExample(
                 text="Avevo studiato molto, eppure non ho passato l'esame.",
-                translation="I'd studied a lot, yet I didn't pass.",
+                translation=None,
             ),
             GrammarExample(
                 text="Non mi piace, anzi lo detesto.",
-                translation="I don't like it, on the contrary I hate it.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -296,7 +296,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ho comprato un libro. L'ho letto in due giorni.",
-                translation="I bought a book. I read it in two days.",
+                translation=None,
                 note="anafora",
             ),
         ],
@@ -325,11 +325,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="La ringrazio per la Sua disponibilita.",
-                translation="I thank you for your availability.",
+                translation=None,
             ),
             GrammarExample(
                 text="Le sarei grato se volesse rispondermi.",
-                translation="I would be grateful if you would reply.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -356,11 +356,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="In bocca al lupo per l'esame!", translation="Good luck for the exam!"
+                text="In bocca al lupo per l'esame!", translation=None
             ),
-            GrammarExample(text="Sono al verde questo mese.", translation="I'm broke this month."),
+            GrammarExample(text="Sono al verde questo mese.", translation=None),
             GrammarExample(
-                text="Non vedo l'ora di vederti!", translation="I can't wait to see you!"
+                text="Non vedo l'ora di vederti!", translation=None
             ),
         ],
         common_mistakes=[
@@ -387,15 +387,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         examples=[
             GrammarExample(
-                text="Dai, andiamo al cinema!", translation="Come on, let's go to the cinema!"
+                text="Dai, andiamo al cinema!", translation=None
             ),
             GrammarExample(
                 text="Hai visto la partita? — Magari! Ero al lavoro.",
-                translation="Did you see the match? — I wish! I was at work.",
+                translation=None,
             ),
             GrammarExample(
                 text="— Grazie mille! — Figurati!",
-                translation="— Thank you so much! — Don't mention it!",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -428,15 +428,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Chi dorme non piglia pesci: alzati presto e mettiti a studiare!",
-                translation="The early bird catches the worm!",
+                translation=None,
             ),
             GrammarExample(
                 text="Non preoccuparti: non tutto il male viene per nuocere.",
-                translation="Don't worry: every cloud has a silver lining.",
+                translation=None,
             ),
             GrammarExample(
                 text="Ho consegnato il progetto in ritardo, ma meglio tardi che mai!",
-                translation="I handed in the project late, but better late than never!",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -469,7 +469,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="In questo saggio sosterrò che lo studio delle lingue straniere è fondamentale. Innanzitutto... Inoltre... Tuttavia alcuni obiettano che... Ma queste obiezioni non tengono conto di...",
-                translation="In this essay I will argue that studying foreign languages is essential. First of all... Furthermore...",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -502,7 +502,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="E vero che l'intelligenza artificiale puo sostituire alcuni lavori, tuttavia ne creera di nuovi.",
-                translation="It's true that AI can replace some jobs, however it will create new ones.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -530,7 +530,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Ho osservato il quadro per ore.",
-                translation="I observed the painting for hours.",
+                translation=None,
                 note="osservare = guardare con attenzione",
             ),
         ],
@@ -559,7 +559,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Era una notte buia e tempestosa. All'improvviso, un lampo illumino la stanza. Qualcuno era entrato.",
-                translation="It was a dark and stormy night. Suddenly, a flash lit up the room. Someone had entered.",
+                translation=None,
                 note="imperfetto + pass. remoto + trapassato",
             ),
         ],
@@ -588,7 +588,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Il sole al tramonto tingeva il cielo di arancione e viola. Un vento tiepido portava il profumo del mare.",
-                translation="The setting sun dyed the sky orange and purple. A warm wind carried the scent of the sea.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -617,15 +617,15 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Dante nacque a Firenze nel 1265.",
-                translation="Dante was born in Florence in 1265.",
+                translation=None,
             ),
             GrammarExample(
                 text="Lessi quel libro l'estate scorsa. (Sud)",
-                translation="I read that book last summer.",
+                translation=None,
             ),
             GrammarExample(
                 text="Fecero tutto il possibile per aiutarci.",
-                translation="They did everything possible to help us.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -658,11 +658,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Crisi di governo: il Presidente sale al Quirinale.",
-                translation="Government crisis: the President goes to the Quirinale.",
+                translation=None,
             ),
             GrammarExample(
                 text="Firmato l'accordo, le parti hanno rilasciato dichiarazioni.",
-                translation="Having signed the agreement, the parties released statements.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -690,11 +690,11 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Crolla la Borsa: persi 50 miliardi.",
-                translation="Stock market crashes: 50 billion lost.",
+                translation=None,
             ),
             GrammarExample(
                 text="Mafia, maxi-operazione: 50 arresti.",
-                translation="Mafia, major operation: 50 arrests.",
+                translation=None,
             ),
         ],
         common_mistakes=[
@@ -722,12 +722,12 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="Secondo fonti vicine al governo, il premier si dimetterebbe entro domani.",
-                translation="According to sources close to the government, the PM would resign by tomorrow.",
+                translation=None,
                 note="condizionale di dissociazione",
             ),
             GrammarExample(
                 text='"Non abbiamo nulla da nascondere", ha dichiarato il portavoce.',
-                translation="'We have nothing to hide,' stated the spokesperson.",
+                translation=None,
             ),
         ],
         common_mistakes=[

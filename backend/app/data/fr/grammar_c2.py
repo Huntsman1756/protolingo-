@@ -595,12 +595,12 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         examples=[
             GrammarExample(
                 text="tkt j'arrive ds 5 min mdr",
-                translation="T'inquiète, j'arrive dans 5 minutes, mort de rire.",
+                translation=None,
                 note="langage SMS / messagerie",
             ),
             GrammarExample(
                 text="Cette meuf est trop chelou, elle m'a posé un lapin.",
-                translation="Cette femme est très louche, elle m'a fait faux bond.",
+                translation=None,
                 note="verlan + expression idiomatique",
             ),
             GrammarExample(
