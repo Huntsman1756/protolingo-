@@ -197,7 +197,6 @@ async def conversation_ws(
 
         plan: StudyPlan | None = None
         if target_language_from_client:
-            # Frontend told us which language the user is studying — use it directly
             ul_result = await db.execute(
                 select(UserLanguage).where(
                     UserLanguage.user_id == user_id,
@@ -228,19 +227,7 @@ async def conversation_ws(
                 )
                 plan = result.scalar_one_or_none()
         if not plan:
-
-            result = await db.execute(
-                select(StudyPlan)
-                .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
-                .where(
-                    UserLanguage.user_id == user_id,
-                    StudyPlan.is_active == True,  # noqa: E712
-                )
-                .order_by(StudyPlan.created_at.desc())
-                .limit(1)
-            )
-            plan = result.scalar_one_or_none()
-        if not plan:
+            # No plan for the selected language — use A2 + the selected language
             cefr_level = "A2"
             study_plan_id_for_conv = None
             if target_language_from_client:
@@ -248,11 +235,7 @@ async def conversation_ws(
             elif active_lang:
                 target_language = active_lang.target_language
             else:
-                ul_row = await db.execute(
-                    select(UserLanguage).where(UserLanguage.user_id == user_id).limit(1)
-                )
-                ul = ul_row.scalar_one_or_none()
-                target_language = ul.target_language if ul else "en-GB"
+                target_language = "en-GB"
         else:
             cefr_level = plan.cefr_level
             if target_language_from_client:

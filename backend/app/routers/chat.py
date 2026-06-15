@@ -14,7 +14,6 @@ from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
 from app.models.llm_usage import LLMUsage
 from app.models.progress import Progress
-from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.schemas.chat import (
     ChatHistoryResponse,
@@ -116,32 +115,18 @@ async def _resolve_chat_context(
 ) -> tuple[str, str, int | None]:
     """Resolve CEFR level, target language, and study_plan_id for chat.
 
-    Priority: active plan → any plan → defaults (A2 / active lang / en-US).
+    Only uses the active language's plan. If none exists, defaults to A2
+    and the active language's code. Never falls back to another language's
+    plan — that would make the tutor speak the wrong language.
     """
-    from app.models.user_language import UserLanguage
     from app.services.user_language_service import get_active_language
 
-    # 1. Try active study plan
+    # Try active study plan for the active language
     plan = await get_active_study_plan_optional(user, db)
     if plan:
         return plan.cefr_level, plan.target_language, plan.id
 
-    # 2. Try any study plan from any user language
-    result = await db.execute(
-        select(StudyPlan)
-        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
-        .where(
-            UserLanguage.user_id == user.id,
-            StudyPlan.is_active == True,  # noqa: E712
-        )
-        .order_by(StudyPlan.created_at.desc())
-        .limit(1)
-    )
-    plan = result.scalar_one_or_none()
-    if plan:
-        return plan.cefr_level, plan.target_language, plan.id
-
-    # 3. No plan at all — use active language's code or default
+    # No plan — use active language's code or default
     active_lang = await get_active_language(db, user.id)
     target_language = active_lang.target_language if active_lang else DEFAULT_TARGET_LANG
     return DEFAULT_CEFR, target_language, None
@@ -158,16 +143,15 @@ async def list_conversations(
     db: AsyncSession = Depends(get_db),
 ):
     plan = await get_active_study_plan_optional(current_user, db)
-    if plan is None:
-        return []
+    if plan is not None:
+        where_clause = (Conversation.user_id == current_user.id) & (
+            (Conversation.study_plan_id == plan.id) | (Conversation.study_plan_id.is_(None))
+        )
+    else:
+        where_clause = Conversation.user_id == current_user.id
 
     result = await db.execute(
-        select(Conversation)
-        .where(
-            Conversation.user_id == current_user.id,
-            (Conversation.study_plan_id == plan.id) | (Conversation.study_plan_id.is_(None)),
-        )
-        .order_by(Conversation.updated_at.desc())
+        select(Conversation).where(where_clause).order_by(Conversation.updated_at.desc())
     )
     return result.scalars().all()
 
