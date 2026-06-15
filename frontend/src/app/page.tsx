@@ -118,7 +118,7 @@ export default async function Home() {
       />
 
       {/* Hero */}
-      <section className="flex flex-1 flex-col items-center justify-center px-6 pt-[10px] pb-4 text-center">
+      <section className="flex flex-1 flex-col items-center justify-center px-6 pt-[10px] pb-12 text-center">
         <div className="mb-1 flex flex-col items-center">
           <div className="mb-0">
             <LanguageBubbles />
