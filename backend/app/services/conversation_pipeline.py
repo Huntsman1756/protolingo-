@@ -163,6 +163,19 @@ class ConversationPipeline:
         self._timer_tasks: list[asyncio.Task] = []
         self._pending_saves: list[asyncio.Task] = []
         self._inactivity_warning_sent = False
+        self._send_lock = asyncio.Lock()
+
+    async def _send_json(self, ws: WebSocket, data: dict) -> None:
+        async with self._send_lock:
+            await ws.send_json(data)
+
+    async def _send_bytes(self, ws: WebSocket, data: bytes) -> None:
+        async with self._send_lock:
+            await ws.send_bytes(data)
+
+    async def _close_ws(self, ws: WebSocket, code: int = 1000) -> None:
+        async with self._send_lock:
+            await ws.close(code=code)
 
     @staticmethod
     def _clean_sentence(raw_sentence: str) -> str:
@@ -223,12 +236,14 @@ class ConversationPipeline:
                         stats["chunks"] += 1
                         stats["bytes"] += len(audio)
                     logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
-                    await ws.send_bytes(audio)
+                    await self._send_bytes(ws, audio)
                 except asyncio.CancelledError:
                     raise
                 except Exception as exc:
                     logger.error("[pipeline] TTS failed: %s", exc)
-                    await ws.send_json({"type": "error", "code": "tts_failed", "message": str(exc)})
+                    await self._send_json(
+                        ws, {"type": "error", "code": "tts_failed", "message": str(exc)}
+                    )
 
         sender_task = asyncio.create_task(_tts_sender())
 
@@ -272,13 +287,14 @@ class ConversationPipeline:
                     clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
                     clean_display = strip_memory_marker(full_response).strip()
-                    await ws.send_json(
+                    await self._send_json(
+                        ws,
                         {
                             "type": "transcript",
                             "role": "assistant",
                             "text": clean_display,
                             "final": False,
-                        }
+                        },
                     )
                     if clean_sentence:
                         _enqueue_tts(clean_sentence)
@@ -286,13 +302,14 @@ class ConversationPipeline:
             clean_buffer = self._clean_sentence(sentence_buffer.strip())
             clean_full_response = strip_memory_marker(full_response).strip()
             if clean_buffer:
-                await ws.send_json(
+                await self._send_json(
+                    ws,
                     {
                         "type": "transcript",
                         "role": "assistant",
                         "text": clean_full_response,
                         "final": False,
-                    }
+                    },
                 )
                 _enqueue_tts(clean_buffer)
 
@@ -304,15 +321,16 @@ class ConversationPipeline:
                 self._pending_saves.append(
                     asyncio.create_task(self._save_message("assistant", clean_full_response))
                 )
-                await ws.send_json(
+                await self._send_json(
+                    ws,
                     {
                         "type": "transcript",
                         "role": "assistant",
                         "text": clean_full_response,
                         "final": True,
-                    }
+                    },
                 )
-                await ws.send_json({"type": "turn_complete"})
+                await self._send_json(ws, {"type": "turn_complete"})
         except asyncio.CancelledError:
             sender_task.cancel()
             for f in tts_futures:
@@ -330,7 +348,7 @@ class ConversationPipeline:
             asyncio.create_task(self._max_duration_watcher(ws)),
             asyncio.create_task(self._inactivity_watcher(ws)),
         ]
-        await self._greet(ws)
+        self.current_task = asyncio.create_task(self._greet(ws))
         try:
             while True:
                 try:
@@ -346,8 +364,9 @@ class ConversationPipeline:
                     msg = json.loads(data["text"])
                     if msg.get("type") == "interrupt":
                         await self.cancel_current()
-                        await ws.send_json({"type": "interrupted"})
+                        await self._send_json(ws, {"type": "interrupted"})
         finally:
+            await self.cancel_current()
             for t in self._timer_tasks:
                 t.cancel()
 
@@ -357,9 +376,9 @@ class ConversationPipeline:
         logger.debug("[pipeline] Audio chunk received (%d bytes)", len(audio_bytes))
         # Barge-in: cancel ongoing response if a new audio chunk arrives
         if self.current_task and not self.current_task.done():
-            self.current_task.cancel()
+            await self.cancel_current()
             logger.info("[pipeline] Barge-in: previous turn cancelled")
-            await ws.send_json({"type": "interrupted"})
+            await self._send_json(ws, {"type": "barge_in"})
         self.current_task = asyncio.create_task(self._process(audio_bytes, ws))
 
     async def _process(self, audio_bytes: bytes, ws: WebSocket) -> None:
@@ -371,16 +390,13 @@ class ConversationPipeline:
 
         # 1. STT
         try:
-            await ws.send_json({"type": "status", "value": "transcribing"})
+            await self._send_json(ws, {"type": "status", "value": "transcribing"})
             stt_t0 = time.perf_counter()
             user_text = await self.stt.transcribe(
                 audio_bytes, "audio.wav", "audio/wav", self._stt_language
             )
             stt_ms = (time.perf_counter() - stt_t0) * 1000
             logger.info("[pipeline] STT result: %r", user_text)
-            await ws.send_json(
-                {"type": "transcript", "role": "user", "text": user_text, "final": True}
-            )
         except Exception as exc:
             logger.error("[pipeline] STT failed: %s", exc)
             logger.info(
@@ -393,8 +409,18 @@ class ConversationPipeline:
                 tts_audio_bytes=0,
                 turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
             )
-            await ws.send_json({"type": "error", "code": "stt_failed", "message": str(exc)})
+            await self._send_json(ws, {"type": "error", "code": "stt_failed", "message": str(exc)})
             return
+
+        user_text = user_text.strip()
+        if not user_text:
+            logger.info("[pipeline] Empty STT result — ignoring audio chunk")
+            await self._send_json(ws, {"type": "status", "value": "listening"})
+            return
+
+        await self._send_json(
+            ws, {"type": "transcript", "role": "user", "text": user_text, "final": True}
+        )
 
         # 2. Streaming LLM
         self.history.append({"role": "user", "content": user_text})
@@ -410,7 +436,7 @@ class ConversationPipeline:
         )
 
         try:
-            await ws.send_json({"type": "status", "value": "thinking"})
+            await self._send_json(ws, {"type": "status", "value": "thinking"})
             full_response = ""
             sentence_buffer = ""
 
@@ -429,13 +455,14 @@ class ConversationPipeline:
                     clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
                     clean_display = strip_memory_marker(full_response).strip()
-                    await ws.send_json(
+                    await self._send_json(
+                        ws,
                         {
                             "type": "transcript",
                             "role": "assistant",
                             "text": clean_display,
                             "final": False,
-                        }
+                        },
                     )
                     if clean_sentence:
                         _enqueue_tts(clean_sentence)
@@ -447,13 +474,14 @@ class ConversationPipeline:
                 ].strip()
                 sentence_buffer = self._clean_sentence(sentence_buffer)
             if sentence_buffer.strip():
-                await ws.send_json(
+                await self._send_json(
+                    ws,
                     {
                         "type": "transcript",
                         "role": "assistant",
                         "text": clean_full_response.strip(),
                         "final": False,
-                    }
+                    },
                 )
                 _enqueue_tts(sentence_buffer.strip())
 
@@ -488,7 +516,7 @@ class ConversationPipeline:
                 tts_audio_bytes=tts_stats["bytes"],
                 turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
             )
-            await ws.send_json({"type": "error", "code": "llm_failed", "message": str(exc)})
+            await self._send_json(ws, {"type": "error", "code": "llm_failed", "message": str(exc)})
             if self.history and self.history[-1]["role"] == "user":
                 self.history.pop()
             return
@@ -529,14 +557,15 @@ class ConversationPipeline:
             tts_audio_bytes=tts_stats["bytes"],
             turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
         )
-        await ws.send_json(
-            {"type": "transcript", "role": "assistant", "text": clean_full_response, "final": True}
+        await self._send_json(
+            ws,
+            {"type": "transcript", "role": "assistant", "text": clean_full_response, "final": True},
         )
 
         if memory_updated:
-            await ws.send_json({"type": "memory_updated"})
+            await self._send_json(ws, {"type": "memory_updated"})
 
-        await ws.send_json({"type": "turn_complete"})
+        await self._send_json(ws, {"type": "turn_complete"})
 
     async def _save_usage(self, stream: object) -> None:
         """Persists token usage from an LLMStream to the DB.
@@ -642,19 +671,20 @@ class ConversationPipeline:
         if warn_at > 0:
             await asyncio.sleep(warn_at)
             logger.info("[pipeline] Max duration warning — %ss remaining", WARNING_ADVANCE_SECONDS)
-            await ws.send_json(
+            await self._send_json(
+                ws,
                 {
                     "type": "session_warning",
                     "reason": "max_duration",
                     "remaining_seconds": WARNING_ADVANCE_SECONDS,
-                }
+                },
             )
             await asyncio.sleep(WARNING_ADVANCE_SECONDS)
         else:
             await asyncio.sleep(self.max_duration)
         logger.info("[pipeline] Session ended by max_duration")
-        await ws.send_json({"type": "session_end", "reason": "max_duration"})
-        await ws.close(code=1000)
+        await self._send_json(ws, {"type": "session_end", "reason": "max_duration"})
+        await self._close_ws(ws, code=1000)
 
     async def _inactivity_watcher(self, ws: WebSocket) -> None:
         """Closes session if user is silent for inactivity_timeout seconds."""
@@ -666,16 +696,17 @@ class ConversationPipeline:
             if 0 < remaining <= WARNING_ADVANCE_SECONDS and not self._inactivity_warning_sent:
                 self._inactivity_warning_sent = True
                 logger.info("[pipeline] Inactivity warning — %ds remaining", int(remaining))
-                await ws.send_json(
+                await self._send_json(
+                    ws,
                     {
                         "type": "session_warning",
                         "reason": "inactivity",
                         "remaining_seconds": int(remaining),
-                    }
+                    },
                 )
 
             if elapsed >= self.inactivity_timeout:
                 logger.info("[pipeline] Session ended by inactivity (elapsed %.0fs)", elapsed)
-                await ws.send_json({"type": "session_end", "reason": "inactivity"})
-                await ws.close(code=1000)
+                await self._send_json(ws, {"type": "session_end", "reason": "inactivity"})
+                await self._close_ws(ws, code=1000)
                 return

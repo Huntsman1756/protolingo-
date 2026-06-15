@@ -169,11 +169,13 @@ Used by `require_subscription` in `core/deps.py`, which gates all chat, listenin
 ## Conversation Pipeline (`conversation_pipeline.py`)
 
 WebSocket-based voice conversation orchestrator:
-1. Receives audio chunks from client (WebSocket binary frames)
-2. Sends to STT service for transcription
-3. Builds prompt with system message + last 20 message history
-4. Streams LLM response
-5. Splits on sentence boundaries (regex `SENTENCE_END`)
-6. Sends each sentence to TTS, returning MP3 back to client
-7. Barge-in: new audio from client cancels current LLM+TTS generation
-8. Timeout watchers: max duration (default 30 min) and inactivity (default 3 min) with 60 s warnings
+1. Starts the initial greeting as a cancellable task, then immediately enters the WebSocket receive loop.
+2. Receives audio chunks from client (WebSocket binary frames) and resets inactivity state.
+3. Barge-in: new audio cancels the current greeting or LLM+TTS generation and sends `barge_in` to the client.
+4. Sends audio to STT service for transcription; empty/whitespace transcriptions are ignored and do not call the LLM.
+5. Builds prompt with system message + last 20 message history.
+6. Streams LLM response.
+7. Splits on sentence boundaries (regex `SENTENCE_END`).
+8. Sends each sentence to TTS, returning MP3 binary frames back to client.
+9. Serializes all WebSocket writes through one send lock so audio, transcript/status messages, timeout watchers, and close frames do not race.
+10. Timeout watchers: max duration (default 30 min) and inactivity (default 3 min) with 60 s warnings.

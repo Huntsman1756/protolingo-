@@ -113,9 +113,11 @@ User opens /conversation
     ↓
 Frontend: ConversationMode loads VAD (onnxruntime-web WASM)
     ↓
-WebSocket connects to /ws/conversation?token=<jwt>
+WebSocket connects to /ws/conversation
     ↓
-Backend validates TTS_ENABLED && STT_ENABLED
+Client sends first JSON auth frame with access token
+    ↓
+Backend validates auth, subscription, maintenance mode, TTS service, STT service, quota, and selected target language plan
     ↓
 User speaks → VAD detects speech → sends WAV chunks via WS
     ↓
@@ -127,7 +129,7 @@ ConversationPipeline:
 MP3 chunks sent back via WebSocket
   Frontend: AudioQueue schedules gapless playback
     ↓
-Barge-in: user speaks again → cancel current generation
+Barge-in: user speaks again → cancel current greeting/generation, stop client playback, process new audio
 ```
 
 ## Auth design

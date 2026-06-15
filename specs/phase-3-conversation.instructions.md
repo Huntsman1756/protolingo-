@@ -97,7 +97,7 @@ At T-60 seconds, a `SessionTimeoutBanner` appears with a countdown. When the tim
 
 - **Protocol**: WebSocket
 - **Auth**: After the WebSocket handshake is accepted, the client sends a JSON message `{"type": "auth", "token": "<access_token>"}` within 10 seconds. Sending the token in the URL is intentionally avoided to prevent it from appearing in server access logs.
-- **Guard**: rejects connection with code 1008 if the auth message is missing/invalid, or with code 1011 if `TTS_ENABLED=false` or `STT_ENABLED=false`
+- **Guard**: rejects connection with code 1008 if the auth message is missing/invalid, or with code 1011 if the configured TTS or STT service is unavailable
 - **Database**: uses an async session context manager for the user lookup (reads `conversation_max_duration` and `conversation_inactivity_timeout` from User model)
 
 ### Message types
@@ -105,10 +105,12 @@ At T-60 seconds, a `SessionTimeoutBanner` appears with a countdown. When the tim
 | Direction | Type | Description |
 |-----------|------|-------------|
 | Client → Server | binary | WAV audio frame (float32 PCM, 16kHz mono) |
-| Server → Client | `transcript` | User's speech transcribed to text |
-| Server → Client | `assistant_text` | Streaming AI response text (for display) |
+| Client → Server | `interrupt` | Optional manual interruption message; cancels current generation |
+| Server → Client | `status` | Pipeline state (`transcribing`, `thinking`, `listening`) |
+| Server → Client | `transcript` | User STT result and assistant streaming/final text |
 | Server → Client | binary | MP3 audio chunk (one sentence of TTS) |
 | Server → Client | `barge_in` | Current response cancelled, new input being processed |
+| Server → Client | `turn_complete` | Assistant turn fully streamed and audio sent |
 | Server → Client | `session_warning` | Timeout warning (60 s remaining) |
 | Server → Client | `session_end` | Session terminated by timeout |
 | Server → Client | `error` | Pipeline error with message |
@@ -127,16 +129,19 @@ On WebSocket connect:
 
 ### Main loop
 
-1. **Receive audio**: read binary frame from WebSocket, reset inactivity timer
-2. **STT**: send WAV bytes to STT service → get transcribed text
-3. **Barge-in check**: if there's an active LLM/TTS generation, cancel it
-4. **Context building**: prepend system prompt + last 20 messages (in-memory, not persisted)
-5. **LLM streaming**: stream response from LLM adapter
-6. **Sentence splitting**: accumulate characters into a buffer (max 150 chars). On sentence end detection (period, question mark, exclamation mark followed by space/end), flush the completed sentence to TTS
-7. **TTS per sentence**: send each sentence to Kokoro → send MP3 binary to client
-8. **Loop**: continue streaming until LLM response ends or barge-in occurs
-9. **Send transcript**: send the complete AI text as `assistant_text` for the transcript display
-10. **Append to history**: store the user+assistant exchange in the in-memory buffer (limited to 20 messages)
+1. **Start greeting task**: generate the initial assistant greeting as a cancellable background task while the receive loop starts immediately
+2. **Receive audio**: read binary frame from WebSocket, reset inactivity timer
+3. **Barge-in check**: if there's an active greeting or LLM/TTS generation, cancel it and send `barge_in` so the client stops playback immediately
+4. **STT**: send WAV bytes to STT service → get transcribed text; empty/whitespace STT results are ignored and do not trigger LLM/TTS
+5. **Context building**: prepend system prompt + last 20 messages (in-memory)
+6. **LLM streaming**: stream response from LLM adapter
+7. **Sentence splitting**: accumulate characters into a buffer (max 150 chars). On sentence end detection (period, question mark, exclamation mark followed by space/end), flush the completed sentence to TTS
+8. **TTS per sentence**: synthesize each sentence → send MP3 binary to client
+9. **Loop**: continue streaming until LLM response ends or barge-in occurs
+10. **Send transcript**: send the complete AI text as final `transcript` for the transcript display
+11. **Append to history/persist**: store the user+assistant exchange in memory and persist successful turns to `chat_history`
+
+All server writes to the WebSocket are serialized through a single send lock. This prevents timeout watchers, TTS sender tasks, transcript events, and close frames from writing concurrently to the same connection.
 
 ### Sentence boundary detection
 
@@ -169,6 +174,7 @@ Log level is controlled by the `LOG_LEVEL` environment variable (default `INFO`)
 
 - `RuntimeError` from `ws.receive()` on client disconnect: caught and handled gracefully (no crash)
 - STT failures: send error message to client, do not disconnect
+- Empty STT results: ignore the audio chunk and return to listening without generating an assistant reply
 - LLM failures: send error message, continue loop
 - TTS failures: send error message, skip the sentence
 - Total STT → response latency target: < 2 s on GPU, < 4 s on CPU

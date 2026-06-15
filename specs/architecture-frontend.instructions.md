@@ -316,7 +316,9 @@ Frontend receives SSE events:
 ```
 User opens /conversation → load VAD WASM models
     ↓
-WebSocket connects: new WebSocket(`ws://backend/ws/conversation?token=<jwt>`)
+WebSocket connects: new WebSocket(`/ws/conversation`)
+    ↓
+Client sends first JSON auth frame with access token, voice preference, target language, and optional chat context
     ↓
 VAD detects speech → send WAV chunks via WS
     ↓
@@ -324,8 +326,10 @@ Server: STT → LLM stream → sentence splitting → TTS
     ↓
 Receive MP3 chunks via WS → AudioQueue schedules gapless playback
     ↓
-Barge-in: VAD detects new speech → cancel current generation, send new WAV
+Barge-in: VAD detects new speech → cancel local audio queue; backend sends `barge_in` after cancelling current greeting/response
 ```
+
+`ConversationMode` guards the session lifecycle with a per-start attempt id. If microphone startup fails, the user stops the session, or the component unmounts while the warmup request is still pending, the pending attempt is invalidated so it cannot open a stale WebSocket afterwards.
 
 ## Tests
 

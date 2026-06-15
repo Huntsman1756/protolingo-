@@ -12,7 +12,9 @@
  *    derive the WS base from window.location.
  */
 export function buildConversationWsUrl(): string {
-  const base = (process.env.NEXT_PUBLIC_API_URL ?? '').trim()
+  const base = (process.env.NEXT_PUBLIC_API_URL ?? '')
+    .trim()
+    .replace(/\/+$/, '')
 
   let wsBase: string
   if (base) {

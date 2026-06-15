@@ -559,9 +559,9 @@ async def test_handle_audio_barge_in_cancels_previous() -> None:
     ws = FakeWS()
     await pipeline.handle_audio(b"new-audio", ws)
 
-    # Should have sent interrupted frame
+    # Should have sent barge_in frame so the client cancels audio playback.
     json_msgs = ws.json_messages()
-    assert any(m.get("type") == "interrupted" for m in json_msgs)
+    assert any(m.get("type") == "barge_in" for m in json_msgs)
     assert pipeline.current_task is not None  # new task created
 
 
@@ -573,9 +573,9 @@ async def test_handle_audio_no_barge_in_when_no_current_task() -> None:
     ws = FakeWS()
     await pipeline.handle_audio(b"audio", ws)
 
-    # No interrupted message expected
+    # No barge-in message expected
     json_msgs = ws.json_messages()
-    assert not any(m.get("type") == "interrupted" for m in json_msgs)
+    assert not any(m.get("type") == "barge_in" for m in json_msgs)
 
 
 # ---------------------------------------------------------------------------
@@ -585,21 +585,18 @@ async def test_handle_audio_no_barge_in_when_no_current_task() -> None:
 
 @pytest.mark.asyncio
 async def test_process_empty_transcription() -> None:
-    """STT returns empty string — should still try LLM."""
+    """STT returns empty string — should ignore the audio chunk."""
     pipeline = _make_pipeline()
     pipeline.stt.transcribe = AsyncMock(return_value="")
-
-    async def fake_stream():
-        yield _make_chunk("Hello!")
-
-    pipeline.llm.chat = AsyncMock(return_value=fake_stream())
+    pipeline.llm.chat = AsyncMock()
     pipeline.tts.synthesize = AsyncMock(return_value=b"audio")
 
     ws = FakeWS()
     await pipeline._process(b"audio", ws)
 
     types = ws.types()
-    assert "turn_complete" in types
+    assert "turn_complete" not in types
+    pipeline.llm.chat.assert_not_called()
 
 
 @pytest.mark.asyncio
@@ -1255,9 +1252,10 @@ async def test_full_pipeline_lifecycle() -> None:
         # Run the pipeline
         await pipeline.run(ws)
 
-        # Verify greeting happened
+        # Greeting is cancellable now, so incoming audio can pre-empt it instead
+        # of waiting for the full greeting/TTS path to finish.
         types_before_run = ws.types()
-        assert "turn_complete" in types_before_run
+        assert "barge_in" in types_before_run
 
         # Cleanup
         await pipeline.cleanup()
@@ -1294,10 +1292,10 @@ async def test_full_pipeline_with_interrupt_and_barge_in() -> None:
     with patch("app.services.conversation_pipeline.record_session_seconds"):
         await pipeline.run(ws)
 
-    # Should have interrupted message
+    # Should have an explicit barge-in message for audio interruption.
     json_msgs = ws.json_messages()
     types = [m.get("type") for m in json_msgs]
-    assert "interrupted" in types
+    assert "barge_in" in types
 
 
 @pytest.mark.asyncio

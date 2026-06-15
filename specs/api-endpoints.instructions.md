@@ -193,27 +193,33 @@ Full-duplex voice conversation pipeline.
 
 **Authentication**: After the WebSocket handshake is accepted, the client must send a JSON message `{"type": "auth", "token": "<access_token>"}` within 10 seconds. If missing, malformed, or invalid, the server closes the connection with code 1008.
 
-**Message flow**: Client sends audio chunks → STT transcription → LLM generates response (streamed) → sentence-level TTS → MP3 audio chunks returned.
+**Message flow**: Client sends audio chunks → STT transcription → LLM generates response (streamed) → sentence-level TTS → MP3 audio chunks returned. The server starts the greeting as a cancellable task and immediately enters the receive loop, so user speech can barge in during the initial greeting.
 
 **Client → Server message types:**
 
 | Type | Payload | Description |
 |------|---------|-------------|
-| `auth` | `{"token": "<jwt>"}` | First message — authenticates the session |
+| `auth` | `{"type":"auth","token":"<jwt>","voice":"nova","target_language":"en-GB","context":[...]}` | First message — authenticates the session and may include voice preference, target language, and optional chat context |
 | binary frame | raw audio bytes | WAV audio chunk from VAD |
+| `interrupt` | `{"type":"interrupt"}` | Optional manual interruption; cancels current generation |
 
 **Server → Client message types:**
 
 | Type | Payload | Description |
 |------|---------|-------------|
-| `transcript` | `{"text": "..."}` | STT result for the user's speech |
-| `text_chunk` | `{"text": "..."}` | Streamed LLM response fragment |
-| `audio_chunk` | binary | MP3 audio for a TTS sentence |
-| `timeout_warning` | `{"seconds_remaining": N, "type": "inactivity"|"max_duration"}` | Timeout warning at 60 s |
+| `status` | `{"value":"transcribing"|"thinking"|"listening"}` | Pipeline state hint |
+| `transcript` | `{"role":"user"|"assistant","text":"...","final":true|false}` | User STT result and assistant streaming/final text |
+| binary frame | MP3 bytes | MP3 audio for a TTS sentence |
+| `barge_in` | `{}` | Current greeting/response was cancelled by new audio; client cancels playback |
+| `turn_complete` | `{}` | Assistant turn fully streamed and audio sent |
+| `session_warning` | `{"remaining_seconds": N, "reason": "inactivity"|"max_duration"}` | Timeout warning at 60 s |
 | `session_end` | `{"reason": "..."}` | Session closed by server |
+| `error` | `{"code":"...","message":"..."}` | Pipeline or policy error |
 
 **Features:**
-- **Barge-in**: new audio input cancels ongoing TTS playback
+- **Barge-in**: new audio input cancels the initial greeting or any ongoing LLM/TTS response
+- **Empty STT guard**: empty/whitespace transcriptions are ignored and do not trigger an assistant reply
+- **Serialized server sends**: JSON frames, binary audio chunks, timeout warnings, and close frames are written through one send lock to avoid concurrent WebSocket writes
 - **VAD**: browser-level voice activity detection (`@ricky0123/vad-react` + onnxruntime-web threaded WASM)
 - **Gapless playback**: `AudioQueue` schedules consecutive `AudioBufferSourceNode`s
 - **Session timeouts**: max duration (default 30 min) and inactivity (default 3 min), each with 60 s warning

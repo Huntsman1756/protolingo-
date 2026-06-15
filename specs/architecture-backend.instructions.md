@@ -160,7 +160,7 @@ Key architectural decisions:
 - **LLM Adapter** is a singleton with provider-agnostic interface (Ollama, OpenAI, Anthropic, DeepSeek)
 - **Study Plan Generator** and **Lesson Generator** are deterministic within curriculum constraints
 - **TTS/STT services** abstract local (Kokoro/Whisper) and cloud (OpenAI) providers behind common interfaces
-- **Conversation Pipeline** orchestrates real-time voice: STT → LLM streaming → sentence splitting → TTS → barge-in support
+- **Conversation Pipeline** orchestrates real-time voice: cancellable greeting, STT → LLM streaming → sentence splitting → TTS, serialized WebSocket sends, empty-STT guard, and barge-in support
 
 For complete service details, APIs, and implementation notes, see [services.instructions.md](services.instructions.md).
 

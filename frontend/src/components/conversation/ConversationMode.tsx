@@ -213,6 +213,8 @@ export default function ConversationMode({
   const transcriptEndRef = useRef<HTMLDivElement | null>(null)
   // Tracks whether the session ended cleanly so ws.onclose doesn't overwrite state
   const cleanEndRef = useRef(false)
+  const mountedRef = useRef(true)
+  const startAttemptRef = useRef(0)
 
   // ─── VAD ──────────────────────────────────────────────────────────────────
   // MicVAD.new() loads the ONNX model but does NOT request mic permission yet.
@@ -434,7 +436,18 @@ export default function ConversationMode({
 
   // ─── Session lifecycle ────────────────────────────────────────────────────
   async function handleStart(topicContext?: ChatContextItem[]) {
-    if (!accessToken || vad.loading || vad.errored) return
+    if (
+      !accessToken ||
+      vad.loading ||
+      vad.errored ||
+      sessionActive ||
+      status === 'warming' ||
+      status === 'connecting' ||
+      status === 'live'
+    )
+      return
+
+    const startAttempt = ++startAttemptRef.current
 
     // AudioContext MUST be created during a user-gesture (this click handler)
     const ctx = new AudioContext()
@@ -468,23 +481,37 @@ export default function ConversationMode({
 
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
+      if (!mountedRef.current || startAttemptRef.current !== startAttempt)
+        return
+      startAttemptRef.current++
       setErrorMsg(e instanceof Error ? e.message : t('errorMic'))
       setStatus('error')
       setSessionActive(false)
+      audioCtxRef.current?.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
     })
 
     await warmupPromise
+    if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
+      ctx.close()
+      return
+    }
     const latestToken = useAuthStore.getState().accessToken
     if (!latestToken) {
       setErrorMsg(t('errorUnauthorized'))
       setStatus('error')
       setSessionActive(false)
+      ctx.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
       return
     }
     connectWs(latestToken, topicContext ?? initialContext)
   }
 
   function handleStop() {
+    startAttemptRef.current++
     cleanEndRef.current = true
     wsRef.current?.close(1000, 'user_stopped')
     wsRef.current = null
@@ -502,10 +529,15 @@ export default function ConversationMode({
   // Cleanup on unmount
   useEffect(() => {
     return () => {
+      mountedRef.current = false
+      startAttemptRef.current++
       cleanEndRef.current = true
       wsRef.current?.close()
+      vad.pause()
+      audioQueueRef.current?.cancel()
       audioCtxRef.current?.close()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // ─── Render ───────────────────────────────────────────────────────────────
