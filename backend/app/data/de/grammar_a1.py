@@ -8,7 +8,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title='Das Verb "sein"',
         level="A1",
         category="Verben",
-        summary="The verb 'sein' (to be) — conjugation and basic uses for identity, origin, and characteristics.",
+        summary="Das Verb \"sein\" – Konjugation und Grundverwendung für Identität, Herkunft und Eigenschaften.",
         explanation="""Das Verb **sein** ist das wichtigste Verb im Deutschen. Es bedeutet *to be* und wird für Identität, Herkunft, Eigenschaften und Zustände verwendet.
 
 **Konjugation:**
@@ -68,7 +68,7 @@ Im Gegensatz zum Englischen kann das Subjektpronomen im Deutschen **nicht** wegg
         title='Das Verb "haben"',
         level="A1",
         category="Verben",
-        summary="The verb 'haben' (to have) — conjugation and uses for possession, age, and expressions.",
+        summary="Das Verb \"haben\" – Konjugation und Verwendung für Besitz, Alter und feste Ausdrücke.",
         explanation="""Das Verb **haben** ist nach *sein* das zweitwichtigste Verb im Deutschen.
 
 **Konjugation:**
@@ -132,7 +132,7 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
         title="Personalpronomen",
         level="A1",
         category="Pronomen",
-        summary="Personal pronouns in the nominative case (ich, du, er, sie, es, wir, ihr, sie, Sie).",
+        summary="Personalpronomen im Nominativ (ich, du, er, sie, es, wir, ihr, sie, Sie).",
         explanation="""Die **Personalpronomen im Nominativ** ersetzen das Subjekt im Satz.
 
 | Person | Singular | Plural |
@@ -190,7 +190,7 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
         title="Bestimmte Artikel",
         level="A1",
         category="Artikel",
-        summary="Definite articles der, die, das — noun gender and article agreement in the nominative case.",
+        summary="Bestimmte Artikel der, die, das – Genus und Artikelkongruenz im Nominativ.",
         explanation="""Im Deutschen hat jedes Nomen ein **Genus** (Geschlecht): maskulin, feminin oder neutral. Der **bestimmte Artikel** (definite article) zeigt dieses Genus an.
 
 | Genus | Singular | Plural |
@@ -248,7 +248,7 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
         title="Das Genus der Substantive",
         level="A1",
         category="Nomen",
-        summary="Noun gender in German — useful patterns and rules to guess der, die, das.",
+        summary="Das grammatische Genus im Deutschen – hilfreiche Muster und Regeln für der, die, das.",
         explanation="""Das Genus (Geschlecht) eines Nomens zu wissen ist essentiell, denn es bestimmt den Artikel und die Adjektivdeklination. Hier sind die wichtigsten **Regeln und Signale**:
 
 ### Typische Endungen für **der** (maskulin):
@@ -325,7 +325,7 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
         title="Unbestimmte Artikel",
         level="A1",
         category="Artikel",
-        summary="Indefinite articles ein, eine — when and how to use them in the nominative case.",
+        summary="Unbestimmte Artikel ein, eine – wann und wie man sie im Nominativ verwendet.",
         explanation="""Der **unbestimmte Artikel** (indefinite article) wird verwendet, wenn das Nomen **unbekannt**, **nicht spezifisch** oder **zum ersten Mal erwähnt** wird.
 
 | Genus | Singular |
@@ -390,7 +390,7 @@ Für das Alter verwendet man **sein**, nicht *haben*: *Ich bin 25 Jahre alt.*
         title="Possessivartikel",
         level="A1",
         category="Artikel",
-        summary="Possessive articles mein, dein, sein, ihr, unser, euer, Ihr — nominative forms.",
+        summary="Possessivartikel mein, dein, sein, ihr, unser, euer, Ihr – Nominativformen.",
         explanation="""**Possessivartikel** zeigen Besitz oder Zugehörigkeit an. Sie stehen vor dem Nomen und richten sich nach dem **Besitzer**.
 
 | Besitzer | maskulin/neutral | feminin/Plural |
@@ -456,7 +456,7 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
         title="Adjektive",
         level="A1",
         category="Adjektive",
-        summary="Basic adjectives in German — position, common adjectives, and predicate use.",
+        summary="Grundlegende Adjektive im Deutschen – Stellung, häufige Adjektive und prädikativer Gebrauch.",
         explanation="""Adjektive beschreiben Eigenschaften von Personen oder Dingen.
 
 **Prädikative Verwendung (nach sein):** Nach den Verben **sein**, **werden** und **bleiben** steht das Adjektiv **unverändert** (ohne Endung):
@@ -518,7 +518,7 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
         title="Regelmäßige Verben im Präsens",
         level="A1",
         category="Verben",
-        summary="Regular verb conjugation in the present tense — the go-to pattern for most German verbs.",
+        summary="Regelmäßige Verben im Präsens – das Grundmuster für die meisten deutschen Verben.",
         explanation="""Die meisten deutschen Verben sind **regelmäßig** (schwach). Sie folgen einem festen Konjugationsmuster im Präsens:
 
 **Stamm finden:** Infinitiv ohne **-en** (oder **-n**). Beispiel: **wohnen** → Stamm: **wohn-**
@@ -577,7 +577,7 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
         title="Trennbare Verben",
         level="A1",
         category="Verben",
-        summary="Separable verbs — how prefixes detach and move to the end of the sentence.",
+        summary="Trennbare Verben – wie Präfixe sich ablösen und ans Satzende wandern.",
         explanation="""**Trennbare Verben** bestehen aus einem **Präfix** (Vorsilbe) und einem Basisverb. Im Präsens wird das Präfix **abgetrennt** und ans **Satzende** gestellt.
 
 **Beispiele:**
@@ -640,7 +640,7 @@ Im **Nominativ** gilt: Maskulin & neutral Singular: **mein/dein/sein/unser/euer/
         title="Die Uhrzeit",
         level="A1",
         category="Syntax",
-        summary="Telling time in German — official and colloquial forms, hours, and minutes.",
+        summary="Die Uhrzeit im Deutschen – offizielle und umgangssprachliche Formen, Stunden und Minuten.",
         explanation="""Es gibt im Deutschen zwei Arten, die Uhrzeit auszudrücken:
 
 ### 1. Offizielle Zeit (24-Stunden-Format)
@@ -710,7 +710,7 @@ Wird im Alltag mit Freunden und Familie verwendet:
         title="Vorlieben ausdrücken",
         level="A1",
         category="Verben",
-        summary="Expressing likes and preferences with mögen, gern, lieber, and am liebsten.",
+        summary="Vorlieben ausdrücken mit mögen, gern, lieber und am liebsten.",
         explanation="""Im Deutschen gibt es mehrere Möglichkeiten, Vorlieben auszudrücken:
 
 ### 1. **mögen** (to like)
@@ -788,7 +788,7 @@ Wird mit einem Verb kombiniert:
         title="Der Akkusativ",
         level="A1",
         category="Kasus",
-        summary="The accusative case — direct objects, articles in accusative, and accusative prepositions.",
+        summary="Der Akkusativ – direkte Objekte, Artikel im Akkusativ und Akkusativpräpositionen.",
         explanation="""Der **Akkusativ** ist der Fall für das **direkte Objekt** (Wen? Was?). Er wird auch nach bestimmten Präpositionen verwendet.
 
 ### Artikel im Akkusativ
@@ -859,7 +859,7 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         title="Verneinung",
         level="A1",
         category="Syntax",
-        summary="Negation with nicht and kein — how to negate verbs, adjectives, and nouns correctly.",
+        summary="Verneinung mit nicht und kein – wie man Verben, Adjektive und Nomen korrekt verneint.",
         explanation="""Es gibt zwei Arten der Verneinung im Deutschen:
 
 ### 1. **nicht** — verneint Verben, Adjektive, Adverbien, Ortsangaben
@@ -922,7 +922,7 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         title='"Es gibt"',
         level="A1",
         category="Syntax",
-        summary="Using 'es gibt' (there is/are) — existence statements with the accusative case.",
+        summary="Verwendung von \"es gibt\" – Existenzaussagen mit dem Akkusativ.",
         explanation="""**Es gibt** bedeutet *there is / there are* und wird verwendet, um die **Existenz** von etwas zu beschreiben.
 
 **Grammatik:**
@@ -985,7 +985,7 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         title="Lokalpräpositionen",
         level="A1",
         category="Präpositionen",
-        summary="Local prepositions in, an, auf, neben, vor, hinter, unter, über, zwischen with dative.",
+        summary="Lokale Präpositionen in, an, auf, neben, vor, hinter, unter, über, zwischen mit Dativ.",
         explanation="""**Lokalpräpositionen** beschreiben den **Ort** oder die **Position** von Personen und Dingen. Auf A1-Niveau werden sie meist mit dem **Dativ** verwendet, um einen festen Ort anzugeben (Wo?).
 
 | Präposition | Bedeutung | Beispiel |
@@ -1054,7 +1054,7 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         title="Dativ Grundlagen",
         level="A1",
         category="Kasus",
-        summary="Dative basics — articles, dative prepositions (nach, mit, zu, bei, von, aus, seit), and indirect objects.",
+        summary="Dativ-Grundlagen – Artikel, Dativpräpositionen (nach, mit, zu, bei, von, aus, seit) und indirekte Objekte.",
         explanation="""Der **Dativ** ist der dritte Fall im Deutschen. Er antwortet auf die Frage **Wem?** (to whom? / for whom?).
 
 ### Artikel im Dativ
@@ -1127,7 +1127,7 @@ Merkwort: **Mit, Nach, Zu, Bei, Von, Aus, Seit** — diese 7 immer mit Dativ."""
         title='Futur I mit "werden"',
         level="A1",
         category="Verben",
-        summary="Future tense with 'werden' — how to talk about future events in German.",
+        summary="Futur mit \"werden\" – wie man über zukünftige Ereignisse spricht.",
         explanation="""Das Futur I wird mit dem Hilfsverb **werden** + Infinitiv gebildet.
 
 **Konjugation von werden:**
@@ -1202,7 +1202,7 @@ Das Präsens für Zukunft ist völlig korrekt und sogar häufiger als das Futur 
         title="Modalverben",
         level="A1",
         category="Verben",
-        summary="Modal verbs können, wollen, müssen, dürfen, sollen, möchten — meaning, conjugation, and sentence structure.",
+        summary="Modalverben können, wollen, müssen, dürfen, sollen, möchten – Bedeutung, Konjugation und Satzbau.",
         explanation="""**Modalverben** modifizieren die Bedeutung des Hauptverbs. Sie stehen immer mit einem zweiten Verb im **Infinitiv** am Satzende.
 
 ### Die 6 Modalverben:
@@ -1275,7 +1275,7 @@ Das Präsens für Zukunft ist völlig korrekt und sogar häufiger als das Futur 
         title="Wochentage und Zeitangaben",
         level="A1",
         category="Syntax",
-        summary="Days of the week, months, seasons, and time expressions with prepositions am, im, um.",
+        summary="Wochentage, Monate, Jahreszeiten und Zeitausdrücke mit den Präpositionen am, im, um.",
         explanation="""### Wochentage (alle maskulin: **der**)
 
 | Deutsch | Englisch |
@@ -1348,7 +1348,7 @@ der Frühling, der Sommer, der Herbst, der Winter
         title="Der Imperativ",
         level="A1",
         category="Verben",
-        summary="The imperative mood — giving commands, instructions, and making requests in German.",
+        summary="Der Imperativ – Befehle, Anweisungen und Bitten im Deutschen.",
         explanation="""Der **Imperativ** wird für Befehle, Aufforderungen und Bitten verwendet.
 
 ### Formen:
@@ -1412,7 +1412,7 @@ der Frühling, der Sommer, der Herbst, der Winter
         title="Ja/Nein/Doch",
         level="A1",
         category="Syntax",
-        summary="Answering questions correctly — the three-way system ja, nein, and doch.",
+        summary="Fragen richtig beantworten – das dreigliedrige System ja, nein und doch.",
         explanation="""Im Deutschen gibt es **drei** Antwortwörter für Ja/Nein-Fragen: **ja**, **nein** und **doch**.
 
 ### Die Regel:

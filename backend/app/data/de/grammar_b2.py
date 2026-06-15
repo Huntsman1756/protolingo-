@@ -8,7 +8,7 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title="Konjunktiv II Vergangenheit",
         level="B2",
         category="Modi",
-        summary="Konjunktiv II in the past — hätte gemacht, wäre gegangen for unreal past situations.",
+        summary="Konjunktiv II der Vergangenheit – hätte gemacht, wäre gegangen für irreale Vergangenheit.",
         explanation="""Der **Konjunktiv II der Vergangenheit** drückt irreale Situationen in der Vergangenheit aus: **hätte/wäre + Partizip II**.
 Ich hätte gelernt. / Ich wäre gegangen. / Er hätte angerufen. / Sie wäre geblieben.
 
@@ -76,7 +76,7 @@ Irreale Vergleiche: *Er tut so, als hätte er nichts gewusst.*""",
         title="Irreale Bedingungen",
         level="B2",
         category="Modi",
-        summary="Unreal conditional sentences — wenn-Sätze in present and past with Konjunktiv II.",
+        summary="Irreale Bedingungssätze – wenn-Sätze in Gegenwart und Vergangenheit mit Konjunktiv II.",
         explanation="""**Irreale Bedingungen** beschreiben hypothetische Situationen und ihre Konsequenzen.
 
 Gegenwart/Zukunft: **Wenn + Konjunktiv II (Präsens), (dann) Konjunktiv II (Präsens)** — *Wenn ich reich **wäre**, **würde** ich ein Haus kaufen.*
@@ -147,7 +147,7 @@ Irreal: *Wenn ich Zeit hätte, würde ich kommen.*""",
         title="Erweitertes Passiv",
         level="B2",
         category="Passiv",
-        summary="Extended passive — passive in all tenses including Perfekt, Plusquamperfekt, Futur II.",
+        summary="Erweitertes Passiv – Passiv in allen Zeitformen inklusive Perfekt, Plusquamperfekt, Futur II.",
         explanation="""Das **erweiterte Passiv** umfasst das Vorgangspassiv in **allen Zeitformen**:
 
 Präsens: Es wird gemacht. | Präteritum: Es wurde gemacht. | Perfekt: Es ist gemacht **worden**. | Plusquamperfekt: Es war gemacht **worden**. | Futur I: Es wird gemacht **werden**. | Futur II: Es wird gemacht **worden sein**.
@@ -214,7 +214,7 @@ Zustandspassiv — alle Zeiten: Präsens: Es ist gemacht. Präteritum: Es war ge
         title="Passiversatz",
         level="B2",
         category="Passiv",
-        summary="Passive alternatives — sein + zu + Infinitiv, sich lassen + Infinitiv, -bar adjectives.",
+        summary="Passiversatzformen – sein + zu + Infinitiv, sich lassen + Infinitiv, -bar-Adjektive.",
         explanation="""Alternativen zum Standard-Passiv:
 
 1. **sein + zu + Infinitiv** (Notwendigkeit/Möglichkeit): *Das Problem **ist zu lösen**.* = Das Problem muss/kann gelöst werden.
@@ -283,7 +283,7 @@ Zustandspassiv — alle Zeiten: Präsens: Es ist gemacht. Präteritum: Es war ge
         title="Nominalisierung",
         level="B2",
         category="Syntax",
-        summary="Nominalization — turning verbs and adjectives into nouns for formal/academic style.",
+        summary="Nominalisierung – Verben und Adjektive in Nomen umwandeln für formellen/akademischen Stil.",
         explanation="""Nominalisierung ist die Umwandlung von Verben oder Adjektiven in Substantive. Typische Suffixe: -ung (Entwicklung), -heit/-keit (Freiheit, Möglichkeit), -tion (Information), -schaft (Freundschaft).
 Aus Nebensatz → Nominalphrase: Weil das Wetter schlecht war → Wegen des schlechten Wetters. Nachdem er angekommen war → Nach seiner Ankunft.""",
         structure="Verb/Adjektiv + Nominalsuffix (-ung, -heit, -keit, -tion) → Nomen / Satz → Nominalphrase mit Präposition + Genitiv",
@@ -333,7 +333,7 @@ Aus Nebensatz → Nominalphrase: Weil das Wetter schlecht war → Wegen des schl
         title="Verbalisierung",
         level="B2",
         category="Syntax",
-        summary="Verbalization — turning nouns into verbs to make sentences simpler and more direct.",
+        summary="Verbalisierung – Nomen in Verben umwandeln, um Sätze einfacher und direkter zu machen.",
         explanation="""Verbalisierung ist das Gegenteil der Nominalisierung: Nomen werden in Verben umgewandelt — macht Texte lebendiger.
 Nominalstil → Verbalstil: Die Durchführung des Projekts erfolgte planmäßig → Das Projekt wurde planmäßig durchgeführt.
 Funktionsverbgefüge → einfaches Verb: zur Anwendung bringen → anwenden, in Erwägung ziehen → erwägen.""",
@@ -374,7 +374,7 @@ Funktionsverbgefüge → einfaches Verb: zur Anwendung bringen → anwenden, in 
         title="Partizip I als Adjektiv",
         level="B2",
         category="Adjektive",
-        summary="The present participle as an adjective — der lachende Mann, das schreiende Kind.",
+        summary="Das Partizip I als Adjektiv – der lachende Mann, das schreiende Kind.",
         explanation="""Das **Partizip I**: **Infinitiv + -d** → aktiv und gleichzeitig. lachen → lachend, weinen → weinend, schlafen → schlafend.
 Attributiv: Das weinende Kind. Adverbial: Er kam lachend ins Zimmer. Substantiviert (groß): der Reisende, die Studierende.
 Partizip I vs II: der schreibende Student (aktiv, gleichzeitig) vs der geschriebene Brief (passiv, vorzeitig).""",
@@ -423,7 +423,7 @@ Partizip I vs II: der schreibende Student (aktiv, gleichzeitig) vs der geschrieb
         title="Partizip II als Adjektiv",
         level="B2",
         category="Adjektive",
-        summary="The past participle as an adjective — das geschriebene Buch, der geöffnete Brief.",
+        summary="Das Partizip II als Adjektiv – das geschriebene Buch, der geöffnete Brief.",
         explanation="""Partizip II als Adjektiv: abgeschlossene Handlung, meist passiv: der geschriebene Brief (der Brief, der geschrieben wurde).
 Bei sein-Verben (Perfekt mit sein): AKTIVE Bedeutung! der eingeschlafene Mann = der Mann, der eingeschlafen ist.
 Substantiviert: der Angestellte, der Verletzte, die Geliebte. Muss vor dem Nomen dekliniert werden.""",
@@ -476,7 +476,7 @@ Substantiviert: der Angestellte, der Verletzte, die Geliebte. Muss vor dem Nomen
         title="Erweiterte Partizipialattribute",
         level="B2",
         category="Adjektive",
-        summary="Extended participial attributes — complex noun modifiers with participles.",
+        summary="Erweiterte Partizipialattribute – komplexe Nominalphrasen mit Partizipien.",
         explanation="""Erweiterte Partizipialattribute: [Erweiterung(en)] + Partizip + Nomen. Typisch für formelles Deutsch.
 Der **gestern in der Zeitung veröffentlichte** Artikel. Die **seit Jahren ständig steigenden** Preise.
 Lesestrategie: Finde Artikel → suche Partizip → finde Kernnomen. Alles dazwischen ist Erweiterung.
@@ -520,7 +520,7 @@ Kann in Relativsatz aufgelöst werden: Das von der Regierung geplante Gesetz →
         title="Textverknüpfende Adverbien",
         level="B2",
         category="Syntax",
-        summary="Text-connecting adverbs — allerdings, demnach, folglich, insofern, dennoch.",
+        summary="Textverbindende Adverbien – allerdings, demnach, folglich, insofern, dennoch.",
         explanation="""Textverknüpfende Adverbien (Konjunktionaladverbien) verbinden Sätze logisch. Sie sind Satzglieder im Hauptsatz — nach ihnen steht das konjugierte Verb auf Position 2.
 allerdings (however), demnach (accordingly), folglich (consequently), dennoch (nevertheless), vielmehr (rather).
 *Es regnet. Trotzdem gehe ich spazieren.* (nicht: trotzdem ich gehe)
@@ -564,7 +564,7 @@ Konsekutiv: also, daher, deshalb, folglich. Konzessiv: trotzdem, dennoch, allerd
         title="Präpositionen mit festem Kasus",
         level="B2",
         category="Präpositionen",
-        summary="Systematic overview of prepositions and the cases they govern.",
+        summary="Systematischer Überblick über Präpositionen und die von ihnen regierten Fälle.",
         explanation="""Vollständige Systematik:
 Nur Akkusativ: durch, für, gegen, ohne, um, bis, entlang (nachgestellt)
 Nur Dativ: mit, nach, zu, bei, von, aus, seit, gegenüber, außer
@@ -620,7 +620,7 @@ Besonderheit: entlang nachgestellt mit Akk, vorangestellt mit Gen/Dat.""",
         title="Nomen-Verb-Verbindungen",
         level="B2",
         category="Syntax",
-        summary="Noun-verb combinations — in Anspruch nehmen, zur Verfügung stellen.",
+        summary="Nomen-Verb-Verbindungen – in Anspruch nehmen, zur Verfügung stellen.",
         explanation="""Nomen-Verb-Verbindungen (Funktionsverbgefüge): feste Kombinationen aus Nomen + bedeutungsarmem Verb.
 in Anspruch nehmen (beanspruchen), zur Verfügung stellen (bereitstellen), in Erwägung ziehen (erwägen)
 in Frage stellen (bezweifeln), unter Beweis stellen (beweisen), Abschied nehmen (sich verabschieden)
@@ -668,7 +668,7 @@ Typisch für formelles Deutsch. Das Verb verliert seine wörtliche Bedeutung."""
         title="Literarische Erzählung",
         level="B2",
         category="Stil",
-        summary="Narrative style — using Präteritum for storytelling, temporal connectors, descriptive language.",
+        summary="Erzählstil – Präteritum für Geschichten, temporale Konnektoren, beschreibende Sprache.",
         explanation="""Literarische Erzählung: Präteritum als Haupterzählzeit. Plusquamperfekt für Vorzeitigkeit.
 Temporale Konnektoren: dann, danach, plötzlich, auf einmal, kurz darauf, schließlich, endlich.
 Erzählanfänge: Es war einmal... / An einem sonnigen Morgen... / Vor langer Zeit...
@@ -715,7 +715,7 @@ Starke Verben im Präteritum: gehen → ging, sehen → sah, geben → gab, komm
         title="Sprache der Medien",
         level="B2",
         category="Stil",
-        summary="Language of the media — passive, reported speech, nominal style in journalism.",
+        summary="Sprache der Medien – Passiv, indirekte Rede, Nominalstil im Journalismus.",
         explanation="""Sprache der Medien (Presse, Nachrichten):
 1. Passiv: Das Gesetz wurde gestern verabschiedet.
 2. Indirekte Rede mit Konjunktiv I: Der Sprecher erklärte, die Lage sei unter Kontrolle.
@@ -766,7 +766,7 @@ Starke Verben im Präteritum: gehen → ging, sehen → sah, geben → gab, komm
         title="N-Deklination",
         level="B2",
         category="Nomen",
-        summary="The N-declension — weak masculine nouns that take -en in all cases except nominative.",
+        summary="Die N-Deklination – schwache maskuline Nomen, die in allen Fällen außer Nominativ -en erhalten.",
         explanation="""N-Deklination: maskuline Nomen bekommen im Akk./Dat./Gen. Singular -(e)n.
 Maskuline Nomen auf -e (Personen/Tiere): der Junge → den Jungen, dem Jungen, des Jungen. der Kollege, der Kunde, der Löwe.
 Auf -ent/-ant/-ist/-oge/-at/-it: der Student → den Studenten, der Elefant → den Elefanten.
@@ -812,7 +812,7 @@ Ausnahme: das Herz (neutral!) — des Herzens, dem Herzen, das Herz.""",
         title="Relativsätze mit Präpositionen",
         level="B2",
         category="Syntax",
-        summary="Relative clauses with prepositions — auf den, mit dem, für die and dative/genitive pronouns.",
+        summary="Relativsätze mit Präpositionen – auf den, mit dem, für die und Dativ-/Genitivpronomen.",
         explanation="""Relativsätze mit Präpositionen: Präposition + Relativpronomen im Kasus der Präposition.
 Der Mann, mit dem ich gesprochen habe... (Dativ). Das Projekt, an dem wir arbeiten... (Dativ).
 Genitiv-Relativpronomen: dessen (maskulin/neutral), deren (feminin/Plural).
@@ -859,7 +859,7 @@ Bei Sachen: wo(r) + Präposition — Das ist etwas, wovon ich nichts wusste. Das
         title="Subjektive Bedeutung von Modalverben",
         level="B2",
         category="Verben",
-        summary="Subjective use of modal verbs — er soll reich sein, sie will es gesehen haben.",
+        summary="Subjektiver Gebrauch von Modalverben – er soll reich sein, sie will es gesehen haben.",
         explanation="""Modalverben haben neben objektiver auch subjektive Bedeutung:
 sollen (subjektiv): Gerücht — Er soll reich sein. (Man sagt, er sei reich.)
 wollen (subjektiv): zweifelhafte Behauptung — Sie will es gesehen haben.

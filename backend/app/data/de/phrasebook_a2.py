@@ -6,47 +6,47 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="restaurant_de_a2",
         level="A2",
-        situation="At the Restaurant",
+        situation="Im Restaurant",
         icon="\U0001f37d\ufe0f",
         phrases=[
             PhrasebookEntry(
                 text="Einen Tisch für zwei, bitte.",
-                context="Asking for a table for two",
+                context="Fragen for a table for two",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich habe reserviert.",
-                context="Saying you have a reservation",
+                context="Sagen you have a reservation",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Die Speisekarte, bitte.",
-                context="Asking for the menu",
+                context="Fragen for the menu",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Was können Sie empfehlen?",
-                context="Asking for a recommendation (formal)",
+                context="Fragen for a recommendation (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich nehme das Tagesgericht.",
-                context="Ordering the dish of the day",
+                context="Bestellt das Tagesgericht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Als Vorspeise hätte ich gern...",
-                context="Ordering a starter / appetiser",
+                context="Bestellt eine Vorspeise",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Zum Hauptgericht nehme ich...",
-                context="Ordering the main course",
+                context="Bestellt das Hauptgericht",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Und zum Nachtisch...",
-                context="Ordering dessert",
+                context="Bestellt den Nachtisch",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -56,12 +56,12 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Ich möchte bezahlen, bitte.",
-                context="Asking to pay the bill",
+                context="Fragen to pay the bill",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Die Rechnung, bitte.",
-                context="Asking for the bill",
+                context="Fragen for the bill",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -71,7 +71,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Guten Appetit!",
-                context="Wishing someone 'enjoy your meal'",
+                context="Wünschen someone 'enjoy your meal'",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -86,7 +86,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Darf ich mit Karte bezahlen?",
-                context="Asking if you can pay by card",
+                context="Fragen if you can pay by card",
                 register="neutral",
             ),
         ],
@@ -94,12 +94,12 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="reisen_de_a2",
         level="A2",
-        situation="Travel & Getting Around",
+        situation="Reisen & Fortbewegung",
         icon="\u2708\ufe0f",
         phrases=[
             PhrasebookEntry(
                 text="Wann fährt der nächste Zug nach...?",
-                context="Asking when the next train to ... leaves",
+                context="Fragen when the next train to ... leaves",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -114,67 +114,67 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Auf welchem Gleis fährt der Zug ab?",
-                context="Asking which platform the train leaves from",
+                context="Fragen which platform the train leaves from",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wo ist der Bahnhof?",
-                context="Asking where the train station is",
+                context="Fragen where the train station is",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wann kommen wir an?",
-                context="Asking when we arrive at the destination",
+                context="Fragen when we arrive at the destination",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich hätte gern ein Einzelzimmer.",
-                context="Asking for a single room at a hotel",
+                context="Fragen for a single room at a hotel",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ist das Frühstück inklusive?",
-                context="Asking whether breakfast is included",
+                context="Fragen whether breakfast is included",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Um wie viel Uhr ist Check-out?",
-                context="Asking when check-out time is",
+                context="Fragen when check-out time is",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wo ist die nächste Bushaltestelle?",
-                context="Asking where the nearest bus stop is",
+                context="Fragen where the nearest bus stop is",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Gibt es hier eine Touristeninformation?",
-                context="Asking whether there is a tourist information nearby",
+                context="Fragen whether there is a tourist information nearby",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich möchte ein Auto mieten.",
-                context="Saying you want to rent a car",
+                context="Sagen you want to rent a car",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Haben Sie einen Stadtplan?",
-                context="Asking for a city map (formal)",
+                context="Fragen for a city map (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Wo kann ich Geld wechseln?",
-                context="Asking where you can change money",
+                context="Fragen where you can change money",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wie weit ist es zum Stadtzentrum?",
-                context="Asking how far it is to the city centre",
+                context="Fragen how far it is to the city centre",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich habe mich verlaufen.",
-                context="Saying you got lost on foot",
+                context="Sagen you got lost on foot",
                 register="neutral",
             ),
         ],
@@ -182,52 +182,52 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="gesundheit_de_a2",
         level="A2",
-        situation="Health & Doctor Visits",
+        situation="Gesundheit & Arztbesuche",
         icon="\U0001f3e5",
         phrases=[
             PhrasebookEntry(
                 text="Ich muss einen Termin beim Arzt ausmachen.",
-                context="Saying you need to book a doctor's appointment",
+                context="Sagen you need to book a doctor's appointment",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich fühle mich nicht wohl.",
-                context="Saying you don't feel well",
+                context="Sagen you don't feel well",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Mir tut der Kopf weh.",
-                context="Saying you have a headache",
+                context="Sagen you have a headache",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich habe Bauchschmerzen.",
-                context="Saying you have a stomach ache",
+                context="Sagen you have a stomach ache",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich habe Fieber.",
-                context="Saying you have a fever",
+                context="Sagen you have a fever",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich bin erkältet.",
-                context="Saying you have a cold",
+                context="Sagen you have a cold",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wo ist die nächste Apotheke?",
-                context="Asking where the nearest pharmacy is",
+                context="Fragen where the nearest pharmacy is",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich brauche ein Rezept.",
-                context="Saying you need a prescription",
+                context="Sagen you need a prescription",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Wie oft muss ich das Medikament nehmen?",
-                context="Asking how often to take the medicine",
+                context="Fragen how often to take the medicine",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -237,27 +237,27 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Das tut weh.",
-                context="Saying 'that hurts' during an examination",
+                context="Sagen 'that hurts' during an examination",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Können Sie mir etwas dagegen geben?",
-                context="Asking for medicine for a symptom (formal)",
+                context="Fragen for medicine for a symptom (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich möchte mich krankschreiben lassen.",
-                context="Saying you want a sick note for work",
+                context="Sagen you want a sick note for work",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Haben Sie die Tabletten vorrätig?",
-                context="Asking if the pharmacy has the tablets in stock",
+                context="Fragen if the pharmacy has the tablets in stock",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Gute Besserung!",
-                context="Wishing someone 'get well soon'",
+                context="Wünschen someone 'get well soon'",
                 register="neutral",
             ),
         ],
@@ -265,27 +265,27 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="telefon_de_a2",
         level="A2",
-        situation="On the Phone",
+        situation="Am Telefon",
         icon="\U0001f4f1",
         phrases=[
             PhrasebookEntry(
                 text="Guten Tag, mein Name ist...",
-                context="Introducing yourself on the phone",
+                context="Einleiten yourself on the phone",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Kann ich bitte mit Herrn ... sprechen?",
-                context="Asking to speak to someone (male, formal)",
+                context="Fragen to speak to someone (male, formal)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Am Apparat.",
-                context="Saying 'speaking' when someone asks for you",
+                context="Sagen 'speaking' when someone asks for you",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Einen Moment bitte.",
-                context="Asking someone to wait on the phone",
+                context="Fragen someone to wait on the phone",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -295,32 +295,32 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Leider ist er/sie nicht da.",
-                context="Saying the person is not available",
+                context="Sagen the person is not available",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Soll ich etwas ausrichten?",
-                context="Offering to take a message",
+                context="Anbieten to take a message",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich rufe später noch mal an.",
-                context="Saying you'll call again later",
+                context="Sagen you'll call again later",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Die Verbindung ist schlecht.",
-                context="Saying the line/connection is bad",
+                context="Sagen the line/connection is bad",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Können Sie mich bitte zurückrufen?",
-                context="Asking someone to call you back (formal)",
+                context="Fragen someone to call you back (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Wie ist Ihre Telefonnummer?",
-                context="Asking for someone's phone number (formal)",
+                context="Fragen for someone's phone number (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -330,7 +330,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Ich habe Sie nicht verstanden.",
-                context="Saying you didn't understand someone (formal)",
+                context="Sagen you didn't understand someone (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -340,7 +340,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Danke für Ihren Anruf.",
-                context="Thanking someone for their call (formal)",
+                context="Danken someone for their call (formal)",
                 register="formal",
             ),
         ],
@@ -348,7 +348,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="erzaehlen_de_a2",
         level="A2",
-        situation="Telling Stories & Narrating the Past",
+        situation="Geschichten erzählen & Vergangenes schildern",
         icon="\U0001f4d6",
         phrases=[
             PhrasebookEntry(
@@ -363,7 +363,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Es war ein schöner Tag.",
-                context="Describing a nice day in the past",
+                context="Beschreiben a nice day in the past",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -378,17 +378,17 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Plötzlich hat es angefangen zu regnen.",
-                context="Describing a sudden change (it suddenly started raining)",
+                context="Beschreiben a sudden change (it suddenly started raining)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Zum Glück...",
-                context="Introducing a fortunate turn (luckily...)",
+                context="Einleiten a fortunate turn (luckily...)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Leider hat das nicht geklappt.",
-                context="Saying something unfortunately didn't work out",
+                context="Sagen something unfortunately didn't work out",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -398,7 +398,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Das war wirklich lustig!",
-                context="Saying it was really funny",
+                context="Sagen it was really funny",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -413,7 +413,7 @@ A2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Weißt du, was mir passiert ist?",
-                context="Introducing a personal anecdote casually",
+                context="Einleiten a personal anecdote lockerly",
                 register="informal",
             ),
             PhrasebookEntry(

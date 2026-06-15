@@ -8,7 +8,7 @@ C1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title="Subjektive Modalverben",
         level="C1",
         category="Verben",
-        summary="Advanced subjective modal verbs — nuanced hearsay, probability, and epistemic modality.",
+        summary="Subjektive Modalverben auf fortgeschrittenem Niveau – Hörensagen, Wahrscheinlichkeit und epistemische Modalität.",
         explanation="""Auf C1-Niveau werden subjektive Modalverben in ihrer ganzen Tiefe behandelt. Gewissheitsgrade: müssen ≈95%, dürfte ≈75%, können ≈50%, mögen ≈30%. sollen zitiert Quellen neutral, wollen mit Skepsis.
 Vergangenheit: Er muss krank gewesen sein. Sie will ihn gesehen haben.
 sollen: unpersönliches Gerücht (Der Politiker soll zurücktreten). wollen: Behauptung des Subjekts selbst, oft zweifelhaft (Er will nichts gewusst haben).""",
@@ -61,7 +61,7 @@ sollen: unpersönliches Gerücht (Der Politiker soll zurücktreten). wollen: Beh
         title="Gehobene Sprache",
         level="C1",
         category="Stil",
-        summary="Formal register — Konjunktiv I in formal texts, nominal style, sophisticated syntax.",
+        summary="Gehobenes Register – Konjunktiv I in formellen Texten, Nominalstil, anspruchsvolle Syntax.",
         explanation="""Die gehobene Sprache zeichnet sich aus durch: Konjunktiv I für indirekte Rede, Nominalstil und Funktionsverbgefüge, Genitiv-Präpositionen (bezüglich, hinsichtlich, angesichts), unpersönliche Konstruktionen (Es ist davon auszugehen, dass...), komplexe Hypotaxe.
 Registerwechsel (Code-Switching): Im Freundeskreis: Hast du Bock auf Kino? Im Büro: Hätten Sie Interesse an einem Kinobesuch? In einer Rede: Es wäre mir eine Freude, Sie einladen zu dürfen.""",
         structure="Konjunktiv I · Nominalstil · Genitiv-Präpositionen · unpersönliche Passiv-Konstruktionen · komplexe Hypotaxe",
@@ -118,7 +118,7 @@ Registerwechsel (Code-Switching): Im Freundeskreis: Hast du Bock auf Kino? Im B�
         title="Nominalstil",
         level="C1",
         category="Stil",
-        summary="Nominal style — complex noun phrases and funtion verb constructions.",
+        summary="Nominalstil – komplexe Nominalphrasen und Funktionsverbgefüge.",
         explanation="""Der Nominalstil verdichtet Informationen in komplexen Nominalphrasen. Von verbal zu nominal: Weil die Preise steigen → Aufgrund der steigenden Preise. Nachdem das Gesetz verabschiedet wurde → Nach der Verabschiedung des Gesetzes.
 Bausteine: Nominalisierung (steigen → der Anstieg), Komposita (Preisanstieg), Funktionsverbgefüge (zur Durchführung bringen), präpositionale Genitivkonstruktionen (unter Berücksichtigung), Partizipialattribute (das zu lösende Problem).
 Vorteil: Informationsdichte. Nachteil: Schwerfälligkeit bei Übergebrauch.""",
@@ -167,7 +167,7 @@ Vorteil: Informationsdichte. Nachteil: Schwerfälligkeit bei Übergebrauch.""",
         title="Funktionsverbgefüge",
         level="C1",
         category="Stil",
-        summary="Function verb constructions — erweiterte Liste mit stilistischen Feinheiten.",
+        summary="Funktionsverbgefüge – erweiterte Liste mit stilistischen Feinheiten.",
         explanation="""Funktionsverbgefüge (FVGs): feste Verbindungen aus Nomen + bedeutungsarmem Verb.
 Mit bringen: zur Anwendung bringen (anwenden), zur Sprache bringen (ansprechen), zum Ausdruck bringen (ausdrücken), in Erfahrung bringen (erfahren), in Gefahr bringen (gefährden).
 Mit ziehen: in Betracht ziehen (betrachten), in Erwägung ziehen (erwägen), in Zweifel ziehen (bezweifeln), zur Rechenschaft ziehen (belangen).
@@ -226,7 +226,7 @@ FVGs machen Sprache formeller, präziser und distanzierter.""",
         title="Wortbildung",
         level="C1",
         category="Wortbildung",
-        summary="Word formation — prefixes, suffixes, and compound nouns as a system.",
+        summary="Wortbildung – Präfixe, Suffixe und Komposita als System.",
         explanation="""Die deutsche Wortbildung umfasst: Komposition (Haustürschlüssel = Haus+Tür+Schlüssel — Grundwort rechts bestimmt Genus), Derivation (Präfixe: be-, er-, ver-, zer-, ent-, miss-; Suffixe: -ung, -heit, -keit, -bar, -lich, -los), Konversion (laufen → das Laufen, blau → das Blau), Kurzwortbildung (LKW, Uni, Kripo).
 Fugenelemente: -s-, -en-, -es- zwischen Kompositionsteilen: Arbeit**s**platz, Hunde**h**ütte.""",
         structure="Komposition: Bestimmungswort + (Fuge) + Grundwort / Derivation: Präfix + Stamm + Suffix / Konversion: Wortartwechsel ohne Formänderung",
@@ -273,7 +273,7 @@ Fugenelemente: -s-, -en-, -es- zwischen Kompositionsteilen: Arbeit**s**platz, Hu
         title="Verbpräfixe und ihre Bedeutungen",
         level="C1",
         category="Wortbildung",
-        summary="Verb prefixes — be-, er-, ver-, zer-, ent-, miss- and their systematic meanings.",
+        summary="Verbpräfixe – be-, er-, ver-, zer-, ent-, miss- und ihre systematischen Bedeutungen.",
         explanation="""Untrennbare Verbpräfixe mit systematischen Bedeutungen:
 be-: macht transitiv, zielgerichtet (antworten → beantworten, treten → betreten)
 er-: Resultat, Erkennung, Beginn (kennen → erkennen, öffnen → eröffnen)
@@ -331,7 +331,7 @@ miss-: falsch, schlecht (verstehen → missverstehen, trauen → misstrauen)""",
         title="Ironie im Deutschen",
         level="C1",
         category="Stil",
-        summary="Irony in German — linguistic markers, rhetorical devices, and cultural conventions.",
+        summary="Ironie im Deutschen – sprachliche Marker, rhetorische Mittel und kulturelle Konventionen.",
         explanation="""Ironie als Stilmittel: Modalpartikeln (Das hast du ja toll gemacht!), Übertreibung (Das hat nur drei Stunden gedauert!), Untertreibung/Litotes (Das war nicht schlecht = sehr gut), Konjunktiv II (Das könnte ja vielleicht etwas schneller gehen!).
 Berliner Schnauze (direkt, sarkastisch), Wiener Schmäh (charmant-subtil), Rheinischer Humor (lebensbejahend).
 Gefahr: Ironie kann von Nicht-Muttersprachlern leicht missverstanden werden. Besonders in formellen Kontexten ist Vorsicht geboten.""",
@@ -376,7 +376,7 @@ Gefahr: Ironie kann von Nicht-Muttersprachlern leicht missverstanden werden. Bes
         title="Konnotationen und Nuancen",
         level="C1",
         category="Wortschatz",
-        summary="Connotations and nuances — understanding subtle differences between near-synonyms.",
+        summary="Konnotationen und Nuancen – feine Unterschiede zwischen bedeutungsähnlichen Wörtern verstehen.",
         explanation="""Konnotationen sind emotionale Nebenbedeutungen: dünn (negativ) vs schlank (positiv), billig (schlechte Qualität) vs preiswert (gutes Preis-Leistungs-Verhältnis), Gesicht (neutral) vs Antlitz (poetisch) vs Visage (abwertend).
 Register-Ebenen: vulgär (kotzen) → umgangssprachlich (sich übergeben) → standard (erbrechen) → gehoben (sich übergeben) → fachsprachlich (vomieren).
 C1-Sprecher wählen Wörter nach Konnotation und Register — und erkennen die stilistische Wirkung von Wortwahl bei anderen.""",
@@ -428,7 +428,7 @@ C1-Sprecher wählen Wörter nach Konnotation und Register — und erkennen die s
         title="Rhetorische Mittel",
         level="C1",
         category="Stil",
-        summary="Rhetorical devices — metaphor, alliteration, rhetorical question, chiasmus.",
+        summary="Rhetorische Mittel – Metapher, Alliteration, rhetorische Frage, Chiasmus.",
         explanation="""Wichtige Stilfiguren:
 Wiederholung: Anapher (gleicher Satzanfang), Alliteration (Milch macht müde Männer munter)
 Gegensatz: Antithese (Der Worte sind genug gewechselt...), Chiasmus (Die Kunst ist lang, und kurz ist das Leben), Oxymoron (beredtes Schweigen)
@@ -480,7 +480,7 @@ Hervorhebung: Rhetorische Frage (Wer will schon ewig leben?), Hyperbel (tausendm
         title="Argumentationsstruktur",
         level="C1",
         category="Stil",
-        summary="Argumentation structure — logical arguments with connectors, thesis-antithesis-synthesis.",
+        summary="Argumentationsstruktur – logische Argumente mit Konnektoren, These-Antithese-Synthese.",
         explanation="""Klassischer Dreischritt: These → Antithese → Synthese. Aufbau eines Arguments: Behauptung → Begründung (weil, denn, da) → Beispiel (zum Beispiel, etwa) → Folgerung (deshalb, daher, also).
 Sprachliche Mittel: hinzufügen (außerdem, darüber hinaus), gewichten (vor allem, insbesondere), einschränken (allerdings, jedoch, dennoch), schlussfolgern (daher, folglich, somit).
 Typische Phrasen: Es stellt sich die Frage, ob... / Man muss jedoch bedenken, dass... / Zusammenfassend lässt sich sagen...""",
@@ -523,7 +523,7 @@ Typische Phrasen: Es stellt sich die Frage, ob... / Man muss jedoch bedenken, da
         title="Varietäten: Österreich, Schweiz",
         level="C1",
         category="Varietäten",
-        summary="Austrian and Swiss Standard German — key vocabulary, grammar differences.",
+        summary="Österreichisches und Schweizer Standarddeutsch – wichtiger Wortschatz, grammatische Unterschiede.",
         explanation="""Plurizentrische Sprache mit drei Standardvarietäten.
 Österreich: Jänner (Januar), Paradeiser (Tomaten), Topfen (Quark), Semmel (Brötchen), Sackerl (Tüte), Bankomat (Geldautomat). Grammatik: Perfekt statt Präteritum auch schriftlich. Ich bin gesessen (statt habe gesessen). Diminutiv -erl/-el.
 Schweiz: Velo (Fahrrad), Trottoir (Bürgersteig), Natel (Handy), Rahm (Sahne). Orthographie: Kein ß, immer ss (Strasse, gross). Relativsätze mit welcher/welche/welches sind häufiger.""",
@@ -575,7 +575,7 @@ Schweiz: Velo (Fahrrad), Trottoir (Bürgersteig), Natel (Handy), Rahm (Sahne). O
         title="Regionale Unterschiede im Deutschen",
         level="C1",
         category="Varietäten",
-        summary="Regional differences — north-south lexical divides and dialectal influence.",
+        summary="Regionale Unterschiede – lexikalische Nord-Süd-Teilungen und dialektaler Einfluss.",
         explanation="""Nord-Süd-Gefälle: Brötchen (Nord) / Semmel (Süd), Sonnabend / Samstag, Sahne / Rahm, Junge / Bub, Hallo / Grüß Gott.
 Grammatik: Norden mehr Präteritum, Süden fast ausschließlich Perfekt (oberdeutscher Präteritumschwund). Süden: Genitiv bleibt länger erhalten als possessiver Dativ (dem Peter sein Haus).
 Phonetik: Norden ich [ɪç], Süden i(ch) [iː]. In Norddeutschland ist Standardsprache näher an der Umgangssprache, im Süden sind Dialekte im Alltag präsenter.""",
@@ -618,7 +618,7 @@ Phonetik: Norden ich [ɪç], Süden i(ch) [iː]. In Norddeutschland ist Standard
         title="Textanalyse",
         level="C1",
         category="Stil",
-        summary="Text analysis — systematic approach to analyzing German texts.",
+        summary="Textanalyse – systematischer Ansatz zur Analyse deutscher Texte.",
         explanation="""Textanalyse auf C1-Niveau umfasst: Textsorte und Kontext → Inhalt/Thema → Struktur/Aufbau → Sprachliche Analyse (Wortwahl, Satzbau, rhetorische Mittel, grammatische Besonderheiten) → Argumentationsstruktur → Wirkung und Intention.
 Typische Formulierungen: Der Autor bedient sich einer bildhaften Sprache... / Der Text ist geprägt von... / Die Argumentation erfolgt auf mehreren Ebenen... / Auffällig ist die Verwendung von...
 Wichtig: Analyse ist objektiv, eigene Meinung gehört nicht hinein. Belege aus dem Text (Zitate) sind Pflicht.""",
@@ -657,7 +657,7 @@ Wichtig: Analyse ist objektiv, eigene Meinung gehört nicht hinein. Belege aus d
         title="Synthese und Paraphrase",
         level="C1",
         category="Stil",
-        summary="Synthesis and paraphrase — combining sources and rewriting in your own words.",
+        summary="Synthese und Paraphrase – Quellen kombinieren und in eigenen Worten wiedergeben.",
         explanation="""Paraphrase: Fremden Text in eigenen Worten wiedergeben. Techniken: Synonyme, Satzbau ändern, Perspektive wechseln.
 Synthese: Mehrere Quellen zu neuer, eigenständiger Aussage verarbeiten. Kernaussagen identifizieren, Gemeinsamkeiten/Unterschiede finden, in kohärente Argumentation einbetten.
 Formulierungen: Sowohl Müller als auch Schmidt argumentieren... / Im Gegensatz zu X vertritt Y... / Die Studien kommen übereinstimmend zu dem Ergebnis... / Während A den Fokus auf ... legt, betont B...""",
@@ -699,7 +699,7 @@ Formulierungen: Sowohl Müller als auch Schmidt argumentieren... / Im Gegensatz 
         title="Reformulierungstechniken",
         level="C1",
         category="Stil",
-        summary="Reformulation techniques — rephrasing, explaining, simplifying complex ideas.",
+        summary="Reformulierungstechniken – umformulieren, erklären, komplexe Ideen vereinfachen.",
         explanation="""Reformulierung ist die Fähigkeit, einen Gedanken auf verschiedene Weise auszudrücken. Techniken: Synonyme, Aktiv↔Passiv, Nominalisierung↔Verbalisierung, Perspektivwechsel (Ich gebe dir → Du bekommst von mir), Konkretisierung vs Abstraktion.
 Markierungen: Das heißt, ... / Anders gesagt, ... / Mit anderen Worten: ... / Um es einfacher auszudrücken: ... / Oder andersherum: ...
 Eine gute Reformulierung bewahrt die Kernaussage, variiert aber die sprachliche Form.""",
@@ -739,7 +739,7 @@ Eine gute Reformulierung bewahrt die Kernaussage, variiert aber die sprachliche 
         title="Wissenschaftssprache",
         level="C1",
         category="Stil",
-        summary="Academic German — conventions of scientific writing: impersonal, hedging, discipline-specific.",
+        summary="Wissenschaftssprache – Konventionen wissenschaftlichen Schreibens: unpersönlich, hedgend, fachspezifisch.",
         explanation="""Wissenschaftssprache: Passiv (Die Proben wurden untersucht), unpersönliche Konstruktionen (Es ist festzustellen, dass...), Nominalstil (Die Durchführung der Untersuchung), Konjunktiv I (Der Autor stellt fest, dies sei...).
 Hedging: Dies dürfte zutreffen. / Die Ergebnisse deuten darauf hin... / Die Daten legen nahe... / Es scheint, dass...
 Wissenschaftliche Phrasen: Die vorliegende Arbeit untersucht... / Zusammenfassend lässt sich festhalten... / Diesen Ergebnissen zufolge...
@@ -790,7 +790,7 @@ Vermeiden: Ich/Wir (außer in manchen Fachkulturen), Umgangssprache, Übertreibu
         title="Fortgeschrittene Redewendungen",
         level="C1",
         category="Wortschatz",
-        summary="Advanced idioms — idiomatic, figurative, and culturally specific German phrases.",
+        summary="Fortgeschrittene Redewendungen – idiomatische, bildhafte und kulturspezifische deutsche Ausdrücke.",
         explanation="""Redewendungen auf C1-Niveau: sich ins Zeug legen (to put in effort), Nägel mit Köpfen machen (to do things properly), den Nagel auf den Kopf treffen (to hit the nail on the head), vom Regen in die Traufe kommen (from bad to worse), die Flinte ins Korn werfen (to throw in the towel).
 Kommunikation: etwas durch die Blume sagen (indirectly), kein Blatt vor den Mund nehmen (to speak one's mind), mit der Tür ins Haus fallen (to be too blunt).
 Emotionen: die Nase voll haben (fed up), auf Wolke sieben schweben (on cloud nine), sich wie gerädert fühlen (completely exhausted).
@@ -837,7 +837,7 @@ Redensart vs Sprichwort: Redensart ist satzintegriert, Sprichwort ist vollständ
         title="Deutsche Orthotypographie",
         level="C1",
         category="Orthographie",
-        summary="German orthotypography — quotation marks, ß/ss rules, comma rules.",
+        summary="Deutsche Orthotypographie – Anführungszeichen, ß/ss-Regeln, Kommaregeln.",
         explanation="""Anführungszeichen: Deutsch „…" (99 unten, 66 oben), Schweiz «…» (Guillemets nach innen). Falsch: Englische "…".
 ß vs ss: ß nach langem Vokal/Diphthong (Straße, heißen), ss nach kurzem Vokal (Kuss, Fluss, muss).
 Kommaregeln: Immer vor Nebensätzen, vor Infinitivgruppen mit zu, bei Aufzählungen, vor aber/sondern/jedoch/doch.

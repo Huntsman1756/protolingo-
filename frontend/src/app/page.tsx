@@ -118,9 +118,9 @@ export default async function Home() {
       />
 
       {/* Hero */}
-      <section className="flex flex-1 flex-col items-center justify-center px-6 py-24 text-center">
-        <div className="mb-10 flex flex-col items-center">
-          <div className="mb-6">
+      <section className="flex flex-1 flex-col items-center justify-center px-6 pb-4 pt-[10px] text-center">
+        <div className="mb-1 flex flex-col items-center">
+          <div className="mb-0">
             <LanguageBubbles />
           </div>
           <span className="text-fl-label text-fl-muted-2 mb-4 font-mono tracking-widest uppercase">

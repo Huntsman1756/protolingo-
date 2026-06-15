@@ -28,7 +28,16 @@
     "aboutMe": "Über mich",
     "github": "GitHub",
     "footerProduct": "Produkt",
-    "footerLegal": "Rechtliches"
+    "footerLegal": "Rechtliches",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Laden...",
@@ -796,15 +805,6 @@
     "workflowStep4": "Schließen Sie Ihre täglichen Lektionen ab (START-Schaltfläche im Dashboard)",
     "workflowStep5": "Nutzen Sie Karteikarten, um parallel Vokabular zu üben",
     "workflowStep6": "Üben Sie freies Gespräch mit dem KI-Tutor",
-    "languageGreetings": {
-      "en-US": "Hello!",
-      "en-GB": "Hello!",
-      "de-DE": "Hallo!",
-      "es-ES": "¡Hola!",
-      "fr-FR": "Bonjour !",
-      "it-IT": "Ciao!",
-      "pt-PT": "Olá!"
-    },
     "q_language": "Welche Sprache werde ich lernen?",
     "a_language": "FreeLingo unterstützt derzeit mehrere Sprachen (Amerikanisches Englisch, Britisches Englisch, Deutsch, Französisch, Italienisch, Portugiesisch, Spanisch), und wir werden mit der Zeit weitere hinzufügen. Wenn eine neue Sprache verfügbar ist, findest du sie unter Einstellungen → Meine Sprachen — füge sie hinzu und beginne sofort zu lernen.",
     "q_assessment": "Was ist die Einstufung?",

@@ -6,12 +6,12 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="nuance_de_c2",
         level="C2",
-        situation="Mastery of Nuance",
+        situation="Meisterhafte Nuancierung",
         icon="\U0001f48e",
         phrases=[
             PhrasebookEntry(
                 text="Es wäre vermessen zu behaupten, dass...",
-                context="Conceding it would be presumptuous to claim...",
+                context="Einräumen it would be presumptuous to claim...",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -21,7 +21,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Das greift zu kurz.",
-                context="Criticising an explanation as falling short / too simplistic",
+                context="Kritisieren an explanation as falling short / too simplistic",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -31,12 +31,12 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Es handelt sich hierbei um eine durchaus ambivalente Entwicklung.",
-                context="Describing a thoroughly ambivalent development",
+                context="Beschreiben a thoroughly ambivalent development",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Nicht von der Hand zu weisen ist jedoch...",
-                context="Acknowledging a point that cannot be dismissed",
+                context="Anerkennen a point that cannot be dismissed",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -56,7 +56,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Dies bedarf einer erheblichen Differenzierung.",
-                context="Stating that a claim requires substantial differentiation",
+                context="Feststellen that a claim requires substantial differentiation",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -69,7 +69,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="literarisch_de_c2",
         level="C2",
-        situation="Literary & Poetic Language",
+        situation="Literarische & Poetische Sprache",
         icon="\U0001f4da",
         phrases=[
             PhrasebookEntry(
@@ -79,7 +79,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Sein Blick verfinsterte sich schlagartig.",
-                context="Describing a sudden darkening of someone's mood",
+                context="Beschreiben a sudden darkening of someone's mood",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -89,7 +89,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Eine unerklärliche Schwermut hatte sich ihrer bemächtigt.",
-                context="Describing an inexplicable melancholy gripping someone",
+                context="Beschreiben an inexplicable melancholy gripping someone",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -104,7 +104,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="So vergingen die Tage, einer wie der andere.",
-                context="Describing monotonous passage of time (one day like the other)",
+                context="Beschreiben monotonous passage of time (one day like the other)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -114,17 +114,17 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Die Vergänglichkeit allen Seins lastete schwer auf ihm.",
-                context="Expressing existential weight (the transience of all being)",
+                context="Ausdrücken existential weight (the transience of all being)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ein Schauer der Erinnerung durchfuhr sie.",
-                context="Describing a sudden shiver of a memory",
+                context="Beschreiben a sudden shiver of a memory",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Es liegt ein Zauber in diesen Worten.",
-                context="Expressing that there is a magic / enchantment in certain words",
+                context="Ausdrücken that there is a magic / enchantment in certain words",
                 register="formal",
             ),
         ],
@@ -132,7 +132,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="mediation_de_c2",
         level="C2",
-        situation="Mediation, Paraphrasing & Interpreting",
+        situation="Sprachmittlung, Paraphrasierung & Dolmetschen",
         icon="\U0001f91d",
         phrases=[
             PhrasebookEntry(
@@ -142,22 +142,22 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Darf ich kurz zusammenfassen, was Sie gesagt haben?",
-                context="Summarising someone's statement to ensure understanding (formal)",
+                context="Zusammenfassen someone's statement to ensure understanding (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Auf Deutsch würde man das so ausdrücken: ...",
-                context="Offering a German equivalent of a foreign-language expression",
+                context="Anbieten a German equivalent of a foreign-language expression",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Das ist schwer zu übersetzen, aber sinngemäß bedeutet es...",
-                context="Explaining the meaning when a direct translation is hard",
+                context="Erklären the meaning when a direct translation is hard",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Der Unterton suggeriert, dass...",
-                context="Interpreting subtext (the undertone suggests that...)",
+                context="Interpretieren subtext (the undertone suggests that...)",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -167,7 +167,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Diese Redewendung hat im Deutschen keine eins-zu-eins-Entsprechung.",
-                context="Explaining an idiom has no exact one-to-one German equivalent",
+                context="Erklären an idiom has no exact one-to-one German equivalent",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -177,7 +177,7 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Lassen Sie mich das näher ausführen.",
-                context="Offering to elaborate further on a point (formal)",
+                context="Anbieten to elaborate further on a point (formal)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -189,6 +189,132 @@ C2_CATEGORIES: list[PhrasebookCategory] = [
                 text="Zwischen den Zeilen lese ich heraus, dass...",
                 context="Reading between the lines to interpret implicit meaning",
                 register="neutral",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="fachsprachen_de_c2",
+        level="C2",
+        situation="Fachsprachen — Recht, Medizin & Verwaltung",
+        icon="\U0001f4dc",
+        phrases=[
+            PhrasebookEntry(
+                text="Gemäß § 433 BGB ist der Verkäufer verpflichtet, ...",
+                context="Zitieren German Civil Code (BGB) in legal context",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Dies stellt einen Verstoß gegen die guten Sitten dar (§ 138 BGB).",
+                context="Legal concept of contra bonos mores / immorality clause",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Der Kläger beantragt, den Beklagten zu verurteilen.",
+                context="Formell legal pleading (plaintiff vs defendant)",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Diagnose lautet auf eine akute Appendizitis.",
+                context="Medical diagnosis in formal clinical German",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Der Patient ist über die Risiken des Eingriffs aufgeklärt worden.",
+                context="Medical informed consent documentation",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Bescheid ergeht gebührenfrei.",
+                context="Bureaucratic: 'notification is issued free of charge'",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die zuständige Behörde hat den Antrag abschlägig beschieden.",
+                context="Administrative: the authority rejected the application",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Gegen diesen Bescheid kann innerhalb eines Monats Widerspruch eingelegt werden.",
+                context="Standard Rechtsbehelfsbelehrung (legal remedy instruction)",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Eintragung erfolgt von Amts wegen.",
+                context="Administrative: registration is made ex officio / automatically",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Im Eilverfahren wurde eine einstweilige Verfügung erlassen.",
+                context="Legal: a preliminary injunction was issued in expedited proceedings",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Befundung ergab keinerlei Auffälligkeiten.",
+                context="Medical: the findings showed no abnormalities",
+                register="formal",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="politik_de_c2",
+        level="C2",
+        situation="Politische Debatte & Diplomatie",
+        icon="\U0001f3db",
+        phrases=[
+            PhrasebookEntry(
+                text="Ich möchte dem Hohen Hause zu bedenken geben, dass...",
+                context="Formell Bundestag address (speaking to parliament)",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Position der Bundesregierung lässt sich wie folgt skizzieren: ...",
+                context="Outlining the federal government's official position",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Es herrscht ein breiter parteiübergreifender Konsens.",
+                context="Verweisen to cross-party consensus in parliament",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Diese Entwicklung ist mit großer Sorge zu betrachten.",
+                context="Diplomatic expression of concern without direct accusation",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Ich möchte der Gegenseite keinesfalls die Worte im Munde herumdrehen.",
+                context="Bestehen you're not misrepresenting the opponent's argument",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Es geht hier nicht um Parteipolitik, sondern um das Gemeinwohl.",
+                context="Umreißen an issue as above partisan interests",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Das wäre ein Präzedenzfall mit unabsehbaren Konsequenzen.",
+                context="Warnen about the precedent-setting nature of a decision",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Meiner Überzeugung nach ist der einzig gangbare Weg, ...",
+                context="Behaupten the only viable path forward in a debate",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Bedenken der Abgeordneten sind durchaus nachvollziehbar.",
+                context="Anerkennen parliamentarians' concerns diplomatically",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Das verstieße eklatant gegen den Geist des Grundgesetzes.",
+                context="Forcefully arguing a violation of constitutional spirit",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Ein Abwägen der widerstreitenden Interessen ergibt, dass...",
+                context="Balancing competing constitutional interests (Güterabwägung)",
+                register="formal",
             ),
         ],
     ),

@@ -28,7 +28,16 @@
     "aboutMe": "Despre mine",
     "github": "GitHub",
     "footerProduct": "Produs",
-    "footerLegal": "Juridic"
+    "footerLegal": "Juridic",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Se încarcă...",
@@ -796,15 +805,6 @@
     "workflowStep4": "Finalizează lecțiile zilnice (butonul START din tabloul de bord)",
     "workflowStep5": "Folosește carduri flash pentru a antrena vocabularul în paralel",
     "workflowStep6": "Exersează conversația liberă cu tutorele AI",
-    "languageGreetings": {
-      "en-US": "Hello!",
-      "en-GB": "Hello!",
-      "de-DE": "Hallo!",
-      "es-ES": "¡Hola!",
-      "fr-FR": "Bonjour !",
-      "it-IT": "Ciao!",
-      "pt-PT": "Olá!"
-    },
     "q_language": "Ce limbă voi învăța?",
     "a_language": "FreeLingo suportă în prezent mai multe limbi (engleză americană, engleză britanică, franceză, germană, italiană, portugheză, spaniolă) și vom adăuga mai multe în timp. Când o nouă limbă devine disponibilă, o vei găsi în Setări → Limbile mele — adaug-o și începe să înveți imediat.",
     "q_assessment": "Ce este Evaluarea?",

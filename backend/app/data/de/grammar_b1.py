@@ -8,7 +8,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title='Konjunktiv II mit "würde"',
         level="B1",
         category="Modi",
-        summary="The Konjunktiv II with 'würde' + infinitive — the standard way to express hypothetical situations.",
+        summary="Der Konjunktiv II mit \"würde\" + Infinitiv – die Standardform für hypothetische Situationen.",
         explanation="""Der **Konjunktiv II mit würde** ist die häufigste Form für hypothetische Situationen, Wünsche und höfliche Bitten: **würde** (konjugiert) + **Infinitiv** (am Satzende).
 ich würde gehen · du würdest gehen · er würde gehen · wir würden gehen · ihr würdet gehen · sie würden gehen
 
@@ -72,7 +72,7 @@ Bei **sein, haben, Modalverben** und einigen häufigen Verben verwendet man die 
         title="Konjunktiv II: hätte, wäre, könnte",
         level="B1",
         category="Modi",
-        summary="The 'real' Konjunktiv II forms — hätte, wäre, and the modal verbs.",
+        summary="Die \"echten\" Konjunktiv-II-Formen – hätte, wäre und die Modalverben.",
         explanation="""Die **echten Konjunktiv II-Formen** werden bei den wichtigsten Verben verwendet:
 
 sein → ich wäre, du wär(e)st, er wäre, wir wären, ihr wär(e)t, sie wären
@@ -131,7 +131,7 @@ Modalverben im Konjunktiv II: können → könnte, müssen → müsste, dürfen 
         title="Konjunktiv II für Höflichkeit",
         level="B1",
         category="Modi",
-        summary="Using Konjunktiv II for polite requests, offers, and softening statements.",
+        summary="Konjunktiv II für Höflichkeit – Bitten, Angebote und Abschwächung von Aussagen.",
         explanation="""Der **Konjunktiv II** wird sehr häufig für **Höflichkeit** verwendet. Er macht Aussagen weicher und respektvoller.
 
 Direkt vs höflich: Hilf mir! → **Würdest** du mir helfen? / Gib mir das Salz! → **Könnten** Sie mir das Salz geben?
@@ -196,7 +196,7 @@ Im Deutschen wird Höflichkeit nicht nur über *bitte* und *danke* ausgedrückt,
         title="Irreale Wünsche mit Konjunktiv II",
         level="B1",
         category="Modi",
-        summary="Unreal wishes with Konjunktiv II — expressing desires that are not (yet) reality.",
+        summary="Irreale Wünsche mit Konjunktiv II – Wünsche ausdrücken, die (noch) nicht Realität sind.",
         explanation="""**Irreale Wünsche** drücken etwas aus, das nicht der Realität entspricht.
 
 Wenn + Konjunktiv II: *Wenn ich reich **wäre**, würde ich eine Weltreise machen.*
@@ -260,7 +260,7 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
         title='Vorgangspassiv mit "werden"',
         level="B1",
         category="Passiv",
-        summary="The process passive (Vorgangspassiv) with 'werden' + Partizip II — focusing on the action.",
+        summary="Das Vorgangspassiv mit \"werden\" + Partizip II – die Handlung steht im Fokus.",
         explanation="""Das **Vorgangspassiv** beschreibt eine Handlung oder einen Prozess. Der Fokus liegt auf der Aktion, nicht auf dem Handelnden: **werden** (konjugiert) + **Partizip II** (am Satzende).
 
 | Zeit | Aktiv | Vorgangspassiv |
@@ -326,7 +326,7 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
         title="Zustandspassiv",
         level="B1",
         category="Passiv",
-        summary="The state passive (Zustandspassiv) with 'sein' + Partizip II — describing the result.",
+        summary="Das Zustandspassiv mit \"sein\" + Partizip II – das Ergebnis beschreiben.",
         explanation="""Das **Zustandspassiv** beschreibt das **Ergebnis** einer Handlung (einen Zustand), nicht die Handlung selbst.
 
 | Vorgangspassiv (Prozess) | Zustandspassiv (Resultat) |
@@ -386,7 +386,7 @@ Bildung: **sein** (konjugiert) + **Partizip II** — Das Fenster **ist** geöffn
         title="Passiv mit Modalverben",
         level="B1",
         category="Passiv",
-        summary="Passive voice with modal verbs — combining müssen, können, sollen with the passive.",
+        summary="Passiv mit Modalverben – Kombination von müssen, können, sollen mit dem Passiv.",
         explanation="""Das **Passiv mit Modalverben** drückt Notwendigkeit, Möglichkeit oder Erlaubnis im Passiv aus:
 **Modalverb** (konjugiert) + **Partizip II** + **werden** (am Satzende)
 
@@ -454,7 +454,7 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         title="Das Plusquamperfekt",
         level="B1",
         category="Zeitformen",
-        summary="The past perfect — expressing actions that happened before another past action.",
+        summary="Das Plusquamperfekt – Handlungen ausdrücken, die vor einer anderen vergangenen Handlung stattfanden.",
         explanation="""Das **Plusquamperfekt** (past perfect) beschreibt eine Handlung, die **vor einer anderen Handlung in der Vergangenheit** stattfand: **haben/sein im Präteritum** + **Partizip II**
 
 *Nachdem ich gegessen **hatte**, ging ich spazieren.*
@@ -521,7 +521,7 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         title="Temporale Konnektoren",
         level="B1",
         category="Syntax",
-        summary="Time connectors — als, wenn, nachdem, bevor, während, seitdem and their word order.",
+        summary="Temporale Konnektoren – als, wenn, nachdem, bevor, während, seitdem und ihre Wortstellung.",
         explanation="""**Temporale Konnektoren** verbinden Sätze und drücken zeitliche Beziehungen aus:
 
 | Konnektor | Bedeutung | Zeitenfolge |
@@ -591,7 +591,7 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         title='Infinitiv mit "zu"',
         level="B1",
         category="Verben",
-        summary="Infinitive clauses with 'zu' — when and how to use zu + Infinitiv.",
+        summary="Infinitivsätze mit \"zu\" – wann und wie man zu + Infinitiv verwendet.",
         explanation="""Der **Infinitiv mit zu** wird in Infinitivsätzen verwendet: *Ich habe vor, morgen nach Berlin **zu fahren**.*
 
 **Nach bestimmten Verben**: anfangen, aufhören, versuchen, vergessen, hoffen, planen, vorhaben, empfehlen, bitten, erlauben — *Ich habe versucht, dich anzurufen.*
@@ -657,7 +657,7 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         title='Finalsätze mit "um ... zu" und "damit"',
         level="B1",
         category="Syntax",
-        summary="Final clauses — expressing purpose with um ... zu (same subject) and damit (different subject).",
+        summary="Finalsätze – Zweck ausdrücken mit um ... zu (gleiches Subjekt) und damit (anderes Subjekt).",
         explanation="""**Finalsätze** drücken einen Zweck oder ein Ziel aus.
 
 **um ... zu + Infinitiv** (gleiches Subjekt): *Ich lerne Deutsch, **um** in Berlin **zu studieren**.* (Ich lerne. Ich studiere.)
@@ -723,7 +723,7 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         title="Der Genitiv",
         level="B1",
         category="Kasus",
-        summary="The genitive case — expressing possession and relationships between nouns.",
+        summary="Der Genitiv – Besitz und Beziehungen zwischen Nomen ausdrücken.",
         explanation="""Der **Genitiv** drückt Besitz oder Zugehörigkeit aus (the X of the Y).
 
 | Genus | Bestimmt | Unbestimmt |
@@ -792,7 +792,7 @@ Einsilbige Nomen bekommen oft **-es**: *des Mann**es**, des Jahr**es***. Mehrsil
         title="Präpositionen mit Genitiv",
         level="B1",
         category="Präpositionen",
-        summary="Prepositions that govern the genitive case — wegen, trotz, während, statt, innerhalb, außerhalb.",
+        summary="Präpositionen mit Genitiv – wegen, trotz, während, statt, innerhalb, außerhalb.",
         explanation="""Einige Präpositionen verlangen den **Genitiv**: **wegen** (because of), **trotz** (despite), **während** (during), **statt** (instead of), **innerhalb** (within), **außerhalb** (outside), **aufgrund** (due to), **mithilfe** (with the help of), **bezüglich** (regarding)
 
 *Wegen **des** Wetters fällt das Fest aus.* / *Trotz **der** Kälte gingen sie schwimmen.* / *Während **des** Films bitte nicht sprechen.*
@@ -853,7 +853,7 @@ In der gesprochenen Sprache wird oft **Dativ** statt Genitiv verwendet: *Wegen d
         title="Konjunktiv I",
         level="B1",
         category="Modi",
-        summary="The Konjunktiv I — forms and primary use for reported speech in formal German.",
+        summary="Der Konjunktiv I – Formen und Hauptverwendung für die indirekte Rede im formellen Deutsch.",
         explanation="""Der **Konjunktiv I** wird hauptsächlich für **indirekte Rede** in formellen Kontexten verwendet.
 
 Infinitivstamm + Endungen: ich mache, du machest, er/sie/es mache, wir machen, ihr machet, sie/Sie machen
@@ -914,7 +914,7 @@ Wenn die Form mit dem Indikativ identisch ist (z.B. *wir machen*), wird **Konjun
         title="Indirekte Rede",
         level="B1",
         category="Modi",
-        summary="Reported speech — transforming direct speech into indirect speech with Konjunktiv I.",
+        summary="Indirekte Rede – direkte Rede in indirekte Rede mit Konjunktiv I umwandeln.",
         explanation="""Die **indirekte Rede** gibt wieder, was eine andere Person gesagt hat, ohne wörtlich zu zitieren.
 
 Aussagesätze → dass-Satz oder uneingeleiteter Nebensatz: *Er sagte, dass er krank sei. / Er sagte, er sei krank.*
@@ -974,7 +974,7 @@ In der gesprochenen Sprache wird die indirekte Rede meist mit Indikativ verwende
         title="Zweiteilige Konnektoren",
         level="B1",
         category="Syntax",
-        summary="Two-part connectors — sowohl...als auch, entweder...oder, zwar...aber, weder...noch.",
+        summary="Zweiteilige Konnektoren – sowohl...als auch, entweder...oder, zwar...aber, weder...noch.",
         explanation="""**Zweiteilige Konnektoren** verbinden zwei Elemente und bestehen aus zwei Teilen:
 
 **sowohl ... als auch** (both ... and): *Er spricht sowohl Deutsch **als auch** Englisch.*
@@ -1036,7 +1036,7 @@ In der gesprochenen Sprache wird die indirekte Rede meist mit Indikativ verwende
         title='"brauchen + zu"',
         level="B1",
         category="Verben",
-        summary="The special construction 'nicht brauchen zu' — expressing don't need to.",
+        summary="Die Sonderkonstruktion \"nicht brauchen zu\" – nicht müssen ausdrücken.",
         explanation="""Das Verb **brauchen** hat eine besondere Verwendung mit **zu + Infinitiv** in der Verneinung:
 
 *Du **brauchst nicht zu** kommen.* = You don't need to come.
@@ -1102,7 +1102,7 @@ Ohne Verneinung oder *nur* funktioniert die Konstruktion standardsprachlich nich
         title='Das Verb "lassen"',
         level="B1",
         category="Verben",
-        summary="The verb 'lassen' — its three meanings: to let, to have something done, and to leave.",
+        summary="Das Verb \"lassen\" – drei Bedeutungen: erlauben, veranlassen und zurücklassen.",
         explanation="""Das Verb **lassen** ist sehr vielseitig:
 
 1. Lassen = to let, to allow: *Meine Eltern **lassen** mich ins Kino gehen.*
@@ -1170,7 +1170,7 @@ Im Perfekt mit Doppelinfinitiv: *Er hat sein Auto reparieren lassen.* (nicht: ge
         title="Artikeldeklination",
         level="B1",
         category="Artikel",
-        summary="Complete article declension table — all articles in all cases.",
+        summary="Vollständige Artikeldeklinationstabelle – alle Artikel in allen Fällen.",
         explanation="""Komplette Artikeldeklination für alle Fälle:
 
 **Bestimmter Artikel:** der/die/das (Nom.) → den/die/das (Akk.) → dem/der/dem/den+n (Dat.) → des+s/der/des+s/der (Gen.)
@@ -1247,7 +1247,7 @@ Genitiv maskulin/neutral: Nomen bekommt -(e)s: *des Lehrers, meines Autos*.""",
         title="Reflexive Verben",
         level="B1",
         category="Verben",
-        summary="Reflexive verbs — sich freuen, sich ärgern, sich interessieren and their accusative/dative pronouns.",
+        summary="Reflexive Verben – sich freuen, sich ärgern, sich interessieren und ihre Akkusativ-/Dativpronomen.",
         explanation="""**Reflexive Verben** werden mit einem Reflexivpronomen verwendet, das sich auf das Subjekt zurückbezieht.
 
 Reflexivpronomen: mich/mir, dich/dir, sich/sich, uns/uns, euch/euch, sich/sich

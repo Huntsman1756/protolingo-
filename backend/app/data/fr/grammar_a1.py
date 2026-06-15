@@ -5,10 +5,10 @@ from app.data._types import GrammarExample, GrammarMistake, GrammarTopic
 A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     GrammarTopic(
         slug="verbe-etre",
-        title="Le verbe être (to be)",
+        title="Le verbe être",
         level="A1",
         category="Verbes",
-        summary="Le verbe être : identité, nationalité, profession, description. The verb to be: identity, nationality, profession, description.",
+        summary="Le verbe être : identité, nationalité, profession, description.",
         explanation="Le verbe **être** (= to be) est l'un des deux auxiliaires fondamentaux du français. Il sert à exprimer :\n\n- **L'identité** (identity) : *Je suis Marie.* (I am Marie)\n- **La nationalité** (nationality) : *Il est français.* (He is French)\n- **La profession** (profession) : *Elle est médecin.* (She is a doctor — sans article, without an article)\n- **La description** (description) : *La maison est grande.* (The house is big)\n- **La localisation** (location) : *Paris est en France.* (Paris is in France)\n\nLe pronom sujet (subject pronoun) est **obligatoire** en français.",
         structure="je suis · tu es · il/elle/on est · nous sommes · vous êtes · ils/elles sont",
         rules=[
@@ -43,10 +43,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="verbe-avoir",
-        title="Le verbe avoir (to have)",
+        title="Le verbe avoir",
         level="A1",
         category="Verbes",
-        summary="Le verbe avoir : possession, âge, expressions courantes. The verb to have: possession, age, common expressions.",
+        summary="Le verbe avoir : possession, âge, expressions courantes.",
         explanation="Le verbe **avoir** (= to have) est le deuxième auxiliaire fondamental du français. Il exprime :\n\n- **La possession** (possession) : *J'ai une voiture.* (I have a car)\n- **L'âge** (age) : *J'ai 25 ans.* (I am 25 years old — literally 'I have 25 years')\n- **Des sensations et états** (feelings/states) : *J'ai faim / soif / chaud / froid / peur / sommeil.* (I'm hungry / thirsty / hot / cold / scared / sleepy)\n- **L'auxiliaire du passé composé** (auxiliary for past tense) pour la plupart des verbes.",
         structure="j'ai · tu as · il/elle/on a · nous avons · vous avez · ils/elles ont",
         rules=[
@@ -79,10 +79,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="pronoms-sujets",
-        title="Les pronoms sujets (subject pronouns)",
+        title="Les pronoms sujets",
         level="A1",
         category="Pronoms",
-        summary="Les pronoms personnels sujets : je, tu, il, elle, on, nous, vous, ils, elles. (I, you, he, she, one, we, you, they.)",
+        summary="Les pronoms personnels sujets : je, tu, il, elle, on, nous, vous, ils, elles.",
         explanation="Les **pronoms sujets** (subject pronouns) sont obligatoires en français, contrairement à l'espagnol ou à l'italien. Ils indiquent qui fait l'action.\n\n| Singulier | Pluriel |\n|-----------|--------|\n| je (I) | nous (we) |\n| tu (you, informal) | vous (you, formal / plural) |\n| il · elle · on (he/she/one) | ils · elles (they m./f.) |\n\n- **Tu** = informel (amis, famille). **Vous** = formel (inconnus, supérieurs) ou pluriel.\n- **On** = 'nous' à l'oral informel : *On va au cinéma ?* (Shall we go to the cinema?)\n- **Ils** = masculin ou mixte. **Elles** = exclusivement féminin.",
         structure="je · tu · il/elle/on · nous · vous · ils/elles",
         rules=[
@@ -118,10 +118,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="articles-definis",
-        title="Les articles définis (definite articles: the)",
+        title="Les articles définis",
         level="A1",
         category="Articles",
-        summary="le, la, l', les — les articles définis en français. (the)",
+        summary="Les articles définis : le, la, l’, les.",
         explanation="Les **articles définis** (**definite articles** = the) accompagnent un nom connu ou déjà mentionné.\n\n| | Singulier | Pluriel |\n|---|----------|--------|\n| Masculin | le livre (the book) | les livres (the books) |\n| Féminin | la maison (the house) | les maisons (the houses) |\n| Devant voyelle/h muet | l'ami, l'école | les amis |\n\nUsages principaux :\n- **Chose spécifique** (specific thing) : *Le livre de Pierre est intéressant.*\n- **Généralisation** (general statement) : *Les chiens sont fidèles.* (Dogs are loyal.)\n- **Aimer/détester + le/la/l'/les** : *J'aime le chocolat.* (I like chocolate.)\n\n⚠️ Contractions obligatoires : **à + le → au**, **à + les → aux**, **de + le → du**, **de + les → des**.",
         structure="le (masc. sing.) · la (fém. sing.) · l' (voyelle/h muet) · les (pluriel)",
         rules=[
@@ -201,10 +201,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="articles-indefinis",
-        title="Les articles indéfinis (indefinite articles: a/an/some)",
+        title="Les articles indéfinis",
         level="A1",
         category="Articles",
-        summary="un, une, des — les articles indéfinis. (a/an, some)",
+        summary="Les articles indéfinis : un, une, des.",
         explanation="Les **articles indéfinis** (**indefinite articles** = a/an/some) accompagnent un nom non identifié, mentionné pour la première fois.\n\n| | Singulier | Pluriel |\n|---|----------|--------|\n| Masculin | un livre (a book) | des livres (some books) |\n| Féminin | une maison (a house) | des maisons (some houses) |\n\nUsages :\n- **Première mention** (first mention) : *Il y a un chat dans le jardin.*\n- **Objet non spécifique** (non-specific) : *Je cherche un travail.*\n\n⚠️ Après la négation, un/une/des → de : *Je n'ai pas de voiture.* (I don't have a car.)",
         structure="un (masc. sing.) · une (fém. sing.) · des (pluriel)",
         rules=[
@@ -240,7 +240,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="cest-il-est",
-        title="C'est / Il est (It is / He is / She is)",
+        title="C’est / Il est",
         level="A1",
         category="Phrase",
         summary="Distinction entre c'est (présentation/identification) et il/elle est (description). (c'est = identification, il/elle est = description)",
@@ -606,10 +606,10 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="negation-simple",
-        title="La négation simple : ne...pas (negation)",
+        title="La négation simple : ne…pas",
         level="A1",
         category="Phrase",
-        summary="La structure de base de la négation en français. Basic negation structure in French.",
+        summary="La structure de base de la négation en français.",
         explanation="La négation de base en français s'exprime avec **ne...pas** qui encadre le verbe conjugué. (The basic negation wraps the verb with 'ne...pas'.)\n\n- *Je **ne** parle **pas** anglais.* (I don't speak English)\n- *Il **n'** aime **pas** le café.* (He doesn't like coffee)\n\nPlace des mots :\n- **ne** avant le verbe (n' devant voyelle) — before the verb\n- **pas** après le verbe — after the verb\n\nAvec un verbe pronominal :\n- *Je **ne** me lève **pas** tôt.* (I don't get up early)\n\n⚠️ Après la négation, un/une/des et du/de la/des → **de** :\n- *J'ai une voiture → Je n'ai **pas de** voiture.* (I have a car → I don't have a car)",
         structure="ne + verbe + pas",
         rules=[
@@ -644,7 +644,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
     ),
     GrammarTopic(
         slug="il-y-a",
-        title="Il y a (There is / There are)",
+        title="Il y a",
         level="A1",
         category="Phrase",
         summary="Il y a pour exprimer l'existence (there is/there are).",

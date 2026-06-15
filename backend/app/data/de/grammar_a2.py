@@ -8,7 +8,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title='Perfekt mit "haben"',
         level="A2",
         category="Zeitformen",
-        summary="The Perfekt tense with 'haben' — formation and use for most verbs.",
+        summary="Das Perfekt mit \"haben\" – Bildung und Verwendung für die meisten Verben.",
         explanation="""Das **Perfekt** ist die wichtigste Vergangenheitsform im gesprochenen Deutsch. Es wird mit einem Hilfsverb (**haben** oder **sein**) + **Partizip II** gebildet. Die meisten Verben bilden das Perfekt mit **haben**:
 
 **Bildung:** **haben** (konjugiert) + **Partizip II** (am Satzende)
@@ -63,7 +63,7 @@ ich habe gemacht · du hast gemacht · er/es/sie hat gemacht · wir haben gemach
         title='Perfekt mit "sein"',
         level="A2",
         category="Zeitformen",
-        summary="The Perfekt tense with 'sein' — for verbs of movement, state change, and special verbs.",
+        summary="Das Perfekt mit \"sein\" – für Verben der Bewegung, Zustandsänderung und besondere Verben.",
         explanation="""Eine kleinere Gruppe von Verben bildet das Perfekt mit dem Hilfsverb **sein**:
 **sein** (konjugiert) + **Partizip II** (am Satzende)
 ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · ihr seid gegangen · sie sind gegangen
@@ -118,7 +118,7 @@ ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · 
         title="Partizip II",
         level="A2",
         category="Zeitformen",
-        summary="Formation of the past participle (Partizip II) — regular, irregular, and mixed patterns.",
+        summary="Bildung des Partizips II – regelmäßige, unregelmäßige und gemischte Muster.",
         explanation="""Das **Partizip II** wird für Perfekt, Plusquamperfekt und Passiv benötigt.
 
 1. Regelmäßige (schwache) Verben: **ge + Stamm + t** — machen → gemacht, spielen → gespielt, wohnen → gewohnt, arbeiten → gearbeitet
@@ -181,7 +181,7 @@ ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · 
         title="Präteritum von sein und haben",
         level="A2",
         category="Zeitformen",
-        summary="The simple past of sein and haben — the foundation for narrative past.",
+        summary="Das Präteritum von sein und haben – die Grundlage für das narrative Präteritum.",
         explanation="""Im gesprochenen Deutsch wird meist das **Perfekt** verwendet, aber **sein** und **haben** werden fast immer im Präteritum benutzt.
 
 Präteritum von **sein**: ich war, du warst, er/es/sie war, wir waren, ihr wart, sie/Sie waren
@@ -242,7 +242,7 @@ Im schriftlichen Deutsch (Erzählungen, Berichte) wird das Präteritum für **al
         title="Präteritum der Modalverben",
         level="A2",
         category="Zeitformen",
-        summary="Präteritum of modal verbs — how to express past ability, obligation, and permission.",
+        summary="Präteritum der Modalverben – wie man vergangene Fähigkeit, Verpflichtung und Erlaubnis ausdrückt.",
         explanation="""Modalverben werden im gesprochenen Deutsch meist im **Präteritum** verwendet (nicht im Perfekt).
 
 können → konnte / müssen → musste / dürfen → durfte / wollen → wollte / sollen → sollte / mögen → mochte
@@ -309,7 +309,7 @@ Das Perfekt der Modalverben (*Ich habe kommen können*) ist möglich, aber das P
         title="Perfekt vs Präteritum",
         level="A2",
         category="Zeitformen",
-        summary="When to use Perfekt vs Präteritum — spoken vs written, north vs south.",
+        summary="Wann Perfekt, wann Präteritum – gesprochen vs. geschrieben, Norden vs. Süden.",
         explanation="""Deutsch hat zwei Haupt-Vergangenheitsformen.
 
 **Perfekt** (habe gemacht / bin gegangen): Gesprochene Sprache, informelle Texte, E-Mails, WhatsApp. In Süddeutschland, Österreich und Schweiz sogar noch häufiger.
@@ -386,7 +386,7 @@ Das Perfekt der Modalverben (*Ich habe kommen können*) ist möglich, aber das P
         title="Dativobjekt",
         level="A2",
         category="Kasus",
-        summary="The dative object — indirect objects, dative verbs, and dative personal pronouns.",
+        summary="Das Dativobjekt – indirekte Objekte, Dativverben und Dativ-Personalpronomen.",
         explanation="""Das **Dativobjekt** ist das indirekte Objekt im Satz (Wem?). Es steht vor dem Akkusativobjekt, wenn beide Nomen sind. Ist das Akkusativobjekt ein Pronomen, steht es vor dem Dativobjekt.
 
 Verben mit Dativ: helfen (+Dat), danken (+Dat), antworten (+Dat), gefallen (+Dat), gehören (+Dat), schmecken (+Dat), passen (+Dat), glauben (+Dat)
@@ -439,7 +439,7 @@ Personalpronomen im Dativ: mir, dir, ihm, ihr, ihm, uns, euch, ihnen/Ihnen""",
         title="Wechselpräpositionen",
         level="A2",
         category="Präpositionen",
-        summary="Two-way prepositions — Dativ for location (Wo?), Akkusativ for direction (Wohin?).",
+        summary="Wechselpräpositionen – Dativ für Ort (Wo?), Akkusativ für Richtung (Wohin?).",
         explanation="""Die **Wechselpräpositionen** können sowohl mit Dativ als auch mit Akkusativ stehen — je nach Bedeutung.
 
 Die 9 Wechselpräpositionen: **in, an, auf, hinter, neben, vor, unter, über, zwischen**
@@ -510,7 +510,7 @@ Kontraktionen: in + das = ins (Wohin?), in + dem = im (Wo?), an + das = ans (Woh
         title="Personalpronomen im Akkusativ und Dativ",
         level="A2",
         category="Pronomen",
-        summary="Personal pronouns in accusative and dative — mich/dich, mir/dir, and the full table.",
+        summary="Personalpronomen im Akkusativ und Dativ – mich/dich, mir/dir und die vollständige Tabelle.",
         explanation="""Personalpronomen ändern sich je nach Fall:
 
 | Nominativ | Akkusativ | Dativ |
@@ -580,7 +580,7 @@ Dativ: indirektes Objekt (Wem?), nach Dativ-Präpositionen — *Ich helfe **dir*
         title="Komparativ",
         level="A2",
         category="Adjektive",
-        summary="The comparative form — how to compare two things with -er and als.",
+        summary="Der Komparativ – wie man zwei Dinge mit -er und als vergleicht.",
         explanation="""Der **Komparativ** wird verwendet, um zwei Dinge zu vergleichen: **Adjektiv + -er** + **als**
 
 schnell → schneller, groß → größer, klein → kleiner, schön → schöner
@@ -643,7 +643,7 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         title="Superlativ",
         level="A2",
         category="Adjektive",
-        summary="The superlative form — expressing the highest degree with am ...sten and der/die/das ...ste.",
+        summary="Der Superlativ – den höchsten Grad ausdrücken mit am ...sten und der/die/das ...ste.",
         explanation="""Der **Superlativ** drückt den höchsten Grad aus.
 
 **Zwei Formen:**
@@ -708,7 +708,7 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         title="Vergleich mit als und wie",
         level="A2",
         category="Syntax",
-        summary="Comparison with als and wie — equality (so ... wie) vs difference (comparative + als).",
+        summary="Vergleich mit als und wie – Gleichheit (so ... wie) vs. Unterschied (Komparativ + als).",
         explanation="""Für Vergleiche im Deutschen verwendet man zwei verschiedene Strukturen:
 
 **Gleichheit: so + Adjektiv + wie** — *Peter ist **so groß wie** Paul.* / *Deutsch ist **so schwer wie** Französisch.*
@@ -772,7 +772,7 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         title="Adjektivdeklination nach bestimmtem Artikel",
         level="A2",
         category="Adjektive",
-        summary="Adjective declension after der/die/das — the weak declension with -e or -en.",
+        summary="Adjektivdeklination nach der/die/das – die schwache Deklination mit -e oder -en.",
         explanation="""Nach dem **bestimmten Artikel** (der/die/das) folgt die **schwache Deklination**:
 
 | Fall | maskulin | feminin | neutral | Plural |
@@ -839,7 +839,7 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         title="Adjektivdeklination nach unbestimmtem Artikel",
         level="A2",
         category="Adjektive",
-        summary="Adjective declension after ein/eine — the mixed declension.",
+        summary="Adjektivdeklination nach ein/eine – die gemischte Deklination.",
         explanation="""Nach **ein, eine, kein, keine** und den **Possessivartikeln** (mein, dein, sein...) folgt die **gemischte Deklination**:
 
 | Fall | maskulin | feminin | neutral | Plural (keine) |
@@ -914,7 +914,7 @@ schnell → schneller, groß → größer, klein → kleiner, schön → schöne
         title="Adjektivdeklination ohne Artikel",
         level="A2",
         category="Adjektive",
-        summary="Adjective declension without an article — the strong declension.",
+        summary="Adjektivdeklination ohne Artikel – die starke Deklination.",
         explanation="""Wenn das Adjektiv **ohne Artikel** vor einem Nomen steht, übernimmt es die **starke Deklination**. Die starken Endungen sind fast identisch mit den bestimmten Artikeln:
 
 | Fall | maskulin | feminin | neutral | Plural |
@@ -985,7 +985,7 @@ Nach **viel, wenig, etwas, nichts** nominalisiert und **großgeschrieben**: *etw
         title='Nebensätze mit "dass"',
         level="A2",
         category="Syntax",
-        summary="Subordinate clauses with 'dass' (that) — word order and punctuation.",
+        summary="Nebensätze mit \"dass\" – Wortstellung und Zeichensetzung.",
         explanation="""Nebensätze mit **dass** (that) sind die häufigste Art von Nebensätzen. Im **dass-Satz** steht das konjugierte Verb **am Ende**: *Ich weiß, **dass** er heute kommt.*
 
 ⚠️ Vor dem **dass** steht immer ein **Komma**!
@@ -1048,7 +1048,7 @@ Typische Verben mit dass-Satz: wissen, sagen, glauben, denken, finden, meinen, h
         title='Nebensätze mit "weil"',
         level="A2",
         category="Syntax",
-        summary="Subordinate clauses with 'weil' (because) — expressing cause/reason.",
+        summary="Nebensätze mit \"weil\" – Grund/Ursache ausdrücken.",
         explanation="""Nebensätze mit **weil** drücken einen Grund oder eine Ursache aus. Im **weil-Satz** steht das konjugierte Verb **am Ende**: *Ich bleibe zu Hause, **weil** ich krank **bin**.*
 
 **Typische Fragen:** Warum? Wieso?
@@ -1110,7 +1110,7 @@ Typische Verben mit dass-Satz: wissen, sagen, glauben, denken, finden, meinen, h
         title='Nebensätze mit "wenn"',
         level="A2",
         category="Syntax",
-        summary="Subordinate clauses with 'wenn' — condition (if) and time (whenever).",
+        summary="Nebensätze mit \"wenn\" – Bedingung (falls) und Zeit (immer wenn).",
         explanation="""**Wenn** kann zwei verschiedene Bedeutungen haben:
 
 1. Konditional (if): *Wenn es morgen regnet, bleiben wir zu Hause.*
@@ -1178,7 +1178,7 @@ Im **wenn-Satz** steht das konjugierte Verb **am Ende**. Steht der wenn-Satz vor
         title='Nebensätze mit "obwohl"',
         level="A2",
         category="Syntax",
-        summary="Subordinate clauses with 'obwohl' (although) — expressing concession.",
+        summary="Nebensätze mit \"obwohl\" – Einräumung/Konzession ausdrücken.",
         explanation="""Nebensätze mit **obwohl** drücken einen **Gegensatz** oder eine **Einschränkung** aus (although, even though). Im **obwohl-Satz** steht das konjugierte Verb **am Ende**: *Er kommt, **obwohl** er krank **ist**.*
 
 Steht der obwohl-Satz vorne, beginnt der Hauptsatz mit dem Verb: *Obwohl es regnet, **gehe** ich spazieren.*
@@ -1239,7 +1239,7 @@ Steht der obwohl-Satz vorne, beginnt der Hauptsatz mit dem Verb: *Obwohl es regn
         title="Wortstellung im Nebensatz",
         level="A2",
         category="Syntax",
-        summary="Word order in subordinate clauses — verb at the end, the bracket structure.",
+        summary="Wortstellung im Nebensatz – Verb am Ende, die Klammerstruktur.",
         explanation="""Die **Wortstellung im Nebensatz** ist eine der wichtigsten Regeln im Deutschen: **Das konjugierte Verb steht am Ende.**
 
 Nebensatz-Einleiter: dass, weil, wenn, obwohl, als, bevor, nachdem, während, seitdem, bis, damit, ob, sodass, falls, da
@@ -1313,7 +1313,7 @@ Hauptsatz nach Nebensatz: Verb an Position 1 — *Weil ich krank bin, **bleibe**
         title="Relativsätze",
         level="A2",
         category="Syntax",
-        summary="Relative clauses in nominative and accusative — der, die, das as relative pronouns.",
+        summary="Relativsätze im Nominativ und Akkusativ – der, die, das als Relativpronomen.",
         explanation="""**Relativsätze** geben zusätzliche Informationen über ein Nomen. Sie werden mit **Relativpronomen** (der, die, das) eingeleitet.
 
 | Genus | Nominativ | Akkusativ |
@@ -1387,7 +1387,7 @@ Vor dem Relativpronomen steht immer ein Komma.""",
         title="Indirekte Fragesätze",
         level="A2",
         category="Syntax",
-        summary="Indirect questions — using ob (whether) and question words in subordinate clauses.",
+        summary="Indirekte Fragen – ob (bei Ja/Nein-Fragen) und Fragewörter im Nebensatz.",
         explanation="""**Indirekte Fragesätze** geben eine Frage wieder, ohne das Fragezeichen und die direkte Satzstellung.
 
 **Direkte vs indirekte Frage:**

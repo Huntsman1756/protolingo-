@@ -6,57 +6,57 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="akademisch_de_c1",
         level="C1",
-        situation="Academic Writing & Discourse",
+        situation="Akademisches Schreiben & Diskurs",
         icon="\U0001f4dd",
         phrases=[
             PhrasebookEntry(
                 text="Die vorliegende Arbeit befasst sich mit...",
-                context="Opening an academic paper (the present paper deals with...)",
+                context="Eröffnen an academic paper (the present paper deals with...)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Im Folgenden soll untersucht werden, inwiefern...",
-                context="Announcing the scope of an investigation",
+                context="Ankündigen the scope of an investigation",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Vor diesem Hintergrund stellt sich die Frage, ob...",
-                context="Posing a research question against the background given",
+                context="Aufwerfen a research question against the background given",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Diese Annahme bedarf einer näheren Betrachtung.",
-                context="Saying an assumption requires closer examination",
+                context="Sagen an assumption requires closer examination",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Es lässt sich konstatieren, dass...",
-                context="Stating a finding (it can be stated / observed that)",
+                context="Feststellen a finding (it can be stated / observed that)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Daraus ergibt sich die Schlussfolgerung, dass...",
-                context="Drawing a conclusion (from this follows the conclusion that)",
+                context="Lenken a conclusion (from this follows the conclusion that)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Zusammenfassend lässt sich festhalten, dass...",
-                context="Summarising findings (in summary it can be held that)",
+                context="Zusammenfassen findings (in summary it can be held that)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Die Daten legen nahe, dass...",
-                context="Interpreting data (the data suggest that)",
+                context="Interpretieren data (the data suggest that)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Dies wirft weiterführende Fragen auf.",
-                context="Noting that an issue raises further questions",
+                context="Feststellen that an issue raises further questions",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="In der Fachliteratur herrscht Einigkeit darüber, dass...",
-                context="Citing academic consensus",
+                context="Zitieren academic consensus",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -66,17 +66,17 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Ein nicht zu vernachlässigender Aspekt ist...",
-                context="Highlighting an aspect that cannot be neglected",
+                context="Hervorheben an aspect that cannot be neglected",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="In Anbetracht der bisherigen Erkenntnisse...",
-                context="Acknowledging prior findings before proceeding",
+                context="Anerkennen prior findings before proceeding",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Abschließend sei erwähnt, dass...",
-                context="Closing with a final remark (in closing, it should be mentioned that)",
+                context="Abschließen with a final remark (in closing, it should be mentioned that)",
                 register="formal",
             ),
         ],
@@ -84,7 +84,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="rhetorik_de_c1",
         level="C1",
-        situation="Rhetoric & Public Speaking",
+        situation="Rhetorik & Öffentliches Reden",
         icon="\U0001f3a4",
         phrases=[
             PhrasebookEntry(
@@ -94,37 +94,37 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Ich möchte Ihre Aufmerksamkeit auf ... lenken.",
-                context="Drawing the audience's attention to a point",
+                context="Lenken the audience's attention to a point",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Lassen Sie mich dies anhand eines Beispiels verdeutlichen.",
-                context="Introducing an illustrative example",
+                context="Einleiten an illustrative example",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Der entscheidende Punkt ist...",
-                context="Framing the key argument (the decisive point is)",
+                context="Umreißen the key argument (the decisive point is)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Wie Sie sehen werden...",
-                context="Telegraphing what the audience will observe",
+                context="Andeuten what the audience will observe",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="An dieser Stelle möchte ich kurz innehalten.",
-                context="Pausing in a speech for emphasis or reflection",
+                context="Innehalten in a speech for emphasis or reflection",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich komme nun zum Kern meiner Ausführungen.",
-                context="Transitioning to the heart of the speech",
+                context="Überleiten to the heart of the speech",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Wenn Sie mir diesen kleinen Exkurs gestatten...",
-                context="Asking permission for a brief digression",
+                context="Fragen permission for a brief digression",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -134,17 +134,17 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Erlauben Sie mir, eine Schlussfolgerung zu ziehen.",
-                context="Signalling you are about to draw a conclusion",
+                context="Signalisieren you are about to draw a conclusion",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich danke Ihnen für Ihre Aufmerksamkeit.",
-                context="Thanking the audience at the end of a speech",
+                context="Danken the audience at the end of a speech",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Einwände sind selbstverständlich willkommen.",
-                context="Welcoming objections during a Q&A session",
+                context="Begrüßen objections during a Q&A session",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -154,7 +154,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Dass dies nicht ohne Folgen bleiben kann, liegt auf der Hand.",
-                context="Stating the obvious gravity of a situation",
+                context="Feststellen the obvious gravity of a situation",
                 register="formal",
             ),
         ],
@@ -162,7 +162,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="intellektuell_de_c1",
         level="C1",
-        situation="Intellectual Discussion & Critical Thinking",
+        situation="Intellektuelle Diskussion & Kritisches Denken",
         icon="\U0001f52c",
         phrases=[
             PhrasebookEntry(
@@ -172,32 +172,32 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Das wirft die grundsätzliche Frage auf, ob...",
-                context="Raising a fundamental question",
+                context="Aufwerfen a fundamental question",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Man sollte sich vor voreiligen Schlüssen hüten.",
-                context="Warning against jumping to conclusions",
+                context="Warnen against jumping to conclusions",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Es wäre ein Trugschluss zu glauben, dass...",
-                context="Calling out a fallacy (it would be a fallacy to believe that)",
+                context="Bezeichnen out a fallacy (it would be a fallacy to believe that)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Lassen Sie uns das Problem von einer anderen Seite angehen.",
-                context="Suggesting a different approach to a problem",
+                context="Vorschlagen a different approach to a problem",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="In diesem Punkt herrscht weitgehend Konsens.",
-                context="Noting that there is broad consensus on a point",
+                context="Feststellen that there is broad consensus on a point",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich kann mich des Eindrucks nicht erwehren, dass...",
-                context="Saying you can't shake the impression that",
+                context="Sagen you can't shake the impression that",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -240,7 +240,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="varietaeten_de_c1",
         level="C1",
-        situation="German Varieties — Austrian & Swiss Expressions",
+        situation="Deutsche Varietäten — Österreichische & Schweizer Ausdrücke",
         icon="\U0001f30d",
         phrases=[
             PhrasebookEntry(
@@ -290,7 +290,7 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Es isch schön gsi.",
-                context="Swiss-German dialect for 'it was nice' — informal farewell",
+                context="Swiss-German dialect for 'it was nice' — informell farewell",
                 register="informal",
             ),
             PhrasebookEntry(
@@ -307,6 +307,79 @@ C1_CATEGORIES: list[PhrasebookCategory] = [
                 text="Das Velo abstellen.",
                 context="Swiss-German: 'park the bicycle' (Velo = bicycle in Switzerland)",
                 register="neutral",
+            ),
+        ],
+    ),
+    PhrasebookCategory(
+        id="politik_de_c1",
+        level="C1",
+        situation="Politik & Gesellschaft",
+        icon="\U0001f3db",
+        phrases=[
+            PhrasebookEntry(
+                text="Die Bundesregierung hat beschlossen, dass...",
+                context="Formell reference to federal government decisions",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Dies wirft die grundsätzliche Frage nach der Verhältnismäßigkeit auf.",
+                context="Aufwerfen the proportionality question in political debate",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Im Grundgesetz ist verankert, dass...",
+                context="Zitieren the German Basic Law (constitution)",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Opposition wirft der Regierung vor, ...",
+                context="Beschuldigen the government (Standard political framing)",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Darüber hinaus besteht dringender Handlungsbedarf.",
+                context="Feststellen urgent need for action on an issue",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Dem stehen allerdings erhebliche verfassungsrechtliche Bedenken entgegen.",
+                context="Entgegnen a political proposal with constitutional concerns",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Fraktion hat einen entsprechenden Antrag eingebracht.",
+                context="Verweisen to a parliamentary motion (Bundestag context)",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Die Zivilgesellschaft fordert mehr Transparenz.",
+                context="Referencing civil society demands for transparency",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Dieses Thema ist Gegenstand einer kontroversen öffentlichen Debatte.",
+                context="Anerkennen a topic is publicly controversial",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Der Gesetzentwurf sieht vor, dass...",
+                context="Discussing provisions of a draft law",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Das verstößt gegen das Diskriminierungsverbot.",
+                context="Alleging a violation of anti-discrimination law",
+                register="formal",
+            ),
+            PhrasebookEntry(
+                text="Langfristig betrachtet ist diese Politik nicht nachhaltig.",
+                context="Long-term criticism of a policy direction",
+                register="neutral",
+            ),
+            PhrasebookEntry(
+                text="Die Mehrheitsverhältnisse im Bundestag lassen dies derzeit nicht zu.",
+                context="Assessing political feasibility based on parliamentary arithmetic",
+                register="formal",
             ),
         ],
     ),

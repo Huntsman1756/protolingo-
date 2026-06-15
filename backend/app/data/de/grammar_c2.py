@@ -8,7 +8,7 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title="Komplexe Satzgefüge",
         level="C2",
         category="Syntax",
-        summary="Complex sentence structures — multi-level hypotaxis and syntactic architecture.",
+        summary="Komplexe Satzgefüge – mehrstufige Hypotaxe und syntaktische Architektur.",
         explanation="""Mehrstufige Hypotaxe mit bis zu 4-5 Nebensatzebenen: Hauptsatz → dass-Satz → Relativsatz → weil-Satz → dass-Satz. Kohäsion (grammatische Verknüpfung) und Kohärenz (logischer Zusammenhang) sind entscheidend.
 Satzklammer-Management: nicht mehr als ~15 Wörter zwischen Klammerteilen. Rechtsverzweigung bevorzugen. Bei Überkomplexität aufteilen.""",
         structure="Hauptsatz [→ Nebensatz 1 [→ Nebensatz 2 [→ Nebensatz 3]]]",
@@ -51,7 +51,7 @@ Satzklammer-Management: nicht mehr als ~15 Wörter zwischen Klammerteilen. Recht
         title="Alle Modi im Deutschen",
         level="C2",
         category="Modi",
-        summary="All moods — complete mastery of Indikativ, Konjunktiv I/II, Imperativ across all tenses.",
+        summary="Alle Modi – vollständige Beherrschung von Indikativ, Konjunktiv I/II, Imperativ in allen Zeitformen.",
         explanation="""Drei Modi in allen Zeitformen:
 Indikativ: Präsens (gehe), Präteritum (ging), Perfekt (bin gegangen), Plusquamperfekt (war gegangen), Futur I (werde gehen), Futur II (werde gegangen sein)
 Konjunktiv I: Präsens (er gehe), Perfekt (er sei gegangen), Futur I (er werde gehen), Futur II (er werde gegangen sein)
@@ -106,7 +106,7 @@ Modi-Mischung: Indikativ Hauptsatz + Konjunktiv I Nebensatz = ok. Konjunktiv II 
         title="Stilistik und Register",
         level="C2",
         category="Stil",
-        summary="Stylistics and register — full command of all registers, code-switching mastery.",
+        summary="Stilistik und Register – vollständige Beherrschung aller Register, souveräner Registerwechsel.",
         explanation="""Register-Kontinuum: vulgär (Kraftausdrücke) → umgangssprachlich (Kurzsätze, Modalpartikeln) → standard (korrekte Grammatik, neutral) → gehoben (Nominalstil, Konjunktiv I) → literarisch (Stilfiguren, Archaismen) → fachsprachlich (Terminologie).
 Code-Switching: Ey Alter, haste mal 'n Euro? (Freund) → Könntest du mir vielleicht einen Euro leihen? (Bekannter) → Dürfte ich Sie um einen Euro bitten? (Fremder) → Es wäre mir außerordentlich verbunden... (sehr formell/ironisch).
 Stilbrüche: bewusst = Stilmittel, ungewollt = unprofessionell.""",
@@ -152,7 +152,7 @@ Stilbrüche: bewusst = Stilmittel, ungewollt = unprofessionell.""",
         title="Literarische Mittel",
         level="C2",
         category="Stil",
-        summary="Advanced literary devices — metaphor, allegory, synecdoche, metonymy.",
+        summary="Fortgeschrittene literarische Mittel – Metapher, Allegorie, Synekdoche, Metonymie.",
         explanation="""Bildliche Figuren: Metapher (Das Leben ist eine Reise), Allegorie (fortgeführte Metapher), Metonymie (Das Weiße Haus schweigt), Synekdoche (Dach über dem Kopf), Synästhesie (schreiende Farben), Personifikation (Die Zeit heilt), Symbol (Taube = Frieden).
 Wiederholungsfiguren: Anapher, Epipher, Parallelismus, Chiasmus, Klimax.
 Klangfiguren: Alliteration, Assonanz, Onomatopoesie (knistern, plumpsen).
@@ -200,7 +200,7 @@ Auf C2-Niveau werden Stilmittel aktiv im eigenen Schreiben eingesetzt.""",
         title="Erzählperspektiven",
         level="C2",
         category="Stil",
-        summary="Narrative perspectives — first-person, omniscient, stream of consciousness, narrative distance.",
+        summary="Erzählperspektiven – Ich-Erzähler, auktorial, erlebte Rede, narrative Distanz.",
         explanation="""Ich-Erzähler (1. Person): Teil der Geschichte, kann zuverlässig oder unzuverlässig sein.
 Er/Sie-Erzähler (3. Person): auktorial (allwissend, kommentiert, vorausdeutend), personal (nur was eine Figur weiß), neutral (reine Außensicht, behavioristisch).
 Spezialtechniken: Stream of Consciousness (ungeordnete Gedankenfolge), Erlebte Rede (Gedanken in 3. Person Präteritum ohne Inquit-Formel: Das musste ein Traum sein.), Innerer Monolog (1. Person Präsens: Was soll ich tun?).
@@ -248,7 +248,7 @@ Narrative Distanz: nah (Innerer Monolog) → mittel (Erlebte Rede) → fern (neu
         title="Falsche Freunde DE-EN",
         level="C2",
         category="Wortschatz",
-        summary="False friends between German and English — common pitfalls.",
+        summary="Falsche Freunde zwischen Deutsch und Englisch – häufige Fallstricke.",
         explanation="""Klassische falsche Freunde DE-EN: aktuell = current (nicht: actual), also = therefore (nicht: also), bekommen = to receive (nicht: to become), brav = well-behaved (nicht: brave), Chef = boss (nicht: chef), dezent = discreet (nicht: decent), fast = almost (nicht: fast), Gift = poison (nicht: gift), Handy = mobile phone (nicht: handy), sensibel = sensitive (nicht: sensible), spenden = to donate (nicht: to spend), Wand = wall (nicht: wand), will = want (nicht: will).
 Die Kenntnis falscher Freunde ist essentiell für akkurate Übersetzungen und idiomatisches Deutsch.""",
         structure="Ähnlich klingendes Wort → andere Bedeutung → richtige Übersetzung",
@@ -299,7 +299,7 @@ Die Kenntnis falscher Freunde ist essentiell für akkurate Übersetzungen und id
         title="Übersetzungsäquivalente",
         level="C2",
         category="Wortschatz",
-        summary="Translation equivalents — when literal translation fails and communicative equivalence matters.",
+        summary="Übersetzungsäquivalente – wenn wörtliche Übersetzung scheitert und kommunikative Äquivalenz zählt.",
         explanation="""Kommunikative Äquivalenz statt wörtlicher Übersetzung:
 Idiomatik: Das ist nicht mein Bier → That's not my problem. Ich verstehe nur Bahnhof → It's all Greek to me.
 Modalpartikeln: Das ist doch klar! → But that's obvious! / Come on!
@@ -349,7 +349,7 @@ Funktionale Äquivalenz: Vielen Dank für Ihre Mühe! → Thank you so much for 
         title="Sprachwandel",
         level="C2",
         category="Sprachgeschichte",
-        summary="Language change — from Old High German to Modern German.",
+        summary="Sprachwandel – vom Althochdeutschen zum modernen Deutsch.",
         explanation="""Perioden: Althochdeutsch (750-1050): erste Schriftzeugnisse, Zweite Lautverschiebung (p→pf, t→ts, k→ch).
 Mittelhochdeutsch (1050-1350): höfische Dichtung, Nebensilbenabschwächung (taga → tage), Umlautphonemisierung.
 Frühneuhochdeutsch (1350-1650): Luther als Katalysator, Diphthongierung (mîn → mein), Monophthongierung.
@@ -398,7 +398,7 @@ Aktuelle Tendenzen: Genitivabbau, Anglizismen (downloaden, liken), gendergerecht
         title="Sprachgeschichte",
         level="C2",
         category="Sprachgeschichte",
-        summary="History of German — Luther, Grimm, orthographic reforms, path to standardization.",
+        summary="Geschichte der deutschen Sprache – Luther, Grimm, Rechtschreibreformen, Weg zur Standardisierung.",
         explanation="""Schlüsselfiguren: Luther (Bibelübersetzung 1534, Grundlage der Schriftsprache), Jacob und Wilhelm Grimm (Deutsches Wörterbuch, Deutsche Grammatik), Konrad Duden (Orthographisches Wörterbuch 1880).
 Etappen: 1901 erste verbindliche Rechtschreibung, 1996 Rechtschreibreform (ß/ss, Kommasetzung), 2006 Reform der Reform.
 Entwicklung: 16. Jh. Luther → 17.-18. Jh. Sprachgesellschaften gegen Alamode-Sprache (Französisch-Dominanz) → 18. Jh. Gottsched/Adelung → 19. Jh. Nationalsprache → 20./21. Jh. plurizentrische Anerkennung.""",
@@ -442,7 +442,7 @@ Entwicklung: 16. Jh. Luther → 17.-18. Jh. Sprachgesellschaften gegen Alamode-S
         title="Textsorten und Gattungen",
         level="C2",
         category="Stil",
-        summary="Text types and genres — mastering a wide range of text types.",
+        summary="Textsorten und Genres – Beherrschung einer breiten Palette von Textarten.",
         explanation="""Journalistisch: Nachricht (neutral, 7 W-Fragen), Bericht (Hintergrund), Kommentar (meinungsbetont), Reportage (szenisch), Glosse (satirisch).
 Wissenschaftlich: Abstract (150-250 Wörter), Hausarbeit, Rezension, Protokoll, Exposé.
 Literarisch: Kurzgeschichte (pointiert), Erzählung, Roman, Gedicht, Essay (subjektive Erörterung).
@@ -497,7 +497,7 @@ Jede Textsorte hat spezifische Konventionen für Aufbau, Stil und Register.""",
         title="Akademisches Schreiben",
         level="C2",
         category="Stil",
-        summary="Academic writing — structuring a thesis, crafting arguments, citation conventions.",
+        summary="Akademisches Schreiben – Arbeit strukturieren, Argumente aufbauen, Zitierkonventionen.",
         explanation="""Aufbau: Einleitung (Forschungsfrage) → Theoretischer Rahmen/Literaturüberblick → Methodik → Ergebnisse (nur Deskription) → Diskussion (Interpretation) → Fazit/Ausblick.
 Zitiertechniken: Direkt (Müller 2020: 45), indirekt/Paraphrase (Müller 2020 zufolge...), Harvard-Zitierweise.
 Akademische Phrasen: Im Folgenden wird... untersucht. / Aus den Ergebnissen geht hervor... / Demgegenüber argumentiert Schmidt... / Zusammenfassend lässt sich konstatieren...
@@ -541,7 +541,7 @@ Hedging ist Pflicht: Daten deuten hin, nicht Daten beweisen. Ich vermeiden in de
         title="Kreatives Schreiben",
         level="C2",
         category="Stil",
-        summary="Creative writing — producing stylistically sophisticated fiction and poetry in German.",
+        summary="Kreatives Schreiben – stilistisch anspruchsvolle Prosa und Lyrik auf Deutsch verfassen.",
         explanation="""Genres: Kurzgeschichte (pointiert, offenes Ende), Gedicht (Metrum: Jambus, Trochäus; Reimschema: Paarreim, Kreuzreim), Erzählung/Romanauszug (Präteritum).
 Schreibtechniken: Show, don't tell: Nicht Er war wütend, sondern Seine Hände ballten sich zu Fäusten. Sinnliche Details. Variierende Satzlänge. Erlebte Rede.
 Dialoge mit abwechslungsreichen Inquit-Formeln: flüsterte, murmelte, rief, seufzte, erwiderte.
@@ -594,7 +594,7 @@ Lyrik: bewusster Rhythmus, auch in freien Versen.""",
         title="Fortgeschrittene Nuancen",
         level="C2",
         category="Wortschatz",
-        summary="Advanced nuances — fine semantic distinctions between near-synonyms.",
+        summary="Fortgeschrittene Nuancen – feine semantische Unterschiede zwischen bedeutungsähnlichen Wörtern.",
         explanation="""Feine Unterschiede: anfangen (spontan, ugs.) vs beginnen (formell, geplant). mögen (allgemein) vs gefallen (ästhetisch) vs lieben (stark emotional). wissen (Fakten) vs kennen (Vertrautheit) vs können (Fähigkeit). lernen (Wissen aneignen) vs studieren (Uni) vs erfahren (erhalten durch Mitteilung). sehen (allgemein) vs schauen (süddt., bewusst) vs gucken (norddt., ugs.) vs blicken (intentional). nutzen (Vorteil ziehen) vs benutzen (Gegenstand) vs verwenden (formell) vs anwenden (Methode). reden (längerer Beitrag) vs sprechen (Fähigkeit) vs sagen (kurze Mitteilung) vs erzählen (Geschichte).""",
         structure="Synonympaare mit feinen Bedeutungs- oder Registernuancen",
         rules=[
@@ -639,7 +639,7 @@ Lyrik: bewusster Rhythmus, auch in freien Versen.""",
         title="Deutsche Modalpartikeln",
         level="C2",
         category="Wortschatz",
-        summary="German modal particles — doch, ja, eben, halt, wohl, denn, mal... the secret to sounding native.",
+        summary="Deutsche Modalpartikeln – doch, ja, eben, halt, wohl, denn, mal ... das Geheimnis, muttersprachlich zu klingen.",
         explanation="""Modalpartikeln (Abtönungspartikeln) sind der Schlüssel zu muttersprachlichem Deutsch: doch (Widerspruch, Erinnerung, freundliche Aufforderung), ja (Bekanntes, Überraschung), eben/halt (Unabänderlichkeit, Resignation), wohl (Vermutung), denn (Interesse in Fragen), mal (Abschwächung), eigentlich (Themenwechsel), etwa (negative Erwartung in Fragen), ruhig (Ermutigung), bloß/nur (Warnung), schon (Zuversicht).
 Kombinationen: Das ist doch wohl nicht dein Ernst! Komm doch mal vorbei!
 Abgrenzung: Gradpartikeln (sehr, besonders) vs Fokuspartikeln (nur, sogar) vs Modalpartikeln (doch, ja, halt).""",
@@ -695,7 +695,7 @@ Abgrenzung: Gradpartikeln (sehr, besonders) vs Fokuspartikeln (nur, sogar) vs Mo
         title="Grammatische Integration",
         level="C2",
         category="Syntax",
-        summary="Grammatical integration — spontaneous production of complex structures in free speech.",
+        summary="Grammatische Integration – spontane Produktion komplexer Strukturen im freien Sprechen.",
         explanation="""Grammatische Integration: Fähigkeit, komplexe Strukturen spontan, flüssig und fehlerfrei in freie Rede zu integrieren. Automatisierte Kongruenz, Satzklammer-Management, Register-Flexibilität.
 Herausforderungen: Satzklammer bei weiten Distanzen, Genus bei seltenen Wörtern, Rektion von Verben mit präpositionalem Objekt.
 Strategien: Chunking (häufige Strukturen automatisieren), Monitoring (Eigensprechen überwachen), Shadowing, Reformulierung in Echtzeit.
@@ -735,7 +735,7 @@ Selbstmonitoring und Selbstkorrektur sind Zeichen hoher Kompetenz.""",
         title="Muttersprachliche Flüssigkeit",
         level="C2",
         category="Stil",
-        summary="Native-like fluency — prosody, intonation, rhythm, holistic integration.",
+        summary="Muttersprachliche Flüssigkeit – Prosodie, Intonation, Rhythmus, ganzheitliche Integration.",
         explanation="""Dimensionen: Lexikalische Flüssigkeit (automatischer Wortabruf), grammatische Flüssigkeit (intuitive Grammatik), phonetische Flüssigkeit (Prosodie, Intonation), pragmatische Flüssigkeit (situativ angemessen), interaktionale Flüssigkeit (Turn-taking, Reparaturen).
 Prosodie: Satzakzent (Ich habe das BUCH gelesen vs ICH habe das Buch gelesen), Wortakzent (verKAUfen, nicht VERkaufen), Sprechmelodie (fallend = Aussage, steigend = Frage), Pausen zwischen Sinnabschnitten.
 C2 ≠ Perfektion: Auch C2-Sprecher machen Fehler. Entscheidend ist die Geschwindigkeit der Selbstkorrektur und die Seltenheit der Fehler.""",

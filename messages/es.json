@@ -28,7 +28,16 @@
     "aboutMe": "Sobre mí",
     "github": "GitHub",
     "footerProduct": "Producto",
-    "footerLegal": "Legal"
+    "footerLegal": "Legal",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Cargando...",
@@ -796,15 +805,6 @@
     "workflowStep4": "Completa tus lecciones diarias (botón INICIAR en el Panel)",
     "workflowStep5": "Usa las Tarjetas para entrenar vocabulario en paralelo",
     "workflowStep6": "Practica conversación libre con el Tutor IA",
-    "languageGreetings": {
-      "en-US": "Hello!",
-      "en-GB": "Hello!",
-      "de-DE": "Hallo!",
-      "es-ES": "¡Hola!",
-      "fr-FR": "Bonjour !",
-      "it-IT": "Ciao!",
-      "pt-PT": "Olá!"
-    },
     "q_language": "¿Qué idioma voy a aprender?",
     "a_language": "Actualmente FreeLingo incluye varios idiomas (alemán, español, francés, inglés americano, inglés británico, italiano, portugués) e iremos añadiendo más con el tiempo. Cuando un nuevo idioma esté disponible, lo encontrarás en Ajustes → Mis idiomas — añádelo y empieza a aprender al momento.",
     "q_assessment": "¿Qué es la Evaluación?",

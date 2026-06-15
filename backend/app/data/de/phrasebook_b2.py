@@ -6,17 +6,17 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="argumentation_de_b2",
         level="B2",
-        situation="Structured Argumentation",
+        situation="Strukturierte Argumentation",
         icon="\U0001f9e0",
         phrases=[
             PhrasebookEntry(
                 text="Zunächst einmal ist festzuhalten, dass...",
-                context="Opening a formal argument (first of all, it should be noted that...)",
+                context="Eröffnen a formal argument (first of all, it should be noted that...)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Dem lässt sich entgegenhalten, dass...",
-                context="Introducing a counter-argument (one could counter that...)",
+                context="Einleiten a counter-argument (one could counter that...)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -26,12 +26,12 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Man darf nicht außer Acht lassen, dass...",
-                context="Warning not to overlook a key fact",
+                context="Warnen not to overlook a key fact",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Diese Schlussfolgerung ist nicht zwingend.",
-                context="Challenging a conclusion as not logically compelling",
+                context="Anfechten a conclusion as not logically compelling",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -41,12 +41,12 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Aus diesem Grund bin ich der festen Überzeugung, dass...",
-                context="Stating a firm conviction after reasoning",
+                context="Feststellen a firm conviction after reasoning",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Hierbei handelt es sich um eine gravierende Vereinfachung.",
-                context="Calling out a serious oversimplification",
+                context="Bezeichnen out a serious oversimplification",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -56,12 +56,12 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Das ist insofern problematisch, als...",
-                context="Explaining why something is problematic",
+                context="Erklären why something is problematic",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Es wäre verfehlt, daraus zu schließen, dass...",
-                context="Rejecting a wrong conclusion (it would be wrong to conclude that)",
+                context="Zurückweisen a wrong conclusion (it would be wrong to conclude that)",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -71,22 +71,22 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Zusammenfassend lässt sich sagen, dass...",
-                context="Summarising the argument",
+                context="Zusammenfassen the argument",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Die Kehrseite der Medaille ist jedoch...",
-                context="Pointing out the downside (the flip side of the coin)",
+                context="Hinweisen out the downside (the flip side of the coin)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Das wirft ein ganz anderes Licht auf die Sache.",
-                context="Saying a new fact radically changes how we see things",
+                context="Sagen a new fact radically changes how we see things",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Die aktuelle Studienlage belegt eindeutig, dass...",
-                context="Citing research evidence",
+                context="Zitieren research evidence",
                 register="formal",
             ),
         ],
@@ -94,7 +94,7 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="formell_email_de_b2",
         level="B2",
-        situation="Formal Email & Written Correspondence",
+        situation="Formelle E-Mails & Schriftverkehr",
         icon="\U0001f4e7",
         phrases=[
             PhrasebookEntry(
@@ -109,22 +109,22 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="ich wende mich an Sie bezüglich...",
-                context="Opening line stating the subject (I'm writing to you regarding)...",
+                context="Eröffnen line stating the subject (I'm writing to you regarding)...",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Vielen Dank für Ihre Rückmeldung.",
-                context="Thanking someone for their reply",
+                context="Danken someone for their reply",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich nehme Bezug auf Ihr Schreiben vom...",
-                context="Referring to a previous letter (I refer to your letter of...)",
+                context="Verweisen to a previous letter (I refer to your letter of...)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Bezug nehmend auf unser Telefonat...",
-                context="Referring to a previous phone call",
+                context="Verweisen to a previous phone call",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -134,12 +134,12 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Für Rückfragen stehe ich Ihnen gerne zur Verfügung.",
-                context="Offering availability for follow-up questions",
+                context="Anbieten availability for follow-up questions",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich bitte um Verständnis für die Verspätung.",
-                context="Asking for understanding for a delay",
+                context="Fragen for understanding for a delay",
                 register="formal",
             ),
             PhrasebookEntry(
@@ -154,22 +154,22 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Vielen Dank im Voraus für Ihre Bemühungen.",
-                context="Thanking someone in advance for their efforts",
+                context="Danken someone in advance for their efforts",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Leider muss ich Ihnen mitteilen, dass...",
-                context="Delivering bad news politely (I regret to inform you that...)",
+                context="Delivering bad news höflichly (I regret to inform you that...)",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich hoffe auf eine positive Rückmeldung.",
-                context="Expressing hope for a favourable reply",
+                context="Ausdrücken hope for a favourable reply",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Ich wäre Ihnen dankbar, wenn Sie...",
-                context="Making a polite request (I would be grateful if you...)",
+                context="Making a höflich request (I would be grateful if you...)",
                 register="formal",
             ),
         ],
@@ -177,7 +177,7 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="nuancen_de_b2",
         level="B2",
-        situation="Nuance & Disambiguation",
+        situation="Nuancen & Begriffsklärung",
         icon="\u2696\ufe0f",
         phrases=[
             PhrasebookEntry(
@@ -187,17 +187,17 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Es kommt auf den Zusammenhang an.",
-                context="Saying it depends on the context",
+                context="Sagen it depends on the context",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="So pauschal kann man das nicht sagen.",
-                context="Refusing to generalise (you can't say that so broadly)",
+                context="Verweigern to generalise (you can't say that so broadly)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich würde das etwas differenzierter betrachten.",
-                context="Suggesting a more nuanced view",
+                context="Vorschlagen a more nuanced view",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -207,17 +207,17 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Man muss zwischen ... und ... unterscheiden.",
-                context="Pointing out a necessary distinction",
+                context="Hinweisen out a necessary distinction",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Unter bestimmten Umständen mag das zutreffen.",
-                context="Conceding that it could be true in certain circumstances",
+                context="Einräumen that it could be true in certain circumstances",
                 register="formal",
             ),
             PhrasebookEntry(
                 text="Das ist eine Frage der Perspektive.",
-                context="Saying it is a matter of perspective",
+                context="Sagen it is a matter of perspective",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -227,7 +227,7 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Das ist nur die halbe Wahrheit.",
-                context="Saying someone is not telling the whole truth",
+                context="Sagen someone is not telling the whole truth",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -252,12 +252,12 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Das ist Ansichtssache.",
-                context="Saying it's a matter of opinion",
+                context="Sagen it's a matter of opinion",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich möchte nicht in Abrede stellen, dass..., aber...",
-                context="Conceding a point before arguing against it (formal)",
+                context="Einräumen a point before arguing against it (formal)",
                 register="formal",
             ),
         ],
@@ -265,57 +265,57 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="medien_de_b2",
         level="B2",
-        situation="Media & News",
+        situation="Medien & Nachrichten",
         icon="\U0001f4f0",
         phrases=[
             PhrasebookEntry(
                 text="Laut einem Bericht der...",
-                context="Citing a report (according to a report by...)",
+                context="Zitieren a report (according to a report by...)",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="In den Nachrichten wurde berichtet, dass...",
-                context="Referring to a news report",
+                context="Verweisen to a news report",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Die Schlagzeilen heute Morgen besagen, dass...",
-                context="Referring to this morning's headlines",
+                context="Verweisen to this morning's headlines",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Das ist eine vertrauenswürdige Quelle.",
-                context="Vouching for a source's reliability",
+                context="Bürgen for a source's reliability",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="In den sozialen Medien geht gerade das Gerücht um, dass...",
-                context="Reporting a rumour on social media",
+                context="Berichten a rumour on social media",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Der Artikel stellt die Fakten verdreht dar.",
-                context="Criticising biased or distorted reporting",
+                context="Kritisieren biased or distorted reporting",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Ich lese regelmäßig die Online-Ausgabe der...",
-                context="Saying you regularly read the online edition of a newspaper",
+                context="Sagen you regularly read the online edition of a newspaper",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Was hältst du von der Berichterstattung über...?",
-                context="Asking someone's opinion on news coverage (informal)",
+                context="Fragen someone's opinion on news coverage (informell)",
                 register="informal",
             ),
             PhrasebookEntry(
                 text="Das wurde von den Medien völlig aufgebauscht.",
-                context="Saying the media completely hyped something up",
+                context="Sagen the media completely hyped something up",
                 register="informal",
             ),
             PhrasebookEntry(
                 text="Man sollte immer mehrere Quellen prüfen.",
-                context="Advice to cross-check sources",
+                context="Rat to cross-check sources",
                 register="neutral",
             ),
             PhrasebookEntry(
@@ -325,22 +325,22 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Ich habe das im Radio gehört.",
-                context="Saying you heard something on the radio",
+                context="Sagen you heard something on the radio",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Da gab es eine interessante Dokumentation über...",
-                context="Mentioning an interesting documentary",
+                context="Erwähnen an interesting documentary",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Der Kommentar war sehr einseitig.",
-                context="Criticising a one-sided commentary",
+                context="Kritisieren a one-sided commentary",
                 register="neutral",
             ),
             PhrasebookEntry(
                 text="Fake News sind ein zunehmendes Problem.",
-                context="Commenting on the growing problem of fake news",
+                context="Kommentieren on the growing problem of fake news",
                 register="neutral",
             ),
         ],
@@ -348,22 +348,22 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
     PhrasebookCategory(
         id="redewendungen_de_b2",
         level="B2",
-        situation="Idiomatic Expressions & Colloquialisms",
+        situation="Redewendungen & Umgangssprache",
         icon="\U0001f3ad",
         phrases=[
             PhrasebookEntry(
                 text="Da ist der Wurm drin.",
-                context="Saying something is wrong / there's a hitch",
+                context="Sagen something is wrong / there's a hitch",
                 register="informal",
             ),
             PhrasebookEntry(
                 text="Ich drücke dir die Daumen!",
-                context="Wishing someone luck (I'll keep my fingers crossed for you)",
+                context="Wünschen someone luck (I'll keep my fingers crossed for you)",
                 register="informal",
             ),
             PhrasebookEntry(
                 text="Das ist nicht mein Bier.",
-                context="Saying it's not my problem (not my beer)",
+                context="Sagen it's not my problem (not my beer)",
                 register="informal",
             ),
             PhrasebookEntry(
@@ -388,12 +388,12 @@ B2_CATEGORIES: list[PhrasebookCategory] = [
             ),
             PhrasebookEntry(
                 text="Ich verstehe nur Bahnhof.",
-                context="Saying you don't understand a thing (I only understand train station)",
+                context="Sagen you don't understand a thing (I only understand train station)",
                 register="informal",
             ),
             PhrasebookEntry(
                 text="Das ist mir Wurst.",
-                context="Saying you don't care (it's sausage to me)",
+                context="Sagen you don't care (it's sausage to me)",
                 register="informal",
             ),
             PhrasebookEntry(

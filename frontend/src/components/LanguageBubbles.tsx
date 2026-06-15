@@ -1,62 +1,66 @@
 'use client'
 
+import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { SUPPORTED_TARGET_LANGUAGES } from '@/lib/target-languages'
 
-interface Spot {
-  className: string
-  delay: number
-  speed: number
+function circlePosition(index: number, total: number, radius: number) {
+  const angle = (index / total) * 2 * Math.PI - Math.PI / 2
+  const x = Math.cos(angle) * radius
+  const y = Math.sin(angle) * radius
+  return { x, y }
 }
-
-const SPOTS: Spot[] = [
-  { className: 'top-[2%] left-[6%]', delay: 0, speed: 3.0 },
-  { className: 'top-[8%] right-[4%]', delay: 0.4, speed: 3.4 },
-  { className: 'top-[40%] -left-[5%]', delay: 0.8, speed: 2.8 },
-  { className: 'top-[40%] -right-[5%]', delay: 1.2, speed: 3.2 },
-  { className: 'bottom-[8%] left-[4%]', delay: 1.6, speed: 2.6 },
-  { className: 'bottom-[8%] right-[4%]', delay: 2.0, speed: 3.6 },
-  { className: 'bottom-[32%] left-1/2 -translate-x-1/2', delay: 0.5, speed: 3.1 },
-]
 
 export function LanguageBubbles() {
   const t = useTranslations('landing')
+  const positions = useMemo(
+    () => SUPPORTED_TARGET_LANGUAGES.map((_, i) => circlePosition(i, 7, 110)),
+    [],
+  )
 
   return (
-    <div className="relative flex items-center justify-center">
-      <Image
-        src="/logo.png"
-        alt="FreeLingo"
-        width={95}
-        height={95}
-        className="opacity-90"
+    <div className="relative h-[360px] w-full sm:h-[380px]">
+      <div
+        className="absolute left-1/2 top-1/2 z-20 h-[95px] w-[95px] -translate-x-1/2 -translate-y-1/2 bg-contain bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/logo.png)' }}
+        aria-label="FreeLingo"
       />
 
       {SUPPORTED_TARGET_LANGUAGES.map((lang, i) => {
-        const spot = SPOTS[i]
+        const { x, y } = positions[i]
         const greeting =
           t(`languageGreetings.${lang.code}`) ?? lang.name
+        const delay = i * 0.35
         return (
           <div
             key={lang.code}
-            className={`animate-float animate-bubble-in absolute ${spot.className} z-10`}
+            className="absolute z-10 w-max"
             style={{
-              animationDelay: `${spot.delay}s, ${spot.delay}s`,
-              animationDuration: `${spot.speed}s, 0.4s`,
+              left: `calc(50% + ${x}px)`,
+              top: `calc(50% + ${y}px)`,
+              transform: 'translate(-50%, -50%)',
             }}
           >
-            <div className="border-fl-border bg-fl-surface flex items-center gap-1.5 rounded-full border px-2.5 py-1 shadow-sm transition-shadow hover:shadow-md">
-              <Image
-                src={lang.flagPath}
-                alt={lang.nameEn}
-                width={14}
-                height={10}
-                className="rounded-[2px]"
-              />
-              <span className="text-fl-fg whitespace-nowrap font-sans text-[11px] font-medium">
-                {greeting}
-              </span>
+            <div
+              className="animate-float animate-bubble-in w-max"
+              style={{
+                animationDelay: `${delay}s, ${delay}s`,
+                animationDuration: '3.4s, 0.4s',
+              }}
+            >
+              <div className="border-fl-border bg-fl-surface flex items-center gap-1.5 rounded-full border px-2.5 py-1 shadow-sm transition-shadow hover:shadow-md">
+                <Image
+                  src={lang.flagPath}
+                  alt={lang.nameEn}
+                  width={14}
+                  height={10}
+                  className="rounded-[2px]"
+                />
+                <span className="text-fl-fg whitespace-nowrap font-sans text-[11px] font-medium">
+                  {greeting}
+                </span>
+              </div>
             </div>
           </div>
         )

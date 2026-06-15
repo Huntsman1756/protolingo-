@@ -593,7 +593,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         question="Ergänze: ___ man regelmäßig Sport treibt, bleibt man fit.",
         options=["Wenn", "Weil", "Dass", "Ob"],
         correct="Wenn",
-        grammar_slug="konjunktiv-ii-vergangenheit",
+        grammar_slug="irreale-bedingungen",
     ),
     AssessmentQuestion(
         id="g-b2-003",
