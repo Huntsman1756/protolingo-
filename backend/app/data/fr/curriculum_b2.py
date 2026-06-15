@@ -40,7 +40,7 @@ B2_UNITS: list[CurriculumUnit] = [
             "Exprime la manière, la cause, la condition et la concession avec le gérondif : C'est en forgeant qu'on devient forgeron, En courant, tu arriveras à l'heure",
             "Utilise le participe présent pour exprimer la cause (registre soutenu) : Sachant qu'il pleut, j'ai pris un parapluie",
             "Utilise être en train de + infinitif pour l'action en cours, venir de + infinitif pour le passé récent, aller + infinitif pour le futur proche",
-            "Distigue le gérondif (en + participe présent, fonction adverbiale) du participe présent (fonction adjective ou causale)",
+            "Distingue le gérondif (en + participe présent, fonction adverbiale) du participe présent (fonction adjective ou causale)",
         ],
         default_weeks=2,
         prerequisite_unit="b2-unit-1",

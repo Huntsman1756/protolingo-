@@ -2,7 +2,7 @@ from app.data._types import AssessmentQuestion
 
 ASSESSMENT_BANK: list[AssessmentQuestion] = [
     # ────────────────────────────────────────────────────────────────────
-    # A1 — Grammar (12)
+    # A1 — Grammaire (12)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-a1-001",
@@ -118,7 +118,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="aller-a-chez",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # A1 — Vocabulary (8)
+    # A1 — Vocabulaire (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-a1-001",
@@ -185,7 +185,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="matin",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # A1 — Reading (4)
+    # A1 — Lecture (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-a1-001",
@@ -220,7 +220,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Italienne",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # A2 — Grammar (12)
+    # A2 — Grammaire (12)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-a2-001",
@@ -336,7 +336,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="relatifs-simples",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # A2 — Vocabulary (8)
+    # A2 — Vocabulaire (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-a2-001",
@@ -408,7 +408,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="To hurry",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # A2 — Reading (4)
+    # A2 — Lecture (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-a2-001",
@@ -453,7 +453,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Il faisait beau",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B1 — Grammar (12)
+    # B1 — Grammaire (12)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-b1-001",
@@ -574,7 +574,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="conditionnel-passe",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B1 — Vocabulary (8)
+    # B1 — Vocabulaire (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-b1-001",
@@ -646,7 +646,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Polyglotte",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B1 — Reading (4)
+    # B1 — Lecture (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-b1-001",
@@ -691,7 +691,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Les longs trajets pour le travail",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B2 — Grammar (12)
+    # B2 — Grammaire (12)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-b2-001",
@@ -837,7 +837,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="cohesion-textuelle",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B2 — Vocabulary (8)
+    # B2 — Vocabulaire (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-b2-001",
@@ -909,7 +909,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Lacunaire",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # B2 — Reading (4)
+    # B2 — Lecture (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-b2-001",
@@ -964,7 +964,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="L'accord ne prévoit pas de calendrier contraignant",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Grammar (10)
+    # C1 — Grammaire (10)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-c1-001",
@@ -1082,7 +1082,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="varietes-francais",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Vocabulary (6)
+    # C1 — Vocabulaire (6)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-c1-001",
@@ -1158,7 +1158,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Une répétition de mots ayant le même sens",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C1 — Reading (4)
+    # C1 — Lecture (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-c1-001",
@@ -1213,7 +1213,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Le gouvernement n'a repris qu'une minorité des propositions malgré sa promesse",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Grammar (8)
+    # C2 — Grammaire (8)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="g-c2-001",
@@ -1323,7 +1323,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         grammar_slug="expression-nuancee",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Vocabulary (6)
+    # C2 — Vocabulaire (6)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="v-c2-001",
@@ -1404,7 +1404,7 @@ ASSESSMENT_BANK: list[AssessmentQuestion] = [
         correct="Qualité de ce qui est bref et dense",
     ),
     # ────────────────────────────────────────────────────────────────────
-    # C2 — Reading (4)
+    # C2 — Lecture (4)
     # ────────────────────────────────────────────────────────────────────
     AssessmentQuestion(
         id="r-c2-001",
