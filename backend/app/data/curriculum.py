@@ -2,7 +2,7 @@
 Language-aware curriculum dispatcher.
 
 For backward compatibility, CEFR_LEVELS remains a module-level constant.
-All curriculum queries accept a ``target_language`` parameter (e.g. "en-US",
+All curriculum queries accept a ``target_language`` parameter (e.g. "en-GB",
 "es-ES", "it-IT", "pt-PT") to resolve the correct language module.
 """
 
@@ -111,7 +111,7 @@ def get_curriculum(target_language: str) -> dict:
     return mod.CURRICULUM
 
 
-def get_curriculum_units(level: str, target_language: str = "en-US") -> list:
+def get_curriculum_units(level: str, target_language: str = "en-GB") -> list:
     """Return curriculum units for a CEFR level in the given target language."""
     curriculum = get_curriculum(target_language)
     return curriculum.get(level, [])
@@ -121,7 +121,7 @@ def distribute_units(
     units: list[CurriculumUnit],
     total_weeks: int,
     days_per_week: int,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> list[dict]:
     """Distribute curriculum units across lesson slots."""
     i18n = _I18N.get(target_language) or _I18N.get(target_language.split("-")[0], _I18N["en-GB"])

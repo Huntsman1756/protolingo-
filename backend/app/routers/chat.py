@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.app_logger import get_logger
 from app.core.database import get_db
-from app.core.deps import get_active_study_plan, require_subscription
+from app.core.deps import get_active_study_plan_optional, require_subscription
 from app.core.limiter import limiter
 from app.models.chat_history import ChatHistory
 from app.models.conversation import Conversation
@@ -106,6 +106,45 @@ Guidelines:
 
 
 MAX_HISTORY = 30
+DEFAULT_CEFR = "A2"
+DEFAULT_TARGET_LANG = "en-GB"
+
+
+async def _resolve_chat_context(
+    db: AsyncSession,
+    user: User,
+) -> tuple[str, str, int | None]:
+    """Resolve CEFR level, target language, and study_plan_id for chat.
+
+    Priority: active plan → any plan → defaults (A2 / active lang / en-US).
+    """
+    from app.models.user_language import UserLanguage
+    from app.services.user_language_service import get_active_language
+
+    # 1. Try active study plan
+    plan = await get_active_study_plan_optional(user, db)
+    if plan:
+        return plan.cefr_level, plan.target_language, plan.id
+
+    # 2. Try any study plan from any user language
+    result = await db.execute(
+        select(StudyPlan)
+        .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
+        .where(
+            UserLanguage.user_id == user.id,
+            StudyPlan.is_active == True,  # noqa: E712
+        )
+        .order_by(StudyPlan.created_at.desc())
+        .limit(1)
+    )
+    plan = result.scalar_one_or_none()
+    if plan:
+        return plan.cefr_level, plan.target_language, plan.id
+
+    # 3. No plan at all — use active language's code or default
+    active_lang = await get_active_language(db, user.id)
+    target_language = active_lang.target_language if active_lang else DEFAULT_TARGET_LANG
+    return DEFAULT_CEFR, target_language, None
 
 
 # ── Conversations ────────────────────────────────────────────────────────────
@@ -115,10 +154,13 @@ MAX_HISTORY = 30
 @limiter.limit("60/minute")
 async def list_conversations(
     request: Request,
-    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await get_active_study_plan_optional(current_user, db)
+    if plan is None:
+        return []
+
     result = await db.execute(
         select(Conversation)
         .where(
@@ -135,14 +177,14 @@ async def list_conversations(
 async def create_conversation(
     request: Request,
     data: ConversationCreate,
-    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await get_active_study_plan_optional(current_user, db)
     conv = Conversation(
         user_id=current_user.id,
         title=data.title or "New conversation",
-        study_plan_id=plan.id,
+        study_plan_id=plan.id if plan else None,
     )
     db.add(conv)
     await db.commit()
@@ -170,20 +212,26 @@ async def delete_conversation(
 async def get_conversation_messages(
     request: Request,
     conversation_id: int,
-    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
     conv = await db.get(Conversation, conversation_id)
     if not conv or conv.user_id != current_user.id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
+    plan = await get_active_study_plan_optional(current_user, db)
+    if plan:
+        where_clause = (
+            (ChatHistory.conversation_id == conversation_id)
+            & (ChatHistory.user_id == current_user.id)
+            & ((ChatHistory.study_plan_id == plan.id) | (ChatHistory.study_plan_id.is_(None)))
+        )
+    else:
+        where_clause = (ChatHistory.conversation_id == conversation_id) & (
+            ChatHistory.user_id == current_user.id
+        )
     result = await db.execute(
         select(ChatHistory)
-        .where(
-            ChatHistory.conversation_id == conversation_id,
-            ChatHistory.user_id == current_user.id,
-            (ChatHistory.study_plan_id == plan.id) | (ChatHistory.study_plan_id.is_(None)),
-        )
+        .where(where_clause)
         .order_by(ChatHistory.created_at.asc())
         .limit(MAX_HISTORY)
     )
@@ -199,7 +247,6 @@ async def get_conversation_messages(
 async def chat(
     request: Request,
     request_data: ChatRequest,
-    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
@@ -215,6 +262,8 @@ async def chat(
                 detail=f"Monthly token limit reached ({tokens_used}/{token_limit} tokens). Chat is unavailable until next month.",
             )
 
+    cefr_level, target_language, study_plan_id = await _resolve_chat_context(db, current_user)
+
     # Resolve or create conversation
     if request_data.conversation_id:
         conv = await db.get(Conversation, request_data.conversation_id)
@@ -227,29 +276,38 @@ async def chat(
         title = request_data.message[:60].strip()
         if len(request_data.message) > 60:
             title += "..."
-        conv = Conversation(user_id=current_user.id, title=title, study_plan_id=plan.id)
+        conv = Conversation(user_id=current_user.id, title=title, study_plan_id=study_plan_id)
         db.add(conv)
         await db.commit()
         await db.refresh(conv)
 
     conversation_id = conv.id
 
-    cefr_level = plan.cefr_level
-
-    prog_result = await db.execute(
-        select(Progress).where(
-            Progress.study_plan_id == plan.id,
-            Progress.date == date.today(),
+    if study_plan_id:
+        prog_result = await db.execute(
+            select(Progress).where(
+                Progress.study_plan_id == study_plan_id,
+                Progress.date == date.today(),
+            )
         )
-    )
-    prog = prog_result.scalar_one_or_none()
-    total_xp_result = await db.execute(select(Progress).where(Progress.study_plan_id == plan.id))
-    total_xp = sum(p.xp_earned for p in total_xp_result.scalars().all())
-    skills_str = (
-        ", ".join(f"{k}: {round(v * 100)}%" for k, v in (prog.skills or {}).items())
-        if prog and prog.skills
-        else "none yet"
-    )
+        prog = prog_result.scalar_one_or_none()
+        total_xp_result = await db.execute(
+            select(Progress).where(Progress.study_plan_id == study_plan_id)
+        )
+        total_xp = sum(p.xp_earned for p in total_xp_result.scalars().all())
+        skills_str = (
+            ", ".join(f"{k}: {round(v * 100)}%" for k, v in (prog.skills or {}).items())
+            if prog and prog.skills
+            else "none yet"
+        )
+        streak = prog.streak_day if prog else 0
+        lessons_today = prog.lessons_completed if prog else 0
+    else:
+        total_xp = 0
+        skills_str = "none yet"
+        streak = 0
+        lessons_today = 0
+        prog = None
 
     # Build user context section from bio and learning goals
     _ctx_parts: list[str] = []
@@ -270,10 +328,10 @@ async def chat(
         else ""
     )
 
-    memories = await get_user_memories(db, current_user.id, study_plan_id=plan.id)
+    memories = await get_user_memories(db, current_user.id, study_plan_id=study_plan_id)
     memory_context = build_memory_context(memories)
 
-    target_language_name = get_language_name(plan.target_language)
+    target_language_name = get_language_name(target_language)
 
     system_prompt = _build_tutor_system_prompt(
         student_name=current_user.display_name,
@@ -281,8 +339,8 @@ async def chat(
         native_language=current_user.native_language,
         target_language_name=target_language_name,
         total_xp=total_xp,
-        streak=prog.streak_day if prog else 0,
-        lessons_today=prog.lessons_completed if prog else 0,
+        streak=streak,
+        lessons_today=lessons_today,
         skills=skills_str,
         user_context=user_context,
         memory_context=memory_context,
@@ -294,7 +352,7 @@ async def chat(
             conversation_id=conversation_id,
             role="user",
             content=request_data.message,
-            study_plan_id=plan.id,
+            study_plan_id=study_plan_id,
         )
     )
     await db.commit()
@@ -361,7 +419,7 @@ async def chat(
                     conversation_id=conversation_id,
                     role="assistant",
                     content=clean_response,
-                    study_plan_id=plan.id,
+                    study_plan_id=study_plan_id,
                 )
             )
             conv.updated_at = datetime.now(UTC).replace(tzinfo=None)
@@ -372,7 +430,7 @@ async def chat(
             if memory_items:
                 try:
                     saved = await save_memories(
-                        db, current_user.id, memory_items, "chat", study_plan_id=plan.id
+                        db, current_user.id, memory_items, "chat", study_plan_id=study_plan_id
                     )
                     if saved:
                         memory_updated = True
@@ -397,7 +455,7 @@ async def chat(
                             prompt_tokens=stream.prompt_tokens,
                             completion_tokens=stream.completion_tokens,
                             total_tokens=stream.total_tokens,
-                            study_plan_id=plan.id,
+                            study_plan_id=study_plan_id,
                         )
                     )
                     await db.commit()
@@ -432,16 +490,19 @@ async def chat(
 @limiter.limit("60/minute")
 async def get_history(
     request: Request,
-    plan: StudyPlan = Depends(get_active_study_plan),
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
+    plan = await get_active_study_plan_optional(current_user, db)
+    if plan:
+        where_clause = (ChatHistory.user_id == current_user.id) & (
+            ChatHistory.study_plan_id == plan.id
+        )
+    else:
+        where_clause = ChatHistory.user_id == current_user.id
     result = await db.execute(
         select(ChatHistory)
-        .where(
-            ChatHistory.user_id == current_user.id,
-            ChatHistory.study_plan_id == plan.id,
-        )
+        .where(where_clause)
         .order_by(ChatHistory.created_at.asc())
         .limit(MAX_HISTORY)
     )

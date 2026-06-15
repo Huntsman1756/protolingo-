@@ -98,3 +98,23 @@ async def get_active_study_plan(
     if not plan:
         raise HTTPException(status_code=404, detail="No active study plan found")
     return plan
+
+
+async def get_active_study_plan_optional(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+) -> StudyPlan | None:
+    """Return the active study plan, or None if no plan exists yet."""
+    from app.services.user_language_service import get_active_language
+
+    active_lang = await get_active_language(db, current_user.id)
+    if not active_lang:
+        return None
+
+    result = await db.execute(
+        select(StudyPlan).where(
+            StudyPlan.user_language_id == active_lang.id,
+            StudyPlan.is_active == True,  # noqa: E712
+        )
+    )
+    return result.scalar_one_or_none()

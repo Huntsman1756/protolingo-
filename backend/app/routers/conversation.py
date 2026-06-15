@@ -241,21 +241,29 @@ async def conversation_ws(
             )
             plan = result.scalar_one_or_none()
         if not plan:
-            await websocket.send_json(
-                {"type": "error", "code": "no_active_plan", "message": "No active study plan found"}
-            )
-            await websocket.close(code=1008)
-            return
-        cefr_level = plan.cefr_level
-        if target_language_from_client:
-            target_language = target_language_from_client
+            cefr_level = "A2"
+            study_plan_id_for_conv = None
+            if target_language_from_client:
+                target_language = target_language_from_client
+            elif active_lang:
+                target_language = active_lang.target_language
+            else:
+                ul_row = await db.execute(
+                    select(UserLanguage).where(UserLanguage.user_id == user_id).limit(1)
+                )
+                ul = ul_row.scalar_one_or_none()
+                target_language = ul.target_language if ul else "en-GB"
         else:
-            ul_row = await db.execute(
-                select(UserLanguage).where(UserLanguage.id == plan.user_language_id)
-            )
-            ul = ul_row.scalar_one_or_none()
-            target_language = ul.target_language if ul else plan.target_language
-        study_plan_id_for_conv = plan.id
+            cefr_level = plan.cefr_level
+            if target_language_from_client:
+                target_language = target_language_from_client
+            else:
+                ul_row = await db.execute(
+                    select(UserLanguage).where(UserLanguage.id == plan.user_language_id)
+                )
+                ul = ul_row.scalar_one_or_none()
+                target_language = ul.target_language if ul else plan.target_language
+            study_plan_id_for_conv = plan.id
 
         # Read user settings before session closes to avoid DetachedInstanceError
         max_duration = user.conversation_max_duration

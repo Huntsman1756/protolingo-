@@ -90,7 +90,7 @@ class ConversationPipeline:
         stt: object,
         cefr_level: str = "B1",
         native_language: str = "es",
-        target_language: str = "en-US",
+        target_language: str = "en-GB",
         student_name: str = "Student",
         max_duration: int = 1800,
         inactivity_timeout: int = 180,

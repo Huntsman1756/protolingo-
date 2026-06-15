@@ -158,102 +158,102 @@ export default function MyLanguagesPage() {
               )
             )
             .map((ulang) => {
-            const lang = getLangInfo(ulang.target_language)
-            const isActive = ulang.is_active
-            const plan = ulang.plan
-            const progress = ulang.progress
+              const lang = getLangInfo(ulang.target_language)
+              const isActive = ulang.is_active
+              const plan = ulang.plan
+              const progress = ulang.progress
 
-            return (
-              <div
-                key={ulang.target_language}
-                className={`bg-fl-surface border p-5 ${
-                  isActive ? 'border-fl-accent/50' : 'border-fl-border'
-                }`}
-              >
-                {/* Top row: flag + name + status */}
-                <div className="mb-3 flex items-center gap-3">
-                  {lang && (
-                    <Image
-                      src={lang.flagPath}
-                      alt={lang.code}
-                      width={28}
-                      height={20}
-                      className="shrink-0 object-cover"
-                    />
+              return (
+                <div
+                  key={ulang.target_language}
+                  className={`bg-fl-surface border p-5 ${
+                    isActive ? 'border-fl-accent/50' : 'border-fl-border'
+                  }`}
+                >
+                  {/* Top row: flag + name + status */}
+                  <div className="mb-3 flex items-center gap-3">
+                    {lang && (
+                      <Image
+                        src={lang.flagPath}
+                        alt={lang.code}
+                        width={28}
+                        height={20}
+                        className="shrink-0 object-cover"
+                      />
+                    )}
+                    <span className="text-fl-fg flex-1 font-mono text-sm font-bold">
+                      {tTarget(ulang.target_language)}
+                    </span>
+                    {isActive ? (
+                      <span className="text-fl-label bg-fl-accent/20 text-fl-accent px-2 py-0.5 font-mono text-xs tracking-widest uppercase">
+                        {t('activeLanguage')}
+                      </span>
+                    ) : plan?.cefr_level ? (
+                      <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+                        {plan.cefr_level}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  {/* Stats */}
+                  {plan && (
+                    <div className="text-fl-muted-1 mb-3 flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs">
+                      <span>
+                        {t('levelLabel')}: {plan.cefr_level ?? '—'}
+                      </span>
+                      <span>
+                        {t('progressLabel')}: {plan.completion_pct}%
+                      </span>
+                      {progress && (
+                        <>
+                          <span>
+                            {t('xpLabel')}: {progress.total_xp.toLocaleString()}
+                          </span>
+                          <span>
+                            {t('streakLabel')}: {progress.current_streak}d
+                          </span>
+                          <span>
+                            {t('lessonsLabel')}: {progress.lessons_completed}
+                          </span>
+                        </>
+                      )}
+                    </div>
                   )}
-                  <span className="text-fl-fg flex-1 font-mono text-sm font-bold">
-                    {tTarget(ulang.target_language)}
-                  </span>
-                  {isActive ? (
-                    <span className="text-fl-label bg-fl-accent/20 text-fl-accent px-2 py-0.5 font-mono text-xs tracking-widest uppercase">
-                      {t('activeLanguage')}
-                    </span>
-                  ) : plan?.cefr_level ? (
-                    <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
-                      {plan.cefr_level}
-                    </span>
-                  ) : null}
-                </div>
 
-                {/* Stats */}
-                {plan && (
-                  <div className="text-fl-muted-1 mb-3 flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs">
-                    <span>
-                      {t('levelLabel')}: {plan.cefr_level ?? '—'}
-                    </span>
-                    <span>
-                      {t('progressLabel')}: {plan.completion_pct}%
-                    </span>
-                    {progress && (
+                  {/* Actions */}
+                  <div className="flex items-center gap-2">
+                    {isActive ? (
+                      <button
+                        onClick={() => router.push(`/plan`)}
+                        className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
+                      >
+                        {t('viewDetails')} →
+                      </button>
+                    ) : (
                       <>
-                        <span>
-                          {t('xpLabel')}: {progress.total_xp.toLocaleString()}
-                        </span>
-                        <span>
-                          {t('streakLabel')}: {progress.current_streak}d
-                        </span>
-                        <span>
-                          {t('lessonsLabel')}: {progress.lessons_completed}
-                        </span>
+                        <button
+                          onClick={() => handleSwitch(ulang)}
+                          disabled={switchingCode === ulang.target_language}
+                          className="text-fl-label text-fl-bg bg-fl-fg hover:bg-fl-accent/90 px-3 py-1 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-40"
+                        >
+                          {switchingCode === ulang.target_language
+                            ? '...'
+                            : t('switchTo')}
+                        </button>
+                        {hasMultiple && (
+                          <button
+                            onClick={() => setDeleteTarget(ulang)}
+                            className="text-fl-label text-fl-muted-3 hover:text-fl-error font-mono text-xs tracking-widest uppercase transition-colors"
+                          >
+                            {t('removeLanguage')}
+                          </button>
+                        )}
                       </>
                     )}
                   </div>
-                )}
-
-                {/* Actions */}
-                <div className="flex items-center gap-2">
-                  {isActive ? (
-                    <button
-                      onClick={() => router.push(`/plan`)}
-                      className="text-fl-label text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
-                    >
-                      {t('viewDetails')} →
-                    </button>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => handleSwitch(ulang)}
-                        disabled={switchingCode === ulang.target_language}
-                        className="text-fl-label text-fl-bg bg-fl-fg hover:bg-fl-accent/90 px-3 py-1 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-40"
-                      >
-                        {switchingCode === ulang.target_language
-                          ? '...'
-                          : t('switchTo')}
-                      </button>
-                      {hasMultiple && (
-                        <button
-                          onClick={() => setDeleteTarget(ulang)}
-                          className="text-fl-label text-fl-muted-3 hover:text-fl-error font-mono text-xs tracking-widest uppercase transition-colors"
-                        >
-                          {t('removeLanguage')}
-                        </button>
-                      )}
-                    </>
-                  )}
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
         </div>
       )}
 

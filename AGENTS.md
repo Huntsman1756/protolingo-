@@ -15,6 +15,7 @@ Monorepo: `backend/` (Python 3.14 FastAPI) + `frontend/` (Next.js 16 App Router)
 - **First registered user becomes admin automatically** when `FIRST_USER_IS_ADMIN=true` (default).
 - **Registration gating**: `ALLOW_REGISTRATION=false` blocks public signups; admin creates users or generates single-use invite links (48h expiry in Redis).
 - **Ollama should run on the host for GPU access**, accessed via `host.docker.internal:11434`. On Linux, the backend service needs `extra_hosts: ["host.docker.internal:host-gateway"]`.
+- **Default target language is `en-GB`** — all fallback defaults across backend (service params, Query params, model column defaults, chat context, onboarding form) and frontend (`DEFAULT_TARGET_LANGUAGE` in `target-languages.ts`) use `en-GB`. `en-US` remains a supported language but is never used as a fallback default.
 
 ## Documentation maintenance (MANDATORY)
 

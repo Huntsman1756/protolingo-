@@ -9,7 +9,7 @@ from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import llm_adapter
 
 
-def get_valid_grammar_slugs(target_language: str = "en-US") -> set[str]:
+def get_valid_grammar_slugs(target_language: str = "en-GB") -> set[str]:
     """Return the set of valid grammar slugs for a given target language."""
     curriculum = get_curriculum(target_language)
     return {slug for units in curriculum.values() for unit in units for slug in unit.grammar_points}
@@ -205,7 +205,7 @@ async def generate_lesson(
     unit_id: str = "",
     grammar_points: list[str] | None = None,
     vocabulary_set_ids: list[str] | None = None,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> LessonContent:
     gp_str = ", ".join(grammar_points) if grammar_points else "none specified"
     vs_str = ", ".join(vocabulary_set_ids) if vocabulary_set_ids else "general"
@@ -245,7 +245,7 @@ async def evaluate_free_write(
     prompt: str,
     criteria: list[str],
     answer: str,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> FreeWriteEvaluation:
     from app.services.language_helpers import get_language_name
 
@@ -269,7 +269,7 @@ async def evaluate_pronunciation(
     cefr_level: str,
     target: str,
     transcription: str,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> PronunciationEvaluation:
     from app.services.language_helpers import get_language_name
 
@@ -292,7 +292,7 @@ async def evaluate_fill_blank(
     question: str,
     correct_answer: str,
     student_answer: str,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> FillBlankEvaluation:
     from app.services.language_helpers import get_language_name
 

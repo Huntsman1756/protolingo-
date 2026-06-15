@@ -17,9 +17,9 @@ export default function TargetLanguageSelector({
 }: Props) {
   const t = useTranslations('targetLanguages')
 
-  const filtered = SUPPORTED_TARGET_LANGUAGES
-    .filter((lang) => availableCodes.includes(lang.code))
-    .sort((a, b) => t(a.code).localeCompare(t(b.code)))
+  const filtered = SUPPORTED_TARGET_LANGUAGES.filter((lang) =>
+    availableCodes.includes(lang.code)
+  ).sort((a, b) => t(a.code).localeCompare(t(b.code)))
 
   return (
     <div className="grid grid-cols-2 gap-2">

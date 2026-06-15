@@ -49,12 +49,8 @@ _LANG_HINTS: dict[str, str] = {
         "Always include the article (o/a/os/as) and indicate gender (m/f) "
         "with each noun, e.g. 'o carro (m)'. Use European Portuguese spelling and vocabulary."
     ),
-    "en-US": (
-        "Use American English spelling and vocabulary (e.g. color, center, organize)."
-    ),
-    "en-GB": (
-        "Use British English spelling and vocabulary (e.g. colour, centre, organise)."
-    ),
+    "en-US": ("Use American English spelling and vocabulary (e.g. color, center, organize)."),
+    "en-GB": ("Use British English spelling and vocabulary (e.g. colour, centre, organise)."),
 }
 
 
@@ -85,7 +81,7 @@ Return JSON:
 
 
 async def generate_flashcards(
-    topic: str, count: int, cefr_level: str, native_language: str, target_language: str = "en-US"
+    topic: str, count: int, cefr_level: str, native_language: str, target_language: str = "en-GB"
 ) -> FlashcardGenerateResponse:
     target_language_name = get_language_name(target_language)
     lang_hint = _get_lang_hint(target_language)
@@ -126,7 +122,7 @@ async def lookup_word(
     context: str,
     cefr_level: str,
     native_language: str,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> FlashcardCreate:
     target_language_name = get_language_name(target_language)
     lang_hint = _get_lang_hint(target_language)

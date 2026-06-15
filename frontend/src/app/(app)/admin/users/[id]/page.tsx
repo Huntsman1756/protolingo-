@@ -360,15 +360,24 @@ export default function AdminUserStatsPage() {
               )
             }
             disabled={subscriptionSaving}
-            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-accent border py-1.5 pl-3 pr-5 font-mono text-xs tracking-widest uppercase focus:outline-none disabled:opacity-40"
+            className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-accent border py-1.5 pr-5 pl-3 font-mono text-xs tracking-widest uppercase focus:outline-none disabled:opacity-40"
           >
-            <option value="none" className="font-mono tracking-widest uppercase">
+            <option
+              value="none"
+              className="font-mono tracking-widest uppercase"
+            >
               {tBilling('statusNone')}
             </option>
-            <option value="monthly" className="font-mono tracking-widest uppercase">
+            <option
+              value="monthly"
+              className="font-mono tracking-widest uppercase"
+            >
               {tBilling('planMonthlyName')}
             </option>
-            <option value="yearly" className="font-mono tracking-widest uppercase">
+            <option
+              value="yearly"
+              className="font-mono tracking-widest uppercase"
+            >
               {tBilling('planYearlyName')}
             </option>
           </select>

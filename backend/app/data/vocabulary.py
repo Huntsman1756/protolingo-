@@ -36,12 +36,12 @@ def _resolve_sets(target_language: str) -> list[VocabularySet]:
     return _CACHE[module_name]
 
 
-def get_vocabulary_sets(target_language: str = "en-US") -> list[VocabularySet]:
+def get_vocabulary_sets(target_language: str = "en-GB") -> list[VocabularySet]:
     """Return all vocabulary sets for the given target language."""
     return _resolve_sets(target_language)
 
 
-def get_vocabulary_set(set_id: str, target_language: str = "en-US") -> VocabularySet | None:
+def get_vocabulary_set(set_id: str, target_language: str = "en-GB") -> VocabularySet | None:
     """Return a single vocabulary set by ID for the given target language."""
     sets = _resolve_sets(target_language)
     for s in sets:
@@ -51,7 +51,7 @@ def get_vocabulary_set(set_id: str, target_language: str = "en-US") -> Vocabular
 
 
 def get_vocabulary_by_level(
-    level: CEFRLevel, target_language: str = "en-US"
+    level: CEFRLevel, target_language: str = "en-GB"
 ) -> list[VocabularySet]:
     """Return all vocabulary sets for a specific CEFR level."""
     sets = _resolve_sets(target_language)

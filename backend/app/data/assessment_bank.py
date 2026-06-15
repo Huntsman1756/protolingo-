@@ -36,6 +36,6 @@ def _resolve_bank(target_language: str) -> list[AssessmentQuestion]:
     return _CACHE[module_name]
 
 
-def get_assessment_bank(target_language: str = "en-US") -> list[AssessmentQuestion]:
+def get_assessment_bank(target_language: str = "en-GB") -> list[AssessmentQuestion]:
     """Return the full assessment bank for the given target language."""
     return _resolve_bank(target_language)

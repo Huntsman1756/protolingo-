@@ -36,12 +36,12 @@ def _resolve_topics(target_language: str) -> list[GrammarTopic]:
     return _CACHE[module_name]
 
 
-def get_grammar_topics(target_language: str = "en-US") -> list[GrammarTopic]:
+def get_grammar_topics(target_language: str = "en-GB") -> list[GrammarTopic]:
     """Return all grammar topics for the given target language."""
     return _resolve_topics(target_language)
 
 
-def get_grammar_topic(slug: str, target_language: str = "en-US") -> GrammarTopic | None:
+def get_grammar_topic(slug: str, target_language: str = "en-GB") -> GrammarTopic | None:
     """Return a single grammar topic by slug for the given target language."""
     topics = _resolve_topics(target_language)
     for t in topics:
