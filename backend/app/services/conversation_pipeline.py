@@ -161,19 +161,29 @@ class ConversationPipeline:
         self._session_start = time.monotonic()
         self._last_activity = time.monotonic()
         self._timer_tasks: list[asyncio.Task] = []
+        self._pending_saves: list[asyncio.Task] = []
         self._inactivity_warning_sent = False
 
     @staticmethod
     def _clean_sentence(raw_sentence: str) -> str:
-        marker = "<<MEMORY>>"
-        if marker in raw_sentence:
-            return raw_sentence[: raw_sentence.find(marker)].strip()
-        clean = raw_sentence
-        for pi in range(len(marker), 0, -1):
-            if clean.endswith(marker[:pi]):
-                clean = clean[:-pi].strip()
-                break
-        return clean
+        # Strip the complete <<MEMORY>>...<<ENDMEMORY>> block first
+        raw = strip_memory_marker(raw_sentence)
+
+        # Strip any orphan marker that may remain without its counterpart
+        # (happens when markers are split across sentence boundaries)
+        for orphan in ("<<MEMORY>>", "<<ENDMEMORY>>"):
+            idx = raw.find(orphan)
+            if idx != -1:
+                raw = raw[:idx].strip()
+
+        # Strip partial marker prefixes from the end of the text
+        for marker in ("<<MEMORY>>", "<<ENDMEMORY>>"):
+            for pi in range(len(marker), 0, -1):
+                if raw.endswith(marker[:pi]):
+                    raw = raw[:-pi].strip()
+                    break
+
+        return raw
 
     def _create_tts_queue(
         self,
@@ -277,7 +287,9 @@ class ConversationPipeline:
 
             if clean_full_response:
                 self.history.append({"role": "assistant", "content": clean_full_response})
-                asyncio.create_task(self._save_message("assistant", clean_full_response))
+                self._pending_saves.append(
+                    asyncio.create_task(self._save_message("assistant", clean_full_response))
+                )
                 await ws.send_json(
                     {
                         "type": "transcript",
@@ -440,7 +452,7 @@ class ConversationPipeline:
             tts_send_ms = (time.perf_counter() - tts_send_t0) * 1000
 
             # Persist token usage best-effort (never blocks the response)
-            asyncio.create_task(self._save_usage(llm_stream))
+            self._pending_saves.append(asyncio.create_task(self._save_usage(llm_stream)))
 
         except asyncio.CancelledError:
             sender_task.cancel()
@@ -469,8 +481,10 @@ class ConversationPipeline:
 
         self.history.append({"role": "assistant", "content": clean_full_response})
         # Persist both sides of the turn together — only reached on success.
-        asyncio.create_task(self._save_message("user", user_text))
-        asyncio.create_task(self._save_message("assistant", clean_full_response))
+        self._pending_saves.append(asyncio.create_task(self._save_message("user", user_text)))
+        self._pending_saves.append(
+            asyncio.create_task(self._save_message("assistant", clean_full_response))
+        )
 
         # Extract and persist memories (best-effort, in background)
         memory_items = parse_memory_marker(full_response)
@@ -600,6 +614,10 @@ class ConversationPipeline:
         await self.cancel_current()
         for t in self._timer_tasks:
             t.cancel()
+        # Wait for any in-flight DB saves (transcripts, token usage) so they
+        # are not silently cancelled when the event loop shuts down the task.
+        if self._pending_saves:
+            await asyncio.gather(*self._pending_saves, return_exceptions=True)
 
     # --- Timeout watchers ---
 

@@ -457,7 +457,6 @@ export default function ChatPage() {
                       )}
                     </div>
                     <div className={`max-w-[75%] min-w-[10rem] text-left`}>
-                      {' '}
                       <div
                         className={`word-selectable border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
                           msg.role === 'user'

@@ -257,7 +257,7 @@ async def chat(
             )
     else:
         # Auto-create a conversation titled with the first 60 chars of the message
-        title = request_data.message[:60].strip()
+        title = request_data.message[:60].replace("\n", " ").replace("\r", "").strip()
         if len(request_data.message) > 60:
             title += "..."
         conv = Conversation(user_id=current_user.id, title=title, study_plan_id=study_plan_id)
@@ -360,6 +360,7 @@ async def chat(
     async def event_stream():
         full_response = ""
         sent_len = 0
+        memory_block_active = False
         try:
             yield f"data: {json.dumps({'conversation_id': conversation_id})}\n\n"
             stream = await llm_adapter.chat(messages, stream=True)
@@ -368,13 +369,22 @@ async def chat(
                     token = chunk.choices[0].delta.content
                     full_response += token
 
-                    marker_start = full_response.find("<<MEMORY>>")
+                    if memory_block_active:
+                        mem_end = full_response.find("<<ENDMEMORY>>", sent_len)
+                        if mem_end != -1:
+                            memory_block_active = False
+                            sent_len = mem_end + len("<<ENDMEMORY>>")
+                        else:
+                            continue
+
+                    marker_start = full_response.find("<<MEMORY>>", sent_len)
                     if marker_start != -1:
                         clean_up_to_marker = full_response[:marker_start]
                         if len(clean_up_to_marker) > sent_len:
                             unsent = clean_up_to_marker[sent_len:]
                             yield f"data: {json.dumps({'token': unsent})}\n\n"
-                            sent_len = len(clean_up_to_marker)
+                        sent_len = marker_start
+                        memory_block_active = True
                         continue
 
                     # Withhold any trailing partial <<MEMORY>> prefix to avoid leaking

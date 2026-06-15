@@ -457,9 +457,14 @@ export default function ConversationMode({
     // this ensures the first transcription/synthesis in the session is fast.
     // Runs in parallel with VAD mic permission request.
     setStatus('warming')
-    const warmupPromise = apiFetch('/api/conversation/warmup', {
-      method: 'POST',
-    }).catch(() => undefined)
+    const warmupPromise = Promise.race([
+      apiFetch('/api/conversation/warmup', { method: 'POST' }).catch(
+        () => undefined
+      ),
+      new Promise<undefined>((resolve) =>
+        setTimeout(() => resolve(undefined), 15_000)
+      ),
+    ])
 
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
