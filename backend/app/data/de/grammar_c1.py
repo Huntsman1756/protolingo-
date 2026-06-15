@@ -870,4 +870,186 @@ Kein Apostroph bei Genitiv: Peters Auto (nicht: Peter's Auto). Apostroph nur bei
         ],
         related=["wissenschaftssprache", "gehobene-sprache"],
     ),
+    GrammarTopic(
+        slug="fachsprache",
+        title="Fachsprache und Terminologie",
+        level="C1",
+        category="Wortschatz",
+        summary="Fachsprache und Terminologie – fachspezifisches Vokabular, akademischer Jargon und domänenspezifische Ausdrücke verstehen und anwenden.",
+        explanation="""Fachsprachen sind Varietäten der Standardsprache, die in bestimmten Fachgebieten verwendet werden. Sie zeichnen sich aus durch: präzise Terminologie (jeder Begriff hat eine festgelegte Definition), Nominalstil, hohe Informationsdichte und oft international verständliche Latinismen/Gräzismen.
+Horizontale Gliederung: Fachsprache der Medizin (Diagnose, Anamnese, Prognose), der Jura (Kläger, Revision, Nichtigkeit), der Technik (Drehmoment, Frequenz, Kalibrierung), der Wirtschaft (Liquidität, Bilanz, Abschreibung).
+Vertikale Gliederung: Theoriensprache (hoch abstrakt), fachliche Umgangssprache (vereinfacht), Verteilersprache (populärwissenschaftlich).
+Wichtig: Die Grenze zwischen Fachwort und Allgemeinwort ist fließend (z.B. Stress, Trauma, Energie).""",
+        structure="Fachsprache = spezifische Lexik + spezifische Syntax (Nominalstil, Passiv) + definierte Terminologie",
+        rules=[
+            "Jede Fachsprache hat einen definierten, präzisen Wortschatz.",
+            "Fachsprache ist meist schriftlich und zeichnet sich durch Nominalstil und Passiv aus.",
+            "Latinismen und Gräzismen sind in vielen Fachsprachen verbreitet.",
+            "Die vertikale Schichtung reicht von hochabstrakt bis populärwissenschaftlich.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Die Anamnese ergab keine relevanten Vorerkrankungen.",
+                translation=None,
+                note="medizinische Fachsprache",
+            ),
+            GrammarExample(
+                text="Der Beklagte legte Revision gegen das Urteil ein.",
+                translation=None,
+                note="juristische Fachsprache",
+            ),
+            GrammarExample(
+                text="Die Liquiditätskennzahlen weisen auf eine stabile Finanzlage hin.",
+                translation=None,
+                note="wirtschaftliche Fachsprache",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Fachwörter ungeprüft in Alltagstexten verwenden.",
+                correct="Fachsprache nur verwenden, wenn das Gegenüber sie versteht.",
+                note="Fachjargon wirkt sonst unverständlich oder angeberisch.",
+            ),
+        ],
+        related=["wissenschaftssprache", "nominalstil", "konnotationen", "gehobene-sprache"],
+    ),
+    GrammarTopic(
+        slug="sprachkritik",
+        title="Sprachkritik und Stilistik",
+        level="C1",
+        category="Stil",
+        summary="Sprachkritik und Stilistik – Analyse von politischer Sprache, Framing und medialer Diskurse auf Deutsch.",
+        explanation="""Sprachkritik untersucht den Gebrauch von Sprache in öffentlichen Diskursen kritisch. Zentrale Konzepte:
+Framing: Durch Wortwahl wird ein Deutungsrahmen gesetzt (Steuererleichterung vs Steuergeschenk, Flüchtlingswelle vs Flüchtlingsstrom). Politische Sprache analysieren: Wer spricht? Mit welcher Wortwahl? Welches Framing wird transportiert? Was wird verschwiegen?
+Euphemismen: freisetzen (entlassen), preisgünstig (billig), entschlafen (sterben). Dysphemismen: absichtlich abwertende Ausdrücke.
+Sprachkritik fragt: Welches Weltbild vermittelt diese Sprachverwendung? Wer profitiert davon? Welche Alternativen gäbe es?
+Wichtige Quellen: Victor Klemperer (LTI – Lingua Tertii Imperii), Uwe Pörksen (Plastikwörter), die Aktion Unwort des Jahres.""",
+        structure="Sprachgebrauch → Framing identifizieren → Funktion analysieren → kritisch bewerten",
+        rules=[
+            "Framing bedeutet, dass Wortwahl Denkrahmen setzt.",
+            "Sprachkritik hinterfragt, welche Interessen hinter bestimmten Formulierungen stehen.",
+            "Euphemismen verschleiern, Dysphemismen werten ab.",
+            "Die Analyse politischer Sprache braucht sprachliches und politisches Wissen.",
+        ],
+        examples=[
+            GrammarExample(
+                text='"Steuererleichterung" vs "Steuergeschenk" — zwei Frames für dieselbe Maßnahme.',
+                translation=None,
+                note="Framing",
+            ),
+            GrammarExample(
+                text='"Personalabbau" vs "Freisetzung von Arbeitskräften" — Euphemismus für Entlassungen.',
+                translation=None,
+                note="Euphemismus",
+            ),
+            GrammarExample(
+                text='"Klimahysterie" vs "Klimaschutz" — dysphemistisches vs neutrales Framing.',
+                translation=None,
+                note="Dysphemismus",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Sprachkritik mit Sprachpurismus oder Korrektur gleichsetzen.",
+                correct="Sprachkritik analysiert, Sprachpurismus lehnt ab. Sprachkritik bewertet nicht einen Ausdruck als ‚falsch', sondern fragt nach dessen Funktion.",
+                note="Sprachkritik ist deskriptiv-analytisch, nicht präskriptiv.",
+            ),
+        ],
+        related=["argumentation", "konnotationen", "rhetorische-mittel", "textanalyse"],
+    ),
+    GrammarTopic(
+        slug="verhandlungssprache",
+        title="Verhandlungssprache und Diplomatie",
+        level="C1",
+        category="Stil",
+        summary="Verhandlungssprache und Diplomatie – diplomatische Ausdrücke, Hedging und konsensorientierte Kommunikation auf Deutsch.",
+        explanation="""Diplomatische Sprache zielt auf Deeskalation, Gesichtswahrung und Konsensbildung. Typische Strategien:
+Hedging (Abschwächung): Es könnte sein, dass... / Unter Umständen... / Es wäre zu überlegen, ob... / Möglicherweise ließe sich...
+Unverbindlichkeit: Wir werden dies prüfen. (bedeutet oft: Nein) / Das ist ein interessanter Vorschlag. (bedeutet: Ich bin nicht überzeugt).
+Diplomatisches Nein: Ich verstehe Ihren Standpunkt, jedoch... / Das ist eine Überlegung wert, allerdings...
+Konsensformeln: Lassen Sie uns gemeinsam überlegen... / Wir sind uns ja einig, dass... / Gibt es einen Mittelweg?
+Status-Markierungen: Sehr geehrter Herr Kollege... / Ich darf Sie bitten... / Wären Sie so freundlich...?""",
+        structure="Hedging + Unverbindlichkeit + Gesichtswahrung + Konsensformeln",
+        rules=[
+            "Diplomatische Sprache wahrt das Gesicht aller Beteiligten.",
+            "Hedging und Unverbindlichkeit sind zentrale Strategien.",
+            "Ein direktes Nein ist in diplomatischen Kontexten selten.",
+            "Konsensformeln signalisieren Kooperationsbereitschaft.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Wir werden Ihren Vorschlag sorgfältig prüfen.",
+                translation=None,
+                note="diplomatisch unverbindlich",
+            ),
+            GrammarExample(
+                text="Ihre Position ist nachvollziehbar, allerdings müssen wir die finanziellen Rahmenbedingungen berücksichtigen.",
+                translation=None,
+                note="diplomatisches Nein",
+            ),
+            GrammarExample(
+                text="Wären Sie bereit, über eine alternative Lösung nachzudenken?",
+                translation=None,
+                note="Konsensformel",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="In diplomatischen Kontexten direkt Nein sagen: Das ist völlig inakzeptabel.",
+                correct="Diplomatisch: Da sehe ich noch erheblichen Gesprächsbedarf.",
+                note="Direktheit kann als unhöflich oder konfrontativ wahrgenommen werden.",
+            ),
+        ],
+        related=[
+            "gehobene-sprache",
+            "konjunktiv-ii-hoeflichkeit",
+            "argumentation",
+            "reformulierung",
+        ],
+    ),
+    GrammarTopic(
+        slug="kulturelle-referenzen",
+        title="Kulturelle Referenzen und Zitate",
+        level="C1",
+        category="Wortschatz",
+        summary="Kulturelle Referenzen und Zitate – literarische Anspielungen, Intertextualität und kulturelles Wissen im deutschen Sprachraum.",
+        explanation="""Kulturelle Referenzen erfordern geteiltes Wissen zwischen Sprecher und Hörer. Wichtige Quellen:
+Klassiker-Zitate: Faust (Goethe): Das also war des Pudels Kern. / Wer immer strebend sich bemüht, den können wir erlösen. Schiller (Wilhelm Tell): Der brave Mann denkt an sich selbst zuletzt. / Durch diese hohle Gasse muss er kommen.
+Brecht: Erst kommt das Fressen, dann kommt die Moral. / Und der Haifisch, der hat Zähne.
+Literarische Anspielungen: kafkaesk (nach Kafka, absurde Bürokratie), faustisch (nach Faust, maßloses Streben), Stunde Null (Neuanfang nach 1945).
+Sprichwörter und geflügelte Worte: Wer zuerst kommt, mahlt zuerst. / Aller Anfang ist schwer. / Die Axt im Hause erspart den Zimmermann.
+Intertextualität: Das Zitieren und Anspielen auf bekannte Texte ist ein typisches Merkmal gehobener deutscher Alltags- und Medienkommunikation.""",
+        structure="Referenz (Literatur, Sprichwort, Geschichte) → Anspielung → geteiltes kulturelles Wissen",
+        rules=[
+            "Kulturelle Referenzen setzen geteiltes Wissen voraus.",
+            "Goethe, Schiller und Brecht sind die meistzitierten Autoren.",
+            "Geflügelte Worte und Sprichwörter sind feste Bestandteile der Alltagssprache.",
+            "Das Erkennen und Verwenden kultureller Referenzen signalisiert Bildung und Zugehörigkeit.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Damit sind wir am Ende der Fahnenstange angelangt.",
+                translation=None,
+                note="geflügeltes Wort",
+            ),
+            GrammarExample(
+                text="Nun ist das also des Pudels Kern!",
+                translation=None,
+                note="Faust-Zitat",
+            ),
+            GrammarExample(
+                text="Die Bearbeitung meines Antrags war geradezu kafkaesk.",
+                translation=None,
+                note="literarische Anspielung",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Referenzen ohne Verständnis des Kontextes benutzen.",
+                correct="Nur Referenzen verwenden, die man wirklich versteht.",
+                note="Falsche Verwendung wirkt peinlich und ungebildet.",
+            ),
+        ],
+        related=["redewendungen", "ironie", "rhetorische-mittel", "gehobene-sprache"],
+    ),
 ]

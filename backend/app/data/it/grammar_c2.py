@@ -658,4 +658,125 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         related=["riformulazione", "sintesi-testuale", "precisione-lessicale", "generi-testuali"],
     ),
+    GrammarTopic(
+        slug="italofonia-contemporanea",
+        title="L'italofonia contemporanea",
+        level="C2",
+        category="Espressione",
+        summary="Istituzioni, dinamiche e diversità dell'italofonia nel XXI secolo.",
+        explanation="L'**italofonia** è la comunità globale di circa 85 milioni di parlanti di italiano, distribuiti tra Italia (58 milioni), Svizzera italiana, comunità storiche in Istria, Dalmazia, Malta, e le diffuse comunità di emigrati in Argentina, Brasile, Stati Uniti, Australia.\n\n**Istituzioni chiave**:\n- **Accademia della Crusca** (1582): la più antica accademia linguistica d'Europa, oggi rinnovata con un ruolo descrittivo e consulenziale.\n- **Società Dante Alighieri** (1889): diffonde la lingua e la cultura italiana nel mondo con 500+ comitati in 80 paesi.\n\n**Dinamiche regionali**:\n- L'italiano in Svizzera è una delle quattro lingue ufficiali, parlato in Ticino e Grigioni.\n- In Istria (Croazia, Slovenia) l'italiano conserva lo status di lingua minoritaria protetta.\n- Le comunità italo-argentine e italo-brasiliane mantengono forme di italiano regionale e dialetti.\n\n**Dibattiti**: italiano come lingua ereditaria (heritage language), insegnamento dell'italiano all'estero, il ruolo dei media italiani (RAI) nella diffusione globale.",
+        rules=[
+            "L'italofonia non è un blocco monolitico: include lingue ereditarie, dialetti, varietà regionali.",
+            "La Crusca oggi ha un approccio descrittivo, non prescrittivo.",
+            "La Società Dante Alighieri è il principale strumento di diplomazia culturale italiana.",
+            "Le comunità italofone all'estero mantengono tratti linguistici spesso arcaici rispetto all'italiano contemporaneo.",
+        ],
+        examples=[
+            GrammarExample(
+                text="In Argentina, si parla ancora di 'botiglia' per 'bottiglia', un tratto conservativo dell'italiano ottocentesco.",
+                translation=None,
+                note="italiano di emigrazione",
+            ),
+            GrammarExample(
+                text="Il Ticino ha una Radiotelevisione svizzera in lingua italiana (RSI) che produce contenuti per l'intera italofonia.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="La Dante Alighieri organizza corsi di italiano per oltre 200.000 studenti all'anno nel mondo.",
+                translation=None,
+                note="diffusione culturale",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="L'italofonia coincide con l'Italia.",
+                correct="L'italofonia comprende comunità in Svizzera, Slovenia, Croazia, Malta e le numerose diaspore nel mondo.",
+                note="L'italofonia non si esaurisce nei confini nazionali.",
+            ),
+        ],
+        related=["politica-linguistica-it", "prestiti-linguistici", "evoluzione-linguistica"],
+    ),
+    GrammarTopic(
+        slug="politica-linguistica-it",
+        title="Politica linguistica in Italia",
+        level="C2",
+        category="Espressione",
+        summary="Dall'Accademia della Crusca alle leggi di tutela: le politiche linguistiche italiane tra standard, dialetti e minoranze.",
+        explanation="L'Italia ha una **politica linguistica complessa** e spesso implicita. A differenza di Francia e Spagna, l'Italia non ha mai avuto un'istituzione statale normativa paragonabile all'Académie française.\n\n**L'Accademia della Crusca**:\n- Ruolo storico di custode della purezza linguistica (Vocabolario degli Accademici della Crusca, 1612).\n- Oggi è un'istituzione rinnovata: il suo sito offre consulenza linguistica gratuita, il periodico *La Crusca per voi*, e promuove il dibattito sull'italiano contemporaneo.\n\n**Legislazione**:\n- **Legge 482/1999**: tutela delle minoranze linguistiche storiche (albanese, catalano, tedesco, greco, sloveno, croato, francese, franco-provenzale, friulano, ladino, occitano, sardo).\n- **Costituzione, art. 6**: 'La Repubblica tutela con apposite norme le minoranze linguistiche'.\n\n**Dibattiti contemporanei**:\n- **Dialetti vs. italiano standard**: l'Italia è un paese di diglossia storica; oggi il 45% degli italiani alterna italiano e dialetto.\n- **Anglicismi**: il dibattito tra puristi e aperturisti è costante; la Crusca ha una posizione equilibrata.\n- **Linguaggio di genere**: femminili professionali (la ministra, l'avvocata, l'architetta) tra resistenze e accettazione.",
+        rules=[
+            "La Crusca ha un ruolo consultivo, non legislativo.",
+            "I dialetti italiani sono lingue romanze a pieno titolo, non varietà 'degradate' dell'italiano.",
+            "La legge 482/1999 protegge dodici minoranze linguistiche storiche.",
+            "Il dibattito sugli anglicismi in Italia è acceso ma non ha prodotto leggi restrittive come in Francia.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Art. 6 Costituzione: 'La Repubblica tutela con apposite norme le minoranze linguistiche.'",
+                translation=None,
+                note="tutela costituzionale",
+            ),
+            GrammarExample(
+                text="La Crusca ha riconosciuto 'petaloso' come neologismo corretto, mostrando il suo approccio descrittivo moderno.",
+                translation=None,
+                note="neologismo e Crusca",
+            ),
+            GrammarExample(
+                text="Il sardo è riconosciuto come lingua minoritaria dalla legge 482/1999, insieme ad altre undici varietà.",
+                translation=None,
+                note="minoranze linguistiche",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="La Crusca decide cosa è corretto in italiano.",
+                correct="La Crusca non ha potere normativo vincolante: osserva, descrive e consiglia, ma non legifera.",
+                note="Ruolo descrittivo, non prescrittivo.",
+            ),
+            GrammarMistake(
+                wrong="I dialetti sono forme scorrette dell'italiano.",
+                correct="I dialetti italiani sono sistemi linguistici autonomi, evoluti dal latino volgare parallelamente all'italiano standard.",
+                note="I dialetti non sono 'errori', sono altre lingue.",
+            ),
+        ],
+        related=["italofonia-contemporanea", "evoluzione-linguistica", "italiano-standard"],
+    ),
+    GrammarTopic(
+        slug="evoluzione-digitale-it",
+        title="L'italiano nell'era digitale",
+        level="C2",
+        category="Espressione",
+        summary="Come l'italiano evolve con il digitale: social media, messaggistica, IA e nuovi usi linguistici.",
+        explanation="Il **digitale sta trasformando l'italiano** a una velocità inedita. Il web e i social media hanno accelerato fenomeni già esistenti (abbreviazioni, prestiti) e ne hanno creati di nuovi.\n\n**Messaggistica e social media**:\n- Abbreviazioni: *xké* (perché), *nn* (non), *cmq* (comunque), *tvb* (ti voglio bene), *xk* (perché).\n- Emoticon ed emoji come punteggiatura emotiva.\n- Hashtag e la loro sintassi: *#iorestoacasa, #savethechildren*.\n\n**Neologismi digitali**:\n- Verbi: *googlare, whatsappare, twittare, taggare, postare, shazammare, spoilerare, cliccare, scrollare*.\n- Nomi: *selfie, blogger, influencer, youtuber, follower, like/laikare*.\n- Calco e adattamento: *scaricare* (download), *caricare* (upload), *condividere* (share), *cestinare* (delete).\n\n**Anglicismi nel digitale**:\n- Penetrazione massiccia: *computer, smartphone, tablet, browser, chat, emoji, streaming, podcast*.\n- Resistenza lessicale: *dominio* (domain), *motore di ricerca* (search engine), *posta elettronica* (email), *allegato* (attachment).\n\n**IA e italiano**:\n- ChatGPT, DeepL, Google Translate: impatto sull'apprendimento e sull'uso dell'italiano.\n- Modelli linguistici addestrati prevalentemente su dati in inglese: rischio di appiattimento delle varietà linguistiche.\n- Sfida della sovranità linguistica digitale per l'italiano.",
+        rules=[
+            "L'italiano digitale non è 'degradato': è un registro adeguato al medium.",
+            "I prestiti dall'inglese nel digitale sono massicci, ma l'italiano ha una tradizione di adattamento (bistecca < beef steak, gol < goal).",
+            "I social media accelerano l'evoluzione linguistica ma anche l'obsolescenza dei neologismi.",
+            "La Crusca monitora l'italiano digitale senza demonizzarlo né idealizzarlo.",
+        ],
+        examples=[
+            GrammarExample(
+                text="nn lo so xké nn me l'ha detto, cmq ci vediamo dopo",
+                translation=None,
+                note="linguaggio SMS / messaggistica",
+            ),
+            GrammarExample(
+                text="Ho whatsappato a Maria e mi ha risposto con un vocale di tre minuti.",
+                translation=None,
+                note="neologismo digitale",
+            ),
+            GrammarExample(
+                text="Su Instagram ha postato un selfie che ha ricevuto mille like in un'ora.",
+                translation=None,
+                note="anglicismi integrati",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="L'italiano dei social è 'cattivo italiano'.",
+                correct="Ogni medium sviluppa un proprio registro: l'italiano digitale è una varietà situazionale, non una degenerazione.",
+                note="Evitare giudizi di valore sulle varietà linguistiche.",
+            ),
+        ],
+        related=["italofonia-contemporanea", "politica-linguistica-it", "creativita-linguistica"],
+    ),
 ]

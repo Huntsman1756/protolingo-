@@ -526,4 +526,115 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         related=["arabismos-portugueses", "evolucao-linguistica", "portugues-brasileiro"],
     ),
+    GrammarTopic(
+        slug="lusofonia-contemporanea",
+        title="A Lusofonia contemporânea",
+        level="C2",
+        category="Expressão",
+        summary="Instituições, diversidade e desafios da comunidade lusófona no século XXI.",
+        explanation="A **Lusofonia** é uma comunidade de mais de 280 milhões de falantes distribuídos por todos os continentes. Ultrapassa a simples partilha linguística: é um espaço político, económico e cultural organizado em torno da CPLP (Comunidade dos Países de Língua Portuguesa).\n\n**Instituições principais**:\n- **CPLP** (9 Estados-membros) : promoção da língua, cooperação política, educação.\n- **IILP** (Instituto Internacional da Língua Portuguesa) : gestão da política linguística comum.\n- **RTP-África** : difusão televisiva internacional em português.\n\n**Dinâmicas regionais**:\n- África concentra a maioria dos falantes (Angola, Moçambique, Cabo Verde, Guiné-Bissau, São Tomé e Príncipe).\n- O português avança demograficamente graças ao crescimento populacional africano.\n- O Brasil mantém uma política linguística própria, com norma distinta da europeia.\n\n**Debates**: norma europeia vs. norma brasileira vs. variedades africanas, insegurança linguística, o papel do inglês como língua de ciência nos países lusófonos.",
+        rules=[
+            "A Lusofonia não é um bloco monolítico — cada país tem a sua variedade e política linguística.",
+            "O centro de gravidade demográfico do português está a deslocar-se para África.",
+            "A CPLP promove o plurilinguismo e a diversidade cultural, não o monolinguismo português.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Em Angola, expressões como 'maka' (conflito, confusão) ou 'bué' (muito) enriquecem o português local com influências das línguas bantu.",
+                translation=None,
+                note="português angolano",
+            ),
+            GrammarExample(
+                text="O Brasil criou o VOLP (Vocabulário Ortográfico da Língua Portuguesa) para gerir a norma brasileira no quadro do Acordo Ortográfico.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Segundo projeções da ONU, o português poderá ser falado por mais de 380 milhões de pessoas em 2050, sobretudo em África.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="A Lusofonia são só os países onde se fala português.",
+                correct="A Lusofonia é uma organização política e cultural — nem todos os países membros da CPLP têm o português como língua maioritária (ex.: Guiné Equatorial).",
+                note="Confusão frequente entre lusofonia (facto linguístico) e Lusofonia (instituição, CPLP).",
+            ),
+        ],
+        related=["politica-linguistica-pt", "evolucao-linguistica"],
+    ),
+    GrammarTopic(
+        slug="politica-linguistica-pt",
+        title="Política linguística no mundo lusófono",
+        level="C2",
+        category="Expressão",
+        summary="Do Acordo Ortográfico à difusão do português: políticas e tensões linguísticas nos países de língua portuguesa.",
+        explanation="Os países lusófonos gerem as suas políticas linguísticas de forma descentralizada, mas com alguns instrumentos comuns:\n\n**Instituições de regulação**:\n- **Academia das Ciências de Lisboa** : regula a norma europeia (PE).\n- **Academia Brasileira de Letras** : gere a norma brasileira (PB).\n- **IILP** : coordena a política linguística comum entre os Estados-membros da CPLP.\n\n**Instrumentos principais**:\n- **Acordo Ortográfico de 1990** : visa unificar a ortografia entre as variedades. Ratificado por todos os países, mas aplicado de forma desigual e contestado sobretudo em Portugal.\n\n**Debates contemporâneos**:\n- **Diferenças PE-PB** : próclise generalizada no Brasil (me dá), gerúndio (estou falando vs. estou a falar), colocação pronominal (traga-me vs. me traga).\n- **Norma única vs. pluricentrismo** : deve haver uma norma comum ou deve reconhecer-se o português como língua pluricêntrica com múltiplas normas de igual dignidade?\n- **Ensino do português** : difusão do PE ou do PB como língua estrangeira — competição entre Portugal e Brasil.\n- **Línguas nacionais** : em África, o português coexiste com línguas bantu e crioulas, levantando questões de política educativa.",
+        rules=[
+            "O Acordo Ortográfico é um tratado internacional, não uma imposição — cada país decide a sua aplicação.",
+            "O português é uma língua pluricêntrica: PE e PB são normas de igual legitimidade.",
+            "As variedades africanas estão a afirmar-se como normas emergentes com traços próprios.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Portugal europeu: 'Dá-me o livro.' — Brasil: 'Me dá o livro.' — A colocação pronominal é uma das diferenças mais visíveis entre as normas.",
+                translation=None,
+                note="PE vs. PB — próclise",
+            ),
+            GrammarExample(
+                text="O Acordo Ortográfico eliminou as consoantes mudas em Portugal: 'acção' passou a 'ação', 'óptimo' passou a 'ótimo'.",
+                translation=None,
+                note="AO90",
+            ),
+            GrammarExample(
+                text="Em Moçambique, palavras como 'machimbombo' (autocarro) e 'candongueiro' (minibus) mostram a criatividade lexical do português africano.",
+                translation=None,
+                note="português moçambicano",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="A Academia das Ciências de Lisboa dita as regras do português em todos os países lusófonos.",
+                correct="A ACL regula apenas a norma europeia. Cada país tem as suas instituições de regulação (ABL no Brasil, etc.).",
+                note="Distinguir norma europeia de norma internacional.",
+            ),
+        ],
+        related=["lusofonia-contemporanea", "evolucao-linguistica"],
+    ),
+    GrammarTopic(
+        slug="evolucao-digital-pt",
+        title="O português na era digital",
+        level="C2",
+        category="Expressão",
+        summary="Como o português evolui com o digital: redes sociais, IA, anglicismos e novos usos linguísticos.",
+        explanation="O **digital transforma o português** a um ritmo acelerado:\n\n**Redes sociais e mensagens**:\n- Abreviaturas: *tb* (também), *msg* (mensagem), *bjs* (beijos), *cmg* (comigo), *sff* (se faz favor), *obg* (obrigado/a).\n- Emojis como pontuação emocional e reforço pragmático.\n- Hashtags e a sua sintaxe: *#Portugal, #Lusofonia*.\n\n**Neologismos e anglicismos digitais**:\n- Neologismos: *googlar*, *tuitar*, *postar*, *clicar*, *descarregar*, *carregar*.\n- Anglicismos: *download*, *upload*, *site*, *link*, *chat*, *streaming*, *podcast*.\n- Adaptações: *clicar* (de *click*), *resetear* (de *reset*), *forwardear* (de *forward*).\n\n**IA e processamento de língua natural**:\n- ChatGPT, DeepL, tradução automática: desafios para a aprendizagem do português.\n- Assistentes virtuais em português (PE e PB).\n- Modelos de IA treinados maioritariamente em inglês — viés linguístico.\n\n**Socioletos digitais**:\n- Gíria da internet: *lol*, *troll*, *fail*, *crush*, *cringe*.\n- Mistura de registos: escrita informal digital aproxima-se da oralidade.",
+        rules=[
+            "O português digital não é uma versão 'degradada' da língua — é um registo adaptado ao meio e ao contexto.",
+            "Os anglicismos na tecnologia são frequentes, mas o português também cria alternativas (descarregar, carregar, correio eletrónico).",
+            "A IA e a tradução automática levantam questões de soberania linguística e representatividade das variedades do português.",
+        ],
+        examples=[
+            GrammarExample(
+                text="obg pela msg, depois falamos cmg :) bjs!",
+                translation=None,
+                note="linguagem SMS em português europeu",
+            ),
+            GrammarExample(
+                text="Vou googlar esse termo e depois faço o download do ficheiro.",
+                translation=None,
+                note="mistura de neologismo e anglicismo",
+            ),
+            GrammarExample(
+                text="Os modelos de IA generativa ainda produzem um português com forte viés brasileiro, o que levanta questões sobre a representatividade das variedades europeia e africanas.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="A linguagem das redes sociais é 'mau português'.",
+                correct="Cada contexto comunicativo exige um registo adequado — a linguagem digital é funcional e criativa no seu meio, não sendo inferior ao registo formal.",
+                note="Evitar preconceitos linguísticos sobre variedades e registos.",
+            ),
+        ],
+        related=["lusofonia-contemporanea", "criatividade-linguistica"],
+    ),
 ]

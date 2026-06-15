@@ -893,4 +893,348 @@ Vergangenheit: Modalverb + Partizip II + haben/sein — Er muss den Zug verpasst
         ],
         related=["modalverben", "konjunktiv-i", "indirekte-rede"],
     ),
+    GrammarTopic(
+        slug="indirekte-rede-b2",
+        title="Indirekte Rede und Konjunktiv I",
+        level="B2",
+        category="Modi",
+        summary="Indirekte Rede – Konjunktiv I in Journalismus und formeller Schriftsprache für distanzierte Wiedergabe.",
+        explanation="""Die **indirekte Rede** gibt Aussagen Dritter wieder, ohne sie wörtlich zu zitieren. Dafür wird der **Konjunktiv I** verwendet — vor allem in Nachrichten, Berichten und formellen Texten.
+
+Bildung Konjunktiv I: Verbstamm + Konjunktiv-I-Endungen (-e, -est, -e, -en, -et, -en). *er gehe, sie habe, man müsse, sie würden.*
+
+**Verwendung:**
+- *Der Minister sagte, die Lage **sei** unter Kontrolle.*
+- *Sie erklärte, sie **habe** nichts davon gewusst.*
+- *Der Zeuge gab an, er **könne** sich nicht erinnern.*
+
+Wenn Konjunktiv I mit Indikativ identisch ist (z.B. *sie haben*), wird Konjunktiv II oder *würde* + Infinitiv verwendet: *Sie sagten, sie **hätten** keine Zeit. / Sie sagten, sie **würden** kommen.*
+
+**Fragesätze indirekt:** *Er fragte, ob sie Zeit **habe**. / Er wollte wissen, wann der Zug **ankomme**.*
+
+**Imperativ indirekt:** *Sie sagte, ich **solle** warten. / Er befahl, wir **möchten** still sein.*""",
+        structure="Konjunktiv I = Verbstamm + -e/-est/-e/-en/-et/-en / Bei Gleichheit mit Indikativ → Konjunktiv II oder würde + Infinitiv",
+        rules=[
+            "Konjunktiv I wird für die distanzierte Wiedergabe von Aussagen verwendet (indirekte Rede).",
+            "Bei Identität von Konjunktiv I und Indikativ weicht man auf Konjunktiv II oder würde + Infinitiv aus.",
+            "In indirekten Fragesätzen verwendet man 'ob' für Ja/Nein-Fragen.",
+            "Imperative werden in der indirekten Rede mit 'sollen' oder 'mögen' (Konjunktiv I) ausgedrückt.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Der Sprecher erklärte, die Verhandlungen seien erfolgreich verlaufen.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Sie sagte, sie habe den Brief bereits abgeschickt.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Er fragte, ob wir am nächsten Tag Zeit hätten.",
+                translation=None,
+                note="Konjunktiv II als Ersatz (haben K. I = Indikativ)",
+            ),
+            GrammarExample(
+                text="Der Chef befahl, alle sollten sofort mit der Arbeit beginnen.",
+                translation=None,
+                note="Imperativ indirekt",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Er sagte, dass er kommt morgen.",
+                correct="Er sagte, dass er morgen komme. / Er sagte, er komme morgen.",
+                note="Indirekte Rede braucht Konjunktiv I und das Verb steht im Nebensatz am Ende.",
+            ),
+            GrammarMistake(
+                wrong="Sie sagten, sie haben keine Zeit.",
+                correct="Sie sagten, sie hätten keine Zeit.",
+                note='"Haben" im Konjunktiv I = Indikativ, daher Konjunktiv II: hätten.',
+            ),
+        ],
+        related=[
+            "konjunktiv-i",
+            "konjunktiv-ii-wuerde",
+            "konjunktiv-ii-haette-waere",
+            "subjektive-modalverben",
+        ],
+    ),
+    GrammarTopic(
+        slug="zweiteilige-konnektoren-b2",
+        title="Zweiteilige Konnektoren",
+        level="B2",
+        category="Konnektoren",
+        summary="Zweiteilige Konnektoren – weder...noch, entweder...oder, sowohl...als auch, nicht nur...sondern auch.",
+        explanation="""**Zweiteilige Konnektoren** verbinden zwei Satzteile oder Sätze und bestehen aus zwei Teilen, die immer zusammen auftreten.
+
+1. **sowohl ... als auch** (Aufzählung, positiv):
+*Er spricht sowohl Deutsch als auch Französisch.*
+
+2. **nicht nur ... sondern auch** (Aufzählung mit Betonung):
+*Sie ist nicht nur intelligent, sondern auch sehr fleißig.*
+
+3. **weder ... noch** (Verneinung von Beidem):
+*Ich habe weder Zeit noch Geld.*
+
+4. **entweder ... oder** (Alternative, Wahl):
+*Entweder du kommst mit, oder du bleibst hier.*
+
+5. **einerseits ... andererseits** (Abwägung, zwei Seiten):
+*Einerseits ist der Job gut bezahlt, andererseits sind die Arbeitszeiten lang.*
+
+6. **zwar ... aber** (Einschränkung):
+*Das Essen war zwar teuer, aber sehr lecker.*
+
+**Wortstellung:** Die Konnektoren können auf Position 1 oder in der Satzmitte stehen. Nach *entweder*, *weder*, *sowohl* etc. auf Position 1 folgt das konjugierte Verb auf Position 2.""",
+        structure="sowohl + X + als auch + Y / nicht nur + X + sondern auch + Y / weder + X + noch + Y / entweder + X + oder + Y / einerseits + X + andererseits + Y / zwar + X + aber + Y",
+        rules=[
+            "Zweiteilige Konnektoren müssen immer als Paar verwendet werden.",
+            '"Weder ... noch" verneint beide Elemente (kein zusätzliches "nicht" nötig).',
+            '"Sowohl ... als auch" betont positive Aufzählung; "nicht nur ... sondern auch" hat stärkere Betonung auf dem zweiten Teil.',
+            '"Entweder ... oder" drückt eine exklusive Alternative aus.',
+        ],
+        examples=[
+            GrammarExample(
+                text="Er spricht sowohl Deutsch als auch Englisch fließend.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Ich habe weder das Buch gelesen noch den Film gesehen.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Entweder wir fahren mit dem Zug, oder wir nehmen das Auto.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Das Projekt ist nicht nur pünktlich fertig geworden, sondern auch unter dem Budget geblieben.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Einerseits möchte ich reisen, andererseits muss ich sparen.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Ich habe weder Zeit und Geld.",
+                correct="Ich habe weder Zeit noch Geld.",
+                note='"Weder" verlangt immer "noch", nicht "und" oder "oder".',
+            ),
+            GrammarMistake(
+                wrong="Nicht nur er spricht Deutsch, sondern auch Französisch.",
+                correct="Er spricht nicht nur Deutsch, sondern auch Französisch.",
+                note='"Nicht nur ... sondern auch" muss parallele Satzglieder verbinden.',
+            ),
+        ],
+        related=[
+            "textkonnektoren",
+            "nebensatz-obwohl",
+            "nebensatz-weil",
+        ],
+    ),
+    GrammarTopic(
+        slug="vergleichssaetze",
+        title="Vergleichssätze",
+        level="B2",
+        category="Syntax",
+        summary="Vergleichssätze – als, wie, je...desto, umso, als ob, als wenn für Vergleiche auf B2-Niveau.",
+        explanation="""**Vergleichssätze** drücken Gleichheit, Ungleichheit oder Proportionalität aus.
+
+1. **Gleichheit: so ... wie / genauso ... wie**
+*Sie ist so groß wie ich. / Er arbeitet genauso fleißig wie seine Kollegin.*
+
+2. **Ungleichheit: Komparativ + als**
+*Er ist größer als sein Bruder. / Sie arbeitet mehr als früher.*
+
+3. **Proportionalität: je + Komparativ ..., desto/umso + Komparativ ...**
+*Je mehr du lernst, desto besser wirst du. / Je früher wir losfahren, umso eher kommen wir an.*
+
+4. **Irreale Vergleiche: als ob / als wenn + Konjunktiv II**
+*Er tut so, als ob er alles wüsste. / Sie sieht aus, als wäre sie krank.*
+
+5. **wie wenn** (umgangssprachlich): *Es fühlt sich an, wie wenn man fliegt.*
+
+**Wortstellung bei je...desto:** Beide Teile sind Nebensätze — das konjugierte Verb steht am Ende: *Je mehr er übt, desto sicherer wird er.* Das finite Verb im desto-Satz kann auch auf Position 2 stehen: *, desto besser wirst du.*""",
+        structure="so/genauso + Adjektiv + wie / Komparativ + als / je + Komparativ + Verb(final), desto/umso + Komparativ + Verb(Pos.2) / als ob/wenn + Konjunktiv II",
+        rules=[
+            '"Als" steht nach Komparativ (größer als), "wie" nach Positiv (so groß wie).',
+            '"Je ... desto/umso" drückt proportionale Abhängigkeit aus; beide Teile enthalten einen Komparativ.',
+            '"Als ob" und "als wenn" leiten irreale Vergleichssätze mit Konjunktiv II ein.',
+            'Nach "je" steht das Verb am Ende (Nebensatz); nach "desto" kann das Verb auf Position 2 oder am Ende stehen.',
+        ],
+        examples=[
+            GrammarExample(
+                text="Er ist genauso alt wie meine Schwester.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Je länger ich darüber nachdenke, desto unsicherer werde ich.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Sie tut so, als ob sie den Mann nie zuvor gesehen hätte.",
+                translation=None,
+                note="irrealer Vergleich",
+            ),
+            GrammarExample(
+                text="Das Wetter war besser, als wir erwartet hatten.",
+                translation=None,
+                note="Komparativ + als",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Er ist größer wie sein Bruder.",
+                correct="Er ist größer als sein Bruder.",
+                note="Nach Komparativ immer 'als', nicht 'wie'.",
+            ),
+            GrammarMistake(
+                wrong="Je mehr du lernst, mehr verstehst du.",
+                correct="Je mehr du lernst, desto mehr verstehst du.",
+                note='"Je" verlangt zwingend "desto" oder "umso" im zweiten Teil.',
+            ),
+        ],
+        related=[
+            "nebensatz-wenn",
+            "irreale-bedingungen",
+        ],
+    ),
+    GrammarTopic(
+        slug="infinitivkonstruktionen",
+        title="Erweiterte Infinitivkonstruktionen",
+        level="B2",
+        category="Verben",
+        summary="Erweiterte Infinitivkonstruktionen – um...zu, ohne...zu, statt...zu und erweiterter Infinitiv mit zu.",
+        explanation="""**Erweiterte Infinitivkonstruktionen** ersetzen Nebensätze und machen Texte kompakter. Sie haben kein eigenes Subjekt — das Subjekt des Hauptsatzes gilt auch für den Infinitiv.
+
+1. **um ... zu + Infinitiv** (final: Zweck, Absicht)
+*Ich lerne Deutsch, um in Berlin zu studieren.* (= damit ich in Berlin studieren kann.)
+
+2. **ohne ... zu + Infinitiv** (modal: etwas fehlt/unerwartet)
+*Er ging, ohne sich zu verabschieden.* (= ohne dass er sich verabschiedete.)
+
+3. **(an)statt ... zu + Infinitiv** (alternativ: Ersatzhandlung)
+*Statt zu arbeiten, schaute er fern.* (= anstatt dass er arbeitete.)
+
+4. **Erweiterter Infinitiv mit zu** (mehrere Satzglieder zwischen zu und Infinitiv)
+*Er hofft, die Prüfung beim ersten Versuch zu bestehen.*
+*Sie hat beschlossen, nächstes Jahr nach Österreich auszuwandern.*
+
+**Kommaregeln:** Infinitivgruppen mit um, ohne, statt, anstatt, außer, als müssen mit Komma abgetrennt werden (§75). Bei einfachem Infinitiv mit zu ist das Komma fakultativ.""",
+        structure="um/ohne/(an)statt + ... + zu + Infinitiv / Hauptsatz, (erweiterter) zu-Infinitiv",
+        rules=[
+            '"Um ... zu" drückt eine Absicht oder einen Zweck aus (final).',
+            '"Ohne ... zu" zeigt, dass eine erwartete Handlung nicht eintritt (modal).',
+            '"(An)statt ... zu" drückt eine Ersatzhandlung aus: etwas wird nicht getan, sondern durch etwas Anderes ersetzt.',
+            "Das Subjekt des Hauptsatzes muss mit dem logischen Subjekt des Infinitivs identisch sein.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Er fuhr nach München, um seine Eltern zu besuchen.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Sie verließ das Zimmer, ohne ein Wort zu sagen.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Anstatt den Bus zu nehmen, ging er zu Fuß.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Ich habe vor, im Sommer einen Sprachkurs in Wien zu machen.",
+                translation=None,
+                note="erweiterter Infinitiv",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Ich gehe in die Bibliothek, um lernen.",
+                correct="Ich gehe in die Bibliothek, um zu lernen.",
+                note='Nach "um" muss "zu" vor dem Infinitiv stehen.',
+            ),
+            GrammarMistake(
+                wrong="Er ging, ohne dass zu bezahlen.",
+                correct="Er ging, ohne zu bezahlen.",
+                note='"Ohne ... zu" steht ohne "dass". Das Subjekt muss gleich sein.',
+            ),
+        ],
+        related=["infinitiv-mit-zu", "nominalisierung"],
+    ),
+    GrammarTopic(
+        slug="temporale-nebensaetze-b2",
+        title="Temporale Nebensätze",
+        level="B2",
+        category="Satzbau",
+        summary="Temporale Nebensätze – bevor, während, nachdem, seitdem, sobald, bis und die als/wenn-Unterscheidung auf B2.",
+        explanation="""**Temporale Nebensätze** geben zeitliche Verhältnisse an. Die Konjunktion bestimmt das Zeitverhältnis zwischen Haupt- und Nebensatz.
+
+**Gleichzeitigkeit:**
+- *während* (Dauer): *Während ich koche, höre ich Musik.*
+- *als* (einmalig Vergangenheit): *Als ich ankam, regnete es.*
+- *wenn* (wiederholt/futurisch): *Wenn ich Zeit habe, lese ich. / Wenn du kommst, backe ich einen Kuchen.*
+- *seitdem/seit* (Beginn in der Vergangenheit, noch aktuell): *Seitdem er Sport treibt, fühlt er sich besser.*
+- *sobald* (unmittelbare Folge): *Sobald ich zu Hause bin, rufe ich dich an.*
+
+**Vorzeitigkeit:**
+- *nachdem* (HS nach NS): *Nachdem er gegessen hatte, ging er spazieren.*
+  Tempusregel: NS im Perfekt/Plusquamperfekt → HS im Präsens/Präteritum.
+
+**Nachzeitigkeit:**
+- *bevor* (NS nach HS): *Bevor ich schlafen gehe, lese ich noch.*
+- *bis* (Endpunkt): *Warte, bis ich zurückkomme.*
+
+**Als vs Wenn — B2-Vertiefung:**
+- *als* = einmaliges Ereignis in der Vergangenheit
+- *wenn* = wiederholt (immer wenn) oder Zukunft
+- In der Gegenwart bei einmaligen Ereignissen: *wenn* (nicht *als*)""",
+        structure="Subjunktion + Subjekt + ... + konjugiertes Verb (am Ende) / Hauptsatz (Verb Pos. 2) + Nebensatz (Verb am Ende)",
+        rules=[
+            '"Nachdem" verlangt Zeitverschiebung: Nebensatz eine Zeitstufe vor Hauptsatz.',
+            '"Während" drückt Gleichzeitigkeit über einen Zeitraum aus.',
+            '"Als" nur für einmalige Ereignisse in der Vergangenheit; "wenn" für Wiederholung oder Zukunft.',
+            'Bei "bevor" und "bis" steht das konjugierte Verb am Ende des Nebensatzes.',
+        ],
+        examples=[
+            GrammarExample(
+                text="Nachdem wir gefrühstückt hatten, machten wir uns auf den Weg.",
+                translation=None,
+                note="Vorzeitigkeit: Plusquamperfekt → Präteritum",
+            ),
+            GrammarExample(
+                text="Während er das Abendessen kochte, deckte sie den Tisch.",
+                translation=None,
+                note="Gleichzeitigkeit",
+            ),
+            GrammarExample(
+                text="Bevor du eine Entscheidung triffst, solltest du alle Optionen prüfen.",
+                translation=None,
+                note="Nachzeitigkeit",
+            ),
+            GrammarExample(
+                text="Als ich ein Kind war, wohnten wir in Hamburg.",
+                translation=None,
+                note="einmalig → als",
+            ),
+            GrammarExample(
+                text="Sobald die Sonne untergeht, wird es kühler.",
+                translation=None,
+                note="unmittelbare Folge",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Wenn ich 10 Jahre alt war, sind wir nach Berlin gezogen.",
+                correct="Als ich 10 Jahre alt war, sind wir nach Berlin gezogen.",
+                note='Einmaliges Ereignis in der Vergangenheit: "als", nicht "wenn".',
+            ),
+            GrammarMistake(
+                wrong="Nachdem er isst, geht er spazieren.",
+                correct="Nachdem er gegessen hat, geht er spazieren.",
+                note='"Nachdem" erfordert Zeitverschiebung: Perfekt (Vorzeitigkeit) + Präsens.',
+            ),
+        ],
+        related=["nebensatz-wenn", "plusquamperfekt"],
+    ),
 ]

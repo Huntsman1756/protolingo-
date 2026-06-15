@@ -770,4 +770,196 @@ C2 ≠ Perfektion: Auch C2-Sprecher machen Fehler. Entscheidend ist die Geschwin
         ],
         related=["integration-grammatisch", "stilistik", "modalpartikeln", "nuancen", "alle-modi"],
     ),
+    GrammarTopic(
+        slug="deutschsprachige-welt",
+        title="Die deutschsprachige Welt",
+        level="C2",
+        category="Ausdruck",
+        summary="Die deutschsprachige Welt – DACH-Länder, Sprachvarietäten und die globale Rolle des Deutschen.",
+        explanation="""Die deutschsprachige Welt umfasst mehr als 130 Millionen Sprecher in Mitteleuropa und darüber hinaus. Kernländer (DACH): Deutschland (83 Mio.), Österreich (9 Mio.), Schweiz (5,5 Mio. deutschsprachig). Dazu kommen Liechtenstein, Luxemburg (Amtssprache neben Französisch und Luxemburgisch), Ostbelgien und Südtirol (Italien).
+
+Sprachliche Besonderheiten:
+Österreichisches Deutsch: Paradeiser (Tomate), Marille (Aprikose), Schlagobers (Schlagsahne), Jänner (Januar), heuer (dieses Jahr).
+Schweizer Hochdeutsch: Velo (Fahrrad), parkieren (parken), Estrich (Dachboden), Nati (Nationalmannschaft). Helvetismen im Schriftdeutsch.
+Regionalsprachen und Minderheitensprachen: Sorbisch, Dänisch, Friesisch, Romanes in Deutschland.
+
+Deutsch als Fremdsprache: rund 15,4 Millionen Lernende weltweit (Goethe-Institut). Deutsch ist die meistgesprochene Muttersprache in der EU (ca. 100 Mio.) und eine der drei Arbeitssprachen der Europäischen Kommission. Größte Lernendengruppen in Polen, Russland, Frankreich, Italien.
+
+Goethe-Institut: 158 Standorte in 98 Ländern, Hauptaufgaben: Sprachkurse, Kulturvermittlung, Fortbildung, Prüfungen (Goethe-Zertifikat A1 bis C2).""",
+        structure="DACH-Länder → regionale Varietäten → Deutsch als Fremdsprache → Goethe-Institut",
+        rules=[
+            "Die DACH-Länder bilden den Kern der deutschsprachigen Welt.",
+            "Österreichisches und Schweizer Deutsch haben eigene standardsprachliche Besonderheiten.",
+            "Deutsch ist meistgesprochene Muttersprache in der EU.",
+            "Das Goethe-Institut ist die zentrale Institution für Deutsch als Fremdsprache.",
+        ],
+        examples=[
+            GrammarExample(
+                text="In Österreich sagt man heuer, in Deutschland dieses Jahr.",
+                translation=None,
+                note="Austriazismus vs. Binnendeutsch",
+            ),
+            GrammarExample(
+                text="Die Schweiz kennt vier Amtssprachen: Deutsch, Französisch, Italienisch und Rätoromanisch.",
+                translation=None,
+            ),
+            GrammarExample(
+                text="Laut Goethe-Institut lernen weltweit über 15 Millionen Menschen Deutsch.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Schweizerdeutsch und Schweizer Hochdeutsch gleichsetzen.",
+                correct="Schweizerdeutsch = alemannische Dialekte. Schweizer Hochdeutsch = schweizerische Standardvarietät.",
+                note="Nur Schweizer Hochdeutsch ist standardisiert.",
+            ),
+        ],
+        related=["sprachwandel", "sprachgeschichte", "sprachpolitik-de", "digitales-deutsch"],
+    ),
+    GrammarTopic(
+        slug="sprachpolitik-de",
+        title="Sprachpolitik in Deutschland",
+        level="C2",
+        category="Ausdruck",
+        summary="Sprachpolitik in Deutschland – Rechtschreibreform, Sprachinstitutionen und aktuelle Debatten.",
+        explanation="""Sprachpolitische Institutionen:
+Rat für deutsche Rechtschreibung (2004): 41 Mitglieder aus D-A-CH-Liechtenstein, überwacht die Rechtschreibung und passt sie an. War Nachfolger der Zwischenstaatlichen Kommission.
+Duden: gegründet 1880 von Konrad Duden, heute privat (Cornelsen). Der Duden war bis 1996 faktisch verbindlich, heute hat der Rat Vorrang.
+Goethe-Institut: Sprach- und Kulturpolitik im Ausland.
+Verein Deutsche Sprache (VDS): privater Verein (gegr. 1997), setzt sich für den Erhalt des Deutschen ein, kritisiert Anglizismen (umstrittene Positionen).
+
+Rechtschreibreformen: 1901 erste gesamtdeutsche Regelung → 1996 Reform (ß/ss, Dreifachkonsonanten, Fremdwortschreibung) → 2004 erste Überarbeitung → 2006 Reform der Reform → 2016/2017 weitere Anpassungen (Großschreibung nach Doppelpunkt, neues großes Eszett ẞ als Majuskel seit 2017).
+
+Aktuelle Debatten:
+Gendergerechte Sprache: Gendersternchen (Lehrer*innen), Doppelpunkt (Lehrer:innen), Binnen-I (LehrerInnen), generisches Maskulinum. Der Rat für deutsche Rechtschreibung hat bisher keine verbindliche Regelung getroffen.
+Anglizismen: (Dienst)leistung vs. Service, herunterladen vs. downloaden.
+Sprachpurismus vs. natürliche Sprachentwicklung.
+Leichte Sprache und Einfache Sprache als barrierefreie Varianten für Menschen mit eingeschränkten Deutschkenntnissen.""",
+        structure="Akteure (Rat, Duden) → Reformen (1996-2017) → aktuelle Debatten (Gendern, Anglizismen)",
+        rules=[
+            "Der Rat für deutsche Rechtschreibung ist das oberste Gremium für Orthografie.",
+            "Die Reform von 1996 vereinfachte ß/ss und Kommaregeln, wurde aber mehrfach überarbeitet.",
+            "Gendergerechte Sprache ist ein aktuelles sprachpolitisches Streitthema ohne einheitliche Lösung.",
+            "Sprachpolitik ist immer auch Gesellschaftspolitik.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Vor 1996: Er wußte, daß es kalt war. → Nach 1996: Er wusste, dass es kalt war.",
+                translation=None,
+                note="Rechtschreibreform ß/ss",
+            ),
+            GrammarExample(
+                text="Das Gendersternchen (Lehrer*innen) wird vom Rat für deutsche Rechtschreibung derzeit nicht empfohlen.",
+                translation=None,
+                note="Gendern-Debatte",
+            ),
+            GrammarExample(
+                text="Der Verein Deutsche Sprache kritisiert Anglizismen wie 'downloaden' und schlägt 'herunterladen' vor.",
+                translation=None,
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Alle sprachpolitischen Institutionen sind staatlich.",
+                correct="Duden ist privat (Cornelsen), VDS ist ein Verein. Nur der Rat und das Goethe-Institut sind teilstaatlich.",
+                note="Die deutsche Sprachpolitik ist eine Mischung aus staatlichen und privaten Akteuren.",
+            ),
+        ],
+        related=["deutschsprachige-welt", "sprachwandel", "sprachgeschichte", "digitales-deutsch"],
+    ),
+    GrammarTopic(
+        slug="digitales-deutsch",
+        title="Deutsch im digitalen Zeitalter",
+        level="C2",
+        category="Ausdruck",
+        summary="Deutsch im digitalen Zeitalter – Sprachwandel durch soziale Medien, Denglisch und KI.",
+        explanation="""Digitale Kommunikation hat das Deutsche nachhaltig verändert:
+Soziale Medien: Hashtags, Emojis als semiotisches System, Threads, Memes. Plattformspezifische Sprachvarianten: TikTok-Sprache (kurz, trendgetrieben), LinkedIn-Deutsch (formelhaft-betrieblich: 'Ich freue mich, verkünden zu dürfen...'), Twitter/X (verkürzt, prägnant).
+
+Denglisch (Deutsch + Englisch): Anglizismen durchdringen besonders IT, Wirtschaft und Werbung. Typische Beispiele: downloaden, liken, posten, streamen, das Meeting, der Laptop, chillen, cringe. Substantive werden oft mit deutschen Flexionsendungen versehen: der Computer → den Computer, updaten → updatete → upgedatet.
+
+Neologismen des digitalen Zeitalters: googeln, whatsappen, twittern (jetzt x-en), fotografieren wurde zu filmen wurde zu streamen. Verstärkung durch Medien: Netflix-Synchronisation, YouTube, Gaming.
+
+KI und Deutsch: Maschinelle Übersetzung (DeepL, Google Translate) beeinflusst Sprachgebrauch. Chatbots und Sprachmodelle entwickeln neue Textsorten. Die Frage der Datenhoheit und Sprachrepräsentation: Deutsch ist in großen KI-Modellen unterrepräsentiert. Digitale Souveränität: europäische KI-Modelle mit deutscher Sprachkompetenz.
+
+Zukunft des Deutschen: Dialektsterben? Ja/Nein. Verdrängt Denglisch das Deutsche? Eher Co-Existenz. Deutsch in der Wissenschaft: Rückgang zugunsten des Englischen, Gegenbewegungen in einzelnen Fachbereichen.""",
+        structure="Soziale Medien → Denglisch → digitale Neologismen → KI und Deutsch → Zukunft",
+        rules=[
+            "Digitale Kommunikation verändert Sprachgebrauch schneller als traditionelle Medien.",
+            "Denglisch ist Ausdruck von Sprachkontakt, nicht von Sprachverfall.",
+            "Deutsche Flexionsendungen werden auch an englische Lehnwörter angefügt.",
+            "KI-Modelle sind eine neue sprachpolitische Herausforderung für das Deutsche.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Ich habe das Foto auf Instagram gepostet und es wurde sofort geliked.",
+                translation=None,
+                note="Denglisch",
+            ),
+            GrammarExample(
+                text="Das meme ist total viral gegangen — alle reden darüber.",
+                translation=None,
+                note="digitale Neologismen",
+            ),
+            GrammarExample(
+                text="DeepL übersetzt Deutsch präziser als viele ältere Systeme.",
+                translation=None,
+                note="KI und Übersetzung",
+            ),
+        ],
+        related=["deutschsprachige-welt", "sprachpolitik-de", "sprachwandel", "nuancen"],
+    ),
+    GrammarTopic(
+        slug="mehrsprachigkeit-de",
+        title="Mehrsprachigkeit und Sprachkontakt",
+        level="C2",
+        category="Soziolinguistik",
+        summary="Mehrsprachigkeit und Sprachkontakt im deutschen Sprachraum – autochthone Minderheitensprachen, Code-Switching und migrationsbedingte Mehrsprachigkeit.",
+        explanation="""Mehrsprachigkeit ist im deutschen Sprachraum historisch verankert und heute Realität. Formen der Mehrsprachigkeit:
+Autochthone Minderheitensprachen (nach Europäischer Charta geschützt):
+- Sorbisch (30.000 Sprecher in der Lausitz): westslawische Sprache, zweisprachige Beschilderung, Schulunterricht, eigener Rundfunk.
+- Dänisch (50.000 Sprecher in Südschleswig): dänische Schulen, kulturelle Autonomie.
+- Nordfriesisch (10.000 Sprecher): mehrere Dialekte, UNESCO als gefährdet eingestuft.
+- Saterfriesisch (2.000 Sprecher): letzte Varietät des Ostfriesischen.
+- Romanes: Sprache der Sinti und Roma.
+
+Code-Switching: Wechsel zwischen Sprachen innerhalb einer Äußerung (Ich war gestern in der Bibliothek, und then I met this guy...). Typen: intersententiell (zwischen Sätzen), intrasententiell (innerhalb eines Satzes), tag-switching (Diskursmarker). Bei C2 wird Code-Switching bewusst und funktional eingesetzt.
+
+Migrationsbedingte Mehrsprachigkeit: Türkisch (2,5 Mio. Sprecher), Arabisch (1,5 Mio.), Russisch (3 Mio.), Polnisch (2 Mio.). Kiezdeutsch und Ethnolekte: Varietäten, die aus Sprachkontakt entstehen und eigene grammatische Merkmale entwickeln (z.B. Wegfall von Artikeln und Präpositionen: Gehst du Kino?).
+
+Sprachpolitische Fragen: Soll Deutsch in der Verfassung verankert werden? Wie schützt man Minderheitensprachen? Ist multilinguale Bildung ein Vorteil?""",
+        structure="Autochthone Minderheiten → Code-Switching → migrationsbedingte Mehrsprachigkeit → Sprachpolitik",
+        rules=[
+            "Mehrsprachigkeit im deutschen Sprachraum umfasst autochthone und allochthone Sprachen.",
+            "Sorbisch, Dänisch und Friesisch sind geschützte Minderheitensprachen.",
+            "Code-Switching ist ein Zeichen hoher Sprachkompetenz, nicht von Defizit.",
+            "Kiezdeutsch und Ethnolekte sind eigenständige sprachliche Varietäten mit systematischen Regeln.",
+        ],
+        examples=[
+            GrammarExample(
+                text="In der Lausitz sind Ortsschilder zweisprachig: Bautzen / Budyšin.",
+                translation=None,
+                note="Sorbisch in Deutschland",
+            ),
+            GrammarExample(
+                text="Lass uns später im Café treffen, ich muss vorher noch was erledigen, tamam mı?",
+                translation=None,
+                note="Code-Switching Deutsch-Türkisch",
+            ),
+            GrammarExample(
+                text="Die Europäische Charta der Regional- und Minderheitensprachen schützt Friesisch, Dänisch, Sorbisch und Romanes.",
+                translation=None,
+                note="Sprachpolitik",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Mehrsprachigkeit als Problem oder Hindernis betrachten.",
+                correct="Mehrsprachigkeit ist kognitive Ressource und kultureller Reichtum.",
+                note="Code-Switching ist keine 'Halbsprachigkeit', sondern Kompetenz.",
+            ),
+        ],
+        related=["deutschsprachige-welt", "sprachpolitik-de", "sprachwandel", "digitales-deutsch"],
+    ),
 ]

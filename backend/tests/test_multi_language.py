@@ -668,7 +668,7 @@ class TestCurriculumPerLanguage:
         assert "A1" in c
         assert "C2" in c
         assert len(c["A1"]) == 8
-        assert len(c["C2"]) == 6
+        assert len(c["C2"]) == 8
 
     @pytest.mark.asyncio
     async def test_curriculum_spanish(self, client):
@@ -679,7 +679,7 @@ class TestCurriculumPerLanguage:
         assert "A1" in c
         assert "C2" in c
         assert len(c["A1"]) == 8
-        assert len(c["C2"]) == 6
+        assert len(c["C2"]) == 8
         # Verify it's Spanish content
         assert c["A1"][0].title == "Saludos y presentaciones"
 

@@ -653,4 +653,237 @@ B2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         related=["registre-formel"],
     ),
+    GrammarTopic(
+        slug="conditionnel-passe-avance",
+        title="Le conditionnel passé — approfondissement",
+        level="B2",
+        category="Verbes",
+        summary="Le conditionnel passé pour exprimer le regret, le reproche, l'hypothèse non réalisée et l'irréel du passé.",
+        explanation="Le **conditionnel passé** exprime une action qui aurait pu se produire dans le passé mais qui ne s'est pas réalisée.\n\n**Formation** : être/avoir au conditionnel présent + participe passé.\n\n**Usages** :\n- **Regret** : *J'**aurais dû** étudier davantage.* / *Tu **aurais pu** me prévenir !*\n- **Reproche** : *Il **aurait fallu** que tu m'en parles plus tôt.*\n- **Hypothèse non réalisée** (irréel du passé) : *Si j'avais su, je **serais venu**.*\n- **Information non confirmée** (conditionnel journalistique au passé) : *L'accident **aurait fait** trois victimes.*\n\n**Avec 'si'** : si + plus-que-parfait → conditionnel passé.\n- *Si tu **avais écouté**, tu **aurais compris**.*",
+        structure="être/avoir (conditionnel présent) + participe passé",
+        rules=[
+            "Action non réalisée dans le passé, souvent avec un sentiment de regret ou de reproche.",
+            "Si + plus-que-parfait → conditionnel passé pour l'irréel du passé.",
+            "Conditionnel journalistique au passé pour une information non confirmée.",
+            "Avec les modaux : j'aurais dû, j'aurais pu, il aurait fallu.",
+        ],
+        examples=[
+            GrammarExample(text="J'aurais voulu être un artiste.", translation=None),
+            GrammarExample(
+                text="Si j'avais eu plus de temps, j'aurais visité le musée.",
+                translation=None,
+                note="irréel du passé",
+            ),
+            GrammarExample(
+                text="Tu aurais pu me le dire plus tôt !",
+                translation=None,
+                note="reproche",
+            ),
+            GrammarExample(
+                text="Le ministre aurait démissionné hier soir.",
+                translation=None,
+                note="conditionnel journalistique au passé",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Si j'aurais su, je serais venu.",
+                correct="Si j'avais su, je serais venu.",
+                note="Après 'si', on n'utilise jamais le conditionnel. Si + plus-que-parfait.",
+            ),
+            GrammarMistake(
+                wrong="J'aurais aimé que tu viens.",
+                correct="J'aurais aimé que tu viennes.",
+                note="Après 'j'aurais aimé que', on utilise le subjonctif.",
+            ),
+        ],
+        related=["conditionnel-present", "passe-compose-avoir", "passe-compose-etre", "nuance"],
+    ),
+    GrammarTopic(
+        slug="futur-anterieur",
+        title="Le futur antérieur",
+        level="B2",
+        category="Verbes",
+        summary="Le futur antérieur pour exprimer l'antériorité future et l'hypothèse sur un fait passé.",
+        explanation="Le **futur antérieur** est un temps composé du futur qui exprime une action future accomplie avant une autre action future.\n\n**Formation** : être/avoir au futur simple + participe passé.\n\n**Usages** :\n- **Antériorité future** : *Quand tu **auras fini** tes devoirs, tu pourras sortir.*\n- **Fait accompli dans le futur** : *Dans deux ans, j'**aurai obtenu** mon diplôme.*\n- **Hypothèse sur un fait passé** : *Il n'est pas encore arrivé ; il **aura oublié** le rendez-vous.* (probabilité)\n- **Bilan prospectif** : *À la fin du mois, nous **aurons dépensé** tout le budget.*\n\n**Avec 'quand', 'lorsque', 'dès que', 'une fois que'** → futur antérieur dans la subordonnée.",
+        structure="être/avoir (futur simple) + participe passé",
+        rules=[
+            "Action qui sera accomplie avant un moment futur.",
+            "Dans une subordonnée de temps avec 'quand', 'lorsque', 'dès que' → futur antérieur.",
+            "Peut exprimer une supposition sur un événement passé (valeur modale).",
+            "Ne pas confondre avec le conditionnel passé pour l'hypothèse.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Quand tu auras terminé ton assiette, tu pourras avoir du dessert.",
+                translation=None,
+                note="antériorité future",
+            ),
+            GrammarExample(
+                text="Elle n'est pas encore là ; elle aura eu un empêchement.",
+                translation=None,
+                note="supposition",
+            ),
+            GrammarExample(
+                text="Dès que nous serons arrivés, nous vous appellerons.", translation=None
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Quand tu finiras, tu pourras sortir.",
+                correct="Quand tu auras fini, tu pourras sortir.",
+                note="Pour marquer l'antériorité, on utilise le futur antérieur, pas le futur simple.",
+            ),
+            GrammarMistake(
+                wrong="Il aura oublié son rendez-vous ; donc il aurait dû venir.",
+                correct="Il aura oublié son rendez-vous ; c'est pourquoi il n'est pas venu.",
+                note="Ne pas confondre futur antérieur de supposition avec le conditionnel passé de reproche.",
+            ),
+        ],
+        related=["futur-simple", "conditionnel-passe", "temps-narratifs"],
+    ),
+    GrammarTopic(
+        slug="pronoms-doubles",
+        title="Les pronoms doubles",
+        level="B2",
+        category="Pronoms",
+        summary="L'ordre des pronoms compléments quand ils sont combinés et leur placement à l'impératif.",
+        explanation="Quand deux **pronoms compléments** sont utilisés ensemble, leur ordre suit une règle fixe.\n\n**Ordre avant le verbe (déclaratif)** :\nme/te/se/nous/vous → le/la/les → lui/leur → y → en\n\n- *Il **me le** donne.* — *Elle **le lui** a expliqué.*\n- *Je **vous y** emmène.* — *Elle **lui en** a parlé.* — *Nous **y en** avons acheté.* (rare)\n\n**Ordre à l'impératif affirmatif** :\nle/la/les → moi/toi/nous/vous → lui/leur → y → en\n\n- *Donne-**le-moi** !* — *Apporte-**les-lui** !* — *Va-**t'en** !*\n- *Parle-**m'en** !* — *Emmène-**nous-y** !*\n\n**Impératif négatif** : retour à l'ordre déclaratif.\n- *Ne **me le** donne pas !* — *Ne **le lui** apporte pas !*",
+        structure="déclaratif: me/te/se/nous/vous → le/la/les → lui/leur → y → en  |  impératif: le/la/les → moi/toi/nous/vous → lui/leur → y → en",
+        rules=[
+            "Avant le verbe, l'ordre est : sujet réfléchi/COI → COD → autre COI → y → en.",
+            "À l'impératif affirmatif, le COD passe en première position.",
+            "Moi/toi remplacent me/te à l'impératif affirmatif (sauf devant y/en → m'en, t'en).",
+            "À l'impératif négatif, on reprend l'ordre déclaratif.",
+        ],
+        examples=[
+            GrammarExample(text="Il me l'a offert pour mon anniversaire.", translation=None),
+            GrammarExample(
+                text="Donne-la-moi immédiatement !",
+                translation=None,
+                note="impératif affirmatif",
+            ),
+            GrammarExample(
+                text="Elle lui en a parlé hier soir.",
+                translation=None,
+                note="lui + en",
+            ),
+            GrammarExample(
+                text="Ne le leur dis pas encore.", translation=None, note="impératif négatif"
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Donne-moi-le !",
+                correct="Donne-le-moi !",
+                note="À l'impératif, le COD (le) précède le COI (moi).",
+            ),
+            GrammarMistake(
+                wrong="Il me lui présente.",
+                correct="Il me le présente. / Il le lui présente.",
+                note="On ne peut pas avoir deux pronoms COI de la même colonne (me et lui).",
+            ),
+        ],
+        related=["pronoms-cod", "pronoms-coi", "pronoms-y-en", "ordre-pronoms"],
+    ),
+    GrammarTopic(
+        slug="ne-expletif",
+        title="Le ne explétif et les nuances de la négation",
+        level="B2",
+        category="Négation",
+        summary="Le ne explétif (non négatif) et les nuances de la négation : ne...guère, ne...que, sans que.",
+        explanation="Le **ne explétif** est un 'ne' facultatif qui n'exprime pas la négation. Il apparaît dans des contextes formels et n'est pas obligatoire, mais son usage témoigne d'une maîtrise avancée.\n\n**Contextes du 'ne' explétif** :\n- Après **avant que** : *Dépêche-toi avant qu'il ne **pleuve**.*\n- Après **à moins que** : *À moins que tu ne **veuilles** m'aider...*\n- Après **sans que** : *Il est parti sans qu'on ne **s'en aperçoive**.*\n- Comparaison d'inégalité : *C'est plus difficile qu'il ne **semble**.*\n- Verbes de crainte (craindre que, avoir peur que) : *Je crains qu'il ne **soit** trop tard.*\n\n**Nuances de la négation** :\n- **ne...guère** = peu, presque pas (soutenu) : *Il n'est guère bavard.*\n- **ne...que** = seulement : *Je n'ai que dix euros.*\n- **sans que + (ne) + subjonctif** : concession nuancée.",
+        structure="ne explétif devant verbe au subjonctif (facultatif)  |  ne...guère / ne...que / sans que",
+        rules=[
+            "Le 'ne' explétif est facultatif et ne nie pas.",
+            "Il apparaît après avant que, à moins que, sans que, et avec les verbes de crainte.",
+            "Ne...guère exprime une quantité ou intensité faible (= pas beaucoup).",
+            "Ne...que exprime la restriction (= seulement).",
+        ],
+        examples=[
+            GrammarExample(
+                text="Dépêchons-nous avant qu'il ne soit trop tard.",
+                translation=None,
+                note="ne explétif",
+            ),
+            GrammarExample(
+                text="Il a réussi sans que personne ne l'aide.",
+                translation=None,
+                note="ne explétif après 'sans que'",
+            ),
+            GrammarExample(
+                text="Ce n'est guère étonnant vu les circonstances.",
+                translation=None,
+                note="ne...guère",
+            ),
+            GrammarExample(
+                text="Elle n'a que vingt ans et déjà tant d'expérience.",
+                translation=None,
+                note="ne...que = seulement",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Avant qu'il part, appelle-moi.",
+                correct="Avant qu'il parte, appelle-moi. / Avant qu'il ne parte, appelle-moi.",
+                note="'Avant que' exige le subjonctif. Le 'ne' explétif est facultatif.",
+            ),
+            GrammarMistake(
+                wrong="Il n'a guère d'argent donc il en a beaucoup.",
+                correct="Il n'a guère d'argent donc il en a très peu.",
+                note="'Ne...guère' signifie 'presque pas', pas 'beaucoup'.",
+            ),
+        ],
+        related=["subjonctif-conjonctions", "registre-formel"],
+    ),
+    GrammarTopic(
+        slug="relatifs-composes",
+        title="Les pronoms relatifs composés",
+        level="B2",
+        category="Pronoms",
+        summary="Les pronoms relatifs composés : lequel, laquelle, lesquels, lesquelles, auquel, duquel et leur distinction avec qui/que/dont/où.",
+        explanation="Les **pronoms relatifs composés** sont formés de l'article défini + -quel. Ils remplacent les relatifs simples dans certains contextes pour lever une ambiguïté ou après une préposition.\n\n**Formes** :\n- Masculin singulier : **lequel** / **auquel** (à + lequel) / **duquel** (de + lequel)\n- Féminin singulier : **laquelle** / **à laquelle** / **de laquelle**\n- Masculin pluriel : **lesquels** / **auxquels** / **desquels**\n- Féminin pluriel : **lesquelles** / **auxquelles** / **desquelles**\n\n**Quand les utiliser ?**\n- **Après une préposition** : *La table sur **laquelle** j'ai posé mon livre.*\n- **Avec une préposition locative** : *La ville dans **laquelle** j'habite.*\n- **Pour lever l'ambiguïté sur l'antécédent** : *Le fils de ma voisine, **lequel** habite à Lyon...*\n- **Parmi + lesquels** : *Trois candidats, parmi **lesquels** figure...*\n\n**Distinction** :\n- *Qui* = sujet / *Que* = COD / *Dont* = de + antécédent / *Où* = lieu/temps\n- Composés = après préposition (surtout composée), antécédent ambigu, registre soutenu.",
+        structure="préposition + lequel/laquelle/lesquels/lesquelles (avec contractions : auquel, duquel, etc.)",
+        rules=[
+            "Après une préposition (sur, dans, avec, à, de, etc.) on utilise les relatifs composés.",
+            "Auquel = à + lequel ; duquel = de + lequel.",
+            "Parmi + lesquels/lesquelles pour sélectionner dans un ensemble.",
+            "Peut remplacer 'qui' quand l'antécédent est ambigu.",
+        ],
+        examples=[
+            GrammarExample(
+                text="C'est une question à laquelle je n'ai pas de réponse.",
+                translation=None,
+                note="à + laquelle",
+            ),
+            GrammarExample(
+                text="Les documents sur lesquels nous travaillons sont confidentiels.",
+                translation=None,
+                note="sur + lesquels",
+            ),
+            GrammarExample(
+                text="L'ami de mon frère, lequel est médecin, nous a conseillés.",
+                translation=None,
+                note="levée d'ambiguïté",
+            ),
+            GrammarExample(
+                text="Plusieurs raisons, parmi lesquelles le coût, expliquent ce choix.",
+                translation=None,
+                note="parmi lesquelles",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="C'est le problème à qui je pense.",
+                correct="C'est le problème auquel je pense.",
+                note="Après 'à', on utilise 'auquel/à laquelle', pas 'à qui' pour un inanimé.",
+            ),
+            GrammarMistake(
+                wrong="La réunion dans qui j'étais.",
+                correct="La réunion dans laquelle j'étais.",
+                note="Après une préposition, 'qui' est réservé aux personnes dans le registre courant.",
+            ),
+        ],
+        related=["registre-formel", "cohesion-textuelle"],
+    ),
 ]
