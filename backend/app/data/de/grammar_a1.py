@@ -8,7 +8,7 @@ A1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title='Das Verb "sein"',
         level="A1",
         category="Verben",
-        summary="Das Verb \"sein\" – Konjugation und Grundverwendung für Identität, Herkunft und Eigenschaften.",
+        summary='Das Verb "sein" – Konjugation und Grundverwendung für Identität, Herkunft und Eigenschaften.',
         explanation="""Das Verb **sein** ist das wichtigste Verb im Deutschen. Es bedeutet *to be* und wird für Identität, Herkunft, Eigenschaften und Zustände verwendet.
 
 **Konjugation:**
@@ -68,7 +68,7 @@ Im Gegensatz zum Englischen kann das Subjektpronomen im Deutschen **nicht** wegg
         title='Das Verb "haben"',
         level="A1",
         category="Verben",
-        summary="Das Verb \"haben\" – Konjugation und Verwendung für Besitz, Alter und feste Ausdrücke.",
+        summary='Das Verb "haben" – Konjugation und Verwendung für Besitz, Alter und feste Ausdrücke.',
         explanation="""Das Verb **haben** ist nach *sein* das zweitwichtigste Verb im Deutschen.
 
 **Konjugation:**
@@ -922,7 +922,7 @@ Merkwort: **DOGFUB** (Durch, Ohne, Gegen, Für, Um, Bis)""",
         title='"Es gibt"',
         level="A1",
         category="Syntax",
-        summary="Verwendung von \"es gibt\" – Existenzaussagen mit dem Akkusativ.",
+        summary='Verwendung von "es gibt" – Existenzaussagen mit dem Akkusativ.',
         explanation="""**Es gibt** bedeutet *there is / there are* und wird verwendet, um die **Existenz** von etwas zu beschreiben.
 
 **Grammatik:**
@@ -1127,7 +1127,7 @@ Merkwort: **Mit, Nach, Zu, Bei, Von, Aus, Seit** — diese 7 immer mit Dativ."""
         title='Futur I mit "werden"',
         level="A1",
         category="Verben",
-        summary="Futur mit \"werden\" – wie man über zukünftige Ereignisse spricht.",
+        summary='Futur mit "werden" – wie man über zukünftige Ereignisse spricht.',
         explanation="""Das Futur I wird mit dem Hilfsverb **werden** + Infinitiv gebildet.
 
 **Konjugation von werden:**

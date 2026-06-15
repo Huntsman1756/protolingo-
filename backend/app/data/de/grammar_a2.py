@@ -8,7 +8,7 @@ A2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title='Perfekt mit "haben"',
         level="A2",
         category="Zeitformen",
-        summary="Das Perfekt mit \"haben\" – Bildung und Verwendung für die meisten Verben.",
+        summary='Das Perfekt mit "haben" – Bildung und Verwendung für die meisten Verben.',
         explanation="""Das **Perfekt** ist die wichtigste Vergangenheitsform im gesprochenen Deutsch. Es wird mit einem Hilfsverb (**haben** oder **sein**) + **Partizip II** gebildet. Die meisten Verben bilden das Perfekt mit **haben**:
 
 **Bildung:** **haben** (konjugiert) + **Partizip II** (am Satzende)
@@ -63,7 +63,7 @@ ich habe gemacht · du hast gemacht · er/es/sie hat gemacht · wir haben gemach
         title='Perfekt mit "sein"',
         level="A2",
         category="Zeitformen",
-        summary="Das Perfekt mit \"sein\" – für Verben der Bewegung, Zustandsänderung und besondere Verben.",
+        summary='Das Perfekt mit "sein" – für Verben der Bewegung, Zustandsänderung und besondere Verben.',
         explanation="""Eine kleinere Gruppe von Verben bildet das Perfekt mit dem Hilfsverb **sein**:
 **sein** (konjugiert) + **Partizip II** (am Satzende)
 ich bin gegangen · du bist gegangen · er ist gegangen · wir sind gegangen · ihr seid gegangen · sie sind gegangen
@@ -985,7 +985,7 @@ Nach **viel, wenig, etwas, nichts** nominalisiert und **großgeschrieben**: *etw
         title='Nebensätze mit "dass"',
         level="A2",
         category="Syntax",
-        summary="Nebensätze mit \"dass\" – Wortstellung und Zeichensetzung.",
+        summary='Nebensätze mit "dass" – Wortstellung und Zeichensetzung.',
         explanation="""Nebensätze mit **dass** (that) sind die häufigste Art von Nebensätzen. Im **dass-Satz** steht das konjugierte Verb **am Ende**: *Ich weiß, **dass** er heute kommt.*
 
 ⚠️ Vor dem **dass** steht immer ein **Komma**!
@@ -1048,7 +1048,7 @@ Typische Verben mit dass-Satz: wissen, sagen, glauben, denken, finden, meinen, h
         title='Nebensätze mit "weil"',
         level="A2",
         category="Syntax",
-        summary="Nebensätze mit \"weil\" – Grund/Ursache ausdrücken.",
+        summary='Nebensätze mit "weil" – Grund/Ursache ausdrücken.',
         explanation="""Nebensätze mit **weil** drücken einen Grund oder eine Ursache aus. Im **weil-Satz** steht das konjugierte Verb **am Ende**: *Ich bleibe zu Hause, **weil** ich krank **bin**.*
 
 **Typische Fragen:** Warum? Wieso?
@@ -1110,7 +1110,7 @@ Typische Verben mit dass-Satz: wissen, sagen, glauben, denken, finden, meinen, h
         title='Nebensätze mit "wenn"',
         level="A2",
         category="Syntax",
-        summary="Nebensätze mit \"wenn\" – Bedingung (falls) und Zeit (immer wenn).",
+        summary='Nebensätze mit "wenn" – Bedingung (falls) und Zeit (immer wenn).',
         explanation="""**Wenn** kann zwei verschiedene Bedeutungen haben:
 
 1. Konditional (if): *Wenn es morgen regnet, bleiben wir zu Hause.*
@@ -1178,7 +1178,7 @@ Im **wenn-Satz** steht das konjugierte Verb **am Ende**. Steht der wenn-Satz vor
         title='Nebensätze mit "obwohl"',
         level="A2",
         category="Syntax",
-        summary="Nebensätze mit \"obwohl\" – Einräumung/Konzession ausdrücken.",
+        summary='Nebensätze mit "obwohl" – Einräumung/Konzession ausdrücken.',
         explanation="""Nebensätze mit **obwohl** drücken einen **Gegensatz** oder eine **Einschränkung** aus (although, even though). Im **obwohl-Satz** steht das konjugierte Verb **am Ende**: *Er kommt, **obwohl** er krank **ist**.*
 
 Steht der obwohl-Satz vorne, beginnt der Hauptsatz mit dem Verb: *Obwohl es regnet, **gehe** ich spazieren.*

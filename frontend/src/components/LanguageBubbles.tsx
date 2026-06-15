@@ -16,21 +16,20 @@ export function LanguageBubbles() {
   const t = useTranslations('landing')
   const positions = useMemo(
     () => SUPPORTED_TARGET_LANGUAGES.map((_, i) => circlePosition(i, 7, 110)),
-    [],
+    []
   )
 
   return (
     <div className="relative h-[360px] w-full sm:h-[380px]">
       <div
-        className="absolute left-1/2 top-1/2 z-20 h-[95px] w-[95px] -translate-x-1/2 -translate-y-1/2 bg-contain bg-center bg-no-repeat"
+        className="absolute top-1/2 left-1/2 z-20 h-[95px] w-[95px] -translate-x-1/2 -translate-y-1/2 bg-contain bg-center bg-no-repeat"
         style={{ backgroundImage: 'url(/logo.png)' }}
         aria-label="FreeLingo"
       />
 
       {SUPPORTED_TARGET_LANGUAGES.map((lang, i) => {
         const { x, y } = positions[i]
-        const greeting =
-          t(`languageGreetings.${lang.code}`) ?? lang.name
+        const greeting = t(`languageGreetings.${lang.code}`) ?? lang.name
         const delay = i * 0.35
         return (
           <div
@@ -57,7 +56,7 @@ export function LanguageBubbles() {
                   height={10}
                   className="rounded-[2px]"
                 />
-                <span className="text-fl-fg whitespace-nowrap font-sans text-[11px] font-medium">
+                <span className="text-fl-fg font-sans text-[11px] font-medium whitespace-nowrap">
                   {greeting}
                 </span>
               </div>

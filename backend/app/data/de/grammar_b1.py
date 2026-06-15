@@ -8,7 +8,7 @@ B1_GRAMMAR_TOPICS: list[GrammarTopic] = [
         title='Konjunktiv II mit "würde"',
         level="B1",
         category="Modi",
-        summary="Der Konjunktiv II mit \"würde\" + Infinitiv – die Standardform für hypothetische Situationen.",
+        summary='Der Konjunktiv II mit "würde" + Infinitiv – die Standardform für hypothetische Situationen.',
         explanation="""Der **Konjunktiv II mit würde** ist die häufigste Form für hypothetische Situationen, Wünsche und höfliche Bitten: **würde** (konjugiert) + **Infinitiv** (am Satzende).
 ich würde gehen · du würdest gehen · er würde gehen · wir würden gehen · ihr würdet gehen · sie würden gehen
 
@@ -72,7 +72,7 @@ Bei **sein, haben, Modalverben** und einigen häufigen Verben verwendet man die 
         title="Konjunktiv II: hätte, wäre, könnte",
         level="B1",
         category="Modi",
-        summary="Die \"echten\" Konjunktiv-II-Formen – hätte, wäre und die Modalverben.",
+        summary='Die "echten" Konjunktiv-II-Formen – hätte, wäre und die Modalverben.',
         explanation="""Die **echten Konjunktiv II-Formen** werden bei den wichtigsten Verben verwendet:
 
 sein → ich wäre, du wär(e)st, er wäre, wir wären, ihr wär(e)t, sie wären
@@ -260,7 +260,7 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
         title='Vorgangspassiv mit "werden"',
         level="B1",
         category="Passiv",
-        summary="Das Vorgangspassiv mit \"werden\" + Partizip II – die Handlung steht im Fokus.",
+        summary='Das Vorgangspassiv mit "werden" + Partizip II – die Handlung steht im Fokus.',
         explanation="""Das **Vorgangspassiv** beschreibt eine Handlung oder einen Prozess. Der Fokus liegt auf der Aktion, nicht auf dem Handelnden: **werden** (konjugiert) + **Partizip II** (am Satzende).
 
 | Zeit | Aktiv | Vorgangspassiv |
@@ -326,7 +326,7 @@ Irreale Wünsche für die Gegenwart: Konjunktiv II Präsens (wäre, hätte, wür
         title="Zustandspassiv",
         level="B1",
         category="Passiv",
-        summary="Das Zustandspassiv mit \"sein\" + Partizip II – das Ergebnis beschreiben.",
+        summary='Das Zustandspassiv mit "sein" + Partizip II – das Ergebnis beschreiben.',
         explanation="""Das **Zustandspassiv** beschreibt das **Ergebnis** einer Handlung (einen Zustand), nicht die Handlung selbst.
 
 | Vorgangspassiv (Prozess) | Zustandspassiv (Resultat) |
@@ -591,7 +591,7 @@ Im Nebensatz steht das Modalverb am Ende: *..., dass das Auto repariert werden m
         title='Infinitiv mit "zu"',
         level="B1",
         category="Verben",
-        summary="Infinitivsätze mit \"zu\" – wann und wie man zu + Infinitiv verwendet.",
+        summary='Infinitivsätze mit "zu" – wann und wie man zu + Infinitiv verwendet.',
         explanation="""Der **Infinitiv mit zu** wird in Infinitivsätzen verwendet: *Ich habe vor, morgen nach Berlin **zu fahren**.*
 
 **Nach bestimmten Verben**: anfangen, aufhören, versuchen, vergessen, hoffen, planen, vorhaben, empfehlen, bitten, erlauben — *Ich habe versucht, dich anzurufen.*
@@ -1036,7 +1036,7 @@ In der gesprochenen Sprache wird die indirekte Rede meist mit Indikativ verwende
         title='"brauchen + zu"',
         level="B1",
         category="Verben",
-        summary="Die Sonderkonstruktion \"nicht brauchen zu\" – nicht müssen ausdrücken.",
+        summary='Die Sonderkonstruktion "nicht brauchen zu" – nicht müssen ausdrücken.',
         explanation="""Das Verb **brauchen** hat eine besondere Verwendung mit **zu + Infinitiv** in der Verneinung:
 
 *Du **brauchst nicht zu** kommen.* = You don't need to come.
@@ -1102,7 +1102,7 @@ Ohne Verneinung oder *nur* funktioniert die Konstruktion standardsprachlich nich
         title='Das Verb "lassen"',
         level="B1",
         category="Verben",
-        summary="Das Verb \"lassen\" – drei Bedeutungen: erlauben, veranlassen und zurücklassen.",
+        summary='Das Verb "lassen" – drei Bedeutungen: erlauben, veranlassen und zurücklassen.',
         explanation="""Das Verb **lassen** ist sehr vielseitig:
 
 1. Lassen = to let, to allow: *Meine Eltern **lassen** mich ins Kino gehen.*
