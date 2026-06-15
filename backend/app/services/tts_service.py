@@ -55,5 +55,6 @@ class OpenAITTSService:
             input=text,
             response_format="mp3",
             speed=self.speed,
+            timeout=30.0,
         )
         return response.content

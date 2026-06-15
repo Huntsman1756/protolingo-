@@ -131,6 +131,7 @@ async def test_voice_conversation_visible_in_list(client, test_user_with_plan, d
         title="Voice session — 23 de mayo de 2026",
         source="voice",
         study_plan_id=plan.id,
+        target_language=plan.target_language,
     )
     db_session.add(conv)
     await db_session.commit()

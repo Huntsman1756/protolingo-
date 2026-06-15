@@ -74,7 +74,14 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     }
 
     // Copy the buffer: decodeAudioData may detach the original ArrayBuffer
-    const decoded = await ctx.decodeAudioData(arrayBuffer.slice(0))
+    let decoded: AudioBuffer
+    try {
+      decoded = await ctx.decodeAudioData(arrayBuffer.slice(0))
+    } catch {
+      // Corrupt MP3, unsupported codec, or AudioContext already closed.
+      // Skip this chunk rather than breaking the entire playback chain.
+      return
+    }
 
     const source = ctx.createBufferSource()
     source.buffer = decoded

@@ -166,24 +166,38 @@ class ConversationPipeline:
 
     @staticmethod
     def _clean_sentence(raw_sentence: str) -> str:
-        # Strip the complete <<MEMORY>>...<<ENDMEMORY>> block first
-        raw = strip_memory_marker(raw_sentence)
+        """Strip memory markers from a sentence buffer using pure string ops.
 
-        # Strip any orphan marker that may remain without its counterpart
-        # (happens when markers are split across sentence boundaries)
+        Avoids regex (re.sub) in the hot streaming path — sentence buffers are
+        short (<150 chars) but this is called on every LLM token chunk that
+        forms a complete sentence, so every microsecond matters for fluidity.
+        """
+        raw = raw_sentence
+
+        # 1. Strip complete <<MEMORY>>...<<ENDMEMORY>> blocks
+        while "<<MEMORY>>" in raw:
+            start = raw.find("<<MEMORY>>")
+            end = raw.find("<<ENDMEMORY>>", start + 10)
+            if end != -1:
+                raw = raw[:start] + raw[end + 13 :]
+            else:
+                raw = raw[:start]
+                break
+
+        # 2. Strip any orphan markers (counterpart split across sentence boundary)
         for orphan in ("<<MEMORY>>", "<<ENDMEMORY>>"):
             idx = raw.find(orphan)
             if idx != -1:
-                raw = raw[:idx].strip()
+                raw = raw[:idx]
 
-        # Strip partial marker prefixes from the end of the text
+        # 3. Strip partial marker prefixes from the end of the text
         for marker in ("<<MEMORY>>", "<<ENDMEMORY>>"):
             for pi in range(len(marker), 0, -1):
                 if raw.endswith(marker[:pi]):
-                    raw = raw[:-pi].strip()
+                    raw = raw[:-pi]
                     break
 
-        return raw
+        return raw.strip()
 
     def _create_tts_queue(
         self,
@@ -580,6 +594,7 @@ class ConversationPipeline:
                         role=role,
                         content=content,
                         study_plan_id=self._study_plan_id,
+                        target_language=self._target_language,
                     )
                 )
                 await db.execute(

@@ -325,7 +325,14 @@ async def conversation_ws(
                     and int(client_conversation_id_raw) > 0
                 ):
                     existing = await db_conv.get(ConversationModel, int(client_conversation_id_raw))
-                    if existing and existing.user_id == user_id:
+                    if (
+                        existing
+                        and existing.user_id == user_id
+                        and (
+                            not existing.target_language
+                            or existing.target_language == target_language
+                        )
+                    ):
                         conversation_id = existing.id
                 if conversation_id is None:
                     conv = ConversationModel(
@@ -333,6 +340,7 @@ async def conversation_ws(
                         title=voice_session_title(native_language),
                         source="voice",
                         study_plan_id=study_plan_id_for_conv,
+                        target_language=target_language,
                     )
                     db_conv.add(conv)
                     await db_conv.commit()

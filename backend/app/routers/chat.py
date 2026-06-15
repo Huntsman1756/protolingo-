@@ -142,13 +142,15 @@ async def list_conversations(
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
-    plan = await get_active_study_plan_optional(current_user, db)
-    if plan is not None:
-        where_clause = (Conversation.user_id == current_user.id) & (
-            Conversation.study_plan_id == plan.id
-        )
-    else:
-        where_clause = Conversation.user_id == current_user.id
+    # Filter conversations by the active language (not study plan)
+    from app.services.user_language_service import get_active_language
+
+    active_lang = await get_active_language(db, current_user.id)
+    if not active_lang:
+        return []
+    where_clause = (Conversation.user_id == current_user.id) & (
+        Conversation.target_language == active_lang.target_language
+    )
 
     result = await db.execute(
         select(Conversation).where(where_clause).order_by(Conversation.updated_at.desc())
@@ -165,10 +167,15 @@ async def create_conversation(
     db: AsyncSession = Depends(get_db),
 ):
     plan = await get_active_study_plan_optional(current_user, db)
+    from app.services.user_language_service import get_active_language
+
+    active_lang = await get_active_language(db, current_user.id)
+    target_language = active_lang.target_language if active_lang else DEFAULT_TARGET_LANG
     conv = Conversation(
         user_id=current_user.id,
         title=data.title or "New conversation",
         study_plan_id=plan.id if plan else None,
+        target_language=target_language,
     )
     db.add(conv)
     await db.commit()
@@ -187,6 +194,12 @@ async def delete_conversation(
     conv = await db.get(Conversation, conversation_id)
     if not conv or conv.user_id != current_user.id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
+    # Verify conversation belongs to the current active language
+    from app.services.user_language_service import get_active_language
+
+    active_lang = await get_active_language(db, current_user.id)
+    if active_lang and conv.target_language and conv.target_language != active_lang.target_language:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
     await db.delete(conv)
     await db.commit()
 
@@ -202,17 +215,17 @@ async def get_conversation_messages(
     conv = await db.get(Conversation, conversation_id)
     if not conv or conv.user_id != current_user.id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
-    plan = await get_active_study_plan_optional(current_user, db)
-    if plan:
-        where_clause = (
-            (ChatHistory.conversation_id == conversation_id)
-            & (ChatHistory.user_id == current_user.id)
-            & (ChatHistory.study_plan_id == plan.id)
-        )
-    else:
-        where_clause = (ChatHistory.conversation_id == conversation_id) & (
-            ChatHistory.user_id == current_user.id
-        )
+    # Filter messages by active language (not study plan)
+    from app.services.user_language_service import get_active_language
+
+    active_lang = await get_active_language(db, current_user.id)
+    if not active_lang:
+        return ChatHistoryResponse(messages=[])
+    where_clause = (
+        (ChatHistory.conversation_id == conversation_id)
+        & (ChatHistory.user_id == current_user.id)
+        & (ChatHistory.target_language == active_lang.target_language)
+    )
     result = await db.execute(
         select(ChatHistory)
         .where(where_clause)
@@ -255,12 +268,21 @@ async def chat(
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found"
             )
+        if conv.target_language and conv.target_language != target_language:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found"
+            )
     else:
         # Auto-create a conversation titled with the first 60 chars of the message
         title = request_data.message[:60].replace("\n", " ").replace("\r", "").strip()
         if len(request_data.message) > 60:
             title += "..."
-        conv = Conversation(user_id=current_user.id, title=title, study_plan_id=study_plan_id)
+        conv = Conversation(
+            user_id=current_user.id,
+            title=title,
+            study_plan_id=study_plan_id,
+            target_language=target_language,
+        )
         db.add(conv)
         await db.commit()
         await db.refresh(conv)
@@ -337,6 +359,7 @@ async def chat(
             role="user",
             content=request_data.message,
             study_plan_id=study_plan_id,
+            target_language=target_language,
         )
     )
     await db.commit()
@@ -414,6 +437,7 @@ async def chat(
                     role="assistant",
                     content=clean_response,
                     study_plan_id=study_plan_id,
+                    target_language=target_language,
                 )
             )
             conv.updated_at = datetime.now(UTC).replace(tzinfo=None)
@@ -487,13 +511,15 @@ async def get_history(
     current_user: User = Depends(require_subscription),
     db: AsyncSession = Depends(get_db),
 ):
-    plan = await get_active_study_plan_optional(current_user, db)
-    if plan:
-        where_clause = (ChatHistory.user_id == current_user.id) & (
-            ChatHistory.study_plan_id == plan.id
-        )
-    else:
-        where_clause = ChatHistory.user_id == current_user.id
+    # Filter history by active language (not study plan)
+    from app.services.user_language_service import get_active_language
+
+    active_lang = await get_active_language(db, current_user.id)
+    if not active_lang:
+        return ChatHistoryResponse(messages=[])
+    where_clause = (ChatHistory.user_id == current_user.id) & (
+        ChatHistory.target_language == active_lang.target_language
+    )
     result = await db.execute(
         select(ChatHistory)
         .where(where_clause)
