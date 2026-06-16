@@ -63,7 +63,10 @@ const audioQueueLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
  * The AudioContext must be created during a user gesture to satisfy browser
  * autoplay policies.
  */
-export function createAudioQueue(ctx: AudioContext, onIdle?: () => void): AudioQueue {
+export function createAudioQueue(
+  ctx: AudioContext,
+  onIdle?: () => void
+): AudioQueue {
   // nextTime tracks when the next chunk should start (in AudioContext time).
   // Using a closure variable (not module-level) so multiple instances are safe.
   let nextTime = 0
@@ -229,17 +232,20 @@ export function createAudioQueue(ctx: AudioContext, onIdle?: () => void): AudioQ
 
       audio.addEventListener('ended', done)
       audio.addEventListener('error', done)
-      void audio.play().then(() => {
-        audioQueueLogger.warn('HTMLAudio fallback playback started', {
-          chunkId,
+      void audio
+        .play()
+        .then(() => {
+          audioQueueLogger.warn('HTMLAudio fallback playback started', {
+            chunkId,
+          })
         })
-      }).catch((error) => {
-        audioQueueLogger.error('HTMLAudio fallback playback failed', {
-          chunkId,
-          error: error instanceof Error ? error.message : String(error),
+        .catch((error) => {
+          audioQueueLogger.error('HTMLAudio fallback playback failed', {
+            chunkId,
+            error: error instanceof Error ? error.message : String(error),
+          })
+          done()
         })
-        done()
-      })
     })
   }
 

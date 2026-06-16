@@ -408,7 +408,6 @@ class ConversationPipeline:
             logger.info(
                 "[pipeline] Conversation loop ending: current_task=%s",
                 self._task_state(self.current_task),
-                
             )
             logger.info(
                 "[pipeline] Session close reason=%s",
