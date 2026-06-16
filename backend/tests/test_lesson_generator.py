@@ -7,11 +7,11 @@ from unittest.mock import AsyncMock, patch
 import pytest
 
 from app.schemas.lessons import (
+    ExerciseContent,
     FillBlankEvaluation,
     FreeWriteEvaluation,
-    PronunciationEvaluation,
     LessonContent,
-    ExerciseContent,
+    PronunciationEvaluation,
 )
 
 
@@ -51,9 +51,7 @@ class TestGenerateLesson:
             explanation={
                 "text": "The present simple is used for habits.",
                 "key_points": ["It describes routines.", "It uses base form."],
-                "examples": [
-                    {"sentence": "I walk every day.", "note": "Habitual action"}
-                ],
+                "examples": [{"sentence": "I walk every day.", "note": "Habitual action"}],
             },
             exercises=[
                 ExerciseContent(
@@ -71,9 +69,7 @@ class TestGenerateLesson:
                     explanation="Use base form after 'I'.",
                 ),
             ],
-            vocabulary=[
-                {"word": "walk", "definition": "caminar", "example": "I walk to school."}
-            ],
+            vocabulary=[{"word": "walk", "definition": "caminar", "example": "I walk to school."}],
             grammar_refs=["present-simple"],
         )
 
@@ -139,10 +135,9 @@ class TestGenerateLesson:
 
     @pytest.mark.asyncio
     async def test_filters_invalid_grammar_refs(self):
-        from app.services.lesson_generator import get_valid_grammar_slugs
-        from app.services.lesson_generator import generate_lesson
+        from app.services.lesson_generator import generate_lesson, get_valid_grammar_slugs
 
-        valid_slugs = get_valid_grammar_slugs("en-GB")
+        _ = get_valid_grammar_slugs("en-GB")
 
         mock_lesson = LessonContent(
             lesson_type="grammar",

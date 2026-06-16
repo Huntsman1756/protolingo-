@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 
 class TestGetAssessmentBank:
     def test_english_returns_non_empty(self):

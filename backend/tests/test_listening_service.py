@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import pytest
 import pytest_asyncio
-
 from sqlalchemy import select
 
 from app.models.listening import ListeningAttempt, ListeningExercise
@@ -210,7 +209,7 @@ class TestGetUserHistory:
 
     @pytest.mark.asyncio
     async def test_history_returns_attempts(self, db_session, exercise, study_plan):
-        from app.services.listening_service import submit_attempt, get_user_history
+        from app.services.listening_service import get_user_history, submit_attempt
 
         ex, user_id = exercise
         await submit_attempt(
