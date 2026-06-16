@@ -1,7 +1,12 @@
+import re
 from datetime import date, timedelta
 
 from app.models.flashcard import Flashcard
-from app.schemas.flashcards import FlashcardCreate, FlashcardGenerateResponse
+from app.schemas.flashcards import (
+    FlashcardCreate,
+    FlashcardGenerateResponse,
+    GeneratedFlashcard,
+)
 from app.services.language_helpers import get_language_name
 from app.services.llm_adapter import llm_adapter
 
@@ -28,30 +33,20 @@ def sm2_update(card: Flashcard, quality: int) -> Flashcard:
 
 
 _LANG_HINTS: dict[str, str] = {
-    "de": (
-        "Always include the grammatical article (der/die/das) and the plural form "
-        "with each noun in the word field, e.g. 'der Hund (die Hunde)'. "
-        "Capitalize all nouns."
-    ),
-    "fr": (
-        "Always include the article (le/la/l'/les) and indicate gender (m/f) "
-        "with each noun, e.g. 'la maison (f)'. Use standard French spelling."
-    ),
-    "es": (
-        "Always include the article (el/la/los/las) and indicate gender (m/f) "
-        "with each noun, e.g. 'el libro (m)'. Use standard Spanish spelling."
-    ),
-    "it": (
-        "Always include the article (il/la/lo/l'/i/gli/le) and indicate gender (m/f) "
-        "with each noun, e.g. 'la casa (f)'. Use standard Italian spelling."
-    ),
-    "pt": (
-        "Always include the article (o/a/os/as) and indicate gender (m/f) "
-        "with each noun, e.g. 'o carro (m)'. Use European Portuguese spelling and vocabulary."
-    ),
+    "de": ("Use standard German spelling and vocabulary."),
+    "fr": "Use standard French spelling and vocabulary.",
+    "es": "Use standard Spanish spelling and vocabulary.",
+    "it": "Use standard Italian spelling and vocabulary.",
+    "pt": "Use standard Portuguese spelling and vocabulary.",
     "en-US": ("Use American English spelling and vocabulary (e.g. color, center, organize)."),
     "en-GB": ("Use British English spelling and vocabulary (e.g. colour, centre, organise)."),
 }
+
+
+def _clean_generated_word(value: str) -> str:
+    cleaned = value.strip().strip("\"'")
+    cleaned = re.sub(r"\s*\([^)]*\)", "", cleaned)
+    return re.sub(r"\s+", " ", cleaned).strip()
 
 
 def _get_lang_hint(target_language: str) -> str:
@@ -65,6 +60,10 @@ def _get_lang_hint(target_language: str) -> str:
 FLASHCARD_GEN_PROMPT = """
 Generate {count} {target_language_name} vocabulary flashcards for a {cefr_level} student
 about the topic: "{topic}". Use {target_language_name} vocabulary and spelling.
+Word rules:
+- word must be only the core vocabulary term.
+- never include articles, gender markers, plural notes, qualifiers, parentheses, numbering, or prefixes/suffixes.
+- use lowercase, no trailing punctuation, and no extra metadata.
 {lang_hint}
 Return JSON:
 {{
@@ -98,6 +97,15 @@ async def generate_flashcards(
         [{"role": "system", "content": prompt}],
         FlashcardGenerateResponse,
     )
+    result.flashcards = [
+        GeneratedFlashcard(
+            word=_clean_generated_word(card.word),
+            definition=card.definition,
+            example_sentence=card.example_sentence,
+            translation=card.translation,
+        )
+        for card in result.flashcards
+    ]
     return result
 
 
@@ -106,6 +114,7 @@ A {cefr_level} {target_language_name} student selected the word "{word}" while r
 Context sentence: "{context}"
 
 Generate a flashcard for this word. Use {target_language_name} vocabulary and spelling.
+Word output must be only the target-language term without articles, gender markers, parentheses, qualifiers, prefixes, suffixes, or metadata.
 {lang_hint}
 Return JSON:
 {{
@@ -138,4 +147,5 @@ async def lookup_word(
         [{"role": "system", "content": prompt}],
         FlashcardCreate,
     )
+    result.word = _clean_generated_word(result.word)
     return result

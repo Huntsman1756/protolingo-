@@ -1,6 +1,7 @@
+import time
+
 import httpx
 import openai
-import time
 
 from app.core.app_logger import get_logger
 

@@ -155,6 +155,8 @@ function vadRedemptionMs(cefrLevel: string | null | undefined): number {
 
 const MIN_UTTERANCE_MS = 550
 const MIN_UTTERANCE_RMS = 0.0035
+const INTERRUPTION_RMS_THRESHOLD = 0.0075
+const VAD_MAX_RMS = 0.25
 const convLogger = getLogger('conversation-audio')
 
 export default function ConversationMode({
@@ -234,22 +236,28 @@ export default function ConversationMode({
     sessionActiveRef.current = sessionActive
   }, [sessionActive])
 
-  const isLikelySpeech = useCallback((audio: Float32Array): boolean => {
-    const samples = audio.length
-    if (samples === 0) return false
-    const startedAt = speechStartedAtRef.current
-    const durationMs = (samples / 16000) * 1000
-    if (!startedAt || durationMs < MIN_UTTERANCE_MS) {
-      return false
-    }
-    let energy = 0
-    for (let i = 0; i < samples; i += 1) {
-      const sample = audio[i]
-      energy += sample * sample
-    }
-    const rms = Math.sqrt(energy / samples)
-    return rms >= MIN_UTTERANCE_RMS
-  }, [])
+  const isLikelySpeech = useCallback(
+    (audio: Float32Array): { isSpeech: boolean; rms: number } => {
+      const samples = audio.length
+      if (samples === 0) {
+        return { isSpeech: false, rms: 0 }
+      }
+      const startedAt = speechStartedAtRef.current
+      const durationMs = (samples / 16000) * 1000
+      if (!startedAt || durationMs < MIN_UTTERANCE_MS) {
+        return { isSpeech: false, rms: 0 }
+      }
+      let energy = 0
+      for (let i = 0; i < samples; i += 1) {
+        const sample = audio[i]
+        energy += sample * sample
+      }
+      const rms = Math.sqrt(energy / samples)
+      const cappedRms = Number.isFinite(rms) ? Math.min(rms, VAD_MAX_RMS) : 0
+      return { isSpeech: cappedRms >= MIN_UTTERANCE_RMS, rms: cappedRms }
+    },
+    []
+  )
 
   // ─── VAD ──────────────────────────────────────────────────────────────────
   // MicVAD.new() loads the ONNX model but does NOT request mic permission yet.
@@ -266,11 +274,21 @@ export default function ConversationMode({
       ort.env.wasm.numThreads = 1
     },
     onSpeechStart: () => {
+      convLogger.info('vad speech start', {
+        assistantSpeaking: assistantSpeakingRef.current,
+      })
       speechStartedAtRef.current = performance.now()
       setUserSpeaking(true)
     },
     onSpeechEnd: (audio: Float32Array) => {
-      const isSpeech = isLikelySpeech(audio)
+      const speech = isLikelySpeech(audio)
+      const isSpeech = speech.isSpeech
+      convLogger.info('vad speech end', {
+        isSpeech,
+        rms: speech.rms,
+        sessionActive: sessionActiveRef.current,
+        assistantSpeaking: assistantSpeakingRef.current,
+      })
       speechStartedAtRef.current = null
       if (!isSpeech) {
         setUserSpeaking(false)
@@ -283,6 +301,19 @@ export default function ConversationMode({
         return
       }
 
+      // If the assistant is speaking, avoid false positive interruptions
+      // from playback leakage / room noise. Only treat it as interrupt when
+      // the signal is clearly strong enough to be real speech.
+      if (
+        assistantSpeakingRef.current &&
+        speech.rms < INTERRUPTION_RMS_THRESHOLD
+      ) {
+        convLogger.warn('ignored speech while assistant was speaking', {
+          rms: speech.rms,
+        })
+        return
+      }
+
       // Barge-in: cancel in-progress TTS playback only when assistant is speaking.
       if (assistantSpeakingRef.current && audioQueueRef.current) {
         audioQueueRef.current.cancel()
@@ -292,6 +323,10 @@ export default function ConversationMode({
       const ws = wsRef.current
       if (ws && ws.readyState === WebSocket.OPEN) {
         const wav = float32ToWav(audio, 16000)
+        convLogger.info('sent user utterance to backend', {
+          bytes: wav.byteLength,
+          assistantSpeaking: assistantSpeakingRef.current,
+        })
         ws.send(wav)
       }
     },
@@ -317,10 +352,10 @@ export default function ConversationMode({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vad.loading, vad.errored])
 
-    const finalizeSession = useCallback(() => {
-      if (!mountedRef.current) return
-      activeTurnIdRef.current = null
-      wsRef.current?.close()
+  const finalizeSession = useCallback(() => {
+    if (!mountedRef.current) return
+    activeTurnIdRef.current = null
+    wsRef.current?.close()
     wsRef.current = null
     vad.pause()
     setAssistantSpeaking(false)
@@ -367,6 +402,7 @@ export default function ConversationMode({
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
     (token: string, context?: ChatContextItem[]) => {
+      convLogger.info('opening conversation websocket')
       const url = buildConversationWsUrl()
       const ws = new WebSocket(url)
       ws.binaryType = 'arraybuffer'
@@ -382,6 +418,10 @@ export default function ConversationMode({
         if (context?.length) authPayload.context = context
         if (targetLanguage) authPayload.target_language = targetLanguage
         ws.send(JSON.stringify(authPayload))
+        convLogger.info('ws auth sent', {
+          hasContext: !!context?.length,
+          targetLanguage: targetLanguage ?? null,
+        })
         setStatus('live')
       }
 
@@ -418,6 +458,7 @@ export default function ConversationMode({
         // Text → JSON control message
         try {
           const msg = JSON.parse(event.data as string) as WsMessage
+          convLogger.debug('ws text message', { type: msg.type })
           if (msg.turn_id !== undefined) {
             activeTurnIdRef.current = msg.turn_id
           }
@@ -446,7 +487,6 @@ export default function ConversationMode({
                       text: msg.text,
                     },
                   ])
-                  setAssistantSpeaking(false)
                 } else {
                   setStreamingText(msg.text)
                 }
@@ -454,23 +494,31 @@ export default function ConversationMode({
               break
 
             case 'turn_complete':
-              if (activeTurnIdRef.current === null || activeTurnIdRef.current === msg.turn_id) {
+              if (
+                activeTurnIdRef.current === null ||
+                activeTurnIdRef.current === msg.turn_id
+              ) {
                 setAssistantSpeaking(false)
               }
               break
 
             case 'barge_in':
+              convLogger.warn('barge_in message from backend')
               audioQueueRef.current?.cancel()
               setAssistantSpeaking(false)
               setStreamingText(null)
               break
 
             case 'session_warning':
+              convLogger.debug('session warning', {
+                remainingSeconds: msg.remaining_seconds,
+              })
               setWarningSeconds(msg.remaining_seconds)
               break
 
             case 'status':
               setStatus('live')
+              convLogger.debug('status update', { value: msg.value })
               if (msg.value === 'thinking') {
                 setAssistantSpeaking(true)
               } else if (msg.value === 'listening') {
@@ -485,10 +533,15 @@ export default function ConversationMode({
             case 'session_end':
               cleanEndRef.current = true
               finalizeSession()
+              convLogger.info('session end received', { reason: msg.reason })
               setStatus('ended')
               break
 
             case 'error':
+              convLogger.error('ws error message', {
+                code: msg.code,
+                message: msg.message,
+              })
               cleanEndRef.current = true
               setErrorMsg(
                 msg.code === 'services_disabled'
@@ -519,6 +572,7 @@ export default function ConversationMode({
 
       ws.onerror = () => {
         if (!cleanEndRef.current) {
+          convLogger.error('ws onerror')
           setErrorMsg(`${t('errorConnection')} [onerror → ${url}]`)
           setStatus('error')
           finalizeSession()
@@ -526,6 +580,7 @@ export default function ConversationMode({
       }
 
       ws.onclose = (ev) => {
+        convLogger.warn('ws closed', { code: ev.code, reason: ev.reason })
         if (!cleanEndRef.current) {
           if (ev.code === 1008) {
             setErrorMsg(t('errorUnauthorized'))
@@ -610,13 +665,17 @@ export default function ConversationMode({
     })
     let warmupResponse: Response
     try {
-      warmupResponse = (await Promise.race([warmupResponsePromise, warmupTimeout])) as Response
+      warmupResponse = (await Promise.race([
+        warmupResponsePromise,
+        warmupTimeout,
+      ])) as Response
     } catch {
       if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
         ctx.close()
         return
       }
       setErrorMsg(`${t('errorConnection')} [warmup request failed]`)
+      convLogger.error('warmup request failed')
       setStatus('error')
       setSessionActive(false)
       vad.pause()
@@ -632,6 +691,7 @@ export default function ConversationMode({
         return
       }
       setErrorMsg(`${t('errorConnection')} [warmup ${warmupResponse.status}]`)
+      convLogger.error('warmup bad status', { status: warmupResponse.status })
       setStatus('error')
       setSessionActive(false)
       vad.pause()
@@ -653,6 +713,7 @@ export default function ConversationMode({
       ctx.close()
       audioCtxRef.current = null
       audioQueueRef.current = null
+      convLogger.error('no access token for websocket connect')
       return
     }
     connectWs(latestToken, topicContext ?? initialContext)
@@ -668,6 +729,7 @@ export default function ConversationMode({
   }
 
   // Cleanup on unmount
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     return () => {
       mountedRef.current = false
@@ -678,8 +740,8 @@ export default function ConversationMode({
       audioQueueRef.current?.cancel()
       audioCtxRef.current?.close()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   // ─── Render ───────────────────────────────────────────────────────────────
   return (
