@@ -165,6 +165,23 @@ class ConversationPipeline:
         self._inactivity_warning_sent = False
         self._send_lock = asyncio.Lock()
         self._turn_id = 0
+        self._client_close_reason: str | None = None
+
+    @staticmethod
+    def _fmt_exc(exc: Exception) -> str:
+        return f"{type(exc).__name__}: {exc}"
+
+    @staticmethod
+    def _task_state(task: asyncio.Task | None) -> str:
+        if task is None:
+            return "none"
+        if task.cancelled():
+            return "cancelled"
+        if task.done():
+            if task.exception() is not None:
+                return "done:error"
+            return "done"
+        return "running"
 
     async def _send_json(self, ws: WebSocket, data: dict) -> None:
         async with self._send_lock:
@@ -196,10 +213,11 @@ class ConversationPipeline:
             logger.debug("[pipeline] Socket closed while sending audio: %s", exc)
             return False
         except Exception as exc:
-            logger.debug("[pipeline] Audio send failed: %s", exc)
+            logger.debug("[pipeline] Audio send failed: %s", self._fmt_exc(exc))
             return False
 
     async def _close_ws(self, ws: WebSocket, code: int = 1000) -> None:
+        logger.debug("[pipeline] Closing websocket with code=%s", code)
         async with self._send_lock:
             await ws.close(code=code)
 
@@ -239,6 +257,20 @@ class ConversationPipeline:
                 )
                 await asyncio.sleep(TTS_RETRY_DELAY_SECONDS * attempt)
             except asyncio.CancelledError:
+                logger.warning(
+                    "[pipeline] TTS request cancelled: trace=%s len=%d attempt=%d",
+                    trace_id,
+                    len(text),
+                    attempt,
+                )
+                raise
+            except GeneratorExit:
+                logger.warning(
+                    "[pipeline] TTS request interrupted by GeneratorExit: trace=%s len=%d attempt=%d",
+                    trace_id,
+                    len(text),
+                    attempt,
+                )
                 raise
             except Exception as exc:
                 if attempt >= attempts:
@@ -335,12 +367,17 @@ class ConversationPipeline:
             await self._send_status(ws, turn_id, "listening")
             await self._send_json(ws, {"type": "turn_complete", "turn_id": turn_id})
         except asyncio.CancelledError:
+            logger.warning(
+                "[pipeline] Greeting cancelled for turn_id=%s",
+                turn_id,
+            )
             raise
         except Exception as exc:
             logger.error("[pipeline] Greeting failed: %s", exc)
 
     async def run(self, ws: WebSocket) -> None:
         """Main loop: starts timeout watchers then handles incoming messages."""
+        logger.info("[pipeline] Conversation loop starting")
         self._timer_tasks = [
             asyncio.create_task(self._max_duration_watcher(ws)),
             asyncio.create_task(self._inactivity_watcher(ws)),
@@ -352,17 +389,41 @@ class ConversationPipeline:
                     data = await ws.receive()
                 except RuntimeError:
                     # Client disconnected — ws.receive() raises RuntimeError after disconnect
+                    logger.info("[pipeline] ws.receive raised RuntimeError — disconnect")
+                    break
+                except Exception as exc:
+                    logger.error("[pipeline] ws.receive failed: %s", self._fmt_exc(exc))
                     break
                 if data.get("type") == "websocket.disconnect":
+                    logger.info("[pipeline] websocket.disconnect event received")
                     break
                 if "bytes" in data:
                     await self.handle_audio(data["bytes"], ws)
                 elif "text" in data:
                     msg = json.loads(data["text"])
+                    if msg.get("type") == "client_event":
+                        if msg.get("event") == "session_close_request":
+                            self._client_close_reason = msg.get("reason", "manual")
+                            logger.info(
+                                "[pipeline] Client requested session close: reason=%s",
+                                self._client_close_reason,
+                            )
+                            break
+                        logger.debug("[pipeline] Received unknown client_event: %s", msg)
+                        continue
                     if msg.get("type") == "interrupt":
                         await self.cancel_current()
                         await self._send_json(ws, {"type": "interrupted"})
         finally:
+            logger.info(
+                "[pipeline] Conversation loop ending: current_task=%s",
+                self._task_state(self.current_task),
+                
+            )
+            logger.info(
+                "[pipeline] Session close reason=%s",
+                self._client_close_reason or "peer_disconnect/unknown",
+            )
             await self.cancel_current()
             for t in self._timer_tasks:
                 t.cancel()
@@ -370,9 +431,16 @@ class ConversationPipeline:
     async def handle_audio(self, audio_bytes: bytes, ws: WebSocket) -> None:
         self._last_activity = time.monotonic()
         self._inactivity_warning_sent = False  # reset on new activity
-        logger.debug("[pipeline] Audio chunk received (%d bytes)", len(audio_bytes))
+        logger.debug(
+            "[pipeline] Audio chunk received (%d bytes); current_task=%s",
+            len(audio_bytes),
+            self._task_state(self.current_task),
+        )
         # Barge-in: cancel ongoing response if a new audio chunk arrives
         if self.current_task and not self.current_task.done():
+            logger.info(
+                "[pipeline] Barge-in requested: canceling active turn before STT",
+            )
             await self.cancel_current()
             logger.info("[pipeline] Barge-in: previous turn cancelled")
             await self._send_json(ws, {"type": "barge_in"})
@@ -473,6 +541,10 @@ class ConversationPipeline:
                 # keep UI contract: assistant playback is inferred from assistant transcript + binary audio
                 send_ok = await self._safe_send_bytes(ws, audio)
                 if not send_ok:
+                    logger.warning(
+                        "[pipeline] Audio send failed and turn is being aborted: turn_id=%s",
+                        turn_id,
+                    )
                     self.history.pop()
                     return
             else:
@@ -484,6 +556,10 @@ class ConversationPipeline:
             self._pending_saves.append(asyncio.create_task(self._save_usage(llm_stream)))
 
         except asyncio.CancelledError:
+            logger.warning(
+                "[pipeline] Turn cancelled before completion: turn_id=%s",
+                turn_id,
+            )
             raise
         except (LLMTimeoutError, LLMUnavailableError, LLMError) as exc:
             logger.error("[pipeline] LLM failed: %s", exc)
@@ -657,11 +733,17 @@ class ConversationPipeline:
 
     async def cancel_current(self) -> None:
         if self.current_task and not self.current_task.done():
+            logger.debug(
+                "[pipeline] cancel_current: cancelling task state=%s",
+                self._task_state(self.current_task),
+            )
             self.current_task.cancel()
             try:
                 await self.current_task
             except asyncio.CancelledError:
                 pass
+            except Exception as exc:
+                logger.debug("[pipeline] cancel_current await failed: %s", self._fmt_exc(exc))
         if self.history and self.history[-1]["role"] == "user":
             self.history.pop()
 
@@ -682,6 +764,7 @@ class ConversationPipeline:
         # are not silently cancelled when the event loop shuts down the task.
         if self._pending_saves:
             await asyncio.gather(*self._pending_saves, return_exceptions=True)
+        logger.debug("[pipeline] Cleanup complete")
 
     # --- Timeout watchers ---
 
