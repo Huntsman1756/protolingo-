@@ -122,7 +122,7 @@ backend/
 ├── alembic/
 │   └── versions/                # DB migrations (31 migrations)
 │
-└── tests/                       # pytest suite (33 test files, 705 tests)
+└── tests/                       # pytest suite (38 test files, 783 tests)
 ```
 
 ## Database models

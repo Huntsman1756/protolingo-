@@ -5,10 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.8.4] - 2026-06-15
+## [1.8.4] - 2026-06-16
 
 ### Added
 - **German and French curricula completed**: all didactic content for German (`de-DE`) and French (`fr-FR`) is now fully translated — assessment question banks, phrasebook contexts, and curriculum competency checklists are entirely in the target language with no English remnants.
+- **Expanded test coverage**: 10 new test files (5 backend + 5 frontend) adding 97 new tests.
+- Backend: `test_flashcard_sm2.py` (57%→100%), `test_assessment_bank.py` (0%→100%), `test_limiter.py` (42%→100%), `test_lesson_generator.py` (51%→100%), `test_listening_service.py` (63%→64%).
+- Frontend: `tests/lib/utils.test.ts`, `tests/lib/logger.test.ts`, `tests/hooks/useLogout.test.tsx`, `tests/store/theme.test.ts`, `tests/store/loading.test.ts`.
+- Backend: 721 → 783 tests, coverage 81.41% → 82.54%.
+- Frontend: 329 → 364 tests, 16 → 21 test files.
 
 ### Fixed
 - German assessment bank: 2 vocabulary questions had options in English → translated to German.

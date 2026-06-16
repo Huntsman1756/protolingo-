@@ -108,10 +108,11 @@ function QuotaPill({
     <div className="w-full">
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${alert
-          ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
-          : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
-          }`}
+        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+          alert
+            ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
+            : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
+        }`}
       >
         <span>● {text}</span>
         <span className="text-fl-muted-4">{open ? '▴' : '▾'}</span>
@@ -210,7 +211,7 @@ export default function ConversationMode({
     apiFetch('/api/auth/quota')
       .then((r) => (r.ok ? r.json() : null))
       .then((data: QuotaStatus | null) => data && setQuota(data))
-      .catch(() => { })
+      .catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -233,7 +234,9 @@ export default function ConversationMode({
   const sessionActiveRef = useRef(false)
   const ttsChunkIndexRef = useRef(0)
   const lastAssistantAudioAtRef = useRef(0)
-  const closeReasonRef = useRef<'manual' | 'route_unload' | 'unknown'>('unknown')
+  const closeReasonRef = useRef<'manual' | 'route_unload' | 'unknown'>(
+    'unknown'
+  )
 
   useEffect(() => {
     assistantSpeakingRef.current = assistantSpeaking
@@ -246,7 +249,7 @@ export default function ConversationMode({
   const isLikelySpeech = useCallback(
     (
       audio: Float32Array,
-      minUtteranceMs = MIN_UTTERANCE_MS,
+      minUtteranceMs = MIN_UTTERANCE_MS
     ): { isSpeech: boolean; rms: number; durationMs: number } => {
       const samples = audio.length
       if (samples === 0) {
@@ -328,7 +331,8 @@ export default function ConversationMode({
       ) {
         convLogger.warn('ignored speech while assistant was speaking', {
           rms: speech.rms,
-          lastAssistantAudioMsAgo: performance.now() - lastAssistantAudioAtRef.current,
+          lastAssistantAudioMsAgo:
+            performance.now() - lastAssistantAudioAtRef.current,
         })
         return
       }
@@ -346,7 +350,10 @@ export default function ConversationMode({
         return
       }
 
-      if (wasAssistantSpeaking && sinceLastAssistantAudioMs < BARGE_IN_STARTUP_GUARD_MS) {
+      if (
+        wasAssistantSpeaking &&
+        sinceLastAssistantAudioMs < BARGE_IN_STARTUP_GUARD_MS
+      ) {
         convLogger.warn('ignored speech early in assistant playback window', {
           rms: speech.rms,
           sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
@@ -408,33 +415,36 @@ export default function ConversationMode({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vad.loading, vad.errored])
 
-  const finalizeSession = useCallback((reason: 'manual' | 'route_unload' | 'unknown' = 'unknown') => {
-    closeReasonRef.current = reason
-    if (!mountedRef.current) return
-    activeTurnIdRef.current = null
-    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send(
-        JSON.stringify({
-          type: 'client_event',
-          event: 'session_close_request',
-          reason,
-        })
-      )
-    }
-    wsRef.current?.close()
-    wsRef.current = null
-    vad.pause()
-    setAssistantSpeaking(false)
-    setUserSpeaking(false)
-    setStreamingText(null)
-    audioQueueRef.current?.cancel()
-    audioQueueRef.current = null
-    if (audioCtxRef.current) {
-      void audioCtxRef.current.close().catch(() => { })
-      audioCtxRef.current = null
-    }
-    setSessionActive(false)
-  }, [vad])
+  const finalizeSession = useCallback(
+    (reason: 'manual' | 'route_unload' | 'unknown' = 'unknown') => {
+      closeReasonRef.current = reason
+      if (!mountedRef.current) return
+      activeTurnIdRef.current = null
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+        wsRef.current.send(
+          JSON.stringify({
+            type: 'client_event',
+            event: 'session_close_request',
+            reason,
+          })
+        )
+      }
+      wsRef.current?.close()
+      wsRef.current = null
+      vad.pause()
+      setAssistantSpeaking(false)
+      setUserSpeaking(false)
+      setStreamingText(null)
+      audioQueueRef.current?.cancel()
+      audioQueueRef.current = null
+      if (audioCtxRef.current) {
+        void audioCtxRef.current.close().catch(() => {})
+        audioCtxRef.current = null
+      }
+      setSessionActive(false)
+    },
+    [vad]
+  )
 
   // Auto-scroll transcript to bottom
   useEffect(() => {
@@ -523,7 +533,7 @@ export default function ConversationMode({
           void event.data
             .arrayBuffer()
             .then((arrayBuffer) => handleAudioChunk(arrayBuffer))
-            .catch(() => { })
+            .catch(() => {})
           return
         }
 
