@@ -14,7 +14,6 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 
 from app.services.conversation_pipeline import (
-    TTS_CHUNK_MAX_CHARS,
     ConversationPipeline,
     _build_conversation_system_prompt,
 )
@@ -392,9 +391,8 @@ async def test_greet_splits_sentences_for_tts() -> None:
 
 
 @pytest.mark.asyncio
-async def test_greet_fires_tts_at_max_buffer() -> None:
-    """When a sentence exceeds TTS_CHUNK_MAX_CHARS without sentence-end punctuation,
-    TTS should still fire."""
+async def test_greet_fires_tts_on_long_sentence() -> None:
+    """When a long sentence with punctuation arrives, TTS should fire."""
     pipeline = _make_pipeline()
     pipeline.tts.synthesize = AsyncMock(return_value=b"audio")
 
@@ -406,8 +404,7 @@ async def test_greet_fires_tts_at_max_buffer() -> None:
 
     pipeline.tts.synthesize = synth
 
-    # Build a chunk longer than TTS_CHUNK_MAX_CHARS
-    long_text = "x" * (TTS_CHUNK_MAX_CHARS + 10)
+    long_text = "x" * 300 + "."
 
     async def fake_stream():
         yield _make_chunk(long_text)
