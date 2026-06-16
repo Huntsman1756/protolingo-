@@ -83,7 +83,14 @@ async def conversation_warmup(
 
 async def _warmup_tts(tts_service: object) -> None:
     try:
-        await tts_service.synthesize("ready")  # type: ignore[union-attr]
+        # OpenAI TTS warmup is just a lightweight model check; calling health
+        # avoids a full synthesis request during session start.
+        if hasattr(tts_service, "model"):
+            await tts_service.health()  # type: ignore[union-attr]
+        else:
+            # Local Kokoro benefits from a real synthesis once to warm model
+            # caches on first use.
+            await tts_service.synthesize("ready")  # type: ignore[union-attr]
         logger.info("[warmup] TTS ready")
     except Exception as exc:
         logger.warning("[warmup] TTS warmup error: %s", exc)

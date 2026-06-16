@@ -11,6 +11,7 @@ from httpx_ws import aconnect_ws
 
 from app.core.security import create_access_token
 from app.main import app
+from app.routers import conversation as conversation_router
 
 # ---------------------------------------------------------------------------
 # Helper: create a real user and return a valid JWT
@@ -104,6 +105,36 @@ async def test_ws_services_disabled_sends_error(db_session) -> None:
             pass  # closed after error is fine
 
     app.dependency_overrides.clear()
+
+
+@pytest.mark.asyncio
+async def test_warmup_tts_uses_health_for_openai() -> None:
+    """Warmup should call OpenAI health check and avoid a full synthesis."""
+    # OpenAI service exposes `.model`; use that to select health check mode.
+    tts_service = type(
+        "OpenAIMock",
+        (object,),
+        {},
+    )()
+    tts_service.model = "tts-1"
+    tts_service.health = AsyncMock()
+    tts_service.synthesize = AsyncMock()
+
+    await conversation_router._warmup_tts(tts_service)
+
+    tts_service.health.assert_called_once_with()
+    tts_service.synthesize.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_warmup_tts_falls_back_to_synthesis_for_local_service() -> None:
+    """Warmup for local service should still issue a tiny probe synthesis."""
+    tts_service = type("LocalMock", (object,), {})()
+    tts_service.synthesize = AsyncMock()
+
+    await conversation_router._warmup_tts(tts_service)
+
+    tts_service.synthesize.assert_called_once_with("ready")
 
 
 # ---------------------------------------------------------------------------

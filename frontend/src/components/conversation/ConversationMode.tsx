@@ -216,6 +216,7 @@ export default function ConversationMode({
   const audioQueueRef = useRef<AudioQueue | null>(null)
   const transcriptIdRef = useRef(0)
   const transcriptEndRef = useRef<HTMLDivElement | null>(null)
+  const activeTurnIdRef = useRef<number | null>(null)
   // Tracks whether the session ended cleanly so ws.onclose doesn't overwrite state
   const cleanEndRef = useRef(false)
   const mountedRef = useRef(true)
@@ -316,9 +317,10 @@ export default function ConversationMode({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vad.loading, vad.errored])
 
-  const finalizeSession = useCallback(() => {
-    if (!mountedRef.current) return
-    wsRef.current?.close()
+    const finalizeSession = useCallback(() => {
+      if (!mountedRef.current) return
+      activeTurnIdRef.current = null
+      wsRef.current?.close()
     wsRef.current = null
     vad.pause()
     setAssistantSpeaking(false)
@@ -383,24 +385,43 @@ export default function ConversationMode({
         setStatus('live')
       }
 
-      ws.onmessage = async (event) => {
+      const handleAudioChunk = (arrayBuffer: ArrayBuffer): void => {
+        const chunkId = ++ttsChunkIndexRef.current
+        convLogger.warn('playback chunk received', {
+          chunkId,
+          bytes: arrayBuffer.byteLength,
+        })
+        setAssistantSpeaking(true)
+        if (!audioQueueRef.current) {
+          convLogger.warn('audio queue missing for playback')
+          return
+        }
+        void audioQueueRef.current.enqueue(arrayBuffer).catch(() => {
+          setAssistantSpeaking(false)
+        })
+      }
+
+      ws.onmessage = (event) => {
         // Binary → TTS audio chunk
         if (event.data instanceof ArrayBuffer) {
-          const chunkId = ++ttsChunkIndexRef.current
-          convLogger.warn('playback chunk received', {
-            chunkId,
-            bytes: event.data.byteLength,
-          })
-          setAssistantSpeaking(true)
-          void audioQueueRef.current?.enqueue(event.data).catch(() => {
-            setAssistantSpeaking(false)
-          })
+          handleAudioChunk(event.data)
+          return
+        }
+        if (event.data instanceof Blob) {
+          void event.data
+            .arrayBuffer()
+            .then((arrayBuffer) => handleAudioChunk(arrayBuffer))
+            .catch(() => {})
           return
         }
 
         // Text → JSON control message
         try {
           const msg = JSON.parse(event.data as string) as WsMessage
+          if (msg.turn_id !== undefined) {
+            activeTurnIdRef.current = msg.turn_id
+          }
+
           switch (msg.type) {
             case 'transcript':
               if (msg.role === 'user') {
@@ -432,6 +453,12 @@ export default function ConversationMode({
               }
               break
 
+            case 'turn_complete':
+              if (activeTurnIdRef.current === null || activeTurnIdRef.current === msg.turn_id) {
+                setAssistantSpeaking(false)
+              }
+              break
+
             case 'barge_in':
               audioQueueRef.current?.cancel()
               setAssistantSpeaking(false)
@@ -440,6 +467,19 @@ export default function ConversationMode({
 
             case 'session_warning':
               setWarningSeconds(msg.remaining_seconds)
+              break
+
+            case 'status':
+              setStatus('live')
+              if (msg.value === 'thinking') {
+                setAssistantSpeaking(true)
+              } else if (msg.value === 'listening') {
+                setAssistantSpeaking(false)
+              } else if (msg.value === 'transcribing') {
+                setAssistantSpeaking(false)
+              } else if (msg.value === 'speaking') {
+                setAssistantSpeaking(true)
+              }
               break
 
             case 'session_end':
@@ -522,6 +562,13 @@ export default function ConversationMode({
     // AudioContext MUST be created during a user-gesture (this click handler)
     const ctx = new AudioContext()
     audioCtxRef.current = ctx
+    try {
+      if (ctx.state === 'suspended') {
+        await ctx.resume()
+      }
+    } catch (error) {
+      convLogger.warn('audio context resume failed', { error })
+    }
     audioQueueRef.current = createAudioQueue(ctx)
 
     cleanEndRef.current = false
@@ -534,21 +581,13 @@ export default function ConversationMode({
     setErrorMsg(null)
     setUserSpeaking(false)
     setAssistantSpeaking(false)
+    activeTurnIdRef.current = null
     refreshQuota()
 
     // Trigger model warmup on TTS/STT services and WAIT for them to be ready
     // before opening the WebSocket. Models are loaded lazily by the backend;
     // this ensures the first transcription/synthesis in the session is fast.
-    // Runs in parallel with VAD mic permission request.
     setStatus('warming')
-    const warmupPromise = Promise.race([
-      apiFetch('/api/conversation/warmup', { method: 'POST' }).catch(
-        () => undefined
-      ),
-      new Promise<undefined>((resolve) =>
-        setTimeout(() => resolve(undefined), 15_000)
-      ),
-    ])
 
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
@@ -563,7 +602,45 @@ export default function ConversationMode({
       audioQueueRef.current = null
     })
 
-    await warmupPromise
+    const warmupResponsePromise = apiFetch('/api/conversation/warmup', {
+      method: 'POST',
+    })
+    const warmupTimeout = new Promise<Response>((_, reject) => {
+      setTimeout(() => reject(new Error('warmup timeout')), 15_000)
+    })
+    let warmupResponse: Response
+    try {
+      warmupResponse = (await Promise.race([warmupResponsePromise, warmupTimeout])) as Response
+    } catch {
+      if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
+        ctx.close()
+        return
+      }
+      setErrorMsg(`${t('errorConnection')} [warmup request failed]`)
+      setStatus('error')
+      setSessionActive(false)
+      vad.pause()
+      ctx.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
+      return
+    }
+
+    if (!warmupResponse.ok) {
+      if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
+        ctx.close()
+        return
+      }
+      setErrorMsg(`${t('errorConnection')} [warmup ${warmupResponse.status}]`)
+      setStatus('error')
+      setSessionActive(false)
+      vad.pause()
+      ctx.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
+      return
+    }
+
     if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
       ctx.close()
       return

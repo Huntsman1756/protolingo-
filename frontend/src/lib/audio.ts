@@ -66,6 +66,7 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   let nextTime = 0
   let generation = 0
   const sources: AudioBufferSourceNode[] = []
+  const fallbackAudios: HTMLAudioElement[] = []
   const pendingChunks: ArrayBuffer[] = []
   let draining = false
   // Serialize decoding+scheduling so that chunks are always played in the
@@ -80,24 +81,30 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     arrayBuffer: ArrayBuffer,
     generationToken: number
   ): Promise<void> {
-    // Resume context if it was suspended (can happen on iOS Safari)
+    if (generationToken !== generation) return
+    if (ctx.state === 'closed') return
+
     if (ctx.state === 'suspended') {
-      await ctx.resume()
+      try {
+        await ctx.resume()
+      } catch {
+        // Context may still be unusable in constrained browsers; fallback keeps us moving.
+      }
     }
 
     let decoded: AudioBuffer
     try {
       decoded = await ctx.decodeAudioData(arrayBuffer.slice(0))
     } catch {
-      // Corrupt MP3, unsupported codec, or AudioContext already closed.
-      // Skip this chunk rather than breaking the entire playback chain.
       const now = Date.now()
       if (now - lastDecodeFailTs > 5000) {
         audioQueueLogger.warn('decode failed for TTS chunk')
         lastDecodeFailTs = now
       }
+      await _fallbackPlay(arrayBuffer.slice(0), generationToken)
       return
     }
+
     if (generationToken !== generation) return
 
     let source: AudioBufferSourceNode
@@ -109,7 +116,6 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
       return
     }
 
-    // Schedule with a tiny lead to avoid underrun; never schedule in the past
     const now = ctx.currentTime
     const startAt = Math.max(now + 0.005, nextTime)
     try {
@@ -122,6 +128,7 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
       }
       return
     }
+
     if (generationToken !== generation) {
       try {
         source.stop(0)
@@ -137,6 +144,33 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
       const idx = sources.indexOf(source)
       if (idx !== -1) sources.splice(idx, 1)
     }
+  }
+
+  async function _fallbackPlay(
+    arrayBuffer: ArrayBuffer,
+    generationToken: number
+  ): Promise<void> {
+    if (generationToken !== generation) return
+
+    const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' })
+    const url = URL.createObjectURL(blob)
+    const audio = new Audio(url)
+    fallbackAudios.push(audio)
+
+    await new Promise<void>((resolve) => {
+      const done = () => {
+        audio.removeEventListener('ended', done)
+        audio.removeEventListener('error', done)
+        URL.revokeObjectURL(url)
+        const idx = fallbackAudios.indexOf(audio)
+        if (idx !== -1) fallbackAudios.splice(idx, 1)
+        resolve()
+      }
+
+      audio.addEventListener('ended', done)
+      audio.addEventListener('error', done)
+      void audio.play().catch(done)
+    })
   }
 
   async function _drain(generationToken: number): Promise<void> {
@@ -180,6 +214,17 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
       } catch {
         // already stopped — ignore
       }
+    }
+    for (const audio of fallbackAudios) {
+      try {
+        audio.pause()
+        audio.src = ''
+      } catch {
+        // ignore
+      }
+    }
+    while (fallbackAudios.length) {
+      fallbackAudios.pop()
     }
     sources.length = 0
     nextTime = 0
