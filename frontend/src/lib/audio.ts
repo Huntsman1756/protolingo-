@@ -1,3 +1,5 @@
+import { getLogger } from '@/lib/logger'
+
 /**
  * Encodes a Float32Array of mono PCM samples into a standard WAV ArrayBuffer.
  * VAD delivers samples at 16 000 Hz; STT service accepts audio/wav.
@@ -48,7 +50,7 @@ export interface AudioQueue {
   cancel: () => void
 }
 
-const MAX_PENDING_CHUNKS = 8
+const audioQueueLogger = getLogger('audio-queue')
 
 /**
  * Creates a gapless audio playback queue backed by the Web Audio API.
@@ -71,6 +73,8 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   // takes for each chunk. Without this, a short chunk 2 could decode faster
   // than chunk 1 and get scheduled first, causing out-of-order playback.
   let chain: Promise<void> = Promise.resolve()
+  let lastDecodeFailTs = 0
+  let lastScheduleFailTs = 0
 
   async function _decode(
     arrayBuffer: ArrayBuffer,
@@ -87,6 +91,11 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     } catch {
       // Corrupt MP3, unsupported codec, or AudioContext already closed.
       // Skip this chunk rather than breaking the entire playback chain.
+      const now = Date.now()
+      if (now - lastDecodeFailTs > 5000) {
+        audioQueueLogger.warn('decode failed for TTS chunk')
+        lastDecodeFailTs = now
+      }
       return
     }
     if (generationToken !== generation) return
@@ -105,6 +114,11 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     try {
       source.start(startAt)
     } catch {
+      const now = Date.now()
+      if (now - lastScheduleFailTs > 5000) {
+        audioQueueLogger.warn('failed to schedule TTS chunk playback')
+        lastScheduleFailTs = now
+      }
       return
     }
     if (generationToken !== generation) {
@@ -141,9 +155,6 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   function enqueue(arrayBuffer: ArrayBuffer): Promise<void> {
     const generationToken = generation
     pendingChunks.push(arrayBuffer)
-    while (pendingChunks.length > MAX_PENDING_CHUNKS) {
-      pendingChunks.shift()
-    }
     if (!draining) {
       draining = true
       chain = chain.then(() => _drain(generationToken)).catch(() => {})
@@ -153,6 +164,11 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
 
   function cancel(): void {
     generation += 1
+    if (pendingChunks.length) {
+      audioQueueLogger.warn('canceling playback and dropping queued TTS chunks', {
+        chunks: pendingChunks.length,
+      })
+    }
     pendingChunks.length = 0
     for (const s of sources) {
       try {

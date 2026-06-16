@@ -107,11 +107,10 @@ function QuotaPill({
     <div className="w-full">
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
-          alert
+        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${alert
             ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
             : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
-        }`}
+          }`}
       >
         <span>● {text}</span>
         <span className="text-fl-muted-4">{open ? '▴' : '▾'}</span>
@@ -152,8 +151,8 @@ function vadRedemptionMs(cefrLevel: string | null | undefined): number {
   return 1500 // C1, C2
 }
 
-const MIN_UTTERANCE_MS = 750
-const MIN_UTTERANCE_RMS = 0.0045
+const MIN_UTTERANCE_MS = 550
+const MIN_UTTERANCE_RMS = 0.0035
 
 export default function ConversationMode({
   initialContext,
@@ -201,7 +200,7 @@ export default function ConversationMode({
     apiFetch('/api/auth/quota')
       .then((r) => (r.ok ? r.json() : null))
       .then((data: QuotaStatus | null) => data && setQuota(data))
-      .catch(() => {})
+      .catch(() => { })
   }, [])
 
   useEffect(() => {
@@ -263,9 +262,6 @@ export default function ConversationMode({
     },
     onSpeechStart: () => {
       speechStartedAtRef.current = performance.now()
-      if (!assistantSpeakingRef.current) {
-        return
-      }
       setUserSpeaking(true)
     },
     onSpeechEnd: (audio: Float32Array) => {
@@ -277,13 +273,13 @@ export default function ConversationMode({
       }
       setUserSpeaking(false)
 
-      // Ignore accidental detections when the session ended or wasn't speaking.
-      if (!sessionActiveRef.current || !assistantSpeakingRef.current) {
+      // Ignore accidental detections when the session ended.
+      if (!sessionActiveRef.current) {
         return
       }
 
-      // Barge-in: cancel in-progress TTS playback only on valid user speech.
-      if (audioQueueRef.current) {
+      // Barge-in: cancel in-progress TTS playback only when assistant is speaking.
+      if (assistantSpeakingRef.current && audioQueueRef.current) {
         audioQueueRef.current.cancel()
         setAssistantSpeaking(false)
       }
@@ -327,7 +323,7 @@ export default function ConversationMode({
     audioQueueRef.current?.cancel()
     audioQueueRef.current = null
     if (audioCtxRef.current) {
-      void audioCtxRef.current.close().catch(() => {})
+      void audioCtxRef.current.close().catch(() => { })
       audioCtxRef.current = null
     }
     setSessionActive(false)
@@ -387,11 +383,9 @@ export default function ConversationMode({
         // Binary → TTS audio chunk
         if (event.data instanceof ArrayBuffer) {
           setAssistantSpeaking(true)
-          try {
-            await audioQueueRef.current?.enqueue(event.data)
-          } catch {
+          void audioQueueRef.current?.enqueue(event.data).catch(() => {
             setAssistantSpeaking(false)
-          }
+          })
           return
         }
 

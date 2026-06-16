@@ -2,6 +2,9 @@
 
 import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
+import { getLogger } from '@/lib/logger'
+
+const errorLogger = getLogger('global-error')
 
 export default function GlobalError({
   error,
@@ -13,8 +16,7 @@ export default function GlobalError({
   const t = useTranslations('error')
 
   useEffect(() => {
-    // Log to console; in production wire to your observability tool
-    console.error('[FreeLingo] Unhandled error:', error)
+    errorLogger.error('Unhandled error', error)
   }, [error])
 
   return (
