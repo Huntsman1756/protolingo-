@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import re
 import time
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING
@@ -25,11 +24,9 @@ if TYPE_CHECKING:
 
 logger = get_logger(__name__)
 
-SENTENCE_END = re.compile(r'[.!?]["\'\)\]]?\s*$')
-TTS_CHUNK_TIMEOUT_SECONDS = 30.0
+TTS_TIMEOUT_SECONDS = 30.0
 TTS_MAX_RETRIES = 2
-TTS_RETRY_DELAY_SECONDS = 0.25
-TTS_MAX_CONSECUTIVE_FAILURES = 3
+TTS_RETRY_DELAY_SECONDS = 0.2
 
 WARNING_ADVANCE_SECONDS = 60  # How many seconds before timeout to send the warning
 
@@ -172,23 +169,6 @@ class ConversationPipeline:
         async with self._send_lock:
             await ws.send_json(data)
 
-    async def _send_bytes(self, ws: WebSocket, data: bytes) -> None:
-        async with self._send_lock:
-            await ws.send_bytes(data)
-
-    async def _safe_send_json(self, ws: WebSocket, data: dict) -> bool:
-        try:
-            async with self._send_lock:
-                await ws.send_json(data)
-            return True
-        except RuntimeError as exc:
-            # Happens when peer closes in parallel with send; not fatal for this chunk.
-            logger.debug("[pipeline] Socket closed while sending JSON: %s", exc)
-            return False
-        except Exception as exc:
-            logger.debug("[pipeline] JSON send failed: %s", exc)
-            return False
-
     async def _safe_send_bytes(self, ws: WebSocket, data: bytes) -> bool:
         try:
             async with self._send_lock:
@@ -205,37 +185,25 @@ class ConversationPipeline:
         async with self._send_lock:
             await ws.close(code=code)
 
-    def _should_flush_tts_sentence(self, sentence_buffer: str) -> bool:
-        stripped = sentence_buffer.strip()
-        return bool(stripped) and SENTENCE_END.search(stripped) is not None
-
-    def _split_tts_sentence(self, text: str) -> list[str]:
-        stripped = text.strip()
-        if not stripped:
-            return []
-        return [stripped]
-
-    async def _synthesize_chunk(self, text: str, chunk_id: int) -> bytes:
+    async def _synthesize_chunk(self, text: str) -> bytes:
         attempts = TTS_MAX_RETRIES + 1
         for attempt in range(1, attempts + 1):
             try:
                 return await asyncio.wait_for(
                     self.tts.synthesize(text, self._voice or None, self._stt_language),
-                    timeout=TTS_CHUNK_TIMEOUT_SECONDS,
+                    timeout=TTS_TIMEOUT_SECONDS,
                 )
             except TimeoutError:
                 if attempt >= attempts:
                     logger.warning(
-                        "[pipeline] TTS chunk %s timed out after %s seconds (%d/%d attempts)",
-                        chunk_id,
-                        TTS_CHUNK_TIMEOUT_SECONDS,
+                        "[pipeline] TTS request timed out after %s seconds (%d/%d attempts)",
+                        TTS_TIMEOUT_SECONDS,
                         attempt,
                         attempts,
                     )
                     raise
                 logger.warning(
-                    "[pipeline] TTS chunk %s timeout (%d/%d); retrying",
-                    chunk_id,
+                    "[pipeline] TTS request timeout (%d/%d); retrying",
                     attempt,
                     attempts,
                 )
@@ -246,8 +214,7 @@ class ConversationPipeline:
                 if attempt >= attempts:
                     raise
                 logger.warning(
-                    "[pipeline] TTS chunk %s failed (%d/%d): %s",
-                    chunk_id,
+                    "[pipeline] TTS request failed (%d/%d): %s",
                     attempt,
                     attempts,
                     exc,
@@ -256,12 +223,7 @@ class ConversationPipeline:
 
     @staticmethod
     def _clean_sentence(raw_sentence: str) -> str:
-        """Strip memory markers from a sentence buffer using pure string ops.
-
-        Avoids regex (re.sub) in the hot streaming path — sentence buffers are
-        short (<150 chars) but this is called on every LLM token chunk that
-        forms a complete sentence, so every microsecond matters for fluidity.
-        """
+        """Strip memory markers from a sentence buffer using pure string ops."""
         raw = raw_sentence
 
         # 1. Strip complete <<MEMORY>>...<<ENDMEMORY>> blocks
@@ -289,103 +251,6 @@ class ConversationPipeline:
 
         return raw.strip()
 
-    def _create_tts_queue(
-        self,
-        ws: WebSocket,
-        stats: dict | None = None,
-    ) -> tuple[
-        asyncio.Queue[tuple[int, asyncio.Future[bytes] | None] | None],
-        list[asyncio.Future[bytes]],
-        asyncio.Task,
-        object,
-    ]:
-        tts_queue: asyncio.Queue[tuple[int, asyncio.Future[bytes] | None] | None] = asyncio.Queue()
-        tts_futures: list[asyncio.Future[bytes]] = []
-        chunk_counter = 0
-        breaker_open = False
-        consecutive_failures = 0
-
-        async def _tts_sender() -> None:
-            nonlocal breaker_open
-            nonlocal consecutive_failures
-            while True:
-                item = await tts_queue.get()
-                if item is None:
-                    break
-                chunk_id, future = item
-                if breaker_open:
-                    if future is not None and not future.done():
-                        future.cancel()
-                    continue
-                try:
-                    if future is None:
-                        continue
-                    audio = await future
-                    if not audio:
-                        consecutive_failures += 1
-                        logger.warning(
-                            "[pipeline] TTS chunk %s produced empty audio (failure %d/%d)",
-                            chunk_id,
-                            consecutive_failures,
-                            TTS_MAX_CONSECUTIVE_FAILURES,
-                        )
-                        if consecutive_failures >= TTS_MAX_CONSECUTIVE_FAILURES:
-                            breaker_open = True
-                            logger.warning(
-                                "[pipeline] TTS breaker opened: consecutive empty chunks reached limit",
-                            )
-                            for pending in tts_futures:
-                                if not pending.done():
-                                    pending.cancel()
-                        continue
-                except asyncio.CancelledError:
-                    raise
-                except Exception as exc:
-                    logger.warning("[pipeline] TTS chunk %s failed: %s", chunk_id, exc)
-                    await self._safe_send_json(
-                        ws,
-                        {"type": "error", "code": "tts_failed", "message": str(exc)},
-                    )
-                    consecutive_failures += 1
-                    if consecutive_failures >= TTS_MAX_CONSECUTIVE_FAILURES:
-                        breaker_open = True
-                        logger.warning(
-                            "[pipeline] TTS breaker opened after %d consecutive failures",
-                            consecutive_failures,
-                        )
-                        for pending in tts_futures:
-                            if not pending.done():
-                                pending.cancel()
-                    continue
-                consecutive_failures = 0
-
-                if stats is not None:
-                    stats["chunks"] += 1
-                    stats["bytes"] += len(audio)
-                logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
-                send_ok = await self._safe_send_bytes(ws, audio)
-                if not send_ok:
-                    break
-
-            logger.debug("[pipeline] TTS sender stopped")
-
-        sender_task = asyncio.create_task(_tts_sender())
-
-        def _enqueue_tts(text: str) -> None:
-            nonlocal chunk_counter
-            nonlocal breaker_open
-            if breaker_open:
-                return
-            chunk_counter += 1
-            chunk_id = chunk_counter
-            future: asyncio.Future[bytes] = asyncio.create_task(
-                self._synthesize_chunk(text, chunk_id),
-            )
-            tts_futures.append(future)
-            tts_queue.put_nowait((chunk_id, future))
-
-        return tts_queue, tts_futures, sender_task, _enqueue_tts
-
     async def _greet(self, ws: WebSocket) -> None:
         """Generate and stream an opening greeting from the assistant."""
         trigger = {
@@ -396,75 +261,47 @@ class ConversationPipeline:
             [{"role": "system", "content": self.system_prompt}] + self.history[-20:] + [trigger]
         )
 
-        tts_queue, tts_futures, sender_task, _enqueue_tts = self._create_tts_queue(ws)
-
         try:
             full_response = ""
-            sentence_buffer = ""
             llm_stream = await self.llm.chat(messages, stream=True)
             async for chunk in llm_stream:
                 token = chunk.choices[0].delta.content or ""
                 full_response += token
-                sentence_buffer += token
-                if self._should_flush_tts_sentence(sentence_buffer):
-                    clean_sentence = self._clean_sentence(sentence_buffer.strip())
-                    sentence_buffer = ""
-                    clean_display = strip_memory_marker(full_response).strip()
-                    await self._send_json(
-                        ws,
-                        {
-                            "type": "transcript",
-                            "role": "assistant",
-                            "text": clean_display,
-                            "final": False,
-                        },
-                    )
-                    if clean_sentence:
-                        for sentence in self._split_tts_sentence(clean_sentence):
-                            _enqueue_tts(sentence)
+            clean_full_response = self._clean_sentence(strip_memory_marker(full_response)).strip()
+            if not clean_full_response:
+                return
 
-            clean_buffer = self._clean_sentence(sentence_buffer.strip())
-            clean_full_response = strip_memory_marker(full_response).strip()
-            if clean_buffer:
-                await self._send_json(
-                    ws,
-                    {
-                        "type": "transcript",
-                        "role": "assistant",
-                        "text": clean_full_response,
-                        "final": False,
-                    },
-                )
-                for sentence in self._split_tts_sentence(clean_buffer):
-                    _enqueue_tts(sentence)
+            await self._send_json(
+                ws,
+                {
+                    "type": "transcript",
+                    "role": "assistant",
+                    "text": clean_full_response,
+                    "final": False,
+                },
+            )
+            audio = await self._synthesize_chunk(clean_full_response)
+            send_ok = await self._safe_send_bytes(ws, audio)
+            if not send_ok:
+                return
 
-            tts_queue.put_nowait(None)
-            await sender_task
-
-            if clean_full_response:
-                self.history.append({"role": "assistant", "content": clean_full_response})
-                self._pending_saves.append(
-                    asyncio.create_task(self._save_message("assistant", clean_full_response))
-                )
-                await self._send_json(
-                    ws,
-                    {
-                        "type": "transcript",
-                        "role": "assistant",
-                        "text": clean_full_response,
-                        "final": True,
-                    },
-                )
-                await self._send_json(ws, {"type": "turn_complete"})
+            self.history.append({"role": "assistant", "content": clean_full_response})
+            self._pending_saves.append(
+                asyncio.create_task(self._save_message("assistant", clean_full_response))
+            )
+            await self._send_json(
+                ws,
+                {
+                    "type": "transcript",
+                    "role": "assistant",
+                    "text": clean_full_response,
+                    "final": True,
+                },
+            )
+            await self._send_json(ws, {"type": "turn_complete"})
         except asyncio.CancelledError:
-            sender_task.cancel()
-            for f in tts_futures:
-                f.cancel()
             raise
         except Exception as exc:
-            sender_task.cancel()
-            for f in tts_futures:
-                f.cancel()
             logger.error("[pipeline] Greeting failed: %s", exc)
 
     async def run(self, ws: WebSocket) -> None:
@@ -511,7 +348,7 @@ class ConversationPipeline:
         stt_ms: float | None = None
         llm_ms: float | None = None
         tts_send_ms: float | None = None
-        tts_stats: dict = {"chunks": 0, "bytes": 0}
+        tts_bytes: int = 0
 
         # 1. STT
         try:
@@ -554,93 +391,72 @@ class ConversationPipeline:
         # LLM failures or barge-in cancellations.
         messages = [{"role": "system", "content": self.system_prompt}] + self.history[-20:]
 
-        # Pipeline: TTS futures fire immediately as each sentence is ready;
-        # a dedicated sender task awaits them in order so audio arrives gapless.
-        tts_queue, tts_futures, sender_task, _enqueue_tts = self._create_tts_queue(
-            ws, stats=tts_stats
-        )
-
+        full_response = ""
+        clean_full_response = ""
         try:
             await self._send_json(ws, {"type": "status", "value": "thinking"})
-            full_response = ""
-            sentence_buffer = ""
 
             llm_t0 = time.perf_counter()
             llm_stream = await self.llm.chat(messages, stream=True)
             async for chunk in llm_stream:
                 token = chunk.choices[0].delta.content or ""
                 full_response += token
-                sentence_buffer += token
+            llm_ms = (time.perf_counter() - llm_t0) * 1000
 
-                # 3. Flush complete sentence — fire TTS immediately (non-blocking)
-                if self._should_flush_tts_sentence(sentence_buffer):
-                    clean_sentence = self._clean_sentence(sentence_buffer.strip())
-                    sentence_buffer = ""
-                    clean_display = strip_memory_marker(full_response).strip()
-                    await self._send_json(
-                        ws,
-                        {
-                            "type": "transcript",
-                            "role": "assistant",
-                            "text": clean_display,
-                            "final": False,
-                        },
-                    )
-                    if clean_sentence:
-                        for sentence in self._split_tts_sentence(clean_sentence):
-                            _enqueue_tts(sentence)
-
-            clean_full_response = strip_memory_marker(full_response)
-            if "<<MEMORY>>" in full_response:
-                sentence_buffer = sentence_buffer[
-                    : len(sentence_buffer) - (len(full_response) - len(clean_full_response))
-                ].strip()
-                sentence_buffer = self._clean_sentence(sentence_buffer)
-            if sentence_buffer.strip():
+            clean_full_response = self._clean_sentence(strip_memory_marker(full_response)).strip()
+            if clean_full_response:
                 await self._send_json(
                     ws,
                     {
                         "type": "transcript",
                         "role": "assistant",
-                        "text": clean_full_response.strip(),
+                        "text": clean_full_response,
                         "final": False,
                     },
                 )
-                for sentence in self._split_tts_sentence(sentence_buffer.strip()):
-                    _enqueue_tts(sentence)
-
-            llm_ms = (time.perf_counter() - llm_t0) * 1000
-
-            # Signal end and wait for all audio to be sent before finalising turn
-            tts_queue.put_nowait(None)
-            tts_send_t0 = time.perf_counter()
-            await sender_task
-            tts_send_ms = (time.perf_counter() - tts_send_t0) * 1000
+                tts_send_t0 = time.perf_counter()
+                audio = await self._synthesize_chunk(clean_full_response)
+                tts_bytes = len(audio)
+                tts_send_ms = (time.perf_counter() - tts_send_t0) * 1000
+                send_ok = await self._safe_send_bytes(ws, audio)
+                if not send_ok:
+                    self.history.pop()
+                    return
 
             # Persist token usage best-effort (never blocks the response)
             self._pending_saves.append(asyncio.create_task(self._save_usage(llm_stream)))
 
         except asyncio.CancelledError:
-            sender_task.cancel()
-            for f in tts_futures:
-                f.cancel()
             raise
         except (LLMTimeoutError, LLMUnavailableError, LLMError) as exc:
             logger.error("[pipeline] LLM failed: %s", exc)
-            sender_task.cancel()
-            for f in tts_futures:
-                f.cancel()
             logger.info(
                 "pipeline_turn_metrics",
                 stage="llm_failed",
                 stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
                 llm_ms=round(llm_ms, 1) if llm_ms is not None else None,
                 tts_send_ms=round(tts_send_ms, 1) if tts_send_ms is not None else None,
-                tts_chunks_sent=tts_stats["chunks"],
-                tts_audio_bytes=tts_stats["bytes"],
+                tts_chunks_sent=1 if clean_full_response else 0,
+                tts_audio_bytes=tts_bytes if clean_full_response else 0,
                 turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
             )
             await self._send_json(ws, {"type": "error", "code": "llm_failed", "message": str(exc)})
+            if self.history and self.history[-1]["role"] == "user":
+                self.history.pop()
+            return
+        except Exception as exc:
+            logger.error("[pipeline] TTS failed: %s", exc)
+            logger.info(
+                "pipeline_turn_metrics",
+                stage="tts_failed",
+                stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
+                llm_ms=round(llm_ms, 1) if llm_ms is not None else None,
+                tts_send_ms=round(tts_send_ms, 1) if tts_send_ms is not None else None,
+                tts_chunks_sent=1 if clean_full_response else 0,
+                tts_audio_bytes=tts_bytes,
+                turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
+            )
+            await self._send_json(ws, {"type": "error", "code": "tts_failed", "message": str(exc)})
             if self.history and self.history[-1]["role"] == "user":
                 self.history.pop()
             return
@@ -677,8 +493,8 @@ class ConversationPipeline:
             stt_ms=round(stt_ms, 1) if stt_ms is not None else None,
             llm_ms=round(llm_ms, 1) if llm_ms is not None else None,
             tts_send_ms=round(tts_send_ms, 1) if tts_send_ms is not None else None,
-            tts_chunks_sent=tts_stats["chunks"],
-            tts_audio_bytes=tts_stats["bytes"],
+            tts_chunks_sent=1 if clean_full_response else 0,
+            tts_audio_bytes=tts_bytes if clean_full_response else 0,
             turn_total_ms=round((time.perf_counter() - turn_t0) * 1000, 1),
         )
         await self._send_json(

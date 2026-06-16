@@ -1,8 +1,8 @@
 """Comprehensive unit tests for ConversationPipeline.
 
-Covers _clean_sentence, _build_conversation_system_prompt, _create_tts_queue,
-_greet, run, handle_audio, _process edge cases, timeout watchers, cancel_current,
-cleanup, _save_usage, and _save_message.
+Covers _clean_sentence, _build_conversation_system_prompt, _synthesize_chunk,
+_greet, run, handle_audio, _process edge cases, timeout watchers,
+cancel_current, cleanup, _save_usage, and _save_message.
 """
 
 from __future__ import annotations
@@ -227,107 +227,6 @@ def test_init_recorded_starts_false() -> None:
 
 
 # ---------------------------------------------------------------------------
-# _create_tts_queue
-# ---------------------------------------------------------------------------
-
-
-@pytest.mark.asyncio
-async def test_create_tts_queue_sends_audio_chunks() -> None:
-    pipeline = _make_pipeline()
-    pipeline.tts.synthesize = AsyncMock(return_value=b"audio-data")
-
-    ws = FakeWS()
-    stats: dict = {"chunks": 0, "bytes": 0}
-    tts_queue, tts_futures, sender_task, enqueue = pipeline._create_tts_queue(ws, stats=stats)
-
-    enqueue("Hello.")
-    tts_queue.put_nowait(None)
-    await sender_task
-
-    assert stats["chunks"] == 1
-    assert stats["bytes"] == 10
-    assert any(m[0] == "bytes" and m[1] == b"audio-data" for m in ws.sent)
-
-
-@pytest.mark.asyncio
-async def test_create_tts_queue_sends_multiple_chunks_in_order() -> None:
-    pipeline = _make_pipeline()
-    call_order: list[str] = []
-
-    async def synth(text: str, voice, lang):
-        call_order.append(text)
-        return f"audio:{text}".encode()
-
-    pipeline.tts.synthesize = synth
-
-    ws = FakeWS()
-    tts_queue, _, sender_task, enqueue = pipeline._create_tts_queue(ws)
-
-    enqueue("First.")
-    enqueue("Second.")
-    enqueue("Third.")
-    tts_queue.put_nowait(None)
-    await sender_task
-
-    assert call_order == ["First.", "Second.", "Third."]
-    bytes_msgs = [m[1] for m in ws.sent if m[0] == "bytes"]
-    assert len(bytes_msgs) == 3
-
-
-@pytest.mark.asyncio
-async def test_create_tts_queue_sends_error_on_tts_failure() -> None:
-    pipeline = _make_pipeline()
-    pipeline.tts.synthesize = AsyncMock(side_effect=Exception("TTS broken"))
-
-    ws = FakeWS()
-    tts_queue, _, sender_task, enqueue = pipeline._create_tts_queue(ws)
-
-    enqueue("Hello.")
-    tts_queue.put_nowait(None)
-    await sender_task
-
-    errors = [m for m in ws.json_messages() if m.get("type") == "error"]
-    assert len(errors) >= 1
-    assert any(e["code"] == "tts_failed" for e in errors)
-
-
-@pytest.mark.asyncio
-async def test_create_tts_queue_none_sentinel_stops_cleanly() -> None:
-    pipeline = _make_pipeline()
-    pipeline.tts.synthesize = AsyncMock(return_value=b"x")
-
-    ws = FakeWS()
-    tts_queue, _, sender_task, _ = pipeline._create_tts_queue(ws)
-
-    tts_queue.put_nowait(None)
-    await sender_task
-    # Should complete without error
-
-
-@pytest.mark.asyncio
-async def test_create_tts_queue_passes_voice_and_language() -> None:
-    pipeline = _make_pipeline(voice="alloy")
-    received_voice: list = []
-    received_lang: list = []
-
-    async def synth(text, voice, lang):
-        received_voice.append(voice)
-        received_lang.append(lang)
-        return b"ok"
-
-    pipeline.tts.synthesize = synth
-
-    ws = FakeWS()
-    tts_queue, _, sender_task, enqueue = pipeline._create_tts_queue(ws)
-    enqueue("Hi.")
-    tts_queue.put_nowait(None)
-    await sender_task
-
-    assert received_voice == ["alloy"]
-    assert received_lang == [pipeline._stt_language]
-
-
-# ---------------------------------------------------------------------------
 # _greet
 # ---------------------------------------------------------------------------
 
@@ -366,7 +265,7 @@ async def test_greet_handles_llm_error() -> None:
 
 
 @pytest.mark.asyncio
-async def test_greet_splits_sentences_for_tts() -> None:
+async def test_greet_synthesizes_full_text_once() -> None:
     pipeline = _make_pipeline()
     pipeline.tts.synthesize = AsyncMock(return_value=b"audio")
 
@@ -386,12 +285,12 @@ async def test_greet_splits_sentences_for_tts() -> None:
     ws = FakeWS()
     await pipeline._greet(ws)
 
-    # Should have fired TTS for at least the first complete sentence
-    assert len(tts_texts) >= 1
+    assert len(tts_texts) == 1
+    assert tts_texts[0] == "Hello. How are you? I hope you're well."
 
 
 @pytest.mark.asyncio
-async def test_greet_fires_tts_on_long_sentence() -> None:
+async def test_greet_synthesizes_long_response_in_one_call() -> None:
     """When a long sentence with punctuation arrives, TTS should fire."""
     pipeline = _make_pipeline()
     pipeline.tts.synthesize = AsyncMock(return_value=b"audio")
@@ -414,7 +313,8 @@ async def test_greet_fires_tts_on_long_sentence() -> None:
     ws = FakeWS()
     await pipeline._greet(ws)
 
-    assert len(tts_texts) >= 1
+    assert len(tts_texts) == 1
+    assert tts_texts[0] == long_text
 
 
 @pytest.mark.asyncio
@@ -695,7 +595,27 @@ async def test_process_multiple_sentences_from_llm() -> None:
     ws = FakeWS()
     await pipeline._process(b"audio", ws)
 
-    assert len(tts_texts) >= 2  # at least two sentences triggered TTS
+    assert len(tts_texts) == 1
+    assert tts_texts[0] == "Once upon a time. There was a cat. The cat was happy."
+
+
+@pytest.mark.asyncio
+async def test_process_tts_failure_sends_error_frame() -> None:
+    pipeline = _make_pipeline()
+    pipeline.stt.transcribe = AsyncMock(return_value="Tell me a story")
+    pipeline.tts.synthesize = AsyncMock(side_effect=RuntimeError("TTS unavailable"))
+
+    async def fake_stream():
+        yield _make_chunk("Response with one full sentence.")
+
+    pipeline.llm.chat = AsyncMock(return_value=fake_stream())
+
+    ws = FakeWS()
+    await pipeline._process(b"audio", ws)
+
+    errors = [m for m in ws.json_messages() if m.get("type") == "error"]
+    assert any(e["code"] == "tts_failed" for e in errors)
+    assert not pipeline.history or pipeline.history[-1]["role"] != "user"
 
 
 @pytest.mark.asyncio
