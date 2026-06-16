@@ -327,11 +327,10 @@ export default function ChatPage() {
                     <div
                       key={c.id}
                       onClick={() => selectConversation(c.id)}
-                      className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${
-                        activeId === c.id
+                      className={`group border-fl-surface-2 flex cursor-pointer items-center justify-between border-b px-4 py-3 transition-colors ${activeId === c.id
                           ? 'bg-fl-surface-2 border-l-fl-fg border-l-2'
                           : 'hover:bg-fl-surface border-l-2 border-l-transparent'
-                      }`}
+                        }`}
                     >
                       <span
                         className={`text-fl-label truncate pr-1 font-mono leading-tight ${activeId === c.id ? 'text-fl-fg' : 'text-fl-muted-1'}`}
@@ -431,7 +430,7 @@ export default function ChatPage() {
                     <div className="border-fl-border mb-0.5 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border">
                       {msg.role === 'assistant' ? (
                         <Image
-                          src="/logo.png"
+                          src="/logo_head.png"
                           alt="Tutor"
                           width={28}
                           height={28}
@@ -458,11 +457,10 @@ export default function ChatPage() {
                     </div>
                     <div className={`max-w-[75%] min-w-[10rem] text-left`}>
                       <div
-                        className={`word-selectable border px-4 py-3 text-left font-mono text-sm leading-relaxed ${
-                          msg.role === 'user'
+                        className={`word-selectable border px-4 py-3 text-left font-mono text-sm leading-relaxed ${msg.role === 'user'
                             ? 'bg-fl-accent text-fl-accent-fg border-fl-accent'
                             : 'bg-fl-surface text-fl-fg-2 border-fl-border'
-                        }`}
+                          }`}
                         onMouseUp={
                           msg.role === 'assistant'
                             ? () => handleTextMouseUp(msg.content)
