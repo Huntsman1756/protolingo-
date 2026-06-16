@@ -209,8 +209,7 @@ class ConversationPipeline:
     def _should_flush_tts_sentence(self, sentence_buffer: str) -> bool:
         stripped = sentence_buffer.strip()
         return bool(stripped) and (
-            SENTENCE_END.search(stripped) is not None
-            or len(stripped) >= TTS_CHUNK_MAX_CHARS
+            SENTENCE_END.search(stripped) is not None or len(stripped) >= TTS_CHUNK_MAX_CHARS
         )
 
     def _split_tts_sentence(self, text: str) -> list[str]:
@@ -240,7 +239,7 @@ class ConversationPipeline:
                     self.tts.synthesize(text, self._voice or None, self._stt_language),
                     timeout=TTS_CHUNK_TIMEOUT_SECONDS,
                 )
-            except asyncio.TimeoutError as exc:
+            except TimeoutError:
                 if attempt >= attempts:
                     logger.warning(
                         "[pipeline] TTS chunk %s timed out after %s seconds (%d/%d attempts)",
@@ -316,9 +315,7 @@ class ConversationPipeline:
         asyncio.Task,
         object,
     ]:
-        tts_queue: asyncio.Queue[
-            tuple[int, asyncio.Future[bytes] | None] | None
-        ] = asyncio.Queue()
+        tts_queue: asyncio.Queue[tuple[int, asyncio.Future[bytes] | None] | None] = asyncio.Queue()
         tts_futures: list[asyncio.Future[bytes]] = []
         chunk_counter = 0
         breaker_open = False
@@ -361,6 +358,10 @@ class ConversationPipeline:
                     raise
                 except Exception as exc:
                     logger.warning("[pipeline] TTS chunk %s failed: %s", chunk_id, exc)
+                    await self._safe_send_json(
+                        ws,
+                        {"type": "error", "code": "tts_failed", "message": str(exc)},
+                    )
                     consecutive_failures += 1
                     if consecutive_failures >= TTS_MAX_CONSECUTIVE_FAILURES:
                         breaker_open = True
@@ -421,9 +422,7 @@ class ConversationPipeline:
                 token = chunk.choices[0].delta.content or ""
                 full_response += token
                 sentence_buffer += token
-                if (
-                    self._should_flush_tts_sentence(sentence_buffer)
-                ):
+                if self._should_flush_tts_sentence(sentence_buffer):
                     clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
                     clean_display = strip_memory_marker(full_response).strip()
@@ -590,9 +589,7 @@ class ConversationPipeline:
                 sentence_buffer += token
 
                 # 3. Flush complete sentence — fire TTS immediately (non-blocking)
-                if (
-                    self._should_flush_tts_sentence(sentence_buffer)
-                ):
+                if self._should_flush_tts_sentence(sentence_buffer):
                     clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
                     clean_display = strip_memory_marker(full_response).strip()

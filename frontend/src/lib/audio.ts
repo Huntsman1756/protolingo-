@@ -72,7 +72,10 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   // than chunk 1 and get scheduled first, causing out-of-order playback.
   let chain: Promise<void> = Promise.resolve()
 
-  async function _decode(arrayBuffer: ArrayBuffer, generationToken: number): Promise<void> {
+  async function _decode(
+    arrayBuffer: ArrayBuffer,
+    generationToken: number
+  ): Promise<void> {
     // Resume context if it was suspended (can happen on iOS Safari)
     if (ctx.state === 'suspended') {
       await ctx.resume()
