@@ -165,9 +165,12 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   function cancel(): void {
     generation += 1
     if (pendingChunks.length) {
-      audioQueueLogger.warn('canceling playback and dropping queued TTS chunks', {
-        chunks: pendingChunks.length,
-      })
+      audioQueueLogger.warn(
+        'canceling playback and dropping queued TTS chunks',
+        {
+          chunks: pendingChunks.length,
+        }
+      )
     }
     pendingChunks.length = 0
     for (const s of sources) {
