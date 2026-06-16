@@ -152,6 +152,9 @@ function vadRedemptionMs(cefrLevel: string | null | undefined): number {
   return 1500 // C1, C2
 }
 
+const MIN_UTTERANCE_MS = 750
+const MIN_UTTERANCE_RMS = 0.0045
+
 export default function ConversationMode({
   initialContext,
   autoStart,
@@ -215,6 +218,34 @@ export default function ConversationMode({
   const cleanEndRef = useRef(false)
   const mountedRef = useRef(true)
   const startAttemptRef = useRef(0)
+  const assistantSpeakingRef = useRef(false)
+  const speechStartedAtRef = useRef<number | null>(null)
+  const sessionActiveRef = useRef(false)
+
+  useEffect(() => {
+    assistantSpeakingRef.current = assistantSpeaking
+  }, [assistantSpeaking])
+
+  useEffect(() => {
+    sessionActiveRef.current = sessionActive
+  }, [sessionActive])
+
+  const isLikelySpeech = useCallback((audio: Float32Array): boolean => {
+    const samples = audio.length
+    if (samples === 0) return false
+    const startedAt = speechStartedAtRef.current
+    const durationMs = (samples / 16000) * 1000
+    if (!startedAt || durationMs < MIN_UTTERANCE_MS) {
+      return false
+    }
+    let energy = 0
+    for (let i = 0; i < samples; i += 1) {
+      const sample = audio[i]
+      energy += sample * sample
+    }
+    const rms = Math.sqrt(energy / samples)
+    return rms >= MIN_UTTERANCE_RMS
+  }, [])
 
   // ─── VAD ──────────────────────────────────────────────────────────────────
   // MicVAD.new() loads the ONNX model but does NOT request mic permission yet.
@@ -231,15 +262,32 @@ export default function ConversationMode({
       ort.env.wasm.numThreads = 1
     },
     onSpeechStart: () => {
-      // Barge-in: immediately cancel any in-progress TTS playback
-      if (audioQueueRef.current) {
-        audioQueueRef.current.cancel()
-        setAssistantSpeaking(false)
+      speechStartedAtRef.current = performance.now()
+      if (!assistantSpeakingRef.current) {
+        return
       }
       setUserSpeaking(true)
     },
     onSpeechEnd: (audio: Float32Array) => {
+      const isSpeech = isLikelySpeech(audio)
+      speechStartedAtRef.current = null
+      if (!isSpeech) {
+        setUserSpeaking(false)
+        return
+      }
       setUserSpeaking(false)
+
+      // Ignore accidental detections when the session ended or wasn't speaking.
+      if (!sessionActiveRef.current || !assistantSpeakingRef.current) {
+        return
+      }
+
+      // Barge-in: cancel in-progress TTS playback only on valid user speech.
+      if (audioQueueRef.current) {
+        audioQueueRef.current.cancel()
+        setAssistantSpeaking(false)
+      }
+
       const ws = wsRef.current
       if (ws && ws.readyState === WebSocket.OPEN) {
         const wav = float32ToWav(audio, 16000)
@@ -476,6 +524,7 @@ export default function ConversationMode({
     cleanEndRef.current = false
     setStatus('connecting')
     setSessionActive(true)
+    setAssistantSpeaking(false)
     setTranscript([])
     setStreamingText(null)
     setWarningSeconds(null)
