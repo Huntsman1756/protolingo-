@@ -171,11 +171,12 @@ Used by `require_subscription` in `core/deps.py`, which gates all chat, listenin
 WebSocket-based voice conversation orchestrator:
 1. Starts the initial greeting as a cancellable task, then immediately enters the WebSocket receive loop.
 2. Receives audio chunks from client (WebSocket binary frames) and resets inactivity state.
-3. Barge-in: new audio cancels the current greeting or LLM+TTS generation and sends `barge_in` to the client.
+3. Barge-in protocol: explicit interrupts or new audio while a backend task is active can cancel the current greeting or LLM+TTS generation and send `barge_in` to the client. The current frontend disables automatic barge-in during assistant playback for stability.
 4. Sends audio to STT service for transcription; empty/whitespace transcriptions are ignored and do not call the LLM.
 5. Builds prompt with system message + last 20 message history.
-6. Streams LLM response.
-7. Splits on sentence boundaries (regex `SENTENCE_END`).
-8. Sends each sentence to TTS, returning MP3 binary frames back to client.
-9. Serializes all WebSocket writes through one send lock so audio, transcript/status messages, timeout watchers, and close frames do not race.
-10. Timeout watchers: max duration (default 30 min) and inactivity (default 3 min) with 60 s warnings.
+6. Collects the LLM response, strips memory markers, and validates the speech text.
+7. Synthesizes the complete assistant response through TTS.
+8. Sends the MP3 binary frame to the client before publishing the assistant transcript, so the UI never shows a tutor text without an associated audio frame.
+9. Emits the final assistant transcript, `status=listening`, and `turn_complete` only after successful audio generation/send.
+10. Serializes all WebSocket writes through one send lock so audio, transcript/status messages, timeout watchers, and close frames do not race.
+11. Timeout watchers: max duration (default 30 min) and inactivity (default 3 min) with 60 s warnings.

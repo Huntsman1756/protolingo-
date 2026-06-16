@@ -63,7 +63,7 @@ const audioQueueLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
  * The AudioContext must be created during a user gesture to satisfy browser
  * autoplay policies.
  */
-export function createAudioQueue(ctx: AudioContext): AudioQueue {
+export function createAudioQueue(ctx: AudioContext, onIdle?: () => void): AudioQueue {
   // nextTime tracks when the next chunk should start (in AudioContext time).
   // Using a closure variable (not module-level) so multiple instances are safe.
   let nextTime = 0
@@ -80,6 +80,17 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   let lastDecodeFailTs = 0
   let lastScheduleFailTs = 0
   let chunkSeq = 0
+
+  function notifyIdle(): void {
+    if (
+      !draining &&
+      pendingChunks.length === 0 &&
+      sources.length === 0 &&
+      fallbackAudios.length === 0
+    ) {
+      onIdle?.()
+    }
+  }
 
   async function _decode(
     arrayBuffer: ArrayBuffer,
@@ -179,12 +190,13 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
 
     sources.push(source)
     source.onended = () => {
-      audioQueueLogger.warn('TTS chunk playback ended', {
-        chunkId,
-        remainingSources: Math.max(0, sources.length - 1),
-      })
       const idx = sources.indexOf(source)
       if (idx !== -1) sources.splice(idx, 1)
+      audioQueueLogger.warn('TTS chunk playback ended', {
+        chunkId,
+        remainingSources: sources.length,
+      })
+      notifyIdle()
     }
   }
 
@@ -211,6 +223,7 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
         URL.revokeObjectURL(url)
         const idx = fallbackAudios.indexOf(audio)
         if (idx !== -1) fallbackAudios.splice(idx, 1)
+        notifyIdle()
         resolve()
       }
 
@@ -248,6 +261,7 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     } finally {
       if (generationToken === generation && pendingChunks.length === 0) {
         draining = false
+        notifyIdle()
       }
     }
   }
@@ -308,6 +322,7 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     nextTime = 0
     draining = false
     chain = Promise.resolve()
+    notifyIdle()
   }
 
   return { enqueue, cancel }

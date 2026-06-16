@@ -153,6 +153,7 @@ function vadRedemptionMs(cefrLevel: string | null | undefined): number {
 }
 
 const ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS = false
+const ENABLE_CONVERSATION_BARGE_IN = false
 const MIN_UTTERANCE_MS = 900
 const MIN_UTTERANCE_RMS = 0.012
 const INTERRUPTION_MIN_UTTERANCE_MS = 1200
@@ -336,6 +337,15 @@ export default function ConversationMode({
         performance.now() - lastAssistantAudioAtRef.current
       const wasAssistantSpeaking = assistantSpeakingRef.current
 
+      if (wasAssistantSpeaking && !ENABLE_CONVERSATION_BARGE_IN) {
+        convLogger.warn('ignored user speech while assistant audio is active', {
+          rms: speech.rms,
+          durationMs: Math.round(speech.durationMs),
+          sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
+        })
+        return
+      }
+
       if (wasAssistantSpeaking && sinceLastAssistantAudioMs < BARGE_IN_STARTUP_GUARD_MS) {
         convLogger.warn('ignored speech early in assistant playback window', {
           rms: speech.rms,
@@ -488,11 +498,12 @@ export default function ConversationMode({
           bytes: arrayBuffer.byteLength,
         })
         lastAssistantAudioAtRef.current = performance.now()
-        setAssistantSpeaking(true)
         if (!audioQueueRef.current) {
           convLogger.warn('audio queue missing for playback')
+          setAssistantSpeaking(false)
           return
         }
+        setAssistantSpeaking(true)
         void audioQueueRef.current.enqueue(arrayBuffer).catch((error) => {
           convLogger.error('audio queue enqueue failed', {
             chunkId,
@@ -555,12 +566,6 @@ export default function ConversationMode({
               break
 
             case 'turn_complete':
-              if (
-                activeTurnIdRef.current === null ||
-                activeTurnIdRef.current === msg.turn_id
-              ) {
-                setAssistantSpeaking(false)
-              }
               break
 
             case 'barge_in':
@@ -580,11 +585,7 @@ export default function ConversationMode({
             case 'status':
               setStatus('live')
               convLogger.debug('status update', { value: msg.value })
-              if (msg.value === 'thinking') {
-                setAssistantSpeaking(true)
-              } else if (msg.value === 'listening') {
-                setAssistantSpeaking(false)
-              } else if (msg.value === 'transcribing') {
+              if (msg.value === 'transcribing') {
                 setAssistantSpeaking(false)
               } else if (msg.value === 'speaking') {
                 setAssistantSpeaking(true)
@@ -685,7 +686,9 @@ export default function ConversationMode({
     } catch (error) {
       convLogger.warn('audio context resume failed', { error })
     }
-    audioQueueRef.current = createAudioQueue(ctx)
+    audioQueueRef.current = createAudioQueue(ctx, () => {
+      setAssistantSpeaking(false)
+    })
 
     cleanEndRef.current = false
     setStatus('connecting')

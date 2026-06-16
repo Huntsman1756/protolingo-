@@ -1,5 +1,5 @@
 ---
-description: "Phase 3 specification for FreeLingo: real-time voice conversation via WebSocket pipeline — VAD in browser (vad-react/ONNX threaded WASM), STT transcription, LLM streaming response, sentence-level TTS synthesis, gapless AudioContext playback, barge-in support, and configurable session timeouts."
+description: "Phase 3 specification for FreeLingo: real-time voice conversation via WebSocket pipeline — VAD in browser (vad-react/ONNX threaded WASM), STT transcription, LLM response generation, TTS synthesis, AudioContext playback, stable turn-state handling, and configurable session timeouts."
 ---
 
 # Phase 3 — Real-Time Voice Conversation
@@ -63,16 +63,11 @@ These are set globally in `next.config.ts` via the `headers()` function.
 ### Audio processing
 
 - `float32ToWav(samples, sampleRate)`: encodes Float32Array PCM audio (16kHz mono from VAD) to WAV ArrayBuffer format for STT ingestion
-- `createAudioQueue(ctx)`: manages gapless audio playback using Web Audio API. Schedules consecutive `AudioBufferSourceNode`s using `ctx.currentTime` offsetting — each new chunk is scheduled to start exactly when the previous one ends, eliminating gaps between TTS sentences
+- `createAudioQueue(ctx, onIdle)`: manages audio playback using Web Audio API. Schedules MP3 chunks with `AudioBufferSourceNode`, tracks pending chunks and active sources, and calls `onIdle` only after playback has fully drained. The UI uses that callback to clear the assistant speaking indicator from real playback completion.
 
 ### Barge-in support
 
-If the user starts speaking while the AI is still generating/playing a response:
-1. VAD detects new speech → fires `onSpeechEnd`
-2. Frontend sends new audio chunks to WebSocket
-3. Backend detects new audio input → cancels current LLM streaming → cancels pending TTS sentences → sends `barge_in` message to frontend
-4. Frontend `AudioQueue.cancel()` stops all pending audio playback
-5. Pipeline restarts with new user input
+Automatic barge-in is disabled by default in the frontend (`ENABLE_CONVERSATION_BARGE_IN=false`) to prioritise stable turn completion. When assistant audio is active, accepted VAD speech is ignored instead of cancelling the tutor turn. The backend still supports explicit `interrupt` messages and `barge_in` handling for future/manual interruption flows.
 
 ### Transcript bubbles
 
@@ -106,11 +101,11 @@ At T-60 seconds, a `SessionTimeoutBanner` appears with a countdown. When the tim
 |-----------|------|-------------|
 | Client → Server | binary | WAV audio frame (float32 PCM, 16kHz mono) |
 | Client → Server | `interrupt` | Optional manual interruption message; cancels current generation |
-| Server → Client | `status` | Pipeline state (`transcribing`, `thinking`, `listening`) |
-| Server → Client | `transcript` | User STT result and assistant streaming/final text |
-| Server → Client | binary | MP3 audio chunk (one sentence of TTS) |
+| Server → Client | `status` | Pipeline state (`transcribing`, `thinking`, `speaking`, `listening`) |
+| Server → Client | `transcript` | User STT result and assistant final text |
+| Server → Client | binary | MP3 audio chunk for the assistant turn |
 | Server → Client | `barge_in` | Current response cancelled, new input being processed |
-| Server → Client | `turn_complete` | Assistant turn fully streamed and audio sent |
+| Server → Client | `turn_complete` | Assistant turn completed server-side after audio has been generated and sent |
 | Server → Client | `session_warning` | Timeout warning (60 s remaining) |
 | Server → Client | `session_end` | Session terminated by timeout |
 | Server → Client | `error` | Pipeline error with message |
@@ -131,24 +126,20 @@ On WebSocket connect:
 
 1. **Start greeting task**: generate the initial assistant greeting as a cancellable background task while the receive loop starts immediately
 2. **Receive audio**: read binary frame from WebSocket, reset inactivity timer
-3. **Barge-in check**: if there's an active greeting or LLM/TTS generation, cancel it and send `barge_in` so the client stops playback immediately
+3. **Barge-in check**: if an explicit interrupt/new audio arrives while a backend task is active, cancel it and send `barge_in` so the client can stop playback. The current frontend disables automatic barge-in during assistant playback.
 4. **STT**: send WAV bytes to STT service → get transcribed text; empty/whitespace STT results are ignored and do not trigger LLM/TTS
 5. **Context building**: prepend system prompt + last 20 messages (in-memory)
-6. **LLM streaming**: stream response from LLM adapter
-7. **Sentence splitting**: accumulate characters into a buffer (max 150 chars). On sentence end detection (period, question mark, exclamation mark followed by space/end), flush the completed sentence to TTS
-8. **TTS per sentence**: synthesize each sentence → send MP3 binary to client
-9. **Loop**: continue streaming until LLM response ends or barge-in occurs
-10. **Send transcript**: send the complete AI text as final `transcript` for the transcript display
-11. **Append to history/persist**: store the user+assistant exchange in memory and persist successful turns to `chat_history`
+6. **LLM response**: collect the assistant response from the LLM stream
+7. **TTS synthesis**: synthesize the complete assistant response into MP3 bytes
+8. **Send audio first**: send the MP3 binary frame to the browser before publishing the assistant transcript
+9. **Send transcript**: send the complete AI text as final `transcript` only after audio has been generated and sent, avoiding visible text without associated audio
+10. **Append to history/persist**: store the user+assistant exchange in memory and persist successful turns to `chat_history`
 
 All server writes to the WebSocket are serialized through a single send lock. This prevents timeout watchers, TTS sender tasks, transcript events, and close frames from writing concurrently to the same connection.
 
-### Sentence boundary detection
+### Assistant text/audio ordering
 
-A regex pattern (`SENTENCE_END`) identifies sentence boundaries in the streaming LLM output. Sentences are accumulated character-by-character and flushed when a boundary marker is encountered:
-- Period (`.`), question mark (`?`), exclamation mark (`!`)
-- Followed by whitespace or end-of-string
-- Buffer limit: 150 characters (prevents excessively long sentences from delaying audio)
+Assistant text is not sent to the frontend before TTS succeeds. The backend first generates the LLM response, synthesizes MP3 audio, sends the binary audio frame, and only then emits the final assistant `transcript`. This avoids the broken state where a tutor text appears in the transcript but no audio frame is available for playback.
 
 ### Timeout watchers
 
@@ -176,7 +167,7 @@ Log level is controlled by the `LOG_LEVEL` environment variable (default `INFO`)
 - STT failures: send error message to client, do not disconnect
 - Empty STT results: ignore the audio chunk and return to listening without generating an assistant reply
 - LLM failures: send error message, continue loop
-- TTS failures: send error message, skip the sentence
+- TTS failures: send error message and do not publish an assistant transcript for that failed turn
 - Total STT → response latency target: < 2 s on GPU, < 4 s on CPU
 
 ### Conversation history
@@ -224,9 +215,9 @@ Settings are stored in the User model (`conversation_max_duration`, `conversatio
 - [x] WebSocket rejects connections if TTS or STT is disabled
 - [x] Full STT → LLM → TTS pipeline works end-to-end
 - [x] VAD automatically detects speech start/end (no push-to-talk)
-- [x] Barge-in functional: user can interrupt AI by speaking
-- [x] Sentence boundary detection flushes TTS sentences without long pauses
-- [x] Gapless audio playback via `AudioQueue` — no gaps between sentences
+- [x] Barge-in protocol supported; automatic frontend barge-in is disabled by default for stability
+- [x] Assistant transcript is emitted only after TTS audio has been generated and sent
+- [x] Audio playback via `AudioQueue` tracks real queue idle state before clearing speaking UI
 - [x] COOP + COEP headers enable `SharedArrayBuffer` for threaded ONNX WASM
 - [x] Session timeout watchers (max duration + inactivity) with 60 s warnings
 - [x] Timeout settings configurable per user from `/settings`

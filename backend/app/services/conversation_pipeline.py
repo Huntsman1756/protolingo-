@@ -335,16 +335,6 @@ class ConversationPipeline:
                 return
             await self._send_status(ws, turn_id, "thinking")
 
-            await self._send_json(
-                ws,
-                {
-                    "type": "transcript",
-                    "role": "assistant",
-                    "text": clean_full_response,
-                    "final": False,
-                    "turn_id": turn_id,
-                },
-            )
             audio = await self._synthesize_chunk(clean_full_response)
             send_ok = await self._safe_send_bytes(ws, audio)
             if not send_ok:
@@ -524,16 +514,6 @@ class ConversationPipeline:
 
             clean_full_response = self._extract_speech_text(full_response)
             if clean_full_response:
-                await self._send_json(
-                    ws,
-                    {
-                        "type": "transcript",
-                        "role": "assistant",
-                        "text": clean_full_response,
-                        "final": False,
-                        "turn_id": turn_id,
-                    },
-                )
                 tts_send_t0 = time.perf_counter()
                 audio = await self._synthesize_chunk(clean_full_response)
                 tts_bytes = len(audio)

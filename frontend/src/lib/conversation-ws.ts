@@ -58,7 +58,7 @@ export interface SessionEndMessage {
 
 export interface StatusMessage {
   type: 'status'
-  value: 'transcribing' | 'thinking' | 'listening'
+  value: 'transcribing' | 'thinking' | 'speaking' | 'listening'
   turn_id?: number
 }
 

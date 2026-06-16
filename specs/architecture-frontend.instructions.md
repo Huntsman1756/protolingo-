@@ -216,7 +216,7 @@ Six Zustand stores hold all client-side state. No React Context is used for glob
 | Module | Purpose |
 |--------|---------|
 | `api.ts` | Fetch wrapper with auth interceptor: injects `Authorization` header, catches 401 → silent refresh → retry, redirects to `/login` on refresh failure |
-| `audio.ts` | Audio playback queue with gapless scheduling for voice conversation |
+| `audio.ts` | Audio playback queue for voice conversation; tracks real queue idle state so the UI clears "speaking" only after playback drains |
 | `conversation-ws.ts` | WebSocket client for the voice conversation pipeline, handles WAV chunk sending and MP3 reception |
 | `locales.ts` | next-intl locale detection and routing utilities |
 | `mappers.ts` | Data transformation helpers between API responses and frontend models |
@@ -322,14 +322,16 @@ Client sends first JSON auth frame with access token, voice preference, target l
     ↓
 VAD detects speech → send WAV chunks via WS
     ↓
-Server: STT → LLM stream → sentence splitting → TTS
+Server: STT → LLM response → TTS
     ↓
-Receive MP3 chunks via WS → AudioQueue schedules gapless playback
+Receive MP3 binary frame via WS → AudioQueue schedules playback
     ↓
-Barge-in: VAD detects new speech → cancel local audio queue; backend sends `barge_in` after cancelling current greeting/response
+AudioQueue drains → clear assistant speaking state from playback `onIdle`
 ```
 
 `ConversationMode` guards the session lifecycle with a per-start attempt id. If microphone startup fails, the user stops the session, or the component unmounts while the warmup request is still pending, the pending attempt is invalidated so it cannot open a stale WebSocket afterwards.
+
+The voice UI does not clear `assistantSpeaking` from `turn_complete` or `status=listening`; it waits for the audio queue idle callback so the visible speaking state follows actual playback. The backend `barge_in` protocol remains supported, but automatic frontend barge-in during assistant playback is disabled by default for stable turn completion.
 
 ## Tests
 
