@@ -37,7 +37,7 @@ export default function TranscriptBubble({
         <div className="border-fl-border h-7 w-7 overflow-hidden rounded-full border">
           {!isUser ? (
             <Image
-              src="/logo.png"
+              src="/logo_head.png"
               alt="Tutor"
               width={28}
               height={28}
