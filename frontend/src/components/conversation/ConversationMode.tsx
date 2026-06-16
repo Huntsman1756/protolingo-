@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { apiFetch } from '@/lib/api'
 import { float32ToWav, createAudioQueue, type AudioQueue } from '@/lib/audio'
-import { getLogger } from '@/lib/logger'
+import { getLogger, silentLogger } from '@/lib/logger'
 import {
   buildConversationWsUrl,
   type WsMessage,
@@ -146,18 +146,22 @@ function QuotaPill({
 }
 
 function vadRedemptionMs(cefrLevel: string | null | undefined): number {
-  if (!cefrLevel) return 1500
-  if (cefrLevel === 'A1' || cefrLevel === 'A2') return 2000
-  if (cefrLevel === 'B1' || cefrLevel === 'B2') return 1750
-  return 1500 // C1, C2
+  if (!cefrLevel) return 1000
+  if (cefrLevel === 'A1' || cefrLevel === 'A2') return 1300
+  if (cefrLevel === 'B1' || cefrLevel === 'B2') return 1100
+  return 900 // C1, C2
 }
 
-const MIN_UTTERANCE_MS = 550
-const MIN_UTTERANCE_RMS = 0.005
-const INTERRUPTION_RMS_THRESHOLD = 0.015
-const BARGE_IN_STARTUP_GUARD_MS = 250
+const ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS = false
+const MIN_UTTERANCE_MS = 900
+const MIN_UTTERANCE_RMS = 0.012
+const INTERRUPTION_MIN_UTTERANCE_MS = 1200
+const INTERRUPTION_RMS_THRESHOLD = 0.03
+const BARGE_IN_STARTUP_GUARD_MS = 900
 const VAD_MAX_RMS = 0.25
-const convLogger = getLogger('conversation-audio')
+const convLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
+  ? getLogger('conversation-audio')
+  : silentLogger
 
 export default function ConversationMode({
   initialContext,
@@ -242,15 +246,15 @@ export default function ConversationMode({
     (
       audio: Float32Array,
       minUtteranceMs = MIN_UTTERANCE_MS,
-    ): { isSpeech: boolean; rms: number } => {
+    ): { isSpeech: boolean; rms: number; durationMs: number } => {
       const samples = audio.length
       if (samples === 0) {
-        return { isSpeech: false, rms: 0 }
+        return { isSpeech: false, rms: 0, durationMs: 0 }
       }
       const startedAt = speechStartedAtRef.current
       const durationMs = (samples / 16000) * 1000
       if (!startedAt || durationMs < minUtteranceMs) {
-        return { isSpeech: false, rms: 0 }
+        return { isSpeech: false, rms: 0, durationMs }
       }
       let energy = 0
       for (let i = 0; i < samples; i += 1) {
@@ -259,7 +263,11 @@ export default function ConversationMode({
       }
       const rms = Math.sqrt(energy / samples)
       const cappedRms = Number.isFinite(rms) ? Math.min(rms, VAD_MAX_RMS) : 0
-      return { isSpeech: cappedRms >= MIN_UTTERANCE_RMS, rms: cappedRms }
+      return {
+        isSpeech: cappedRms >= MIN_UTTERANCE_RMS,
+        rms: cappedRms,
+        durationMs,
+      }
     },
     []
   )
@@ -286,11 +294,15 @@ export default function ConversationMode({
       setUserSpeaking(true)
     },
     onSpeechEnd: (audio: Float32Array) => {
-      const speech = isLikelySpeech(audio, MIN_UTTERANCE_MS)
+      const minUtteranceMs = assistantSpeakingRef.current
+        ? INTERRUPTION_MIN_UTTERANCE_MS
+        : MIN_UTTERANCE_MS
+      const speech = isLikelySpeech(audio, minUtteranceMs)
       const isSpeech = speech.isSpeech
       convLogger.info('vad speech end', {
         isSpeech,
         rms: speech.rms,
+        durationMs: Math.round(speech.durationMs),
         sessionActive: sessionActiveRef.current,
         assistantSpeaking: assistantSpeakingRef.current,
       })
@@ -336,6 +348,7 @@ export default function ConversationMode({
         if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
           convLogger.info('sending interrupt at speech end', {
             rms: speech.rms,
+            durationMs: Math.round(speech.durationMs),
             sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
           })
           wsRef.current.send(JSON.stringify({ type: 'interrupt' }))

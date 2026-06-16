@@ -1,6 +1,12 @@
 const DEFAULT_LEVEL = process.env.NODE_ENV === 'production' ? 2 : 0
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error'
+type Logger = {
+  debug: (message: string, payload?: unknown) => void
+  info: (message: string, payload?: unknown) => void
+  warn: (message: string, payload?: unknown) => void
+  error: (message: string, payload?: unknown) => void
+}
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {
   debug: 0,
@@ -56,7 +62,14 @@ function log(
   }
 }
 
-export function getLogger(namespace: string) {
+export const silentLogger: Logger = {
+  debug: () => {},
+  info: () => {},
+  warn: () => {},
+  error: () => {},
+}
+
+export function getLogger(namespace: string): Logger {
   return {
     debug: (message: string, payload?: unknown) =>
       log('debug', namespace, message, payload),

@@ -1,4 +1,4 @@
-import { getLogger } from '@/lib/logger'
+import { getLogger, silentLogger } from '@/lib/logger'
 
 /**
  * Encodes a Float32Array of mono PCM samples into a standard WAV ArrayBuffer.
@@ -50,7 +50,10 @@ export interface AudioQueue {
   cancel: () => void
 }
 
-const audioQueueLogger = getLogger('audio-queue')
+const ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS = false
+const audioQueueLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
+  ? getLogger('audio-queue')
+  : silentLogger
 
 /**
  * Creates a gapless audio playback queue backed by the Web Audio API.
