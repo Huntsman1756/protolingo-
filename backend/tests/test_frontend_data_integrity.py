@@ -61,7 +61,7 @@ def test_curriculum_grammar_refs_all_defined() -> None:
 
     # Collect all grammar slugs across all supported languages
     defined: set[str] = set()
-    for lang in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT", "fr-FR", "de-DE"):
         defined.update(_get_grammar_slugs(lang))
 
     missing = referenced - defined
@@ -94,6 +94,8 @@ def test_curriculum_vocab_refs_all_defined() -> None:
     import app.data.en_GB.vocabulary as en_vocabulary
     import app.data.es.curriculum as es_curriculum
     import app.data.es.vocabulary as es_vocabulary
+    import app.data.fr.curriculum as fr_curriculum
+    import app.data.fr.vocabulary as fr_vocabulary
     import app.data.it.curriculum as it_curriculum
     import app.data.it.vocabulary as it_vocabulary
     import app.data.pt.curriculum as pt_curriculum
@@ -101,6 +103,7 @@ def test_curriculum_vocab_refs_all_defined() -> None:
 
     _check_language_vocab_refs("English", en_curriculum.CURRICULUM, en_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs("Spanish", es_curriculum.CURRICULUM, es_vocabulary.VOCABULARY_SETS)
+    _check_language_vocab_refs("French", fr_curriculum.CURRICULUM, fr_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs("Italian", it_curriculum.CURRICULUM, it_vocabulary.VOCABULARY_SETS)
     _check_language_vocab_refs(
         "Portuguese", pt_curriculum.CURRICULUM, pt_vocabulary.VOCABULARY_SETS
@@ -109,7 +112,7 @@ def test_curriculum_vocab_refs_all_defined() -> None:
 
 def test_grammar_related_refs_all_defined() -> None:
     """Every slug in a grammar topic's related[] array must exist in that language's grammar data."""
-    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT", "fr-FR", "de-DE"):
         defined = _get_grammar_slugs(lang_code)
         related = _get_grammar_related_refs(lang_code)
 
@@ -145,7 +148,7 @@ def test_vocabulary_export_completeness() -> None:
 
 def test_grammar_slug_uniqueness() -> None:
     """No two grammar topics should share the same slug within a language."""
-    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT"):
+    for lang_code in ("en-GB", "en-US", "es-ES", "it-IT", "pt-PT", "fr-FR", "de-DE"):
         from app.data.grammar import get_grammar_topics
 
         topics = get_grammar_topics(lang_code)

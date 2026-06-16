@@ -50,7 +50,7 @@ def _topic_to_response(t: GrammarTopic) -> GrammarTopicResponse:
 @limiter.limit("60/minute")
 def list_grammar_topics(
     request: Request,
-    language: str = Query("en-US", description="BCP-47 target language code"),
+    language: str = Query("en-GB", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ):
     """Return all grammar topics for the given target language."""
@@ -63,7 +63,7 @@ def list_grammar_topics(
 def get_grammar_topic_detail(
     request: Request,
     slug: str,
-    language: str = Query("en-US", description="BCP-47 target language code"),
+    language: str = Query("en-GB", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ):
     """Return a single grammar topic by slug."""

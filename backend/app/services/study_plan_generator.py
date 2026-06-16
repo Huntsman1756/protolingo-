@@ -7,7 +7,7 @@ from app.services.language_helpers import get_language_name
 
 async def generate_study_plan(
     request: GenerateStudyPlanRequest,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> GeneratedPlan:
     """
     Build a curriculum-driven study plan skeleton.

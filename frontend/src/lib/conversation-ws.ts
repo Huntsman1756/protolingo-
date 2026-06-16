@@ -12,7 +12,9 @@
  *    derive the WS base from window.location.
  */
 export function buildConversationWsUrl(): string {
-  const base = (process.env.NEXT_PUBLIC_API_URL ?? '').trim()
+  const base = (process.env.NEXT_PUBLIC_API_URL ?? '')
+    .trim()
+    .replace(/\/+$/, '')
 
   let wsBase: string
   if (base) {
@@ -34,30 +36,47 @@ export interface TranscriptMessage {
   role: 'user' | 'assistant'
   text: string
   final: boolean
+  turn_id?: number
 }
 
 export interface BargeInMessage {
   type: 'barge_in'
+  turn_id?: number
 }
 
 export interface SessionWarningMessage {
   type: 'session_warning'
   remaining_seconds: number
+  turn_id?: number
 }
 
 export interface SessionEndMessage {
   type: 'session_end'
   reason: 'max_duration' | 'inactivity'
+  turn_id?: number
+}
+
+export interface StatusMessage {
+  type: 'status'
+  value: 'transcribing' | 'thinking' | 'speaking' | 'listening'
+  turn_id?: number
 }
 
 export interface ErrorMessage {
   type: 'error'
   code: string
   message?: string
+  turn_id?: number
 }
 
 export interface MemoryUpdatedMessage {
   type: 'memory_updated'
+  turn_id?: number
+}
+
+export interface TurnCompleteMessage {
+  type: 'turn_complete'
+  turn_id?: number
 }
 
 export type WsMessage =
@@ -65,8 +84,10 @@ export type WsMessage =
   | BargeInMessage
   | SessionWarningMessage
   | SessionEndMessage
+  | StatusMessage
   | ErrorMessage
   | MemoryUpdatedMessage
+  | TurnCompleteMessage
 
 // ─── Chat context passed from tutor chat to voice session ────────────────────
 

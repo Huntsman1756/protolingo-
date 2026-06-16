@@ -66,6 +66,13 @@ class AdminUserUpdate(BaseModel):
     subscription_status: Literal["none", "trialing", "active", "past_due", "canceled"] | None = None
     subscription_ends_at: datetime | None = None
 
+    @field_validator("subscription_ends_at")
+    @classmethod
+    def strip_subscription_ends_at_tz(cls, v: datetime | None) -> datetime | None:
+        if v is not None and v.tzinfo is not None:
+            return v.replace(tzinfo=None)
+        return v
+
 
 class AdminUserResponse(BaseModel):
     id: int

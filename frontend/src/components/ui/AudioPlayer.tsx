@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
+import { getLogger } from '@/lib/logger'
 
 const TTS_TIMEOUT_MS = 15_000
+const ttsLogger = getLogger('tts')
 
 interface AudioPlayerProps {
   text: string
@@ -111,7 +113,7 @@ export function AudioPlayer({
 
       // TTS latency metrics — only logged in development
       if (process.env.NODE_ENV === 'development') {
-        console.info('[tts-metrics]', {
+        ttsLogger.info('tts-metrics', {
           traceId: responseTraceId,
           textLength: text.length,
           blobBytes: blob.size,

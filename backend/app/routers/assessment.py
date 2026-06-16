@@ -161,7 +161,7 @@ async def start_assessment(
 @limiter.limit("60/minute")
 async def get_assessment_bank(
     request: Request,
-    language: str = Query("en-US", description="BCP-47 target language code"),
+    language: str = Query("en-GB", description="BCP-47 target language code"),
     _current_user: User = Depends(get_current_user),
 ):
     """

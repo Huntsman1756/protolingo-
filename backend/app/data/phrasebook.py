@@ -14,7 +14,9 @@ from app.data._types import CEFRLevel, PhrasebookCategory, PhrasebookEntry  # no
 _LANG_MODULES: dict[str, str] = {
     "en-GB": "app.data.en_GB.phrasebook",
     "en-US": "app.data.en_US.phrasebook",
+    "de": "app.data.de.phrasebook",
     "es": "app.data.es.phrasebook",
+    "fr": "app.data.fr.phrasebook",
     "it": "app.data.it.phrasebook",
     "pt": "app.data.pt.phrasebook",
 }
@@ -34,13 +36,13 @@ def _resolve_categories(target_language: str) -> list[PhrasebookCategory]:
     return _CACHE[module_name]
 
 
-def get_phrasebook_categories(target_language: str = "en-US") -> list[PhrasebookCategory]:
+def get_phrasebook_categories(target_language: str = "en-GB") -> list[PhrasebookCategory]:
     """Return all phrasebook categories for the given target language."""
     return _resolve_categories(target_language)
 
 
 def get_phrasebook_category(
-    category_id: str, target_language: str = "en-US"
+    category_id: str, target_language: str = "en-GB"
 ) -> PhrasebookCategory | None:
     """Return a single phrasebook category by ID for the given target language."""
     categories = _resolve_categories(target_language)
@@ -51,7 +53,7 @@ def get_phrasebook_category(
 
 
 def get_phrasebook_by_level(
-    level: CEFRLevel, target_language: str = "en-US"
+    level: CEFRLevel, target_language: str = "en-GB"
 ) -> list[PhrasebookCategory]:
     """Return all phrasebook categories for a specific CEFR level."""
     categories = _resolve_categories(target_language)

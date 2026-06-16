@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { apiFetch } from '@/lib/api'
 import { float32ToWav, createAudioQueue, type AudioQueue } from '@/lib/audio'
+import { getLogger, silentLogger } from '@/lib/logger'
 import {
   buildConversationWsUrl,
   type WsMessage,
@@ -146,11 +147,23 @@ function QuotaPill({
 }
 
 function vadRedemptionMs(cefrLevel: string | null | undefined): number {
-  if (!cefrLevel) return 1500
-  if (cefrLevel === 'A1' || cefrLevel === 'A2') return 2000
-  if (cefrLevel === 'B1' || cefrLevel === 'B2') return 1750
-  return 1500 // C1, C2
+  if (!cefrLevel) return 1000
+  if (cefrLevel === 'A1' || cefrLevel === 'A2') return 1300
+  if (cefrLevel === 'B1' || cefrLevel === 'B2') return 1100
+  return 900 // C1, C2
 }
+
+const ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS = false
+const ENABLE_CONVERSATION_BARGE_IN = false
+const MIN_UTTERANCE_MS = 900
+const MIN_UTTERANCE_RMS = 0.012
+const INTERRUPTION_MIN_UTTERANCE_MS = 1200
+const INTERRUPTION_RMS_THRESHOLD = 0.03
+const BARGE_IN_STARTUP_GUARD_MS = 900
+const VAD_MAX_RMS = 0.25
+const convLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
+  ? getLogger('conversation-audio')
+  : silentLogger
 
 export default function ConversationMode({
   initialContext,
@@ -211,8 +224,57 @@ export default function ConversationMode({
   const audioQueueRef = useRef<AudioQueue | null>(null)
   const transcriptIdRef = useRef(0)
   const transcriptEndRef = useRef<HTMLDivElement | null>(null)
+  const activeTurnIdRef = useRef<number | null>(null)
   // Tracks whether the session ended cleanly so ws.onclose doesn't overwrite state
   const cleanEndRef = useRef(false)
+  const mountedRef = useRef(true)
+  const startAttemptRef = useRef(0)
+  const assistantSpeakingRef = useRef(false)
+  const speechStartedAtRef = useRef<number | null>(null)
+  const sessionActiveRef = useRef(false)
+  const ttsChunkIndexRef = useRef(0)
+  const lastAssistantAudioAtRef = useRef(0)
+  const closeReasonRef = useRef<'manual' | 'route_unload' | 'unknown'>(
+    'unknown'
+  )
+
+  useEffect(() => {
+    assistantSpeakingRef.current = assistantSpeaking
+  }, [assistantSpeaking])
+
+  useEffect(() => {
+    sessionActiveRef.current = sessionActive
+  }, [sessionActive])
+
+  const isLikelySpeech = useCallback(
+    (
+      audio: Float32Array,
+      minUtteranceMs = MIN_UTTERANCE_MS
+    ): { isSpeech: boolean; rms: number; durationMs: number } => {
+      const samples = audio.length
+      if (samples === 0) {
+        return { isSpeech: false, rms: 0, durationMs: 0 }
+      }
+      const startedAt = speechStartedAtRef.current
+      const durationMs = (samples / 16000) * 1000
+      if (!startedAt || durationMs < minUtteranceMs) {
+        return { isSpeech: false, rms: 0, durationMs }
+      }
+      let energy = 0
+      for (let i = 0; i < samples; i += 1) {
+        const sample = audio[i]
+        energy += sample * sample
+      }
+      const rms = Math.sqrt(energy / samples)
+      const cappedRms = Number.isFinite(rms) ? Math.min(rms, VAD_MAX_RMS) : 0
+      return {
+        isSpeech: cappedRms >= MIN_UTTERANCE_RMS,
+        rms: cappedRms,
+        durationMs,
+      }
+    },
+    []
+  )
 
   // ─── VAD ──────────────────────────────────────────────────────────────────
   // MicVAD.new() loads the ONNX model but does NOT request mic permission yet.
@@ -229,18 +291,105 @@ export default function ConversationMode({
       ort.env.wasm.numThreads = 1
     },
     onSpeechStart: () => {
-      // Barge-in: immediately cancel any in-progress TTS playback
-      if (audioQueueRef.current) {
-        audioQueueRef.current.cancel()
-        setAssistantSpeaking(false)
-      }
+      convLogger.info('vad speech start', {
+        assistantSpeaking: assistantSpeakingRef.current,
+      })
+      speechStartedAtRef.current = performance.now()
       setUserSpeaking(true)
     },
     onSpeechEnd: (audio: Float32Array) => {
+      const minUtteranceMs = assistantSpeakingRef.current
+        ? INTERRUPTION_MIN_UTTERANCE_MS
+        : MIN_UTTERANCE_MS
+      const speech = isLikelySpeech(audio, minUtteranceMs)
+      const isSpeech = speech.isSpeech
+      convLogger.info('vad speech end', {
+        isSpeech,
+        rms: speech.rms,
+        durationMs: Math.round(speech.durationMs),
+        sessionActive: sessionActiveRef.current,
+        assistantSpeaking: assistantSpeakingRef.current,
+      })
+      speechStartedAtRef.current = null
+      if (!isSpeech) {
+        setUserSpeaking(false)
+        return
+      }
       setUserSpeaking(false)
+
+      // Ignore accidental detections when the session ended.
+      if (!sessionActiveRef.current) {
+        return
+      }
+
+      // If the assistant is speaking, avoid false positive interruptions
+      // from playback leakage / room noise. Only treat it as interrupt when
+      // the signal is clearly strong enough to be real speech.
+      if (
+        assistantSpeakingRef.current &&
+        speech.rms < INTERRUPTION_RMS_THRESHOLD
+      ) {
+        convLogger.warn('ignored speech while assistant was speaking', {
+          rms: speech.rms,
+          lastAssistantAudioMsAgo:
+            performance.now() - lastAssistantAudioAtRef.current,
+        })
+        return
+      }
+
+      const sinceLastAssistantAudioMs =
+        performance.now() - lastAssistantAudioAtRef.current
+      const wasAssistantSpeaking = assistantSpeakingRef.current
+
+      if (wasAssistantSpeaking && !ENABLE_CONVERSATION_BARGE_IN) {
+        convLogger.warn('ignored user speech while assistant audio is active', {
+          rms: speech.rms,
+          durationMs: Math.round(speech.durationMs),
+          sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
+        })
+        return
+      }
+
+      if (
+        wasAssistantSpeaking &&
+        sinceLastAssistantAudioMs < BARGE_IN_STARTUP_GUARD_MS
+      ) {
+        convLogger.warn('ignored speech early in assistant playback window', {
+          rms: speech.rms,
+          sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
+        })
+        return
+      }
+
+      if (wasAssistantSpeaking) {
+        if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+          convLogger.info('sending interrupt at speech end', {
+            rms: speech.rms,
+            durationMs: Math.round(speech.durationMs),
+            sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
+          })
+          wsRef.current.send(JSON.stringify({ type: 'interrupt' }))
+          setAssistantSpeaking(false)
+        }
+      }
+
+      // Barge-in: cancel in-progress TTS playback only when assistant is speaking.
+      if (assistantSpeakingRef.current && audioQueueRef.current) {
+        convLogger.info('processing barge-in speech', {
+          rms: speech.rms,
+          sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
+        })
+        audioQueueRef.current.cancel()
+        setAssistantSpeaking(false)
+      }
+
       const ws = wsRef.current
       if (ws && ws.readyState === WebSocket.OPEN) {
         const wav = float32ToWav(audio, 16000)
+        convLogger.info('sent user utterance to backend', {
+          bytes: wav.byteLength,
+          assistantSpeaking: assistantSpeakingRef.current,
+        })
         ws.send(wav)
       }
     },
@@ -265,6 +414,37 @@ export default function ConversationMode({
     if (status === 'loading') setStatus('ready')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vad.loading, vad.errored])
+
+  const finalizeSession = useCallback(
+    (reason: 'manual' | 'route_unload' | 'unknown' = 'unknown') => {
+      closeReasonRef.current = reason
+      if (!mountedRef.current) return
+      activeTurnIdRef.current = null
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+        wsRef.current.send(
+          JSON.stringify({
+            type: 'client_event',
+            event: 'session_close_request',
+            reason,
+          })
+        )
+      }
+      wsRef.current?.close()
+      wsRef.current = null
+      vad.pause()
+      setAssistantSpeaking(false)
+      setUserSpeaking(false)
+      setStreamingText(null)
+      audioQueueRef.current?.cancel()
+      audioQueueRef.current = null
+      if (audioCtxRef.current) {
+        void audioCtxRef.current.close().catch(() => {})
+        audioCtxRef.current = null
+      }
+      setSessionActive(false)
+    },
+    [vad]
+  )
 
   // Auto-scroll transcript to bottom
   useEffect(() => {
@@ -298,6 +478,7 @@ export default function ConversationMode({
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
     (token: string, context?: ChatContextItem[]) => {
+      convLogger.info('opening conversation websocket')
       const url = buildConversationWsUrl()
       const ws = new WebSocket(url)
       ws.binaryType = 'arraybuffer'
@@ -313,20 +494,57 @@ export default function ConversationMode({
         if (context?.length) authPayload.context = context
         if (targetLanguage) authPayload.target_language = targetLanguage
         ws.send(JSON.stringify(authPayload))
+        convLogger.info('ws auth sent', {
+          hasContext: !!context?.length,
+          targetLanguage: targetLanguage ?? null,
+        })
         setStatus('live')
       }
 
-      ws.onmessage = async (event) => {
+      const handleAudioChunk = (arrayBuffer: ArrayBuffer): void => {
+        const chunkId = ++ttsChunkIndexRef.current
+        convLogger.warn('playback chunk received', {
+          chunkId,
+          bytes: arrayBuffer.byteLength,
+        })
+        lastAssistantAudioAtRef.current = performance.now()
+        if (!audioQueueRef.current) {
+          convLogger.warn('audio queue missing for playback')
+          setAssistantSpeaking(false)
+          return
+        }
+        setAssistantSpeaking(true)
+        void audioQueueRef.current.enqueue(arrayBuffer).catch((error) => {
+          convLogger.error('audio queue enqueue failed', {
+            chunkId,
+            error: error instanceof Error ? error.message : String(error),
+          })
+          setAssistantSpeaking(false)
+        })
+      }
+
+      ws.onmessage = (event) => {
         // Binary → TTS audio chunk
         if (event.data instanceof ArrayBuffer) {
-          setAssistantSpeaking(true)
-          await audioQueueRef.current?.enqueue(event.data)
+          handleAudioChunk(event.data)
+          return
+        }
+        if (event.data instanceof Blob) {
+          void event.data
+            .arrayBuffer()
+            .then((arrayBuffer) => handleAudioChunk(arrayBuffer))
+            .catch(() => {})
           return
         }
 
         // Text → JSON control message
         try {
           const msg = JSON.parse(event.data as string) as WsMessage
+          convLogger.debug('ws text message', { type: msg.type })
+          if (msg.turn_id !== undefined) {
+            activeTurnIdRef.current = msg.turn_id
+          }
+
           switch (msg.type) {
             case 'transcript':
               if (msg.role === 'user') {
@@ -351,32 +569,51 @@ export default function ConversationMode({
                       text: msg.text,
                     },
                   ])
-                  setAssistantSpeaking(false)
                 } else {
                   setStreamingText(msg.text)
                 }
               }
               break
 
+            case 'turn_complete':
+              break
+
             case 'barge_in':
+              convLogger.warn('barge_in message from backend')
               audioQueueRef.current?.cancel()
               setAssistantSpeaking(false)
               setStreamingText(null)
               break
 
             case 'session_warning':
+              convLogger.debug('session warning', {
+                remainingSeconds: msg.remaining_seconds,
+              })
               setWarningSeconds(msg.remaining_seconds)
+              break
+
+            case 'status':
+              setStatus('live')
+              convLogger.debug('status update', { value: msg.value })
+              if (msg.value === 'transcribing') {
+                setAssistantSpeaking(false)
+              } else if (msg.value === 'speaking') {
+                setAssistantSpeaking(true)
+              }
               break
 
             case 'session_end':
               cleanEndRef.current = true
+              finalizeSession()
+              convLogger.info('session end received', { reason: msg.reason })
               setStatus('ended')
-              setSessionActive(false)
-              vad.pause()
-              ws.close(1000, 'session_end')
               break
 
             case 'error':
+              convLogger.error('ws error message', {
+                code: msg.code,
+                message: msg.message,
+              })
               cleanEndRef.current = true
               setErrorMsg(
                 msg.code === 'services_disabled'
@@ -407,13 +644,15 @@ export default function ConversationMode({
 
       ws.onerror = () => {
         if (!cleanEndRef.current) {
+          convLogger.error('ws onerror')
           setErrorMsg(`${t('errorConnection')} [onerror → ${url}]`)
           setStatus('error')
-          setSessionActive(false)
+          finalizeSession()
         }
       }
 
       ws.onclose = (ev) => {
+        convLogger.warn('ws closed', { code: ev.code, reason: ev.reason })
         if (!cleanEndRef.current) {
           if (ev.code === 1008) {
             setErrorMsg(t('errorUnauthorized'))
@@ -423,85 +662,170 @@ export default function ConversationMode({
             )
           }
           setStatus('error')
-          setSessionActive(false)
+          finalizeSession()
         }
         cleanEndRef.current = false
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [t, targetLanguage]
+    [t, targetLanguage, finalizeSession]
   )
 
   // ─── Session lifecycle ────────────────────────────────────────────────────
   async function handleStart(topicContext?: ChatContextItem[]) {
-    if (!accessToken || vad.loading || vad.errored) return
+    if (
+      !accessToken ||
+      vad.loading ||
+      vad.errored ||
+      sessionActive ||
+      status === 'warming' ||
+      status === 'connecting' ||
+      status === 'live'
+    )
+      return
+
+    const startAttempt = ++startAttemptRef.current
 
     // AudioContext MUST be created during a user-gesture (this click handler)
     const ctx = new AudioContext()
     audioCtxRef.current = ctx
-    audioQueueRef.current = createAudioQueue(ctx)
+    try {
+      if (ctx.state === 'suspended') {
+        await ctx.resume()
+      }
+    } catch (error) {
+      convLogger.warn('audio context resume failed', { error })
+    }
+    audioQueueRef.current = createAudioQueue(ctx, () => {
+      setAssistantSpeaking(false)
+    })
 
     cleanEndRef.current = false
     setStatus('connecting')
     setSessionActive(true)
+    setAssistantSpeaking(false)
     setTranscript([])
     setStreamingText(null)
     setWarningSeconds(null)
     setErrorMsg(null)
     setUserSpeaking(false)
     setAssistantSpeaking(false)
+    activeTurnIdRef.current = null
     refreshQuota()
 
     // Trigger model warmup on TTS/STT services and WAIT for them to be ready
     // before opening the WebSocket. Models are loaded lazily by the backend;
     // this ensures the first transcription/synthesis in the session is fast.
-    // Runs in parallel with VAD mic permission request.
     setStatus('warming')
-    const warmupPromise = apiFetch('/api/conversation/warmup', {
-      method: 'POST',
-    }).catch(() => undefined)
 
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
+      if (!mountedRef.current || startAttemptRef.current !== startAttempt)
+        return
+      startAttemptRef.current++
       setErrorMsg(e instanceof Error ? e.message : t('errorMic'))
       setStatus('error')
       setSessionActive(false)
+      audioCtxRef.current?.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
     })
 
-    await warmupPromise
+    const warmupResponsePromise = apiFetch('/api/conversation/warmup', {
+      method: 'POST',
+    })
+    const warmupTimeout = new Promise<Response>((_, reject) => {
+      setTimeout(() => reject(new Error('warmup timeout')), 15_000)
+    })
+    let warmupResponse: Response
+    try {
+      warmupResponse = (await Promise.race([
+        warmupResponsePromise,
+        warmupTimeout,
+      ])) as Response
+    } catch {
+      if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
+        ctx.close()
+        return
+      }
+      setErrorMsg(`${t('errorConnection')} [warmup request failed]`)
+      convLogger.error('warmup request failed')
+      setStatus('error')
+      setSessionActive(false)
+      vad.pause()
+      ctx.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
+      return
+    }
+
+    if (!warmupResponse.ok) {
+      if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
+        ctx.close()
+        return
+      }
+      setErrorMsg(`${t('errorConnection')} [warmup ${warmupResponse.status}]`)
+      convLogger.error('warmup bad status', { status: warmupResponse.status })
+      setStatus('error')
+      setSessionActive(false)
+      vad.pause()
+      ctx.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
+      return
+    }
+
+    if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
+      ctx.close()
+      return
+    }
     const latestToken = useAuthStore.getState().accessToken
     if (!latestToken) {
       setErrorMsg(t('errorUnauthorized'))
       setStatus('error')
       setSessionActive(false)
+      ctx.close()
+      audioCtxRef.current = null
+      audioQueueRef.current = null
+      convLogger.error('no access token for websocket connect')
       return
     }
     connectWs(latestToken, topicContext ?? initialContext)
   }
 
   function handleStop() {
+    startAttemptRef.current++
     cleanEndRef.current = true
-    wsRef.current?.close(1000, 'user_stopped')
-    wsRef.current = null
-    vad.pause()
-    audioQueueRef.current?.cancel()
-    audioCtxRef.current?.close()
-    audioCtxRef.current = null
-    audioQueueRef.current = null
-    setSessionActive(false)
+    finalizeSession('manual')
     setStatus('ended')
     // Allow a moment for the backend to record session seconds, then refresh
     setTimeout(() => refreshQuota(), 1500)
   }
 
   // Cleanup on unmount
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     return () => {
+      mountedRef.current = false
+      startAttemptRef.current++
       cleanEndRef.current = true
+      closeReasonRef.current = 'route_unload'
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+        wsRef.current.send(
+          JSON.stringify({
+            type: 'client_event',
+            event: 'session_close_request',
+            reason: closeReasonRef.current,
+          })
+        )
+      }
       wsRef.current?.close()
+      vad.pause()
+      audioQueueRef.current?.cancel()
       audioCtxRef.current?.close()
     }
   }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   // ─── Render ───────────────────────────────────────────────────────────────
   return (

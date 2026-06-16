@@ -28,7 +28,16 @@
     "aboutMe": "O mnie",
     "github": "GitHub",
     "footerProduct": "Produkt",
-    "footerLegal": "Prawne"
+    "footerLegal": "Prawne",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Ładowanie...",
@@ -797,7 +806,7 @@
     "workflowStep5": "Używaj fiszek do trenowania słownictwa równolegle",
     "workflowStep6": "Ćwicz swobodną rozmowę z korepetytorem AI",
     "q_language": "Jakiego języka będę się uczyć?",
-    "a_language": "FreeLingo obsługuje obecnie kilka języków (amerykański angielski, brytyjski angielski, hiszpański, włoski, portugalski) i z czasem będziemy dodawać kolejne. Gdy nowy język będzie dostępny, znajdziesz go w Ustawieniach → Moje języki — dodaj go i zacznij się uczyć od razu.",
+    "a_language": "FreeLingo obsługuje obecnie kilka języków (amerykański angielski, brytyjski angielski, francuski, hiszpański, niemiecki, portugalski, włoski) i z czasem będziemy dodawać kolejne. Gdy nowy język będzie dostępny, znajdziesz go w Ustawieniach → Moje języki — dodaj go i zacznij się uczyć od razu.",
     "q_assessment": "Czym jest ocena poziomu?",
     "a_assessment": "Test z 15 pytaniami generowanych przez AI, obejmujący gramatykę, słownictwo, czytanie ze zrozumieniem i transformację zdań, z poziomem trudności od A1 do C1.",
     "q_studyPlan": "Czym jest plan nauki i jak go wygenerować?",
@@ -973,15 +982,21 @@
     "es-ES": "Hiszpański",
     "it-IT": "Włoski",
     "pt-PT": "Portugalski",
+    "fr-FR": "Francuski",
+    "de-DE": "Niemiecki",
     "en": "angielski",
     "es": "hiszpański",
     "it": "włoski",
     "pt": "portugalski",
+    "fr": "francuski",
+    "de": "niemiecki",
     "es-ES-description": "Hiszpański używany w Hiszpanii.",
     "it-IT-description": "Włoski używany we Włoszech.",
     "pt-PT-description": "Portugalski używany w Portugalii.",
     "en-US-description": "Angielski używany w Stanach Zjednoczonych.",
-    "en-GB-description": "Angielski używany w Wielkiej Brytanii."
+    "en-GB-description": "Angielski używany w Wielkiej Brytanii.",
+    "fr-FR-description": "Francuski używany we Francji.",
+    "de-DE-description": "Niemiecki używany w Niemczech."
   },
   "onboarding": {
     "title": "Wybierz swój język",
@@ -1116,11 +1131,11 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Rozumiem",
     "entry1": {
-      "label": "Nowe języki do nauki",
-      "desc": "Hiszpański, włoski i portugalski są już dostępne — każdy z pełnym programem nauczania od początkującego do zaawansowanego (A1–C2), gramatyką, słownictwem, zwrotami, Reading, Listening i więcej. Dodaj je w Ustawienia → Moje języki."
+      "label": "Pięć nowych języków do nauki",
+      "desc": "Francuski, hiszpański, niemiecki, portugalski i włoski są już dostępne — każdy z pełnym programem nauczania od początkującego do zaawansowanego (A1–C2), gramatyką, słownictwem, zwrotami, Reading, Listening i więcej. Dodaj je w Ustawienia → Moje języki."
     },
     "entry2": {
       "label": "Ulepszone materiały dydaktyczne",

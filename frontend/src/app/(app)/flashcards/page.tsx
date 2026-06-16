@@ -4,7 +4,6 @@ import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
-import { useAuthStore } from '@/store/auth'
 import { useLanguageStore } from '@/store/language'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { VoiceRecorder } from '@/components/ui/VoiceRecorder'
@@ -26,7 +25,6 @@ interface CardData {
 export default function FlashcardsPage() {
   const t = useTranslations('flashcards')
   const tCommon = useTranslations('common')
-  const user = useAuthStore((s) => s.user)
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const [cards, setCards] = useState<CardData[]>([])
   const [current, setCurrent] = useState(0)
@@ -106,7 +104,6 @@ export default function FlashcardsPage() {
           topic: genTopic.trim(),
           count: genCount,
           cefr_level: genCefr,
-          native_language: user?.native_language ?? 'en',
           target_language: activeLanguage?.code,
         }),
       })

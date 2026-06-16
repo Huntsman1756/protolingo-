@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en_US._types import CurriculumUnit
+from app.data._types import CurriculumUnit
 
 B2_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -28,7 +28,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=2,
         title="Advanced Wishes: Wish + Would/Could",
-        grammar_points=["wishes-regrets"],
+        grammar_points=["wishes-regrets", "second-conditional", "past-perfect"],
         vocabulary_set_ids=["emotions_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
@@ -118,7 +118,7 @@ B2_UNITS: list[CurriculumUnit] = [
         level="B2",
         unit_number=7,
         title="Concession, Contrast & Academic Discourse",
-        grammar_points=["concession-contrast-b2"],
+        grammar_points=["concession-contrast-b2", "modal-perfects", "reported-speech"],
         vocabulary_set_ids=["academic_vocabulary_b2", "us_institutions_b2"],
         lesson_types=["grammar", "vocabulary", "reading", "writing", "listening", "review"],
         competency_checklist=[
@@ -145,7 +145,7 @@ B2_UNITS: list[CurriculumUnit] = [
             "modal-perfects",
         ],
         vocabulary_set_ids=["academic_vocabulary_b2", "workplace_b2", "media_society_b2"],
-        lesson_types=["reading", "writing", "review"],
+        lesson_types=["grammar", "reading", "writing", "review"],
         competency_checklist=[
             "Writes a 200-word discursive essay with a clear thesis, concessions, and conclusion",
             "Demonstrates B2 grammar range: conditionals, passives, modal perfects, gerunds",

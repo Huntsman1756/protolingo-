@@ -1,3 +1,5 @@
+import { getLogger, silentLogger } from '@/lib/logger'
+
 /**
  * Encodes a Float32Array of mono PCM samples into a standard WAV ArrayBuffer.
  * VAD delivers samples at 16 000 Hz; STT service accepts audio/wav.
@@ -48,6 +50,11 @@ export interface AudioQueue {
   cancel: () => void
 }
 
+const ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS = false
+const audioQueueLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
+  ? getLogger('audio-queue')
+  : silentLogger
+
 /**
  * Creates a gapless audio playback queue backed by the Web Audio API.
  * Each ArrayBuffer is decoded (MP3/WAV/OGG accepted) and scheduled to play
@@ -56,48 +63,249 @@ export interface AudioQueue {
  * The AudioContext must be created during a user gesture to satisfy browser
  * autoplay policies.
  */
-export function createAudioQueue(ctx: AudioContext): AudioQueue {
+export function createAudioQueue(
+  ctx: AudioContext,
+  onIdle?: () => void
+): AudioQueue {
   // nextTime tracks when the next chunk should start (in AudioContext time).
   // Using a closure variable (not module-level) so multiple instances are safe.
   let nextTime = 0
+  let generation = 0
   const sources: AudioBufferSourceNode[] = []
+  const fallbackAudios: HTMLAudioElement[] = []
+  const pendingChunks: ArrayBuffer[] = []
+  let draining = false
   // Serialize decoding+scheduling so that chunks are always played in the
   // exact order they were enqueued, regardless of how long decodeAudioData
   // takes for each chunk. Without this, a short chunk 2 could decode faster
   // than chunk 1 and get scheduled first, causing out-of-order playback.
   let chain: Promise<void> = Promise.resolve()
+  let lastDecodeFailTs = 0
+  let lastScheduleFailTs = 0
+  let chunkSeq = 0
 
-  async function _decode(arrayBuffer: ArrayBuffer): Promise<void> {
-    // Resume context if it was suspended (can happen on iOS Safari)
+  function notifyIdle(): void {
+    if (
+      !draining &&
+      pendingChunks.length === 0 &&
+      sources.length === 0 &&
+      fallbackAudios.length === 0
+    ) {
+      onIdle?.()
+    }
+  }
+
+  async function _decode(
+    arrayBuffer: ArrayBuffer,
+    generationToken: number,
+    chunkId: number
+  ): Promise<void> {
+    if (generationToken !== generation) return
+    if (ctx.state === 'closed') return
+
     if (ctx.state === 'suspended') {
-      await ctx.resume()
+      audioQueueLogger.warn('resuming suspended audio context', {
+        chunkId,
+        generationToken,
+      })
+      try {
+        await ctx.resume()
+        audioQueueLogger.warn('audio context resumed', {
+          chunkId,
+          state: ctx.state,
+        })
+      } catch {
+        audioQueueLogger.error('audio context resume failed', {
+          chunkId,
+          state: ctx.state,
+        })
+        // Context may still be unusable in constrained browsers; fallback keeps us moving.
+      }
     }
 
-    // Copy the buffer: decodeAudioData may detach the original ArrayBuffer
-    const decoded = await ctx.decodeAudioData(arrayBuffer.slice(0))
+    let decoded: AudioBuffer
+    try {
+      decoded = await ctx.decodeAudioData(arrayBuffer.slice(0))
+      audioQueueLogger.warn('decoded TTS chunk', {
+        chunkId,
+        bytes: arrayBuffer.byteLength,
+        durationMs: Math.round(decoded.duration * 1000),
+        sampleRate: decoded.sampleRate,
+        channels: decoded.numberOfChannels,
+      })
+    } catch (error) {
+      const now = Date.now()
+      if (now - lastDecodeFailTs > 5000) {
+        audioQueueLogger.warn('decode failed for TTS chunk', {
+          chunkId,
+          bytes: arrayBuffer.byteLength,
+          error: error instanceof Error ? error.message : String(error),
+        })
+        lastDecodeFailTs = now
+      }
+      await _fallbackPlay(arrayBuffer.slice(0), generationToken, chunkId)
+      return
+    }
 
-    const source = ctx.createBufferSource()
-    source.buffer = decoded
-    source.connect(ctx.destination)
+    if (generationToken !== generation) return
 
-    // Schedule with a tiny lead to avoid underrun; never schedule in the past
-    const startAt = Math.max(ctx.currentTime + 0.05, nextTime)
-    source.start(startAt)
+    let source: AudioBufferSourceNode
+    try {
+      source = ctx.createBufferSource()
+      source.buffer = decoded
+      source.connect(ctx.destination)
+    } catch {
+      return
+    }
+
+    const now = ctx.currentTime
+    const startAt = Math.max(now + 0.005, nextTime)
+    try {
+      source.start(startAt)
+      audioQueueLogger.warn('scheduled TTS chunk playback', {
+        chunkId,
+        startAt,
+        now,
+        nextTime,
+        durationMs: Math.round(decoded.duration * 1000),
+      })
+    } catch (error) {
+      const now = Date.now()
+      if (now - lastScheduleFailTs > 5000) {
+        audioQueueLogger.warn('failed to schedule TTS chunk playback', {
+          chunkId,
+          error: error instanceof Error ? error.message : String(error),
+        })
+        lastScheduleFailTs = now
+      }
+      return
+    }
+
+    if (generationToken !== generation) {
+      try {
+        source.stop(0)
+      } catch {
+        // ignore
+      }
+      return
+    }
     nextTime = startAt + decoded.duration
 
     sources.push(source)
     source.onended = () => {
       const idx = sources.indexOf(source)
       if (idx !== -1) sources.splice(idx, 1)
+      audioQueueLogger.warn('TTS chunk playback ended', {
+        chunkId,
+        remainingSources: sources.length,
+      })
+      notifyIdle()
+    }
+  }
+
+  async function _fallbackPlay(
+    arrayBuffer: ArrayBuffer,
+    generationToken: number,
+    chunkId: number
+  ): Promise<void> {
+    if (generationToken !== generation) return
+
+    const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' })
+    const url = URL.createObjectURL(blob)
+    const audio = new Audio(url)
+    fallbackAudios.push(audio)
+    audioQueueLogger.warn('using HTMLAudio fallback for TTS chunk', {
+      chunkId,
+      bytes: arrayBuffer.byteLength,
+    })
+
+    await new Promise<void>((resolve) => {
+      const done = () => {
+        audio.removeEventListener('ended', done)
+        audio.removeEventListener('error', done)
+        URL.revokeObjectURL(url)
+        const idx = fallbackAudios.indexOf(audio)
+        if (idx !== -1) fallbackAudios.splice(idx, 1)
+        notifyIdle()
+        resolve()
+      }
+
+      audio.addEventListener('ended', done)
+      audio.addEventListener('error', done)
+      void audio
+        .play()
+        .then(() => {
+          audioQueueLogger.warn('HTMLAudio fallback playback started', {
+            chunkId,
+          })
+        })
+        .catch((error) => {
+          audioQueueLogger.error('HTMLAudio fallback playback failed', {
+            chunkId,
+            error: error instanceof Error ? error.message : String(error),
+          })
+          done()
+        })
+    })
+  }
+
+  async function _drain(generationToken: number): Promise<void> {
+    try {
+      while (generationToken === generation && pendingChunks.length) {
+        const nextChunk = pendingChunks.shift()
+        if (!nextChunk) break
+        const chunkId = ++chunkSeq
+        audioQueueLogger.warn('draining queued TTS chunk', {
+          chunkId,
+          generationToken,
+          pendingAfterShift: pendingChunks.length,
+          bytes: nextChunk.byteLength,
+          ctxState: ctx.state,
+        })
+        await _decode(nextChunk, generationToken, chunkId)
+      }
+    } finally {
+      if (generationToken === generation && pendingChunks.length === 0) {
+        draining = false
+        notifyIdle()
+      }
     }
   }
 
   function enqueue(arrayBuffer: ArrayBuffer): Promise<void> {
-    chain = chain.then(() => _decode(arrayBuffer))
+    const generationToken = generation
+    pendingChunks.push(arrayBuffer)
+    audioQueueLogger.warn('queued TTS chunk for playback', {
+      generationToken,
+      bytes: arrayBuffer.byteLength,
+      queued: pendingChunks.length,
+      draining,
+      ctxState: ctx.state,
+    })
+    if (!draining) {
+      draining = true
+      chain = chain.then(() => _drain(generationToken)).catch(() => {})
+    }
     return chain
   }
 
   function cancel(): void {
+    generation += 1
+    audioQueueLogger.warn('cancel called on audio queue', {
+      generation,
+      activeSources: sources.length,
+      fallbackAudios: fallbackAudios.length,
+      pendingChunks: pendingChunks.length,
+    })
+    if (pendingChunks.length) {
+      audioQueueLogger.warn(
+        'canceling playback and dropping queued TTS chunks',
+        {
+          chunks: pendingChunks.length,
+        }
+      )
+    }
+    pendingChunks.length = 0
     for (const s of sources) {
       try {
         s.stop(0)
@@ -105,10 +313,22 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
         // already stopped — ignore
       }
     }
+    for (const audio of fallbackAudios) {
+      try {
+        audio.pause()
+        audio.src = ''
+      } catch {
+        // ignore
+      }
+    }
+    while (fallbackAudios.length) {
+      fallbackAudios.pop()
+    }
     sources.length = 0
     nextTime = 0
-    // Reset the chain so the queue is clean after a cancel
+    draining = false
     chain = Promise.resolve()
+    notifyIdle()
   }
 
   return { enqueue, cancel }

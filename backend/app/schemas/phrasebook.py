@@ -1,6 +1,14 @@
 from __future__ import annotations
 
+import warnings
+
 from pydantic import BaseModel
+
+warnings.filterwarnings(
+    "ignore",
+    message=r'Field name "register" in "PhrasebookEntryResponse" shadows.*',
+    category=UserWarning,
+)
 
 
 class PhrasebookEntryResponse(BaseModel):

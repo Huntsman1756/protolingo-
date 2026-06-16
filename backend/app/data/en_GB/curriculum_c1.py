@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.data.en_GB._types import CurriculumUnit
+from app.data._types import CurriculumUnit
 
 C1_UNITS: list[CurriculumUnit] = [
     CurriculumUnit(
@@ -10,7 +10,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=1,
         title="Mixed Conditionals & Speculation",
-        grammar_points=["mixed-conditionals"],
+        grammar_points=["mixed-conditionals", "hedging-language", "word-formation"],
         vocabulary_set_ids=["abstract_concepts_c1"],
         lesson_types=["grammar", "reading", "writing", "listening", "review"],
         competency_checklist=[
@@ -46,7 +46,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=3,
         title="Hedging & Formal Register",
-        grammar_points=["hedging-language"],
+        grammar_points=["hedging-language", "ellipsis-substitution", "inversion"],
         vocabulary_set_ids=["formal_writing_c1"],
         lesson_types=["grammar", "reading", "writing", "listening", "review"],
         competency_checklist=[
@@ -82,7 +82,7 @@ C1_UNITS: list[CurriculumUnit] = [
         level="C1",
         unit_number=5,
         title="Ellipsis, Substitution & Textual Cohesion",
-        grammar_points=["ellipsis-substitution"],
+        grammar_points=["ellipsis-substitution", "hedging-language", "participle-clauses"],
         vocabulary_set_ids=["academic_discourse_c1"],
         lesson_types=["grammar", "reading", "writing", "listening", "review"],
         competency_checklist=[

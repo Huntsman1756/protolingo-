@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Optional
 
-from pydantic import BaseModel, field_serializer
+from pydantic import BaseModel, Field, field_serializer
 
 
 class FlashcardCreate(BaseModel):
@@ -33,9 +33,8 @@ class FlashcardFromWordRequest(BaseModel):
 
 class FlashcardGenerateRequest(BaseModel):
     topic: str
-    count: int = 5
+    count: int = Field(default=5, ge=1, le=20)
     cefr_level: str = "B1"
-    native_language: str = "es"
     target_language: str | None = None
 
 

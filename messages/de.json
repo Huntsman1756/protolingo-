@@ -28,7 +28,16 @@
     "aboutMe": "Über mich",
     "github": "GitHub",
     "footerProduct": "Produkt",
-    "footerLegal": "Rechtliches"
+    "footerLegal": "Rechtliches",
+    "languageGreetings": {
+      "en-US": "Hello!",
+      "en-GB": "Hello!",
+      "de-DE": "Hallo!",
+      "es-ES": "¡Hola!",
+      "fr-FR": "Bonjour !",
+      "it-IT": "Ciao!",
+      "pt-PT": "Olá!"
+    }
   },
   "common": {
     "loading": "Laden...",
@@ -797,7 +806,7 @@
     "workflowStep5": "Nutzen Sie Karteikarten, um parallel Vokabular zu üben",
     "workflowStep6": "Üben Sie freies Gespräch mit dem KI-Tutor",
     "q_language": "Welche Sprache werde ich lernen?",
-    "a_language": "FreeLingo unterstützt derzeit mehrere Sprachen (amerikanisches Englisch, britisches Englisch, Spanisch, Italienisch, Portugiesisch), und wir werden mit der Zeit weitere hinzufügen. Wenn eine neue Sprache verfügbar ist, findest du sie unter Einstellungen → Meine Sprachen — füge sie hinzu und beginne sofort zu lernen.",
+    "a_language": "FreeLingo unterstützt derzeit mehrere Sprachen (Amerikanisches Englisch, Britisches Englisch, Deutsch, Französisch, Italienisch, Portugiesisch, Spanisch), und wir werden mit der Zeit weitere hinzufügen. Wenn eine neue Sprache verfügbar ist, findest du sie unter Einstellungen → Meine Sprachen — füge sie hinzu und beginne sofort zu lernen.",
     "q_assessment": "Was ist die Einstufung?",
     "a_assessment": "Ein von KI generierter Test mit 15 Fragen, der Grammatik, Vokabular, Leseverständnis und Satztransformation abdeckt, mit Schwierigkeiten von A1 bis C1. Am Ende erhalten Sie Ihr GER-Niveau, eine Punktzahl und eine Analyse Ihrer Stärken und Schwächen. Dieses Ergebnis fließt in den Lernplan und die generierten Karteikarten ein.",
     "q_studyPlan": "Was ist der Lernplan und wie erstelle ich einen?",
@@ -973,15 +982,21 @@
     "es-ES": "Spanisch",
     "it-IT": "Italienisch",
     "pt-PT": "Portugiesisch",
+    "fr-FR": "Französisch",
+    "de-DE": "Deutsch",
     "en": "Englisch",
     "es": "Spanisch",
     "it": "Italienisch",
     "pt": "Portugiesisch",
+    "fr": "Französisch",
+    "de": "Deutsch",
     "es-ES-description": "Spanisch, wie es in Spanien gesprochen wird.",
     "it-IT-description": "Italienisch, wie es in Italien gesprochen wird.",
     "pt-PT-description": "Portugiesisch, wie es in Portugal gesprochen wird.",
     "en-US-description": "Englisch, wie es in den USA gesprochen wird.",
-    "en-GB-description": "Englisch, wie es im Vereinigten Königreich gesprochen wird."
+    "en-GB-description": "Englisch, wie es im Vereinigten Königreich gesprochen wird.",
+    "fr-FR-description": "Französisch, wie es in Frankreich gesprochen wird.",
+    "de-DE-description": "Deutsch, wie es in Deutschland gesprochen wird."
   },
   "onboarding": {
     "title": "Wähle deine Sprache",
@@ -1116,11 +1131,11 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.8.3",
+    "version": "v1.8.4",
     "cta": "Verstanden",
     "entry1": {
-      "label": "Neue Lernsprachen",
-      "desc": "Spanisch, Italienisch und Portugiesisch sind jetzt verfügbar — jede mit einem vollständigen Lehrplan von Anfänger bis Fortgeschritten (A1–C2), Grammatik, Wortschatz, Redewendungen, Reading, Listening und mehr. Füge sie unter Einstellungen → Meine Sprachen hinzu."
+      "label": "Fünf neue Lernsprachen",
+      "desc": "Deutsch, Französisch, Italienisch, Portugiesisch und Spanisch sind jetzt verfügbar — jede mit einem vollständigen Lehrplan von Anfänger bis Fortgeschritten (A1–C2), Grammatik, Wortschatz, Redewendungen, Reading, Listening und mehr. Füge sie unter Einstellungen → Meine Sprachen hinzu."
     },
     "entry2": {
       "label": "Verbesserte Lernressourcen",

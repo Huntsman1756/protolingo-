@@ -42,6 +42,20 @@ export const SUPPORTED_TARGET_LANGUAGES: TargetLanguage[] = [
     flagPath: '/flags/portugal.jpg',
     iso639: 'pt',
   },
+  {
+    code: 'fr-FR',
+    name: 'Français',
+    nameEn: 'French',
+    flagPath: '/flags/france.jpg',
+    iso639: 'fr',
+  },
+  {
+    code: 'de-DE',
+    name: 'Deutsch',
+    nameEn: 'German',
+    flagPath: '/flags/germany.jpg',
+    iso639: 'de',
+  },
 ]
 
 export function getLanguageByCode(code: string): TargetLanguage | undefined {

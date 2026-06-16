@@ -27,7 +27,7 @@ freelingo/
 │   │       └── pt/              # Portuguese curriculum (A1–C2)
 │   ├── alembic/
 │   │   └── versions/            # DB migrations (31)
-│   └── tests/                   # pytest suite (33 test files, 705 tests)
+│   └── tests/                   # pytest suite (38 test files, 783 tests)
 │
 ├── frontend/                    # Next.js 16 App Router
 │   ├── src/
@@ -60,7 +60,7 @@ freelingo/
 │   │   ├── lib/                 # Utilities: api, audio, conversation-ws, locales, mappers, target-languages, utils (7)
 │   │   ├── i18n/                # next-intl locale resolver
 │   │   └── middleware.ts        # Auth guard + locale detection
-│   ├── tests/                   # Vitest suite (16 test files, 325 tests)
+│   ├── tests/                   # Vitest suite (21 test files, 364 tests)
 │   ├── public/                  # Static assets (flags/, vad/ WASM models)
 │   └── scripts/                 # Postinstall helpers (copy-vad-models.js)
 │
@@ -113,9 +113,11 @@ User opens /conversation
     ↓
 Frontend: ConversationMode loads VAD (onnxruntime-web WASM)
     ↓
-WebSocket connects to /ws/conversation?token=<jwt>
+WebSocket connects to /ws/conversation
     ↓
-Backend validates TTS_ENABLED && STT_ENABLED
+Client sends first JSON auth frame with access token
+    ↓
+Backend validates auth, subscription, maintenance mode, TTS service, STT service, quota, and selected target language plan
     ↓
 User speaks → VAD detects speech → sends WAV chunks via WS
     ↓
@@ -127,7 +129,7 @@ ConversationPipeline:
 MP3 chunks sent back via WebSocket
   Frontend: AudioQueue schedules gapless playback
     ↓
-Barge-in: user speaks again → cancel current generation
+Barge-in: user speaks again → cancel current greeting/generation, stop client playback, process new audio
 ```
 
 ## Auth design
@@ -167,6 +169,6 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 Testing infrastructure and strategy are documented in [testing.instructions.md](testing.instructions.md).
 
 **Summary:**
-- **Backend**: pytest + pytest-asyncio, 33 test files, 705 tests, 83% coverage (target: 70%)
-- **Frontend**: Vitest, 16 test files, 325 tests covering stores, components, lib, and middleware
+- **Backend**: pytest + pytest-asyncio, 38 test files, 783 tests, 83% coverage (target: 70%)
+- **Frontend**: Vitest, 21 test files, 364 tests covering stores, components, hooks, lib, and middleware
 - **E2E**: Playwright (planned, not yet implemented)

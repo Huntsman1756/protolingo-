@@ -19,7 +19,7 @@ export default function TargetLanguageSelector({
 
   const filtered = SUPPORTED_TARGET_LANGUAGES.filter((lang) =>
     availableCodes.includes(lang.code)
-  )
+  ).sort((a, b) => t(a.code).localeCompare(t(b.code)))
 
   return (
     <div className="grid grid-cols-2 gap-2">

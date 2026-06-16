@@ -1,3 +1,5 @@
+import re
+
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -30,6 +32,10 @@ from app.services.progress_service import update_daily_progress
 from app.services.user_language_service import get_active_language
 
 router = APIRouter(prefix="/api/flashcards", tags=["flashcards"])
+
+
+def _normalize_flashcard_word(value: str) -> str:
+    return re.sub(r"\s+", " ", value.strip().lower())
 
 
 async def _get_active_plan_or_404(db: AsyncSession, user_id: int) -> StudyPlan:
@@ -138,22 +144,31 @@ async def create_flashcards_bulk(
             Flashcard.study_plan_id == plan.id,
         )
     )
-    existing_words = set(existing.scalars().all())
+    existing_words = {_normalize_flashcard_word(word) for word in existing.scalars().all()}
+    created_words: set[str] = set()
 
     created = 0
     for item in data.flashcards:
-        if item.word not in existing_words:
-            card = Flashcard(
-                user_id=current_user.id,
-                study_plan_id=plan.id,
-                word=item.word,
-                definition=item.definition,
-                example_sentence=item.example_sentence,
-                translation=item.translation,
-            )
-            db.add(card)
-            existing_words.add(item.word)
-            created += 1
+        normalized_word = _normalize_flashcard_word(item.word)
+        if (
+            not normalized_word
+            or normalized_word in existing_words
+            or normalized_word in created_words
+        ):
+            continue
+
+        card = Flashcard(
+            user_id=current_user.id,
+            study_plan_id=plan.id,
+            word=item.word.strip(),
+            definition=item.definition,
+            example_sentence=item.example_sentence,
+            translation=item.translation,
+        )
+        db.add(card)
+        created_words.add(normalized_word)
+        existing_words.add(normalized_word)
+        created += 1
 
     await db.commit()
     return FlashcardBulkResponse(created=created)
@@ -199,24 +214,46 @@ async def generate_flashcards_endpoint(
     plan = await _get_active_plan_or_404(db, current_user.id)
     target_lang = data.target_language or plan.target_language
     try:
+        existing = await db.execute(
+            select(Flashcard.word).where(
+                Flashcard.user_id == current_user.id,
+                Flashcard.study_plan_id == plan.id,
+            )
+        )
+        existing_words = {_normalize_flashcard_word(word) for word in existing.scalars().all()}
+        seen_words: set[str] = set()
+
         result = await generate_flashcards(
             topic=data.topic,
             count=data.count,
             cefr_level=data.cefr_level,
-            native_language=data.native_language,
+            native_language=current_user.native_language,
             target_language=target_lang,
         )
-        # Persist generated cards
+        unique_flashcards = []
         for card_data in result.flashcards:
+            normalized_word = _normalize_flashcard_word(card_data.word)
+            if (
+                not normalized_word
+                or normalized_word in existing_words
+                or normalized_word in seen_words
+            ):
+                continue
+
+            seen_words.add(normalized_word)
+            existing_words.add(normalized_word)
+            unique_flashcards.append(card_data)
+
             card = Flashcard(
                 user_id=current_user.id,
                 study_plan_id=plan.id,
-                word=card_data.word,
+                word=card_data.word.strip(),
                 definition=card_data.definition,
                 example_sentence=card_data.example_sentence,
                 translation=card_data.translation,
             )
             db.add(card)
+        result.flashcards = unique_flashcards
         await db.commit()
         return result
     except LLMTimeoutError:

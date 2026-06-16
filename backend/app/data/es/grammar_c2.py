@@ -634,4 +634,119 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         ],
         related=["edicion", "ortotipografia-academica", "diferencias-regionales"],
     ),
+    GrammarTopic(
+        slug="hispanidad-contemporanea",
+        title="La Hispanidad contemporánea",
+        level="C2",
+        category="Expresión",
+        summary="Instituciones, diversidad y proyección global del español: RAE, ASALE, Instituto Cervantes y norma panhispánica.",
+        explanation="La **Hispanidad contemporánea** trasciende la idea decimonónica de comunidad cultural para convertirse en un espacio lingüístico de casi 600 millones de hablantes.\n\n**Instituciones clave**:\n- **Real Academia Española (RAE)**: fundada en 1713, fija la norma del español.\n- **Asociación de Academias de la Lengua Española (ASALE)**: coordina las 23 academias de la lengua en Hispanoamérica, España, Filipinas y Guinea Ecuatorial.\n- **Instituto Cervantes**: promueve la enseñanza del español y difunde la cultura hispánica en el mundo.\n\n**Concepto de norma panhispánica**:\n- Frente a la antigua visión eurocéntrica, hoy se reconoce que el español es una lengua **policéntrica** con múltiples normas cultas.\n- Las obras académicas (Diccionario, Gramática, Ortografía) incorporan usos de todas las variedades.\n\n**El español en el mundo**:\n- México es el país con más hispanohablantes (más de 130 millones).\n- En Estados Unidos hay más de 60 millones de hispanohablantes y el español es la segunda lengua más hablada.\n- El español es lengua oficial de 21 países y lengua de trabajo de la ONU, la UE y otros organismos.\n\nEn C2 se espera conocer el mapa institucional del español y poder debatir sobre su presente y futuro con argumentos sólidos.",
+        rules=[
+            "La norma panhispánica reconoce la legitimidad de todas las variedades cultas.",
+            "El Diccionario panhispánico de dudas (DPD) resuelve vacilaciones frecuentes.",
+            "El Instituto Cervantes elabora el anuario «El español en el mundo» con datos actualizados.",
+            "Conocer las instituciones clave permite entender debates sobre norma y uso.",
+        ],
+        examples=[
+            GrammarExample(
+                text="La ASALE, que reúne a 23 academias, publicó la Nueva gramática de la lengua española, primera gramática panhispánica.",
+                translation=None,
+                note="instituciones y norma panhispánica",
+            ),
+            GrammarExample(
+                text="El español es una lengua policéntrica: tan válido es el yeísmo de Buenos Aires como la distinción de Madrid.",
+                translation=None,
+                note="variedad y norma culta",
+            ),
+            GrammarExample(
+                text="El Instituto Cervantes estima que en 2060 Estados Unidos será el segundo país hispanohablante del mundo.",
+                translation=None,
+                note="proyección demográfica del español",
+            ),
+        ],
+        common_mistakes=[],
+        related=["norma-panhispanica", "lexicon-historico", "indigenismos", "arabismos"],
+    ),
+    GrammarTopic(
+        slug="politica-linguistica-es",
+        title="Política lingüística en el mundo hispano",
+        level="C2",
+        category="Expresión",
+        summary="Políticas lingüísticas en España y América: bilingüismo, diglosia, lenguas cooficiales y planificación del español.",
+        explanation="La **política lingüística** abarca las decisiones que los Estados y las instituciones toman sobre las lenguas: su estatus legal, su enseñanza, su normalización y su promoción.\n\n**España**:\n- El artículo 3 de la Constitución establece el castellano como lengua oficial del Estado y las demás lenguas como cooficiales en sus comunidades autónomas.\n- **Bilingüismo** en Cataluña, País Vasco, Galicia, Comunidad Valenciana, Baleares y Navarra.\n- Debate permanente sobre inmersión lingüística, porcentajes de enseñanza en cada lengua y derechos lingüísticos.\n\n**Hispanoamérica**:\n- En muchos países conviven el español con **lenguas indígenas** (quechua, aimara, guaraní, náhuatl, maya).\n- **Paraguay** es el único país americano donde una lengua indígena (guaraní) es cooficial con el español y es hablada por la mayoría de la población.\n- **Perú y Bolivia** reconocen múltiples lenguas oficiales indígenas.\n- En varios países persisten situaciones de **diglosia**: el español es la lengua de prestigio y las lenguas indígenas quedan relegadas al ámbito familiar.\n\n**Estados Unidos**:\n- El español no es lengua oficial a nivel federal pero es la segunda lengua más hablada y tiene presencia en la administración de muchos estados.\n- Movimientos como el «English-only» generan debate sobre el estatus del español.\n\nEn C2 se analiza críticamente cómo las políticas lingüísticas reflejan tensiones entre unidad y diversidad, poder y derecho.",
+        rules=[
+            "Las políticas lingüísticas pueden ser de promoción, protección, normalización o asimilación.",
+            "La diglosia se da cuando dos lenguas coexisten con desigualdad de prestigio y funciones.",
+            "El bilingüismo puede ser individual o territorial según cómo se organice.",
+            "La planificación lingüística incluye decisiones sobre corpus (norma) y estatus (oficialidad).",
+        ],
+        examples=[
+            GrammarExample(
+                text="En Paraguay, el guaraní no solo es cooficial sino que es lengua de uso cotidiano para más del 80 % de la población, un caso único en América.",
+                translation=None,
+                note="cooficialidad del guaraní",
+            ),
+            GrammarExample(
+                text="La Ley de Normalización Lingüística de Galicia establece el gallego como lengua propia de la comunidad, junto al castellano como oficial del Estado.",
+                translation=None,
+                note="política lingüística autonómica",
+            ),
+            GrammarExample(
+                text="En México, más de 7 millones de personas hablan una lengua indígena, pero muchas de estas lenguas están en peligro de extinción por falta de políticas efectivas de revitalización.",
+                translation=None,
+                note="lenguas indígenas y política lingüística",
+            ),
+        ],
+        common_mistakes=[],
+        related=["hispanidad-contemporanea", "diferencias-regionales", "indigenismos"],
+    ),
+    GrammarTopic(
+        slug="evolucion-digital-es",
+        title="El español en la era digital",
+        level="C2",
+        category="Expresión",
+        summary="Transformación del español en entornos digitales: lenguaje SMS, redes sociales, Spanglish, anglicismos tecnológicos e inteligencia artificial.",
+        explanation="La **era digital** está transformando el español de manera acelerada. Las nuevas tecnologías no solo introducen vocabulario, sino que modifican las prácticas comunicativas.\n\n**Lenguaje digital y redes sociales**:\n- **Abreviaturas SMS y WhatsApp**: *tqm* (te quiero mucho), *xq* (porque), *dpm* (de puta madre), *ntp* (no te preocupes).\n- **Emojis y stickers** como sustitutos parciales de la comunicación no verbal.\n- **Hashtags** y su integración en la sintaxis: *#NoALaGuerra*.\n\n**Anglicismos y neologismos tecnológicos**:\n- Préstamos crudos: *click, like, post, tweet, streaming, influencer, hashtag*.\n- Adaptados: *tuitear, wasapear, guglear, likeador, pantallazo*.\n- Calcos: *subir* (to upload), *bajar* (to download), *nube* (cloud), *aplicación* (app).\n- Híbridos: *hacer un like, darme follow, estar en modo random*.\n\n**Spanglish en EE. UU.**:\n- Interferencias sistemáticas y creación de nuevas formas: *parquear* (estacionar), *chequear* (verificar), *lonche* (almuerzo), *troca* (camioneta).\n- El Spanglish no es español incorrecto sino una variedad de contacto con reglas propias y función identitaria.\n\n**El español y la inteligencia artificial**:\n- Los modelos de IA (ChatGPT, etc.) se entrenan mayoritariamente en inglés. La calidad del español en IA depende del volumen y calidad del corpus de entrenamiento.\n- Riesgo de empobrecimiento léxico y sintáctico si los modelos generan en una variedad estándar reducida.\n- Oportunidad: herramientas como correctores ortográficos avanzados o traductores puede mejorar la calidad del español escrito.\n\nEn C2 se debate sobre cómo preservar la riqueza del español en el entorno digital sin caer en purismos inmovilistas.",
+        rules=[
+            "Las abreviaturas digitales no son errores sino adaptaciones funcionales al medio.",
+            "Los anglicismos se integran de tres formas: préstamo crudo, adaptación o calco.",
+            "El Spanglish es una variedad lingüística de contacto con identidad propia.",
+            "La preservación del español en la era digital requiere corpus de calidad y políticas activas.",
+        ],
+        examples=[
+            GrammarExample(
+                text="Me dio like a la foto y yo le di follow. Ahora somos mutuals.",
+                translation=None,
+                note="anglicismos integrados en la conversación digital",
+            ),
+            GrammarExample(
+                text="Te wasapeo cuando llegue al trabajo, ntp.",
+                translation=None,
+                note="neologismo y abreviatura digital",
+            ),
+            GrammarExample(
+                text="En Miami, 'voy a parquear la troca detrás del building' muestra la mezcla del Spanglish cotidiano.",
+                translation=None,
+                note="ejemplo de Spanglish",
+            ),
+            GrammarExample(
+                text="Si los corpus digitales en español no incluyen todas las variedades, los modelos de IA generarán un español empobrecido y uniformizante.",
+                translation=None,
+                note="español e inteligencia artificial",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong="Considerar todo anglicismo tecnológico como un barbarismo que debe eliminarse.",
+                correct="Distinguir entre préstamos integrados funcionalmente y anglicismos innecesarios con equivalente asentado.",
+                note="En C2 se evalúa el criterio, no el purismo automático.",
+            ),
+        ],
+        related=[
+            "hispanidad-contemporanea",
+            "politica-linguistica-es",
+            "creatividad-linguistica",
+            "norma-panhispanica",
+        ],
+    ),
 ]

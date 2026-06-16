@@ -2,7 +2,7 @@
 Language-aware curriculum dispatcher.
 
 For backward compatibility, CEFR_LEVELS remains a module-level constant.
-All curriculum queries accept a ``target_language`` parameter (e.g. "en-US",
+All curriculum queries accept a ``target_language`` parameter (e.g. "en-GB",
 "es-ES", "it-IT", "pt-PT") to resolve the correct language module.
 """
 
@@ -17,7 +17,9 @@ CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"]
 _LANG_MODULES: dict[str, str] = {
     "en-GB": "app.data.en_GB.curriculum",
     "en-US": "app.data.en_US.curriculum",
+    "de": "app.data.de.curriculum",
     "es": "app.data.es.curriculum",
+    "fr": "app.data.fr.curriculum",
     "it": "app.data.it.curriculum",
     "pt": "app.data.pt.curriculum",
 }
@@ -70,6 +72,24 @@ _I18N = {
             "Concluir a avaliação para desbloquear o próximo nível",
         ],
     },
+    "fr-FR": {
+        "lesson_title": "{title} - Leçon {n}",
+        "test_unit_title": "Test de niveau {level}",
+        "test_title": "Test de niveau {level}",
+        "test_objectives": [
+            "Revoir tous les thèmes de grammaire de ce niveau",
+            "Réussir l'évaluation pour débloquer le niveau suivant",
+        ],
+    },
+    "de-DE": {
+        "lesson_title": "{title} - Lektion {n}",
+        "test_unit_title": "Niveautest {level}",
+        "test_title": "Niveautest {level}",
+        "test_objectives": [
+            "Alle Grammatikthemen dieses Niveaus wiederholen",
+            "Die Prüfung bestehen, um das nächste Niveau freizuschalten",
+        ],
+    },
 }
 
 
@@ -91,7 +111,7 @@ def get_curriculum(target_language: str) -> dict:
     return mod.CURRICULUM
 
 
-def get_curriculum_units(level: str, target_language: str = "en-US") -> list:
+def get_curriculum_units(level: str, target_language: str = "en-GB") -> list:
     """Return curriculum units for a CEFR level in the given target language."""
     curriculum = get_curriculum(target_language)
     return curriculum.get(level, [])
@@ -101,7 +121,7 @@ def distribute_units(
     units: list[CurriculumUnit],
     total_weeks: int,
     days_per_week: int,
-    target_language: str = "en-US",
+    target_language: str = "en-GB",
 ) -> list[dict]:
     """Distribute curriculum units across lesson slots."""
     i18n = _I18N.get(target_language) or _I18N.get(target_language.split("-")[0], _I18N["en-GB"])

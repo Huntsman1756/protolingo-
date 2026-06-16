@@ -55,6 +55,60 @@ _TOPICS_BY_LEVEL: dict[str, list[str]] = {
     "C2": ["philosophy", "history", "global_affairs", "ethics", "economics"],
 }
 
+_CULTURAL_TOPICS: dict[str, list[str]] = {
+    "de": [
+        "German festivals and holiday traditions",
+        "German classical music and famous composers",
+        "daily life and customs in German cities",
+        "German history and famous landmarks",
+    ],
+    "fr": [
+        "French cuisine and regional food culture",
+        "French art, cinema, and cultural life",
+        "daily life and customs in French cities",
+        "French history, monuments, and heritage",
+    ],
+    "es": [
+        "Spanish festivals and local traditions",
+        "Spanish art, architecture, and flamenco",
+        "daily life and customs in Spanish cities",
+        "culture and diversity of Spanish-speaking countries",
+    ],
+    "it": [
+        "Italian regional cuisine and food traditions",
+        "Italian Renaissance art and cultural heritage",
+        "daily life and customs in Italian cities",
+        "Italian history, landmarks, and UNESCO sites",
+    ],
+    "pt": [
+        "Portuguese music, fado, and cultural traditions",
+        "Portuguese cuisine, wines, and food customs",
+        "daily life and customs in Portuguese cities",
+        "Portuguese history, the Age of Discoveries, and heritage",
+    ],
+    "en-GB": [
+        "British traditions, monarchy, and cultural life",
+        "daily life and customs in UK cities and countryside",
+        "British literature, theatre, and the arts",
+        "UK history, landmarks, and heritage",
+    ],
+    "en-US": [
+        "American traditions, holidays, and cultural life",
+        "daily life and customs in US cities and regions",
+        "American literature, cinema, and popular culture",
+        "US history, landmarks, and national parks",
+    ],
+}
+
+
+def _get_cultural_topics(target_language: str) -> list[str]:
+    topics = _CULTURAL_TOPICS.get(target_language)
+    if topics is not None:
+        return topics
+    iso = target_language.split("-")[0].lower()
+    return _CULTURAL_TOPICS.get(iso, _CULTURAL_TOPICS.get("en-GB", []))
+
+
 _GENERATION_PROMPT = """\
 You are a {target_language_name} language content creator. Generate a reading comprehension exercise \
 for a {level} learner. Target language: {target_language_name}.
@@ -124,7 +178,9 @@ async def generate_and_save_exercise(
     Raises ValueError on LLM JSON failure after 2 attempts.
     """
     exercise_type = random.choice(_TYPES_BY_LEVEL.get(level, ["article"]))
-    topic_area = random.choice(_TOPICS_BY_LEVEL.get(level, ["daily_routine"]))
+    generic_topics = _TOPICS_BY_LEVEL.get(level, ["daily_routine"])
+    cultural_topics = _get_cultural_topics(target_language)
+    topic_area = random.choice(generic_topics + cultural_topics)
     word_count = _WORD_COUNT_BY_LEVEL.get(level, 200)
 
     prompt = _GENERATION_PROMPT.format(

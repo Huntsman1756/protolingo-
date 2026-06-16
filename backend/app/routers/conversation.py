@@ -83,7 +83,14 @@ async def conversation_warmup(
 
 async def _warmup_tts(tts_service: object) -> None:
     try:
-        await tts_service.synthesize("ready")  # type: ignore[union-attr]
+        # OpenAI TTS warmup is just a lightweight model check; calling health
+        # avoids a full synthesis request during session start.
+        if hasattr(tts_service, "model"):
+            await tts_service.health()  # type: ignore[union-attr]
+        else:
+            # Local Kokoro benefits from a real synthesis once to warm model
+            # caches on first use.
+            await tts_service.synthesize("ready")  # type: ignore[union-attr]
         logger.info("[warmup] TTS ready")
     except Exception as exc:
         logger.warning("[warmup] TTS warmup error: %s", exc)
@@ -197,7 +204,6 @@ async def conversation_ws(
 
         plan: StudyPlan | None = None
         if target_language_from_client:
-            # Frontend told us which language the user is studying — use it directly
             ul_result = await db.execute(
                 select(UserLanguage).where(
                     UserLanguage.user_id == user_id,
@@ -228,34 +234,26 @@ async def conversation_ws(
                 )
                 plan = result.scalar_one_or_none()
         if not plan:
-
-            result = await db.execute(
-                select(StudyPlan)
-                .join(UserLanguage, StudyPlan.user_language_id == UserLanguage.id)
-                .where(
-                    UserLanguage.user_id == user_id,
-                    StudyPlan.is_active == True,  # noqa: E712
-                )
-                .order_by(StudyPlan.created_at.desc())
-                .limit(1)
-            )
-            plan = result.scalar_one_or_none()
-        if not plan:
-            await websocket.send_json(
-                {"type": "error", "code": "no_active_plan", "message": "No active study plan found"}
-            )
-            await websocket.close(code=1008)
-            return
-        cefr_level = plan.cefr_level
-        if target_language_from_client:
-            target_language = target_language_from_client
+            # No plan for the selected language — use A2 + the selected language
+            cefr_level = "A2"
+            study_plan_id_for_conv = None
+            if target_language_from_client:
+                target_language = target_language_from_client
+            elif active_lang:
+                target_language = active_lang.target_language
+            else:
+                target_language = "en-GB"
         else:
-            ul_row = await db.execute(
-                select(UserLanguage).where(UserLanguage.id == plan.user_language_id)
-            )
-            ul = ul_row.scalar_one_or_none()
-            target_language = ul.target_language if ul else plan.target_language
-        study_plan_id_for_conv = plan.id
+            cefr_level = plan.cefr_level
+            if target_language_from_client:
+                target_language = target_language_from_client
+            else:
+                ul_row = await db.execute(
+                    select(UserLanguage).where(UserLanguage.id == plan.user_language_id)
+                )
+                ul = ul_row.scalar_one_or_none()
+                target_language = ul.target_language if ul else plan.target_language
+            study_plan_id_for_conv = plan.id
 
         # Read user settings before session closes to avoid DetachedInstanceError
         max_duration = user.conversation_max_duration
@@ -334,7 +332,14 @@ async def conversation_ws(
                     and int(client_conversation_id_raw) > 0
                 ):
                     existing = await db_conv.get(ConversationModel, int(client_conversation_id_raw))
-                    if existing and existing.user_id == user_id:
+                    if (
+                        existing
+                        and existing.user_id == user_id
+                        and (
+                            not existing.target_language
+                            or existing.target_language == target_language
+                        )
+                    ):
                         conversation_id = existing.id
                 if conversation_id is None:
                     conv = ConversationModel(
@@ -342,6 +347,7 @@ async def conversation_ws(
                         title=voice_session_title(native_language),
                         source="voice",
                         study_plan_id=study_plan_id_for_conv,
+                        target_language=target_language,
                     )
                     db_conv.add(conv)
                     await db_conv.commit()

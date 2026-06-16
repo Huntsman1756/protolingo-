@@ -74,6 +74,7 @@ class OpenAISTTService:
             model=self.model,
             file=audio_file,
             language=language,
+            timeout=60.0,
         )
         text = response.text.strip()
         logger.info("[stt-openai] Transcribed: %r", text)

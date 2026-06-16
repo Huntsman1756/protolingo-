@@ -14,7 +14,9 @@ from app.data._types import AssessmentQuestion  # noqa: F401
 _LANG_MODULES: dict[str, str] = {
     "en-GB": "app.data.en_GB.assessment_bank",
     "en-US": "app.data.en_US.assessment_bank",
+    "de": "app.data.de.assessment_bank",
     "es": "app.data.es.assessment_bank",
+    "fr": "app.data.fr.assessment_bank",
     "it": "app.data.it.assessment_bank",
     "pt": "app.data.pt.assessment_bank",
 }
@@ -34,6 +36,6 @@ def _resolve_bank(target_language: str) -> list[AssessmentQuestion]:
     return _CACHE[module_name]
 
 
-def get_assessment_bank(target_language: str = "en-US") -> list[AssessmentQuestion]:
+def get_assessment_bank(target_language: str = "en-GB") -> list[AssessmentQuestion]:
     """Return the full assessment bank for the given target language."""
     return _resolve_bank(target_language)

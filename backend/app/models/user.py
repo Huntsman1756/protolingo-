@@ -18,7 +18,7 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
     role: Mapped[str] = mapped_column(String(10), nullable=False, default="user")
     native_language: Mapped[str] = mapped_column(String(10), nullable=False)
-    target_language: Mapped[str] = mapped_column(String(10), nullable=False, default="en-US")
+    target_language: Mapped[str] = mapped_column(String(10), nullable=False, default="en-GB")
     ui_locale: Mapped[str | None] = mapped_column(String(10), nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     is_verified: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)

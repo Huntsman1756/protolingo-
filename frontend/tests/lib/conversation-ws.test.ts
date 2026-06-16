@@ -57,6 +57,6 @@ describe('buildConversationWsUrl', () => {
   it('handles NEXT_PUBLIC_API_URL with trailing slash', () => {
     process.env.NEXT_PUBLIC_API_URL = 'https://api.example.com/'
     const url = buildConversationWsUrl()
-    expect(url).toBe('wss://api.example.com//ws/conversation')
+    expect(url).toBe('wss://api.example.com/ws/conversation')
   })
 })

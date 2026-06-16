@@ -369,6 +369,57 @@ C2_GRAMMAR_TOPICS: list[GrammarTopic] = [
         related=["hedging-stance-advanced", "irony-understatement", "distancing-language"],
     ),
     GrammarTopic(
+        slug="american-pragmatics",
+        title="American Pragmatics & Communication Style",
+        level="C2",
+        category="Advanced",
+        summary="Master the distinctive communication patterns of American English: directness, small talk, regional variation, humor, and sports metaphors in professional contexts.",
+        explanation="American communication has several distinctive features that differ from other English varieties:\n\n**Directness & Clarity**\nAmericans tend to value direct, clear communication. This is sometimes perceived as blunt by speakers from cultures that favor indirectness:\n- *Let's get straight to the point.*\n- *I'm going to be honest with you...*\n- *Here's the bottom line...*\n\n**Small Talk Patterns**\n- Americans often use *How are you?* as a greeting, not necessarily expecting a detailed answer.\n- Common icebreakers: *Where are you from? What do you do?*\n- Sports talk is a safe, neutral small talk topic in many settings.\n\n**Positivity Bias**\nAmerican professional communication tends toward optimism:\n- *That's a great question.* (even for routine questions)\n- *I love it!* (enthusiastic approval)\n- *We're excited about...* (standard business enthusiasm)\n\n**Sports Metaphors in Business**\n- *Step up to the plate* (= take responsibility)\n- *Hit it out of the park* (= do an outstanding job)\n- *A curveball* (= an unexpected challenge)\n- *Drop the ball* (= make a mistake, fail to do something)\n- *Touch base* (= get in contact briefly)\n- *Ballpark figure* (= rough estimate)\n\n**Regional Variation**\n- *Y'all* (Southern US, second-person plural)\n- *You guys* (widely used gender-neutral plural)\n- *Pop vs. soda vs. coke* (regional terms for soft drinks)\n\n**Political Correctness & Sensitive Topics**\n- Americans in professional settings tend to avoid direct discussion of politics, religion, and income.\n- Gender-neutral language is expected in professional writing.\n- The concept of *reading the room* — adjusting tone based on audience.",
+        rules=[
+            "American directness values clarity over face-saving — say what you mean, but remain polite.",
+            "Sports metaphors are pervasive in American business English — understanding them is essential for C2 comprehension.",
+            "American positivity can be misinterpreted as insincerity by speakers from more reserved cultures.",
+            "Regional dialect features are appropriate in informal settings but should be used sparingly in formal contexts.",
+            "Be aware of how American communication norms differ from British, Australian, and other English varieties.",
+        ],
+        examples=[
+            GrammarExample(
+                text="I'm gonna be straight with you — we need better results by Q3.",
+                note="American directness in a business context",
+            ),
+            GrammarExample(
+                text="She really stepped up to the plate and delivered an amazing presentation.",
+                note="sports metaphor = took responsibility",
+            ),
+            GrammarExample(
+                text="Just to touch base — do you have a ballpark figure for the budget?",
+                note="two sports/business metaphors in one sentence",
+            ),
+            GrammarExample(
+                text="How y'all doing today? Welcome to the team.",
+                note="Southern US regionalism in a welcoming context",
+            ),
+        ],
+        common_mistakes=[
+            GrammarMistake(
+                wrong='A: "How are you?"  B: "Well, my back has been hurting and the car broke down last week..."',
+                correct='A: "How are you?"  B: "Good, thanks! You?"',
+                note="In American small talk, 'How are you?' is a greeting ritual, not a genuine inquiry about health.",
+            ),
+            GrammarMistake(
+                wrong="Let's not beat around the bush — we need to discuss the elephant in the room, and I'm not going to sugarcoat it.",
+                correct="Let's address the main issue directly: the budget shortfall.",
+                note="Overloading a sentence with multiple idioms sounds unnatural. In American business, one metaphor at a time is the norm.",
+            ),
+        ],
+        related=[
+            "pragmatic-competence",
+            "idiomatic-expressions",
+            "register-and-style",
+            "irony-understatement",
+        ],
+    ),
+    GrammarTopic(
         slug="rhetorical-devices",
         title="Rhetorical Devices & Persuasion",
         level="C2",

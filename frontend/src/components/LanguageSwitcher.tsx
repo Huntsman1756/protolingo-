@@ -106,40 +106,46 @@ export default function LanguageSwitcher() {
 
       {open && multiple && (
         <div className="border-fl-border bg-fl-bg absolute top-full right-0 left-0 z-50 border py-1 shadow-lg">
-          {userLanguages.map((ulang) => {
-            const lang = getLanguageByCode(ulang.target_language)
-            if (!lang) return null
-            return (
-              <button
-                key={ulang.target_language}
-                onClick={() => handleSwitch(ulang.target_language)}
-                className={`flex w-full items-center gap-2 px-5 py-2.5 text-left font-mono text-xs tracking-widest uppercase transition-colors ${
-                  ulang.is_active
-                    ? 'text-fl-fg bg-fl-surface'
-                    : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface'
-                }`}
-              >
-                <Image
-                  src={lang.flagPath}
-                  alt={lang.code}
-                  width={20}
-                  height={14}
-                  className="shrink-0 object-cover"
-                />
-                <span className="truncate">{tTarget(lang.code)}</span>
-                {ulang.plan?.cefr_level && (
-                  <span className="text-fl-label text-fl-accent ml-1 font-mono">
-                    {ulang.plan.cefr_level}
-                  </span>
-                )}
-                {ulang.is_active && (
-                  <span className="text-fl-label text-fl-accent ml-auto">
-                    ✓
-                  </span>
-                )}
-              </button>
+          {[...userLanguages]
+            .sort((a, b) =>
+              tTarget(a.target_language).localeCompare(
+                tTarget(b.target_language)
+              )
             )
-          })}
+            .map((ulang) => {
+              const lang = getLanguageByCode(ulang.target_language)
+              if (!lang) return null
+              return (
+                <button
+                  key={ulang.target_language}
+                  onClick={() => handleSwitch(ulang.target_language)}
+                  className={`flex w-full items-center gap-2 px-5 py-2.5 text-left font-mono text-xs tracking-widest uppercase transition-colors ${
+                    ulang.is_active
+                      ? 'text-fl-fg bg-fl-surface'
+                      : 'text-fl-muted-2 hover:text-fl-fg hover:bg-fl-surface'
+                  }`}
+                >
+                  <Image
+                    src={lang.flagPath}
+                    alt={lang.code}
+                    width={20}
+                    height={14}
+                    className="shrink-0 object-cover"
+                  />
+                  <span className="truncate">{tTarget(lang.code)}</span>
+                  {ulang.plan?.cefr_level && (
+                    <span className="text-fl-label text-fl-accent ml-1 font-mono">
+                      {ulang.plan.cefr_level}
+                    </span>
+                  )}
+                  {ulang.is_active && (
+                    <span className="text-fl-label text-fl-accent ml-auto">
+                      ✓
+                    </span>
+                  )}
+                </button>
+              )
+            })}
         </div>
       )}
     </div>

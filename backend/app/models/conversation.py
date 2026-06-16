@@ -26,3 +26,7 @@ class Conversation(Base):
     study_plan_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("study_plans.id", ondelete="SET NULL"), nullable=True, index=True
     )
+    target_language: Mapped[str | None] = mapped_column(String(10), nullable=True, index=True)
+
+    def __repr__(self) -> str:
+        return f"<Conversation(id={self.id}, user_id={self.user_id}, source={self.source}, target_language={self.target_language})>"

@@ -10,7 +10,7 @@ applyTo: "**/*.test.*, **/*.spec.*, **/tests/**, **/__tests__/**"
 | Layer | Framework | Scope | Coverage | Status |
 |-------|-----------|-------|----------|--------|
 | Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | 83% (target: 70%) | Implemented |
-| Frontend unit | Vitest | Stores, components, lib, middleware, API interceptor | — | Implemented |
+| Frontend unit | Vitest | Stores, components, hooks, lib, middleware | — | Implemented |
 | E2E | Playwright | Critical user flows | Smoke | Pending |
 
 All tests pass on every push. Backend coverage threshold configured at 70%, currently at 83%. Frontend tests cover stores, critical components (VoiceRecorder, AudioPlayer, ProfileSection, UnitCard/UnitDrawer, LanguageSwitcher, TargetLanguageSelector), lib modules, and middleware.
@@ -64,8 +64,13 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 | `test_llm_adapter.py` | — | LLM adapter: JSON parsing, streaming, 5 exception classes, 4 provider init paths, chat (streaming + non-streaming), Anthropic error mapping, structured output with retry, DeepSeek provider, edge cases (63 tests, 38%→100% coverage) |
 | `test_phrasebook.py` | 185 | Phrasebook API: list categories, by-level filtering, category detail, language switching, auth, error cases (14 tests) |
 | `test_quota_service.py` | — | Quota service: key helpers, quota status, session tracking, daily/weekly minute checks, monthly token tracking, combined quota validation, full session lifecycle (71 tests, 37%→100% coverage) |
+| `test_flashcard_sm2.py` | — | Flashcard service: `_clean_generated_word`, `_get_lang_hint` (9 languages + fallbacks), `generate_flashcards`, `lookup_word` (18 tests, 57%→100% coverage) |
+| `test_assessment_bank.py` | — | Assessment bank dispatcher: all 7 languages, unknown fallback to en-GB, ISO prefix fallback, cache reuse (12 tests, 0%→100% coverage) |
+| `test_limiter.py` | — | Rate limiter: `_get_real_ip` (X-Real-IP, X-Forwarded-For single/multiple, client host fallback, unknown), limiter construction (9 tests, 42%→100% coverage) |
+| `test_lesson_generator.py` | — | Lesson generator service: `get_valid_grammar_slugs`, `generate_lesson`, fill-blank sanitization, grammar refs filtering, `evaluate_free_write`, `evaluate_pronunciation`, `evaluate_fill_blank` (12 tests, 51%→100% coverage) |
+| `test_listening_service.py` | — | Listening service DB layer: `get_available_exercise`, `submit_attempt` (correct/partial/duplicate/replay/not-found), `get_user_history` (empty/attempts/limit/language filter) (12 tests, 63%→64% coverage) |
 
-**Total: 33 test files, 705 tests, ~12,000 lines of test code.**
+**Total: 38 test files, 783 tests.**
 
 ### Coverage
 
@@ -163,6 +168,11 @@ pytest --cov-report=html
 | `tests/lib/target-languages.test.ts` | 16 | `getLanguageByCode`: case-insensitive lookup, undefined for unknown codes. `formatLanguageName`: capitalization rules per locale |
 | `tests/store/language.test.ts` | 17 | Language store: fetchLanguages, switchLanguage, addLanguage, removeLanguage, active language tracking |
 | `tests/data/curriculum.test.ts` | 12 | Curriculum data: unit retrieval by level and language, fallback behavior |
+| `tests/lib/utils.test.ts` | 10 | `cn()`: single/multiple/conditional classes, Tailwind conflict resolution (twMerge), array/object inputs, falsy values, empty/null handling |
+| `tests/lib/logger.test.ts` | 10 | `getLogger()`: debug/info/warn/error console calls with namespace, string/object/Error payload serialization, undefined/unserializable payload, `silentLogger` no-ops |
+| `tests/hooks/useLogout.test.tsx` | 1 | `useLogout()`: calls API logout endpoint, redirects to /login |
+| `tests/store/theme.test.ts` | 5 | Theme store: default `system`, `setTheme` transitions (light/dark/system), localStorage persistence (`fl-theme` key) |
+| `tests/store/loading.test.ts` | 9 | Loading store: `inc`/`dec`/`finishComplete` state machine, count never below 0, auto `complete` flag when count reaches 0, reset on next `inc` |
 | `tests/components/LanguageSwitcher.test.tsx` | 10 | LanguageSwitcher: rendering, dropdown open/close, CEFR badges, active checkmark, language switch, toast, router refresh |
 | `tests/components/TargetLanguageSelector.test.tsx` | 8 | TargetLanguageSelector: grid rendering, active/inactive states, onChange callback, flag images |
 | `tests/components/VoiceRecorder.test.tsx` | 24 | VoiceRecorder: idle/recording/transcribing/error states, getUserMedia mock, AudioContext lifecycle, STT API call, auto-stop, mic denied error, resampling |
@@ -171,7 +181,7 @@ pytest --cov-report=html
 | `tests/components/UnitCard.test.tsx` | 41 | UnitCard: all 5 status states (completed/active/locked/level-test/default), progress bar, click interactions. UnitDrawer: grammar points, lesson list, completion states, escape/outside-click dismiss |
 | `tests/store/progress.test.ts` | 48 | Progress store: 10 initial state fields, setProgress/setTodayLessons/completeLesson/setCurrentUnit/setPlanDuration/updateUnitProgress/unlockLevelTest/setLevelTestResult, state transition isolation |
 
-**Total: 325 tests across 16 files.**
+**Total: 364 tests across 21 files.**
 
 ### Running tests
 
@@ -231,7 +241,7 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 | Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |
 | Frontend format | `prettier --check src/` | Clean diff |
 | Frontend typecheck | `npx tsc --noEmit` | Clean output |
-| Frontend tests | `npm run test:run` | All 325 tests pass |
+| Frontend tests | `npm run test:run` | All 364 tests pass |
 
 **Note**: The backend test job uses SQLite (same as local tests), not PostgreSQL. No Docker services are required for the backend test job.
 
