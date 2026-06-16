@@ -17,6 +17,21 @@ function format(namespace: string, message: string): string {
   return `[${namespace}] ${message}`
 }
 
+function serializePayload(payload: unknown): string {
+  if (payload === undefined) return ''
+  if (payload instanceof Error) {
+    return ` error=${payload.message}`
+  }
+  if (typeof payload === 'string') {
+    return ` ${payload}`
+  }
+  try {
+    return ` ${JSON.stringify(payload)}`
+  } catch {
+    return ' [unserializable-payload]'
+  }
+}
+
 function log(
   level: LogLevel,
   namespace: string,
@@ -24,23 +39,19 @@ function log(
   payload?: unknown
 ) {
   if (!shouldLog(level)) return
-  const tag = format(namespace, message)
+  const line = `${format(namespace, message)}${serializePayload(payload)}`
   switch (level) {
     case 'debug':
-      if (payload === undefined) console.debug(tag)
-      else console.debug(tag, payload)
+      console.debug(line)
       break
     case 'info':
-      if (payload === undefined) console.info(tag)
-      else console.info(tag, payload)
+      console.info(line)
       break
     case 'warn':
-      if (payload === undefined) console.warn(tag)
-      else console.warn(tag, payload)
+      console.warn(line)
       break
     case 'error':
-      if (payload === undefined) console.error(tag)
-      else console.error(tag, payload)
+      console.error(line)
       break
   }
 }
