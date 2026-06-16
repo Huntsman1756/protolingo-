@@ -108,11 +108,10 @@ function QuotaPill({
     <div className="w-full">
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
-          alert
+        className={`text-fl-hint flex w-full items-center justify-between border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${alert
             ? 'border-fl-error/50 text-fl-error hover:border-fl-error'
             : 'border-fl-border text-fl-muted-3 hover:border-fl-border-2 hover:text-fl-muted-1'
-        }`}
+          }`}
       >
         <span>● {text}</span>
         <span className="text-fl-muted-4">{open ? '▴' : '▾'}</span>
@@ -154,8 +153,9 @@ function vadRedemptionMs(cefrLevel: string | null | undefined): number {
 }
 
 const MIN_UTTERANCE_MS = 550
-const MIN_UTTERANCE_RMS = 0.0035
-const INTERRUPTION_RMS_THRESHOLD = 0.0075
+const MIN_UTTERANCE_RMS = 0.005
+const INTERRUPTION_RMS_THRESHOLD = 0.015
+const BARGE_IN_STARTUP_GUARD_MS = 225
 const VAD_MAX_RMS = 0.25
 const convLogger = getLogger('conversation-audio')
 
@@ -205,7 +205,7 @@ export default function ConversationMode({
     apiFetch('/api/auth/quota')
       .then((r) => (r.ok ? r.json() : null))
       .then((data: QuotaStatus | null) => data && setQuota(data))
-      .catch(() => {})
+      .catch(() => { })
   }, [])
 
   useEffect(() => {
@@ -227,6 +227,7 @@ export default function ConversationMode({
   const speechStartedAtRef = useRef<number | null>(null)
   const sessionActiveRef = useRef(false)
   const ttsChunkIndexRef = useRef(0)
+  const lastAssistantAudioAtRef = useRef(0)
 
   useEffect(() => {
     assistantSpeakingRef.current = assistantSpeaking
@@ -310,12 +311,30 @@ export default function ConversationMode({
       ) {
         convLogger.warn('ignored speech while assistant was speaking', {
           rms: speech.rms,
+          lastAssistantAudioMsAgo: performance.now() - lastAssistantAudioAtRef.current,
+        })
+        return
+      }
+
+      const sinceLastAssistantAudioMs =
+        performance.now() - lastAssistantAudioAtRef.current
+      if (
+        assistantSpeakingRef.current &&
+        sinceLastAssistantAudioMs < BARGE_IN_STARTUP_GUARD_MS
+      ) {
+        convLogger.warn('ignored speech early in assistant playback window', {
+          rms: speech.rms,
+          sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
         })
         return
       }
 
       // Barge-in: cancel in-progress TTS playback only when assistant is speaking.
       if (assistantSpeakingRef.current && audioQueueRef.current) {
+        convLogger.info('processing barge-in speech', {
+          rms: speech.rms,
+          sinceLastAssistantAudioMs: Math.round(sinceLastAssistantAudioMs),
+        })
         audioQueueRef.current.cancel()
         setAssistantSpeaking(false)
       }
@@ -364,7 +383,7 @@ export default function ConversationMode({
     audioQueueRef.current?.cancel()
     audioQueueRef.current = null
     if (audioCtxRef.current) {
-      void audioCtxRef.current.close().catch(() => {})
+      void audioCtxRef.current.close().catch(() => { })
       audioCtxRef.current = null
     }
     setSessionActive(false)
@@ -431,6 +450,7 @@ export default function ConversationMode({
           chunkId,
           bytes: arrayBuffer.byteLength,
         })
+        lastAssistantAudioAtRef.current = performance.now()
         setAssistantSpeaking(true)
         if (!audioQueueRef.current) {
           convLogger.warn('audio queue missing for playback')
@@ -451,7 +471,7 @@ export default function ConversationMode({
           void event.data
             .arrayBuffer()
             .then((arrayBuffer) => handleAudioChunk(arrayBuffer))
-            .catch(() => {})
+            .catch(() => { })
           return
         }
 
