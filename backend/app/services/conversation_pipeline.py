@@ -26,7 +26,11 @@ if TYPE_CHECKING:
 logger = get_logger(__name__)
 
 SENTENCE_END = re.compile(r'[.!?]["\'\)\]]?\s*$')
-MAX_BUFFER_CHARS = 150
+TTS_CHUNK_MAX_CHARS = 160
+TTS_CHUNK_TIMEOUT_SECONDS = 30.0
+TTS_MAX_RETRIES = 2
+TTS_RETRY_DELAY_SECONDS = 0.25
+TTS_MAX_CONSECUTIVE_FAILURES = 3
 
 WARNING_ADVANCE_SECONDS = 60  # How many seconds before timeout to send the warning
 
@@ -173,9 +177,99 @@ class ConversationPipeline:
         async with self._send_lock:
             await ws.send_bytes(data)
 
+    async def _safe_send_json(self, ws: WebSocket, data: dict) -> bool:
+        try:
+            async with self._send_lock:
+                await ws.send_json(data)
+            return True
+        except RuntimeError as exc:
+            # Happens when peer closes in parallel with send; not fatal for this chunk.
+            logger.debug("[pipeline] Socket closed while sending JSON: %s", exc)
+            return False
+        except Exception as exc:
+            logger.debug("[pipeline] JSON send failed: %s", exc)
+            return False
+
+    async def _safe_send_bytes(self, ws: WebSocket, data: bytes) -> bool:
+        try:
+            async with self._send_lock:
+                await ws.send_bytes(data)
+            return True
+        except RuntimeError as exc:
+            logger.debug("[pipeline] Socket closed while sending audio: %s", exc)
+            return False
+        except Exception as exc:
+            logger.debug("[pipeline] Audio send failed: %s", exc)
+            return False
+
     async def _close_ws(self, ws: WebSocket, code: int = 1000) -> None:
         async with self._send_lock:
             await ws.close(code=code)
+
+    def _should_flush_tts_sentence(self, sentence_buffer: str) -> bool:
+        stripped = sentence_buffer.strip()
+        return bool(stripped) and (
+            SENTENCE_END.search(stripped) is not None
+            or len(stripped) >= TTS_CHUNK_MAX_CHARS
+        )
+
+    def _split_tts_sentence(self, text: str) -> list[str]:
+        stripped = text.strip()
+        if not stripped:
+            return []
+        chunks: list[str] = []
+        remaining = stripped
+        hard_limit = TTS_CHUNK_MAX_CHARS
+        while len(remaining) > hard_limit:
+            split_at = remaining.rfind(" ", 0, hard_limit + 1)
+            if split_at < hard_limit // 2:
+                split_at = hard_limit
+            chunk = remaining[:split_at].strip()
+            if chunk:
+                chunks.append(chunk)
+            remaining = remaining[split_at:].strip()
+        if remaining:
+            chunks.append(remaining)
+        return chunks
+
+    async def _synthesize_chunk(self, text: str, chunk_id: int) -> bytes:
+        attempts = TTS_MAX_RETRIES + 1
+        for attempt in range(1, attempts + 1):
+            try:
+                return await asyncio.wait_for(
+                    self.tts.synthesize(text, self._voice or None, self._stt_language),
+                    timeout=TTS_CHUNK_TIMEOUT_SECONDS,
+                )
+            except asyncio.TimeoutError as exc:
+                if attempt >= attempts:
+                    logger.warning(
+                        "[pipeline] TTS chunk %s timed out after %s seconds (%d/%d attempts)",
+                        chunk_id,
+                        TTS_CHUNK_TIMEOUT_SECONDS,
+                        attempt,
+                        attempts,
+                    )
+                    raise
+                logger.warning(
+                    "[pipeline] TTS chunk %s timeout (%d/%d); retrying",
+                    chunk_id,
+                    attempt,
+                    attempts,
+                )
+                await asyncio.sleep(TTS_RETRY_DELAY_SECONDS * attempt)
+            except asyncio.CancelledError:
+                raise
+            except Exception as exc:
+                if attempt >= attempts:
+                    raise
+                logger.warning(
+                    "[pipeline] TTS chunk %s failed (%d/%d): %s",
+                    chunk_id,
+                    attempt,
+                    attempts,
+                    exc,
+                )
+                await asyncio.sleep(TTS_RETRY_DELAY_SECONDS * attempt)
 
     @staticmethod
     def _clean_sentence(raw_sentence: str) -> str:
@@ -217,54 +311,93 @@ class ConversationPipeline:
         ws: WebSocket,
         stats: dict | None = None,
     ) -> tuple[
-        asyncio.Queue[asyncio.Future[bytes] | None],
+        asyncio.Queue[tuple[int, asyncio.Future[bytes] | None] | None],
         list[asyncio.Future[bytes]],
         asyncio.Task,
         object,
     ]:
-        tts_queue: asyncio.Queue[asyncio.Future[bytes] | None] = asyncio.Queue()
+        tts_queue: asyncio.Queue[
+            tuple[int, asyncio.Future[bytes] | None] | None
+        ] = asyncio.Queue()
         tts_futures: list[asyncio.Future[bytes]] = []
+        chunk_counter = 0
+        breaker_open = False
+        consecutive_failures = 0
 
         async def _tts_sender() -> None:
+            nonlocal breaker_open
+            nonlocal consecutive_failures
             while True:
                 item = await tts_queue.get()
                 if item is None:
                     break
+                chunk_id, future = item
+                if breaker_open:
+                    if future is not None and not future.done():
+                        future.cancel()
+                    continue
                 try:
-                    audio = await item
-                    if stats is not None:
-                        stats["chunks"] += 1
-                        stats["bytes"] += len(audio)
-                    logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
-                    await self._send_bytes(ws, audio)
+                    if future is None:
+                        continue
+                    audio = await future
+                    if not audio:
+                        consecutive_failures += 1
+                        logger.warning(
+                            "[pipeline] TTS chunk %s produced empty audio (failure %d/%d)",
+                            chunk_id,
+                            consecutive_failures,
+                            TTS_MAX_CONSECUTIVE_FAILURES,
+                        )
+                        if consecutive_failures >= TTS_MAX_CONSECUTIVE_FAILURES:
+                            breaker_open = True
+                            logger.warning(
+                                "[pipeline] TTS breaker opened: consecutive empty chunks reached limit",
+                            )
+                            for pending in tts_futures:
+                                if not pending.done():
+                                    pending.cancel()
+                        continue
                 except asyncio.CancelledError:
                     raise
-                except RuntimeError as exc:
-                    # WebSocket is likely closing; keep logs compact and stop sender.
-                    logger.debug("[pipeline] TTS sender interrupted: %s", exc)
-                    break
                 except Exception as exc:
-                    logger.error("[pipeline] TTS failed: %s", exc)
-                    try:
-                        await self._send_json(
-                            ws, {"type": "error", "code": "tts_failed", "message": str(exc)}
+                    logger.warning("[pipeline] TTS chunk %s failed: %s", chunk_id, exc)
+                    consecutive_failures += 1
+                    if consecutive_failures >= TTS_MAX_CONSECUTIVE_FAILURES:
+                        breaker_open = True
+                        logger.warning(
+                            "[pipeline] TTS breaker opened after %d consecutive failures",
+                            consecutive_failures,
                         )
-                    except Exception:
-                        # If control frame can't be sent, stop processing this sender loop.
-                        break
+                        for pending in tts_futures:
+                            if not pending.done():
+                                pending.cancel()
+                    continue
+                consecutive_failures = 0
+
+                if stats is not None:
+                    stats["chunks"] += 1
+                    stats["bytes"] += len(audio)
+                logger.debug("[pipeline] TTS audio chunk: %d bytes", len(audio))
+                send_ok = await self._safe_send_bytes(ws, audio)
+                if not send_ok:
+                    break
+
+            logger.debug("[pipeline] TTS sender stopped")
 
         sender_task = asyncio.create_task(_tts_sender())
 
         def _enqueue_tts(text: str) -> None:
-            future: asyncio.Future[bytes] = asyncio.ensure_future(
-                self.tts.synthesize(
-                    text,
-                    self._voice or None,
-                    self._stt_language,
-                )
+            nonlocal chunk_counter
+            nonlocal breaker_open
+            if breaker_open:
+                return
+            chunk_counter += 1
+            chunk_id = chunk_counter
+            future: asyncio.Future[bytes] = asyncio.create_task(
+                self._synthesize_chunk(text, chunk_id),
             )
             tts_futures.append(future)
-            tts_queue.put_nowait(future)
+            tts_queue.put_nowait((chunk_id, future))
 
         return tts_queue, tts_futures, sender_task, _enqueue_tts
 
@@ -289,8 +422,7 @@ class ConversationPipeline:
                 full_response += token
                 sentence_buffer += token
                 if (
-                    SENTENCE_END.search(sentence_buffer.strip())
-                    or len(sentence_buffer) > MAX_BUFFER_CHARS
+                    self._should_flush_tts_sentence(sentence_buffer)
                 ):
                     clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
@@ -305,7 +437,8 @@ class ConversationPipeline:
                         },
                     )
                     if clean_sentence:
-                        _enqueue_tts(clean_sentence)
+                        for sentence in self._split_tts_sentence(clean_sentence):
+                            _enqueue_tts(sentence)
 
             clean_buffer = self._clean_sentence(sentence_buffer.strip())
             clean_full_response = strip_memory_marker(full_response).strip()
@@ -319,7 +452,8 @@ class ConversationPipeline:
                         "final": False,
                     },
                 )
-                _enqueue_tts(clean_buffer)
+                for sentence in self._split_tts_sentence(clean_buffer):
+                    _enqueue_tts(sentence)
 
             tts_queue.put_nowait(None)
             await sender_task
@@ -457,8 +591,7 @@ class ConversationPipeline:
 
                 # 3. Flush complete sentence — fire TTS immediately (non-blocking)
                 if (
-                    SENTENCE_END.search(sentence_buffer.strip())
-                    or len(sentence_buffer) > MAX_BUFFER_CHARS
+                    self._should_flush_tts_sentence(sentence_buffer)
                 ):
                     clean_sentence = self._clean_sentence(sentence_buffer.strip())
                     sentence_buffer = ""
@@ -473,7 +606,8 @@ class ConversationPipeline:
                         },
                     )
                     if clean_sentence:
-                        _enqueue_tts(clean_sentence)
+                        for sentence in self._split_tts_sentence(clean_sentence):
+                            _enqueue_tts(sentence)
 
             clean_full_response = strip_memory_marker(full_response)
             if "<<MEMORY>>" in full_response:
@@ -491,7 +625,8 @@ class ConversationPipeline:
                         "final": False,
                     },
                 )
-                _enqueue_tts(sentence_buffer.strip())
+                for sentence in self._split_tts_sentence(sentence_buffer.strip()):
+                    _enqueue_tts(sentence)
 
             llm_ms = (time.perf_counter() - llm_t0) * 1000
 

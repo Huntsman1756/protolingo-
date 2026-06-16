@@ -339,7 +339,11 @@ export default function ConversationMode({
         // Binary → TTS audio chunk
         if (event.data instanceof ArrayBuffer) {
           setAssistantSpeaking(true)
-          await audioQueueRef.current?.enqueue(event.data)
+          try {
+            await audioQueueRef.current?.enqueue(event.data)
+          } catch {
+            setAssistantSpeaking(false)
+          }
           return
         }
 
@@ -389,10 +393,8 @@ export default function ConversationMode({
 
             case 'session_end':
               cleanEndRef.current = true
+              finalizeSession()
               setStatus('ended')
-              setSessionActive(false)
-              vad.pause()
-              ws.close(1000, 'session_end')
               break
 
             case 'error':
@@ -530,14 +532,7 @@ export default function ConversationMode({
   function handleStop() {
     startAttemptRef.current++
     cleanEndRef.current = true
-    wsRef.current?.close(1000, 'user_stopped')
-    wsRef.current = null
-    vad.pause()
-    audioQueueRef.current?.cancel()
-    audioCtxRef.current?.close()
-    audioCtxRef.current = null
-    audioQueueRef.current = null
-    setSessionActive(false)
+    finalizeSession()
     setStatus('ended')
     // Allow a moment for the backend to record session seconds, then refresh
     setTimeout(() => refreshQuota(), 1500)

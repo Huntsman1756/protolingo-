@@ -48,6 +48,8 @@ export interface AudioQueue {
   cancel: () => void
 }
 
+const MAX_PENDING_CHUNKS = 8
+
 /**
  * Creates a gapless audio playback queue backed by the Web Audio API.
  * Each ArrayBuffer is decoded (MP3/WAV/OGG accepted) and scheduled to play
@@ -60,20 +62,22 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
   // nextTime tracks when the next chunk should start (in AudioContext time).
   // Using a closure variable (not module-level) so multiple instances are safe.
   let nextTime = 0
+  let generation = 0
   const sources: AudioBufferSourceNode[] = []
+  const pendingChunks: ArrayBuffer[] = []
+  let draining = false
   // Serialize decoding+scheduling so that chunks are always played in the
   // exact order they were enqueued, regardless of how long decodeAudioData
   // takes for each chunk. Without this, a short chunk 2 could decode faster
   // than chunk 1 and get scheduled first, causing out-of-order playback.
   let chain: Promise<void> = Promise.resolve()
 
-  async function _decode(arrayBuffer: ArrayBuffer): Promise<void> {
+  async function _decode(arrayBuffer: ArrayBuffer, generationToken: number): Promise<void> {
     // Resume context if it was suspended (can happen on iOS Safari)
     if (ctx.state === 'suspended') {
       await ctx.resume()
     }
 
-    // Copy the buffer: decodeAudioData may detach the original ArrayBuffer
     let decoded: AudioBuffer
     try {
       decoded = await ctx.decodeAudioData(arrayBuffer.slice(0))
@@ -82,14 +86,32 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
       // Skip this chunk rather than breaking the entire playback chain.
       return
     }
+    if (generationToken !== generation) return
 
-    const source = ctx.createBufferSource()
-    source.buffer = decoded
-    source.connect(ctx.destination)
+    let source: AudioBufferSourceNode
+    try {
+      source = ctx.createBufferSource()
+      source.buffer = decoded
+      source.connect(ctx.destination)
+    } catch {
+      return
+    }
 
     // Schedule with a tiny lead to avoid underrun; never schedule in the past
     const startAt = Math.max(ctx.currentTime + 0.05, nextTime)
-    source.start(startAt)
+    try {
+      source.start(startAt)
+    } catch {
+      return
+    }
+    if (generationToken !== generation) {
+      try {
+        source.stop(0)
+      } catch {
+        // ignore
+      }
+      return
+    }
     nextTime = startAt + decoded.duration
 
     sources.push(source)
@@ -99,12 +121,36 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     }
   }
 
+  async function _drain(generationToken: number): Promise<void> {
+    try {
+      while (generationToken === generation && pendingChunks.length) {
+        const nextChunk = pendingChunks.shift()
+        if (!nextChunk) break
+        await _decode(nextChunk, generationToken)
+      }
+    } finally {
+      if (generationToken === generation && pendingChunks.length === 0) {
+        draining = false
+      }
+    }
+  }
+
   function enqueue(arrayBuffer: ArrayBuffer): Promise<void> {
-    chain = chain.then(() => _decode(arrayBuffer))
+    const generationToken = generation
+    pendingChunks.push(arrayBuffer)
+    while (pendingChunks.length > MAX_PENDING_CHUNKS) {
+      pendingChunks.shift()
+    }
+    if (!draining) {
+      draining = true
+      chain = chain.then(() => _drain(generationToken)).catch(() => {})
+    }
     return chain
   }
 
   function cancel(): void {
+    generation += 1
+    pendingChunks.length = 0
     for (const s of sources) {
       try {
         s.stop(0)
@@ -114,7 +160,7 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     }
     sources.length = 0
     nextTime = 0
-    // Reset the chain so the queue is clean after a cancel
+    draining = false
     chain = Promise.resolve()
   }
 
