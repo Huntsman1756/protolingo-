@@ -110,7 +110,8 @@ export function createAudioQueue(ctx: AudioContext): AudioQueue {
     }
 
     // Schedule with a tiny lead to avoid underrun; never schedule in the past
-    const startAt = Math.max(ctx.currentTime + 0.05, nextTime)
+    const now = ctx.currentTime
+    const startAt = Math.max(now + 0.005, nextTime)
     try {
       source.start(startAt)
     } catch {

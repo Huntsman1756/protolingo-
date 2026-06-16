@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
 import { apiFetch } from '@/lib/api'
 import { float32ToWav, createAudioQueue, type AudioQueue } from '@/lib/audio'
+import { getLogger } from '@/lib/logger'
 import {
   buildConversationWsUrl,
   type WsMessage,
@@ -154,6 +155,7 @@ function vadRedemptionMs(cefrLevel: string | null | undefined): number {
 
 const MIN_UTTERANCE_MS = 550
 const MIN_UTTERANCE_RMS = 0.0035
+const convLogger = getLogger('conversation-audio')
 
 export default function ConversationMode({
   initialContext,
@@ -221,6 +223,7 @@ export default function ConversationMode({
   const assistantSpeakingRef = useRef(false)
   const speechStartedAtRef = useRef<number | null>(null)
   const sessionActiveRef = useRef(false)
+  const ttsChunkIndexRef = useRef(0)
 
   useEffect(() => {
     assistantSpeakingRef.current = assistantSpeaking
@@ -383,6 +386,11 @@ export default function ConversationMode({
       ws.onmessage = async (event) => {
         // Binary → TTS audio chunk
         if (event.data instanceof ArrayBuffer) {
+          const chunkId = ++ttsChunkIndexRef.current
+          convLogger.warn('playback chunk received', {
+            chunkId,
+            bytes: event.data.byteLength,
+          })
           setAssistantSpeaking(true)
           void audioQueueRef.current?.enqueue(event.data).catch(() => {
             setAssistantSpeaking(false)

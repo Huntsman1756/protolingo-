@@ -26,7 +26,6 @@ if TYPE_CHECKING:
 logger = get_logger(__name__)
 
 SENTENCE_END = re.compile(r'[.!?]["\'\)\]]?\s*$')
-TTS_CHUNK_MAX_CHARS = 160
 TTS_CHUNK_TIMEOUT_SECONDS = 30.0
 TTS_MAX_RETRIES = 2
 TTS_RETRY_DELAY_SECONDS = 0.25
@@ -208,28 +207,13 @@ class ConversationPipeline:
 
     def _should_flush_tts_sentence(self, sentence_buffer: str) -> bool:
         stripped = sentence_buffer.strip()
-        return bool(stripped) and (
-            SENTENCE_END.search(stripped) is not None or len(stripped) >= TTS_CHUNK_MAX_CHARS
-        )
+        return bool(stripped) and SENTENCE_END.search(stripped) is not None
 
     def _split_tts_sentence(self, text: str) -> list[str]:
         stripped = text.strip()
         if not stripped:
             return []
-        chunks: list[str] = []
-        remaining = stripped
-        hard_limit = TTS_CHUNK_MAX_CHARS
-        while len(remaining) > hard_limit:
-            split_at = remaining.rfind(" ", 0, hard_limit + 1)
-            if split_at < hard_limit // 2:
-                split_at = hard_limit
-            chunk = remaining[:split_at].strip()
-            if chunk:
-                chunks.append(chunk)
-            remaining = remaining[split_at:].strip()
-        if remaining:
-            chunks.append(remaining)
-        return chunks
+        return [stripped]
 
     async def _synthesize_chunk(self, text: str, chunk_id: int) -> bytes:
         attempts = TTS_MAX_RETRIES + 1
