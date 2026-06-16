@@ -41,11 +41,13 @@ export interface TranscriptMessage {
 
 export interface BargeInMessage {
   type: 'barge_in'
+  turn_id?: number
 }
 
 export interface SessionWarningMessage {
   type: 'session_warning'
   remaining_seconds: number
+  turn_id?: number
 }
 
 export interface SessionEndMessage {

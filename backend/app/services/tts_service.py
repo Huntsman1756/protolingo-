@@ -77,11 +77,11 @@ class OpenAITTSService:
             input_len,
         )
         request_payload = {
-            model=self.model,
-            voice=req_voice,
-            input=text,
-            response_format="mp3",
-            speed=self.speed,
+            "model": self.model,
+            "voice": req_voice,
+            "input": text,
+            "response_format": "mp3",
+            "speed": self.speed,
         }
         if self.timeout is not None:
             request_payload["timeout"] = self.timeout
