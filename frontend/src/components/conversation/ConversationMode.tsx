@@ -268,6 +268,23 @@ export default function ConversationMode({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vad.loading, vad.errored])
 
+  const finalizeSession = useCallback(() => {
+    if (!mountedRef.current) return
+    wsRef.current?.close()
+    wsRef.current = null
+    vad.pause()
+    setAssistantSpeaking(false)
+    setUserSpeaking(false)
+    setStreamingText(null)
+    audioQueueRef.current?.cancel()
+    audioQueueRef.current = null
+    if (audioCtxRef.current) {
+      void audioCtxRef.current.close().catch(() => {})
+      audioCtxRef.current = null
+    }
+    setSessionActive(false)
+  }, [vad])
+
   // Auto-scroll transcript to bottom
   useEffect(() => {
     transcriptEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -411,7 +428,7 @@ export default function ConversationMode({
         if (!cleanEndRef.current) {
           setErrorMsg(`${t('errorConnection')} [onerror → ${url}]`)
           setStatus('error')
-          setSessionActive(false)
+          finalizeSession()
         }
       }
 
@@ -425,13 +442,13 @@ export default function ConversationMode({
             )
           }
           setStatus('error')
-          setSessionActive(false)
+          finalizeSession()
         }
         cleanEndRef.current = false
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [t, targetLanguage]
+    [t, targetLanguage, finalizeSession]
   )
 
   // ─── Session lifecycle ────────────────────────────────────────────────────

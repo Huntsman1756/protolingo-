@@ -278,7 +278,7 @@ async def test_create_tts_queue_sends_multiple_chunks_in_order() -> None:
 @pytest.mark.asyncio
 async def test_create_tts_queue_sends_error_on_tts_failure() -> None:
     pipeline = _make_pipeline()
-    pipeline.tts.synthesize = AsyncMock(side_effect=RuntimeError("TTS broken"))
+    pipeline.tts.synthesize = AsyncMock(side_effect=Exception("TTS broken"))
 
     ws = FakeWS()
     tts_queue, _, sender_task, enqueue = pipeline._create_tts_queue(ws)

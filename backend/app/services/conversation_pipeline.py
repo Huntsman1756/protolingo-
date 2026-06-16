@@ -239,11 +239,19 @@ class ConversationPipeline:
                     await self._send_bytes(ws, audio)
                 except asyncio.CancelledError:
                     raise
+                except RuntimeError as exc:
+                    # WebSocket is likely closing; keep logs compact and stop sender.
+                    logger.debug("[pipeline] TTS sender interrupted: %s", exc)
+                    break
                 except Exception as exc:
                     logger.error("[pipeline] TTS failed: %s", exc)
-                    await self._send_json(
-                        ws, {"type": "error", "code": "tts_failed", "message": str(exc)}
-                    )
+                    try:
+                        await self._send_json(
+                            ws, {"type": "error", "code": "tts_failed", "message": str(exc)}
+                        )
+                    except Exception:
+                        # If control frame can't be sent, stop processing this sender loop.
+                        break
 
         sender_task = asyncio.create_task(_tts_sender())
 
