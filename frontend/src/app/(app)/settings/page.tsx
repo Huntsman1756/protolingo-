@@ -52,6 +52,7 @@ export default function SettingsPage() {
       </div>
 
       <ProfileSection />
+      <BillingSection />
 
       {/* Memory */}
       <div className="border-fl-border bg-fl-surface mt-4 border p-6">
@@ -128,8 +129,6 @@ export default function SettingsPage() {
           </a>
         </div>
       </div>
-
-      <BillingSection />
 
       {/* Legal */}
       <div className="border-fl-border bg-fl-surface mt-4 border p-6">

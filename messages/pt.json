@@ -1075,6 +1075,7 @@
     "paywallDesc": "Inicie o seu período de avaliação gratuito de {days} dias, sem cobranças hoje. Cancele a qualquer momento.",
     "paywallNoCharge": "Cartão obrigatório · sem cobrança até o fim da avaliação · cancele a qualquer momento",
     "paywallSkip": "Continuar com as funções gratuitas",
+    "trialDays": "{days} dias de teste",
     "planMonthly": "— Iniciar por {price} €/mês →",
     "planYearly": "— Iniciar por {price} €/ano →",
     "checkoutError": "Não foi possível iniciar o pagamento. Tente novamente.",

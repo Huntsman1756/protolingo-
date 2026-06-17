@@ -1075,6 +1075,7 @@
     "paywallDesc": "Empieza tu prueba gratuita de {days} días, sin cargo hoy. Cancela cuando quieras.",
     "paywallNoCharge": "Se requiere tarjeta · sin cobro hasta que termine la prueba · cancela cuando quieras",
     "paywallSkip": "Seguir con las funciones gratuitas",
+    "trialDays": "{days} días de prueba",
     "planMonthly": "— Empezar por {price} €/mes →",
     "planYearly": "— Empezar por {price} €/año →",
     "checkoutError": "No se pudo iniciar el pago. Inténtalo de nuevo.",

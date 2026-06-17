@@ -19,6 +19,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher'
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const tNav = useTranslations('nav')
   const tCommon = useTranslations('common')
+  const tBilling = useTranslations('billing')
   const pathname = usePathname()
 
   const mainNavItems = [
@@ -63,6 +64,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const PREMIUM_HREFS = new Set(['/chat', '/listening', '/reading', '/conversation'])
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
   const showPremiumBadge = stripeEnabled && !isSubscribed(user, stripeEnabled)
+
+  const trialDaysLeft =
+    user?.subscription_status === 'trialing' &&
+    user?.subscription_ends_at &&
+    stripeEnabled
+      ? Math.max(
+          1,
+          Math.ceil(
+            (new Date(user.subscription_ends_at).getTime() - Date.now()) /
+              (1000 * 60 * 60 * 24)
+          )
+        )
+      : 0
 
   async function handleResendVerification() {
     const res = await apiFetch('/api/auth/resend-verification', {
@@ -268,6 +282,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <p className="text-fl-label text-fl-muted-4 truncate font-mono">
                 @{user?.username?.toLowerCase()}
               </p>
+              {trialDaysLeft > 0 && (
+                <p className="text-fl-label text-fl-accent truncate font-mono text-xs">
+                  ★ {tBilling('trialDays', { days: trialDaysLeft })}
+                </p>
+              )}
             </div>
           </div>
           <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
@@ -437,6 +456,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   @{user?.username?.toLowerCase()}
                 </p>
               </div>
+              {trialDaysLeft > 0 && (
+                <p className="text-fl-label text-fl-accent mb-2 font-mono text-xs">
+                  ★ {tBilling('trialDays', { days: trialDaysLeft })}
+                </p>
+              )}
               <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
                 v1.8.6
               </p>
