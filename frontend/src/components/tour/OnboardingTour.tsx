@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
+import { useConfigStore } from '@/store/config'
 import {
   Sparkles,
   MessageSquare,
@@ -19,6 +20,7 @@ const PREMIUM_STEPS = new Set([1, 2, 5])
 
 export default function OnboardingTour() {
   const t = useTranslations('tour')
+  const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(0)
   const [leaving, setLeaving] = useState(false)
@@ -99,7 +101,7 @@ export default function OnboardingTour() {
             })()}
             <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t(`step${step + 1}.label`)}
-              {PREMIUM_STEPS.has(step) && (
+              {stripeEnabled && PREMIUM_STEPS.has(step) && (
                 <span className="text-fl-accent ml-1">★</span>
               )}
             </span>
