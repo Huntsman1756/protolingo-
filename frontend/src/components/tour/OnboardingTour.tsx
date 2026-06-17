@@ -15,7 +15,15 @@ import {
 
 const STORAGE_KEY = 'fl_tour_done'
 
-const STEP_ICONS = [Sparkles, MessageSquare, Mic, Layers, BookOpen, Headphones, Zap]
+const STEP_ICONS = [
+  Sparkles,
+  MessageSquare,
+  Mic,
+  Layers,
+  BookOpen,
+  Headphones,
+  Zap,
+]
 const PREMIUM_STEPS = new Set([1, 2, 5])
 
 export default function OnboardingTour() {

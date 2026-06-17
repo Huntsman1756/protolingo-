@@ -289,7 +289,9 @@ export default function OnboardingPage() {
                   onClick={() => handleCheckout('monthly')}
                   className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
                 >
-                  {checkoutLoading ? '...' : t('trialCtaMonthly', { price: String(priceMonthly) })}
+                  {checkoutLoading
+                    ? '...'
+                    : t('trialCtaMonthly', { price: String(priceMonthly) })}
                 </button>
                 <button
                   type="button"
@@ -297,11 +299,15 @@ export default function OnboardingPage() {
                   onClick={() => handleCheckout('yearly')}
                   className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 w-full border py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
                 >
-                  {checkoutLoading ? '...' : t('trialCtaYearly', { price: String(priceYearly) })}
+                  {checkoutLoading
+                    ? '...'
+                    : t('trialCtaYearly', { price: String(priceYearly) })}
                 </button>
               </div>
               {checkoutError && (
-                <p className="text-fl-hint font-mono text-red-500">{checkoutError}</p>
+                <p className="text-fl-hint font-mono text-red-500">
+                  {checkoutError}
+                </p>
               )}
               <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
                 {t('trialNoCharge')}
