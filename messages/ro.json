@@ -1017,6 +1017,14 @@
       "exams": "Examene și certificări",
       "social": "Socializare"
     },
+    "trialHeadline": "Probă gratuită",
+    "trialTitle": "{days} zile de acces complet",
+    "trialDesc": "Chat cu tutore AI, conversații vocale, exerciții de ascultare și citire. Fără angajament, anulează oricând.",
+    "trialCtaMonthly": "Începe la {price}€/lună",
+    "trialCtaYearly": "Începe la {price}€/an",
+    "trialSkip": "Continuă cu funcțiile gratuite",
+    "trialNoCharge": "Card necesar. Fără taxare până la sfârșitul perioadei de probă.",
+    "trialError": "Plata nu a putut fi inițiată. Încearcă din nou.",
     "newLanguageHeadline": "Ce limbă nouă vrei să înveți?",
     "newLanguageSubtitle": "Un nou plan de studiu va fi creat pentru această limbă."
   },
@@ -1131,7 +1139,7 @@
   },
   "whatsNew": {
     "title": "Noutăți",
-    "version": "v1.8.5",
+    "version": "v1.8.6",
     "cta": "Am înțeles",
     "entry1": {
       "label": "Cinci limbi noi de învățat",

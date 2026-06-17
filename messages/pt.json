@@ -1017,6 +1017,14 @@
       "exams": "Exames e certificações",
       "social": "Socializar"
     },
+    "trialHeadline": "Teste gratuito",
+    "trialTitle": "{days} dias de acesso completo",
+    "trialDesc": "Chat com tutor IA, conversas por voz, exercícios de listening e reading. Sem compromisso, cancele quando quiser.",
+    "trialCtaMonthly": "Começar por {price} €/mês",
+    "trialCtaYearly": "Começar por {price} €/ano",
+    "trialSkip": "Continuar com as funções gratuitas",
+    "trialNoCharge": "Cartão necessário. Sem cobrança até o fim do teste.",
+    "trialError": "Não foi possível iniciar o pagamento. Tente novamente.",
     "newLanguageHeadline": "Que novo idioma você quer aprender?",
     "newLanguageSubtitle": "Um novo plano de estudo será criado para este idioma."
   },
@@ -1131,7 +1139,7 @@
   },
   "whatsNew": {
     "title": "Novidades",
-    "version": "v1.8.5",
+    "version": "v1.8.6",
     "cta": "Entendido",
     "entry1": {
       "label": "Cinco novos idiomas para aprender",

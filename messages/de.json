@@ -1017,6 +1017,14 @@
       "exams": "Prüfungen & Zertifikate",
       "social": "Sozialleben"
     },
+    "trialHeadline": "Kostenlose Testphase",
+    "trialTitle": "{days} Tage Vollzugriff",
+    "trialDesc": "KI-Tutor-Chat, Sprachgespräche, Hör- und Leseübungen. Keine Verpflichtung, jederzeit kündbar.",
+    "trialCtaMonthly": "Starten für {price}€/Monat",
+    "trialCtaYearly": "Starten für {price}€/Jahr",
+    "trialSkip": "Mit kostenlosen Funktionen fortfahren",
+    "trialNoCharge": "Karte erforderlich. Keine Belastung bis zum Ende der Testphase.",
+    "trialError": "Zahlung konnte nicht gestartet werden. Bitte versuche es erneut.",
     "newLanguageHeadline": "Welche neue Sprache möchtest du lernen?",
     "newLanguageSubtitle": "Ein neuer Studienplan wird für diese Sprache erstellt."
   },
@@ -1131,7 +1139,7 @@
   },
   "whatsNew": {
     "title": "Neuigkeiten",
-    "version": "v1.8.5",
+    "version": "v1.8.6",
     "cta": "Verstanden",
     "entry1": {
       "label": "Fünf neue Lernsprachen",

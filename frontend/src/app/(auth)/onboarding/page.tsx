@@ -7,7 +7,8 @@ import { useTranslations } from 'next-intl'
 import { Loader2 } from 'lucide-react'
 import { apiFetch } from '@/lib/api'
 import { mapUser } from '@/lib/mappers'
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore, isSubscribed } from '@/store/auth'
+import { useConfigStore } from '@/store/config'
 import { useLanguageStore } from '@/store/language'
 import TargetLanguageSelector from '@/components/TargetLanguageSelector'
 import { DEFAULT_TARGET_LANGUAGE } from '@/lib/target-languages'
@@ -32,6 +33,11 @@ export default function OnboardingPage() {
   const searchParams = useSearchParams()
   const setUser = useAuthStore((s) => s.setUser)
   const user = useAuthStore((s) => s.user)
+  const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
+  const stripeTrialDays = useConfigStore((s) => s.stripeTrialDays)
+  const priceMonthly = useConfigStore((s) => s.totalPriceMonthly)
+  const priceYearly = useConfigStore((s) => s.totalPriceYearly)
+  const loadConfig = useConfigStore((s) => s.load)
   const fetchLanguages = useLanguageStore((s) => s.fetchLanguages)
   const availableLanguageCodes = useLanguageStore(
     (s) => s.availableLanguageCodes
@@ -40,7 +46,7 @@ export default function OnboardingPage() {
   const isNewLanguage = searchParams.get('new') === 'true'
   const queryLanguage = searchParams.get('language')
 
-  const [step, setStep] = useState<1 | 2>(1)
+  const [step, setStep] = useState<1 | 2 | 3>(1)
   const [targetLanguage, setTargetLanguage] = useState(
     queryLanguage ?? DEFAULT_TARGET_LANGUAGE
   )
@@ -48,8 +54,11 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [languagesLoaded, setLanguagesLoaded] = useState(false)
+  const [checkoutLoading, setCheckoutLoading] = useState(false)
+  const [checkoutError, setCheckoutError] = useState('')
 
   useEffect(() => {
+    loadConfig()
     fetchLanguages().then(() => {
       setLanguagesLoaded(true)
       const codes = useLanguageStore.getState().availableLanguageCodes
@@ -71,6 +80,9 @@ export default function OnboardingPage() {
     setStep(2)
   }
 
+  const subscribed = isSubscribed(user, stripeEnabled)
+  const showTrial = stripeEnabled && !subscribed
+
   async function handleStep2(skip = false) {
     setLoading(true)
     setError('')
@@ -85,11 +97,36 @@ export default function OnboardingPage() {
       if (!res.ok) throw new Error(t('saveFailed'))
       const updated = await res.json()
       setUser(mapUser(updated, user))
-      router.push('/dashboard')
+      if (showTrial) {
+        setStep(3)
+      } else {
+        router.push('/dashboard')
+      }
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : t('saveFailed'))
     } finally {
       setLoading(false)
+    }
+  }
+
+  async function handleCheckout(interval: 'monthly' | 'yearly') {
+    setCheckoutLoading(true)
+    setCheckoutError('')
+    try {
+      const res = await apiFetch('/api/billing/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan: interval }),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.detail ?? t('trialError'))
+      }
+      const { url } = await res.json()
+      window.location.href = url
+    } catch (err: unknown) {
+      setCheckoutError(err instanceof Error ? err.message : t('trialError'))
+      setCheckoutLoading(false)
     }
   }
 
@@ -122,11 +159,13 @@ export default function OnboardingPage() {
                   ? isNewLanguage
                     ? t('newLanguageHeadline')
                     : t('title')
-                  : t('goals.title')}
+                  : step === 2
+                    ? t('goals.title')
+                    : t('trialHeadline')}
               </span>
             </div>
             <span className="text-fl-hint text-fl-muted-4 font-mono tabular-nums">
-              {step}/2
+              {step}/{showTrial ? 3 : 2}
             </span>
           </div>
 
@@ -230,6 +269,50 @@ export default function OnboardingPage() {
                 className="text-fl-label text-fl-muted-4 hover:text-fl-muted-2 w-full py-1 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
               >
                 {t('goals.skip')}
+              </button>
+            </div>
+          )}
+
+          {/* Step 3: Free trial */}
+          {step === 3 && (
+            <div className="space-y-5 text-center">
+              <h2 className="text-fl-fg font-mono text-base font-bold">
+                {t('trialTitle')}
+              </h2>
+              <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
+                {t('trialDesc', { days: stripeTrialDays })}
+              </p>
+              <div className="flex flex-col gap-3">
+                <button
+                  type="button"
+                  disabled={checkoutLoading}
+                  onClick={() => handleCheckout('monthly')}
+                  className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
+                >
+                  {checkoutLoading ? '...' : t('trialCtaMonthly', { price: String(priceMonthly) })}
+                </button>
+                <button
+                  type="button"
+                  disabled={checkoutLoading}
+                  onClick={() => handleCheckout('yearly')}
+                  className="border-fl-border text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 w-full border py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-50"
+                >
+                  {checkoutLoading ? '...' : t('trialCtaYearly', { price: String(priceYearly) })}
+                </button>
+              </div>
+              {checkoutError && (
+                <p className="text-fl-hint font-mono text-red-500">{checkoutError}</p>
+              )}
+              <p className="text-fl-hint text-fl-muted-3 font-mono tracking-widest uppercase">
+                {t('trialNoCharge')}
+              </p>
+              <button
+                type="button"
+                disabled={checkoutLoading}
+                onClick={() => router.push('/dashboard')}
+                className="text-fl-label text-fl-muted-4 hover:text-fl-muted-2 w-full py-1 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
+              >
+                {t('trialSkip')}
               </button>
             </div>
           )}
