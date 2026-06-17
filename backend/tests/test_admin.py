@@ -246,3 +246,122 @@ async def test_list_users_pagination(client, admin_user, db_session):
     names1 = {u["username"] for u in data1["items"]}
     names2 = {u["username"] for u in data2["items"]}
     assert names1.isdisjoint(names2)
+
+
+@pytest.mark.asyncio
+async def test_list_users_filter_by_role(client, admin_user, db_session):
+    """GET /api/admin/users supports role filtering."""
+    admin, headers = admin_user
+
+    response = await client.get("/api/admin/users?role=admin", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total"] >= 1
+    assert all(user["role"] == "admin" for user in data["items"])
+    assert any(user["id"] == admin.id for user in data["items"])
+
+
+@pytest.mark.asyncio
+async def test_list_users_filter_by_active_status(client, admin_user, db_session):
+    """GET /api/admin/users supports is_active filtering."""
+    from app.core.security import hash_password
+    from app.models.user import User
+
+    _, headers = admin_user
+    inactive = User(
+        username="inactive-filter-user",
+        email="inactive-filter-user@test.com",
+        display_name="Inactive Filter User",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=False,
+    )
+    db_session.add(inactive)
+    await db_session.commit()
+
+    response = await client.get("/api/admin/users?is_active=false", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total"] >= 1
+    assert all(user["is_active"] is False for user in data["items"])
+    assert any(user["username"] == "inactive-filter-user" for user in data["items"])
+
+
+@pytest.mark.asyncio
+async def test_list_users_filter_by_subscription(client, admin_user, db_session):
+    """GET /api/admin/users supports subscription filtering."""
+    from app.core.security import hash_password
+    from app.models.user import User
+
+    _, headers = admin_user
+    past_due = User(
+        username="past-due-filter-user",
+        email="past-due-filter-user@test.com",
+        display_name="Past Due Filter User",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=True,
+        subscription_status="past_due",
+    )
+    db_session.add(past_due)
+    await db_session.commit()
+
+    response = await client.get("/api/admin/users?subscription=past_due", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total"] >= 1
+    assert all(user["subscription_status"] == "past_due" for user in data["items"])
+    assert any(user["username"] == "past-due-filter-user" for user in data["items"])
+
+
+@pytest.mark.asyncio
+async def test_list_users_combined_filters(client, admin_user, db_session):
+    """GET /api/admin/users combines q, role, active and subscription filters."""
+    from app.core.security import hash_password
+    from app.models.user import User
+
+    _, headers = admin_user
+    db_session.add(
+        User(
+            username="combined-filter-target",
+            email="combined-filter-target@test.com",
+            display_name="Combined Filter Target",
+            hashed_password=hash_password("pass1234"),
+            role="user",
+            native_language="es",
+            is_active=False,
+            subscription_status="canceled",
+        )
+    )
+    db_session.add(
+        User(
+            username="combined-filter-decoy",
+            email="combined-filter-decoy@test.com",
+            display_name="Combined Filter Decoy",
+            hashed_password=hash_password("pass1234"),
+            role="user",
+            native_language="es",
+            is_active=True,
+            subscription_status="canceled",
+        )
+    )
+    await db_session.commit()
+
+    response = await client.get(
+        "/api/admin/users"
+        "?q=combined-filter"
+        "&role=user"
+        "&is_active=false"
+        "&subscription=canceled",
+        headers=headers,
+    )
+    assert response.status_code == 200
+    data = response.json()
+    usernames = {user["username"] for user in data["items"]}
+    assert "combined-filter-target" in usernames
+    assert "combined-filter-decoy" not in usernames
+    assert all(user["role"] == "user" for user in data["items"])
+    assert all(user["is_active"] is False for user in data["items"])
+    assert all(user["subscription_status"] == "canceled" for user in data["items"])

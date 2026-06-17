@@ -68,7 +68,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 - **`test_lesson_generator.py`** — Lines: —. What it covers: Lesson generator service: `get_valid_grammar_slugs`, `generate_lesson`, fill-blank sanitization, grammar refs filtering, `evaluate_free_write`, `evaluate_pronunciation`, `evaluate_fill_blank` (12 tests, 51%→100% coverage)
 - **`test_listening_service.py`** — Lines: —. What it covers: Listening service DB layer: `get_available_exercise`, `submit_attempt` (correct/partial/duplicate/replay/not-found), `get_user_history` (empty/attempts/limit/language filter) (12 tests, 63%→64% coverage)
 
-**Total: 38 test files, 783 tests.**
+**Total: 38 test files, 793 tests.**
 
 ### Coverage
 
@@ -184,7 +184,7 @@ pytest --cov-report=html
 - **`tests/components/UnitCard.test.tsx`** — Tests: 41. What it covers: UnitCard: all 5 status states (completed/active/locked/level-test/default), progress bar, click interactions. UnitDrawer: grammar points, lesson list, completion states, escape/outside-click dismiss
 - **`tests/store/progress.test.ts`** — Tests: 48. What it covers: Progress store: 10 initial state fields, setProgress/setTodayLessons/completeLesson/setCurrentUnit/setPlanDuration/updateUnitProgress/unlockLevelTest/setLevelTestResult, state transition isolation
 
-**Total: 364 tests across 21 files.**
+**Total: 369 tests across 24 files.**
 
 ### Running tests
 
@@ -244,7 +244,7 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 | Frontend lint      | `eslint src/ --ext .ts,.tsx` | Zero errors        |
 | Frontend format    | `prettier --check src/`      | Clean diff         |
 | Frontend typecheck | `npx tsc --noEmit`           | Clean output       |
-| Frontend tests     | `npm run test:run`           | All 364 tests pass |
+| Frontend tests     | `npm run test:run`           | All 369 tests pass |
 
 **Note**: The backend test job uses SQLite (same as local tests), not PostgreSQL. No Docker services are required for the backend test job.
 

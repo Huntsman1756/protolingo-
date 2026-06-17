@@ -45,28 +45,20 @@ async def get_admin_stats(
     db: AsyncSession = Depends(get_db),
 ):
     users_total = await db.scalar(select(func.count(User.id))) or 0
-    users_active = (
-        await db.scalar(select(func.count(User.id)).where(User.is_active.is_(True))) or 0
-    )
+    users_active = await db.scalar(select(func.count(User.id)).where(User.is_active.is_(True))) or 0
     users_inactive = (
         await db.scalar(select(func.count(User.id)).where(User.is_active.is_(False))) or 0
     )
     subscriptions_active = (
-        await db.scalar(
-            select(func.count(User.id)).where(User.subscription_status == "active")
-        )
+        await db.scalar(select(func.count(User.id)).where(User.subscription_status == "active"))
         or 0
     )
     subscriptions_trialing = (
-        await db.scalar(
-            select(func.count(User.id)).where(User.subscription_status == "trialing")
-        )
+        await db.scalar(select(func.count(User.id)).where(User.subscription_status == "trialing"))
         or 0
     )
     subscriptions_past_due = (
-        await db.scalar(
-            select(func.count(User.id)).where(User.subscription_status == "past_due")
-        )
+        await db.scalar(select(func.count(User.id)).where(User.subscription_status == "past_due"))
         or 0
     )
     feedback_total = await db.scalar(select(func.count(FeedbackEntry.id))) or 0

@@ -343,6 +343,6 @@ Testing infrastructure and strategy are documented in [testing.instructions.md](
 **Summary:**
 
 - **Framework**: Vitest with jsdom environment
-- **Test files**: 16 (plus setup.ts) covering critical logic only
+- **Test files**: 24 (plus setup.ts) covering critical logic only
 - **Setup**: Global mocks for `localStorage`, `next/navigation`, `next-intl`
 - **Coverage areas**: API fetch interceptor, auth store, audio queue, conversation WebSocket, target language utilities, mapper functions, middleware, component rendering
