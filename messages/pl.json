@@ -862,7 +862,16 @@
     "feedbackItem": "Wpis",
     "type": "Typ",
     "signals": "Sygnały",
-    "feedbackStatusAction": "Zmień status opinii"
+    "feedbackStatusAction": "Zmień status opinii",
+    "adminStatsError": "Nie udało się wczytać metryk administratora.",
+    "activeUsers": "Aktywni użytkownicy",
+    "paidAccess": "Aktywne / próbne",
+    "pendingFeedback": "Oczekujące opinie",
+    "operationalAlerts": "Alerty operacyjne",
+    "pendingBugs": "Oczekujące błędy",
+    "pendingBugsDesc": "Zgłoszenia błędów oczekujące na triage administratora.",
+    "pastDueSubscriptions": "Zaległe subskrypcje",
+    "pastDueSubscriptionsDesc": "Konta z problemami płatności, które mogą wymagać przeglądu."
   },
   "faq": {
     "title": "FAQ",

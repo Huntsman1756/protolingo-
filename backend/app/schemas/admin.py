@@ -111,6 +111,20 @@ class PaginatedAdminUsersResponse(BaseModel):
     limit: int
 
 
+class AdminOverviewStatsResponse(BaseModel):
+    """Aggregated operational metrics for the admin overview."""
+
+    users_total: int = 0
+    users_active: int = 0
+    users_inactive: int = 0
+    subscriptions_active: int = 0
+    subscriptions_trialing: int = 0
+    subscriptions_past_due: int = 0
+    feedback_total: int = 0
+    feedback_pending: int = 0
+    feedback_bug_pending: int = 0
+
+
 class LanguageStats(BaseModel):
     """Per-language statistics for a user."""
 

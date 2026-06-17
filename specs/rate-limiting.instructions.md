@@ -39,6 +39,7 @@ Only endpoints with explicit `@limiter.limit()` decorators override the global d
 | `POST /api/auth/resend-verification` | 3 / minute   | IP       | Prevent email-sending abuse                                                                             |
 | `POST /api/auth/forgot-password`     | 5 / minute   | IP       | Prevent email enumeration / spam                                                                        |
 | `POST /api/auth/reset-password`      | 5 / minute   | IP       | Prevent token-brute-force                                                                               |
+| `GET /api/admin/stats`               | 60 / minute  | IP       | Admin-only operational overview metrics                                                                 |
 | `GET /api/admin/users`               | 60 / minute  | IP       | Admin-only paginated user management with search and filters (`q`, `subscription`, `role`, `is_active`) |
 | `GET /api/feedback`                  | 60 / minute  | IP       | Authenticated feedback board listing with search and filters (`q`, `type`, `status`, `sort`, `order`)   |
 | `POST /api/tts`                      | 20 / minute  | User     | Audio generation (computationally expensive)                                                            |

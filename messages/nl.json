@@ -862,7 +862,16 @@
     "feedbackItem": "Item",
     "type": "Type",
     "signals": "Signalen",
-    "feedbackStatusAction": "Feedbackstatus wijzigen"
+    "feedbackStatusAction": "Feedbackstatus wijzigen",
+    "adminStatsError": "Kan adminstatistieken niet laden.",
+    "activeUsers": "Actieve gebruikers",
+    "paidAccess": "Actief / proef",
+    "pendingFeedback": "Openstaande feedback",
+    "operationalAlerts": "Operationele meldingen",
+    "pendingBugs": "Openstaande bugrapporten",
+    "pendingBugsDesc": "Bugrapporten die wachten op beoordeling door een admin.",
+    "pastDueSubscriptions": "Achterstallige abonnementen",
+    "pastDueSubscriptionsDesc": "Accounts met betalingsproblemen die mogelijk controle nodig hebben."
   },
   "faq": {
     "title": "FAQ",

@@ -862,7 +862,16 @@
     "feedbackItem": "Entrada",
     "type": "Tipo",
     "signals": "Señales",
-    "feedbackStatusAction": "Cambiar estado del feedback"
+    "feedbackStatusAction": "Cambiar estado del feedback",
+    "adminStatsError": "Error al cargar las métricas de administración.",
+    "activeUsers": "Usuarios activos",
+    "paidAccess": "Activas / prueba",
+    "pendingFeedback": "Feedback pendiente",
+    "operationalAlerts": "Alertas operativas",
+    "pendingBugs": "Errores pendientes",
+    "pendingBugsDesc": "Reportes de errores esperando revisión de administración.",
+    "pastDueSubscriptions": "Suscripciones vencidas",
+    "pastDueSubscriptionsDesc": "Cuentas con problemas de pago que pueden requerir revisión."
   },
   "faq": {
     "title": "FAQ",

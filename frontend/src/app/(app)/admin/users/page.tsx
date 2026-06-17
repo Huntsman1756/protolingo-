@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import {
@@ -84,14 +85,33 @@ export default function AdminUsersPage() {
   const tBilling = useTranslations('billing')
   const tLang = useTranslations('languages')
   const tTarget = useTranslations('targetLanguages')
+  const searchParams = useSearchParams()
   const [users, setUsers] = useState<AdminUserItem[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(0)
-  const [searchInput, setSearchInput] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
-  const [subscriptionFilter, setSubscriptionFilter] = useState('')
-  const [roleFilter, setRoleFilter] = useState('')
-  const [activeFilter, setActiveFilter] = useState('')
+  const [searchInput, setSearchInput] = useState(
+    () => searchParams.get('q') ?? ''
+  )
+  const [searchTerm, setSearchTerm] = useState(
+    () => searchParams.get('q') ?? ''
+  )
+  const [subscriptionFilter, setSubscriptionFilter] = useState(() => {
+    const subscription = searchParams.get('subscription')
+    return subscription &&
+      ['none', 'trialing', 'active', 'past_due', 'canceled'].includes(
+        subscription
+      )
+      ? subscription
+      : ''
+  })
+  const [roleFilter, setRoleFilter] = useState(() => {
+    const role = searchParams.get('role')
+    return role === 'user' || role === 'admin' ? role : ''
+  })
+  const [activeFilter, setActiveFilter] = useState(() => {
+    const active = searchParams.get('is_active')
+    return active === 'true' || active === 'false' ? active : ''
+  })
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
   const [inviteUrl, setInviteUrl] = useState('')

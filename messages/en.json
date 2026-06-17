@@ -862,7 +862,16 @@
     "feedbackItem": "Entry",
     "type": "Type",
     "signals": "Signals",
-    "feedbackStatusAction": "Change feedback status"
+    "feedbackStatusAction": "Change feedback status",
+    "adminStatsError": "Failed to load admin metrics.",
+    "activeUsers": "Active users",
+    "paidAccess": "Active / trial",
+    "pendingFeedback": "Pending feedback",
+    "operationalAlerts": "Operational alerts",
+    "pendingBugs": "Pending bug reports",
+    "pendingBugsDesc": "Bug reports waiting for admin triage.",
+    "pastDueSubscriptions": "Past due subscriptions",
+    "pastDueSubscriptionsDesc": "Accounts with payment issues that may need review."
   },
   "faq": {
     "title": "FAQ",

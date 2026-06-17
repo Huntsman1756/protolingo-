@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import {
   Bug,
@@ -76,15 +77,26 @@ function formatDate(iso: string): string {
 export default function AdminFeedbackPage() {
   const t = useTranslations('feedback')
   const tAdmin = useTranslations('admin')
+  const searchParams = useSearchParams()
 
   const [entries, setEntries] = useState<FeedbackEntry[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(0)
   const [searchInput, setSearchInput] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>('all')
-  const [statusFilter, setStatusFilter] = useState('')
-  const [sortFilter, setSortFilter] = useState<SortFilter>('date')
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>(() => {
+    const type = searchParams.get('type')
+    return type === 'feature' || type === 'bug' ? type : 'all'
+  })
+  const [statusFilter, setStatusFilter] = useState(() => {
+    const status = searchParams.get('status')
+    return STATUS_OPTIONS.includes(status as (typeof STATUS_OPTIONS)[number])
+      ? status || ''
+      : ''
+  })
+  const [sortFilter, setSortFilter] = useState<SortFilter>(() =>
+    searchParams.get('sort') === 'votes' ? 'votes' : 'date'
+  )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [savingStatus, setSavingStatus] = useState<number | null>(null)

@@ -13,6 +13,7 @@ from app.core.deps import MAINTENANCE_KEY, get_redis, require_admin
 from app.core.limiter import limiter
 from app.core.security import hash_password
 from app.models.chat_history import ChatHistory
+from app.models.feedback import FeedbackEntry
 from app.models.lesson import Lesson
 from app.models.llm_usage import LLMUsage
 from app.models.progress import Progress
@@ -20,6 +21,7 @@ from app.models.study_plan import StudyPlan
 from app.models.user import User
 from app.models.user_language import UserLanguage
 from app.schemas.admin import (
+    AdminOverviewStatsResponse,
     AdminUserCreate,
     AdminUserResponse,
     AdminUserStatsResponse,
@@ -33,6 +35,68 @@ from app.services.subscription_service import apply_subscription_quotas
 from app.utils.pagination import paginate
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
+
+
+@router.get("/stats", response_model=AdminOverviewStatsResponse)
+@limiter.limit("60/minute")
+async def get_admin_stats(
+    request: Request,
+    admin: User = Depends(require_admin),
+    db: AsyncSession = Depends(get_db),
+):
+    users_total = await db.scalar(select(func.count(User.id))) or 0
+    users_active = (
+        await db.scalar(select(func.count(User.id)).where(User.is_active.is_(True))) or 0
+    )
+    users_inactive = (
+        await db.scalar(select(func.count(User.id)).where(User.is_active.is_(False))) or 0
+    )
+    subscriptions_active = (
+        await db.scalar(
+            select(func.count(User.id)).where(User.subscription_status == "active")
+        )
+        or 0
+    )
+    subscriptions_trialing = (
+        await db.scalar(
+            select(func.count(User.id)).where(User.subscription_status == "trialing")
+        )
+        or 0
+    )
+    subscriptions_past_due = (
+        await db.scalar(
+            select(func.count(User.id)).where(User.subscription_status == "past_due")
+        )
+        or 0
+    )
+    feedback_total = await db.scalar(select(func.count(FeedbackEntry.id))) or 0
+    feedback_pending = (
+        await db.scalar(
+            select(func.count(FeedbackEntry.id)).where(FeedbackEntry.status == "pending")
+        )
+        or 0
+    )
+    feedback_bug_pending = (
+        await db.scalar(
+            select(func.count(FeedbackEntry.id)).where(
+                FeedbackEntry.type == "bug",
+                FeedbackEntry.status == "pending",
+            )
+        )
+        or 0
+    )
+
+    return AdminOverviewStatsResponse(
+        users_total=users_total,
+        users_active=users_active,
+        users_inactive=users_inactive,
+        subscriptions_active=subscriptions_active,
+        subscriptions_trialing=subscriptions_trialing,
+        subscriptions_past_due=subscriptions_past_due,
+        feedback_total=feedback_total,
+        feedback_pending=feedback_pending,
+        feedback_bug_pending=feedback_bug_pending,
+    )
 
 
 @router.get("/users", response_model=PaginatedAdminUsersResponse)

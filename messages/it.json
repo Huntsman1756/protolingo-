@@ -862,7 +862,16 @@
     "feedbackItem": "Voce",
     "type": "Tipo",
     "signals": "Segnali",
-    "feedbackStatusAction": "Cambia stato del feedback"
+    "feedbackStatusAction": "Cambia stato del feedback",
+    "adminStatsError": "Impossibile caricare le metriche di amministrazione.",
+    "activeUsers": "Utenti attivi",
+    "paidAccess": "Attivi / prova",
+    "pendingFeedback": "Feedback in sospeso",
+    "operationalAlerts": "Avvisi operativi",
+    "pendingBugs": "Bug in sospeso",
+    "pendingBugsDesc": "Segnalazioni di bug in attesa di revisione amministrativa.",
+    "pastDueSubscriptions": "Abbonamenti scaduti",
+    "pastDueSubscriptionsDesc": "Account con problemi di pagamento che potrebbero richiedere una revisione."
   },
   "faq": {
     "title": "FAQ",

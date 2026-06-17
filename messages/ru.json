@@ -862,7 +862,16 @@
     "feedbackItem": "Запись",
     "type": "Тип",
     "signals": "Сигналы",
-    "feedbackStatusAction": "Изменить статус обратной связи"
+    "feedbackStatusAction": "Изменить статус обратной связи",
+    "adminStatsError": "Не удалось загрузить метрики администрирования.",
+    "activeUsers": "Активные пользователи",
+    "paidAccess": "Активные / пробные",
+    "pendingFeedback": "Ожидающие отзывы",
+    "operationalAlerts": "Операционные оповещения",
+    "pendingBugs": "Ожидающие ошибки",
+    "pendingBugsDesc": "Сообщения об ошибках, ожидающие разбора администратором.",
+    "pastDueSubscriptions": "Просроченные подписки",
+    "pastDueSubscriptionsDesc": "Аккаунты с проблемами оплаты, которые могут требовать проверки."
   },
   "faq": {
     "title": "Вопросы и ответы",

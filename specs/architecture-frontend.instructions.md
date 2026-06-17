@@ -179,7 +179,7 @@ frontend/
 - `/settings` — Profile, avatar, subscription, conversation settings.
 - `/faq` — Frequently asked questions.
 - `/feedback` — Feature requests and bug reports board (community).
-- `/admin` — Admin overview with quick links and maintenance-mode status (admin only).
+- `/admin` — Admin overview with aggregated metrics, operational alerts, quick links, and maintenance-mode status (admin only).
 - `/admin/users` — User management with responsive table/cards, search, filters, invite copy workflow, create-user sheet, and maintenance toggle (admin only).
 - `/admin/users/[id]` — Admin user detail with summary header and tabs for Profile, Languages, Activity, Quotas, and Subscription. Quotas separate current usage from configured limits; email verification and subscription overrides use confirmation dialogs.
 - `/admin/feedback` — Feedback queue admin panel with search, type/status/sort filters, desktop table, mobile cards, status updates, metrics, and delete confirmation (admin only).
@@ -269,8 +269,8 @@ Every page wrapper uses `mx-auto` plus one of three canonical widths. Do not use
 
 | Class       | Width   | Use for                                                                                                    |
 | ----------- | ------- | ---------------------------------------------------------------------------------------------------------- |
-| `max-w-6xl` | 1152 px | Dense admin data pages with desktop tables (admin/users, admin/feedback)                                   |
-| `max-w-5xl` | 1024 px | Admin overview pages with operational cards (admin)                                                        |
+| `max-w-6xl` | 1152 px | Dense admin data pages and operational admin overview (admin, admin/users, admin/feedback)                 |
+| `max-w-5xl` | 1024 px | Admin overview pages with lighter operational cards                                                        |
 | `max-w-4xl` | 896 px  | Index/overview pages with grids or card layouts (dashboard, grammar, vocabulary, phrasebook, progress)     |
 | `max-w-3xl` | 768 px  | Compact detail or legacy admin list pages                                                                  |
 | `max-w-2xl` | 672 px  | Detail pages, forms, long-form content (lesson, grammar detail, settings, feedback, flashcards, faq, plan) |

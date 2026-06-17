@@ -862,7 +862,16 @@
     "feedbackItem": "Eintrag",
     "type": "Typ",
     "signals": "Signale",
-    "feedbackStatusAction": "Feedback-Status ändern"
+    "feedbackStatusAction": "Feedback-Status ändern",
+    "adminStatsError": "Admin-Metriken konnten nicht geladen werden.",
+    "activeUsers": "Aktive Benutzer",
+    "paidAccess": "Aktiv / Testphase",
+    "pendingFeedback": "Ausstehendes Feedback",
+    "operationalAlerts": "Operative Hinweise",
+    "pendingBugs": "Ausstehende Fehlerberichte",
+    "pendingBugsDesc": "Fehlerberichte, die auf Admin-Triage warten.",
+    "pastDueSubscriptions": "Überfällige Abonnements",
+    "pastDueSubscriptionsDesc": "Konten mit Zahlungsproblemen, die geprüft werden sollten."
   },
   "faq": {
     "title": "FAQ",

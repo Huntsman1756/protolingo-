@@ -862,7 +862,16 @@
     "feedbackItem": "Entrée",
     "type": "Type",
     "signals": "Indicateurs",
-    "feedbackStatusAction": "Modifier le statut du retour"
+    "feedbackStatusAction": "Modifier le statut du retour",
+    "adminStatsError": "Impossible de charger les métriques d’administration.",
+    "activeUsers": "Utilisateurs actifs",
+    "paidAccess": "Actifs / essai",
+    "pendingFeedback": "Retours en attente",
+    "operationalAlerts": "Alertes opérationnelles",
+    "pendingBugs": "Bugs en attente",
+    "pendingBugsDesc": "Rapports de bugs en attente de triage administrateur.",
+    "pastDueSubscriptions": "Abonnements en retard",
+    "pastDueSubscriptionsDesc": "Comptes avec des problèmes de paiement pouvant nécessiter une vérification."
   },
   "faq": {
     "title": "FAQ",

@@ -32,6 +32,7 @@ All REST endpoints are prefixed under `/api`. The WebSocket endpoint is at `/ws/
 
 Requires `role="admin"`. All endpoints return 403 for non-admin users.
 
+- **GET `/stats`** — Aggregated admin overview metrics: total/active/inactive users, active/trialing/past_due subscriptions, total feedback, pending feedback, and pending bug reports.
 - **GET `/users`** — Lists users (paginated). Query params: `skip` (default 0), `limit` (default 10, max 100), `q` (search by username or email), `subscription` (`none`, `trialing`, `active`, `past_due`, `canceled`), `role` (`user`, `admin`), and `is_active` (`true`, `false`). Returns `{items, total, skip, limit}`.
 - **POST `/users`** — Creates user directly (bypasses `ALLOW_REGISTRATION`) — sends verification email if `EMAIL_ENABLED=true`
 - **GET `/users/{id}`** — User detail

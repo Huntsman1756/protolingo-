@@ -862,7 +862,16 @@
     "feedbackItem": "Intrare",
     "type": "Tip",
     "signals": "Semnale",
-    "feedbackStatusAction": "Schimbă starea feedbackului"
+    "feedbackStatusAction": "Schimbă starea feedbackului",
+    "adminStatsError": "Nu s-au putut încărca metricile de administrare.",
+    "activeUsers": "Utilizatori activi",
+    "paidAccess": "Active / probă",
+    "pendingFeedback": "Feedback în așteptare",
+    "operationalAlerts": "Alerte operaționale",
+    "pendingBugs": "Erori în așteptare",
+    "pendingBugsDesc": "Rapoarte de erori care așteaptă trierea de către administrator.",
+    "pastDueSubscriptions": "Abonamente restante",
+    "pastDueSubscriptionsDesc": "Conturi cu probleme de plată care pot necesita revizuire."
   },
   "faq": {
     "title": "Întrebări frecvente",
