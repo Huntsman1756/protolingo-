@@ -13,12 +13,10 @@ Show users a brief summary of what changed in the current version every time a n
 
 ## Behaviour
 
-| Scenario | Result |
-|----------|--------|
-| User visits dashboard and has never seen the current version's modal | Modal appears automatically |
-| User dismisses the modal (button or backdrop click) | `localStorage` key set; modal never appears again for this version |
-| New version is deployed | Storage key changes → modal reappears for all users on next dashboard visit |
-| User logs out | Storage key is **not** cleared (unlike the tour) — no need to show it again on re-login within the same version |
+- **User visits dashboard and has never seen the current version's modal** — Modal appears automatically
+- **User dismisses the modal (button or backdrop click)** — `localStorage` key set; modal never appears again for this version
+- **New version is deployed** — Storage key changes → modal reappears for all users on next dashboard visit
+- **User logs out** — Storage key is **not** cleared (unlike the tour) — no need to show it again on re-login within the same version
 
 The key difference from OnboardingTour: the tour clears on logout (new users must see it); the What's New modal does not — a returning user who already saw v1.5.0 notes should not see them again after logging out and back in.
 
@@ -39,8 +37,8 @@ fl_whats_new_seen_v1.5.0
 The version string is defined as a constant inside the component:
 
 ```ts
-const WHATS_NEW_VERSION = 'v1.5.0'
-const STORAGE_KEY = `fl_whats_new_seen_${WHATS_NEW_VERSION}`
+const WHATS_NEW_VERSION = "v1.5.0";
+const STORAGE_KEY = `fl_whats_new_seen_${WHATS_NEW_VERSION}`;
 ```
 
 To ship a new release: update `WHATS_NEW_VERSION` and add the new entries to the translation files.
@@ -59,15 +57,16 @@ Both components are rendered in the DOM at the same time. The tour takes visual 
 
 ```ts
 useEffect(() => {
-  const tourDone = localStorage.getItem('fl_tour_done')
-  const seen = localStorage.getItem(STORAGE_KEY)
+  const tourDone = localStorage.getItem("fl_tour_done");
+  const seen = localStorage.getItem(STORAGE_KEY);
   if (tourDone && !seen) {
-    setVisible(true)
+    setVisible(true);
   }
-}, [])
+}, []);
 ```
 
 This ensures:
+
 - New user → sees tour only
 - Returning user on new version → sees What's New only
 - Returning user on same version → sees neither
@@ -141,11 +140,11 @@ The number of entries is variable per version. The component reads entries dynam
 
 ## Files to create / modify
 
-| File | Action |
-|------|--------|
-| `frontend/src/components/whats-new/WhatsNew.tsx` | Create — the modal component |
-| `frontend/src/app/(app)/dashboard/page.tsx` | Modify — import and render `<WhatsNew />` after `<OnboardingTour />` |
-| `messages/en.json` (and all locale files) | Modify — add `whatsNew` namespace with current version entries |
+| File                                             | Action                                                               |
+| ------------------------------------------------ | -------------------------------------------------------------------- |
+| `frontend/src/components/whats-new/WhatsNew.tsx` | Create — the modal component                                         |
+| `frontend/src/app/(app)/dashboard/page.tsx`      | Modify — import and render `<WhatsNew />` after `<OnboardingTour />` |
+| `messages/en.json` (and all locale files)        | Modify — add `whatsNew` namespace with current version entries       |
 
 ---
 

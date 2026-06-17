@@ -73,17 +73,15 @@ Creates `feedback_entries`, `feedback_votes`, `feedback_comments` with all index
 
 ### Endpoints
 
-| Method | Path                   | Rate limit | Auth             | Notes                                                                                                                                                                                |
-| ------ | ---------------------- | ---------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| GET    | `/`                    | 60/min     | get_current_user | Accepts `type`, `status` (alias for `status_filter`), `sort` (votes\|date), `order` (asc\|desc), `skip`, `limit`. Count runs against `stmt.subquery()` for accurate filtered totals. |
-| POST   | `/`                    | 10/hour    | get_current_user | Creates entry with status `pending`. Returns HTTP 201. Fires an admin email notification (see below).                                                                                |
-| GET    | `/{id}`                | 60/min     | get_current_user | Returns `FeedbackEntryDetail` with comments list (ordered by `created_at ASC`).                                                                                                      |
-| DELETE | `/{id}`                | 20/min     | get_current_user | Allowed if `author_id == current_user.id` OR `current_user.role == "admin"`. Returns HTTP 204.                                                                                       |
-| POST   | `/{id}/vote`           | 30/min     | get_current_user | Toggle: if vote exists → delete + decrement `vote_count`; else → insert + increment. `max(0, ...)` guard prevents negative counts. Returns `{voted, vote_count}`.                    |
-| PATCH  | `/{id}/status`         | 30/min     | require_admin    | Updates `status` field. Returns updated `FeedbackEntryOut`.                                                                                                                          |
-| GET    | `/{id}/comments`       | 60/min     | get_current_user | Returns `FeedbackCommentsResponse` with `total = len(items)`.                                                                                                                        |
-| POST   | `/{id}/comments`       | 20/hour    | get_current_user | Creates comment, returns HTTP 201 + `FeedbackCommentOut`.                                                                                                                            |
-| DELETE | `/{id}/comments/{cid}` | 20/min     | get_current_user | Validates `comment.entry_id == entry_id` to prevent cross-entry deletions. Allowed if author or admin. Returns HTTP 204.                                                             |
+- **GET `/`** — Rate limit: 60/min. Auth: get_current_user. Notes: Accepts `type`, `status` (alias for `status_filter`), `sort` (votes\|date), `order` (asc\|desc), `skip`, `limit`. Count runs against `stmt.subquery()` for accurate filtered totals.
+- **POST `/`** — Rate limit: 10/hour. Auth: get_current_user. Notes: Creates entry with status `pending`. Returns HTTP 201. Fires an admin email notification (see below).
+- **GET `/{id}`** — Rate limit: 60/min. Auth: get_current_user. Notes: Returns `FeedbackEntryDetail` with comments list (ordered by `created_at ASC`).
+- **DELETE `/{id}`** — Rate limit: 20/min. Auth: get_current_user. Notes: Allowed if `author_id == current_user.id` OR `current_user.role == "admin"`. Returns HTTP 204.
+- **POST `/{id}/vote`** — Rate limit: 30/min. Auth: get_current_user. Notes: Toggle: if vote exists → delete + decrement `vote_count`; else → insert + increment. `max(0, ...)` guard prevents negative counts. Returns `{voted, vote_count}`.
+- **PATCH `/{id}/status`** — Rate limit: 30/min. Auth: require_admin. Notes: Updates `status` field. Returns updated `FeedbackEntryOut`.
+- **GET `/{id}/comments`** — Rate limit: 60/min. Auth: get_current_user. Notes: Returns `FeedbackCommentsResponse` with `total = len(items)`.
+- **POST `/{id}/comments`** — Rate limit: 20/hour. Auth: get_current_user. Notes: Creates comment, returns HTTP 201 + `FeedbackCommentOut`.
+- **DELETE `/{id}/comments/{cid}`** — Rate limit: 20/min. Auth: get_current_user. Notes: Validates `comment.entry_id == entry_id` to prevent cross-entry deletions. Allowed if author or admin. Returns HTTP 204.
 
 ---
 

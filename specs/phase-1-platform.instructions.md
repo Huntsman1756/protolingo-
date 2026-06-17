@@ -94,14 +94,12 @@ Central `Settings` class using pydantic-settings, reading from `.env`. Covers:
 
 ### Auth endpoints (`app/routers/auth.py`)
 
-| Endpoint         | Behavior                                                                                                                                                                                                              |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `POST /register` | Validates ALLOW_REGISTRATION gate, creates user (auto-admin for first), returns user info                                                                                                                             |
-| `POST /login`    | Rate-limited (10/min). Verifies credentials. Returns access_token in body + sets refresh_token httpOnly cookie. Stores `refresh:{token}` → user_id in Redis with 30-day TTL. Uses dummy_verify for non-existent users |
-| `POST /refresh`  | Reads refresh_token from cookie, validates against Redis, deletes old token (rotation), creates new one, returns new access_token                                                                                     |
-| `POST /logout`   | Deletes refresh_token from Redis, clears cookie                                                                                                                                                                       |
-| `GET /me`        | Returns authenticated user profile                                                                                                                                                                                    |
-| `PATCH /me`      | Updates display_name, email, password, english_variant, conversation_max_duration, conversation_inactivity_timeout                                                                                                    |
+- **`POST /register`** — Validates ALLOW_REGISTRATION gate, creates user (auto-admin for first), returns user info
+- **`POST /login`** — Rate-limited (10/min). Verifies credentials. Returns access_token in body + sets refresh_token httpOnly cookie. Stores `refresh:{token}` → user_id in Redis with 30-day TTL. Uses dummy_verify for non-existent users
+- **`POST /refresh`** — Reads refresh_token from cookie, validates against Redis, deletes old token (rotation), creates new one, returns new access_token
+- **`POST /logout`** — Deletes refresh_token from Redis, clears cookie
+- **`GET /me`** — Returns authenticated user profile
+- **`PATCH /me`** — Updates display_name, email, password, english_variant, conversation_max_duration, conversation_inactivity_timeout
 
 ### Admin endpoints (`app/routers/admin.py`)
 
@@ -360,6 +358,7 @@ To avoid Next.js buffering the SSE stream (since Next.js API rewrites buffer res
 | `/faq`                   | FAQ with accordion UI                                                                                                                 | 1+    |
 | `/admin`                 | Admin overview with quick links and maintenance-mode status (admin only)                                                              | 1     |
 | `/admin/users`           | User CRUD table/cards, create-user sheet, invite link generator with copy action, maintenance toggle, search and filters (admin only) | 1     |
+| `/admin/users/[id]`      | User detail with summary header, Profile/Languages/Activity/Quotas/Subscription tabs, quota validation, and confirmations             | 1     |
 
 ### State management (Zustand stores)
 

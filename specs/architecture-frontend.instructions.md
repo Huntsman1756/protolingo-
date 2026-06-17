@@ -26,7 +26,7 @@ frontend/
 │   │   │   ├── layout.tsx       # Sidebar + global layout shell
 │   │   │   ├── loading.tsx
 │   │   │   ├── admin/           # Admin overview + admin-only management routes
-│   │   │   ├── admin/users/     # User management: responsive table/cards, filters, create-user sheet
+│   │   │   ├── admin/users/     # User list + [id] detail: tabs, quotas, subscription override
 │   │   │   ├── admin/feedback/  # Feedback board admin panel (admin only)
 │   │   │   ├── assessment/      # Level test: BeginnerGate → AdaptiveQuizCard → DurationSelector
 │   │   │   ├── chat/            # AI tutor SSE chat + conversation history
@@ -161,29 +161,28 @@ frontend/
 
 ### Authenticated routes — `(app)/`
 
-| Route                 | Description                                                                                                                                                     |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/dashboard`          | Home: XP counter, streak, next lesson card, target language selector                                                                                            |
-| `/assessment`         | Level placement test (BeginnerGate → AdaptiveQuiz → DurationSelector)                                                                                           |
-| `/plan`               | Study plan overview: unit cards, LevelTestBanner, UnitDrawer                                                                                                    |
-| `/lesson/[id]`        | Lesson player: content + interactive exercises                                                                                                                  |
-| `/chat`               | AI tutor text chat with SSE streaming                                                                                                                           |
-| `/conversation`       | Real-time voice conversation with WebSocket + VAD                                                                                                               |
-| `/flashcards`         | Spaced-repetition flashcard review                                                                                                                              |
-| `/grammar`            | Grammar reference index                                                                                                                                         |
-| `/grammar/[slug]`     | Grammar topic detail page                                                                                                                                       |
-| `/vocabulary`         | Vocabulary hub overview                                                                                                                                         |
-| `/vocabulary/[setId]` | Vocabulary set detail                                                                                                                                           |
-| `/phrasebook`         | Common phrases by category                                                                                                                                      |
-| `/listening`          | AI-generated listening comprehension exercises                                                                                                                  |
-| `/reading`            | AI-generated reading comprehension exercises                                                                                                                    |
-| `/progress`           | Skills tracker with radar chart and multi-level vocabulary progress toggle                                                                                      |
-| `/settings`           | Profile, avatar, subscription, conversation settings                                                                                                            |
-| `/faq`                | Frequently asked questions                                                                                                                                      |
-| `/feedback`           | Feature requests and bug reports board (community)                                                                                                              |
-| `/admin`              | Admin overview with quick links and maintenance-mode status (admin only)                                                                                        |
-| `/admin/users`        | User management with responsive table/cards, search, role/status/subscription filters, invite copy workflow, create-user sheet, maintenance toggle (admin only) |
-| `/admin/feedback`     | Feedback board admin panel (admin only)                                                                                                                         |
+- `/dashboard` — Home: XP counter, streak, next lesson card, target language selector.
+- `/assessment` — Level placement test (`BeginnerGate` → `AdaptiveQuiz` → `DurationSelector`).
+- `/plan` — Study plan overview: unit cards, `LevelTestBanner`, `UnitDrawer`.
+- `/lesson/[id]` — Lesson player: content + interactive exercises.
+- `/chat` — AI tutor text chat with SSE streaming.
+- `/conversation` — Real-time voice conversation with WebSocket + VAD.
+- `/flashcards` — Spaced-repetition flashcard review.
+- `/grammar` — Grammar reference index.
+- `/grammar/[slug]` — Grammar topic detail page.
+- `/vocabulary` — Vocabulary hub overview.
+- `/vocabulary/[setId]` — Vocabulary set detail.
+- `/phrasebook` — Common phrases by category.
+- `/listening` — AI-generated listening comprehension exercises.
+- `/reading` — AI-generated reading comprehension exercises.
+- `/progress` — Skills tracker with radar chart and multi-level vocabulary progress toggle.
+- `/settings` — Profile, avatar, subscription, conversation settings.
+- `/faq` — Frequently asked questions.
+- `/feedback` — Feature requests and bug reports board (community).
+- `/admin` — Admin overview with quick links and maintenance-mode status (admin only).
+- `/admin/users` — User management with responsive table/cards, search, filters, invite copy workflow, create-user sheet, and maintenance toggle (admin only).
+- `/admin/users/[id]` — Admin user detail with summary header and tabs for Profile, Languages, Activity, Quotas, and Subscription. Quotas separate current usage from configured limits; email verification and subscription overrides use confirmation dialogs.
+- `/admin/feedback` — Feedback board admin panel (admin only).
 
 ### Legal routes — `(legal)/`
 
@@ -217,16 +216,14 @@ Six Zustand stores hold all client-side state. No React Context is used for glob
 
 ## Utility modules (`lib/`)
 
-| Module                    | Purpose                                                                                                                                                                                                                   |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `api.ts`                  | Fetch wrapper with auth interceptor: injects `Authorization` header, catches 401 → silent refresh → retry, redirects to `/login` on refresh failure                                                                       |
-| `audio.ts`                | Audio playback queue for voice conversation; tracks real queue idle state so the UI clears "speaking" only after playback drains                                                                                          |
-| `conversation-ws.ts`      | WebSocket client for the voice conversation pipeline, handles WAV chunk sending and MP3 reception                                                                                                                         |
-| `landing-subscription.ts` | Shared landing-page subscription check used by `LandingNav` and `PricingSection`; deduplicates refresh + `/api/auth/me` so the nav hides `Pricing` whenever the pricing section is hidden for active/trialing subscribers |
-| `locales.ts`              | next-intl locale detection and routing utilities                                                                                                                                                                          |
-| `mappers.ts`              | Data transformation helpers between API responses and frontend models                                                                                                                                                     |
-| `target-languages.ts`     | Target language definitions: BCP-47 codes, display names, flag mappings, voice settings per language                                                                                                                      |
-| `utils.ts`                | General-purpose utilities: formatting, date helpers, class name merging                                                                                                                                                   |
+- **`api.ts`** — Fetch wrapper with auth interceptor: injects `Authorization` header, catches 401 → silent refresh → retry, redirects to `/login` on refresh failure
+- **`audio.ts`** — Audio playback queue for voice conversation; tracks real queue idle state so the UI clears "speaking" only after playback drains
+- **`conversation-ws.ts`** — WebSocket client for the voice conversation pipeline, handles WAV chunk sending and MP3 reception
+- **`landing-subscription.ts`** — Shared landing-page subscription check used by `LandingNav` and `PricingSection`; deduplicates refresh + `/api/auth/me` so the nav hides `Pricing` whenever the pricing section is hidden for active/trialing subscribers
+- **`locales.ts`** — next-intl locale detection and routing utilities
+- **`mappers.ts`** — Data transformation helpers between API responses and frontend models
+- **`target-languages.ts`** — Target language definitions: BCP-47 codes, display names, flag mappings, voice settings per language
+- **`utils.ts`** — General-purpose utilities: formatting, date helpers, class name merging
 
 ## Components overview
 
@@ -247,13 +244,11 @@ Six Zustand stores hold all client-side state. No React Context is used for glob
 
 ### Shared/generic components
 
-| Component                    | Purpose                                                                                                                                                        |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ThemeProvider.tsx`          | Dark/light/system theme via `next-themes`                                                                                                                      |
-| `TargetLanguageSelector.tsx` | Language picker dropdown with flags                                                                                                                            |
-| `LanguageSwitcher.tsx`       | UI locale switcher                                                                                                                                             |
-| `CookieBanner.tsx`           | GDPR cookie consent banner                                                                                                                                     |
-| `ui/`                        | shadcn/ui primitives (`button`, `card`, `input`, `progress`, `badge`, `separator`, `sheet`, `tabs`) + custom: `AudioPlayer`, `VoiceRecorder`, `confirm-dialog` |
+- **`ThemeProvider.tsx`** — Dark/light/system theme via `next-themes`
+- **`TargetLanguageSelector.tsx`** — Language picker dropdown with flags
+- **`LanguageSwitcher.tsx`** — UI locale switcher
+- **`CookieBanner.tsx`** — GDPR cookie consent banner
+- **`ui/`** — shadcn/ui primitives (`button`, `card`, `input`, `progress`, `badge`, `separator`, `sheet`, `tabs`) + custom: `AudioPlayer`, `VoiceRecorder`, `confirm-dialog`
 
 ---
 

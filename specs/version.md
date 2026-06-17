@@ -9,14 +9,12 @@
 
 When bumping the version, update these locations in sync:
 
-| Location                                         | What to update                                                                                                                                                                                                 |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `specs/version.md`                               | Version number above                                                                                                                                                                                           |
-| `CHANGELOG.md`                                   | New `## [X.Y.Z]` section at top                                                                                                                                                                                |
-| `README.md`                                      | `version` badge: `![Version](https://img.shields.io/badge/version-X.Y.Z-brightgreen?style=flat-square)`                                                                                                        |
-| `frontend/src/app/(app)/layout.tsx`              | `vX.Y.Z` string in sidebar (desktop + mobile)                                                                                                                                                                  |
-| `frontend/src/components/whats-new/WhatsNew.tsx` | `WHATS_NEW_VERSION` constant                                                                                                                                                                                   |
-| `messages/*.json` (all 10 locales)               | Replace all `entry*` keys in the `whatsNew` namespace with the new version's entries; update the `version` key to match `WHATS_NEW_VERSION`. See `specs/whats-new.instructions.md` for the required structure. |
+- **`specs/version.md`** — Version number above
+- **`CHANGELOG.md`** — New `## [X.Y.Z]` section at top
+- **`README.md`** — `version` badge: `![Version](https://img.shields.io/badge/version-X.Y.Z-brightgreen?style=flat-square)`
+- **`frontend/src/app/(app)/layout.tsx`** — `vX.Y.Z` string in sidebar (desktop + mobile)
+- **`frontend/src/components/whats-new/WhatsNew.tsx`** — `WHATS_NEW_VERSION` constant
+- **`messages/*.json` (all 10 locales)** — Replace all `entry*` keys in the `whatsNew` namespace with the new version's entries; update the `version` key to match `WHATS_NEW_VERSION`. See `specs/whats-new.instructions.md` for the required structure.
 
 ## What's New entries — mandatory prompt
 

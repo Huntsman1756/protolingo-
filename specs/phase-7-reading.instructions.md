@@ -20,37 +20,37 @@ as an attempt with a score and XP reward. Completed exercises are not shown agai
 
 ## Milestones
 
-| # | Milestone | What is built |
-|---|-----------|---------------|
-| 1 | DB models & migration | `reading_exercises` + `reading_attempts` tables |
-| 2 | Backend service & router | LLM generation, answer evaluation, history |
-| 3 | Frontend page & components | Exercise card, text display, question form, results panel, history |
-| 4 | Navigation & i18n | Sidebar entry, translations in all 10 locale files |
+| #   | Milestone                  | What is built                                                      |
+| --- | -------------------------- | ------------------------------------------------------------------ |
+| 1   | DB models & migration      | `reading_exercises` + `reading_attempts` tables                    |
+| 2   | Backend service & router   | LLM generation, answer evaluation, history                         |
+| 3   | Frontend page & components | Exercise card, text display, question form, results panel, history |
+| 4   | Navigation & i18n          | Sidebar entry, translations in all 10 locale files                 |
 
 ---
 
 ## Exercise types
 
-| Type | Description | CEFR range |
-|------|-------------|------------|
-| `notice` | A short public notice, sign, or instruction | A1–A2 |
-| `email` | A short informal or formal email message | A1–B1 |
-| `article` | A short informational or educational article | B1–B2 |
-| `news` | A news report on a current or recent event | B1–C1 |
-| `blog_post` | An informal blog-style opinion or personal piece | B2–C1 |
-| `review` | A review of a book, film, restaurant, or product | B2–C2 |
-| `essay` | A formal argumentative or discursive essay | C1–C2 |
+| Type        | Description                                      | CEFR range |
+| ----------- | ------------------------------------------------ | ---------- |
+| `notice`    | A short public notice, sign, or instruction      | A1–A2      |
+| `email`     | A short informal or formal email message         | A1–B1      |
+| `article`   | A short informational or educational article     | B1–B2      |
+| `news`      | A news report on a current or recent event       | B1–C1      |
+| `blog_post` | An informal blog-style opinion or personal piece | B2–C1      |
+| `review`    | A review of a book, film, restaurant, or product | B2–C2      |
+| `essay`     | A formal argumentative or discursive essay       | C1–C2      |
 
 Types available per level (`_TYPES_BY_LEVEL` in `reading_service.py`):
 
-| Level | Available types |
-|-------|-----------------|
-| A1 | `notice`, `email` |
-| A2 | `notice`, `email` |
-| B1 | `email`, `article`, `news` |
-| B2 | `article`, `news`, `blog_post`, `review` |
-| C1 | `news`, `blog_post`, `review`, `essay` |
-| C2 | `review`, `essay` |
+| Level | Available types                          |
+| ----- | ---------------------------------------- |
+| A1    | `notice`, `email`                        |
+| A2    | `notice`, `email`                        |
+| B1    | `email`, `article`, `news`               |
+| B2    | `article`, `news`, `blog_post`, `review` |
+| C1    | `news`, `blog_post`, `review`, `essay`   |
+| C2    | `review`, `essay`                        |
 
 One type is selected at random from the level-appropriate subset.
 
@@ -60,14 +60,14 @@ One type is selected at random from the level-appropriate subset.
 
 Topics available per level (`_TOPICS_BY_LEVEL` in `reading_service.py`):
 
-| Level | Available topics |
-|-------|------------------|
-| A1 | `daily_routine`, `family`, `shopping`, `home`, `animals` |
-| A2 | `travel`, `food`, `weather`, `hobbies`, `school` |
-| B1 | `health`, `work`, `environment`, `sports`, `friendship` |
-| B2 | `technology`, `culture`, `education`, `media`, `money` |
-| C1 | `politics`, `science`, `literature`, `psychology`, `urban_life` |
-| C2 | `philosophy`, `history`, `global_affairs`, `ethics`, `economics` |
+| Level | Available topics                                                 |
+| ----- | ---------------------------------------------------------------- |
+| A1    | `daily_routine`, `family`, `shopping`, `home`, `animals`         |
+| A2    | `travel`, `food`, `weather`, `hobbies`, `school`                 |
+| B1    | `health`, `work`, `environment`, `sports`, `friendship`          |
+| B2    | `technology`, `culture`, `education`, `media`, `money`           |
+| C1    | `politics`, `science`, `literature`, `psychology`, `urban_life`  |
+| C2    | `philosophy`, `history`, `global_affairs`, `ethics`, `economics` |
 
 One topic is selected at random from the level-appropriate subset at generation time.
 The selected topic is passed to the LLM prompt as `{topic}` and stored in `ReadingExercise.topic`.
@@ -77,13 +77,13 @@ The selected topic is passed to the LLM prompt as `{topic}` and stored in `Readi
 ## Text length by CEFR level
 
 | Level | Target word count |
-|-------|------------------|
-| A1    | ~80 words        |
-| A2    | ~120 words       |
-| B1    | ~200 words       |
-| B2    | ~280 words       |
-| C1    | ~380 words       |
-| C2    | ~480 words       |
+| ----- | ----------------- |
+| A1    | ~80 words         |
+| A2    | ~120 words        |
+| B1    | ~200 words        |
+| B2    | ~280 words        |
+| C1    | ~380 words        |
+| C2    | ~480 words        |
 
 Slightly longer than listening equivalents since reading is faster to process than audio.
 
@@ -164,6 +164,7 @@ Stored in `reading_exercises.questions` (identical structure to listening):
 ```
 
 5 questions ordered by cognitive demand:
+
 - Q0–Q1: literal comprehension (explicitly stated information)
 - Q2–Q3: inference (implied meaning, tone, purpose)
 - Q4: vocabulary or register (word meaning in context or formality level)
@@ -189,7 +190,7 @@ Move the `_parse_llm_json` function from `app/services/listening_service.py` to
 `listening_service.py`. Both `listening_service.py` and `reading_service.py` import it
 from `llm_adapter`.
 
-```python
+````python
 # app/services/llm_adapter.py
 
 def parse_llm_json(raw: str) -> dict:
@@ -201,7 +202,7 @@ def parse_llm_json(raw: str) -> dict:
         if cleaned.startswith("json"):
             cleaned = cleaned[4:]
     return json.loads(cleaned.strip())
-```
+````
 
 ### 2.2 LLM prompt (`app/services/reading_service.py`)
 
@@ -310,12 +311,10 @@ its own DB session and Redis client, and releases the lock in a `finally` block.
 All endpoints require a valid access token. Reading is an AI-powered feature and
 subject to the Stripe paywall when `STRIPE_ENABLED=true`.
 
-| Method | Path | Rate limit | Auth | Description |
-|--------|------|------------|------|-------------|
-| GET | `/api/reading/next` | 10/min | require_subscription | Returns the next uncompleted exercise for the user's CEFR level and language. **Text and questions are included immediately** (unlike listening). Returns `{"available": false}` when the pool is empty. Supports `?wait=true` for long-polling (max 90 s). |
-| POST | `/api/reading/generate` | 5/min | require_subscription | Acquires a per-(level, language) Redis lock (`nx=True, ex=60`) and enqueues a `BackgroundTask` that calls LLM and saves the exercise. Returns HTTP 202 with `{"status": "generating"}`. Returns 202 if a generation job is already running. |
-| POST | `/api/reading/attempt` | 20/min | require_subscription | Submits answers (`{exercise_id, answers, replay}`). Returns score (0–5), XP earned (0–50), and correct answers. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers). |
-| GET | `/api/reading/history` | 30/min | get_current_user | Returns paginated list of the user's past attempts with scores, XP, exercise text, and correct answers. Query params: `skip` (default 0), `limit` (default 10, max 50). |
+- **GET `/api/reading/next`** — Rate limit: 10/min. Auth: require_subscription. Returns the next uncompleted exercise for the user's CEFR level and language. **Text and questions are included immediately** (unlike listening). Returns `{"available": false}` when the pool is empty. Supports `?wait=true` for long-polling (max 90 s).
+- **POST `/api/reading/generate`** — Rate limit: 5/min. Auth: require_subscription. Acquires a per-(level, language) Redis lock (`nx=True, ex=60`) and enqueues a `BackgroundTask` that calls LLM and saves the exercise. Returns HTTP 202 with `{"status": "generating"}`. Returns 202 if a generation job is already running.
+- **POST `/api/reading/attempt`** — Rate limit: 20/min. Auth: require_subscription. Submits answers (`{exercise_id, answers, replay}`). Returns score (0–5), XP earned (0–50), and correct answers. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers).
+- **GET `/api/reading/history`** — Rate limit: 30/min. Auth: get_current_user. Returns paginated list of the user's past attempts with scores, XP, exercise text, and correct answers. Query params: `skip` (default 0), `limit` (default 10, max 50).
 
 > **Key difference from listening:** `GET /next` returns the exercise `text` immediately
 > in the response body — there is no audio to serve and no "transcript reveal" on submit.
@@ -344,6 +343,7 @@ class ReadingExerciseOut(BaseModel):
 ```
 
 **`ReadingNextResponse`**:
+
 ```python
 class ReadingNextResponse(BaseModel):
     available: bool
@@ -354,6 +354,7 @@ class ReadingGeneratingResponse(BaseModel):
 ```
 
 **`ReadingSubmitRequest`**:
+
 ```python
 class ReadingSubmitRequest(BaseModel):
     exercise_id: int
@@ -362,6 +363,7 @@ class ReadingSubmitRequest(BaseModel):
 ```
 
 **`ReadingSubmitResponse`**:
+
 ```python
 class CorrectAnswerOut(BaseModel):
     index: int
@@ -374,6 +376,7 @@ class ReadingSubmitResponse(BaseModel):
 ```
 
 **`ReadingAttemptOut`** — used in history:
+
 ```python
 class ReadingAttemptOut(BaseModel):
     id: int
@@ -394,6 +397,7 @@ class ReadingHistoryResponse(BaseModel):
 ### 2.6 `app/main.py`
 
 Register the router (prefix already declared inside the router module):
+
 ```python
 from app.routers import reading
 app.include_router(reading.router)  # prefix="/api/reading" set in router
@@ -409,14 +413,14 @@ Single file — all logic and UI inline, wrapped in `PaywallGate`.
 
 Six UI states controlled by local `PageState` type:
 
-| State | Description |
-|-------|-------------|
-| `loading` | Initial fetch of `GET /api/reading/next` in progress |
-| `generating` | `POST /api/reading/generate` sent; long-polls `GET /next?wait=true` until available |
-| `idle` | No exercise available and no generation in progress; shows "Generate exercise" button |
-| `exercise` | Passage text + question form shown simultaneously; "Submit" activates when all 5 answered |
-| `results` | Score, XP, per-question feedback (correct/incorrect highlight); "Next exercise" / "View history" buttons |
-| `history` | Paginated list of past attempts; each row shows topic, score, date, "Review" (expands full text + answers) |
+| State        | Description                                                                                                |
+| ------------ | ---------------------------------------------------------------------------------------------------------- |
+| `loading`    | Initial fetch of `GET /api/reading/next` in progress                                                       |
+| `generating` | `POST /api/reading/generate` sent; long-polls `GET /next?wait=true` until available                        |
+| `idle`       | No exercise available and no generation in progress; shows "Generate exercise" button                      |
+| `exercise`   | Passage text + question form shown simultaneously; "Submit" activates when all 5 answered                  |
+| `results`    | Score, XP, per-question feedback (correct/incorrect highlight); "Next exercise" / "View history" buttons   |
+| `history`    | Paginated list of past attempts; each row shows topic, score, date, "Review" (expands full text + answers) |
 
 **Key UX difference from Listening:** there is no audio player and no "I'm ready"
 gate — the text passage and questions are displayed side by side (or stacked on mobile)
@@ -478,13 +482,13 @@ Add to `mainNavItems` immediately after the Listening entry:
 ## XP rewards
 
 | Score | XP awarded |
-|-------|-----------|
-| 0/5   | 0 XP      |
-| 1/5   | 10 XP     |
-| 2/5   | 20 XP     |
-| 3/5   | 30 XP     |
-| 4/5   | 40 XP     |
-| 5/5   | 50 XP     |
+| ----- | ---------- |
+| 0/5   | 0 XP       |
+| 1/5   | 10 XP      |
+| 2/5   | 20 XP      |
+| 3/5   | 30 XP      |
+| 4/5   | 40 XP      |
+| 5/5   | 50 XP      |
 
 XP is added via the shared `update_daily_progress` service (same mechanism as lessons
 and listening). Replaying an exercise from history awards **no additional XP**.
@@ -495,12 +499,12 @@ and listening). Replaying an exercise from history awards **no additional XP**.
 
 Reading is an AI-powered feature. When `STRIPE_ENABLED=true`:
 
-| Endpoint | Requires subscription |
-|----------|----------------------|
-| `GET /api/reading/next` | ✅ |
-| `POST /api/reading/generate` | ✅ |
-| `POST /api/reading/attempt` | ✅ |
-| `GET /api/reading/history` | ❌ (accessible without subscription) |
+| Endpoint                     | Requires subscription                |
+| ---------------------------- | ------------------------------------ |
+| `GET /api/reading/next`      | ✅                                   |
+| `POST /api/reading/generate` | ✅                                   |
+| `POST /api/reading/attempt`  | ✅                                   |
+| `GET /api/reading/history`   | ❌ (accessible without subscription) |
 
 The frontend wraps the whole page in `PaywallGate`. History tab bypasses the gate via
 separate fetch (same pattern as listening history).
@@ -509,28 +513,28 @@ separate fetch (same pattern as listening history).
 
 ## Rate limiting summary
 
-| Endpoint | Limit |
-|----------|-------|
-| `GET /api/reading/next` | 10/min |
-| `POST /api/reading/generate` | 5/min |
-| `POST /api/reading/attempt` | 20/min |
-| `GET /api/reading/history` | 30/min |
+| Endpoint                     | Limit  |
+| ---------------------------- | ------ |
+| `GET /api/reading/next`      | 10/min |
+| `POST /api/reading/generate` | 5/min  |
+| `POST /api/reading/attempt`  | 20/min |
+| `GET /api/reading/history`   | 30/min |
 
 ---
 
 ## Differences from Listening at a glance
 
-| Aspect | Listening | Reading |
-|--------|-----------|---------|
-| TTS synthesis | ✅ LLM → TTS → MP3 | ❌ LLM only |
-| Audio endpoint | `GET /audio/{id}` | — |
-| Text in exercise response | ❌ Hidden until submit | ✅ Included immediately |
-| Transcript reveal on submit | ✅ | — (already visible) |
-| `audio_path` / `duration_seconds` | ✅ | — |
-| `play_count` | ✅ | `view_count` |
-| Frontend audio player | ✅ `ExerciseAudioPlayer` | — |
-| "I'm ready" gate | ✅ (must play before answering) | — |
-| Generation pipeline | Background task (LLM + TTS) | Background task (LLM only) |
+| Aspect                            | Listening                       | Reading                    |
+| --------------------------------- | ------------------------------- | -------------------------- |
+| TTS synthesis                     | ✅ LLM → TTS → MP3              | ❌ LLM only                |
+| Audio endpoint                    | `GET /audio/{id}`               | —                          |
+| Text in exercise response         | ❌ Hidden until submit          | ✅ Included immediately    |
+| Transcript reveal on submit       | ✅                              | — (already visible)        |
+| `audio_path` / `duration_seconds` | ✅                              | —                          |
+| `play_count`                      | ✅                              | `view_count`               |
+| Frontend audio player             | ✅ `ExerciseAudioPlayer`        | —                          |
+| "I'm ready" gate                  | ✅ (must play before answering) | —                          |
+| Generation pipeline               | Background task (LLM + TTS)     | Background task (LLM only) |
 
 ---
 

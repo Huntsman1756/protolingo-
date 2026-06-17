@@ -11,12 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Admin overview page**: `/admin` now acts as the admin entry point with quick access to Users, Feedback, and system controls, plus a clear maintenance-mode status panel.
 - **Shared admin navigation**: admin pages now use a consistent tab-style navigation between Overview, Users, and Feedback.
+- **Tabbed admin user detail**: `/admin/users/{id}` now separates Profile, Languages, Activity, Quotas, and Subscription into focused tabs with a summary header.
 - **Admin user filters**: `GET /api/admin/users` now supports optional `role` and `is_active` query filters in addition to pagination, search, and subscription filtering.
 - **Invite copy workflow**: generated invite links now include a copy button, copied state, clipboard failure handling, and visible 48-hour expiry guidance.
 
 ### Changed
 
 - **Admin users UX refresh**: `/admin/users` now uses a responsive desktop table and mobile cards, with clearer badges, action icons, loading states, empty/error states, and resettable filters.
+- **Admin user detail UX refresh**: quotas now separate current usage from configured limits, quota inputs show units and validation, and email verification/subscription changes require confirmation.
 - **Create user flow**: admin user creation moved from an inline expanding form to a side panel with labelled fields and a clearer submission state.
 - **Admin sidebar target**: the main Admin navigation item now opens `/admin` instead of jumping directly into the users list.
 - **Default target language**: admin-created users now default to `en-GB`, matching the project-wide fallback.

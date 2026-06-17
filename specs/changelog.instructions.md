@@ -42,6 +42,7 @@ The changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) a
 - Group related entries under the same section, not by file or layer
 
 **Good:**
+
 ```
 - Flashcard SM-2 review endpoint with quality score 0–5
 - SSE streaming chat with progress-aware tutor system prompt
@@ -49,6 +50,7 @@ The changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) a
 ```
 
 **Bad:**
+
 ```
 - Fixed a bug
 - Updated some files
@@ -101,9 +103,11 @@ Use `## [Unreleased]` for changes not yet assigned to a build number:
 ## [Unreleased]
 
 ### Added
+
 - ...
 
 ### Fixed
+
 - ...
 ```
 

@@ -7,14 +7,12 @@ applyTo: "docker-compose.yml, .env*, **/Dockerfile"
 
 ## Service inventory
 
-| Service | Image | Ports | Phase | Notes |
-|---------|-------|-------|-------|-------|
-| `postgres` | `postgres:16-alpine` | 5432 (internal) | 1 | Health check via `pg_isready` |
-| `redis` | `redis:7-alpine` | 6379 (internal) | 1 | Password-protected, health check via `redis-cli ping` |
-| `backend` | `ghcr.io/artcc/freelingo-backend:latest` | 8000 (internal) | 1 | Runs Alembic migrations automatically before Uvicorn. Depends on healthy postgres + redis. |
-| `frontend` | `ghcr.io/artcc/freelingo-frontend:latest` | 3000 (host) | 1 | Receives `BACKEND_URL` as runtime env var. Depends on backend. |
-| `kokoro` | `ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128` | 8880 (internal) | 2 | TTS — upstream image (0.4.0+), cu128 variant for Blackwell/RTX 50-series. Only needed when `TTS_PROVIDER=local`. |
-| `whisper` | `onerahmet/openai-whisper-asr-webservice:latest-gpu` | 9000 (internal) | 2 | STT — GPU via NVIDIA deploy block. Only needed when `STT_PROVIDER=local`. |
+- **`postgres`** — Image: `postgres:16-alpine`. Ports: 5432 (internal). Phase: 1. Notes: Health check via `pg_isready`
+- **`redis`** — Image: `redis:7-alpine`. Ports: 6379 (internal). Phase: 1. Notes: Password-protected, health check via `redis-cli ping`
+- **`backend`** — Image: `ghcr.io/artcc/freelingo-backend:latest`. Ports: 8000 (internal). Phase: 1. Notes: Runs Alembic migrations automatically before Uvicorn. Depends on healthy postgres + redis.
+- **`frontend`** — Image: `ghcr.io/artcc/freelingo-frontend:latest`. Ports: 3000 (host). Phase: 1. Notes: Receives `BACKEND_URL` as runtime env var. Depends on backend.
+- **`kokoro`** — Image: `ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128`. Ports: 8880 (internal). Phase: 2. Notes: TTS — upstream image (0.4.0+), cu128 variant for Blackwell/RTX 50-series. Only needed when `TTS_PROVIDER=local`.
+- **`whisper`** — Image: `onerahmet/openai-whisper-asr-webservice:latest-gpu`. Ports: 9000 (internal). Phase: 2. Notes: STT — GPU via NVIDIA deploy block. Only needed when `STT_PROVIDER=local`.
 
 Ollama is assumed to run on the host machine for GPU access, reached from containers via `host.docker.internal:11434`.
 
@@ -22,10 +20,10 @@ Ollama is assumed to run on the host machine for GPU access, reached from contai
 
 ## Image channels
 
-| Channel | Branch | Backend image | Frontend image |
-|---------|--------|---------------|----------------|
-| Production | `main` | `ghcr.io/artcc/freelingo-backend` | `ghcr.io/artcc/freelingo-frontend` |
-| Develop | `develop` | `ghcr.io/artcc/freelingo-backend-develop` | `ghcr.io/artcc/freelingo-frontend-develop` |
+| Channel    | Branch    | Backend image                             | Frontend image                             |
+| ---------- | --------- | ----------------------------------------- | ------------------------------------------ |
+| Production | `main`    | `ghcr.io/artcc/freelingo-backend`         | `ghcr.io/artcc/freelingo-frontend`         |
+| Develop    | `develop` | `ghcr.io/artcc/freelingo-backend-develop` | `ghcr.io/artcc/freelingo-frontend-develop` |
 
 Both channels publish `:latest` and a short SHA tag on every push. The compose file uses production images by default.
 
@@ -80,20 +78,20 @@ Two named volumes: `postgres_data` and `redis_data`. Both services also accept b
 
 The canonical reference is `.env.example` at the repo root. The categories operators must review before first deployment:
 
-| Category | Key variables | Notes |
-|----------|---------------|-------|
-| Database | `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` | All three must be set |
-| Data path | `DATA_PATH` | Host path for bind mounts (postgres, redis, avatars, audio) |
-| Cache | `REDIS_PASSWORD` | Must match in Redis command and backend URL |
-| Auth | `SECRET_KEY` | Generate with `openssl rand -hex 32`; never commit |
-| CORS / Cookie | `CORS_ORIGINS`, `COOKIE_SECURE` | Set `COOKIE_SECURE=true` when serving over HTTPS |
-| Registration | `ALLOW_REGISTRATION`, `FIRST_USER_IS_ADMIN` | Restrict signups and promote first user automatically |
-| Email / SMTP | `EMAIL_ENABLED`, `SMTP_*`, `APP_BASE_URL` | Required for email verification and password reset |
-| LLM | `LLM_PROVIDER`, `OLLAMA_*`, `OPENAI_*`, `ANTHROPIC_*`, `DEEPSEEK_*` | Provider selected via `LLM_PROVIDER` |
-| TTS | `TTS_PROVIDER`, `TTS_BASE_URL`, `TTS_VOICE`, `OPENAI_TTS_*` | `local` or `openai` |
-| STT | `STT_PROVIDER`, `STT_BASE_URL`, `STT_MODEL`, `STT_ENGINE`, `OPENAI_STT_MODEL` | `local` or `openai` |
-| Stripe | `STRIPE_ENABLED`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_*` | Optional; disabled by default |
-| Logging | `LOG_LEVEL` | Default: `INFO` |
+| Category      | Key variables                                                                    | Notes                                                       |
+| ------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Database      | `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`                              | All three must be set                                       |
+| Data path     | `DATA_PATH`                                                                      | Host path for bind mounts (postgres, redis, avatars, audio) |
+| Cache         | `REDIS_PASSWORD`                                                                 | Must match in Redis command and backend URL                 |
+| Auth          | `SECRET_KEY`                                                                     | Generate with `openssl rand -hex 32`; never commit          |
+| CORS / Cookie | `CORS_ORIGINS`, `COOKIE_SECURE`                                                  | Set `COOKIE_SECURE=true` when serving over HTTPS            |
+| Registration  | `ALLOW_REGISTRATION`, `FIRST_USER_IS_ADMIN`                                      | Restrict signups and promote first user automatically       |
+| Email / SMTP  | `EMAIL_ENABLED`, `SMTP_*`, `APP_BASE_URL`                                        | Required for email verification and password reset          |
+| LLM           | `LLM_PROVIDER`, `OLLAMA_*`, `OPENAI_*`, `ANTHROPIC_*`, `DEEPSEEK_*`              | Provider selected via `LLM_PROVIDER`                        |
+| TTS           | `TTS_PROVIDER`, `TTS_BASE_URL`, `TTS_VOICE`, `OPENAI_TTS_*`                      | `local` or `openai`                                         |
+| STT           | `STT_PROVIDER`, `STT_BASE_URL`, `STT_MODEL`, `STT_ENGINE`, `OPENAI_STT_MODEL`    | `local` or `openai`                                         |
+| Stripe        | `STRIPE_ENABLED`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_*` | Optional; disabled by default                               |
+| Logging       | `LOG_LEVEL`                                                                      | Default: `INFO`                                             |
 
 ---
 
@@ -116,10 +114,10 @@ Run via the backend container after model changes. Migrations run automatically 
 
 ### GPU vs CPU
 
-| Service | GPU image | CPU image | Change needed |
-|---------|-----------|-----------|---------------|
-| Kokoro TTS | `ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Replace image; remove `deploy` block |
-| Whisper STT | `*:latest-gpu` | `*:latest` | Replace tag; remove `deploy` block; use `STT_MODEL=small` |
+| Service     | GPU image                                        | CPU image                                  | Change needed                                             |
+| ----------- | ------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------- |
+| Kokoro TTS  | `ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128` | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Replace image; remove `deploy` block                      |
+| Whisper STT | `*:latest-gpu`                                   | `*:latest`                                 | Replace tag; remove `deploy` block; use `STT_MODEL=small` |
 
 The `deploy.resources.reservations.devices` block requires the Docker NVIDIA runtime. Remove it entirely for CPU-only hosts.
 
@@ -127,12 +125,12 @@ The `deploy.resources.reservations.devices` block requires the Docker NVIDIA run
 
 ## TTS/STT provider selection
 
-| Variable | Value | Behaviour |
-|----------|-------|-----------|
-| `TTS_PROVIDER` | `local` (default) | Routes TTS to the `kokoro` Docker service |
-| `TTS_PROVIDER` | `openai` | Routes TTS to OpenAI TTS API — `kokoro` service not needed |
-| `STT_PROVIDER` | `local` (default) | Routes STT to the `whisper` Docker service |
-| `STT_PROVIDER` | `openai` | Routes STT to OpenAI Whisper API — `whisper` service not needed |
+| Variable       | Value             | Behaviour                                                       |
+| -------------- | ----------------- | --------------------------------------------------------------- |
+| `TTS_PROVIDER` | `local` (default) | Routes TTS to the `kokoro` Docker service                       |
+| `TTS_PROVIDER` | `openai`          | Routes TTS to OpenAI TTS API — `kokoro` service not needed      |
+| `STT_PROVIDER` | `local` (default) | Routes STT to the `whisper` Docker service                      |
+| `STT_PROVIDER` | `openai`          | Routes STT to OpenAI Whisper API — `whisper` service not needed |
 
 When using `openai` providers, the corresponding Docker service can be removed from the stack entirely.
 
