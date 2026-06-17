@@ -107,6 +107,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         }
         const me = await meRes.json()
         setUser(mapUser(me))
+
+        if (me.learning_goals === null) {
+          router.replace('/onboarding')
+          return
+        }
       } catch {
         logout()
         router.push('/login')

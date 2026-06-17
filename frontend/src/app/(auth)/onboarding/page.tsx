@@ -35,8 +35,8 @@ export default function OnboardingPage() {
   const user = useAuthStore((s) => s.user)
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
   const stripeTrialDays = useConfigStore((s) => s.stripeTrialDays)
-  const priceMonthly = useConfigStore((s) => s.totalPriceMonthly)
-  const priceYearly = useConfigStore((s) => s.totalPriceYearly)
+  const priceMonthly = useConfigStore((s) => s.priceMonthly)
+  const priceYearly = useConfigStore((s) => s.priceYearly)
   const loadConfig = useConfigStore((s) => s.load)
   const fetchLanguages = useLanguageStore((s) => s.fetchLanguages)
   const availableLanguageCodes = useLanguageStore(
@@ -87,8 +87,7 @@ export default function OnboardingPage() {
     setLoading(true)
     setError('')
     try {
-      const body: Record<string, unknown> = { target_language: targetLanguage }
-      if (!skip && selectedGoals.length > 0) body.learning_goals = selectedGoals
+      const body: Record<string, unknown> = { target_language: targetLanguage, learning_goals: selectedGoals }
       const res = await apiFetch('/api/auth/me', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -277,7 +276,7 @@ export default function OnboardingPage() {
           {step === 3 && (
             <div className="space-y-5 text-center">
               <h2 className="text-fl-fg font-mono text-base font-bold">
-                {t('trialTitle')}
+                {t('trialTitle', { days: stripeTrialDays })}
               </h2>
               <p className="text-fl-muted-1 font-mono text-xs leading-relaxed">
                 {t('trialDesc', { days: stripeTrialDays })}
