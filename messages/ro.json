@@ -1155,7 +1155,7 @@
     "paywallDesc": "Încearcă gratuit {days} zile, fără taxe azi. Anulează oricând.",
     "paywallNoCharge": "Card necesar · nicio taxă până la sfârșitul perioadei de probă · anulează oricând",
     "paywallSkip": "Continuă cu funcțiile gratuite",
-    "trialDays": "{days} zile de probă",
+    "trialDays": "{days, plural, one {# zi de probă} few {# zile de probă} other {# zile de probă}}",
     "planMonthly": "— Începe la {price}€/lună →",
     "planYearly": "— Începe la {price}€/an →",
     "checkoutError": "Nu s-a putut iniția plata. Încearcă din nou.",

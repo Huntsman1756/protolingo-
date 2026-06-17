@@ -1155,7 +1155,7 @@
     "paywallDesc": "Rozpocznij bezpłatny okres próbny na {days} dni, bez opłat dzisiaj. Anuluj kiedy chcesz.",
     "paywallNoCharge": "Karta wymagana · brak opłat do końca okresu próbnego · anuluj kiedy chcesz",
     "paywallSkip": "Kontynuuj z darmowymi funkcjami",
-    "trialDays": "{days} dni okresu próbnego",
+    "trialDays": "{days, plural, one {# dzień okresu próbnego} few {# dni okresu próbnego} many {# dni okresu próbnego} other {# dni okresu próbnego}}",
     "planMonthly": "— Zacznij za {price}€/miesiąc →",
     "planYearly": "— Zacznij za {price}€/rok →",
     "checkoutError": "Nie można uruchomić płatności. Spróbuj ponownie.",
