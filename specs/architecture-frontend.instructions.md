@@ -89,10 +89,11 @@ frontend/
 │   │   ├── progress.ts          # XP, streak, skill scores, dashboard data
 │   │   └── theme.ts             # Dark/light/system theme
 │   │
-│   ├── lib/                     # Utility modules (7)
+│   ├── lib/                     # Utility modules (8)
 │   │   ├── api.ts               # apiFetch: auth interceptor, 401 → silent refresh → retry
 │   │   ├── audio.ts             # Audio player, audio queue, gapless playback helpers
 │   │   ├── conversation-ws.ts   # WebSocket client for voice conversation
+│   │   ├── landing-subscription.ts # Shared landing subscription-status check
 │   │   ├── locales.ts           # Locale utilities for next-intl
 │   │   ├── mappers.ts           # Data transformation / mapping utilities
 │   │   ├── target-languages.ts  # Target language definitions and helpers
@@ -218,6 +219,7 @@ Six Zustand stores hold all client-side state. No React Context is used for glob
 | `api.ts` | Fetch wrapper with auth interceptor: injects `Authorization` header, catches 401 → silent refresh → retry, redirects to `/login` on refresh failure |
 | `audio.ts` | Audio playback queue for voice conversation; tracks real queue idle state so the UI clears "speaking" only after playback drains |
 | `conversation-ws.ts` | WebSocket client for the voice conversation pipeline, handles WAV chunk sending and MP3 reception |
+| `landing-subscription.ts` | Shared landing-page subscription check used by `LandingNav` and `PricingSection`; deduplicates refresh + `/api/auth/me` so the nav hides `Pricing` whenever the pricing section is hidden for active/trialing subscribers |
 | `locales.ts` | next-intl locale detection and routing utilities |
 | `mappers.ts` | Data transformation helpers between API responses and frontend models |
 | `target-languages.ts` | Target language definitions: BCP-47 codes, display names, flag mappings, voice settings per language |
@@ -230,7 +232,7 @@ Six Zustand stores hold all client-side state. No React Context is used for glob
 | Directory | Key components |
 |----------|---------------|
 | `assessment/` | `AdaptiveQuizCard`, `BeginnerGate`, `DurationSelector` |
-| `billing/` | Stripe subscription management UI |
+| `billing/` | Stripe subscription management UI; landing `PricingSection` hides for active/trialing subscribers |
 | `chat/` | Message display, input, SSE stream handling |
 | `conversation/` | `ConversationMode`, `MicButton`, `StatusIndicator`, `TranscriptBubble`, VAD integration |
 | `flashcard/` | Flashcard flip animation, SM-2 rating buttons |
