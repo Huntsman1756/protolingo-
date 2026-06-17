@@ -94,7 +94,7 @@ describe('mapUser', () => {
     expect(user.avatar).toBeNull()
     expect(user.is_verified).toBe(true)
     expect(user.bio).toBeNull()
-    expect(user.learning_goals).toEqual([])
+    expect(user.learning_goals).toBeNull()
     expect(user.subscription_status).toBe('none')
     expect(user.subscription_ends_at).toBeNull()
   })

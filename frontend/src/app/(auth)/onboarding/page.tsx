@@ -83,11 +83,14 @@ export default function OnboardingPage() {
   const subscribed = isSubscribed(user, stripeEnabled)
   const showTrial = stripeEnabled && !subscribed
 
-  async function handleStep2(skip = false) {
+  async function handleStep2() {
     setLoading(true)
     setError('')
     try {
-      const body: Record<string, unknown> = { target_language: targetLanguage, learning_goals: selectedGoals }
+      const body: Record<string, unknown> = {
+        target_language: targetLanguage,
+        learning_goals: selectedGoals,
+      }
       const res = await apiFetch('/api/auth/me', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -249,7 +252,7 @@ export default function OnboardingPage() {
               <button
                 type="button"
                 disabled={loading}
-                onClick={() => handleStep2(false)}
+                onClick={() => handleStep2()}
                 className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 w-full py-3 font-mono text-xs font-bold tracking-widest uppercase transition-colors disabled:opacity-40"
               >
                 {loading ? (
@@ -264,7 +267,7 @@ export default function OnboardingPage() {
               <button
                 type="button"
                 disabled={loading}
-                onClick={() => handleStep2(true)}
+                onClick={() => handleStep2()}
                 className="text-fl-label text-fl-muted-4 hover:text-fl-muted-2 w-full py-1 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
               >
                 {t('goals.skip')}
