@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore, isSubscribed } from '@/store/auth'
 import { useConfigStore } from '@/store/config'
 import { apiFetch } from '@/lib/api'
 import { mapUser } from '@/lib/mappers'
@@ -59,6 +59,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [resourcesOpen, setResourcesOpen] = useState(false)
   const [contactOpen, setContactOpen] = useState(false)
   const [resendSent, setResendSent] = useState(false)
+
+  const PREMIUM_HREFS = new Set(['/chat', '/listening', '/reading', '/conversation'])
+  const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
+  const showPremiumBadge = stripeEnabled && !isSubscribed(user, stripeEnabled)
 
   async function handleResendVerification() {
     const res = await apiFetch('/api/auth/resend-verification', {
@@ -155,6 +159,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   ●
                 </span>
                 {item.label}
+                {showPremiumBadge && PREMIUM_HREFS.has(item.href) && (
+                  <span className="text-fl-accent ml-auto text-xs">★</span>
+                )}
               </Link>
             )
           })}
@@ -323,6 +330,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     ●
                   </span>
                   {item.label}
+                  {showPremiumBadge && PREMIUM_HREFS.has(item.href) && (
+                    <span className="text-fl-accent ml-auto text-xs">★</span>
+                  )}
                 </Link>
               )
             })}
