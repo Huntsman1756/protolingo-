@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
+import { hasActiveLandingSubscription } from '@/lib/landing-subscription'
 
 interface LandingNavProps {
   hasSession: boolean
@@ -25,6 +26,32 @@ export function LandingNav({
   dashboard,
 }: LandingNavProps) {
   const [open, setOpen] = useState(false)
+  const [showPricing, setShowPricing] = useState(stripeEnabled && !hasSession)
+
+  useEffect(() => {
+    let canceled = false
+
+    if (!stripeEnabled) {
+      setShowPricing(false)
+      return
+    }
+
+    if (!hasSession) {
+      setShowPricing(true)
+      return
+    }
+
+    setShowPricing(false)
+    async function checkSubscription() {
+      const subscribed = await hasActiveLandingSubscription()
+      if (!canceled) setShowPricing(!subscribed)
+    }
+    checkSubscription()
+
+    return () => {
+      canceled = true
+    }
+  }, [hasSession, stripeEnabled])
 
   const links = (
     <>
@@ -35,7 +62,7 @@ export function LandingNav({
       >
         {navFeatures}
       </a>
-      {stripeEnabled && (
+      {showPricing && (
         <a
           href="#pricing"
           onClick={() => setOpen(false)}

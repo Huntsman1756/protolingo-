@@ -1017,6 +1017,14 @@
       "exams": "Esami e certificazioni",
       "social": "Socializzare"
     },
+    "trialHeadline": "Prova gratuita",
+    "trialTitle": "{days} giorni di accesso completo",
+    "trialDesc": "Chat con tutor IA, conversazioni vocali, esercizi di listening e reading. Nessun impegno, cancella quando vuoi.",
+    "trialCtaMonthly": "Inizia a {price}€/mese",
+    "trialCtaYearly": "Inizia a {price}€/anno",
+    "trialSkip": "Continua con le funzioni gratuite",
+    "trialNoCharge": "Carta richiesta. Nessun addebito fino alla fine della prova.",
+    "trialError": "Impossibile avviare il pagamento. Riprova.",
     "newLanguageHeadline": "Quale nuova lingua vuoi imparare?",
     "newLanguageSubtitle": "Verrà creato un nuovo piano di studio per questa lingua."
   },
@@ -1066,6 +1074,8 @@
     "paywallTitle": "Sblocca FreeLingo Premium",
     "paywallDesc": "Inizia la tua prova gratuita di {days} giorni, nessun addebito oggi. Annulla quando vuoi.",
     "paywallNoCharge": "Carta richiesta · nessun addebito fino alla fine della prova · annulla quando vuoi",
+    "paywallSkip": "Continua con le funzioni gratuite",
+    "trialDays": "{days} giorni di prova",
     "planMonthly": "— Inizia a {price}€/mese →",
     "planYearly": "— Inizia a {price}€/anno →",
     "checkoutError": "Impossibile avviare il pagamento. Riprova.",
@@ -1131,7 +1141,7 @@
   },
   "whatsNew": {
     "title": "Novità",
-    "version": "v1.8.5",
+    "version": "v1.8.6",
     "cta": "Capito",
     "entry1": {
       "label": "Cinque nuove lingue da imparare",

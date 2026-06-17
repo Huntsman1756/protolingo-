@@ -2,13 +2,33 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
+import { useConfigStore } from '@/store/config'
+import {
+  Sparkles,
+  MessageSquare,
+  Mic,
+  Layers,
+  BookOpen,
+  Headphones,
+  Zap,
+} from 'lucide-react'
 
 const STORAGE_KEY = 'fl_tour_done'
 
-const STEP_ICONS = ['◎', '▣', '◈', '△', '◇', '◉', '✦']
+const STEP_ICONS = [
+  Sparkles,
+  MessageSquare,
+  Mic,
+  Layers,
+  BookOpen,
+  Headphones,
+  Zap,
+]
+const PREMIUM_STEPS = new Set([1, 2, 5])
 
 export default function OnboardingTour() {
   const t = useTranslations('tour')
+  const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(0)
   const [leaving, setLeaving] = useState(false)
@@ -83,9 +103,15 @@ export default function OnboardingTour() {
           }`}
         >
           <div className="mb-4 flex items-center gap-3">
-            <span className="text-fl-accent text-xl">{STEP_ICONS[step]}</span>
+            {(() => {
+              const Icon = STEP_ICONS[step]
+              return <Icon className="text-fl-muted-2 h-5 w-5" />
+            })()}
             <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
               {t(`step${step + 1}.label`)}
+              {stripeEnabled && PREMIUM_STEPS.has(step) && (
+                <span className="text-fl-accent ml-1">★</span>
+              )}
             </span>
           </div>
           <h2 className="text-fl-fg mb-2 font-mono text-base font-bold">

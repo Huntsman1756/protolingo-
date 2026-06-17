@@ -1017,6 +1017,14 @@
       "exams": "Egzaminy i certyfikaty",
       "social": "Towarzystwo"
     },
+    "trialHeadline": "Bezpłatny okres próbny",
+    "trialTitle": "{days} dni pełnego dostępu",
+    "trialDesc": "Czat z tutorem AI, rozmowy głosowe, ćwiczenia ze słuchu i czytania. Bez zobowiązań, anuluj w dowolnym momencie.",
+    "trialCtaMonthly": "Zacznij od {price}€/mies.",
+    "trialCtaYearly": "Zacznij od {price}€/rok",
+    "trialSkip": "Kontynuuj z darmowymi funkcjami",
+    "trialNoCharge": "Karta wymagana. Brak opłat do końca okresu próbnego.",
+    "trialError": "Nie można rozpocząć płatności. Spróbuj ponownie.",
     "newLanguageHeadline": "Jakiego nowego języka chcesz się uczyć?",
     "newLanguageSubtitle": "Nowy plan nauki zostanie utworzony dla tego języka."
   },
@@ -1066,6 +1074,8 @@
     "paywallTitle": "Odblokuj FreeLingo Premium",
     "paywallDesc": "Rozpocznij bezpłatny okres próbny na {days} dni, bez opłat dzisiaj. Anuluj kiedy chcesz.",
     "paywallNoCharge": "Karta wymagana · brak opłat do końca okresu próbnego · anuluj kiedy chcesz",
+    "paywallSkip": "Kontynuuj z darmowymi funkcjami",
+    "trialDays": "{days} dni okresu próbnego",
     "planMonthly": "— Zacznij za {price}€/miesiąc →",
     "planYearly": "— Zacznij za {price}€/rok →",
     "checkoutError": "Nie można uruchomić płatności. Spróbuj ponownie.",
@@ -1131,7 +1141,7 @@
   },
   "whatsNew": {
     "title": "Co nowego",
-    "version": "v1.8.5",
+    "version": "v1.8.6",
     "cta": "Rozumiem",
     "entry1": {
       "label": "Pięć nowych języków do nauki",

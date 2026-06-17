@@ -27,7 +27,7 @@ export function mapUser(
     avatar: data.avatar ?? current?.avatar ?? null,
     is_verified: data.is_verified ?? current?.is_verified ?? true,
     bio: data.bio ?? current?.bio ?? null,
-    learning_goals: data.learning_goals ?? current?.learning_goals ?? [],
+    learning_goals: data.learning_goals ?? current?.learning_goals ?? null,
     subscription_status:
       data.subscription_status ?? current?.subscription_status ?? 'none',
     subscription_ends_at:

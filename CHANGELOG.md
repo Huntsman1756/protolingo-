@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.6] - 2026-06-17
+
+### Added
+- **Onboarding subscription step**: after selecting language and learning goals, new users who haven't subscribed and where Stripe is enabled now see a trial offer step with monthly/yearly checkout buttons and a "Continue with free features" skip link. Subscribed users bypass this step automatically and go straight to the dashboard.
+- **Sidebar premium indicators**: Chat, Voice, Listening, and Reading navigation items now show a ★ badge when the user is unsubscribed and Stripe is enabled, clearly distinguishing premium features from free ones. Self-hosted deployments (Stripe disabled) see no badges.
+- **Paywall escape link**: the paywall banner now includes a "Continue with free features" link that returns users to the dashboard, so they aren't forced to subscribe or leave the page.
+- **Tour premium indicators**: the onboarding tour now shows a ★ on steps covering premium features (Chat, Voice, Listening & Reading) when Stripe is enabled. Tour step icons upgraded from unicode symbols to lucide-react SVG icons (Sparkles, MessageSquare, Mic, Layers, BookOpen, Headphones, Zap).
+- **Trial days counter**: users with an active trial now see their remaining trial days (e.g. "★ 5 days of trial") in the sidebar below their username. The counter appears only when Stripe is enabled and the user is in `trialing` status.
+- **Onboarding enforcement**: users who close the browser before completing onboarding are now redirected back to the onboarding flow on their next visit. The onboarding PATCH now always persists `learning_goals` so the frontend can detect incomplete onboarding via a `null` value. Existing users who completed onboarding but skipped the goals step are backfilled via migration `0041_backfill_learning_goals`.
+
+### Changed
+- **Settings billing section**: moved from the bottom of the Settings page to right after Profile, making subscription status and management immediately visible.
+
+### Fixed
+- Landing navigation now hides the `Pricing` link for signed-in users with an active or trialing subscription, matching the pricing section visibility. The landing nav and pricing section share one subscription-status check to avoid duplicate refresh requests.
+- Minor bug fixes and improvements.
+
 ## [1.8.5] - 2026-06-17
 
 ### Changed

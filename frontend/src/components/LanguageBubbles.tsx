@@ -22,7 +22,7 @@ export function LanguageBubbles() {
   return (
     <div className="relative h-[360px] w-full sm:h-[380px]">
       <div
-        className="absolute top-1/2 left-1/2 z-20 h-[95px] w-[95px] -translate-x-1/2 -translate-y-1/2 bg-contain bg-center bg-no-repeat"
+        className="absolute top-1/2 left-1/2 z-[1] h-[95px] w-[95px] -translate-x-1/2 -translate-y-1/2 bg-contain bg-center bg-no-repeat"
         style={{ backgroundImage: 'url(/logo.png)' }}
         aria-label="FreeLingo"
       />
@@ -34,7 +34,7 @@ export function LanguageBubbles() {
         return (
           <div
             key={lang.code}
-            className="absolute z-10 w-max"
+            className="absolute z-0 w-max"
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
