@@ -721,6 +721,7 @@
     "inactive": "Inactive",
     "inviteCreated": "Invite link created",
     "copyLink": "Copy link",
+    "inviteCopied": "Invite link copied",
     "deleteUser": "Delete User",
     "deleteUserMessage": "Delete this user? This action cannot be undone.",
     "deleteConfirm": "Delete",

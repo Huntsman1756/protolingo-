@@ -469,7 +469,7 @@ export default function AdminUsersPage() {
               ) : (
                 <Clipboard className="size-3.5" aria-hidden="true" />
               )}
-              {inviteCopied ? tCommon('copied') : t('copyLink')}
+              {inviteCopied ? t('inviteCopied') : t('copyLink')}
             </button>
           </div>
           <p className="text-fl-muted-1 font-mono text-xs break-all">

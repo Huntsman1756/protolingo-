@@ -721,6 +721,7 @@
     "inactive": "Inaktiv",
     "inviteCreated": "Einladungslink erstellt",
     "copyLink": "Link kopieren",
+    "inviteCopied": "Einladungslink kopiert",
     "deleteUser": "Benutzer löschen",
     "deleteUserMessage": "Diesen Benutzer löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
     "deleteConfirm": "Löschen",
