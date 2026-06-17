@@ -431,7 +431,7 @@ export default function ChatPage() {
                     <div className="border-fl-border mb-0.5 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border">
                       {msg.role === 'assistant' ? (
                         <Image
-                          src="/logo.png"
+                          src="/logo_head.png"
                           alt="Tutor"
                           width={28}
                           height={28}
