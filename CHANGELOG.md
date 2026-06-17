@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Admin users UX refresh**: `/admin/users` now uses a responsive desktop table and mobile cards, with clearer badges, action icons, loading states, empty/error states, and resettable filters.
 - **Admin user detail UX refresh**: quotas now separate current usage from configured limits, quota inputs show units and validation, and email verification/subscription changes require confirmation.
-- **Admin feedback UX refresh**: `/admin/feedback` now uses a wider responsive queue with search, type/status/sort filters, summary metrics, desktop table, mobile cards, inline status changes, clearer loading/error states, and delete confirmation.
+- **Admin feedback UX refresh**: `/admin/feedback` now uses a wider responsive queue with search, type/status/sort filters, filtered summary metrics, desktop table, mobile cards, inline status changes, clearer loading/error states, and delete confirmation. Status changes refresh the queue when the updated entry no longer matches the active filter.
 - **Admin overview UX refresh**: `/admin` now shows operational metrics, pending bug alerts, past-due subscription alerts, and quick links that open pre-filtered admin views.
 - **Create user flow**: admin user creation moved from an inline expanding form to a side panel with labelled fields and a clearer submission state.
 - **Admin sidebar target**: the main Admin navigation item now opens `/admin` instead of jumping directly into the users list.

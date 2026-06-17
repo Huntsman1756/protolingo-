@@ -182,7 +182,7 @@ frontend/
 - `/admin` — Admin overview with aggregated metrics, operational alerts, quick links, and maintenance-mode status (admin only).
 - `/admin/users` — User management with responsive table/cards, search, filters, invite copy workflow, create-user sheet, and maintenance toggle (admin only).
 - `/admin/users/[id]` — Admin user detail with summary header and tabs for Profile, Languages, Activity, Quotas, and Subscription. Quotas separate current usage from configured limits; email verification and subscription overrides use confirmation dialogs.
-- `/admin/feedback` — Feedback queue admin panel with search, type/status/sort filters, desktop table, mobile cards, status updates, metrics, and delete confirmation (admin only).
+- `/admin/feedback` — Feedback queue admin panel with search, type/status/sort filters, filtered metrics by feedback type, desktop table, mobile cards, status updates, and delete confirmation. Status updates refresh the queue when the updated entry no longer matches the active filter (admin only).
 
 ### Legal routes — `(legal)/`
 

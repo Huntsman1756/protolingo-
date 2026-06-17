@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import {
@@ -99,6 +99,7 @@ export default function AdminFeedbackPage() {
   )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [typeTotals, setTypeTotals] = useState({ feature: 0, bug: 0 })
   const [savingStatus, setSavingStatus] = useState<number | null>(null)
   const [deletingId, setDeletingId] = useState<number | null>(null)
   const [deletePending, setDeletePending] = useState<FeedbackEntry | null>(null)
@@ -115,6 +116,23 @@ export default function AdminFeedbackPage() {
       return map[status] ?? status
     },
     [t]
+  )
+
+  const loadTypeTotal = useCallback(
+    async (type: 'feature' | 'bug', query: string, currentStatus: string) => {
+      const params = new URLSearchParams({
+        type,
+        skip: '0',
+        limit: '1',
+      })
+      if (query.trim()) params.set('q', query.trim())
+      if (currentStatus) params.set('status', currentStatus)
+      const res = await apiFetch(`/api/feedback?${params.toString()}`)
+      if (!res.ok) return 0
+      const data = await res.json()
+      return data.total ?? 0
+    },
+    []
   )
 
   const loadEntries = useCallback(
@@ -144,16 +162,21 @@ export default function AdminFeedbackPage() {
           return
         }
         if (!res.ok) throw new Error()
-        const data = await res.json()
+        const [data, featureCount, bugCount] = await Promise.all([
+          res.json(),
+          loadTypeTotal('feature', query, currentStatus),
+          loadTypeTotal('bug', query, currentStatus),
+        ])
         setEntries(data.items)
         setTotal(data.total)
+        setTypeTotals({ feature: featureCount, bug: bugCount })
       } catch {
         setError(t('errorLoad'))
       } finally {
         setLoading(false)
       }
     },
-    [t, tAdmin]
+    [loadTypeTotal, t, tAdmin]
   )
 
   useEffect(() => {
@@ -202,6 +225,16 @@ export default function AdminFeedbackPage() {
         body: JSON.stringify({ status: newStatus }),
       })
       if (!res.ok) throw new Error()
+      if (statusFilter && newStatus !== statusFilter) {
+        await loadEntries(
+          page,
+          searchTerm,
+          typeFilter,
+          statusFilter,
+          sortFilter
+        )
+        return
+      }
       setEntries((prev) =>
         prev.map((e) => (e.id === entry.id ? { ...e, status: newStatus } : e))
       )
@@ -255,11 +288,6 @@ export default function AdminFeedbackPage() {
     ...STATUS_OPTIONS.map((s) => ({ value: s, label: getStatusLabel(s) })),
   ]
 
-  const currentPageFeatures = useMemo(
-    () => entries.filter((entry) => entry.type === 'feature').length,
-    [entries]
-  )
-  const currentPageBugs = entries.length - currentPageFeatures
   const hasFilters =
     searchInput ||
     searchTerm ||
@@ -293,10 +321,10 @@ export default function AdminFeedbackPage() {
         />
         <AdminMetric
           label={t('tabFeatures')}
-          value={currentPageFeatures}
+          value={typeTotals.feature}
           icon={ThumbsUp}
         />
-        <AdminMetric label={t('tabBugs')} value={currentPageBugs} icon={Bug} />
+        <AdminMetric label={t('tabBugs')} value={typeTotals.bug} icon={Bug} />
       </div>
 
       {error && (
