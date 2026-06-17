@@ -29,23 +29,23 @@ FreeLingo's learning loop works as follows:
 
 One active plan per user. See `backend/app/models/study_plan.py`.
 
-| Column | Type | Notes |
-|--------|------|-------|
-| id | integer | Primary key |
-| user_id | integer | FK → users |
-| cefr_level | string | A1–C2 |
-| target_language | string | BCP-47 tag copied from user at creation |
-| goals | JSON | `["grammar", "vocabulary", ...]` |
-| duration_weeks | integer | 4 / 8 / 12 / 16 |
-| days_per_week | integer | 5 / 5 / 4 / 3 (derived from intensity) |
-| current_unit | string | Curriculum unit ID of the last active unit |
-| **progress_day** | **integer** | **0-indexed count of completed days (see below). Default 0.** |
-| generated_plan | JSON | Full week/day grid (see Plan JSON structure) |
-| is_active | boolean | True for the current plan; old plans are deactivated on re-generate |
-| completion_test_taken | boolean | Whether end-of-level test has been taken |
-| completion_test_score | float (nullable) | 0.0 – 1.0 |
-| completion_test_recommendation | string (nullable) | `"advance"` / `"extend"` / `"repeat"` |
-| created_at | datetime | Auto-set |
+| Column                         | Type              | Notes                                                               |
+| ------------------------------ | ----------------- | ------------------------------------------------------------------- |
+| id                             | integer           | Primary key                                                         |
+| user_id                        | integer           | FK → users                                                          |
+| cefr_level                     | string            | A1–C2                                                               |
+| target_language                | string            | BCP-47 tag copied from user at creation                             |
+| goals                          | JSON              | `["grammar", "vocabulary", ...]`                                    |
+| duration_weeks                 | integer           | 4 / 8 / 12 / 16                                                     |
+| days_per_week                  | integer           | 5 / 5 / 4 / 3 (derived from intensity)                              |
+| current_unit                   | string            | Curriculum unit ID of the last active unit                          |
+| **progress_day**               | **integer**       | **0-indexed count of completed days (see below). Default 0.**       |
+| generated_plan                 | JSON              | Full week/day grid (see Plan JSON structure)                        |
+| is_active                      | boolean           | True for the current plan; old plans are deactivated on re-generate |
+| completion_test_taken          | boolean           | Whether end-of-level test has been taken                            |
+| completion_test_score          | float (nullable)  | 0.0 – 1.0                                                           |
+| completion_test_recommendation | string (nullable) | `"advance"` / `"extend"` / `"repeat"`                               |
+| created_at                     | datetime          | Auto-set                                                            |
 
 **`progress_day` semantics**
 
@@ -56,6 +56,7 @@ One active plan per user. See `backend/app/models/study_plan.py`.
 - `total_days = duration_weeks × days_per_week` → when `progress_day >= total_days` the plan is finished.
 
 Mapping to week/day numbers:
+
 ```
 current_week = (progress_day // days_per_week) + 1
 current_day  = (progress_day %  days_per_week) + 1
@@ -63,31 +64,31 @@ current_day  = (progress_day %  days_per_week) + 1
 
 Example (`days_per_week=4`):
 
-| progress_day | current_week | current_day |
-|:---:|:---:|:---:|
-| 0 | 1 | 1 |
-| 3 | 1 | 4 |
-| 4 | 2 | 1 |
-| 47 | 12 | 4 |
-| 48 | — plan complete — | — |
+| progress_day |   current_week    | current_day |
+| :----------: | :---------------: | :---------: |
+|      0       |         1         |      1      |
+|      3       |         1         |      4      |
+|      4       |         2         |      1      |
+|      47      |        12         |      4      |
+|      48      | — plan complete — |      —      |
 
 ### `Lesson` (`lessons` table)
 
 One row per lesson slot per day. Lessons are created lazily the first time the user calls `GET /today`.
 
-| Column | Type | Notes |
-|--------|------|-------|
-| id | integer | Primary key |
-| study_plan_id | integer | FK → study_plans |
-| title | string | Lesson title (matches the slot title in `generated_plan`) |
-| lesson_type | string | `grammar` / `vocabulary` / `reading` / `writing` / `review` |
-| cefr_level | string | |
-| week_number | integer | Week in the plan (1-based) |
-| day_number | integer | Day in the week (1-based) |
-| unit_id | string (nullable) | Curriculum unit this lesson belongs to |
-| content | JSON | Full lesson content generated by LLM (explanation + exercises) |
-| is_completed | boolean | Default false |
-| completed_at | datetime (nullable) | Set by `POST /lessons/{id}/complete` |
+| Column        | Type                | Notes                                                          |
+| ------------- | ------------------- | -------------------------------------------------------------- |
+| id            | integer             | Primary key                                                    |
+| study_plan_id | integer             | FK → study_plans                                               |
+| title         | string              | Lesson title (matches the slot title in `generated_plan`)      |
+| lesson_type   | string              | `grammar` / `vocabulary` / `reading` / `writing` / `review`    |
+| cefr_level    | string              |                                                                |
+| week_number   | integer             | Week in the plan (1-based)                                     |
+| day_number    | integer             | Day in the week (1-based)                                      |
+| unit_id       | string (nullable)   | Curriculum unit this lesson belongs to                         |
+| content       | JSON                | Full lesson content generated by LLM (explanation + exercises) |
+| is_completed  | boolean             | Default false                                                  |
+| completed_at  | datetime (nullable) | Set by `POST /lessons/{id}/complete`                           |
 
 There is a **unique constraint** on `(study_plan_id, week_number, day_number, title)` to prevent duplicate generation under race conditions.
 
@@ -95,18 +96,18 @@ There is a **unique constraint** on `(study_plan_id, week_number, day_number, ti
 
 Exercises belong to a lesson (1:N). Generated alongside the lesson and stored in the DB.
 
-| Column | Type | Notes |
-|--------|------|-------|
-| id | integer | Primary key |
-| lesson_id | integer | FK → lessons |
-| exercise_type | string | `multiple_choice` / `fill_blank` / `free_write` / `pronunciation` |
-| question | text | |
-| options | JSON (nullable) | Answer options for `multiple_choice` |
-| correct_answer | text | |
-| user_answer | text (nullable) | User's submitted answer |
-| score | float (nullable) | 0.0 – 1.0 |
-| feedback | text (nullable) | Evaluation feedback (LLM or deterministic) |
-| answered_at | datetime (nullable) | Set when the user submits an answer |
+| Column         | Type                | Notes                                                             |
+| -------------- | ------------------- | ----------------------------------------------------------------- |
+| id             | integer             | Primary key                                                       |
+| lesson_id      | integer             | FK → lessons                                                      |
+| exercise_type  | string              | `multiple_choice` / `fill_blank` / `free_write` / `pronunciation` |
+| question       | text                |                                                                   |
+| options        | JSON (nullable)     | Answer options for `multiple_choice`                              |
+| correct_answer | text                |                                                                   |
+| user_answer    | text (nullable)     | User's submitted answer                                           |
+| score          | float (nullable)    | 0.0 – 1.0                                                         |
+| feedback       | text (nullable)     | Evaluation feedback (LLM or deterministic)                        |
+| answered_at    | datetime (nullable) | Set when the user submits an answer                               |
 
 ---
 
@@ -143,13 +144,13 @@ Plan generation is **fully deterministic** — no LLM call. The service:
           "estimated_minutes": 20,
           "unit_id": "a1-unit-1",
           "grammar_points": ["present-simple"],
-          "vocabulary_set_ids": ["greetings_a1"]
-        }
+          "vocabulary_set_ids": ["greetings_a1"],
+        },
         // ...
-      ]
-    }
+      ],
+    },
     // ...
-  ]
+  ],
 }
 ```
 
@@ -162,12 +163,14 @@ Plan generation is **fully deterministic** — no LLM call. The service:
 Lesson content is generated by the LLM **the first time a user accesses a day** via `GET /today`. The lesson is then persisted to the DB and reused on subsequent calls. The router uses a title-based lookup to avoid regenerating existing lessons.
 
 The `generate_lesson()` function receives:
+
 - `cefr_level`, `lesson_type`, `topic` (= lesson title)
 - `week`, `day`, `unit_id`
 - `grammar_points`, `vocabulary_set_ids` (from curriculum context)
 - `target_language` (user's target language BCP-47)
 
 It returns a structured JSON with:
+
 - `explanation` — rich lesson content
 - `exercises` — list of exercise objects (`type`, `question`, `options`, `correct`, `explanation`)
 
@@ -233,6 +236,7 @@ The auto-advance loop advances **only past days where every generated lesson is 
 Increments `progress_day` by 1, capped at `total_days`. Does not affect existing lessons.
 
 Returns:
+
 ```json
 { "progress_day": 4, "total_days": 48 }
 ```
@@ -244,14 +248,22 @@ Use case: the user wants to move on without completing today's lessons. The skip
 ## `GET /api/study-plan/pending-lessons` — incomplete past lessons
 
 Returns a list of `Lesson` rows that:
+
 - Belong to the active plan.
 - Are **not** completed (`is_completed = false`).
 - Are from days that have already been passed: `(week_number − 1) × days_per_week + (day_number − 1) < progress_day`.
 
 Response shape (array):
+
 ```json
 [
-  { "id": 7, "title": "Basic greetings", "lesson_type": "vocabulary", "week_number": 1, "day_number": 1 }
+  {
+    "id": 7,
+    "title": "Basic greetings",
+    "lesson_type": "vocabulary",
+    "week_number": 1,
+    "day_number": 1
+  }
 ]
 ```
 
@@ -298,6 +310,7 @@ slot in generated_plan
 On load, calls `GET /api/progress/summary` and `GET /api/study-plan/today` in parallel.
 
 From the today response it reads:
+
 - `progress_day` / `total_days` → renders a progress bar and a "Day X of Y" label (`dayProgress` i18n key).  
   The label shows `Math.min(progress_day + 1, total_days)` as the current day number (1-based display of a 0-indexed value).
 - `pending_count` → shows a "N pending lessons →" button linking to `/plan` when > 0.
@@ -317,19 +330,17 @@ After `POST /lessons/{id}/complete` succeeds, calls `GET /today` again. If the r
 
 ## Database migrations
 
-| Migration | File | Description |
-|-----------|------|-------------|
-| 0025 | `0025_plan_progress_day.py` | Adds `progress_day` column to `study_plans`. Backfills existing rows using `COALESCE(MAX((week_number-1)*days_per_week + (day_number-1)) + 1, 0)` from completed lessons. Sets `NOT NULL`. |
+- **0025** — File: `0025_plan_progress_day.py`. Description: Adds `progress_day` column to `study_plans`. Backfills existing rows using `COALESCE(MAX((week_number-1)*days_per_week + (day_number-1)) + 1, 0)` from completed lessons. Sets `NOT NULL`.
 
 ---
 
 ## Error handling and edge cases
 
-| Scenario | Behaviour |
-|----------|-----------|
-| LLM unavailable during lesson generation | Lesson slot returns `id: null`; dashboard shows the slot but without a "Start" link. Retry on next `/today` call. |
-| Concurrent `/today` requests for the same user | `IntegrityError` on the unique `(plan_id, week, day, title)` constraint → rollback → re-fetch the existing row. |
-| `progress_day >= total_days` | `/today` returns empty `lessons` array. Dashboard shows "all caught up" message. |
-| Skip past the last day | `progress_day` is capped at `total_days`. |
-| Plan with no generated lessons for the current day | Auto-advance does **not** fire. The loop stops when `lessons_by_wday.get((week, day), [])` returns `[]`. |
-| Lesson with no exercises returned by LLM | Rolled back and excluded from today response. |
+| Scenario                                           | Behaviour                                                                                                         |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| LLM unavailable during lesson generation           | Lesson slot returns `id: null`; dashboard shows the slot but without a "Start" link. Retry on next `/today` call. |
+| Concurrent `/today` requests for the same user     | `IntegrityError` on the unique `(plan_id, week, day, title)` constraint → rollback → re-fetch the existing row.   |
+| `progress_day >= total_days`                       | `/today` returns empty `lessons` array. Dashboard shows "all caught up" message.                                  |
+| Skip past the last day                             | `progress_day` is capped at `total_days`.                                                                         |
+| Plan with no generated lessons for the current day | Auto-advance does **not** fire. The loop stops when `lessons_by_wday.get((week, day), [])` returns `[]`.          |
+| Lesson with no exercises returned by LLM           | Rolled back and excluded from today response.                                                                     |

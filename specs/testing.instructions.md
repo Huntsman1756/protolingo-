@@ -7,11 +7,11 @@ applyTo: "**/*.test.*, **/*.spec.*, **/tests/**, **/__tests__/**"
 
 ## Overview
 
-| Layer | Framework | Scope | Coverage | Status |
-|-------|-----------|-------|----------|--------|
+| Layer                      | Framework               | Scope                                                   | Coverage          | Status      |
+| -------------------------- | ----------------------- | ------------------------------------------------------- | ----------------- | ----------- |
 | Backend unit + integration | pytest + pytest-asyncio | API endpoints, services, SM-2 algorithm, data integrity | 83% (target: 70%) | Implemented |
-| Frontend unit | Vitest | Stores, components, hooks, lib, middleware | — | Implemented |
-| E2E | Playwright | Critical user flows | Smoke | Pending |
+| Frontend unit              | Vitest                  | Stores, components, hooks, lib, middleware              | —                 | Implemented |
+| E2E                        | Playwright              | Critical user flows                                     | Smoke             | Pending     |
 
 All tests pass on every push. Backend coverage threshold configured at 70%, currently at 83%. Frontend tests cover stores, critical components (VoiceRecorder, AudioPlayer, ProfileSection, UnitCard/UnitDrawer, LanguageSwitcher, TargetLanguageSelector), lib modules, and middleware.
 
@@ -29,48 +29,46 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 
 ### Test file inventory
 
-| File | Lines | What it covers |
-|------|-------|---------------|
-| `conftest.py` | 153 | Shared fixtures: in-memory SQLite engine, test DB session, mock Redis, HTTP client, test user and admin creation |
-| `test_auth.py` | 593 | Registration (success, duplicate, invite gating), login, refresh (rotation, replay detection), logout, me, update-profile |
-| `test_auth_extra.py` | 143 | Additional auth edge cases and error scenarios |
-| `test_admin.py` | 245 | CRUD users, role enforcement (403 for non-admin), invite creation with 48h expiry |
-| `test_admin_extra.py` | 149 | Additional admin operations and permission checks |
-| `test_avatar.py` | 327 | Avatar upload, validation, storage, retrieval |
-| `test_assessment.py` | 165 | Quiz start (mocked LLM), submit and deterministic evaluation, legacy endpoints, LLM error handling |
-| `test_assessment_router.py` | — | Full assessment router: start, submit, evaluate, free-write, complete, level-test questions/submit/result (54 tests, 51%→98% coverage) |
-| `test_study_plan.py` | 376 | Plan generation, today's lessons, auto-generation on access, unit progression |
-| `test_lessons.py` | 235 | Lesson CRUD, exercise answering (multiple_choice, free_write, pronunciation), completion flow, progress update on complete |
-| `test_lessons_extra.py` | 106 | Additional lesson scenarios and edge cases |
-| `test_lessons_router.py` | — | Lesson router: get lesson with exercises, complete lesson, answer exercises (all 4 types), lifecycle, fill-blank sanitization (36 tests, 58%→99% coverage) |
-| `test_flashcards.py` | 136 | SM-2 algorithm (all quality levels 0–5, interval and ease_factor transitions, edge cases), card CRUD |
-| `test_flashcards_extra.py` | 201 | Additional flashcard scenarios and SM-2 edge cases |
-| `test_chat.py` | 54 | SSE streaming chunks, conversation creation and messaging |
-| `test_chat_conversations.py` | 254 | Persistent conversations, message history, conversation management |
-| `test_progress.py` | 48 | Progress summary and history with empty and populated data |
-| `test_progress_extra.py` | 83 | Additional progress tracking scenarios |
-| `test_conversation.py` | 555 | WebSocket authentication, TTS/STT disabled rejection, pipeline lifecycle, session management |
-| `test_conversation_pipeline_service.py` | — | Conversation pipeline service: system prompt, sentence cleaning, TTS queue, greet, audio processing, barge-in, usage tracking, inactivity watcher, max-duration watcher, full lifecycle (76 tests, 50%→97% coverage) |
-| `test_frontend_data_integrity.py` | 168 | Cross-reference validation: curriculum.ts vs grammar.ts, all 4 languages' curriculum vs backend vocabulary — ensures all referenced slugs and IDs exist |
-| `test_listening.py` | 503 | Exercise pool (next / generate), generation lock, audio serving, answer evaluation (score + XP), attempt deduplication, history |
-| `test_listening_extra.py` | 208 | Additional listening exercise scenarios |
-| `test_reading.py` | 400 | Reading exercise generation, comprehension questions, answer evaluation, XP calculation |
-| `test_reading_extra.py` | 255 | Additional reading exercise scenarios |
-| `test_vocabulary.py` | 175 | Vocabulary API: list sets, by-level, set detail, language switching, auth, error cases (14 tests) |
-| `test_feedback.py` | 1116 | Feedback board: feature requests, bug reports, voting, comments, admin moderation |
-| `test_billing.py` | 381 | Stripe subscriptions, webhooks, payment status, subscription lifecycle |
-| `test_maintenance.py` | 153 | Maintenance mode toggle, API behavior during maintenance |
-| `test_memories.py` | 362 | LLM memory (Phase 9): memory creation, retrieval, update, deletion |
-| `test_llm_adapter.py` | — | LLM adapter: JSON parsing, streaming, 5 exception classes, 4 provider init paths, chat (streaming + non-streaming), Anthropic error mapping, structured output with retry, DeepSeek provider, edge cases (63 tests, 38%→100% coverage) |
-| `test_phrasebook.py` | 185 | Phrasebook API: list categories, by-level filtering, category detail, language switching, auth, error cases (14 tests) |
-| `test_quota_service.py` | — | Quota service: key helpers, quota status, session tracking, daily/weekly minute checks, monthly token tracking, combined quota validation, full session lifecycle (71 tests, 37%→100% coverage) |
-| `test_flashcard_sm2.py` | — | Flashcard service: `_clean_generated_word`, `_get_lang_hint` (9 languages + fallbacks), `generate_flashcards`, `lookup_word` (18 tests, 57%→100% coverage) |
-| `test_assessment_bank.py` | — | Assessment bank dispatcher: all 7 languages, unknown fallback to en-GB, ISO prefix fallback, cache reuse (12 tests, 0%→100% coverage) |
-| `test_limiter.py` | — | Rate limiter: `_get_real_ip` (X-Real-IP, X-Forwarded-For single/multiple, client host fallback, unknown), limiter construction (9 tests, 42%→100% coverage) |
-| `test_lesson_generator.py` | — | Lesson generator service: `get_valid_grammar_slugs`, `generate_lesson`, fill-blank sanitization, grammar refs filtering, `evaluate_free_write`, `evaluate_pronunciation`, `evaluate_fill_blank` (12 tests, 51%→100% coverage) |
-| `test_listening_service.py` | — | Listening service DB layer: `get_available_exercise`, `submit_attempt` (correct/partial/duplicate/replay/not-found), `get_user_history` (empty/attempts/limit/language filter) (12 tests, 63%→64% coverage) |
+- **`conftest.py`** — Lines: 153. What it covers: Shared fixtures: in-memory SQLite engine, test DB session, mock Redis, HTTP client, test user and admin creation
+- **`test_auth.py`** — Lines: 593. What it covers: Registration (success, duplicate, invite gating), login, refresh (rotation, replay detection), logout, me, update-profile
+- **`test_auth_extra.py`** — Lines: 143. What it covers: Additional auth edge cases and error scenarios
+- **`test_admin.py`** — Lines: 245. What it covers: CRUD users, role enforcement (403 for non-admin), invite creation with 48h expiry
+- **`test_admin_extra.py`** — Lines: 149. What it covers: Additional admin operations and permission checks
+- **`test_avatar.py`** — Lines: 327. What it covers: Avatar upload, validation, storage, retrieval
+- **`test_assessment.py`** — Lines: 165. What it covers: Quiz start (mocked LLM), submit and deterministic evaluation, legacy endpoints, LLM error handling
+- **`test_assessment_router.py`** — Lines: —. What it covers: Full assessment router: start, submit, evaluate, free-write, complete, level-test questions/submit/result (54 tests, 51%→98% coverage)
+- **`test_study_plan.py`** — Lines: 376. What it covers: Plan generation, today's lessons, auto-generation on access, unit progression
+- **`test_lessons.py`** — Lines: 235. What it covers: Lesson CRUD, exercise answering (multiple_choice, free_write, pronunciation), completion flow, progress update on complete
+- **`test_lessons_extra.py`** — Lines: 106. What it covers: Additional lesson scenarios and edge cases
+- **`test_lessons_router.py`** — Lines: —. What it covers: Lesson router: get lesson with exercises, complete lesson, answer exercises (all 4 types), lifecycle, fill-blank sanitization (36 tests, 58%→99% coverage)
+- **`test_flashcards.py`** — Lines: 136. What it covers: SM-2 algorithm (all quality levels 0–5, interval and ease_factor transitions, edge cases), card CRUD
+- **`test_flashcards_extra.py`** — Lines: 201. What it covers: Additional flashcard scenarios and SM-2 edge cases
+- **`test_chat.py`** — Lines: 54. What it covers: SSE streaming chunks, conversation creation and messaging
+- **`test_chat_conversations.py`** — Lines: 254. What it covers: Persistent conversations, message history, conversation management
+- **`test_progress.py`** — Lines: 48. What it covers: Progress summary and history with empty and populated data
+- **`test_progress_extra.py`** — Lines: 83. What it covers: Additional progress tracking scenarios
+- **`test_conversation.py`** — Lines: 555. What it covers: WebSocket authentication, TTS/STT disabled rejection, pipeline lifecycle, session management
+- **`test_conversation_pipeline_service.py`** — Lines: —. What it covers: Conversation pipeline service: system prompt, sentence cleaning, TTS queue, greet, audio processing, barge-in, usage tracking, inactivity watcher, max-duration watcher, full lifecycle (76 tests, 50%→97% coverage)
+- **`test_frontend_data_integrity.py`** — Lines: 168. What it covers: Cross-reference validation: curriculum.ts vs grammar.ts, all 4 languages' curriculum vs backend vocabulary — ensures all referenced slugs and IDs exist
+- **`test_listening.py`** — Lines: 503. What it covers: Exercise pool (next / generate), generation lock, audio serving, answer evaluation (score + XP), attempt deduplication, history
+- **`test_listening_extra.py`** — Lines: 208. What it covers: Additional listening exercise scenarios
+- **`test_reading.py`** — Lines: 400. What it covers: Reading exercise generation, comprehension questions, answer evaluation, XP calculation
+- **`test_reading_extra.py`** — Lines: 255. What it covers: Additional reading exercise scenarios
+- **`test_vocabulary.py`** — Lines: 175. What it covers: Vocabulary API: list sets, by-level, set detail, language switching, auth, error cases (14 tests)
+- **`test_feedback.py`** — Lines: 1116. What it covers: Feedback board: feature requests, bug reports, voting, comments, admin moderation
+- **`test_billing.py`** — Lines: 381. What it covers: Stripe subscriptions, webhooks, payment status, subscription lifecycle
+- **`test_maintenance.py`** — Lines: 153. What it covers: Maintenance mode toggle, API behavior during maintenance
+- **`test_memories.py`** — Lines: 362. What it covers: LLM memory (Phase 9): memory creation, retrieval, update, deletion
+- **`test_llm_adapter.py`** — Lines: —. What it covers: LLM adapter: JSON parsing, streaming, 5 exception classes, 4 provider init paths, chat (streaming + non-streaming), Anthropic error mapping, structured output with retry, DeepSeek provider, edge cases (63 tests, 38%→100% coverage)
+- **`test_phrasebook.py`** — Lines: 185. What it covers: Phrasebook API: list categories, by-level filtering, category detail, language switching, auth, error cases (14 tests)
+- **`test_quota_service.py`** — Lines: —. What it covers: Quota service: key helpers, quota status, session tracking, daily/weekly minute checks, monthly token tracking, combined quota validation, full session lifecycle (71 tests, 37%→100% coverage)
+- **`test_flashcard_sm2.py`** — Lines: —. What it covers: Flashcard service: `_clean_generated_word`, `_get_lang_hint` (9 languages + fallbacks), `generate_flashcards`, `lookup_word` (18 tests, 57%→100% coverage)
+- **`test_assessment_bank.py`** — Lines: —. What it covers: Assessment bank dispatcher: all 7 languages, unknown fallback to en-GB, ISO prefix fallback, cache reuse (12 tests, 0%→100% coverage)
+- **`test_limiter.py`** — Lines: —. What it covers: Rate limiter: `_get_real_ip` (X-Real-IP, X-Forwarded-For single/multiple, client host fallback, unknown), limiter construction (9 tests, 42%→100% coverage)
+- **`test_lesson_generator.py`** — Lines: —. What it covers: Lesson generator service: `get_valid_grammar_slugs`, `generate_lesson`, fill-blank sanitization, grammar refs filtering, `evaluate_free_write`, `evaluate_pronunciation`, `evaluate_fill_blank` (12 tests, 51%→100% coverage)
+- **`test_listening_service.py`** — Lines: —. What it covers: Listening service DB layer: `get_available_exercise`, `submit_attempt` (correct/partial/duplicate/replay/not-found), `get_user_history` (empty/attempts/limit/language filter) (12 tests, 63%→64% coverage)
 
-**Total: 38 test files, 783 tests.**
+**Total: 38 test files, 793 tests.**
 
 ### Coverage
 
@@ -80,6 +78,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 ### Test patterns
 
 **Mocking LLM**: Mock `llm_adapter.LLMAdapter` as a singleton. Three pattern variants:
+
 - `chat()` → returns a deterministic string (used in assessment, flashcards, chat tests)
 - `chat(stream=True)` → returns an async generator yielding token chunks (used in chat SSE tests)
 - `structured_output()` → returns a pre-built Pydantic model (used in assessment and lesson tests)
@@ -91,6 +90,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 ### Key test cases
 
 **Auth**:
+
 - Register success, duplicate username rejection, ALLOW_REGISTRATION=false returns 403, first user becomes admin
 - Login success sets httpOnly cookie, invalid credentials return 401, inactive user returns 401
 - Refresh rotates token (deletes old, creates new), missing cookie returns 401, replayed token returns 401
@@ -98,6 +98,7 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 - PATCH /me updates display_name, email, password, english_variant, conversation settings
 
 **Flashcards (SM-2)**:
+
 - New card has default values: ease_factor=2.5, interval=0, repetitions=0, next_review=today
 - Quality 0 resets repetitions to 0, sets interval to 1
 - Quality 3: first review interval=1, second=6, subsequent=interval × ease_factor
@@ -105,20 +106,24 @@ All tests pass on every push. Backend coverage threshold configured at 70%, curr
 - Next review date calculated correctly as today + interval days
 
 **Admin**:
+
 - List/create/get/update/delete users requires admin role; non-admin returns 403
 - Invite token created with 48-hour TTL, returned as URL `/register?invite=<token>`
 
 **Assessment**:
+
 - Deterministic evaluation finds highest level with >= 2 questions and >= 60% correct
 - Free-write evaluation (mocked LLM) returns adjusted_level, score, analysis
 - Level test generation (mocked LLM) constrained to grammar/vocabulary from curriculum
 
 **WebSocket conversation**:
+
 - Connection with valid JWT succeeds
 - Connection rejected with 4001 close code when TTS_ENABLED=false or STT_ENABLED=false
 - Pipeline lifecycle: connect → auth → audio receive → STT → LLM → TTS → send → disconnect
 
 **Data integrity**:
+
 - Every grammar_slug in curriculum.ts referenced by curriculum units exists in grammar.ts
 - Every vocabulary_set_id referenced by each language's curriculum exists in that language's backend vocabulary data (validated for all 4 languages: en, es, it, pt)
 - Every related grammar slug in grammar topics points to an existing topic
@@ -155,33 +160,31 @@ pytest --cov-report=html
 
 ### Test file inventory
 
-| File | Tests | What it covers |
-|------|-------|---------------|
-| `tests/setup.ts` | — | Global mocks: `localStorage` (full Storage interface), `next/navigation` (`useRouter`, `usePathname`, `useSearchParams`) |
-| `tests/lib/api.test.ts` | 8 | `apiFetch`: Bearer token attachment, 401 refresh + retry, logout on refresh failure, concurrent refresh deduplication, loading counter inc/dec, custom header preservation |
-| `tests/store/auth.test.ts` | 11 | `isSubscribed()`: Stripe on/off × all subscription states (active, trialing, past_due, canceled, none, null user). Store: `setTokens`, `setUser`, `logout` (clears `fl_tour_done` from localStorage) |
-| `tests/lib/audio.test.ts` | 8 | `float32ToWav`: WAV header (RIFF/WAVE/fmt/data), PCM format chunk, buffer size, RIFF chunk size, sample clamping [-1,1], silence encoding, empty arrays, different sample rates |
-| `tests/lib/conversation-ws.test.ts` | 6 | `buildConversationWsUrl`: https→wss, http→ws, same-origin fallback from `window.location`, whitespace trimming, trailing slash handling |
-| `tests/middleware.test.ts` | 12 | Route protection: redirect to `/login` without `refresh_token`, allow with token, public routes pass through. Locale detection: cookie > Accept-Language > default `en`, cookie persistence, header injection |
-| `tests/store/config.test.ts` | 5 | `load()`: fetches `/api/config`, idempotency (no double-fetch), keeps defaults on network error, keeps defaults on non-ok response, uses defaults for missing fields |
-| `tests/lib/mappers.test.ts` | 4 | `mapUser`: snake_case→camelCase mapping, fallback to `current` user for PATCH responses, safe defaults when no current user, API data preferred over current |
-| `tests/lib/target-languages.test.ts` | 16 | `getLanguageByCode`: case-insensitive lookup, undefined for unknown codes. `formatLanguageName`: capitalization rules per locale |
-| `tests/store/language.test.ts` | 17 | Language store: fetchLanguages, switchLanguage, addLanguage, removeLanguage, active language tracking |
-| `tests/data/curriculum.test.ts` | 12 | Curriculum data: unit retrieval by level and language, fallback behavior |
-| `tests/lib/utils.test.ts` | 10 | `cn()`: single/multiple/conditional classes, Tailwind conflict resolution (twMerge), array/object inputs, falsy values, empty/null handling |
-| `tests/lib/logger.test.ts` | 10 | `getLogger()`: debug/info/warn/error console calls with namespace, string/object/Error payload serialization, undefined/unserializable payload, `silentLogger` no-ops |
-| `tests/hooks/useLogout.test.tsx` | 1 | `useLogout()`: calls API logout endpoint, redirects to /login |
-| `tests/store/theme.test.ts` | 5 | Theme store: default `system`, `setTheme` transitions (light/dark/system), localStorage persistence (`fl-theme` key) |
-| `tests/store/loading.test.ts` | 9 | Loading store: `inc`/`dec`/`finishComplete` state machine, count never below 0, auto `complete` flag when count reaches 0, reset on next `inc` |
-| `tests/components/LanguageSwitcher.test.tsx` | 10 | LanguageSwitcher: rendering, dropdown open/close, CEFR badges, active checkmark, language switch, toast, router refresh |
-| `tests/components/TargetLanguageSelector.test.tsx` | 8 | TargetLanguageSelector: grid rendering, active/inactive states, onChange callback, flag images |
-| `tests/components/VoiceRecorder.test.tsx` | 24 | VoiceRecorder: idle/recording/transcribing/error states, getUserMedia mock, AudioContext lifecycle, STT API call, auto-stop, mic denied error, resampling |
-| `tests/components/AudioPlayer.test.tsx` | 36 | AudioPlayer: idle/loading/playing/error states, TTS API call, play/pause/stop, voice resolution (prop > localStorage > default), audio queue, unmount safety |
-| `tests/components/ProfileSection.test.tsx` | 48 | ProfileSection: form fields, save flow, avatar upload/remove (File/FileReader mock), password change (validation, mismatch), locale change with reload, API error states |
-| `tests/components/UnitCard.test.tsx` | 41 | UnitCard: all 5 status states (completed/active/locked/level-test/default), progress bar, click interactions. UnitDrawer: grammar points, lesson list, completion states, escape/outside-click dismiss |
-| `tests/store/progress.test.ts` | 48 | Progress store: 10 initial state fields, setProgress/setTodayLessons/completeLesson/setCurrentUnit/setPlanDuration/updateUnitProgress/unlockLevelTest/setLevelTestResult, state transition isolation |
+- **`tests/setup.ts`** — Tests: —. What it covers: Global mocks: `localStorage` (full Storage interface), `next/navigation` (`useRouter`, `usePathname`, `useSearchParams`)
+- **`tests/lib/api.test.ts`** — Tests: 8. What it covers: `apiFetch`: Bearer token attachment, 401 refresh + retry, logout on refresh failure, concurrent refresh deduplication, loading counter inc/dec, custom header preservation
+- **`tests/store/auth.test.ts`** — Tests: 11. What it covers: `isSubscribed()`: Stripe on/off × all subscription states (active, trialing, past_due, canceled, none, null user). Store: `setTokens`, `setUser`, `logout` (clears `fl_tour_done` from localStorage)
+- **`tests/lib/audio.test.ts`** — Tests: 8. What it covers: `float32ToWav`: WAV header (RIFF/WAVE/fmt/data), PCM format chunk, buffer size, RIFF chunk size, sample clamping [-1,1], silence encoding, empty arrays, different sample rates
+- **`tests/lib/conversation-ws.test.ts`** — Tests: 6. What it covers: `buildConversationWsUrl`: https→wss, http→ws, same-origin fallback from `window.location`, whitespace trimming, trailing slash handling
+- **`tests/middleware.test.ts`** — Tests: 12. What it covers: Route protection: redirect to `/login` without `refresh_token`, allow with token, public routes pass through. Locale detection: cookie > Accept-Language > default `en`, cookie persistence, header injection
+- **`tests/store/config.test.ts`** — Tests: 5. What it covers: `load()`: fetches `/api/config`, idempotency (no double-fetch), keeps defaults on network error, keeps defaults on non-ok response, uses defaults for missing fields
+- **`tests/lib/mappers.test.ts`** — Tests: 4. What it covers: `mapUser`: snake_case→camelCase mapping, fallback to `current` user for PATCH responses, safe defaults when no current user, API data preferred over current
+- **`tests/lib/target-languages.test.ts`** — Tests: 16. What it covers: `getLanguageByCode`: case-insensitive lookup, undefined for unknown codes. `formatLanguageName`: capitalization rules per locale
+- **`tests/store/language.test.ts`** — Tests: 17. What it covers: Language store: fetchLanguages, switchLanguage, addLanguage, removeLanguage, active language tracking
+- **`tests/data/curriculum.test.ts`** — Tests: 12. What it covers: Curriculum data: unit retrieval by level and language, fallback behavior
+- **`tests/lib/utils.test.ts`** — Tests: 10. What it covers: `cn()`: single/multiple/conditional classes, Tailwind conflict resolution (twMerge), array/object inputs, falsy values, empty/null handling
+- **`tests/lib/logger.test.ts`** — Tests: 10. What it covers: `getLogger()`: debug/info/warn/error console calls with namespace, string/object/Error payload serialization, undefined/unserializable payload, `silentLogger` no-ops
+- **`tests/hooks/useLogout.test.tsx`** — Tests: 1. What it covers: `useLogout()`: calls API logout endpoint, redirects to /login
+- **`tests/store/theme.test.ts`** — Tests: 5. What it covers: Theme store: default `system`, `setTheme` transitions (light/dark/system), localStorage persistence (`fl-theme` key)
+- **`tests/store/loading.test.ts`** — Tests: 9. What it covers: Loading store: `inc`/`dec`/`finishComplete` state machine, count never below 0, auto `complete` flag when count reaches 0, reset on next `inc`
+- **`tests/components/LanguageSwitcher.test.tsx`** — Tests: 10. What it covers: LanguageSwitcher: rendering, dropdown open/close, CEFR badges, active checkmark, language switch, toast, router refresh
+- **`tests/components/TargetLanguageSelector.test.tsx`** — Tests: 8. What it covers: TargetLanguageSelector: grid rendering, active/inactive states, onChange callback, flag images
+- **`tests/components/VoiceRecorder.test.tsx`** — Tests: 24. What it covers: VoiceRecorder: idle/recording/transcribing/error states, getUserMedia mock, AudioContext lifecycle, STT API call, auto-stop, mic denied error, resampling
+- **`tests/components/AudioPlayer.test.tsx`** — Tests: 36. What it covers: AudioPlayer: idle/loading/playing/error states, TTS API call, play/pause/stop, voice resolution (prop > localStorage > default), audio queue, unmount safety
+- **`tests/components/ProfileSection.test.tsx`** — Tests: 48. What it covers: ProfileSection: form fields, save flow, avatar upload/remove (File/FileReader mock), password change (validation, mismatch), locale change with reload, API error states
+- **`tests/components/UnitCard.test.tsx`** — Tests: 41. What it covers: UnitCard: all 5 status states (completed/active/locked/level-test/default), progress bar, click interactions. UnitDrawer: grammar points, lesson list, completion states, escape/outside-click dismiss
+- **`tests/store/progress.test.ts`** — Tests: 48. What it covers: Progress store: 10 initial state fields, setProgress/setTodayLessons/completeLesson/setCurrentUnit/setPlanDuration/updateUnitProgress/unlockLevelTest/setLevelTestResult, state transition isolation
 
-**Total: 364 tests across 21 files.**
+**Total: 369 tests across 24 files.**
 
 ### Running tests
 
@@ -233,15 +236,15 @@ CI runs on GitHub Actions, triggered on pushes and pull requests. The project is
 
 ### Workflow
 
-| Job | Steps | Threshold |
-|-----|-------|-----------|
-| Backend lint | `ruff check` | Zero errors |
-| Backend format | `black --check .` | Clean diff |
-| Backend tests | `pytest --cov-fail-under=70` | >= 70% coverage |
-| Frontend lint | `eslint src/ --ext .ts,.tsx` | Zero errors |
-| Frontend format | `prettier --check src/` | Clean diff |
-| Frontend typecheck | `npx tsc --noEmit` | Clean output |
-| Frontend tests | `npm run test:run` | All 364 tests pass |
+| Job                | Steps                        | Threshold          |
+| ------------------ | ---------------------------- | ------------------ |
+| Backend lint       | `ruff check`                 | Zero errors        |
+| Backend format     | `black --check .`            | Clean diff         |
+| Backend tests      | `pytest --cov-fail-under=70` | >= 70% coverage    |
+| Frontend lint      | `eslint src/ --ext .ts,.tsx` | Zero errors        |
+| Frontend format    | `prettier --check src/`      | Clean diff         |
+| Frontend typecheck | `npx tsc --noEmit`           | Clean output       |
+| Frontend tests     | `npm run test:run`           | All 369 tests pass |
 
 **Note**: The backend test job uses SQLite (same as local tests), not PostgreSQL. No Docker services are required for the backend test job.
 

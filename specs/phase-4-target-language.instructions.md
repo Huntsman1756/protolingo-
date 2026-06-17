@@ -41,6 +41,7 @@ POST /api/auth/register             POST /api/auth/register
 ### 1.1 Alembic migration (`0007_target_language.py`)
 
 New migration that:
+
 1. Adds column `target_language VARCHAR(10)` to `users` with temporary `NULL` allowed.
 2. Back-fills existing rows:
    - `english_variant = 'american'` → `target_language = 'en-US'`
@@ -52,10 +53,13 @@ New migration that:
 ### 1.2 SQLAlchemy model (`app/models/user.py`)
 
 Replace:
+
 ```python
 english_variant: Mapped[str] = mapped_column(String(10), nullable=False, default="american")
 ```
+
 With:
+
 ```python
 target_language: Mapped[str] = mapped_column(String(10), nullable=False, default="en-US")
 ```
@@ -71,6 +75,7 @@ SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}
 ```
 
 **`RegisterRequest`**: replace `english_variant` field:
+
 ```python
 # Before
 english_variant: Literal["american", "british"] = "american"
@@ -203,6 +208,7 @@ This field is informational in Phase 4 (the curriculum is still English-only) bu
 ### 3.1 `POST /api/auth/register` — auto-login
 
 After persisting the user:
+
 1. Call the same token-creation logic as `POST /login`:
    - Create JWT access_token (15 min)
    - Generate opaque refresh_token UUID4, store in Redis (`refresh:{token}` → user_id, TTL 30 days)
@@ -220,12 +226,14 @@ The existing `/login` endpoint is unchanged — users who arrive at `/login` dir
 Placed in the `(auth)` route group (no sidebar, no authenticated app shell). Displayed immediately after a successful registration.
 
 **Behaviour**:
+
 - Reads the `access_token` from the Zustand auth store. If the store has no token (user navigated here directly without registering first), redirect to `/register`.
 - Shows the `TargetLanguageSelector` component (see 4.3).
 - On language confirmed: calls `PATCH /api/auth/me` with `{ target_language: selectedLanguage }`.
 - On success: redirect to `/dashboard`.
 
 **UI guidelines**:
+
 - Full-screen centred card, no sidebar.
 - Headline from `t('onboarding.headline')`.
 - Subheadline from `t('onboarding.subtitle')`.
@@ -246,12 +254,13 @@ Reusable selector used in the onboarding screen. Receives:
 
 ```typescript
 interface TargetLanguageSelectorProps {
-  value: string                     // BCP-47 code e.g. "en-US"
-  onChange: (lang: string) => void
+  value: string; // BCP-47 code e.g. "en-US"
+  onChange: (lang: string) => void;
 }
 ```
 
 Renders one card per supported language. Each card shows:
+
 - Flag image (`/flags/usa.jpg` for `en-US`, `/flags/uk.jpg` for `en-GB`)
 - Language display name from i18n: `t('targetLanguages.en-US')`, `t('targetLanguages.en-GB')`
 - Short description: `t('targetLanguages.en-US-description')`, `t('targetLanguages.en-GB-description')`
@@ -263,14 +272,14 @@ The list of available languages is sourced from a `SUPPORTED_TARGET_LANGUAGES` c
 
 ```typescript
 export interface TargetLanguage {
-  code: string        // BCP-47 e.g. "en-US"
-  flagPath: string    // Path under /public/flags/
+  code: string; // BCP-47 e.g. "en-US"
+  flagPath: string; // Path under /public/flags/
 }
 
 export const SUPPORTED_TARGET_LANGUAGES: TargetLanguage[] = [
-  { code: 'en-US', flagPath: '/flags/usa.jpg' },
-  { code: 'en-GB', flagPath: '/flags/uk.jpg' },
-]
+  { code: "en-US", flagPath: "/flags/usa.jpg" },
+  { code: "en-GB", flagPath: "/flags/uk.jpg" },
+];
 ```
 
 Adding a future language means appending one entry here and providing the flag image under `public/flags/`.
@@ -280,6 +289,7 @@ Adding a future language means appending one entry here and providing the flag i
 Replace `english_variant?: string` with `target_language?: string` in the `User` interface.
 
 Update all consumer sites:
+
 - `src/app/layout.tsx` — mapping from `me.english_variant` → `me.target_language`
 - Any conditional rendering that previously checked `english_variant`
 
@@ -364,29 +374,29 @@ When adding a new target language in the future (e.g. Italian `it-IT`), the foll
 
 ### Backend
 
-| File | Change |
-|------|--------|
-| `backend/app/schemas/auth.py` | Add `"it-IT"` to `SUPPORTED_TARGET_LANGUAGES` |
-| `backend/app/data/curriculum.py` | Add `CurriculumUnit` entries for the new language under a new key |
+| File                                       | Change                                                                                                                          |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| `backend/app/schemas/auth.py`              | Add `"it-IT"` to `SUPPORTED_TARGET_LANGUAGES`                                                                                   |
+| `backend/app/data/curriculum.py`           | Add `CurriculumUnit` entries for the new language under a new key                                                               |
 | `backend/app/services/lesson_generator.py` | The prompt already uses `_get_english_variant` which returns `""` for non-English; add language-specific prompt logic if needed |
-| `backend/app/services/stt_service.py` | No change needed — `_get_iso639` already handles any BCP-47 tag |
+| `backend/app/services/stt_service.py`      | No change needed — `_get_iso639` already handles any BCP-47 tag                                                                 |
 
 ### Frontend
 
-| File | Change |
-|------|--------|
-| `src/lib/target-languages.ts` | Add `{ code: 'it-IT', flagPath: '/flags/it.jpg' }` to `SUPPORTED_TARGET_LANGUAGES` |
-| `src/data/curriculum.ts` | Add Italian curriculum data |
-| `src/data/grammar.ts` | Add Italian grammar reference data |
-| `backend/app/data/it/vocabulary.py` | Add Italian vocabulary sets (migrated from frontend in v1.7.4) |
-| `src/data/phrasebook.ts` | Add Italian phrasebook entries |
-| `backend/app/data/it/assessment_bank.py` | Add Italian assessment questions |
-| `public/flags/it.jpg` | Add Italian flag image |
+| File                                     | Change                                                                             |
+| ---------------------------------------- | ---------------------------------------------------------------------------------- |
+| `src/lib/target-languages.ts`            | Add `{ code: 'it-IT', flagPath: '/flags/it.jpg' }` to `SUPPORTED_TARGET_LANGUAGES` |
+| `src/data/curriculum.ts`                 | Add Italian curriculum data                                                        |
+| `src/data/grammar.ts`                    | Add Italian grammar reference data                                                 |
+| `backend/app/data/it/vocabulary.py`      | Add Italian vocabulary sets (migrated from frontend in v1.7.4)                     |
+| `src/data/phrasebook.ts`                 | Add Italian phrasebook entries                                                     |
+| `backend/app/data/it/assessment_bank.py` | Add Italian assessment questions                                                   |
+| `public/flags/it.jpg`                    | Add Italian flag image                                                             |
 
 ### Messages
 
-| File | Change |
-|------|--------|
+| File                  | Change                                                                      |
+| --------------------- | --------------------------------------------------------------------------- |
 | All `messages/*.json` | Add `"it-IT"` and `"it-IT-description"` keys in `targetLanguages` namespace |
 
 > **TTS note**: Kokoro FastAPI ships with English voices only. Adding a non-English target language requires verifying that the selected TTS service supports the target language's voice synthesis, and updating `TTS_VOICE` configuration or adding per-language voice mapping in `tts_service.py`.
@@ -427,16 +437,16 @@ Returning users (second login) and admin-created users are unaffected — their 
 
 ### `users` table
 
-| Column | Before | After |
-|--------|--------|-------|
-| `english_variant` | `"american"` \| `"british"` | **removed** |
-| `target_language` | — | `"en-US"` \| `"en-GB"` (BCP-47), default `"en-US"` |
+| Column            | Before                      | After                                              |
+| ----------------- | --------------------------- | -------------------------------------------------- |
+| `english_variant` | `"american"` \| `"british"` | **removed**                                        |
+| `target_language` | —                           | `"en-US"` \| `"en-GB"` (BCP-47), default `"en-US"` |
 
 ### `study_plans` table
 
-| Column | Before | After |
-|--------|--------|-------|
-| `target_language` | — | `"en-US"` \| `"en-GB"`, default `"en-US"` |
+| Column            | Before | After                                     |
+| ----------------- | ------ | ----------------------------------------- |
+| `target_language` | —      | `"en-US"` \| `"en-GB"`, default `"en-US"` |
 
 ### Migration chain
 
@@ -456,39 +466,39 @@ Returning users (second login) and admin-created users are unaffected — their 
 
 ### `POST /api/auth/register`
 
-| | Before | After |
-|-|--------|-------|
-| Request body | `english_variant: "american" \| "british"` | `target_language: str` (BCP-47, validated) |
-| Response body | `{ id, username, role }` | `{ id, username, role, access_token }` |
-| Cookie | Not set | Sets `refresh_token` httpOnly cookie |
+|               | Before                                     | After                                      |
+| ------------- | ------------------------------------------ | ------------------------------------------ |
+| Request body  | `english_variant: "american" \| "british"` | `target_language: str` (BCP-47, validated) |
+| Response body | `{ id, username, role }`                   | `{ id, username, role, access_token }`     |
+| Cookie        | Not set                                    | Sets `refresh_token` httpOnly cookie       |
 
 ### `PATCH /api/auth/me`
 
-| | Before | After |
-|-|--------|-------|
+|                  | Before            | After             |
+| ---------------- | ----------------- | ----------------- |
 | Updatable fields | `english_variant` | `target_language` |
 
 ### `GET /api/auth/me`
 
-| | Before | After |
-|-|--------|-------|
+|                 | Before                 | After                  |
+| --------------- | ---------------------- | ---------------------- |
 | Response fields | `english_variant: str` | `target_language: str` |
 
 ### `POST /api/flashcards/generate`
 
-| | Before | After |
-|-|--------|-------|
+|              | Before                                   | After                                                       |
+| ------------ | ---------------------------------------- | ----------------------------------------------------------- |
 | Request body | `native_language: str` (client-supplied) | `native_language` field removed — sourced from user profile |
 
 ---
 
 ## Frontend routing changes
 
-| Route | Before | After |
-|-------|--------|-------|
-| `/(auth)/register` | Redirects to `/login?registered=true` on success | Redirects to `/onboarding` on success |
-| `/(auth)/onboarding` | Does not exist | New — language selection screen (requires valid access_token in store) |
-| `/(app)/settings` | Includes English variant selector | English variant selector removed |
+| Route                | Before                                           | After                                                                  |
+| -------------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
+| `/(auth)/register`   | Redirects to `/login?registered=true` on success | Redirects to `/onboarding` on success                                  |
+| `/(auth)/onboarding` | Does not exist                                   | New — language selection screen (requires valid access_token in store) |
+| `/(app)/settings`    | Includes English variant selector                | English variant selector removed                                       |
 
 ---
 

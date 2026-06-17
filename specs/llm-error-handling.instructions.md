@@ -9,15 +9,13 @@ applyTo: "backend/app/services/llm_adapter.py, backend/app/services/*.py"
 
 The LLM can fail in multiple ways. Every endpoint that calls the LLM must handle these scenarios gracefully:
 
-| Scenario | Likelihood | Impact |
-|----------|-----------|--------|
-| **Malformed JSON** — LLM returns invalid or unparseable JSON for `structured_output` | High (especially Ollama with small models) | Blocks quiz/plan/lesson/flashcard generation |
-| **Timeout** — LLM takes > 60 s to respond (common on CPU-only Ollama) | Medium (CPU-only) | Blocks any LLM-dependent request |
-| **Empty response** — LLM returns no content (null or empty string) | Low | Blocks generation, user sees no progress |
-| **Hallucinated schema** — JSON response has wrong structure, missing fields, or extra fields | Medium | Causes Pydantic validation failure |
-| **Context overflow** — prompt exceeds model token limit (especially Gemma 3 12B, Ollama) | Medium (long conversations) | Blocks chat, assessment with large context |
-| **Service unavailable** — Ollama or API down, unreachable | Low (local) / Medium (API) | Blocks all LLM-dependent features |
-| **Rate limited** — OpenAI, Anthropic, or DeepSeek quota exceeded | Medium (external APIs) | Blocks requests temporarily |
+- \***\*Malformed JSON** — LLM returns invalid or unparseable JSON for `structured_output`\*\* — Likelihood: High (especially Ollama with small models). Impact: Blocks quiz/plan/lesson/flashcard generation
+- \***\*Timeout** — LLM takes > 60 s to respond (common on CPU-only Ollama)\*\* — Likelihood: Medium (CPU-only). Impact: Blocks any LLM-dependent request
+- \***\*Empty response** — LLM returns no content (null or empty string)\*\* — Likelihood: Low. Impact: Blocks generation, user sees no progress
+- \***\*Hallucinated schema** — JSON response has wrong structure, missing fields, or extra fields\*\* — Likelihood: Medium. Impact: Causes Pydantic validation failure
+- \***\*Context overflow** — prompt exceeds model token limit (especially Gemma 3 12B, Ollama)\*\* — Likelihood: Medium (long conversations). Impact: Blocks chat, assessment with large context
+- \***\*Service unavailable** — Ollama or API down, unreachable\*\* — Likelihood: Low (local) / Medium (API). Impact: Blocks all LLM-dependent features
+- \***\*Rate limited** — OpenAI, Anthropic, or DeepSeek quota exceeded\*\* — Likelihood: Medium (external APIs). Impact: Blocks requests temporarily
 
 ---
 
@@ -25,13 +23,13 @@ The LLM can fail in multiple ways. Every endpoint that calls the LLM must handle
 
 Custom exception hierarchy in `llm_adapter.py`:
 
-| Exception | Parent | Raised when |
-|-----------|--------|-------------|
-| `LLMError` | `Exception` | Base class for all LLM errors |
-| `LLMTimeoutError` | `LLMError` | Request exceeds 60 s timeout after all retries |
-| `LLMUnavailableError` | `LLMError` | Connection error or rate limit from provider |
-| `LLMResponseError` | `LLMError` | Malformed response, empty content, invalid JSON, missing fields. Carries `raw_response` for debugging |
-| `LLMContextOverflowError` | `LLMError` | Prompt exceeds model's max context tokens |
+| Exception                 | Parent      | Raised when                                                                                           |
+| ------------------------- | ----------- | ----------------------------------------------------------------------------------------------------- |
+| `LLMError`                | `Exception` | Base class for all LLM errors                                                                         |
+| `LLMTimeoutError`         | `LLMError`  | Request exceeds 60 s timeout after all retries                                                        |
+| `LLMUnavailableError`     | `LLMError`  | Connection error or rate limit from provider                                                          |
+| `LLMResponseError`        | `LLMError`  | Malformed response, empty content, invalid JSON, missing fields. Carries `raw_response` for debugging |
+| `LLMContextOverflowError` | `LLMError`  | Prompt exceeds model's max context tokens                                                             |
 
 ---
 
@@ -62,7 +60,7 @@ Attempt 3 ──→ fails → raise appropriate LLM*Error
 For providers that don't support native structured output (Ollama, DeepSeek), structured JSON is obtained via a two-step process:
 
 1. **First attempt**: Send the prompt with an appended instruction to return ONLY valid JSON (no markdown fences, no extra text). Parse the response.
-2. **On parse failure**: Strip markdown code fences if present (```json ... ```). Attempt JSON decode and Pydantic validation.
+2. **On parse failure**: Strip markdown code fences if present (`json ... `). Attempt JSON decode and Pydantic validation.
 3. **Retry with correction**: If step 2 fails, send a follow-up message telling the LLM exactly what was wrong ("That response was not valid JSON. Error: ...") and request pure JSON again.
 4. **If retry also fails**: Raise `LLMResponseError` with the raw response for debugging.
 
@@ -74,14 +72,15 @@ For providers with native structured output (OpenAI, Anthropic via `beta.chat.co
 
 Each provider has a maximum context window. The adapter tracks these limits and applies message trimming before every call:
 
-| Provider | Max context tokens |
-|----------|--------------------|
-| Ollama | 8192 (varies per model — Gemma 3 12B: 8192) |
-| OpenAI | 128,000 |
-| DeepSeek | 128,000 |
-| Anthropic | 200,000 |
+| Provider  | Max context tokens                          |
+| --------- | ------------------------------------------- |
+| Ollama    | 8192 (varies per model — Gemma 3 12B: 8192) |
+| OpenAI    | 128,000                                     |
+| DeepSeek  | 128,000                                     |
+| Anthropic | 200,000                                     |
 
 **Trimming algorithm**: Estimate token count as `len(content) / 4` (rough heuristic for English). If total exceeds the limit, drop the oldest user/assistant messages first, always preserving:
+
 - The system message
 - The last 2 exchanges (user + assistant)
 
@@ -93,14 +92,14 @@ This is a proactive strategy — `LLMContextOverflowError` is declared in the ex
 
 Each LLM error type maps to a specific HTTP status and user-facing message:
 
-| Situation | HTTP Status | User Message |
-|-----------|-------------|-------------|
-| Malformed JSON after retry | 502 Bad Gateway | "The AI returned an invalid response. Please try again." |
-| Timeout (> 60 s, all retries exhausted) | 504 Gateway Timeout | "The AI took too long. Check that Ollama is running or try a smaller model." |
-| Service unreachable | 503 Service Unavailable | "AI service is not reachable. Make sure Ollama is running." |
-| Provider rate limited | 429 Too Many Requests | "Too many requests to the AI provider. Please wait a moment." |
-| Context overflow | 413 Payload Too Large | "The conversation is too long. Start a new session." |
-| Empty response | 502 Bad Gateway | "The AI returned no content. Try rephrasing your request." |
+| Situation                               | HTTP Status             | User Message                                                                 |
+| --------------------------------------- | ----------------------- | ---------------------------------------------------------------------------- |
+| Malformed JSON after retry              | 502 Bad Gateway         | "The AI returned an invalid response. Please try again."                     |
+| Timeout (> 60 s, all retries exhausted) | 504 Gateway Timeout     | "The AI took too long. Check that Ollama is running or try a smaller model." |
+| Service unreachable                     | 503 Service Unavailable | "AI service is not reachable. Make sure Ollama is running."                  |
+| Provider rate limited                   | 429 Too Many Requests   | "Too many requests to the AI provider. Please wait a moment."                |
+| Context overflow                        | 413 Payload Too Large   | "The conversation is too long. Start a new session."                         |
+| Empty response                          | 502 Bad Gateway         | "The AI returned no content. Try rephrasing your request."                   |
 
 ---
 

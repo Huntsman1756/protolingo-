@@ -6,7 +6,7 @@ import asyncio
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
@@ -213,6 +213,7 @@ async def list_feedback(
         alias="status",
         pattern="^(pending|planned|in_progress|done|declined)$",
     ),
+    q: str | None = Query(default=None, max_length=100),
     sort: str = Query(default="votes", pattern="^(votes|date)$"),
     order: str = Query(default="desc", pattern="^(asc|desc)$"),
     skip: int = Query(default=0, ge=0),
@@ -226,6 +227,16 @@ async def list_feedback(
         stmt = stmt.where(FeedbackEntry.type == type)
     if status_filter:
         stmt = stmt.where(FeedbackEntry.status == status_filter)
+    if q and q.strip():
+        term = f"%{q.strip()}%"
+        stmt = stmt.join(User, FeedbackEntry.author_id == User.id).where(
+            or_(
+                FeedbackEntry.title.ilike(term),
+                FeedbackEntry.description.ilike(term),
+                User.username.ilike(term),
+                User.display_name.ilike(term),
+            )
+        )
 
     # Sorting
     if sort == "votes":

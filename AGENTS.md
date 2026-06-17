@@ -2,7 +2,7 @@
 
 ## Project state
 
-**v1.8.6 — Phase 10 (Multi-Language) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), Phase 9 (LLM Memory), and Phase 10 (Multi-Language) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
+**v1.8.7 — Phase 10 (Multi-Language) implemented.** Phase 1 (platform), Phase 1+ (resources hub), Phase 2 (TTS/STT), Phase 3 (voice conversation), Phase 4 (multi-language support), Phase 5 (Stripe subscriptions), Phase 6 (Listening exercises), Phase 7 (Reading exercises), Phase 8 (Feedback board), Phase 9 (LLM Memory), and Phase 10 (Multi-Language) are complete. Email verification and password reset are also included. Voice conversations are persisted as text transcripts alongside chat conversations. The repo contains `backend/`, `frontend/`, `docker-compose.yml`, `.env.example`, and CI/CD via GitHub Actions. See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Architecture at a glance
 
@@ -30,18 +30,18 @@ Rules that apply without exception:
 
 Files most commonly affected by code changes:
 
-| Change type | Files to update |
-|-------------|----------------|
-| New/modified endpoint | `specs/api-endpoints.instructions.md`, `specs/rate-limiting.instructions.md` |
-| New/modified model or migration | `specs/database-models.instructions.md`, `specs/architecture-backend.instructions.md` |
-| New/modified service or env var | `specs/services.instructions.md`, `specs/architecture-backend.instructions.md`, `specs/docker.instructions.md`, `README.md` |
-| New/modified auth flow | `specs/architecture.instructions.md`, `AGENTS.md` (Auth design section) |
-| Study plan / lesson / progress change | `specs/study-plan.instructions.md`, `specs/api-endpoints.instructions.md`, `specs/architecture.instructions.md` |
-| Frontend component/page change | `specs/architecture-frontend.instructions.md` |
-| New phase or major feature | `specs/phase-*.instructions.md` (create if needed), `README.md`, `AGENTS.md`, `CHANGELOG.md`, `specs/version.md` |
-| Docker/compose change | `specs/docker.instructions.md`, `README.md` |
-| Rate limit change | `specs/rate-limiting.instructions.md`, `specs/api-endpoints.instructions.md` |
-| Version bump | `specs/version.md`, `CHANGELOG.md`, `frontend/src/app/(app)/layout.tsx` (sidebar version string) |
+| Change type                           | Files to update                                                                                                             |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| New/modified endpoint                 | `specs/api-endpoints.instructions.md`, `specs/rate-limiting.instructions.md`                                                |
+| New/modified model or migration       | `specs/database-models.instructions.md`, `specs/architecture-backend.instructions.md`                                       |
+| New/modified service or env var       | `specs/services.instructions.md`, `specs/architecture-backend.instructions.md`, `specs/docker.instructions.md`, `README.md` |
+| New/modified auth flow                | `specs/architecture.instructions.md`, `AGENTS.md` (Auth design section)                                                     |
+| Study plan / lesson / progress change | `specs/study-plan.instructions.md`, `specs/api-endpoints.instructions.md`, `specs/architecture.instructions.md`             |
+| Frontend component/page change        | `specs/architecture-frontend.instructions.md`                                                                               |
+| New phase or major feature            | `specs/phase-*.instructions.md` (create if needed), `README.md`, `AGENTS.md`, `CHANGELOG.md`, `specs/version.md`            |
+| Docker/compose change                 | `specs/docker.instructions.md`, `README.md`                                                                                 |
+| Rate limit change                     | `specs/rate-limiting.instructions.md`, `specs/api-endpoints.instructions.md`                                                |
+| Version bump                          | `specs/version.md`, `CHANGELOG.md`, `frontend/src/app/(app)/layout.tsx` (sidebar version string)                            |
 
 ---
 
@@ -49,35 +49,35 @@ Files most commonly affected by code changes:
 
 These describe what was built — they are the reference documentation:
 
-| File | Covers |
-|------|--------|
-| `specs/architecture.instructions.md` | Repository structure, data flows, auth design, test summary |
-| `specs/architecture-backend.instructions.md` | Backend architecture: models (14), services (17), routers (20), schemas (13), env vars (51), Python code standards |
-| `specs/architecture-frontend.instructions.md` | Frontend architecture: pages (36), components (41), stores (6), lib modules (7), TypeScript code standards |
-| `specs/database-models.instructions.md` | **14 SQLAlchemy ORM models**: full schema details, relationships, constraints, business rules |
-| `specs/services.instructions.md` | **17 backend services**: LLM, TTS/STT, study plan, lessons, flashcards, listening, reading, memory, progress, quotas, subscriptions, voice conversation pipeline |
-| `specs/api-endpoints.instructions.md` | All REST endpoints and WebSocket — paths, methods, rate limits, descriptions |
-| `specs/study-plan.instructions.md` | **Current-state reference** for the study plan & lesson system: data model, `progress_day` semantics, auto-advance, skip day, pending lessons, lesson lifecycle, frontend integration |
-| `specs/docker.instructions.md` | docker-compose.yml (all phases), `.env.example`, DB migrations, operational notes |
-| `specs/phase-1-platform.instructions.md` | Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat, frontend components |
-| `specs/phase-2-tts-stt.instructions.md` | Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises |
-| `specs/phase-1-plus.instructions.md` | Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test |
-| `specs/phase-3-conversation.instructions.md` | Phase 3: WebSocket voice pipeline, VAD, barge-in, gapless audio |
-| `specs/phase-4-target-language.instructions.md` | Phase 4: multi-language support, `target_language` (BCP-47), onboarding flow, auto-login on register |
-| `specs/phase-5-stripe-subscriptions.instructions.md` | Phase 5: Stripe subscriptions & paywall, `STRIPE_ENABLED` toggle, Customer Portal, self-hosted safe |
-| `specs/phase-6-listening.instructions.md` | Phase 6: AI-generated listening exercises, LLM+TTS generation pipeline, Redis lock, audio storage, 5 endpoints, frontend 6-state UI |
-| `specs/phase-7-reading.instructions.md` | Phase 7: AI-generated reading comprehension exercises, LLM generation pipeline, Redis lock, 4 endpoints, frontend 2-column layout |
-| `specs/phase-8-feedback.instructions.md` | Phase 8: Feedback board — feature requests & bug reports, voting, comments, admin panel, 9 endpoints |
-| `specs/phase-9-memories.instructions.md` | Phase 9: LLM Memory — AI tutor autonomously remembers details about the student, injects into future conversations |
-| `specs/phase-10-multi-language.instructions.md` | Phase 10: Multi-Language — users can learn multiple languages simultaneously, each with independent study plans and progress |
-| `specs/whats-new.instructions.md` | What's New modal: version-aware changelog overlay, localStorage trigger, priority with OnboardingTour |
-| `specs/roadmap.instructions.md` | Development roadmap with milestones and completion criteria per phase |
-| `specs/changelog.instructions.md` | Changelog format, entry style, and update rules |
-| `specs/readme.instructions.md` | README structure, badges, and update guidelines |
-| `specs/testing.instructions.md` | Testing strategy: pytest, Vitest, Playwright, fixtures, mocks, CI (pending) |
-| `specs/llm-error-handling.instructions.md` | LLM failure modes: malformed JSON, timeouts, retries, context overflow |
-| `specs/rate-limiting.instructions.md` | slowapi-based rate limits per-endpoint, self-hosted defaults |
-| `specs/version.md` | Canonical project version — keep in sync with CHANGELOG and sidebar |
+| File                                                 | Covers                                                                                                                                                                                |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `specs/architecture.instructions.md`                 | Repository structure, data flows, auth design, test summary                                                                                                                           |
+| `specs/architecture-backend.instructions.md`         | Backend architecture: models (14), services (17), routers (20), schemas (13), env vars (51), Python code standards                                                                    |
+| `specs/architecture-frontend.instructions.md`        | Frontend architecture: pages (36), components (41), stores (6), lib modules (7), TypeScript code standards                                                                            |
+| `specs/database-models.instructions.md`              | **14 SQLAlchemy ORM models**: full schema details, relationships, constraints, business rules                                                                                         |
+| `specs/services.instructions.md`                     | **17 backend services**: LLM, TTS/STT, study plan, lessons, flashcards, listening, reading, memory, progress, quotas, subscriptions, voice conversation pipeline                      |
+| `specs/api-endpoints.instructions.md`                | All REST endpoints and WebSocket — paths, methods, rate limits, descriptions                                                                                                          |
+| `specs/study-plan.instructions.md`                   | **Current-state reference** for the study plan & lesson system: data model, `progress_day` semantics, auto-advance, skip day, pending lessons, lesson lifecycle, frontend integration |
+| `specs/docker.instructions.md`                       | docker-compose.yml (all phases), `.env.example`, DB migrations, operational notes                                                                                                     |
+| `specs/phase-1-platform.instructions.md`             | Phase 1: scaffolding through frontend, prompts, SM-2, SSE chat, frontend components                                                                                                   |
+| `specs/phase-2-tts-stt.instructions.md`              | Phase 2: Kokoro TTS, faster-whisper STT, pronunciation exercises                                                                                                                      |
+| `specs/phase-1-plus.instructions.md`                 | Phase 1+: Learning Resources Hub — Grammar Reference, Vocabulary Hub, Phrasebook, Skills Tracker, Level Completion Test                                                               |
+| `specs/phase-3-conversation.instructions.md`         | Phase 3: WebSocket voice pipeline, VAD, barge-in, gapless audio                                                                                                                       |
+| `specs/phase-4-target-language.instructions.md`      | Phase 4: multi-language support, `target_language` (BCP-47), onboarding flow, auto-login on register                                                                                  |
+| `specs/phase-5-stripe-subscriptions.instructions.md` | Phase 5: Stripe subscriptions & paywall, `STRIPE_ENABLED` toggle, Customer Portal, self-hosted safe                                                                                   |
+| `specs/phase-6-listening.instructions.md`            | Phase 6: AI-generated listening exercises, LLM+TTS generation pipeline, Redis lock, audio storage, 5 endpoints, frontend 6-state UI                                                   |
+| `specs/phase-7-reading.instructions.md`              | Phase 7: AI-generated reading comprehension exercises, LLM generation pipeline, Redis lock, 4 endpoints, frontend 2-column layout                                                     |
+| `specs/phase-8-feedback.instructions.md`             | Phase 8: Feedback board — feature requests & bug reports, voting, comments, admin panel, 9 endpoints                                                                                  |
+| `specs/phase-9-memories.instructions.md`             | Phase 9: LLM Memory — AI tutor autonomously remembers details about the student, injects into future conversations                                                                    |
+| `specs/phase-10-multi-language.instructions.md`      | Phase 10: Multi-Language — users can learn multiple languages simultaneously, each with independent study plans and progress                                                          |
+| `specs/whats-new.instructions.md`                    | What's New modal: version-aware changelog overlay, localStorage trigger, priority with OnboardingTour                                                                                 |
+| `specs/roadmap.instructions.md`                      | Development roadmap with milestones and completion criteria per phase                                                                                                                 |
+| `specs/changelog.instructions.md`                    | Changelog format, entry style, and update rules                                                                                                                                       |
+| `specs/readme.instructions.md`                       | README structure, badges, and update guidelines                                                                                                                                       |
+| `specs/testing.instructions.md`                      | Testing strategy: pytest, Vitest, Playwright, fixtures, mocks, CI (pending)                                                                                                           |
+| `specs/llm-error-handling.instructions.md`           | LLM failure modes: malformed JSON, timeouts, retries, context overflow                                                                                                                |
+| `specs/rate-limiting.instructions.md`                | slowapi-based rate limits per-endpoint, self-hosted defaults                                                                                                                          |
+| `specs/version.md`                                   | Canonical project version — keep in sync with CHANGELOG and sidebar                                                                                                                   |
 
 ## Run order (first deployment)
 
@@ -112,10 +112,10 @@ docker compose exec backend alembic upgrade head
 
 ## Auth design (do not deviate)
 
-| Token | Type | Duration | Storage |
-|-------|------|----------|---------|
-| `access_token` | JWT HS256 | 15 min | Zustand store (JS memory) |
-| `refresh_token` | Opaque UUID4 | 30 days | httpOnly cookie + Redis (`refresh:{token}` → user_id) |
+| Token           | Type         | Duration | Storage                                               |
+| --------------- | ------------ | -------- | ----------------------------------------------------- |
+| `access_token`  | JWT HS256    | 15 min   | Zustand store (JS memory)                             |
+| `refresh_token` | Opaque UUID4 | 30 days  | httpOnly cookie + Redis (`refresh:{token}` → user_id) |
 
 - Access token verified without DB hit (JWT decode only).
 - Refresh tokens stored in Redis with native TTL for auto-expiry.

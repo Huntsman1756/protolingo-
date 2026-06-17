@@ -19,26 +19,56 @@ Build the frontend foundation for multi-language: supported language config, Zus
 
 ```typescript
 export interface TargetLanguage {
-  code: string      // BCP-47, e.g. "it-IT"
-  name: string      // In its own language: "Italiano", "Español"
-  nameEn: string    // In English: "Italian", "Spanish"
-  flagPath: string  // Path under /public/flags/: "/flags/italy.jpg"
-  iso639: string    // ISO 639-1: "it", "es"
+  code: string; // BCP-47, e.g. "it-IT"
+  name: string; // In its own language: "Italiano", "Español"
+  nameEn: string; // In English: "Italian", "Spanish"
+  flagPath: string; // Path under /public/flags/: "/flags/italy.jpg"
+  iso639: string; // ISO 639-1: "it", "es"
 }
 
 export const SUPPORTED_TARGET_LANGUAGES: TargetLanguage[] = [
-  { code: 'en-US', name: 'English (US)', nameEn: 'English (US)', flagPath: '/flags/usa.jpg',      iso639: 'en' },
-  { code: 'en-GB', name: 'English (UK)', nameEn: 'English (UK)', flagPath: '/flags/uk.jpg',       iso639: 'en' },
-  { code: 'es-ES', name: 'Español',      nameEn: 'Spanish',      flagPath: '/flags/spain.jpg',   iso639: 'es' },
-  { code: 'it-IT', name: 'Italiano',     nameEn: 'Italian',      flagPath: '/flags/italy.jpg',   iso639: 'it' },
-  { code: 'pt-PT', name: 'Português',    nameEn: 'Portuguese',   flagPath: '/flags/portugal.jpg', iso639: 'pt' },
-]
+  {
+    code: "en-US",
+    name: "English (US)",
+    nameEn: "English (US)",
+    flagPath: "/flags/usa.jpg",
+    iso639: "en",
+  },
+  {
+    code: "en-GB",
+    name: "English (UK)",
+    nameEn: "English (UK)",
+    flagPath: "/flags/uk.jpg",
+    iso639: "en",
+  },
+  {
+    code: "es-ES",
+    name: "Español",
+    nameEn: "Spanish",
+    flagPath: "/flags/spain.jpg",
+    iso639: "es",
+  },
+  {
+    code: "it-IT",
+    name: "Italiano",
+    nameEn: "Italian",
+    flagPath: "/flags/italy.jpg",
+    iso639: "it",
+  },
+  {
+    code: "pt-PT",
+    name: "Português",
+    nameEn: "Portuguese",
+    flagPath: "/flags/portugal.jpg",
+    iso639: "pt",
+  },
+];
 
 export function getLanguageByCode(code: string): TargetLanguage | undefined {
-  return SUPPORTED_TARGET_LANGUAGES.find(l => l.code === code)
+  return SUPPORTED_TARGET_LANGUAGES.find((l) => l.code === code);
 }
 
-export const DEFAULT_TARGET_LANGUAGE = 'en-GB'
+export const DEFAULT_TARGET_LANGUAGE = "en-GB";
 ```
 
 ---
@@ -50,37 +80,37 @@ export const DEFAULT_TARGET_LANGUAGE = 'en-GB'
 A dedicated Zustand store for language state, separate from the auth store to keep concerns isolated:
 
 ```typescript
-import { create } from 'zustand'
-import { TargetLanguage, getLanguageByCode } from '@/lib/target-languages'
-import { apiFetch } from '@/lib/api'
+import { create } from "zustand";
+import { TargetLanguage, getLanguageByCode } from "@/lib/target-languages";
+import { apiFetch } from "@/lib/api";
 
 export interface UserLanguageInfo {
-  target_language: string
-  is_active: boolean
+  target_language: string;
+  is_active: boolean;
   plan: {
-    id: number
-    cefr_level: string | null
-    progress_day: number
-    total_days: number
-    completion_pct: number
-  } | null
+    id: number;
+    cefr_level: string | null;
+    progress_day: number;
+    total_days: number;
+    completion_pct: number;
+  } | null;
   progress: {
-    total_xp: number
-    current_streak: number
-    lessons_completed: number
-  } | null
+    total_xp: number;
+    current_streak: number;
+    lessons_completed: number;
+  } | null;
 }
 
 interface LanguageStore {
-  activeLanguage: TargetLanguage | null
-  userLanguages: UserLanguageInfo[]
-  supportedLanguages: TargetLanguage[]   // always the full static SUPPORTED_TARGET_LANGUAGES list
-  availableLanguageCodes: string[]       // operator-filtered subset, from all_supported_languages in API response
-  isSwitching: boolean
-  fetchLanguages: () => Promise<void>
-  switchLanguage: (code: string) => Promise<void>
-  addLanguage: (code: string) => Promise<void>
-  removeLanguage: (code: string) => Promise<void>
+  activeLanguage: TargetLanguage | null;
+  userLanguages: UserLanguageInfo[];
+  supportedLanguages: TargetLanguage[]; // always the full static SUPPORTED_TARGET_LANGUAGES list
+  availableLanguageCodes: string[]; // operator-filtered subset, from all_supported_languages in API response
+  isSwitching: boolean;
+  fetchLanguages: () => Promise<void>;
+  switchLanguage: (code: string) => Promise<void>;
+  addLanguage: (code: string) => Promise<void>;
+  removeLanguage: (code: string) => Promise<void>;
 }
 ```
 
@@ -111,6 +141,7 @@ interface LanguageStore {
 ```
 
 Visual design:
+
 - Compact button: flag image + name + chevron icon.
 - Style: `text-fl-muted hover:text-fl-fg` with subtle hover background.
 - Dropdown: each item shows flag image + name + CEFR level badge (e.g. `B1`). If `plan` is null or `cefr_level` is null (language added but assessment not yet done), omit the badge entirely. Active language has a checkmark.
@@ -130,9 +161,11 @@ Add `<LanguageSwitcher />` at the top of the sidebar (desktop), below the app lo
 Add `mapUserLanguageInfo` — a mapper from the API response shape to the frontend `UserLanguageInfo` type, including the plan summary and progress data:
 
 ```typescript
-import type { UserLanguageInfo } from '@/store/language'
+import type { UserLanguageInfo } from "@/store/language";
 
-export function mapUserLanguageInfo(data: Record<string, any>): UserLanguageInfo {
+export function mapUserLanguageInfo(
+  data: Record<string, any>,
+): UserLanguageInfo {
   return {
     target_language: data.target_language,
     is_active: data.is_active,
@@ -152,7 +185,7 @@ export function mapUserLanguageInfo(data: Record<string, any>): UserLanguageInfo
           lessons_completed: data.progress.lessons_completed,
         }
       : null,
-  }
+  };
 }
 ```
 
@@ -210,25 +243,21 @@ The English values above are the reference. Add the equivalent translation in ea
 
 ### Frontend tests (Vitest)
 
-| File | What to test |
-|------|-------------|
-| `frontend/tests/lib/target-languages.test.ts` | `getLanguageByCode` returns correct language for all 5 codes; `SUPPORTED_TARGET_LANGUAGES` has expected structure; `DEFAULT_TARGET_LANGUAGE` is valid |
-| `frontend/tests/store/language.test.ts` | `fetchLanguages` populates store; `switchLanguage` calls API and updates active language; `addLanguage`/`removeLanguage` call correct endpoints |
+- **`frontend/tests/lib/target-languages.test.ts`** — `getLanguageByCode` returns correct language for all 5 codes; `SUPPORTED_TARGET_LANGUAGES` has expected structure; `DEFAULT_TARGET_LANGUAGE` is valid
+- **`frontend/tests/store/language.test.ts`** — `fetchLanguages` populates store; `switchLanguage` calls API and updates active language; `addLanguage`/`removeLanguage` call correct endpoints
 
 ## New files in this phase
 
-| File | Type |
-|------|------|
-| `frontend/src/lib/target-languages.ts` | Language config and helpers |
-| `frontend/src/store/language.ts` | Zustand language store |
-| `frontend/src/components/LanguageSwitcher.tsx` | Sidebar switcher component |
+| File                                           | Type                        |
+| ---------------------------------------------- | --------------------------- |
+| `frontend/src/lib/target-languages.ts`         | Language config and helpers |
+| `frontend/src/store/language.ts`               | Zustand language store      |
+| `frontend/src/components/LanguageSwitcher.tsx` | Sidebar switcher component  |
 
 ## Modified files in this phase
 
-| File | Change |
-|------|--------|
-| `frontend/src/app/(app)/layout.tsx` | Add `LanguageSwitcher` to sidebar (desktop) and mobile menu |
-| `frontend/src/lib/mappers.ts` | Add `UserLanguageInfo` mapper |
-| `frontend/src/components/TargetLanguageSelector.tsx` | Update to new `TargetLanguage` interface: change import from `TARGET_LANGUAGES` → `SUPPORTED_TARGET_LANGUAGES`; replace `lang.flag` → `lang.flagPath`; replace `t(lang.labelKey)` → `t(lang.code)` (same `targetLanguages` namespace, `code` is the key); make `availableCodes: string[]` a **required** prop — filter `SUPPORTED_TARGET_LANGUAGES` to only those codes before rendering. TypeScript enforces that any caller must pass the operator-configured list explicitly |
-| `frontend/src/app/(auth)/onboarding/page.tsx` | Call `fetchLanguages()` from the language store on mount; pass `availableLanguageCodes` from the store to `<TargetLanguageSelector availableCodes={availableLanguageCodes} />` so only operator-enabled languages are shown |
-| `messages/*.json` (all 10) | Add `nav.switchLanguage`, `common.removeLanguageConfirm*` keys; expand `targetLanguages` with `es-ES`, `it-IT`, `pt-PT` |
+- **`frontend/src/app/(app)/layout.tsx`** — Add `LanguageSwitcher` to sidebar (desktop) and mobile menu
+- **`frontend/src/lib/mappers.ts`** — Add `UserLanguageInfo` mapper
+- **`frontend/src/components/TargetLanguageSelector.tsx`** — Update to new `TargetLanguage` interface: change import from `TARGET_LANGUAGES` → `SUPPORTED_TARGET_LANGUAGES`; replace `lang.flag` → `lang.flagPath`; replace `t(lang.labelKey)` → `t(lang.code)` (same `targetLanguages` namespace, `code` is the key); make `availableCodes: string[]` a **required** prop — filter `SUPPORTED_TARGET_LANGUAGES` to only those codes before rendering. TypeScript enforces that any caller must pass the operator-configured list explicitly
+- **`frontend/src/app/(auth)/onboarding/page.tsx`** — Call `fetchLanguages()` from the language store on mount; pass `availableLanguageCodes` from the store to `<TargetLanguageSelector availableCodes={availableLanguageCodes} />` so only operator-enabled languages are shown
+- **`messages/*.json` (all 10)** — Add `nav.switchLanguage`, `common.removeLanguageConfirm*` keys; expand `targetLanguages` with `es-ES`, `it-IT`, `pt-PT`

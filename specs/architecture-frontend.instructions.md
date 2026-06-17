@@ -22,11 +22,12 @@ frontend/
 │   │   │   ├── reset-password/
 │   │   │   └── verify-email/
 │   │   │
-│   │   ├── (app)/               # Authenticated routes — sidebar layout (17 pages)
+│   │   ├── (app)/               # Authenticated routes — sidebar layout (18 pages)
 │   │   │   ├── layout.tsx       # Sidebar + global layout shell
 │   │   │   ├── loading.tsx
-│   │   │   ├── admin/users/     # User management (admin only)
-│   │   │   ├── admin/feedback/  # Feedback board admin panel (admin only)
+│   │   │   ├── admin/           # Admin overview + admin-only management routes
+│   │   │   ├── admin/users/     # User list + [id] detail: tabs, quotas, subscription override
+│   │   │   ├── admin/feedback/  # Feedback queue admin panel: search, filters, responsive table/cards
 │   │   │   ├── assessment/      # Level test: BeginnerGate → AdaptiveQuizCard → DurationSelector
 │   │   │   ├── chat/            # AI tutor SSE chat + conversation history
 │   │   │   ├── conversation/    # Real-time voice conversation (WebSocket + VAD)
@@ -56,6 +57,7 @@ frontend/
 │   │
 │   ├── components/              # 11 directories + 4 standalone files
 │   │   ├── assessment/          # AdaptiveQuizCard, BeginnerGate, DurationSelector
+│   │   ├── admin/               # AdminNav + AdminShell primitives shared across admin pages
 │   │   ├── billing/             # Stripe subscription UI components
 │   │   ├── chat/                # Chat message components
 │   │   ├── conversation/        # ConversationMode, MicButton, StatusIndicator, TranscriptBubble...
@@ -147,118 +149,115 @@ frontend/
 
 ### Public (auth) routes — `(auth)/`
 
-| Route | Description |
-|-------|-------------|
-| `/login` | Email + password login |
-| `/register` | Registration form with native/target language selection |
-| `/onboarding` | Post-registration: language preferences + level setup |
-| `/verify-email` | Email verification token handler |
-| `/forgot-password` | Request password reset email |
-| `/reset-password` | Reset password with token |
-| `/billing` | Stripe Customer Portal redirect (managed by Stripe) |
+| Route              | Description                                             |
+| ------------------ | ------------------------------------------------------- |
+| `/login`           | Email + password login                                  |
+| `/register`        | Registration form with native/target language selection |
+| `/onboarding`      | Post-registration: language preferences + level setup   |
+| `/verify-email`    | Email verification token handler                        |
+| `/forgot-password` | Request password reset email                            |
+| `/reset-password`  | Reset password with token                               |
+| `/billing`         | Stripe Customer Portal redirect (managed by Stripe)     |
 
 ### Authenticated routes — `(app)/`
 
-| Route | Description |
-|-------|-------------|
-| `/dashboard` | Home: XP counter, streak, next lesson card, target language selector |
-| `/assessment` | Level placement test (BeginnerGate → AdaptiveQuiz → DurationSelector) |
-| `/plan` | Study plan overview: unit cards, LevelTestBanner, UnitDrawer |
-| `/lesson/[id]` | Lesson player: content + interactive exercises |
-| `/chat` | AI tutor text chat with SSE streaming |
-| `/conversation` | Real-time voice conversation with WebSocket + VAD |
-| `/flashcards` | Spaced-repetition flashcard review |
-| `/grammar` | Grammar reference index |
-| `/grammar/[slug]` | Grammar topic detail page |
-| `/vocabulary` | Vocabulary hub overview |
-| `/vocabulary/[setId]` | Vocabulary set detail |
-| `/phrasebook` | Common phrases by category |
-| `/listening` | AI-generated listening comprehension exercises |
-| `/reading` | AI-generated reading comprehension exercises |
-| `/progress` | Skills tracker with radar chart and multi-level vocabulary progress toggle |
-| `/settings` | Profile, avatar, subscription, conversation settings |
-| `/faq` | Frequently asked questions |
-| `/feedback` | Feature requests and bug reports board (community) |
-| `/admin/users` | User management (admin only) |
-| `/admin/feedback` | Feedback board admin panel (admin only) |
+- `/dashboard` — Home: XP counter, streak, next lesson card, target language selector.
+- `/assessment` — Level placement test (`BeginnerGate` → `AdaptiveQuiz` → `DurationSelector`).
+- `/plan` — Study plan overview: unit cards, `LevelTestBanner`, `UnitDrawer`.
+- `/lesson/[id]` — Lesson player: content + interactive exercises.
+- `/chat` — AI tutor text chat with SSE streaming.
+- `/conversation` — Real-time voice conversation with WebSocket + VAD.
+- `/flashcards` — Spaced-repetition flashcard review.
+- `/grammar` — Grammar reference index.
+- `/grammar/[slug]` — Grammar topic detail page.
+- `/vocabulary` — Vocabulary hub overview.
+- `/vocabulary/[setId]` — Vocabulary set detail.
+- `/phrasebook` — Common phrases by category.
+- `/listening` — AI-generated listening comprehension exercises.
+- `/reading` — AI-generated reading comprehension exercises.
+- `/progress` — Skills tracker with radar chart and multi-level vocabulary progress toggle.
+- `/settings` — Profile, avatar, subscription, conversation settings.
+- `/faq` — Frequently asked questions.
+- `/feedback` — Feature requests and bug reports board (community).
+- `/admin` — Admin overview with aggregated metrics, operational alerts, quick links, and maintenance-mode status (admin only).
+- `/admin/users` — User management with responsive table/cards, search, filters, invite copy workflow, create-user sheet, and maintenance toggle (admin only).
+- `/admin/users/[id]` — Admin user detail with summary header and tabs for Profile, Languages, Activity, Quotas, and Subscription. Quotas separate current usage from configured limits; email verification and subscription overrides use confirmation dialogs.
+- `/admin/feedback` — Feedback queue admin panel with search, type/status/sort filters, filtered metrics by feedback type, desktop table, mobile cards, status updates, and delete confirmation. Status updates refresh the queue when the updated entry no longer matches the active filter (admin only).
 
 ### Legal routes — `(legal)/`
 
-| Route | Description |
-|-------|-------------|
-| `/privacy` | Privacy policy |
-| `/terms` | Terms of service |
+| Route      | Description      |
+| ---------- | ---------------- |
+| `/privacy` | Privacy policy   |
+| `/terms`   | Terms of service |
 
 ### API route handlers
 
 These are Next.js Route Handlers that proxy requests to the backend:
 
-| Route | Method | Purpose |
-|-------|--------|---------|
-| `/api/chat` | POST | SSE chat streaming proxy |
-| `/api/tts` | POST | Text-to-speech proxy |
-| `/api/stt` | POST | Speech-to-text proxy |
+| Route       | Method | Purpose                  |
+| ----------- | ------ | ------------------------ |
+| `/api/chat` | POST   | SSE chat streaming proxy |
+| `/api/tts`  | POST   | Text-to-speech proxy     |
+| `/api/stt`  | POST   | Speech-to-text proxy     |
 
 ## State management (Zustand)
 
 Six Zustand stores hold all client-side state. No React Context is used for global state.
 
-| Store | Persisted? | Key state |
-|-------|-----------|-----------|
-| `auth` | No (JS memory) | `accessToken`, `user`, `isAuthenticated`, `login()`, `refresh()`, `logout()` |
-| `config` | No | `maintenanceMode`, `availableLanguages`, `stripeEnabled`, feature flags from `GET /api/config` |
-| `language` | Yes (localStorage) | `targetLanguage` (BCP-47), `uiLocale`, language switcher state |
-| `loading` | No | `isLoading`, `startLoading()`, `stopLoading()` — global spinner control |
-| `progress` | No | `xp`, `streak`, `skillScores`, `planSummary` — fetched from backend |
-| `theme` | Yes (localStorage) | `"light"` / `"dark"` / `"system"` |
+| Store      | Persisted?         | Key state                                                                                      |
+| ---------- | ------------------ | ---------------------------------------------------------------------------------------------- |
+| `auth`     | No (JS memory)     | `accessToken`, `user`, `isAuthenticated`, `login()`, `refresh()`, `logout()`                   |
+| `config`   | No                 | `maintenanceMode`, `availableLanguages`, `stripeEnabled`, feature flags from `GET /api/config` |
+| `language` | Yes (localStorage) | `targetLanguage` (BCP-47), `uiLocale`, language switcher state                                 |
+| `loading`  | No                 | `isLoading`, `startLoading()`, `stopLoading()` — global spinner control                        |
+| `progress` | No                 | `xp`, `streak`, `skillScores`, `planSummary` — fetched from backend                            |
+| `theme`    | Yes (localStorage) | `"light"` / `"dark"` / `"system"`                                                              |
 
 ## Utility modules (`lib/`)
 
-| Module | Purpose |
-|--------|---------|
-| `api.ts` | Fetch wrapper with auth interceptor: injects `Authorization` header, catches 401 → silent refresh → retry, redirects to `/login` on refresh failure |
-| `audio.ts` | Audio playback queue for voice conversation; tracks real queue idle state so the UI clears "speaking" only after playback drains |
-| `conversation-ws.ts` | WebSocket client for the voice conversation pipeline, handles WAV chunk sending and MP3 reception |
-| `landing-subscription.ts` | Shared landing-page subscription check used by `LandingNav` and `PricingSection`; deduplicates refresh + `/api/auth/me` so the nav hides `Pricing` whenever the pricing section is hidden for active/trialing subscribers |
-| `locales.ts` | next-intl locale detection and routing utilities |
-| `mappers.ts` | Data transformation helpers between API responses and frontend models |
-| `target-languages.ts` | Target language definitions: BCP-47 codes, display names, flag mappings, voice settings per language |
-| `utils.ts` | General-purpose utilities: formatting, date helpers, class name merging |
+- **`api.ts`** — Fetch wrapper with auth interceptor: injects `Authorization` header, catches 401 → silent refresh → retry, redirects to `/login` on refresh failure
+- **`audio.ts`** — Audio playback queue for voice conversation; tracks real queue idle state so the UI clears "speaking" only after playback drains
+- **`conversation-ws.ts`** — WebSocket client for the voice conversation pipeline, handles WAV chunk sending and MP3 reception
+- **`landing-subscription.ts`** — Shared landing-page subscription check used by `LandingNav` and `PricingSection`; deduplicates refresh + `/api/auth/me` so the nav hides `Pricing` whenever the pricing section is hidden for active/trialing subscribers
+- **`locales.ts`** — next-intl locale detection and routing utilities
+- **`mappers.ts`** — Data transformation helpers between API responses and frontend models
+- **`target-languages.ts`** — Target language definitions: BCP-47 codes, display names, flag mappings, voice settings per language
+- **`utils.ts`** — General-purpose utilities: formatting, date helpers, class name merging
 
 ## Components overview
 
 ### Page-specific components
 
-| Directory | Key components |
-|----------|---------------|
-| `assessment/` | `AdaptiveQuizCard`, `BeginnerGate`, `DurationSelector` |
-| `billing/` | Stripe subscription management UI; landing `PricingSection` hides for active/trialing subscribers |
-| `chat/` | Message display, input, SSE stream handling |
-| `conversation/` | `ConversationMode`, `MicButton`, `StatusIndicator`, `TranscriptBubble`, VAD integration |
-| `flashcard/` | Flashcard flip animation, SM-2 rating buttons |
-| `lesson/` | Exercise renderers (multiple choice, fill-in-blank, listening, reading) |
-| `plan/` | `LevelTestBanner`, `UnitCard`, `UnitDrawer` |
-| `settings/` | Profile form, avatar upload, conversation preferences |
-| `tour/` | `OnboardingTour` step-by-step walkthrough |
-| `whats-new/` | Version-aware changelog overlay modal |
+| Directory       | Key components                                                                                     |
+| --------------- | -------------------------------------------------------------------------------------------------- |
+| `assessment/`   | `AdaptiveQuizCard`, `BeginnerGate`, `DurationSelector`                                             |
+| `admin/`        | `AdminNav`, `AdminPageHeader`, `AdminPanel`, `AdminMetric`, `AdminBadge` shared across admin pages |
+| `billing/`      | Stripe subscription management UI; landing `PricingSection` hides for active/trialing subscribers  |
+| `chat/`         | Message display, input, SSE stream handling                                                        |
+| `conversation/` | `ConversationMode`, `MicButton`, `StatusIndicator`, `TranscriptBubble`, VAD integration            |
+| `flashcard/`    | Flashcard flip animation, SM-2 rating buttons                                                      |
+| `lesson/`       | Exercise renderers (multiple choice, fill-in-blank, listening, reading)                            |
+| `plan/`         | `LevelTestBanner`, `UnitCard`, `UnitDrawer`                                                        |
+| `settings/`     | Profile form, avatar upload, conversation preferences                                              |
+| `tour/`         | `OnboardingTour` step-by-step walkthrough                                                          |
+| `whats-new/`    | Version-aware changelog overlay modal                                                              |
 
 ### Shared/generic components
 
-| Component | Purpose |
-|-----------|---------|
-| `ThemeProvider.tsx` | Dark/light/system theme via `next-themes` |
-| `TargetLanguageSelector.tsx` | Language picker dropdown with flags |
-| `LanguageSwitcher.tsx` | UI locale switcher |
-| `CookieBanner.tsx` | GDPR cookie consent banner |
-| `ui/` | shadcn/ui primitives (`button`, `card`, `input`, `progress`, `badge`, `separator`, `sheet`, `tabs`) + custom: `AudioPlayer`, `VoiceRecorder`, `confirm-dialog` |
+- **`ThemeProvider.tsx`** — Dark/light/system theme via `next-themes`
+- **`TargetLanguageSelector.tsx`** — Language picker dropdown with flags
+- **`LanguageSwitcher.tsx`** — UI locale switcher
+- **`CookieBanner.tsx`** — GDPR cookie consent banner
+- **`ui/`** — shadcn/ui primitives (`button`, `card`, `input`, `progress`, `badge`, `separator`, `sheet`, `tabs`) + custom: `AudioPlayer`, `VoiceRecorder`, `confirm-dialog`
 
 ---
 
 ## Code standards (TypeScript / Next.js 16)
 
-| Tool | Purpose |
-|------|---------|
-| ESLint | TypeScript linting + Next.js rules |
+| Tool     | Purpose                                         |
+| -------- | ----------------------------------------------- |
+| ESLint   | TypeScript linting + Next.js rules              |
 | Prettier | Code formatting + `prettier-plugin-tailwindcss` |
 
 - No semicolons, single quotes, 2-space tabs, trailing commas "es5".
@@ -268,11 +267,13 @@ Six Zustand stores hold all client-side state. No React Context is used for glob
 
 Every page wrapper uses `mx-auto` plus one of three canonical widths. Do not use other sizes:
 
-| Class | Width | Use for |
-|-------|-------|---------|
-| `max-w-4xl` | 896 px | Index/overview pages with grids or card layouts (dashboard, grammar, vocabulary, phrasebook, progress) |
-| `max-w-3xl` | 768 px | Admin list pages (admin/users, admin/feedback) |
-| `max-w-2xl` | 672 px | Detail pages, forms, long-form content (lesson, grammar detail, settings, feedback, flashcards, faq, plan) |
+| Class       | Width   | Use for                                                                                                    |
+| ----------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `max-w-6xl` | 1152 px | Dense admin data pages and operational admin overview (admin, admin/users, admin/feedback)                 |
+| `max-w-5xl` | 1024 px | Admin overview pages with lighter operational cards                                                        |
+| `max-w-4xl` | 896 px  | Index/overview pages with grids or card layouts (dashboard, grammar, vocabulary, phrasebook, progress)     |
+| `max-w-3xl` | 768 px  | Compact detail or legacy admin list pages                                                                  |
+| `max-w-2xl` | 672 px  | Detail pages, forms, long-form content (lesson, grammar detail, settings, feedback, flashcards, faq, plan) |
 
 Full-screen interactive experiences (conversation, chat, listening, reading, assessment) are exempt — they manage their own layout internally.
 
@@ -340,7 +341,8 @@ The voice UI does not clear `assistantSpeaking` from `turn_complete` or `status=
 Testing infrastructure and strategy are documented in [testing.instructions.md](testing.instructions.md).
 
 **Summary:**
+
 - **Framework**: Vitest with jsdom environment
-- **Test files**: 16 (plus setup.ts) covering critical logic only
+- **Test files**: 24 (plus setup.ts) covering critical logic only
 - **Setup**: Global mocks for `localStorage`, `next/navigation`, `next-intl`
 - **Coverage areas**: API fetch interceptor, auth store, audio queue, conversation WebSocket, target language utilities, mapper functions, middleware, component rendering

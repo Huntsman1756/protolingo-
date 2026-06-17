@@ -13,14 +13,14 @@ A unified resource centre delivering five complementary features: a grammar refe
 
 ## Milestones
 
-| # | Milestone | What was built |
-|---|-----------|----------------|
-| 1 | Grammar Reference | Static grammar data file + `/grammar` index + `/grammar/[slug]` detail pages |
-| 2 | Vocabulary Hub | Backend vocabulary data per language + `/vocabulary` index via API + set detail pages with flashcard integration |
-| 3 | Phrasebook | Static phrasebook data file + `/phrasebook` page with level and register filters |
-| 4 | Skills Tracker | `/progress` page showing unit competencies, vocabulary progress, XP history |
-| 5 | Level Completion Test | End-of-level exam at `/assessment/level-test` with auto-generated questions and scoring |
-| 6 | Navigation & routing | RESOURCES nav group in sidebar, curriculum-driven `/plan` roadmap |
+| #   | Milestone             | What was built                                                                                                   |
+| --- | --------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| 1   | Grammar Reference     | Static grammar data file + `/grammar` index + `/grammar/[slug]` detail pages                                     |
+| 2   | Vocabulary Hub        | Backend vocabulary data per language + `/vocabulary` index via API + set detail pages with flashcard integration |
+| 3   | Phrasebook            | Static phrasebook data file + `/phrasebook` page with level and register filters                                 |
+| 4   | Skills Tracker        | `/progress` page showing unit competencies, vocabulary progress, XP history                                      |
+| 5   | Level Completion Test | End-of-level exam at `/assessment/level-test` with auto-generated questions and scoring                          |
+| 6   | Navigation & routing  | RESOURCES nav group in sidebar, curriculum-driven `/plan` roadmap                                                |
 
 ---
 
@@ -32,25 +32,24 @@ A single static TypeScript file containing approximately 50+ grammar topics span
 
 Each grammar topic has:
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `slug` | string | URL-safe identifier (e.g. `"present-simple"`, `"past-continuous"`) |
-| `title` | string | Display title |
-| `level` | CEFRLevel | A1, A2, B1, B2, C1, C2 |
-| `category` | GrammarCategory | One of 14 categories (Tenses, Questions, Nouns, Pronouns, Adjectives & Adverbs, Modals, Conditionals, Passive Voice, Reported Speech, Clauses, Articles, Prepositions, Phrasal Verbs, Advanced) |
-| `summary` | string | One-line description for index cards |
-| `explanation` | string | Full explanation in Markdown-lite format |
-| `structure` | string (optional) | Formula/pattern (e.g. "Subject + base verb + s/es") |
-| `rules` | string[] | Key rules as bullet points |
-| `examples` | array | Objects with `english`, optional `translation` (rendered in user's native language), and optional `note` |
-| `common_mistakes` | array | Objects with `wrong`, `correct`, and `note` fields |
-| `related` | string[] | Slugs of related grammar topics for cross-linking |
+- **`slug`** — Type: string. Description: URL-safe identifier (e.g. `"present-simple"`, `"past-continuous"`)
+- **`title`** — Type: string. Description: Display title
+- **`level`** — Type: CEFRLevel. Description: A1, A2, B1, B2, C1, C2
+- **`category`** — Type: GrammarCategory. Description: One of 14 categories (Tenses, Questions, Nouns, Pronouns, Adjectives & Adverbs, Modals, Conditionals, Passive Voice, Reported Speech, Clauses, Articles, Prepositions, Phrasal Verbs, Advanced)
+- **`summary`** — Type: string. Description: One-line description for index cards
+- **`explanation`** — Type: string. Description: Full explanation in Markdown-lite format
+- **`structure`** — Type: string (optional). Description: Formula/pattern (e.g. "Subject + base verb + s/es")
+- **`rules`** — Type: string[]. Description: Key rules as bullet points
+- **`examples`** — Type: array. Description: Objects with `english`, optional `translation` (rendered in user's native language), and optional `note`
+- **`common_mistakes`** — Type: array. Description: Objects with `wrong`, `correct`, and `note` fields
+- **`related`** — Type: string[]. Description: Slugs of related grammar topics for cross-linking
 
 **Categories**: 14 categories provide structure for the index page, allowing users to filter by grammatical category in addition to CEFR level.
 
 ### Grammar index page (`/grammar`)
 
 Renders all grammar topics organized by CEFR level. Each topic appears as a card showing:
+
 - Title and category badge
 - Summary paragraph
 - "View details →" link
@@ -60,6 +59,7 @@ Features a search bar that filters topics by title and content. Category filter 
 ### Grammar detail page (`/grammar/[slug]`)
 
 Dynamic route rendering a single grammar topic. The `[slug]` parameter maps directly to a `GrammarTopic.slug`:
+
 - Unknown slugs return a 404 page (Next.js `notFound()`)
 - Renders: title, level badge, explanation (formatted Markdown-lite), structure pattern, rules list, example sentences with optional translations, common mistakes table, and related topics links
 - Related topics are linked to their own detail pages
@@ -83,28 +83,29 @@ Dynamic route rendering a single grammar topic. The `[slug]` parameter maps dire
 
 **VocabularyEntry** (per word):
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `word` | string | English word |
-| `pos` | PartOfSpeech | Noun, verb, adjective, adverb, phrase, conjunction, preposition, numeral, pronoun |
-| `definition` | string | Simple English definition |
-| `example` | string | Natural usage example |
-| `ipa` | string (optional) | IPA pronunciation |
-| `frequency_rank` | number (optional) | Usage frequency ranking |
+| Field            | Type              | Description                                                                       |
+| ---------------- | ----------------- | --------------------------------------------------------------------------------- |
+| `word`           | string            | English word                                                                      |
+| `pos`            | PartOfSpeech      | Noun, verb, adjective, adverb, phrase, conjunction, preposition, numeral, pronoun |
+| `definition`     | string            | Simple English definition                                                         |
+| `example`        | string            | Natural usage example                                                             |
+| `ipa`            | string (optional) | IPA pronunciation                                                                 |
+| `frequency_rank` | number (optional) | Usage frequency ranking                                                           |
 
 **VocabularySet** (per topic):
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier (e.g. `"identity"`, `"greetings"`) |
-| `level` | CEFRLevel | CEFR level |
-| `topic` | string | Human-readable topic name |
-| `unit_ref` | string | Curriculum unit this set belongs to (e.g. `"a1-unit-1"`) |
-| `words` | VocabularyEntry[] | The vocabulary items |
+| Field      | Type              | Description                                              |
+| ---------- | ----------------- | -------------------------------------------------------- |
+| `id`       | string            | Unique identifier (e.g. `"identity"`, `"greetings"`)     |
+| `level`    | CEFRLevel         | CEFR level                                               |
+| `topic`    | string            | Human-readable topic name                                |
+| `unit_ref` | string            | Curriculum unit this set belongs to (e.g. `"a1-unit-1"`) |
+| `words`    | VocabularyEntry[] | The vocabulary items                                     |
 
 ### Vocabulary index page (`/vocabulary`)
 
 Lists all vocabulary sets grouped by CEFR level. Each set card shows:
+
 - Topic name and level badge
 - Word count (e.g. "15 words")
 - Flashcard progress: how many words from this set the user has as flashcards ("3/15 in flashcards")
@@ -114,6 +115,7 @@ Search bar filters sets by topic name or words within.
 ### Vocabulary set detail page (`/vocabulary/[setId]`)
 
 Dynamic route for a single vocabulary set. The `[setId]` parameter maps to a `VocabularySet.id`. Shows:
+
 - Topic title, level badge, word count
 - Full word table: word, part of speech badge, definition, example, IPA pronunciation, frequency rank
 - "Add to flashcards" button: sends the word to the flashcards API for SM-2 review
@@ -121,6 +123,7 @@ Dynamic route for a single vocabulary set. The `[setId]` parameter maps to a `Vo
 ### Integration with flashcards
 
 The vocabulary hub and flashcard system are connected:
+
 - Users can add individual words or whole sets to their flashcards
 - The progress page shows per-set flashcard coverage
 - When the LLM generates flashcards, it can draw from the user's current vocabulary set
@@ -135,30 +138,32 @@ Static TypeScript file containing approximately 20 phrasebook categories from A1
 
 **Phrase** (per entry):
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `english` | string | The English phrase |
-| `context` | string | When/where to use the phrase |
-| `register` | Register | `"formal"`, `"neutral"`, or `"informal"` |
-| `unit_ref` | string (optional) | Curriculum unit this phrase relates to |
+| Field      | Type              | Description                              |
+| ---------- | ----------------- | ---------------------------------------- |
+| `english`  | string            | The English phrase                       |
+| `context`  | string            | When/where to use the phrase             |
+| `register` | Register          | `"formal"`, `"neutral"`, or `"informal"` |
+| `unit_ref` | string (optional) | Curriculum unit this phrase relates to   |
 
 **PhrasebookCategory** (per situation):
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier |
-| `level` | CEFRLevel | Minimum level for this situation |
-| `situation` | string | Real-world scenario (e.g. "At the restaurant") |
-| `icon` | string | Emoji representing the situation (for visual indexing) |
-| `phrases` | Phrase[] | The phrases for this situation |
+| Field       | Type      | Description                                            |
+| ----------- | --------- | ------------------------------------------------------ |
+| `id`        | string    | Unique identifier                                      |
+| `level`     | CEFRLevel | Minimum level for this situation                       |
+| `situation` | string    | Real-world scenario (e.g. "At the restaurant")         |
+| `icon`      | string    | Emoji representing the situation (for visual indexing) |
+| `phrases`   | Phrase[]  | The phrases for this situation                         |
 
 ### Phrasebook page (`/phrasebook`)
 
 Lists all phrasebook categories. Filterable by:
+
 - **CEFR level**: checkboxes or tabs for A1, A2, B1, B2, C1
 - **Register**: formal, neutral, informal
 
 Each category card shows:
+
 - Icon (emoji) and situation name
 - Level badge
 - Phrase count
@@ -180,6 +185,7 @@ A comprehensive skills dashboard replacing the simpler progress summary. Shows t
 **Unit Competency Checklist**
 
 Per-unit progress derived from `UserCompetency` records (Phase 1+ backend model). Each unit displays:
+
 - Unit name and CEFR level
 - List of competencies with individual scores (0.0–1.0) and mastery status (>= 0.80)
 - Overall unit percentage (average of competency scores)
@@ -190,6 +196,7 @@ Competencies are updated via exponential moving average each time a related less
 **Vocabulary Progress**
 
 Per-set vocabulary progress:
+
 - Which vocabulary sets have been added to flashcards
 - How many words from each set are in the user's flashcard deck
 - Progress bars showing coverage per set
@@ -222,6 +229,7 @@ When a user completes all curriculum units in their current CEFR level, an end-o
 ### Question generation
 
 Test questions are generated by the LLM (backend) and constrained to:
+
 - Grammar points studied during the level (from the curriculum unit's `grammar_points`)
 - Vocabulary sets studied during the level (from `vocabulary_set_ids`)
 - 20 questions total, mixing grammar, vocabulary, and reading comprehension
@@ -231,11 +239,11 @@ The prompt (`END_OF_LEVEL_TEST_PROMPT` in `services/assessment.py`) instructs th
 
 ### Scoring and recommendations
 
-| Score | Recommendation | Action |
-|-------|---------------|--------|
-| >= 0.75 | `"advance"` | Unlock next CEFR level, create new study plan |
-| 0.55 – 0.74 | `"extend"` | Recommend 4-week extension focusing on weak units |
-| < 0.55 | `"repeat"` | Recommend repeating the full level |
+| Score       | Recommendation | Action                                            |
+| ----------- | -------------- | ------------------------------------------------- |
+| >= 0.75     | `"advance"`    | Unlock next CEFR level, create new study plan     |
+| 0.55 – 0.74 | `"extend"`     | Recommend 4-week extension focusing on weak units |
+| < 0.55      | `"repeat"`     | Recommend repeating the full level                |
 
 The recommendation is stored in the StudyPlan model (`completion_test_score`, `completion_test_recommendation`) and displayed in the `TestResultSummary` component.
 
@@ -297,6 +305,7 @@ On mobile (below `md` breakpoint), the sidebar collapses into a hamburger menu. 
 ### Route protection
 
 Next.js middleware at `src/middleware.ts`:
+
 - Detects `refresh_token` cookie for auth gating
 - Redirects unauthenticated users to `/login`
 - Handles locale detection via `next-intl` (cookie-based, falls back to Accept-Language header)
@@ -311,6 +320,7 @@ Next.js middleware at `src/middleware.ts`:
 Grammar topics and phrasebook entries remain static TypeScript constants in the frontend. **Vocabulary and assessment data were migrated to the backend in v1.7.4** — they are now served via API endpoints (`/api/vocabulary`, `/api/assessment/bank`) from Python dataclasses. Curriculum data (unit definitions, grammar points, vocabulary set IDs) lives in both backend Python files and a lightweight frontend `curriculum.ts` that fetches units via the `/api/curriculum` endpoint.
 
 Reasons for the mixed approach:
+
 1. **Grammar/phrasebook (frontend static)**: zero latency, offline-capable, tree-shakeable, no DB migrations
 2. **Vocabulary/assessment (backend API)**: large datasets (~330 sets, ~3,940 words across 4 languages; ~400 questions across 4 languages) benefit from server-side serving and language-aware dispatching without bloating the client bundle
 3. **Curriculum (both)**: lightweight unit definitions in frontend for quick rendering; full data in backend for plan generation
@@ -318,6 +328,7 @@ Reasons for the mixed approach:
 ### Cross-referencing
 
 A data integrity test (`test_frontend_data_integrity.py`) validates that:
+
 - Every `grammar_slug` referenced in curriculum units exists in `grammar.ts`
 - Every `vocabulary_set_id` referenced in each language's curriculum exists in that language's backend vocabulary data (validated for all 4 languages: en, es, it, pt)
 - Every `related` slug in grammar topics points to an existing topic
@@ -325,6 +336,7 @@ A data integrity test (`test_frontend_data_integrity.py`) validates that:
 ### Dual data files (frontend + backend)
 
 Some data exists in both frontend and backend:
+
 - `frontend/src/data/curriculum.ts` — full curriculum with all metadata for the roadmap UI
 - `backend/app/data/curriculum.py` — canonical curriculum data for plan generation and lesson constraints
 

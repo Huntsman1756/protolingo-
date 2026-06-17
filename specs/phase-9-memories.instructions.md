@@ -19,13 +19,13 @@ Users can view, delete individual, or clear all memories from the Settings page.
 
 **File:** `backend/app/models/memory.py`
 
-| Column | Type | Constraints | Notes |
-|--------|------|-------------|-------|
-| id | integer | PK, autoincrement | |
-| user_id | integer | NOT NULL, FK → users(CASCADE), index | Cascade-deletes with the user |
-| content | text | NOT NULL | Max 200 chars enforced by service layer |
-| source | string(10) | NOT NULL, default `"chat"` | `"chat"` or `"voice"` |
-| created_at | datetime | NOT NULL, default UTC now (tz-naive) | Used for eviction ordering (oldest first) |
+| Column     | Type       | Constraints                          | Notes                                     |
+| ---------- | ---------- | ------------------------------------ | ----------------------------------------- |
+| id         | integer    | PK, autoincrement                    |                                           |
+| user_id    | integer    | NOT NULL, FK → users(CASCADE), index | Cascade-deletes with the user             |
+| content    | text       | NOT NULL                             | Max 200 chars enforced by service layer   |
+| source     | string(10) | NOT NULL, default `"chat"`           | `"chat"` or `"voice"`                     |
+| created_at | datetime   | NOT NULL, default UTC now (tz-naive) | Used for eviction ordering (oldest first) |
 
 **Index:** `ix_memories_user_id` on `user_id`.
 
@@ -46,16 +46,17 @@ Creates the `memories` table with all columns, the FK with CASCADE, and `ix_memo
 
 ### Constants
 
-| Name | Value | Purpose |
-|------|-------|---------|
-| `MEMORY_MARKER_RE` | `r"<<MEMORY>>(.*?)<<ENDMEMORY>>"` (DOTALL) | Detects and removes the LLM-emitted block |
-| `MAX_MEMORIES_CONTEXT` | 20 | Maximum memories injected into the system prompt (the most recent) |
-| `MAX_MEMORY_CHARS` | 200 | Hard cap on each stored memory item's length |
-| `MAX_MEMORIES_PER_USER` | 50 | Hard cap per user; oldest entries are evicted (FIFO) when exceeded |
+| Name                    | Value                                      | Purpose                                                            |
+| ----------------------- | ------------------------------------------ | ------------------------------------------------------------------ |
+| `MEMORY_MARKER_RE`      | `r"<<MEMORY>>(.*?)<<ENDMEMORY>>"` (DOTALL) | Detects and removes the LLM-emitted block                          |
+| `MAX_MEMORIES_CONTEXT`  | 20                                         | Maximum memories injected into the system prompt (the most recent) |
+| `MAX_MEMORY_CHARS`      | 200                                        | Hard cap on each stored memory item's length                       |
+| `MAX_MEMORIES_PER_USER` | 50                                         | Hard cap per user; oldest entries are evicted (FIFO) when exceeded |
 
 ### `MEMORY_SYSTEM_INSTRUCTION`
 
 A multi-line instruction string appended to every system prompt (both chat and voice). It instructs the LLM to:
+
 - Optionally append `<<MEMORY>>{"items":["..."]}<<ENDMEMORY>>` at the very end of a response when it genuinely learns something new about the student.
 - Limit each item to 200 characters, in English, self-contained.
 - Not repeat already-captured facts.
@@ -65,15 +66,13 @@ The string uses `{{` / `}}` to escape literal JSON braces so Python's `.format()
 
 ### Functions
 
-| Function | Signature | Notes |
-|----------|-----------|-------|
-| `parse_memory_marker` | `(text: str) → list[str]` | Extracts items from the marker block; returns `[]` on no match or JSON parse error. Items are stripped and truncated to `MAX_MEMORY_CHARS`. |
-| `strip_memory_marker` | `(text: str) → str` | Removes the marker block and trailing whitespace (`MEMORY_MARKER_RE.sub + .rstrip()`). |
-| `build_memory_context` | `(memories: list[Memory]) → str` | Formats the most recent `MAX_MEMORIES_CONTEXT` items into a `"Saved memories..."` section for injection into the system prompt. Returns `""` when list is empty. |
-| `save_memories` | `async (db, user_id, items, source) → int` | Persists new items; skips exact duplicates (case-sensitive). Evicts oldest entries (FIFO) before inserting when the total would exceed `MAX_MEMORIES_PER_USER`. Commits the session. Returns the count of actually saved items. |
-| `get_user_memories` | `async (db, user_id) → list[Memory]` | Returns all memories for a user ordered by `created_at ASC`. |
-| `delete_memory` | `async (db, memory_id, user_id) → bool` | Deletes a single memory only if it belongs to `user_id`. Returns `True` on success, `False` if not found or wrong owner. |
-| `clear_all_memories` | `async (db, user_id) → int` | Deletes all memories for a user; returns deleted row count. |
+- **`parse_memory_marker`** — Signature: `(text: str) → list[str]`. Notes: Extracts items from the marker block; returns `[]` on no match or JSON parse error. Items are stripped and truncated to `MAX_MEMORY_CHARS`.
+- **`strip_memory_marker`** — Signature: `(text: str) → str`. Notes: Removes the marker block and trailing whitespace (`MEMORY_MARKER_RE.sub + .rstrip()`).
+- **`build_memory_context`** — Signature: `(memories: list[Memory]) → str`. Notes: Formats the most recent `MAX_MEMORIES_CONTEXT` items into a `"Saved memories..."` section for injection into the system prompt. Returns `""` when list is empty.
+- **`save_memories`** — Signature: `async (db, user_id, items, source) → int`. Notes: Persists new items; skips exact duplicates (case-sensitive). Evicts oldest entries (FIFO) before inserting when the total would exceed `MAX_MEMORIES_PER_USER`. Commits the session. Returns the count of actually saved items.
+- **`get_user_memories`** — Signature: `async (db, user_id) → list[Memory]`. Notes: Returns all memories for a user ordered by `created_at ASC`.
+- **`delete_memory`** — Signature: `async (db, memory_id, user_id) → bool`. Notes: Deletes a single memory only if it belongs to `user_id`. Returns `True` on success, `False` if not found or wrong owner.
+- **`clear_all_memories`** — Signature: `async (db, user_id) → int`. Notes: Deletes all memories for a user; returns deleted row count.
 
 ---
 
@@ -144,11 +143,11 @@ During the LLM streaming loop that drives sentence-by-sentence TTS:
 **Tag:** `memories`  
 **Auth:** all endpoints require `require_subscription`.
 
-| Method | Path | Rate limit | Response | Notes |
-|--------|------|------------|----------|-------|
-| GET | `/api/memories` | 30/min | `MemoryListResponse` | Returns all memories for the current user ordered oldest-first. |
-| DELETE | `/api/memories/{memory_id}` | 30/min | 204 No Content | Returns 404 if not found or owned by a different user. |
-| DELETE | `/api/memories` | 10/min | `ClearAllResponse` | Deletes all memories; returns `{"deleted": N}`. |
+| Method | Path                        | Rate limit | Response             | Notes                                                           |
+| ------ | --------------------------- | ---------- | -------------------- | --------------------------------------------------------------- |
+| GET    | `/api/memories`             | 30/min     | `MemoryListResponse` | Returns all memories for the current user ordered oldest-first. |
+| DELETE | `/api/memories/{memory_id}` | 30/min     | 204 No Content       | Returns 404 if not found or owned by a different user.          |
+| DELETE | `/api/memories`             | 10/min     | `ClearAllResponse`   | Deletes all memories; returns `{"deleted": N}`.                 |
 
 ### Schemas
 
@@ -178,16 +177,16 @@ A **Memory** section is rendered below the legal links:
 
 Keys added to all 10 locale files (`messages/*.json`):
 
-| Namespace | Key | Purpose |
-|-----------|-----|---------|
-| `settings` | `sectionMemory` | Section header |
-| `settings` | `memoryEmpty` | Empty-state hint |
-| `settings` | `memoryClearAll` | "Clear all" button label |
-| `settings` | `memoryClearAllTitle` | ConfirmDialog title |
-| `settings` | `memoryClearAllMessage` | ConfirmDialog body |
-| `settings` | `memoryClearAllConfirm` | ConfirmDialog confirm button |
-| `chat` | `memoryUpdated` | Toast text in text chat |
-| `conversation` | `memoryUpdated` | Toast text in voice conversation |
+| Namespace      | Key                     | Purpose                          |
+| -------------- | ----------------------- | -------------------------------- |
+| `settings`     | `sectionMemory`         | Section header                   |
+| `settings`     | `memoryEmpty`           | Empty-state hint                 |
+| `settings`     | `memoryClearAll`        | "Clear all" button label         |
+| `settings`     | `memoryClearAllTitle`   | ConfirmDialog title              |
+| `settings`     | `memoryClearAllMessage` | ConfirmDialog body               |
+| `settings`     | `memoryClearAllConfirm` | ConfirmDialog confirm button     |
+| `chat`         | `memoryUpdated`         | Toast text in text chat          |
+| `conversation` | `memoryUpdated`         | Toast text in voice conversation |
 
 ---
 
@@ -195,11 +194,11 @@ Keys added to all 10 locale files (`messages/*.json`):
 
 No new environment variables. All limits are hard-coded constants in `memory_service.py` and can be changed there without schema migrations.
 
-| Constant | Default | Effect |
-|----------|---------|--------|
-| `MAX_MEMORIES_PER_USER` | 50 | FIFO eviction threshold |
-| `MAX_MEMORIES_CONTEXT` | 20 | Max injected into prompt per request |
-| `MAX_MEMORY_CHARS` | 200 | Max length per stored item |
+| Constant                | Default | Effect                               |
+| ----------------------- | ------- | ------------------------------------ |
+| `MAX_MEMORIES_PER_USER` | 50      | FIFO eviction threshold              |
+| `MAX_MEMORIES_CONTEXT`  | 20      | Max injected into prompt per request |
+| `MAX_MEMORY_CHARS`      | 200     | Max length per stored item           |
 
 ---
 
@@ -207,22 +206,20 @@ No new environment variables. All limits are hard-coded constants in `memory_ser
 
 **File:** `backend/tests/test_memories.py`
 
-| Test class / function | What it covers |
-|----------------------|----------------|
-| `TestParseMemoryMarker` | single item, multiple items, no marker, invalid JSON, missing `items` key, truncation to 200 chars, multiline marker, empty item filtering |
-| `TestStripMemoryMarker` | removes marker from end, no-op when absent, multiline |
-| `TestBuildMemoryContext` | empty list, formatting, `MAX_MEMORIES_CONTEXT` limiting |
-| `test_list_memories_empty` | GET returns `{"memories": []}` |
-| `test_list_memories_with_items` | GET returns correct content and source |
-| `test_delete_memory` | 204, item gone from DB |
-| `test_delete_memory_not_found` | 404 on unknown id |
-| `test_delete_memory_wrong_user` | 404 when user tries to delete another user's memory (IDOR guard) |
-| `test_clear_all_memories` | 200, count matches, DB empty |
-| `test_memories_require_subscription` | 200 with `STRIPE_ENABLED=false` (self-hosted) |
-| `test_memories_blocked_without_stripe_subscription` | 402 with `STRIPE_ENABLED=true` and no subscription (via `monkeypatch`) |
-| `test_save_memories_persists_and_dedupes` | saves new items, skips exact duplicates |
-| `test_get_user_memories_ordered` | oldest-first ordering |
-| `test_delete_memory_service` | service-layer delete and ownership guard |
-| `test_delete_memory_wrong_user_service` | returns `False` when wrong user_id |
-| `test_clear_all_memories_service` | clears only target user, leaves other users' memories intact |
-| `test_chat_strips_memory_marker_from_response` | marker does not appear in SSE stream body |
+- **`TestParseMemoryMarker`** — single item, multiple items, no marker, invalid JSON, missing `items` key, truncation to 200 chars, multiline marker, empty item filtering
+- **`TestStripMemoryMarker`** — removes marker from end, no-op when absent, multiline
+- **`TestBuildMemoryContext`** — empty list, formatting, `MAX_MEMORIES_CONTEXT` limiting
+- **`test_list_memories_empty`** — GET returns `{"memories": []}`
+- **`test_list_memories_with_items`** — GET returns correct content and source
+- **`test_delete_memory`** — 204, item gone from DB
+- **`test_delete_memory_not_found`** — 404 on unknown id
+- **`test_delete_memory_wrong_user`** — 404 when user tries to delete another user's memory (IDOR guard)
+- **`test_clear_all_memories`** — 200, count matches, DB empty
+- **`test_memories_require_subscription`** — 200 with `STRIPE_ENABLED=false` (self-hosted)
+- **`test_memories_blocked_without_stripe_subscription`** — 402 with `STRIPE_ENABLED=true` and no subscription (via `monkeypatch`)
+- **`test_save_memories_persists_and_dedupes`** — saves new items, skips exact duplicates
+- **`test_get_user_memories_ordered`** — oldest-first ordering
+- **`test_delete_memory_service`** — service-layer delete and ownership guard
+- **`test_delete_memory_wrong_user_service`** — returns `False` when wrong user_id
+- **`test_clear_all_memories_service`** — clears only target user, leaves other users' memories intact
+- **`test_chat_strips_memory_marker_from_response`** — marker does not appear in SSE stream body

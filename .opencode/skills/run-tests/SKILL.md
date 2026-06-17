@@ -38,7 +38,7 @@ Options:
 cd frontend && npm run test:run
 ```
 
-332 tests covering stores, components, lib, middleware, and API interceptor:
+369 tests covering stores, components, lib, middleware, and API interceptor:
 - `lib/api.ts` — auth interceptor, 401 refresh, retry
 - `store/auth.ts` — isSubscribed(), logout
 - `lib/audio.ts` — float32ToWav WAV encoding

@@ -1,0 +1,23 @@
+import { describe, expect, it } from 'vitest'
+import de from '../../../messages/de.json'
+import en from '../../../messages/en.json'
+import es from '../../../messages/es.json'
+import fr from '../../../messages/fr.json'
+import itMessages from '../../../messages/it.json'
+import nl from '../../../messages/nl.json'
+import pl from '../../../messages/pl.json'
+import pt from '../../../messages/pt.json'
+import ro from '../../../messages/ro.json'
+import ru from '../../../messages/ru.json'
+
+const locales = { de, es, fr, it: itMessages, nl, pl, pt, ro, ru }
+
+describe('admin i18n messages', () => {
+  it('keeps admin namespace keys in sync across locales', () => {
+    const expectedKeys = Object.keys(en.admin).sort()
+
+    for (const [locale, messages] of Object.entries(locales)) {
+      expect(Object.keys(messages.admin).sort(), locale).toEqual(expectedKeys)
+    }
+  })
+})
