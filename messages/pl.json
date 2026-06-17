@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Oznaczyć ten adres e-mail jako niezweryfikowany?",
     "subscriptionConfirmTitle": "Zmień subskrypcję",
     "subscriptionConfirmMessage": "Zastosować plan subskrypcji: {plan}?",
-    "subscriptionConfirm": "Zastosuj"
+    "subscriptionConfirm": "Zastosuj",
+    "feedbackStatusError": "Nie udało się zaktualizować statusu opinii.",
+    "feedbackDeleteError": "Nie udało się usunąć wpisu opinii.",
+    "allFeedback": "Wszystkie opinie",
+    "feedbackTotal": "Łącznie opinii",
+    "feedbackQueue": "Kolejka opinii",
+    "feedbackSearchPlaceholder": "Szukaj po tytule, opisie lub autorze...",
+    "feedbackSearchAction": "Szukaj opinii",
+    "feedbackTypeFilter": "Filtruj według typu opinii",
+    "noFilteredFeedback": "Żadna opinia nie pasuje do obecnych filtrów.",
+    "feedbackItem": "Wpis",
+    "type": "Typ",
+    "signals": "Sygnały",
+    "feedbackStatusAction": "Zmień status opinii"
   },
   "faq": {
     "title": "FAQ",

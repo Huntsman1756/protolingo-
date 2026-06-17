@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Marquer cette adresse e-mail comme non vérifiée ?",
     "subscriptionConfirmTitle": "Modifier l’abonnement",
     "subscriptionConfirmMessage": "Appliquer le plan d’abonnement : {plan} ?",
-    "subscriptionConfirm": "Appliquer"
+    "subscriptionConfirm": "Appliquer",
+    "feedbackStatusError": "Impossible de mettre à jour le statut du retour.",
+    "feedbackDeleteError": "Impossible de supprimer l’entrée de retour.",
+    "allFeedback": "Tous les retours",
+    "feedbackTotal": "Total des retours",
+    "feedbackQueue": "File des retours",
+    "feedbackSearchPlaceholder": "Rechercher par titre, description ou auteur...",
+    "feedbackSearchAction": "Rechercher des retours",
+    "feedbackTypeFilter": "Filtrer par type de retour",
+    "noFilteredFeedback": "Aucun retour ne correspond aux filtres actuels.",
+    "feedbackItem": "Entrée",
+    "type": "Type",
+    "signals": "Indicateurs",
+    "feedbackStatusAction": "Modifier le statut du retour"
   },
   "faq": {
     "title": "FAQ",

@@ -10,6 +10,7 @@ import {
   Users,
 } from 'lucide-react'
 import { AdminNav } from '@/components/admin/AdminNav'
+import { AdminPageHeader } from '@/components/admin/AdminShell'
 import { useConfigStore } from '@/store/config'
 
 const actions = [
@@ -39,14 +40,10 @@ export default function AdminOverviewPage() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-4 p-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="text-fl-muted-1 font-mono text-xs tracking-widest uppercase">
-            {t('title')} / {t('overview')}
-          </span>
-        </div>
-      </div>
+      <AdminPageHeader
+        eyebrow={`${t('title')} / ${t('overview')}`}
+        title={t('title')}
+      />
 
       <AdminNav />
 

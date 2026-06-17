@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Marcar este endereço de e-mail como não verificado?",
     "subscriptionConfirmTitle": "Alterar assinatura",
     "subscriptionConfirmMessage": "Aplicar o plano de assinatura: {plan}?",
-    "subscriptionConfirm": "Aplicar"
+    "subscriptionConfirm": "Aplicar",
+    "feedbackStatusError": "Falha ao atualizar o estado do feedback.",
+    "feedbackDeleteError": "Falha ao eliminar a entrada de feedback.",
+    "allFeedback": "Todo o feedback",
+    "feedbackTotal": "Feedback total",
+    "feedbackQueue": "Fila de feedback",
+    "feedbackSearchPlaceholder": "Pesquisar por título, descrição ou autor...",
+    "feedbackSearchAction": "Pesquisar feedback",
+    "feedbackTypeFilter": "Filtrar por tipo de feedback",
+    "noFilteredFeedback": "Nenhum feedback corresponde aos filtros atuais.",
+    "feedbackItem": "Entrada",
+    "type": "Tipo",
+    "signals": "Sinais",
+    "feedbackStatusAction": "Alterar estado do feedback"
   },
   "faq": {
     "title": "FAQ",

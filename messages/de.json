@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Diese E-Mail-Adresse als nicht verifiziert markieren?",
     "subscriptionConfirmTitle": "Abonnement ändern",
     "subscriptionConfirmMessage": "Abonnementplan anwenden: {plan}?",
-    "subscriptionConfirm": "Anwenden"
+    "subscriptionConfirm": "Anwenden",
+    "feedbackStatusError": "Feedback-Status konnte nicht aktualisiert werden.",
+    "feedbackDeleteError": "Feedback-Eintrag konnte nicht gelöscht werden.",
+    "allFeedback": "Alles Feedback",
+    "feedbackTotal": "Feedback gesamt",
+    "feedbackQueue": "Feedback-Warteschlange",
+    "feedbackSearchPlaceholder": "Nach Titel, Beschreibung oder Autor suchen...",
+    "feedbackSearchAction": "Feedback suchen",
+    "feedbackTypeFilter": "Nach Feedback-Typ filtern",
+    "noFilteredFeedback": "Kein Feedback entspricht den aktuellen Filtern.",
+    "feedbackItem": "Eintrag",
+    "type": "Typ",
+    "signals": "Signale",
+    "feedbackStatusAction": "Feedback-Status ändern"
   },
   "faq": {
     "title": "FAQ",

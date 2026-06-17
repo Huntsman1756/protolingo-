@@ -72,7 +72,7 @@ backend/
 │   │   ├── contact.py           # Contact form submission
 │   │   ├── conversation.py      # WebSocket voice conversation
 │   │   ├── curriculum.py        # Curriculum data (now auth-required)
-│   │   ├── feedback.py          # Feedback board CRUD
+│   │   ├── feedback.py          # Feedback board CRUD, filters, search, admin status management
 │   │   ├── flashcards.py        # Spaced-repetition flashcard CRUD + review
 │   │   ├── grammar.py            # Grammar reference topics by language and CEFR level
 │   │   ├── health.py            # Health check

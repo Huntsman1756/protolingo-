@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Contrassegnare questo indirizzo e-mail come non verificato?",
     "subscriptionConfirmTitle": "Modifica abbonamento",
     "subscriptionConfirmMessage": "Applicare il piano di abbonamento: {plan}?",
-    "subscriptionConfirm": "Applica"
+    "subscriptionConfirm": "Applica",
+    "feedbackStatusError": "Impossibile aggiornare lo stato del feedback.",
+    "feedbackDeleteError": "Impossibile eliminare la voce di feedback.",
+    "allFeedback": "Tutti i feedback",
+    "feedbackTotal": "Feedback totale",
+    "feedbackQueue": "Coda feedback",
+    "feedbackSearchPlaceholder": "Cerca per titolo, descrizione o autore...",
+    "feedbackSearchAction": "Cerca feedback",
+    "feedbackTypeFilter": "Filtra per tipo di feedback",
+    "noFilteredFeedback": "Nessun feedback corrisponde ai filtri attuali.",
+    "feedbackItem": "Voce",
+    "type": "Tipo",
+    "signals": "Segnali",
+    "feedbackStatusAction": "Cambia stato del feedback"
   },
   "faq": {
     "title": "FAQ",

@@ -73,7 +73,7 @@ Creates `feedback_entries`, `feedback_votes`, `feedback_comments` with all index
 
 ### Endpoints
 
-- **GET `/`** — Rate limit: 60/min. Auth: get_current_user. Notes: Accepts `type`, `status` (alias for `status_filter`), `sort` (votes\|date), `order` (asc\|desc), `skip`, `limit`. Count runs against `stmt.subquery()` for accurate filtered totals.
+- **GET `/`** — Rate limit: 60/min. Auth: get_current_user. Notes: Accepts `q` (title, description, username, or display name search; max 100 chars), `type`, `status` (alias for `status_filter`), `sort` (votes\|date), `order` (asc\|desc), `skip`, `limit`. Count runs against `stmt.subquery()` for accurate filtered totals.
 - **POST `/`** — Rate limit: 10/hour. Auth: get_current_user. Notes: Creates entry with status `pending`. Returns HTTP 201. Fires an admin email notification (see below).
 - **GET `/{id}`** — Rate limit: 60/min. Auth: get_current_user. Notes: Returns `FeedbackEntryDetail` with comments list (ordered by `created_at ASC`).
 - **DELETE `/{id}`** — Rate limit: 20/min. Auth: get_current_user. Notes: Allowed if `author_id == current_user.id` OR `current_user.role == "admin"`. Returns HTTP 204.
@@ -131,7 +131,7 @@ Creates `feedback_entries`, `feedback_votes`, `feedback_comments` with all index
 
 ### `/admin/feedback` (`frontend/src/app/(app)/admin/feedback/page.tsx`)
 
-Paginated table of all entries (admin only). Filters: type (all/feature/bug) and status. Status can be changed inline — clicking the status badge opens a `<select>`, changing the value triggers `PATCH /{id}/status` and closes. Delete with `ConfirmDialog`. The page includes the shared `AdminNav` navigation alongside `/admin` and `/admin/users`.
+Paginated feedback queue for admins. Filters: `q` search, type (all/feature/bug), status, and sort (date/votes). The page uses shared admin primitives (`AdminPageHeader`, `AdminPanel`, `AdminMetric`, `AdminBadge`) and renders a dense desktop table plus responsive mobile cards. Status changes use an inline `<select>` and trigger `PATCH /{id}/status`; delete uses `ConfirmDialog`. The page includes the shared `AdminNav` navigation alongside `/admin` and `/admin/users`.
 
 ---
 
@@ -145,7 +145,7 @@ Paginated table of all entries (admin only). Filters: type (all/feature/bug) and
 
 ## i18n
 
-`feedback` namespace (44 keys) added to all 10 locale files: `en`, `es`, `fr`, `de`, `it`, `nl`, `pl`, `pt`, `ro`, `ru`. `nav.feedback` key added to all 10 locales. All non-English locales have full native translations for UI strings and status labels.
+`feedback` namespace (44 keys) added to all 10 locale files: `en`, `es`, `fr`, `de`, `it`, `nl`, `pl`, `pt`, `ro`, `ru`. `nav.feedback` key added to all 10 locales. Admin feedback queue labels live in the `admin` namespace. All non-English locales have full native translations for UI strings and status labels.
 
 ---
 

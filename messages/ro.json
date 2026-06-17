@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Marchezi această adresă de e-mail ca neverificată?",
     "subscriptionConfirmTitle": "Schimbă abonamentul",
     "subscriptionConfirmMessage": "Aplici planul de abonament: {plan}?",
-    "subscriptionConfirm": "Aplică"
+    "subscriptionConfirm": "Aplică",
+    "feedbackStatusError": "Nu s-a putut actualiza starea feedbackului.",
+    "feedbackDeleteError": "Nu s-a putut șterge intrarea de feedback.",
+    "allFeedback": "Tot feedbackul",
+    "feedbackTotal": "Feedback total",
+    "feedbackQueue": "Coadă feedback",
+    "feedbackSearchPlaceholder": "Caută după titlu, descriere sau autor...",
+    "feedbackSearchAction": "Caută feedback",
+    "feedbackTypeFilter": "Filtrează după tipul feedbackului",
+    "noFilteredFeedback": "Niciun feedback nu corespunde filtrelor actuale.",
+    "feedbackItem": "Intrare",
+    "type": "Tip",
+    "signals": "Semnale",
+    "feedbackStatusAction": "Schimbă starea feedbackului"
   },
   "faq": {
     "title": "Întrebări frecvente",

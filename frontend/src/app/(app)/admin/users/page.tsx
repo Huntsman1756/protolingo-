@@ -16,6 +16,7 @@ import {
   UserPlus,
 } from 'lucide-react'
 import { AdminNav } from '@/components/admin/AdminNav'
+import { AdminPageHeader } from '@/components/admin/AdminShell'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { PageLoading } from '@/components/ui/page-loading'
 import { Pagination } from '@/components/ui/pagination'
@@ -357,35 +358,33 @@ export default function AdminUsersPage() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-4 p-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <span className="text-fl-label text-fl-muted-2">●</span>
-          <span className="text-fl-muted-1 font-mono text-xs tracking-widest uppercase">
-            {t('title')} / {t('users')}
-          </span>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={generateInvite}
-            disabled={actionBusy === 'invite'}
-            className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 inline-flex items-center gap-2 border px-3 py-2 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
-          >
-            {actionBusy === 'invite' ? (
-              <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
-            ) : (
-              <LinkIcon className="size-3.5" aria-hidden="true" />
-            )}
-            {t('inviteBtn')}
-          </button>
-          <button
-            onClick={() => setShowCreate(true)}
-            className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 inline-flex items-center gap-2 px-3 py-2 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
-          >
-            <Plus className="size-3.5" aria-hidden="true" />
-            {t('createUserBtn')}
-          </button>
-        </div>
-      </div>
+      <AdminPageHeader
+        eyebrow={`${t('title')} / ${t('users')}`}
+        title={t('users')}
+        actions={
+          <>
+            <button
+              onClick={generateInvite}
+              disabled={actionBusy === 'invite'}
+              className="border-fl-border text-fl-label text-fl-muted-1 hover:text-fl-fg hover:border-fl-border-2 inline-flex items-center gap-2 border px-3 py-2 font-mono tracking-widest uppercase transition-colors disabled:opacity-40"
+            >
+              {actionBusy === 'invite' ? (
+                <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
+              ) : (
+                <LinkIcon className="size-3.5" aria-hidden="true" />
+              )}
+              {t('inviteBtn')}
+            </button>
+            <button
+              onClick={() => setShowCreate(true)}
+              className="bg-fl-accent text-fl-accent-fg hover:bg-fl-accent/90 inline-flex items-center gap-2 px-3 py-2 font-mono text-xs font-bold tracking-widest uppercase transition-colors"
+            >
+              <Plus className="size-3.5" aria-hidden="true" />
+              {t('createUserBtn')}
+            </button>
+          </>
+        }
+      />
 
       <AdminNav />
 

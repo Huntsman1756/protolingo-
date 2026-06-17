@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Mark this email address as unverified?",
     "subscriptionConfirmTitle": "Change subscription",
     "subscriptionConfirmMessage": "Apply subscription plan: {plan}?",
-    "subscriptionConfirm": "Apply"
+    "subscriptionConfirm": "Apply",
+    "feedbackStatusError": "Failed to update feedback status.",
+    "feedbackDeleteError": "Failed to delete feedback entry.",
+    "allFeedback": "All feedback",
+    "feedbackTotal": "Total feedback",
+    "feedbackQueue": "Feedback queue",
+    "feedbackSearchPlaceholder": "Search by title, description, or author...",
+    "feedbackSearchAction": "Search feedback",
+    "feedbackTypeFilter": "Filter by feedback type",
+    "noFilteredFeedback": "No feedback matches the current filters.",
+    "feedbackItem": "Entry",
+    "type": "Type",
+    "signals": "Signals",
+    "feedbackStatusAction": "Change feedback status"
   },
   "faq": {
     "title": "FAQ",

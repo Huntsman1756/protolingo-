@@ -232,7 +232,7 @@ All endpoints require `require_subscription` (or `get_current_user` where noted)
 
 All endpoints require `get_current_user`. Status update requires `require_admin`.
 
-- **GET ``** — Rate limit: 60/min. Auth: get_current_user. Returns paginated list of feedback entries. Query params: `type` (`feature`\|`bug`), `status` (`pending`\|`planned`\|`in_progress`\|`done`\|`declined`), `sort` (`votes`\|`date`, default `votes`), `order` (`asc`\|`desc`, default `desc`), `skip` (default 0), `limit` (default 20, max 100). Response: `{items, total, skip, limit}`. Each item includes `voted_by_me` and `comment_count` fields injected server-side.
+- **GET ``** — Rate limit: 60/min. Auth: get_current_user. Returns paginated list of feedback entries. Query params: `q` (search by title, description, username, or display name; max 100 chars), `type` (`feature`\|`bug`), `status` (`pending`\|`planned`\|`in_progress`\|`done`\|`declined`), `sort` (`votes`\|`date`, default `votes`), `order` (`asc`\|`desc`, default `desc`), `skip` (default 0), `limit` (default 20, max 100). Response: `{items, total, skip, limit}`. Each item includes `voted_by_me` and `comment_count` fields injected server-side.
 - **POST ``** — Rate limit: 10/hour. Auth: get_current_user. Creates a new feature request or bug report. Body: `{type, title, description}`. Returns HTTP 201 + the created entry.
 - **GET `/{id}`** — Rate limit: 60/min. Auth: get_current_user. Returns a single entry with its full comment thread ordered by `created_at ASC`.
 - **DELETE `/{id}`** — Rate limit: 20/min. Auth: get_current_user. Deletes an entry. Author can delete their own; admin can delete any. Cascade-deletes all votes and comments. Returns HTTP 204.

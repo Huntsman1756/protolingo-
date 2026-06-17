@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Dit e-mailadres als niet geverifieerd markeren?",
     "subscriptionConfirmTitle": "Abonnement wijzigen",
     "subscriptionConfirmMessage": "Abonnementsplan toepassen: {plan}?",
-    "subscriptionConfirm": "Toepassen"
+    "subscriptionConfirm": "Toepassen",
+    "feedbackStatusError": "Kan feedbackstatus niet bijwerken.",
+    "feedbackDeleteError": "Kan feedbackitem niet verwijderen.",
+    "allFeedback": "Alle feedback",
+    "feedbackTotal": "Totaal feedback",
+    "feedbackQueue": "Feedbackwachtrij",
+    "feedbackSearchPlaceholder": "Zoek op titel, beschrijving of auteur...",
+    "feedbackSearchAction": "Feedback zoeken",
+    "feedbackTypeFilter": "Filteren op feedbacktype",
+    "noFilteredFeedback": "Geen feedback komt overeen met de huidige filters.",
+    "feedbackItem": "Item",
+    "type": "Type",
+    "signals": "Signalen",
+    "feedbackStatusAction": "Feedbackstatus wijzigen"
   },
   "faq": {
     "title": "FAQ",

@@ -849,7 +849,20 @@
     "unverifyEmailConfirmMessage": "Отметить этот адрес e-mail как неподтверждённый?",
     "subscriptionConfirmTitle": "Изменить подписку",
     "subscriptionConfirmMessage": "Применить план подписки: {plan}?",
-    "subscriptionConfirm": "Применить"
+    "subscriptionConfirm": "Применить",
+    "feedbackStatusError": "Не удалось обновить статус обратной связи.",
+    "feedbackDeleteError": "Не удалось удалить запись обратной связи.",
+    "allFeedback": "Вся обратная связь",
+    "feedbackTotal": "Всего отзывов",
+    "feedbackQueue": "Очередь обратной связи",
+    "feedbackSearchPlaceholder": "Поиск по заголовку, описанию или автору...",
+    "feedbackSearchAction": "Искать обратную связь",
+    "feedbackTypeFilter": "Фильтр по типу обратной связи",
+    "noFilteredFeedback": "Нет отзывов, соответствующих текущим фильтрам.",
+    "feedbackItem": "Запись",
+    "type": "Тип",
+    "signals": "Сигналы",
+    "feedbackStatusAction": "Изменить статус обратной связи"
   },
   "faq": {
     "title": "Вопросы и ответы",
