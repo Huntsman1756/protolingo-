@@ -1074,6 +1074,7 @@
     "paywallTitle": "Deblochează FreeLingo Premium",
     "paywallDesc": "Încearcă gratuit {days} zile, fără taxe azi. Anulează oricând.",
     "paywallNoCharge": "Card necesar · nicio taxă până la sfârșitul perioadei de probă · anulează oricând",
+    "paywallSkip": "Continuă cu funcțiile gratuite",
     "planMonthly": "— Începe la {price}€/lună →",
     "planYearly": "— Începe la {price}€/an →",
     "checkoutError": "Nu s-a putut iniția plata. Încearcă din nou.",

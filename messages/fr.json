@@ -1074,6 +1074,7 @@
     "paywallTitle": "Débloquer FreeLingo Premium",
     "paywallDesc": "Commencez votre essai gratuit de {days} jours, sans frais aujourd'hui. Annulez à tout moment.",
     "paywallNoCharge": "Carte requise · aucun débit avant la fin de l'essai · annulez à tout moment",
+    "paywallSkip": "Continuer avec les fonctions gratuites",
     "planMonthly": "— Démarrer pour {price}€/mois →",
     "planYearly": "— Démarrer pour {price}€/an →",
     "checkoutError": "Impossible de lancer le paiement. Veuillez réessayer.",

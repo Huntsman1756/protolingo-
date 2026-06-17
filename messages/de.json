@@ -1074,6 +1074,7 @@
     "paywallTitle": "FreeLingo Premium freischalten",
     "paywallDesc": "Starte deine {days}-tägige kostenlose Testversion, heute ohne Kosten. Jederzeit kündbar.",
     "paywallNoCharge": "Karte erforderlich · Keine Abbuchung bis Testende · Jederzeit kündbar",
+    "paywallSkip": "Mit kostenlosen Funktionen fortfahren",
     "planMonthly": "— Starten für {price}€/Monat →",
     "planYearly": "— Starten für {price}€/Jahr →",
     "checkoutError": "Checkout konnte nicht gestartet werden. Bitte erneut versuchen.",

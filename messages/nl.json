@@ -1074,6 +1074,7 @@
     "paywallTitle": "Ontgrendel FreeLingo Premium",
     "paywallDesc": "Start je gratis proefperiode van {days} dagen, vandaag geen kosten. Altijd opzegbaar.",
     "paywallNoCharge": "Kaart vereist · geen kosten tot einde proefperiode · altijd opzegbaar",
+    "paywallSkip": "Doorgaan met gratis functies",
     "planMonthly": "— Starten voor €{price}/maand →",
     "planYearly": "— Starten voor €{price}/jaar →",
     "checkoutError": "Betaling kon niet worden gestart. Probeer opnieuw.",

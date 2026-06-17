@@ -1074,6 +1074,7 @@
     "paywallTitle": "Sblocca FreeLingo Premium",
     "paywallDesc": "Inizia la tua prova gratuita di {days} giorni, nessun addebito oggi. Annulla quando vuoi.",
     "paywallNoCharge": "Carta richiesta · nessun addebito fino alla fine della prova · annulla quando vuoi",
+    "paywallSkip": "Continua con le funzioni gratuite",
     "planMonthly": "— Inizia a {price}€/mese →",
     "planYearly": "— Inizia a {price}€/anno →",
     "checkoutError": "Impossibile avviare il pagamento. Riprova.",

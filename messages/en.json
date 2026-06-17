@@ -1074,6 +1074,7 @@
     "paywallTitle": "Unlock FreeLingo Premium",
     "paywallDesc": "Start your {days}-day free trial, no charge today. Cancel anytime.",
     "paywallNoCharge": "Card required · No charge until trial ends · Cancel anytime",
+    "paywallSkip": "Continue with free features",
     "planMonthly": "— Start for €{price}/month →",
     "planYearly": "— Start for €{price}/year →",
     "checkoutError": "Unable to start checkout. Please try again.",
