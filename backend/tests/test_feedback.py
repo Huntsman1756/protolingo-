@@ -152,6 +152,106 @@ async def test_list_feedback_filter_by_status(client, test_user, db_session):
 
 
 @pytest.mark.asyncio
+async def test_list_feedback_search_by_title_and_description(client, test_user, db_session):
+    """Filtering by q searches title and description."""
+    from datetime import datetime, timezone
+
+    from app.models.feedback import FeedbackEntry
+
+    user, headers = test_user
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Calendar practice mode",
+            description="Unrelated body",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="bug",
+            title="Generic title",
+            description="Audio calendar playback fails",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Vocabulary export",
+            description="Download words as CSV",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    await db_session.commit()
+
+    resp = await client.get("/api/feedback?q=calendar", headers=headers)
+    assert resp.status_code == 200
+    titles = {entry["title"] for entry in resp.json()["items"]}
+    assert titles == {"Calendar practice mode", "Generic title"}
+
+
+@pytest.mark.asyncio
+async def test_list_feedback_search_by_author(client, test_user, db_session):
+    """Filtering by q searches author username and display name."""
+    from datetime import datetime, timezone
+
+    from app.core.security import hash_password
+    from app.models.feedback import FeedbackEntry
+    from app.models.user import User
+
+    user, headers = test_user
+    author = User(
+        username="feedbackauthor",
+        email="feedbackauthor@test.com",
+        display_name="Special Author",
+        hashed_password=hash_password("pass1234"),
+        role="user",
+        native_language="es",
+        is_active=True,
+    )
+    db_session.add(author)
+    await db_session.flush()
+
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Author match",
+            description="Matches by display name",
+            status="pending",
+            author_id=author.id,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Other author",
+            description="Does not match",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    await db_session.commit()
+
+    resp = await client.get("/api/feedback?q=special", headers=headers)
+    assert resp.status_code == 200
+    items = resp.json()["items"]
+    assert len(items) == 1
+    assert items[0]["title"] == "Author match"
+    assert items[0]["author"]["username"] == "feedbackauthor"
+
+
+@pytest.mark.asyncio
 async def test_list_feedback_sorted_by_votes(client, test_user, db_session):
     """Default sort is by votes descending."""
     from datetime import datetime, timezone

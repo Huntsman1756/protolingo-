@@ -1,8 +1,131 @@
-"""Extra admin tests: GET /users/{id}/stats and GET /users/{id}/quota."""
+"""Extra admin tests: overview stats, user stats and quota."""
 
 from __future__ import annotations
 
 import pytest
+
+# ── GET /api/admin/stats ─────────────────────────────────────────────────────
+
+
+@pytest.mark.asyncio
+async def test_admin_overview_stats_base_counts(client, admin_user, test_user):
+    """Overview stats include base user counts for an admin request."""
+    _, admin_headers = admin_user
+
+    response = await client.get("/api/admin/stats", headers=admin_headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["users_total"] == 2
+    assert data["users_active"] == 2
+    assert data["users_inactive"] == 0
+    assert data["subscriptions_active"] == 0
+    assert data["subscriptions_trialing"] == 0
+    assert data["subscriptions_past_due"] == 0
+    assert data["feedback_total"] == 0
+    assert data["feedback_pending"] == 0
+    assert data["feedback_bug_pending"] == 0
+
+
+@pytest.mark.asyncio
+async def test_admin_overview_stats_counts_operational_signals(
+    client, admin_user, test_user, db_session
+):
+    """Overview stats count subscriptions and feedback triage signals."""
+    from datetime import datetime, timezone
+
+    from app.core.security import hash_password
+    from app.models.feedback import FeedbackEntry
+    from app.models.user import User
+
+    admin, admin_headers = admin_user
+    user, _ = test_user
+
+    user.subscription_status = "active"
+    db_session.add(
+        User(
+            username="trial-stats-user",
+            email="trial-stats-user@test.com",
+            display_name="Trial Stats User",
+            hashed_password=hash_password("pass1234"),
+            role="user",
+            native_language="es",
+            is_active=True,
+            subscription_status="trialing",
+        )
+    )
+    db_session.add(
+        User(
+            username="past-due-stats-user",
+            email="past-due-stats-user@test.com",
+            display_name="Past Due Stats User",
+            hashed_password=hash_password("pass1234"),
+            role="user",
+            native_language="es",
+            is_active=False,
+            subscription_status="past_due",
+        )
+    )
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    db_session.add(
+        FeedbackEntry(
+            type="bug",
+            title="Pending bug",
+            description="Needs triage",
+            status="pending",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="feature",
+            title="Pending feature",
+            description="Needs planning",
+            status="pending",
+            author_id=admin.id,
+            created_at=now,
+        )
+    )
+    db_session.add(
+        FeedbackEntry(
+            type="bug",
+            title="Done bug",
+            description="Already fixed",
+            status="done",
+            author_id=user.id,
+            created_at=now,
+        )
+    )
+    await db_session.commit()
+
+    response = await client.get("/api/admin/stats", headers=admin_headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["users_total"] == 4
+    assert data["users_active"] == 3
+    assert data["users_inactive"] == 1
+    assert data["subscriptions_active"] == 1
+    assert data["subscriptions_trialing"] == 1
+    assert data["subscriptions_past_due"] == 1
+    assert data["feedback_total"] == 3
+    assert data["feedback_pending"] == 2
+    assert data["feedback_bug_pending"] == 1
+
+
+@pytest.mark.asyncio
+async def test_admin_overview_stats_requires_admin(client, test_user):
+    """Regular users cannot access overview stats."""
+    _, headers = test_user
+    response = await client.get("/api/admin/stats", headers=headers)
+    assert response.status_code == 403
+
+
+@pytest.mark.asyncio
+async def test_admin_overview_stats_requires_auth(client):
+    """Unauthenticated requests cannot access overview stats."""
+    response = await client.get("/api/admin/stats")
+    assert response.status_code == 401
+
 
 # ── GET /api/admin/users/{id}/stats ──────────────────────────────────────────
 

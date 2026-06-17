@@ -44,6 +44,7 @@ The backend acts as the sole gateway — the frontend never calls Kokoro or Whis
 ### Backend integration (`app/services/tts_service.py`)
 
 The `TTSService` class wraps the Kokoro HTTP API:
+
 - `synthesize(text, voice)` → returns raw MP3 bytes
 - HTTP POST to `{base_url}/v1/audio/speech` with JSON body
 - 30-second timeout
@@ -76,6 +77,7 @@ The `TTSService` class wraps the Kokoro HTTP API:
 ### Backend integration (`app/services/stt_service.py`)
 
 The `STTService` class wraps the Whisper HTTP API:
+
 - `transcribe(audio_bytes, filename)` → returns transcribed text string
 - HTTP POST to `POST /asr?output=json&language=en&task=transcribe`
 - Multipart upload with `audio_file` field
@@ -95,15 +97,15 @@ The `STTService` class wraps the Whisper HTTP API:
 
 ## Environment variables (`.env` additions)
 
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `TTS_ENABLED` | `false` | Enable Kokoro TTS proxy |
-| `TTS_BASE_URL` | `http://kokoro:8880` | Kokoro service URL |
-| `TTS_VOICE` | `af_heart` | Default TTS voice |
-| `STT_ENABLED` | `false` | Enable Whisper STT proxy |
-| `STT_BASE_URL` | `http://whisper:9000` | Whisper service URL |
-| `STT_MODEL` | `large-v3-turbo` | Whisper model (also: `tiny.en`, `small`, `medium`, `large-v3`) |
-| `STT_ENGINE` | `faster_whisper` | Inference engine (`faster_whisper` or `ctranslate2`) |
+| Variable       | Default               | Purpose                                                        |
+| -------------- | --------------------- | -------------------------------------------------------------- |
+| `TTS_ENABLED`  | `false`               | Enable Kokoro TTS proxy                                        |
+| `TTS_BASE_URL` | `http://kokoro:8880`  | Kokoro service URL                                             |
+| `TTS_VOICE`    | `af_heart`            | Default TTS voice                                              |
+| `STT_ENABLED`  | `false`               | Enable Whisper STT proxy                                       |
+| `STT_BASE_URL` | `http://whisper:9000` | Whisper service URL                                            |
+| `STT_MODEL`    | `large-v3-turbo`      | Whisper model (also: `tiny.en`, `small`, `medium`, `large-v3`) |
+| `STT_ENGINE`   | `faster_whisper`      | Inference engine (`faster_whisper` or `ctranslate2`)           |
 
 Both `TTS_ENABLED` and `STT_ENABLED` must be `true` for the Phase 3 voice conversation WebSocket to accept connections.
 
@@ -114,6 +116,7 @@ Both `TTS_ENABLED` and `STT_ENABLED` must be `true` for the Phase 3 voice conver
 ### AudioPlayer (`components/ui/AudioPlayer.tsx`)
 
 Reusable button component for TTS playback:
+
 - Calls `POST /api/tts` with text and optional voice override
 - Receives `audio/mpeg` binary
 - Plays via browser `Audio` API (`new Audio(blobUrl).play()`)
@@ -121,6 +124,7 @@ Reusable button component for TTS playback:
 - Shows loading spinner during TTS generation
 
 Used in:
+
 - **Flashcards**: 🔊 button on each card for word pronunciation
 - **Lessons**: 🔊 button on example sentences and vocabulary items
 - **Pronunciation exercises**: the target sentence always has audio
@@ -128,6 +132,7 @@ Used in:
 ### VoiceRecorder (`components/ui/VoiceRecorder.tsx`)
 
 Reusable button component for STT recording:
+
 - Requests microphone via `navigator.mediaDevices.getUserMedia({ audio: true })`
 - Records audio using `MediaRecorder` API (codec: `audio/webm`)
 - Maximum recording length: configurable via `maxSeconds` prop (default 5 s for exercises, unlimited for conversation)
@@ -143,10 +148,12 @@ Reusable button component for STT recording:
 ### New exercise type: `pronunciation`
 
 Added to the exercise mix in lesson content. Properties:
+
 - `target_sentence`: the English text to pronounce
 - `hint`: guidance about the sound or pattern to practice (e.g. "Focus on the 'th' sound")
 
 User flow:
+
 1. Student sees the target sentence
 2. Presses 🔊 to hear the correct pronunciation (TTS)
 3. Presses microphone button to record their own pronunciation
@@ -158,18 +165,19 @@ The pronunciation evaluation prompt (`PRONUNCIATION_EVAL_PROMPT` in `services/le
 
 ### Scoring guidelines
 
-| Score | Meaning | Criteria |
-|-------|---------|----------|
-| 0.9–1.0 | Excellent | Near-native pronunciation, all phonemes correct |
-| 0.7–0.89 | Good | Minor errors, understandable |
-| 0.4–0.69 | Needs work | Several phoneme errors, still intelligible |
-| 0.0–0.39 | Poor | Mostly unintelligible or no speech detected |
+| Score    | Meaning    | Criteria                                        |
+| -------- | ---------- | ----------------------------------------------- |
+| 0.9–1.0  | Excellent  | Near-native pronunciation, all phonemes correct |
+| 0.7–0.89 | Good       | Minor errors, understandable                    |
+| 0.4–0.69 | Needs work | Several phoneme errors, still intelligible      |
+| 0.0–0.39 | Poor       | Mostly unintelligible or no speech detected     |
 
 ---
 
 ## Flashcards speaking mode
 
 An additional review mode on the `/flashcards` page:
+
 - Shows the English definition (not the word)
 - User speaks the word aloud
 - STT transcribes the audio
@@ -183,10 +191,10 @@ An additional review mode on the `/flashcards` page:
 
 Both TTS and STT use dedicated Next.js Route Handlers to avoid issues with Next.js rewrites buffering or transforming binary/multipart data:
 
-| Proxy | Route Handler | Purpose |
-|-------|--------------|---------|
-| TTS | `src/app/api/tts/route.ts` | Forwards binary audio without transformation |
-| STT | `src/app/api/stt/route.ts` | Forwards multipart form-data preserving file attachment |
+| Proxy | Route Handler              | Purpose                                                 |
+| ----- | -------------------------- | ------------------------------------------------------- |
+| TTS   | `src/app/api/tts/route.ts` | Forwards binary audio without transformation            |
+| STT   | `src/app/api/stt/route.ts` | Forwards multipart form-data preserving file attachment |
 
 Both proxies attach the `Authorization` header from the auth store and forward the response body unchanged.
 
@@ -196,9 +204,9 @@ Both proxies attach the `Authorization` header from the auth store and forward t
 
 Both services default to GPU images with CUDA support. For CPU-only hosts:
 
-| Service | CPU image | Additional changes |
-|---------|-----------|-------------------|
-| Kokoro TTS | `ghcr.io/remsky/kokoro-fastapi-cpu:latest` | Remove the `deploy.resources.reservations.devices` block |
+| Service     | CPU image                                        | Additional changes                                                                       |
+| ----------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| Kokoro TTS  | `ghcr.io/remsky/kokoro-fastapi-cpu:latest`       | Remove the `deploy.resources.reservations.devices` block                                 |
 | Whisper STT | `onerahmet/openai-whisper-asr-webservice:latest` | Remove the `deploy` block; set `STT_MODEL=tiny.en` or `small` for acceptable performance |
 
 The `deploy` block must be removed entirely on CPU hosts — Docker will error if it references NVIDIA devices without the NVIDIA runtime installed.

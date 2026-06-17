@@ -53,6 +53,7 @@ The `ConversationMode` component is dynamically imported with `ssr: false` (no s
 - **Detection**: `useMicVAD` hook with `onSpeechEnd` callback — fires automatically when the user stops speaking
 
 **COOP/COEP headers**: Threaded WASM requires `SharedArrayBuffer`, which browsers only expose when the page has specific cross-origin isolation headers. The Next.js config adds:
+
 - `Cross-Origin-Opener-Policy: same-origin`
 - `Cross-Origin-Embedder-Policy: credentialless`
 
@@ -72,6 +73,7 @@ Automatic barge-in is disabled by default in the frontend (`ENABLE_CONVERSATION_
 ### Transcript bubbles
 
 Each turn (user speech and AI response) is rendered as a `TranscriptBubble` in a scrollable list. Shows:
+
 - Role label ("You" / "AI Tutor")
 - Spoken/preview text (streaming indicator while AI is generating)
 - Bubbles are color-coded: user (accent) / AI (muted background)
@@ -79,6 +81,7 @@ Each turn (user speech and AI response) is rendered as a `TranscriptBubble` in a
 ### Session timeout UI
 
 Two timeout mechanisms with visual warnings:
+
 - **Max duration**: total session length (default 30 min), configurable per user
 - **Inactivity**: silent period before disconnect (default 3 min), configurable per user
 
@@ -97,18 +100,18 @@ At T-60 seconds, a `SessionTimeoutBanner` appears with a countdown. When the tim
 
 ### Message types
 
-| Direction | Type | Description |
-|-----------|------|-------------|
-| Client → Server | binary | WAV audio frame (float32 PCM, 16kHz mono) |
-| Client → Server | `interrupt` | Optional manual interruption message; cancels current generation |
-| Server → Client | `status` | Pipeline state (`transcribing`, `thinking`, `speaking`, `listening`) |
-| Server → Client | `transcript` | User STT result and assistant final text |
-| Server → Client | binary | MP3 audio chunk for the assistant turn |
-| Server → Client | `barge_in` | Current response cancelled, new input being processed |
-| Server → Client | `turn_complete` | Assistant turn completed server-side after audio has been generated and sent |
-| Server → Client | `session_warning` | Timeout warning (60 s remaining) |
-| Server → Client | `session_end` | Session terminated by timeout |
-| Server → Client | `error` | Pipeline error with message |
+| Direction       | Type              | Description                                                                  |
+| --------------- | ----------------- | ---------------------------------------------------------------------------- |
+| Client → Server | binary            | WAV audio frame (float32 PCM, 16kHz mono)                                    |
+| Client → Server | `interrupt`       | Optional manual interruption message; cancels current generation             |
+| Server → Client | `status`          | Pipeline state (`transcribing`, `thinking`, `speaking`, `listening`)         |
+| Server → Client | `transcript`      | User STT result and assistant final text                                     |
+| Server → Client | binary            | MP3 audio chunk for the assistant turn                                       |
+| Server → Client | `barge_in`        | Current response cancelled, new input being processed                        |
+| Server → Client | `turn_complete`   | Assistant turn completed server-side after audio has been generated and sent |
+| Server → Client | `session_warning` | Timeout warning (60 s remaining)                                             |
+| Server → Client | `session_end`     | Session terminated by timeout                                                |
+| Server → Client | `error`           | Pipeline error with message                                                  |
 
 ---
 
@@ -117,6 +120,7 @@ At T-60 seconds, a `SessionTimeoutBanner` appears with a countdown. When the tim
 ### Initialization
 
 On WebSocket connect:
+
 1. Decode JWT, fetch user from DB
 2. Read user's `conversation_max_duration` and `conversation_inactivity_timeout` from the User model
 3. Build system prompt with conversation partner persona (same CEFR-aware, no-emoji rule as chat tutor)
@@ -145,16 +149,17 @@ Assistant text is not sent to the frontend before TTS succeeds. The backend firs
 
 Two asyncio tasks run concurrently with the main pipeline loop:
 
-| Timer | Default | User-configurable | Warning |
-|-------|---------|-------------------|---------|
-| Max duration | 1800 s (30 min) | `conversation_max_duration` (from user table) | 60 s warning via `session_warning` message |
-| Inactivity | 180 s (3 min) | `conversation_inactivity_timeout` (from user table) | 60 s warning via `session_warning` message |
+| Timer        | Default         | User-configurable                                   | Warning                                    |
+| ------------ | --------------- | --------------------------------------------------- | ------------------------------------------ |
+| Max duration | 1800 s (30 min) | `conversation_max_duration` (from user table)       | 60 s warning via `session_warning` message |
+| Inactivity   | 180 s (3 min)   | `conversation_inactivity_timeout` (from user table) | 60 s warning via `session_warning` message |
 
 The inactivity timer resets on each received audio chunk. When either timeout fires, a `session_end` message is sent and the WebSocket connection is closed cleanly.
 
 ### Structured logging
 
 Pipeline events are logged with structured prefixes:
+
 - `[conversation]` — connection lifecycle (connect, disconnect, auth errors)
 - `[pipeline]` — flow events (STT completed, sentence flush, barge-in, timeout)
 - `[stt]` — STT request/response details
@@ -180,10 +185,10 @@ Voice conversations are **persisted incrementally** to the same `chat_history` t
 
 Users configure their voice conversation preferences from `/settings`:
 
-| Setting | Default | Range | Purpose |
-|---------|---------|-------|---------|
-| Conversation max duration | 30 min | 1–60 min | Total session length |
-| Conversation inactivity timeout | 3 min | 1–10 min | Silence before auto-disconnect |
+| Setting                         | Default | Range    | Purpose                        |
+| ------------------------------- | ------- | -------- | ------------------------------ |
+| Conversation max duration       | 30 min  | 1–60 min | Total session length           |
+| Conversation inactivity timeout | 3 min   | 1–10 min | Silence before auto-disconnect |
 
 Settings are stored in the User model (`conversation_max_duration`, `conversation_inactivity_timeout` columns) and updatable via `PATCH /api/auth/me`. The WebSocket reads them on each new connection.
 
@@ -191,13 +196,13 @@ Settings are stored in the User model (`conversation_max_duration`, `conversatio
 
 ## Frontend dependencies
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `@ricky0123/vad-react` | ^0.0.36 | React hooks for VAD (wraps vad-web) |
-| `@ricky0123/vad-web` | ^0.0.30 | VAD WebAssembly engine (Silero VAD v5 ONNX) |
-| `onnxruntime-web` | 1.25.1 (threaded WASM) | ONNX model runtime for VAD |
-| Web Audio API | Browser built-in | Gapless audio playback via AudioContext |
-| MediaRecorder API | Browser built-in | Microphone stream capture |
+| Package                | Version                | Purpose                                     |
+| ---------------------- | ---------------------- | ------------------------------------------- |
+| `@ricky0123/vad-react` | ^0.0.36                | React hooks for VAD (wraps vad-web)         |
+| `@ricky0123/vad-web`   | ^0.0.30                | VAD WebAssembly engine (Silero VAD v5 ONNX) |
+| `onnxruntime-web`      | 1.25.1 (threaded WASM) | ONNX model runtime for VAD                  |
+| Web Audio API          | Browser built-in       | Gapless audio playback via AudioContext     |
+| MediaRecorder API      | Browser built-in       | Microphone stream capture                   |
 
 ---
 

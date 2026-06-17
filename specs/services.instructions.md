@@ -11,14 +11,15 @@ All external dependencies are accessed through the service layer. The frontend n
 
 Singleton providing provider-agnostic LLM access. Supports four providers selectable via `LLM_PROVIDER` env variable:
 
-| Provider | Client | Max tokens | Notes |
-|----------|--------|------------|-------|
-| ollama | AsyncOpenAI (openai SDK) | 8192 | Local, openai-compatible endpoint |
-| openai | AsyncOpenAI | 128K | |
-| deepseek | AsyncOpenAI | 128K | openai-compatible endpoint |
-| anthropic | AsyncAnthropic (anthropic SDK) | 200K | Separate code path; system message extracted |
+| Provider  | Client                         | Max tokens | Notes                                        |
+| --------- | ------------------------------ | ---------- | -------------------------------------------- |
+| ollama    | AsyncOpenAI (openai SDK)       | 8192       | Local, openai-compatible endpoint            |
+| openai    | AsyncOpenAI                    | 128K       |                                              |
+| deepseek  | AsyncOpenAI                    | 128K       | openai-compatible endpoint                   |
+| anthropic | AsyncAnthropic (anthropic SDK) | 200K       | Separate code path; system message extracted |
 
 **Key capabilities:**
+
 - `chat(messages, stream=False)` — returns string or async generator
 - `structured_output(messages, schema)` — returns validated Pydantic model (JSON mode + retry on parse failure)
 - `parse_llm_json(raw)` — module-level utility; strips optional code fences and parses JSON from LLM output. Shared by `listening_service.py` and `reading_service.py`.
@@ -37,6 +38,7 @@ Fully deterministic — no LLM. Uses static curriculum data from `curriculum.py`
 ## Lesson Generator (`lesson_generator.py`)
 
 LLM-powered lesson content generation with strict constraints:
+
 - Grammar constrained to a validated set of 24 grammar slugs
 - CEFR level and target language adherence (`en-US` / `en-GB`; BCP-47 tag converted to english variant via `language_helpers.get_english_variant`)
 - Generates 3-5 exercises per lesson (multiple_choice, fill_blank, free_write)
@@ -45,12 +47,14 @@ LLM-powered lesson content generation with strict constraints:
 ## Flashcard SM-2 (`flashcard_sm2.py`)
 
 Full SM-2 spaced repetition algorithm:
+
 - `sm2_update(card, quality)`: modifies ease_factor, interval, repetitions, and next_review based on 0–5 quality rating
 - LLM-powered `generate_flashcards`: creates flashcards with native-language translations; `native_language` is always sourced from the authenticated user's profile (not from the request body)
 
 ## Language Helpers (`language_helpers.py`)
 
 Shared BCP-47 conversion utilities used across the service layer:
+
 - `get_english_variant(target_language)` — converts `"en-US"` → `"american"`, `"en-GB"` → `"british"` for LLM prompts
 - `get_iso639(target_language)` — strips region subtag: `"en-US"` → `"en"` for Whisper
 - `voice_session_title(native_language)` — localised "Voice session — date" strings for all 9 supported languages
@@ -58,6 +62,7 @@ Shared BCP-47 conversion utilities used across the service layer:
 ## Memory Service (`memory_service.py`)
 
 Handles LLM-driven persistent context across conversations:
+
 - `parse_memory_marker(text)` — extracts items from `<<MEMORY>>{"items":[...]}<<ENDMEMORY>>` blocks in LLM responses
 - `strip_memory_marker(text)` — removes the marker block before the response reaches the user
 - `build_memory_context(memories)` — formats up to 20 memories × 200 chars for injection into system prompts
@@ -91,8 +96,8 @@ Backend modules now use a shared logging wrapper:
 
 - `get_logger(__name__)` returns an `AppLogger` instance used across routers and services.
 - `AppLogger` supports both styles:
-    - classic stdlib-style messages with positional placeholders (`%s`)
-    - event-style structured logs (`logger.info("event", key=value, ...)`)
+  - classic stdlib-style messages with positional placeholders (`%s`)
+  - event-style structured logs (`logger.info("event", key=value, ...)`)
 - Effective verbosity is still controlled globally by `LOG_LEVEL` from `.env` (`DEBUG`, `INFO`, `WARNING`, `ERROR`) and configured in `main.py` via `logging.basicConfig(...)`.
 
 For TTS diagnostics, `/api/tts` emits per-request trace and latency fields in logs and response headers so frontend, proxy, and backend timings can be correlated end-to-end.
@@ -121,10 +126,10 @@ Manages AI-generated listening exercises end-to-end (Phase 6):
 
 **Exercise types by CEFR level** (`_TYPES_BY_LEVEL`):
 
-| Level | Types |
-|-------|-------|
-| A1, A2 | `story`, `conversation` |
-| B1, B2 | `story`, `dialogue`, `interview` |
+| Level  | Types                              |
+| ------ | ---------------------------------- |
+| A1, A2 | `story`, `conversation`            |
+| B1, B2 | `story`, `dialogue`, `interview`   |
 | C1, C2 | `news_report`, `lecture`, `debate` |
 
 ## Reading Service (`reading_service.py`)
@@ -139,13 +144,13 @@ Manages AI-generated reading comprehension exercises end-to-end (Phase 7):
 
 **Exercise types by CEFR level** (`_TYPES_BY_LEVEL`):
 
-| Level | Types |
-|-------|-------|
-| A1, A2 | `notice`, `email` |
-| B1 | `email`, `article`, `news` |
-| B2 | `article`, `news`, `blog_post`, `review` |
-| C1 | `news`, `blog_post`, `review`, `essay` |
-| C2 | `review`, `essay` |
+| Level  | Types                                    |
+| ------ | ---------------------------------------- |
+| A1, A2 | `notice`, `email`                        |
+| B1     | `email`, `article`, `news`               |
+| B2     | `article`, `news`, `blog_post`, `review` |
+| C1     | `news`, `blog_post`, `review`, `essay`   |
+| C2     | `review`, `essay`                        |
 
 ## Quota Service (`quota_service.py`)
 
@@ -169,6 +174,7 @@ Used by `require_subscription` in `core/deps.py`, which gates all chat, listenin
 ## Conversation Pipeline (`conversation_pipeline.py`)
 
 WebSocket-based voice conversation orchestrator:
+
 1. Starts the initial greeting as a cancellable task, then immediately enters the WebSocket receive loop.
 2. Receives audio chunks from client (WebSocket binary frames) and resets inactivity state.
 3. Barge-in protocol: explicit interrupts or new audio while a backend task is active can cancel the current greeting or LLM+TTS generation and send `barge_in` to the client. The current frontend disables automatic barge-in during assistant playback for stability.

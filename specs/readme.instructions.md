@@ -49,19 +49,20 @@ The README follows this exact structure in order:
 
 ## When to update the README
 
-| Change | Action |
-|--------|--------|
-| New user-facing feature | Update expanded description if relevant |
-| New phase completed | Add/update row in Phase table |
-| New technology introduced | Add row to Stack table |
-| New architecture decision | Update Architecture section |
-| New top-level directory or root file added | Add line to Repository section |
-| Version bump | Update version badges |
-| New commercial offering | Update For businesses section |
+| Change                                           | Action                                            |
+| ------------------------------------------------ | ------------------------------------------------- |
+| New user-facing feature                          | Update expanded description if relevant           |
+| New phase completed                              | Add/update row in Phase table                     |
+| New technology introduced                        | Add row to Stack table                            |
+| New architecture decision                        | Update Architecture section                       |
+| New top-level directory or root file added       | Add line to Repository section                    |
+| Version bump                                     | Update version badges                             |
+| New commercial offering                          | Update For businesses section                     |
 | New operational requirement (e.g., Redis config) | Add to Operational notes or create new subsection |
-| New development workflow | Update Development section link |
+| New development workflow                         | Update Development section link                   |
 
 Do **not** update the README for:
+
 - Internal refactors
 - New files within an existing module
 - Test additions

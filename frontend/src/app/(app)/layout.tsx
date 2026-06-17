@@ -260,7 +260,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
           {user?.role === 'admin' && (
             <Link
-              href="/admin/users"
+              href="/admin"
               className={`flex items-center gap-3 px-5 py-3 font-mono text-xs tracking-widest transition-colors ${
                 pathname.startsWith('/admin')
                   ? 'text-fl-fg bg-fl-surface-2 border-fl-accent border-l-2'
@@ -311,7 +311,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-            v1.8.6
+            v1.8.7
           </p>
           <button
             onClick={() => setContactOpen(true)}
@@ -443,7 +443,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
             {user?.role === 'admin' && (
               <Link
-                href="/admin/users"
+                href="/admin"
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-5 py-3 font-mono text-xs tracking-widest uppercase transition-colors ${
                   pathname.startsWith('/admin')
@@ -487,7 +487,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </p>
               )}
               <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-                v1.8.6
+                v1.8.7
               </p>
               <button
                 onClick={() => {
