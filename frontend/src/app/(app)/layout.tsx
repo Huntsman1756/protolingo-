@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore, isSubscribed } from '@/store/auth'
 import { useConfigStore } from '@/store/config'
 import { apiFetch } from '@/lib/api'
 import { mapUser } from '@/lib/mappers'
@@ -19,6 +19,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher'
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const tNav = useTranslations('nav')
   const tCommon = useTranslations('common')
+  const tBilling = useTranslations('billing')
   const pathname = usePathname()
 
   const mainNavItems = [
@@ -59,6 +60,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [resourcesOpen, setResourcesOpen] = useState(false)
   const [contactOpen, setContactOpen] = useState(false)
   const [resendSent, setResendSent] = useState(false)
+
+  const PREMIUM_HREFS = new Set([
+    '/chat',
+    '/listening',
+    '/reading',
+    '/conversation',
+  ])
+  const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
+  const showPremiumBadge = stripeEnabled && !isSubscribed(user, stripeEnabled)
+  const [trialDaysLeft, setTrialDaysLeft] = useState(0)
 
   async function handleResendVerification() {
     const res = await apiFetch('/api/auth/resend-verification', {
@@ -106,6 +117,25 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (
+      user?.subscription_status === 'trialing' &&
+      user?.subscription_ends_at &&
+      stripeEnabled
+    ) {
+      const days = Math.max(
+        1,
+        Math.ceil(
+          (new Date(user.subscription_ends_at).getTime() - Date.now()) /
+            (1000 * 60 * 60 * 24)
+        )
+      )
+      setTrialDaysLeft(days)
+    } else {
+      setTrialDaysLeft(0)
+    }
+  }, [user?.subscription_status, user?.subscription_ends_at, stripeEnabled])
 
   if (initializing) {
     return (
@@ -156,6 +186,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   ●
                 </span>
                 {item.label}
+                {showPremiumBadge && PREMIUM_HREFS.has(item.href) && (
+                  <span className="text-fl-accent ml-auto text-xs">★</span>
+                )}
               </Link>
             )
           })}
@@ -265,10 +298,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <p className="text-fl-label text-fl-muted-4 truncate font-mono">
                 @{user?.username?.toLowerCase()}
               </p>
+              {trialDaysLeft > 0 && (
+                <p className="text-fl-label text-fl-accent truncate font-mono text-xs">
+                  ★ {tBilling('trialDays', { days: trialDaysLeft })}
+                </p>
+              )}
             </div>
           </div>
           <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-            v1.8.5
+            v1.8.6
           </p>
           <button
             onClick={() => setContactOpen(true)}
@@ -328,6 +366,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     ●
                   </span>
                   {item.label}
+                  {showPremiumBadge && PREMIUM_HREFS.has(item.href) && (
+                    <span className="text-fl-accent ml-auto text-xs">★</span>
+                  )}
                 </Link>
               )
             })}
@@ -435,8 +476,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   @{user?.username?.toLowerCase()}
                 </p>
               </div>
+              {trialDaysLeft > 0 && (
+                <p className="text-fl-label text-fl-accent mb-2 font-mono text-xs">
+                  ★ {tBilling('trialDays', { days: trialDaysLeft })}
+                </p>
+              )}
               <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-                v1.8.5
+                v1.8.6
               </p>
               <button
                 onClick={() => {

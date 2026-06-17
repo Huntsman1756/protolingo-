@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
 import { useConfigStore } from '@/store/config'
@@ -8,6 +9,7 @@ import { useAuthStore, isSubscribed } from '@/store/auth'
 
 export function PaywallBanner() {
   const t = useTranslations('billing')
+  const router = useRouter()
   const user = useAuthStore((s) => s.user)
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
   const trialDays = useConfigStore((s) => s.stripeTrialDays)
@@ -86,6 +88,13 @@ export function PaywallBanner() {
         <p className="text-fl-hint text-fl-muted-3 mt-6 font-mono tracking-widest uppercase">
           {t('paywallNoCharge')}
         </p>
+
+        <button
+          onClick={() => router.push('/dashboard')}
+          className="text-fl-label text-fl-muted-4 hover:text-fl-muted-2 mt-4 w-full font-mono tracking-widest uppercase transition-colors"
+        >
+          {t('paywallSkip')}
+        </button>
       </div>
     </div>
   )

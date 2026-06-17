@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { Circle, CircleDot, Diamond, Check, Minus } from 'lucide-react'
 import { PageLoading } from '@/components/ui/page-loading'
+import { hasActiveLandingSubscription } from '@/lib/landing-subscription'
 
 interface PricingSectionProps {
   stripeEnabled: boolean
@@ -33,31 +34,7 @@ export default function PricingSection({
   useEffect(() => {
     if (!hasSession) return
     async function checkSubscription() {
-      try {
-        const refreshRes = await fetch('/api/auth/refresh', {
-          method: 'POST',
-          credentials: 'include',
-        })
-        if (!refreshRes.ok) {
-          setSubscribed(false)
-          return
-        }
-        const { access_token } = await refreshRes.json()
-
-        const meRes = await fetch('/api/auth/me', {
-          headers: { Authorization: `Bearer ${access_token}` },
-          credentials: 'include',
-        })
-        if (!meRes.ok) {
-          setSubscribed(false)
-          return
-        }
-        const me = await meRes.json()
-        const status: string = me.subscription_status ?? 'none'
-        setSubscribed(status === 'active' || status === 'trialing')
-      } catch {
-        setSubscribed(false)
-      }
+      setSubscribed(await hasActiveLandingSubscription())
     }
     checkSubscription()
   }, [hasSession])

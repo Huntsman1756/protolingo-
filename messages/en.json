@@ -1017,6 +1017,14 @@
       "exams": "Exams & Certifications",
       "social": "Socializing"
     },
+    "trialHeadline": "Free trial",
+    "trialTitle": "{days} days of full access",
+    "trialDesc": "AI chat tutor, voice conversations, listening and reading exercises. No commitment, cancel anytime.",
+    "trialCtaMonthly": "Start at €{price}/month",
+    "trialCtaYearly": "Start at €{price}/year",
+    "trialSkip": "Continue with free features",
+    "trialNoCharge": "Card required. No charge until trial ends.",
+    "trialError": "Could not start payment. Please try again.",
     "newLanguageHeadline": "What new language do you want to learn?",
     "newLanguageSubtitle": "A new study plan will be created for this language."
   },
@@ -1066,6 +1074,8 @@
     "paywallTitle": "Unlock FreeLingo Premium",
     "paywallDesc": "Start your {days}-day free trial, no charge today. Cancel anytime.",
     "paywallNoCharge": "Card required · No charge until trial ends · Cancel anytime",
+    "paywallSkip": "Continue with free features",
+    "trialDays": "{days} days of trial",
     "planMonthly": "— Start for €{price}/month →",
     "planYearly": "— Start for €{price}/year →",
     "checkoutError": "Unable to start checkout. Please try again.",
@@ -1131,7 +1141,7 @@
   },
   "whatsNew": {
     "title": "What's New",
-    "version": "v1.8.5",
+    "version": "v1.8.6",
     "cta": "Got it",
     "entry1": {
       "label": "Five new languages to learn",

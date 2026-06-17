@@ -1017,6 +1017,14 @@
       "exams": "Examens en certificaten",
       "social": "Socialiseren"
     },
+    "trialHeadline": "Gratis proberen",
+    "trialTitle": "{days} dagen volledige toegang",
+    "trialDesc": "AI-tutorchat, spraakgesprekken, luister- en leesoefeningen. Geen verplichtingen, altijd opzegbaar.",
+    "trialCtaMonthly": "Start voor €{price}/maand",
+    "trialCtaYearly": "Start voor €{price}/jaar",
+    "trialSkip": "Doorgaan met gratis functies",
+    "trialNoCharge": "Kaart vereist. Geen kosten tot einde proefperiode.",
+    "trialError": "Betaling kon niet worden gestart. Probeer opnieuw.",
     "newLanguageHeadline": "Welke nieuwe taal wil je leren?",
     "newLanguageSubtitle": "Er wordt een nieuw studieplan aangemaakt voor deze taal."
   },
@@ -1066,6 +1074,8 @@
     "paywallTitle": "Ontgrendel FreeLingo Premium",
     "paywallDesc": "Start je gratis proefperiode van {days} dagen, vandaag geen kosten. Altijd opzegbaar.",
     "paywallNoCharge": "Kaart vereist · geen kosten tot einde proefperiode · altijd opzegbaar",
+    "paywallSkip": "Doorgaan met gratis functies",
+    "trialDays": "{days} dagen proefperiode",
     "planMonthly": "— Starten voor €{price}/maand →",
     "planYearly": "— Starten voor €{price}/jaar →",
     "checkoutError": "Betaling kon niet worden gestart. Probeer opnieuw.",
@@ -1131,7 +1141,7 @@
   },
   "whatsNew": {
     "title": "Nieuw",
-    "version": "v1.8.5",
+    "version": "v1.8.6",
     "cta": "Begrepen",
     "entry1": {
       "label": "Vijf nieuwe leertalen",
