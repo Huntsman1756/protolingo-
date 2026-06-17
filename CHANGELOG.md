@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Paywall escape link**: the paywall banner now includes a "Continue with free features" link that returns users to the dashboard, so they aren't forced to subscribe or leave the page.
 - **Tour premium indicators**: the onboarding tour now shows a ★ on steps covering premium features (Chat, Voice, Listening & Reading) when Stripe is enabled. Tour step icons upgraded from unicode symbols to lucide-react SVG icons (Sparkles, MessageSquare, Mic, Layers, BookOpen, Headphones, Zap).
 - **Trial days counter**: users with an active trial now see their remaining trial days (e.g. "★ 5 days of trial") in the sidebar below their username. The counter appears only when Stripe is enabled and the user is in `trialing` status.
+- **Onboarding enforcement**: users who close the browser before completing onboarding are now redirected back to the onboarding flow on their next visit. The onboarding PATCH now always persists `learning_goals` so the frontend can detect incomplete onboarding via a `null` value. Existing users who completed onboarding but skipped the goals step are backfilled via migration `0041_backfill_learning_goals`.
 
 ### Changed
 - **Settings billing section**: moved from the bottom of the Settings page to right after Profile, making subscription status and management immediately visible.
