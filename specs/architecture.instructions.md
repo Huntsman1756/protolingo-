@@ -33,7 +33,8 @@ freelingo/
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── (auth)/          # Public routes: login, register, onboarding, verify-email, forgot-password, reset-password, billing (7 pages)
-│   │   │   ├── (app)/           # Authenticated routes (17 pages) — sidebar layout
+│   │   │   ├── (app)/           # Authenticated routes (18 pages) — sidebar layout
+│   │   │   │   ├── admin/       # Admin overview (admin only)
 │   │   │   │   ├── admin/users/ # User management (admin only)
 │   │   │   │   ├── admin/feedback/ # Feedback board admin panel (admin only)
 │   │   │   │   ├── assessment/  # Level test entry + adaptive quiz
@@ -134,15 +135,16 @@ Barge-in: user speaks again → cancel current greeting/generation, stop client 
 
 ## Auth design
 
-| Token | Type | Algorithm | Duration | Storage |
-|-------|------|-----------|----------|---------|
-| access_token | JWT | HS256 | 15 min | Zustand store (JS memory) |
-| refresh_token | Opaque UUID4 | random | 30 days | httpOnly cookie + Redis: `refresh:{token}` → user_id |
-| email verification | Opaque UUID4 | random | 24 h | Redis: `verify_email:{token}` → user_id |
-| password reset | Opaque UUID4 | random | 1 h | Redis: `reset_password:{token}` → user_id |
-| maintenance mode | bool flag | — | indefinite | Redis: `maintenance_mode` → `"1"` or `"0"` |
+| Token              | Type         | Algorithm | Duration   | Storage                                              |
+| ------------------ | ------------ | --------- | ---------- | ---------------------------------------------------- |
+| access_token       | JWT          | HS256     | 15 min     | Zustand store (JS memory)                            |
+| refresh_token      | Opaque UUID4 | random    | 30 days    | httpOnly cookie + Redis: `refresh:{token}` → user_id |
+| email verification | Opaque UUID4 | random    | 24 h       | Redis: `verify_email:{token}` → user_id              |
+| password reset     | Opaque UUID4 | random    | 1 h        | Redis: `reset_password:{token}` → user_id            |
+| maintenance mode   | bool flag    | —         | indefinite | Redis: `maintenance_mode` → `"1"` or `"0"`           |
 
 **Design rationale:**
+
 - **Access token**: verified without DB hit (JWT decode only). Short lifetime limits damage if leaked.
 - **Refresh token**: stored in Redis with native TTL for auto-expiry. Opaque (not JWT) so no sensitive data in the cookie.
 - **Token rotation**: on refresh, old token is deleted from Redis and a new one is created — prevents replay attacks.
@@ -154,6 +156,7 @@ Barge-in: user speaks again → cancel current greeting/generation, stop client 
 Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by the admin at runtime via `PATCH /api/admin/maintenance` — no restart required.
 
 **Backend guard** (`app/core/deps.py`):
+
 - `get_redis()` — centralized async Redis dependency.
 - `check_maintenance_mode()` — raises HTTP 503 when `maintenance_mode == "1"`. Swallows Redis errors to fail open.
 - `require_subscription` — calls `check_maintenance_mode` before the subscription check. Both HTTP endpoints (chat, listening, reading) and the WebSocket (`/ws/conversation`) are protected.
@@ -169,6 +172,7 @@ Stored as a simple Redis flag (`maintenance_mode` = `"1"` / `"0"`). Toggled by t
 Testing infrastructure and strategy are documented in [testing.instructions.md](testing.instructions.md).
 
 **Summary:**
+
 - **Backend**: pytest + pytest-asyncio, 38 test files, 783 tests, 83% coverage (target: 70%)
 - **Frontend**: Vitest, 21 test files, 364 tests covering stores, components, hooks, lib, and middleware
 - **E2E**: Playwright (planned, not yet implemented)

@@ -5,7 +5,7 @@
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.14-blue?style=flat-square)
 ![Self-hosted](https://img.shields.io/badge/self--hosted-yes-orange?style=flat-square)
-![Version](https://img.shields.io/badge/version-1.8.6-brightgreen?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.8.7-brightgreen?style=flat-square)
 
 <p align="left">
   <img src="assets/logo.png" alt="FreeLingo logo" width="225" />
@@ -92,33 +92,33 @@ freelingo/
 
 ## Stack
 
-| Layer      | Technology                                               |
-|------------|----------------------------------------------------------|
-| Frontend   | Next.js 16+, shadcn/ui, Tailwind CSS, Zustand, next-intl |
-| Backend    | FastAPI, SQLAlchemy async, Alembic, Pydantic v2          |
-| Database   | PostgreSQL 16                                            |
-| Cache      | Redis 7                                                  |
-| LLM        | Ollama (local) · OpenAI · Anthropic · DeepSeek           |
-| TTS        | Kokoro-FastAPI (local) · OpenAI TTS API                  |
-| STT        | faster-whisper (local) · OpenAI Whisper API              |
-| Auth       | JWT (access + refresh), multi-user, roles (admin/user).  |
-| Deploy     | Docker Compose                                           |
+| Layer    | Technology                                               |
+| -------- | -------------------------------------------------------- |
+| Frontend | Next.js 16+, shadcn/ui, Tailwind CSS, Zustand, next-intl |
+| Backend  | FastAPI, SQLAlchemy async, Alembic, Pydantic v2          |
+| Database | PostgreSQL 16                                            |
+| Cache    | Redis 7                                                  |
+| LLM      | Ollama (local) · OpenAI · Anthropic · DeepSeek           |
+| TTS      | Kokoro-FastAPI (local) · OpenAI TTS API                  |
+| STT      | faster-whisper (local) · OpenAI Whisper API              |
+| Auth     | JWT (access + refresh), multi-user, roles (admin/user).  |
+| Deploy   | Docker Compose                                           |
 
 ## Phases
 
-| Phase | Name                   | Status              |
-|-------|------------------------|---------------------|
-| 1     | Learning platform      | ✅ Complete         |
-| 1+    | Learning Resources Hub | ✅ Complete         |
-| 2     | Local TTS + STT        | ✅ Complete         |
-| 3     | Real-time conversation | ✅ Complete         |
-| 4     | Multi-language support | ✅ Complete         |
-| 5     | Stripe subscriptions   | ✅ Complete         |
-| 6     | Listening              | ✅ Complete         |
-| 7     | Reading                | ✅ Complete         |
-| 8     | Feedback board         | ✅ Complete         |
-| 9     | Memory                 | ✅ Complete         |
-| 10    | Multi-Language Learning| ✅ Complete         |
+| Phase | Name                    | Status      |
+| ----- | ----------------------- | ----------- |
+| 1     | Learning platform       | ✅ Complete |
+| 1+    | Learning Resources Hub  | ✅ Complete |
+| 2     | Local TTS + STT         | ✅ Complete |
+| 3     | Real-time conversation  | ✅ Complete |
+| 4     | Multi-language support  | ✅ Complete |
+| 5     | Stripe subscriptions    | ✅ Complete |
+| 6     | Listening               | ✅ Complete |
+| 7     | Reading                 | ✅ Complete |
+| 8     | Feedback board          | ✅ Complete |
+| 9     | Memory                  | ✅ Complete |
+| 10    | Multi-Language Learning | ✅ Complete |
 
 ## Quick start
 
@@ -192,11 +192,11 @@ TTS and STT each support two providers, selected independently via `.env`.
 
 ### Provider options
 
-| Variable | Values | Notes |
-|----------|--------|-------|
-| `TTS_PROVIDER` | `local` · `openai` | `local` uses Kokoro-FastAPI; `openai` uses OpenAI TTS API |
-| `STT_PROVIDER` | `local` · `openai` | `local` uses faster-whisper; `openai` uses OpenAI Whisper API |
-| `OPENAI_API_KEY` | string | Required for `openai` provider on either service |
+| Variable         | Values             | Notes                                                         |
+| ---------------- | ------------------ | ------------------------------------------------------------- |
+| `TTS_PROVIDER`   | `local` · `openai` | `local` uses Kokoro-FastAPI; `openai` uses OpenAI TTS API     |
+| `STT_PROVIDER`   | `local` · `openai` | `local` uses faster-whisper; `openai` uses OpenAI Whisper API |
+| `OPENAI_API_KEY` | string             | Required for `openai` provider on either service              |
 
 When using `openai` providers, the `kokoro` and `whisper` Docker services can be removed from the stack — no local GPU required.
 
@@ -234,16 +234,16 @@ All voices are for English only — Kokoro-82M does not ship multilingual voices
 
 > **Multilingual learners:** as FreeLingo adds target languages beyond English (Spanish, French, Italian, Portuguese, etc.), Kokoro cannot produce audio for those languages. For non-English study languages, switch to `TTS_PROVIDER=openai` (see [Option B — OpenAI providers](#option-b--openai-providers-no-local-gpu-needed)).
 
-| Voice | Gender | Accent | Grade |
-|-------|--------|--------|-------|
-| `af_heart` | F | American | A ⭐ |
-| `af_bella` | F | American | A- |
-| `af_nicole` | F | American | B- |
-| `am_fenrir` | M | American | C+ |
-| `am_michael` | M | American | C+ |
-| `am_puck` | M | American | C+ |
-| `bf_emma` | F | British | B- |
-| `bm_george` | M | British | C |
+| Voice        | Gender | Accent   | Grade |
+| ------------ | ------ | -------- | ----- |
+| `af_heart`   | F      | American | A ⭐  |
+| `af_bella`   | F      | American | A-    |
+| `af_nicole`  | F      | American | B-    |
+| `am_fenrir`  | M      | American | C+    |
+| `am_michael` | M      | American | C+    |
+| `am_puck`    | M      | American | C+    |
+| `bf_emma`    | F      | British  | B-    |
+| `bm_george`  | M      | British  | C     |
 
 Set with `TTS_VOICE=<voice>` in `.env`. Default: `af_heart`.
 
@@ -251,21 +251,21 @@ See the [full list of available voices](https://huggingface.co/hexgrad/Kokoro-82
 
 #### STT model options (Whisper)
 
-| Model | VRAM | Speed vs large | Notes |
-|-------|------|----------------|-------|
-| `tiny.en` | ~1 GB | ~10x | Very low accuracy |
-| `small.en` | ~2 GB | ~4x | OK for CPU |
-| `medium` | ~5 GB | ~2x | Good balance |
-| `large-v3-turbo` | ~6 GB | ~8x | **Recommended** — best speed/accuracy ratio |
-| `large-v3` | ~10 GB | 1x | Maximum accuracy |
+| Model            | VRAM   | Speed vs large | Notes                                       |
+| ---------------- | ------ | -------------- | ------------------------------------------- |
+| `tiny.en`        | ~1 GB  | ~10x           | Very low accuracy                           |
+| `small.en`       | ~2 GB  | ~4x            | OK for CPU                                  |
+| `medium`         | ~5 GB  | ~2x            | Good balance                                |
+| `large-v3-turbo` | ~6 GB  | ~8x            | **Recommended** — best speed/accuracy ratio |
+| `large-v3`       | ~10 GB | 1x             | Maximum accuracy                            |
 
 Set with `STT_MODEL=<model>` in `.env`. Default: `large-v3-turbo`.
 
-| Engine | Notes |
-|--------|-------|
+| Engine           | Notes                                                                       |
+| ---------------- | --------------------------------------------------------------------------- |
 | `faster_whisper` | **Recommended** — 4× faster than openai_whisper, lower VRAM via CTranslate2 |
-| `openai_whisper` | Original PyTorch implementation |
-| `whisperx` | Adds speaker diarization; requires HuggingFace token |
+| `openai_whisper` | Original PyTorch implementation                                             |
+| `whisperx`       | Adds speaker diarization; requires HuggingFace token                        |
 
 Set with `STT_ENGINE=<engine>` in `.env`. Default: `faster_whisper`.
 

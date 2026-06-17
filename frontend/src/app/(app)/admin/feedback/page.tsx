@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { apiFetch } from '@/lib/api'
+import { AdminNav } from '@/components/admin/AdminNav'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { PageLoading } from '@/components/ui/page-loading'
 import { Pagination } from '@/components/ui/pagination'
@@ -214,6 +215,8 @@ export default function AdminFeedbackPage() {
           {total} {tAdmin('total')}
         </span>
       </div>
+
+      <AdminNav />
 
       {/* Filters */}
       <div className="border-fl-border bg-fl-surface flex flex-wrap items-center gap-3 border px-5 py-3">

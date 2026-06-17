@@ -44,6 +44,8 @@ async def list_users(
     skip: int = Query(default=0, ge=0),
     limit: int = Query(default=10, ge=1, le=100),
     q: str = Query(default="", max_length=100),
+    role: Literal["user", "admin"] | None = Query(default=None),
+    is_active: bool | None = Query(default=None),
     subscription: Literal["none", "trialing", "active", "past_due", "canceled"] | None = Query(
         default=None
     ),
@@ -52,6 +54,10 @@ async def list_users(
     if q.strip():
         pattern = f"%{q.strip()}%"
         base = base.where(User.username.ilike(pattern) | User.email.ilike(pattern))
+    if role:
+        base = base.where(User.role == role)
+    if is_active is not None:
+        base = base.where(User.is_active.is_(is_active))
     if subscription:
         base = base.where(User.subscription_status == subscription)
     users, total = await paginate(db, base.order_by(User.username.asc()), skip, limit)

@@ -5,9 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.7] - 2026-06-17
+
+### Added
+
+- **Admin overview page**: `/admin` now acts as the admin entry point with quick access to Users, Feedback, and system controls, plus a clear maintenance-mode status panel.
+- **Shared admin navigation**: admin pages now use a consistent tab-style navigation between Overview, Users, and Feedback.
+- **Admin user filters**: `GET /api/admin/users` now supports optional `role` and `is_active` query filters in addition to pagination, search, and subscription filtering.
+- **Invite copy workflow**: generated invite links now include a copy button, copied state, clipboard failure handling, and visible 48-hour expiry guidance.
+
+### Changed
+
+- **Admin users UX refresh**: `/admin/users` now uses a responsive desktop table and mobile cards, with clearer badges, action icons, loading states, empty/error states, and resettable filters.
+- **Create user flow**: admin user creation moved from an inline expanding form to a side panel with labelled fields and a clearer submission state.
+- **Admin sidebar target**: the main Admin navigation item now opens `/admin` instead of jumping directly into the users list.
+- **Default target language**: admin-created users now default to `en-GB`, matching the project-wide fallback.
+
 ## [1.8.6] - 2026-06-17
 
 ### Added
+
 - **Onboarding subscription step**: after selecting language and learning goals, new users who haven't subscribed and where Stripe is enabled now see a trial offer step with monthly/yearly checkout buttons and a "Continue with free features" skip link. Subscribed users bypass this step automatically and go straight to the dashboard.
 - **Sidebar premium indicators**: Chat, Voice, Listening, and Reading navigation items now show a ★ badge when the user is unsubscribed and Stripe is enabled, clearly distinguishing premium features from free ones. Self-hosted deployments (Stripe disabled) see no badges.
 - **Paywall escape link**: the paywall banner now includes a "Continue with free features" link that returns users to the dashboard, so they aren't forced to subscribe or leave the page.
@@ -16,23 +33,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Onboarding enforcement**: users who close the browser before completing onboarding are now redirected back to the onboarding flow on their next visit. The onboarding PATCH now always persists `learning_goals` so the frontend can detect incomplete onboarding via a `null` value. Existing users who completed onboarding but skipped the goals step are backfilled via migration `0041_backfill_learning_goals`.
 
 ### Changed
+
 - **Settings billing section**: moved from the bottom of the Settings page to right after Profile, making subscription status and management immediately visible.
 
 ### Fixed
+
 - Landing navigation now hides the `Pricing` link for signed-in users with an active or trialing subscription, matching the pricing section visibility. The landing nav and pricing section share one subscription-status check to avoid duplicate refresh requests.
 - Minor bug fixes and improvements.
 
 ## [1.8.5] - 2026-06-17
 
 ### Changed
+
 - New logo
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.8.4] - 2026-06-16
 
 ### Added
+
 - **German and French curricula completed**: all didactic content for German (`de-DE`) and French (`fr-FR`) is now fully translated — assessment question banks, phrasebook contexts, and curriculum competency checklists are entirely in the target language with no English remnants.
 - **Expanded test coverage**: 10 new test files (5 backend + 5 frontend) adding 97 new tests.
 - Backend: `test_flashcard_sm2.py` (57%→100%), `test_assessment_bank.py` (0%→100%), `test_limiter.py` (42%→100%), `test_lesson_generator.py` (51%→100%), `test_listening_service.py` (63%→64%).
@@ -41,6 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Frontend: 329 → 364 tests, 16 → 21 test files.
 
 ### Fixed
+
 - German assessment bank: 2 vocabulary questions had options in English → translated to German.
 - German phrasebook: ~300 phrase contexts corrected from mixed English/German to pure German.
 - German curriculum: all 46 competency checklists across A1–C2 corrected to German (removed mixed language, hanging particles, grammar errors, and typos).
@@ -48,42 +71,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.8.3] - 2026-06-14
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.8.2] - 2026-06-13
 
 ### Changed
+
 - Redesigned landing page: improved hero section with larger typography and double CTA, section anchor navigation, SVG icons, mixed font hierarchy (sans for headings, mono for data), scroll-triggered fade-in animations, comparison table for pricing, highlighted free plan, standalone open-source banner, and footer restructured into columns.
 - Added FAQ section to the landing page using existing app questions.
 
 ## [1.8.1] - 2026-06-13
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.8.0] - 2026-06-10
 
 ### Added
+
 - **New learning languages enabled in production**: Spanish (`es-ES`), Italian (`it-IT`), and Portuguese (`pt-PT`) are now live and available for all users. Each language includes a complete CEFR-aligned curriculum (A1–C2), grammar guides (130+ topics), vocabulary sets (~1,000 words), phrasebooks (280–305 phrases with TTS audio pronunciation), assessment question banks, and dedicated lesson generators. The multi-language infrastructure (Phase 10) is now fully active in the hosted service.
 
 ## [1.7.7] - 2026-06-10
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.7.6] - 2026-06-10
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.7.5] - 2026-06-09
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.7.4] - 2026-06-09
 
 ### Added
+
 - **Phrasebook migrated to backend**: all phrasebook data (~280-305 phrases per language × 4 languages, 25 categories each) moved from frontend static files to the backend, organized per CEFR level. New endpoints `GET /api/phrasebook`, `GET /api/phrasebook/level/{level}`, `GET /api/phrasebook/{category_id}`, and `GET /api/phrasebook/audio/{category_id}/{phrase_index}` serve the data with auth required and cached TTS audio. The frontend phrasebook page now fetches via API with loading states and a search bar.
 - **Phrasebook TTS audio caching**: each phrase's pronunciation is generated once on first request and cached to disk (`/data/audio/phrasebook/{lang}/{hash}.mp3`), so subsequent plays are instant and free. A play button (▶) appears next to each phrase alongside the copy button.
 - **Phrasebook search**: a search bar filters phrases by text content, combinable with the existing level and register filters.
@@ -92,17 +123,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Grammar audio button renamed field**: the `english` field in `GrammarExample` and `Phrase` interfaces was renamed to `text` for accuracy (it contains the target language phrase, not necessarily English).
 
 ### Fixed
+
 - Two broken `related[]` cross-references in grammar data: Italian `si-impersonale` referencing `pronomin-indiretti` → `pronomi-indiretti`, Portuguese `horas` referencing `numeros` → `numeros-ordinais`.
 
 ### Changed
+
 - **Phrasebook copy button**: fixed clipboard emoji rendering by using correct JavaScript Unicode escape (`\\u{1f4cb}`).
 
 ## [1.7.3] - 2026-06-08
 
 ### Added
+
 - **Multi-level vocabulary progress toggle**: the progress page now includes a toggle to view vocabulary progress for the current CEFR level only or across all levels. This allows users to see their accumulated vocabulary knowledge beyond their current study level. The toggle defaults to "Current level only" for focused tracking.
 
 ### Changed
+
 - **Assessment bank migrated to backend**: the static assessment question bank (~100 questions per language × 4 languages) has been moved from the frontend (`data/assessment-bank.ts` and per-language files) to the backend (`app/data/{en,es,it,pt}/assessment_bank.py`), following the same dispatcher pattern as the curriculum. A new endpoint `GET /api/assessment/bank?language=` serves the questions to the frontend, which now fetches them via API instead of bundling them statically. The adaptive quiz logic (`pickNextQuestion`, `adjustLevel`) remains client-side. This is a pure architectural refactor — no user-facing changes.
 - **Vocabulary content migrated to backend**: 330 vocabulary sets (~3,940 words across 4 languages) moved from frontend static files to the backend, organized per CEFR level (same pattern as curriculum). New endpoints `GET /api/vocabulary`, `GET /api/vocabulary/level/{level}`, and `GET /api/vocabulary/{set_id}` serve the data with auth required. The frontend vocabulary hub, set detail, and progress pages now consume the API. This is a pure architectural refactor — no user-facing content changes.
 - **Curriculum endpoints now require authentication** (`GET /api/curriculum` and `GET /api/curriculum/{level}`).
@@ -110,20 +145,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.7.2] - 2026-06-07
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.7.1] - 2026-06-07
 
 ### Changed
+
 - **Updated Terms of Service**: added intellectual property clause (§4 — AI-generated content belongs to the user), indemnification clause (§8), severability clause (§11), and contact information.
 - **Updated Privacy Policy**: added LLM Memories (§2), feedback board data (§2), corresponding data usage items (§3), and severability clause (§9).
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.7.0] - 2026-06-05
 
 ### Added
+
 - **Phase 10 — Multi-Language**: users can now learn multiple languages simultaneously. Every language gets its own isolated study plan, progress, flashcards, conversations, memories, and competencies. A sidebar language switcher pivots the entire experience to any active language with one click.
 - **New supported target languages**: Spanish (`es-ES`), Italian (`it-IT`), and Portuguese (`pt-PT`) join the existing American English (`en-US`) and British English (`en-GB`).
 - **Backend**: new `user_languages` table with `study_plan_id` columns across 8 tables for full data isolation per language. New `user_language_service.py` handles plan creation, activation, and deletion. New `/api/languages` router with 4 endpoints (list, add, set active, delete).
@@ -131,79 +170,95 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Curriculum data**: complete Spanish, Italian, and Portuguese curriculum files (backend + frontend) with language-specific lesson content, vocabulary, and competency definitions.
 
 ### Fixed
+
 - **Firefox iOS locale detection**: Firefox on iOS always sends `Accept-Language: en-US` regardless of device language settings (Apple WebKit restriction). Added client-side `navigator.language` fallback that detects the actual browser language and sets the correct locale on first visit.
 
 ## [1.6.13] - 2026-06-03
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.12] - 2026-06-02
 
 ### Fixed
+
 - **Critical — Stripe trial abuse**: users who canceled a subscription could re-subscribe and receive another free 7-day trial indefinitely. Added `trial_used` boolean field to `User` model; the Stripe Checkout session only includes `trial_period_days` when `trial_used = False`. The field is set to `True` when a `trialing` subscription is first activated and is never reset. Migration `0028_trial_used` backfills existing subscribers to `trial_used = True`.
 
 ## [1.6.11] - 2026-06-02
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.10] - 2026-06-01
 
 ### Added
+
 - **Interface language selector**: users can now choose their preferred platform language (menus, buttons, labels) independently of their native language, from the Settings page. The preference is persisted in the database and applied immediately on save.
 - **Save word to vocabulary** (reading exercises): selecting a single word in a reading text shows a floating tooltip; clicking "Save" uses AI to generate a definition, example sentence, and translation, then saves the card with `source="from_text"`. A new **My Vocabulary** panel on the Flashcards page lists all saved words with delete support. Saved words flow into the normal SM-2 review queue.
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.9] - 2026-05-31
 
 ### Added
+
 - **Flashcards bulk endpoint**: new `POST /api/flashcards/bulk` endpoint to create multiple flashcards in a single request; duplicates (by word) are silently skipped.
 
 ### Fixed
+
 - Billing section no longer shows a stale next-billing date for subscriptions that have already expired after cancellation.
 - Flashcard bulk import correctly skips duplicate words within the same request payload.
 
 ## [1.6.8] - 2026-05-31
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.7] - 2026-05-31
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.6] - 2026-05-30
 
 ### Changed
+
 - **Username normalization**: spaces in usernames are now automatically replaced with underscores and stored in lowercase on registration and admin user creation. Allowed characters remain letters, numbers, hyphens, underscores, and dots.
 - **Username display**: usernames are now shown in lowercase across the sidebar, admin users list, and admin user detail page (existing values in the database are not modified).
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.5] - 2026-05-28
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.4] - 2026-05-25
 
 ### Changed
+
 - **Kokoro TTS**: switched to official upstream image `ghcr.io/remsky/kokoro-fastapi-gpu:v0.4.0-cu128` which now properly ships Blackwell/RTX 50-series (sm_120) kernels. Documented GPU compatibility tiers for all NVIDIA architectures.
 - **TTS router**: ignore client voice param when `TTS_PROVIDER=local` to prevent 400 errors from stale OpenAI voice names in localStorage.
 
 ## [1.6.3] - 2026-05-24
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.2] - 2026-05-24
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.1] - 2026-05-24
@@ -212,7 +267,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Progress-based study plan advancement**: the study plan now tracks progress with a dedicated `progress_day` counter instead of calendar dates. `progress_day` is a 0-indexed integer counting completed days; the current day is always derived from it regardless of when the user last logged in.
 - **Auto-advance**: `GET /api/study-plan/today` automatically moves `progress_day` forward whenever all lessons for the current day are marked complete, so users are always presented with the next pending day without any manual action.
-- **Skip day** (`POST /api/study-plan/skip-day`): users can skip the current day's lessons and move straight to the next one. Skipped but unfinished lessons become *pending*.
+- **Skip day** (`POST /api/study-plan/skip-day`): users can skip the current day's lessons and move straight to the next one. Skipped but unfinished lessons become _pending_.
 - **Pending lessons** (`GET /api/study-plan/pending-lessons`): returns incomplete lessons from days that have already been passed (via completion or skip). The dashboard shows a pending-lessons counter and a quick-access button linking to `/plan`.
 - **Day-complete celebration**: the lesson player detects when completing a lesson triggers an auto-advance and shows a "Day complete" banner on the completion screen.
 - **Dashboard progress bar**: a thin progress bar and "Day X of Y" label reflect the user's position in the plan at a glance.
@@ -220,11 +275,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **i18n**: `dashboard.dayProgress`, `dashboard.skipDay`, `dashboard.pendingLessons`, `lesson.dayComplete`, `lesson.dayCompleteMsg` keys added to all 10 locale files.
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.6.0] - 2026-05-23
 
 ### Added
+
 - **Voice transcript history**: voice conversations are now persisted as text transcripts alongside chat conversations. Every user utterance (STT) and assistant response is saved incrementally to `chat_history` during the session, grouped under a `Conversation` record with `source='voice'`. This means:
 - Voice sessions appear in the tutor chat sidebar (with a mic icon) alongside regular text conversations.
 - Users can click a past voice session to review the full transcript as text, exactly like a chat history.
@@ -234,12 +291,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Frontend**: `ConversationResponse` and the React `Conversation` interface now include `source`. The sidebar shows a mic icon (🎤) for voice-originated conversations. The `voice_context` sessionStorage payload was upgraded from a plain array to `{messages, conversation_id}` so the WebSocket can append to the same conversation.
 - **LLM Memory**: the AI tutor can now autonomously remember important details about the student (preferences, goals, profession, interests, learning struggles) across conversations. The LLM appends a `<<MEMORY>>...<<ENDMEMORY>>` marker to its response when it learns something noteworthy; the backend strips it before the student sees the reply and persists the fact to a new `memories` table. Memories are injected into the system prompt for both text chat and voice conversation, giving the tutor persistent context across sessions. Cero extra coste de tokens — no hay llamadas adicionales al LLM.
 - **Backend**: new `Memory` model (`memories` table via Alembic `0022_memory.py`). `memory_service.py` handles marker parsing, stripping, deduplication, and system-prompt formatting (max 20 memories × 200 chars). `chat.py` and `conversation_pipeline.py` detect the marker during streaming and never expose it to the user. `GET /api/memories`, `DELETE /api/memories/{id}`, `DELETE /api/memories` endpoints for user management.
-- **Frontend**: new *Memory* section in Settings where users can view and delete individual saved memories or clear all. A "Memory updated" toast appears briefly (3.5 s) in both chat and voice when new memories are persisted.
+- **Frontend**: new _Memory_ section in Settings where users can view and delete individual saved memories or clear all. A "Memory updated" toast appears briefly (3.5 s) in both chat and voice when new memories are persisted.
 - **i18n**: `settings.sectionMemory`, `settings.memoryEmpty`, `settings.memoryClearAll`, `settings.memoryClearAllTitle`, `settings.memoryClearAllMessage`, `settings.memoryClearAllConfirm`, `chat.memoryUpdated`, `conversation.memoryUpdated` keys added to all 10 locale files.
 
 ## [1.5.7] - 2026-05-22
 
 ### Added
+
 - **Phase 8 — Feedback board**: users can submit feature requests and bug reports, vote on suggestions, and leave comments. Entries are visible to all logged-in users. Admins can update entry status and delete any entry from a dedicated admin panel.
 - **Backend**: three new DB tables (`feedback_entries`, `feedback_votes`, `feedback_comments`) with Alembic migration `0020_feedback.py`. `FeedbackEntry` stores type (`feature`|`bug`), title, description, status, author and a denormalised `vote_count`. `FeedbackVote` enforces one vote per user per feature (`UNIQUE(entry_id, user_id)`). `FeedbackComment` stores flat comment threads with cascade delete from the parent entry.
 - **Router** (`app/routers/feedback.py`): 9 endpoints under `/api/feedback` — list (paginated, sortable by votes or date, filterable by type and status), create, get detail, delete (author or admin), toggle vote (features only), update status (admin only), list comments, add comment, delete comment.
@@ -252,16 +310,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Maintenance mode**: admin can toggle a maintenance mode from the admin users panel (`/admin/users`) via `PATCH /api/admin/maintenance`. When active, the four subscription-gated features (tutor chat, voice conversation, listening, reading) are blocked with a 503 backend response and a static maintenance banner in the frontend. No restart required — stored in Redis (`maintenance_mode` key). The toggle does not affect free features (lessons, flashcards, assessment, progress, etc.). Backend: `get_redis()` centralized in `deps.py`, `check_maintenance_mode()` dependency, `require_subscription` checks maintenance first. Frontend: `MaintenanceGate` component, `config.ts` extended with `maintenanceMode`, `PaywallGate` unchanged.
 
 ### Fixed
+
 - **`lesson/[id]` no longer paywalled**: removed `PaywallGate` wrapper from the lesson page. Lessons are free features and were incorrectly gated on the frontend (the backend never required subscription for lessons).
 
 ## [1.5.6] - 2026-05-20
 
 ### Fixed
+
 - Minor bug fixes and improvements.
 
 ## [1.5.5] - 2026-05-19
 
 ### Changed
+
 - **Freemium model restructured**: dashboard, flashcards, lessons, study plan, and level assessment are now available to all registered users at no cost. Chat with AI tutor, voice conversations, listening exercises, and reading exercises remain subscription-only features.
 - **Backend**: `require_subscription` dependency removed from `/api/lessons`, `/api/flashcards`, `/api/study-plan`, and `/api/assessment` routers; all endpoints in these routers now use `get_current_user` only.
 - **Frontend**: `PaywallGate` removed from `/dashboard`, `/flashcards`, and `/assessment/level-test` pages.
@@ -271,6 +332,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.4] - 2026-05-18
 
 ### Fixed
+
 - **Anthropic LLM provider**: resolved crash `'NoneType' object has no attribute 'beta'` in `structured_output` caused by routing Anthropic through `_do_structured_output`, which uses the OpenAI `beta.chat.completions.parse` API while `self.client` is `None` for Anthropic. All providers now go through `_structured_via_json`.
 - **Anthropic — system prompt lost**: `_anthropic_chat` was extracting only the first system message via `next()`; extra instructions appended by `_structured_via_json` (JSON format hint) were silently dropped. All system messages are now combined with `\n\n` before the API call.
 - **Anthropic — `system=None` API error**: passing `system=None` explicitly to `messages.create` could cause an SDK validation error; the parameter is now omitted when no system message is present.
@@ -281,6 +343,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.3] - 2026-05-17
 
 ### Added
+
 - **Phase 7 — Reading exercises**: AI-generated reading comprehension exercises with multiple-choice questions, scoring, and XP rewards.
 - **Backend**: two new DB tables (`reading_exercises`, `reading_attempts`) with Alembic migration `0019_reading.py`. LLM generates a passage + 5 questions graded to the user's CEFR level; no TTS synthesis. Text is stored directly and served to the client immediately.
 - **Service layer** (`app/services/reading_service.py`): `get_available_exercise`, `generate_and_save_exercise` (LLM only), `calculate_score` (10 XP/correct), `submit_attempt` (duplicate guard, replay mode, XP via `update_daily_progress`), `get_user_history`. Exercises are shared across all users at the same level and language variant.
@@ -288,7 +351,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Router** (`GET /api/reading/next`, `POST /api/reading/generate`, `POST /api/reading/attempt`, `GET /api/reading/history`). Generation uses a per-(level, language) Redis lock with 60 s TTL and runs as a `BackgroundTask`. `GET /next?wait=true` long-polls up to 90 s.
 - **Frontend** (`/reading`): two-column layout (passage left, questions right) on desktop; stacked on mobile. Five exercise types across CEFR levels: notice, email, article, news, blog post, review, essay. Wrapped in `PaywallGate`. Sidebar entry added after Listening.
 - **i18n**: `reading` namespace added to all 10 locale files; nav label kept in English ("Reading") across all locales.
-- **Voice selector in Settings**: new *Voice* section visible only when `TTS_PROVIDER=openai`. Users can preview all 9 OpenAI TTS voices (alloy, ash, coral, echo, fable, nova, onyx, sage, shimmer) with inline play/stop buttons and select their preferred voice. Selection is persisted in `localStorage` (key `tts_voice`); default is the server-configured `OPENAI_TTS_VOICE`.
+- **Voice selector in Settings**: new _Voice_ section visible only when `TTS_PROVIDER=openai`. Users can preview all 9 OpenAI TTS voices (alloy, ash, coral, echo, fable, nova, onyx, sage, shimmer) with inline play/stop buttons and select their preferred voice. Selection is persisted in `localStorage` (key `tts_voice`); default is the server-configured `OPENAI_TTS_VOICE`.
 - **`GET /api/tts/preview/{voice}`** backend endpoint (auth required, 10 req/min): generates a short preview clip for the requested voice and caches the MP3 to disk (`${DATA_PATH}/tts_previews/{voice}.mp3`). Subsequent requests are served from the local cache at zero API cost. Only available when `TTS_PROVIDER=openai`.
 - **`GET /api/config`** now returns `tts_provider` and `openai_tts_voice` so the frontend can conditionally show the voice selector and resolve the server default.
 - **`store/config.ts`** extended with `ttsProvider` and `openaiTtsVoice` fields.
@@ -298,16 +361,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.5.2] - 2026-05-17
 
 ### Fixed
+
 - Minor bug fixes.
 
 ## [1.5.1] - 2026-05-17
 
 ### Changed
+
 - Stripe Checkout Session now passes `locale="auto"` so the payment page and transactional emails are automatically displayed in the customer's browser language.
 
 ## [1.5.0] - 2026-05-15
 
 ### Added
+
 - **Phase 6 — Listening exercises**: AI-generated listening comprehension exercises with text-to-speech audio, multiple-choice questions, scoring, and XP rewards.
 - **Backend**: two new DB tables (`listening_exercises`, `listening_attempts`) with Alembic migration `0018_listening.py`. LLM generates exercise text + 5 questions; Kokoro/OpenAI TTS synthesises the audio; MP3 stored at `${DATA_PATH}/audio/listening/{id}.mp3` via bind mount.
 - **Service layer** (`app/services/listening_service.py`): `get_available_exercise`, `generate_and_save_exercise` (LLM → TTS → disk), `calculate_score` (case-insensitive, 10 XP/correct), `submit_attempt` (duplicate guard, XP in `Progress`), `get_user_history`.
@@ -321,17 +387,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.17] - 2026-05-14
 
 ### Fixed
+
 - Security update: frontend dependencies `next` and `eslint-config-next` upgraded from `16.2.4` to `16.2.6` to include the latest Next.js patch.
 
 ## [1.4.16] - 2026-05-14
 
 ### Added
+
 - Backend logging architecture now includes a shared logger wrapper (`app/core/app_logger.py`). Routers and services use `get_logger(__name__)` for consistent log formatting while preserving compatibility with standard `%s` placeholder messages.
 - TTS observability for diagnostics: `POST /api/tts` now supports trace correlation via `X-TTS-Trace-ID` and returns backend timing headers (`X-TTS-Backend-Synth-Ms`, `X-TTS-Backend-Total-Ms`). The Next.js TTS proxy forwards trace information and exposes proxy timing headers (`X-TTS-Proxy-Fetch-Ms`, `X-TTS-Proxy-Buffer-Ms`, `X-TTS-Proxy-Total-Ms`).
 
 ## [1.4.15] - 2026-05-14
 
 ### Fixed
+
 - Minor bug fixes.
 
 ## [1.4.14] - 2026-05-14
@@ -350,11 +419,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Lesson — Exit button**: a `✕` button in the lesson header lets users leave a lesson mid-way. Clicking it shows a confirmation dialog (using the shared `ConfirmDialog` component with `danger` styling) warning that progress will be lost; confirming navigates to `/dashboard`. Three new i18n keys added to the `lesson` namespace across all 10 locale files: `exit`, `exitConfirmTitle`, `exitConfirmMessage`.
 
 ### Changed
+
 - **Avatar storage**: profile photos are no longer stored as base64 data URIs inside the `users.avatar` database column. On upload the image is now written to disk at `/app/avatars/{user_id}.{ext}`, persisted via a Docker volume (`${DATA_PATH}/avatars:/app/avatars`), and the column stores only the relative URL (`/api/avatars/{id}.ext?v={ts}`). The `?v=` cache-buster is refreshed on every re-upload. Existing base64 avatars remain visible and are replaced transparently on the user's next upload. `StaticFiles` mounted at `/api/avatars` in FastAPI; served to the browser through the existing Next.js `/api/:path*` rewrite proxy.
 
 ## [1.4.13] - 2026-05-13
 
 ### Fixed
+
 - **Evaluation — critical bug**: last answer was silently dropped from the level-test submission due to a stale React closure. `handleNext` now reads from a `useRef` (`answersRef`) that is updated eagerly alongside state in `handleConfirmAnswer`, guaranteeing all N answers are always included in the payload sent to the backend.
 - **Evaluation — DB consistency**: added missing `await db.refresh(plan)` after `db.commit()` in the `/api/assessment/level-test/submit` endpoint, consistent with every other endpoint in the router.
 - **Evaluation — LLM error handling**: `json.JSONDecodeError` raised by `json.loads()` on a malformed LLM response was not caught in `generate_level_test_questions` or `evaluate_free_write`, causing a generic 500. Both functions now catch it and re-raise as `LLMError` → 502, while still letting `LLMTimeoutError` / `LLMUnavailableError` propagate for their specific HTTP status codes.
@@ -362,11 +433,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Evaluation — subscription check order**: `loadQuestions` in the level-test page now bails out early when the user is not subscribed, preventing a spurious 402 network error from showing an opaque error panel instead of the `PaywallBanner`.
 
 ### Added
+
 - **Evaluation — start warning dialog**: a `ConfirmDialog` is shown before starting both the initial placement assessment and the level-completion test, warning the user that leaving mid-evaluation will lose all progress and require a restart. Uses the shared `ConfirmDialog` component and follows the same UX pattern as the logout confirmation. Four new i18n keys added to the `assessment` namespace across all 10 locale files (en, es, de, fr, it, pt, nl, pl, ru, ro): `startWarningTitle`, `startWarningMessage`, `startWarningMessageLevelTest`, `startWarningConfirm`.
 
 ## [1.4.12] - 2026-05-13
 
 ### Added
+
 - **Conversation starters**: 30 curated English-practice topics displayed as clickable chips in the voice conversation section. Six topics are chosen randomly on each component mount. Chips are hidden as soon as a session becomes active and reappear when it ends. Clicking a chip injects a synthetic `initialContext` message so the tutor opens naturally on that topic — no backend changes required.
 - **i18n**: `startersHint` key added to the `conversation` namespace in all 10 locale files (en, es, de, fr, it, pt, pl, nl, ro, ru).
 - **Assessment bank** expanded to 100 questions (A1–C2). New items cover B2, C1, and C2 levels across grammar, vocabulary, and reading comprehension. `MAX_QUESTIONS` per placement test raised from 12 to 15.
@@ -377,9 +450,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.11] - 2026-05-12
 
 ### Added
+
 - What's New modal: version-aware changelog overlay shown automatically on the dashboard on the first visit after an update. Follows the same pattern as OnboardingTour — localStorage-based, no backend required. Tour takes priority for new users; returning users see What's New only.
 
 ### Changed
+
 - Legal texts updated across all 10 locales (en, es, de, fr, it, nl, pl, pt, ro, ru):
 - Terms of Service: section 5 now mentions monthly **and** yearly subscription plans; section 6 clarifies the free trial period (payment details required; no charge until trial ends), annual billing cycle, and that current prices are displayed at checkout — no fixed prices are stated in the legal text.
 - Privacy Policy: new data item `s2i8` discloses subscription status, plan type, and Stripe customer identifier stored for paid subscribers; section 4 (External Services) now explicitly names Stripe, Inc. (USA) as payment processor and links to its Privacy Policy; section 6 (GDPR rights) extends the international transfers disclosure to include Stripe alongside OpenAI, both covered by Standard Contractual Clauses (Art. 46 GDPR).
@@ -387,35 +462,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Real-time voice conversation: improved with a new voice for a more natural and engaging experience.
 
 ### Fixed
+
 - Various minor bug fixes and stability improvements.
 
 ## [1.4.10] - 2026-05-12
 
 ### Added
+
 - What's New modal: version-aware changelog overlay shown automatically on the dashboard on the first visit after an update. Follows the same pattern as OnboardingTour — localStorage-based, no backend required. Tour takes priority for new users; returning users see What's New only.
 
 ### Changed
+
 - Real-time voice conversation: improved with a new voice for a more natural and engaging experience.
 
 ### Fixed
+
 - Various minor bug fixes and stability improvements.
 
 ## [1.4.9] - 2026-05-12
 
 ### Fixed
+
 - Voice conversation: fixed out-of-order TTS playback caused by a race condition in `decodeAudioData`. Audio chunks are now serialized via a promise chain so they are always decoded and scheduled in the exact order they were enqueued, regardless of individual decoding time.
 
 ## [1.4.8] - 2026-05-12
 
 ### Added
+
 - Pricing section: crossed-out original prices (x €/month, x €/year) shown above current launch prices using `text-fl-muted-2 line-through`.
 - `pricingLabel` i18n key updated to "Launch Offer" in all 10 locales (es, en, de, fr, it, pt, nl, pl, ro, ru).
 
 ### Changed
+
 - `conversation_weekly_sessions` reset to `0` (unlimited) in `apply_subscription_quotas` — session count is not used as a quota; time limits (daily/weekly minutes) are the only active constraints.
 - docs/index.html: hero CTA updated to feature hosted service link (freelingo.app); "Open Source" section now mentions the managed hosted option.
 
 ### Fixed
+
 - Locale detection in `middleware.ts` now splits on `/[-_]/` instead of `'-'` so mobile browsers that send `Accept-Language` values like `es_ES` (underscore) are correctly resolved instead of falling back to English.
 - Admin user detail page: saving quota limits now immediately refetches `/api/admin/users/{id}/quota` so the "Cuotas de conversación" display reflects the new limits without requiring a page reload.
 - System prompts (chat and voice): added `SCOPE`, `CONTENT POLICY`, and `PERSONA LOCK` as top-priority mandatory rules to prevent the LLM from writing code, doing homework, producing harmful content, or being jailbroken via roleplay/persona requests. User-supplied context (`bio`, `learning_goals`) is now explicitly labelled as non-authoritative data that cannot override system rules. Chat prompt also gains `ALWAYS respond in English` parity with the voice prompt.
@@ -423,59 +506,71 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.7] - 2026-05-11
 
 ### Fixed
+
 - Alembic migration `0017` revision ID shortened from 38 to 23 characters to fit the `varchar(32)` limit of the `alembic_version` table; migration file renamed to `0017_fix_tokens_default.py`.
 - Stripe Checkout Session now passes `allow_promotion_codes=True` so the promo code field is visible to users.
 
 ## [1.4.6] - 2026-05-11
 
 ### Fixed
+
 - `monthly_tokens_limit` server-default in PostgreSQL corrected from `0` (unlimited) to `1000000`, aligning it with the ORM default; new migration `0017_fix_monthly_tokens_server_default`.
 
 ### Changed
+
 - README: added **Hosted service** section with link to [freelingo.app](https://freelingo.app) to make the managed subscription option visible.
 
 ## [1.4.5] - 2026-05-11
 
 ### Added
+
 - `BLOCKED_EMAIL_DOMAINS` env var: JSON array of blocked email domain strings (e.g. disposable/temporary providers like `yopmail.com`). Registrations using a blocked domain are rejected with HTTP 422 before any DB access. Defaults to `[]` (no blocking). Configurable via `.env` and `docker-compose.yml`.
 - Password strength policy upgraded: minimum 10 characters, maximum 25, requires at least one uppercase letter, one number, and one symbol. Enforced in backend schemas (`RegisterRequest`, `UserUpdateRequest`, `ResetPasswordRequest`, `AdminUserCreate`) and client-side in the register form. `invalidPassword` i18n key updated in all 10 locales.
 - Landing footer: added GitHub link pointing to the project repository (`https://github.com/ArtCC/freelingo`), opens in a new tab. `github` i18n key added to all 10 locales.
 
 ### Changed
+
 - Landing footer: removed "Open source · Self-host free or subscribe to the hosted service" tagline from the copyright line.
 - Register error handling: blocked email domain (`Email domain not allowed`) now maps to the existing `invalidEmail` i18n key instead of showing a raw backend message.
 
 ### Fixed
+
 - Onboarding tour resets on logout: `logout()` in the auth store now removes `fl_tour_done` from `localStorage`, so the tour is shown again on the next login regardless of which logout path is used (sidebar, settings, or silent 401 redirect).
 
 ## [1.4.4] - 2026-05-10
 
 ### Fixed
+
 - Landing page: pricing section now shows immediately for unauthenticated users (no loading state); authenticated users see a full-screen loading overlay (backdrop blur, same pattern as onboarding tour) while subscription status is verified, avoiding layout shifts or premature reveals
 - Middleware: inverted auth logic from public-routes whitelist to protected-routes list; unknown URLs now reach the Next.js 404 handler instead of being redirected to `/login`
 
 ## [1.4.3] - 2026-05-10
 
 ### Added
+
 - Onboarding tour modal on first dashboard visit: 6-step guided walkthrough covering chat, voice, flashcards, study plan, and getting started; shown once per browser via `localStorage` (`fl_tour_done`); dismissible at any step with skip or navigation arrows; `tour` i18n namespace added in all 10 supported locales
 
 ### Fixed
+
 - Landing pricing section (`PricingSection`) now uses server-side `stripeEnabled` prop directly (removed dependency on `useConfigStore` which was always `false` before hydration, causing the section to never render for anonymous users)
 - Users with an active or trialing subscription are now correctly identified via `/api/auth/refresh` + `/api/auth/me` on the landing page, hiding the pricing section when already subscribed
 
 ## [1.4.2] - 2026-05-10
 
 ### Fixed
+
 - Admin users list: subscription status tags (`active`, `trial`, `past due`) now use i18n keys via `tBilling` instead of hardcoded English strings
 - Stripe webhook handlers: replaced `getattr()` with `_sget()` helper that handles both `StripeObject` (production, SDK v15+) and plain dicts (test mocks); fixes 4 failing CI tests
 
 ### Changed
+
 - Landing page pricing section extracted to `PricingSection` client component; section is now hidden for users who already have an active or trialing subscription
 - Restored `pricingLabel` heading above `pricingTitle` in the pricing section
 
 ## [1.4.1] - 2026-05-10
 
 ### Fixed
+
 - Stripe webhook handler: replaced `.get()` calls with `getattr()` on `StripeObject` instances, required since SDK v15.0.0 where `StripeObject` no longer inherits from `dict`
 - `current_period_end` now read from `SubscriptionItem` (via `sub.items.data[0].current_period_end`) in addition to the subscription root, as the field moved to `SubscriptionItem` in Stripe API v2025-03-31 (SDK v12+); both locations are tried for forward and backward compatibility
 - Added `_subscription_period_end()` helper used by both `_handle_checkout_completed` and `_handle_subscription_updated` handlers
@@ -484,6 +579,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.0] - 2026-05-10
 
 ### Added
+
 - **Phase 5: Stripe subscriptions & paywall** — optional hosted subscription layer; self-hosted deployments are unaffected (`STRIPE_ENABLED=false` default)
 - Six new environment variables: `STRIPE_ENABLED`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_MONTHLY`, `STRIPE_PRICE_YEARLY`, `STRIPE_TRIAL_DAYS` (default 7)
 - Alembic migration `0016_stripe_subscription`: adds `stripe_customer_id`, `subscription_status` (default `'none'`), `subscription_ends_at` to `users`
@@ -509,11 +605,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.19] - 2026-05-10
 
 ### Added
+
 - Account deletion confirmation email: when a user deletes their own account via `DELETE /api/auth/me`, a transactional email is sent in the user's native language confirming the deletion and including a security notice; admin-initiated deletions do not trigger this email
 - `send_account_deleted_email` function in `email_service.py` with `_DELETION_I18N` translations for all 10 supported locales
 - `account_deleted.html` email template (no CTA button, plain confirmation + security footer)
 
 ### Fixed
+
 - Romanian `link_fallback` in `_VERIFY_I18N` and `_RESET_I18N`: `lipirii` (noun genitive) corrected to `lipește` (imperative verb)
 - Romanian `step1` in `_WELCOME_I18N`: `Faci` (indicative) corrected to `Fă` (imperative), consistent with the other steps
 - `welcome.html` email template: added `margin-bottom: 20px` to `.btn` so the CTA button has breathing room before the footer divider
@@ -521,6 +619,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.18] - 2026-05-10
 
 ### Added
+
 - Learning goals selection in onboarding step 2: 8 goal categories (travel, work, academic, daily, media, emigration, exams, social) stored as JSON in `users.learning_goals`; injected into LLM system prompt for both text chat and voice conversation
 - User bio field in settings (max 500 chars): free-text context injected into LLM prompts alongside learning goals
 - Alembic migration `0015_user_learning_profile`: adds `bio TEXT` and `learning_goals TEXT` columns to `users`
@@ -529,6 +628,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - i18n keys `onboarding.goals.*` and `settings.bio/bioPlaceholder/bioHint` added in all 10 locales
 
 ### Fixed
+
 - Animated avatar halos in voice conversation: halo is always visible (subtle `animate-halo-idle`) and intensifies when speaking (`animate-halo-speaking`); `px-2` on transcript container prevents horizontal scrollbar from halo overflow
 - Quota widget in voice conversation replaced with a collapsible `QuotaPill` pill (single summary line, expands to detail bars on click)
 - `validate_inactivity_timeout` validator in `UserUpdateRequest` was missing `return v` and had incorrect type hint `Optional[str]` instead of `Optional[int]`, causing the field to always be set to `None`; both corrected
@@ -536,11 +636,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.17] - 2026-05-10
 
 ### Fixed
+
 - Alembic migration `0014_monthly_token_quota` had incorrect `down_revision = "0013"` — corrected to `"0013_email_verification"` to match the actual revision ID pattern used across all migrations; was causing `KeyError: '0013'` on startup, blocking login
 
 ## [1.3.16] - 2026-05-10
 
 ### Added
+
 - Monthly token quota per user (`monthly_tokens_limit` field on `User`, 0 = unlimited); admin can set it per-user via PATCH; chat and voice conversation are blocked with a clear error when the monthly limit is exceeded
 - `get_monthly_tokens_used()` and `check_monthly_tokens()` helpers in `quota_service`; `GET /api/auth/quota` now includes `tokens_this_month`, `tokens_monthly_limit`, `tokens_unlimited`
 - Voice conversation `ConversationMode` shows a monthly-token progress bar alongside sessions and minutes; handles `quota_exceeded_tokens` WebSocket error code
@@ -550,11 +652,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.15] - 2026-05-09
 
 ### Fixed
+
 - `Strict-Transport-Security` header removed from backend middleware — the header was emitted over plain HTTP internally (Cloudflare tunnel terminates TLS), causing browsers to cache an HSTS policy that blocked subsequent visits with a hard security error. HSTS should be configured at the Cloudflare edge (SSL/TLS → Edge Certificates → HSTS), not by the origin server
 
 ## [1.3.14] - 2026-05-09
 
 ### Added
+
 - `/health` endpoint now checks DB, Redis, TTS, and STT dependencies; returns HTTP 503 with `{"status": "degraded", "checks": {...}}` if any dependency is unreachable (previously always returned 200)
 - `health()` method added to `KokoroTTSService`, `OpenAITTSService`, `WhisperSTTService`, and `OpenAISTTService`
 - `SECRET_KEY` startup validation in `lifespan`: server refuses to start if the value contains `CHANGE_ME` or is shorter than 32 characters
@@ -566,15 +670,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.13] - 2026-05-09
 
 ### Fixed
+
 - `/forgot-password`, `/reset-password`, and `/verify-email` added to `PUBLIC_ROUTES` in Next.js middleware — unauthenticated users were redirected back to `/login` before reaching these pages, making "Forgot your password?" appear to do nothing
 - Redundant Redis delete of invite token in `POST /api/auth/register` removed — the token was already deleted during validation; the second `await redis.delete(...)` call was unreachable when `ALLOW_REGISTRATION=true` and a no-op otherwise
 
 ### Added
+
 - 4 edge-case tests for email system: `test_resend_verification_no_email` (→ 400), `test_resend_verification_email_disabled` (→ 503), `test_verify_email_token_consumed_after_use` (second call → 400), `test_reset_password_token_consumed_after_use` (second call → 400)
 
 ## [1.3.12] - 2026-05-09
 
 ### Added
+
 - Email verification system: `is_verified` column on `User`, `GET /api/auth/verify-email`, `POST /api/auth/resend-verification` endpoints
 - Password reset flow: `POST /api/auth/forgot-password` (anti-enumeration, always 200) and `POST /api/auth/reset-password` endpoints
 - Verification and reset tokens stored in Redis with TTL (24h / 1h respectively)
@@ -591,6 +698,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.11] - 2026-05-09
 
 ### Added
+
 - `POST /api/conversation/warmup` endpoint: pre-heats TTS and STT models synchronously before a session starts; frontend awaits it before opening the WebSocket so the first transcription/synthesis is instant
 - New `warming` status in `ConversationMode` — sidebar shows "Loading models..." while warmup runs, with pulsing indicator
 - `statusWarming` i18n key added to all 10 locale files
@@ -600,42 +708,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Author section in Settings now includes website link and Contact (`mailto:`) alongside GitHub, with `websiteLink` and `contactLink` i18n keys in all 10 locales
 
 ### Fixed
+
 - Version number misalignment between desktop and mobile sidebar (both now show `v1.3.11`)
 
 ## [1.3.10] - 2026-05-09
 
 ### Added
+
 - `conversation_weekly_minutes` quota field visible and editable in admin user detail page
 - `quotaWeeklyMinutes` and `quotaUsedWeeklyMinutes` i18n keys added to all 10 locale files
 - Native language selector now sorted alphabetically by translated name in register, settings, and admin pages
 
 ### Fixed
+
 - `ro` (Romanian) missing from `SUPPORTED_LANGUAGES` whitelist in `schemas/auth.py` and `schemas/admin.py` — registration with Romanian as native language returned 422
 
 ## [1.3.9] - 2026-05-09
 
 ### Added
+
 - Interface languages: Polish (pl), Dutch (nl), Romanian (ro), Russian (ru)
 - Native language options expanded to include pl, nl, ro, ru
 - New `conversation_weekly_minutes` quota field (default 90 min/week, 0 = unlimited) — tracks total voice conversation time per week independently of session count
 
 ### Changed
+
 - Conversation quota defaults: `weekly_sessions` set to 0 (unlimited); `daily_minutes` 30; `weekly_minutes` 90
 - `conversation_weekly_sessions` default reverted to 0 (unlimited) — use `weekly_minutes` to control weekly usage
 
 ## [1.3.8] - 2026-05-09
 
 ### Fixed
+
 - Conversation quota: daily minutes now checked before incrementing the weekly session counter, preventing a wasted session slot when the daily limit is already exhausted
 
 ## [1.3.7] - 2026-05-09
 
 ### Changed
+
 - Landing page CTA button for authenticated users changed from "Dashboard" / "Panel" / "Tableau de bord" / "Painel" to "Continue" / "Continuar" / "Continuer" / "Continuar" / "Weiter" / "Continua" across all 6 locales
 
 ## [1.3.6] - 2026-05-09
 
 ### Added
+
 - Public landing page at `/` with sticky nav, hero, feature cards, and footer; i18n in 6 languages (en, es, fr, pt, de, it)
 - `landing` i18n section in all 6 locale files
 - Legal documents completely rewritten for dual-mode operation (self-hosted + hosted service):
@@ -646,6 +762,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `common.tagline` updated: removed "self-hosted" qualifier
 
 ### Changed
+
 - TTS/STT refactored to provider pattern: `TTS_PROVIDER=local|openai` and `STT_PROVIDER=local|openai`; each resolved independently at startup
 - `TTS_ENABLED` / `STT_ENABLED` env vars removed; provider selection replaces them
 - `RATE_LIMIT_STORAGE` env var removed; Redis is now mandatory and always used for rate limiting
@@ -654,23 +771,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README updated to reflect dual-mode operation, provider pattern for TTS/STT, and new badge
 
 ### Fixed
+
 - Contact email updated in Privacy Policy s8 across all 6 locales
 - German typo in Privacy s6Body: `auszuuüben` → `auszuüben`
 
 ## [1.3.5] - 2026-05-06
 
 ### Fixed
+
 - Admin user detail page crashed with 500 error for users with a study plan: `AdminUserStatsResponse.current_unit` was typed `Optional[int]` but the database stores it as a string (e.g. `'a1-unit-1'`); changed to `Optional[str]`
 - Admin user detail page: "Lang" label and "XP & Progreso" section title were hardcoded; now use i18n keys `admin.fieldNativeLanguage` and `admin.sectionXpProgress`; language code value now displays the full translated language name via `languages.*`
 - Admin user detail page: error messages "Failed to load user data" and "User not found" were hardcoded in English; now use i18n keys `admin.loadError` and `admin.userNotFound`
 - Admin users list: `nav.admin` sidebar label was already wired to i18n but confirmed working across all 6 locales
 
 ### Added
+
 - i18n keys added to all 6 locales: `admin.fieldNativeLanguage`, `admin.sectionXpProgress`, `admin.loadError`, `admin.userNotFound`
 
 ## [1.3.4] - 2026-05-06
 
 ### Added
+
 - Token consumption tracking: new `llm_usage` table (Alembic migration `0010_llm_usage`) stores `prompt_tokens`, `completion_tokens`, `total_tokens` per user per call with `source` (`chat`/`conversation`). Capture is fully optional — if the provider does not return usage data the row is simply not created and nothing fails
 - `LLMStream` wrapper in `llm_adapter.py` captures token usage from the final stream chunk for Ollama, OpenAI and DeepSeek (`stream_options={"include_usage": True}`); Anthropic usage is wired but remains `None` until its SDK path is refactored
 - `GET /api/admin/users/{user_id}/stats` endpoint returns aggregated stats per user: current CEFR level and unit, plan duration, completion test score, total XP, streak, active days, lessons completed, exercises correct/total, tutor chat messages sent, and token consumption by source
@@ -682,11 +803,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - i18n keys in all 6 locales: `admin.statsTitle`, `admin.statsCefr`, `admin.statsUnit`, `admin.statsPlanWeeks`, `admin.statsXp`, `admin.statsStreak`, `admin.statsActiveDays`, `admin.statsLessons`, `admin.statsExercises`, `admin.statsMessages`, `admin.statsTokensTotal`, `admin.statsTokensChat`, `admin.statsTokensConversation`, `admin.statsTokensNote`, `admin.statsNoData`, `admin.viewStats`, `admin.weeks`, `admin.statsDays`, `admin.statsTestScore`, `admin.searchPlaceholder`
 
 ### Changed
+
 - Admin users list ordered alphabetically by `username` (was `created_at DESC`)
 
 ## [1.3.3] - 2026-05-05
 
 ### Added
+
 - Button "Continue in voice" in the AI tutor chat header: appears when a conversation has messages and is idle (not sending). Clicking it serialises up to the last 20 non-empty messages into `sessionStorage` and navigates to the real-time voice conversation page
 - Voice conversation page reads and clears the `voice_context` key from `sessionStorage` on mount and passes it to `ConversationMode` as `initialContext`
 - `ConversationMode` accepts optional `initialContext` prop and includes it in the WebSocket auth handshake payload when present
@@ -699,16 +822,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.2] - 2026-05-05
 
 ### Added
+
 - Content policy rule added to tutor chat and real-time conversation system prompts: the AI must decline and redirect any sexual, violent, hateful, or otherwise inappropriate content
 - Terms of Use and Privacy Policy pages added to the platform
 - i18n keys `admin.fieldUsername`, `admin.fieldEmail`, `admin.fieldPassword`, `admin.fieldDisplayName`, `admin.submitCreate` added to all 6 locale files
 
 ### Changed
+
 - Admin create-user form: placeholder labels (Username, Email, Password, Display Name) and submit button (Create) now use i18n keys instead of hardcoded English strings
 
 ## [1.3.1] - 2026-05-04
 
 ### Added
+
 - User avatar: upload (JPEG/PNG, max 2 MB), client-side resize to 1024×1024 via Canvas API, stored as base64 data URI in DB; circular avatar shown in settings, sidebar (desktop 32×32 and mobile 28×28) and chat bubbles (28×28)
 - Avatar placeholder with user initial shown when no avatar is set
 - Tutor logo (`/logo.png`) shown as avatar in chat message bubbles
@@ -722,12 +848,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `avatar?: string | null` field added to `User` interface (frontend Zustand store) and `UserResponse` schema (backend)
 
 ### Changed
+
 - `flashcards.noDue` translation updated to "No cards due for review" (and equivalents in all locales)
 - Flashcards page: `+ Generate` button, `{n} cards` option labels, "No cards due for review" text and "Refresh" button now use i18n keys
 - Chat sidebar: `+ New` button now uses `t('newConversation')` i18n key
 - Admin users list: role badge (`user`/`admin`) and `inactive` badge now use i18n keys instead of hardcoded English strings
 
 ### Fixed
+
 - Admin: deleting a user now correctly removes all associated data thanks to `ON DELETE CASCADE`; delete error was previously only visible inside the create-user form panel — now shown globally
 - Login/register: raw backend validation errors (e.g. Pydantic email format messages) no longer shown to the user; all errors mapped to translated strings (`invalidEmail`, `usernameTaken`, `emailTaken`, `registrationClosed`, `invalidInvite`, generic fallback)
 - i18n keys `auth.register.usernameTaken`, `auth.register.emailTaken`, `auth.register.invalidInvite`, `auth.login.invalidEmail` added to all 6 locale files
@@ -735,6 +863,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2026-05-04
 
 ### Added
+
 - Phase 4 — Target language selection: `english_variant` field replaced by generic `target_language` (BCP-47) across the entire stack
 - Alembic migration `0007_target_language.py`: adds `target_language` column to `users` and `study_plans`, back-fills existing rows (`american` → `en-US`, `british` → `en-GB`), drops `english_variant`
 - `SUPPORTED_TARGET_LANGUAGES: set[str] = {"en-US", "en-GB"}` constant in `app/schemas/auth.py`; new `target_language` field with validator on `RegisterRequest` and `UserUpdateRequest`; `UserResponse` exposes `target_language`
@@ -747,6 +876,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - i18n namespaces `onboarding` (`headline`, `subtitle`, `cta`) and `targetLanguages` (`en-US`, `en-US-description`, `en-GB`, `en-GB-description`) added to all six locale files (en, es, fr, pt, de, it)
 
 ### Changed
+
 - Register flow: after successful registration the frontend stores the returned `access_token` and redirects to `/onboarding` instead of `/login?registered=true`
 - `FlashcardGenerateRequest`: `native_language` field removed — the backend now always reads `native_language` from the authenticated user's profile, ignoring any client-supplied value
 - `ConversationPipeline`: `native_language` and `english_variant` (derived from `target_language`) are now injected into `CONVERSATION_SYSTEM_PROMPT`; previously both were absent from the voice tutor context
@@ -754,16 +884,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Settings page: English variant selector removed — the choice is made during onboarding and is not surfaced in the UI afterwards
 
 ### Removed
+
 - i18n keys `settings.englishVariant`, `settings.american`, `settings.british`, `auth.register.englishVariant`, `auth.register.american`, `auth.register.british` removed from all locale files
 
 ## [1.2.6] - 2026-05-03
 
 ### Changed
+
 - Conversation mode: LLM now always responds in English regardless of the language the student uses; if the student speaks in another language the tutor replies in English and gently encourages them to try in English
 - License changed from Apache 2.0 to GNU Affero General Public License v3 (AGPL v3)
 - `DurationOption` interface cleaned up: `label`, `sublabel`, and `approxLessons` string fields removed; `intensity` typed as `'intensive' | 'standard' | 'relaxed' | 'very_relaxed'`; `GOAL_OPTIONS` entries no longer carry a `label` field — all display strings are now derived from translations at render time
 
 ### Added
+
 - Full i18n coverage for all previously hardcoded UI strings across 6 locale files (en, es, fr, pt, de, it):
 - `common.close`
 - `grammar.explanation`, `grammar.backLink`
@@ -778,11 +911,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `LANGUAGES` constant simplified to `['es','fr','pt','de','it'] as const`; display names resolved at render time via `useTranslations('languages')` in register, settings, and admin pages
 
 ### Fixed
+
 - Email, password, and confirm-password inputs across login, register, settings, and admin pages now set `autoCorrect="off"`, `autoCapitalize="none"`, and `spellCheck={false}` to prevent mobile keyboards from corrupting typed values
 
 ## [1.2.5] - 2026-05-03
 
 ### Fixed
+
 - `Content-Security-Policy` corrected to add `'wasm-unsafe-eval'` to `script-src`, allowing onnxruntime-web WASM modules (VAD / Silero model) to instantiate without breaking other CSP restrictions
 - `script-src` extended with `'unsafe-inline'` required for Next.js hydration; `style-src 'unsafe-inline'` added for Tailwind inline styles; `connect-src 'self' ws: wss:` for API and WebSocket calls; `media-src blob:` and `worker-src blob:` for TTS audio playback and VAD workers; `img-src data: blob:` for flag images
 - Login regression introduced by the restrictive CSP is resolved
@@ -790,6 +925,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.4] - 2026-05-03
 
 ### Security
+
 - Rate limit 5/min added to `POST /api/auth/register` to prevent account enumeration and resource abuse (A-01)
 - WebSocket authentication token now sent as first JSON message after `accept()` instead of as URL query parameter, preventing token exposure in server logs and browser history (A-02)
 - Audio uploads to STT endpoint capped at 50 MB; requests exceeding the limit return HTTP 413 (A-03)
@@ -807,29 +943,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CORS `allow_methods` restricted to explicit list (`GET POST PUT PATCH DELETE OPTIONS`) instead of `"*"` (I-04)
 
 ### Added
+
 - Pagination controls (Previous / Next) on the admin users page
 - `prevPage` and `nextPage` i18n keys added to all six translation files (en, es, fr, pt, de, it)
 - `PaginatedAdminUsersResponse` schema with `items`, `total`, `skip`, `limit` fields
 
 ### Fixed
+
 - `RATE_LIMIT_ENABLED=false` set in test conftest so rate limits do not interfere with integration tests running under the same IP
 - `test_list_users_as_admin` updated to assert on paginated response shape (`items`, `total`) instead of a flat list
 
 ## [1.2.3] - 2026-05-03
 
 ### Fixed
+
 - WebSocket URL now always derived from `window.location` (same-origin) — `NEXT_PUBLIC_API_URL` removed from CI build args, Dockerfile, and `next.config.ts`; the variable was being baked into the public Docker image with a private domain, breaking WebSocket connections for all external users
 - `NEXT_PUBLIC_API_URL` removed from `.env.example` — it is no longer a configurable variable
 
 ## [1.2.2] - 2026-05-03
 
 ### Added
+
 - Author section in Settings page (between Appearance and Logout) showing "Arturo Carretero Calvo" with GitHub link to `github.com/artcc`
 - Version display (`v1.2.2`) in sidebar (desktop + mobile) above the logout button
 - `specs/version.md` — canonical version file with sync rules (must match CHANGELOG and sidebar)
 - `specs/version.md` listed in AGENTS.md spec files table
 
 ### Changed
+
 - All spec files in `specs/` rewritten as proper specifications — removed embedded implementation code (~60-70% reduction), corrected outdated information, and aligned with the actual v1.2.1 codebase
 - `AGENTS.md`: removed "Planning stage — zero source code", updated to reflect v1.2.1 with all phases complete, Next.js 16, Python 3.12, simplified TTS/STT section
 - `architecture.instructions.md`: complete rewrite — lists all 9 models (was 6), all 11 routers (was 9), all 9 services, all endpoints, correct STT API (`/asr` not OpenAI), environment variables
@@ -845,12 +986,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.1] - 2026-05-02
 
 ### Added
+
 - Structured logging across the voice conversation pipeline (`[conversation]`, `[pipeline]`, `[stt]` prefixes) at INFO / DEBUG / ERROR levels
 - `LOG_LEVEL` configuration variable (default `INFO`) in `config.py`, `docker-compose.yml`, and `.env.example`; applied via `logging.basicConfig` at startup
 - `STT_ENGINE` variable in `.env.example` and `docker-compose.yml` (`${STT_ENGINE:-faster_whisper}`) so the Whisper inference engine is configurable without editing the compose file
 - TTS voice reference table and STT model/engine reference table added to README
 
 ### Changed
+
 - `STT_MODEL` in `docker-compose.yml` now reads from `.env` via `${STT_MODEL:-large-v3-turbo}` instead of being hardcoded
 - Default STT model upgraded from `tiny.en` / `medium` to `large-v3-turbo` — best speed/accuracy ratio on GPU (≥6 GB VRAM), ~8× faster than `large-v3` with near-identical accuracy
 - Conversation system prompt: added explicit prohibition on emojis and emoticons (same rule as chat tutor — TTS reads them aloud)
@@ -859,6 +1002,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.0] - 2026-05-02
 
 ### Added
+
 - Phase 3 voice conversation mode: WebSocket pipeline orchestrating VAD → STT → LLM → TTS with barge-in support and gapless audio streaming
 - `ConversationMode` frontend component (dynamic, SSR disabled) using `@ricky0123/vad-react` for in-browser voice activity detection
 - COOP + COEP headers globally in Next.js config (`same-origin` / `credentialless`) to enable `SharedArrayBuffer` required by onnxruntime-web 1.25.1 threaded WASM
@@ -870,6 +1014,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `LOG_LEVEL` configuration variable (default `INFO`) in `config.py`, `.env.example`, and `docker-compose.yml`; applied via `logging.basicConfig` at startup
 
 ### Changed
+
 - `STTService` endpoint corrected from `/v1/audio/transcriptions` (OpenAI API, unsupported) to `POST /asr?output=json&language=en&task=transcribe` with `audio_file` form field, matching the actual `onerahmet/openai-whisper-asr-webservice` API
 - Conversation system prompt: added explicit prohibition on emojis and emoticons (same rule as chat tutor — TTS reads them aloud)
 - `ConversationPipeline.run()` loop now catches `RuntimeError` from `ws.receive()` on client disconnect (triggered when the frontend auto-closes the WS after receiving an error message)
@@ -878,15 +1023,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.1] - 2026-05-02
 
 ### Added
+
 - Theme mode selector in Settings: three explicit options — Auto (system), Dark, Light — replacing the previous toggle; Auto is the default and follows the OS `prefers-color-scheme` preference in real time
 
 ### Fixed
+
 - Chat tutor system prompt: added instruction to never use emojis or emoticons (TTS reads them aloud)
 - Chat sidebar on mobile and narrow viewports: sidebar now hidden by default on screens below `md` breakpoint; opens as a fixed overlay with a semi-transparent backdrop instead of a side-by-side column, preventing the chat area from becoming unusably narrow
 
 ## [1.1.0] - 2026-05-02
 
 ### Added
+
 - TTS (Kokoro-FastAPI) integration: `AudioPlayer` component reads flashcard words, lesson exercise sentences, correct answers, and tutor chat responses aloud
 - STT (faster-whisper) integration: `VoiceRecorder` component allows dictating answers in flashcards and lesson exercises
 - `POST /api/tts` backend proxy to Kokoro-FastAPI service (returns `audio/mpeg`)
@@ -898,11 +1046,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `AudioPlayer` added to tutor chat messages — button appears after streaming completes
 
 ### Fixed
+
 - Kokoro container crash on NVIDIA Blackwell GPUs (`CUDA error: no kernel image is available`) caused by PyTorch ≤ 2.5 lacking sm_120 support
 
 ## [1.0.0] - 2026-05-01
 
 ### Added
+
 - Docker Compose setup with PostgreSQL 16, Redis 7, backend, and frontend services
 - `.env.example` with all configuration variables for phases 1–3
 - FastAPI backend with async SQLAlchemy engine and asyncpg driver
@@ -951,5 +1101,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Amber accent colour design token (`--fl-accent: #C9943A` dark / `#B07E28` light) applied to all CTA buttons, selected states, nav active indicators, and progress bars
 
 ### Fixed
+
 - Alembic migration chain broken by mismatched revision IDs in `0004_lesson_unit_id` (`"0003"` → `"0003_curriculum_studyplan"`)
 - Backend container no longer requires a manual `alembic upgrade head` step — migrations run automatically in the container `command`
