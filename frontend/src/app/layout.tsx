@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       'Learn languages with an AI tutor, voice conversations, flashcards, and structured lessons. Self-hosted and privacy-friendly.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image-v2.png',
         width: 1200,
         height: 630,
         alt: 'FreeLingo: AI-powered language learning',

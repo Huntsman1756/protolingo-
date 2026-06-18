@@ -1,5 +1,3 @@
-# FreeLingo
-
 ![Hosted](https://img.shields.io/badge/hosted%20service-available-green?style=flat-square)
 ![License](https://img.shields.io/badge/license-AGPL%20v3-blue?style=flat-square)
 ![Next.js](https://img.shields.io/badge/next.js-16-black?style=flat-square)
@@ -8,7 +6,7 @@
 ![Version](https://img.shields.io/badge/version-1.8.7-brightgreen?style=flat-square)
 
 <p align="left">
-  <img src="assets/logo.png" alt="FreeLingo logo" width="225" />
+  <img src="assets/logo_large.png" alt="FreeLingo logo" />
 </p>
 
 Open source AI language learning platform available in two modes: self-hosted (free, run it on your own
