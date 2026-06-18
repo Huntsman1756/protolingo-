@@ -132,7 +132,7 @@ frontend/
 │   ├── github.svg
 │   ├── github_white.svg
 │   ├── logo.png
-│   ├── og-image.png
+│   ├── og-image-v2.png
 │   ├── flags/                   # Language flag SVGs
 │   └── vad/                     # Silero VAD ONNX models for browser WASM
 │

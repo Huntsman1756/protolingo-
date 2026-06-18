@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image-v2.png',
         width: 1200,
         height: 630,
         alt: 'FreeLingo: AI-powered language learning',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: 'FreeLingo: AI-powered language learning',
     description:
       'Learn languages with an AI tutor, real-time voice conversations, spaced-repetition flashcards, and structured grammar lessons.',
-    images: ['/og-image.png'],
+    images: ['/og-image-v2.png'],
   },
 }
 
