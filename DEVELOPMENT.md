@@ -35,7 +35,7 @@ This launches 4 containers with hot-reload:
 
 | Service    | URL                    | Source mounted |
 |------------|------------------------|----------------|
-| Frontend   | http://localhost:3000  | `./frontend`   |
+| Frontend   | http://localhost:48888 | `./frontend`   |
 | Backend    | http://localhost:8000  | `./backend`    |
 | PostgreSQL | `localhost:5432`       | —              |
 | Redis      | `localhost:6379`       | —              |
@@ -45,7 +45,7 @@ This launches 4 containers with hot-reload:
 - `run-dev.sh` reads secrets from Keychain, exports them as env vars, and runs `docker compose -f docker-compose.dev.yml --env-file .env.dev up -d`
 - `.env.dev` holds non-sensitive config (LLM provider, TTS/STT mode, etc.). Secret values are left empty — the script or shell environment provides them at runtime.
 - `docker-compose.dev.yml` builds backend and frontend locally with development Dockerfiles and mounts source code as volumes. Backend uses `uvicorn --reload`, frontend uses `npm run dev`.
-- The frontend mounts `./messages` both inside `/app/messages` and `/messages` so Next.js/Turbopack can resolve the shared monorepo message bundles in development.
+- The frontend keeps its own `frontend/messages` JSON bundle copy so Next.js/Turbopack resolves i18n files inside `/app` in both host and Docker development.
 - `./data/` stores PostgreSQL and Redis data persistently across restarts.
 
 ## TTS / STT

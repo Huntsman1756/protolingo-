@@ -46,17 +46,19 @@ services:
       REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
       SECRET_KEY: ${SECRET_KEY}
       LLM_PROVIDER: ${LLM_PROVIDER}
-      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
-      OLLAMA_MODEL: ${OLLAMA_MODEL}
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-      OPENAI_MODEL: ${OPENAI_MODEL}
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
-      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL}
-      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
-      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-}
       NAN_API_KEY: ${NAN_API_KEY:-}
       NAN_BASE_URL: ${NAN_BASE_URL:-https://api.nan.builders/v1}
       NAN_MODEL: ${NAN_MODEL:-qwen3.6}
+      NAN_EMBEDDING_MODEL: ${NAN_EMBEDDING_MODEL:-qwen3-embedding}
+      NAN_RERANK_MODEL: ${NAN_RERANK_MODEL:-rerank}
       NAN_TTS_MODEL: ${NAN_TTS_MODEL:-kokoro}
       NAN_TTS_VOICE: ${NAN_TTS_VOICE:-af_heart}
       NAN_STT_MODEL: ${NAN_STT_MODEL:-whisper}
@@ -113,11 +115,10 @@ services:
     command: npm run dev
     volumes:
       - ./frontend:/app
-      - ./messages:/app/messages
-      - ./messages:/messages:ro
       - /app/node_modules
     environment:
       BACKEND_URL: http://backend:8000
+      NEXT_TURBOPACK_ROOT: /app
       NEXT_PUBLIC_UMAMI_SCRIPT_URL: ${NEXT_PUBLIC_UMAMI_SCRIPT_URL:-}
       NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
     ports:

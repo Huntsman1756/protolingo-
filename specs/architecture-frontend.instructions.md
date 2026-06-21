@@ -138,7 +138,7 @@ frontend/
 │   ├── flags/                   # Language flag SVGs
 │   └── vad/                     # Silero VAD ONNX models for browser WASM
 │
-├── messages/                    # i18n message bundles copied/mounted from the monorepo root
+├── messages/                    # i18n message bundles used by Next.js/Turbopack
 │   ├── en.json
 │   ├── es.json
 │   └── ...
@@ -201,7 +201,7 @@ Premium/maintenance-controlled app pages wrap their main content in shared gates
 
 ### i18n message loading
 
-`frontend/src/i18n/request.ts` imports all supported locale JSON files through a static locale-to-message map. `next.config.ts` sets `turbopack.root` and `outputFileTracingRoot` to the monorepo root so Next.js 16/Turbopack can resolve the shared root `messages/` directory during local builds, Docker builds, and standalone output tracing.
+`frontend/src/i18n/request.ts` imports all supported locale JSON files through a static locale-to-message map. `frontend/messages/` is a real directory so host builds, Docker dev, and production builds resolve message bundles inside the frontend project root. `next.config.ts` keeps the Turbopack root at the frontend root by default and Docker sets `NEXT_TURBOPACK_ROOT=/app`.
 
 ### Phrasebook register labels
 

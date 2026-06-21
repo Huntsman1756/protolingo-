@@ -1,15 +1,15 @@
 import createNextIntlPlugin from 'next-intl/plugin'
 import type { NextConfig } from 'next'
-import path from 'node:path'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
+const turbopackRoot = process.env.NEXT_TURBOPACK_ROOT || process.cwd()
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: 'standalone',
-  outputFileTracingRoot: path.join(process.cwd(), '..'),
+  outputFileTracingRoot: turbopackRoot,
   turbopack: {
-    root: path.join(process.cwd(), '..'),
+    root: turbopackRoot,
   },
   webpack(config, { isServer }) {
     if (isServer) {

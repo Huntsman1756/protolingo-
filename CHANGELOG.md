@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Listening audio playback**: Added a Next.js Route Handler at `/api/listening/audio/[exerciseId]` to properly proxy binary MP3 files from the backend. The generic `next.config.ts` rewrite was corrupting binary responses, causing "Unable to load audio" errors. The `ExerciseAudioPlayer` component now shows detailed error messages and a retry button.
 - **Secret hygiene**: `.env.dev` is no longer tracked and `.env.dev.example` is the committed local development template. Real Nan/OpenAI/database secrets must stay local.
-- **Next.js production build**: i18n message loading now uses a static locale map and configures the Turbopack monorepo root so root-level `messages/*.json` files resolve during local and Docker builds.
+- **Next.js production build**: i18n message loading now uses a static locale map and a real `frontend/messages/` directory so Turbopack resolves locale bundles during local and Docker builds.
 - **Listening scoring**: answer comparison is case-insensitive again and daily progress records exactly the attempt XP instead of adding an extra generic exercise bonus.
 - **Documents access gates**: `/documents` now uses the shared maintenance and paywall gates, matching backend enforcement.
 - **Plan drawer**: lessons without an id no longer render an inert start button.

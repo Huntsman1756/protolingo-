@@ -58,14 +58,14 @@ Two named volumes: `postgres_data` and `redis_data`. Both services also accept b
 - Pulled with `pull_policy: always`
 - Single runtime env var: `BACKEND_URL=http://backend:8000` (used by Next.js Route Handlers; not exposed to the browser)
 - Only service exposing a port to the host (3000)
-- Production builds copy the shared root `messages/` directory into both `/app/messages` and `/messages` so Next.js/Turbopack can resolve i18n bundles from the monorepo root.
+- Production builds include `frontend/messages/` inside `/app/messages` so Next.js/Turbopack resolves i18n bundles without traversing outside the frontend project root.
 
 ### Development compose
 
 - `docker-compose.dev.yml` uses `.env.dev` for local-only non-secret defaults. The file is ignored by Git and must not be committed.
 - `.env.dev.example` is the tracked template for local Docker Desktop development.
 - Real secrets such as `NAN_API_KEY`, `OPENAI_API_KEY`, `POSTGRES_PASSWORD`, `REDIS_PASSWORD`, and `SECRET_KEY` must come from macOS Keychain, the shell environment, or another local secret store.
-- The frontend dev service mounts `./messages` into both `/app/messages` and `/messages` for Turbopack-compatible monorepo i18n resolution.
+- The frontend dev service uses the real `frontend/messages/` directory for Turbopack-compatible i18n resolution inside `/app`.
 
 ### Kokoro TTS
 

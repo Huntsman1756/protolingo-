@@ -10,10 +10,9 @@ WORKDIR /app
 ARG NEXT_PUBLIC_API_URL
 COPY --from=deps /app/node_modules ./node_modules
 COPY frontend/ .
-COPY messages/ ./messages/
-COPY messages/ /messages/
 RUN node scripts/copy-vad-models.js
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_TURBOPACK_ROOT=/app
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 RUN npm run build
 
