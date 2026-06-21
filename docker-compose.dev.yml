@@ -114,6 +114,7 @@ services:
     volumes:
       - ./frontend:/app
       - ./messages:/app/messages
+      - ./messages:/messages:ro
       - /app/node_modules
     environment:
       BACKEND_URL: http://backend:8000

@@ -1,6 +1,29 @@
 import { getRequestConfig } from 'next-intl/server'
 import { cookies, headers } from 'next/headers'
 import { SUPPORTED_LOCALES, type Locale } from '@/lib/locales'
+import de from '../../../messages/de.json'
+import en from '../../../messages/en.json'
+import es from '../../../messages/es.json'
+import fr from '../../../messages/fr.json'
+import it from '../../../messages/it.json'
+import nl from '../../../messages/nl.json'
+import pl from '../../../messages/pl.json'
+import pt from '../../../messages/pt.json'
+import ro from '../../../messages/ro.json'
+import ru from '../../../messages/ru.json'
+
+const MESSAGES: Record<Locale, Record<string, unknown>> = {
+  de,
+  en,
+  es,
+  fr,
+  it,
+  nl,
+  pl,
+  pt,
+  ro,
+  ru,
+}
 
 function resolveLocale(raw: string | undefined): Locale {
   if (raw && (SUPPORTED_LOCALES as readonly string[]).includes(raw)) {
@@ -19,17 +42,8 @@ export default getRequestConfig(async () => {
     headerStore.get('x-next-locale') ?? cookieStore.get('NEXT_LOCALE')?.value
   )
 
-  let messages
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default
-  } catch {
-    // Fallback to English if locale file is missing
-    const defaultLocale = 'en'
-    messages = (await import(`../../messages/${defaultLocale}.json`)).default
-  }
-
   return {
     locale,
-    messages,
+    messages: MESSAGES[locale] ?? MESSAGES.en,
   }
 })

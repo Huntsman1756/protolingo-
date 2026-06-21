@@ -65,9 +65,11 @@ async def update_daily_progress(
         entry.exercises_total += 1
         if exercise_correct:
             entry.exercises_correct += 1
-            entry.xp_earned += XP_EXERCISE_CORRECT
+            if xp <= 0:
+                entry.xp_earned += XP_EXERCISE_CORRECT
         else:
-            entry.xp_earned += XP_EXERCISE_WRONG
+            if xp <= 0:
+                entry.xp_earned += XP_EXERCISE_WRONG
 
     if flashcard_reviewed:
         entry.xp_earned += XP_FLASHCARD_REVIEW

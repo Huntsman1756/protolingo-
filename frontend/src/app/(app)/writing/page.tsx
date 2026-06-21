@@ -53,7 +53,6 @@ type PageState =
 
 function WritingPage() {
   const t = useTranslations('writing')
-  const tCommon = useTranslations('common')
   const activeLanguage = useLanguageStore((s) => s.activeLanguage)
 
   const [pageState, setPageState] = useState<PageState>('loading')

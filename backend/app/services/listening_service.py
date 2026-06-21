@@ -230,8 +230,8 @@ def calculate_score_with_breakdown(
 
     for q in questions:
         index = int(q["index"])
-        correct = _normalize_answer(str(q.get("correct", "")).upper())
-        selected = _normalize_answer(answers.get(str(index), "")).upper()
+        correct = _normalize_answer(str(q.get("correct", "")))
+        selected = _normalize_answer(answers.get(str(index), ""))
         is_correct = selected == correct
 
         if is_correct:

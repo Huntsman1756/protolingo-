@@ -120,8 +120,8 @@ Manages AI-generated listening exercises end-to-end (Phase 6):
 
 - `get_available_exercise(level, target_language, user_id, db)` — returns the oldest unplayed exercise for the user's level/language, excluding already-attempted ones. Returns `None` if pool is empty.
 - `generate_and_save_exercise(level, target_language, db, tts_service, storage_path)` — calls LLM (with one retry on malformed JSON), extracts topic + text + 5 questions, synthesises MP3 via TTS service, flushes to DB to get the ID, writes audio to `{storage_path}/listening/{id}.mp3`, then commits.
-- `calculate_score(questions, answers) → (score, xp_earned)` — pure function, case-insensitive comparison, 10 XP per correct answer.
-- `submit_attempt(exercise_id, user_id, answers, db)` — checks for duplicate (raises 409), calculates score, awards XP via Progress service, increments `play_count`.
+- `calculate_score(questions, answers) → (score, xp_earned)` — pure function, case-insensitive option comparison, 10 XP per correct answer.
+- `submit_attempt(exercise_id, user_id, answers, db)` — checks for duplicate (raises 409), calculates score, updates Progress with exercise counters, listening skill score, and exactly the calculated XP, then increments `play_count`.
 - `get_user_history(user_id, db, skip, limit)` — JOIN query returning `(list[tuple[ListeningAttempt, ListeningExercise]], total)`.
 
 **Exercise types by CEFR level** (`_TYPES_BY_LEVEL`):
@@ -186,6 +186,8 @@ WebSocket-based voice conversation orchestrator:
 9. Emits the final assistant transcript, `status=listening`, and `turn_complete` only after successful audio generation/send.
 10. Serializes all WebSocket writes through one send lock so audio, transcript/status messages, timeout watchers, and close frames do not race.
 11. Timeout watchers: max duration (default 30 min) and inactivity (default 3 min) with 60 s warnings.
+
+If no user-selected voice is provided, the pipeline passes `None` to TTS so the configured TTS provider default is used. It does not force a language-derived fallback voice internally.
 
 ## Weak Review Service (`weak_review_service.py`)
 

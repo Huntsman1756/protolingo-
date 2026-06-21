@@ -190,6 +190,8 @@ On query:
 
 ## Frontend
 
+The Documents page is wrapped in both `MaintenanceGate` and `PaywallGate`, matching backend subscription and maintenance enforcement for the premium document Q&A endpoints.
+
 ### Page: `/documents`
 
 Two views:

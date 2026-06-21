@@ -251,8 +251,8 @@ async def submit_attempt(
 ) -> ListeningAttempt:
     """
     Validates answers against exercise.questions[i].correct.
-    Calculates score (0–5) and xp_earned (score × 10).
-    Awards XP to user (same mechanism as lessons: update users.xp).
+    Calculates score (0–5) with case-insensitive option comparison and xp_earned (score × 10).
+    Updates daily Progress with exercises_total/exercises_correct, listening skill score, and exactly xp_earned XP.
     Saves and returns ListeningAttempt row.
     Increments exercise.play_count.
     """
@@ -485,7 +485,7 @@ under a new `listening` namespace:
 | 4/5   | 40 XP      |
 | 5/5   | 50 XP      |
 
-XP is added to `users.xp` using the same mechanism as lesson completion.
+XP is recorded in `Progress.xp_earned`. Listening passes explicit XP to the progress service, so the generic exercise-correct bonus is not added a second time.
 Replaying an exercise from history awards **no additional XP**.
 
 ---

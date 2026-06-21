@@ -1,7 +1,12 @@
 # Ignore environment variables
 .env
 .env.local
+.env.dev
+.env.production
+.env.staging
 .env.*.local
+!.env.example
+!.env.dev.example
 
 # IDE
 .idea/

@@ -113,53 +113,54 @@ export default function UnitDrawer({
               </p>
             </div>
           ) : (
-            lessons.map((lesson, i) => (
-              <div
-                key={lesson.id ?? i}
-                className="flex items-center gap-3 px-6 py-3"
-              >
-                <span
-                  className={`w-4 shrink-0 font-mono text-base ${lesson.completed ? 'text-fl-fg' : 'text-fl-muted-3'}`}
-                >
-                  {lesson.completed ? '✓' : '○'}
-                </span>
+            lessons.map((lesson, i) => {
+              const canStart = !lesson.completed && lesson.id != null
+              const canGenerate = !lesson.completed && lesson.id == null && onGenerateLesson
+              const canAct = canStart || canGenerate
+
+              const handleLessonAction = () => {
+                if (lesson.id != null) {
+                  onStartLesson(lesson.id)
+                } else if (canGenerate) {
+                  onGenerateLesson(lesson)
+                }
+              }
+
+              return (
                 <div
-                  className={`min-w-0 flex-1 ${(!lesson.completed && (lesson.id != null || onGenerateLesson)) ? 'cursor-pointer hover:opacity-80' : ''}`}
-                  onClick={() => {
-                    if (lesson.completed) return
-                    if (lesson.id != null) {
-                      onStartLesson(lesson.id!)
-                    } else if (onGenerateLesson) {
-                      onGenerateLesson(lesson)
-                    }
-                  }}
+                  key={lesson.id ?? i}
+                  className="flex items-center gap-3 px-6 py-3"
                 >
-                  <p
-                    className={`text-fl-label font-mono ${lesson.completed ? 'text-fl-muted-2 line-through' : 'text-fl-muted-1'}`}
+                  <span
+                    className={`w-4 shrink-0 font-mono text-base ${lesson.completed ? 'text-fl-fg' : 'text-fl-muted-3'}`}
                   >
-                    {lesson.title}
-                  </p>
-                  <p className="text-fl-hint text-fl-muted-3 font-mono">
-                    {t('weekDay', { week: lesson.week, day: lesson.day })} ·{' '}
-                    {lessonTypeLabel[lesson.lesson_type] ?? lesson.lesson_type}
-                  </p>
+                    {lesson.completed ? '✓' : '○'}
+                  </span>
+                  <div
+                    className={`min-w-0 flex-1 ${canAct ? 'cursor-pointer hover:opacity-80' : ''}`}
+                    onClick={handleLessonAction}
+                  >
+                    <p
+                      className={`text-fl-label font-mono ${lesson.completed ? 'text-fl-muted-2 line-through' : 'text-fl-muted-1'}`}
+                    >
+                      {lesson.title}
+                    </p>
+                    <p className="text-fl-hint text-fl-muted-3 font-mono">
+                      {t('weekDay', { week: lesson.week, day: lesson.day })} ·{' '}
+                      {lessonTypeLabel[lesson.lesson_type] ?? lesson.lesson_type}
+                    </p>
+                  </div>
+                  {canAct && (
+                    <button
+                      onClick={handleLessonAction}
+                      className="text-fl-hint text-fl-muted-2 border-fl-border hover:border-fl-border-2 hover:text-fl-fg shrink-0 border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors"
+                    >
+                      {tCommon('start')}
+                    </button>
+                  )}
                 </div>
-                {!lesson.completed && (
-                  <button
-                    onClick={() => {
-                      if (lesson.id != null) {
-                        onStartLesson(lesson.id!)
-                      } else if (onGenerateLesson) {
-                        onGenerateLesson(lesson)
-                      }
-                    }}
-                    className="text-fl-hint text-fl-muted-2 border-fl-border hover:border-fl-border-2 hover:text-fl-fg shrink-0 border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors"
-                  >
-                    {tCommon('start')}
-                  </button>
-                )}
-              </div>
-            ))
+              )
+            })
           )}
         </div>
 

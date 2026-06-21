@@ -125,9 +125,9 @@ freelingo/
 **Requirements:** Docker, Docker Compose, Git, and [Ollama](https://ollama.com) running on the host.
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/artcc/freelingo.git
-cd freelingo
+# 1. Clone this repository
+git clone https://github.com/Huntsman1756/protolingo-.git
+cd protolingo-
 
 # 2. Configure environment
 cp .env.example .env
@@ -158,6 +158,7 @@ The first registered user becomes admin automatically.
 ## Operational notes
 
 - The recommended model for Ollama is `gemma4:e4b`. It can be changed in `.env`.
+- Never commit real environment files. Use `.env.example` for production-style configuration and `.env.dev.example` as the local Docker Desktop development template; keep `.env` and `.env.dev` local only.
 - The backend acts as a proxy for Ollama/TTS/STT calls so the frontend never talks directly to those services.
 - The `LLM_PROVIDER` field controls the LLM provider: `ollama` (local, recommended), `openai`, `anthropic`, or `deepseek`.
 - `TTS_PROVIDER` and `STT_PROVIDER` are independent: `local` (Kokoro / faster-whisper) or `openai` (OpenAI API).

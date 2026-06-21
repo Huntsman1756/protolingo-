@@ -154,6 +154,7 @@ function vadRedemptionMs(cefrLevel: string | null | undefined): number {
 }
 
 const ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS = false
+const ENABLE_CONVERSATION_DEBUG_LOGS = false
 const ENABLE_CONVERSATION_BARGE_IN = false
 const MIN_UTTERANCE_MS = 900
 const MIN_UTTERANCE_RMS = 0.012
@@ -167,7 +168,7 @@ const convLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
 
 // Debug logger — always active during development to surface stuck-state issues
 const debug = (...args: unknown[]) => {
-  // eslint-disable-next-line no-console
+  if (!ENABLE_CONVERSATION_DEBUG_LOGS) return
   console.log('[ConversationMode]', ...args)
 }
 
@@ -200,7 +201,6 @@ export default function ConversationMode({
   const [assistantSpeaking, setAssistantSpeaking] = useState(false)
   const [memoryToast, setMemoryToast] = useState(false)
   const [quota, setQuota] = useState<QuotaStatus | null>(null)
-  const [vadReady, setVadReady] = useState(false)
   const [vadError, setVadError] = useState<string | null>(null)
 
   // 6 random starters picked once per component mount, shown alphabetically
@@ -425,7 +425,6 @@ export default function ConversationMode({
       return
     }
 
-    setVadReady(true)
     if (status === 'loading') {
       debug('VAD loaded → ready')
       setStatus('ready')
@@ -987,7 +986,6 @@ export default function ConversationMode({
               setErrorMsg(null)
               setVadError(null)
               setStatus('loading')
-              setVadReady(false)
             }}
             className="ml-3 underline cursor-pointer"
           >

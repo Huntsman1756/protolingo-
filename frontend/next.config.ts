@@ -1,11 +1,16 @@
 import createNextIntlPlugin from 'next-intl/plugin'
 import type { NextConfig } from 'next'
+import path from 'node:path'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: 'standalone',
+  outputFileTracingRoot: path.join(process.cwd(), '..'),
+  turbopack: {
+    root: path.join(process.cwd(), '..'),
+  },
   webpack(config, { isServer }) {
     if (isServer) {
       // Prevent SSR bundling of WASM-heavy packages; ConversationMode is

@@ -86,8 +86,7 @@ These describe what was built — they are the reference documentation:
 ## Development environment constraints
 
 - **No Docker locally.** The development machine does not have Docker installed. Never suggest `docker` or `docker compose` commands to run locally.
-- **Not deployed locally.** The application runs in a remote server; the dev machine is used only for editing and pushing code. CI/CD (GitHub Actions) builds and publishes the Docker images.
-- **Cannot test the running app locally.** Validation is limited to static checks: `npx tsc --noEmit` (frontend) and `python3 -m compileall app/ alembic/ -q` (backend).
+- **Docker Desktop available locally.** The app can be run locally via `docker compose up -d` for testing. The production deployment target is a remote server. CI/CD (GitHub Actions) builds and publishes Docker images to GHCR, which the remote server pulls and runs.
 - **package-lock.json must be generated with npm 11** (the version installed locally). The Dockerfile upgrades npm to v11 before `npm ci` to stay in sync.
 
 ## Commands
@@ -105,7 +104,7 @@ cd backend && pytest
 # Run single test file
 pytest tests/test_auth.py -v
 
-# DB migrations (run on the remote server, not locally)
+# DB migrations
 docker compose exec backend alembic revision --autogenerate -m "description"
 docker compose exec backend alembic upgrade head
 ```

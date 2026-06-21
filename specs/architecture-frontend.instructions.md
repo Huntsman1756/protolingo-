@@ -138,7 +138,7 @@ frontend/
 │   ├── flags/                   # Language flag SVGs
 │   └── vad/                     # Silero VAD ONNX models for browser WASM
 │
-├── messages/                    # i18n message bundles (en, es, fr, pt, de, it, nl, pl, ro, ru)
+├── messages/                    # i18n message bundles copied/mounted from the monorepo root
 │   ├── en.json
 │   ├── es.json
 │   └── ...
@@ -195,6 +195,14 @@ frontend/
 
 This prevents newly added app pages from mounting, refreshing tokens, and firing protected API calls before the auth redirect runs.
 
+### Runtime gates
+
+Premium/maintenance-controlled app pages wrap their main content in shared gates. `/documents` uses both `MaintenanceGate` and `PaywallGate`, matching other premium AI features so the frontend blocks access consistently with backend subscription and maintenance checks.
+
+### i18n message loading
+
+`frontend/src/i18n/request.ts` imports all supported locale JSON files through a static locale-to-message map. `next.config.ts` sets `turbopack.root` and `outputFileTracingRoot` to the monorepo root so Next.js 16/Turbopack can resolve the shared root `messages/` directory during local builds, Docker builds, and standalone output tracing.
+
 ### Phrasebook register labels
 
 The Phrasebook UI supports `formal`, `semi-formal`, `neutral`, and `informal` registers from backend phrasebook data. All message bundles include matching `phrasebook.*` labels so rare `semi-formal` entries render without next-intl missing-message errors.
@@ -215,6 +223,7 @@ These are Next.js Route Handlers that proxy requests to the backend:
 | `/api/chat` | POST   | SSE chat streaming proxy |
 | `/api/tts`  | POST   | Text-to-speech proxy     |
 | `/api/stt`  | POST   | Speech-to-text proxy     |
+| `/api/listening/audio/[exerciseId]` | GET | Authenticated binary MP3 proxy for listening exercise audio |
 
 ## State management (Zustand)
 

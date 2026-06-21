@@ -26,10 +26,9 @@ function formatDate(iso: string): string {
   })
 }
 
-export default function DocumentsPage() {
+function DocumentsPageContent() {
   const t = useTranslations('documents')
   const tCommon = useTranslations('common')
-  const tNav = useTranslations('nav')
 
   const [view, setView] = useState<ViewState>('list')
   const [documents, setDocuments] = useState<DocumentItem[]>([])
@@ -46,27 +45,27 @@ export default function DocumentsPage() {
   const limit = 20
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const loadDocuments = useCallback(async (reset = false) => {
+  const loadDocuments = useCallback(async (reset = false, offset = 0) => {
     setLoading(true)
     setError('')
-    const offset = reset ? 0 : skip
+    const nextOffset = reset ? 0 : offset
     try {
-      const res = await apiFetch(`/api/documents?skip=${offset}&limit=${limit}`)
+      const res = await apiFetch(`/api/documents?skip=${nextOffset}&limit=${limit}`)
       if (!res.ok) throw new Error('Failed to load documents')
       const data = await res.json()
-      setDocuments(reset ? data.items : [...documents, ...data.items])
+      setDocuments((current) => (reset ? data.items : [...current, ...data.items]))
       setTotal(data.total)
-      setSkip(offset + data.items.length)
+      setSkip(nextOffset + data.items.length)
     } catch {
       setError(tCommon('error'))
     } finally {
       setLoading(false)
     }
-  }, [skip, documents, tCommon])
+  }, [tCommon])
 
   useEffect(() => {
     loadDocuments(true)
-  }, [])
+  }, [loadDocuments])
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -373,7 +372,7 @@ export default function DocumentsPage() {
           {documents.length < total && (
             <div className="mt-4 text-center">
               <button
-                onClick={() => loadDocuments()}
+                onClick={() => loadDocuments(false, skip)}
                 disabled={loading}
                 className="text-fl-muted-2 hover:text-fl-fg font-mono text-xs tracking-widest uppercase transition-colors"
               >
@@ -384,5 +383,15 @@ export default function DocumentsPage() {
         </>
       )}
     </div>
+  )
+}
+
+export default function DocumentsPage() {
+  return (
+    <MaintenanceGate>
+      <PaywallGate>
+        <DocumentsPageContent />
+      </PaywallGate>
+    </MaintenanceGate>
   )
 }
