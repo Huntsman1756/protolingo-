@@ -158,7 +158,7 @@ class UserResponse(BaseModel):
                 parsed = json.loads(v)
                 if isinstance(parsed, list):
                     return parsed
-            except json.JSONDecodeError, ValueError:
+            except (json.JSONDecodeError, ValueError):
                 pass
         return None
 

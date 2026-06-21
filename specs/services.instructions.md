@@ -1,5 +1,5 @@
 ---
-description: "Service layer reference for FreeLingo: 16 backend services covering LLM, TTS/STT, study plan, lessons, flashcards, listening, reading, memory, progress, quotas, subscriptions, and voice conversation pipeline."
+description: "Service layer reference for FreeLingo: 17 backend services covering LLM, TTS/STT, study plan, lessons, flashcards, listening, reading, memory, progress, quotas, subscriptions, weak review, and voice conversation pipeline."
 applyTo: "backend/app/services/**, backend/app/core/app_logger.py"
 ---
 
@@ -138,8 +138,8 @@ Manages AI-generated reading comprehension exercises end-to-end (Phase 7):
 
 - `get_available_exercise(level, target_language, user_id, db)` — returns the oldest unread exercise for the user's level/language, excluding already-attempted ones. Returns `None` if pool is empty.
 - `generate_and_save_exercise(level, target_language, db)` — calls LLM (with one retry on malformed JSON), extracts topic + text + 5 questions. No audio — text is served directly to the client.
-- `calculate_score(questions, answers) → (score, xp_earned)` — pure function, case-insensitive option comparison, 10 XP per correct answer.
-- `submit_attempt(exercise_id, user_id, answers, db)` — checks for duplicate (raises 409), calculates score, awards XP via Progress service, increments `view_count`.
+- `calculate_score(questions, answers) → (score, xp_earned)` — pure function, case-insensitive option comparison, 10 XP per correct answer. It tolerates malformed LLM question containers by accepting either a list of question dicts or a dict containing `questions`, skipping non-dict entries, and treating missing `correct` values as incorrect rather than raising.
+- `submit_attempt(exercise_id, user_id, answers, db)` — checks for duplicate (raises 409), calculates score, awards XP via Progress service, increments `view_count`. The router normalizes question indexes/options for API responses and records wrong answers into Weak Review best-effort so a weak-review persistence issue cannot break the reading attempt response.
 - `get_user_history(user_id, db, skip, limit)` — JOIN query returning `(list[tuple[ReadingAttempt, ReadingExercise]], total)`.
 
 **Exercise types by CEFR level** (`_TYPES_BY_LEVEL`):
@@ -186,3 +186,19 @@ WebSocket-based voice conversation orchestrator:
 9. Emits the final assistant transcript, `status=listening`, and `turn_complete` only after successful audio generation/send.
 10. Serializes all WebSocket writes through one send lock so audio, transcript/status messages, timeout watchers, and close frames do not race.
 11. Timeout watchers: max duration (default 30 min) and inactivity (default 3 min) with 60 s warnings.
+
+## Weak Review Service (`weak_review_service.py`)
+
+SM-2 spaced-repetition loop for wrong answers from exercises, listening, reading, and writing. Created in Phase 12 (v1.9.0):
+
+- `sm2_update_weak(item, quality) → WeakReviewItem` — Standard SM-2 algorithm: quality < 3 resets repetitions and increments `consecutive_failures`; quality ≥ 3 increases interval (1, 6, or `round(interval * ease_factor)`) and resets failures. Updates `next_review = today + interval`.
+- `create_or_update_weak_item(db, user_id, study_plan_id, source_type, prompt, correct_answer, ...) → WeakReviewItem` — UPSERT: deduplicates by `(user_id, study_plan_id, source_type, prompt)`. On existing: increments `consecutive_failures` and updates `user_wrong_answer`. On new: sets `consecutive_failures = 1`.
+- `get_due_items(db, user_id, study_plan_id, limit=20) → list[WeakReviewItem]` — Queries `next_review <= today`, then interleaves by `LOOP_ORDER = ["grammar", "reading", "listening", "lesson_exercise", "speaking"]`. Items from unknown types appended at the end.
+- `review_weak_item(db, user_id, item_id, quality, *, study_plan_id) → WeakReviewItem | None` — Loads item, calls `sm2_update_weak()`, commits, and updates daily progress with skill `"weak_review"`.
+- `get_weak_review_stats(db, user_id, study_plan_id) → dict` — Returns `{ total, due, breakdown: { source_type: count } }`. Due counts are computed with SQLAlchemy `cast(..., Integer)` for PostgreSQL compatibility.
+
+### Integration points
+- Called from `POST /api/lessons/exercises/{id}/answer` (lessons router) when `score < 0.5`
+- Called from `POST /api/listening/attempt` (listening router) for each wrong question
+- Called from `POST /api/reading/attempt` (reading router) for each wrong question; this integration is best-effort and logs/rolls back weak-review failures without failing the reading attempt.
+- Called from `POST /api/writing/attempt` (writing router) when `score < 3`

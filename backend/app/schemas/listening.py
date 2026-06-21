@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel, field_serializer
+
+ListeningSkill = Literal["literal", "inference", "vocab", "other"]
 
 
 class QuestionOut(BaseModel):
@@ -47,10 +50,20 @@ class CorrectAnswerOut(BaseModel):
     correct: str
 
 
+class ListeningQuestionScore(BaseModel):
+    skill: ListeningSkill
+    correct: int
+    total: int
+    accuracy: float
+
+
 class ListeningSubmitResponse(BaseModel):
     score: int
     xp_earned: int
+    max_score: int
+    score_percentage: int
     correct_answers: list[CorrectAnswerOut]
+    question_breakdown: list[ListeningQuestionScore]
     text: str  # transcript revealed after submission
 
 
@@ -60,6 +73,9 @@ class ListeningAttemptOut(BaseModel):
     id: int
     score: int
     xp_earned: int
+    max_score: int
+    score_percentage: int
+    question_breakdown: list[ListeningQuestionScore]
     completed_at: datetime
     exercise: ListeningExerciseOut
     text: str  # transcript from exercise

@@ -222,9 +222,9 @@ All endpoints require `require_subscription` (or `get_current_user` where noted)
 
 All endpoints require `require_subscription` (or `get_current_user` where noted). Unlike Listening, exercise text is included in the exercise response — there is no audio endpoint and no transcript reveal on submit.
 
-- **GET `/next`** — Rate limit: 10/min. Auth: require_subscription. Returns the oldest uncompleted `ReadingExercise` for the user's current CEFR level and target language. **Text and questions are included immediately.** Returns `{"available": false}` when the pool is empty. Supports `?wait=true` for long-polling (max 90 s) while generation is in progress.
+- **GET `/next`** — Rate limit: 10/min. Auth: require_subscription. Returns the oldest uncompleted `ReadingExercise` for the user's current CEFR level and target language. **Text and questions are included immediately.** Returns `{"available": false}` when the pool is empty. Supports `?wait=true` for long-polling (max 90 s) while generation is in progress. The response builder normalizes LLM-produced question payloads defensively (dict/list options, missing or non-numeric indexes) before returning the exercise.
 - **POST `/generate`** — Rate limit: 5/min. Auth: require_subscription. Acquires a per-(level, language) Redis lock (`nx=True, ex=60`) and enqueues a `BackgroundTask` that calls LLM and saves the exercise. Returns HTTP 202 with `{"status": "generating"}`. Returns 202 (no-op) if a generation job is already running.
-- **POST `/attempt`** — Rate limit: 20/min. Auth: require_subscription. Submits answers (`{exercise_id, answers: dict[str,str], replay: bool}`) for scoring. Returns score (0–5), XP earned (0–50), and correct answers. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers).
+- **POST `/attempt`** — Rate limit: 20/min. Auth: require_subscription. Submits answers (`{exercise_id, answers: dict[str,str], replay: bool}`) for scoring. Returns score (0–5), XP earned (0–50), and normalized correct answers. Returns 404 (exercise not found), 409 (already attempted), 400 (wrong number of answers). Wrong answers are added to Weak Review best-effort; failure to save weak-review items is logged and does not fail the reading submission.
 - **GET `/history`** — Rate limit: 30/min. Auth: get_current_user. Returns paginated list of the user's past attempts with scores, XP, exercise text, and correct answers. Query params: `skip` (default 0), `limit` (default 10, max 50).
 
 ---
@@ -255,11 +255,21 @@ All endpoints require `require_subscription`.
 
 ---
 
+## Weak Review — `/api/weak-review`
+
+All endpoints require `get_current_user` (standard auth, no subscription check).
+
+| Method | Path               | Rate limit | Auth                 | Description |
+| ------ | ------------------- | ---------- | -------------------- | ----------- |
+| GET    | `/due`              | 60/min     | get_current_user     | Returns due weak review items, interleaved by source type (grammar → reading → listening → lesson → other). Response: `{ due: [...], total, stats: { total, due, breakdown } }`. If the user has no active study plan yet, returns an empty queue and zeroed stats instead of 404. |
+| GET    | `/stats`            | 60/min     | get_current_user     | Returns aggregate stats: `{ total, due, breakdown: { "grammar": 2, "listening": 1, ... } }`. If the user has no active study plan yet, returns `{ total: 0, due: 0, breakdown: {} }`. |
+| POST   | `/{id}/review`      | 60/min     | get_current_user     | Submits SM-2 quality score (0–5) for a weak review item. Body: `{ quality: int }`. Updates SM-2 fields (ease_factor, interval, repetitions, next_review). |
+
 ## Phrasebook — `/api/phrasebook`
 
 All endpoints require `get_current_user`.
 
-- **GET ``** — Rate limit: 60/min. Auth: get_current_user. Returns all phrasebook categories for the given target language. Query param: `language` (BCP-47, default `en-US`). Response: `{categories: [{id, level, situation, icon, phrases: [{text, context, register, unit_ref}]}]}`.
+- **GET ``** — Rate limit: 60/min. Auth: get_current_user. Returns all phrasebook categories for the given target language. Query param: `language` (BCP-47, default `en-US`). Response: `{categories: [{id, level, situation, icon, phrases: [{text, context, register, unit_ref}]}]}`. Phrase registers include `formal`, `semi-formal`, `neutral`, and `informal`.
 - **GET `/level/{level}`** — Rate limit: 60/min. Auth: get_current_user. Returns phrasebook categories filtered by CEFR level (A1–C2). Returns 400 for invalid levels. Query param: `language`.
 - **GET `/{category_id}`** — Rate limit: 60/min. Auth: get_current_user. Returns a single phrasebook category by ID. Query param: `language`. Returns 404 if not found.
 - **GET `/audio/{category_id}/{phrase_index}`** — Rate limit: 30/min. Auth: get_current_user. Returns cached TTS audio (audio/mpeg) for a specific phrase. Generates and caches on first request; subsequent requests serve from disk. Query param: `language`. Returns 404 if category or phrase index not found, 503 if TTS service unavailable.

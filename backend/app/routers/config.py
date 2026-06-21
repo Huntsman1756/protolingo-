@@ -35,6 +35,9 @@ async def get_config(
         "stripe_trial_days": settings.STRIPE_TRIAL_DAYS,
         "tts_provider": settings.TTS_PROVIDER,
         "openai_tts_voice": settings.OPENAI_TTS_VOICE,
+        "remote_tts_voice": settings.NAN_TTS_VOICE
+        if settings.TTS_PROVIDER == "nan"
+        else settings.OPENAI_TTS_VOICE,
         "maintenance_mode": maintenance_mode,
         "price_monthly": settings.PRICE_MONTHLY,
         "price_yearly": settings.PRICE_YEARLY,

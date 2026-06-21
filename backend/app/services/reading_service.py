@@ -230,8 +230,17 @@ def calculate_score(
     answers: dict[str, str],
 ) -> tuple[int, int]:
     """Return (score 0–5, xp_earned). Pure function — no DB access."""
+    if isinstance(questions, dict):
+        questions = questions.get("questions", [])
+    if not isinstance(questions, list):
+        questions = []
+
     score = sum(
-        1 for q in questions if answers.get(str(q["index"]), "").upper() == q["correct"].upper()
+        1
+        for i, q in enumerate(questions)
+        if isinstance(q, dict)
+        if answers.get(str(q.get("index", i)), "").upper()
+        == str(q.get("correct", "")).upper()
     )
     return score, score * XP_PER_CORRECT_ANSWER
 

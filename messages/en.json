@@ -1267,6 +1267,7 @@
     "noExercises": "No exercises available for your level.",
     "generate": "Generate exercise",
     "audioError": "Unable to load audio",
+    "retry": "Retry",
     "alreadyAttempted": "You have already completed this exercise.",
     "errorLoading": "Failed to load exercise. Please try again.",
     "errorSubmit": "Failed to submit answers. Please try again.",

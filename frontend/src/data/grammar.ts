@@ -28,6 +28,21 @@ export interface GrammarTopic {
   related: string[]
 }
 
+export interface GrammarDrillQuestion {
+  index: number
+  question: string
+  options: string[]
+  correct: string
+  explanation?: string
+}
+
+export interface GrammarDrillSet {
+  slug: string
+  title: string
+  level: string
+  questions: GrammarDrillQuestion[]
+}
+
 export async function getGrammarTopics(
   targetLanguage: string = 'en-US'
 ): Promise<GrammarTopic[]> {
@@ -37,4 +52,18 @@ export async function getGrammarTopics(
   if (!res.ok) return []
   const data = await res.json()
   return data.topics ?? []
+}
+
+export async function getGrammarDrills(
+  slug: string,
+  targetLanguage: string = 'en-US',
+  limit = 10
+): Promise<GrammarDrillSet | null> {
+  const res = await apiFetch(
+    `/api/grammar/${slug}/drills?language=${encodeURIComponent(
+      targetLanguage
+    )}&limit=${limit}`
+  )
+  if (!res.ok) return null
+  return (await res.json()) as GrammarDrillSet
 }

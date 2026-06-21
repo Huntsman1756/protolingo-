@@ -51,6 +51,7 @@
     "submit": "Envoyer",
     "start": "Commencer",
     "retry": "Réessayer",
+    "refresh": "Actualiser",
     "or": "ou",
     "appName": "FreeLingo",
     "days": "jours",
@@ -95,9 +96,12 @@
     "conversation": "Conversation",
     "listening": "Listening",
     "reading": "Reading",
+    "writing": "Écriture",
+    "weakReview": "Révision ciblée",
     "contact": "Contact",
     "feedback": "Feedback",
-    "switchLanguage": "Changer de langue"
+    "switchLanguage": "Changer de langue",
+    "documents": "Documents"
   },
   "auth": {
     "login": {
@@ -691,6 +695,7 @@
     "all": "Tous",
     "allRegisters": "Tous les registres",
     "formal": "Formel",
+    "semi-formal": "Semi-formel",
     "neutral": "Neutre",
     "informal": "Informel",
     "copied": "Copié !",
@@ -1262,6 +1267,7 @@
     "noExercises": "Aucun exercice disponible pour votre niveau.",
     "generate": "Générer un exercice",
     "audioError": "Impossible de charger l'audio",
+    "retry": "Réessayer",
     "alreadyAttempted": "Vous avez déjà complété cet exercice.",
     "errorLoading": "Impossible de charger l'exercice. Veuillez réessayer.",
     "errorSubmit": "Impossible de soumettre les réponses. Veuillez réessayer.",
@@ -1362,5 +1368,29 @@
     "label": "Maintenance",
     "title": "En maintenance",
     "description": "Cette section est temporairement indisponible pour cause de maintenance. Veuillez réessayer plus tard."
+  },
+  "writing": {
+    "title": "Écriture",
+    "promptLabel": "Sujet",
+    "writePlaceholder": "Écrivez votre réponse ici...",
+    "submit": "Soumettre pour évaluation",
+    "generating": "Génération en cours...",
+    "generatingDesc": "L'IA crée un nouvel exercice d'écriture.",
+    "generatingLong": "Plus long que prévu...",
+    "noExercises": "Aucun exercice disponible pour votre niveau.",
+    "generate": "Générer un exercice",
+    "alreadyAttempted": "Vous avez déjà complété cet exercice.",
+    "errorLoading": "Erreur de chargement. Réessayez.",
+    "errorSubmit": "Erreur d'envoi. Réessayez.",
+    "resultsLabel": "Score",
+    "feedbackLabel": "Commentaires",
+    "nextExercise": "Exercice suivant",
+    "viewHistory": "Historique",
+    "history": "Historique",
+    "historyTitle": "Historique d'écriture",
+    "historyEmpty": "Pas encore d'exercices d'écriture complétés.",
+    "practiceMore": "Pratiquer",
+    "practiceAgain": "Refaire",
+    "wordCount": "{min}–{max} mots"
   }
 }

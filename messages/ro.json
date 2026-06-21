@@ -51,6 +51,7 @@
     "submit": "Trimite",
     "start": "Începe",
     "retry": "Încearcă din nou",
+    "refresh": "Reîmprospătează",
     "or": "sau",
     "appName": "FreeLingo",
     "days": "zile",
@@ -95,9 +96,12 @@
     "conversation": "Conversație",
     "listening": "Listening",
     "reading": "Reading",
+    "writing": "Scriere",
+    "weakReview": "Recapitulare slabă",
     "contact": "Contact",
     "feedback": "Feedback",
-    "switchLanguage": "Schimbă limba"
+    "switchLanguage": "Schimbă limba",
+    "documents": "Documente"
   },
   "auth": {
     "login": {
@@ -691,6 +695,7 @@
     "all": "Toate",
     "allRegisters": "Toate registrele",
     "formal": "Formal",
+    "semi-formal": "Semi-formal",
     "neutral": "Neutru",
     "informal": "Informal",
     "copied": "Copiat!",
@@ -1262,6 +1267,7 @@
     "noExercises": "Nu există exerciții disponibile pentru nivelul tău.",
     "generate": "Generează exercițiu",
     "audioError": "Imposibil de încărcat audio",
+    "retry": "Încearcă din nou",
     "alreadyAttempted": "Ai completat deja acest exercițiu.",
     "errorLoading": "Nu s-a putut încărca exercițiul. Încearcă din nou.",
     "errorSubmit": "Nu s-au putut trimite răspunsurile. Încearcă din nou.",

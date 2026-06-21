@@ -7,13 +7,13 @@ RUN npm ci
 
 FROM node:25-alpine AS builder
 WORKDIR /app
+ARG NEXT_PUBLIC_API_URL
 COPY --from=deps /app/node_modules ./node_modules
 COPY frontend/ .
 COPY messages/ ./messages/
-# Re-run postinstall to ensure all ORT WASM + .mjs loaders are present in public/vad/
-# (deps stage generates them but COPY frontend/ . above overwrites public/vad from source)
 RUN node scripts/copy-vad-models.js
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 RUN npm run build
 
 FROM node:25-alpine AS runner
@@ -25,6 +25,7 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+RUN chmod -R 755 /app/public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 

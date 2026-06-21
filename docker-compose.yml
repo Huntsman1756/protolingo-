@@ -32,6 +32,8 @@ services:
     build:
       context: backend
       dockerfile: Dockerfile
+      args:
+        INSTALL_PADDLEOCR: ${INSTALL_PADDLEOCR:-false}
     image: ghcr.io/artcc/freelingo-backend:latest
     container_name: freelingo-backend
     restart: unless-stopped

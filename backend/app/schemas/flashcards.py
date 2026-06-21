@@ -84,3 +84,15 @@ class GeneratedFlashcard(BaseModel):
 
 class FlashcardGenerateResponse(BaseModel):
     flashcards: list[GeneratedFlashcard]
+
+
+class FlashcardSpeakingEvaluateRequest(BaseModel):
+    transcription: str
+
+
+class FlashcardSpeakingEvaluation(BaseModel):
+    card: FlashcardResponse
+    quality: int
+    similarity: float
+    expected: str
+    spoken: str

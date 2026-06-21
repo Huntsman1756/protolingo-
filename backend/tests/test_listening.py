@@ -13,6 +13,7 @@ from app.core.database import get_db
 from app.core.security import create_access_token, hash_password
 from app.main import app
 from app.models.listening import ListeningAttempt, ListeningExercise
+from app.models.progress import Progress
 from app.models.study_plan import StudyPlan
 from app.models.user import User
 
@@ -367,13 +368,77 @@ async def test_attempt_scores_correctly(user_with_plan) -> None:
     assert r.status_code == 200
     data = r.json()
     assert data["score"] == 5
+    assert data["max_score"] == 5
+    assert data["score_percentage"] == 100
     assert data["xp_earned"] == 50
+    assert isinstance(data["question_breakdown"], list)
+    assert len(data["question_breakdown"]) > 0
+    for item in data["question_breakdown"]:
+        assert set(item.keys()) >= {"skill", "correct", "total", "accuracy"}
+        assert item["total"] >= item["correct"]
+        assert item["accuracy"] >= 0
     # Transcript is revealed after submission
     assert data["text"] == "This is the full transcript text."
     # Correct answers are revealed
     assert len(data["correct_answers"]) == 5
     for ca in data["correct_answers"]:
         assert ca["correct"] == "B"
+    plan = (
+        await db.execute(select(StudyPlan).where(StudyPlan.user_id == _user.id, StudyPlan.is_active))
+    ).scalar_one()
+    progress = (
+        await db.execute(
+            select(Progress).where(
+                Progress.user_id == _user.id,
+                Progress.study_plan_id == plan.id,
+            )
+        )
+    ).scalar_one_or_none()
+    assert progress is not None
+    assert progress.exercises_total == 1
+    assert progress.exercises_correct == 1
+    assert progress.xp_earned == 50
+    assert progress.skills["listening"] == 1.0
+
+
+@pytest.mark.asyncio
+async def test_attempt_replay_does_not_double_count_progress(user_with_plan) -> None:
+    ac, _, headers, _user, db = user_with_plan
+    ex = await _make_exercise(db)
+    await db.commit()
+
+    first = await ac.post(
+        "/api/listening/attempt",
+        headers=headers,
+        json={"exercise_id": ex.id, "answers": _ALL_WRONG},
+    )
+    assert first.status_code == 200
+    second = await ac.post(
+        "/api/listening/attempt",
+        headers=headers,
+        json={"exercise_id": ex.id, "answers": _ALL_WRONG, "replay": True},
+    )
+    assert second.status_code == 200
+    first_data = first.json()
+    second_data = second.json()
+    assert first_data["xp_earned"] == 0
+    assert second_data["xp_earned"] == 0
+
+    plan = (
+        await db.execute(select(StudyPlan).where(StudyPlan.user_id == _user.id, StudyPlan.is_active))
+    ).scalar_one()
+    progresses = (
+        await db.execute(
+            select(Progress).where(
+                Progress.user_id == _user.id,
+                Progress.study_plan_id == plan.id,
+            )
+        )
+    ).scalars().all()
+    assert len(progresses) == 1
+    progress = progresses[0]
+    assert progress.exercises_total == 1
+    assert progress.exercises_correct == 0
 
 
 @pytest.mark.asyncio
@@ -390,6 +455,8 @@ async def test_attempt_zero_score(user_with_plan) -> None:
     assert r.status_code == 200
     data = r.json()
     assert data["score"] == 0
+    assert data["max_score"] == 5
+    assert data["score_percentage"] == 0
     assert data["xp_earned"] == 0
 
 
@@ -503,7 +570,10 @@ async def test_history_returns_attempts(user_with_plan) -> None:
     assert data["total"] == 1
     item = data["items"][0]
     assert item["score"] == 5
+    assert item["max_score"] == 5
+    assert item["score_percentage"] == 100
     assert item["xp_earned"] == 50
+    assert len(item["question_breakdown"]) >= 1
     # Transcript revealed in history
     assert item["text"] == "This is the full transcript text."
     assert item["exercise"]["topic"] == "Test topic"

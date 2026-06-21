@@ -51,6 +51,7 @@
     "submit": "Enviar",
     "start": "Comenzar",
     "retry": "Reintentar",
+    "refresh": "Actualizar",
     "or": "o",
     "appName": "FreeLingo",
     "days": "días",
@@ -95,9 +96,12 @@
     "conversation": "Conversación",
     "listening": "Listening",
     "reading": "Reading",
+    "writing": "Escritura",
+    "weakReview": "Repaso débil",
     "contact": "Contacto",
     "feedback": "Feedback",
-    "switchLanguage": "Cambiar idioma"
+    "switchLanguage": "Cambiar idioma",
+    "documents": "Documentos"
   },
   "auth": {
     "login": {
@@ -691,6 +695,7 @@
     "all": "Todos",
     "allRegisters": "Todos los registros",
     "formal": "Formal",
+    "semi-formal": "Semiformal",
     "neutral": "Neutral",
     "informal": "Informal",
     "copied": "¡Copiado!",
@@ -1262,6 +1267,7 @@
     "noExercises": "No hay ejercicios disponibles para tu nivel.",
     "generate": "Generar ejercicio",
     "audioError": "No se pudo cargar el audio",
+    "retry": "Reintentar",
     "alreadyAttempted": "Ya has completado este ejercicio.",
     "errorLoading": "Error al cargar el ejercicio. Inténtalo de nuevo.",
     "errorSubmit": "Error al enviar las respuestas. Inténtalo de nuevo.",
@@ -1362,5 +1368,29 @@
     "label": "Mantenimiento",
     "title": "En mantenimiento",
     "description": "Esta sección no está disponible temporalmente por tareas de mantenimiento. Vuelve más tarde."
+  },
+  "writing": {
+    "title": "Escritura",
+    "promptLabel": "Tema",
+    "writePlaceholder": "Escribe tu respuesta aquí...",
+    "submit": "Enviar para evaluación",
+    "generating": "Generando ejercicio...",
+    "generatingDesc": "La IA está creando un nuevo ejercicio de escritura.",
+    "generatingLong": "Tardando más de lo esperado...",
+    "noExercises": "No hay ejercicios disponibles para tu nivel.",
+    "generate": "Generar ejercicio",
+    "alreadyAttempted": "Ya completaste este ejercicio.",
+    "errorLoading": "Error al cargar. Intenta de nuevo.",
+    "errorSubmit": "Error al enviar. Intenta de nuevo.",
+    "resultsLabel": "Puntuación",
+    "feedbackLabel": "Comentarios",
+    "nextExercise": "Siguiente ejercicio",
+    "viewHistory": "Historial",
+    "history": "Historial",
+    "historyTitle": "Historial de escritura",
+    "historyEmpty": "Aún no has completado ejercicios de escritura.",
+    "practiceMore": "Practicar",
+    "practiceAgain": "Practicar de nuevo",
+    "wordCount": "{min}–{max} palabras"
   }
 }

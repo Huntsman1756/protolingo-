@@ -53,8 +53,11 @@ class WhisperSTTService:
 
 
 class OpenAISTTService:
-    def __init__(self, api_key: str, model: str) -> None:
-        self._client = openai.AsyncOpenAI(api_key=api_key)
+    def __init__(self, api_key: str, model: str, base_url: str | None = None) -> None:
+        client_kwargs = {"api_key": api_key}
+        if base_url:
+            client_kwargs["base_url"] = base_url
+        self._client = openai.AsyncOpenAI(**client_kwargs)
         self.model = model
 
     async def health(self) -> None:

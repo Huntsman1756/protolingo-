@@ -34,8 +34,61 @@ export interface ListeningExercise {
   questions: Question[]
 }
 
+/** Writing exercise — has a prompt and word count range, no questions */
+export interface WritingExercise {
+  id: number
+  level: string
+  target_language: string
+  exercise_type: string
+  topic: string
+  prompt: string
+  word_count_min: number
+  word_count_max: number
+}
+
 // ---------------------------------------------------------------------------
-// Quota
+// Documents (RAG Document Q&A)
+// ---------------------------------------------------------------------------
+
+export interface DocumentItem {
+  id: number
+  filename: string
+  file_size: number
+  file_type: string
+  title: string
+  status: string
+  chunk_count: number
+  error_message?: string | null
+  created_at: string
+}
+
+export interface DocumentListResponse {
+  items: DocumentItem[]
+  total: number
+  skip: number
+  limit: number
+}
+
+export interface DocumentUploadResponse {
+  id: number
+  status: string
+  title: string
+}
+
+export interface Citation {
+  document_id?: number
+  document_title?: string
+  chunk_index: number
+  content: string
+  relevance_score: number
+}
+
+export interface QueryResponse {
+  answer: string
+  citations: Citation[]
+  document_id?: number
+  document_title?: string
+}
 // ---------------------------------------------------------------------------
 
 /**

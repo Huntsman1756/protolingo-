@@ -20,6 +20,7 @@ from app.schemas.study_plan import (
     StudyPlanResponse,
     TodayLesson,
     TodayResponse,
+    UnitLessonResponse,
 )
 from app.services.lesson_generator import generate_lesson
 from app.services.study_plan_generator import generate_study_plan
@@ -373,3 +374,145 @@ async def get_pending_lessons(
         if (lsn.week_number - 1) * plan.days_per_week + (lsn.day_number - 1) < plan.progress_day
     ]
     return pending
+
+
+@router.get("/unit-lessons", response_model=list[UnitLessonResponse])
+@limiter.limit("30/minute")
+async def get_unit_lessons(
+    request: Request,
+    unit_id: str = Query(..., description="The curriculum unit ID"),
+    plan: StudyPlan = Depends(get_active_study_plan),
+    db: AsyncSession = Depends(get_db),
+):
+    """Return all lessons (with IDs and completion status) for a specific unit."""
+    result = await db.execute(
+        select(Lesson).where(
+            Lesson.study_plan_id == plan.id,
+            Lesson.unit_id == unit_id,
+        )
+    )
+    lessons = result.scalars().all()
+    return lessons
+
+
+@router.post("/generate-lesson", response_model=TodayLesson)
+@limiter.limit("10/minute")
+async def generate_single_lesson(
+    request: Request,
+    week: int = Query(...),
+    day: int = Query(...),
+    title: str = Query(...),
+    lesson_type: str = Query(...),
+    unit_id: str = Query(default=""),
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Generate a single lesson and return its ID. Useful when user starts a lesson from the unit drawer."""
+    active_lang = await get_active_language(db, current_user.id)
+    if not active_lang:
+        raise HTTPException(status_code=404, detail="No active language set")
+    plan_result = await db.execute(
+        select(StudyPlan).where(
+            StudyPlan.user_language_id == active_lang.id,
+            StudyPlan.is_active.is_(True),
+        )
+    )
+    plan = plan_result.scalar_one_or_none()
+    if not plan:
+        raise HTTPException(status_code=404, detail="No active study plan found")
+
+    from app.data.curriculum import get_curriculum_units
+
+    grammar_points: list[str] = []
+    vocabulary_set_ids: list[str] = []
+    if unit_id:
+        for cu in get_curriculum_units(plan.cefr_level, plan.target_language):
+            if cu.id == unit_id:
+                grammar_points = cu.grammar_points
+                vocabulary_set_ids = cu.vocabulary_set_ids
+                break
+
+    try:
+        content = await generate_lesson(
+            cefr_level=plan.cefr_level,
+            lesson_type=lesson_type,
+            topic=title,
+            week=week,
+            day=day,
+            unit_id=unit_id,
+            grammar_points=grammar_points,
+            vocabulary_set_ids=vocabulary_set_ids,
+            target_language=plan.target_language,
+        )
+        content_dict = content.model_dump() if hasattr(content, "model_dump") else content
+
+        lesson = Lesson(
+            study_plan_id=plan.id,
+            title=title,
+            lesson_type=lesson_type,
+            cefr_level=plan.cefr_level,
+            week_number=week,
+            day_number=day,
+            unit_id=unit_id,
+            content=content_dict,
+        )
+        db.add(lesson)
+        await db.flush()
+
+        exercises_data = content_dict.get("exercises") or []
+        for ex in exercises_data:
+            exercise = Exercise(
+                lesson_id=lesson.id,
+                exercise_type=ex.get("type", "multiple_choice"),
+                question=ex.get("question", ""),
+                options=ex.get("options"),
+                correct_answer=ex.get("correct", ""),
+                explanation=ex.get("explanation"),
+            )
+            db.add(exercise)
+
+        if not exercises_data:
+            await db.rollback()
+            raise ValueError("Lesson generated with no exercises")
+
+        await db.commit()
+        await db.refresh(lesson)
+
+        return TodayLesson(
+            id=lesson.id,
+            title=title,
+            lesson_type=lesson_type,
+            week=week,
+            day=day,
+            objectives=[],
+            estimated_minutes=0,
+            unit_id=unit_id,
+            is_completed=False,
+        )
+    except IntegrityError:
+        await db.rollback()
+        dup = await db.execute(
+            select(Lesson).where(
+                Lesson.study_plan_id == plan.id,
+                Lesson.week_number == week,
+                Lesson.day_number == day,
+                Lesson.title == title,
+            )
+        )
+        existing = dup.scalar_one_or_none()
+        if existing:
+            return TodayLesson(
+                id=existing.id,
+                title=title,
+                lesson_type=lesson_type,
+                week=week,
+                day=day,
+                objectives=[],
+                estimated_minutes=0,
+                unit_id=unit_id,
+                is_completed=existing.is_completed,
+            )
+        raise
+    except Exception:
+        logger.exception("Failed to generate lesson for %s", title)
+        raise

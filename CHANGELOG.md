@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Listening audio playback**: Added a Next.js Route Handler at `/api/listening/audio/[exerciseId]` to properly proxy binary MP3 files from the backend. The generic `next.config.ts` rewrite was corrupting binary responses, causing "Unable to load audio" errors. The `ExerciseAudioPlayer` component now shows detailed error messages and a retry button.
+
 - Documents: scanned/image-based PDFs now use OCR fallback — configurable via `DOCUMENT_OCR_PROVIDER` (`ollama` for vision models like qwen2.5-vl, `paddleocr` for local PaddleOCR, or `ollama+paddleocr` to try both). Error messages are now stored and displayed in the frontend when processing fails.
 - Reading exercises now tolerate irregular LLM question payloads so `/api/reading/next`, `/api/reading/attempt`, and `/api/reading/history` return structured responses instead of server errors.
 - Weak Review now returns empty due-item state for users without an active study plan and computes due statistics without SQL casting errors.

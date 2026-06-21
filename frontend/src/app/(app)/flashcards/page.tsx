@@ -22,6 +22,13 @@ interface CardData {
   source?: string | null
 }
 
+interface SpeakingEvaluationResult {
+  quality: number
+  similarity: number
+  expected: string
+  spoken: string
+}
+
 export default function FlashcardsPage() {
   const t = useTranslations('flashcards')
   const tCommon = useTranslations('common')
@@ -38,6 +45,10 @@ export default function FlashcardsPage() {
   const [generating, setGenerating] = useState(false)
   const [genError, setGenError] = useState('')
   const [speakingMode, setSpeakingMode] = useState(false)
+  const [speakingResult, setSpeakingResult] = useState<
+    SpeakingEvaluationResult | null
+  >(null)
+  const [speakingFeedbackLocked, setSpeakingFeedbackLocked] = useState(false)
 
   const loadDue = useCallback(async () => {
     setLoading(true)
@@ -49,6 +60,8 @@ export default function FlashcardsPage() {
         setTotal(data.total)
         setCurrent(0)
         setFlipped(false)
+        setSpeakingResult(null)
+        setSpeakingFeedbackLocked(false)
       }
     } catch {
       /* ignore */
@@ -65,6 +78,8 @@ export default function FlashcardsPage() {
 
   async function reviewCard(quality: number) {
     if (cards.length === 0) return
+    setSpeakingResult(null)
+    setSpeakingFeedbackLocked(false)
     const card = cards[current]
     await apiFetch(`/api/flashcards/${card.id}/review`, {
       method: 'POST',
@@ -82,14 +97,31 @@ export default function FlashcardsPage() {
   async function handleSpeakingTranscription(transcription: string) {
     if (cards.length === 0) return
     const card = cards[current]
-    const norm = (s: string) =>
-      s
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9 ]/g, '')
-    const isCorrect = norm(transcription) === norm(card.word)
-    await reviewCard(isCorrect ? 5 : 2)
+    if (speakingFeedbackLocked) return
+    const res = await apiFetch(`/api/flashcards/${card.id}/speak-evaluate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ transcription }),
+    })
+    if (!res.ok) {
+      setSpeakingResult({
+        quality: 0,
+        similarity: 0,
+        expected: card.word,
+        spoken: transcription,
+      })
+      return
+    }
+    const data = (await res.json()) as SpeakingEvaluationResult
+    setSpeakingResult(data)
+    if (data.quality >= 3) {
+      setSpeakingFeedbackLocked(true)
+      await reviewCard(data.quality)
+      return
+    }
   }
+
+  const isSpeakingPass = (value: number) => value >= 3
 
   async function generateCards(e: React.FormEvent) {
     e.preventDefault()
@@ -265,25 +297,31 @@ export default function FlashcardsPage() {
             </span>
             {/* Mode toggle */}
             <div className="flex gap-1">
-              <button
-                onClick={() => {
-                  setSpeakingMode(false)
-                  setFlipped(false)
-                }}
-                className={`text-fl-hint border px-3 py-1 tracking-widest transition-colors ${!speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
-              >
-                {t('standardMode')}
-              </button>
-              <button
-                onClick={() => {
-                  setSpeakingMode(true)
-                  setFlipped(false)
-                }}
-                className={`text-fl-hint border px-3 py-1 tracking-widest transition-colors ${speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
-              >
-                {t('speakingMode')}
-              </button>
-            </div>
+                  <button
+              onClick={() => {
+                      setSpeakingMode(false)
+                      setFlipped(false)
+                      setSpeakingResult(null)
+                      setSpeakingFeedbackLocked(false)
+                    }}
+                    aria-pressed={!speakingMode}
+                    className={`text-fl-hint border px-3 py-1 tracking-widest transition-colors ${!speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
+                  >
+                    {t('standardMode')}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSpeakingMode(true)
+                      setFlipped(false)
+                      setSpeakingResult(null)
+                      setSpeakingFeedbackLocked(false)
+                    }}
+                    aria-pressed={speakingMode}
+                    className={`text-fl-hint border px-3 py-1 tracking-widest transition-colors ${speakingMode ? 'border-fl-border-2 text-fl-fg' : 'border-fl-border text-fl-muted-3 hover:text-fl-muted-1'}`}
+                  >
+                    {t('speakingMode')}
+                  </button>
+                </div>
           </div>
 
           {/* ── Standard mode ── */}
@@ -386,11 +424,41 @@ export default function FlashcardsPage() {
                     {cards[current].translation}
                   </p>
                 )}
+                {speakingResult && (
+                  <div className="bg-fl-bg border-fl-border w-full border px-4 py-3 text-left font-mono text-xs">
+                    <p className="text-fl-fg">
+                      {tCommon('score')}: {Math.round(speakingResult.similarity)}%
+                    </p>
+                    <p className="text-fl-muted-2">
+                      Quality: {speakingResult.quality}/5
+                    </p>
+                    <p className="text-fl-muted-3 mt-1 break-words">
+                      Expected: {speakingResult.expected}
+                    </p>
+                    {isSpeakingPass(speakingResult.quality) ? (
+                      <p className="text-fl-label text-green-400 mt-2">
+                        Good job — moving on.
+                      </p>
+                    ) : (
+                      <p className="text-fl-label text-amber-400 mt-2">
+                        Lower confidence — try again.
+                      </p>
+                    )}
+                  </div>
+                )}
                 <VoiceRecorder
                   onTranscription={handleSpeakingTranscription}
                   maxSeconds={5}
                   className="mt-2"
                 />
+                {speakingResult && !isSpeakingPass(speakingResult.quality) && (
+                  <button
+                    onClick={() => reviewCard(2)}
+                    className="border-fl-border bg-fl-surface text-fl-label mt-3 w-full border py-3 font-mono text-xs tracking-widest uppercase transition-colors"
+                  >
+                    Skip this card
+                  </button>
+                )}
               </div>
             </div>
           )}

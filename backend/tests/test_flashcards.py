@@ -163,6 +163,86 @@ async def test_review_flashcard(client, test_user, db_session):
 
 
 @pytest.mark.asyncio
+async def test_speak_evaluate_flashcard(client, test_user, db_session):
+    """POST /api/flashcards/{card_id}/speak-evaluate returns similarity feedback."""
+    user, headers = test_user
+    plan = await _seed_plan(db_session, user.id)
+
+    from app.models.flashcard import Flashcard
+
+    card = Flashcard(
+        user_id=user.id,
+        study_plan_id=plan.id,
+        word="hello",
+        definition="a greeting",
+        example_sentence="Hello, how are you?",
+        translation="hola",
+    )
+    db_session.add(card)
+    await db_session.commit()
+
+    res = await client.post(
+        f"/api/flashcards/{card.id}/speak-evaluate",
+        headers=headers,
+        json={"transcription": "hello!"},
+    )
+    assert res.status_code == 200
+    data = res.json()
+    assert data["card"]["word"] == "hello"
+    assert data["quality"] >= 3
+    assert data["expected"] == "hello"
+    assert data["spoken"] == "hello!"
+    assert data["similarity"] > 50
+
+
+@pytest.mark.asyncio
+async def test_speak_evaluate_card_forbidden_for_other_user(
+    client,
+    test_user,
+    db_session,
+) -> None:
+    """A user cannot evaluate a flashcard that does not belong to them."""
+    user, headers = test_user
+    await _seed_plan(db_session, user.id)
+
+    from app.core.security import hash_password
+    from app.models.flashcard import Flashcard
+    from app.models.user import User
+
+    other_user = User(
+        username="speaker",
+        email="speaker@example.com",
+        display_name="Speaker",
+        hashed_password=hash_password("pass"),
+        role="user",
+        native_language="es",
+        is_active=True,
+    )
+    db_session.add(other_user)
+    await db_session.commit()
+    await db_session.refresh(other_user)
+
+    other_plan = await _seed_plan(db_session, other_user.id)
+    card = Flashcard(
+        user_id=other_user.id,
+        study_plan_id=other_plan.id,
+        word="bonjour",
+        definition="greeting",
+        example_sentence="Bonjour!",
+        translation="hello",
+    )
+    db_session.add(card)
+    await db_session.commit()
+
+    response = await client.post(
+        f"/api/flashcards/{card.id}/speak-evaluate",
+        headers=headers,
+        json={"transcription": "bonjour"},
+    )
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
 async def test_get_vocabulary_flashcards(client, test_user, db_session):
     user, headers = test_user
     plan = await _seed_plan(db_session, user.id)

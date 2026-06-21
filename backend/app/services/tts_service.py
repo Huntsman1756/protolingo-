@@ -47,8 +47,12 @@ class OpenAITTSService:
         voice: str,
         speed: float = 1.0,
         timeout: float | None = None,
+        base_url: str | None = None,
     ) -> None:
-        self._client = openai.AsyncOpenAI(api_key=api_key)
+        client_kwargs = {"api_key": api_key}
+        if base_url:
+            client_kwargs["base_url"] = base_url
+        self._client = openai.AsyncOpenAI(**client_kwargs)
         self.model = model
         self.voice = voice
         self.speed = speed

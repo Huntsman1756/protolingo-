@@ -19,6 +19,7 @@ export function ExerciseAudioPlayer({
   >('idle')
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [errorDetail, setErrorDetail] = useState('')
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const blobUrlRef = useRef<string | null>(null)
   const playedRef = useRef(false)
@@ -43,9 +44,15 @@ export function ExerciseAudioPlayer({
     }
 
     setState('loading')
+    setErrorDetail('')
     try {
-      const res = await apiFetch(`/api/listening/audio/${exerciseId}`)
-      if (!res.ok) throw new Error(`${res.status}`)
+      const res = await apiFetch(`/api/listening/audio/${exerciseId}`, {
+        cache: 'no-store',
+      })
+      if (!res.ok) {
+        const errDetail = await res.text().catch(() => '')
+        throw new Error(`${res.status} ${errDetail}`)
+      }
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       blobUrlRef.current = url
@@ -65,7 +72,11 @@ export function ExerciseAudioPlayer({
         setProgress(100)
         setState('idle')
       })
-      audio.addEventListener('error', () => setState('error'))
+      audio.addEventListener('error', () => {
+        const mediaErr = (audio.error as MediaError | null)?.message || ''
+        setErrorDetail(mediaErr)
+        setState('error')
+      })
 
       await audio.play()
       setState('playing')
@@ -74,7 +85,8 @@ export function ExerciseAudioPlayer({
         playedRef.current = true
         onFirstPlay?.()
       }
-    } catch {
+    } catch (err) {
+      setErrorDetail(err instanceof Error ? err.message : '')
       setState('error')
     }
   }
@@ -133,6 +145,17 @@ export function ExerciseAudioPlayer({
       {state === 'error' && (
         <p className="text-fl-label font-mono text-red-500">
           {t('audioError')}
+          {errorDetail && (
+            <span className="text-fl-muted-2 mt-1 block text-xs">
+              ({errorDetail})
+            </span>
+          )}
+          <button
+            onClick={handlePlayPause}
+            className="text-fl-fg ml-2 underline"
+          >
+            {t('retry')}
+          </button>
         </p>
       )}
     </div>

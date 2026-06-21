@@ -1,5 +1,5 @@
 ---
-description: "Database models reference for FreeLingo: 19 SQLAlchemy ORM models with full schema details, relationships, constraints, and business rules."
+description: "Database models reference for FreeLingo: 20 SQLAlchemy ORM models with full schema details, relationships, constraints, and business rules."
 applyTo: "backend/app/models/**, backend/alembic/**"
 ---
 
@@ -358,3 +358,27 @@ Token-usage audit trail, one row per LLM call. Used to track consumption against
 | completion_tokens | integer (nullable) | Output token count                                                          |
 | total_tokens      | integer (nullable) | Total tokens (may differ from prompt + completion for some providers)       |
 | created_at        | datetime           | Auto-set on creation                                                        |
+
+## WeakReviewItem (`weak_review_items`)
+
+SM-2 spaced-repetition queue for wrong answers captured from lesson exercises, listening, reading, writing, and grammar. Created automatically when a user scores below threshold; reviewed via the Weak Review loop.
+
+| Column             | Type               | Notes                                                                 |
+| ------------------ | ------------------ | --------------------------------------------------------------------- |
+| id                 | integer            | Primary key, auto-increment                                           |
+| user_id            | integer            | FK → users (CASCADE DELETE), indexed                                  |
+| study_plan_id      | integer            | FK → study_plans (CASCADE DELETE), indexed                            |
+| source_type        | varchar(20)        | `"grammar"`, `"listening"`, `"reading"`, `"speaking"`, `"lesson_exercise"`, `"writing"` |
+| source_id          | varchar(255)       | Optional reference to original exercise/question ID                   |
+| prompt             | text               | The question or prompt shown to the user                              |
+| correct_answer     | text               | The expected correct answer                                           |
+| user_wrong_answer  | text (nullable)    | The user's incorrect answer (if available)                            |
+| context            | text (nullable)    | Additional context (lesson explanation, exercise text, LLM feedback)  |
+| language           | varchar(10)        | BCP-47 target language code, default `en-GB`                          |
+| ease_factor        | float              | SM-2 ease factor, default 2.5                                         |
+| interval           | integer            | SM-2 interval in days, default 0                                      |
+| repetitions        | integer            | SM-2 repetition count, default 0                                      |
+| next_review        | date               | Date when item is due for review, default today                       |
+| consecutive_failures | integer          | Consecutive failed reviews (quality < 3), default 0                   |
+| created_at         | datetime           | Auto-set on creation                                                  |
+| updated_at         | datetime           | Auto-updated on modification                                          |

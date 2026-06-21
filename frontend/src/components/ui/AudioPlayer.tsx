@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useAuthStore } from '@/store/auth'
+import { useLanguageStore } from '@/store/language'
 import { getLogger } from '@/lib/logger'
 
 const TTS_TIMEOUT_MS = 15_000
@@ -30,9 +31,10 @@ export function AudioPlayer({
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const controllerRef = useRef<AbortController | null>(null)
   const accessToken = useAuthStore((s) => s.accessToken)
+  const activeLanguage = useLanguageStore((s) => s.activeLanguage)
   const t = useTranslations('audioPlayer')
 
-  // Resolve voice: explicit prop > user localStorage preference > backend default
+  // Resolve voice: explicit prop > user localStorage preference > language-appropriate
   const resolvedVoice =
     voice ??
     (typeof window !== 'undefined'
@@ -82,7 +84,11 @@ export function AudioPlayer({
                   ? { Authorization: `Bearer ${accessToken}` }
                   : {}),
               },
-              body: JSON.stringify({ text, voice: resolvedVoice }),
+              body: JSON.stringify({
+                text,
+                voice: resolvedVoice,
+                language: activeLanguage?.code,
+              }),
               signal: controller.signal,
             }
       )

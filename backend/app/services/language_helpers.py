@@ -18,6 +18,27 @@ _LANGUAGE_INFO: dict[str, dict[str, str]] = {
     "pt-PT": {"name": "Portuguese", "self_name": "Português", "iso639": "pt", "flag": "🇵🇹"},
 }
 
+# BCP-47 → voice code for NaN Kokoro TTS
+_NAN_VOICE_MAP: dict[str, str] = {
+    "en-US": "af_heart",
+    "en-GB": "bf_emma",
+    "es-ES": "ef_dora",
+    "fr-FR": "ff_siwis",
+    "it-IT": "if_sara",
+    "pt-PT": "pf_dora",
+    "de-DE": "af_heart",
+}
+# BCP-47 → voice code for OpenAI TTS
+_OPENAI_VOICE_MAP: dict[str, str] = {
+    "en-US": "nova",
+    "en-GB": "nova",
+    "es-ES": "nova",
+    "fr-FR": "nova",
+    "it-IT": "nova",
+    "pt-PT": "nova",
+    "de-DE": "nova",
+}
+
 _VOICE_SESSION_TITLES: dict[str, str] = {
     "es": "Sesión de voz",
     "fr": "Session vocale",
@@ -182,6 +203,16 @@ def get_language_flag(target_language: str) -> str:
     """'es-ES' → '🇪🇸', 'it-IT' → '🇮🇹'"""
     info = _LANGUAGE_INFO.get(target_language)
     return info["flag"] if info else ""
+
+
+def get_tts_voice(target_language: str) -> str:
+    from app.core.config import settings
+
+    if settings.TTS_PROVIDER == "nan":
+        return _NAN_VOICE_MAP.get(target_language, "af_heart")
+    if settings.TTS_PROVIDER == "openai":
+        return _OPENAI_VOICE_MAP.get(target_language, "nova")
+    return settings.TTS_VOICE
 
 
 def voice_session_title(native_language: str) -> str:

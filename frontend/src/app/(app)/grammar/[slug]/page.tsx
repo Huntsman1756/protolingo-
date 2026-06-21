@@ -5,7 +5,12 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { use } from 'react'
 import { useTranslations } from 'next-intl'
-import { getGrammarTopics, type GrammarTopic } from '@/data/grammar'
+import {
+  getGrammarDrills,
+  getGrammarTopics,
+  type GrammarDrillQuestion,
+  type GrammarTopic,
+} from '@/data/grammar'
 import { useLanguageStore } from '@/store/language'
 import { PageLoading } from '@/components/ui/page-loading'
 
@@ -88,6 +93,17 @@ export default function GrammarDetailPage({
   const [topics, setTopics] = useState<GrammarTopic[]>([])
   const [loading, setLoading] = useState(true)
   const [loadError, setLoadError] = useState(false)
+  const [drillQuestions, setDrillQuestions] = useState<GrammarDrillQuestion[]>([])
+  const [drillBaseQuestions, setDrillBaseQuestions] = useState<
+    GrammarDrillQuestion[]
+  >([])
+  const [drillLoading, setDrillLoading] = useState(false)
+  const [drillError, setDrillError] = useState(false)
+  const [drillAnswers, setDrillAnswers] = useState<Record<string, string>>({})
+  const [drillSubmitted, setDrillSubmitted] = useState(false)
+  const [drillStarted, setDrillStarted] = useState(false)
+  const [drillWrongIndexes, setDrillWrongIndexes] = useState<number[]>([])
+  const [drillInRetryMode, setDrillInRetryMode] = useState(false)
 
   const fetchTopics = useCallback(async (lang: string) => {
     setLoading(true)
@@ -103,9 +119,40 @@ export default function GrammarDetailPage({
     }
   }, [])
 
+  const fetchDrills = useCallback(async (lang: string) => {
+    setDrillLoading(true)
+    setDrillError(false)
+    setDrillQuestions([])
+    setDrillAnswers({})
+    setDrillSubmitted(false)
+    setDrillStarted(false)
+    setDrillWrongIndexes([])
+    setDrillInRetryMode(false)
+    try {
+      const data = await getGrammarDrills(
+        slug,
+        lang
+      )
+      if (data?.questions?.length) {
+        setDrillBaseQuestions(data.questions)
+        setDrillQuestions(data.questions)
+      } else {
+        setDrillError(true)
+      }
+    } catch {
+      setDrillError(true)
+    } finally {
+      setDrillLoading(false)
+    }
+  }, [slug])
+
   useEffect(() => {
     fetchTopics(activeLanguage?.code ?? 'en-US')
   }, [activeLanguage?.code, fetchTopics])
+
+  useEffect(() => {
+    fetchDrills(activeLanguage?.code ?? 'en-US')
+  }, [activeLanguage?.code, fetchDrills])
 
   if (loading) {
     return <PageLoading />
@@ -128,6 +175,19 @@ export default function GrammarDetailPage({
   const topic = topics.find((t) => t.slug === slug)
   if (!topic) notFound()
 
+  const drillCorrect = drillQuestions.reduce((acc, q) => {
+    const selected = drillAnswers[String(q.index)]
+    return acc + (selected === q.correct ? 1 : 0)
+  }, 0)
+  const drillTotal = drillQuestions.length
+  const allDrillAnswered =
+    drillTotal > 0 &&
+    drillQuestions.every((q) => typeof drillAnswers[String(q.index)] === 'string')
+  const isDrillDone = drillSubmitted && drillQuestions.length > 0
+  const hasWrongAnswers = drillWrongIndexes.length > 0
+
+  const drillPercent = drillTotal > 0 ? Math.round((drillCorrect / drillTotal) * 100) : 0
+
   const hasTable = topic.explanation.includes('|')
   const explanationLines = topic.explanation.split('\n')
   const hasList = explanationLines.some((l) => l.startsWith('- '))
@@ -135,6 +195,43 @@ export default function GrammarDetailPage({
   const relatedTopics = topic.related
     .map((s) => topics.find((t) => t.slug === s))
     .filter(Boolean)
+
+  function startDrillSession() {
+    setDrillQuestions(drillBaseQuestions)
+    setDrillInRetryMode(false)
+    setDrillStarted(true)
+    setDrillSubmitted(false)
+    setDrillAnswers({})
+    setDrillWrongIndexes([])
+  }
+
+  function setDrillAnswer(index: number, value: string) {
+    setDrillAnswers((prev) => ({ ...prev, [String(index)]: value }))
+  }
+
+  function submitDrill() {
+    const wrongIndexes = drillQuestions
+      .filter((q) => drillAnswers[String(q.index)] !== q.correct)
+      .map((q) => q.index)
+    setDrillWrongIndexes(wrongIndexes)
+    setDrillSubmitted(true)
+  }
+
+  function retryWrongDrills() {
+    const wrongQuestions = drillQuestions.filter((q) =>
+      drillWrongIndexes.includes(q.index)
+    )
+    if (wrongQuestions.length === 0) {
+      startDrillSession()
+      return
+    }
+
+    setDrillQuestions(wrongQuestions)
+    setDrillInRetryMode(true)
+    setDrillSubmitted(false)
+    setDrillAnswers({})
+    setDrillWrongIndexes([])
+  }
 
   return (
     <div className="mx-auto max-w-2xl space-y-4 p-6">
@@ -293,6 +390,110 @@ export default function GrammarDetailPage({
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {drillLoading ? (
+        <div className="border-fl-border bg-fl-surface border p-4">
+          <p className="text-fl-muted-3 font-mono text-xs tracking-widest uppercase">
+            {tCommon('loading')}
+          </p>
+        </div>
+      ) : (
+        <div className="border-fl-border bg-fl-surface border">
+          <div className="border-fl-border flex items-center justify-between gap-2 border-b px-6 py-4">
+            <span className="text-fl-label text-fl-muted-2 font-mono tracking-widest uppercase">
+              {topic.level} • Drills
+            </span>
+            {drillQuestions.length > 0 && (
+              <button
+                onClick={startDrillSession}
+                className={`border-fl-border text-fl-label text-fl-muted-2 border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors ${
+                  drillStarted
+                    ? 'hover:border-fl-border-2 hover:text-fl-fg'
+                    : 'border-fl-accent text-fl-accent'
+                }`}
+              >
+                {drillStarted ? tCommon('retry') : tCommon('start')}
+              </button>
+            )}
+          </div>
+          <div className="space-y-4 px-6 py-5">
+            {drillError || drillQuestions.length === 0 ? (
+              <p className="text-fl-muted-2 font-mono text-xs">
+                No drills available yet.
+              </p>
+            ) : (
+              <>
+                {drillStarted && (
+                  <>
+                    {drillQuestions.map((q) => {
+                      const key = String(q.index)
+                      const selected = drillAnswers[key]
+                      return (
+                        <div key={q.index} className="space-y-3">
+                          <p className="text-fl-fg font-mono text-xs">
+                            {q.index + 1}. {q.question}
+                          </p>
+                          <div className="space-y-2">
+                            {q.options.map((option, i) => {
+                              const label = String.fromCharCode(65 + i)
+                              const isSelected = selected === option
+                              const isCorrect = isDrillDone && option === q.correct
+                              const isWrong = isDrillDone && isSelected && selected !== q.correct
+                              return (
+                                <button
+                                  key={label}
+                                  onClick={() => setDrillAnswer(q.index, option)}
+                                  className={`w-full border px-3 py-2 text-left text-xs font-mono transition-colors ${
+                                    isCorrect
+                                      ? 'border-green-500 bg-green-950/30 text-fl-fg'
+                                      : isWrong
+                                        ? 'border-red-500 bg-red-950/30 text-red-200'
+                                        : isSelected
+                                          ? 'border-fl-accent bg-fl-surface-2 text-fl-fg'
+                                          : 'border-fl-border text-fl-muted-2 hover:border-fl-border-2 hover:text-fl-fg hover:bg-fl-surface-2'
+                                  }`}
+                                >
+                                  {label}. {option}
+                                </button>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )
+                    })}
+
+                    {(!isDrillDone || drillInRetryMode) && (
+                      <button
+                        onClick={submitDrill}
+                        disabled={!allDrillAnswered}
+                        className="border-fl-border bg-fl-surface text-fl-fg w-full border py-3 font-mono text-xs tracking-widest uppercase transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                      >
+                        {tCommon('submit')}
+                      </button>
+                    )}
+
+                    {isDrillDone && (
+                      <div className="border-fl-border bg-fl-surface-2 border px-4 py-3 font-mono text-xs">
+                        <p className="text-fl-fg tracking-widest uppercase">
+                          {tCommon('score')}: {drillCorrect}/{drillTotal} ({drillPercent}%)
+                        </p>
+                        {hasWrongAnswers && (
+                          <button
+                            onClick={retryWrongDrills}
+                            className="mt-3 w-full border border-fl-border bg-fl-surface px-3 py-2 font-mono tracking-widest uppercase"
+                          >
+                            {tCommon('retry')} ({drillWrongIndexes.length})
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            )}
           </div>
         </div>
       )}

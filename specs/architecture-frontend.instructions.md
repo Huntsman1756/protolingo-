@@ -43,6 +43,7 @@ frontend/
 │   │   │   ├── progress/        # Skills tracker with radar chart
 │   │   │   ├── reading/         # AI-generated reading comprehension
 │   │   │   ├── settings/        # Profile, avatar, subscription, conversation config
+│   │   │   ├── weak-review/     # SM-2 spaced repetition loop for wrong answers
 │   │   │   └── vocabulary/      # Vocabulary hub (index + [setId] detail)
 │   │   │
 │   │   ├── (legal)/             # Minimal layout (2 pages)
@@ -52,6 +53,7 @@ frontend/
 │   │   │
 │   │   └── api/                 # Next.js Route Handlers (proxies to backend)
 │   │       ├── chat/route.ts    # SSE chat streaming proxy
+│   │       ├── listening/audio/[exerciseId]/route.ts  # Listening audio binary proxy
 │   │       ├── stt/route.ts     # STT proxy
 │   │       └── tts/route.ts     # TTS proxy
 │   │
@@ -104,7 +106,7 @@ frontend/
 │   ├── i18n/
 │   │   └── request.ts           # next-intl request locale resolver
 │   │
-│   └── middleware.ts            # Auth guard (redirect to /login) + locale detection
+│   └── middleware.ts            # Auth guard (redirect to /login) + locale detection for authenticated app/admin routes
 │
 ├── tests/                       # Vitest suite
 │   ├── setup.ts                 # Global mocks: localStorage, next/navigation, next-intl
@@ -175,6 +177,9 @@ frontend/
 - `/phrasebook` — Common phrases by category.
 - `/listening` — AI-generated listening comprehension exercises.
 - `/reading` — AI-generated reading comprehension exercises.
+- `/writing` — AI-generated writing prompts with LLM evaluation and feedback.
+- `/documents` — RAG Document Q&A upload, list, delete, and ask interface.
+- `/weak-review` — SM-2 review loop for wrong answers from practice flows.
 - `/progress` — Skills tracker with radar chart and multi-level vocabulary progress toggle.
 - `/settings` — Profile, avatar, subscription, conversation settings.
 - `/faq` — Frequently asked questions.
@@ -183,6 +188,16 @@ frontend/
 - `/admin/users` — User management with responsive table/cards, search, filters, invite copy workflow, create-user sheet, and maintenance toggle (admin only).
 - `/admin/users/[id]` — Admin user detail with summary header and tabs for Profile, Languages, Activity, Quotas, and Subscription. Quotas separate current usage from configured limits; email verification and subscription overrides use confirmation dialogs.
 - `/admin/feedback` — Feedback queue admin panel with search, type/status/sort filters, filtered metrics by feedback type, desktop table, mobile cards, status updates, and delete confirmation. Status updates refresh the queue when the updated entry no longer matches the active filter (admin only).
+
+### Middleware-authenticated route prefixes
+
+`frontend/src/middleware.ts` redirects unauthenticated users to `/login` before protected page trees mount. Protected prefixes include `/admin`, `/assessment`, `/billing`, `/chat`, `/conversation`, `/dashboard`, `/documents`, `/faq`, `/feedback`, `/flashcards`, `/grammar`, `/lesson`, `/listening`, `/onboarding`, `/phrasebook`, `/plan`, `/progress`, `/reading`, `/settings`, `/vocabulary`, `/weak-review`, and `/writing`.
+
+This prevents newly added app pages from mounting, refreshing tokens, and firing protected API calls before the auth redirect runs.
+
+### Phrasebook register labels
+
+The Phrasebook UI supports `formal`, `semi-formal`, `neutral`, and `informal` registers from backend phrasebook data. All message bundles include matching `phrasebook.*` labels so rare `semi-formal` entries render without next-intl missing-message errors.
 
 ### Legal routes — `(legal)/`
 

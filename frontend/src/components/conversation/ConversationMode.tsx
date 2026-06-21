@@ -49,7 +49,7 @@ function QuotaBar({
         <span className="text-fl-hint text-fl-muted-2 font-mono">∞</span>
       ) : (
         <>
-          <div className="bg-fl-surface-2 h-1 flex-1 overflow-hidden">
+          <div className="bg-fl-surface h-1 flex-1 overflow-hidden">
             <div
               className={`h-full transition-all ${exceeded ? 'bg-fl-error' : 'bg-fl-accent'}`}
               style={{ width: `${pct}%` }}
@@ -147,10 +147,10 @@ function QuotaPill({
 }
 
 function vadRedemptionMs(cefrLevel: string | null | undefined): number {
-  if (!cefrLevel) return 1000
-  if (cefrLevel === 'A1' || cefrLevel === 'A2') return 1300
-  if (cefrLevel === 'B1' || cefrLevel === 'B2') return 1100
-  return 900 // C1, C2
+  if (!cefrLevel) return 2500
+  if (cefrLevel === 'A1' || cefrLevel === 'A2') return 3500
+  if (cefrLevel === 'B1' || cefrLevel === 'B2') return 3000
+  return 2500 // C1, C2
 }
 
 const ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS = false
@@ -164,6 +164,12 @@ const VAD_MAX_RMS = 0.25
 const convLogger = ENABLE_CONVERSATION_AUDIO_DEBUG_LOGS
   ? getLogger('conversation-audio')
   : silentLogger
+
+// Debug logger — always active during development to surface stuck-state issues
+const debug = (...args: unknown[]) => {
+  // eslint-disable-next-line no-console
+  console.log('[ConversationMode]', ...args)
+}
 
 export default function ConversationMode({
   initialContext,
@@ -194,6 +200,8 @@ export default function ConversationMode({
   const [assistantSpeaking, setAssistantSpeaking] = useState(false)
   const [memoryToast, setMemoryToast] = useState(false)
   const [quota, setQuota] = useState<QuotaStatus | null>(null)
+  const [vadReady, setVadReady] = useState(false)
+  const [vadError, setVadError] = useState<string | null>(null)
 
   // 6 random starters picked once per component mount, shown alphabetically
   const visibleStarters = useMemo(
@@ -237,6 +245,9 @@ export default function ConversationMode({
   const closeReasonRef = useRef<'manual' | 'route_unload' | 'unknown'>(
     'unknown'
   )
+  const vadRef = useRef<{ loading: boolean; errored: string | false } | null>(
+    null
+  )
 
   useEffect(() => {
     assistantSpeakingRef.current = assistantSpeaking
@@ -252,11 +263,11 @@ export default function ConversationMode({
       minUtteranceMs = MIN_UTTERANCE_MS
     ): { isSpeech: boolean; rms: number; durationMs: number } => {
       const samples = audio.length
+      const durationMs = (samples / 16000) * 1000
       if (samples === 0) {
-        return { isSpeech: false, rms: 0, durationMs: 0 }
+        return { isSpeech: false, rms: 0, durationMs }
       }
       const startedAt = speechStartedAtRef.current
-      const durationMs = (samples / 16000) * 1000
       if (!startedAt || durationMs < minUtteranceMs) {
         return { isSpeech: false, rms: 0, durationMs }
       }
@@ -277,17 +288,15 @@ export default function ConversationMode({
   )
 
   // ─── VAD ──────────────────────────────────────────────────────────────────
-  // MicVAD.new() loads the ONNX model but does NOT request mic permission yet.
-  // getUserMedia() is called only when vad.start() is invoked (inside handleStart,
-  // which runs during a user-gesture click).
   const vad = useMicVAD({
     baseAssetPath: '/vad/',
     onnxWASMBasePath: '/vad/',
     model: 'v5',
     startOnLoad: false,
     redemptionMs: vadRedemptionMs(cefrLevel),
+    positiveSpeechThreshold: 0.35,
+    negativeSpeechThreshold: 0.15,
     ortConfig: (ort) => {
-      // Single-threaded ONNX — no SharedArrayBuffer / COOP headers required
       ort.env.wasm.numThreads = 1
     },
     onSpeechStart: () => {
@@ -317,14 +326,10 @@ export default function ConversationMode({
       }
       setUserSpeaking(false)
 
-      // Ignore accidental detections when the session ended.
       if (!sessionActiveRef.current) {
         return
       }
 
-      // If the assistant is speaking, avoid false positive interruptions
-      // from playback leakage / room noise. Only treat it as interrupt when
-      // the signal is clearly strong enough to be real speech.
       if (
         assistantSpeakingRef.current &&
         speech.rms < INTERRUPTION_RMS_THRESHOLD
@@ -373,7 +378,6 @@ export default function ConversationMode({
         }
       }
 
-      // Barge-in: cancel in-progress TTS playback only when assistant is speaking.
       if (assistantSpeakingRef.current && audioQueueRef.current) {
         convLogger.info('processing barge-in speech', {
           rms: speech.rms,
@@ -395,25 +399,64 @@ export default function ConversationMode({
     },
   })
 
+  // Persist latest VAD state in a ref so handleStart can read it synchronously
+  useEffect(() => {
+    vadRef.current = { loading: vad.loading, errored: vad.errored }
+  }, [vad.loading, vad.errored])
+
   // Transition from loading → ready when VAD finishes initialising
   useEffect(() => {
+    debug('vad state changed', { loading: vad.loading, errored: vad.errored, currentStatus: status })
+
     if (vad.loading) return
+
     if (vad.errored) {
       const errMsg = typeof vad.errored === 'string' ? vad.errored : ''
       const isPermission =
         errMsg.includes('NotAllowedError') ||
         errMsg.includes('PermissionDeniedError')
-      setErrorMsg(
+      setVadError(
         isPermission
           ? t('errorMic')
           : `${t('errorVadInit')}${errMsg ? ` — ${errMsg}` : ''}`
       )
       setStatus('error')
+      debug('VAD errored', { errMsg })
       return
     }
-    if (status === 'loading') setStatus('ready')
+
+    setVadReady(true)
+    if (status === 'loading') {
+      debug('VAD loaded → ready')
+      setStatus('ready')
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vad.loading, vad.errored])
+
+  // Safety timeout: if VAD is still loading after 30 s, show an error
+  useEffect(() => {
+    if (status !== 'loading') return
+    debug('VAD loading timeout started')
+    const timer = setTimeout(() => {
+      debug('VAD loading timeout fired — stuck for 30s')
+      setErrorMsg(t('errorVadInit'))
+      setVadError(t('errorVadInit'))
+      setStatus('error')
+    }, 30_000)
+    return () => clearTimeout(timer)
+  }, [status, t])
+
+  // Safety timeout: if stuck in warming for >20 s, transition to error
+  useEffect(() => {
+    if (status !== 'warming') return
+    debug('Warming timeout started')
+    const timer = setTimeout(() => {
+      debug('Warming timeout fired — stuck for 20s')
+      setErrorMsg(t('errorConnection'))
+      setStatus('error')
+    }, 20_000)
+    return () => clearTimeout(timer)
+  }, [status, t])
 
   const finalizeSession = useCallback(
     (reason: 'manual' | 'route_unload' | 'unknown' = 'unknown') => {
@@ -456,12 +499,20 @@ export default function ConversationMode({
 
   useEffect(() => {
     if (autoStart && !sessionActive) {
+      debug('autoStart requested')
       pendingAutoStartRef.current = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoStart])
 
   useEffect(() => {
+    debug('auto-start check', {
+      pending: pendingAutoStartRef.current,
+      vadLoading: vad.loading,
+      vadErrored: !!vad.errored,
+      hasToken: !!accessToken,
+      sessionActive,
+    })
     if (
       pendingAutoStartRef.current &&
       !vad.loading &&
@@ -470,6 +521,7 @@ export default function ConversationMode({
       !sessionActive
     ) {
       pendingAutoStartRef.current = false
+      debug('auto-starting conversation')
       void handleStart()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -478,13 +530,14 @@ export default function ConversationMode({
   // ─── WebSocket ────────────────────────────────────────────────────────────
   const connectWs = useCallback(
     (token: string, context?: ChatContextItem[]) => {
-      convLogger.info('opening conversation websocket')
+      debug('opening websocket')
       const url = buildConversationWsUrl()
       const ws = new WebSocket(url)
       ws.binaryType = 'arraybuffer'
       wsRef.current = ws
 
       ws.onopen = () => {
+        debug('ws connected')
         const authPayload: Record<string, unknown> = { type: 'auth', token }
         const storedVoice =
           typeof window !== 'undefined'
@@ -524,7 +577,6 @@ export default function ConversationMode({
       }
 
       ws.onmessage = (event) => {
-        // Binary → TTS audio chunk
         if (event.data instanceof ArrayBuffer) {
           handleAudioChunk(event.data)
           return
@@ -537,7 +589,6 @@ export default function ConversationMode({
           return
         }
 
-        // Text → JSON control message
         try {
           const msg = JSON.parse(event.data as string) as WsMessage
           convLogger.debug('ws text message', { type: msg.type })
@@ -548,7 +599,6 @@ export default function ConversationMode({
           switch (msg.type) {
             case 'transcript':
               if (msg.role === 'user') {
-                // STT result — always final
                 setTranscript((prev) => [
                   ...prev,
                   {
@@ -558,7 +608,6 @@ export default function ConversationMode({
                   },
                 ])
               } else {
-                // LLM token stream
                 if (msg.final) {
                   setStreamingText(null)
                   setTranscript((prev) => [
@@ -638,11 +687,12 @@ export default function ConversationMode({
               break
           }
         } catch {
-          // Non-JSON (shouldn't happen for text frames) — ignore
+          // Non-JSON — ignore
         }
       }
 
       ws.onerror = () => {
+        debug('ws onerror', { cleanEnd: cleanEndRef.current })
         if (!cleanEndRef.current) {
           convLogger.error('ws onerror')
           setErrorMsg(`${t('errorConnection')} [onerror → ${url}]`)
@@ -652,7 +702,7 @@ export default function ConversationMode({
       }
 
       ws.onclose = (ev) => {
-        convLogger.warn('ws closed', { code: ev.code, reason: ev.reason })
+        debug('ws onclose', { code: ev.code, reason: ev.reason, cleanEnd: cleanEndRef.current })
         if (!cleanEndRef.current) {
           if (ev.code === 1008) {
             setErrorMsg(t('errorUnauthorized'))
@@ -673,20 +723,38 @@ export default function ConversationMode({
 
   // ─── Session lifecycle ────────────────────────────────────────────────────
   async function handleStart(topicContext?: ChatContextItem[]) {
+    debug('handleStart called', {
+      hasToken: !!accessToken,
+      vadLoading: vadRef.current?.loading,
+      vadErrored: vadRef.current?.errored,
+      sessionActive,
+      currentStatus: status,
+    })
+
+    const vadState = vadRef.current
     if (
       !accessToken ||
-      vad.loading ||
-      vad.errored ||
+      vadState?.loading ||
+      vadState?.errored ||
       sessionActive ||
       status === 'warming' ||
       status === 'connecting' ||
       status === 'live'
-    )
+    ) {
+      debug('handleStart blocked by guard', {
+        hasToken: !!accessToken,
+        vadLoading: vadState?.loading,
+        vadErrored: !!vadState?.errored,
+        sessionActive,
+        status,
+      })
       return
+    }
 
     const startAttempt = ++startAttemptRef.current
+    debug('handleStart proceeding, attempt', startAttempt)
 
-    // AudioContext MUST be created during a user-gesture (this click handler)
+    // AudioContext MUST be created during a user-gesture
     const ctx = new AudioContext()
     audioCtxRef.current = ctx
     try {
@@ -713,16 +781,15 @@ export default function ConversationMode({
     activeTurnIdRef.current = null
     refreshQuota()
 
-    // Trigger model warmup on TTS/STT services and WAIT for them to be ready
-    // before opening the WebSocket. Models are loaded lazily by the backend;
-    // this ensures the first transcription/synthesis in the session is fast.
     setStatus('warming')
+    debug('status → warming, starting mic + warmup')
 
     // Start mic (requests permission if not already granted)
     vad.start().catch((e: unknown) => {
       if (!mountedRef.current || startAttemptRef.current !== startAttempt)
         return
       startAttemptRef.current++
+      debug('vad.start rejected', e)
       setErrorMsg(e instanceof Error ? e.message : t('errorMic'))
       setStatus('error')
       setSessionActive(false)
@@ -731,19 +798,20 @@ export default function ConversationMode({
       audioQueueRef.current = null
     })
 
-    const warmupResponsePromise = apiFetch('/api/conversation/warmup', {
-      method: 'POST',
-    })
     const warmupTimeout = new Promise<Response>((_, reject) => {
       setTimeout(() => reject(new Error('warmup timeout')), 15_000)
     })
+
     let warmupResponse: Response
     try {
+      debug('warmup request starting')
       warmupResponse = (await Promise.race([
-        warmupResponsePromise,
+        apiFetch('/api/conversation/warmup', { method: 'POST' }),
         warmupTimeout,
       ])) as Response
-    } catch {
+      debug('warmup response received', { ok: warmupResponse.ok, status: warmupResponse.status })
+    } catch (err) {
+      debug('warmup request threw', err)
       if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
         ctx.close()
         return
@@ -760,6 +828,7 @@ export default function ConversationMode({
     }
 
     if (!warmupResponse.ok) {
+      debug('warmup bad response', warmupResponse.status)
       if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
         ctx.close()
         return
@@ -776,11 +845,14 @@ export default function ConversationMode({
     }
 
     if (!mountedRef.current || startAttemptRef.current !== startAttempt) {
+      debug('warmup succeeded but component unmounted or stale attempt')
       ctx.close()
       return
     }
+
     const latestToken = useAuthStore.getState().accessToken
     if (!latestToken) {
+      debug('no access token for websocket')
       setErrorMsg(t('errorUnauthorized'))
       setStatus('error')
       setSessionActive(false)
@@ -790,22 +862,26 @@ export default function ConversationMode({
       convLogger.error('no access token for websocket connect')
       return
     }
+
+    debug('warmup succeeded, connecting websocket')
     connectWs(latestToken, topicContext ?? initialContext)
   }
 
   function handleStop() {
+    debug('handleStop called')
     startAttemptRef.current++
     cleanEndRef.current = true
     finalizeSession('manual')
     setStatus('ended')
-    // Allow a moment for the backend to record session seconds, then refresh
     setTimeout(() => refreshQuota(), 1500)
   }
 
   // Cleanup on unmount
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
+    debug('mount')
     return () => {
+      debug('unmount')
       mountedRef.current = false
       startAttemptRef.current++
       cleanEndRef.current = true
@@ -903,9 +979,20 @@ export default function ConversationMode({
       </div>
 
       {/* Status message */}
-      {status === 'error' && errorMsg && (
+      {status === 'error' && (errorMsg || vadError) && (
         <div className="border-fl-error/40 bg-fl-surface text-fl-error mb-4 border px-4 py-3 font-mono text-xs">
-          ✕ {errorMsg}
+          ✕ {errorMsg || vadError}
+          <button
+            onClick={() => {
+              setErrorMsg(null)
+              setVadError(null)
+              setStatus('loading')
+              setVadReady(false)
+            }}
+            className="ml-3 underline cursor-pointer"
+          >
+            Reintentar
+          </button>
         </div>
       )}
       {status === 'ended' && (

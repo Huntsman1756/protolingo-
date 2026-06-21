@@ -35,3 +35,18 @@ class GrammarTopicsResponse(BaseModel):
 
 class GrammarTopicDetailResponse(BaseModel):
     topic: GrammarTopicResponse
+
+
+class GrammarDrillQuestion(BaseModel):
+    index: int
+    question: str
+    options: list[str]
+    correct: str
+    explanation: str | None = None
+
+
+class GrammarDrillResponse(BaseModel):
+    slug: str
+    title: str
+    level: str
+    questions: list[GrammarDrillQuestion]

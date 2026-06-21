@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from typing import Any
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, status
 from redis.asyncio import Redis
@@ -29,6 +30,7 @@ from app.services.reading_service import (
     get_user_history,
     submit_attempt,
 )
+from app.services.weak_review_service import create_or_update_weak_item
 from app.utils.db import db_session
 from app.utils.redis import redis_client as _redis_client
 
@@ -41,24 +43,59 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 
+def _question_index(raw: dict[str, Any], fallback_index: int) -> int:
+    try:
+        return int(raw.get("index", fallback_index))
+    except (TypeError, ValueError):
+        return fallback_index
+
+
+def _build_question_out(raw: dict[str, Any], fallback_index: int) -> QuestionOut:
+    raw_options = raw.get("options", {})
+    if isinstance(raw_options, dict):
+        options = {str(k): str(v) for k, v in raw_options.items()}
+    elif isinstance(raw_options, list):
+        labels = ("A", "B", "C", "D")
+        options = {label: str(value) for label, value in zip(labels, raw_options)}
+    else:
+        options = {}
+
+    return QuestionOut(
+        index=_question_index(raw, fallback_index),
+        question=str(raw.get("question", f"Question {fallback_index + 1}")),
+        options=options,
+    )
+
+
 def _build_exercise_out(exercise) -> ReadingExerciseOut:  # noqa: ANN001
     """Convert ORM model to schema — text IS included for reading."""
+    raw_questions = exercise.questions
+    if isinstance(raw_questions, dict):
+        raw_questions = raw_questions.get("questions", [])
+    if not isinstance(raw_questions, list):
+        raw_questions = []
+
     return ReadingExerciseOut(
         id=exercise.id,
-        level=exercise.level,
-        target_language=exercise.target_language,
-        exercise_type=exercise.exercise_type,
-        topic=exercise.topic,
-        text=exercise.text,
+        level=str(exercise.level),
+        target_language=str(exercise.target_language),
+        exercise_type=str(exercise.exercise_type),
+        topic=str(exercise.topic),
+        text=str(exercise.text or ""),
         questions=[
-            QuestionOut(
-                index=q["index"],
-                question=q["question"],
-                options=q["options"],
-            )
-            for q in exercise.questions
+            _build_question_out(q, index)
+            for index, q in enumerate(raw_questions)
+            if isinstance(q, dict)
         ],
     )
+
+
+def _question_dicts(raw_questions: Any) -> list[dict[str, Any]]:
+    if isinstance(raw_questions, dict):
+        raw_questions = raw_questions.get("questions", [])
+    if not isinstance(raw_questions, list):
+        return []
+    return [q for q in raw_questions if isinstance(q, dict)]
 
 
 # ---------------------------------------------------------------------------
@@ -198,10 +235,47 @@ async def submit_reading_attempt(
                 status_code=status.HTTP_409_CONFLICT, detail="already_attempted"
             ) from exc
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=detail) from exc
+    except Exception as exc:
+        logger.exception("reading: submit failed")
+        raise HTTPException(status_code=500, detail="reading_submit_failed") from exc
 
-    correct_answers = [
-        CorrectAnswerOut(index=q["index"], correct=q["correct"]) for q in exercise.questions
-    ]
+    try:
+        correct_answers = [
+            CorrectAnswerOut(
+                index=_question_index(q, index),
+                correct=str(q.get("correct", "")),
+            )
+            for index, q in enumerate(_question_dicts(exercise.questions))
+        ]
+    except Exception as exc:
+        logger.exception("reading: failed to build correct answers")
+        raise HTTPException(status_code=500, detail="reading_submit_failed") from exc
+
+    try:
+        weak_item_created = False
+        for q in _question_dicts(exercise.questions):
+            index = str(q.get("index", ""))
+            selected = body.answers.get(index, "").upper().strip()
+            correct = str(q.get("correct", "")).upper().strip()
+            if selected and selected != correct:
+                await create_or_update_weak_item(
+                    db,
+                    current_user.id,
+                    plan.id,
+                    source_type="reading",
+                    prompt=str(q.get("question", f"Question {index}")),
+                    correct_answer=str(q.get("correct", "")),
+                    language=plan.target_language,
+                    user_wrong_answer=selected,
+                    context=exercise.text[:500] if exercise.text else None,
+                )
+                weak_item_created = True
+        if weak_item_created:
+            await db.commit()
+    except Exception:
+        await db.rollback()
+        logger.exception("reading: failed to save weak review items")
+
     return ReadingSubmitResponse(
         score=attempt.score,
         xp_earned=attempt.xp_earned,
@@ -234,7 +308,11 @@ async def get_reading_history(
             exercise=_build_exercise_out(exercise),
             answers=attempt.answers,
             correct_answers=[
-                CorrectAnswerOut(index=q["index"], correct=q["correct"]) for q in exercise.questions
+                CorrectAnswerOut(
+                    index=_question_index(q, index),
+                    correct=str(q.get("correct", "")),
+                )
+                for index, q in enumerate(_question_dicts(exercise.questions))
             ],
         )
         for attempt, exercise in rows

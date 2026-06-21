@@ -4,7 +4,8 @@ import json
 import logging
 import os
 import random
-from typing import Any
+import re
+from typing import Any, Literal
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -17,6 +18,17 @@ from app.services.progress_service import update_daily_progress
 logger = logging.getLogger(__name__)
 
 XP_PER_CORRECT_ANSWER = 10
+LISTENING_QUESTIONS = 5
+
+ListeningSkill = Literal["literal", "inference", "vocab", "other"]
+
+_QUESTION_SKILL_BY_INDEX: dict[int, ListeningSkill] = {
+    0: "literal",
+    1: "literal",
+    2: "inference",
+    3: "inference",
+    4: "vocab",
+}
 
 # Valid exercise types per CEFR level — exactly 5 per level, may repeat across levels
 _TYPES_BY_LEVEL: dict[str, list[str]] = {
@@ -64,19 +76,22 @@ Return ONLY valid JSON with no prose, no code fences, no extra text:
   "topic": "<brief topic label, max 10 words>",
   "text": "<exercise text as flowing prose>",
   "questions": [
-    {{
-      "index": 0,
-      "question": "<question text>",
-      "options": {{ "A": "<option>", "B": "<option>", "C": "<option>", "D": "<option>" }},
-      "correct": "<A|B|C|D>"
-    }}
+  {{
+    "index": 0,
+    "question": "<question text>",
+    "options": {{ "A": "<option>", "B": "<option>", "C": "<option>", "D": "<option>" }},
+    "correct": "<A|B|C|D>",
+    "skill": "literal|inference|vocab"
+  }}
   ]
 }}
 
 Include exactly 5 questions ordered by cognitive demand:
 - Q0-Q1: literal comprehension (directly stated information)
 - Q2-Q3: inference (implied meaning, tone, or purpose)
-- Q4: vocabulary or register (word meaning in context or formality level)"""
+- Q4: vocabulary or register (word meaning in context or formality level)
+
+The "skill" field is optional — if omitted, infer it from the index rule above."""
 
 
 async def get_available_exercise(
@@ -179,12 +194,82 @@ async def generate_and_save_exercise(
     return exercise
 
 
+def _normalize_skill(raw: object) -> ListeningSkill:
+    if not isinstance(raw, str):
+        return "other"
+    value = raw.lower().strip()
+    if value in {"literal", "inference", "vocab"}:
+        return value
+    return "other"
+
+
+def _coerce_skill(index: int, question: dict[str, Any] | None) -> ListeningSkill:
+    if question is None:
+        return _QUESTION_SKILL_BY_INDEX.get(index, "other")
+    skill = _normalize_skill(question.get("skill"))
+    if skill != "other":
+        return skill
+    return _QUESTION_SKILL_BY_INDEX.get(index, "other")
+
+
+def _normalize_answer(raw: str | None) -> str:
+    return re.sub(r"\s+", " ", raw.strip().lower()) if raw else ""
+
+
+def calculate_score_with_breakdown(
+    questions: list[dict[str, Any]], answers: dict[str, str]
+) -> tuple[int, int, list[dict[str, Any]]]:
+    """Return (score, xp_earned, skill breakdown)."""
+    score = 0
+    tally: dict[ListeningSkill, tuple[int, int]] = {
+        "literal": (0, 0),
+        "inference": (0, 0),
+        "vocab": (0, 0),
+        "other": (0, 0),
+    }
+
+    for q in questions:
+        index = int(q["index"])
+        correct = _normalize_answer(str(q.get("correct", "")).upper())
+        selected = _normalize_answer(answers.get(str(index), "")).upper()
+        is_correct = selected == correct
+
+        if is_correct:
+            score += 1
+
+        skill = _coerce_skill(index, q)
+        correct_count, total_count = tally[skill]
+        tally[skill] = (correct_count + (1 if is_correct else 0), total_count + 1)
+
+    xp = score * XP_PER_CORRECT_ANSWER
+    max_score = min(len(questions), LISTENING_QUESTIONS)
+    breakdown = [
+        {
+            "skill": skill,
+            "correct": values[0],
+            "total": values[1],
+            "accuracy": round((values[0] / values[1]) * 100, 1) if values[1] else 0.0,
+        }
+        for skill, values in tally.items()
+        if values[1]
+    ]
+    return score, xp, breakdown
+
+
 def calculate_score(questions: list[dict[str, Any]], answers: dict[str, str]) -> tuple[int, int]:
-    """Return (score 0–5, xp_earned). Pure function — no DB access."""
-    score = sum(
-        1 for q in questions if answers.get(str(q["index"]), "").upper() == q["correct"].upper()
-    )
-    return score, score * XP_PER_CORRECT_ANSWER
+    """Backward-compatible helper."""
+    score, xp, _ = calculate_score_with_breakdown(questions, answers)
+    return score, xp
+
+
+def max_score(questions: list[dict[str, Any]]) -> int:
+    return min(len(questions), LISTENING_QUESTIONS)
+
+
+def score_percentage(score: int, maximum: int) -> int:
+    if maximum <= 0:
+        return 0
+    return round((score / maximum) * 100)
 
 
 async def submit_attempt(
@@ -238,9 +323,20 @@ async def submit_attempt(
     await db.commit()
     await db.refresh(attempt)
 
-    # Award XP via the shared progress service (creates today's row if missing)
-    if xp_earned > 0:
-        await update_daily_progress(db, user_id, xp=xp_earned, study_plan_id=study_plan_id)
+    # Award XP and update daily progress metrics (skill signal).
+    if not is_replay:
+        max_score_value = max_score(exercise.questions)
+        score_ratio = score / max_score_value if max_score_value > 0 else 0.0
+        await update_daily_progress(
+            db,
+            user_id,
+            exercise_correct=score_ratio >= 0.5,
+            flashcard_reviewed=False,
+            skill="listening",
+            skill_score=round(score_ratio, 3),
+            xp=xp_earned,
+            study_plan_id=study_plan_id,
+        )
 
     return attempt, exercise
 

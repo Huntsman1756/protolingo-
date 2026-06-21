@@ -105,6 +105,8 @@ export default function PlanPage() {
   const [activeLessonId, setActiveLessonId] = useState<number | null>(null)
   const [pendingLessons, setPendingLessons] = useState<PendingLesson[]>([])
   const [units, setUnits] = useState<CurriculumUnit[]>([])
+  const [unitLessons, setUnitLessons] = useState<Lesson[]>([])
+  const [byUnit, setByUnit] = useState<Record<string, Lesson[]>>({})
 
   const loadPlan = useCallback(async () => {
     setLoading(true)
@@ -176,6 +178,51 @@ export default function PlanPage() {
     }
   }, [plan?.cefr_level, activeLanguage?.code])
 
+  useEffect(() => {
+    if (plan) {
+      const flat = flattenLessons(plan)
+      setByUnit(lessonsByUnit(flat))
+    }
+  }, [plan])
+
+  const loadUnitLessons = useCallback(async (unitId: string) => {
+    try {
+      const res = await apiFetch(`/api/study-plan/unit-lessons?unit_id=${encodeURIComponent(unitId)}`)
+      if (res.ok) {
+        const data = await res.json()
+        if (Array.isArray(data) && data.length > 0) {
+          const mapped: Lesson[] = (data as Array<{
+            id: number
+            title: string
+            lesson_type: string
+            week_number: number
+            day_number: number
+            is_completed: boolean
+          }>).map((l) => ({
+            id: l.id,
+            title: l.title,
+            lesson_type: l.lesson_type,
+            week: l.week_number,
+            day: l.day_number,
+            completed: l.is_completed,
+          }))
+          setUnitLessons(mapped)
+          return
+        }
+      }
+      const unitFlat = byUnit[unitId] ?? []
+      setUnitLessons(unitFlat)
+    } catch {
+      const unitFlat = byUnit[unitId] ?? []
+      setUnitLessons(unitFlat)
+    }
+  }, [byUnit])
+
+  const handleOpenDrawer = useCallback((unit: CurriculumUnit) => {
+    setActiveDrawer(unit)
+    void loadUnitLessons(unit.id)
+  }, [loadUnitLessons])
+
   if (loading) {
     return <PageLoading />
   }
@@ -185,8 +232,6 @@ export default function PlanPage() {
   }
 
   const level = plan.cefr_level as CEFRLevel
-  const allLessons = flattenLessons(plan)
-  const byUnit = lessonsByUnit(allLessons)
   const currentUnitId = plan.current_unit
 
   const allUnitsCompleted =
@@ -258,7 +303,7 @@ export default function PlanPage() {
                   </p>
                 </div>
                 <button
-                  onClick={() => router.push(`/lesson/${lesson.id}`)}
+                  onClick={() => lesson.id != null && router.push(`/lesson/${lesson.id}`)}
                   className="text-fl-label text-fl-bg bg-fl-fg hover:bg-fl-accent/90 px-3 py-1 font-mono tracking-widest uppercase transition-colors"
                 >
                   {t('resume')}
@@ -312,7 +357,7 @@ export default function PlanPage() {
                 locked: isLocked,
                 isLevelTest: false,
               }}
-              onClick={() => setActiveDrawer(unit)}
+              onClick={() => handleOpenDrawer(unit)}
               onStartLesson={
                 isActive && activeLessonId != null
                   ? () => router.push(`/lesson/${activeLessonId}`)
@@ -380,14 +425,43 @@ export default function PlanPage() {
       {activeDrawer && (
         <UnitDrawer
           unit={activeDrawer}
-          lessons={(byUnit[activeDrawer.id] ?? []).map((l) => ({
-            ...l,
+          lessons={unitLessons.map((l) => ({
+            id: l.id,
+            title: l.title,
+            lesson_type: l.lesson_type,
+            week: l.week,
+            day: l.day,
             completed: l.completed ?? false,
           }))}
-          onClose={() => setActiveDrawer(null)}
+          onClose={() => {
+            setActiveDrawer(null)
+            setUnitLessons([])
+          }}
           onStartLesson={(lessonId) => {
             setActiveDrawer(null)
+            setUnitLessons([])
             router.push(`/lesson/${lessonId}`)
+          }}
+          onGenerateLesson={async (lesson) => {
+            try {
+              const res = await apiFetch(
+                `/api/study-plan/generate-lesson?week=${lesson.week}&day=${lesson.day}&title=${encodeURIComponent(lesson.title)}&lesson_type=${encodeURIComponent(lesson.lesson_type)}&unit_id=${encodeURIComponent(activeDrawer?.id ?? '')}`,
+                { method: 'POST' }
+              )
+              if (res.ok) {
+                const data = await res.json()
+                if (data?.id != null) {
+                  setActiveDrawer(null)
+                  setUnitLessons([])
+                  router.push(`/lesson/${data.id}`)
+                  return
+                }
+              }
+            } catch {
+              // Fall through
+            }
+            setActiveDrawer(null)
+            setUnitLessons([])
           }}
         />
       )}

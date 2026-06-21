@@ -136,3 +136,34 @@ async def test_unknown_language_falls_back_to_english(client, test_user):
     unknown_slugs = {t["slug"] for t in unknown_res.json()["topics"]}
 
     assert en_slugs == unknown_slugs, "Unknown language should fall back to English"
+
+
+@pytest.mark.asyncio
+async def test_get_grammar_drills_available(client, test_user):
+    """GET /api/grammar/{slug}/drills returns structured drill questions."""
+    _, headers = test_user
+    topics_res = await client.get("/api/grammar", headers=headers)
+    topics = topics_res.json()["topics"]
+    assert topics
+    slug = topics[0]["slug"]
+
+    res = await client.get(f"/api/grammar/{slug}/drills", headers=headers)
+    assert res.status_code == 200
+    data = res.json()
+    assert data["slug"] == slug
+    assert isinstance(data["questions"], list)
+    assert len(data["questions"]) > 0
+    for q in data["questions"]:
+        assert {"index", "question", "options", "correct"} <= set(q.keys())
+        assert isinstance(q["options"], list)
+        assert len(q["options"]) == 4
+        assert q["correct"] in q["options"]
+
+
+@pytest.mark.asyncio
+async def test_get_grammar_drills_not_found(client, test_user):
+    """GET /api/grammar/{slug}/drills returns 404 when topic does not exist."""
+    _, headers = test_user
+    res = await client.get("/api/grammar/nonexistent-topic/drills", headers=headers)
+    assert res.status_code == 404
+    assert res.json()["detail"] == "Grammar topic not found"

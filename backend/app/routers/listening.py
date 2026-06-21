@@ -27,12 +27,17 @@ from app.schemas.listening import (
     ListeningSubmitResponse,
     QuestionOut,
 )
+from app.services.language_helpers import get_tts_voice
 from app.services.listening_service import (
+    calculate_score_with_breakdown,
     generate_and_save_exercise,
     get_available_exercise,
     get_user_history,
+    max_score,
+    score_percentage,
     submit_attempt,
 )
+from app.services.weak_review_service import create_or_update_weak_item
 from app.utils.db import db_session
 from app.utils.redis import redis_client as _redis_client
 
@@ -176,6 +181,7 @@ async def generate_exercise(
         # Another generation is already running
         return ListeningGeneratingResponse(status="generating")
 
+    resolved_voice = voice or get_tts_voice(target_language)
     tts_service = request.app.state.tts_service
     background_tasks.add_task(
         _background_generate,
@@ -184,7 +190,7 @@ async def generate_exercise(
         tts_service,
         settings.AUDIO_STORAGE_PATH,
         lock_key,
-        voice,
+        resolved_voice,
     )
     return ListeningGeneratingResponse(status="generating")
 
@@ -252,12 +258,36 @@ async def submit_listening_attempt(
             ) from exc
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=detail) from exc
 
+    max_score_value = max_score(exercise.questions)
+    score_pct = score_percentage(attempt.score, max_score_value)
+    _, _, breakdown = calculate_score_with_breakdown(exercise.questions, body.answers)
     correct_answers = [
         CorrectAnswerOut(index=q["index"], correct=q["correct"]) for q in exercise.questions
     ]
+
+    for q in exercise.questions:
+        index = str(q["index"])
+        selected = body.answers.get(index, "").upper().strip()
+        correct = str(q.get("correct", "")).upper().strip()
+        if selected and selected != correct:
+            await create_or_update_weak_item(
+                db,
+                current_user.id,
+                plan.id,
+                source_type="listening",
+                prompt=q.get("question", f"Question {index}"),
+                correct_answer=q["correct"],
+                language=plan.target_language,
+                user_wrong_answer=selected,
+                context=exercise.text[:500] if exercise.text else None,
+            )
+
     return ListeningSubmitResponse(
         score=attempt.score,
         xp_earned=attempt.xp_earned,
+        max_score=max_score_value,
+        score_percentage=score_pct,
+        question_breakdown=breakdown,
         correct_answers=correct_answers,
         text=exercise.text,
     )
@@ -284,6 +314,11 @@ async def get_listening_history(
             id=attempt.id,
             score=attempt.score,
             xp_earned=attempt.xp_earned,
+            max_score=max_score(exercise.questions),
+            score_percentage=score_percentage(attempt.score, max_score(exercise.questions)),
+            question_breakdown=calculate_score_with_breakdown(
+                exercise.questions, attempt.answers
+            )[2],
             completed_at=attempt.completed_at,
             exercise=_build_exercise_out(exercise),
             text=exercise.text,

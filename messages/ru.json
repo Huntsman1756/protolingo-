@@ -51,6 +51,7 @@
     "submit": "Отправить",
     "start": "Начать",
     "retry": "Повторить",
+    "refresh": "Обновить",
     "or": "или",
     "appName": "FreeLingo",
     "days": "дней",
@@ -95,9 +96,12 @@
     "conversation": "Разговор",
     "listening": "Listening",
     "reading": "Reading",
+    "writing": "Письмо",
+    "weakReview": "Слабые места",
     "contact": "Контакт",
     "feedback": "Feedback",
-    "switchLanguage": "Сменить язык"
+    "switchLanguage": "Сменить язык",
+    "documents": "Документы"
   },
   "auth": {
     "login": {
@@ -691,6 +695,7 @@
     "all": "Все",
     "allRegisters": "Все регистры",
     "formal": "Официальный",
+    "semi-formal": "Полуформальный",
     "neutral": "Нейтральный",
     "informal": "Неформальный",
     "copied": "Скопировано!",
@@ -1262,6 +1267,7 @@
     "noExercises": "Нет доступных упражнений для вашего уровня.",
     "generate": "Создать упражнение",
     "audioError": "Не удалось загрузить аудио",
+    "retry": "Повторить",
     "alreadyAttempted": "Вы уже выполнили это упражнение.",
     "errorLoading": "Не удалось загрузить упражнение. Попробуйте ещё раз.",
     "errorSubmit": "Не удалось отправить ответы. Попробуйте ещё раз.",

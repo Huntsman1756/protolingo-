@@ -1,9 +1,10 @@
 # Version
 
-**1.8.7**
+**1.9.0**
 
 > Canonical project version. Update this file when bumping.
 > Full history in [CHANGELOG.md](../CHANGELOG.md).
+> Unreleased fixes after 1.9.0 are tracked under `## [Unreleased]` in `CHANGELOG.md` until the next explicit version bump.
 
 ## Sync rule
 

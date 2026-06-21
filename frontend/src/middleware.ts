@@ -11,6 +11,7 @@ const PROTECTED_ROUTES = [
   '/chat',
   '/conversation',
   '/dashboard',
+  '/documents',
   '/faq',
   '/feedback',
   '/flashcards',
@@ -21,8 +22,11 @@ const PROTECTED_ROUTES = [
   '/phrasebook',
   '/plan',
   '/progress',
+  '/reading',
   '/settings',
   '/vocabulary',
+  '/weak-review',
+  '/writing',
 ]
 
 function detectLocale(req: NextRequest): Locale {

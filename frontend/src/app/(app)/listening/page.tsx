@@ -20,17 +20,30 @@ interface CorrectAnswer {
   correct: string
 }
 
+interface QuestionBreakdownItem {
+  skill: string
+  correct: number
+  total: number
+  accuracy: number
+}
+
 interface SubmitResult {
   score: number
+  max_score: number
+  score_percentage: number
   xp_earned: number
   correct_answers: CorrectAnswer[]
+  question_breakdown: QuestionBreakdownItem[]
   text: string
 }
 
 interface AttemptItem {
   id: number
   score: number
+  max_score: number
+  score_percentage: number
   xp_earned: number
+  question_breakdown: QuestionBreakdownItem[]
   completed_at: string
   exercise: ListeningExercise
   text: string
@@ -291,7 +304,7 @@ function ListeningPage() {
                   </div>
                   <div className="shrink-0 text-right">
                     <p className="text-fl-fg font-mono text-xs font-bold">
-                      {item.score}/{item.exercise.questions.length}
+                      {item.score}/{item.max_score} · {item.score_percentage}%
                     </p>
                     <p className="text-fl-label text-fl-accent font-mono">
                       +{item.xp_earned} XP
@@ -348,7 +361,7 @@ function ListeningPage() {
   }
 
   // ── Results ───────────────────────────────────────────────────────────────
-  if (pageState === 'results' && result && exercise) {
+      if (pageState === 'results' && result && exercise) {
     return (
       <div className="mx-auto min-h-screen max-w-2xl space-y-5 px-4 py-6 md:min-h-0 md:px-8">
         {/* Score card */}
@@ -359,7 +372,7 @@ function ListeningPage() {
                 {t('resultsLabel')}
               </p>
               <p className="text-fl-fg mt-1 font-mono text-2xl font-bold">
-                {result.score}/{exercise.questions.length}
+                {result.score}/{result.max_score} · {result.score_percentage}%
               </p>
             </div>
             <div className="text-right">
@@ -401,6 +414,22 @@ function ListeningPage() {
           <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
             {t('review')}
           </p>
+          <div className="border-fl-border bg-fl-surface border px-4 py-3">
+            <p className="text-fl-label text-fl-muted-3 font-mono tracking-widest uppercase">
+              Accuracy
+            </p>
+            <div className="mt-2 space-y-2 text-xs font-mono">
+              {result.question_breakdown.map((item, i) => (
+                <div
+                  key={`${item.skill}-${i}`}
+                  className="text-fl-muted-1 flex items-center justify-between"
+                >
+                  <span>{item.skill}</span>
+                  <span>{item.correct}/{item.total} · {item.accuracy}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
           {exercise.questions.map((q) => {
             const correctKey = result.correct_answers.find(
               (c) => c.index === q.index

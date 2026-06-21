@@ -22,6 +22,7 @@ MAX_CONTEXT_TOKENS = {
     "anthropic": 200000,
     "deepseek": 128000,
     "ollama": 8192,
+    "nan": 256000,
 }
 
 
@@ -115,6 +116,12 @@ class LLMAdapter:
                 api_key=settings.DEEPSEEK_API_KEY,
             )
             self.model = settings.DEEPSEEK_MODEL
+        elif self.provider == "nan":
+            self.client = AsyncOpenAI(
+                base_url=settings.NAN_BASE_URL,
+                api_key=settings.NAN_API_KEY,
+            )
+            self.model = settings.NAN_MODEL
         elif self.provider == "anthropic":
             self._anthropic = _anthropic.AsyncAnthropic(
                 api_key=settings.ANTHROPIC_API_KEY,
@@ -124,6 +131,8 @@ class LLMAdapter:
             )
             self.client = None
             self.model = settings.ANTHROPIC_MODEL
+        else:
+            raise ValueError(f"Unsupported LLM_PROVIDER: {self.provider}")
 
     async def _call_with_retry(self, fn, *args, **kwargs):
         last_error = None

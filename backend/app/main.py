@@ -31,6 +31,7 @@ from app.routers import (
     contact,
     conversation,
     curriculum,
+    documents,
     feedback,
     flashcards,
     grammar,
@@ -45,6 +46,8 @@ from app.routers import (
     study_plan,
     tts,
     vocabulary,
+    weak_review,
+    writing,
 )
 from app.routers import config as config_router
 from app.routers import health as health_router
@@ -53,7 +56,11 @@ from app.services.tts_service import KokoroTTSService, OpenAITTSService
 
 
 def _run_migrations() -> None:
-    alembic_cfg = Config("/app/alembic.ini")
+    import os as _os
+    _alembic_ini = "/app/alembic.ini"
+    if not _os.path.exists(_alembic_ini):
+        _alembic_ini = _os.path.join(_os.path.dirname(__file__), "..", "alembic.ini")
+    alembic_cfg = Config(_alembic_ini)
     command.upgrade(alembic_cfg, "head")
 
 
@@ -75,25 +82,36 @@ async def lifespan(app: FastAPI):  # noqa: ANN201
     os.makedirs(_AVATARS_DIR, exist_ok=True)
     # Ensure the TTS preview cache directory exists on startup
     os.makedirs(_TTS_PREVIEWS_DIR, exist_ok=True)
+    # Ensure the document storage directory exists on startup
+    os.makedirs(settings.DOCUMENT_STORAGE_PATH, exist_ok=True)
 
-    if settings.TTS_PROVIDER == "openai":
-        if not settings.OPENAI_API_KEY:
-            raise ValueError("TTS_PROVIDER=openai requires OPENAI_API_KEY to be set")
+    if settings.TTS_PROVIDER in {"openai", "nan"}:
+        api_key = settings.NAN_API_KEY if settings.TTS_PROVIDER == "nan" else settings.OPENAI_API_KEY
+        if not api_key:
+            raise ValueError(f"TTS_PROVIDER={settings.TTS_PROVIDER} requires an API key to be set")
+        model = settings.NAN_TTS_MODEL if settings.TTS_PROVIDER == "nan" else settings.OPENAI_TTS_MODEL
+        voice = settings.NAN_TTS_VOICE if settings.TTS_PROVIDER == "nan" else settings.OPENAI_TTS_VOICE
+        base_url = settings.NAN_BASE_URL if settings.TTS_PROVIDER == "nan" else None
         app.state.tts_service = OpenAITTSService(
-            api_key=settings.OPENAI_API_KEY,
-            model=settings.OPENAI_TTS_MODEL,
-            voice=settings.OPENAI_TTS_VOICE,
+            api_key=api_key,
+            model=model,
+            voice=voice,
             speed=settings.OPENAI_TTS_SPEED,
+            base_url=base_url,
         )
     else:
         app.state.tts_service = KokoroTTSService(settings.TTS_BASE_URL, settings.TTS_VOICE)
 
-    if settings.STT_PROVIDER == "openai":
-        if not settings.OPENAI_API_KEY:
-            raise ValueError("STT_PROVIDER=openai requires OPENAI_API_KEY to be set")
+    if settings.STT_PROVIDER in {"openai", "nan"}:
+        api_key = settings.NAN_API_KEY if settings.STT_PROVIDER == "nan" else settings.OPENAI_API_KEY
+        if not api_key:
+            raise ValueError(f"STT_PROVIDER={settings.STT_PROVIDER} requires an API key to be set")
+        model = settings.NAN_STT_MODEL if settings.STT_PROVIDER == "nan" else settings.OPENAI_STT_MODEL
+        base_url = settings.NAN_BASE_URL if settings.STT_PROVIDER == "nan" else None
         app.state.stt_service = OpenAISTTService(
-            api_key=settings.OPENAI_API_KEY,
-            model=settings.OPENAI_STT_MODEL,
+            api_key=api_key,
+            model=model,
+            base_url=base_url,
         )
     else:
         app.state.stt_service = WhisperSTTService(settings.STT_BASE_URL)
@@ -138,18 +156,21 @@ app.include_router(chat.router)
 app.include_router(progress.router)
 app.include_router(listening.router)
 app.include_router(reading.router)
+app.include_router(writing.router)
 app.include_router(tts.router)
 app.include_router(stt.router)
 app.include_router(conversation.router)
 app.include_router(config_router.router)
 app.include_router(contact.router)
 app.include_router(curriculum.router)
+app.include_router(documents.router)
 app.include_router(feedback.router)
 app.include_router(memories.router)
 app.include_router(phrasebook.router)
 app.include_router(languages.router)
 app.include_router(health_router.router)
 app.include_router(vocabulary.router)
+app.include_router(weak_review.router)
 
 if settings.STRIPE_ENABLED:
     import stripe as _stripe

@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ${DATA_PATH}/postgres:/var/lib/postgresql/data
+      - freelingo_postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes:
-      - ${DATA_PATH}/redis:/data
+      - freelingo_redis:/data
     healthcheck:
       test: ["CMD", "redis-cli", "--pass", "${REDIS_PASSWORD}", "ping"]
       interval: 10s
@@ -32,13 +32,15 @@ services:
     build: ./backend
     container_name: freelingo-backend
     restart: unless-stopped
+    ports:
+      - "8000:8000"
     command: >
       sh -c "cd /tmp && PYTHONPATH=/app alembic -c /app/alembic.ini upgrade head && cd /app && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
     volumes:
       - ./backend:/app
-      - ${DATA_PATH}/avatars:/app/avatars
-      - ${DATA_PATH}/audio:/data/audio
-      - ${DATA_PATH}/tts_previews:/app/tts_previews
+      - freelingo_avatars:/app/avatars
+      - freelingo_audio:/data/audio
+      - freelingo_tts_previews:/app/tts_previews
     environment:
       DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
@@ -52,6 +54,12 @@ services:
       ANTHROPIC_MODEL: ${ANTHROPIC_MODEL}
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
       DEEPSEEK_MODEL: ${DEEPSEEK_MODEL}
+      NAN_API_KEY: ${NAN_API_KEY:-}
+      NAN_BASE_URL: ${NAN_BASE_URL:-https://api.nan.builders/v1}
+      NAN_MODEL: ${NAN_MODEL:-qwen3.6}
+      NAN_TTS_MODEL: ${NAN_TTS_MODEL:-kokoro}
+      NAN_TTS_VOICE: ${NAN_TTS_VOICE:-af_heart}
+      NAN_STT_MODEL: ${NAN_STT_MODEL:-whisper}
       TTS_PROVIDER: ${TTS_PROVIDER:-local}
       TTS_BASE_URL: ${TTS_BASE_URL:-http://kokoro:8880}
       TTS_VOICE: ${TTS_VOICE:-af_heart}
@@ -61,12 +69,12 @@ services:
       STT_PROVIDER: ${STT_PROVIDER:-local}
       STT_BASE_URL: ${STT_BASE_URL:-http://whisper:9000}
       OPENAI_STT_MODEL: ${OPENAI_STT_MODEL:-whisper-1}
-      CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:3000"]}
+      CORS_ORIGINS: ${CORS_ORIGINS:-["http://localhost:48888"]}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
       ALLOW_REGISTRATION: ${ALLOW_REGISTRATION:-true}
       FIRST_USER_IS_ADMIN: ${FIRST_USER_IS_ADMIN:-true}
       BLOCKED_EMAIL_DOMAINS: ${BLOCKED_EMAIL_DOMAINS:-[]}
-      AVAILABLE_TARGET_LANGUAGES: ${AVAILABLE_TARGET_LANGUAGES:-["en-US","en-GB"]}
+      AVAILABLE_TARGET_LANGUAGES: ${AVAILABLE_TARGET_LANGUAGES:-["fr-FR","en-GB"]}
       EMAIL_ENABLED: ${EMAIL_ENABLED:-false}
       CONTACT_EMAIL: ${CONTACT_EMAIL:-}
       SMTP_HOST: ${SMTP_HOST:-localhost}
@@ -78,14 +86,14 @@ services:
       SMTP_SSL: ${SMTP_SSL:-false}
       APP_BASE_URL: ${APP_BASE_URL:-http://localhost:3000}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
-      UVICORN_WORKERS: ${UVICORN_WORKERS:-4}
+      UVICORN_WORKERS: ${UVICORN_WORKERS:-1}
       STRIPE_ENABLED: ${STRIPE_ENABLED:-false}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
       STRIPE_PRICE_MONTHLY: ${STRIPE_PRICE_MONTHLY:-}
       STRIPE_PRICE_YEARLY: ${STRIPE_PRICE_YEARLY:-}
       STRIPE_TRIAL_DAYS: ${STRIPE_TRIAL_DAYS:-7}
-      STRIPE_BASE_URL: ${STRIPE_BASE_URL:-http://localhost:3000}
+      STRIPE_BASE_URL: ${STRIPE_BASE_URL:-http://localhost:48888}
       PRICE_MONTHLY: ${PRICE_MONTHLY:-14.95}
       PRICE_YEARLY: ${PRICE_YEARLY:-149.50}
       TOTAL_PRICE_MONTHLY: ${TOTAL_PRICE_MONTHLY:-19.95}
@@ -112,6 +120,13 @@ services:
       NEXT_PUBLIC_UMAMI_SCRIPT_URL: ${NEXT_PUBLIC_UMAMI_SCRIPT_URL:-}
       NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
     ports:
-      - "3000:3000"
+      - "48888:3000"
     depends_on:
       - backend
+
+volumes:
+  freelingo_postgres:
+  freelingo_redis:
+  freelingo_avatars:
+  freelingo_audio:
+  freelingo_tts_previews:

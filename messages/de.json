@@ -51,6 +51,7 @@
     "submit": "Absenden",
     "start": "Starten",
     "retry": "Erneut versuchen",
+    "refresh": "Aktualisieren",
     "or": "oder",
     "appName": "FreeLingo",
     "days": "Tage",
@@ -95,9 +96,12 @@
     "conversation": "Gespräch",
     "listening": "Listening",
     "reading": "Reading",
+    "writing": "Schreiben",
+    "weakReview": "Schwächen üben",
     "contact": "Kontakt",
     "feedback": "Feedback",
-    "switchLanguage": "Sprache wechseln"
+    "switchLanguage": "Sprache wechseln",
+    "documents": "Dokumente"
   },
   "auth": {
     "login": {
@@ -691,6 +695,7 @@
     "all": "Alle",
     "allRegisters": "Alle Register",
     "formal": "Formal",
+    "semi-formal": "Halbformell",
     "neutral": "Neutral",
     "informal": "Informell",
     "copied": "Kopiert!",
@@ -1262,6 +1267,7 @@
     "noExercises": "Keine Übungen für dein Niveau verfügbar.",
     "generate": "Übung erstellen",
     "audioError": "Audio konnte nicht geladen werden",
+    "retry": "Wiederholen",
     "alreadyAttempted": "Du hast diese Übung bereits abgeschlossen.",
     "errorLoading": "Übung konnte nicht geladen werden. Bitte erneut versuchen.",
     "errorSubmit": "Antworten konnten nicht gesendet werden. Bitte erneut versuchen.",

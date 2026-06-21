@@ -387,20 +387,18 @@ Six UI states controlled by local `PageState` type:
 | `results`    | Score, XP, per-question feedback, transcript, "Next exercise" / "View history" buttons            |
 | `history`    | Paginated list of past attempts; each row shows topic, score, date, "Review" (expands transcript) |
 
-**`ExerciseAudioPlayer`** — inline component within the same file:
+**`ExerciseAudioPlayer`** — extracted component at `frontend/src/components/ui/exercise-audio-player.tsx`:
 
-- Fetches audio via `apiFetch('/api/listening/audio/{id}')` (carries `Authorization` header) → creates a blob URL → HTML `<audio>` element.
-- Custom scrubber bar (SVG/div), progress %, error state for failed loads.
+- Fetches audio via `apiFetch('/api/listening/audio/{id}')` (carries `Authorization` header) → Next.js route handler proxies to backend → creates a blob URL → HTML `<audio>` element.
+- Custom scrubber bar (div), progress %, error state with retry button for failed loads.
+- Error state shows HTTP status and media error details for debugging.
+- Fires `onFirstPlay` callback once (guarded by `playedRef`).
 
 ### 3.2 Components
 
-- **`ListeningCard`** — Path: `components/listening/ListeningCard.tsx`. Purpose: Outer card: topic, type badge, level badge, duration
-- **`ListeningAudioPlayer`** — Path: `components/listening/ListeningAudioPlayer.tsx`. Purpose: Play / Pause / Stop, progress bar (0–100%), time display. Uses `<audio>` element pointing to `/api/listening/audio/{id}` via the Next.js route handler proxy. Fires `onPlayed` callback when played at least once.
-- **`QuestionsList`** — Path: `components/listening/QuestionsList.tsx`. Purpose: Renders 5 `QuestionCard` items. Accepts `disabled` prop (before "I'm ready").
-- **`QuestionCard`** — Path: `components/listening/QuestionCard.tsx`. Purpose: Single question with A/B/C/D radio options.
-- **`ResultsPanel`** — Path: `components/listening/ResultsPanel.tsx`. Purpose: Score, XP, per-question feedback, transcript collapsible.
-- **`HistoryList`** — Path: `components/listening/HistoryList.tsx`. Purpose: Paginated list of past attempts.
-- **`GeneratingSpinner`** — Path: `components/listening/GeneratingSpinner.tsx`. Purpose: Shown during on-demand generation (polls `GET /api/listening/next` every 1 s until available).
+Components are consolidated in `frontend/src/app/(app)/listening/page.tsx` (single file, all logic and UI inline, wrapped in `PaywallGate`). The audio player was extracted to `components/ui/exercise-audio-player.tsx`.
+
+The spec originally planned a `components/listening/` directory with separate components (`ListeningCard`, `ListeningAudioPlayer`, `QuestionsList`, `QuestionCard`, `ResultsPanel`, `HistoryList`, `GeneratingSpinner`), but the actual implementation consolidates everything into the single page file with one extracted audio player component.
 
 ### 3.3 Next.js route handler proxy — audio
 
@@ -628,13 +626,7 @@ Status: **pending implementation**, consistent with the rest of frontend tests.
 | Modify | `.env.example` — add `AUDIO_STORAGE_PATH`                                            |
 | Create | `frontend/src/app/(app)/listening/page.tsx`                                          |
 | Create | `frontend/src/app/api/listening/audio/[exerciseId]/route.ts`                         |
-| Create | `frontend/src/components/listening/ListeningCard.tsx`                                |
-| Create | `frontend/src/components/listening/ListeningAudioPlayer.tsx`                         |
-| Create | `frontend/src/components/listening/QuestionsList.tsx`                                |
-| Create | `frontend/src/components/listening/QuestionCard.tsx`                                 |
-| Create | `frontend/src/components/listening/ResultsPanel.tsx`                                 |
-| Create | `frontend/src/components/listening/HistoryList.tsx`                                  |
-| Create | `frontend/src/components/listening/GeneratingSpinner.tsx`                            |
+| Create | `frontend/src/components/ui/exercise-audio-player.tsx`                               |
 | Modify | `frontend/src/app/(app)/layout.tsx` — add Listening nav item                         |
 | Modify | `messages/*.json` (all 10) — add `nav.listening` + `listening.*` keys                |
 | Modify | `specs/phase-5-stripe-subscriptions.instructions.md` — add Listening to access rules |

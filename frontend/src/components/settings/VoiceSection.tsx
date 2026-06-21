@@ -16,12 +16,24 @@ const OPENAI_VOICES = [
   'sage',
   'shimmer',
 ] as const
+const NAN_KOKORO_VOICES = [
+  'af_heart',
+  'bf_emma',
+  'bm_george',
+  'ef_dora',
+  'em_alex',
+  'ff_siwis',
+  'if_sara',
+  'im_nicola',
+  'pf_dora',
+  'pm_alex',
+] as const
 const TTS_VOICE_STORAGE_KEY = 'tts_voice'
 
 export function VoiceSection() {
   const t = useTranslations('settings')
   const ttsProvider = useConfigStore((s) => s.ttsProvider)
-  const openaiTtsVoice = useConfigStore((s) => s.openaiTtsVoice)
+  const remoteTtsVoice = useConfigStore((s) => s.remoteTtsVoice)
 
   const [selectedVoice, setSelectedVoice] = useState<string>('')
   const [playingVoice, setPlayingVoice] = useState<string | null>(null)
@@ -29,16 +41,17 @@ export function VoiceSection() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    if (ttsProvider !== 'openai') return
+    if (ttsProvider !== 'openai' && ttsProvider !== 'nan') return
     const stored =
       typeof window !== 'undefined'
         ? localStorage.getItem(TTS_VOICE_STORAGE_KEY)
         : null
-    const voices: readonly string[] = OPENAI_VOICES
+    const voices: readonly string[] =
+      ttsProvider === 'nan' ? NAN_KOKORO_VOICES : OPENAI_VOICES
     setSelectedVoice(
-      stored && voices.includes(stored) ? stored : openaiTtsVoice || 'nova'
+      stored && voices.includes(stored) ? stored : remoteTtsVoice || voices[0]
     )
-  }, [ttsProvider, openaiTtsVoice])
+  }, [ttsProvider, remoteTtsVoice])
 
   // Cleanup audio on unmount
   useEffect(() => {
@@ -90,7 +103,10 @@ export function VoiceSection() {
     }
   }
 
-  if (ttsProvider !== 'openai') return null
+  if (ttsProvider !== 'openai' && ttsProvider !== 'nan') return null
+
+  const voices: readonly string[] =
+    ttsProvider === 'nan' ? NAN_KOKORO_VOICES : OPENAI_VOICES
 
   return (
     <div className="border-fl-border bg-fl-surface mt-4 border p-6">
@@ -109,7 +125,7 @@ export function VoiceSection() {
           onChange={(e) => selectVoice(e.target.value)}
           className="bg-fl-bg border-fl-border text-fl-fg focus:border-fl-border-2 flex-1 appearance-none border px-4 py-3 font-mono text-sm tracking-widest uppercase transition-colors focus:outline-none"
         >
-          {OPENAI_VOICES.map((voice) => (
+          {voices.map((voice) => (
             <option key={voice} value={voice}>
               {voice}
             </option>

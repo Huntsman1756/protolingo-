@@ -27,9 +27,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     { href: '/plan', label: tNav('myPlan') },
     { href: '/progress', label: tNav('progress') },
     { href: '/flashcards', label: tNav('flashcards') },
+    { href: '/weak-review', label: tNav('weakReview') },
     { href: '/chat', label: tNav('tutor') },
     { href: '/listening', label: tNav('listening') },
     { href: '/reading', label: tNav('reading') },
+    { href: '/writing', label: tNav('writing') },
+    { href: '/documents', label: tNav('documents') },
     { href: '/conversation', label: tNav('conversation') },
     { href: '/assessment', label: tNav('assessment') },
   ]
@@ -65,6 +68,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     '/chat',
     '/listening',
     '/reading',
+    '/writing',
+    '/documents',
     '/conversation',
   ])
   const stripeEnabled = useConfigStore((s) => s.stripeEnabled)
@@ -310,9 +315,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               )}
             </div>
           </div>
-          <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-            v1.8.7
-          </p>
+            <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
+v1.9.0
+            </p>
           <button
             onClick={() => setContactOpen(true)}
             className="text-fl-label text-fl-muted-2 hover:text-fl-fg mb-1 w-full text-left font-mono tracking-widest uppercase transition-colors"
@@ -487,7 +492,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </p>
               )}
               <p className="text-fl-label text-fl-muted-4 mb-2 font-mono tracking-wider">
-                v1.8.7
+                v1.9.0
               </p>
               <button
                 onClick={() => {

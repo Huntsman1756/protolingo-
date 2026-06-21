@@ -77,7 +77,7 @@ class Settings(BaseSettings):
     DOCUMENT_CHUNK_OVERLAP: int = 64
     DOCUMENT_MAX_FILE_SIZE: int = 500 * 1024 * 1024  # 500 MB
     DOCUMENT_ALLOWED_EXTENSIONS: list[str] = [".pdf", ".docx", ".txt", ".png", ".jpg", ".jpeg"]
-    DOCUMENT_OCR_PROVIDER: str = "ollama"  # ollama | paddleocr | ollama+paddleocr
+    DOCUMENT_OCR_PROVIDER: str = "paddleocr"  # ollama | paddleocr | ollama+paddleocr
     NAN_EMBEDDING_BATCH_SIZE: int = 32
 
     # Multi-language — operator-configured subset of supported target languages.

@@ -63,7 +63,7 @@ def parse_memory_marker(text: str) -> list[str]:
             for item in items
             if isinstance(item, str) and item.strip()
         ]
-    except json.JSONDecodeError, TypeError, KeyError:
+    except (json.JSONDecodeError, TypeError, KeyError):
         logger.debug("Failed to parse memory marker JSON")
         return []
 

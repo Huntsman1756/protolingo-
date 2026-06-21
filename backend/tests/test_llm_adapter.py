@@ -302,6 +302,20 @@ class TestLLMAdapterInit:
         assert adapter.model == "deepseek-chat"
         assert adapter.client is not None
 
+    def test_nan_provider(self, monkeypatch):
+        monkeypatch.setattr("app.core.config.settings.LLM_PROVIDER", "nan")
+        monkeypatch.setattr("app.core.config.settings.NAN_API_KEY", "sk-nan")
+        monkeypatch.setattr("app.core.config.settings.NAN_BASE_URL", "https://api.nan.builders/v1")
+        monkeypatch.setattr("app.core.config.settings.NAN_MODEL", "qwen3.6")
+
+        from app.services.llm_adapter import LLMAdapter
+
+        adapter = LLMAdapter()
+        assert adapter.provider == "nan"
+        assert adapter.model == "qwen3.6"
+        assert adapter.client is not None
+        assert str(adapter.client.base_url) == "https://api.nan.builders/v1/"
+
     def test_anthropic_provider(self, monkeypatch):
         monkeypatch.setattr("app.core.config.settings.LLM_PROVIDER", "anthropic")
         monkeypatch.setattr("app.core.config.settings.ANTHROPIC_API_KEY", "sk-ant-test")

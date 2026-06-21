@@ -1,4 +1,6 @@
 import re
+import unicodedata
+from difflib import SequenceMatcher
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
 from sqlalchemy import func, select
@@ -20,6 +22,8 @@ from app.schemas.flashcards import (
     FlashcardListResponse,
     FlashcardResponse,
     FlashcardReview,
+    FlashcardSpeakingEvaluateRequest,
+    FlashcardSpeakingEvaluation,
     VocabularyListResponse,
 )
 from app.services.flashcard_sm2 import generate_flashcards, lookup_word, sm2_update
@@ -36,6 +40,27 @@ router = APIRouter(prefix="/api/flashcards", tags=["flashcards"])
 
 def _normalize_flashcard_word(value: str) -> str:
     return re.sub(r"\s+", " ", value.strip().lower())
+
+
+def _normalize_speech_text(value: str) -> str:
+    lowered = value.strip().lower()
+    decomposed = unicodedata.normalize("NFKD", lowered)
+    ascii_only = "".join(ch for ch in decomposed if not unicodedata.combining(ch))
+    return re.sub(r"\s+", " ", ascii_only.strip())
+
+
+def _quality_from_similarity(similarity: float) -> int:
+    if similarity >= 0.95:
+        return 5
+    if similarity >= 0.88:
+        return 4
+    if similarity >= 0.75:
+        return 3
+    if similarity >= 0.65:
+        return 2
+    if similarity >= 0.45:
+        return 1
+    return 0
 
 
 async def _get_active_plan_or_404(db: AsyncSession, user_id: int) -> StudyPlan:
@@ -317,6 +342,50 @@ async def create_flashcard_from_word(
     await db.commit()
     await db.refresh(card)
     return card
+
+
+@router.post(
+    "/{card_id}/speak-evaluate",
+    response_model=FlashcardSpeakingEvaluation,
+)
+@limiter.limit("60/minute")
+async def evaluate_flashcard_speech(
+    request: Request,
+    card_id: int,
+    data: FlashcardSpeakingEvaluateRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    plan = await _get_active_plan_or_404(db, current_user.id)
+    card = await db.get(Flashcard, card_id)
+    if not card or card.user_id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Flashcard not found")
+
+    expected = _normalize_speech_text(card.word)
+    spoken = _normalize_speech_text(data.transcription)
+    similarity = SequenceMatcher(None, expected, spoken).ratio()
+    quality = _quality_from_similarity(similarity)
+
+    card = sm2_update(card, quality)
+    await db.commit()
+    await db.refresh(card)
+
+    await update_daily_progress(
+        db,
+        current_user.id,
+        flashcard_reviewed=True,
+        skill="vocabulary",
+        skill_score=min(quality / 5.0, 1.0),
+        study_plan_id=plan.id,
+    )
+
+    return FlashcardSpeakingEvaluation(
+        card=card,
+        quality=quality,
+        similarity=round(similarity * 100, 2),
+        expected=card.word,
+        spoken=data.transcription,
+    )
 
 
 @router.get("/vocabulary", response_model=VocabularyListResponse)

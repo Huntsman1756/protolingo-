@@ -61,7 +61,7 @@ backend/
 │   │   ├── curriculum.py
 │   │   └── phrasebook.py
 │   │
-│   ├── routers/                 # FastAPI routers (21 REST + 1 WebSocket = 22 total)
+│   ├── routers/                 # FastAPI routers (22 REST + 1 WebSocket = 23 total)
 │   │   ├── __init__.py
 │   │   ├── admin.py             # Admin overview metrics, user management, filtered lists, maintenance toggle
 │   │   ├── assessment.py        # Level assessment quiz + completion + static bank
@@ -88,7 +88,7 @@ backend/
 │   │   ├── tts.py               # Text-to-speech proxy
 │   │   └── vocabulary.py        # Static vocabulary data (per language + per level)
 │   │
-│   ├── services/                # Business logic + external service clients (17 modules)
+│   ├── services/                # Business logic + external service clients (18 modules)
 │   │   ├── __init__.py
 │   │   ├── assessment.py        # Adaptive quiz logic, CEFR level estimation
 │   │   ├── conversation_pipeline.py  # WebSocket voice orchestrator: STT → LLM → TTS
@@ -302,3 +302,24 @@ All configuration is environment-driven. Variables are defined in `app/core/conf
 | UVICORN_WORKERS   | 4                     | Docker entrypoint command                       |
 
 For Docker configuration details, see [docker.instructions.md](docker.instructions.md).
+
+---
+
+## New in v1.9.0 — Weak Review Loop
+
+### Model
+`WeakReviewItem` (table `weak_review_items`) — SM-2 review queue with `ease_factor`, `interval`, `repetitions`, `next_review`, `consecutive_failures`. Supports 6 source types: `grammar`, `listening`, `reading`, `speaking`, `lesson_exercise`, `writing`.
+
+### Service
+`weak_review_service.py` — `create_or_update_weak_item()` deduplicates by `(user_id, study_plan_id, source_type, prompt)`, `sm2_update_weak()` follows standard SM-2, `get_due_items()` returns interleaved by `LOOP_ORDER`, and `get_weak_review_stats()` returns total/due/breakdown counts using PostgreSQL-safe SQLAlchemy casting.
+
+### Endpoints
+- `GET /api/weak-review/due` — returns due items + stats; returns empty state with zeroed stats when no active study plan exists yet
+- `GET /api/weak-review/stats` — returns aggregate counts; returns zeroed stats when no active study plan exists yet
+- `POST /api/weak-review/{id}/review` — accepts `{ quality }`, runs SM-2
+
+### Integration
+Hooks in `lessons.py`, `listening.py`, `reading.py`, `writing.py` routers that call `create_or_update_weak_item()` when a user provides a wrong answer (or low score for writing). Reading stores weak-review items best-effort so a review-queue persistence failure cannot fail the reading attempt response.
+
+### Migration
+`0043_weak_review_items` (`down_revision: 0042_add_writing_exercises`).

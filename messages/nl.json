@@ -51,6 +51,7 @@
     "submit": "Versturen",
     "start": "Starten",
     "retry": "Opnieuw proberen",
+    "refresh": "Vernieuwen",
     "or": "of",
     "appName": "FreeLingo",
     "days": "dagen",
@@ -95,9 +96,12 @@
     "conversation": "Gesprek",
     "listening": "Listening",
     "reading": "Reading",
+    "writing": "Schrijven",
+    "weakReview": "Zwakke punten",
     "contact": "Contact",
     "feedback": "Feedback",
-    "switchLanguage": "Taal wijzigen"
+    "switchLanguage": "Taal wijzigen",
+    "documents": "Documenten"
   },
   "auth": {
     "login": {
@@ -691,6 +695,7 @@
     "all": "Alle",
     "allRegisters": "Alle registers",
     "formal": "Formeel",
+    "semi-formal": "Semi-formeel",
     "neutral": "Neutraal",
     "informal": "Informeel",
     "copied": "Gekopieerd!",
@@ -1262,6 +1267,7 @@
     "noExercises": "Geen oefeningen beschikbaar voor jouw niveau.",
     "generate": "Oefening genereren",
     "audioError": "Audio kan niet worden geladen",
+    "retry": "Opnieuw proberen",
     "alreadyAttempted": "Je hebt deze oefening al voltooid.",
     "errorLoading": "Oefening laden mislukt. Probeer opnieuw.",
     "errorSubmit": "Antwoorden indienen mislukt. Probeer opnieuw.",

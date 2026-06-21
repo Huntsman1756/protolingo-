@@ -5,6 +5,7 @@ interface ConfigStore {
   stripeTrialDays: number
   ttsProvider: string
   openaiTtsVoice: string
+  remoteTtsVoice: string
   maintenanceMode: boolean
   priceMonthly: number
   priceYearly: number
@@ -19,6 +20,7 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
   stripeTrialDays: 7,
   ttsProvider: 'local',
   openaiTtsVoice: 'nova',
+  remoteTtsVoice: 'nova',
   maintenanceMode: false,
   priceMonthly: 0.0,
   priceYearly: 0.0,
@@ -36,6 +38,8 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
         stripeTrialDays: data.stripe_trial_days ?? 7,
         ttsProvider: data.tts_provider ?? 'local',
         openaiTtsVoice: data.openai_tts_voice ?? 'nova',
+        remoteTtsVoice:
+          data.remote_tts_voice ?? data.openai_tts_voice ?? 'nova',
         maintenanceMode: data.maintenance_mode ?? false,
         priceMonthly: data.price_monthly ?? 0.0,
         priceYearly: data.price_yearly ?? 0.0,

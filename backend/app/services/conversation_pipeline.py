@@ -8,7 +8,7 @@ from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
 from app.core.app_logger import get_logger
-from app.services.language_helpers import get_iso639, get_language_name
+from app.services.language_helpers import get_iso639, get_language_name, get_tts_voice
 from app.services.llm_adapter import LLMError, LLMStream, LLMTimeoutError, LLMUnavailableError
 from app.services.memory_service import (
     build_memory_context,
@@ -106,7 +106,7 @@ class ConversationPipeline:
         self.llm = llm
         self.tts = tts
         self.stt = stt
-        self._voice = voice
+        self._voice = voice or get_tts_voice(target_language)
         self._stt_language = get_iso639(target_language)
         self._target_language = target_language
         self._user_id = user_id
@@ -121,7 +121,7 @@ class ConversationPipeline:
                 goals = _json.loads(learning_goals)
                 if isinstance(goals, list) and goals:
                     _ctx_parts.append(f"Learning goals: {', '.join(goals)}")
-            except ValueError, TypeError:
+            except (ValueError, TypeError):
                 pass
         if bio and bio.strip():
             _ctx_parts.append(f"About the student: {bio.strip()}")

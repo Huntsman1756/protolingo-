@@ -18,6 +18,7 @@ interface Props {
   lessons: Lesson[]
   onClose: () => void
   onStartLesson: (lessonId: number) => void
+  onGenerateLesson?: (lesson: Lesson) => void
 }
 
 export default function UnitDrawer({
@@ -25,6 +26,7 @@ export default function UnitDrawer({
   lessons,
   onClose,
   onStartLesson,
+  onGenerateLesson,
 }: Props) {
   const t = useTranslations('plan')
   const tCommon = useTranslations('common')
@@ -121,7 +123,17 @@ export default function UnitDrawer({
                 >
                   {lesson.completed ? '✓' : '○'}
                 </span>
-                <div className="min-w-0 flex-1">
+                <div
+                  className={`min-w-0 flex-1 ${(!lesson.completed && (lesson.id != null || onGenerateLesson)) ? 'cursor-pointer hover:opacity-80' : ''}`}
+                  onClick={() => {
+                    if (lesson.completed) return
+                    if (lesson.id != null) {
+                      onStartLesson(lesson.id!)
+                    } else if (onGenerateLesson) {
+                      onGenerateLesson(lesson)
+                    }
+                  }}
+                >
                   <p
                     className={`text-fl-label font-mono ${lesson.completed ? 'text-fl-muted-2 line-through' : 'text-fl-muted-1'}`}
                   >
@@ -132,9 +144,15 @@ export default function UnitDrawer({
                     {lessonTypeLabel[lesson.lesson_type] ?? lesson.lesson_type}
                   </p>
                 </div>
-                {lesson.id != null && !lesson.completed && (
+                {!lesson.completed && (
                   <button
-                    onClick={() => onStartLesson(lesson.id!)}
+                    onClick={() => {
+                      if (lesson.id != null) {
+                        onStartLesson(lesson.id!)
+                      } else if (onGenerateLesson) {
+                        onGenerateLesson(lesson)
+                      }
+                    }}
                     className="text-fl-hint text-fl-muted-2 border-fl-border hover:border-fl-border-2 hover:text-fl-fg shrink-0 border px-3 py-1.5 font-mono tracking-widest uppercase transition-colors"
                   >
                     {tCommon('start')}

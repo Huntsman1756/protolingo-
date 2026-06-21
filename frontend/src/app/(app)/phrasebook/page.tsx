@@ -2,21 +2,19 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
-import {
-  getPhrasebookCategories,
-  type PhrasebookCategory,
-  type Register,
-} from '@/data/phrasebook'
+import { getPhrasebookCategories, type PhrasebookCategory } from '@/data/phrasebook'
 import type { CEFRLevel } from '@/data/types'
 import { useLanguageStore } from '@/store/language'
 import { AudioPlayer } from '@/components/ui/AudioPlayer'
 import { PageLoading } from '@/components/ui/page-loading'
 
 const CEFR_LEVELS: CEFRLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-const REGISTERS: Register[] = ['formal', 'neutral', 'informal']
+const REGISTERS = ['formal', 'semi-formal', 'neutral', 'informal'] as const
+type PhraseRegister = (typeof REGISTERS)[number]
 
 const REGISTER_COLORS: Record<string, string> = {
   formal: 'text-blue-600 dark:text-blue-400',
+  'semi-formal': 'text-cyan-700 dark:text-cyan-300',
   neutral: 'text-fl-muted-2',
   informal: 'text-amber-600 dark:text-amber-400',
 }
@@ -28,7 +26,7 @@ function CategoryCard({
   language,
 }: {
   cat: PhrasebookCategory
-  registerFilter: Register | 'All'
+  registerFilter: PhraseRegister | 'All'
   search: string
   language: string
 }) {
@@ -123,7 +121,9 @@ export default function PhrasebookPage() {
   const [loading, setLoading] = useState(true)
   const [loadError, setLoadError] = useState(false)
   const [activeLevel, setActiveLevel] = useState<CEFRLevel | 'All'>('All')
-  const [activeRegister, setActiveRegister] = useState<Register | 'All'>('All')
+  const [activeRegister, setActiveRegister] = useState<
+    PhraseRegister | 'All'
+  >('All')
   const [search, setSearch] = useState('')
 
   const fetchCategories = useCallback(async (lang: string) => {

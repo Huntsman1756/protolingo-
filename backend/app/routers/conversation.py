@@ -128,11 +128,15 @@ async def conversation_ws(
             )
             if voice_pref not in _VALID_VOICES:
                 voice_pref = ""
+        elif settings.TTS_PROVIDER == "nan":
+            # NaN Kokoro supports provider-specific voice ids such as af_heart,
+            # ef_dora and em_alex. Let the TTS API validate the selected voice.
+            pass
         else:
             voice_pref = ""  # local TTS ignores voice param
         payload = decode_access_token(token)
         user_id = int(payload["sub"])
-    except TimeoutError, PyJWTError, KeyError, ValueError, Exception:  # noqa: BLE001
+    except (TimeoutError, PyJWTError, KeyError, ValueError, Exception):  # noqa: BLE001
         logger.warning("[conversation] Auth failed — closing WS 1008")
         await websocket.send_json(
             {"type": "error", "code": "auth_failed", "message": "Authentication failed"}

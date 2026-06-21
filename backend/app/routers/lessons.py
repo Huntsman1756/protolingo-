@@ -29,6 +29,7 @@ from app.services.llm_adapter import (
     LLMUnavailableError,
 )
 from app.services.progress_service import update_daily_progress, upsert_unit_competency
+from app.services.weak_review_service import create_or_update_weak_item
 
 router = APIRouter(prefix="/api/lessons", tags=["lessons"])
 
@@ -211,7 +212,7 @@ async def answer_exercise(
             )
             exercise.score = sco
             exercise.feedback = fb
-        except LLMTimeoutError, LLMUnavailableError, LLMError:
+        except (LLMTimeoutError, LLMUnavailableError, LLMError):
             exercise.score = 0.5
             exercise.feedback = "Could not evaluate free-write answer at this time."
     elif exercise.exercise_type == "fill_blank":
@@ -225,7 +226,7 @@ async def answer_exercise(
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
-        except LLMTimeoutError, LLMUnavailableError, LLMError:
+        except (LLMTimeoutError, LLMUnavailableError, LLMError):
             # Fallback: normalised string comparison
             ua = data.answer.strip().lower().rstrip(".,!?")
             ca = exercise.correct_answer.strip().lower().rstrip(".,!?")
@@ -246,7 +247,7 @@ async def answer_exercise(
             )
             exercise.score = eval_result.score
             exercise.feedback = eval_result.feedback
-        except LLMTimeoutError, LLMUnavailableError, LLMError:
+        except (LLMTimeoutError, LLMUnavailableError, LLMError):
             # Fallback: normalised comparison stripping punctuation
             norm_target = re.sub(r"[^\w\s]", "", exercise.correct_answer).strip().lower()
             norm_answer = re.sub(r"[^\w\s]", "", transcription).strip().lower()
@@ -290,6 +291,20 @@ async def answer_exercise(
         skill_score=exercise.score,
         study_plan_id=lesson.study_plan_id,
     )
+
+    if exercise.score is not None and exercise.score < 0.5:
+        await create_or_update_weak_item(
+            db,
+            current_user.id,
+            lesson.study_plan_id,
+            source_type="lesson_exercise",
+            prompt=exercise.question,
+            correct_answer=exercise.correct_answer,
+            language=target_language,
+            source_id=str(exercise.id),
+            user_wrong_answer=data.answer,
+            context=exercise.explanation or exercise.feedback,
+        )
 
     return ExerciseAnswerResponse(
         id=exercise.id,
