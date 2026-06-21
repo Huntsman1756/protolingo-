@@ -29,8 +29,10 @@ services:
       retries: 5
 
   backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
     image: ghcr.io/artcc/freelingo-backend:latest
-    pull_policy: always
     container_name: freelingo-backend
     restart: unless-stopped
     command: >
@@ -38,6 +40,7 @@ services:
     volumes:
       - ${DATA_PATH}/avatars:/app/avatars
       - ${DATA_PATH}/audio:/data/audio
+      - ${DATA_PATH}/documents:/data/documents
       - ${DATA_PATH}/tts_previews:/app/tts_previews
     environment:
       DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
@@ -52,6 +55,14 @@ services:
       ANTHROPIC_MODEL: ${ANTHROPIC_MODEL}
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
       DEEPSEEK_MODEL: ${DEEPSEEK_MODEL}
+      NAN_API_KEY: ${NAN_API_KEY:-}
+      NAN_BASE_URL: ${NAN_BASE_URL:-https://api.nan.builders/v1}
+      NAN_MODEL: ${NAN_MODEL:-qwen3.6}
+      NAN_EMBEDDING_MODEL: ${NAN_EMBEDDING_MODEL:-qwen3-embedding}
+      NAN_RERANK_MODEL: ${NAN_RERANK_MODEL:-rerank}
+      NAN_TTS_MODEL: ${NAN_TTS_MODEL:-kokoro}
+      NAN_TTS_VOICE: ${NAN_TTS_VOICE:-af_heart}
+      NAN_STT_MODEL: ${NAN_STT_MODEL:-whisper}
       TTS_PROVIDER: ${TTS_PROVIDER:-local}
       TTS_BASE_URL: ${TTS_BASE_URL:-http://kokoro:8880}
       TTS_VOICE: ${TTS_VOICE:-af_heart}
@@ -79,6 +90,7 @@ services:
       APP_BASE_URL: ${APP_BASE_URL:-http://localhost:3000}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       UVICORN_WORKERS: ${UVICORN_WORKERS:-4}
+      DOCUMENT_OCR_PROVIDER: ${DOCUMENT_OCR_PROVIDER:-ollama+paddleocr}
       STRIPE_ENABLED: ${STRIPE_ENABLED:-false}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
       STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
@@ -90,6 +102,8 @@ services:
       PRICE_YEARLY: ${PRICE_YEARLY:-149.50}
       TOTAL_PRICE_MONTHLY: ${TOTAL_PRICE_MONTHLY:-19.95}
       TOTAL_PRICE_YEARLY: ${TOTAL_PRICE_YEARLY:-199.50}
+    ports:
+      - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -97,8 +111,12 @@ services:
         condition: service_healthy
 
   frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
     image: ghcr.io/artcc/freelingo-frontend:latest
-    pull_policy: always
     container_name: freelingo-frontend
     restart: unless-stopped
     environment:
@@ -117,19 +135,20 @@ services:
   # For Maxwell/Pascal/Turing/Ampere/Hopper GPUs: use :latest (cu126).
   # CPU-only host: use :cpu-latest and remove the 'deploy' block.
   # See: https://github.com/remsky/Kokoro-FastAPI
-  kokoro:
-    image: ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128
-    container_name: freelingo-kokoro
-    restart: unless-stopped
-    environment:
-      - PYTHONUNBUFFERED=1
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+  # NOTE: Disabled on Apple Silicon (arm64) - use TTS_PROVIDER=nan or TTS_PROVIDER=openai
+  # kokoro:
+  #   image: ghcr.io/remsky/kokoro-fastapi-gpu:latest-cu128
+  #   container_name: freelingo-kokoro
+  #   restart: unless-stopped
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
 
   # STT (faster-whisper) ──────────────────────────────────────────
   # Only required when STT_PROVIDER=local (default).
@@ -137,17 +156,18 @@ services:
   # GPU host (NVIDIA): uses the image below as-is.
   # CPU-only host:     replace image tag with onerahmet/openai-whisper-asr-webservice:latest
   #                    set ASR_MODEL=base or small, and remove the entire 'deploy' block.
-  whisper:
-    image: onerahmet/openai-whisper-asr-webservice:latest-gpu
-    container_name: freelingo-whisper
-    restart: unless-stopped
-    environment:
-      - ASR_MODEL=${STT_MODEL:-large-v3-turbo}
-      - ASR_ENGINE=${STT_ENGINE:-faster_whisper}
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+  # NOTE: Disabled on Apple Silicon (arm64) - use STT_PROVIDER=nan or STT_PROVIDER=openai
+  # whisper:
+  #   image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+  #   container_name: freelingo-whisper
+  #   restart: unless-stopped
+  #   environment:
+  #     - ASR_MODEL=${STT_MODEL:-large-v3-turbo}
+  #     - ASR_ENGINE=${STT_ENGINE:-faster_whisper}
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]

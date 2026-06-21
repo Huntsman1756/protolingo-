@@ -5,7 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.8.7] - 2026-06-17
+## [Unreleased]
+
+### Fixed
+
+- Documents: scanned/image-based PDFs now use OCR fallback — configurable via `DOCUMENT_OCR_PROVIDER` (`ollama` for vision models like qwen2.5-vl, `paddleocr` for local PaddleOCR, or `ollama+paddleocr` to try both). Error messages are now stored and displayed in the frontend when processing fails.
+- Reading exercises now tolerate irregular LLM question payloads so `/api/reading/next`, `/api/reading/attempt`, and `/api/reading/history` return structured responses instead of server errors.
+- Weak Review now returns empty due-item state for users without an active study plan and computes due statistics without SQL casting errors.
+- New app routes for Reading, Writing, Documents, and Weak Review are now protected by middleware before client-side API calls run.
+- Phrasebook now supports `semi-formal` phrase registers and includes missing shared refresh labels across all locales.
+
+## [1.9.0] - 2026-06-20
+
+### Added
+
+- **RAG Document Q&A (Phase 13)**: Upload documents (PDF, DOCX, TXT, images) and ask questions with AI-powered answers and source citations. Text extraction via PyMuPDF, python-docx, and Nan vision API. Embeddings via Nan `qwen3-embedding` (4096 dims). Reranking via Nan `rerank` model. LLM answers use Nan `qwen3.6`. New database tables: `documents` and `document_chunks`. 5 new endpoints under `/api/documents`. Premium-feature gated. Configurable via 9 new env vars. Full spec at `specs/phase-12-rag-documents.instructions.md`.
+
+## [1.8.8] - 2026-06-20
 
 ### Added
 
